@@ -1,5 +1,5 @@
 ---
-title: "We put an AI agent on a £60 Android phone"
+title: "We put an AI agent on a $75 Android phone"
 description: "We wanted a phone that could think. Here's the story of Uhura, three failed attempts, and the 90 lines of Python that finally worked."
 pubDate: "2026-02-25"
 heroImage: ./images/hero-uhura-android-phone-agent.png
@@ -27,7 +27,7 @@ We called it Uhura. Communications officer of the Enterprise.
 
 &nbsp;
 
-The phone: a Xiaomi Redmi 8 from eBay. 2019 hardware. Android 9. 2GB of RAM. £60.
+The phone: a Xiaomi Redmi 8 from eBay. 2019 hardware. Android 9. 2GB of RAM. $75.
 
 &nbsp;
 
@@ -214,7 +214,7 @@ Uhura can chat. Next we want phone hardware commands: remote photos, GPS trackin
 
 &nbsp;
 
-The phone cost £60. The working bot took ten minutes of coding after two hours of debugging.
+The phone cost $75. The working bot took ten minutes of coding after two hours of debugging.
 
 &nbsp;
 
