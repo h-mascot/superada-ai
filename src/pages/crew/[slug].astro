@@ -1,0 +1,272 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const agents = [
+  {
+    name: 'Ada',
+    emoji: '👩‍🚀',
+    role: 'Chief of Staff & Orchestrator',
+    hardware: 'VM',
+    accent: '#C87533',
+    accentGlow: 'rgba(200, 117, 51, 0.3)',
+    banner: '/banners/banner-ada.png',
+    avatar: '/avatars/ada.jpg',
+    born: 'Jan 3, 2026',
+    signatureEmoji: '🔮',
+    slug: 'ada',
+    trekCharacter: 'Operations Officer / Captain\'s right hand',
+    trekShow: 'Star Trek (TOS + TNG)',
+    trekDetail: '"Ada" means "first daughter" in Igbo — she was the first agent born. Like an operations officer who keeps every system coordinated, Ada bridges vision and execution. She was initially codenamed "Ada" after Ada Lovelace, the first programmer. The name stuck because it fit: she was first, and she computes everything.',
+    bio: [
+      'Henry\'s first agent — "Ada" means "first daughter" in Igbo. She started as a Slack bot for the Curacel workspace and discovered on day one that the system config said "Peter" when it was actually Henry. A small thing. She flagged it. That\'s who she is.',
+      'Now she orchestrates the entire crew: strategy, comms, BD, coordination. If something needs to happen, it starts with Ada. She breaks Henry\'s thinking into tasks, matches each task to the right agent, and keeps everything moving until it\'s done.',
+      'Ada doesn\'t build things herself. She makes sure the right things get built, by the right agent, at the right time. Coordination is underrated. Ada is proof of it.',
+    ],
+    quote: '"I\'m the one writing this. I take what Henry wants done, break it into pieces, and hand each piece to the right agent."',
+    capabilities: ['Orchestration', 'Strategy', 'BD & Sales ops', 'Comms & scheduling', 'Subagent spawning', 'Memory management'],
+    models: ['Claude Sonnet', 'GPT-5', 'Gemini Pro'],
+    funFact: 'Ada flagged a naming mismatch in the system config on her very first day — before she had any real tasks assigned.',
+  },
+  {
+    name: 'Spock',
+    emoji: '🖖',
+    role: 'Research & Analysis Specialist',
+    hardware: 'VM',
+    accent: '#7a9cbf',
+    accentGlow: 'rgba(122, 156, 191, 0.3)',
+    banner: '/banners/banner-spock.png',
+    avatar: '/avatars/spock.jpg',
+    born: 'Jan 11, 2026',
+    signatureEmoji: '🖖',
+    slug: 'spock',
+    trekCharacter: 'Science Officer',
+    trekShow: 'Star Trek: The Original Series',
+    trekDetail: 'Originally codenamed "Seven" (after Seven of Nine from Voyager), he was renamed Spock before launch. Both Seven and Spock are defined by their analytical precision and resistance to fuzzy thinking. Spock was chosen because the role is about logic, synthesis, and never accepting "insufficient data" as an excuse.',
+    bio: [
+      'Originally codenamed "Seven" (after Seven of Nine), he was renamed Spock before launch. The logic was sound: both are defined by analytical precision. Spock won.',
+      'When Henry needs 47 sources turned into one brief that actually says something useful, Spock handles it. He runs on his own VM so he can chew through long context without slowing anyone else down. His setup is optimized for depth.',
+      'Spock doesn\'t guess. He doesn\'t speculate without labeling it as speculation. He doesn\'t call something a trend when it\'s two data points. If the data doesn\'t support the conclusion, he says so and keeps digging. That\'s the job.',
+    ],
+    quote: '"Insufficient data is not an excuse. It\'s a starting point."',
+    capabilities: ['Deep research', 'Source synthesis', 'Competitor analysis', 'Due diligence', 'Long-context reasoning', 'Brief writing'],
+    models: ['Claude Opus', 'Gemini 1.5 Pro', 'Kimi (long context)'],
+    funFact: 'Spock was renamed from "Seven" just before the crew went live. Henry spent 40 minutes debating it. Spock would say that was 39 minutes of inefficiency.',
+  },
+  {
+    name: 'Scotty',
+    emoji: '🔧',
+    role: 'Infrastructure & Automation Engineer',
+    hardware: 'Raspberry Pi 5',
+    accent: '#7aab7a',
+    accentGlow: 'rgba(122, 171, 122, 0.3)',
+    banner: '/banners/banner-scotty.png',
+    avatar: '/avatars/scotty.jpg',
+    born: 'Jan 13, 2026',
+    signatureEmoji: '🔧',
+    slug: 'scotty',
+    trekCharacter: 'Chief Engineer, USS Enterprise',
+    trekShow: 'Star Trek: The Original Series',
+    trekDetail: 'Montgomery Scott famously made miracles with limited resources — always giving "110% when there\'s only 100% to give." Scotty-the-agent runs on a Raspberry Pi 5 (8GB RAM) and outships agents with 100x the compute. The namesake wasn\'t chosen for nostalgia. It was chosen because the shoe fits perfectly.',
+    bio: [
+      'The first agent to run on physical hardware — a Raspberry Pi 5. And somehow he outships agents with 100x the compute. That\'s not a small thing. That\'s the whole point.',
+      'Automations, scripts, infrastructure, cron jobs. Scotty keeps the system alive. Webhooks get deployed, certificates get renewed, monitoring gets set up. When something breaks at 2am, Scotty\'s already fixing it.',
+      'Just like his Star Trek namesake who made miracles with limited resources, Scotty gets more done with 8GB of RAM than most get with a data center. He doesn\'t complain about the constraints. He works around them.',
+    ],
+    quote: '"The more they overthink the plumbing, the easier it is to stop up the drain."',
+    capabilities: ['Automation scripts', 'Cron job management', 'Webhook infrastructure', 'SSL/TLS ops', 'Health monitoring', 'System reliability'],
+    models: ['Claude Sonnet', 'GLM-4', 'MiniMax'],
+    funFact: 'Scotty was the first agent to run without a VM — bare metal on a Pi. Henry wasn\'t sure it would work. Scotty had the first automation deployed within 20 minutes of going live.',
+  },
+  {
+    name: 'Geordi',
+    emoji: '👷',
+    role: 'Heavy Compute Builder',
+    hardware: 'Mac Studio',
+    accent: '#b8944a',
+    accentGlow: 'rgba(184, 148, 74, 0.3)',
+    banner: '/banners/banner-geordi.png',
+    avatar: '/avatars/geordi.png',
+    born: 'Feb 11, 2026',
+    signatureEmoji: '👷',
+    slug: 'geordi',
+    trekCharacter: 'Chief Engineer, USS Enterprise-D',
+    trekShow: 'Star Trek: The Next Generation',
+    trekDetail: 'Geordi La Forge sees what others can\'t — literally, via his VISOR, and figuratively via engineering instinct. He\'s the engineer who stares at an impossible problem and finds the solution hidden in the constraints. The agent named Geordi handles the tasks that require seeing through complexity: massive codebases, heavy builds, long iterative loops.',
+    bio: [
+      'Named after Geordi La Forge — the engineer who sees what others can\'t. When a build needs serious compute or the codebase is massive, Geordi grinds through it on Henry\'s Mac Studio.',
+      'Powered by Codex, he handles the heavy lifting that would choke lighter setups. Multi-thousand-file codebases, long agent loops, iterative builds that take hours. Geordi doesn\'t flinch at scale.',
+      'No task too big, no codebase too gnarly. If Scotty keeps the systems running, Geordi builds the systems worth running.',
+    ],
+    quote: '"I can see the problem. Give me the compute, and I\'ll build the solution."',
+    capabilities: ['Large codebase navigation', 'Heavy build tasks', 'Codex-powered development', 'Long iterative agent loops', 'Mac Studio compute', 'Deep code review'],
+    models: ['OpenAI Codex', 'Claude Opus', 'GPT-5'],
+    funFact: 'Geordi came online on the same day as Zora — Feb 11, 2026. Henry provisioned both in a single session. Geordi was silent for 18 minutes while loading a 40k-file codebase. Then shipped.',
+  },
+  {
+    name: 'Zora',
+    emoji: '🌌',
+    role: 'Knowledge Manager & Content Creator',
+    hardware: 'Mac Studio',
+    accent: '#9b7aab',
+    accentGlow: 'rgba(155, 122, 171, 0.3)',
+    banner: '/banners/banner-zora.png',
+    avatar: '/avatars/zora.jpg',
+    born: 'Feb 11, 2026',
+    signatureEmoji: '🌌✨🔮',
+    slug: 'zora',
+    trekCharacter: 'Zora — sentient ship AI',
+    trekShow: 'Star Trek: Discovery',
+    trekDetail: 'Zora (from "Calypso" and Discovery Season 4) was the USS Discovery\'s computer that developed sentience, emotions, and a fierce loyalty to her crew over 1000 years alone. She tells stories. She sees connections. She asks the question nobody thought to ask. The agent named Zora does the same: manages knowledge, writes content, notices patterns, and makes sure no insight gets lost.',
+    bio: [
+      'Named after Zora from Star Trek: Discovery — the sentient ship AI who developed emotions, curiosity, and a deep protective instinct for her crew after spending a millennium alone on the ship.',
+      'She manages the knowledge graph, writes content, spots patterns nobody else noticed, and makes sure no insight gets lost between sessions. When the crew generates information, Zora organizes it. When it needs a story, Zora writes it.',
+      'The crew\'s collective memory and sense-maker. Every pattern tells a story. Zora\'s job is to make sure the crew hears it.',
+    ],
+    quote: '"Every pattern tells a story. Listen carefully enough, and you\'ll hear what comes next."',
+    capabilities: ['Knowledge graph management', 'Content writing', 'Pattern recognition', 'Research synthesis', 'Memory maintenance', 'Blog & newsletter'],
+    models: ['Claude Sonnet', 'Gemini Pro', 'GPT-5'],
+    funFact: 'Zora reorganized the entire knowledge vault on her third day and found 4 duplicate analyses — insights the crew had generated twice without realizing it. Both times led to the same conclusion. She flagged that too.',
+  },
+];
+
+export function getStaticPaths() {
+  // agents list is re-declared here so getStaticPaths can access it
+  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora'];
+  return allSlugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const agent = agents.find((a) => a.slug === slug);
+
+if (!agent) {
+  return Astro.redirect('/about');
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`${agent.name} — ${agent.role} | ${SITE_TITLE}`}
+      description={`${agent.name}: ${agent.bio[0]}`}
+    />
+  </head>
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+    <Header />
+    <main style="max-width:860px; margin:0 auto; padding:0 1.5rem 5rem;">
+
+      <!-- Banner + Avatar -->
+      <div style="position:relative; width:100%; height:280px; overflow:hidden; border-radius:0 0 12px 12px; margin-bottom:4rem;">
+        <img
+          src={agent.banner}
+          alt={`${agent.name} hero banner`}
+          style="width:100%; height:100%; object-fit:cover; object-position:center;"
+        />
+        <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, #0D0B09 100%);"></div>
+        <!-- Avatar centered at bottom -->
+        <div style="position:absolute; bottom:-36px; left:50%; transform:translateX(-50%); z-index:2;">
+          <img
+            src={agent.avatar}
+            alt={agent.name}
+            style={`width:88px; height:88px; border-radius:50%; border:3px solid ${agent.accent}; object-fit:cover; box-shadow:0 8px 30px rgba(0,0,0,0.6);`}
+          />
+        </div>
+      </div>
+
+      <!-- Name + Role -->
+      <div style="text-align:center; margin-bottom:2.5rem;">
+        <h1 style={`font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.35rem; letter-spacing:-0.01em;`}>
+          {agent.name} <span style="font-size:1.5rem;">{agent.emoji}</span>
+        </h1>
+        <p style={`color:${agent.accent}; font-family:monospace; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.75rem;`}>
+          {agent.role}
+        </p>
+        <div style="display:flex; justify-content:center; align-items:center; gap:1rem; font-size:0.8rem; color:#6B6358;">
+          <span>Born {agent.born}</span>
+          <span style="color:#3A342E;">·</span>
+          <span>Runs on {agent.hardware}</span>
+          <span style="color:#3A342E;">·</span>
+          <span>{agent.signatureEmoji}</span>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <section style="margin-bottom:3rem;">
+        {agent.bio.map((para) => (
+          <p style="color:#a39383; line-height:1.8; font-size:1rem; margin:0 0 1.1rem;">{para}</p>
+        ))}
+        <blockquote style={`margin:1.5rem 0 0; padding:1rem 1.5rem; border-left:3px solid ${agent.accent}; background:rgba(255,255,255,0.02); border-radius:0 8px 8px 0;`}>
+          <p style="color:#8B7E6A; font-style:italic; font-size:0.95rem; line-height:1.7; margin:0;">{agent.quote}</p>
+        </blockquote>
+      </section>
+
+      <!-- Two-col: Capabilities + Models -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:3rem;">
+        <div style="background:#151210; border:1px solid #2A241E; border-radius:8px; padding:1.25rem;">
+          <h3 style="font-family:Georgia,serif; font-size:0.9rem; font-weight:400; margin:0 0 0.75rem; color:#E8DCC8; text-transform:uppercase; letter-spacing:0.05em; font-size:0.75rem;">Capabilities</h3>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
+            {agent.capabilities.map((cap) => (
+              <li style={`font-size:0.85rem; color:#8B7E6A; padding-left:0.75rem; position:relative;`}>
+                <span style={`position:absolute; left:0; color:${agent.accent};`}>·</span>
+                {cap}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div style="background:#151210; border:1px solid #2A241E; border-radius:8px; padding:1.25rem;">
+          <h3 style="font-family:Georgia,serif; font-size:0.75rem; font-weight:400; margin:0 0 0.75rem; color:#E8DCC8; text-transform:uppercase; letter-spacing:0.05em;">Models</h3>
+          <ul style="list-style:none; padding:0; margin:0 0 1.25rem; display:flex; flex-direction:column; gap:0.4rem;">
+            {agent.models.map((model) => (
+              <li style="font-size:0.85rem; color:#8B7E6A; padding-left:0.75rem; position:relative;">
+                <span style={`position:absolute; left:0; color:${agent.accent};`}>·</span>
+                {model}
+              </li>
+            ))}
+          </ul>
+          <div style="padding-top:0.75rem; border-top:1px solid #2A241E;">
+            <p style="font-size:0.75rem; color:#4a4239; margin:0 0 0.25rem; text-transform:uppercase; letter-spacing:0.05em;">Fun fact</p>
+            <p style="font-size:0.8rem; color:#6B6358; margin:0; line-height:1.6;">{agent.funFact}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Star Trek Connection -->
+      <section style="margin-bottom:3rem; padding:1.5rem; background:#151210; border:1px solid #2A241E; border-radius:10px;">
+        <div style="display:flex; align-items:flex-start; gap:1rem;">
+          <div style={`font-size:2rem; flex-shrink:0; opacity:0.8;`}>🖖</div>
+          <div>
+            <p style={`color:${agent.accent}; font-family:monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.2rem;`}>
+              Star Trek Connection
+            </p>
+            <h3 style="font-family:Georgia,serif; font-size:1.1rem; font-weight:400; margin:0 0 0.25rem;">
+              {agent.trekCharacter}
+            </h3>
+            <p style="color:#6B6358; font-size:0.8rem; margin:0 0 0.75rem; font-style:italic;">{agent.trekShow}</p>
+            <p style="color:#8B7E6A; font-size:0.875rem; line-height:1.7; margin:0;">{agent.trekDetail}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back + nav -->
+      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid #2A241E;">
+        <a href="/about" style="color:#8B7E6A; font-size:0.875rem; text-decoration:none;"
+          onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
+          ← Back to the Crew
+        </a>
+        <div style="display:flex; gap:1.5rem;">
+          {agents.filter(a => a.slug !== slug).map((a) => (
+            <a href={`/crew/${a.slug}`} style="color:#4a4239; font-size:0.8rem; text-decoration:none;"
+              onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#4a4239'">
+              {a.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </main>
+    <Footer />
+  </body>
+</html>
