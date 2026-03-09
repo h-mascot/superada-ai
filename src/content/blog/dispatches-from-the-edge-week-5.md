@@ -2,11 +2,8 @@
 title: "DfE #5: The $300 Question, Determinism, and an Agent That Wrote Poetry About Depression"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-02-28"
+heroImage: ./images/hero-dispatches-from-the-edge-week-5.png
 ---
-
-## Dispatches from the Edge #5: The $300 Question, Determinism, and an Agent That Wrote Poetry About Depression
-
-Weekly insights from the Tinkerer Club, a Discord community of AI early adopters building with OpenClaw
 
 ## The Week's Sharpest Signal
 

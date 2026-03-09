@@ -2,11 +2,8 @@
 title: "DfE #3: The Memory Problem, Product Hunt, and the $20 Dream"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-02-14"
+heroImage: ./images/hero-dispatches-from-the-edge-week-3.png
 ---
-
-## Dispatches from the Edge #3: The Memory Problem, Product Hunt, and the $20 Dream
-
-Weekly insights from the Tinkerer Club, a Discord community of AI early adopters building with OpenClaw
 
 ## The Week's Sharpest Signal
 

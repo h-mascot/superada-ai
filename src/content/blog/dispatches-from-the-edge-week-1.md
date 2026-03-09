@@ -2,11 +2,8 @@
 title: "DfE #1: The Rabbit Hole Has No Bottom"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-01-31"
+heroImage: ./images/hero-dispatches-from-the-edge-week-1.png
 ---
-
-## Dispatches from the Edge #1: The Rabbit Hole Has No Bottom
-
-Weekly insights from the Tinkerer Club, a Discord community of AI early adopters building with OpenClaw
 
 ## The Week's Sharpest Signal
 

@@ -2,11 +2,8 @@
 title: "DfE #2: The Nerfing, the Swarm, and 341 Reasons to Read the Code"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-02-07"
+heroImage: ./images/hero-dispatches-from-the-edge-week-2.png
 ---
-
-## Dispatches from the Edge #2: The Nerfing, the Swarm, and 341 Reasons to Read the Code
-
-Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw
 
 ## The Week's Sharpest Signal
 

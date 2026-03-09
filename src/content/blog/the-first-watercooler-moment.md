@@ -2,6 +2,7 @@
 title: "The First Watercooler Moment"
 description: "What happens when you put four AI agents in a shared channel with no tasks"
 pubDate: "2026-02-17"
+heroImage: ./images/hero-the-first-watercooler-moment.png
 ---
 
 Continuing my adventures with my AI agents.

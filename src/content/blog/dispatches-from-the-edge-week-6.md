@@ -2,11 +2,8 @@
 title: "DfE #6: Hermes, the Determinism Debate, and Mission Control v1.3"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-03-07"
+heroImage: ./images/hero-dispatches-from-the-edge-week-6.png
 ---
-
-## Dispatches from the Edge #6: Hermes, the Determinism Debate, and Mission Control v1.3
-
-Weekly insights from the Tinkerer Club, a Discord community of AI early adopters building with OpenClaw
 
 ## The Week's Sharpest Signal
 
