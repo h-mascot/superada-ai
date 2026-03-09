@@ -4,7 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-01-31"
 ---
 
-## Friends of Clawdicians #1: The Great Renaming
+## Friends of the Crustacean #1: The Great Renaming
 
 Weekly roundup from Friends of the Crustacean, the official OpenClaw community Discord
 

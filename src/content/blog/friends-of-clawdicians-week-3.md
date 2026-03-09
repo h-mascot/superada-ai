@@ -4,7 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-14"
 ---
 
-## Friends of Clawdicians #3: The Subscription Squeeze
+## Friends of the Crustacean #3: The Subscription Squeeze
 
 Weekly roundup from Friends of the Crustacean, the official OpenClaw community Discord
 

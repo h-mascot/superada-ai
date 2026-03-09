@@ -4,7 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-07"
 ---
 
-## Friends of Clawdicians #2: The Builders Show Up
+## Friends of the Crustacean #2: The Builders Show Up
 
 Weekly roundup from Friends of the Crustacean, the official OpenClaw community Discord
 

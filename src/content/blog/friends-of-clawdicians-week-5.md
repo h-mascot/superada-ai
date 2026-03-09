@@ -4,7 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-28"
 ---
 
-## Friends of Clawdicians #5: The Depressed Poet and the Shopping List
+## Friends of the Crustacean #5: The Depressed Poet and the Shopping List
 
 Weekly roundup from Friends of the Crustacean, the official OpenClaw community Discord
 

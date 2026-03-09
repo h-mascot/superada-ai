@@ -4,10 +4,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.props;
 ---
 
 <html lang="en">
@@ -150,6 +151,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
             <img src={heroImage.src} alt="" style="width:100%; border-radius:6px; border:1px solid #2A241E;" />
           </div>
         )}
+
+        <!-- Audio player -->
+        <AudioPlayer audioSrc={audio} />
 
         <hr style="border:none; border-top:1px solid #2A241E; margin-bottom:2.5rem;" />
 

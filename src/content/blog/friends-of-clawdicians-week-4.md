@@ -4,7 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-21"
 ---
 
-## Friends of Clawdicians #4: The $25/Day Problem
+## Friends of the Crustacean #4: The $25/Day Problem
 
 Weekly roundup from Friends of the Crustacean, the official OpenClaw community Discord
 

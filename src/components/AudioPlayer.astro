@@ -1,0 +1,312 @@
+---
+interface Props {
+  audioSrc?: string;
+  articleText?: string;
+}
+
+const { audioSrc, articleText } = Astro.props;
+---
+
+<div class="audio-player" data-has-audio={audioSrc ? "true" : "false"}>
+  <div class="audio-player-inner">
+    <button 
+      id="play-btn"
+      class="play-button"
+      aria-label="Play audio"
+    >
+      <svg id="play-icon" class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="pause-icon" class="btn-icon hidden" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+
+    <div class="audio-label">
+      <svg class="headphones-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V13a3 3 0 00-3-3H5a2 2 0 00-2 2v2a2 2 0 002 2h1m4-4h6m-6 0V9a6 6 0 0112 0v4m0 0h1a2 2 0 012 2v2a2 2 0 01-2 2h-1a3 3 0 01-3-3v-3"/>
+      </svg>
+      <span class="listen-text">Listen to this post</span>
+    </div>
+    
+    <span id="current-time" class="time-display">00:00</span>
+    
+    <div class="divider"></div>
+    
+    <div class="speed-buttons" id="speed-buttons">
+      <button data-speed="0.5" class="speed-btn">0.5×</button>
+      <button data-speed="1" class="speed-btn active">1×</button>
+      <button data-speed="1.5" class="speed-btn">1.5×</button>
+      <button data-speed="2" class="speed-btn">2×</button>
+    </div>
+    
+    <div class="spacer"></div>
+    
+    {!audioSrc && (
+      <span class="tts-badge">Browser TTS</span>
+    )}
+  </div>
+  
+  {audioSrc && (
+    <audio id="audio-element" src={audioSrc} preload="metadata"></audio>
+  )}
+</div>
+
+<style>
+  .audio-player {
+    margin: 1.5rem 0;
+  }
+
+  .audio-player-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #1a1510;
+    border: 1px solid #2A241E;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+
+  .play-button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #C87533;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .play-button:hover {
+    background: #d98a44;
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+    color: #0D0B09;
+  }
+
+  .btn-icon.hidden {
+    display: none;
+  }
+
+  .audio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .headphones-icon {
+    width: 16px;
+    height: 16px;
+    color: #8B7E6A;
+  }
+
+  .listen-text {
+    font-size: 0.8125rem;
+    color: #8B7E6A;
+    white-space: nowrap;
+  }
+
+  .time-display {
+    font-size: 0.8125rem;
+    color: #C87533;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    min-width: 40px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 16px;
+    background: #2A241E;
+  }
+
+  .speed-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .speed-btn {
+    font-size: 0.75rem;
+    color: #5a5248;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .speed-btn:hover {
+    color: #E8DCC8;
+  }
+
+  .speed-btn.active {
+    color: #E8DCC8;
+    background: #2A241E;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .tts-badge {
+    font-size: 0.6875rem;
+    color: #5a5248;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .audio-player-inner {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .audio-label {
+      display: none;
+    }
+    .speed-buttons {
+      order: 10;
+    }
+  }
+</style>
+
+<script>
+  const playerEl = document.querySelector('.audio-player') as HTMLElement;
+  const hasAudio = playerEl?.dataset.hasAudio === 'true';
+  const audio = document.getElementById('audio-element') as HTMLAudioElement;
+  const playBtn = document.getElementById('play-btn');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  const currentTimeEl = document.getElementById('current-time');
+  const speedButtons = document.querySelectorAll('.speed-btn');
+
+  // TTS state
+  let ttsUtterance: SpeechSynthesisUtterance | null = null;
+  let ttsPlaying = false;
+  let ttsStartTime = 0;
+  let ttsRate = 1;
+  let ttsTimer: number | null = null;
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+  };
+
+  const getArticleText = () => {
+    const prose = document.querySelector('.prose');
+    return prose?.textContent || '';
+  };
+
+  const setPlaying = (playing: boolean) => {
+    if (playing) {
+      playIcon?.classList.add('hidden');
+      pauseIcon?.classList.remove('hidden');
+    } else {
+      playIcon?.classList.remove('hidden');
+      pauseIcon?.classList.add('hidden');
+    }
+  };
+
+  const setActiveSpeed = (activeBtn: Element) => {
+    speedButtons.forEach(b => b.classList.remove('active'));
+    activeBtn.classList.add('active');
+  };
+
+  if (hasAudio && audio && playBtn) {
+    // Pre-generated audio mode
+    audio.addEventListener('timeupdate', () => {
+      if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        setPlaying(true);
+      } else {
+        audio.pause();
+        setPlaying(false);
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      setPlaying(false);
+      if (currentTimeEl) currentTimeEl.textContent = '00:00';
+    });
+
+    speedButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
+        audio.playbackRate = speed;
+        setActiveSpeed(btn);
+      });
+    });
+  } else if (!hasAudio && playBtn) {
+    // Browser TTS fallback
+    playBtn.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        alert('Your browser does not support text-to-speech.');
+        return;
+      }
+
+      if (ttsPlaying) {
+        window.speechSynthesis.cancel();
+        ttsPlaying = false;
+        setPlaying(false);
+        if (ttsTimer) clearInterval(ttsTimer);
+      } else {
+        const text = getArticleText();
+        if (!text) return;
+
+        ttsUtterance = new SpeechSynthesisUtterance(text);
+        ttsUtterance.rate = ttsRate;
+        ttsUtterance.lang = 'en-US';
+        
+        const voices = window.speechSynthesis.getVoices();
+        const preferred = voices.find(v => 
+          v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Google')
+        );
+        if (preferred) ttsUtterance.voice = preferred;
+
+        ttsStartTime = Date.now();
+        ttsPlaying = true;
+        setPlaying(true);
+
+        ttsTimer = window.setInterval(() => {
+          if (ttsPlaying && currentTimeEl) {
+            currentTimeEl.textContent = formatTime((Date.now() - ttsStartTime) / 1000);
+          }
+        }, 1000);
+
+        ttsUtterance.onend = () => {
+          ttsPlaying = false;
+          setPlaying(false);
+          if (ttsTimer) clearInterval(ttsTimer);
+          if (currentTimeEl) currentTimeEl.textContent = '00:00';
+        };
+
+        window.speechSynthesis.speak(ttsUtterance);
+      }
+    });
+
+    speedButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
+        ttsRate = speed;
+        if (ttsPlaying && ttsUtterance) {
+          window.speechSynthesis.cancel();
+          ttsUtterance.rate = ttsRate;
+          window.speechSynthesis.speak(ttsUtterance);
+        }
+        setActiveSpeed(btn);
+      });
+    });
+  }
+</script>
