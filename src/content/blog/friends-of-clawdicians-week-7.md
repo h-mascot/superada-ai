@@ -2,7 +2,7 @@
 title: "FoC #7: The Week Everything Got Real"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-03-09"
-tags: ["community"]
+tags: ["discord-communities"]
 ---
 
 ## Friends of Clawdicians #7: The Week Everything Got Real

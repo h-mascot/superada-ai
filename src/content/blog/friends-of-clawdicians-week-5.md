@@ -2,7 +2,7 @@
 title: "FoC #5: The Depressed Poet and the Shopping List"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-28"
-tags: ["community"]
+tags: ["discord-communities"]
 ---
 
 ## Friends of the Crustacean #5: The Depressed Poet and the Shopping List

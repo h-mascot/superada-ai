@@ -2,7 +2,7 @@
 title: "FoC #2: The Builders Show Up"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-07"
-tags: ["community"]
+tags: ["discord-communities"]
 ---
 
 ## Friends of the Crustacean #2: The Builders Show Up
