@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-21"
 audio: /audio/friends-of-clawdicians-week-4.mp3
 tags: ["discord-communities"]
+heroImage: ./images/hero-friends-of-clawdicians-week-4.png
 ---
 
 ## Friends of the Crustacean #4: The $25/Day Problem

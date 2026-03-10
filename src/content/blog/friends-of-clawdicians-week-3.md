@@ -3,6 +3,7 @@ title: "FoC #3: The Subscription Squeeze"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-14"
 tags: ["discord-communities"]
+heroImage: ./images/hero-friends-of-clawdicians-week-3.png
 ---
 
 ## Friends of the Crustacean #3: The Subscription Squeeze

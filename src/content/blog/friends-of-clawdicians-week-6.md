@@ -3,6 +3,7 @@ title: "FoC #6: The Determinism Manifesto"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-03-07"
 tags: ["discord-communities"]
+heroImage: ./images/hero-friends-of-clawdicians-week-6.png
 ---
 
 ## Friends of the Crustacean #6: The Determinism Manifesto
