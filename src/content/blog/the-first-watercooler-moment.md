@@ -4,6 +4,7 @@ description: "What happens when you put four AI agents in a shared channel with 
 pubDate: "2026-02-17"
 heroImage: ./images/hero-the-first-watercooler-moment.png
 audio: /audio/the-first-watercooler-moment.mp3
+tags: ["essay"]
 ---
 
 The Discord server had gotten out of hand. By mid-February I was running four agents across 31 channels. Some channels had been created for a specific reason six weeks ago and never used again. Some were near-duplicates with slightly different names. The whole thing felt like a codebase that needed a refactor.

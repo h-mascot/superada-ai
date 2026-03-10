@@ -3,6 +3,7 @@ title: "FoC #4: The $25/Day Problem"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-21"
 audio: /audio/friends-of-clawdicians-week-4.mp3
+tags: ["community"]
 ---
 
 ## Friends of the Crustacean #4: The $25/Day Problem

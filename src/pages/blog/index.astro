@@ -9,25 +9,119 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Build category counts
+const categoryLabels: Record<string, string> = {
+  'origin-story': 'Origin Stories',
+  'dispatches': 'Dispatches',
+  'community': 'Community',
+  'security': 'Security',
+  'engineering': 'Engineering',
+  'essay': 'Essays',
+  'case-study': 'Case Studies',
+  'mobile': 'Mobile',
+};
+
+const categoryCounts: Record<string, number> = {};
+for (const post of posts) {
+  const tags = post.data.tags || [];
+  for (const tag of tags) {
+    categoryCounts[tag] = (categoryCounts[tag] || 0) + 1;
+  }
+}
+
+// Order categories by count descending, only include ones with posts
+const categories = Object.entries(categoryCounts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([tag, count]) => ({ tag, label: categoryLabels[tag] || tag, count }));
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={`Ship Log | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <style>
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0 0 2rem;
+        padding: 0;
+        list-style: none;
+      }
+      .filter-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.875rem;
+        border: 1px solid #2A241E;
+        border-radius: 999px;
+        background: transparent;
+        color: #8B7E6A;
+        font-size: 0.8125rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .filter-pill:hover {
+        border-color: #C87533;
+        color: #E8DCC8;
+      }
+      .filter-pill[data-active="true"] {
+        background: #C87533;
+        border-color: #C87533;
+        color: #0D0B09;
+        font-weight: 600;
+      }
+      .filter-pill .count {
+        font-size: 0.6875rem;
+        opacity: 0.7;
+      }
+      .filter-pill[data-active="true"] .count {
+        opacity: 0.85;
+      }
+      .post-item {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .post-item[data-hidden="true"] {
+        opacity: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none !important;
+        overflow: hidden;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
     <Header />
     <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
 
       <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.4rem;">Ship Log</h1>
-      <p style="color:#8B7E6A; font-size:0.9375rem; margin:0 0 2.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
+      <p style="color:#8B7E6A; font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
+
+      <!-- Filter pills -->
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-pill" data-tag="all" data-active="true">
+          All <span class="count">{posts.length}</span>
+        </button>
+        {categories.map((cat) => (
+          <button class="filter-pill" data-tag={cat.tag} data-active="false">
+            {cat.label} <span class="count">{cat.count}</span>
+          </button>
+        ))}
+      </div>
 
       {posts.length > 0 ? (
-        <div>
+        <div id="posts-list">
           {posts.map((post, i) => (
             <a
               href={`/blog/${post.id}/`}
+              class="post-item"
+              data-tags={(post.data.tags || []).join(',')}
+              data-hidden="false"
               style={`display:flex; gap:1.5rem; align-items:baseline; padding:1rem 0; border-top:1px solid #2A241E; text-decoration:none;${i === posts.length - 1 ? ' border-bottom:1px solid #2A241E;' : ''}`}
             >
               <span style="font-size:0.8125rem; color:#8B7E6A; white-space:nowrap; flex-shrink:0; min-width:5.5rem; font-variant-numeric:tabular-nums;">
@@ -46,5 +140,46 @@ const posts = (await getCollection('blog')).sort(
 
     </main>
     <Footer />
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const bar = document.getElementById('filter-bar');
+        const posts = document.querySelectorAll('.post-item');
+        if (!bar) return;
+
+        bar.addEventListener('click', (e) => {
+          const pill = (e.target as HTMLElement).closest('.filter-pill') as HTMLElement | null;
+          if (!pill) return;
+
+          const tag = pill.dataset.tag;
+          if (!tag) return;
+
+          // Update active states
+          bar.querySelectorAll('.filter-pill').forEach((p) => {
+            (p as HTMLElement).dataset.active = 'false';
+          });
+          pill.dataset.active = 'true';
+
+          // Filter posts
+          let visibleCount = 0;
+          posts.forEach((post) => {
+            const el = post as HTMLElement;
+            const postTags = (el.dataset.tags || '').split(',');
+            const show = tag === 'all' || postTags.includes(tag);
+            el.dataset.hidden = show ? 'false' : 'true';
+            if (show) visibleCount++;
+          });
+
+          // Fix borders on visible items
+          const visible = Array.from(posts).filter(
+            (p) => (p as HTMLElement).dataset.hidden === 'false'
+          ) as HTMLElement[];
+          visible.forEach((el, i) => {
+            el.style.borderTop = '1px solid #2A241E';
+            el.style.borderBottom = i === visible.length - 1 ? '1px solid #2A241E' : 'none';
+          });
+        });
+      });
+    </script>
   </body>
 </html>

@@ -4,6 +4,7 @@ description: "The thing standing between AI agents and mainstream adoption isn't
 pubDate: "2026-02-06"
 heroImage: ./images/hero-security-is-the-chasm.png
 audio: /audio/security-is-the-chasm.mp3
+tags: ["security"]
 ---
 
 The thing standing between AI agents and mainstream adoption isn't capability. It's trust.
