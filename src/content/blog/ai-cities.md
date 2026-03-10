@@ -3,7 +3,7 @@ title: "AI Cities"
 description: "The next competitive advantage isn't your product. It's your AI."
 pubDate: "2026-02-06"
 heroImage: ./images/hero-ai-cities.png
-audio: ./audio/ai-cities.mp3
+audio: /audio/ai-cities.mp3
 ---
 
 The next competitive advantage isn't your product. It's your AI.

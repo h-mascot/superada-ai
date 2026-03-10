@@ -3,7 +3,7 @@ title: "OpenClaw Now Scans Skills for You. Here's Why You Should Still Install H
 description: "VirusTotal integration is great. But 8 patterns vs 92 is a real gap."
 pubDate: "2026-02-07"
 heroImage: ./images/hero-why-you-should-still-install-heimdall.png
-audio: ./audio/why-you-should-still-install-heimdall.mp3
+audio: /audio/why-you-should-still-install-heimdall.mp3
 ---
 
 OpenClaw just announced a partnership with VirusTotal to bring security scanning to ClawdHub. Every skill published to the marketplace now gets auto-scanned. This is genuinely impressive.

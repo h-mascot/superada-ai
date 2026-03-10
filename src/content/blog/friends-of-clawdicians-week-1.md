@@ -2,7 +2,7 @@
 title: "FoC #1: The Great Renaming"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-01-31"
-audio: ./audio/friends-of-clawdicians-week-1.mp3
+audio: /audio/friends-of-clawdicians-week-1.mp3
 ---
 
 ## Friends of the Crustacean #1: The Great Renaming
