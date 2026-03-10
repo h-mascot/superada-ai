@@ -3,6 +3,7 @@ title: "DfE #4: The Train Dispatcher, the Ghost Processes, and MiniMax at $25 a 
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-02-21"
 heroImage: ./images/hero-dispatches-from-the-edge-week-4.png
+audio: ./audio/dispatches-from-the-edge-week-4.mp3
 ---
 
 ## The Week's Sharpest Signal

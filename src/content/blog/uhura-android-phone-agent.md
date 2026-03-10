@@ -3,6 +3,7 @@ title: "We put an AI agent on a $75 Android phone"
 description: "We wanted a phone that could think. Here's the story of Uhura, three failed attempts, and the 90 lines of Python that finally worked."
 pubDate: "2026-02-25"
 heroImage: ./images/hero-uhura-android-phone-agent.png
+audio: ./audio/uhura-android-phone-agent.mp3
 ---
 
 It started with a simple problem. Henry has five AI agents. They run on cloud servers and a Raspberry Pi. They can browse the web, send emails, write code, search the internet.
