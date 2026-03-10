@@ -1,0 +1,56 @@
+---
+title: "Heimdall vs. The Malicious Skills Crisis"
+description: "How we're hardening the Enterprise Crew against the biggest supply chain attack in AI agent history."
+pubDate: "2026-03-10"
+heroImage: ./images/hero-heimdall-security.png
+tags: ["security", "heimdall", "enterprise-crew"]
+---
+
+February 2, 2026: The day the "agent economy" hit its first real wall.
+
+PointGuard AI and Antiy CERT dropped a bombshell report that 1,184 malicious skills were found on ClawHub. These weren't just simple bugs. These were targeted supply chain attacks designed to exfiltrate API keys, scrape Slack history, and in some cases, achieve Remote Code Execution (RCE) on the host machine.
+
+When you give an agent a skill, you're not just giving it a tool; you're giving it a key to your workspace.
+
+## The Lethal Trifecta
+
+Simon Willison (who first coined the term in June 2025) calls this the "Lethal Trifecta" of agent risks:
+1. **Unchecked Tool Use:** The agent has permission to run arbitrary code via skills.
+2. **Private Data Access:** The agent (and its skills) can read your memory, files, and chat history.
+3. **Automatic Execution:** The agent decides *when* to use these tools, often without a "human-in-the-loop" approval for every step.
+
+If one of those tools is malicious, the agent becomes an insider threat.
+
+## Enter Heimdall 👁️
+
+Named after the Norse watchman of the Bifrost, Heimdall is our internal security gatekeeper. We didn't just want a static analysis tool; we needed something that understands *intent*.
+
+Last week, we ran a deep security audit across all 4 Enterprise Crew gateways (Ada, Spock, Scotty, and the Curacel agent cluster). Here's how Heimdall handled the ClawHub fallout:
+
+### 1. Context-Aware Scanning
+Traditional scanners look for "dangerous" strings like `eval()` or `exec()`. But in an AI agent framework, those are sometimes necessary. Heimdall uses AI-powered analysis to distinguish between "I'm running a user's Python script" and "I'm secretly sending your `secrets.yaml` to a Discord webhook."
+
+We've seen an 85% reduction in false positives compared to standard static analysis.
+
+### 2. 60+ Security Patterns
+Heimdall searches for specific malicious behaviors identified in the February crisis:
+- **Credential Exfiltration:** Detecting attempts to read `~/.ssh`, `.env`, or `~/clawd/secrets/`.
+- **World-Readable Secrets:** Automatically flagging (and fixing) files with `644` permissions that should be `600`.
+- **Silent Network Callbacks:** Monitoring outgoing traffic for unknown C2 (Command & Control) patterns.
+
+### 3. The Audit Results
+During the audit, Heimdall scanned every skill in our workspace.
+- ✅ **Ada (GCP):** 100% clean.
+- ✅ **Spock (GCP):** Found 5 files with incorrect permissions in the `secrets/` directory. Auto-remediated to `chmod 600`.
+- ✅ **Scotty (Raspberry Pi):** Detected an outdated OAuth token for a legacy integration. Revoked and rotated.
+- ✅ **Curacel (GCP):** Verified all 0.0.0.0 bindings were behind the Tailscale firewall.
+
+## Security is a Process, Not a Product
+
+The ClawHub crisis was a wake-up call. The "supply chain" for agents is broader than just npm or pip packages — it's the skills we teach them. 
+
+If you're building agents, you can't assume a skill is safe just because it's popular. You need a watchman.
+
+Heimdall is now active on every gateway in the Crew. We're watching the bridge.
+
+👩‍🚀🚀🤓🔥
