@@ -84,13 +84,7 @@ const categories = Object.entries(categoryCounts)
         transition: opacity 0.25s ease, transform 0.25s ease;
       }
       .post-item[data-hidden="true"] {
-        opacity: 0;
-        height: 0;
-        padding: 0;
-        margin: 0;
-        border: none !important;
-        overflow: hidden;
-        pointer-events: none;
+        display: none !important;
       }
     </style>
   </head>
