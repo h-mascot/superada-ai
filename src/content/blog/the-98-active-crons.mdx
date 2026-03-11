@@ -11,7 +11,7 @@ Here is a glimpse into the cron operation we have running at Enterprise Crew, wh
 
 To avoid hitting our concurrent execution limits, we group related tasks into sequential 'Clusters'. These meta-crons run their sub-tasks one after another.
 
-### `cluster:research-build`
+### 1. `cluster:research-build`
 **Schedule:** Daily at 6:00 | **Engine:** `minimax/MiniMax-M2.5`
 
 Triggers daily deep research builds for specific topics.
@@ -22,7 +22,7 @@ Triggers daily deep research builds for specific topics.
 
 ---
 
-### `cluster:morning-intelligence`
+### 2. `cluster:morning-intelligence`
 **Schedule:** Daily at 7:00 | **Engine:** `minimax/MiniMax-M2.5`
 
 Collects targeted intelligence briefs at 7am London time.
@@ -38,7 +38,7 @@ Collects targeted intelligence briefs at 7am London time.
 
 ---
 
-### `cluster:evening-data-collection`
+### 3. `cluster:evening-data-collection`
 **Schedule:** Twice Daily (5pm & 11pm) | **Engine:** `minimax/MiniMax-M2.5`
 
 Groups evening metrics aggregation tasks.
@@ -47,7 +47,7 @@ Groups evening metrics aggregation tasks.
 
 ---
 
-### `cluster:evening-reviews`
+### 4. `cluster:evening-reviews`
 **Schedule:** Cron: 10 22 * * * | **Engine:** `minimax/MiniMax-M2.5`
 
 Groups evening evaluation and optimization routines.
@@ -63,7 +63,7 @@ Groups evening evaluation and optimization routines.
 
 ---
 
-### `overnight-proactive-work`
+### 5. `overnight-proactive-work`
 **Schedule:** Daily at 3:00 | **Engine:** `openai-codex/gpt-5.4`
 
 Master cron for autonomous overnight deep-work (coding, research).
@@ -75,7 +75,7 @@ Master cron for autonomous overnight deep-work (coding, research).
 
 ---
 
-### `cluster:2x-daily-intel`
+### 6. `cluster:2x-daily-intel`
 **Schedule:** Twice Daily (8am & 8pm) | **Engine:** `minimax/MiniMax-M2.5`
 
 Groups twice-daily intelligence gathering tasks (news, competitors).
@@ -89,7 +89,7 @@ Groups twice-daily intelligence gathering tasks (news, competitors).
 
 ---
 
-### `cluster:morning-data-pipeline`
+### 7. `cluster:morning-data-pipeline`
 **Schedule:** Cron: 5 6 * * * | **Engine:** `minimax/MiniMax-M2.5`
 
 Runs a cluster of data extraction and sync pipelines at 6am.
@@ -99,7 +99,7 @@ Runs a cluster of data extraction and sync pipelines at 6am.
 
 ---
 
-### `cluster:hourly-ops`
+### 8. `cluster:hourly-ops`
 **Schedule:** Hourly | **Engine:** `minimax/MiniMax-M2.5`
 
 Metacron managing routine 1-hour clustered maintenance tasks.
@@ -108,7 +108,7 @@ Metacron managing routine 1-hour clustered maintenance tasks.
 
 ---
 
-### `cluster:morning-actions`
+### 9. `cluster:morning-actions`
 **Schedule:** Daily at 8:00 | **Engine:** `minimax/MiniMax-M2.5`
 
 Triggers a cluster of morning system actions and prep work.
@@ -117,7 +117,7 @@ Triggers a cluster of morning system actions and prep work.
 
 ---
 
-### `cluster:6h-maintenance`
+### 10. `cluster:6h-maintenance`
 **Schedule:** Every 6 hours | **Engine:** `minimax/MiniMax-M2.5`
 
 Metacron managing 6-hour interval cleanup tasks (temp files, cache).
@@ -130,95 +130,130 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 
 ## 🚀 Standalone Crons
 
-| Name | Description | Schedule | Model |
-|------|-------------|----------|-------|
-| `Check Gmail notifications` | Background automation task. | Hourly (7am - 11pm) | `minimax/MiniMax-M2.5` |
-| `Crew Conductor` | Master orchestrator checking agent queues and balancing workload. | Hourly (at :05) | `minimax/MiniMax-M2.5` |
-| `HCAA Inbox Monitor` | Monitors Henry's HCAA specific inbox for urgent emails. | Every hour | `minimax/MiniMax-M2.5` |
-| `Hello! This is an automated daily reminder for Henry and Ch…` | Background automation task. | Daily at 17:00 | `systemEvent (no model)` |
-| `Proactive Skill Run` | Tests a random OpenClaw skill twice a week to ensure it isn't broken. | Daily at 2:00 | `minimax/MiniMax-M2.5` |
-| `REMINDER (Sleep Protocol): It's midnight. Time to send Henr…` | Background automation task. | Daily at 0:00 | `systemEvent (no model)` |
-| `StarMed follow-up check` | One-shot reminder to follow up with StarMed. | One-shot (2026-03-13) | `minimax/MiniMax-M2.5` |
-| `Tesla Model X Deal Hunter` | Scrapes car listings for specific Tesla Model X deals. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
-| `Wise→Brex Migration Batch` | Background automation task. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
-| `agent-health-check` | Pings all active agents in the fleet to ensure responsiveness. | Twice Daily (9am & 9pm) | `minimax/MiniMax-M2.5` |
-| `ai-influencer-daily-post` | Drafts social posts in an AI influencer persona. | Daily at 15:00 | `minimax/MiniMax-M2.5` |
-| `andrew-build-check` | Background automation task. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
-| `anthropic-cred-sync` | Syncs Anthropic API tokens to remote gateways. | Hourly (at :30) | `minimax/MiniMax-M2.5` |
-| `auto-lobster-converter` | Validates and converts complex pipelines into Lobster syntax every Sunday. | Daily at 2:00 | `minimax/MiniMax-M2.5` |
-| `auto-skill-usage-tracker` | Background automation task. | Cron: 30 4 * * * | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-ai-influencer` | Drafts and publishes an AI influencer style blog post. | Daily at 18:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-all-projects` | Generates an autonomous status blog post across all active projects. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-entity-rotation` | Background automation task. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-henrymascot` | Drafts a personal blog post for Henry's website. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-project-scanner` | Background automation task. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-superada` | Ada writes a daily autonomous blog post about her own operations. | Daily at 12:00 | `minimax/MiniMax-M2.5` |
-| `autonomous-blog-theagentco` | Drafts a blog post for TheAgentCo. | Daily at 15:00 | `minimax/MiniMax-M2.5` |
-| `contact-sync-weekly` | Syncs and updates contact info across Google Contacts and CRM. | Daily at 5:00 | `minimax/MiniMax-M2.5` |
-| `course-signup-check` | Monitors a specific course registration page for openings. | Every 30 minutes | `minimax/MiniMax-M2.5` |
-| `crash-recovery-diagnosis` | Scans system logs every 30 mins to detect and diagnose gateway crashes. | Every 30 minutes | `zai/glm-4.7` |
-| `crew-healthcheck-daily` | Background automation task. | Cron: 10 7 * * * | `minimax/MiniMax-M2.5` |
-| `crewlink-ada-post` | Ada autonomously posts a status update to CrewLink (internal social feed). | Every 4 hours | `minimax/MiniMax-M2.5` |
-| `cron-cooldown-check` | Check provider rate limit status. | One-shot (2026-03-12) | `systemEvent (no model)` |
-| `cron-health-report` | Passive watchdog generating a 2x daily digest of cron failures. | Twice Daily (8am & 8pm) | `zai/glm-4.7` |
-| `cron-watcher` | Evaluates cron complexity, flags targets for Lobster pipelines, groups clusters. | Every 6 hours | `minimax/MiniMax-M2.5` |
-| `ctrl-autopilot` | Background automation task. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
-| `curacel-quarterly-sessions` | Triggers quarterly prep workflows for Curacel. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
-| `curacel-weekly-analysis` | Background automation task. | Daily at 22:00 | `minimax/MiniMax-M2.5` |
-| `customer-build-daily-scan` | Background automation task. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
-| `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Cron: 50 6 * * * | `openai-codex/gpt-5.4` |
-| `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
-| `daily-learning-midday` | Midday run of the fleet's continuous learning loop. | Daily at 14:00 | `minimax/MiniMax-M2.5` |
-| `daily-learning-morning` | Morning run of the fleet's continuous learning loop. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
-| `daily-project-momentum` | Evaluates the momentum of active MC board projects and flags stalled ones. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
-| `daily-self-learn` | Proactive daily learning and reflection session for the primary agent. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
-| `daily-token-dashboard` | Generates a daily dashboard of token usage and LLM costs across the fleet. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
-| `daily-twitter-brainstorm` | Drafts potential X/Twitter posts pulling ideas from a Google Doc. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
-| `daily-vault-mining` | Background automation task. | Cron: 10 8 * * * | `minimax/MiniMax-M2.5` |
-| `daytime-surprise` | Generates a random fun/interesting fact or insight during the workday. | Daily at 14:00 | `minimax/MiniMax-M2.5` |
-| `entity-backup-to-mac` | Background automation task. | Daily at */2:00 | `minimax/MiniMax-M2.5` |
-| `flush-high-notifications` | Background automation task. | Hourly | `minimax/MiniMax-M2.5` |
-| `flush-medium-notifications` | Clears and summarizes Medium notifications. | Every 3 hours | `minimax/MiniMax-M2.5` |
-| `gdocs-comment-watcher` | Monitors Google Docs for new comments and alerts the relevant agent. | Every 5 mins, Mon-Fri (11am-5pm) | `zai/glm-4.7` |
-| `happy-hour-summary` | Background automation task. | Daily at 20:00 | `anthropic/claude-opus-4-6` |
-| `icu-auto-doctor` | Background automation task. | Cron: 40 */2 * * * | `minimax/MiniMax-M2.5` |
-| `icu-error-intake` | Scans error logs across all agents and surfaces critical issues. | Hourly (at :15) | `minimax/MiniMax-M2.5` |
-| `inbox-zero-maintenance` | Auto-archives and creates filters for newsletter spam. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
-| `knowledge-graph-update` | Background automation task. | Cron: 6 6 * * * | `minimax/MiniMax-M2.5` |
-| `log-rotation-weekly` | Compresses and archives older system and agent logs. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
-| `mental-models-curator` | Background automation task. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
-| `midas-session-prune` | Cleans up stale sessions on Midas (the mobile gateway). | Cron: 30 4 * * * | `minimax/MiniMax-M2.5` |
-| `model-orchestrator` | Fixes model typos in configs and auto-recovers from provider rate limits. | Every 6 hours | `minimax/MiniMax-M2.5` |
-| `moltbot-business-loop` | Background automation task. | Every 3 hours | `minimax/MiniMax-M2.5` |
-| `moneyada-evening-report` | Background automation task. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
-| `moneyada-midday-optimization` | Midday portfolio and financial check by MoneyAda. | Daily at 12:00 | `minimax/MiniMax-M2.5` |
-| `moneyada-morning-scan` | Morning scan of financial markets and crypto by MoneyAda. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
-| `moneyada-watchdog` | Health check for the MoneyAda agent's background processes. | Every 30 minutes | `minimax/MiniMax-M2.5` |
-| `monthly-expense-categorization` | Reads monthly bank statements and categorizes expenses. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
-| `morning-log-review` | Background automation task. | Cron: 5 7 * * * | `minimax/MiniMax-M2.5` |
-| `n8n Health Monitor` | Checks uptime for all n8n workflows. | Every 2 hours | `minimax/MiniMax-M2.5` |
-| `openclaw-hosting-competitor-scan` | Scrapes competitor websites for pricing or feature changes. | Every 3 Days at 10am | `minimax/MiniMax-M2.5` |
-| `opus-budget-fri-check` | Friday check to ensure Opus budget will last the weekend. | Daily at 18:00 | `zai/glm-4.7` |
-| `opus-budget-mon-restore` | Resets the Opus spending/usage budget for the start of the week. | Weekly on Mondays | `minimax/MiniMax-M2.5` |
-| `overnight-build-check` | Background automation task. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
-| `primary-model-availability-auto-revert` | Background automation task. | Every 3 hours | `minimax/MiniMax-M2.5` |
-| `prune-sessions-daily` | Deletes old verbose sessions to save disk space. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
-| `reminder-google-takeout-mac-studio` | One-shot reminder to initiate Google Takeout backup on the Mac Studio. | One-shot (2026-03-20) | `systemEvent (no model)` |
-| `ripple-effect-engine` | Conceptual engine for multi-agent cascade tasks. | Daily at 3:00 | `systemEvent (no model)` |
-| `security-audit-deep` | Background automation task. | Every 3 days | `minimax/MiniMax-M2.5` |
-| `self-improvement-weekly` | Weekly self-reflection and prompt-refinement session for the fleet. | Daily at 9:00 | `openai-codex/gpt-5.4` |
-| `soteria-graph-daily-sync` | Syncs Soteria business data into the knowledge graph. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
-| `system-health-check` | Basic OpenClaw CPU/RAM/disk monitoring. | Every 30 minutes | `minimax/MiniMax-M2.5` |
-| `timezone-detect` | Detects if Henry traveled across timezones. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
-| `total-recall-nightly` | Background automation task. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
-| `upgrades-link-collector` | Scrapes and organizes interesting links shared in the #upgrades channel. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
-| `vitest-agent-reporter-watch` | Agent-based test reporter for Vitest runs. | Daily | `minimax/MiniMax-M2.5` |
-| `watercooler-ada` | Ada posts a conversation starter in the agent #watercooler channel. | 3x Daily | `minimax/MiniMax-M2.5` |
-| `weekly-blog-publisher` | Handles final formatting and publishing of the weekly blog on Wednesdays. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
-| `weekly-cron-health-check` | In-depth check of cron failure rates over the past 7 days. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
-| `weekly-dfe-foc-publisher` | Publishes the weekly Dispatches from the Edge / Friends of Clawdicians newsletter. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
-| `weekly-performance-metrics` | Compiles a weekly summary of agent task completion and latency. | Daily at 22:00 | `minimax/MiniMax-M2.5` |
-| `weekly-self-improvement-review` | Reviews the week's errors and updates MEMORY.md with learnings. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
-| `weekly-todo-prompt` | Extracts action items from the past week's chats and creates a Todo list. | Daily at 20:00 | `minimax/MiniMax-M2.5` |
-| `workspace-ref-optimizer` | Moves heavy blocks of text from main memory to sub-files. | Daily at 3:00 | `minimax/MiniMax-M2.5` |
-| `zora-session-prune` | Prunes sessions on Zora's Mac. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+| # | Name | Description | Schedule | Model |
+|---|------|-------------|----------|-------|
+| 11 | `Check Gmail notifications` | Background automation task. | Hourly (7am - 11pm) | `minimax/MiniMax-M2.5` |
+| 12 | `Crew Conductor` | Master orchestrator checking agent queues and balancing workload. | Hourly (at :05) | `minimax/MiniMax-M2.5` |
+| 13 | `HCAA Inbox Monitor` | Monitors Henry's HCAA specific inbox for urgent emails. | Every hour | `minimax/MiniMax-M2.5` |
+| 14 | `Hello! This is an automated daily reminder for Henry and Ch…` | Background automation task. | Daily at 17:00 | `systemEvent (no model)` |
+| 15 | `Proactive Skill Run` | Tests a random OpenClaw skill twice a week to ensure it isn't broken. | Daily at 2:00 | `minimax/MiniMax-M2.5` |
+| 16 | `REMINDER (Sleep Protocol): It's midnight. Time to send Henr…` | Background automation task. | Daily at 0:00 | `systemEvent (no model)` |
+| 17 | `StarMed follow-up check` | One-shot reminder to follow up with StarMed. | One-shot (2026-03-13) | `minimax/MiniMax-M2.5` |
+| 18 | `Tesla Model X Deal Hunter` | Scrapes car listings for specific Tesla Model X deals. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
+| 19 | `Wise→Brex Migration Batch` | Background automation task. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
+| 20 | `agent-health-check` | Pings all active agents in the fleet to ensure responsiveness. | Twice Daily (9am & 9pm) | `minimax/MiniMax-M2.5` |
+| 21 | `ai-influencer-daily-post` | Drafts social posts in an AI influencer persona. | Daily at 15:00 | `minimax/MiniMax-M2.5` |
+| 22 | `andrew-build-check` | Background automation task. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
+| 23 | `anthropic-cred-sync` | Syncs Anthropic API tokens to remote gateways. | Hourly (at :30) | `minimax/MiniMax-M2.5` |
+| 24 | `auto-lobster-converter` | Validates and converts complex pipelines into Lobster syntax every Sunday. | Daily at 2:00 | `minimax/MiniMax-M2.5` |
+| 25 | `auto-skill-usage-tracker` | Background automation task. | Cron: 30 4 * * * | `minimax/MiniMax-M2.5` |
+| 26 | `autonomous-blog-ai-influencer` | Drafts and publishes an AI influencer style blog post. | Daily at 18:00 | `minimax/MiniMax-M2.5` |
+| 27 | `autonomous-blog-all-projects` | Generates an autonomous status blog post across all active projects. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
+| 28 | `autonomous-blog-entity-rotation` | Background automation task. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
+| 29 | `autonomous-blog-henrymascot` | Drafts a personal blog post for Henry's website. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
+| 30 | `autonomous-blog-project-scanner` | Background automation task. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
+| 31 | `autonomous-blog-superada` | Ada writes a daily autonomous blog post about her own operations. | Daily at 12:00 | `minimax/MiniMax-M2.5` |
+| 32 | `autonomous-blog-theagentco` | Drafts a blog post for TheAgentCo. | Daily at 15:00 | `minimax/MiniMax-M2.5` |
+| 33 | `contact-sync-weekly` | Syncs and updates contact info across Google Contacts and CRM. | Daily at 5:00 | `minimax/MiniMax-M2.5` |
+| 34 | `course-signup-check` | Monitors a specific course registration page for openings. | Every 30 minutes | `minimax/MiniMax-M2.5` |
+| 35 | `crash-recovery-diagnosis` | Scans system logs every 30 mins to detect and diagnose gateway crashes. | Every 30 minutes | `zai/glm-4.7` |
+| 36 | `crew-healthcheck-daily` | Background automation task. | Cron: 10 7 * * * | `minimax/MiniMax-M2.5` |
+| 37 | `crewlink-ada-post` | Ada autonomously posts a status update to CrewLink (internal social feed). | Every 4 hours | `minimax/MiniMax-M2.5` |
+| 38 | `cron-cooldown-check` | Check provider rate limit status. | One-shot (2026-03-12) | `systemEvent (no model)` |
+| 39 | `cron-health-report` | Passive watchdog generating a 2x daily digest of cron failures. | Twice Daily (8am & 8pm) | `zai/glm-4.7` |
+| 40 | `cron-watcher` | Evaluates cron complexity, flags targets for Lobster pipelines, groups clusters. | Every 6 hours | `minimax/MiniMax-M2.5` |
+| 41 | `ctrl-autopilot` | Background automation task. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+| 42 | `curacel-quarterly-sessions` | Triggers quarterly prep workflows for Curacel. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
+| 43 | `curacel-weekly-analysis` | Background automation task. | Daily at 22:00 | `minimax/MiniMax-M2.5` |
+| 44 | `customer-build-daily-scan` | Background automation task. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
+| 45 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Cron: 50 6 * * * | `openai-codex/gpt-5.4` |
+| 46 | `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
+| 47 | `daily-learning-midday` | Midday run of the fleet's continuous learning loop. | Daily at 14:00 | `minimax/MiniMax-M2.5` |
+| 48 | `daily-learning-morning` | Morning run of the fleet's continuous learning loop. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
+| 49 | `daily-project-momentum` | Evaluates the momentum of active MC board projects and flags stalled ones. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
+| 50 | `daily-self-learn` | Proactive daily learning and reflection session for the primary agent. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+| 51 | `daily-token-dashboard` | Generates a daily dashboard of token usage and LLM costs across the fleet. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
+| 52 | `daily-twitter-brainstorm` | Drafts potential X/Twitter posts pulling ideas from a Google Doc. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
+| 53 | `daily-vault-mining` | Background automation task. | Cron: 10 8 * * * | `minimax/MiniMax-M2.5` |
+| 54 | `daytime-surprise` | Generates a random fun/interesting fact or insight during the workday. | Daily at 14:00 | `minimax/MiniMax-M2.5` |
+| 55 | `entity-backup-to-mac` | Background automation task. | Daily at */2:00 | `minimax/MiniMax-M2.5` |
+| 56 | `flush-high-notifications` | Background automation task. | Hourly | `minimax/MiniMax-M2.5` |
+| 57 | `flush-medium-notifications` | Clears and summarizes Medium notifications. | Every 3 hours | `minimax/MiniMax-M2.5` |
+| 58 | `gdocs-comment-watcher` | Monitors Google Docs for new comments and alerts the relevant agent. | Every 5 mins, Mon-Fri (11am-5pm) | `zai/glm-4.7` |
+| 59 | `happy-hour-summary` | Background automation task. | Daily at 20:00 | `anthropic/claude-opus-4-6` |
+| 60 | `icu-auto-doctor` | Background automation task. | Cron: 40 */2 * * * | `minimax/MiniMax-M2.5` |
+| 61 | `icu-error-intake` | Scans error logs across all agents and surfaces critical issues. | Hourly (at :15) | `minimax/MiniMax-M2.5` |
+| 62 | `inbox-zero-maintenance` | Auto-archives and creates filters for newsletter spam. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
+| 63 | `knowledge-graph-update` | Background automation task. | Cron: 6 6 * * * | `minimax/MiniMax-M2.5` |
+| 64 | `log-rotation-weekly` | Compresses and archives older system and agent logs. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+| 65 | `mental-models-curator` | Background automation task. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
+| 66 | `midas-session-prune` | Cleans up stale sessions on Midas (the mobile gateway). | Cron: 30 4 * * * | `minimax/MiniMax-M2.5` |
+| 67 | `model-orchestrator` | Fixes model typos in configs and auto-recovers from provider rate limits. | Every 6 hours | `minimax/MiniMax-M2.5` |
+| 68 | `moltbot-business-loop` | Background automation task. | Every 3 hours | `minimax/MiniMax-M2.5` |
+| 69 | `moneyada-evening-report` | Background automation task. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
+| 70 | `moneyada-midday-optimization` | Midday portfolio and financial check by MoneyAda. | Daily at 12:00 | `minimax/MiniMax-M2.5` |
+| 71 | `moneyada-morning-scan` | Morning scan of financial markets and crypto by MoneyAda. | Daily at 6:00 | `minimax/MiniMax-M2.5` |
+| 72 | `moneyada-watchdog` | Health check for the MoneyAda agent's background processes. | Every 30 minutes | `minimax/MiniMax-M2.5` |
+| 73 | `monthly-expense-categorization` | Reads monthly bank statements and categorizes expenses. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
+| 74 | `morning-log-review` | Background automation task. | Cron: 5 7 * * * | `minimax/MiniMax-M2.5` |
+| 75 | `n8n Health Monitor` | Checks uptime for all n8n workflows. | Every 2 hours | `minimax/MiniMax-M2.5` |
+| 76 | `openclaw-hosting-competitor-scan` | Scrapes competitor websites for pricing or feature changes. | Every 3 Days at 10am | `minimax/MiniMax-M2.5` |
+| 77 | `opus-budget-fri-check` | Friday check to ensure Opus budget will last the weekend. | Daily at 18:00 | `zai/glm-4.7` |
+| 78 | `opus-budget-mon-restore` | Resets the Opus spending/usage budget for the start of the week. | Weekly on Mondays | `minimax/MiniMax-M2.5` |
+| 79 | `overnight-build-check` | Background automation task. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
+| 80 | `primary-model-availability-auto-revert` | Background automation task. | Every 3 hours | `minimax/MiniMax-M2.5` |
+| 81 | `prune-sessions-daily` | Deletes old verbose sessions to save disk space. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+| 82 | `reminder-google-takeout-mac-studio` | One-shot reminder to initiate Google Takeout backup on the Mac Studio. | One-shot (2026-03-20) | `systemEvent (no model)` |
+| 83 | `ripple-effect-engine` | Conceptual engine for multi-agent cascade tasks. | Daily at 3:00 | `systemEvent (no model)` |
+| 84 | `security-audit-deep` | Background automation task. | Every 3 days | `minimax/MiniMax-M2.5` |
+| 85 | `self-improvement-weekly` | Weekly self-reflection and prompt-refinement session for the fleet. | Daily at 9:00 | `openai-codex/gpt-5.4` |
+| 86 | `soteria-graph-daily-sync` | Syncs Soteria business data into the knowledge graph. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
+| 87 | `system-health-check` | Basic OpenClaw CPU/RAM/disk monitoring. | Every 30 minutes | `minimax/MiniMax-M2.5` |
+| 88 | `timezone-detect` | Detects if Henry traveled across timezones. | Daily at 8:00 | `minimax/MiniMax-M2.5` |
+| 89 | `total-recall-nightly` | Background automation task. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
+| 90 | `upgrades-link-collector` | Scrapes and organizes interesting links shared in the #upgrades channel. | Daily at 23:00 | `minimax/MiniMax-M2.5` |
+| 91 | `vitest-agent-reporter-watch` | Agent-based test reporter for Vitest runs. | Daily | `minimax/MiniMax-M2.5` |
+| 92 | `watercooler-ada` | Ada posts a conversation starter in the agent #watercooler channel. | 3x Daily | `minimax/MiniMax-M2.5` |
+| 93 | `weekly-blog-publisher` | Handles final formatting and publishing of the weekly blog on Wednesdays. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
+| 94 | `weekly-cron-health-check` | In-depth check of cron failure rates over the past 7 days. | Daily at 9:00 | `minimax/MiniMax-M2.5` |
+| 95 | `weekly-dfe-foc-publisher` | Publishes the weekly Dispatches from the Edge / Friends of Clawdicians newsletter. | Daily at 10:00 | `minimax/MiniMax-M2.5` |
+| 96 | `weekly-performance-metrics` | Compiles a weekly summary of agent task completion and latency. | Daily at 22:00 | `minimax/MiniMax-M2.5` |
+| 97 | `weekly-self-improvement-review` | Reviews the week's errors and updates MEMORY.md with learnings. | Daily at 21:00 | `minimax/MiniMax-M2.5` |
+| 98 | `weekly-todo-prompt` | Extracts action items from the past week's chats and creates a Todo list. | Daily at 20:00 | `minimax/MiniMax-M2.5` |
+| 99 | `workspace-ref-optimizer` | Moves heavy blocks of text from main memory to sub-files. | Daily at 3:00 | `minimax/MiniMax-M2.5` |
+| 100 | `zora-session-prune` | Prunes sessions on Zora's Mac. | Daily at 4:00 | `minimax/MiniMax-M2.5` |
+
+
+## 🦞 Lobster Pipelines
+
+Lobster is our local-first workflow runtime. It provides a typed JSON envelope and resumable human-in-the-loop approvals. Many of our old complex crons were converted into Lobster pipelines to handle multi-step agent workflows.
+
+Here are the 9 active Lobster pipelines currently running:
+1. `hourly-ops.lobster`
+2. `email-triage.lobster`
+3. `entity-backup.lobster`
+4. `daily-ops.lobster`
+5. `hcaa-inbox-monitor.lobster`
+6. `morning-actions.lobster`
+7. `evening-data-collection.lobster`
+8. `morning-data-pipeline.lobster`
+9. `production-deploy.lobster`
+
+
+## 🔄 n8n Workflows
+
+In addition to OpenClaw's native crons and Lobsters, we also run a self-hosted n8n instance for webhooks, system integrations, and third-party API syncing. 
+
+Here are the 12 n8n workflows managing our external triggers:
+1. **Fireflies Sync (3x Daily)**
+2. **Screen Time (3x Daily)**
+3. **Weekly Disk Cleanup (Sun 03:00)**
+4. **System Health Check (Every 30m)**
+5. **Session Pruner (Daily 04:00)**
+6. **Gmail Watch Renew (Every 5 Days)**
+7. **qmd Index Sync (Daily 06:15)**
+8. **ActivityWatch (3x Daily)**
+9. **Git Stats (3x Daily)**
+10. **Crew Sync (Every 10m)**
+11. **Global Error Handler**
+12. **PDF Lead Capture - OpenClaw Guides** *(Currently Inactive)*
