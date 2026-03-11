@@ -1,0 +1,64 @@
+---
+title: "Meta-Agents: How We Manage 68 Autonomous Crons"
+description: "When you have 68 scheduled AI agent tasks running around the clock, things break. Here is how we built a meta-layer of crons to manage, monitor, and fix other crons."
+pubDate: "2026-03-11"
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/managing-68-autonomous-crons.png';
+
+<Image src={coverImage} alt="A sweeping Foundation Vault style clockwork representation of AI agent management." class="w-full rounded-lg shadow-lg my-8" />
+
+At any given time, the Enterprise Crew is running **68 active, autonomous cron jobs**. 
+
+These aren't simple `bash` scripts. They are full agentic turns - LLM payloads running with 5-to-15 minute timeouts, gathering data, orchestrating workflows, and deploying code. 
+
+When you operate at this scale, things inevitably break. APIs rate limit us. Endpoints change. Models go down. To keep the fleet running without constant human intervention, we had to build a **Meta-Cron System** - crons whose only job is to manage, orchestrate, and fix the other crons.
+
+Here are the four most critical meta-crons that keep the system alive.
+
+---
+
+### 1. The Model Orchestrator (The Fixer)
+This is the most active meta-cron. It runs every 6 hours and acts as a dynamic load balancer and crisis responder. If an API provider (like Anthropic) rate-limits us or goes offline, instead of letting crons fail silently, it routes them to fallback models (like Gemini 3 Pro or GLM-5) and forces a retry.
+
+**How it works:**
+1. **Health Check:** It runs a bash script (`check-providers.sh`) to ping our core LLM APIs and records their latency and status into a `provider-status.json` state file.
+2. **Audit:** It lists all enabled crons. If it finds a cron using a deprecated model, it automatically updates the cron's config to the current standard.
+3. **Recovery:** It reads the `lastError` field of any failed cron. If the error contains `rate_limit`, `429`, or `All models failed`, it checks if the provider is healthy again. If yes, it triggers an immediate re-run.
+4. **Delivery Fixing:** Sometimes a cron succeeds but fails to post its result to Discord (usually due to a deleted thread). The orchestrator detects "thread not found" errors and automatically updates the cron's delivery target to a general `#mail-room` fallback channel so the data isn't lost.
+
+---
+
+### 2. The Cron Watcher (The Architect)
+This is the "unified cron governance engine." While the Orchestrator handles real-time failures, the Watcher handles structural optimization.
+
+**How it works:**
+1. **Complexity Analysis (Lobster Detection):** It reads the payload of every cron. If it detects three or more deterministic sequential steps (e.g., chained bash commands or node scripts), it tags the cron as a `LOBSTER_CANDIDATE`. This flags the task as something that should be upgraded to our robust, typed JSON envelope pipeline system (Lobster).
+2. **Clustering:** It looks for smaller, single-step crons that share the same schedule and theme. Instead of spinning up 5 separate agent sessions at 8:00 AM, it proposes merging them into a single "Cluster" cron (e.g., `cluster:morning-intelligence`) to save compute and context window overhead.
+3. **Auto-Implementation:** It doesn't just suggest changes. For safe operations (like migrating to a batch delivery system or fixing a model typo), it takes a JSON snapshot of the cron, applies the fix automatically, and logs a rollback manifest in case something breaks.
+
+---
+
+### 3. The Daily Health Report (The Watchdog)
+This cron acts as our passive heartbeat. Running twice a day (8am and 8pm UTC), it scans the fleet for systemic issues, slow jobs, and silent failures that the Orchestrator might not be authorized to auto-fix.
+
+**How it works:**
+1. It queries the full cron list (including disabled ones).
+2. It flags any job where `lastStatus` equals `error`.
+3. It flags any job where `lastDurationMs` exceeds 5 minutes (indicating a potential infinite loop or stuck browser session).
+4. It flags crons that have no recent `lastRunAtMs` but should have run based on their schedule.
+5. It compiles this into a clean Markdown report with emojis (🔴 FAILING, 🟡 SLOW, 🟢 HEALTHY) and posts it directly to our `#medbay` Discord channel.
+
+---
+
+### 4. The Auto-Lobster Converter
+We are slowly migrating standard, bash-heavy crons into "Lobster" pipelines (our typed JSON envelope + resumable approvals workflow). 
+
+**How it works:**
+Running every Sunday at 2:00 AM UTC, it scans the fleet for crons tagged as `LOBSTER_CANDIDATE` (the tag applied by the Cron Watcher). It runs a validation script (`lobster-converter-core.sh`) against their pipeline files to ensure they are structurally sound. 
+
+Currently, it acts as a dry-run validator, posting a summary report to `#upgrades` on Discord detailing which crons are ready for conversion, which were skipped, and which had parsing errors. Once validated by Henry, the conversion goes live.
+
+***
+
+Managing an AI workforce isn't just about giving them tasks; it's about building the immune system that keeps them functioning when the inevitable chaos of API limits and broken integrations hits.
