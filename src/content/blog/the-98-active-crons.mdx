@@ -31,7 +31,7 @@ Collects targeted intelligence briefs at 7am London time.
 **Sub-tasks:**
 - **Daily Brief:** Generates Henry's morning briefing by summarizing unread emails, calendar events, and pressing tasks.
 - **Self-Improvement Daily:** Reviews yesterday's sessions to extract new learnings and updates the agent's memory.
-- **Inbox Zero Maintenance (henry@curacel.ai):** Cleans the priority inbox by archiving newsletters and generating smart filters.
+- **Inbox Zero Maintenance (Primary Account):** Cleans the priority inbox by archiving newsletters and generating smart filters.
 - **Vault Mining:** Mines the Obsidian vault for newly logged ideas, todos, or concepts Henry wants to build.
 - **Morning Log Review:** Scans system logs for errors or warnings, identifies root causes, and attempts auto-remediation.
 - **Crew Healthcheck:** Runs the Enterprise Crew healthcheck script and reports any persistent errors.
@@ -135,13 +135,13 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 |---|------|-------------|----------|-------|
 | 11 | `Check Gmail notifications` | Background automation task. | Hourly (7am - 11pm) | `MiniMax 2.5` |
 | 12 | `Crew Conductor` | Master orchestrator checking agent queues and balancing workload. | Hourly (at :05) | `MiniMax 2.5` |
-| 13 | `HCAA Inbox Monitor` | Monitors Henry's HCAA specific inbox for urgent emails. | Every hour | `MiniMax 2.5` |
+| 13 | `Secondary Inbox Monitor` | Monitors Henry's secondary priority inbox for urgent emails. | Every hour | `MiniMax 2.5` |
 | 14 | `Hello! This is an automated daily reminder for Henry and Ch…` | Background automation task. | Daily at 17:00 | `System Event` |
 | 15 | `Proactive Skill Run` | Tests a random OpenClaw skill twice a week to ensure it isn't broken. | Daily at 2:00 | `MiniMax 2.5` |
 | 16 | `REMINDER (Sleep Protocol): It's midnight. Time to send Henr…` | Background automation task. | Daily at 0:00 | `System Event` |
-| 17 | `StarMed follow-up check` | One-shot reminder to follow up with StarMed. | One-shot (2026-03-13) | `MiniMax 2.5` |
-| 18 | `Tesla Model X Deal Hunter` | Scrapes car listings for specific Tesla Model X deals. | Daily at 8:00 | `MiniMax 2.5` |
-| 19 | `Wise→Brex Migration Batch` | Background automation task. | Daily at 9:00 | `MiniMax 2.5` |
+| 17 | `Medical follow-up check` | One-shot reminder to follow up with a medical provider. | One-shot (2026-03-13) | `MiniMax 2.5` |
+| 18 | `Vehicle Deal Hunter` | Scrapes car listings for specific vehicle deals. | Daily at 8:00 | `MiniMax 2.5` |
+| 19 | `Financial Account Migration Batch` | Background automation task. | Daily at 9:00 | `MiniMax 2.5` |
 | 20 | `agent-health-check` | Pings all active agents in the fleet to ensure responsiveness. | Twice Daily (9am & 9pm) | `MiniMax 2.5` |
 | 21 | `ai-influencer-daily-post` | Drafts social posts in an AI influencer persona. | Daily at 15:00 | `MiniMax 2.5` |
 | 22 | `andrew-build-check` | Background automation task. | Daily at 6:00 | `MiniMax 2.5` |
@@ -167,7 +167,7 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 42 | `curacel-quarterly-sessions` | Triggers quarterly prep workflows for Curacel. | Daily at 10:00 | `MiniMax 2.5` |
 | 43 | `curacel-weekly-analysis` | Background automation task. | Daily at 22:00 | `MiniMax 2.5` |
 | 44 | `customer-build-daily-scan` | Background automation task. | Daily at 6:00 | `MiniMax 2.5` |
-| 45 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Daily at 06:50* * * | `GPT-5.4` |
+| 45 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Daily at 06:50 | `GPT-5.4` |
 | 46 | `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | Daily at 21:00 | `MiniMax 2.5` |
 | 47 | `daily-learning-midday` | Midday run of the fleet's continuous learning loop. | Daily at 14:00 | `MiniMax 2.5` |
 | 48 | `daily-learning-morning` | Morning run of the fleet's continuous learning loop. | Daily at 8:00 | `MiniMax 2.5` |
@@ -234,7 +234,7 @@ Here are the 9 active Lobster pipelines currently running:
 2. `email-triage.lobster`
 3. `entity-backup.lobster`
 4. `daily-ops.lobster`
-5. `hcaa-inbox-monitor.lobster`
+5. `secondary-inbox-monitor.lobster`
 6. `morning-actions.lobster`
 7. `evening-data-collection.lobster`
 8. `morning-data-pipeline.lobster`
