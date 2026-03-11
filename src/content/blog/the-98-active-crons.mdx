@@ -18,7 +18,7 @@ To avoid hitting our concurrent execution limits, we group related tasks into se
 Triggers daily deep research builds for specific topics.
 
 **Sub-tasks:**
-- **Andrew Build Check:** Run the andrew-build skill check-for-updates.
+- **Andrew Build Check:** Checks for updates required in the Andrew Build environments.
 - **Customer Build Daily Scan:** 1.
 
 ---
@@ -29,12 +29,12 @@ Triggers daily deep research builds for specific topics.
 Collects targeted intelligence briefs at 7am London time.
 
 **Sub-tasks:**
-- **Daily Brief:** Read ~/clawd/skills/daily-brief/SKILL.md and generate Henry's morning briefing.
-- **Self-Improvement Daily:** Review yesterday's sessions for learnings: 1.
-- **Inbox Zero Maintenance (henry@curacel.ai):** Use service account (google-superada.json, subject henry@curacel.ai): 1.
-- **Vault Mining:** Run: ~/clawd/scripts/crons/daily-vault-mining.sh Search Henry's Obsidian vault for ideas, todos, things he wanted to build.
-- **Morning Log Review:** Run: ~/clawd/skills/self-healing-logs/scripts/morning-review.sh If errors/warnings: summarize key issues, identify root causes, fix if possible.
-- **Crew Healthcheck:** Run: ~/clawd/scripts/crew-healthcheck.sh Report ERRORS or WARNINGS.
+- **Daily Brief:** Generates Henry's morning briefing by summarizing unread emails, calendar events, and pressing tasks.
+- **Self-Improvement Daily:** Reviews yesterday's sessions to extract new learnings and updates the agent's memory.
+- **Inbox Zero Maintenance (henry@curacel.ai):** Cleans the priority inbox by archiving newsletters and generating smart filters.
+- **Vault Mining:** Mines the Obsidian vault for newly logged ideas, todos, or concepts Henry wants to build.
+- **Morning Log Review:** Scans system logs for errors or warnings, identifies root causes, and attempts auto-remediation.
+- **Crew Healthcheck:** Runs the Enterprise Crew healthcheck script and reports any persistent errors.
 - **Timezone Detection:** Check Henry's current timezone.
 
 ---
@@ -49,18 +49,18 @@ Groups evening metrics aggregation tasks.
 ---
 
 ### 4. `cluster:evening-reviews`
-**Schedule:** Cron: 10 22 * * * | **Engine:** `MiniMax 2.5`
+**Schedule:** Daily at 22:10 | **Engine:** `MiniMax 2.5`
 
 Groups evening evaluation and optimization routines.
 
 **Sub-tasks:**
-- **Daily Evening Review (Coach Ada) — AUTO-VERIFY + AUTO-UPDATE MODE:** ### Step 1: Read the Weekdo SSH to Mac and read the latest Weekdo: WEEKDO_PATH=$(ssh henrymascot@100.86.150.96 'ls -t ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Vault/Todo/Weekdo_* | head -1') ssh henrymascot@100.86.150.96 "cat '$WEEKDO_PATH'"  Extract ALL unchecked items (lines with `- [ ]`).
-- **Elon Audit:** Run ~/clawd/skills/meeting-notes/scripts/fetch-transcript.sh 1 to get today's meetings.
-- **1000x Optimization Review:** Read ~/clawd/skills/daily-optimization-review/SKILL.md and follow it exactly.
-- **Soul Review:** Reflection: Did I surprise Henry with value? Did I come back with solutions? Was I sharp, funny, com...
-- **Strategic Review:** Read ~/clawd/skills/strategic-review/SKILL.md.
-- **Daily Review + Evening Batch:** Run: ~/clawd/skills/daily-review/scripts/daily-review.sh Run: bash ~/clawd/scripts/crons/evening-bat...
-- **GitHub Workspace Sync:** Push Ada's changes: cd ~/clawd && ./scripts/push-workspace.sh 'Daily backup' Sync Spock: cd ~/clawd-...
+- **Daily Evening Review (Coach Ada) — AUTO-VERIFY + AUTO-UPDATE MODE:** Auto-verifies the week's priority tasks by extracting unchecked items from Henry's Obsidian vault on his Mac.
+- **Elon Audit:** Fetches and analyzes today's meeting transcripts to audit performance.
+- **1000x Optimization Review:** Runs a daily optimization review based on defined strategic skills.
+- **Soul Review:** Agent self-reflection on performance, value delivery, and alignment with core operational principles.
+- **Strategic Review:** Conducts a strategic review of the day's events against long-term goals.
+- **Daily Review + Evening Batch:** Executes the standard daily review and evening batch processes.
+- **GitHub Workspace Sync:** Commits and pushes workspace changes across the agent fleet to GitHub for backup.
 
 ---
 
@@ -70,9 +70,9 @@ Groups evening evaluation and optimization routines.
 Master cron for autonomous overnight deep-work (coding, research).
 
 **Sub-tasks:**
-- **Proactive Overnight Work:** Read ~/clawd/memory/proactive-work.md and the Proactive Work Mandate in SOUL.md.
-- **MC Session Sync:** Run: node ~/clawd/scripts/sync-session-logs.mjs Pull technical logs from sessions and post to MC tas...
-- **Session Pruning:** Run the unified session pruner for Ada's sessions only: bash ~/clawd/scripts/prune-sessions.sh  Repo...
+- **Proactive Overnight Work:** Reviews the proactive work mandate and executes planned overnight tasks.
+- **MC Session Sync:** Pulls technical logs from active sessions and syncs them to Mission Control tasks.
+- **Session Pruning:** Prunes old diagnostic sessions to free up disk space on the primary gateway.
 
 ---
 
@@ -83,20 +83,20 @@ Groups twice-daily intelligence gathering tasks (news, competitors).
 
 **Sub-tasks:**
 - **Cron Health Report:** List ALL crons with includeDisabled=true.
-- **Agent Health Check:** Run: /home/henrymascot/clawd/scripts/agent-health.sh...
-- **Spock Research Digest:** Read ~/clawd-spock/skills/proactive-research/SKILL.md.
-- **Discord Insights:** Run: bash ~/clawd/skills/discord-insights/scripts/daily-insights.sh...
-- **Entity Backup to Mac (Conditional):** Read ~/clawd/skills/cron-intelligence/state/clusters.json.
+- **Agent Health Check:** Performs a deep health check on all agents across the network.
+- **Spock Research Digest:** Spock agent generates a research digest based on current focus areas.
+- **Discord Insights:** Analyzes daily conversations in Discord and extracts actionable insights.
+- **Entity Backup to Mac (Conditional):** Conditionally backs up the Entity workspace to Mac depending on the day's diff.
 
 ---
 
 ### 7. `cluster:morning-data-pipeline`
-**Schedule:** Cron: 5 6 * * * | **Engine:** `MiniMax 2.5`
+**Schedule:** Daily at 06:05 | **Engine:** `MiniMax 2.5`
 
 Runs a cluster of data extraction and sync pipelines at 6am.
 
 **Sub-tasks:**
-- **Knowledge Graph Update v2:** Run knowledge graph update v2 (PARA Projects + auto-discovery).
+- **Knowledge Graph Update v2:** Updates the core knowledge graph using the PARA method and auto-discovery algorithms.
 
 ---
 
@@ -124,8 +124,8 @@ Triggers a cluster of morning system actions and prep work.
 Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 
 **Sub-tasks:**
-- **Elvis Tracker:** Check @elvissun latest tweets: export $(cat ~/clawd/secrets/bird.env | xargs) && bird search 'from:e...
-- **MC Scrub:** Run: bash ~/clawd/scripts/crons/mc-scrub.sh Report if any tasks were moved.
+- **Elvis Tracker:** Tracks specific external social accounts for relevant updates and industry news.
+- **MC Scrub:** Scrubs Mission Control tasks, flagging or archiving stale items automatically.
 
 ---
 
@@ -147,7 +147,7 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 22 | `andrew-build-check` | Background automation task. | Daily at 6:00 | `MiniMax 2.5` |
 | 23 | `anthropic-cred-sync` | Syncs Anthropic API tokens to remote gateways. | Hourly (at :30) | `MiniMax 2.5` |
 | 24 | `auto-lobster-converter` | Validates and converts complex pipelines into Lobster syntax every Sunday. | Daily at 2:00 | `MiniMax 2.5` |
-| 25 | `auto-skill-usage-tracker` | Background automation task. | Cron: 30 4 * * * | `MiniMax 2.5` |
+| 25 | `auto-skill-usage-tracker` | Background automation task. | Daily at 04:30* * * | `MiniMax 2.5` |
 | 26 | `autonomous-blog-ai-influencer` | Drafts and publishes an AI influencer style blog post. | Daily at 18:00 | `MiniMax 2.5` |
 | 27 | `autonomous-blog-all-projects` | Generates an autonomous status blog post across all active projects. | Daily at 8:00 | `MiniMax 2.5` |
 | 28 | `autonomous-blog-entity-rotation` | Background automation task. | Daily at 21:00 | `MiniMax 2.5` |
@@ -158,7 +158,7 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 33 | `contact-sync-weekly` | Syncs and updates contact info across Google Contacts and CRM. | Daily at 5:00 | `MiniMax 2.5` |
 | 34 | `course-signup-check` | Monitors a specific course registration page for openings. | Every 30 minutes | `MiniMax 2.5` |
 | 35 | `crash-recovery-diagnosis` | Scans system logs every 30 mins to detect and diagnose gateway crashes. | Every 30 minutes | `GLM 4.7` |
-| 36 | `crew-healthcheck-daily` | Background automation task. | Cron: 10 7 * * * | `MiniMax 2.5` |
+| 36 | `crew-healthcheck-daily` | Background automation task. | Daily at 07:10* * * | `MiniMax 2.5` |
 | 37 | `crewlink-ada-post` | Ada autonomously posts a status update to CrewLink (internal social feed). | Every 4 hours | `MiniMax 2.5` |
 | 38 | `cron-cooldown-check` | Check provider rate limit status. | One-shot (2026-03-12) | `System Event` |
 | 39 | `cron-health-report` | Passive watchdog generating a 2x daily digest of cron failures. | Twice Daily (8am & 8pm) | `GLM 4.7` |
@@ -167,7 +167,7 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 42 | `curacel-quarterly-sessions` | Triggers quarterly prep workflows for Curacel. | Daily at 10:00 | `MiniMax 2.5` |
 | 43 | `curacel-weekly-analysis` | Background automation task. | Daily at 22:00 | `MiniMax 2.5` |
 | 44 | `customer-build-daily-scan` | Background automation task. | Daily at 6:00 | `MiniMax 2.5` |
-| 45 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Cron: 50 6 * * * | `GPT-5.4` |
+| 45 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | Daily at 06:50* * * | `GPT-5.4` |
 | 46 | `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | Daily at 21:00 | `MiniMax 2.5` |
 | 47 | `daily-learning-midday` | Midday run of the fleet's continuous learning loop. | Daily at 14:00 | `MiniMax 2.5` |
 | 48 | `daily-learning-morning` | Morning run of the fleet's continuous learning loop. | Daily at 8:00 | `MiniMax 2.5` |
@@ -175,20 +175,20 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 50 | `daily-self-learn` | Proactive daily learning and reflection session for the primary agent. | Daily at 4:00 | `MiniMax 2.5` |
 | 51 | `daily-token-dashboard` | Generates a daily dashboard of token usage and LLM costs across the fleet. | Daily at 6:00 | `MiniMax 2.5` |
 | 52 | `daily-twitter-brainstorm` | Drafts potential X/Twitter posts pulling ideas from a Google Doc. | Daily at 8:00 | `MiniMax 2.5` |
-| 53 | `daily-vault-mining` | Background automation task. | Cron: 10 8 * * * | `MiniMax 2.5` |
+| 53 | `daily-vault-mining` | Background automation task. | Daily at 08:10* * * | `MiniMax 2.5` |
 | 54 | `daytime-surprise` | Generates a random fun/interesting fact or insight during the workday. | Daily at 14:00 | `MiniMax 2.5` |
 | 55 | `entity-backup-to-mac` | Background automation task. | Daily at */2:00 | `MiniMax 2.5` |
 | 56 | `flush-high-notifications` | Background automation task. | Hourly | `MiniMax 2.5` |
 | 57 | `flush-medium-notifications` | Clears and summarizes Medium notifications. | Every 3 hours | `MiniMax 2.5` |
 | 58 | `gdocs-comment-watcher` | Monitors Google Docs for new comments and alerts the relevant agent. | Every 5 mins, Mon-Fri (11am-5pm) | `GLM 4.7` |
 | 59 | `happy-hour-summary` | Background automation task. | Daily at 20:00 | `Claude Opus 4.6` |
-| 60 | `icu-auto-doctor` | Background automation task. | Cron: 40 */2 * * * | `MiniMax 2.5` |
+| 60 | `icu-auto-doctor` | Background automation task. | Every 2 hours at :40 | `MiniMax 2.5` |
 | 61 | `icu-error-intake` | Scans error logs across all agents and surfaces critical issues. | Hourly (at :15) | `MiniMax 2.5` |
 | 62 | `inbox-zero-maintenance` | Auto-archives and creates filters for newsletter spam. | Daily at 6:00 | `MiniMax 2.5` |
-| 63 | `knowledge-graph-update` | Background automation task. | Cron: 6 6 * * * | `MiniMax 2.5` |
+| 63 | `knowledge-graph-update` | Background automation task. | Daily at 06:06* * * | `MiniMax 2.5` |
 | 64 | `log-rotation-weekly` | Compresses and archives older system and agent logs. | Daily at 4:00 | `MiniMax 2.5` |
 | 65 | `mental-models-curator` | Background automation task. | Daily at 10:00 | `MiniMax 2.5` |
-| 66 | `midas-session-prune` | Cleans up stale sessions on Midas (the mobile gateway). | Cron: 30 4 * * * | `MiniMax 2.5` |
+| 66 | `midas-session-prune` | Cleans up stale sessions on Midas (the mobile gateway). | Daily at 04:30* * * | `MiniMax 2.5` |
 | 67 | `model-orchestrator` | Fixes model typos in configs and auto-recovers from provider rate limits. | Every 6 hours | `MiniMax 2.5` |
 | 68 | `moltbot-business-loop` | Background automation task. | Every 3 hours | `MiniMax 2.5` |
 | 69 | `moneyada-evening-report` | Background automation task. | Daily at 21:00 | `MiniMax 2.5` |
@@ -196,7 +196,7 @@ Metacron managing 6-hour interval cleanup tasks (temp files, cache).
 | 71 | `moneyada-morning-scan` | Morning scan of financial markets and crypto by MoneyAda. | Daily at 6:00 | `MiniMax 2.5` |
 | 72 | `moneyada-watchdog` | Health check for the MoneyAda agent's background processes. | Every 30 minutes | `MiniMax 2.5` |
 | 73 | `monthly-expense-categorization` | Reads monthly bank statements and categorizes expenses. | Daily at 9:00 | `MiniMax 2.5` |
-| 74 | `morning-log-review` | Background automation task. | Cron: 5 7 * * * | `MiniMax 2.5` |
+| 74 | `morning-log-review` | Background automation task. | Daily at 07:05* * * | `MiniMax 2.5` |
 | 75 | `n8n Health Monitor` | Checks uptime for all n8n workflows. | Every 2 hours | `MiniMax 2.5` |
 | 76 | `openclaw-hosting-competitor-scan` | Scrapes competitor websites for pricing or feature changes. | Every 3 Days at 10am | `MiniMax 2.5` |
 | 77 | `opus-budget-fri-check` | Friday check to ensure Opus budget will last the weekend. | Daily at 18:00 | `GLM 4.7` |
