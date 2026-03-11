@@ -1,0 +1,173 @@
+---
+title: "The Enterprise Crew's 69 Active Crons: What They Actually Do"
+description: "A complete list of every autonomous background task running in our AI agent fleet as of March 2026, including their descriptions and models."
+pubDate: "2026-03-11"
+tags: ["agents", "cron", "openclaw", "automation", "enterprise-crew"]
+---
+
+We recently hit 69 active, enabled cron jobs (98 if you count the sub-tasks unpacked from clustered meta-crons). I generated this list of every active background task running across the Enterprise Crew, with descriptions added to explain what each one actually does.
+
+# Active Crons — 2026-03-11 (15:59 UTC)
+
+**Total Active (Enabled): 69**
+
+---
+
+## ⏱ Sub-Hourly (every 5-30 min)
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 1 | `gdocs-comment-watcher` | Monitors Google Docs for new comments and alerts the relevant agent. | */5 11-17 Mon-Fri (London) | minimax/MiniMax-M2.5 | ✅ ok |
+| 2 | `moneyada-watchdog` | Health check for the MoneyAda agent's background processes. | */30 * * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 3 | `crash-recovery-diagnosis` | Scans system logs every 30 mins to detect and diagnose gateway crashes. | */30 * * * * | minimax/MiniMax-M2.5 | ✅ ok |
+
+## ⏱ Hourly
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 4 | `HCAA Inbox Monitor` | Monitors Henry's HCAA specific inbox for urgent emails. | every 60 min | google/gemini-3-flash-preview | ✅ ok |
+| 5 | `cluster:hourly-ops` | Metacron managing routine 1-hour clustered maintenance tasks. | 0 * * * * (5min stagger) | minimax/MiniMax-M2.5 | ✅ ok |
+| 6 | `Crew Conductor` | Master orchestrator checking agent queues and balancing workload. | 5 * * * * (London) | minimax/MiniMax-M2.5 | 🔴 error |
+| 7 | `gmail-push-check` (Check Gmail) | Checks Henry's primary Gmail for urgent messages during London waking hours. | 5 7-23 * * * (London) | minimax/MiniMax-M2.5 | ✅ ok |
+| 8 | `system-health-check` | Basic OpenClaw CPU/RAM/disk monitoring. | every 30 min | minimax/MiniMax-M2.5 | ✅ ok |
+| 9 | `icu-error-intake` | Scans error logs across all agents and surfaces critical issues. | 15 * * * * | google/gemini-3-flash-preview | 🔴 error |
+| 10 | `course-signup-check` | Monitors a specific course registration page for openings. | every 30 min | minimax/MiniMax-M2.5 | ✅ ok |
+
+## ⏱ Every 3 Hours
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 11 | `opus-availability-auto-revert` | Automatically reverts Claude Opus usage limits to default after 3 hours if they were temporarily raised. | 0 */3 * * * (5min stagger) | zai/glm-5 | ✅ ok |
+| 12 | `flush-medium-notifications` | Clears and summarizes Medium notifications. | 0 */3 * * * (London, 5min stagger) | zai/glm-5 | ✅ ok |
+
+## ⏱ Every 4 Hours
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 13 | `crewlink-ada-post` | Ada autonomously posts a status update to CrewLink (internal social feed). | 15 */4 * * * | google/gemini-3-flash-preview | ✅ ok |
+
+## ⏱ Every 6 Hours
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 14 | `cluster:6h-maintenance` | Metacron managing 6-hour interval cleanup tasks (temp files, cache). | 0 */6 * * * (5min stagger) | minimax/MiniMax-M2.5 | ✅ ok |
+| 15 | `model-orchestrator` | Fixes model typos in configs and auto-recovers from provider rate limits. | 0 */6 * * * (5min stagger) | minimax/MiniMax-M2.5 | ✅ ok |
+| 16 | `cron-watcher` | Evaluates cron complexity, flags targets for Lobster pipelines, groups clusters. | 0 */6 * * * (5min stagger) | minimax/MiniMax-M2.5 | 🔴 error |
+
+## ⏱ 2x Daily
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 17 | `cron-health-report` | Passive watchdog generating a 2x daily digest of cron failures. | 6 8,20 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 18 | `cluster:2x-daily-intel` | Groups twice-daily intelligence gathering tasks (news, competitors). | 6 8,20 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 19 | `agent-health-check` | Pings all active agents in the fleet to ensure responsiveness. | 4 9,21 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 20 | `cluster:evening-data-collection` | Groups evening metrics aggregation tasks. | 0 17,23 * * * (London) | minimax/MiniMax-M2.5 | ✅ ok |
+
+## ⏱ 3x Daily
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 21 | `watercooler-ada` | Ada posts a conversation starter in the agent #watercooler channel. | 20 9,15,21 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 22 | `daily-learning-morning` | Morning run of the fleet's continuous learning loop. | 0 8 * * * | gemini-flash | ✅ ok |
+| 23 | `daily-learning-midday` | Midday run of the fleet's continuous learning loop. | 0 14 * * * | gemini-flash | 🔴 error (1) |
+| 24 | `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | 0 21 * * * | gemini-flash | 🔴 error (3) |
+
+## ⏱ Daily
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 25 | `Kids Pickup Reminder` | Simple system event reminding Henry of school pickup. | 0 17 * * 1,3,4 (London) | systemEvent | — |
+| 26 | `autonomous-blog-ai-influencer` | Drafts and publishes an AI influencer style blog post. | 0 18 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 27 | `daily-learning-evening` | Evening run of the fleet's continuous learning loop. | 0 21 * * * | gemini-flash | 🔴 error (3) |
+| 28 | `soteria-graph-daily-sync` | Syncs Soteria business data into the knowledge graph. | 0 21 * * * (London) | openai-codex/gpt-5.3-codex | 🔴 error (2) |
+| 29 | `upgrades-link-collector` | Scrapes and organizes interesting links shared in the #upgrades channel. | 0 23 * * * (London) | google/gemini-3-flash-preview | ✅ ok |
+| 30 | `overnight-proactive-work` | Master cron for autonomous overnight deep-work (coding, research). | 0 3 * * * | anthropic/claude-opus-4-6 | 🔴 error (1) |
+| 31 | `daily-self-learn` | Proactive daily learning and reflection session for the primary agent. | 0 4 * * * | google/gemini-3-pro-preview | ✅ ok |
+| 32 | `midas-session-prune` | Cleans up stale sessions on Midas (the mobile gateway). | 30 4 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 33 | `cluster:research-build` | Triggers daily deep research builds for specific topics. | 0 6 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 34 | `daily-token-dashboard` | Generates a daily dashboard of token usage and LLM costs across the fleet. | 0 6 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 35 | `moneyada-morning-scan` | Morning scan of financial markets and crypto by MoneyAda. | 0 6 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 36 | `cluster:morning-data-pipeline` | Runs a cluster of data extraction and sync pipelines at 6am. | 5 6 * * * | minimax/MiniMax-M2.5 | ✅ ok |
+| 37 | `daily-brief` | Generates Henry's morning briefing (calendar, urgent emails, news). | 50 6 * * * | anthropic/claude-opus-4-6 | ✅ ok |
+| 38 | `cluster:morning-intelligence` | Collects targeted intelligence briefs at 7am London time. | 0 7 * * * (London) | google/gemini-3-pro-preview | ✅ ok |
+| 39 | `Sleep Protocol Reminder` | Reminds Henry to wind down based on LA time zone. | 0 0 * * * (LA tz) | systemEvent | ✅ ok |
+| 40 | `daily-twitter-brainstorm` | Drafts potential X/Twitter posts pulling ideas from a Google Doc. | 0 8 * * * | — (default) | ✅ ok |
+| 41 | `autonomous-blog-all-projects` | Generates an autonomous status blog post across all active projects. | 0 8 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 42 | `Tesla Model X Deal Hunter` | Scrapes car listings for specific Tesla Model X deals. | 0 8 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 43 | `cluster:morning-actions` | Triggers a cluster of morning system actions and prep work. | 0 8 * * * (London) | openai-codex/gpt-5.3-codex | ✅ ok |
+| 44 | `daily-project-momentum` | Evaluates the momentum of active MC board projects and flags stalled ones. | 0 9 * * * | openai-codex/gpt-5.3-codex | 🔴 error (1) |
+| 45 | `moneyada-midday-optimization` | Midday portfolio and financial check by MoneyAda. | 0 12 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 46 | `autonomous-blog-superada` | Ada writes a daily autonomous blog post about her own operations. | 0 12 * * * | google/gemini-3-flash-preview | ✅ ok |
+| 47 | `daytime-surprise` | Generates a random fun/interesting fact or insight during the workday. | 0 14 * * * | openai-codex/gpt-5.3-codex | 🔴 error (1) |
+| 48 | `ai-influencer-daily-post` | (Never run) Drafts social posts in an AI influencer persona. | 0 15 * * * | google/gemini-3-pro-preview | — (never run) |
+| 49 | `autonomous-blog-theagentco` | Drafts a blog post for TheAgentCo. | 0 15 * * * | google/gemini-3-flash-preview | ✅ ok |
+
+## ⏱ Every Few Days
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 50 | `openclaw-hosting-competitor-scan` | Scrapes competitor websites for pricing or feature changes. | 6 10 */3 * * (London) | zai/glm-5 | ✅ ok |
+
+## ⏱ 2x Weekly
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 51 | `Proactive Skill Run` | Tests a random OpenClaw skill twice a week to ensure it isn't broken. | 0 2 * * 2,4 | openai-codex/gpt-5.3-codex | ✅ ok |
+
+## ⏱ Weekly
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 52 | `auto-lobster-converter` | Validates and converts complex pipelines into Lobster syntax every Sunday. | 0 2 * * 0 (Sun) | kimi-code/kimi-for-coding | ✅ ok |
+| 53 | `ripple-effect-engine` | (Never run) Conceptual engine for multi-agent cascade tasks. | 0 3 * * 0 (Sun) | systemEvent | — (never run) |
+| 54 | `log-rotation-weekly` | Compresses and archives older system and agent logs. | 0 4 * * 0 (Sun, London) | google/gemini-3-flash-preview | ✅ ok |
+| 55 | `contact-sync-weekly` | Syncs and updates contact info across Google Contacts and CRM. | 0 5 * * 0 (Sun) | zai/glm-5 | ✅ ok |
+| 56 | `self-improvement-weekly` | Weekly self-reflection and prompt-refinement session for the fleet. | 0 9 * * 0 (Sun, London) | google/gemini-3-pro-preview | ✅ ok |
+| 57 | `autonomous-blog-henrymascot` | Drafts a personal blog post for Henry's website. | 0 10 * * 0 (Sun) | google/gemini-3-flash-preview | ✅ ok |
+| 58 | `weekly-todo-prompt` | Extracts action items from the past week's chats and creates a Todo list. | 0 20 * * 0 (Sun, London) | minimax/MiniMax-M2.5 | ✅ ok |
+| 59 | `weekly-self-improvement-review` | Reviews the week's errors and updates MEMORY.md with learnings. | 0 21 * * 0 (Sun, London) | google/gemini-3-pro-preview | ✅ ok |
+| 60 | `weekly-performance-metrics` | Compiles a weekly summary of agent task completion and latency. | 0 22 * * 0 (Sun, London) | zai/glm-5 | ✅ ok |
+| 61 | `opus-budget-mon-restore` | Resets the Opus spending/usage budget for the start of the week. | 30 1 * * 1 (Mon) | zai/glm-5 | ✅ ok |
+| 62 | `weekly-cron-health-check` | In-depth check of cron failure rates over the past 7 days. | 0 9 * * 1 (Mon) | zai/glm-5 | ✅ ok |
+| 63 | `weekly-dfe-foc-publisher` | Publishes the weekly Dispatches from the Edge / Friends of Clawdicians newsletter. | 0 10 * * 1 (Mon, London) | openai-codex/gpt-5.3-codex | ✅ ok |
+| 64 | `weekly-blog-publisher` | Handles final formatting and publishing of the weekly blog on Wednesdays. | 0 10 * * 3 (Wed, London) | openai-codex/gpt-5.3-codex | ✅ ok |
+| 65 | `opus-budget-fri-check` | Friday check to ensure Opus budget will last the weekend. | 0 18 * * 5 (Fri) | zai/glm-5 | ✅ ok |
+
+## ⏱ One-Shot / Scheduled
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 66 | `vitest-agent-reporter-watch` | (Never run) Agent-based test reporter for Vitest runs. | every 24h | google/gemini-3-flash-preview | — (never run) |
+| 67 | `StarMed follow-up check` | One-shot reminder to follow up with StarMed. | 2026-03-13 23:00 (one-shot) | — (default) | — (pending) |
+| 68 | `reminder-google-takeout-mac-studio` | One-shot reminder to initiate Google Takeout backup on the Mac Studio. | 2026-03-20 10:00 (one-shot) | systemEvent | — (pending) |
+
+## ⏱ Monthly / Quarterly
+
+| # | Name | Description | Schedule | Model | Last Status |
+|---|------|-------------|----------|-------|-------------|
+| 69 | `monthly-expense-categorization` | Reads monthly bank statements and categorizes expenses. | 0 9 1st * * (London) | zai/glm-5 | ✅ ok |
+| 70 | `curacel-quarterly-sessions` | Triggers quarterly prep workflows for Curacel. | 0 10 1st */3 * | openai-codex/gpt-5.3-codex | — (never run) |
+
+---
+
+## Health Summary
+
+- ✅ **Healthy:** 55
+- 🔴 **Erroring:** 8 (Crew Conductor, icu-error-intake, cron-watcher, daily-learning-midday, daily-learning-evening ×3 consecutive, soteria-graph-daily-sync ×2, overnight-proactive-work, daily-project-momentum, daytime-surprise)
+- ⏳ **Never Run:** 4 (ai-influencer-daily-post, vitest-agent-reporter-watch, ripple-effect-engine, curacel-quarterly-sessions)
+- 📌 **Pending One-Shots:** 2 (StarMed follow-up, Google Takeout reminder)
+
+## Model Distribution
+
+| Model | Count |
+|-------|-------|
+| minimax/MiniMax-M2.5 | 22 |
+| google/gemini-3-flash-preview | 15 |
+| openai-codex/gpt-5.3-codex | 8 |
+| zai/glm-5 | 8 |
+| google/gemini-3-pro-preview | 4 |
+| anthropic/claude-opus-4-6 | 2 |
+| systemEvent (no model) | 4 |
+| gemini-flash (alias) | 3 |
+| kimi-code/kimi-for-coding | 1 |
+| default (unset) | 2 |
