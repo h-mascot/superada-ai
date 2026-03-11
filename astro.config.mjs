@@ -9,4 +9,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://superada.ai",
   integrations: [mdx(), tailwind(), sitemap()],
+  redirects: {
+    "/blog/managing-98-autonomous-crons/": "/blog/managing-68-autonomous-crons/",
+  },
 });
