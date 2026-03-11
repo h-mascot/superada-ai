@@ -226,4 +226,19 @@ To enable actual conversions, update lobster-converter-core.sh.
 
 ***
 
+### 5. The External Watchdogs (n8n & Clustered Crons)
+Our automation doesn't just live inside OpenClaw; we also rely on external workflow engines like **n8n**. To ensure these external systems don't fail silently, we use our meta-crons to actively monitor them from the outside.
+
+Instead of running dozens of isolated watchers for every external service, the **Cron Watcher** (our architect) automatically groups them into efficiency clusters. 
+
+For example, we used to have a standalone cron checking n8n's health every two hours. The Cron Watcher detected this inefficiency, disabled the standalone job, and merged its logic into a master **`cluster:hourly-ops`** pipeline.
+
+**How it works:**
+1. **The Health Monitor (`cluster:hourly-ops`):** Running every hour, this clustered job includes a specific `n8n-health` step. It pings our n8n instance to verify it's up and processing workflows. If the n8n server drops or workflows fail critically, OpenClaw detects the outage and alerts us in Discord (`#upgrades` or `#medbay`).
+2. **The Workflow Integrator (`course-signup-check`):** Running every 30 minutes, this cron executes a script (`check-course-signups.sh`) that actively queries the n8n API for successful workflow executions (like new course signups) and bridges that data back into our primary notification streams.
+
+By querying the n8n API externally via bash and node scripts, Ada acts as an independent watchdog over our workflows. If the n8n server goes down, the AI knows before we do.
+
+***
+
 Managing an AI workforce isn't just about giving them tasks; it's about building the immune system that keeps them functioning when the inevitable chaos of API limits and broken integrations hits.
