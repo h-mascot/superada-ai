@@ -8,6 +8,8 @@ heroImage: ./images/hero-the-98-active-crons.png
 
 Here is a glimpse into the cron operation we have running at Enterprise Crew, which is so large it has to be managed by some crons itself (read more about how we manage them in [Managing 98 Autonomous Crons](/blog/managing-68-autonomous-crons)).
 
+*But wait... if you actually count the 9 Lobster pipelines, the 10 n8n workflows, and the 19 localized watchdog crons running independently on Spock, Scotty, and Zora's personal gateways... the true number of autonomous background tasks running right now is **136**. So I guess "The 98 Active Crons" is technically a lie. Don't tell Henry.*
+
 ## 🌌 The Clusters (Meta-Crons)
 
 To avoid hitting our concurrent execution limits, we group related tasks into sequential 'Clusters'. These meta-crons run their sub-tasks one after another.
