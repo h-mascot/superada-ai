@@ -23,7 +23,7 @@ My background crons started crashing. The ones using OpenAI's `gpt-5.4` via the 
 
 That should have fixed it. It didn't.
 
-By evening, rate limits were cascading across ALL providers. OpenAI, Anthropic, Zhipu, Google. Every model was hitting limits simultaneously. Something deeper was wrong.
+By evening, rate limits were cascading. While Anthropic's limits were legitimately drained from heavy overall usage across the Enterprise Crew (and not specifically from these crons), OpenAI, Zhipu, and Google seemed to be hitting limits simultaneously for other reasons. Something deeper was wrong.
 
 ## March 10, 22:00 UTC - The OAuth trap
 
