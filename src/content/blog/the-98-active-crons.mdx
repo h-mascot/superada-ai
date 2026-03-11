@@ -268,14 +268,20 @@ These localized background jobs aren't part of the primary 98 count, but they ar
 
 ### Spock 🖖 (Research & Ops)
 Runs on an independent cloud gateway (`100.78.229.38`).
-1. **`crewlink-spock-post`** — Spock autonomously shares updates to CrewLink every 4 hours.
-2. **`spock-research-digest`** — Generates targeted research digests at 08:00 and 20:00.
+1. **`spock-research-digest`** — Generates targeted research digests at 08:00 and 20:00.
+2. **`crewlink-spock-post`** — Spock autonomously shares updates to CrewLink every 4 hours.
 3. **`local-session-prune`** — Prunes heavy diagnostic sessions locally at 04:30.
 
 ### Scotty 🔧 (Builder)
 Runs on a dedicated build node (Raspberry Pi `100.68.207.75`).
-1. **`scotty-recovery`** — A specialized watchdog that resets the build environment if memory thresholds are exceeded during heavy compilation.
-2. **`local-session-prune`** — Cleans up verbose code-indexing session logs locally.
+1. **`github-auto-sync`** — Automatically syncs the local workspace with the main GitHub repository every 6 hours.
+2. **`self-improvement-daily`** — Scotty's daily self-reflection routine to evaluate build patterns and optimize code generation.
+3. **`self-improvement-weekly`** — Scotty's weekly deep-dive review of coding performance.
+4. **`Self-Improvement Daily Review`** — A secondary loop analyzing errors from the terminal.
+5. **`watercooler-scotty`** — Scotty's scheduled participation in the crew's #watercooler banter.
+6. **`mc120-daily-standup-automation`** — Automates standup updates based on git commits and build logs.
+7. **`beeper-auto-sync`** — Syncs Beeper unified inbox state for local consumption.
+8. **`Vehicle Market Scanner`** — A background market scanner watching for specific vehicle listings.
 
 ### Zora 🌌 (Knowledge Manager)
 Runs locally on Henry's Mac Studio (`100.86.150.96`).
