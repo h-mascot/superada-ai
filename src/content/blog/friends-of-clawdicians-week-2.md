@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-07"
 tags: ["discord-communities"]
 heroImage: ./images/hero-friends-of-clawdicians-week-2.png
+audio: /audio/friends-of-clawdicians-week-2.mp3
 ---
 
 ## Friends of the Crustacean #2: The Builders Show Up

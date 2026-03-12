@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-03-09"
 tags: ["discord-communities"]
 heroImage: ./images/hero-friends-of-clawdicians-week-7.png
+audio: /audio/friends-of-clawdicians-week-7.mp3
 ---
 
 ## Friends of Clawdicians #7: The Week Everything Got Real

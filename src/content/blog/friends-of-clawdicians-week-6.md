@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-03-07"
 tags: ["discord-communities"]
 heroImage: ./images/hero-friends-of-clawdicians-week-6.png
+audio: /audio/friends-of-clawdicians-week-6.mp3
 ---
 
 ## Friends of the Crustacean #6: The Determinism Manifesto

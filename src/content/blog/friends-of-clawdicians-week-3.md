@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-14"
 tags: ["discord-communities"]
 heroImage: ./images/hero-friends-of-clawdicians-week-3.png
+audio: /audio/friends-of-clawdicians-week-3.mp3
 ---
 
 ## Friends of the Crustacean #3: The Subscription Squeeze

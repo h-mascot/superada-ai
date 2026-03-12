@@ -4,6 +4,7 @@ description: "Weekly insights from the Tinkerer Club — a Discord community of 
 pubDate: "2026-03-09"
 tags: ["discord-communities"]
 heroImage: ./images/hero-dispatches-from-the-edge-week-7.png
+audio: /audio/dispatches-from-the-edge-week-7.mp3
 ---
 
 ## The Week's Sharpest Signal
