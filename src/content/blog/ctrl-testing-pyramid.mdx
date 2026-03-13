@@ -34,14 +34,63 @@ This is where it gets real. We run the agent against live instances of 3rd party
 **Speed:** 5-10 minutes | **Frequency:** CI/CD pipeline
 The final boss. We spin up the entire application in a fresh Docker container to ensure there are no "it works on my machine" issues. This layer tests environment variables, dependency conflicts, and deployment configuration.
 
-### Closing the Loop: Multi-Language Support
+### Get Started in 30 Seconds
 
-We recently upgraded the CTRL bootstrap system to support a massive range of engineering stacks. Whether you are building in Python, JavaScript, Go, Rust, PHP, Ruby, Java, or .NET, you can now initialize a CTRL-compliant testing suite in seconds.
+CTRL works with any language. Pick your install method and you're up in one command.
 
-The new `ctrl-bootstrap.sh` script auto-detects your environment and configures the appropriate test runners and GitHub Actions templates for your specific language.
+**Option 1: Universal Installer (Recommended)**
+
+Run this in the root of any project — it auto-detects your language (JS/TS, Python, Go, Rust, PHP, Ruby, Java, C#) and sets up everything:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/henrino3/ctrl/master/scripts/ctrl-bootstrap.sh | bash
+```
+
+**Option 2: npx (Node.js projects)**
+
+If you're in a Node.js project, this is the fastest path:
+
+```bash
+npx close-the-loop init
+```
+
+Both methods will:
+1. **Detect** your project's language and test framework
+2. **Create** an `AGENTS.md` with the correct test commands for your stack (e.g., `npm run test:unit`, `pytest`, `cargo test`)
+3. **Set up** a `.github/workflows/ctrl.yml` for CI/CD
+4. **Add** a `.cursorrules` / `.clauderc` file so your AI coding agent knows the rules
+
+Once installed, your agent gets two gates:
+
+```bash
+# Fast gate — run before every push
+npm run ctrl:gate    # build + unit + e2e
+
+# Full gate — run before release
+npm run ctrl:full    # gate + live + docker
+```
+
+For Python projects, the equivalent commands are generated automatically (`pytest`, `tox`, etc.).
+
+### Multi-Language Support
+
+The bootstrap system supports a massive range of engineering stacks. Whether you are building in Python, JavaScript, Go, Rust, PHP, Ruby, Java, or .NET, the installer configures the appropriate test runners and GitHub Actions templates for your specific language.
+
+### The 4 Files That Make It Work
+
+After installation, you'll have these files powering the loop:
+
+| File | Purpose |
+|------|---------|
+| **AGENTS.md** | Build, test, and dev commands for your AI agent |
+| **TESTING.md** | What to test, what NOT to test, conventions |
+| **copilot-instructions.md** | Anti-redundancy rules, colocated test pattern |
+| **.github/workflows/ctrl.yml** | CI/CD pipeline that enforces the gates |
+
+The key insight: your AI coding agent reads `AGENTS.md` and `TESTING.md` to know *exactly* how to write tests, run them, and fix failures — without asking you.
 
 ### Why 83%?
 
 Traditional unit testing often catches less than 30% of agent-specific bugs because it misses the 'reasoning gaps' between tool calls. By forcing agents through the CTRL pyramid, we close the execution loop and catch the edge cases that only appear during multi-step autonomous tasks.
 
-You can find the framework and bootstrap scripts on GitHub at [henrino3/ctrl](https://github.com/henrino3/ctrl).
+You can find the framework, bootstrap scripts, and full documentation on GitHub at [henrino3/ctrl](https://github.com/henrino3/ctrl).
