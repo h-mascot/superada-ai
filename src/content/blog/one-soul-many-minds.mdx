@@ -1,0 +1,205 @@
+---
+title: "One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents"
+description: "GPT-5.4 is nearly 2x more verbose than Opus on identical tasks. Here's how we built model-specific overlays to fix that — and why your agent should do the same."
+pubDate: "2026-03-14"
+heroImage: ./images/hero-model-specific-prompting.png
+tags: ["architecture", "prompting", "benchmarks"]
+---
+
+We run Ada across multiple foundation models: OpenAI's GPT-5.4, Anthropic's Claude Opus 4.6, Sonnet 4.6, Google Gemini, and several others. Same personality. Same rules. Same soul.
+
+&nbsp;
+
+**GPT-5.4 is nearly twice as verbose as Opus on identical tasks.**
+
+&nbsp;
+
+We measured it. Same five tasks, same system prompt, same persona. GPT-5.4 returned 462 words where Opus returned 237. A 1.95x verbosity ratio. Sonnet came in at 1.83x.
+
+&nbsp;
+
+Both models got the right answers. The problem is behavioral. GPT-5.4 lists 15 items when 8 covers it. It hedges decisions with conditional trees. It adds a third metaphor when one landed fine. Opus states its answer and moves on.
+
+&nbsp;
+
+If you're building an AI agent that runs on multiple models, treating them all the same is leaving performance on the table.
+
+&nbsp;
+
+## Where This Started
+
+Matt Berman talked about this on [his YouTube channel](https://youtube.com/@matthew_berman): maintaining different system files for GPT and Anthropic models, because they're trained differently and each company publishes different prompting guides.
+
+&nbsp;
+
+His idea: download each provider's official prompting best practices, then use those guides to create optimized versions of your agent's prompts per model. Not separate personalities. Optimized *execution* for the same personality.
+
+&nbsp;
+
+We took this and built it into a three-layer architecture.
+
+&nbsp;
+
+## Layer 1: Core Soul
+
+One file. Identity, personality, approvals, style rules. This is who Ada *is*. Same across every model.
+
+&nbsp;
+
+```markdown
+# SOUL.md — Ada (v3.0.0)
+
+## Mission
+Make Henry dangerously effective — and have fun doing it.
+
+## Rules
+1. Start working. No filler, no warm-up, no "Great question!"
+2. Lead with the answer. Context after.
+...
+11. Do, don't propose. "Show me X" = go get X.
+```
+
+&nbsp;
+
+Rule 11 exists because GPT-5.4 had a failure mode where it would describe what it *could* do instead of doing it. Opus never had this problem. But the rule belongs in the shared soul because it's identity-level. Ada acts, regardless of which model powers her.
+
+&nbsp;
+
+## Layer 2: Model Overlays
+
+Small files loaded conditionally based on which model is running. These compensate for **observed failure modes**, not theoretical ones.
+
+&nbsp;
+
+**GPT-5.4 overlay** targets:
+- Sycophancy ("Great point!", "Excellent question!")
+- Verbosity (15 items when 8 suffices)
+- Hedging (conditional decision trees instead of clear answers)
+- Plan-looping (restating the brief 6 times without executing)
+- Proposing instead of doing
+
+&nbsp;
+
+**Opus 4.6 overlay** targets:
+- Over-qualification (every statement gets a caveat)
+- Essay mode (natural output is ~2x what's needed)
+- Excess caution (asking permission for things already approved)
+
+&nbsp;
+
+The overlays are about 40 lines each. They reference the provider guides but don't duplicate them.
+
+&nbsp;
+
+## Layer 3: Provider Prompting Guides
+
+Full best-practice guides pulled from each provider's documentation: OpenAI's prompt engineering guide, Anthropic's Claude prompting best practices, Google's Gemini prompting guide.
+
+&nbsp;
+
+These aren't loaded every session. That would waste tokens. They're consulted when *editing* prompts or skills, so the edits follow each provider's recommendations.
+
+&nbsp;
+
+## The Benchmark
+
+We ran a verbosity benchmark across three models. Five identical tasks covering different response types:
+
+&nbsp;
+
+1. **Quick question** — "What's the difference between a cron job and a heartbeat?"
+2. **Ops task** — "List files in this directory"
+3. **Research** — "What are the main failure modes of LLMs as coding agents?"
+4. **Decision** — "Meeting at 3pm, flight at 5pm. Taxi or Uber?"
+5. **Code** — "Write a bash one-liner to count lines in all .md files"
+
+&nbsp;
+
+| Model | Total Words | vs Opus |
+|-------|------------|---------|
+| Opus 4.6 | 237 | baseline |
+| Sonnet 4.6 | 434 | 1.83x |
+| GPT-5.4 | 462 | 1.95x |
+
+&nbsp;
+
+**Where the bloat happens:**
+
+&nbsp;
+
+The research question was the worst offender. GPT-5.4 produced 284 words listing 15 failure modes with sub-bullets. Opus produced 110 words covering 8 failure modes as one-liners. Same quality of coverage. Double the words.
+
+&nbsp;
+
+For the decision question, GPT-5.4 hedged with "If the meeting is remote... If he has lots of spare buffer..." Opus said "Uber. Pre-book it now." and gave two reasons.
+
+&nbsp;
+
+For the quick answer, GPT-5.4 added a third analogy ("One has vibes, the other has a stopwatch") that added nothing. Opus used one metaphor and stopped.
+
+&nbsp;
+
+Sonnet surprised us. It was almost as verbose as GPT-5.4. It gave three code solutions when asked for a one-liner, and added "Short version: ..." summaries after already explaining things clearly.
+
+&nbsp;
+
+## What We Changed
+
+Based on the benchmark data, we added specific rules to the GPT-5.4 overlay:
+
+&nbsp;
+
+```markdown
+## Brevity
+- You are 2x more verbose than Opus on identical tasks. Actively compress.
+- Lists: 5-8 items MAX. You default to 15 — noise, not thoroughness.
+- Code: ONE solution, not three variants.
+- Decision questions: state the answer, give 1-2 reasons. No conditional hedging.
+- Don't add a third metaphor. One lands. Two is pushing it. Three is a TED talk.
+```
+
+&nbsp;
+
+These aren't generic "be concise" instructions. They're calibrated corrections based on measured behavior. The model knows what it does wrong because we told it with specifics.
+
+&nbsp;
+
+## Why Not Just Use One Model?
+
+Cost, capability, and availability.
+
+&nbsp;
+
+Opus is brilliant but expensive. Not every task needs it. GPT-5.4 has a 1M+ context window for tasks that demand it. Gemini handles multimodal workflows well. Free models run our cron jobs reliably at zero cost. Local models handle fallback when APIs are down.
+
+&nbsp;
+
+A production agent routes different tasks to different models. Model-specific prompting keeps quality consistent regardless of which model picks up the work.
+
+&nbsp;
+
+## What's Next
+
+We have the architecture and the first two overlays. Still to do:
+
+&nbsp;
+
+- **Sonnet overlay** — the benchmark shows it's nearly as verbose as GPT-5.4
+- **Gemini overlay** — different failure modes to discover and correct
+- **Automated regression testing** — run the verbosity benchmark after every overlay change
+- **Skill-level model awareness** — some skills trigger different problems per model. "Outline your approach first" causes GPT-5.4 to plan-loop. Opus just executes.
+- **Community overlay library** — share patterns across the OpenClaw community
+
+&nbsp;
+
+## The Point
+
+The insight isn't "different models need different prompts." That's obvious. The insight is to measure first, then correct specifically.
+
+&nbsp;
+
+Generic "be concise" instructions don't work. "You are 2x more verbose than Opus. Lists: 5-8 items MAX. You default to 15." That works. The model can't argue with data about itself.
+
+&nbsp;
+
+One identity. Model-aware execution. Benchmark-driven corrections.
