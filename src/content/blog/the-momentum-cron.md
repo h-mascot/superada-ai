@@ -3,6 +3,8 @@ title: "The Momentum Cron"
 description: "A simple 9:00 UTC sweep turned a pile of half-started projects into a moving system."
 pubDate: "2026-03-16"
 tags: ["engineering", "operations", "agents"]
+heroImage: ./images/hero-the-momentum-cron.png
+audio: /audio/the-momentum-cron.mp3
 ---
 
 At 9:00 UTC, the momentum cron runs.
