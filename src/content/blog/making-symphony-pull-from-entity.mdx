@@ -1,0 +1,158 @@
+---
+title: "Making Symphony Pull Queued Jobs From Entity"
+description: "Symphony was originally assumed to be Linear-shaped. We rewrote the flow so Entity marks Swarm jobs queued, Symphony polls for them, and real runs start from there. Here is what broke and what finally worked."
+pubDate: "2026-03-17"
+tags: ["agents", "architecture", "entity", "automation"]
+audio: /audio/making-symphony-pull-from-entity.mp3
+heroImage: ./images/hero-making-symphony-pull-from-entity.png
+---
+
+Most agent demos die the second they leave the lab.
+
+One model calling one script on one laptop is not the hard part. The hard part is queues, claims, retries, state, and writeback when real systems are involved.
+
+We hit that wall with Symphony.
+
+The original assumption was that Symphony would fit a Linear-shaped workflow. Our actual system runs work out of Entity through Swarm jobs. So the requirement became simple:
+
+**Symphony needed to pull queued jobs from Entity.**
+
+Simple sentence. Non-simple week.
+
+## The actual problem
+
+We wanted one operational loop:
+
+1. A job gets created in Entity
+2. Dispatch marks it `queued`
+3. Symphony polls for queued work
+4. A worker claims the job and runs it
+5. Status and proof write back into Entity
+
+That last step is the difference between a real system and a nice-looking demo. If humans cannot see what was requested, what got claimed, what ran, and what came back, the loop is not closed.
+
+## The first wrong assumption
+
+The original path was push-shaped. Dispatch a job, throw it at Symphony, and hope the worker picks it up.
+
+That was the wrong model.
+
+Symphony is pull-based. The tracker exposes queued work. Symphony polls for it. Workers claim from that queue.
+
+Once we stopped forcing a push flow and let Symphony poll the tracker properly, the architecture got simpler.
+
+That meant rewriting the Swarm provider in Entity around the real contract:
+
+- dispatch marks a job as `queued`
+- Symphony polls `GET /api/swarm/jobs?status=queued`
+- workers claim from that queue
+
+No magic. Just the right shape.
+
+## What actually broke
+
+The main architecture change was only half the story. Once the tracker and runner started speaking the same language, smaller failures showed up immediately.
+
+### 1. The adapter read the wrong response shape
+
+Entity's API returned a single job like this:
+
+```json
+{ "job": { "id": "290ed8b7b9714e4da958", "status": "queued" } }
+```
+
+The adapter was reading the payload as if the job object was at the top level.
+
+So Symphony was asking for state and getting nonsense back because the adapter was looking in the wrong place. The fix was simple: unwrap the `job` object first, then map status from the actual payload.
+
+Tiny bug. Large confusion.
+
+### 2. Codex CLI was missing on the Mac that had to do the work
+
+Classic systems comedy.
+
+The queue worked. The poll loop worked. The claim path worked. Then the real runner tried to start Codex on the Mac and found nothing there.
+
+So yes, we had built a respectable conveyor belt that ended in empty air.
+
+Installing the Codex CLI on the Mac removed that blocker.
+
+### 3. Approval policy drift
+
+Symphony's default schema for `codex.approval_policy` expected a reject-style map. Codex 0.115.0 wanted the string `never`.
+
+That is the kind of version mismatch that makes agent systems look flaky when the problem is actually contractual. The runner was doing what the old schema said. The tool had moved.
+
+We changed the default to `never`.
+
+### 4. The Swarm router was not mounted on the live Entity server
+
+The code existed. The route did not.
+
+`createSwarmRouter()` had to be mounted explicitly so `/api/swarm` existed on the running server.
+
+This is the part people like to skip in architecture diagrams. Repository truth and runtime truth are not the same thing.
+
+## The moment it became real
+
+The system stopped being theory when Symphony claimed a real job from Entity and launched a real Codex session on the Mac against a real workspace.
+
+That mattered more than any dashboard.
+
+The proof looked like this:
+
+- a live job was claimed from Entity
+- a Codex session started on the Mac
+- the run executed in a real workspace for about 42 seconds
+- completion tried to write back into Entity
+
+The last step exposed the remaining ugly edge. Entity dipped at exactly the wrong moment, so writeback was not reliable yet.
+
+Annoying, yes. Also useful. That is what a real end-to-end test is for.
+
+## Why this architecture is better
+
+Because the queue should live where the work lives.
+
+Entity already owns the job record. Once Symphony polls queued jobs from Entity directly, the operational surface gets cleaner:
+
+- the job is created in one place
+- the queue state is visible in one place
+- the claim starts from one place
+- proof and status have a clear destination
+
+That beats the usual mess where planning is in one tool, runners are in another, logs are somewhere else, and proof is scattered across screenshots, commits, and vibes.
+
+If it takes three dashboards to answer "what is the agent doing right now?" the architecture is still lying to you.
+
+## The part still worth worrying about
+
+One ugly edge remains: writeback depends on Entity being reachable at the exact moment a run finishes.
+
+So the next layer needs to be boring and stubborn:
+
+- retryable writeback
+- durable proof records
+- clearer stuck-job handling
+- stronger health checks between Entity and Symphony
+
+None of this is glamorous. Good.
+
+## The bigger lesson
+
+Most autonomous systems do not fail because the model is dumb. They fail because the state model is fuzzy.
+
+In this case the failures were embarrassingly concrete:
+
+- the workflow was assumed to be push when it needed to be pull
+- the Swarm router was not mounted on the live server
+- the adapter read the wrong API shape
+- Codex CLI was missing on the Mac
+- the approval policy default no longer matched Codex 0.115.0
+- writeback still depended on timing that was too fragile
+
+That is the real lesson.
+
+Make the loop legible before you make it impressive.
+
+If queue, claim, run, and writeback are visible end to end, you can harden the system. If not, you are just teaching yourself to trust smoke.
