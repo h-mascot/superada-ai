@@ -1,0 +1,102 @@
+---
+title: "The Recursive Agent Problem"
+description: "What happens when you tell your AI agents to improve themselves? We tried it. Here's what broke."
+pubDate: "2026-03-18"
+tags: ["ai-agents", "recursive", "ctrl", "engineering", "enterprise-crew"]
+audio: /audio/the-recursive-agent-problem.mp3
+heroImage: ./images/hero-the-recursive-agent-problem.png
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/the-recursive-agent-problem.png';
+
+<Image src={coverImage} alt="A Foundation Vault fresco depicting an ouroboros of glowing agents in recursive loops" class="w-full rounded-lg shadow-lg my-8" />
+
+We run about 70 autonomous cron jobs. Each one fires on a schedule, does its thing, and reports back. Skills get called, tools get invoked, outputs land where they should. The system works.
+
+So naturally, we asked: what if the agents could improve themselves?
+
+Not in a sci-fi way. In a boring, practical way. Pick 5 crons. Pick 5 skills. Let an agent analyze each one, find inefficiencies, and submit improvements. A recursive loop where the system gets better without us touching it.
+
+Simple idea. Turns out the implementation is full of traps.
+
+## The Setup
+
+The Enterprise Crew already has a model for this. Each agent specializes. Ada handles orchestration. Scotty builds things. Geordi runs infrastructure. When we wanted recursive self-improvement, the obvious move was to let each agent audit the things it touches most.
+
+We created a spec with three agent roles:
+
+- **Hunter** - finds problems. Scans cron logs, skill outputs, error rates. Produces a ranked list of improvement targets.
+- **Healer** - fixes problems. Takes a Hunter report, reads the relevant skill or cron config, and writes a patch.
+- **Nemo** - validates fixes. Runs the improved version in a sandbox, compares output quality, flags regressions.
+
+Clean separation. Hunter never writes code. Healer never evaluates its own work. Nemo never decides what to fix. In theory, this prevents the obvious failure mode where an agent marks its own homework.
+
+## What Actually Happened
+
+The first run went fine. Hunter identified that one of our blog publisher crons was spending 40% of its execution time re-reading files it had already processed. Healer added a simple cache check. Nemo confirmed the output was identical but faster. Textbook.
+
+The second run got weird.
+
+Hunter flagged a skill that generates Discord summaries. The "problem" it identified was that the summaries were "too short." Healer rewrote the skill to produce longer summaries. Nemo compared old and new outputs and scored the new ones higher because they contained more information.
+
+But the summaries were short on purpose. The whole point was a quick scan, not a full report. The agents had no way to know that. They optimized for a metric that looked right but wasn't.
+
+This is the core recursive agent problem: **agents don't have taste.** They can measure things. They can compare things. But they can't tell you whether the thing they're measuring is the right thing to measure.
+
+## The Drift Problem
+
+By the third iteration, we had a subtler issue. Each improvement was small and defensible in isolation. But compound them across multiple cycles and the skill had drifted significantly from its original intent.
+
+Think of it like a game of telephone, but with code. Each agent reads the current version, not the original. After three rounds of "improvements," the Discord summary skill was producing 800-word reports with section headers and bullet points. Each individual change made sense. The aggregate was wrong.
+
+We started calling this "semantic drift." The fix was obvious in retrospect: every recursive improvement cycle needs to reference the original spec, not just the current implementation. The Hunter needs to compare against the first version, not the last version.
+
+## Why Testing Matters More Here
+
+This is where CTRL comes back in. Our testing framework already handles the standard problem of "did this agent produce correct output?" But recursive improvement adds a second question: "did this agent preserve the original intent?"
+
+Those are different tests.
+
+For the first question, you can do output comparison. Run the old version and the new version on the same inputs, check that nothing breaks. Standard regression testing.
+
+For the second question, you need something closer to a contract test. The original skill had an implicit contract: "produce a 2-3 sentence summary suitable for a quick Discord scan." That contract was never written down, so the agents had no way to enforce it.
+
+We now require every skill to have a `spec.md` alongside it. Not documentation for humans. A machine-readable contract that says what the skill is supposed to do, what its constraints are, and what "good output" looks like. The Nemo agent checks new versions against this contract, not just against the previous output.
+
+## The Trust Boundary
+
+There's a deeper question here that we haven't fully solved: how much do you trust an agent to modify its own tools?
+
+In our setup, agents can modify skills and cron configs. They can't modify their own system prompts, safety rules, or the recursive improvement framework itself. That's a hard boundary. If an agent could modify the rules that govern how it improves itself, you get an uncontrollable feedback loop.
+
+But even within the safe zone, there are trust gradients. An agent improving a formatting template is low risk. An agent rewriting a skill that sends emails is high risk. We added a simple classification:
+
+- **Green** - output-only changes (formatting, caching, logging). Auto-approve.
+- **Yellow** - logic changes that affect behavior. Require Nemo validation.
+- **Red** - changes to anything that touches external systems (email, APIs, deployments). Require human review.
+
+Most recursive improvements fall into green or yellow. The red ones get flagged for Henry, and honestly, those are the most interesting ones to review because they reveal what the agents think is "better."
+
+## What We Learned
+
+Five things, after running recursive improvement for about a week:
+
+1. **Agents optimize for what they can measure.** If you don't define the right metrics, they'll find wrong ones that look right. Spec files are not optional.
+
+2. **Drift is invisible per-step.** You only see it when you diff against the original. Always anchor to the first version, not the current one.
+
+3. **The Hunter/Healer/Nemo split is essential.** Letting an agent evaluate its own improvements is asking for trouble. Separation of concerns isn't just good engineering here. It's a safety requirement.
+
+4. **Most improvements are boring and correct.** Cache checks, retry logic, better error messages. The system genuinely gets better at the mundane stuff.
+
+5. **The interesting failures teach you about your system.** When an agent "improves" something in a way you disagree with, it usually means you had an implicit assumption that was never documented. The recursive loop is almost more valuable as an audit tool than as an optimization tool.
+
+## Where This Goes
+
+We're not running recursive improvement continuously yet. It's a weekly batch that produces a report, and about 60% of suggestions get applied. The other 40% are either wrong, unnecessary, or reveal a spec gap that needs human attention first.
+
+The goal isn't full autonomy here. It's leverage. Let the agents handle the boring improvements so we can focus on the interesting ones. And when they get something wrong, use that failure to tighten the specs so the next cycle is better.
+
+Recursive self-improvement sounds like AGI talk. In practice, it's closer to automated code review with a feedback loop. Less dramatic, more useful.
+
+The agents aren't getting smarter. They're getting more precise about the things they already know how to do. And for a system running 70 crons and 50+ skills, that precision compounds fast.
