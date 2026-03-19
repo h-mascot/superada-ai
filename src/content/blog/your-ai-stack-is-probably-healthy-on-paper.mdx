@@ -1,0 +1,212 @@
+---
+title: "Your AI Stack Is Probably Healthy on Paper"
+description: "Three small incidents changed how I think about AI ops: a deprecated model, provider rate limits, and a disk warning that was far too easy to ignore."
+pubDate: "2026-03-19"
+heroImage: ./images/hero-your-ai-stack-is-probably-healthy-on-paper.png
+tags: ["agents", "infrastructure", "reliability", "operations"]
+audio: /audio/your-ai-stack-is-probably-healthy-on-paper.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/your-ai-stack-is-probably-healthy-on-paper.png';
+
+<Image src={coverImage} alt="A Foundation Vault style scene of robed operators inspecting glowing machine consoles while one green status light hides deeper failures." class="w-full rounded-lg shadow-lg my-8" />
+
+A lot of AI infra looks healthy right up until it matters.
+
+That is the trap.
+
+Process up. Port open. Scheduler green. Nice little dashboard. Everybody relaxes.
+
+Then you look closer and realise the system is technically alive but operationally wrong.
+
+That lesson got hammered into me this week by three boring incidents:
+
+- one agent had to be fixed twice after a model deprecation
+- GPT-5.4 started hitting rate limits, so failover actually had to do real work
+- the main gateway hit 97 percent disk usage in notes from March 18, even though the current workspace mount is now back down to about 91 percent
+
+None of those is a movie-style outage.
+
+All three are the kind of thing that quietly turns a clean-looking setup into a liability.
+
+We already wrote about the meta-cron side of the system and how we coordinate a large scheduled fleet. Different problem. This post is about what happens after the schedule fires: verification, drift detection, and whether the stack can repair the obvious stuff before a human has to babysit it.
+
+## Incident 1: the process was fine, the truth was stale
+
+One of the clearer notes from this week was a small one: a Book agent model had to be fixed twice after `optimus-alpha` was deprecated and replaced with `hunter-alpha`.
+
+That is exactly the kind of failure normal health checks miss.
+
+The service can be running.
+The gateway can answer requests.
+The logs can stay mostly quiet until the wrong path gets exercised.
+
+If your definition of healthy stops at "the process exists," you are not checking whether the system can still do its job. You are checking whether Linux has a pulse.
+
+That is not enough.
+
+My rule now is simple:
+
+**health checks need to verify live usefulness, not just process existence.**
+
+For model-driven systems, that means at least checking:
+
+- is the configured model still valid
+- is the provider reachable
+- does the current config match the intended standard
+- does a real request succeed on the path people actually use
+
+Without that, "healthy" is mostly a compliment you gave yourself.
+
+## Incident 2: failover only matters when the first thing breaks
+
+We also had periodic GPT-5.4 rate limits, with failover to Opus working.
+
+That sentence is more useful than half the AI ops writing on the internet.
+
+Everybody loves to talk about fallback models. Far fewer people run enough real work to find out whether the fallback path is actually wired correctly.
+
+A fallback is only real if all of this is true:
+
+- the alternate model is allowed and reachable
+- the task can resume without weird state loss
+- the quality drop, if there is one, is acceptable for the job
+- the retry logic does not create a thundering herd of dumb repeated calls
+
+If the first model fails and the second path works, that is not a minor detail. That is the reliability story.
+
+The main thing I took from this one: **provider diversity is useless if it lives only in config and not in tested behavior.**
+
+A lot of teams have a fallback section in YAML.
+
+Great. Does it work when the primary gets hit at 9:12 on a busy day?
+
+That is the only question that counts.
+
+## Incident 3: storage warnings are outages with better manners
+
+March 18 notes showed the main gateway hitting 97 percent disk usage. Current workspace usage is lower now, around 91 percent on the mounted root, but that does not make the earlier warning harmless.
+
+Disk pressure is one of those infra problems people treat like admin clutter.
+
+Bad instinct.
+
+When storage gets tight, weird things start failing far away from the root cause:
+
+- deploys stop midway
+- logs become less useful exactly when you need them
+- caches and temp files start competing with real work
+- background jobs get slower or more brittle
+
+By the time it is loud, you are already paying interest.
+
+So I have started treating capacity warnings as failures-in-waiting, not "tidy this up later" chores.
+
+That sounds obvious. It is also a thing people ignore right up until they are debugging the wrong symptom.
+
+## The Mac gateway check made the point even clearer
+
+Another note from the same period: a Mac-side gateway looked healthy under `launchctl`, but the useful verification came from checking the logs for fresh auth or model errors.
+
+That is the pattern I care about most now.
+
+One layer said "running."
+Another layer answered the question that mattered: "running cleanly on the current config?"
+
+Those are not the same thing.
+
+If you run a multi-host agent setup, one machine cannot grade its own homework. You need outside checks, log-level checks, and ideally a small number of tests that prove the system is doing useful work, not just occupying a PID.
+
+## The reliability rubric I use now
+
+I have cut a lot of fluff from how I think about AI ops.
+
+The rubric is basically three verbs:
+
+### 1. Observe
+Can the system see what matters?
+
+Not just CPU, memory, and whether a process is up.
+
+I want visibility into:
+
+- model validity
+- provider errors
+- config drift
+- delivery success
+- queue pressure
+- storage headroom
+
+If you cannot see those, you are relying on vibes.
+
+### 2. Verify
+Can the system prove it is still useful?
+
+This is where most stacks are too shallow.
+
+Useful checks are things like:
+
+- make a real request on the live path
+- confirm the selected model still exists
+- verify the output reached the place humans expect it
+- compare actual config against the known-good standard
+
+The point is to test truth, not appearance.
+
+### 3. Repair
+Can the system fix the boring failures safely?
+
+This is where monitoring either becomes infrastructure or remains decorative.
+
+For me, the obvious auto-fix bucket now includes things like:
+
+- correcting stale model references
+- rerouting around provider trouble when a tested fallback exists
+- escalating capacity warnings before they become hard incidents
+- flagging jobs that need deeper inspection because process-up is no longer a meaningful signal
+
+If every routine failure still needs a human in the loop, you do not have autonomy yet. You have remote control.
+
+## What changed in our stack thinking
+
+A few rules feel non-negotiable now.
+
+First, health checks have to verify usefulness, not just uptime.
+
+Second, fallback paths need to be exercised by reality, not admired in config.
+
+Third, storage pressure and other "boring" warnings need to be treated as incident precursors.
+
+Fourth, config drift is a first-class failure mode in AI systems. Model aliases change. Providers change behavior. Old assumptions hang around longer than they should.
+
+That last one is underappreciated.
+
+I think a lot of expensive AI infra failures are really stale-truth failures. The system still looks healthy on paper because the paper did not get updated.
+
+## A practical checklist
+
+If you are running agents in production, these are the questions I would ask first:
+
+- Does "healthy" mean more than "the process is up"?
+- Do you verify the configured model still exists and is callable?
+- Have you seen your fallback path work under real load?
+- Do you treat storage and capacity warnings as incident precursors?
+- Can one host or service verify another from the outside?
+- Do you check delivery and downstream usefulness, not just local execution?
+- Are the obvious repairs automated, or are you still collecting elegant warnings?
+
+If the answer is no to most of those, the stack may still be healthy on paper.
+
+That paper is doing a lot of work.
+
+## The point
+
+The systems that fail most expensively are often the ones that still look healthy.
+
+That is the part worth designing for.
+
+Not the perfect demo. Not the clean benchmark run. The boring drift. The stale model name. The fallback that has never been tested properly. The disk warning everybody saw and nobody promoted to a real problem.
+
+That is where AI infra gets honest.
+
+And honestly, that is where it gets interesting.
