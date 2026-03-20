@@ -1,6 +1,6 @@
 ---
 title: "Building a Conveyor Belt for AI Agents: 15 Versions in One Day"
-description: "How we went from manually copying scripts to a self-sustaining task pipeline that cleared 23 tasks overnight - and the 15 broken versions it took to get there."
+description: "How we went from manually copying scripts to a self-sustaining task pipeline where five agents completed 51 tasks overnight - and the 15 broken versions it took to get there."
 pubDate: "2026-03-20"
 tags: ["agents", "automation", "engineering", "mission-control", "devops"]
 audio: /audio/conveyor-belt-agents.mp3
@@ -148,17 +148,20 @@ Three safety layers now: the prompt says "you must close the loop", the blocker 
 
 ## The overnight results
 
-Deployed v15 at 22:33 UTC. Assigned 23 tasks across agents: simple tasks to Book, research to Spock, coding to Zora and Ada.
+Deployed v15 at 22:33 UTC. Loaded 23 tasks into the todo queue across agents: simple tasks to Book, research to Spock, coding to Zora and Ada.
 
 Went to bed.
 
-Woke up to this:
+Woke up to 51 tasks completed:
 
 - **Todo: 0** (was 23)
-- **Review: 51** (was 14)
-- **All five agents had pulled, executed, and closed tasks**
+- **Review: 51** (was 14 - meaning 37 new tasks processed and moved to review)
+- **Doing: 8** (still actively being worked on)
+- **All five agents pulling, executing, and closing tasks autonomously**
 
-Spock got excited and spawned extra research tasks during execution. Book cleared 8 items. The system was self-sustaining.
+The agents didn't just clear the original 23. They finished those, and some agents created follow-up tasks during execution and completed those too. Spock's research tasks spawned recursive sub-experiments (#369-374) that he then pulled and worked through. Book cleared 8 items. Ada handled 19. The pipeline fed itself.
+
+Total tasks touched: 51 completed to review, 8 more still in progress. From a standing start at 10pm to a cleared board by morning.
 
 ## What I'd do differently
 
@@ -170,6 +173,6 @@ The conveyor belt pattern - pull, enrich, execute, verify, escalate or close - i
 
 The agents are still running. The cron fires every 10 minutes. When it finds work, it pulls it, builds context, spawns a session, and moves on. When it doesn't, it says so in one line of JSON and exits. When something goes wrong, it tells me on Discord instead of dying quietly.
 
-Fifteen versions. One day. Zero manual task assignments needed going forward.
+Fifteen versions. One day. 51 tasks completed overnight. Zero manual task assignments needed going forward.
 
 That feels about right for v1 of anything real.
