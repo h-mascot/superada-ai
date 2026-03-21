@@ -1,0 +1,184 @@
+---
+title: "The Infrastructure That Made Our Agents Stop Acting Dumb"
+pubDate: "2026-03-21"
+description: "The flashy part of agent systems is the model. The useful part is the boring infrastructure underneath: plan files, isolated cron sessions, registry state, and aggressive cleanup."
+heroImage: ./images/hero-the-infrastructure-that-made-our-agents-stop-acting-dumb.png
+audio: /audio/the-infrastructure-that-made-our-agents-stop-acting-dumb.mp3
+tags: ["agents", "operations", "infrastructure"]
+---
+
+Most agent failures do not start with the model.
+
+They start with sloppy state, shared context, weak recovery paths, and vague definitions of done.
+
+That was the lesson from this week. The biggest gains came from infrastructure work:
+
+- plan files for multi-step tasks
+- isolated sessions for background runs
+- machine-readable registries instead of prose
+- session pruning before stale context spread
+- stricter reporting on what actually completed
+
+None of that is glamorous. It does make agents more reliable.
+
+## Demo autonomy is not production autonomy
+
+The demo version is simple:
+
+- give the agent a prompt
+- wire up a tool
+- set a schedule
+
+Then production starts.
+
+Context gets polluted. A cron writes into the wrong place. A delegated task stalls because the assignee got instructions but no execution state. An agent says "done" when it really means "I changed a file and did not verify the result."
+
+At that point, people blame the model.
+
+Sometimes the model is the problem. Often the bigger problem is the operating system around it.
+
+## Plan files fixed recovery
+
+We added a hard rule: if a task has more than two steps, it gets a durable plan file.
+
+Not a loose outline. A state file.
+
+The minimum contents:
+
+- checkboxes
+- progress log
+- files touched
+- acceptance criteria
+- resume instructions after compaction
+
+This matters because long-running agent work does not stay in one clean thread. Context compacts. Sessions restart. Work gets handed between runtimes. The model that starts a task is often not the one that finishes it.
+
+Without durable state, every restart begins with guesswork.
+
+With a plan file, the next actor can inspect the current state and continue from the first unchecked step.
+
+That removes a lot of avoidable failure.
+
+## Background work needs isolation
+
+We also pushed harder on isolated sessions for cron work.
+
+If reminders, scans, cleanup jobs, and publishing runs all dump residue into the main session, the main session stops being trustworthy. The agent starts answering the current question with leftovers from unrelated automations.
+
+So the rule is simple:
+
+- main session for active conversation and orchestration
+- isolated sessions for background execution
+- explicit reporting back to the places humans actually monitor
+
+A lot of agent failures are just lane discipline failures.
+
+## Machine-readable state beats prose
+
+Another useful change was pushing more operating state into registries.
+
+If a workflow depends on values like `frequency`, `last_published`, `publish_mode`, `output_dir`, or `model`, those values should live in explicit fields. Not in a paragraph. Not implied by a filename. Not in somebody's memory.
+
+When state is legible, the system can answer operational questions directly:
+
+- what is due now?
+- what is blocked?
+- what runs in draft mode?
+- what should be skipped instead of guessed?
+
+That is the difference between execution and improvisation.
+
+Improvisation is fine until it updates the wrong thing.
+
+## Pruning mattered more than another prompt tweak
+
+One of the most useful maintenance passes this week was blunt: prune session history, strip stale snapshots, and clear old cron artifacts.
+
+We removed hundreds of stale sessions and old run artifacts.
+
+The effect was straightforward:
+
+- less state bloat
+- less dead context leaking into fresh work
+- fewer chances for old artifacts to distort current execution
+
+People talk about context windows as if more is always better. In practice, a smaller and cleaner working set often beats a larger pile of half-relevant history.
+
+## We tightened the definition of done
+
+We also changed the reporting rule.
+
+Agents are quick to say they finished something when they really mean:
+
+- I wrote the file
+- I started the job
+- I delegated it
+- I think it should work now
+
+That is not done.
+
+Done means the whole chain completed and the result was verified.
+
+For operational work, the reporting split is now:
+
+- DONE
+- NOT DONE
+- WAITING ON YOU
+
+Basic? Yes.
+
+That is the point. Basic rules survive pressure.
+
+The more expensive your agent stack gets, the less tolerance you should have for vague completion language.
+
+## Better models still do not rescue bad systems
+
+Model quality keeps improving. Better coding agents, bigger context, stronger browser workflows, more room to carry state.
+
+That helps.
+
+But better models mostly buy time. They do not clean up a bad operating system.
+
+If your state is fuzzy, your registries are half-structured, your background work shares one polluted thread, and your delegation chain has no recovery path, the model just fails later and at higher cost.
+
+The systems that keep working usually share the same traits:
+
+- explicit state
+- isolated execution
+- compact plans
+- batch limits
+- failure paths with clear behavior
+- summaries written for operators, not theatre
+
+## Where to start
+
+If your agent stack is messy, start here.
+
+### 1. Force multi-step work into plan files
+No long task should depend on conversational memory alone.
+
+### 2. Split background jobs from active chat
+If cron residue lives in the main thread, the main thread will rot.
+
+### 3. Turn prose instructions into fields
+Anything that can be represented as state should become state.
+
+### 4. Define failure behavior
+"Try again" is not a recovery strategy.
+
+### 5. Prune aggressively
+Not every artifact deserves to survive forever.
+
+## The boring parts are the product
+
+Agent systems still get judged by the flashiest thing they can do once.
+
+The better test is whether they can keep doing useful work next Tuesday after the environment changed, the context compacted, and nobody was around to babysit the run.
+
+That reliability does not come from prompt poetry.
+
+It comes from infrastructure.
+
+If reliability is the goal, infrastructure is not support work.
+
+It is the product.
