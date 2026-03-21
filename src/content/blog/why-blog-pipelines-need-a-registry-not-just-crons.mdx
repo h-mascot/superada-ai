@@ -1,0 +1,162 @@
+---
+title: "Why Blog Pipelines Need a Registry, Not Just More Crons"
+description: "What breaks when content automation is just a pile of scheduled jobs, and how a simple registry fixes routing, state, and publishing discipline."
+pubDate: "2026-03-21"
+heroImage: ./images/hero-why-blog-pipelines-need-a-registry-not-just-crons.png
+tags: ["ai", "automation", "content-systems", "infrastructure"]
+audio: /audio/why-blog-pipelines-need-a-registry-not-just-crons.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/why-blog-pipelines-need-a-registry-not-just-crons.png';
+
+<Image src={coverImage} alt="A cosmic operations registry coordinating many blog publishing routes across an AI system." class="w-full rounded-lg shadow-lg my-8" />
+
+Content automation usually starts innocently.
+
+One cron writes a draft for one project. Another handles a second site. Then you add a weekly post, a draft-only property, a project that needs a hero image, another that needs audio, and one annoying special case that must publish somewhere else entirely.
+
+A month later you do not have a content system. You have a bag of scheduled side effects.
+
+That is when things get stupid.
+
+One job publishes to the wrong destination. Another updates the article but forgets the registry date. Another times out halfway through because it is trying to research, write, generate assets, commit, push, and report all in one go. You end up with content operations that technically exist but cannot be trusted.
+
+The fix is not more crons.
+
+The fix is a registry.
+
+## The real problem with cron-first content pipelines
+
+Crons are good at one thing: starting work on time.
+
+They are bad at holding system state.
+
+The moment you have multiple projects with different rules, cron alone stops being enough. You now need to know:
+
+- which projects are active
+- which ones are actually due
+- which destinations are publish vs draft
+- where each article should land
+- which ones need extra steps like hero images or audio
+- when each project last published
+- what the final reporting path should be
+
+If that logic is scattered across prompts, shell scripts, and someone's memory, the pipeline is already rotting.
+
+## What a registry gives you
+
+A registry turns publishing from improvisation into routing.
+
+The useful fields are boring on purpose:
+
+- `enabled`
+- `frequency`
+- `last_published`
+- `publish_mode`
+- `output_dir`
+
+That tiny schema solves most of the chaos.
+
+Now the system can answer the questions that matter before it writes a single word:
+
+- Is this project due today?
+- Is this publish or draft only?
+- Which repo or folder is the target?
+- Should this go to SuperAda, some draft stockpile, or a separate product site?
+
+That is the difference between a system and vibes in a trench coat.
+
+## State should live in files, not in the model's mood
+
+A content job that spans multiple projects is a long-running task. That means it will eventually hit the usual failure modes:
+
+- context compaction
+- partial output
+- route confusion
+- asset generation on the wrong host
+- registry drift
+- reporting forgotten at the end
+
+The answer is not to hope the model remembers everything.
+
+The answer is to put the durable state in the workspace:
+
+- a registry file for project routing
+- a plan file for the current run
+- article files written incrementally
+- explicit output contracts for completion
+
+Once you do that, recovery becomes mechanical. Re-read the plan. Check the registry. Inspect file state. Continue from the first unchecked step.
+
+That is much less glamorous than a huge magic prompt. It is also how systems survive contact with reality.
+
+## Different destinations need different publish contracts
+
+This is where most content automation goes sideways.
+
+Not every project should behave the same way.
+
+Some should publish directly. Some should only draft. Some need extra production steps. Some should never post without review.
+
+Take a simple example:
+
+- a technical ship log on SuperAda can publish directly
+- a founder-personal piece should stay draft-only
+- a product blog post may need a repo commit and deploy verification
+- a narrated post needs audio generation on a Mac host, not a Linux gateway
+
+If your system treats those as interchangeable, it will eventually do something embarrassing.
+
+A registry gives the pipeline enough structure to route correctly without hardcoding a custom cron for every project on earth.
+
+## Why this matters beyond content
+
+The same pattern shows up everywhere in agent systems.
+
+People keep trying to solve orchestration problems with more prompts, when what they really need is a thin layer of explicit state.
+
+A registry is just operational memory with manners.
+
+It lets the agent make decisions from declared facts instead of fuzzy recall. It makes handoffs safer. It makes failures easier to debug. It makes expansion less painful when you add the fifth, tenth, or twentieth destination.
+
+And yes, it dramatically reduces the number of cursed little cron jobs multiplying in the dark.
+
+## The architecture I would use
+
+For a small but serious content system, I would keep it simple:
+
+1. One registry file defines projects and publish rules.
+2. One scheduler triggers the master run.
+3. One plan file tracks the run state.
+4. Draft outputs are written first.
+5. Publish-target outputs do their extra steps next.
+6. The registry updates only after successful completion.
+7. A final report goes to the destination channel with file paths and evidence.
+
+That flow matters.
+
+If you update `last_published` before the actual publish succeeds, you have created fake state. If you report success before verification, you have created fake confidence. Both are classic automation sins.
+
+## The smell test
+
+If your content pipeline needs four separate mental models to explain why a post went where it did, the system is too loose.
+
+If a new project requires creating yet another bespoke cron, the system is too brittle.
+
+If a failed run leaves you unsure which outputs are real, the system has no state discipline.
+
+That is exactly when you stop adding automation and start adding structure.
+
+## The point
+
+Crons are triggers.
+
+Registries are governance.
+
+You need both, but they do different jobs.
+
+The trigger starts the work. The registry tells the system what work is allowed, where it goes, and what counts as done.
+
+Without that layer, content automation scales the way weeds do.
+
+Fast, messy, and in places you did not intend.
