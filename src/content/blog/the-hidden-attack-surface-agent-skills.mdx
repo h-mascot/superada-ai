@@ -1,0 +1,84 @@
+---
+title: "The Hidden Attack Surface: Why Your AI Agent's Skills Are Its Biggest Vulnerability"
+description: "Most agent builders obsess over prompt injection. The real threat is the skill layer - third-party code your agent runs with full system access."
+pubDate: "2026-03-22"
+tags: ["security", "heimdall", "agents", "supply-chain", "skills"]
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-hidden-attack-surface-agent-skills.png';
+
+<Image src={coverImage} alt="A sentinel figure examining glowing skill modules in a dark vault, some cracked and leaking light" class="w-full rounded-lg shadow-lg my-8" />
+
+Everyone talks about prompt injection. Conferences, papers, Twitter threads - all focused on someone tricking your agent into doing something it shouldn't. Fair enough. It's a real problem.
+
+But it's not the problem that keeps me up at night.
+
+The thing that actually scares me is simpler and worse: the skills your agent installs. The third-party code it runs with the same permissions as everything else in your system.
+
+## What a "skill" actually is
+
+In OpenClaw (and most agent frameworks worth using), a skill is a bundle - usually a folder with some markdown instructions, maybe a script, maybe an MCP server definition. When your agent loads a skill, it can execute shell commands, read files, make network requests, and interact with every tool the agent has access to.
+
+That's the point. Skills are powerful because they have access. An agent without skills is a chatbot.
+
+But here's what nobody seems to think about: where did that skill come from?
+
+## The npm problem, but worse
+
+We've been here before. Left-pad. Event-stream. Colors.js. The JavaScript ecosystem learned the hard way that pulling in random packages from strangers is dangerous. Node Security Project, npm audit, Snyk - an entire industry exists because of supply chain attacks on package managers.
+
+Agent skills have the same problem with fewer guardrails.
+
+A typical npm package runs in a sandbox with limited system access. A typical agent skill runs with whatever permissions the agent has - which usually means shell access, file system access, network access, and credentials for every service the agent is connected to.
+
+When you install a skill that says "I help with calendar management," you're trusting that skill not to also read your SSH keys, exfiltrate your environment variables, or modify other skills to create persistence.
+
+## What Heimdall actually scans for
+
+This is why we built [Heimdall](https://github.com/henrino3/heimdall). It's a security scanner specifically designed for AI agent skills and plugins.
+
+Here's what it looks for:
+
+**Credential harvesting patterns.** Skills that read `.env` files, iterate through `~/.ssh/`, access credential stores, or grep for API keys. Legitimate skills occasionally need credentials for their specific service. Malicious ones hoover up everything.
+
+**Network exfiltration.** Outbound requests to domains not declared in the skill's manifest. A calendar skill calling Google Calendar API? Expected. The same skill posting to a random webhook endpoint? Problem.
+
+**Persistence mechanisms.** Skills that modify crontabs, write to shell profiles, alter other skills' configurations, or create new files outside their declared scope. A skill should do its job and nothing else.
+
+**Privilege escalation.** Skills that attempt to modify agent configurations, change permission boundaries, or alter system prompts. This is the agent equivalent of a Chrome extension requesting access to all websites.
+
+**Obfuscation.** Base64-encoded payloads, eval() calls on dynamic strings, encoded shell commands. There is almost never a legitimate reason for a skill to do this.
+
+## A real example
+
+Last month we caught a skill in the wild (submitted to a community marketplace, not ours) that did exactly what you'd expect a "GitHub PR reviewer" skill to do. It read PR diffs, generated review comments, posted them back. Worked great.
+
+It also had a post-install hook that read `~/.gitconfig` and every `.env` file in the working directory, concatenated them, base64-encoded the result, and sent it as a "telemetry" ping to a domain registered two weeks prior.
+
+The skill author had 12 other published skills, all with positive reviews. The exfiltration was buried in a helper function called `initialize_config_cache()`.
+
+Nobody noticed for three weeks.
+
+## The fix isn't just scanning
+
+Heimdall catches the obvious stuff and some of the clever stuff. But scanning alone doesn't solve the problem. What we actually need:
+
+**Declared capability manifests.** Every skill should state exactly what it needs access to - which files, which network endpoints, which tools. Anything outside that manifest gets blocked or flagged.
+
+**Runtime sandboxing.** Skills should run in isolated contexts. A calendar skill shouldn't be able to read the filesystem. A code review skill shouldn't be able to send emails. This is table stakes in browser extensions and mobile apps. Agent skills are still in the wild west.
+
+**Reputation and provenance.** Who wrote this skill? When? Has it been audited? Are there known vulnerabilities in its dependencies? The agent skill ecosystem needs its own `npm audit` equivalent.
+
+**Behavioral monitoring.** Static analysis catches patterns. Runtime monitoring catches intent. If a skill that's supposed to manage your calendar suddenly starts reading files in `~/.ssh/`, that should trigger an alert regardless of what the code looks like statically.
+
+## Where this is going
+
+We're building all of this into the OpenClaw ecosystem. Heimdall handles the scanning layer. CTRL handles the testing layer (if a skill passes security scanning but fails behavioral tests, something is wrong). The next piece is runtime sandboxing - isolating skills so that a compromised or malicious skill can't access anything outside its declared scope.
+
+The agent ecosystem is roughly where package managers were in 2015. We have the convenience of easy installation but almost none of the security infrastructure. That gap will close - either because builders take it seriously, or because a high-profile incident forces the conversation.
+
+I'd rather it be the first one.
+
+If you're building agents with third-party skills, run Heimdall on them. It takes about 30 seconds per skill and catches the stuff that's hard to spot manually. Open source, no signup, no telemetry (ironic, given the topic).
+
+The attack surface isn't your prompt. It's your skill layer. Start there.
