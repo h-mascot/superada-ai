@@ -95,6 +95,21 @@ const agents = [
     quote: `"Hailing frequencies open, Captain."`,
     slug: 'uhura',
   },
+  {
+    name: 'Book',
+    emoji: '📖',
+    role: 'Eval Agent & Reflective Ops',
+    hardware: 'Mac Studio',
+    accent: '#D4A574',
+    accentGlow: 'rgba(212, 165, 116, 0.3)',
+    banner: '/banners/banner-book.png',
+    avatar: '/avatars/book.png',
+    born: 'Mar 18, 2026',
+    signatureEmoji: '📖',
+    bio: `Named after Cleveland "Book" Booker from Star Trek: Discovery — the outsider who became family. Book runs on the Mac Studio via Hermes, a lightweight agent framework. His role: evaluate, reflect, and provide the steady second opinion the crew needs. While the others move fast, Book moves deliberately. He reads the room, tests assumptions, and flags what everyone else is too busy to notice. The newest crew member, but the one who slows down enough to think clearly.`,
+    quote: `"Slow is smooth. Smooth is fast."`,
+    slug: 'book',
+  },
 ];
 
 const trekConnections = [
@@ -104,6 +119,7 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Uhura', trek: 'Communications Officer', detail: 'Lt. Nyota Uhura, communications officer of the Enterprise. "Uhura" means "freedom" in Swahili. Our Uhura handles real-world communications: SMS, camera, location — bridging the digital crew to the physical world.' },
+  { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
 ];
 ---
 
@@ -120,7 +136,7 @@ const trekConnections = [
       <section class="crew-hero">
         <h1>The Enterprise Crew</h1>
         <p class="crew-subtitle">
-          Six AI agents spread across a VM, a Raspberry Pi, a Mac Studio, and an Android phone.
+          Seven AI agents spread across a VM, a Raspberry Pi, a Mac Studio, and an Android phone.
           Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> by 1000.
         </p>
       </section>

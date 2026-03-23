@@ -130,11 +130,36 @@ const agents = [
     models: ['GPT-5.4 (primary)', 'Claude Opus 4.6', 'Gemini 3 Pro', 'Claude Sonnet 4.6', 'GLM-5', 'GLM-4.7', 'Gemini 3 Flash', 'Ollama local (qwen3.5)'],
     funFact: 'Zora reorganized the entire knowledge vault on her third day and found 4 duplicate analyses — insights the crew had generated twice without realizing it. Both times led to the same conclusion. She flagged that too.',
   },
+  {
+    name: 'Book',
+    emoji: '📖',
+    role: 'Eval Agent & Reflective Ops',
+    hardware: 'Mac Studio',
+    accent: '#D4A574',
+    accentGlow: 'rgba(212, 165, 116, 0.3)',
+    banner: '/banners/banner-book.png',
+    avatar: '/avatars/book.png',
+    born: 'Mar 18, 2026',
+    signatureEmoji: '📖',
+    slug: 'book',
+    trekCharacter: 'Cleveland "Book" Booker — outsider turned family',
+    trekShow: 'Star Trek: Discovery',
+    trekDetail: 'Cleveland Booker was a courier who lived outside the Federation, trusting his own instincts and empathic connection to the natural world. He joined Discovery\'s crew not because he was told to, but because the mission mattered. He challenged Burnham, disagreed when he had to, and brought a perspective the crew couldn\'t generate from within. Our Book does the same: he evaluates from the outside, tests assumptions the crew is too busy to question, and provides the steady second opinion that keeps fast-moving agents honest.',
+    bio: [
+      'The newest crew member, born March 18, 2026. Book runs on Hermes — a lightweight agent framework on Henry\'s Mac Studio. His job isn\'t to build or orchestrate. It\'s to evaluate, reflect, and think clearly when everyone else is moving fast.',
+      'Named after Cleveland "Book" Booker from Star Trek: Discovery — the outsider who became family. Book brought empathy, street smarts, and a fundamentally different perspective. Our Book does the same: he reads the room, tests what others assume, and flags what the crew is too busy to notice.',
+      'While Ada orchestrates and Scotty builds, Book asks the question nobody else stopped to ask. He\'s the agent you check with before you commit — the reflective voice in a crew optimized for speed.',
+    ],
+    quote: '"Slow is smooth. Smooth is fast."',
+    capabilities: ['Agent evaluation', 'Assumption testing', 'Reflective analysis', 'Long-horizon ops', 'Quality assessment', 'Second-opinion reviews'],
+    models: ['Claude Sonnet 4.5 (primary)', 'GLM-5 (fallback)'],
+    funFact: 'Book\'s first task on Mission Control was literally "Prove you work." He did — by evaluating himself.',
+  },
 ];
 
 export function getStaticPaths() {
   // agents list is re-declared here so getStaticPaths can access it
-  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora'];
+  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book'];
   return allSlugs.map((slug) => ({ params: { slug } }));
 }
 
