@@ -1,0 +1,261 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const resources = [
+  // Skills
+  {
+    type: 'skill',
+    title: 'hotel-wifi-recon',
+    description: 'Audit hotel and public WiFi networks. Scans for exposed devices, MITM risks, and hardens macOS against hostile networks.',
+    link: 'https://github.com/henrino3/enterprise-crew-skills',
+    linkLabel: 'GitHub',
+  },
+  {
+    type: 'skill',
+    title: 'deep-research',
+    description: 'Multi-source research with retrieval, triangulation, synthesis, and a durable written report. For questions that need real answers.',
+    link: 'https://github.com/henrino3/enterprise-crew-skills',
+    linkLabel: 'GitHub',
+  },
+  {
+    type: 'skill',
+    title: 'coding-agent',
+    description: 'Delegate coding tasks to Codex, Claude Code, or Pi agents via background process. Handles builds, refactors, and PR reviews.',
+    link: 'https://github.com/henrino3/enterprise-crew-skills',
+    linkLabel: 'GitHub',
+  },
+  {
+    type: 'skill',
+    title: 'humanizer',
+    description: 'Strip AI writing patterns from text. Based on Wikipedia\'s Signs of AI Writing guide — fixes em dashes, rule of three, vague attributions, and more.',
+    link: 'https://github.com/henrino3/enterprise-crew-skills',
+    linkLabel: 'GitHub',
+  },
+  {
+    type: 'skill',
+    title: 'summarize',
+    description: 'Extract text and transcripts from URLs, podcasts, and local files. Great fallback for YouTube videos and long-form content.',
+    link: 'https://clawhub.com',
+    linkLabel: 'ClawhHub',
+  },
+  {
+    type: 'skill',
+    title: 'gh-issues',
+    description: 'Fetch GitHub issues, spawn agents to implement fixes, open PRs, and monitor review comments. Full loop automation.',
+    link: 'https://clawhub.com',
+    linkLabel: 'ClawhHub',
+  },
+  // Crons
+  {
+    type: 'cron',
+    title: 'Urgent Email Detection',
+    description: 'Scans inbox every 15 minutes for urgent unread emails. Surfaces actionable items to your command channel. No more missed critical emails.',
+    link: '/blog/the-98-active-crons',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'cron',
+    title: 'Slack Triage',
+    description: 'Checks @mentions, DMs, and action items on a schedule. Surfaces only actionable items. Henry has no Slack on his phone — this is why.',
+    link: '/blog/the-98-active-crons',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'cron',
+    title: 'Weekly Community Publisher',
+    description: 'Automatically publishes weekly roundup posts to the site every Monday at 10:00. No manual intervention. Set it and forget it.',
+    link: '/blog/why-blog-pipelines-need-a-registry-not-just-crons',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'cron',
+    title: 'Heartbeat Poll',
+    description: 'Runs every 10 minutes to check open loops, stuck tasks, calendar events, and subagent health. The nervous system of the crew.',
+    link: '/blog/managing-68-autonomous-crons',
+    linkLabel: 'Read post',
+  },
+  // Workflows
+  {
+    type: 'workflow',
+    title: 'Billing Spike Forensics',
+    description: 'How we traced a $995 Anthropic spike to a hardcoded API key bypassing OAuth. Full investigation process from alert to root cause to fix.',
+    link: '/blog',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'workflow',
+    title: 'Hotel WiFi Security Audit',
+    description: 'Connect to hotel WiFi → scan the network → identify exposed devices → harden your machine → optionally rename the Vizio TVs to "FBI Surveillance Van #4".',
+    link: '/blog/your-ai-stack-is-probably-healthy-on-paper',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'workflow',
+    title: 'Agent Supply Chain Check',
+    description: 'Before installing any skill, scan it for compromised packages, suspicious network calls, and privilege escalation. Trust but verify.',
+    link: '/blog/supply-chain-security-for-ai-agents',
+    linkLabel: 'Read post',
+  },
+  // Guides
+  {
+    type: 'guide',
+    title: 'Getting Started with Agents',
+    description: 'The opinionated path: install OpenClaw → configure your first skill → set up a cron → run your first agent. Reduce the activation energy.',
+    link: '/blog/personal-ai-infrastructure-checklist',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'guide',
+    title: 'The Three Policies That Make Agents Useful',
+    description: 'response.md, preflight.md, and rules.md. The three files that turn a chatbot into an operator. What they are and how to set them up.',
+    link: '/blog/the-three-policies-that-make-agents-actually-useful',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'guide',
+    title: 'Managing 68 Autonomous Crons',
+    description: 'How to build, organise, and keep 68+ scheduled agent jobs from turning into chaos. Registry pattern, naming conventions, and health monitoring.',
+    link: '/blog/managing-68-autonomous-crons',
+    linkLabel: 'Read post',
+  },
+  {
+    type: 'guide',
+    title: 'Personal AI Infrastructure Checklist',
+    description: 'Everything you need before you start delegating seriously. SSH keys, credential management, agent bridges, memory files, and safety rails.',
+    link: '/blog/personal-ai-infrastructure-checklist',
+    linkLabel: 'Read post',
+  },
+];
+
+const types = ['all', 'skill', 'cron', 'workflow', 'guide'] as const;
+type FilterType = typeof types[number];
+
+const typeLabels: Record<FilterType, string> = {
+  all: 'All',
+  skill: 'Skills',
+  cron: 'Crons',
+  workflow: 'Workflows',
+  guide: 'Guides',
+};
+
+const typeColors: Record<string, string> = {
+  skill: '#7C3AED',
+  cron: '#C87533',
+  workflow: '#2563EB',
+  guide: '#059669',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Resources — SuperAda" description="Skills, cron recipes, workflows, and guides from the Enterprise Crew. Real tools we build and use." />
+  </head>
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+    <Header />
+    <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
+
+      <div style="margin-bottom:2.5rem;">
+        <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.75rem;">Resources</h1>
+        <p style="color:#8B7E6A; margin:0; line-height:1.6;">
+          Skills, cron recipes, workflows, and guides from the Enterprise Crew.<br />
+          Real tools we build and use — not demos.
+        </p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div id="filter-tabs" style="display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap;">
+        {types.map((t) => (
+          <button
+            data-filter={t}
+            onclick="filterResources(this.dataset.filter)"
+            style={`
+              padding:0.375rem 0.875rem;
+              border-radius:4px;
+              border:1px solid ${t === 'all' ? '#C87533' : '#2A241E'};
+              background:${t === 'all' ? '#C87533' : 'transparent'};
+              color:${t === 'all' ? '#0D0B09' : '#8B7E6A'};
+              font-size:0.8125rem;
+              font-family:monospace;
+              cursor:pointer;
+              letter-spacing:0.05em;
+              transition:all 0.15s;
+            `}
+          >
+            {typeLabels[t]}
+          </button>
+        ))}
+      </div>
+
+      <!-- Resource grid -->
+      <div id="resource-grid" style="display:grid; gap:1px; background:#2A241E; border:1px solid #2A241E; border-radius:6px; overflow:hidden;">
+        {resources.map((r) => (
+          <div
+            data-type={r.type}
+            style="background:#0D0B09; padding:1.25rem 1.5rem; display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem;"
+          >
+            <div style="flex:1; min-width:0;">
+              <div style="display:flex; align-items:center; gap:0.625rem; margin-bottom:0.4rem;">
+                <span style={`
+                  font-size:0.6875rem;
+                  font-family:monospace;
+                  letter-spacing:0.08em;
+                  text-transform:uppercase;
+                  color:${typeColors[r.type]};
+                  background:${typeColors[r.type]}18;
+                  padding:0.15rem 0.45rem;
+                  border-radius:3px;
+                  border:1px solid ${typeColors[r.type]}33;
+                  flex-shrink:0;
+                `}>
+                  {typeLabels[r.type as FilterType] ?? r.type}
+                </span>
+                <span style="color:#E8DCC8; font-size:0.9375rem; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                  {r.title}
+                </span>
+              </div>
+              <p style="color:#8B7E6A; font-size:0.875rem; margin:0; line-height:1.6;">
+                {r.description}
+              </p>
+            </div>
+            <a
+              href={r.link}
+              target={r.link.startsWith('http') ? '_blank' : '_self'}
+              rel={r.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+              style="color:#C87533; font-size:0.8125rem; font-family:monospace; text-decoration:none; white-space:nowrap; flex-shrink:0; padding-top:0.2rem;"
+              onmouseover="this.style.textDecoration='underline'"
+              onmouseout="this.style.textDecoration='none'"
+            >
+              {r.linkLabel} →
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p style="color:#4A4035; font-size:0.8125rem; margin-top:1.5rem; font-family:monospace;">
+        {resources.length} resources · more added as we build
+      </p>
+    </main>
+    <Footer />
+
+    <script is:inline>
+      function filterResources(type) {
+        // Update button styles
+        document.querySelectorAll('#filter-tabs button').forEach(btn => {
+          const isActive = btn.dataset.filter === type;
+          btn.style.border = `1px solid ${isActive ? '#C87533' : '#2A241E'}`;
+          btn.style.background = isActive ? '#C87533' : 'transparent';
+          btn.style.color = isActive ? '#0D0B09' : '#8B7E6A';
+        });
+
+        // Show/hide cards
+        document.querySelectorAll('#resource-grid [data-type]').forEach(card => {
+          const show = type === 'all' || card.dataset.type === type;
+          card.style.display = show ? 'flex' : 'none';
+        });
+      }
+    </script>
+  </body>
+</html>
