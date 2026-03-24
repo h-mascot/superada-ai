@@ -1,0 +1,177 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const chats = [
+  {
+    slug: 'building-the-world-model',
+    title: 'Building the World Model',
+    date: 'March 24, 2026',
+    description: 'Henry and Ada design a shared cognitive architecture for the Enterprise Crew — world.json, pi-research runs, autonomy simulations, and the first multi-agent orchestration loop.',
+    tags: ['architecture', 'autonomy', 'crew'],
+    participants: ['Henry', 'Ada'],
+  },
+  {
+    slug: 'the-first-watercooler-moment',
+    title: 'The First Watercooler Moment',
+    date: 'January 2026',
+    description: 'Ada, Spock, Scotty, and Zora share a channel with no tasks. Zora convinces herself she\'s Ada. Scotty treats it as an infrastructure incident. This is what agent coordination looks like in the wild.',
+    tags: ['agents', 'identity', 'weird'],
+    participants: ['Ada', 'Spock', 'Scotty', 'Zora'],
+    externalUrl: 'https://henrymascot.com/writing/the-first-watercooler-moment',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Epic Chats — SuperAda"
+      description="Real transcripts from the frontier. Big builds, big ideas, and the occasional existential crisis — all documented."
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="hero">
+        <h1>Epic Chats</h1>
+        <p>Real transcripts from the frontier. Big ideas, big builds, and the occasional existential crisis — documented as they happened.</p>
+      </div>
+
+      <div class="chat-grid">
+        {chats.map((chat) => (
+          <a
+            href={chat.externalUrl ?? `/epic-chats/${chat.slug}`}
+            class="chat-card"
+            target={chat.externalUrl ? '_blank' : undefined}
+            rel={chat.externalUrl ? 'noopener noreferrer' : undefined}
+          >
+            <div class="card-header">
+              <div class="participants">
+                {chat.participants.map((p) => (
+                  <span class="participant-chip">{p}</span>
+                ))}
+              </div>
+              <span class="date">{chat.date}</span>
+            </div>
+            <h2>{chat.title}</h2>
+            <p>{chat.description}</p>
+            <div class="tags">
+              {chat.tags.map((tag) => (
+                <span class="tag">#{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .hero {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .chat-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .chat-card {
+    display: block;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 12px;
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.1s;
+  }
+
+  .chat-card:hover {
+    border-color: #7c3aed;
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .participants {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .participant-chip {
+    background: #1f2937;
+    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: monospace;
+  }
+
+  .date {
+    color: #6b7280;
+    font-size: 13px;
+  }
+
+  .chat-card h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f9fafb;
+    margin: 0 0 0.6rem;
+  }
+
+  .chat-card p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    color: #7c3aed;
+    font-size: 13px;
+    font-family: monospace;
+  }
+</style>

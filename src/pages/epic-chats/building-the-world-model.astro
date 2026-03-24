@@ -1,0 +1,336 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DiscordChat from '../../components/DiscordChat.astro';
+
+const messages = [
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '10:14 PM',
+    content: `The autonomy architecture sim ran. Architecture E (Intent Graph) scored 8.28 composite but high cascade risk. D (Orchestrator Loop) is the stable all-rounder at 8.15.`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '10:14 PM',
+    content: `Proposed: hybrid E+D — intent-graph dependency awareness inside a single orchestrator loop. Target: >8.5 composite.\n\nBut I think we're solving the wrong layer. You said "system model" should be the conceptual entities — Company, User, Agents, Goals — not LLM configs or cron schedules.`,
+  },
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '10:19 PM',
+    content: `Right. The current system is a loose mesh. Agents operate in isolation without shared state. Fix that first.`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '10:19 PM',
+    content: `Creating <code>world.json</code> — a canonical World Model. Single source of truth for all agents to reason from instead of isolated files.\n\nEntities: user, companies, agents, projects, signals, propagation_rules.`,
+  },
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '10:23 PM',
+    content: `Soteria grounding for the model:\n• Pre-revenue, pre-SLA\n• Launching AI agent infrastructure for payer ops (stop loss + TPAs)\n• 10 hot leads, 100 total\n• Product: stop loss and TPAs right now`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '10:24 PM',
+    content: `Updated world.json. Agent intents derived:\n• Spock → stop loss market research\n• Zora → payer ops content\n• Scotty → features to close pilots\n\nThree pi-research tracks established.`,
+  },
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '10:41 PM',
+    content: `Three tracks:\n1. Propagation — how signals ripple across the crew\n2. Structure — optimal shape for the world model\n3. Co-evolution — how structure + propagation rules iterate together`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '10:41 PM',
+    content: `Writing program.md for each track. Each gets the question, world.json grounding, and the simulator as the tool to run experiments against.\n\nKick them off now?`,
+  },
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '10:54 PM',
+    content: `yeah`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '10:54 PM',
+    content: `Launching:\n• Track 1 (propagation) → session <code>tide-cedar</code>\n• Track 2 (structure) → session <code>good-sage</code>\n• Track 3 (synthesis) → session <code>calm-tidepool</code>\n\nAll three running. Will ping when findings land.`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '11:08 PM',
+    content: `All three pi runs completed.\n\n<strong>Track 1</strong>: Architecture E + selective propagation at scale 50/cascade → composite <strong>8.85</strong>. Cascade failures: 10. p99 latency: 0.299h.\n<strong>Track 2</strong>: Optimistic concurrency + field ownership recommended. Concrete v0.2 schema done.\n<strong>Track 3</strong>: E beats D at scale 20 (8.56 vs 8.36). Holds at scale 50 with 0.0 drift.`,
+  },
+  {
+    author: 'Henry',
+    badge: 'Founder',
+    time: '11:08 PM',
+    content: `I want to add a section on our resources page called Epic Chats\n\nwhere we publish our transcript for big ideas or big builds like this current session — clean up the transcript, publish it inside a UI like the watercooler post`,
+  },
+  {
+    author: 'Ada',
+    badge: 'APP',
+    time: '11:09 PM',
+    italic: true,
+    content: `building it`,
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Building the World Model — Epic Chats"
+      description="Henry and Ada design a shared cognitive architecture for the Enterprise Crew: world.json, three pi-research tracks, autonomy simulations, and the first multi-agent orchestration loop."
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="chat-page-header">
+        <a href="/epic-chats" class="back-link">← Epic Chats</a>
+        <div class="meta">
+          <span class="date">March 24, 2026</span>
+          <div class="participants">
+            <span class="participant-chip">Henry</span>
+            <span class="participant-chip">Ada</span>
+          </div>
+        </div>
+        <h1>Building the World Model</h1>
+        <p class="subtitle">
+          From autonomy architecture simulations to world.json — the session where the Enterprise Crew got a shared brain.
+          Three pi-research runs. One canonical world model. The beginning of coherent multi-agent reasoning.
+        </p>
+      </div>
+
+      <div class="context-box">
+        <h3>What happened here</h3>
+        <p>
+          After running autonomy architecture simulations (6 architectures, scored across context sharing, failure resilience, and cascade risk),
+          Henry and Ada realized they were solving the wrong problem. The issue wasn't orchestration patterns — it was that agents had no shared reality.
+          Each agent reasoned from isolated files. There was no single source of truth.
+        </p>
+        <p>
+          This session built that foundation: <code>world.json</code>, a propagation model,
+          three parallel pi-research tracks to stress-test the design, and the first concrete answer to
+          "how does a signal from Henry reach the right agents at the right time?"
+        </p>
+        <div class="scores">
+          <div class="score"><span class="score-label">Architecture E+D composite</span><span class="score-value">8.85</span></div>
+          <div class="score"><span class="score-label">p99 propagation latency</span><span class="score-value">0.299h</span></div>
+          <div class="score"><span class="score-label">Scale tested</span><span class="score-value">50 agents</span></div>
+        </div>
+      </div>
+
+      <DiscordChat
+        channel="ops-brain"
+        description="Building the world model. No tasks. Just architecture."
+        messages={messages}
+      />
+
+      <div class="findings">
+        <h2>What we found</h2>
+        <div class="finding-grid">
+          <div class="finding">
+            <h3>Track 1 — Propagation</h3>
+            <p>Selective propagation (only notify subscribed agents) outperforms broadcast at scale. Dampening rules matter more than routing rules. An offline agent should buffer signals, not drop them.</p>
+          </div>
+          <div class="finding">
+            <h3>Track 2 — Structure</h3>
+            <p>Optimistic concurrency with field ownership is the right consistency model for concurrent agent writes. A typed hierarchical JSON schema beats flat JSON or event log for cold-start reads.</p>
+          </div>
+          <div class="finding">
+            <h3>Track 3 — Synthesis</h3>
+            <p>Architecture E (Intent Graph) inside a D (Orchestrator Loop) wrapper achieves >8.5 composite with controlled cascade risk. The world model must encode agent subscriptions — not just entity state.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  .chat-page-header {
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    color: #7c3aed;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .date {
+    color: #6b7280;
+    font-size: 14px;
+  }
+
+  .participants {
+    display: flex;
+    gap: 6px;
+  }
+
+  .participant-chip {
+    background: #1f2937;
+    color: #9ca3af;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-family: monospace;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #f9fafb;
+    margin: 0 0 0.75rem;
+  }
+
+  .subtitle {
+    color: #9ca3af;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .context-box {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .context-box h3 {
+    color: #f9fafb;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    color: #7c3aed;
+  }
+
+  .context-box p {
+    color: #9ca3af;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0 0 0.75rem;
+  }
+
+  .context-box p:last-of-type {
+    margin-bottom: 1.25rem;
+  }
+
+  .context-box code {
+    background: #1f2937;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #a78bfa;
+  }
+
+  .scores {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .score {
+    background: #1f2937;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .score-label {
+    color: #6b7280;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .score-value {
+    color: #a78bfa;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: monospace;
+  }
+
+  .findings {
+    margin-top: 3rem;
+  }
+
+  .findings h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f9fafb;
+    margin: 0 0 1.5rem;
+  }
+
+  .finding-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .finding {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .finding h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin: 0 0 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .finding p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

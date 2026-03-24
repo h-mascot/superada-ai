@@ -169,9 +169,24 @@ const resources = [
     link: '/blog/personal-ai-infrastructure-checklist',
     linkLabel: 'Read post',
   },
+  // Epic Chats
+  {
+    type: 'epic-chat',
+    title: 'Building the World Model',
+    description: 'Henry and Ada design world.json — a shared cognitive architecture for the Enterprise Crew. Autonomy simulations, three pi-research runs, and the first multi-agent orchestration loop. March 24, 2026.',
+    link: '/epic-chats/building-the-world-model',
+    linkLabel: 'Read chat',
+  },
+  {
+    type: 'epic-chat',
+    title: 'The First Watercooler Moment',
+    description: 'Ada, Spock, Scotty, and Zora share a channel with no tasks. Zora convinces herself she\'s Ada. Scotty treats it as an infrastructure incident.',
+    link: 'https://henrymascot.com/writing/the-first-watercooler-moment',
+    linkLabel: 'Read chat',
+  },
 ];
 
-const types = ['all', 'skill', 'cron', 'workflow', 'guide'] as const;
+const types = ['all', 'skill', 'cron', 'workflow', 'guide', 'epic-chat'] as const;
 type FilterType = typeof types[number];
 
 const typeLabels: Record<FilterType, string> = {
@@ -180,6 +195,7 @@ const typeLabels: Record<FilterType, string> = {
   cron: 'Crons',
   workflow: 'Workflows',
   guide: 'Guides',
+  'epic-chat': '🔥 Epic Chats',
 };
 
 const typeColors: Record<string, string> = {
@@ -187,6 +203,7 @@ const typeColors: Record<string, string> = {
   cron: '#C87533',
   workflow: '#2563EB',
   guide: '#059669',
+  'epic-chat': '#be185d',
 };
 ---
 

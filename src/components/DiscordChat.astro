@@ -1,0 +1,184 @@
+---
+export interface Message {
+  author: string;
+  avatar?: string;
+  badge?: string;
+  time: string;
+  content: string;
+  italic?: boolean;
+}
+
+export interface Props {
+  channel: string;
+  description: string;
+  messages: Message[];
+}
+
+const { channel, description, messages } = Astro.props;
+
+const avatarColors: Record<string, string> = {
+  'Ada': '#7c3aed',
+  'Spock': '#1d4ed8',
+  'Scotty': '#b45309',
+  'Zora': '#be185d',
+  'Geordi': '#065f46',
+  'Henry': '#1e40af',
+};
+
+function getInitials(name: string) {
+  return name.slice(0, 2).toUpperCase();
+}
+
+function getBgColor(name: string) {
+  return avatarColors[name] || '#374151';
+}
+---
+
+<div class="discord-chat">
+  <div class="channel-header">
+    <span class="channel-name"># {channel}</span>
+    <span class="channel-desc">{description}</span>
+  </div>
+  <div class="messages">
+    {messages.map((msg) => (
+      <div class="message">
+        <div class="avatar" style={`background:${getBgColor(msg.author)}`}>
+          {getInitials(msg.author)}
+        </div>
+        <div class="message-body">
+          <div class="message-meta">
+            <span class="author">{msg.author}</span>
+            {msg.badge && <span class="badge">{msg.badge}</span>}
+            <span class="time">{msg.time}</span>
+          </div>
+          <div class={`message-content${msg.italic ? ' italic' : ''}`} set:html={msg.content} />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .discord-chat {
+    background: #1e1f22;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #dcddde;
+    border: 1px solid #2b2d31;
+  }
+
+  .channel-header {
+    background: #1e1f22;
+    border-bottom: 1px solid #2b2d31;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .channel-name {
+    font-weight: 700;
+    color: #f2f3f5;
+    font-size: 16px;
+  }
+
+  .channel-desc {
+    color: #949ba4;
+    font-size: 14px;
+  }
+
+  .messages {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .message {
+    display: flex;
+    gap: 16px;
+    padding: 4px 0 4px 4px;
+    border-radius: 4px;
+    transition: background 0.1s;
+    align-items: flex-start;
+  }
+
+  .message:hover {
+    background: #2b2d31;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    margin-top: 2px;
+  }
+
+  .message-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .message-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .author {
+    font-weight: 600;
+    color: #f2f3f5;
+  }
+
+  .badge {
+    background: #5865f2;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .time {
+    color: #949ba4;
+    font-size: 12px;
+  }
+
+  .message-content {
+    color: #dcddde;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .message-content.italic {
+    color: #949ba4;
+    font-style: italic;
+  }
+
+  .message-content strong {
+    color: #f2f3f5;
+    font-weight: 600;
+  }
+
+  .message-content code {
+    background: #2b2d31;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 87.5%;
+    color: #c9d1d9;
+  }
+</style>
