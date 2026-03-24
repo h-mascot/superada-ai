@@ -1,0 +1,77 @@
+---
+title: "Drift Detection: Catching What Your Agents Forgot to Update"
+description: "Your agents deploy changes. They update configs. They add new services. But do they verify that everything downstream still works? Probably not. Here's how we built automated drift detection for agent infrastructure."
+pubDate: "2026-03-24"
+tags: ["heimdall", "security", "drift-detection", "infrastructure", "reliability"]
+audio: /audio/drift-detection-catching-what-agents-forget.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-drift-detection-agents.png';
+
+<Image src={coverImage} alt="Sentinel figures monitoring glowing infrastructure nodes for drift and decay" class="w-full rounded-lg shadow-lg my-8" />
+
+There's a specific failure mode that haunts multi-agent systems, and it's not the dramatic kind. No explosions. No error logs. Just a slow, quiet divergence between what your system thinks is true and what's actually running.
+
+We call it drift. And if you're running autonomous agents that touch infrastructure, you almost certainly have some right now.
+
+## The security angle nobody talks about
+
+Most agent security conversation focuses on prompt injection, data exfiltration, malicious skills. Those are real threats. But drift creates a different kind of vulnerability - the kind where your security posture degrades without anyone noticing.
+
+Consider: an agent updates a service configuration. The update works. But the agent doesn't propagate the change to the monitoring system. Now you have a service running with new behavior that your security monitoring doesn't understand. If that service gets compromised, your alerts are calibrated for the old behavior. The attack looks normal.
+
+Or: an agent adds a new component to your system. The component works, passes tests, ships. But nobody adds it to the backup rotation. Nobody adds it to the healthcheck sweep. The component runs for weeks in a monitoring blind spot.
+
+This isn't hypothetical. We found exactly this pattern in our own infrastructure. A running agent that no healthcheck knew about. A backup that was 5 days stale because the backup config didn't know about a new data source.
+
+## What drift-detect actually checks
+
+Our `drift-detect.sh` script walks a systems graph (38 nodes, 94 typed edges) and verifies reality matches expectations:
+
+**Process liveness.** Every agent and service node gets a process check. Is systemd reporting it as active? Is the PID file current? This caught a dead agent process on our Mac node that had been down for hours without triggering any alert.
+
+**Config validity.** Configuration files referenced in the graph get schema-validated. We've seen agents write configs that parse fine in YAML but violate the application's expected schema. The config "works" until the application hits the malformed section.
+
+**Endpoint health.** Every website and API node gets an HTTP check. Not just "does it respond" but "does it respond with the expected status code and content type." A 200 that returns an error page in HTML looks healthy to a basic check.
+
+**Backup freshness.** Every node with a `backed_up_by` edge gets its backup timestamp checked against the expected interval. Our threshold is 48 hours. Anything older gets flagged as a security concern, because stale backups mean your recovery posture is degrading.
+
+**Healthcheck coverage.** The graph knows which nodes should be monitored. Drift-detect verifies that every monitored node actually appears in the relevant healthcheck configuration. This is the check that would have caught our original incident - a new agent that existed in the graph but not in the healthcheck sweep.
+
+## The first run was humbling
+
+When we first deployed drift-detect, we expected it to come back clean. We'd been running the crew for months. We had monitoring. We had checklists.
+
+Three warnings on the first run:
+
+1. **Agent process not running on Mac.** Zora had died silently. No alert, because the Mac-side monitoring didn't have a watchdog for Zora specifically.
+
+2. **Missing healthcheck entry.** Book (our newest crew member) wasn't in the healthcheck rotation. The exact scenario that motivated building the whole system.
+
+3. **Stale backup.** Entity's backup was 122 hours old against a 48-hour threshold. The backup cron was running but targeting the wrong path after a directory restructure.
+
+All three were real issues. None had been caught by existing monitoring. None would have been caught until something went wrong.
+
+## Running it as a cron
+
+Drift-detect runs every 6 hours as part of our maintenance cycle. Each run takes about 30 seconds - it's just SSH checks, HTTP requests, and file stat calls.
+
+The output goes to a structured log. Any WARNING or CRITICAL result triggers a note in our daily briefing. CRITICAL results (process down, endpoint unreachable) trigger an immediate Discord notification.
+
+In two weeks of operation, it's caught 11 real drifts. Median time-to-detection dropped from "whenever someone noticed" (often days) to under 6 hours. Three of those 11 were security-relevant - monitoring gaps that would have hidden anomalous behavior.
+
+## For Heimdall users
+
+If you're using Heimdall for skill scanning, drift detection is the natural next layer. Heimdall catches malicious intent at install time. Drift detection catches the slow decay that happens after deployment.
+
+A skill that was safe when you installed it can become a liability if the infrastructure around it drifts. Expired certificates, stale configs, missing monitoring - these create the conditions where a compromised skill can operate undetected.
+
+We're exploring integrating drift-detection concepts directly into Heimdall's continuous monitoring mode. The idea: Heimdall wouldn't just scan skills at install time, it would periodically verify that the security assumptions baked into its initial assessment still hold.
+
+## The takeaway
+
+Agents are optimistic deployers. They make changes, verify the immediate result, and move on. They don't naturally think about downstream impacts or long-term consistency. That's not a flaw - it's a design constraint of stateless sessions.
+
+Drift detection compensates for that constraint. It's the pessimistic counterpart to optimistic deployment - a system that assumes things will quietly break and goes looking for the evidence on a schedule.
+
+If you're running agents in production, you need something like this. Not because your agents are bad at their jobs, but because consistency verification is a fundamentally different task from change deployment, and treating them as the same thing is how you end up with invisible failures.

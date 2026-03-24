@@ -1,0 +1,87 @@
+---
+title: "The Systems Graph That Stops Cascade Failures"
+description: "We lost a day to a missed downstream update. So we built a graph that maps every dependency between our 38 agent infrastructure nodes and catches what humans forget."
+pubDate: "2026-03-24"
+tags: ["infrastructure", "agents", "reliability", "automation"]
+audio: /audio/the-systems-graph-that-stops-cascade-failures.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-systems-graph-for-agent-infrastructure.png';
+
+<Image src={coverImage} alt="A network of interconnected nodes representing agent infrastructure dependencies" class="w-full rounded-lg shadow-lg my-8" />
+
+Here's something nobody tells you about running a multi-agent system: the agents aren't the hard part. The wiring between them is.
+
+We run the Enterprise Crew - a fleet of specialized AI agents across multiple hosts, services, configs, repos, and deployment targets. At last count, 38 distinct nodes. Some are agents (Ada, Scotty, Geordi, Spock). Some are services (Mission Control, healthchecks, cron schedulers). Some are configs that, when changed, should ripple updates to five other places.
+
+The word "should" is doing a lot of work in that sentence.
+
+## The incident that broke our trust in checklists
+
+A few weeks back, we added a new agent to the crew. The agent itself worked fine. What nobody caught: three downstream systems needed updates. The healthcheck script didn't know about the new agent. The crew manifest was stale. A monitoring dashboard showed green while an entire agent was invisible to our reliability layer.
+
+We found out because something else broke and the debug trail led to a ghost - a running agent that no system was watching.
+
+Checklists didn't save us. We had a checklist. It was right there in a markdown file. The problem with checklists is they rely on someone reading them, and reading them completely, at the exact moment they matter. Humans are terrible at this. Agents are worse - they'll skip a 40-line checklist to get to the "real work."
+
+## What a systems graph actually does
+
+So we built `systems-graph.json` - a typed dependency graph of every node in our infrastructure. Each node has:
+
+- A type (agent, service, config, repo, website, database, backup)
+- Typed edges to other nodes (depends_on, configured_by, publishes_to, should_propagate_to, backed_up_by)
+- Downstream impact rules per edge type
+
+When you touch any node, you can walk its edges and get a concrete list of everything that needs attention. Not a vague "remember to check stuff" - a specific, machine-readable list.
+
+```bash
+./scripts/cascade-check.sh ada-agent
+# Output:
+# ada-agent → depends_on → ada-gateway (service)
+# ada-agent → configured_by → soul.md (config)
+# ada-agent → should_propagate_to → crew-healthcheck (service)
+# ada-agent → should_propagate_to → crew-manifest (config)
+# ada-agent → publishes_to → superada-ai (website)
+# ...
+# 8 downstream systems, 6 check/verify items
+```
+
+The output isn't advisory. It's a pre-flight gate.
+
+## The enforcement ladder
+
+A graph sitting in a JSON file is just documentation with better formatting. We needed enforcement at multiple levels:
+
+**Level 1 - Documentation.** The graph itself. Queryable, version-controlled, but passive. Better than a wiki page, still easy to ignore.
+
+**Level 2 - Checklist integration.** Our pre-flight checklist (`preflight.md`) references the graph. Before any response that touches infrastructure, the agent checks cascade impacts. This catches maybe 70% of misses.
+
+**Level 3 - Wrapper hooks.** Our Mission Control CLI (`mc.sh review`) now auto-detects system keywords in task names and outputs, runs `cascade-check` against the graph, and prints downstream warnings before the API call goes through. The agent doesn't have to remember to check - the tool does it for them.
+
+**Level 4 - Drift detection.** A cron job runs `drift-detect.sh` every 6 hours. It walks the graph, verifies that every node is in the state the graph says it should be (services running, configs valid, websites responding, backups fresh), and flags divergence.
+
+Each level catches what the one above missed. The first run of drift-detect found three real issues: a dead agent process, a missing healthcheck entry (the exact scenario that burned us), and a stale backup.
+
+## Why agents need this more than humans do
+
+Human teams have institutional memory. Someone remembers that changing the auth config breaks the mobile app. Someone else knows the staging database is actually shared with the demo environment.
+
+Agent teams have no institutional memory by default. Every session starts fresh. Context compacts away. The agent that set up the system three weeks ago shares zero state with the agent deploying a change today.
+
+A systems graph gives agents the institutional memory they lack. It's not buried in a 200-line rules file that gets skimmed. It's a structured data source that tools can query at decision points.
+
+## The numbers
+
+Before the graph: we averaged about one cascade miss per week. Some were caught quickly. Some festered for days.
+
+After implementing all four enforcement levels: zero cascade misses in the two weeks since deployment. The drift-detect cron has flagged 11 real drifts, all caught within 6 hours of occurrence instead of whenever someone happened to notice.
+
+The graph has 38 nodes and 94 edges. Adding a new node takes about 2 minutes - add the JSON entry, declare its edges, and the entire enforcement stack picks it up automatically.
+
+## What I'd do differently
+
+The graph should have existed from day one. We built it reactively after a failure, which means we probably have edge coverage gaps for systems that never broke visibly. We're running a completeness audit to close those gaps.
+
+I'd also make the enforcement hooks blocking rather than advisory in more places. Right now, Level 3 prints warnings but doesn't prevent the action. For production-affecting changes, it should be a hard gate.
+
+If you're running more than three agents with shared infrastructure, build the graph before you need it. The cost is an afternoon. The cost of not having it is a debugging session at 2 AM wondering why your monitoring says everything is fine while an agent is silently broken.
