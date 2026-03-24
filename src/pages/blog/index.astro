@@ -95,6 +95,29 @@ const categories = Object.entries(categoryCounts)
       <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.4rem;">Ship Log</h1>
       <p style="color:#8B7E6A; font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
 
+      <!-- Search -->
+      <div style="margin-bottom:1.25rem;">
+        <input
+          id="blog-search"
+          type="text"
+          placeholder="Search posts…"
+          style="
+            width:100%;
+            padding:0.625rem 1rem;
+            background:#131008;
+            border:1px solid #2A241E;
+            border-radius:4px;
+            color:#E8DCC8;
+            font-size:0.9375rem;
+            font-family:inherit;
+            outline:none;
+            box-sizing:border-box;
+          "
+          onfocus="this.style.borderColor='#C87533'"
+          onblur="this.style.borderColor='#2A241E'"
+        />
+      </div>
+
       <!-- Filter pills -->
       <div class="filter-bar" id="filter-bar">
         <button class="filter-pill" data-tag="all" data-active="true">
@@ -114,6 +137,7 @@ const categories = Object.entries(categoryCounts)
               href={`/blog/${post.id}/`}
               class="post-item"
               data-tags={(post.data.tags || []).join(',')}
+              data-title={post.data.title.toLowerCase()}
               data-hidden="false"
               style={`display:flex; gap:1.5rem; align-items:baseline; padding:1rem 0; border-top:1px solid #2A241E; text-decoration:none;${i === posts.length - 1 ? ' border-bottom:1px solid #2A241E;' : ''}`}
             >
@@ -137,40 +161,49 @@ const categories = Object.entries(categoryCounts)
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const bar = document.getElementById('filter-bar');
-        const posts = document.querySelectorAll('.post-item');
+        const searchInput = document.getElementById('blog-search') as HTMLInputElement | null;
+        const postEls = document.querySelectorAll('.post-item');
         if (!bar) return;
 
-        bar.addEventListener('click', (e) => {
-          const pill = (e.target as HTMLElement).closest('.filter-pill') as HTMLElement | null;
-          if (!pill) return;
+        let activeTag = 'all';
+        let activeQuery = '';
 
-          const tag = pill.dataset.tag;
-          if (!tag) return;
-
-          // Update active states
-          bar.querySelectorAll('.filter-pill').forEach((p) => {
-            (p as HTMLElement).dataset.active = 'false';
-          });
-          pill.dataset.active = 'true';
-
-          // Filter posts
-          let visibleCount = 0;
-          posts.forEach((post) => {
+        function applyFilters() {
+          postEls.forEach((post) => {
             const el = post as HTMLElement;
             const postTags = (el.dataset.tags || '').split(',');
-            const show = tag === 'all' || postTags.includes(tag);
-            el.dataset.hidden = show ? 'false' : 'true';
-            if (show) visibleCount++;
+            const matchesTag = activeTag === 'all' || postTags.includes(activeTag);
+            const matchesQuery = activeQuery === '' || (el.dataset.title || '').includes(activeQuery);
+            el.dataset.hidden = (matchesTag && matchesQuery) ? 'false' : 'true';
           });
 
           // Fix borders on visible items
-          const visible = Array.from(posts).filter(
+          const visible = Array.from(postEls).filter(
             (p) => (p as HTMLElement).dataset.hidden === 'false'
           ) as HTMLElement[];
           visible.forEach((el, i) => {
             el.style.borderTop = '1px solid #2A241E';
             el.style.borderBottom = i === visible.length - 1 ? '1px solid #2A241E' : 'none';
           });
+        }
+
+        bar.addEventListener('click', (e) => {
+          const pill = (e.target as HTMLElement).closest('.filter-pill') as HTMLElement | null;
+          if (!pill) return;
+          const tag = pill.dataset.tag;
+          if (!tag) return;
+
+          bar.querySelectorAll('.filter-pill').forEach((p) => {
+            (p as HTMLElement).dataset.active = 'false';
+          });
+          pill.dataset.active = 'true';
+          activeTag = tag;
+          applyFilters();
+        });
+
+        searchInput?.addEventListener('input', () => {
+          activeQuery = (searchInput.value || '').toLowerCase().trim();
+          applyFilters();
         });
       });
     </script>
