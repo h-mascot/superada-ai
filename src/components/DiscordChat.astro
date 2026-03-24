@@ -17,26 +17,27 @@ export interface Props {
 const { channel, description, messages } = Astro.props;
 
 const avatarColors: Record<string, string> = {
-  'Ada': '#7c3aed',
-  'Spock': '#1d4ed8',
+  'Ada':    '#7c3aed',
+  'Spock':  '#1d4ed8',
   'Scotty': '#b45309',
-  'Zora': '#be185d',
+  'Zora':   '#be185d',
   'Geordi': '#065f46',
-  'Henry': '#1e40af',
+  'Henry':  '#1e40af',
 };
 
 function getInitials(name: string) {
   return name.slice(0, 2).toUpperCase();
 }
-
 function getBgColor(name: string) {
   return avatarColors[name] || '#374151';
 }
 ---
 
-<div class="discord-chat">
+<div class="discord-wrap">
   <div class="channel-header">
-    <span class="channel-name"># {channel}</span>
+    <span class="hash">#</span>
+    <span class="channel-name">{channel}</span>
+    <span class="divider">—</span>
     <span class="channel-desc">{description}</span>
   </div>
   <div class="messages">
@@ -59,66 +60,78 @@ function getBgColor(name: string) {
 </div>
 
 <style>
-  .discord-chat {
-    background: #1e1f22;
-    border-radius: 8px;
+  .discord-wrap {
+    background: #111014;
+    border: 1px solid #2A241E;
+    border-radius: 6px;
     overflow: hidden;
     font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 15px;
     color: #dcddde;
-    border: 1px solid #2b2d31;
   }
 
   .channel-header {
-    background: #1e1f22;
-    border-bottom: 1px solid #2b2d31;
+    background: #0f0e12;
+    border-bottom: 1px solid #1e1b22;
     padding: 12px 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .hash {
+    color: #4e505b;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
   }
 
   .channel-name {
     font-weight: 700;
     color: #f2f3f5;
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .divider {
+    color: #4e505b;
+    font-size: 13px;
   }
 
   .channel-desc {
-    color: #949ba4;
-    font-size: 14px;
+    color: #6d6f78;
+    font-size: 13px;
   }
 
   .messages {
-    padding: 20px 16px;
+    padding: 16px 12px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
   }
 
   .message {
     display: flex;
-    gap: 16px;
-    padding: 4px 0 4px 4px;
-    border-radius: 4px;
-    transition: background 0.1s;
+    gap: 14px;
+    padding: 6px 8px;
+    border-radius: 3px;
     align-items: flex-start;
+    transition: background 0.1s;
   }
 
   .message:hover {
-    background: #2b2d31;
+    background: #1a1820;
   }
 
   .avatar {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     color: white;
     margin-top: 2px;
   }
@@ -131,54 +144,56 @@ function getBgColor(name: string) {
   .message-meta {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
+    gap: 7px;
+    margin-bottom: 3px;
   }
 
   .author {
     font-weight: 600;
     color: #f2f3f5;
+    font-size: 15px;
   }
 
   .badge {
     background: #5865f2;
     color: white;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     padding: 1px 5px;
     border-radius: 3px;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
   }
 
   .time {
-    color: #949ba4;
-    font-size: 12px;
+    color: #4e505b;
+    font-size: 11px;
   }
 
   .message-content {
-    color: #dcddde;
+    color: #c8ccd2;
     line-height: 1.5;
     white-space: pre-wrap;
     word-break: break-word;
+    font-size: 14.5px;
   }
 
   .message-content.italic {
-    color: #949ba4;
+    color: #4e505b;
     font-style: italic;
   }
 
-  .message-content strong {
-    color: #f2f3f5;
+  .message-content :global(strong) {
+    color: #e3e5e8;
     font-weight: 600;
   }
 
-  .message-content code {
-    background: #2b2d31;
+  .message-content :global(code) {
+    background: #1e1c24;
     border-radius: 3px;
-    padding: 2px 5px;
+    padding: 1px 5px;
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 87.5%;
-    color: #c9d1d9;
+    font-size: 87%;
+    color: #a78bfa;
   }
 </style>

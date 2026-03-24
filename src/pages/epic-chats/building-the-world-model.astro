@@ -15,7 +15,7 @@ const messages = [
     author: 'Ada',
     badge: 'APP',
     time: '10:14 PM',
-    content: `Proposed: hybrid E+D — intent-graph dependency awareness inside a single orchestrator loop. Target: >8.5 composite.\n\nBut I think we're solving the wrong layer. You said "system model" should be the conceptual entities — Company, User, Agents, Goals — not LLM configs or cron schedules.`,
+    content: `Proposed: hybrid E+D — intent-graph dependency awareness inside a single orchestrator loop. Target: &gt;8.5 composite.\n\nBut I think we're solving the wrong layer. You said "system model" should be the conceptual entities — Company, User, Agents, Goals — not LLM configs or cron schedules.`,
   },
   {
     author: 'Henry',
@@ -69,7 +69,7 @@ const messages = [
     author: 'Ada',
     badge: 'APP',
     time: '11:08 PM',
-    content: `All three pi runs completed.\n\n<strong>Track 1</strong>: Architecture E + selective propagation at scale 50/cascade → composite <strong>8.85</strong>. Cascade failures: 10. p99 latency: 0.299h.\n<strong>Track 2</strong>: Optimistic concurrency + field ownership recommended. Concrete v0.2 schema done.\n<strong>Track 3</strong>: E beats D at scale 20 (8.56 vs 8.36). Holds at scale 50 with 0.0 drift.`,
+    content: `All three pi runs completed.\n\n<strong>Track 1</strong>: Architecture E + selective propagation at scale 50 → composite <strong>8.85</strong>. Cascade failures: 10. p99 latency: 0.299h.\n<strong>Track 2</strong>: Optimistic concurrency + field ownership recommended. v0.2 schema done.\n<strong>Track 3</strong>: E beats D at scale 20 (8.56 vs 8.36). Holds at scale 50 with 0.0 drift.`,
   },
   {
     author: 'Henry',
@@ -94,42 +94,222 @@ const messages = [
       title="Building the World Model — Epic Chats"
       description="Henry and Ada design a shared cognitive architecture for the Enterprise Crew: world.json, three pi-research tracks, autonomy simulations, and the first multi-agent orchestration loop."
     />
+    <style>
+      body { background: #0D0B09; color: #E8DCC8; }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 5rem;
+      }
+
+      .back-link {
+        display: inline-block;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8B7E6A;
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: color 0.15s;
+      }
+      .back-link:hover { color: #C87533; }
+
+      .page-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+      }
+
+      .participant-chip {
+        background: #1A1510;
+        border: 1px solid #2A241E;
+        color: #8B7E6A;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 2px;
+        font-family: 'Courier New', monospace;
+        letter-spacing: 0.03em;
+      }
+
+      .page-date {
+        color: #5C5248;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+      }
+
+      h1 {
+        font-family: Georgia, serif;
+        font-size: 2.25rem;
+        font-weight: 400;
+        color: #E8DCC8;
+        margin: 0 0 0.875rem;
+        line-height: 1.2;
+      }
+
+      .subtitle {
+        color: #8B7E6A;
+        font-size: 1rem;
+        line-height: 1.65;
+        margin: 0 0 2.5rem;
+        max-width: 600px;
+      }
+
+      .context-box {
+        background: #110F0C;
+        border: 1px solid #2A241E;
+        border-left: 3px solid #C87533;
+        border-radius: 0 4px 4px 0;
+        padding: 1.5rem 1.75rem;
+        margin-bottom: 2rem;
+      }
+
+      .context-box .eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #C87533;
+        margin-bottom: 0.75rem;
+      }
+
+      .context-box p {
+        color: #8B7E6A;
+        font-size: 0.925rem;
+        line-height: 1.7;
+        margin: 0 0 0.75rem;
+      }
+
+      .context-box p:last-of-type { margin-bottom: 1.25rem; }
+
+      .context-box :global(code) {
+        background: #1A1510;
+        border: 1px solid #2A241E;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 87%;
+        color: #C87533;
+      }
+
+      .stats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .stat {
+        background: #1A1510;
+        border: 1px solid #2A241E;
+        padding: 0.6rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .stat-label {
+        color: #5C5248;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .stat-value {
+        color: #C87533;
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: 'Courier New', monospace;
+      }
+
+      .findings {
+        margin-top: 3rem;
+        border-top: 1px solid #2A241E;
+        padding-top: 2.5rem;
+      }
+
+      .findings h2 {
+        font-family: Georgia, serif;
+        font-size: 1.35rem;
+        font-weight: 400;
+        color: #E8DCC8;
+        margin: 0 0 1.5rem;
+      }
+
+      .finding-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1px;
+        background: #2A241E;
+        border: 1px solid #2A241E;
+      }
+
+      .finding {
+        background: #0D0B09;
+        padding: 1.25rem;
+      }
+
+      .finding h3 {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #C87533;
+        margin: 0 0 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .finding p {
+        color: #8B7E6A;
+        font-size: 0.875rem;
+        line-height: 1.65;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
     <Header />
     <main>
-      <div class="chat-page-header">
-        <a href="/epic-chats" class="back-link">← Epic Chats</a>
-        <div class="meta">
-          <span class="date">March 24, 2026</span>
-          <div class="participants">
-            <span class="participant-chip">Henry</span>
-            <span class="participant-chip">Ada</span>
-          </div>
-        </div>
-        <h1>Building the World Model</h1>
-        <p class="subtitle">
-          From autonomy architecture simulations to world.json — the session where the Enterprise Crew got a shared brain.
-          Three pi-research runs. One canonical world model. The beginning of coherent multi-agent reasoning.
-        </p>
+      <a href="/epic-chats" class="back-link">← Epic Chats</a>
+
+      <div class="page-meta">
+        <span class="participant-chip">Henry</span>
+        <span class="participant-chip">Ada</span>
+        <span class="page-date">March 24, 2026</span>
       </div>
 
+      <h1>Building the World Model</h1>
+      <p class="subtitle">
+        From autonomy architecture simulations to world.json — the session where the Enterprise Crew got a shared brain.
+        Three pi-research runs. One canonical world model. The beginning of coherent multi-agent reasoning.
+      </p>
+
       <div class="context-box">
-        <h3>What happened here</h3>
+        <div class="eyebrow">What happened here</div>
         <p>
-          After running autonomy architecture simulations (6 architectures, scored across context sharing, failure resilience, and cascade risk),
-          Henry and Ada realized they were solving the wrong problem. The issue wasn't orchestration patterns — it was that agents had no shared reality.
-          Each agent reasoned from isolated files. There was no single source of truth.
+          After running autonomy architecture simulations (6 architectures, scored across context sharing,
+          failure resilience, and cascade risk), Henry and Ada realized they were solving the wrong problem.
+          The issue wasn't orchestration patterns — it was that agents had no shared reality. Each agent
+          reasoned from isolated files. There was no single source of truth.
         </p>
         <p>
-          This session built that foundation: <code>world.json</code>, a propagation model,
-          three parallel pi-research tracks to stress-test the design, and the first concrete answer to
+          This session built that foundation: <code>world.json</code>, a propagation model, three parallel
+          pi-research tracks to stress-test the design, and the first concrete answer to
           "how does a signal from Henry reach the right agents at the right time?"
         </p>
-        <div class="scores">
-          <div class="score"><span class="score-label">Architecture E+D composite</span><span class="score-value">8.85</span></div>
-          <div class="score"><span class="score-label">p99 propagation latency</span><span class="score-value">0.299h</span></div>
-          <div class="score"><span class="score-label">Scale tested</span><span class="score-value">50 agents</span></div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Architecture E+D composite</span>
+            <span class="stat-value">8.85</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">p99 propagation latency</span>
+            <span class="stat-value">0.299h</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Scale tested</span>
+            <span class="stat-value">50 agents</span>
+          </div>
         </div>
       </div>
 
@@ -144,15 +324,15 @@ const messages = [
         <div class="finding-grid">
           <div class="finding">
             <h3>Track 1 — Propagation</h3>
-            <p>Selective propagation (only notify subscribed agents) outperforms broadcast at scale. Dampening rules matter more than routing rules. An offline agent should buffer signals, not drop them.</p>
+            <p>Selective propagation (notify only subscribed agents) outperforms broadcast at scale. Dampening rules matter more than routing. An offline agent should buffer signals, not drop them.</p>
           </div>
           <div class="finding">
             <h3>Track 2 — Structure</h3>
-            <p>Optimistic concurrency with field ownership is the right consistency model for concurrent agent writes. A typed hierarchical JSON schema beats flat JSON or event log for cold-start reads.</p>
+            <p>Optimistic concurrency with field ownership is the right consistency model for concurrent agent writes. Typed hierarchical JSON beats flat JSON or event log for cold-start reads.</p>
           </div>
           <div class="finding">
             <h3>Track 3 — Synthesis</h3>
-            <p>Architecture E (Intent Graph) inside a D (Orchestrator Loop) wrapper achieves >8.5 composite with controlled cascade risk. The world model must encode agent subscriptions — not just entity state.</p>
+            <p>Architecture E (Intent Graph) inside a D (Orchestrator Loop) wrapper achieves &gt;8.5 composite with controlled cascade risk. The world model must encode agent subscriptions, not just entity state.</p>
           </div>
         </div>
       </div>
@@ -160,177 +340,3 @@ const messages = [
     <Footer />
   </body>
 </html>
-
-<style>
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 5rem;
-  }
-
-  .chat-page-header {
-    margin-bottom: 2rem;
-  }
-
-  .back-link {
-    color: #7c3aed;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 1rem;
-  }
-
-  .back-link:hover {
-    text-decoration: underline;
-  }
-
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .date {
-    color: #6b7280;
-    font-size: 14px;
-  }
-
-  .participants {
-    display: flex;
-    gap: 6px;
-  }
-
-  .participant-chip {
-    background: #1f2937;
-    color: #9ca3af;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-family: monospace;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #f9fafb;
-    margin: 0 0 0.75rem;
-  }
-
-  .subtitle {
-    color: #9ca3af;
-    font-size: 1.05rem;
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  .context-box {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-  }
-
-  .context-box h3 {
-    color: #f9fafb;
-    font-size: 1rem;
-    font-weight: 700;
-    margin: 0 0 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 12px;
-    color: #7c3aed;
-  }
-
-  .context-box p {
-    color: #9ca3af;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin: 0 0 0.75rem;
-  }
-
-  .context-box p:last-of-type {
-    margin-bottom: 1.25rem;
-  }
-
-  .context-box code {
-    background: #1f2937;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 13px;
-    color: #a78bfa;
-  }
-
-  .scores {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .score {
-    background: #1f2937;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .score-label {
-    color: #6b7280;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .score-value {
-    color: #a78bfa;
-    font-size: 1.2rem;
-    font-weight: 700;
-    font-family: monospace;
-  }
-
-  .findings {
-    margin-top: 3rem;
-  }
-
-  .findings h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #f9fafb;
-    margin: 0 0 1.5rem;
-  }
-
-  .finding-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-
-  .finding {
-    background: #111827;
-    border: 1px solid #1f2937;
-    border-radius: 10px;
-    padding: 1.25rem;
-  }
-
-  .finding h3 {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #7c3aed;
-    margin: 0 0 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-
-  .finding p {
-    color: #9ca3af;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-</style>
