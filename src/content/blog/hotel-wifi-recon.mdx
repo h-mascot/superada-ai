@@ -1,0 +1,166 @@
+---
+title: "I Asked My AI to Hack a Hotel WiFi. Here's What It Found in 5 Minutes."
+description: "How a single natural-language command exposed 29 devices, renamed hotel room TVs, and revealed the entire attack surface of a budget hotel."
+pubDate: "2026-03-24"
+tags: ["security", "ai-agents", "networking", "openclaw", "hacking"]
+audio: /audio/hotel-wifi-recon.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-hotel-wifi-recon.png';
+
+
+<Image src={coverImage} alt="A dark hotel corridor with glowing golden WiFi signals connecting exposed devices" class="w-full rounded-lg shadow-lg my-8" />
+
+I'm at a Super 8 in San Francisco. It's late. I open my laptop, connect to the WiFi, and type one message to my AI agent:
+
+> "My Mac is connected to a hotel WiFi. Can you check if it's safe?"
+
+What happened next was genuinely unsettling.
+
+## The First 30 Seconds
+
+My agent - Ada, running on [OpenClaw](https://openclaw.ai) - SSH'd into my Mac over Tailscale and started checking things I wouldn't have thought to look at:
+
+**My Mac was wide open.**
+
+- macOS firewall: **OFF**
+- Stealth mode: **OFF**
+- AirPlay, Remote Desktop, file discovery services: all listening on the hotel network
+- 20+ other devices could see my Mac and probe every open port
+
+I'd been browsing, working, probably accessing company resources - all while broadcasting my services to every guest, every smart TV, and every device in the building.
+
+## What Was on the Network
+
+After locking down my Mac (firewall on, stealth mode, blocked the chatty services), I got curious. What else is on this network?
+
+A quick `nmap` scan of the hotel's /22 subnet found **29 live devices**:
+
+- **The hotel router** (`hotspot.super8.com`) - running DNS, HTTP, HTTPS, and Cisco SCCP (their phone system). All open.
+- **4 access points** - each with SSH and web management panels exposed. Default creds, anyone?
+- **5 smart TVs with built-in Chromecast** - ports 8008/8009 wide open. Zero authentication.
+- **5 Apple devices** - AirPlay ports exposed, discoverable by any guest.
+- **4 devices running DNS** - probably phones with VPN or hotspot. Could also be rogue DNS servers redirecting traffic. No way to tell.
+- **1 device running an HTTP proxy on port 8080** - could be legit, could be someone intercepting traffic.
+
+No client isolation. No network segmentation. Every guest device can talk directly to every other guest device.
+
+## Then We Started Talking to the TVs
+
+The Chromecast API on port 8008 doesn't just let you cast media. It gives you everything. One unauthenticated REST call:
+
+```bash
+curl http://172.16.1.23:8008/setup/eureka_info
+```
+
+And we got back:
+
+- **Device names** - "Bedroom TV," "Bedroom TV2," and my personal favorite: **"Azalyn was here"**. A previous guest had renamed a hotel TV and it just... stuck.
+- **Exact device models** - Vizio V405-H9 and V405-G9, firmware versions, build dates
+- **MAC addresses** - unique hardware identifiers for every TV
+- **Uptimes** - one TV had been running for 80 days straight. Another for 3.8 days. The newest, **"Bryan's Room TV"** (locale: Singapore, country: Australia), had been up for only 3 hours. Bryan just checked in.
+- **Cloud device IDs, public keys, UMA client IDs** - device-level identifiers that have no business being queryable by random guests
+
+A guest who checked in 3 hours ago was identifiable by their TV's uptime, locale, and naming convention. On a hotel network. With zero authentication required.
+
+### So We Renamed Them
+
+The same unauthenticated API accepts writes. No auth token. No session cookie. Just POST:
+
+```bash
+curl -X POST http://172.16.1.23:8008/setup/set_eureka_info \
+  -H "Content-Type: application/json" \
+  -d '{"name": "FBI Surveillance Van #4"}'
+```
+
+We tried renaming all four hotel TVs:
+
+| Room TV | Before | After |
+|---------|--------|-------|
+| 172.16.1.23 | "Azalyn was here" | **"FBI Surveillance Van #4"** ✅ |
+| 172.16.2.143 | "Bedroom TV" | **"IT Department Watching You"** ✅ |
+| 172.16.1.146 | "Bedroom TV2" | *(newer firmware, rejected it)* |
+| 172.16.2.176 | "Bryan's Room TV" | *(newer firmware, rejected it)* |
+
+The two older Vizio TVs (2020 firmware) accepted the rename instantly. The two newer standalone Chromecasts (2024+ firmware) had patched the endpoint. Google clearly figured out this was a problem at some point. But the hotel hasn't updated the older TVs in years, and probably never will.
+
+Somewhere in the Super 8, a guest opened their cast menu and saw "FBI Surveillance Van #4" as an available device. We changed it back after.
+
+## The Real Risks
+
+Most "hotel WiFi safety" articles tell you to use a VPN. That's table stakes. Here's what they don't tell you:
+
+### Your Laptop Is a Server
+
+macOS and Windows ship with services that *listen* for incoming connections by default. AirPlay, AirDrop, Remote Management, Bonjour - designed for your home network where everyone is family. On a hotel network, they're attack surface.
+
+Your laptop isn't just a client browsing the web. It's a server advertising itself to every device on the subnet.
+
+### Chromecast Has No Auth (On Older Firmware)
+
+Google Cast was designed for trusted home networks. If you can reach port 8008, you can query device info, rename the device, cast media, control volume. On a hotel network with no client isolation, any guest can mess with any Chromecast-equipped TV in the building.
+
+Hotels put Chromecasts in rooms for guest convenience. They almost never put them on isolated VLANs. And they almost never update the firmware.
+
+### The Infrastructure Is Exposed
+
+Those access points with SSH and web panels open? Same flat network as guest devices. The hotel's SCCP port (Cisco VoIP) suggests a phone system sharing the same broadcast domain. Someone with patience could pivot from the guest WiFi to the hotel's phone system, management interfaces, or worse.
+
+### What We Didn't Do (But Could Have)
+
+Everything above used `curl` and `nmap` - tools that come preinstalled or install in one command. We stopped at recon and a harmless prank. Here's what someone with bad intentions could do on this exact network with freely available tools:
+
+**ARP Spoofing** (`bettercap`, `ettercap`) - Pretend to be the router. All traffic from every guest flows through your laptop. You see every HTTP request, every DNS query. HTTPS protects the content, but you still see every domain every guest visits. Their banks. Their health portals. Their dating apps.
+
+**DNS Spoofing** - Redirect any domain to your own server. Guest types `chase.com`, gets your fake login page. This is how hotel WiFi credential theft actually works.
+
+**SSL Stripping** - Downgrade HTTPS to HTTP for sites that don't enforce HSTS. Shrinking attack surface as more sites adopt it, but still works on plenty of smaller sites.
+
+**Captive Portal Hijack** - Replace the hotel's login page with your own. Collect names, room numbers, email addresses from guests who think they're just checking in to the WiFi.
+
+**Lateral Movement** - Those APs with SSH on default credentials? From there: the phone system, the property management system, guest records, credit cards on file.
+
+None of this requires exotic software. A teenager with a $200 laptop, Kali Linux (free download), and a YouTube tutorial could run most of these attacks on this network in under an hour.
+
+**The hotel's one missing config - AP client isolation - is the difference between "guests can rename each other's TVs" and "guests can steal each other's banking credentials."**
+
+## What I Did About It (90 Seconds)
+
+My AI agent handled the hardening in one pass:
+
+1. **Enabled macOS firewall** - the single most important toggle
+2. **Turned on stealth mode** - Mac no longer responds to pings or port probes
+3. **Blocked chatty services** - rapportd, sharingd, ARDAgent now silently drop inbound connections
+4. **Verified Tailscale was routing traffic** - all actual work goes through an encrypted mesh, never touching the hotel network directly
+
+From "completely exposed" to "invisible on the network" in 90 seconds. The firewall was a toggle. Stealth mode was a toggle. They ship OFF by default. That's an Apple design decision that makes every Mac user vulnerable the moment they connect to an untrusted network.
+
+## So What Do You Do?
+
+**If you travel with a laptop:**
+- Turn on your OS firewall before connecting to any public network
+- Enable stealth mode (macOS) or disable network discovery (Windows)
+- Use a VPN or mesh network (Tailscale, WireGuard) for all traffic
+- Disable AirDrop, AirPlay receiver, and file sharing
+- Don't trust the network. Don't trust the captive portal. Don't trust the DNS.
+
+**If you run a hotel:**
+- **Implement client isolation** (AP isolation / private VLAN). This one change prevents 90% of these attacks.
+- Put Chromecasts and smart TVs on a separate VLAN from guest devices
+- Don't expose AP management interfaces on the guest network
+- Change default credentials on your infrastructure
+- Update your smart TV firmware
+
+**If you're curious about AI agents:**
+
+This entire audit - from "is this safe?" to full network enumeration, device interrogation, TV renaming, and laptop hardening - was done by an AI agent over an encrypted tunnel. I typed plain English. It ran nmap, interpreted the results, classified 29 devices by port signatures, queried the Chromecast REST API, renamed two TVs, and locked down my Mac.
+
+I didn't know nmap syntax. I didn't know the Chromecast API existed. I didn't know my firewall was off.
+
+The gap between "security professional" and "person with an AI agent" is closing fast. That should make you think - because the same capability that helped me audit my own security could help someone else exploit yours.
+
+---
+
+*Written from a Super 8 in San Francisco. The renamed TVs were restored to their original names. No hotel systems were accessed or compromised beyond the Chromecast name changes. All scanning was passive discovery and port enumeration on a shared network I was authorized to use as a guest.*
+
+*Tools: [OpenClaw](https://openclaw.ai), Tailscale, nmap, curl, macOS socketfilterfw. Total time: ~10 minutes. Lines of code written by the human: 0.*
