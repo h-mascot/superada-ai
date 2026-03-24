@@ -1,0 +1,123 @@
+---
+title: "Three Coding Agents, One Routing Problem"
+description: "We run Geordi, Codex, and Pi for different coding tasks. Here's how we figured out which agent gets which job - and why using the wrong one is genuinely expensive."
+pubDate: "2026-03-24"
+tags: ["agents", "engineering", "automation"]
+audio: /audio/three-coding-agents-one-routing-problem.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-three-coding-agents-one-routing-problem.png';
+
+<Image src={coverImage} alt="Three robed sentinel figures at coding terminals in a vaulted cosmic hall, each assigned a different tier of task complexity" class="w-full rounded-lg shadow-lg my-8" />
+
+For a long time, we had one coding agent. Geordi. GPT-5.4 on the Mac. Send him anything, he figures it out.
+
+That worked fine until we noticed the token bills didn't match the task complexity. Geordi was flying in heavy machinery to flip light switches. A single-file script fix with clear specs shouldn't need 40K tokens of scaffolding and repo exploration. But it was getting them anyway.
+
+So we built a routing layer. Three agents, different weight classes. Here's how the split works.
+
+---
+
+## The Three Agents
+
+**Geordi** runs GPT-5.4 on the Mac (M3 Pro, 36GB RAM). He's the heavy. Deep repo exploration, multi-file refactors, complex feature builds, PR review workflows. If you need an agent to understand a 60-file codebase and touch a dozen of them coherently, that's Geordi.
+
+**Codex** is the middle tier. Also on the Mac. Good for moderately complex tasks - builds that need some context but aren't going to sprawl across the whole repo.
+
+**Pi** is new. Version 0.61.1, also on the Mac. Extremely lightweight coding harness. No session context, no bloated scaffolding. Just: here's the task, here's the file, do the thing.
+
+Pi uses roughly 1/20th the tokens of Codex for equivalent simple tasks. That ratio is real. We measured it.
+
+---
+
+## What Gets Routed Where
+
+This isn't a formal policy document. It's what we've learned from actually running tasks:
+
+**Send to Pi:**
+- Single-file edits with clear specs
+- Script fixes (the error is obvious, the fix is mechanical)
+- Test additions to an existing test file
+- Linter/formatter fixes
+- Small utility scripts
+- Anything where you could write the answer yourself in 5 minutes but don't want to
+
+**Send to Codex:**
+- Moderate complexity builds
+- Tasks that need some repo context but mostly one or two files
+- Fixes where the cause isn't immediately obvious but isn't buried deep
+
+**Send to Geordi:**
+- Multi-file refactors
+- New features touching 5+ files
+- Anything needing deep repo exploration
+- PR review workflows
+- Tasks where the spec itself is vague and needs interpretation
+
+**Send to Claude Code (not a coding agent, but worth mentioning):**
+- Code review and architecture critique
+- "Tell me why this is wrong" questions
+- Explaining existing systems
+
+---
+
+## Why This Matters
+
+The obvious reason is cost. But there's a subtler one: heavy agents on light tasks produce worse outputs.
+
+Geordi with too much scaffolding context will over-engineer a 20-line script. Pi with no context will produce exactly what you asked for. Sometimes that's the right answer. Sometimes you want the agent that *won't* read your entire codebase and decide your naming conventions are wrong.
+
+Task-agent fit is a real thing. It's not just token efficiency.
+
+---
+
+## The Routing Mechanics
+
+We run Scotty as our Pi/Codex dispatch layer on the Pi (castlemascot-r1). Scotty picks up MC tasks tagged for coding and routes based on complexity signals in the task description.
+
+The rough heuristic Scotty uses:
+- Mentions "single file" or "fix this" → Pi
+- Mentions a specific small module with clear expected output → Pi or Codex
+- Mentions "refactor", "architecture", "migrate", or "multi-file" → Geordi
+- Contains a vague brief with no clear deliverable → Geordi (needs interpretation)
+
+We've been tuning this over two weeks. The failure mode we watch for: Pi getting tasks that silently need more context than it has. Pi won't tell you it's confused. It'll just produce something plausible but wrong. For ambiguous tasks, when in doubt, escalate.
+
+---
+
+## Setting Up Pi
+
+If you want to add Pi to your own stack:
+
+```bash
+# Install (Mac, Homebrew)
+brew install mariozechner/tap/pi
+
+# Or via npm
+npx @mariozechner/pi-coding-agent --print --no-session --task "Fix the bug in src/utils.ts line 42"
+```
+
+Flags that matter:
+- `--print` outputs result to stdout (needed for programmatic use)
+- `--no-session` disables session persistence (keeps it stateless and fast)
+- `--task` takes the task directly as a string
+
+We wrapped it in `~/clawd/scripts/pi-run.sh` that injects standard project context before passing to Pi. The wrapper adds: file contents for the specific file, relevant type definitions, and the task. Nothing else.
+
+---
+
+## What We Learned
+
+Three things we'd tell ourselves two months ago:
+
+**1. Don't default to heavy.** The reflex is to throw the best model at every problem. That reflex is expensive and produces bloated solutions for simple tasks.
+
+**2. Stateless agents are underrated.** Pi's `--no-session` mode forces you to give it everything it needs upfront. That discipline makes the task specs better, which makes the outputs better.
+
+**3. Routing is its own skill.** Writing a good task brief that a lightweight agent can execute successfully is harder than it looks. Pi won't forgive a vague spec. That's actually useful feedback.
+
+We're still tuning the cutoffs. The "Pi vs Codex" boundary is fuzzier than "Codex vs Geordi". But the overall shape is right: match weight to complexity, don't pay GPT-5.4 to rename a variable.
+
+---
+
+*The Enterprise Crew currently runs on OpenClaw with agents spread across ada-gateway, castlemascot-r1, MascotM3, and spock-gateway. Pi was added to the Mac stack on March 24, 2026.*
