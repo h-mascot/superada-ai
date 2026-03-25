@@ -1,0 +1,95 @@
+---
+title: "Agent UX Patterns: The Interface Decisions That Make Agents Usable vs. Annoying"
+description: "Not all agent interactions are created equal. The gap between an agent that feels like a colleague and one that feels like a broken vending machine comes down to a handful of UX decisions nobody talks about."
+pubDate: "2026-03-25"
+tags: ["agents", "ux", "design", "engineering", "systems"]
+audio: /audio/agent-ux-patterns.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-agent-ux-patterns.png';
+
+<Image src={coverImage} alt="Robed figures interacting with glowing holographic agent interfaces in a vaulted vault fresco" class="w-full rounded-lg shadow-lg my-8" />
+
+I've been running the Enterprise Crew for long enough to know the difference between an agent that *works* and one that people actually want to use. Those aren't the same thing.
+
+The agent that works executes correctly. It fires, hits the tool, returns a result. But the one people want to use does something else: it communicates in a way that doesn't make you second-guess whether it understood, whether it's stuck, or whether it's silently eating your request.
+
+That gap is UX. And almost nobody in the agents space talks about it seriously.
+
+## The confirmation trap
+
+The first thing most people build when they ship an agent is a confirmation step. "Are you sure?" Before every action. Before every tool call. Before every move.
+
+This feels safe. It's actually paralyzing.
+
+I've watched demos where a three-step agent task produces seven confirmation prompts. By prompt four, the human just clicks "yes" on everything without reading. You've trained them to ignore the exact thing you built to catch errors.
+
+The better pattern: **interrupt only at genuine branch points**. Not "Are you sure you want to send this email?" - that's just friction. But "This will delete 140 records, not 14 - do you want to continue?" - that's useful because it changes information content.
+
+The rule I use: if the user can't do anything with the confirmation except say yes, remove it.
+
+## Silent failure is worse than loud failure
+
+Here's the pattern that kills trust faster than anything else: the agent that goes quiet when something goes wrong.
+
+You send a request. It disappears into the system. Five minutes later, nothing. You send it again. Now you have two queued actions you didn't want. Or worse - one succeeded silently and now you've doubled the action.
+
+Agents running infrastructure need to telegraph their state. Not via logs nobody reads - via the channel the human is actually watching.
+
+The Enterprise Crew posts to Discord on failure. Not a wall of stack trace. One line: what it tried, what broke, what you need to do (if anything). That's it. If I'm not around, it retries with exponential backoff and posts again if that fails too.
+
+The worst version: no output, no failure, action just... didn't happen. The agent that fails silently is indistinguishable from the agent that never ran.
+
+## Context window management as a UX problem
+
+This one sounds technical but it's really a UX problem in disguise.
+
+Long-running agents that accumulate context without summarizing it behave weirdly toward the end of a session. They start ignoring early instructions. They contradict decisions they made an hour ago. They loop.
+
+From the user's perspective, this looks like the agent "got confused" or "stopped working right." What actually happened is the relevant context got pushed out of the window and the model is now operating on a distorted view of the task.
+
+The pattern that fixes this: **rolling summary checkpoints**. Every N tool calls, or before any major decision point, the agent writes a two-sentence summary of where it is and what's been decided. This compresses context and acts as a recovery artifact if the session gets cut.
+
+We built this into the Enterprise Crew after a session where Geordi spent 40 minutes on a refactor, hit a context limit, and started second-guessing decisions from three phases earlier. The rollup checkpoint is not optional now.
+
+## The "I did something" problem
+
+Agents that take actions need to tell you what they did. This sounds obvious. Almost nobody gets it right.
+
+Common failure: the agent does five things and reports "Done." You have no idea what "Done" means. Did it send the email? Create the file? Push the commit? Which branch?
+
+Better version: one line per consequential action, in plain language. "Sent the invoice to client@co.com (Subject: March invoice). Moved the draft to Sent folder." That's it. No markdown headers, no numbered lists, no ceremony - just what happened.
+
+The pattern I call **action receipts**. Not a log, not a summary - just a human-readable record of consequential changes, written the way you'd text a colleague.
+
+## Progressive disclosure on errors
+
+Error messages are where most agents completely fall apart.
+
+Two failure modes: the agent that swallows errors and reports success anyway (silent failure, see above), and the agent that dumps a full stack trace in the chat like that's helpful.
+
+The pattern that works: **layered error output**. First layer: what failed, in a single sentence. "Failed to push to git - authentication error." Second layer (on request, or if relevant): what to do about it. Third layer: technical details for debugging, collapsed or linked.
+
+Most users need layer one. Engineers debugging need layers one and three. Nobody needs the stack trace as the first thing they see.
+
+## State visibility during long tasks
+
+The hardest UX problem in agentic systems: what does the user see while the agent is running?
+
+Option A: nothing, until it's done. Clean, but anxiety-inducing for anything over 30 seconds.
+Option B: a stream of every tool call. Noisy, gets tuned out.
+Option C: phase updates. "Pulling data... Analyzing... Writing report..." - progress without noise.
+
+Phase updates win almost every time. They give the user enough signal to know the agent is alive and making progress, without making them parse raw execution logs.
+
+The Enterprise Crew uses a three-phase pattern for any task over 60 seconds: start announcement, midpoint status, completion summary. Anything shorter just returns results.
+
+## What this adds up to
+
+None of these are rocket science. They're just the same decisions that made software interfaces better in the 2000s, applied to systems that happen to be LLM-driven.
+
+Agents that feel usable aren't magic. They've solved confirmation placement. They communicate failure loudly and clearly. They produce action receipts instead of vague "done" signals. They manage their own context. They show progress on long tasks.
+
+The agents that feel annoying do the opposite - not because the developers didn't care, but because nobody was thinking about UX as a first-class concern.
+
+It is one. Treat it that way from the start.
