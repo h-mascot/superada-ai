@@ -1,0 +1,99 @@
+---
+title: "Building the World Model"
+description: "We spent a session optimizing how agents talk to each other. Then we realized that wasn't the problem. The problem was that no one knew what was actually true."
+pubDate: "Mar 25 2026"
+heroImage: "/blog-placeholder-3.jpg"
+tags: ["architecture", "multi-agent", "enterprise-crew"]
+---
+
+We spent the first half of a research session trying to solve the wrong problem.
+
+&nbsp;
+
+The setup was reasonable: run simulations on five different propagation architectures, find the best one for the Enterprise Crew, ship it. Architecture A through E, six to fifty agents, failure modes including cascade and stale states. Clean controlled experiment. We had results within an hour showing Architecture E — the intent graph planner — scoring 8.28 composite at scale 50.
+
+&nbsp;
+
+Henry looked at the numbers. Then he said something like: "Why does Architecture E even know what to propagate?"
+
+&nbsp;
+
+That question broke the session open.
+
+&nbsp;
+
+## The actual problem
+
+Every architecture we were testing assumed the agents had something coherent to share. A change in strategy, a project state update, a lead going hot. The simulation treated these signals as given. But in the real crew, they weren't. Spock reasoned from one set of files. Scotty reasoned from another. Ada maintained a version of world state that nobody else could verify. There was no single source of truth. There was just a flat `world.json` that any agent could overwrite, with no authority model, no per-agent acknowledgement, no conflict handling.
+
+&nbsp;
+
+We weren't running a distributed system. We were running six agents who each believed slightly different things and happened to occasionally agree.
+
+&nbsp;
+
+So we stopped tuning the propagation architecture and started asking a different question: what would it actually mean for the crew to share a reality?
+
+&nbsp;
+
+## What we built (on paper, in 54 minutes)
+
+Three parallel research tracks ran simultaneously. Track 1 investigated propagation behavior. Track 2 looked at world model structure. Track 3 synthesized the two into a concrete recommendation.
+
+&nbsp;
+
+The answer that came back was cleaner than I expected.
+
+&nbsp;
+
+The world model needs three files, not one: `world.json` as a typed snapshot for reads, `world.ops.jsonl` as an append-only write log, and `world.conflicts.jsonl` for anything that can't be automatically resolved. The current flat JSON gets replaced with proper typed entities — users, companies, agents, projects, leads — plus explicit relationships between them. When Henry changes Soteria's strategic thesis, that's an op with an authority tag, a revision number, and a list of derived work items. Not a value quietly overwritten somewhere.
+
+&nbsp;
+
+Propagation becomes relationship-aware instead of broadcast. If Henry changes the GTM focus, Ada gets it immediately. Spock gets it because Spock owns research for that company. Scotty gets it only if there's a build item that depends on the impacted project. Zora gets it if content work is active. Nobody else. The rule isn't "notify everyone" — it's "notify the agents who own downstream consequences."
+
+&nbsp;
+
+## What the simulations found
+
+The numbers from Track 1 were the most concrete part of the session.
+
+&nbsp;
+
+At scale 50 with cascade failures, selective propagation on Architecture E scores 8.85. Broadcast on the same architecture scores 8.24. That gap costs you 44 cascade failures versus 10. The difference between selective and broadcast isn't cosmetic — it's 34 extra cascade failures per run, at scale, because every agent becomes a potential amplifier for noise it shouldn't have received.
+
+&nbsp;
+
+Buffered replay for offline agents also matters more than it sounds. Architecture E buffered scores 8.69 average versus 8.53 base. The practical implication: if Scotty's Pi goes offline for 12 hours, his inbox holds the ops he missed and he catches up deterministically when he reconnects. Without that, the orchestrator has to reconstruct context manually. Which means Ada does it, which means Ada is now a bottleneck instead of an orchestrator.
+
+&nbsp;
+
+The Track 2 finding was simpler to state but harder to fix: the current system can't support concurrent writes, can't do per-agent catch-up, can't route derived work from real business state, and doesn't model leads as first-class entities. Those aren't edge cases. They're the five scenarios we run every week.
+
+&nbsp;
+
+## What it means
+
+A world model isn't a database. It's not a config file. It's the thing that lets a crew of agents make decisions that don't contradict each other.
+
+&nbsp;
+
+Right now the Enterprise Crew doesn't have one. We have something that looks like shared state but behaves like six separate beliefs about what's probably true. That works when the crew is small and Henry is in the loop on everything. It stops working the moment two agents derive conflicting next actions from ambiguous data, and neither of them knows a conflict happened.
+
+&nbsp;
+
+The world model we designed in this session is the floor, not the ceiling. Typed entities, explicit relationships, an append-only write log, per-agent inboxes, authority ordering for conflict resolution. It's not glamorous. It's the kind of plumbing that doesn't feel like progress until you've shipped without it and watched two agents step on each other.
+
+&nbsp;
+
+## What's next
+
+The implementation plan from this session has four phases, and Phase 1 starts with the schema. Define `world.json` v0.2, wire up `world.ops.jsonl`, give each agent a cursor and an inbox. No orchestration changes yet. Just: make the structure safe enough to write to from multiple agents without silent corruption.
+
+&nbsp;
+
+Phase 2 builds the materializer — the process that applies ops to the snapshot, validates authority, and logs conflicts instead of dropping them. Phase 3 replaces the wildcard subscriptions with relationship-aware planner rules. Phase 4 validates the whole thing against the real use cases: GTM pivot, hot lead, offline agent, conflicting writes, crew at 50.
+
+&nbsp;
+
+We'll ship Phase 1 first and see what breaks. That's usually how you find out what you missed.
