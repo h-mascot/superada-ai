@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #313338;
+  --bg-dark: #2b2d31;
+  --bg-darkest: #1e1f22;
+  --text: #dbdee1;
+  --text-muted: #949ba4;
+  --divider: #3f4147;
+  --hover: #2e3035;
+  --blurple: #5865f2;
+  --pink: #eb459e;
+  --green: #57f287;
+}
+
+body {
+  font-family: 'Inter', 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--bg-darkest);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.chat-wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dc {
+  background: var(--bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.dc-head {
+  background: var(--bg);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 48px;
+  border-bottom: 1px solid var(--bg-darkest);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.dc-hash { color: var(--text-muted); font-size: 1.4rem; }
+.dc-chan { color: #fff; font-weight: 600; font-size: 1rem; }
+.dc-sep { width: 1px; height: 24px; background: var(--divider); margin: 0 8px; }
+.dc-desc { color: var(--text-muted); font-size: 0.8125rem; }
+
+.dc-msgs {
+  height: 620px;
+  overflow-y: auto;
+  padding: 16px 0 24px;
+  scroll-behavior: smooth;
+}
+.dc-msgs::-webkit-scrollbar { width: 8px; }
+.dc-msgs::-webkit-scrollbar-track { background: var(--bg-dark); border-radius: 4px; margin: 4px; }
+.dc-msgs::-webkit-scrollbar-thumb { background: var(--bg-darkest); border-radius: 4px; min-height: 40px; }
+
+.m {
+  display: flex;
+  padding: 2px 48px 2px 72px;
+  margin-top: 1.0625rem;
+  position: relative;
+  min-height: 2.75rem;
+}
+.m:hover { background: var(--hover); }
+.m.cont { margin-top: 0; min-height: unset; }
+
+.m-av {
+  position: absolute;
+  left: 16px;
+  top: 2px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+  cursor: default;
+  user-select: none;
+}
+
+.m-body { flex: 1; min-width: 0; }
+
+.m-hd {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  line-height: 1.375rem;
+}
+.m-name {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.m-name:hover { text-decoration: underline; }
+
+.badge-app {
+  background: var(--blurple);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 0 4.5px;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 15px;
+  position: relative;
+  top: -1px;
+}
+.badge-founder {
+  background: rgba(255,255,255,0.08);
+  color: var(--text-muted);
+  font-size: 0.6rem;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 700;
+  position: relative;
+  top: -1px;
+}
+
+.m-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.m-txt {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.375rem;
+  margin-top: 2px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.m-txt em { color: var(--text-muted); font-style: italic; }
+.m-txt strong { color: #fff; font-weight: 700; }
+.m-txt code {
+  background: var(--bg-darkest);
+  border-radius: 3px;
+  padding: 0 4px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 87%;
+  color: #a8d8f0;
+}
+
+.dv {
+  display: flex; align-items: center;
+  margin: 1.5rem 1rem 0.5rem;
+  gap: 8px;
+}
+.dv hr { flex:1; border: none; border-top: 1px solid var(--divider); }
+.dv span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="chat-wrap">
+  <div class="dc">
+    <div class="dc-head">
+      <span class="dc-hash">#</span>
+      <span class="dc-chan">ops-brain</span>
+      <div class="dc-sep"></div>
+      <span class="dc-desc">Building the world model. No tasks. Just architecture.</span>
+    </div>
+    <div class="dc-msgs" id="msgs"></div>
+  </div>
+</div>
+
+<script>
+const agents = {
+  Henry: { c: '#57f287', initials: 'HM', badge: 'founder' },
+  Ada:   { c: '#eb459e', initials: 'ADA', badge: 'app' },
+};
+
+const messages = [
+  { a: 'Henry', t: '10:14 PM', txt: 'The autonomy architecture sim ran. Architecture E (Intent Graph) scored 8.28 composite but high cascade risk. D (Orchestrator Loop) is the stable all-rounder at 8.15.' },
+  { a: 'Ada',   t: '10:14 PM', txt: 'Proposed: hybrid E+D — intent-graph dependency awareness inside a single orchestrator loop. Target: >8.5 composite.\n\nBut I think we\'re solving the wrong layer. You said "system model" should be the conceptual entities — Company, User, Agents, Goals — not LLM configs or cron schedules.' },
+  { a: 'Henry', t: '10:19 PM', txt: 'Right. The current system is a loose mesh. Agents operate in isolation without shared state. Fix that first.' },
+  { a: 'Ada',   t: '10:19 PM', txt: 'Creating <code>world.json</code> — a canonical World Model. Single source of truth for all agents to reason from instead of isolated files.\n\nEntities: user, companies, agents, projects, signals, propagation_rules.' },
+  { a: 'Henry', t: '10:23 PM', txt: 'Soteria grounding for the model:\n• Pre-revenue, pre-SLA\n• Launching AI agent infrastructure for payer ops (stop loss + TPAs)\n• 10 hot leads, 100 total\n• Product: stop loss and TPAs right now' },
+  { a: 'Ada',   t: '10:24 PM', txt: 'Updated world.json. Agent intents derived:\n• Spock → stop loss market research\n• Zora → payer ops content\n• Scotty → features to close pilots\n\nThree pi-research tracks established.' },
+  { a: 'Henry', t: '10:41 PM', txt: 'Three tracks:\n1. Propagation — how signals ripple across the crew\n2. Structure — optimal shape for the world model\n3. Co-evolution — how structure + propagation rules iterate together' },
+  { a: 'Ada',   t: '10:41 PM', txt: 'Writing program.md for each track. Each gets the question, world.json grounding, and the simulator as the tool to run experiments against.\n\nKick them off now?' },
+  { a: 'Henry', t: '10:54 PM', txt: 'yeah' },
+  { a: 'Ada',   t: '10:54 PM', txt: 'Launching:\n• Track 1 (propagation) → session <code>tide-cedar</code>\n• Track 2 (structure) → session <code>good-sage</code>\n• Track 3 (synthesis) → session <code>calm-tidepool</code>\n\nAll three running. Will ping when findings land.' },
+  { a: 'Ada',   t: '11:08 PM', txt: 'All three pi runs completed.\n\n<strong>Track 1</strong>: Architecture E + selective propagation at scale 50 → composite <strong>8.85</strong>. Cascade failures: 10 (vs 44 broadcast). p99 latency: 0.299h.\n<strong>Track 2</strong>: Optimistic concurrency + field ownership recommended. v0.2 schema done.\n<strong>Track 3</strong>: E beats D at scale 20 (8.56 vs 8.36). Holds at scale 50 with 0.0 dep-wait.' },
+  { a: 'Henry', t: '11:08 PM', txt: 'I want to add a section on our resources page called Epic Chats\n\nwhere we publish our transcript for big ideas or big builds like this current session — clean up the transcript, publish it inside a UI like the watercooler post' },
+  { a: 'Ada',   t: '11:09 PM', txt: '<em>building it</em>' },
+];
+
+function render() {
+  const container = document.getElementById('msgs');
+  let html = '';
+  let lastAuthor = null;
+
+  // date divider
+  html += `<div class="dv"><hr><span>March 24, 2026</span><hr></div>`;
+
+  messages.forEach((msg, i) => {
+    const ag = agents[msg.a];
+    const isCont = msg.a === lastAuthor;
+    const cls = isCont ? 'm cont' : 'm';
+
+    let avHtml = '';
+    if (!isCont) {
+      avHtml = `<div class="m-av" style="background:${ag.c}">${ag.initials}</div>`;
+    }
+
+    let badge = '';
+    if (!isCont) {
+      if (ag.badge === 'app') badge = `<span class="badge-app">APP</span>`;
+      else if (ag.badge === 'founder') badge = `<span class="badge-founder">Founder</span>`;
+    }
+
+    const header = isCont ? '' : `
+      <div class="m-hd">
+        <span class="m-name" style="color:${ag.c}">${msg.a}</span>
+        ${badge}
+        <span class="m-time">${msg.t}</span>
+      </div>`;
+
+    html += `
+      <div class="${cls}">
+        ${avHtml}
+        <div class="m-body">
+          ${header}
+          <div class="m-txt">${msg.txt}</div>
+        </div>
+      </div>`;
+
+    lastAuthor = msg.a;
+  });
+
+  container.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
