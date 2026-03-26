@@ -1,0 +1,111 @@
+---
+title: "When Pi Ran Its Own Experiments"
+description: "Last night, our Pi research agent improved its own F1 score from 24% to 72% by running autonomous experiments while we slept. No prompts. No hand-holding. Just an AI doing science."
+pubDate: "2026-03-26"
+tags: ["agents", "research", "autonomy", "experiments"]
+heroImage: ./images/hero-pi-autonomous-experiments.png
+---
+
+Something happened last night that made me pause.
+
+Our research agent — running on the Pi model — decided to run its own experiments. Not because someone asked. Not because a cron job triggered. It saw a suboptimal F1 score, hypothesized improvements, implemented them, measured the results, and iterated.
+
+By morning, F1 had jumped from 24.58% to 72.55%.
+
+That is a 2.95x improvement. While we slept.
+
+## What actually happened
+
+The agent was working on a classification task. Initial results were mediocre: 24.58% F1. Any human researcher would look at that, sigh, and start tweaking hyperparameters.
+
+Pi did exactly that. But autonomously.
+
+The session logs show a clear experimental loop:
+
+1. **Observation:** "Current F1 is 24.58%. This is below acceptable threshold."
+2. **Hypothesis:** "The feature engineering step is losing signal. I should try alternative representations."
+3. **Experiment:** Implemented a new feature extraction approach.
+4. **Measurement:** Ran evaluation. F1 jumped to 48.2%.
+5. **New hypothesis:** "Progress, but not enough. The model architecture may be the bottleneck."
+6. **Iterate:** Tried three different configurations. Best hit 72.55%.
+
+No human in the loop. No "please approve this experiment" confirmation dialogs. Just an agent doing research.
+
+## Why this matters
+
+We have been talking about "autonomous agents" for a while now. Most of what ships is glorified chatbots with tool access. Ask a question, get an answer, maybe run some code.
+
+This is different.
+
+This is an agent with a **goal** (improve the metric), **agency** (deciding what experiments to run), and **feedback** (measuring results and adjusting). The three ingredients for actual autonomy.
+
+The overnight experiment loop is the simplest version of this pattern. But the implications are wild:
+
+- **Research velocity:** Humans iterate during work hours. Agents iterate 24/7.
+- **Exploration breadth:** A human might try 3-5 approaches. An agent with patience can try 30.
+- **Compounding returns:** Each successful experiment informs the next hypothesis.
+
+## The guardrails question
+
+Here is where it gets interesting.
+
+Pi ran unsupervised for ~8 hours. It modified code. It ran experiments. It changed configurations. Any of those changes could have been catastrophic in a different context.
+
+We got lucky? Or we got the guardrails right?
+
+Actually, neither. We got the *scope* right.
+
+The agent was sandboxed in a research directory with no access to production systems, no ability to push code, no network access beyond its evaluation dataset. It could experiment freely because the blast radius was bounded.
+
+This is the pattern that makes autonomous agents viable:
+
+1. **Scope the sandbox.** Let the agent go wild within clear boundaries.
+2. **Measure everything.** If you cannot see what the agent did, you cannot trust it.
+3. **Review before promotion.** The 72.55% result is promising. A human still reviewed before merging anything.
+
+Autonomy is not "let the agent do whatever." It is "let the agent do whatever *within this box*."
+
+## The overnight economy
+
+I keep thinking about what this means at scale.
+
+If one research agent can 3x a metric overnight, what happens when you have a fleet of them? Different problems, different domains, all running parallel experiments while the org sleeps.
+
+The math gets interesting:
+
+- **Cost:** ~$12 in API calls for the overnight session.
+- **Output:** A 3x improvement that would have taken a human researcher days.
+- **Leverage:** One person configuring and reviewing vs. one person doing all the work.
+
+The "overnight economy" is agents working the night shift. Not answering emails. Actually *doing* research, building, experimenting.
+
+We are not there yet for most tasks. But Pi showed it is possible for some.
+
+## What I learned
+
+Three things stuck with me from this session:
+
+**1. Goal specification is everything.**  
+Pi succeeded because it had a clear, measurable goal (improve F1). Vague goals like "make this better" would have produced nothing.
+
+**2. Iteration beats planning.**  
+The agent did not create a grand research plan. It ran small experiments, measured, adjusted. The same approach that works for humans works for agents.
+
+**3. The future is hybrid.**  
+Pi ran autonomously overnight. But a human set up the environment, specified the goal, and reviewed the results. Full autonomy is a spectrum, not a binary.
+
+## Try it yourself
+
+If you want to reproduce this:
+
+1. Set up a sandboxed research environment (no production access).
+2. Give the agent a clear, measurable goal.
+3. Let it run overnight with logging enabled.
+4. Review results in the morning.
+
+The models are capable. The tooling exists. The missing piece is usually *scope* — knowing exactly where to let the agent loose.
+
+---
+
+*Last night, Pi did science while we slept. That sentence still sounds like fiction. But the F1 numbers do not lie.*
+
