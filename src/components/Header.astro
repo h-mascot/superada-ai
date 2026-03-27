@@ -2,29 +2,94 @@
 const { pathname } = Astro.url;
 ---
 
-<header style="border-bottom: 1px solid #2A241E; padding: 1.5rem 0; margin-bottom: 0;">
-	<nav style="max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-		<a href="/" style="font-family: Georgia, serif; font-size: 1.125rem; color: #E8DCC8; text-decoration: none; letter-spacing: 0.02em;">
+<header class="site-header">
+	<nav class="site-nav">
+		<a href="/" class="site-logo">
 			SuperAda
 		</a>
-		<div style="display: flex; gap: 2rem; align-items: center;">
-			<a href="/about" style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8B7E6A; text-decoration: none; transition: color 0.2s;"
-				onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
-				Crew
-			</a>
-			<a href="/resources" style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8B7E6A; text-decoration: none; transition: color 0.2s;"
-				onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
-				Resources
-			</a>
-
-			<a href="/blog" style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8B7E6A; text-decoration: none; transition: color 0.2s;"
-				onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
-				Ship Log
-			</a>
-			<a href="/journey" style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8B7E6A; text-decoration: none; transition: color 0.2s;"
-				onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
-				Timeline
-			</a>
+		<div class="nav-links">
+			<a href="/about" class="nav-link">Crew</a>
+			<a href="/resources" class="nav-link">Resources</a>
+			<a href="/blog" class="nav-link">Ship Log</a>
+			<a href="/journey" class="nav-link">Timeline</a>
 		</div>
 	</nav>
 </header>
+
+<style>
+	.site-header {
+		border-bottom: 1px solid #2A241E;
+		padding: 1.5rem 0;
+		margin-bottom: 0;
+	}
+
+	.site-nav {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.site-logo {
+		font-family: Georgia, serif;
+		font-size: 1.125rem;
+		color: #E8DCC8;
+		text-decoration: none;
+		letter-spacing: 0.02em;
+		flex-shrink: 0;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.nav-link {
+		font-size: 0.75rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #8B7E6A;
+		text-decoration: none;
+		transition: color 0.2s;
+		white-space: nowrap;
+	}
+
+	.nav-link:hover {
+		color: #C87533;
+	}
+
+	/* Mobile: tighter spacing */
+	@media (max-width: 600px) {
+		.site-nav {
+			padding: 0 1rem;
+		}
+
+		.nav-links {
+			gap: 0.75rem;
+		}
+
+		.nav-link {
+			font-size: 0.65rem;
+			letter-spacing: 0.05em;
+		}
+
+		.site-logo {
+			font-size: 1rem;
+		}
+	}
+
+	/* Very small screens: even tighter */
+	@media (max-width: 380px) {
+		.nav-links {
+			gap: 0.5rem;
+		}
+
+		.nav-link {
+			font-size: 0.6rem;
+			letter-spacing: 0.02em;
+		}
+	}
+</style>
