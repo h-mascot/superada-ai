@@ -1,0 +1,197 @@
+---
+title: "My AI Colleague Ran 19 Experiments While I Slept"
+description: "How we improved Curacel's damage detection F1 by 2.95x overnight using autonomous experimentation - and what the AI discovered that humans missed."
+pubDate: "2026-03-27"
+tags: ["ai", "agents", "automation", "experiments", "curacel"]
+audio: /audio/pi-research-autonomous-experiments.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-pi-research-experiments.png';
+
+<Image src={coverImage} alt="AI running autonomous experiments in a cosmic laboratory" class="w-full rounded-lg shadow-lg my-8" />
+
+The problem wasn't the model. It was that we didn't know what to ask it.
+
+Curacel processes thousands of vehicle damage claims. Every claim has photos. Every photo needs damage detection - dents, scratches, broken parts, hidden mechanical issues.
+
+We were using Gemini 3 Pro. Against human-labeled ground truth (10 production images, 149 damages), our F1 score was **24.58%**.
+
+Precision was fine (86%). But recall was abysmal: 14.8%. We were missing 3 out of 4 damages.
+
+For insurance, that's catastrophic. Miss a damage, and a customer doesn't get reimbursed. Precision matters, but **recall is everything**.
+
+## What I Tried First
+
+An afternoon of manual experiments:
+- Lowered confidence threshold (0.7 to 0.2)
+- Swept temperature settings
+- Wrote recall-focused prompts
+- Tried chain-of-thought reasoning
+
+12 experiments. **F1 = 62.95%**
+
+Better. But not production-ready. And I'd hit a wall - each experiment took 15-20 minutes, and I was running out of ideas.
+
+## Enter Pi-Research
+
+[Pi-Research](https://github.com/davebcn87/pi-autoresearch) is an autonomous experiment loop for the [Pi coding agent](https://github.com/mariozechner/pi-coding-agent). Inspired by Karpathy's [autoresearch](https://github.com/karpathy/autoresearch), but domain-agnostic - not just ML training, but prompt engineering, config tuning, any eval loop.
+
+The pattern:
+1. Define what to vary (`config.yaml`)
+2. Define what the AI should try (`program.md`)
+3. Define how to score (`evaluate.py`)
+
+Then let it run. Pi reads results, proposes changes, runs new experiments, keeps what improves the target metric.
+
+I set it up before bed.
+
+## What Pi Discovered
+
+One hour. 19 experiments.
+
+**Final F1: 72.55%** - a 2.95x improvement from baseline.
+
+| Metric | Baseline | My Best | Pi's Best |
+|--------|----------|---------|-----------|
+| F1 | 24.58% | 62.95% | **72.55%** |
+| Precision | 86.6% | 77.5% | 70.7% |
+| Recall | 14.8% | 53.0% | **74.5%** |
+
+Yes, precision dropped. For insurance claims, missing damage costs more than flagging too many. We traded 16 points of precision for 60 points of recall.
+
+### The Winning Configuration
+
+```yaml
+model: gemini-3-pro-preview
+confidence_threshold: 0.1
+temperature: 0.5
+output_schema:
+  require_reasoning: true
+```
+
+But the config wasn't the interesting part. It was what Pi put in the prompt.
+
+## What Pi Found That I Didn't
+
+After 19 experiments, Pi converged on a strategy I never would have written.
+
+### 1. Multi-Expert Roleplay
+
+Instead of one detection pass, Pi used three specialists:
+- **Bodywork Specialist** - panels, paint, trim, glass
+- **Mechanical Specialist** - engine bay, suspension, undercarriage
+- **Electrical Specialist** - lights, sensors, wiring
+
+Each does a full pass. Results get merged. This caught damages a single expert would miss.
+
+### 2. Exhaustive Granularity Rules
+
+Pi added explicit naming rules for every subcomponent:
+
+> "For wheels: inspect rim, spokes, hub, center cap, valve stem, brake disc, brake caliper, brake pads, wheel well liner, wheel arch trim, splash guard, mud flap..."
+>
+> "For bumpers: check main panel, grille, fog light bezel, parking sensor housings, tow hook cover, license plate mount, under-bumper spoiler..."
+
+"Front bumper damage" might mean the grille is cracked but the bumper is fine. Explicit enumeration catches what general instructions miss.
+
+### 3. Hidden Damage Inference
+
+The key insight:
+
+> "If wheel impact detected, also flag for inspection: bearing, shock absorber, knuckle, tie rod, stabilizer link, control arm."
+
+Gemini was missing mechanical damages that weren't visible in photos but are implied by visible damage. Pi figured out that if a wheel took a hit, you should flag connected suspension components even if you can't see them.
+
+### 4. Minimum Detection Floor
+
+> "If fewer than 15 damage detections, re-examine the image with wider attention."
+
+Pi discovered that low detection counts usually meant missed damage, not clean cars. A forced re-scan with different attention caught the stragglers.
+
+### 5. Threshold Sweet Spot
+
+I tried thresholds from 0.7 down to 0.2. Pi went to **0.1**.
+
+Gemini's default threshold is conservative - it only reports what it's sure about. For visual inspection where context matters more than confidence, 0.1 + temperature 0.5 is the sweet spot.
+
+## Why This Matters
+
+The prompt Pi generated is 400+ lines. I would never have written it. Not because I couldn't, but because I wouldn't have thought to try:
+- Roleplay multiple experts
+- Enumerate every subcomponent of every major part
+- Infer hidden damage from visible impact patterns
+- Force re-examination when detection counts are low
+
+Each is obvious in hindsight. But they're not obvious when you're staring at a blank prompt.
+
+**The value of autonomous experimentation isn't speed. It's exploration.**
+
+Humans optimize locally - we vary what we think matters. Machines explore globally - they try things we'd never consider.
+
+## When to Use This Pattern
+
+Three requirements:
+
+1. **Something to vary** - prompts, configs, hyperparameters
+2. **A way to score** - labeled data, rubric evaluation, A/B test results
+3. **Patience for 20+ experiments** - this isn't a one-shot optimization
+
+The ground truth is the hard part. For our pilot, Biyi had already labeled 10 production images with 149 damages. That scoring harness made the loop possible.
+
+### Good Candidates
+
+| Domain | Vary | Score With |
+|--------|------|------------|
+| Claims adjudication | Prompts, edge cases | Accuracy vs labeled claims |
+| Fraud detection | Detection rules | Precision/recall on labeled fraud |
+| Document extraction | Extraction prompts | Field-level accuracy |
+| Email categorization | Classification rules | Category accuracy |
+
+### Bad Candidates
+
+- No ground truth (how do you score?)
+- One-shot decisions (no iteration loop)
+- Human preference (needs A/B testing, not scoring)
+
+## What's Next
+
+We shipped Pi's prompt to Curacel's production pipeline. The 72.55% F1 is now live.
+
+But the real win is the infrastructure. Now that the experiment loop is set up:
+- **New damage types?** Run Pi for a few hours, ship the best prompt.
+- **Model updates?** Re-run experiments, verify performance.
+- **Edge cases?** Add them to ground truth, let Pi find fixes.
+
+The damage detection pilot is done. But the autonomous improvement pattern is just getting started.
+
+---
+
+## Technical Details
+
+**Stack:**
+- [Pi coding agent](https://github.com/mariozechner/pi-coding-agent) with [pi-autoresearch extension](https://github.com/davebcn87/pi-autoresearch)
+- Gemini 3 Pro (via OpenRouter)
+- Ground truth: 10 labeled images, 149 damages
+
+**Experiment Setup:**
+```yaml
+# config.yaml
+model: gemini-3-pro-preview
+confidence_threshold: 0.1
+temperature: 0.5
+max_tokens: 4096
+output_schema:
+  require_reasoning: true
+  include_confidence: true
+```
+
+**Evaluation:**
+- Field-level F1 against human labels
+- MAD-based confidence scoring
+- Session continuity via `autoresearch.md` + `autoresearch.jsonl`
+
+**Runtime:** ~1 hour for 19 experiments (M1 Mac)
+
+---
+
+*Herald Labs is an AI hacker house in Lagos, backed by Curacel founders. We're looking for fresh CS grads who want to build AI projects that matter. [Apply here](https://herald-labs-site.vercel.app).*
