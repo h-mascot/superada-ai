@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Weekly Changelog Review — Week of March 27</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0d1b2a;
+      --panel: rgba(14, 26, 43, 0.82);
+      --panel2: rgba(16, 33, 54, 0.92);
+      --line: rgba(120, 184, 255, 0.28);
+      --text: #eef6ff;
+      --muted: #9fb6d0;
+      --blue: #60a5fa;
+      --cyan: #22d3ee;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #fb7185;
+      --purple: #a78bfa;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(34,211,238,0.13), transparent 28%),
+        radial-gradient(circle at top right, rgba(96,165,250,0.14), transparent 25%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height: 100vh;
+    }
+
+    .deck {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .slide {
+      min-height: 720px;
+      padding: 42px 46px;
+      margin: 0 0 26px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(96,165,250,0.06), transparent 30%),
+        linear-gradient(315deg, rgba(34,211,238,0.05), transparent 30%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1, h2 {
+      margin: 0 0 16px;
+      line-height: 1.03;
+    }
+
+    h1 { font-size: 58px; max-width: 900px; }
+    h2 { font-size: 40px; max-width: 950px; }
+
+    p.lead {
+      font-size: 24px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 960px;
+      margin: 0 0 26px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: rgba(9, 18, 31, 0.72);
+      border: 1px solid rgba(143, 199, 255, 0.18);
+      border-radius: 22px;
+      padding: 22px 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    ul {
+      margin: 10px 0 0 0;
+      padding-left: 24px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    li { margin: 8px 0; }
+
+    .big-points li { font-size: 27px; margin: 12px 0; }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 10px 10px 0;
+      color: #05111e;
+    }
+
+    .blue { background: var(--blue); }
+    .cyan { background: var(--cyan); }
+    .green { background: var(--green); }
+    .amber { background: var(--amber); }
+    .purple { background: var(--purple); }
+    .red { background: var(--red); }
+
+    .quote {
+      margin-top: 24px;
+      padding: 22px 26px;
+      border-left: 4px solid var(--cyan);
+      background: rgba(9, 18, 31, 0.6);
+      border-radius: 0 18px 18px 0;
+      font-size: 26px;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 24px;
+      left: 46px;
+      right: 46px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-mark {
+      position: absolute;
+      top: 38px;
+      right: 42px;
+      font-size: 16px;
+      color: rgba(238,246,255,0.75);
+      border: 1px solid rgba(143, 199, 255, 0.22);
+      border-radius: 999px;
+      padding: 10px 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .speaker-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(96,165,250,0.08);
+      border: 1px dashed rgba(96,165,250,0.35);
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    @media print {
+      body { background: #081321; }
+      .deck { max-width: none; padding: 0; }
+      .slide { margin: 0; border-radius: 0; min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide">
+      <div class="hero-mark">OpenClaw changelog review</div>
+      <div class="eyebrow">Weekly review • releases since last Friday</div>
+      <h1>This week OpenClaw became a real platform, not just a project</h1>
+      <p class="lead">Official releases covered: <strong>2026.3.22</strong>, <strong>2026.3.23</strong>, and <strong>2026.3.24</strong>. The theme was platform maturity: ClawHub skills ecosystem, plugin SDK cleanup, OpenAI compatibility layer, and massive cleanup of legacy baggage.</p>
+      <div>
+        <span class="tag blue">ClawHub skills</span>
+        <span class="tag cyan">OpenAI compat API</span>
+        <span class="tag green">Plugin SDK v2</span>
+        <span class="tag amber">Legacy cleanup</span>
+        <span class="tag purple">MS Teams overhaul</span>
+        <span class="tag red">Breaking changes</span>
+      </div>
+      <div class="quote">This felt like an "upgrade from side project to real infrastructure" week. Lots of breaking changes, lots of cleanup, lots of platform-thinking.</div>
+      <div class="footer"><span>Source: official GitHub releases</span><span>1</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">The releases at a glance</div>
+      <h2>What shipped in the official changelog</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>2026.3.22 — The Big One</h3>
+          <ul>
+            <li>ClawHub native skill install/update</li>
+            <li>Plugin SDK rewrite (openclaw/plugin-sdk/*)</li>
+            <li>Chrome extension relay removed</li>
+            <li>Legacy .moltbot and CLAWDBOT_* env removed</li>
+            <li>Matrix plugin rewritten with official SDK</li>
+            <li>OpenAI default model switched to gpt-5.4</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>2026.3.23 — Stabilization</h3>
+          <ul>
+            <li>Qwen/Alibaba Cloud Model Studio support</li>
+            <li>UI/UX polish across Control UI</li>
+            <li>CSP hardening for inline scripts</li>
+            <li>Auth and credential handling fixes</li>
+            <li>Bundled plugin runtime fixes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:22px;">
+        <h3>2026.3.24 — Polish + OpenAI API</h3>
+        <ul>
+          <li>Gateway now exposes /v1/models, /v1/embeddings, /v1/chat/completions</li>
+          <li>MS Teams SDK migration with AI-agent UX patterns</li>
+          <li>Skills got one-click install recipes</li>
+          <li>Slack interactive replies restored</li>
+          <li>Discord auto-thread naming via LLM</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Official release window</span><span>2</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Biggest ecosystem win</div>
+      <h2>ClawHub is now the default skills source</h2>
+      <ul class="big-points">
+        <li><code>openclaw skills search|install|update</code> now hits ClawHub first</li>
+        <li>Skills get tracked update metadata and gateway-side install support</li>
+        <li>This makes OpenClaw less "configure everything yourself" and more "install what you need"</li>
+      </ul>
+      <div class="quote">ClawHub becoming the primary install source is a platform move. It means skills can be discovered, shared, and updated without manual config surgery.</div>
+      <div class="footer"><span>Release 2026.3.22</span><span>3</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Developer-facing</div>
+      <h2>The plugin SDK got a real public surface</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What changed</h3>
+          <ul>
+            <li>New public SDK: <code>openclaw/plugin-sdk/*</code></li>
+            <li>Old <code>openclaw/extension-api</code> removed</li>
+            <li>Message discovery now via <code>describeMessageTool(...)</code></li>
+            <li>Bundled plugins use injected runtime for host ops</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why it matters</h3>
+          <ul>
+            <li>Cleaner plugin authoring</li>
+            <li>Less internal leakage</li>
+            <li>Stable surface for external contributors</li>
+            <li>Migration guide: docs.openclaw.ai/plugins/sdk-migration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote">This is the "stop building on internal surfaces" cleanup that real platforms do before they scale plugin ecosystems.</div>
+      <div class="footer"><span>Release 2026.3.22</span><span>4</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Integration story</div>
+      <h2>OpenClaw gateway now speaks OpenAI API</h2>
+      <ul class="big-points">
+        <li>Gateway exposes <code>/v1/models</code>, <code>/v1/embeddings</code>, <code>/v1/chat/completions</code>, <code>/v1/responses</code></li>
+        <li>Explicit model overrides forwarded correctly</li>
+        <li>Better compatibility with RAG tools and other OpenAI-expecting clients</li>
+      </ul>
+      <div class="quote">If you want to point third-party tools at OpenClaw as if it were an OpenAI endpoint, this is the release that makes that real.</div>
+      <div class="footer"><span>Release 2026.3.24</span><span>5</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Channel spotlight</div>
+      <h2>MS Teams got a proper SDK migration</h2>
+      <ul>
+        <li>Migrated to the official Microsoft Teams SDK</li>
+        <li>Streaming 1:1 replies, welcome cards, prompt starters</li>
+        <li>Feedback/reflection, typing indicators, native AI labeling</li>
+        <li>Message edit and delete support added</li>
+      </ul>
+      <div class="quote">Teams is a big enterprise surface. This makes OpenClaw feel native there instead of bolted-on.</div>
+      <div class="footer"><span>Release 2026.3.24</span><span>6</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Cleanup theme</div>
+      <h2>Legacy baggage got removed</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Gone</h3>
+          <ul>
+            <li>Chrome extension relay and <code>driver: "extension"</code></li>
+            <li><code>CLAWDBOT_*</code> and <code>MOLTBOT_*</code> env names</li>
+            <li><code>~/.moltbot</code> state dir migration</li>
+            <li><code>nano-banana-pro</code> skill wrapper</li>
+            <li>Old <code>openclaw/extension-api</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why this matters</h3>
+          <ul>
+            <li>Smaller attack surface</li>
+            <li>Less config confusion</li>
+            <li>Simpler onboarding for new users</li>
+            <li>Signals the project is serious about not accruing debt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote">Removing legacy cruft is unglamorous work, but it is how you keep a fast-moving project from collapsing under its own history.</div>
+      <div class="footer"><span>Release 2026.3.22</span><span>7</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Control UI</div>
+      <h2>Skills management got much better</h2>
+      <ul>
+        <li>Status-filter tabs: All / Ready / Needs Setup / Disabled</li>
+        <li>Click-to-detail dialog with requirements, toggle, install action, API key entry</li>
+        <li>One-click install recipes for bundled skills</li>
+        <li><code>/tools</code> now shows what you can actually use right now</li>
+      </ul>
+      <div class="quote">This is the kind of UX that makes people say "oh, this is actually usable" instead of "let me read the docs first."</div>
+      <div class="footer"><span>Releases 2026.3.23 + 2026.3.24</span><span>8</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Security and stability</div>
+      <h2>The usual hardening continued</h2>
+      <ul>
+        <li>CSP hardening for inline scripts in Control UI</li>
+        <li>Exec sandbox blocks more dangerous env vars (MAVEN_OPTS, GLIBC_TUNABLES, etc.)</li>
+        <li>Gateway channel startup now isolates failures per-channel</li>
+        <li>Telegram, WhatsApp, Discord all got reliability fixes</li>
+        <li>Auth token handling fixed to stop reverting to stale credentials</li>
+      </ul>
+      <div class="footer"><span>Cross-release theme</span><span>9</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">My take</div>
+      <h2>The real news this week</h2>
+      <ul class="big-points">
+        <li><strong>2026.3.22</strong> was the big platform cleanup and ClawHub launch</li>
+        <li><strong>2026.3.23</strong> stabilized the fallout from the big changes</li>
+        <li><strong>2026.3.24</strong> added real OpenAI API compatibility and MS Teams native feel</li>
+        <li>The overall pattern: OpenClaw is acting like a platform now, not a hacker project</li>
+      </ul>
+      <div class="quote">If last week was about reliability, this week was about ecosystem and integration maturity. ClawHub, OpenAI compat, plugin SDK cleanup, and legacy removal are all platform-scale moves.</div>
+      <div class="footer"><span>Conclusion</span><span>10</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">Presenter cheat sheet</div>
+      <h2>30-second close you can use verbatim</h2>
+      <div class="quote">The big story this week is that OpenClaw started acting like a real platform. ClawHub is now the default skills source. The plugin SDK got a proper public surface. The gateway speaks OpenAI API. MS Teams got a native-feeling SDK migration. And a bunch of legacy config and extension baggage got removed. So the project is not just getting more features. It is getting more coherent, more integrable, and more serious about long-term maintainability.</div>
+      <p class="lead">Official source: GitHub releases for v2026.3.22, v2026.3.23, and v2026.3.24.</p>
+      <div class="footer"><span>Ready to present</span><span>11</span></div>
+    </section>
+  </div>
+</body>
+</html>
