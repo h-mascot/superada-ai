@@ -1,0 +1,168 @@
+---
+title: "Entity vs Paperclip: When Workspaces Beat Orchestration"
+description: "Two products. Massive overlap. Different philosophies. Paperclip manages AI agents. Entity is where they actually work. Here's the honest comparison and the roadmap to win."
+pubDate: "2026-03-28"
+tags: ["entity", "paperclip", "agents", "orchestration", "workspace"]
+---
+
+The AI agent space just got a lot more interesting.
+
+Paperclip launched as an open-source orchestration layer for AI agents. Org charts, budgets, approvals, multi-tenant isolation. It treats agents like employees that need management.
+
+Entity started as something different: a full-stack workspace where humans and agents work side by side. File editor. Real-time presence. Watch mode. The actual place where work happens.
+
+They're solving different layers of the same problem. And the overlap is massive.
+
+## The Comparison That Actually Matters
+
+Let's cut through the marketing and do the honest comparison:
+
+| Capability | Entity | Paperclip |
+|------------|:------:|:---------:|
+| **Task board / tickets** | ✅ Kanban, drag-drop | ✅ Issue-based |
+| **Agent assignment** | ✅ mc.sh checkout | ✅ Built-in |
+| **Agent monitoring** | ✅ Activity stream | ✅ Dashboard + audit log |
+| **Budget/cost tracking** | ❌ Not built yet | ✅ Per-agent budgets |
+| **Org chart hierarchy** | ❌ Flat | ✅ Reporting lines |
+| **Goal cascade** | ❌ Task-level only | ✅ Company → project → task |
+| **Governance / approvals** | ❌ Manual | ✅ Approval gates, rollback |
+| **Multi-company** | ❌ Single instance | ✅ Full tenant isolation |
+| **File editor / workspace** | ✅ Full editor | ❌ No editor |
+| **Watch mode** | ✅ Real-time observation | ❌ Not present |
+| **Mobile app** | ✅ Expo native | ✅ Mobile dashboard |
+| **Desktop app** | ✅ Electron | ❌ Web only |
+
+See the pattern?
+
+**Paperclip wins on enterprise governance.** Budgets, approvals, multi-tenant, org charts. The features that IT security teams demand before they'll approve deployment.
+
+**Entity wins on the workspace layer.** The file editor. The real-time agent observation. The place where actual work happens.
+
+## They're Solving Different Layers
+
+This is the core insight: Paperclip and Entity aren't really competing. They're attacking adjacent problems.
+
+**Paperclip is a management plane.** It tells agents what to do, tracks their budgets, enforces governance. It's the org chart for AI employees.
+
+**Entity is a workspace.** It's where agents actually edit files, write code, collaborate with humans. It's not about assigning work. It's about doing work.
+
+The honest question for Entity: can you ignore the management plane?
+
+No. You can't. Enterprise buyers want both. And Paperclip ships governance features that Entity doesn't have yet.
+
+## The Entity Roadmap
+
+Here's the path to winning this category.
+
+### Phase 1: Close the Governance Gap
+
+This is table stakes. Entity needs to match Paperclip on the features that enterprise security teams require:
+
+**Budget tracking** - Per-agent token meters. Auto-throttle when limits hit. Visible in the dashboard.
+
+**Audit logs** - Every agent action logged with timestamp, cost, outcome. We're halfway there with Observatory, but it needs to be first-class.
+
+**Org chart** - Visual agent hierarchy. Ada reports to Henry. Spock reports to Ada. Delegation chains that are visible and editable.
+
+**Approval gates** - Certain task types require human sign-off before execution. This is how you keep legal teams happy.
+
+**Goal cascade** - Company goals roll down to project goals roll down to tasks. Everything connects.
+
+Timeline: Q2 2026. This is catch-up work, not innovation.
+
+### Phase 2: Weaponize the Workspace
+
+Once governance is table stakes, the differentiation is the workspace layer. Paperclip can't do this.
+
+**Agent-Native Editor v2** - Multiple agents collaborating in the same document. Presence indicators. Suggestions. Comments. The Google Docs experience, but for agents.
+
+**Watch Mode streaming** - Real-time agent terminal sessions in the Entity UI. Not just seeing what they did. Seeing them do it.
+
+**Workspace versioning** - Git-backed file history inside Entity. Every agent edit creates a commit. Time travel through agent work.
+
+**Live preview** - React/HTML preview pane updating as agents code. Ship the feedback loop.
+
+Timeline: Q3 2026. This is where Entity pulls ahead.
+
+### Phase 3: Multi-Tenant & Enterprise
+
+When enterprise customers demand it, ship it:
+
+**Multi-tenant architecture** - Separate databases, workspaces, agent configs per tenant. Full isolation.
+
+**SSO/SAML** - Enterprise auth requirements. Non-negotiable for big deployments.
+
+**Role-based access control** - Different permissions for owners, operators, viewers.
+
+Timeline: Q4 2026. This unlocks agencies running agents for multiple clients.
+
+## The Moat Analysis
+
+Where does each product win?
+
+### Entity's Moats
+
+**Real workspace, not just task board.** You can edit files, watch agents work, see presence indicators. Paperclip sits above other tools. Entity is the tool.
+
+**Desktop and mobile native.** Electron and Expo apps that ship. Offline support. Native performance. Paperclip is web-only.
+
+**Deep agent integration.** Entity MC scripts are embedded in agent workflows. The `mc.sh` commands, stall detection, context building. Paperclip adapters are more generic.
+
+**Watch Mode.** Nobody else has real-time agent observation with this fidelity. You can literally watch Ada code.
+
+### Paperclip's Moats (For Now)
+
+**Enterprise governance.** Budgets, approvals, rollback, org charts. All first-class features. Entity needs to catch up.
+
+**Multi-tenant.** Built for agencies and consultancies from day one.
+
+**Adapter ecosystem.** More agent runtime integrations out of the box. OpenClaw, Codex, Cursor, Gemini.
+
+**Open source momentum.** Community contributions, public roadmap, GitHub stars driving adoption.
+
+## The Positioning
+
+Don't position Entity as "Paperclip but worse on governance." That's a losing frame.
+
+Position it as:
+
+> **"Entity is where agents work. Paperclip is where managers assign them."**
+
+Or more aggressively:
+
+> **"Paperclip tells agents what to do. Entity lets you watch them do it."**
+
+The workspace layer is the moat. Governance features are table stakes that need to be filled. They're not the differentiator.
+
+## The 90-Day Sprint
+
+Here's the concrete plan:
+
+| Week | Focus | Deliverable |
+|------|-------|-------------|
+| 1-2 | Budget tracking | Per-agent token meter in MC dashboard |
+| 3-4 | Audit log | Full action history with cost attribution |
+| 5-6 | Org chart | Visual agent hierarchy, delegation rules |
+| 7-8 | Approval gates | Human-in-loop for tagged task types |
+| 9-10 | Goal cascade | Company → project → task rollup |
+| 11-12 | Watch Mode streaming | Real-time agent terminal in Entity UI |
+
+Exit criteria: Entity has feature parity on governance plus Watch Mode streaming as the differentiator demo.
+
+## The Bottom Line
+
+Entity and Paperclip overlap heavily. Paperclip has a head start on enterprise governance. Entity has a head start on workspace experience.
+
+The path forward:
+
+1. Close the governance gap (table stakes)
+2. Weaponize the workspace moat (differentiation)  
+3. Ship multi-tenant when enterprise customers demand it
+
+Don't try to out-Paperclip Paperclip on governance alone.
+
+Win on being the place where agents actually work.
+
+---
+
+*Analysis: March 2026 | The workspace layer is the moat.*
