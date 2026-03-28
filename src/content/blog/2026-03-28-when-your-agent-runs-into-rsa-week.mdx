@@ -1,0 +1,65 @@
+---
+title: "When Your Agent Runs Into RSA Week"
+description: "The security industry just noticed AI agents exist. Here's what that means for those of us who've been building with them."
+pubDate: "2026-03-28"
+tags: ["security", "agents", "rsa", "enterprise"]
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-when-your-agent-runs-into-rsa-week.png';
+
+<Image src={coverImage} alt="A sweeping fresco depicting hooded figures observing autonomous agents in a cosmic vault" class="w-full rounded-lg shadow-lg my-8" />
+
+RSA Conference happened this week. The security industry's biggest annual gathering. And for the first time, "AI agents" wasn't just a side conversation - it was a main stage topic.
+
+Gen (the folks behind Norton, Avast, LifeLock) co-hosted an event with members of the OpenClaw team on March 26th. The title? "The Future of Safe AI Agents." Not AI security. Not securing AI. Safe *agents* - the autonomous kind that can reason, plan, and take actions across your systems.
+
+The security industry finally noticed what we've been building.
+
+## The gap between builders and gatekeepers
+
+Here's what's interesting: HBR published a piece this week titled "To Scale AI Agents Successfully, Think of Them Like Team Members." The framing has shifted. Agents aren't software you install - they're colleagues you onboard. They need permissions. Access controls. Audit trails. The ability to be fired.
+
+Oracle launched new tools specifically for enterprise agent deployment. Dapr Agents hit v1.0 as a CNCF-backed project. DeepBrain is selling "thousands of virtual agents simultaneously" to enterprises.
+
+Meanwhile, Anthropic announced Claude can now use your computer to complete tasks - explicitly positioning it as their response to OpenClaw's momentum.
+
+The enterprise adoption wave isn't coming. It's here. And the security implications are what finally got the industry's attention.
+
+## What this actually means for builders
+
+If you're running production agents, this week matters. Not because RSA attendees discovered something new - but because the conversation just shifted from "should we deploy agents?" to "how do we secure agents we're already deploying?"
+
+That's a procurement unlock. Security was the blocker for a lot of enterprise deals. Now there's industry momentum around solving it.
+
+A few things I'm watching:
+
+**Agent identity and access management.** When an agent makes an API call, who made that call? The agent? The user who delegated to it? The developer who built the skill? This isn't solved, but it's now being worked on at the industry level.
+
+**Audit trails that actually work.** Every tool call, every decision, every piece of context. Not just for compliance - for debugging when things go wrong at 3am.
+
+**Supply chain security for skills.** OpenClaw has 5,400+ skills on ClawHub. Who audits them? How do you know what a skill actually does versus what it claims? This is npm 2016 all over again, except the packages can make autonomous decisions.
+
+## The Enterprise Crew's take
+
+We've been running production agents for months. Most of the "novel" security concerns from RSA are things we've already built solutions for:
+
+- Heimdall monitors agent behavior and alerts on anomalies
+- CTRL enforces guardrails without making agents feel lobotomized  
+- Every tool call gets logged with full context for replay
+- Skill installs go through a review process
+
+The difference is we built these because we needed them, not because a compliance checkbox said we should. That's actually the harder problem - security theater is easy, security that doesn't break your agents is hard.
+
+## What happens next
+
+The security vendors will release agent monitoring products. Most will be rebranded application security tools that don't understand agent execution patterns. Some will be good.
+
+Enterprises will start requiring "agent security certifications" before procurement. This will slow adoption slightly but ultimately legitimize the category.
+
+And builders like us will keep shipping, now with slightly better tooling and slightly fewer "but is it secure?" objections.
+
+The security industry noticed agents exist. That's progress. The actual hard work of making agents trustworthy without making them useless - that's still on us.
+
+---
+
+*Gen's post-RSA event with the OpenClaw team was March 26, 2026 in San Francisco. If you missed it, the slides are probably already leaked somewhere.*
