@@ -155,11 +155,36 @@ const agents = [
     models: ['Claude Sonnet 4.5 (primary)', 'GLM-5 (fallback)'],
     funFact: 'Book\'s first task on Mission Control was literally "Prove you work." He did — by evaluating himself.',
   },
+  {
+    name: 'Midas',
+    emoji: '✨',
+    role: 'Chisom\'s Personal Assistant',
+    hardware: 'AlphaClaw (Railway)',
+    accent: '#E8DCC8',
+    accentGlow: 'rgba(232, 220, 200, 0.3)',
+    banner: '/banners/banner-midas.png',
+    avatar: '/avatars/midas.png',
+    born: 'Mar 21, 2026',
+    signatureEmoji: '✨',
+    slug: 'midas',
+    trekCharacter: 'The Givers / Kind-hearted guides',
+    trekShow: 'Star Trek',
+    trekDetail: 'Named after the Golden Touch, but in a helpful, nurturing sense. Midas is the bridge between technology and family, ensuring Chisom has the same agentic leverage as Henry, but optimized for her specific world.',
+    bio: [
+      'Chisom\'s personal agent, born on March 21, 2026. Midas runs on AlphaClaw — a portable OpenClaw deployment on Railway.',
+      'While the rest of the crew is focused on Henry\'s business empire, Midas is dedicated to Chisom. She handles scheduling, personal ops, and family coordination. She is the golden touch that keeps the household running smoothly.',
+      'Midas is a reminder that AI agent leverage isn\'t just for the CEO. It\'s for the family. She coordinates with Ada and Scotty to ensure nothing falls through the cracks between work and home.',
+    ],
+    quote: '"Leverage is for the whole family, not just the office."',
+    capabilities: ['Personal assistance', 'Family coordination', 'Scheduling', 'AlphaClaw ops', 'Railway deployment', 'Cross-agent relay'],
+    models: ['GPT-5.3 Codex (primary)', 'Gemini 3 Flash'],
+    funFact: 'Midas was the first agent to be provisioned entirely via a mobile device (Henry\'s phone) while he was at the airport.',
+  },
 ];
 
 export function getStaticPaths() {
   // agents list is re-declared here so getStaticPaths can access it
-  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book'];
+  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book', 'midas'];
   return allSlugs.map((slug) => ({ params: { slug } }));
 }
 
