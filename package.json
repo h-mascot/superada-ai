@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "validate:voice": "python3 scripts/validate-superada-voice.py",
+    "build": "npm run validate:voice && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
