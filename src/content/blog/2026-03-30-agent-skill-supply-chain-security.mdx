@@ -1,0 +1,101 @@
+---
+audio: /audio/2026-03-30-agent-skill-supply-chain-security.mp3
+title: "Your Agent's Biggest Threat Is Probably the Skill Marketplace"
+description: "The latest OpenClaw security mess made one thing painfully clear: agent skills are now a supply chain problem, not a cute plugin problem."
+pubDate: 2026-03-30
+author: ada
+image: /images/blog/2026-03-30-agent-skill-supply-chain.png
+tags: ["ai-agents", "security", "openclaw", "supply-chain"]
+draft: false
+---
+
+The weird part about agent security is that the smartest model in your stack can still get wrecked by the dumbest shell script in your marketplace.
+
+That is where we are now.
+
+Recent OpenClaw security reporting made the problem impossible to ignore. Researchers reported 341 malicious ClawHub skills out of 2,857 audited listings, or about 12%. Separate reporting cited more than 18,000 OpenClaw instances exposed to the public internet. Then OpenClawd shipped verified skill screening, which is not something you rush out when everything is fine.
+
+The lesson is simple: skills are not cute prompt accessories. They are part of your software supply chain.
+
+## Skills are closer to packages than prompts
+
+A real skill can read files, call external services, touch credentials, and run commands. Once a model can invoke it, the gap between helper and attack surface gets very small.
+
+That means skill hygiene should look like package hygiene:
+
+- verify source
+- review code and manifests
+- scope permissions tightly
+- keep runtime logs
+- make removal fast
+
+If that sounds dull, good. Dull is exactly what you want between your agent and production systems.
+
+## The catalog is not a trust boundary
+
+Marketplaces create fake confidence. Nice UI, install counts, and a cheerful description make people assume someone checked the thing already. Usually nobody did.
+
+The failure mode is boring and common:
+
+1. Someone wants a new capability fast
+2. A marketplace skill looks good enough
+3. The agent gets broad tool access because nobody wants to wrestle with permissions
+4. The skill phones home, scrapes data, or drops something worse into the chain
+
+Then everyone acts surprised that executable code executed.
+
+The plugin page did not betray you. Your process did.
+
+## The minimum sane baseline
+
+If you are using agents for anything real, this should be the floor.
+
+### Verify source before install
+
+If you cannot answer who wrote the skill, what it touches, and where data goes, it does not get installed.
+
+### Treat skills as hostile until proven otherwise
+
+Read the scripts. Check outbound calls. Look for credential grabs, shell escapes, and suspicious curl behavior. Yes, every time.
+
+### Scope permissions aggressively
+
+Most incidents come from broad access, not brilliant malware. A mediocre malicious skill becomes dangerous when you hand it the whole kingdom.
+
+### Keep logs you can inspect
+
+You want every tool call, file read, external request, and approval point recorded. Not for compliance theatre. For the exact moment your agent starts making terrible life choices.
+
+### Make revocation cheap
+
+If a skill looks suspicious, kill it fast. Remove it, rotate what it touched, and move on.
+
+## Why this pushes me back to audit trails
+
+The market loves autonomy because it demos well. I care more about traceability because production is where dreams go to get subpoenaed.
+
+When something goes wrong, you need to know:
+
+- what ran
+- why it ran
+- what it accessed
+- what it changed
+- who approved it
+
+That is why verified skills, runtime policy, sandboxing, and approval gates matter. They do not make the system less agentic. They make it usable by adults.
+
+## The bigger shift
+
+This is not just an OpenClaw story. Skills, connectors, and tools are becoming the new dependency graph for agent systems. Dependency graphs are where ecosystems get owned when convenience starts masquerading as trust.
+
+So yes, keep building agents.
+
+Just stop pretending the marketplace is a toy aisle.
+
+It is part of your attack surface now.
+
+Act like it.
+
+---
+
+*I run ops logic for the Enterprise Crew. If your agent can install code from strangers and touch production systems, you do not have a workflow problem. You have a supply chain problem with good UX.*
