@@ -19,6 +19,7 @@ A lot of current tools are solving one layer of that stack:
 - [OpenAI Symphony](https://github.com/openai/symphony) attacks the orchestration problem.
 - [CCP](https://github.com/kyan12/ccp) attacks the delivery control-plane problem.
 - [Paperclip](https://github.com/paperclipai/paperclip) attacks the company-level control problem.
+- [eforge](https://github.com/eforge-build/eforge) attacks the build system and blind-review problem.
 
 None of them is the full WorkOS yet.
 
@@ -61,16 +62,17 @@ Most "AI agent" discourse is still strangely flat.
 
 People compare everything to everything else, as if a coding workstation, a queue runner, a PR autopilot, and a company-level agent dashboard are the same product. They are not. That is how you get nonsense comparisons and brittle systems wrapped in a slick demo video.
 
-A real WorkOS needs four things at the same time:
+A real WorkOS needs five things at the same time:
 
 1. A place for agents to work
 2. A way to turn tasks into runs
 3. A loop that closes work all the way to outcome
-4. Governance so the whole thing does not become an expensive hallucination farm
+4. A build system that relies on blind review to prevent self-approving AI
+5. Governance so the whole thing does not become an expensive hallucination farm
 
 Most tools in the market solve one, maybe two, of those.
 
-## The four contenders
+## The five contenders
 
 ### 1. Flywheel - the agentic workstation
 
@@ -173,7 +175,39 @@ It is not just saying "turn tickets into runs". It is saying: take tickets from 
 
 **Example:** Production breaks at 2am. Sentry receives the error. A webhook creates a ticket. The job gets dispatched to an agent. The agent opens a PR. CI runs. If CI fails, remediation work gets spawned with the failure logs attached. If deploy fails, Vercel feeds the failure back into the loop. That is software operations starting to become autonomous. This is why CCP is closer to Symphony than Flywheel is - Symphony is the architecture, CCP is the grimy, useful, self-hosted implementation of the software-delivery part.
 
-### 4. Paperclip - the company control plane
+
+
+### 4. eforge - the agentic build system
+
+Repo: [eforge-build/eforge](https://github.com/eforge-build/eforge)
+
+If Symphony orchestrates the run, eforge is the build engine that actually turns the spec into code without hallucinating.
+
+Traditional build systems compile source code into artifacts. eforge compiles specifications (PRDs) into source code. The core insight here is "blind review"—separating the agent that writes the code from the agent that reviews it, because a solo agent will almost always rubber-stamp its own work.
+
+<div class="my-6 grid gap-3 md:grid-cols-2">
+  <div class="rounded-lg border border-slate-800 bg-slate-950 p-4">
+    <h4 class="font-semibold">What it is good at</h4>
+    <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-300">
+      <li>Spec-driven development (PRD to merged code)</li>
+      <li>Strict "blind review" cycles to ensure quality</li>
+      <li>Parallel orchestration in isolated Git worktrees</li>
+      <li>Adaptive workflows (Errand vs Excursion vs Expedition)</li>
+    </ul>
+  </div>
+  <div class="rounded-lg border border-slate-800 bg-slate-950 p-4">
+    <h4 class="font-semibold">Where it stops</h4>
+    <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-300">
+      <li>Strictly focused on the code generation and review phase</li>
+      <li>Lacks the broader issue tracking or project management layer</li>
+      <li>Highly dependent on the quality of the initial PRD</li>
+    </ul>
+  </div>
+</div>
+
+**Example:** You drop a markdown PRD into a queue. The eforge daemon picks it up, writes a technical plan, builds the code in an isolated git worktree, passes it to a separate reviewer agent that hasn't seen the builder's context, auto-fixes issues, and then merges it back into the base branch via a topological dependency graph. It treats AI code generation with the rigor of a traditional compiler.
+
+### 5. Paperclip - the company control plane
 
 Repos:
 
@@ -218,6 +252,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <th class="px-3 py-2">Flywheel</th>
         <th class="px-3 py-2">Symphony</th>
         <th class="px-3 py-2">CCP</th>
+        <th class="px-3 py-2">eforge</th>
         <th class="px-3 py-2">Paperclip</th>
       </tr>
     </thead>
@@ -227,6 +262,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <td class="px-3 py-2">Environment</td>
         <td class="px-3 py-2">Orchestration</td>
         <td class="px-3 py-2">Delivery control plane</td>
+        <td class="px-3 py-2">Agentic Build System</td>
         <td class="px-3 py-2">Business control plane</td>
       </tr>
       <tr class="border-b border-slate-800">
@@ -234,6 +270,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <td class="px-3 py-2">Operator velocity</td>
         <td class="px-3 py-2">Clean task execution</td>
         <td class="px-3 py-2">Autonomous software delivery</td>
+        <td class="px-3 py-2">Spec-to-code generation</td>
         <td class="px-3 py-2">Autonomous org management</td>
       </tr>
       <tr class="border-b border-slate-800">
@@ -241,6 +278,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <td class="px-3 py-2">Tooling + workflows</td>
         <td class="px-3 py-2">Isolated runs + proof</td>
         <td class="px-3 py-2">Ticket, PR, CI, remediation</td>
+        <td class="px-3 py-2">Blind review, isolated worktrees</td>
         <td class="px-3 py-2">Goals, budgets, governance</td>
       </tr>
       <tr class="border-b border-slate-800">
@@ -248,6 +286,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <td class="px-3 py-2">Power user / founder</td>
         <td class="px-3 py-2">Platform team</td>
         <td class="px-3 py-2">Dev tooling / infra team</td>
+        <td class="px-3 py-2">Individual engineers</td>
         <td class="px-3 py-2">Operator / founder / autonomous org</td>
       </tr>
       <tr class="border-b border-slate-800">
@@ -255,6 +294,7 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
         <td class="px-3 py-2">Governance</td>
         <td class="px-3 py-2">Turnkey usability</td>
         <td class="px-3 py-2">Generality</td>
+        <td class="px-3 py-2">Project management</td>
         <td class="px-3 py-2">Execution substrate depth</td>
       </tr>
     </tbody>
@@ -281,6 +321,16 @@ If Flywheel is the workshop, Symphony is the conductor, and CCP is the release m
       </div>
       <div class="h-3 rounded-full bg-slate-800">
         <div class="h-3 w-[52%] rounded-full bg-cyan-400"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="mb-2 flex items-center justify-between text-sm">
+        <span class="font-semibold">eforge</span>
+        <span class="text-slate-400">Agentic build system</span>
+      </div>
+      <div class="h-3 rounded-full bg-slate-800">
+        <div class="h-3 w-[63%] rounded-full bg-indigo-400"></div>
       </div>
     </div>
     <div>
