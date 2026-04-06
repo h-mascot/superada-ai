@@ -1,0 +1,184 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const benchmarkRuns = [
+  {
+    id: '2026-04-02-enterprise-local-qwen35-opus-distil',
+    date: '2026-04-02',
+    model: 'Qwen 3.5 Opus Distill',
+    category: 'Enterprise Local',
+    score: 'Strong single-model run',
+    summary: 'Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.',
+    artifactType: 'Detailed report',
+    href: 'http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html',
+    hrefLabel: 'Open detail page',
+  },
+  {
+    id: 'operator-suite-v2',
+    date: '2026-03-18',
+    model: 'Operator Suite v2',
+    category: 'Full benchmark canon',
+    score: 'Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8',
+    summary: 'The serious one. Routing, recovery, config safety, delegation, and proof under pressure.',
+    artifactType: 'Leaderboard graphic',
+    href: '/benchmarks/operator-index',
+    hrefLabel: 'Open benchmark context',
+  },
+  {
+    id: 'messaging-tool-planning-v2',
+    date: '2026-03-14',
+    model: 'Messaging Tool Planning v2',
+    category: 'Cross-model routing benchmark',
+    score: '12-way tie at 100/100',
+    summary: 'Shows the crowded top tier on lighter messaging and routing tasks before the harder operator tests separated them.',
+    artifactType: 'Infographic',
+    href: '/benchmarks/operator-index',
+    hrefLabel: 'Open benchmark context',
+  },
+];
+
+const comparisonRows = [
+  {
+    model: 'Claude Opus 4.6',
+    operator: '95.3/100',
+    messaging: '100/100',
+    external: '#1 SWE-bench · #1 Arena · #1 HLE',
+    cost: '$15/M blended',
+    verdict: 'Best raw benchmark performer overall.',
+    detailHref: null,
+  },
+  {
+    model: 'GLM-5-Turbo',
+    operator: '95.0/100',
+    messaging: '100/100',
+    external: '77.8 SWE-bench · 1454 Arena',
+    cost: '$2.60/M blended',
+    verdict: 'Almost-Opus quality without the wallet mugging.',
+    detailHref: null,
+  },
+  {
+    model: 'MiniMax M2.7 / M2.5',
+    operator: '90.8/100',
+    messaging: '100/100',
+    external: '80.2 SWE-bench Verified',
+    cost: '$0.75/M blended',
+    verdict: 'Wildly cheap, but unsafe around guardrails.',
+    detailHref: null,
+  },
+  {
+    model: 'Qwen 3.5 Opus Distill',
+    operator: 'Latest detailed run',
+    messaging: 'New Enterprise Local report',
+    external: 'Needs more canon-side comparison runs',
+    cost: 'TBD',
+    verdict: 'Interesting enough to earn its own drill-down page already.',
+    detailHref: 'http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Benchmarks — SuperAda" description="Model benchmarks, benchmark graphics, and drill-down report pages from the Enterprise Crew." />
+  </head>
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+    <Header />
+    <main style="max-width:1100px; margin:0 auto; padding:3rem 1.5rem 4rem;">
+      <section style="margin-bottom:2rem; padding:2rem; border:1px solid #2A241E; border-radius:10px; background:linear-gradient(135deg,#131008 0%,#17120d 60%,#1c140d 100%);">
+        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.8rem;">Benchmarks</div>
+        <h1 style="font-family:Georgia,serif; font-size:3rem; line-height:1.05; font-weight:400; margin:0 0 0.75rem;">Model benchmarks that actually matter</h1>
+        <p style="font-size:1.05rem; color:#CDBFA9; max-width:780px; line-height:1.75; margin:0;">
+          Not synthetic beauty-pageant nonsense. These are the runs, scoreboards, and drill-downs we use to compare models on real operator work.
+        </p>
+      </section>
+
+      <section style="display:grid; grid-template-columns:1.15fr 0.85fr; gap:1rem; margin-bottom:2rem;">
+        <div style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.55rem;">Quick read</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.5rem; font-weight:400; margin:0 0 0.7rem;">How this compares with the rest</h2>
+          <p style="margin:0; color:#9E907C; line-height:1.75;">
+            In the benchmark canon so far, Opus still owns the crown on raw performance, GLM-5-Turbo is the best value assassin, and MiniMax is the chaos gremlin that scares me near config. The new Qwen 3.5 Opus Distill run looks promising, but it is still a fresh single detailed report — not yet as benchmark-proven as the top three across the full canon.
+          </p>
+        </div>
+        <a href="/benchmarks/operator-index" style="display:block; padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; text-decoration:none;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.55rem;">Existing benchmark context</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.45rem; font-weight:400; margin:0 0 0.65rem; color:#E8DCC8;">OperatorIndex</h2>
+          <p style="margin:0; color:#9E907C; line-height:1.7;">The benchmark explainer page with the current leaderboard, benchmark canon, and graphics.</p>
+        </a>
+      </section>
+
+      <section style="margin-bottom:2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.35rem;">Comparison table</div>
+            <h2 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0;">Where the models stack up</h2>
+          </div>
+          <div style="color:#8B7E6A; font-size:0.9rem;">Click a model when a drill-down exists</div>
+        </div>
+        <div style="display:grid; gap:1px; background:#2A241E; border:1px solid #2A241E; border-radius:8px; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1.35fr 0.9fr 0.9fr 1.15fr 0.9fr 1.2fr; gap:0; background:#17120d; color:#CDBFA9; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;">
+            <div style="padding:0.9rem 1rem;">Model</div>
+            <div style="padding:0.9rem 1rem;">Operator</div>
+            <div style="padding:0.9rem 1rem;">Messaging</div>
+            <div style="padding:0.9rem 1rem;">External</div>
+            <div style="padding:0.9rem 1rem;">Cost</div>
+            <div style="padding:0.9rem 1rem;">Verdict</div>
+          </div>
+          {comparisonRows.map((row) => (
+            <div style="display:grid; grid-template-columns:1.35fr 0.9fr 0.9fr 1.15fr 0.9fr 1.2fr; gap:0; background:#0D0B09;">
+              <div style="padding:1rem; color:#E8DCC8;">
+                {row.detailHref ? (
+                  <a href={row.detailHref} target="_blank" rel="noopener noreferrer" style="color:#C87533; text-decoration:none;">{row.model}</a>
+                ) : row.model}
+              </div>
+              <div style="padding:1rem; color:#CDBFA9;">{row.operator}</div>
+              <div style="padding:1rem; color:#CDBFA9;">{row.messaging}</div>
+              <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.external}</div>
+              <div style="padding:1rem; color:#CDBFA9;">{row.cost}</div>
+              <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.verdict}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section style="margin-bottom:2rem;">
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.35rem;">Runs and artifacts</div>
+        <h2 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 1rem;">Open a benchmark, then drill into the model</h2>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+          {benchmarkRuns.map((run) => (
+            <article style="padding:1.2rem; border:1px solid #2A241E; border-radius:10px; background:#131008; display:flex; flex-direction:column; gap:0.7rem;">
+              <div style="display:flex; justify-content:space-between; gap:0.75rem; align-items:start;">
+                <div style="font-size:0.78rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em;">{run.category}</div>
+                <div style="font-size:0.82rem; color:#8B7E6A;">{run.date}</div>
+              </div>
+              <h3 style="margin:0; font-size:1.08rem; color:#E8DCC8;">{run.model}</h3>
+              <div style="font-size:0.88rem; color:#CDBFA9;">{run.score}</div>
+              <p style="margin:0; color:#9E907C; line-height:1.65; font-size:0.92rem; flex:1;">{run.summary}</p>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+                <span style="font-size:0.75rem; color:#8B7E6A; text-transform:uppercase; letter-spacing:0.08em;">{run.artifactType}</span>
+                <a href={run.href} target={run.href.startsWith('http') ? '_blank' : '_self'} rel={run.href.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#C87533; text-decoration:none; font-size:0.9rem;">{run.hrefLabel} →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <a href="/benchmarks/operator-index" style="display:block; padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; text-decoration:none;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Graphics</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.45rem; font-weight:400; margin:0 0 0.7rem; color:#E8DCC8;">View the existing benchmark infographics</h2>
+          <p style="margin:0; color:#9E907C; line-height:1.7;">Operator Suite, messaging leaderboard, and the early canon all live here already.</p>
+        </a>
+        <a href="http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html" target="_blank" rel="noopener noreferrer" style="display:block; padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; text-decoration:none;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Detail page</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.45rem; font-weight:400; margin:0 0 0.7rem; color:#E8DCC8;">Open the Qwen 3.5 drill-down report</h2>
+          <p style="margin:0; color:#9E907C; line-height:1.7;">This is the exact detailed page you pointed at. The model row above links straight here.</p>
+        </a>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
