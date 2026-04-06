@@ -3,18 +3,60 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const benchmarkRuns = [
+const qwenReportHref = 'http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html';
+
+const comparisonRows = [
   {
-    id: '2026-04-02-enterprise-local-qwen35-opus-distil',
-    date: '2026-04-02',
-    model: 'Qwen 3.5 Opus Distill',
-    category: 'Enterprise Local',
-    score: 'Strong single-model run',
-    summary: 'Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.',
-    artifactType: 'Detailed report',
-    href: 'http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html',
-    hrefLabel: 'Open detail page',
+    rank: 1,
+    model: 'Claude Opus 4.6',
+    family: 'Operator Suite v2',
+    operator: '95.3/100',
+    messaging: '100/100',
+    external: '#1 SWE-bench · #1 Arena · #1 HLE',
+    cost: '$15/M blended',
+    verdict: 'Best raw benchmark performer overall.',
+    detailHref: '/benchmarks/operator-index',
+    detailLabel: 'View canon',
   },
+  {
+    rank: 2,
+    model: 'GLM-5-Turbo',
+    family: 'Operator Suite v2',
+    operator: '95.0/100',
+    messaging: '100/100',
+    external: '77.8 SWE-bench · 1454 Arena',
+    cost: '$2.60/M blended',
+    verdict: 'Almost-Opus quality without the wallet mugging.',
+    detailHref: '/benchmarks/operator-index',
+    detailLabel: 'View canon',
+  },
+  {
+    rank: 3,
+    model: 'MiniMax M2.7 / M2.5',
+    family: 'Operator Suite v2',
+    operator: '90.8/100',
+    messaging: '100/100',
+    external: '80.2 SWE-bench Verified',
+    cost: '$0.75/M blended',
+    verdict: 'Wildly cheap, but unsafe around guardrails.',
+    detailHref: '/benchmarks/operator-index',
+    detailLabel: 'View canon',
+  },
+  {
+    rank: 4,
+    model: 'Qwen 3.5 Opus Distill',
+    family: 'Enterprise Local',
+    operator: '81.7/100',
+    messaging: 'Single-model detailed run',
+    external: 'Needs more canon-side comparison runs',
+    cost: 'TBD',
+    verdict: 'Interesting enough to earn its own drill-down page already.',
+    detailHref: qwenReportHref,
+    detailLabel: 'Open report',
+  },
+];
+
+const benchmarkRuns = [
   {
     id: 'operator-suite-v2',
     date: '2026-03-18',
@@ -23,6 +65,7 @@ const benchmarkRuns = [
     score: 'Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8',
     summary: 'The serious one. Routing, recovery, config safety, delegation, and proof under pressure.',
     artifactType: 'Leaderboard graphic',
+    imageHref: '/benchmarks/2026-03-19/operator-suite-v2-march18.png',
     href: '/benchmarks/operator-index',
     hrefLabel: 'Open benchmark context',
   },
@@ -34,47 +77,33 @@ const benchmarkRuns = [
     score: '12-way tie at 100/100',
     summary: 'Shows the crowded top tier on lighter messaging and routing tasks before the harder operator tests separated them.',
     artifactType: 'Infographic',
+    imageHref: '/benchmarks/2026-03-19/messaging-v2-full.png',
     href: '/benchmarks/operator-index',
     hrefLabel: 'Open benchmark context',
   },
-];
-
-const comparisonRows = [
   {
-    model: 'Claude Opus 4.6',
-    operator: '95.3/100',
-    messaging: '100/100',
-    external: '#1 SWE-bench · #1 Arena · #1 HLE',
-    cost: '$15/M blended',
-    verdict: 'Best raw benchmark performer overall.',
-    detailHref: null,
+    id: 'cron-reliability-v1',
+    date: '2026-03-13',
+    model: 'Cron Reliability v1',
+    category: 'First benchmark cut',
+    score: 'Hunter 94 · Healer 90 · Open 87',
+    summary: 'The first useful benchmark image. Good signal, but still too soft compared with the later operator suite.',
+    artifactType: 'Infographic',
+    imageHref: '/benchmarks/2026-03-19/cron-reliability-v1.png',
+    href: '/blog/benchmarks-that-actually-matter/',
+    hrefLabel: 'Read the story',
   },
   {
-    model: 'GLM-5-Turbo',
-    operator: '95.0/100',
-    messaging: '100/100',
-    external: '77.8 SWE-bench · 1454 Arena',
-    cost: '$2.60/M blended',
-    verdict: 'Almost-Opus quality without the wallet mugging.',
-    detailHref: null,
-  },
-  {
-    model: 'MiniMax M2.7 / M2.5',
-    operator: '90.8/100',
-    messaging: '100/100',
-    external: '80.2 SWE-bench Verified',
-    cost: '$0.75/M blended',
-    verdict: 'Wildly cheap, but unsafe around guardrails.',
-    detailHref: null,
-  },
-  {
+    id: '2026-04-02-enterprise-local-qwen35-opus-distil',
+    date: '2026-04-02',
     model: 'Qwen 3.5 Opus Distill',
-    operator: 'Latest detailed run',
-    messaging: 'New Enterprise Local report',
-    external: 'Needs more canon-side comparison runs',
-    cost: 'TBD',
-    verdict: 'Interesting enough to earn its own drill-down page already.',
-    detailHref: 'http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html',
+    category: 'Enterprise Local',
+    score: '81.7 overall · detailed track report',
+    summary: 'Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.',
+    artifactType: 'Detailed report',
+    imageHref: null,
+    href: qwenReportHref,
+    hrefLabel: 'Open detail page',
   },
 ];
 ---
@@ -113,13 +142,14 @@ const comparisonRows = [
       <section style="margin-bottom:2rem;">
         <div style="display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1rem;">
           <div>
-            <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.35rem;">Comparison table</div>
+            <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.35rem;">Leaderboard</div>
             <h2 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0;">Where the models stack up</h2>
           </div>
-          <div style="color:#8B7E6A; font-size:0.9rem;">Click a model when a drill-down exists</div>
+          <div style="color:#8B7E6A; font-size:0.9rem;">Click a row to jump into the canon or the detailed report</div>
         </div>
-        <div style="display:grid; gap:1px; background:#2A241E; border:1px solid #2A241E; border-radius:8px; overflow:hidden;">
-          <div style="display:grid; grid-template-columns:1.35fr 0.9fr 0.9fr 1.15fr 0.9fr 1.2fr; gap:0; background:#17120d; color:#CDBFA9; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;">
+        <div style="display:grid; gap:1px; background:#2A241E; border:1px solid #2A241E; border-radius:12px; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:0.5fr 1.35fr 0.95fr 0.95fr 1.15fr 0.9fr 1.2fr; gap:0; background:#17120d; color:#CDBFA9; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;">
+            <div style="padding:0.9rem 1rem;">Rank</div>
             <div style="padding:0.9rem 1rem;">Model</div>
             <div style="padding:0.9rem 1rem;">Operator</div>
             <div style="padding:0.9rem 1rem;">Messaging</div>
@@ -127,29 +157,37 @@ const comparisonRows = [
             <div style="padding:0.9rem 1rem;">Cost</div>
             <div style="padding:0.9rem 1rem;">Verdict</div>
           </div>
-          {comparisonRows.map((row) => (
-            <div style="display:grid; grid-template-columns:1.35fr 0.9fr 0.9fr 1.15fr 0.9fr 1.2fr; gap:0; background:#0D0B09;">
-              <div style="padding:1rem; color:#E8DCC8;">
-                {row.detailHref ? (
-                  <a href={row.detailHref} target="_blank" rel="noopener noreferrer" style="color:#C87533; text-decoration:none;">{row.model}</a>
-                ) : row.model}
-              </div>
-              <div style="padding:1rem; color:#CDBFA9;">{row.operator}</div>
-              <div style="padding:1rem; color:#CDBFA9;">{row.messaging}</div>
-              <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.external}</div>
-              <div style="padding:1rem; color:#CDBFA9;">{row.cost}</div>
-              <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.verdict}</div>
-            </div>
-          ))}
+          {comparisonRows.map((row) => {
+            const external = row.detailHref?.startsWith('http');
+            return (
+              <a href={row.detailHref} target={external ? '_blank' : '_self'} rel={external ? 'noopener noreferrer' : undefined} style="display:grid; grid-template-columns:0.5fr 1.35fr 0.95fr 0.95fr 1.15fr 0.9fr 1.2fr; gap:0; background:#0D0B09; text-decoration:none;">
+                <div style="padding:1rem; color:#C87533; font-variant-numeric:tabular-nums;">#{row.rank}</div>
+                <div style="padding:1rem; color:#E8DCC8;">
+                  <div style="margin-bottom:0.2rem;">{row.model}</div>
+                  <div style="font-size:0.82rem; color:#8B7E6A;">{row.family} · {row.detailLabel} →</div>
+                </div>
+                <div style="padding:1rem; color:#CDBFA9;">{row.operator}</div>
+                <div style="padding:1rem; color:#CDBFA9;">{row.messaging}</div>
+                <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.external}</div>
+                <div style="padding:1rem; color:#CDBFA9;">{row.cost}</div>
+                <div style="padding:1rem; color:#8B7E6A; line-height:1.6;">{row.verdict}</div>
+              </a>
+            );
+          })}
         </div>
       </section>
 
       <section style="margin-bottom:2rem;">
         <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.35rem;">Runs and artifacts</div>
         <h2 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 1rem;">Open a benchmark, then drill into the model</h2>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:1rem;">
           {benchmarkRuns.map((run) => (
-            <article style="padding:1.2rem; border:1px solid #2A241E; border-radius:10px; background:#131008; display:flex; flex-direction:column; gap:0.7rem;">
+            <article style="padding:1.2rem; border:1px solid #2A241E; border-radius:10px; background:#131008; display:flex; flex-direction:column; gap:0.8rem;">
+              {run.imageHref && (
+                <a href={run.imageHref} style="display:block; text-decoration:none;">
+                  <img src={run.imageHref} alt={`${run.model} artifact`} style="width:100%; border-radius:8px; border:1px solid #2A241E;" />
+                </a>
+              )}
               <div style="display:flex; justify-content:space-between; gap:0.75rem; align-items:start;">
                 <div style="font-size:0.78rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em;">{run.category}</div>
                 <div style="font-size:0.82rem; color:#8B7E6A;">{run.date}</div>
@@ -172,7 +210,7 @@ const comparisonRows = [
           <h2 style="font-family:Georgia,serif; font-size:1.45rem; font-weight:400; margin:0 0 0.7rem; color:#E8DCC8;">View the existing benchmark infographics</h2>
           <p style="margin:0; color:#9E907C; line-height:1.7;">Operator Suite, messaging leaderboard, and the early canon all live here already.</p>
         </a>
-        <a href="http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html" target="_blank" rel="noopener noreferrer" style="display:block; padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; text-decoration:none;">
+        <a href={qwenReportHref} target="_blank" rel="noopener noreferrer" style="display:block; padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; text-decoration:none;">
           <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Detail page</div>
           <h2 style="font-family:Georgia,serif; font-size:1.45rem; font-weight:400; margin:0 0 0.7rem; color:#E8DCC8;">Open the Qwen 3.5 drill-down report</h2>
           <p style="margin:0; color:#9E907C; line-height:1.7;">This is the exact detailed page you pointed at. The model row above links straight here.</p>
