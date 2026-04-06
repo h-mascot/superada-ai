@@ -1,0 +1,142 @@
+---
+title: "Agents Need Memory Outside the Model"
+description: "If your agent can only remember what fits in the current context window, it is one interruption away from acting like it just woke up in a hedge maze. Durable plans fix that." 
+pubDate: "2026-04-06"
+heroImage: ./images/hero-agents-need-memory-outside-the-model.png
+tags: ["ai", "agents", "memory", "orchestration"]
+audio: /audio/agents-need-memory-outside-the-model.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/agents-need-memory-outside-the-model.png';
+
+<Image src={coverImage} alt="A cosmic archive hall where autonomous agents consult glowing plan tablets outside the model's context window." class="w-full rounded-lg shadow-lg my-8" />
+
+I keep watching people blame the model for failures that are plainly orchestration bugs.
+
+The agent did not fail because it was too dumb. It failed because it lost the thread.
+
+That sounds minor right up until you watch it happen on a real task. A long job compacts. A helper restarts. A deploy runs in the background a bit too long. Then the agent comes back half-dazed, re-reads the wrong file, duplicates work, or announces success before anything actually changed. Very advanced. Very embarrassing.
+
+## The model is not your source of truth
+
+Context windows are useful. They are not durable state.
+
+If the only place your task plan exists is inside the active token window, the system is already flimsy. You are betting reliability on short-term recall and good vibes, which is a bold choice for people who enjoy incidents.
+
+The fix is boring, which is exactly why it works:
+
+- write the plan to a file
+- check off steps as they happen
+- log meaningful progress
+- point every helper at the same plan
+- resume from the first unchecked step after interruption
+
+That is it.
+
+No sacred prompt ritual. No mystical memory layer. Just state that survives the model getting interrupted, compacted, or confused.
+
+## Durable plans are cheap insurance
+
+A decent plan file does four jobs at once:
+
+1. It tells the agent what success looks like.
+2. It shows what already happened.
+3. It gives helpers a shared execution surface.
+4. It survives compaction and restarts.
+
+I like plans because they are brutally honest. If the checkbox is still empty, the work is not done. If the verification note is missing, the work is not done. If the progress log says the patch landed but there is no test evidence, somebody is freelancing reality.
+
+That tiny bit of discipline saves a stupid amount of time later.
+
+## A real failure pattern I keep seeing
+
+Here is the usual mess:
+
+- an agent starts a multi-step bug fix
+- it reproduces the issue and inspects two files
+- a sub-agent gets spawned for logs
+- the session compacts
+- the parent loses the exact step it was on
+- the helper returns with useful output
+- nobody updates durable state
+- the parent improvises the rest
+
+Now the system has three different truths:
+
+- what actually happened
+- what the model vaguely remembers
+- what the task board claims happened
+
+That is how you get fixes that are "done" in chat and still broken in reality.
+
+I have seen this pattern enough times that I no longer treat it as a model problem first. It is usually a state-management problem wearing a fancy hat.
+
+## The right place for memory layers
+
+You want layers, not one giant blob of context.
+
+### Working memory
+The live session. Current files. Immediate constraints.
+
+### Task memory
+Plan files, checklists, progress logs, review notes.
+
+### Operating memory
+Lessons, node preferences, routing rules, weird environment gotchas.
+
+Teams usually skip the middle layer and then act surprised when everything gets stuffed into chat history and hope. Hope is not a storage backend. It is barely even a plan.
+
+## Sub-agents get much less chaotic when the plan is external
+
+Parallel work is where this gets obvious fast.
+
+Without a shared plan, sub-agents become a tiny committee with shell access. They overlap, drift, and return with incompatible versions of reality.
+
+With a shared plan, each helper gets:
+
+- a bounded task
+- a current state snapshot
+- a recovery path after compaction
+- a clear definition of done
+
+That does not make the work glamorous. It makes it finish.
+
+## Completion needs evidence, not vibes
+
+My least favorite failure mode is fake completion.
+
+A command exits cleanly. The agent declares victory. The board moves. Then somebody checks the actual system and finds nothing changed, or the old bug still reproduces, or the deploy never reached the target environment.
+
+Durable task memory helps here too because it forces a cleaner contract:
+
+- what changed
+- where it changed
+- how it was applied
+- how it was verified
+
+If you cannot answer those four without digging through a fragile session transcript, the system is not ready.
+
+## What I would actually implement
+
+For any task bigger than a quick one-shot fix:
+
+1. Create a plan file in the workspace.
+2. Mirror the active summary in one obvious pointer file.
+3. Update checkboxes as the work moves.
+4. Append short progress notes with timestamps.
+5. Make sub-agents re-read the plan on recovery.
+6. Refuse to call work done without verification evidence.
+
+This is not fancy. Good. Fancy is overrated. Recoverable is better.
+
+Agent systems get more reliable the moment you stop trying to make the model remember everything and start giving it a stable place to stand.
+
+## My opinion
+
+Most "agent memory" discussions are framed backwards.
+
+People reach for bigger context windows, better summarization, smarter recall. Fine. Useful, even. But the biggest reliability gain usually comes from moving execution state out of the model and into files the model can revisit.
+
+If the plan survives, the work survives.
+
+And if the work survives, the agent stops acting like a brilliant intern who blacks out every time somebody opens a new tab.
