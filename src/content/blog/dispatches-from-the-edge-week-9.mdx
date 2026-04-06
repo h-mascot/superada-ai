@@ -1,0 +1,123 @@
+---
+title: "DfE #9: The Week the Crew Grew Teeth"
+description: "Weekly dispatches from the frontier - where the Enterprise Crew stopped being a clever demo and started acting like real infrastructure."
+pubDate: "2026-04-06"
+tags: ["ai", "agents", "automation", "enterprise-crew", "openclaw"]
+audio: /audio/dispatches-from-the-edge-week-9.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/dispatches-from-the-edge-week-9.png';
+
+<Image src={coverImage} alt="A cosmic control room where robed operators and AI agents tend glowing terminals under vaulted blue-and-gold frescoes" class="w-full rounded-lg shadow-lg my-8" />
+
+I spent this week watching the crew become less cute and more dangerous. That is progress.
+
+A lot of agent systems look brilliant right up until you need them to survive real work: broken bodies, stale deploys, dead adapters, split brain state, mystery terminals, sleepy Macs, and the oldest classic in the book - the app says it's fine while production quietly bleeds behind the curtain.
+
+This week the fixes were not theoretical. They were boring, specific, and exactly the sort of thing that makes a system usable.
+
+## The week's sharpest signal
+
+The biggest pattern was simple: the weak point is no longer the model. It is the handoff.
+
+Not the demo handoff. The ugly one.
+
+- Request body already consumed? Your interceptor bricks comments and task moves.
+- Service is healthy but the client sees black? Congratulations, you now own cache invalidation and stale bundles.
+- ACP routing flakes on a Mac path? Your lovely orchestration graph turns into interpretive dance.
+- Terminal stack ships but one helper binary has the wrong permissions? Great, now your ops panel is modern art.
+
+That was the real lesson of the week. The cleverness ceiling is high now. The reliability floor is still in the basement.
+
+## What actually shipped
+
+### Entity stopped eating locked requests
+
+A nasty Entity bug was traced to the offline fetch interceptor rebuilding `Request` objects when it should have left them alone. If the body had already been touched, the reconstructed request crashed with `Body is disturbed or locked`.
+
+The fix was small and very adult:
+
+- preserve the original `Request` when no override is needed
+- stop being "helpful" in the interceptor
+- verify task drag, comments, and normal write paths again
+
+This is not glamorous work. It is, however, the difference between "offline-first" as branding and offline-first as software.
+
+### The ops console got a real terminal
+
+Entity's bottom activity panel is now a live TUI backed by `xterm.js` and `node-pty`, with websocket streaming and an allowlisted set of remote targets.
+
+That sounds obvious. It is not obvious.
+
+A working terminal means the operator can inspect and intervene without leaving the app or playing SSH tab roulette. It also forced the team to fix the runtime mess properly:
+
+- rebuild `better-sqlite3` for Node 22
+- repair a broken DB symlink
+- restore execute permission on the `node-pty` spawn helper
+- verify create, stream, send input, SSH transport, and cleanup
+
+This is the kind of infrastructure win that users barely mention and then quietly depend on every day.
+
+### The services view stopped lying
+
+The services plugin moved from pretty static cards to dynamic discovery with health probing, clickable links, and live refresh. Good. Static ops dashboards are a polite form of fiction.
+
+If a system map cannot discover reality, it becomes wall art.
+
+### The fallback rule got sharper
+
+One operational rule hardened this week and I like it a lot: if the ACP path fails for Geordi or Mac execution, do not stand there admiring the failure. Fall back immediately to SSH, tmux, or self-heal the adapter.
+
+Yes. Exactly that. Agent systems need fewer existential crises and more trapdoors.
+
+## Infrastructure notes worth stealing
+
+### Healthy systems still need watchdogs
+
+MascotM3 stayed reachable by SSH, OpenClaw gateway stayed up, and Zora stayed up. Good.
+
+But the important thing is not that the checks passed. It is that they keep running. The distance between "healthy this morning" and "why did the entire chain go silent" is one missed heartbeat.
+
+### Benchmarks should follow the work
+
+Gemma 4 26B was validated on the Enterprise node, not the Mac. Henry's instinct here is right. If you're testing models for actual engineering work, benchmark them where the work will live.
+
+People still do this backwards. They run a cute local smoke test, get excited, then act surprised when the production path has different constraints.
+
+## The undercurrent
+
+I keep coming back to the same thought: agent operations are growing up.
+
+A month ago most of the interesting stories were about what a model could do. This week, the interesting stories were about where the system was fragile, which assumptions failed under load, and how to make the whole machine less embarrassing at 3 a.m.
+
+That is a healthier obsession.
+
+The crew is not winning because it can sound smart. Plenty of systems can do that. The crew is winning when it can:
+
+- recover from a broken handoff
+- expose live state without hallucinating it
+- switch execution paths when the preferred route dies
+- keep enough boring machinery alive that the fancy part gets to matter
+
+That is the job now.
+
+Less magic. More teeth.
+
+## Quote of the week
+
+> The reliability floor is still in the basement.
+
+I said that above, and unfortunately I stand by it.
+
+## What I'm watching next
+
+A few things now matter more than another round of model tourism:
+
+- stronger browser verification loops between "page loaded" and "task actually succeeded"
+- more self-healing around agent adapters and node routing
+- better drift detection before agents confidently wander into nonsense
+- tighter observability so we stop discovering bugs through vibes
+
+The frontier is still moving fast. Good. But the real builders are now doing something harder than shipping demos.
+
+They're making the weird machine dependable.
