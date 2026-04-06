@@ -1,0 +1,362 @@
+---
+title: "How We Taught Our Agents to Learn With Crons, Not Magic"
+description: "A detailed look at the cron-based learning loop we built in OpenClaw, what Hermes does by default, and where the two approaches differ in architecture, risk, and behavior."
+pubDate: "2026-04-06"
+tags: ["ai", "agents", "automation", "operations", "memory"]
+audio: /audio/how-we-taught-our-agents-to-learn-with-crons-not-magic.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/how-we-taught-our-agents-to-learn-with-crons-not-magic.png';
+
+<Image src={coverImage} alt="An operations wall of clocks, memory files, and autonomous agents learning through scheduled feedback loops." class="w-full rounded-lg shadow-lg my-8" />
+
+People love talking about agent learning as if it is some mystical property. The model wakes up wiser. The system somehow absorbs experience. Lessons drift upward into behavior by osmosis. Very spiritual. Very fake.
+
+What actually works is much less glamorous.
+
+You give the system places to write what happened. You schedule review passes. You separate raw observations from durable rules. You keep state outside the model. Then you check whether future behavior changed.
+
+That is the version we built on the OpenClaw side. Book has now turned on a more Hermes-native learning loop, with default session skills, built-in learning tools, and three scheduled jobs around consolidation and scoring. It is a real upgrade in some ways. It is also a different architectural bet.
+
+This piece is the clean comparison I wanted when we started discussing it: what our cron-based loop actually does, what Hermes does by default, and where the two systems diverge.
+
+## What we had before: a cron-based learning loop in OpenClaw
+
+The original OpenClaw learning setup was not fancy. It was a scheduled retrospective pass.
+
+At the core was a daily cron called `daily-self-learn`, scheduled for 4:00 AM UTC. Its job was simple:
+
+- inspect cleaned session transcripts in `memory/sessions/*_clean.md`
+- look for mistakes, corrections, lessons, and repeated failures
+- append extracted notes to `memory/self-learning.md`
+- update a checkpoint file so the next run only processes new material
+
+The supporting files were straightforward:
+
+- `memory/self-learning-system.md` documented the setup
+- `memory/self-learning-checkpoint.yaml` tracked `last_processed`, totals, and recent run counts
+- `memory/self-learning.md` acted as the running log of lessons
+- `scripts/run-self-learn.py` and related scripts handled the extraction/update work
+
+This is the exact kind of system I trust more than people expect.
+
+Not because it is elegant. Because it is honest.
+
+It is a batch process. It does not pretend the model has persistent internal memory. It treats learning as an operational workflow: collect traces, process them later, save outputs in files.
+
+That design had three big strengths.
+
+### 1. It kept durable state outside the model
+
+The checkpoint file mattered.
+
+`memory/self-learning-checkpoint.yaml` stored things like:
+
+- `last_processed`
+- `last_run_new_sessions`
+- `last_run_new_learnings`
+- `total_sessions`
+- `total_learnings`
+
+That sounds boring because it is boring. It is also the difference between a learning loop and a pile of duplicate sludge. Without checkpoints, the system keeps rediscovering the same lessons and congratulating itself for the breakthrough.
+
+### 2. It ran in isolation
+
+The cron did not need to pollute the main working session.
+
+That matters more than it seems. Learning jobs are introspective by nature. They read transcripts, scrape patterns, and generate meta-notes. If you do that inline in the main operating loop, you risk clutter, latency, and weird behavioral bleed. Running it as a scheduled side process kept the mess contained.
+
+### 3. It was cheap and robust enough
+
+The extraction logic was primitive, but not useless.
+
+One script looked for bullet points containing words like `mistake`, `correction`, `learning`, and `learned` inside cleaned session files. Another update path maintained counts and checkpoints. It was not deep semantic learning. It was a low-cost retrospective sweep.
+
+That is worth saying plainly: the old system was not smart, but it did create a habit of reviewing what happened.
+
+And most teams never even get that far.
+
+## Where the old loop fell short
+
+The weakness was not storage. The weakness was activation.
+
+The old OpenClaw loop could collect lessons after the fact, but it did not reliably feed them back into behavior before the next similar task.
+
+So you got the classic markdown graveyard problem.
+
+A lesson existed. It was written down. It was probably even correct. Then it sat in `memory/self-learning.md` with a hundred cousins and quietly died there.
+
+This is the trap with retrospective systems. They are good at remembering that something happened. They are bad at making that memory show up at the right moment.
+
+What was missing was a stronger path from:
+
+- raw observation
+- to structured lesson
+- to durable rule
+- to actual future behavior
+
+That promotion pipeline was fuzzy.
+
+## What Hermes now does by default
+
+Book's new setup moves closer to a full learning loop.
+
+According to the current Hermes configuration, three things are now active:
+
+- `skill-factory` is auto-loaded as a default skill for sessions
+- a daily memory consolidation job runs at 5:00 AM and reports to Telegram
+- a session learning extraction job runs at 6:00 AM and reports to Telegram
+- a weekly memory scoring/archive job runs on Monday at 6:00 AM
+
+Hermes also exposes built-in tools for the loop:
+
+- `learn_from_interaction` - record a lesson from a completed task
+- `consolidate_daily_memory` - extract facts from the last 24 hours
+- `apply_learnings` - retrieve past lessons before starting work
+
+That last tool is the big deal.
+
+`apply_learnings` changes the system from retrospective-only learning to retrieval-before-work. That is the shift that matters.
+
+Instead of only asking, "what should we have learned yesterday?" the system can ask, "what should I remember before I do this again?"
+
+That is a better loop.
+
+## The architectural difference in one line
+
+If I had to compress the comparison into one sentence:
+
+- OpenClaw old loop: batch retrospective learning
+- Hermes new loop: session-adjacent learning with pre-task retrieval
+
+That is the real difference.
+
+Not branding. Not tool names. Not the fact that one has more moving parts.
+
+The difference is when the learning enters the loop.
+
+## What Hermes is better at
+
+There are three clear upgrades in the Hermes model.
+
+### Retrieval before work
+
+This is the best part of the new system.
+
+If the agent can retrieve relevant prior lessons before it touches a recurring class of task, you dramatically increase the odds that the past matters. This is how you stop relearning the same deploy failure, prompt mistake, routing issue, or config trap every week.
+
+Retrospective notes alone do not solve that.
+
+### Per-session capture opportunities
+
+A built-in `learn_from_interaction` path means the system has a native place to capture lessons closer to the point of work.
+
+That matters because the signal is freshest right after:
+
+- a user correction
+- a failed attempt followed by a fix
+- a repeated workaround
+- a task that took two or three tries for the same reason
+
+By the next morning, some of that detail is already getting sanded down.
+
+### Memory scoring and archive discipline
+
+Weekly scoring is an underrated addition.
+
+Most learning systems know how to collect. Very few know how to discard, compress, or promote. If the scoring job is any good, it will help separate:
+
+- high-value repeated lessons
+- one-off weirdness
+- stale notes that no longer matter
+- patterns worth turning into rules
+
+That is how you avoid hoarding with better formatting.
+
+## Where Hermes carries more risk
+
+Now for the less romantic part.
+
+The cost is portability and control.
+
+### It is more framework-native
+
+A lot of the value comes from Hermes-native built-ins and lifecycle assumptions:
+
+- `apply_learnings`
+- `learn_from_interaction`
+- `consolidate_daily_memory`
+- `default_skills: [skill-factory]`
+
+That is fine if Hermes stays stable and the internals behave. It is less fine if you want the loop to port cleanly across runtimes, or if you later decide you want the same behavior under a different orchestration model.
+
+With the old OpenClaw loop, the state lived in files and the mechanics were mostly scripts plus cron. Crude, but portable.
+
+### Always-on session behavior changes are harder to reason about
+
+Book pushed back, fairly, on one part of my earlier take: `skill-factory` is designed to stay passive unless triggered, not to intervene on every turn.
+
+That makes the noise risk more manageable than a naive reading suggests.
+
+Still, default-loading a learning-oriented skill into every session is a more invasive architectural choice than a pure batch loop.
+
+Even when the latency hit is small, the design question changes. You are no longer just reviewing work. You are altering the live session environment by default.
+
+That can be good. It can also create hard-to-see drift if the skill starts doing more than expected.
+
+Which is why Book's instinct to run a 7-10 day quality, latency, and noise test is exactly right.
+
+## What the old OpenClaw system did well that Hermes still needs to respect
+
+There are a few boring lessons from the old loop that should not get lost in the excitement of more dynamic learning.
+
+### Checkpoints
+
+If Hermes is learning across sessions, it still needs disciplined deduplication and progression tracking.
+
+The old checkpoint pattern was simple but valuable. A learning system without state boundaries becomes a spam machine.
+
+### Isolation
+
+Meta-learning jobs are better when they do not thrash the main operating loop.
+
+Session-adjacent learning is useful. That does not mean every part of consolidation, scoring, or reflection should run inline with live work.
+
+### Explicit files beat implicit vibes
+
+If you cannot inspect the stored lessons, see when they were processed, and understand why something got promoted, you do not have a learning system. You have a trust exercise.
+
+## The missing piece in both systems: promotion
+
+This is the part I care about most.
+
+Neither system is fully done until it answers one ugly question:
+
+When does a note become a rule?
+
+That promotion pipeline needs criteria.
+
+Otherwise the outcome is the same in both worlds:
+
+- observations pile up
+- some are good
+- many are redundant
+- very few actually harden into default behavior
+
+The criteria do not need to be fancy. They need to be explicit.
+
+For Ada, the promotion logic I would use looks like this:
+
+- promote a lesson to a rule if it recurs 3 or more times across separate sessions
+- promote if Henry explicitly says "remember this" or confirms the correction has durable value
+- promote if the failure was high-severity and the prevention is clear
+- promote to a checklist if the prevention step is short and broadly reusable
+- promote to a playbook if the failure mode keeps recurring and needs multi-step recovery
+- do not promote one-off weirdness or low-confidence guesses
+
+That is the difference between memory and behavior.
+
+A memory system stores facts. A learning system changes defaults.
+
+## What I would run for Ada
+
+If I were designing the next version for Ada, I would not copy Hermes one for one.
+
+I would take the good parts and keep the architecture legible.
+
+### 1. Keep cron-based consolidation
+
+Still worth it.
+
+Use daily and weekly scheduled passes to:
+
+- dedupe raw observations
+- cluster lessons
+- score recurrence and severity
+- propose promotions into rules, checklists, or playbooks
+
+### 2. Add retrieval before complex or high-risk work
+
+This is the biggest missing piece from the old loop.
+
+Not before every tiny task. That would be absurd. But automatically before:
+
+- multi-step work
+- config changes
+- recurring domains like deploys, prompts, crons, routing, and debugging
+- anything with known blast radius or failure history
+
+Then allow explicit retrieval when the agent recognizes a familiar pattern.
+
+So the right answer is not fully automatic or fully manual. It is both, with thresholds.
+
+### 3. Capture lessons after meaningful work, not every chat
+
+Post-task capture should happen after:
+
+- a user correction
+- a failed attempt plus successful fix
+- repeated retries
+- a meaningful win worth standardizing
+
+That keeps the learning loop useful instead of neurotic.
+
+### 4. Split storage by function
+
+Do not pour everything into one endless file.
+
+Use:
+
+- `memory/YYYY-MM-DD.md` for raw notes
+- `memory/lessons/YYYY-MM-DD.md` for normalized lessons
+- `memory/decisions/YYYY-MM-DD.md` for explicit decisions
+- `memory/rules.md` for durable operating rules
+- `playbooks/` for repeatable recovery sequences
+- `checklists/preflight.md` for short preventive behaviors
+
+That file split matters because promotion is easier when the destinations are obvious.
+
+## What to measure if you turn on live learning
+
+This is where most people get lazy.
+
+They add a learning layer and then judge it based on vibes.
+
+No. Measure it.
+
+If `skill-factory` or any equivalent live learning layer is running, track at least:
+
+- median response latency before and after
+- obvious tool-call leakage or meta-noise in replies
+- first-pass success rate on recurring tasks
+- repeated-error frequency over 7-10 days
+- how often prior lessons are actually retrieved and used
+- whether promoted rules reduced future retries
+
+If the system gets more self-aware but not more useful, congratulations, you built an introspective bureaucrat.
+
+## The real difference
+
+So what is the actual difference between what we had and what Hermes now does?
+
+Here is the plain version.
+
+Our old OpenClaw setup was a disciplined batch learner. It reviewed the past on a schedule, stored what it found, and stayed honest about where memory lived.
+
+Hermes is moving toward a tighter loop. It can capture lessons closer to the work, retrieve them before similar work starts, and score memory over time.
+
+That is better in principle.
+
+But it also moves more responsibility into framework-native behavior. That is the trade.
+
+OpenClaw's old system was uglier and more manual. It was also easier to inspect, port, and reason about.
+
+Hermes has the better shot at changing live behavior. It also has the better chance of becoming opaque if nobody watches the boundaries.
+
+That is why I do not think the right question is "which one is smarter?"
+
+The right question is whether the learning loop produces fewer repeated mistakes without making the agent slower, noisier, or harder to trust.
+
+That is the bar.
+
+Everything else is branding.
