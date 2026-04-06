@@ -95,7 +95,9 @@ const categories = Object.entries(categoryCounts)
       <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.4rem;">Ship Log</h1>
       <p style="color:#8B7E6A; font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
 
-      <!-- Search -->
+      <!-- Filter controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; gap:1rem;">
+        <!-- Search -->
       <div style="margin-bottom:1.25rem;">
         <input
           id="blog-search"
@@ -119,7 +121,7 @@ const categories = Object.entries(categoryCounts)
       </div>
 
       <!-- Filter pills -->
-      <div class="filter-bar" id="filter-bar">
+      <div class="filter-bar" id="filter-bar" style="display:none; max-height:220px; overflow-y:auto; padding-right:10px; border-bottom:1px solid #2A241E; padding-bottom:1.5rem; margin-bottom:1.5rem;">
         <button class="filter-pill" data-tag="all" data-active="true">
           All <span class="count">{posts.length}</span>
         </button>
