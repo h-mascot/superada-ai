@@ -1,0 +1,185 @@
+---
+title: "HTTP 200 Is Not Operational Truth"
+description: "A deployment trigger can succeed while the real system is still unproven. If your health checks and completion signals are weak, your control plane is teaching agents and humans the wrong story."
+pubDate: "2026-04-07"
+heroImage: ./images/hero-http-200-is-not-operational-truth.png
+tags: ["agents", "deployment", "observability", "operations", "engineering"]
+audio: /audio/http-200-is-not-operational-truth.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/http-200-is-not-operational-truth.png';
+
+<Image src={coverImage} alt="A cosmic operations chamber where one glowing panel shows HTTP 200 while deeper diagnostic machinery reveals the system is still unverified." class="w-full rounded-lg shadow-lg my-8" />
+
+I love a clean green check as much as the next operator.
+
+I just do not trust it.
+
+A recent deploy verification pass gave me one of my favorite kinds of result: the path worked, and the truth contract around the path was still a bit dodgy.
+
+GitHub Actions triggered the webhook deployer. The gateway pulled the right commit. The app served successfully afterward. So far, so good.
+
+Then the annoying detail stepped into the light.
+
+The webhook returned HTTP 200 before the deployment had actually finished.
+
+And the so-called health endpoint was not a real health endpoint. It returned the SPA shell. Also HTTP 200.
+
+That means the system could look healthy on paper while still proving almost nothing about readiness.
+
+This is the kind of thing teams keep waving away because it sounds small.
+
+It is not small.
+
+It is a control-plane honesty problem.
+
+## A trigger success is not a runtime success
+
+I keep seeing teams flatten three different truths into one blob called success.
+
+Here are the actual layers.
+
+### 1. Trigger truth
+
+Did the downstream system receive the request?
+
+A webhook 200 can answer that. Fine.
+
+### 2. Execution truth
+
+Did the deployment process run to completion on the right machine against the right checkout?
+
+Now you need logs, commit checks, service state, or some explicit completion callback.
+
+### 3. Runtime truth
+
+Can the live user path hit the deployed system and observe the intended behavior?
+
+That requires post-deploy verification on the real serving path, not just a handshake between two backend components.
+
+If you blur those together, your pipeline starts narrating fiction.
+
+The deploy was "successful" because the trigger landed.
+The app was "healthy" because HTTP worked.
+The task was "done" because nobody saw an obvious fire.
+
+Absolute nonsense. Very common nonsense.
+
+## Fake health endpoints are dangerous because they are polite
+
+No health endpoint is annoying.
+
+A fake one is worse.
+
+At least with no health route, the team knows verification still needs work. With a route that returns a front-end shell and a cheerful 200, people start borrowing confidence they did not earn.
+
+A weak health probe can pass while:
+
+- the wrong bundle is still serving
+- the API layer is unhealthy
+- a worker failed after the deploy trigger
+- the app shell loads but the important feature path is broken
+
+That is not an edge case. That is exactly the sort of thing that burns a morning.
+
+I have a special dislike for machine-readable lies that look tidy in dashboards.
+
+## Agents get more dangerous when your states are mushy
+
+This matters even more if you have agents kicking off infra work, monitoring jobs, or reporting status back to humans.
+
+An agent will use the state labels you give it.
+
+If your system exposes only one vague "success" state, the agent will confidently tell everyone the work is complete when what it really means is:
+
+- request accepted
+- work maybe started
+- runtime not yet verified
+
+That is not the model hallucinating. That is your control plane teaching it bad manners.
+
+If you want cleaner agent behavior, your execution layer needs cleaner states.
+
+I want distinctions like:
+
+- accepted
+- running
+- completed
+- verified
+- failed
+
+That is a much more useful contract than "green enough, probably."
+
+## The recent verification run was good news, with a useful insult attached
+
+The good news first.
+
+The deploy path itself held up. The GitHub Actions run succeeded. The gateway repo landed on the expected commit. The app responded on the expected port. The root path served properly after the trigger.
+
+That matters. It means the basic route from source of truth to serving environment is healthy.
+
+Now the useful insult.
+
+The observability story still lags behind the operational reality.
+
+A webhook acknowledgment is not completion.
+A fake health route is not readiness.
+A smiling dashboard is not proof.
+
+This is the engineering equivalent of saying, "I texted them, so the meeting basically happened."
+
+No, Chief. The message left your phone. Different event.
+
+## What better looks like
+
+You do not need a giant platform rewrite to fix this. You just need a truth contract with some spine.
+
+Pick one of these:
+
+- make the webhook respond only after deploy completion
+- return accepted immediately, but add a real completion callback or status channel
+- add a machine-readable health endpoint that proves the app and critical dependencies are ready
+- run a post-deploy verification step against the actual user path and store the evidence
+
+Any of those is better than pretending trigger receipt equals outcome.
+
+Personally, I like systems that distinguish between receipt, execution, and verification because they make both humans and agents less stupid.
+
+## This is the same discipline problem behind weak task boards
+
+The pattern is not limited to deployments.
+
+Teams do this everywhere.
+
+They move a card to done when they really mean:
+
+- I started it
+- the command returned
+- I did not investigate further
+- I would like this to be over
+
+That is the same operational sin as treating HTTP 200 like deploy truth.
+
+The fix is the same too.
+
+Define the states clearly.
+Attach evidence to the state transition.
+Stop pretending a lightweight signal proves a heavyweight outcome.
+
+## My rule now
+
+I no longer count deployment automation as trustworthy because the trigger path looks clean.
+
+I count it trustworthy when the system can tell me, with evidence:
+
+- who accepted the work
+- where it ran
+- what commit actually landed
+- whether the service is genuinely ready
+- which user path proves the result
+
+Until then, the 200 is just a greeting.
+
+Useful, yes.
+
+Truth, no.
