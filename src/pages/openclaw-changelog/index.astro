@@ -68,7 +68,9 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
           <input id="feature-search" type="search" placeholder="Memory, Codex, Matrix, 2026.4.10..." />
         </label>
 
-        <label class="filter-wrap">
+        <button id="reset-test-state" class="reset-btn" title="Clear all test progress">Reset tests</button>
+
+    <label class="filter-wrap">
           <span>Category</span>
           <select id="category-filter">
             <option value="all">All categories</option>
@@ -170,6 +172,90 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     <Footer />
 
     <script is:inline>
+      const LS_KEY = 'openclaw-changelog-test-state';
+
+      const loadTestState = () => {
+        try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { return {}; }
+      };
+
+      const saveTestState = (state) => {
+        try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
+      };
+
+      const STATUS_CYCLE = ['not-tested', 'tested', 'needs-setup'];
+      const STATUS_META = {
+        'tested':       { icon: '✅', label: 'Tested',    tone: '#34D399' },
+        'not-tested':   { icon: '⬜', label: 'Not tested', tone: '#94A3B8' },
+        'needs-setup':  { icon: '🟡', label: 'Needs setup', tone: '#FBBF24' },
+      };
+
+      const featureKey = (el) => `${el.dataset.featureVersion}::${el.querySelector('h3')?.textContent}`;
+
+      // Restore saved state on load
+      const savedState = loadTestState();
+      document.querySelectorAll('.feature-card').forEach((card) => {
+        const key = featureKey(card);
+        const status = savedState[key];
+        if (status && STATUS_META[status]) {
+          applyStatus(card, status);
+        }
+      });
+      refreshCounters();
+
+      function applyStatus(card, status) {
+        const meta = STATUS_META[status];
+        const chip = card.querySelector('.status-chip');
+        if (!chip) return;
+        chip.textContent = `${meta.icon} ${meta.label}`;
+        chip.style.color = meta.tone;
+        card.dataset.testStatus = status;
+        card.style.setProperty('--status-tone', meta.tone);
+      }
+
+      function refreshCounters() {
+        document.querySelectorAll('.version-card').forEach((card) => {
+          const features = card.querySelectorAll('.feature-card');
+          let tested = 0, total = features.length;
+          features.forEach((f) => { if (f.dataset.testStatus === 'tested') tested++; });
+          const pills = card.querySelectorAll('.stat-pill');
+          if (pills[1]) pills[1].querySelector('strong').textContent = tested;
+          if (pills[2]) pills[2].querySelector('strong').textContent = total - tested;
+          const bar = card.querySelector('.bar-tested');
+          if (bar) bar.style.width = total ? `${(tested / total) * 100}%` : '0%';
+          const barP = card.querySelector('.bar-pending');
+          if (barP) barP.style.width = total ? `${((total - tested) / total) * 100}%` : '0%';
+        });
+      }
+
+      // Click to toggle
+      document.querySelectorAll('.status-chip').forEach((chip) => {
+        chip.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = chip.closest('.feature-card');
+          const key = featureKey(card);
+          const current = card.dataset.testStatus || 'not-tested';
+          const idx = STATUS_CYCLE.indexOf(current);
+          const next = STATUS_CYCLE[(idx + 1) % STATUS_CYCLE.length];
+          applyStatus(card, next);
+          const state = loadTestState();
+          state[key] = next;
+          saveTestState(state);
+          refreshCounters();
+        });
+      });
+
+      // Reset button
+      document.getElementById('reset-test-state')?.addEventListener('click', () => {
+        localStorage.removeItem(LS_KEY);
+        document.querySelectorAll('.feature-card').forEach((card) => {
+          const testableBy = card.dataset.featureSearch?.includes('henry-only') ? 'henry' : 'agent';
+          const defaultStatus = testableBy === 'henry' ? 'not-tested' : 'not-tested';
+          applyStatus(card, 'not-tested');
+        });
+        refreshCounters();
+      });
+
+      // Search + filter
       const searchInput = document.getElementById('feature-search');
       const categoryFilter = document.getElementById('category-filter');
       const versionCards = Array.from(document.querySelectorAll('.version-card'));
@@ -374,7 +460,7 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     justify-content: space-between;
     align-items: start;
     gap: 1rem;
-    padding: 1.35rem;
+    padding: 1.35rem 0;
     cursor: pointer;
   }
 
@@ -411,7 +497,12 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
   .bar-pending { background: #5B524A; }
 
   .version-body {
-    padding: 1.2rem 1.35rem 1.35rem;
+    padding: 1.2rem 0 1.35rem;
+  }
+
+  .version-body .fixes-row {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .feature-grid {
@@ -452,7 +543,15 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
   }
 
   .category-chip { color: var(--feature-accent); }
-  .status-chip { color: var(--status-tone); }
+  .status-chip {
+    color: var(--status-tone);
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .status-chip:hover {
+    opacity: 0.75;
+  }
   .meta-tag { color: #CDBFA9; }
 
   .feature-card h3 {
@@ -497,20 +596,49 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     }
   }
 
+  .reset-btn {
+    font: inherit;
+    font-size: 0.82rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid #3A3027;
+    background: #0D0B09;
+    color: #8B7E6A;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    align-self: flex-end;
+  }
+
+  .reset-btn:hover {
+    color: #FBBF24;
+    border-color: #FBBF24;
+  }
+
+  @media (max-width: 960px) {
+    .page-grid,
+    .control-bar,
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar-card {
+      position: static;
+    }
+  }
+
   @media (max-width: 720px) {
     .changelog-shell {
       padding: 1.5rem 1rem 3rem;
     }
 
-    .hero-card,
-    .version-summary,
-    .version-body {
+    .hero-card {
       padding-left: 1rem;
       padding-right: 1rem;
     }
 
     .version-summary {
       flex-direction: column;
+      padding: 1rem 0;
     }
 
     .summary-stats {
