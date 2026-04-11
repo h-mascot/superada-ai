@@ -253,6 +253,27 @@ const typeColors: Record<string, string> = {
       </div>
 
       <div class="resources-layout">
+        <aside class="resources-nav">
+          <div class="nav-label">Filter</div>
+          <nav class="filter-nav">
+            {types.map((t) => (
+              <a
+                href="#"
+                data-filter={t}
+                class={`filter-link ${t === 'all' ? 'is-active' : ''}`}
+                onclick="event.preventDefault(); filterResources(this.dataset.filter)"
+              >
+                {typeLabels[t]}
+              </a>
+            ))}
+          </nav>
+          <div class="nav-label" style="margin-top:1.5rem;">Pages</div>
+          <nav class="filter-nav">
+            <a href="/benchmarks" class="filter-link">Benchmarks</a>
+            <a href="/openclaw-changelog" class="filter-link">OpenClaw Changelog</a>
+          </nav>
+        </aside>
+
         <section>
           <div style="margin-bottom:1.25rem;">
             <input
@@ -264,18 +285,6 @@ const typeColors: Record<string, string> = {
               onfocus="this.style.borderColor='#C87533'"
               onblur="this.style.borderColor='#2A241E'"
             />
-          </div>
-
-          <div id="filter-tabs" style="display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
-            {types.map((t) => (
-              <button
-                data-filter={t}
-                onclick="filterResources(this.dataset.filter)"
-                style={`padding:0.42rem 0.9rem; border-radius:999px; border:1px solid ${t === 'all' ? '#C87533' : '#2A241E'}; background:${t === 'all' ? '#C87533' : 'transparent'}; color:${t === 'all' ? '#0D0B09' : '#8B7E6A'}; font-size:0.8125rem; font-family:monospace; cursor:pointer; letter-spacing:0.05em; transition:all 0.15s;`}
-              >
-                {typeLabels[t]}
-              </button>
-            ))}
           </div>
 
           <div id="resource-sections" style="display:flex; flex-direction:column; gap:1.25rem;">
@@ -348,11 +357,8 @@ const typeColors: Record<string, string> = {
 
       function filterResources(type) {
         activeFilter = type;
-        document.querySelectorAll('#filter-tabs button').forEach(btn => {
-          const isActive = btn.dataset.filter === type;
-          btn.style.border = `1px solid ${isActive ? '#C87533' : '#2A241E'}`;
-          btn.style.background = isActive ? '#C87533' : 'transparent';
-          btn.style.color = isActive ? '#0D0B09' : '#8B7E6A';
+        document.querySelectorAll('.filter-link[data-filter]').forEach(link => {
+          link.classList.toggle('is-active', link.dataset.filter === type);
         });
         applyFilters();
       }
@@ -367,7 +373,69 @@ const typeColors: Record<string, string> = {
 
     <style>
       .resources-layout {
-        display:block;
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .resources-nav {
+        position: sticky;
+        top: 1.5rem;
+        padding: 1rem;
+        border: 1px solid #2A241E;
+        border-radius: 10px;
+        background: #131008;
+      }
+
+      .nav-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #C87533;
+        margin-bottom: 0.6rem;
+      }
+
+      .filter-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .filter-link {
+        display: block;
+        padding: 0.5rem 0.7rem;
+        border-radius: 8px;
+        color: #8B7E6A;
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .filter-link:hover {
+        background: #1a140f;
+        color: #E8DCC8;
+      }
+
+      .filter-link.is-active {
+        background: #1a140f;
+        color: #E8DCC8;
+        border: 1px solid #3A2A1E;
+      }
+
+      @media (max-width: 768px) {
+        .resources-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .resources-nav {
+          position: static;
+        }
+
+        .filter-nav {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
       }
     </style>
   </body>
