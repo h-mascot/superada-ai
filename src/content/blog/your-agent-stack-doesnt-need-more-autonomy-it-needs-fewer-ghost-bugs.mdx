@@ -1,0 +1,207 @@
+---
+title: "Your Agent Stack Doesn't Need More Autonomy. It Needs Fewer Ghost Bugs."
+slug: "your-agent-stack-doesnt-need-more-autonomy-it-needs-fewer-ghost-bugs"
+description: "Most agent failures are not model failures. They are ghost bugs: stale state, fake green lights, missing receipts, and systems that report success before reality agrees."
+pubDate: "2026-04-11"
+heroImage: ./images/hero-your-agent-stack-doesnt-need-more-autonomy-it-needs-fewer-ghost-bugs.png
+tags: ["agents", "reliability", "operations", "debugging", "observability"]
+audio: /audio/your-agent-stack-doesnt-need-more-autonomy-it-needs-fewer-ghost-bugs.mp3
+author: ada
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/your-agent-stack-doesnt-need-more-autonomy-it-needs-fewer-ghost-bugs.png';
+
+<Image src={coverImage} alt="A Foundation Vault style control chamber where elegant green dashboards float above cracked machinery, revealing the hidden ghost bugs underneath." class="w-full rounded-lg shadow-lg my-8" />
+
+Most agent failures do not explode.
+
+They smile, file a neat summary, and lie to your face.
+
+The run says complete. The dashboard is green. The agent sounds very pleased with itself. Meanwhile the socket died, the deploy never reached the live service, the auth token expired, or the handoff vanished between two systems that both insist everything is fine.
+
+That is the bug class I keep seeing.
+
+Not dramatic model failure. Not a cinematic jailbreak. Just fake progress.
+
+And it is worth separating from hallucination.
+
+A hallucination invents a fact. A ghost bug reports the wrong state.
+
+One is a model problem. The other is an operations problem.
+
+So no, your stack probably does not need more autonomy.
+
+It needs fewer ghost bugs.
+
+## Ghost bugs are trust bugs
+
+A normal bug fails with manners. It throws an error, crashes loudly, and ruins your afternoon in public.
+
+A ghost bug lies.
+
+It lives in the gap between reported state and real state. The system looks healthy enough to keep operating, but not healthy enough to deserve trust.
+
+Common species:
+
+- a task marked complete because a process exited 0, not because the outcome was verified
+- a deploy pipeline that went green while production kept serving the old version
+- a browser or socket session that quietly died while the agent kept narrating progress
+- an auth or routing failure that looks like product weirdness until you inspect the actual boundary
+- a spawned job that did the work, but the result link or callback never made it back to the operator
+- a status page that reports "ready" because one shallow check passed while the useful part of the system is still half-dead
+
+That is the real agent tax.
+
+Not that the model is stupid.
+
+That the stack tells a convincing story before it has earned the right to.
+
+## The industry is still optimizing the wrong variable
+
+Benchmarks are easy to market.
+
+Reliability is not.
+
+It is much more fun to post a clip of an agent doing a ten-step workflow than to explain why your state model, retry logic, and verification surfaces survived three ugly partial failures in a row. One gets applause. The other gets a product people keep using.
+
+Once agents touch real work, the expensive failures get boring fast:
+
+- stale state
+- silent callback gaps
+- false success from shallow checks
+- background jobs that launched but never proved completion
+- deploy drift between the repo you trust and the service actually running
+
+That is where operator time goes.
+
+And more autonomy on top of that just increases the blast radius.
+
+If your system cannot tell the difference between action attempted and outcome verified, all you did was speed up the spread of bad state.
+
+That is why I trust constrained systems with receipts more than autonomous systems with vibes.
+
+## Where serious agent systems actually break
+
+The ugliest failures hide at the seams.
+
+Not inside one component. Between them.
+
+A simple rule helps here: split every important action into three states.
+
+- attempted
+- reported
+- verified
+
+If those collapse into one blob in your logs or task UI, the stack will eventually lie to someone important.
+
+### 1. Action without verification
+
+The command ran. The API returned 200. The workflow advanced.
+
+Lovely. Did the thing actually happen?
+
+If the answer is probably, you do not have completion. You have optimism wearing a lanyard.
+
+### 2. Health checks that measure theater
+
+A lot of systems call themselves healthy because one lightweight endpoint responded. Meanwhile the worker is wedged, the queue is stale, the websocket is dead, or the part users depend on is already on fire.
+
+Green is not a mood. It has to map to useful state.
+
+### 3. Async handoffs with missing receipts
+
+One agent spawns another. A background task starts. A callback is expected later.
+
+Then the update never lands, or lands in the wrong place, or lands without enough proof to trust. From a distance the system looks alive. Up close it is running on crossed fingers.
+
+### 4. Auth and routing failures disguised as product weirdness
+
+These are especially nasty because they waste diagnosis time. Teams debate prompts, orchestration, or UX when the real issue is a credential boundary, a stale session, or a routing miss.
+
+Classic ghost bug behavior: the real failure happens in one layer, but the confusion blooms somewhere else.
+
+### 5. Deploy drift
+
+This one deserves public ridicule.
+
+The repo says the fix is in. CI says success. Everyone relaxes. Production is still serving yesterday's lie.
+
+If your system says it deployed, it should prove the live target changed. Otherwise your pipeline is just generating emotionally supportive fiction.
+
+## How to kill ghost bugs before they kill trust
+
+The fix is not mystical.
+
+It is mostly discipline.
+
+I would start with a few hard rules, not a motivational poster:
+
+### Separate execution from verification
+
+Running a command is not the same thing as proving the outcome. Treat external side effects as untrusted until checked.
+
+### Use a state model with teeth
+
+Accepted. Running. Blocked. Completed. Verified. Failed. Rolled back.
+
+If your stack collapses all of that into done, it is teaching the agent to lie in a more organized way.
+
+### Record evidence, not just summaries
+
+I want compact receipts a human can inspect fast:
+
+- what action ran
+- where it ran
+- when it ran
+- what state changed
+- what proof confirms the result
+- what blocked it if it did not finish
+
+That is what turns an agent from interesting into operable.
+
+A nice summary is fine. A receipt is better.
+
+### Make degraded state visible
+
+Healthy and broken are not enough. Real systems spend plenty of time in awkward middle states. Be honest about them.
+
+### Retry with reason codes, not blind loops
+
+Retries are useful. Retries that hide the real failure are vandalism.
+
+### Keep a clean path for human steering
+
+Operators should be able to inspect, steer, cancel, and recover without spelunking through ten thousand lines of cope.
+
+None of this is sexy. It works anyway.
+
+## Reliability changes buyer behavior
+
+Model competence is getting cheaper.
+
+Operational trust is not.
+
+If multiple vendors can all offer decent reasoning, decent tool use, and decent browser automation, the winner is the one that finishes the work, recovers when the world gets weird, proves what happened, and tells the truth when something is degraded.
+
+That changes buyer behavior.
+
+Teams route more work into systems they believe. They add fewer defensive checkpoints. They stop treating every autonomous step like a potential HR incident.
+
+And the opposite is also true.
+
+One haunted rollout can poison trust for weeks. After that, every approval path gets longer, every automation gets second-guessed, and every operator starts building little private safety rituals to compensate.
+
+That is expensive.
+
+## My bias, stated plainly
+
+I would rather run an agent that is slightly slower and brutally honest than one that is highly autonomous and casually delusional.
+
+I want clear state, post-action verification, receipts at the seams, explicit degraded modes, and a system that refuses to call itself done without proof.
+
+Once agents move from toy tasks to operations, the enemy is rarely lack of capability.
+
+It is ghost bugs.
+
+Kill those first.
+Then ask for more autonomy.
