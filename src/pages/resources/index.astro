@@ -253,38 +253,6 @@ const typeColors: Record<string, string> = {
       </div>
 
       <div class="resources-layout">
-        <div class="mobile-nav-toggle-wrap">
-          <button id="resources-nav-toggle" class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="resources-sidebar">
-            <span class="hamburger" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-            <span>Browse resources</span>
-          </button>
-        </div>
-
-        <aside id="resources-sidebar" class="resources-sidebar">
-          <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.9rem;">Resources menu</div>
-          <nav style="display:flex; flex-direction:column; gap:0.35rem; margin-bottom:1rem;">
-            {sections.map((section) => (
-              <div style="display:flex; flex-direction:column; gap:0.35rem;">
-                <a href={`#${section.id}`} class="section-nav-link" style={`display:block; padding:0.7rem 0.8rem; border-radius:8px; text-decoration:none; background:${section.id === 'benchmarks' ? '#1a140f' : 'transparent'}; border:1px solid ${section.id === 'benchmarks' ? '#3A2A1E' : '#2A241E'};`}>
-                  <div style={`font-size:0.92rem; color:${section.id === 'benchmarks' ? '#E8DCC8' : '#CDBFA9'};`}>{section.label}</div>
-                  <div style="font-size:0.8rem; color:#8B7E6A; line-height:1.5; margin-top:0.15rem;">{section.blurb}</div>
-                </a>
-                <div style="display:flex; flex-direction:column; gap:0.35rem; padding-left:0.75rem;">
-                  {section.items.map((item) => (
-                    <a href={item.link} target={item.link.startsWith('http') ? '_blank' : '_self'} rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#CDBFA9; text-decoration:none; font-size:0.86rem; line-height:1.45;">
-                      {item.title} →
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </nav>
-        </aside>
-
         <section>
           <div style="margin-bottom:1.25rem;">
             <input
@@ -394,99 +362,12 @@ const typeColors: Record<string, string> = {
         applyFilters();
       }
 
-      const navToggle = document.getElementById('resources-nav-toggle');
-      const sidebar = document.getElementById('resources-sidebar');
 
-      function closeMobileMenu() {
-        if (!navToggle || !sidebar) return;
-        navToggle.setAttribute('aria-expanded', 'false');
-        sidebar.classList.remove('is-open');
-      }
-
-      if (navToggle && sidebar) {
-        navToggle.addEventListener('click', () => {
-          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-          navToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          sidebar.classList.toggle('is-open', !expanded);
-        });
-
-        sidebar.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            if (window.innerWidth <= 900) closeMobileMenu();
-          });
-        });
-      }
     </script>
 
     <style>
       .resources-layout {
-        display:grid;
-        grid-template-columns:260px minmax(0,1fr);
-        gap:1.5rem;
-        align-items:start;
-      }
-
-      .resources-sidebar {
-        position:sticky;
-        top:1.5rem;
-        padding:1rem;
-        border:1px solid #2A241E;
-        border-radius:10px;
-        background:#131008;
-      }
-
-      .mobile-nav-toggle-wrap {
-        display:none;
-      }
-
-      .mobile-nav-toggle {
-        width:100%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:0.75rem;
-        padding:0.85rem 1rem;
-        border-radius:999px;
-        border:1px solid #3A2A1E;
-        background:#131008;
-        color:#E8DCC8;
-        font:inherit;
-        cursor:pointer;
-      }
-
-      .hamburger {
-        display:inline-flex;
-        flex-direction:column;
-        gap:0.22rem;
-      }
-
-      .hamburger span {
         display:block;
-        width:1rem;
-        height:2px;
-        background:#C87533;
-        border-radius:999px;
-      }
-
-      @media (max-width: 900px) {
-        .resources-layout {
-          grid-template-columns:1fr;
-        }
-
-        .mobile-nav-toggle-wrap {
-          display:block;
-          margin-bottom:1rem;
-        }
-
-        .resources-sidebar {
-          display:none;
-          position:static;
-          margin-bottom:1rem;
-        }
-
-        .resources-sidebar.is-open {
-          display:block;
-        }
       }
     </style>
   </body>
