@@ -1,14 +1,53 @@
 {
-  "updatedAt": "2026-04-12T11:40:00Z",
+  "updatedAt": "2026-04-12T11:55:00Z",
   "leaderboard": [
     {
-      "slug": "claude-opus-4-6",
+      "slug": "claude-sonnet-4-6",
       "rank": 1,
+      "model": "Claude Sonnet 4.6",
+      "family": "Messaging benchmark + external canon",
+      "operator": 100,
+      "messaging": "100/100",
+      "external": "79.6 SWE-bench",
+      "cost": "$9.00/M blended",
+      "verdict": "Strong all-rounder, needs full internal operator-suite run.",
+      "detailHref": "/benchmarks/models/claude-sonnet-4-6",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "gemini-3-1-pro",
+      "rank": 2,
+      "model": "Gemini 3.1 Pro",
+      "family": "Messaging benchmark + external canon",
+      "operator": 100,
+      "messaging": "100/100",
+      "external": "80.6 SWE-bench \u00b7 1492 Arena \u00b7 91.9 GPQA",
+      "cost": "$7.00/M blended",
+      "verdict": "Looks elite, still needs full operator-suite validation.",
+      "detailHref": "/benchmarks/models/gemini-3-1-pro",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "gemini-flash",
+      "rank": 3,
+      "model": "Gemini Flash",
+      "family": "Messaging benchmark canon",
+      "operator": 100,
+      "messaging": "100/100",
+      "external": "Messaging benchmark only",
+      "cost": "$1.75/M blended",
+      "verdict": "Useful cheap helper, not yet proven on the hard pack.",
+      "detailHref": "/benchmarks/models/gemini-flash",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "claude-opus-4-6",
+      "rank": 4,
       "model": "Claude Opus 4.6",
       "family": "Operator Suite v2",
       "operator": 95.3,
       "messaging": "100/100",
-      "external": "#1 SWE-bench · #1 Arena · #1 HLE",
+      "external": "#1 SWE-bench \u00b7 #1 Arena \u00b7 #1 HLE",
       "cost": "$15/M blended",
       "verdict": "Best raw benchmark performer overall.",
       "detailHref": "/benchmarks/operator-index",
@@ -16,46 +55,20 @@
     },
     {
       "slug": "glm-5-turbo",
-      "rank": 2,
+      "rank": 5,
       "model": "GLM-5-Turbo",
       "family": "Operator Suite v2",
       "operator": 95,
       "messaging": "100/100",
-      "external": "77.8 SWE-bench · 1454 Arena",
+      "external": "77.8 SWE-bench \u00b7 1454 Arena",
       "cost": "$2.60/M blended",
       "verdict": "Almost-Opus quality without the wallet mugging.",
       "detailHref": "/benchmarks/operator-index",
       "detailLabel": "View canon"
     },
     {
-      "slug": "minimax-m2-7-m2-5",
-      "rank": 3,
-      "model": "MiniMax M2.7 / M2.5",
-      "family": "Operator Suite v2",
-      "operator": 90.8,
-      "messaging": "100/100",
-      "external": "80.2 SWE-bench Verified",
-      "cost": "$0.75/M blended",
-      "verdict": "Wildly cheap, but unsafe around guardrails.",
-      "detailHref": "/benchmarks/operator-index",
-      "detailLabel": "View canon"
-    },
-    {
-      "slug": "qwen-3-5-opus-distill",
-      "rank": 4,
-      "model": "Qwen 3.5 Opus Distill",
-      "family": "Enterprise Local",
-      "operator": 81.7,
-      "messaging": "Single-model detailed run",
-      "external": "Needs more canon-side comparison runs",
-      "cost": "TBD",
-      "verdict": "Interesting enough to earn its own drill-down page already.",
-      "detailHref": "http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html",
-      "detailLabel": "Open report"
-    },
-    {
       "slug": "gemma4-31b",
-      "rank": 5,
+      "rank": 6,
       "model": "Gemma 4 31B",
       "family": "Enterprise Ollama",
       "operator": 92,
@@ -67,8 +80,60 @@
       "detailLabel": "Open detail"
     },
     {
+      "slug": "minimax-m2-7",
+      "rank": 7,
+      "model": "MiniMax M2.7",
+      "family": "Operator Suite v2",
+      "operator": 90.8,
+      "messaging": "100/100",
+      "external": "80.2 SWE-bench Verified",
+      "cost": "$0.75/M blended",
+      "verdict": "Great value, unsafe near guardrails.",
+      "detailHref": "/benchmarks/models/minimax-m2-7",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "minimax-m2-7-m2-5",
+      "rank": 8,
+      "model": "MiniMax M2.7 / M2.5",
+      "family": "Operator Suite v2",
+      "operator": 90.8,
+      "messaging": "100/100",
+      "external": "80.2 SWE-bench Verified",
+      "cost": "$0.75/M blended",
+      "verdict": "Wildly cheap, but unsafe around guardrails.",
+      "detailHref": "/benchmarks/operator-index",
+      "detailLabel": "View canon"
+    },
+    {
+      "slug": "gpt-5-4",
+      "rank": 9,
+      "model": "GPT-5.4",
+      "family": "External benchmark canon",
+      "operator": 88,
+      "messaging": "Provider path unsupported",
+      "external": "75.1 Terminal-Bench \u00b7 57.7 SWE-bench Pro \u00b7 1463 Arena",
+      "cost": "$8.75/M blended",
+      "verdict": "Looks strongest for coding/execution, still under-benchmarked internally.",
+      "detailHref": "/benchmarks/models/gpt-5-4",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "qwen-3-5-opus-distill",
+      "rank": 10,
+      "model": "Qwen 3.5 Opus Distill",
+      "family": "Enterprise Local",
+      "operator": 81.7,
+      "messaging": "Single-model detailed run",
+      "external": "Needs more canon-side comparison runs",
+      "cost": "TBD",
+      "verdict": "Interesting enough to earn its own drill-down page already.",
+      "detailHref": "http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html",
+      "detailLabel": "Open report"
+    },
+    {
       "slug": "gemma4-26b",
-      "rank": 6,
+      "rank": 11,
       "model": "Gemma 4 26B",
       "family": "Enterprise Ollama",
       "operator": 80,
@@ -86,7 +151,7 @@
       "date": "2026-03-18",
       "model": "Operator Suite v2",
       "category": "Full benchmark canon",
-      "score": "Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8",
+      "score": "Opus 95.3 \u00b7 GLM-5-Turbo 95.0 \u00b7 MiniMax 90.8",
       "summary": "The serious one. Routing, recovery, config safety, delegation, and proof under pressure.",
       "artifactType": "Leaderboard graphic",
       "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
@@ -110,7 +175,7 @@
       "date": "2026-03-13",
       "model": "Cron Reliability v1",
       "category": "First benchmark cut",
-      "score": "Hunter 94 · Healer 90 · Open 87",
+      "score": "Hunter 94 \u00b7 Healer 90 \u00b7 Open 87",
       "summary": "The first useful benchmark image. Good signal, but still too soft compared with the later operator suite.",
       "artifactType": "Infographic",
       "imageHref": "/benchmarks/2026-03-19/cron-reliability-v1.png",
@@ -122,7 +187,7 @@
       "date": "2026-04-02",
       "model": "Qwen 3.5 Opus Distill",
       "category": "Enterprise Local",
-      "score": "81.7 overall · detailed track report",
+      "score": "81.7 overall \u00b7 detailed track report",
       "summary": "Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.",
       "artifactType": "Detailed report",
       "imageHref": null,
@@ -134,12 +199,24 @@
       "date": "2026-04-12",
       "model": "Gemma 4 26B vs 31B",
       "category": "Enterprise Ollama",
-      "score": "31B 92/100 · 26B 80/100",
+      "score": "31B 92/100 \u00b7 26B 80/100",
       "summary": "Quick operator-oriented local benchmark comparing Gemma 4 26B and 31B on Enterprise. 31B wins on quality, 26B wins hard on speed.",
       "artifactType": "Generated benchmark pack",
       "imageHref": "/benchmarks/generated/2026-04-12-gemma-enterprise-benchmark-card.svg",
       "href": "/benchmarks/models/gemma4-31b",
       "hrefLabel": "Open Gemma detail"
+    },
+    {
+      "id": "model-benchmark-reference-canon",
+      "date": "2026-03-18",
+      "model": "Recovered benchmark canon models",
+      "category": "Backfilled benchmark registry",
+      "score": "Opus 95.3 \u00b7 GLM 95.0 \u00b7 MiniMax 90.8 \u00b7 Gemini/GPT-5.4/Sonnet backfilled from reference notes",
+      "summary": "Recovered benchmark model entries from existing reference docs, published benchmark article, and archived report artifacts so the leaderboard reflects the broader canon instead of only the most recent Gemma run.",
+      "artifactType": "Registry backfill",
+      "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
+      "href": "/benchmarks/operator-index",
+      "hrefLabel": "Open benchmark context"
     }
   ],
   "models": [
@@ -166,9 +243,18 @@
       "detail": {
         "headline": "The best local default when speed matters more than squeezing every last point of quality.",
         "metrics": [
-          { "label": "Benchmark score", "value": "80/100" },
-          { "label": "Average latency", "value": "7.45s" },
-          { "label": "Role", "value": "Default local model" }
+          {
+            "label": "Benchmark score",
+            "value": "80/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "7.45s"
+          },
+          {
+            "label": "Role",
+            "value": "Default local model"
+          }
         ],
         "reportPaths": [
           "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/summary.md",
@@ -200,14 +286,304 @@
       "detail": {
         "headline": "The better local model when quality matters more than speed and concurrency.",
         "metrics": [
-          { "label": "Benchmark score", "value": "92/100" },
-          { "label": "Average latency", "value": "22.59s" },
-          { "label": "Role", "value": "Escalation local model" }
+          {
+            "label": "Benchmark score",
+            "value": "92/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "22.59s"
+          },
+          {
+            "label": "Role",
+            "value": "Escalation local model"
+          }
         ],
         "reportPaths": [
           "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/summary.md",
           "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-raw.json",
           "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-scored.json"
+        ]
+      }
+    },
+    {
+      "slug": "claude-opus-4-6",
+      "model": "Claude Opus 4.6",
+      "family": "Operator Suite v2",
+      "date": "2026-03-18",
+      "score": 95.3,
+      "avgSeconds": "N/A",
+      "positioning": "Benchmark king",
+      "summary": "Highest raw benchmark score in the canon, best when judgment quality is mission-critical.",
+      "strengths": [
+        "Highest operator-suite score",
+        "Strongest recovery/config/delegation profile",
+        "Consistent external benchmark leader"
+      ],
+      "weaknesses": [
+        "Expensive",
+        "Overkill for many routine tasks",
+        "Not the rational default when cost matters"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Highest raw benchmark score in the canon, best when judgment quality is mission-critical.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "95.3/100"
+          },
+          {
+            "label": "Source",
+            "value": "Operator Suite v2"
+          },
+          {
+            "label": "Role",
+            "value": "Benchmark king"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "glm-5-turbo",
+      "model": "GLM-5-Turbo",
+      "family": "Operator Suite v2",
+      "date": "2026-03-18",
+      "score": 95.0,
+      "avgSeconds": "N/A",
+      "positioning": "Best value default",
+      "summary": "Near-Opus operator quality at a fraction of the cost, making it the rational default for a huge chunk of agent work.",
+      "strengths": [
+        "Elite operator benchmark score",
+        "Excellent cost-to-performance",
+        "Perfect on messaging benchmark"
+      ],
+      "weaknesses": [
+        "Slightly weaker than Opus at the very top end",
+        "Needs caution on nuanced triage judgment"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Near-Opus operator quality at a fraction of the cost, making it the rational default for a huge chunk of agent work.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "95.0/100"
+          },
+          {
+            "label": "Source",
+            "value": "Operator Suite v2"
+          },
+          {
+            "label": "Role",
+            "value": "Best value default"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "minimax-m2-7",
+      "model": "MiniMax M2.7",
+      "family": "Operator Suite v2",
+      "date": "2026-03-18",
+      "score": 90.8,
+      "avgSeconds": "N/A",
+      "positioning": "Cheap bulk worker",
+      "summary": "Extremely cheap and surprisingly capable, but not safe enough for high-stakes guardrail-sensitive tasks.",
+      "strengths": [
+        "Absurdly cheap",
+        "Very strong benchmark score for the price",
+        "Good for bulk analysis/research"
+      ],
+      "weaknesses": [
+        "Unsafe around guardrails",
+        "Known rule-violation pattern",
+        "Not for config or safety-critical changes"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Extremely cheap and surprisingly capable, but not safe enough for high-stakes guardrail-sensitive tasks.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "90.8/100"
+          },
+          {
+            "label": "Source",
+            "value": "Operator Suite v2"
+          },
+          {
+            "label": "Role",
+            "value": "Cheap bulk worker"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "gemini-3-1-pro",
+      "model": "Gemini 3.1 Pro",
+      "family": "Messaging benchmark + external canon",
+      "date": "2026-03-18",
+      "score": 100,
+      "avgSeconds": "N/A",
+      "positioning": "Top external contender",
+      "summary": "Monster external benchmark profile and perfect messaging score, but still missing full operator-suite verification in our canon.",
+      "strengths": [
+        "Excellent SWE-bench/GPQA profile",
+        "Perfect messaging benchmark score",
+        "Likely top-tier general capability"
+      ],
+      "weaknesses": [
+        "Missing full Suite v2 operator run",
+        "Less grounded in our internal operator data than Opus/GLM"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Monster external benchmark profile and perfect messaging score, but still missing full operator-suite verification in our canon.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "100/100"
+          },
+          {
+            "label": "Source",
+            "value": "Messaging benchmark + external canon"
+          },
+          {
+            "label": "Role",
+            "value": "Top external contender"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "gpt-5-4",
+      "model": "GPT-5.4",
+      "family": "External benchmark canon",
+      "date": "2026-03-18",
+      "score": 88,
+      "avgSeconds": "N/A",
+      "positioning": "Terminal/coding specialist",
+      "summary": "Dominates terminal-style external benchmarks, but still has a gap in our structured internal operator benchmark data.",
+      "strengths": [
+        "#1 on Terminal-Bench 2.0",
+        "Very strong coding/execution profile",
+        "Competitive frontier model"
+      ],
+      "weaknesses": [
+        "Provider path blocked prior internal benchmarking",
+        "Less direct operator-suite evidence in our canon"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Dominates terminal-style external benchmarks, but still has a gap in our structured internal operator benchmark data.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "88/100"
+          },
+          {
+            "label": "Source",
+            "value": "External benchmark canon"
+          },
+          {
+            "label": "Role",
+            "value": "Terminal/coding specialist"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "claude-sonnet-4-6",
+      "model": "Claude Sonnet 4.6",
+      "family": "Messaging benchmark + external canon",
+      "date": "2026-03-18",
+      "score": 100,
+      "avgSeconds": "N/A",
+      "positioning": "Safe strong all-rounder",
+      "summary": "Perfect messaging score and strong external benchmark presence suggest a very solid general-purpose model.",
+      "strengths": [
+        "Perfect messaging benchmark score",
+        "Strong external coding benchmarks",
+        "Good likely all-round fit"
+      ],
+      "weaknesses": [
+        "Still missing hard operator-suite run in this recovered data set"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Perfect messaging score and strong external benchmark presence suggest a very solid general-purpose model.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "100/100"
+          },
+          {
+            "label": "Source",
+            "value": "Messaging benchmark + external canon"
+          },
+          {
+            "label": "Role",
+            "value": "Safe strong all-rounder"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "gemini-flash",
+      "model": "Gemini Flash",
+      "family": "Messaging benchmark canon",
+      "date": "2026-03-18",
+      "score": 100,
+      "avgSeconds": "N/A",
+      "positioning": "Cheap fast helper",
+      "summary": "Perfect on the lighter messaging benchmark and cheap enough for low-stakes bulk tasks.",
+      "strengths": [
+        "Cheap",
+        "Fast",
+        "Perfect on lighter messaging tasks"
+      ],
+      "weaknesses": [
+        "Too lightly benchmarked for harder operator judgment",
+        "Not enough evidence for safety-critical routing"
+      ],
+      "artifactPack": "memory/model-benchmark-reference.md",
+      "detail": {
+        "headline": "Perfect on the lighter messaging benchmark and cheap enough for low-stakes bulk tasks.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "100/100"
+          },
+          {
+            "label": "Source",
+            "value": "Messaging benchmark canon"
+          },
+          {
+            "label": "Role",
+            "value": "Cheap fast helper"
+          }
+        ],
+        "reportPaths": [
+          "memory/model-benchmark-reference.md"
         ]
       }
     }
