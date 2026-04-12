@@ -1,0 +1,16 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <rect width="1600" height="900" fill="#0D0B09"/>
+  <rect x="64" y="64" width="1472" height="772" rx="28" fill="#131008" stroke="#2A241E" stroke-width="2"/>
+  <text x="112" y="155" fill="#C87533" font-family="Arial, sans-serif" font-size="28" letter-spacing="6">SUPERADA BENCHMARKS</text>
+  <text x="112" y="245" fill="#E8DCC8" font-family="Georgia, serif" font-size="72">Gemma 4 26B vs 31B</text>
+  <text x="112" y="320" fill="#CDBFA9" font-family="Arial, sans-serif" font-size="34">Enterprise Ollama • 2026-04-12</text>
+  <rect x="112" y="382" width="1376" height="2" fill="#2A241E"/>
+  <text x="112" y="470" fill="#E8DCC8" font-family="Arial, sans-serif" font-size="52">31B 92/100 · 26B 80/100</text>
+  <foreignObject x="112" y="520" width="1240" height="180">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial, sans-serif; font-size:30px; line-height:1.45; color:#9E907C; width:1240px;">
+      Quick operator-oriented local benchmark comparing Gemma 4 26B and 31B on Enterprise. 31B wins on quality, 26B wins hard on speed.
+    </div>
+  </foreignObject>
+  <text x="112" y="790" fill="#8B7E6A" font-family="Arial, sans-serif" font-size="26">Auto-generated from benchmark registry</text>
+</svg>

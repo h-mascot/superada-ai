@@ -1,0 +1,215 @@
+{
+  "updatedAt": "2026-04-12T11:40:00Z",
+  "leaderboard": [
+    {
+      "slug": "claude-opus-4-6",
+      "rank": 1,
+      "model": "Claude Opus 4.6",
+      "family": "Operator Suite v2",
+      "operator": 95.3,
+      "messaging": "100/100",
+      "external": "#1 SWE-bench · #1 Arena · #1 HLE",
+      "cost": "$15/M blended",
+      "verdict": "Best raw benchmark performer overall.",
+      "detailHref": "/benchmarks/operator-index",
+      "detailLabel": "View canon"
+    },
+    {
+      "slug": "glm-5-turbo",
+      "rank": 2,
+      "model": "GLM-5-Turbo",
+      "family": "Operator Suite v2",
+      "operator": 95,
+      "messaging": "100/100",
+      "external": "77.8 SWE-bench · 1454 Arena",
+      "cost": "$2.60/M blended",
+      "verdict": "Almost-Opus quality without the wallet mugging.",
+      "detailHref": "/benchmarks/operator-index",
+      "detailLabel": "View canon"
+    },
+    {
+      "slug": "minimax-m2-7-m2-5",
+      "rank": 3,
+      "model": "MiniMax M2.7 / M2.5",
+      "family": "Operator Suite v2",
+      "operator": 90.8,
+      "messaging": "100/100",
+      "external": "80.2 SWE-bench Verified",
+      "cost": "$0.75/M blended",
+      "verdict": "Wildly cheap, but unsafe around guardrails.",
+      "detailHref": "/benchmarks/operator-index",
+      "detailLabel": "View canon"
+    },
+    {
+      "slug": "qwen-3-5-opus-distill",
+      "rank": 4,
+      "model": "Qwen 3.5 Opus Distill",
+      "family": "Enterprise Local",
+      "operator": 81.7,
+      "messaging": "Single-model detailed run",
+      "external": "Needs more canon-side comparison runs",
+      "cost": "TBD",
+      "verdict": "Interesting enough to earn its own drill-down page already.",
+      "detailHref": "http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html",
+      "detailLabel": "Open report"
+    },
+    {
+      "slug": "gemma4-31b",
+      "rank": 5,
+      "model": "Gemma 4 31B",
+      "family": "Enterprise Ollama",
+      "operator": 92,
+      "messaging": "Quick execution pack",
+      "external": "Fast local quality leader in current Gemma run",
+      "cost": "Enterprise local",
+      "verdict": "Best local quality of the Gemma pair, but significantly slower.",
+      "detailHref": "/benchmarks/models/gemma4-31b",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "gemma4-26b",
+      "rank": 6,
+      "model": "Gemma 4 26B",
+      "family": "Enterprise Ollama",
+      "operator": 80,
+      "messaging": "Quick execution pack",
+      "external": "Best speed-quality tradeoff in current Gemma run",
+      "cost": "Enterprise local",
+      "verdict": "Best operational default for local routing because it is much faster while still competent.",
+      "detailHref": "/benchmarks/models/gemma4-26b",
+      "detailLabel": "Open detail"
+    }
+  ],
+  "runs": [
+    {
+      "id": "operator-suite-v2",
+      "date": "2026-03-18",
+      "model": "Operator Suite v2",
+      "category": "Full benchmark canon",
+      "score": "Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8",
+      "summary": "The serious one. Routing, recovery, config safety, delegation, and proof under pressure.",
+      "artifactType": "Leaderboard graphic",
+      "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
+      "href": "/benchmarks/operator-index",
+      "hrefLabel": "Open benchmark context"
+    },
+    {
+      "id": "messaging-tool-planning-v2",
+      "date": "2026-03-14",
+      "model": "Messaging Tool Planning v2",
+      "category": "Cross-model routing benchmark",
+      "score": "12-way tie at 100/100",
+      "summary": "Shows the crowded top tier on lighter messaging and routing tasks before the harder operator tests separated them.",
+      "artifactType": "Infographic",
+      "imageHref": "/benchmarks/2026-03-19/messaging-v2-full.png",
+      "href": "/benchmarks/operator-index",
+      "hrefLabel": "Open benchmark context"
+    },
+    {
+      "id": "cron-reliability-v1",
+      "date": "2026-03-13",
+      "model": "Cron Reliability v1",
+      "category": "First benchmark cut",
+      "score": "Hunter 94 · Healer 90 · Open 87",
+      "summary": "The first useful benchmark image. Good signal, but still too soft compared with the later operator suite.",
+      "artifactType": "Infographic",
+      "imageHref": "/benchmarks/2026-03-19/cron-reliability-v1.png",
+      "href": "/blog/benchmarks-that-actually-matter/",
+      "hrefLabel": "Read the story"
+    },
+    {
+      "id": "2026-04-02-enterprise-local-qwen35-opus-distil",
+      "date": "2026-04-02",
+      "model": "Qwen 3.5 Opus Distill",
+      "category": "Enterprise Local",
+      "score": "81.7 overall · detailed track report",
+      "summary": "Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.",
+      "artifactType": "Detailed report",
+      "imageHref": null,
+      "href": "http://100.106.69.9:8788/docs/reports/2026-04-02-enterprise-local-qwen35-opus-distil/report.html",
+      "hrefLabel": "Open detail page"
+    },
+    {
+      "id": "2026-04-12-gemma-enterprise-benchmark",
+      "date": "2026-04-12",
+      "model": "Gemma 4 26B vs 31B",
+      "category": "Enterprise Ollama",
+      "score": "31B 92/100 · 26B 80/100",
+      "summary": "Quick operator-oriented local benchmark comparing Gemma 4 26B and 31B on Enterprise. 31B wins on quality, 26B wins hard on speed.",
+      "artifactType": "Generated benchmark pack",
+      "imageHref": "/benchmarks/generated/2026-04-12-gemma-enterprise-benchmark-card.svg",
+      "href": "/benchmarks/models/gemma4-31b",
+      "hrefLabel": "Open Gemma detail"
+    }
+  ],
+  "models": [
+    {
+      "slug": "gemma4-26b",
+      "model": "Gemma 4 26B",
+      "family": "Enterprise Ollama",
+      "date": "2026-04-12",
+      "score": 80,
+      "avgSeconds": 7.45,
+      "positioning": "Default local workhorse",
+      "summary": "Much faster than 31B while remaining competent enough for local routing, extraction, and structured background work.",
+      "strengths": [
+        "Much faster average latency",
+        "Good enough reasoning for practical deployment choices",
+        "Better default for concurrency and operational headroom"
+      ],
+      "weaknesses": [
+        "Missed the Bird-first routing rule in this run",
+        "Slightly weaker precision on routing judgment",
+        "Still wrapped strict JSON in code fences"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-12-gemma-enterprise-benchmark",
+      "detail": {
+        "headline": "The best local default when speed matters more than squeezing every last point of quality.",
+        "metrics": [
+          { "label": "Benchmark score", "value": "80/100" },
+          { "label": "Average latency", "value": "7.45s" },
+          { "label": "Role", "value": "Default local model" }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/summary.md",
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-raw.json",
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-scored.json"
+        ]
+      }
+    },
+    {
+      "slug": "gemma4-31b",
+      "model": "Gemma 4 31B",
+      "family": "Enterprise Ollama",
+      "date": "2026-04-12",
+      "score": 92,
+      "avgSeconds": 22.59,
+      "positioning": "Premium local escalation",
+      "summary": "Stronger output quality and better routing judgment than 26B, but roughly 3x slower in this quick benchmark pack.",
+      "strengths": [
+        "Best quality in the Gemma local pair",
+        "Better routing judgment on the benchmark pack",
+        "Cleaner concise answers overall"
+      ],
+      "weaknesses": [
+        "Much slower average latency",
+        "Worse fit for high-concurrency local loops",
+        "Still wrapped strict JSON in code fences"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-12-gemma-enterprise-benchmark",
+      "detail": {
+        "headline": "The better local model when quality matters more than speed and concurrency.",
+        "metrics": [
+          { "label": "Benchmark score", "value": "92/100" },
+          { "label": "Average latency", "value": "22.59s" },
+          { "label": "Role", "value": "Escalation local model" }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/summary.md",
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-raw.json",
+          "output/benchmarks/2026-04-12-gemma-enterprise-benchmark/results-scored.json"
+        ]
+      }
+    }
+  ]
+}
