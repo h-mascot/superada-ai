@@ -33,6 +33,86 @@ useCases:
   - Separate implementation from verification cleanly
 notes:
   - Use when stories are already defined and you care about real verification, not just agent confidence.
+bundle:
+  id: superada.workflow.geordi-build-pipeline
+  version: 1.0.0
+  installMode: manual
+  reviewStatus: manual-review
+  entrypoint: SKILL.md
+  bundleRoot: skills/geordi-build-pipeline
+  artifactCount: 5
+  summary: A real workflow bundle with the skill contract, ACP-aware scripts, YAML workflow definitions, and explicit verification steps that stay outside the coding loop.
+artifacts:
+  - name: Skill contract
+    type: skill
+    path: skills/geordi-build-pipeline/SKILL.md
+    description: Canonical operating instructions for the builder pipeline, including ACP-first transport, retries, verification, and context update rules.
+  - name: Context loader
+    type: script
+    path: skills/geordi-build-pipeline/scripts/load-context.sh
+    description: Pulls project context, package summary, testing notes, and recent repo state into the task prompt before implementation.
+  - name: Context updater
+    type: script
+    path: skills/geordi-build-pipeline/scripts/update-context.sh
+    description: Appends dated changes back into the project context file after each completed build.
+  - name: Workflow definitions
+    type: manifest
+    path: skills/geordi-build-pipeline/workflows/*.yaml
+    description: Bundle-level YAML definitions that shape repo, transport, verify, and commit behavior for repeatable runs.
+  - name: ACP transport helpers
+    type: bundle
+    path: skills/acp/scripts/acp-run.sh + acp-status.sh
+    description: Required runner helpers for dispatching Geordi tasks over ACP and waiting for structured completion.
+installSteps:
+  - title: Install the skill bundle into OpenClaw
+    detail: Pull the workflow bundle from GitHub so the skill contract and workflow assets are available locally.
+    command: openclaw skills install github:henrino3/enterprise-crew-skills/geordi-build-pipeline
+  - title: Ensure a project context file exists
+    detail: Geordi expects a context file before any implementation run. Create one if the repo does not already have CONTEXT.md or a matching memory context file.
+    command: ~/clawd/skills/geordi-build-pipeline/scripts/update-context.sh ~/Code/<project> --init
+  - title: Review or adapt the workflow definition
+    detail: Confirm the YAML workflow points at the right repo, transport mode, verify commands, and target builder host before execution.
+  - title: Run the build pipeline manually
+    detail: Start the bundle through the Geordi skill, then let ACP or fallback transport execute story work sequentially with separate verification.
+    command: openclaw agent run --skill geordi-build-pipeline
+requirements:
+  - label: OpenClaw skill install support
+    detail: The target environment needs a working OpenClaw install with skill installation enabled.
+    type: runtime
+  - label: Builder access
+    detail: ACP on the Mac builder is preferred. SSH fallback or a local runner path must also be available if ACP is down.
+    type: access
+  - label: Codex-capable agent runtime
+    detail: The workflow assumes Codex-backed implementation runs and a shell environment that can execute repo verification commands.
+    type: dependency
+  - label: Repo-specific verification commands
+    detail: The operator must know which build or typecheck commands actually prove success for the target project.
+    type: review
+verification:
+  mode: manual
+  reviewNotes:
+    - Verify on the target repo after implementation, not inside the coding loop.
+    - If build verification fails, retry implementation with the real errors pasted back into the workflow.
+    - Do not push until the separate verification step is green.
+  checks:
+    - label: Context preflight
+      detail: Confirm the workflow can load project context before it starts implementation.
+      command: ~/clawd/skills/geordi-build-pipeline/scripts/load-context.sh ~/Code/<project>
+      expected: A non-empty context payload with project overview, stack, recent changes, and testing cues.
+    - label: Type or build verification
+      detail: Run the repo's actual verification command outside the agent loop.
+      command: cd ~/Code/<project> && npx tsc --noEmit
+      expected: Command exits cleanly with no type errors.
+    - label: App build verification
+      detail: For frontend repos, run the production build on the target app package.
+      command: cd ~/Code/<project>/packages/app && npx vite build
+      expected: Production build completes successfully.
+structure:
+  - skills/geordi-build-pipeline/
+  - skills/geordi-build-pipeline/SKILL.md
+  - skills/geordi-build-pipeline/scripts/load-context.sh
+  - skills/geordi-build-pipeline/scripts/update-context.sh
+  - skills/geordi-build-pipeline/workflows/*.yaml
 ---
 
 This bundle is opinionated on purpose. It assumes implementation is only half the story and verification must be its own step.

@@ -215,14 +215,13 @@ const sections = [
 
 const resources = sections.flatMap((section) => section.items.map((item) => ({ ...item, sectionId: section.id, sectionLabel: section.label })));
 
-const types = ['all', 'skill', 'cron', 'workflow', 'guide', 'epic-chat'] as const;
+const types = ['all', 'skill', 'cron', 'guide', 'epic-chat'] as const;
 type FilterType = typeof types[number];
 
 const typeLabels: Record<FilterType, string> = {
   all: 'All',
   skill: 'Skills',
   cron: 'Crons',
-  workflow: 'Workflows',
   guide: 'Guides',
   'epic-chat': '🔥 Epic Chats',
 };
@@ -270,7 +269,7 @@ const typeColors: Record<string, string> = {
           <div class="nav-label" style="margin-top:1.5rem;">Pages</div>
           <nav class="filter-nav">
             <a href="/benchmarks" class="filter-link">Benchmarks</a>
-            <a href="/workflows" class="filter-link">Workflow Marketplace</a>
+            <a href="/workflows" class="filter-link">Workflows</a>
             <a href="/openclaw-changelog" class="filter-link">OpenClaw Changelog</a>
           </nav>
         </aside>

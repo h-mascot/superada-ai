@@ -27,8 +27,11 @@ const statusColors = {
       <section style="margin-bottom:2.25rem;">
         <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.65rem;">Workflow Marketplace</div>
         <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Workflow bundles</h1>
+        <p style="color:#8B7E6A; margin:0 0 0.9rem; line-height:1.75; max-width:720px;">
+          Real bundle-shaped workflows for operator work. Each listing now carries canonical bundle metadata, declared artifacts, install steps, requirements, and verification notes.
+        </p>
         <p style="color:#8B7E6A; margin:0; line-height:1.75; max-width:720px;">
-          Narrow, reusable workflows for real operator work. OpenClaw-first, manual install for now, and shaped like content we can grow into a proper marketplace.
+          V1 stays intentionally manual: inspect the bundle, install it yourself, review the moving parts, and run the checks before rollout.
         </p>
       </section>
 
@@ -65,6 +68,9 @@ const statusColors = {
                   <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
                     {workflow.data.difficulty}
                   </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
+                    v{workflow.data.bundle.version}
+                  </span>
                 </div>
                 <h2 style="font-family:Georgia,serif; font-size:1.5rem; font-weight:400; margin:0 0 0.2rem;">
                   <a href={`/workflows/${workflow.id}/`} style="color:#E8DCC8; text-decoration:none;">{workflow.data.title}</a>
@@ -78,16 +84,16 @@ const statusColors = {
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
               <div>
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Operators</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.operators.join(', ')}</div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Bundle</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.id}</div>
               </div>
               <div>
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Includes</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.includes.slice(0, 2).join(' · ')}</div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Artifacts</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.artifactCount} declared files</div>
               </div>
               <div>
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Source</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.sourceLabel}</div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Review mode</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.installMode} install · {workflow.data.verification.mode} verification</div>
               </div>
             </div>
 

@@ -21,6 +21,33 @@ const blog = defineCollection({
 		}),
 });
 
+const bundleArtifactSchema = z.object({
+	name: z.string(),
+	type: z.enum(['skill', 'manifest', 'cron', 'script', 'doc', 'config', 'template', 'bundle']),
+	path: z.string(),
+	description: z.string(),
+	optional: z.boolean().optional(),
+});
+
+const installStepSchema = z.object({
+	title: z.string(),
+	detail: z.string(),
+	command: z.string().optional(),
+});
+
+const requirementSchema = z.object({
+	label: z.string(),
+	detail: z.string(),
+	type: z.enum(['runtime', 'secret', 'access', 'review', 'dependency']),
+});
+
+const verificationCheckSchema = z.object({
+	label: z.string(),
+	detail: z.string(),
+	command: z.string().optional(),
+	expected: z.string().optional(),
+});
+
 const workflows = defineCollection({
 	loader: glob({ base: './src/content/workflows', pattern: '**/*.md' }),
 	schema: z.object({
@@ -41,6 +68,25 @@ const workflows = defineCollection({
 		includes: z.array(z.string()),
 		useCases: z.array(z.string()),
 		notes: z.array(z.string()).optional(),
+		bundle: z.object({
+			id: z.string(),
+			version: z.string(),
+			installMode: z.enum(['manual']),
+			reviewStatus: z.enum(['manual-review']),
+			entrypoint: z.string(),
+			bundleRoot: z.string(),
+			artifactCount: z.number().int().nonnegative(),
+			summary: z.string(),
+		}),
+		artifacts: z.array(bundleArtifactSchema),
+		installSteps: z.array(installStepSchema),
+		requirements: z.array(requirementSchema),
+		verification: z.object({
+			mode: z.enum(['manual']),
+			reviewNotes: z.array(z.string()),
+			checks: z.array(verificationCheckSchema),
+		}),
+		structure: z.array(z.string()),
 	}),
 });
 
