@@ -3,6 +3,7 @@ title: Workflow Bundle Title
 summary: One paragraph on what this workflow bundle does, what problem it solves, and why someone would install it.
 tagline: Short sharp tagline for the browse page.
 status: Draft
+isTemplate: true
 difficulty: Medium
 category: Operations
 sourceLabel: Source repo or canonical source

@@ -55,6 +55,7 @@ const workflows = defineCollection({
 		summary: z.string(),
 		tagline: z.string(),
 		status: z.enum(['Live', 'Internal', 'Draft']),
+		isTemplate: z.boolean().optional(),
 		difficulty: z.enum(['Easy', 'Medium', 'Advanced']),
 		category: z.enum(['Operations', 'Security', 'Publishing', 'Research']),
 		sourceLabel: z.string(),

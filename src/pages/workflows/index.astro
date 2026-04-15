@@ -4,7 +4,9 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const workflows = (await getCollection('workflows')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const workflows = (await getCollection('workflows'))
+  .filter((workflow) => !workflow.data.isTemplate)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 const categories = ['All', ...new Set(workflows.map((workflow) => workflow.data.category))];
 const statusColors = {
   Live: '#059669',

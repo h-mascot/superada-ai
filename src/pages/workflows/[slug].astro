@@ -5,7 +5,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const workflows = await getCollection('workflows');
+  const workflows = (await getCollection('workflows')).filter((workflow) => !workflow.data.isTemplate);
   return workflows.map((workflow) => ({ params: { slug: workflow.id } }));
 }
 
