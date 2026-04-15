@@ -44,6 +44,13 @@ const verificationModeLabels = {
   'source-review': 'Source review',
   conceptual: 'Concept review',
 } as const;
+const installabilityLabels = {
+  'openclaw-skill': 'Installable via OpenClaw skill source',
+  script: 'Installable via script',
+  prompt: 'Prompt-run workflow',
+  manual: 'Manual operator install',
+  concept: 'Concept only',
+} as const;
 ---
 
 <!doctype html>
@@ -131,8 +138,55 @@ const verificationModeLabels = {
           </section>
 
           <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">How to use it</div>
+            <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Install contract</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
+              <div>
+                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Installability</div>
+                <div style="color:#E8DCC8;">{workflow.data.bundle.installable.supported ? 'Truly installable now' : 'Not installable yet'}</div>
+              </div>
+              <div>
+                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Method</div>
+                <div style="color:#E8DCC8;">{installabilityLabels[workflow.data.bundle.installable.method]}</div>
+              </div>
+              {workflow.data.bundle.installable.sourceSpec && (
+                <div>
+                  <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Install source spec</div>
+                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{workflow.data.bundle.installable.sourceSpec}</div>
+                </div>
+              )}
+            </div>
             <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto; margin-bottom:1rem;">{workflow.data.installCommand}</code>
+            {workflow.data.bundle.installable.sourceUrl && (
+              <p style="margin:0 0 1rem; color:#8B7E6A; line-height:1.7;">Canonical source: <a href={workflow.data.bundle.installable.sourceUrl} style="color:#C87533; text-decoration:none;">{workflow.data.bundle.installable.sourceUrl}</a></p>
+            )}
+            <div style="display:grid; gap:0.8rem; margin-bottom:1rem;">
+              {workflow.data.bundle.installable.instructions.map((instruction, index) => (
+                <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
+                  <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Agent step {index + 1}</div>
+                  <div style="color:#C9BDA8; line-height:1.7;">{instruction}</div>
+                </div>
+              ))}
+            </div>
+            {workflow.data.bundle.installable.prompt && (
+              <div style="margin-bottom:1rem;">
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Prompt</div>
+                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{workflow.data.bundle.installable.prompt}</code>
+              </div>
+            )}
+            {workflow.data.bundle.installable.postInstallVerification && (
+              <div style="margin-bottom:1rem;">
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Verification command</div>
+                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{workflow.data.bundle.installable.postInstallVerification}</code>
+              </div>
+            )}
+            {workflow.data.bundle.installable.limitations && workflow.data.bundle.installable.limitations.length > 0 && (
+              <div style="margin-bottom:1rem;">
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Current limits</div>
+                <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
+                  {workflow.data.bundle.installable.limitations.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            )}
             <div style="display:grid; gap:0.8rem;">
               {workflow.data.installSteps.map((step, index) => (
                 <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
@@ -143,7 +197,7 @@ const verificationModeLabels = {
                 </div>
               ))}
             </div>
-            <p style="color:#8B7E6A; font-size:0.84rem; line-height:1.7; margin:0.9rem 0 0;">Use the install source and review mode as the truth. Some entries are installable bundles, some are prompt-driven workflows, and some are design blueprints waiting to be packaged.</p>
+            <p style="color:#8B7E6A; font-size:0.84rem; line-height:1.7; margin:0.9rem 0 0;">If you hand an agent this workflow URL, this install contract is the source of truth for whether it can really install the bundle now, what source to use, and what still needs a human.</p>
           </section>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.25rem;">

@@ -48,6 +48,16 @@ bundle:
   installSource:
     type: prompt
     label: Concept only
+  installable:
+    supported: false
+    method: concept
+    instructions:
+      - Treat this page as a bundle blueprint, not as something an agent can install today.
+      - Use the described structure to build a real wrapper, prompt file, output path, and cron spec in a real repo.
+      - Only add a real install source after the artifacts exist and can be verified.
+    limitations:
+      - No real bundle URL, install script, or local package exists yet.
+      - Verification is design review only until real artifacts are created.
 artifacts:
   - name: Cron schedule concept
     type: concept

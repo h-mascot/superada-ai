@@ -88,6 +88,16 @@ const workflows = defineCollection({
 					script: z.string().optional(),
 				})
 				.optional(),
+			installable: z.object({
+				supported: z.boolean(),
+				method: z.enum(['openclaw-skill', 'script', 'prompt', 'manual', 'concept']),
+				sourceUrl: z.string().optional(),
+				sourceSpec: z.string().optional(),
+				instructions: z.array(z.string()),
+				postInstallVerification: z.string().optional(),
+				prompt: z.string().optional(),
+				limitations: z.array(z.string()).optional(),
+			}),
 		}),
 		artifacts: z.array(bundleArtifactSchema),
 		installSteps: z.array(installStepSchema),

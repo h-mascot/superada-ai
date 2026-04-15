@@ -28,6 +28,13 @@ const reviewModeLabels = {
   'source-review': 'Source review',
   conceptual: 'Concept review',
 } as const;
+const installabilityLabels = {
+  'openclaw-skill': 'OpenClaw install',
+  script: 'Script install',
+  prompt: 'Prompt run',
+  manual: 'Manual install',
+  concept: 'Concept only',
+} as const;
 ---
 
 <!doctype html>
@@ -113,7 +120,7 @@ const reviewModeLabels = {
               </div>
               <div>
                 <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install and review</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{installModeLabels[workflow.data.bundle.installMode]} · {reviewModeLabels[workflow.data.verification.mode]}</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.installable.supported ? 'Installable now' : 'Not installable yet'} · {installabilityLabels[workflow.data.bundle.installable.method]} · {reviewModeLabels[workflow.data.verification.mode]}</div>
               </div>
             </div>
 

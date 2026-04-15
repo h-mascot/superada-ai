@@ -46,6 +46,17 @@ bundle:
     type: prompt
     label: Manual prompt run
     script: openclaw agent run --prompt "Draft and stage the weekly community roundup using the publishing workflow"
+  installable:
+    supported: false
+    method: prompt
+    instructions:
+      - This workflow is usable now as a supervised prompt run, but it is not a bundled installable package.
+      - Gather source notes manually, then run the drafting prompt from an OpenClaw session.
+      - Keep human editorial review in the loop before publishing.
+    prompt: Draft and stage the weekly community roundup using the publishing workflow
+    limitations:
+      - No installable bundle URL or package exists for this workflow yet.
+      - Source collection and final publishing still rely on operator-managed process.
 artifacts:
   - name: Editorial run prompt
     type: prompt

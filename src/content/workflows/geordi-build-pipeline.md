@@ -49,6 +49,20 @@ bundle:
     label: GitHub skill bundle
     url: https://github.com/henrino3/enterprise-crew-skills/tree/main/geordi-build-pipeline
     script: openclaw skills install github:henrino3/enterprise-crew-skills/geordi-build-pipeline
+  installable:
+    supported: true
+    method: openclaw-skill
+    sourceUrl: https://github.com/henrino3/enterprise-crew-skills/tree/main/geordi-build-pipeline
+    sourceSpec: github:henrino3/enterprise-crew-skills/geordi-build-pipeline
+    instructions:
+      - Review the linked GitHub bundle before install so the transport, workflow YAML, and verification flow are understood.
+      - Install it into OpenClaw with `openclaw skills install github:henrino3/enterprise-crew-skills/geordi-build-pipeline`.
+      - Create or initialize the required project context file before any run.
+      - Review the workflow definition for the target repo and builder host, then launch the skill manually.
+    postInstallVerification: openclaw skills info geordi-build-pipeline
+    limitations:
+      - Skill installation is real, but successful execution still depends on repo-specific context, builder access, and verification commands.
+      - The workflow bundle is externally hosted, not checked into this website repo.
 artifacts:
   - name: Skill contract
     type: skill

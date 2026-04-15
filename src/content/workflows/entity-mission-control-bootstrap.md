@@ -51,6 +51,20 @@ bundle:
     label: GitHub skill bundle
     url: https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc
     script: openclaw skills install github:henrino3/enterprise-crew-skills/entity-mc
+  installable:
+    supported: true
+    method: openclaw-skill
+    sourceUrl: https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc
+    sourceSpec: github:henrino3/enterprise-crew-skills/entity-mc
+    instructions:
+      - Review the linked GitHub bundle before install so the runtime, manifests, and helper scripts are understood.
+      - Install it into OpenClaw with `openclaw skills install github:henrino3/enterprise-crew-skills/entity-mc`.
+      - Inspect the installed skill locally, then run the bundle's install helper for the target machine and manifest.
+      - Verify the installed skill and applied manifest before wider rollout.
+    postInstallVerification: openclaw skills info entity-mc
+    limitations:
+      - Bundle install is real, but per-host rollout still needs operator review and host-specific manifest selection.
+      - The runtime artifacts live in the external skills repo, not in this website repo.
 artifacts:
   - name: Skill contract
     type: skill

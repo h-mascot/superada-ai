@@ -41,6 +41,18 @@ bundle:
     type: local-path
     label: Local repo bundle
     script: npx clawhub@latest install your-workflow-bundle
+  installable:
+    supported: false
+    method: manual
+    sourceUrl: https://github.com/example/repo
+    sourceSpec: workflows/your-workflow-bundle
+    instructions:
+      - Replace with concrete, agent-readable install steps.
+      - State whether the workflow is truly installable now, and from which URL or source spec.
+      - Include a real post-install verification command when applicable.
+    postInstallVerification: bash workflows/your-workflow-bundle/scripts/run.sh
+    limitations:
+      - Replace with truthful current limitations.
 artifacts:
   - name: Bundle manifest
     type: manifest
