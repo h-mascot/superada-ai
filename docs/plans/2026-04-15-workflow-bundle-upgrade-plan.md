@@ -11,13 +11,13 @@ Upgrade superada.ai from descriptive workflow listings to real workflow bundle p
 - Keep manual install and manual review as the v1 operating model
 
 ## Checklist
-- [ ] Expand content schema for real bundle metadata
-- [ ] Create canonical bundle fields and artifact declarations
-- [ ] Update workflow detail page to expose bundle structure, artifacts, install steps, verification, and requirements
-- [ ] Update browse page messaging so it reflects real bundles instead of generic listings
-- [ ] Add at least one cron-first bundle example shaped like a reusable package
-- [ ] Verify build
-- [ ] Summarize the publishing workflow Henry can use later
+- [x] Expand content schema for real bundle metadata
+- [x] Create canonical bundle fields and artifact declarations
+- [x] Update workflow detail page to expose bundle structure, artifacts, install steps, verification, and requirements
+- [x] Update browse page messaging so it reflects real bundles instead of generic listings
+- [x] Add at least one cron-first bundle example shaped like a reusable package
+- [x] Verify build
+- [x] Summarize the publishing workflow Henry can use later
 
 ## Resume
 If context compacts, re-read this file and continue from the first unchecked item.
