@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const workflows = (await getCollection('workflows')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const categories = ['All', ...new Set(workflows.map((workflow) => workflow.data.category))];
+const statusColors = {
+  Live: '#059669',
+  Internal: '#2563EB',
+  Draft: '#C87533',
+} as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Workflow Marketplace — SuperAda"
+      description="Browse workflow bundles for operations, publishing, research, and security. Lean, Astro-native, and OpenClaw-first."
+    />
+  </head>
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+    <Header />
+    <main style="max-width:980px; margin:0 auto; padding:3rem 1.5rem;">
+      <section style="margin-bottom:2.25rem;">
+        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.65rem;">Workflow Marketplace</div>
+        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Workflow bundles</h1>
+        <p style="color:#8B7E6A; margin:0; line-height:1.75; max-width:720px;">
+          Narrow, reusable workflows for real operator work. OpenClaw-first, manual install for now, and shaped like content we can grow into a proper marketplace.
+        </p>
+      </section>
+
+      <section style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.25rem;">
+        {categories.map((category, index) => (
+          <button
+            type="button"
+            class={`filter-chip ${index === 0 ? 'is-active' : ''}`}
+            data-category={category}
+            onclick="filterWorkflows(this.dataset.category)"
+          >
+            {category}
+          </button>
+        ))}
+      </section>
+
+      <section id="workflow-grid" style="display:grid; gap:1rem;">
+        {workflows.map((workflow) => (
+          <article
+            data-category={workflow.data.category}
+            data-title={workflow.data.title.toLowerCase()}
+            data-summary={workflow.data.summary.toLowerCase()}
+            style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1.35rem 1.4rem;"
+          >
+            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:0.8rem; flex-wrap:wrap;">
+              <div>
+                <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem;">
+                  <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${statusColors[workflow.data.status]}; background:${statusColors[workflow.data.status]}18; border:1px solid ${statusColors[workflow.data.status]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
+                    {workflow.data.status}
+                  </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
+                    {workflow.data.category}
+                  </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
+                    {workflow.data.difficulty}
+                  </span>
+                </div>
+                <h2 style="font-family:Georgia,serif; font-size:1.5rem; font-weight:400; margin:0 0 0.2rem;">
+                  <a href={`/workflows/${workflow.id}/`} style="color:#E8DCC8; text-decoration:none;">{workflow.data.title}</a>
+                </h2>
+                <p style="margin:0; color:#C9BDA8; line-height:1.7;">{workflow.data.tagline}</p>
+              </div>
+              <div style="font-size:0.78rem; color:#8B7E6A; font-family:monospace; white-space:nowrap;">{workflow.data.estimatedSetup}</div>
+            </div>
+
+            <p style="margin:0 0 1rem; color:#8B7E6A; line-height:1.75;">{workflow.data.summary}</p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
+              <div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Operators</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.operators.join(', ')}</div>
+              </div>
+              <div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Includes</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.includes.slice(0, 2).join(' · ')}</div>
+              </div>
+              <div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Source</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.sourceLabel}</div>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; padding-top:1rem; border-top:1px solid #2A241E;">
+              <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.65rem 0.8rem; font-size:0.78rem; overflow:auto; max-width:100%;">{workflow.data.installCommand}</code>
+              <a href={`/workflows/${workflow.id}/`} style="color:#C87533; text-decoration:none; font-size:0.85rem; white-space:nowrap;">View bundle →</a>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+    <Footer />
+
+    <script is:inline>
+      function filterWorkflows(category) {
+        document.querySelectorAll('.filter-chip').forEach((chip) => {
+          chip.classList.toggle('is-active', chip.dataset.category === category);
+        });
+
+        document.querySelectorAll('#workflow-grid [data-category]').forEach((card) => {
+          card.style.display = category === 'All' || card.dataset.category === category ? 'block' : 'none';
+        });
+      }
+    </script>
+
+    <style>
+      .filter-chip {
+        appearance: none;
+        border: 1px solid #2A241E;
+        background: #131008;
+        color: #8B7E6A;
+        border-radius: 999px;
+        padding: 0.45rem 0.8rem;
+        font: inherit;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+
+      .filter-chip:hover,
+      .filter-chip.is-active {
+        color: #E8DCC8;
+        border-color: #3A2A1E;
+        background: #1A140F;
+      }
+    </style>
+  </body>
+</html>
