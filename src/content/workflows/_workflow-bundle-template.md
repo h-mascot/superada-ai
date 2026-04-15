@@ -29,12 +29,18 @@ notes:
 bundle:
   id: example.workflow.your-workflow-bundle
   version: 0.1.0
+  classification: local
   installMode: manual
   reviewStatus: manual-review
   entrypoint: workflow.yaml
   bundleRoot: workflows/your-workflow-bundle
   artifactCount: 4
   summary: Short summary of what travels with the bundle and why it is reusable.
+  availabilityNote: Replace this with a truthful note about whether the bundle is local, external, or still conceptual.
+  installSource:
+    type: local-path
+    label: Local repo bundle
+    script: npx clawhub@latest install your-workflow-bundle
 artifacts:
   - name: Bundle manifest
     type: manifest

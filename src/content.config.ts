@@ -23,7 +23,7 @@ const blog = defineCollection({
 
 const bundleArtifactSchema = z.object({
 	name: z.string(),
-	type: z.enum(['skill', 'manifest', 'cron', 'script', 'doc', 'config', 'template', 'bundle']),
+	type: z.enum(['skill', 'manifest', 'cron', 'script', 'doc', 'config', 'template', 'bundle', 'prompt', 'concept']),
 	path: z.string(),
 	description: z.string(),
 	optional: z.boolean().optional(),
@@ -72,18 +72,28 @@ const workflows = defineCollection({
 		bundle: z.object({
 			id: z.string(),
 			version: z.string(),
-			installMode: z.enum(['manual']),
-			reviewStatus: z.enum(['manual-review']),
+			classification: z.enum(['local', 'external', 'conceptual']),
+			installMode: z.enum(['manual', 'agent-installable', 'prompt-only']),
+			reviewStatus: z.enum(['manual-review', 'source-review', 'concept-review']),
 			entrypoint: z.string(),
 			bundleRoot: z.string(),
 			artifactCount: z.number().int().nonnegative(),
 			summary: z.string(),
+			availabilityNote: z.string(),
+			installSource: z
+				.object({
+					type: z.enum(['local-path', 'github', 'url', 'prompt', 'manual']),
+					label: z.string(),
+					url: z.string().optional(),
+					script: z.string().optional(),
+				})
+				.optional(),
 		}),
 		artifacts: z.array(bundleArtifactSchema),
 		installSteps: z.array(installStepSchema),
 		requirements: z.array(requirementSchema),
 		verification: z.object({
-			mode: z.enum(['manual']),
+			mode: z.enum(['manual', 'source-review', 'conceptual']),
 			reviewNotes: z.array(z.string()),
 			checks: z.array(verificationCheckSchema),
 		}),

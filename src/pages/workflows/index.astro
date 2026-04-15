@@ -13,6 +13,21 @@ const statusColors = {
   Internal: '#2563EB',
   Draft: '#C87533',
 } as const;
+const classificationLabels = {
+  local: 'Local bundle',
+  external: 'External bundle',
+  conceptual: 'Conceptual workflow',
+} as const;
+const installModeLabels = {
+  manual: 'Manual install',
+  'agent-installable': 'Agent-installable',
+  'prompt-only': 'Prompt-driven',
+} as const;
+const reviewModeLabels = {
+  manual: 'Manual verification',
+  'source-review': 'Source review',
+  conceptual: 'Concept review',
+} as const;
 ---
 
 <!doctype html>
@@ -20,7 +35,7 @@ const statusColors = {
   <head>
     <BaseHead
       title="Workflow Marketplace — SuperAda"
-      description="Browse workflow bundles for operations, publishing, research, and security. Lean, Astro-native, and OpenClaw-first."
+      description="Browse workflow bundles and workflow patterns for operations, publishing, research, and security, with availability labels that reflect reality."
     />
   </head>
   <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
@@ -28,12 +43,12 @@ const statusColors = {
     <main style="max-width:980px; margin:0 auto; padding:3rem 1.5rem;">
       <section style="margin-bottom:2.25rem;">
         <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.65rem;">Workflow Marketplace</div>
-        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Workflow bundles</h1>
+        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Workflows and bundles</h1>
         <p style="color:#8B7E6A; margin:0 0 0.9rem; line-height:1.75; max-width:720px;">
-          Real bundle-shaped workflows for operator work. Each listing now carries canonical bundle metadata, declared artifacts, install steps, requirements, and verification notes.
+          Browse real installable bundles plus prompt-driven and conceptual workflow patterns for operator work. Each listing now says whether it is local, external, or still just a blueprint.
         </p>
         <p style="color:#8B7E6A; margin:0; line-height:1.75; max-width:720px;">
-          V1 stays intentionally manual: inspect the bundle, install it yourself, review the moving parts, and run the checks before rollout.
+          That means no more pretending every listing ships as local artifacts in this repo. Review the source, install path, and verification mode before rollout.
         </p>
       </section>
 
@@ -71,6 +86,9 @@ const statusColors = {
                     {workflow.data.difficulty}
                   </span>
                   <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
+                    {classificationLabels[workflow.data.bundle.classification]}
+                  </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">
                     v{workflow.data.bundle.version}
                   </span>
                 </div>
@@ -86,22 +104,22 @@ const statusColors = {
 
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
               <div>
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Bundle</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.id}</div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Availability</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.availabilityNote}</div>
               </div>
               <div>
                 <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Artifacts</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.artifactCount} declared files</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.artifactCount} described items</div>
               </div>
               <div>
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Review mode</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.installMode} install · {workflow.data.verification.mode} verification</div>
+                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install and review</div>
+                <div style="color:#C9BDA8; line-height:1.6;">{installModeLabels[workflow.data.bundle.installMode]} · {reviewModeLabels[workflow.data.verification.mode]}</div>
               </div>
             </div>
 
             <div style="display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; padding-top:1rem; border-top:1px solid #2A241E;">
               <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.65rem 0.8rem; font-size:0.78rem; overflow:auto; max-width:100%;">{workflow.data.installCommand}</code>
-              <a href={`/workflows/${workflow.id}/`} style="color:#C87533; text-decoration:none; font-size:0.85rem; white-space:nowrap;">View bundle →</a>
+              <a href={`/workflows/${workflow.id}/`} style="color:#C87533; text-decoration:none; font-size:0.85rem; white-space:nowrap;">View details →</a>
             </div>
           </article>
         ))}

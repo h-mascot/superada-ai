@@ -21,4 +21,4 @@ Clean up the workflow bundle system so listings reflect reality, support agent-i
 - [ ] Push to `main`
 
 ## Resume
-If context compacts, re-read `docs/plans/2026-04-15-workflow-bundle-honesty-cleanup-plan.md` and continue from the first unchecked item.
+If context compacts, re-read this file and continue from the first unchecked item.

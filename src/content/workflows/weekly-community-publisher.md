@@ -1,6 +1,6 @@
 ---
 title: Weekly Community Publisher
-summary: A publishing workflow for collecting weekly community signal, drafting the roundup, and shipping it to the site on a regular cadence.
+summary: A prompt-driven editorial workflow for collecting weekly community signal, drafting the roundup, and shipping it with human review, without pretending there is a packaged bundle behind it yet.
 tagline: From scattered posts and notes to a shippable weekly dispatch.
 status: Draft
 difficulty: Medium
@@ -8,7 +8,7 @@ category: Publishing
 sourceLabel: SuperAda publishing workflow
 sourceUrl: /blog/why-blog-pipelines-need-a-registry-not-just-crons
 installCommand: openclaw agent run --prompt "Draft and stage the weekly community roundup using the publishing workflow"
-estimatedSetup: 10 min
+estimatedSetup: Manual review required
 operators:
   - Ada
   - Zora
@@ -29,37 +29,45 @@ useCases:
   - Weekly ecosystem updates
   - Community report generation
   - Editorial ops that should not start from zero each Monday
+notes:
+  - This is currently a prompt-driven workflow pattern, not a packaged local or external bundle.
 bundle:
   id: superada.workflow.weekly-community-publisher
   version: 1.0.0
-  installMode: manual
-  reviewStatus: manual-review
+  classification: conceptual
+  installMode: prompt-only
+  reviewStatus: concept-review
   entrypoint: editorial prompt
-  bundleRoot: content workflow
+  bundleRoot: prompt-driven workflow, not yet packaged
   artifactCount: 4
-  summary: A lightweight editorial bundle that packages the recurring roundup workflow as a supervised, repeatable publishing process.
+  summary: A lightweight editorial workflow pattern that packages the recurring roundup process conceptually, while keeping installation and artifacts honest.
+  availabilityNote: This listing does not point to a real bundle directory or installable external package yet. It describes a supervised workflow that currently starts from a prompt plus operator-managed notes.
+  installSource:
+    type: prompt
+    label: Manual prompt run
+    script: openclaw agent run --prompt "Draft and stage the weekly community roundup using the publishing workflow"
 artifacts:
   - name: Editorial run prompt
-    type: template
-    path: manual prompt run
+    type: prompt
+    path: prompt:Draft and stage the weekly community roundup using the publishing workflow
     description: Operator-launched prompt that frames the roundup draft and staging work.
   - name: Source collection notes
-    type: doc
-    path: weekly links, notes, and community references
+    type: concept
+    path: operator-managed weekly links and notes
     description: Human-curated sources that seed the publishing run before the draft is generated.
-  - name: Draft article
+  - name: Draft article output
     type: doc
     path: src/content/blog/<weekly-roundup>.mdx
-    description: Draft output staged for editorial review and later publication.
-  - name: Publish checklist
-    type: config
+    description: The intended draft output staged for editorial review and later publication.
+  - name: Publish checklist concept
+    type: concept
     path: editorial review checklist
     description: Manual approval layer that confirms tone, links, and formatting before publish.
 installSteps:
   - title: Gather weekly source material
     detail: Assemble the links, notes, and candidate items that should feed the weekly roundup.
   - title: Run the drafting prompt
-    detail: Launch the publishing workflow manually to create or update the roundup draft.
+    detail: Launch the workflow manually to create or update the roundup draft.
     command: openclaw agent run --prompt "Draft and stage the weekly community roundup using the publishing workflow"
   - title: Review and publish by hand
     detail: Edit the draft, confirm links and tone, then commit or publish only after human review.
@@ -74,23 +82,23 @@ requirements:
     detail: Publishing stays supervised in v1, especially for tone, accuracy, and headline quality.
     type: review
 verification:
-  mode: manual
+  mode: conceptual
   reviewNotes:
     - Review links, names, and claims before shipping.
     - Confirm the final article matches the week's actual themes instead of generic filler.
     - Treat generation as draft acceleration, not autonomous publishing.
   checks:
-    - label: Draft exists
+    - label: Prompt run produces a draft
       detail: Confirm the workflow produced a concrete article draft or staged content update.
       expected: A publishable draft file or working draft is ready for human review.
     - label: Editorial review complete
       detail: Read the article end to end and fix voice, accuracy, and formatting before publish.
       expected: A reviewed draft that can be committed without obvious factual or stylistic issues.
 structure:
-  - content workflow
-  - weekly source notes
+  - prompt-driven workflow
+  - operator-managed weekly source notes
   - src/content/blog/<weekly-roundup>.mdx
   - editorial review checklist
 ---
 
-A lean first-pass publishing bundle. Manual approval stays in the loop, but the repetitive structure is handled for you.
+A lean first-pass publishing workflow. It is useful today, but it is now labeled honestly as prompt-driven rather than as a shipped bundle.
