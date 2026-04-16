@@ -2,6 +2,15 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { publishedSkills } from '../../data/skills';
+
+const skillItems = publishedSkills.map((skill) => ({
+  type: 'skill',
+  title: skill.title,
+  description: skill.description,
+  link: `/skills/${skill.slug}`,
+  linkLabel: 'View skill',
+}));
 
 const sections = [
   {
@@ -30,102 +39,12 @@ const sections = [
     label: 'Skills',
     blurb: 'Reusable agent capabilities we actually use.',
     items: [
-      {
-        type: 'skill',
-        title: '3pass',
-        description: '3-pass recursive prompting (critique → refine → final answer). Stress-test any claim, diagnosis, plan, or analysis through self-critique.',
-        link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/3pass',
-        linkLabel: 'GitHub',
-      },
-      {
-        type: 'skill',
-        title: 'benchmarking',
-        description: 'Benchmark models or agents, compare providers for real work, and track performance across runs.',
-        link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/benchmarking',
-        linkLabel: 'GitHub',
-      },
-      {
-        type: 'skill',
-        title: 'council',
-    description: 'Topic-aware multi-agent council for structured debate, challenge, and synthesis across engineering, sales, support, product, ops, and strategy topics.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/council',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'daily-review',
-    description: 'Comprehensive daily performance review with communication tracking, meeting analysis, output metrics, and focus time monitoring. Your AI performance coach.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/daily-review',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'entity-mc',
-    description: 'Bootstrap Entity Mission Control helper runtime for crew agents — shared canonical bundle, per-agent manifest, safe cron install, verification, and rollback.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'exec-approvals',
-    description: 'Manage OpenClaw exec approvals from one place — elevated access, obfuscation bypass, security posture, and per-provider allowlists.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/exec-approvals',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'geordi-build-pipeline',
-    description: 'Execute PRD stories sequentially via Codex with verification and retry. Uses ACP protocol (primary) with SSH+tmux fallback.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/geordi-build-pipeline',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'geordi-setup',
-    description: 'Set up and configure Geordi, the Enterprise Crew\'s primary build agent.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/geordi-setup',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'model-orchestrator',
-    description: 'Intelligent model load balancer for OpenClaw crons — distributes across providers by complexity and cost.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/model-orchestrator',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'ralph',
-    description: 'Autonomous AI coding loop that runs Codex/Claude Code repeatedly until all PRD items are complete. Based on the viral Ralph project.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/ralph',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'session-cleaner',
-    description: 'Clean up stale agent sessions, orphaned checkpoints, and dead subagent processes across the crew.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/session-cleaner',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'skill-sharer',
-    description: 'Share a skill publicly to the enterprise-crew-skills GitHub repo. Strips personal/security info, generates a README, and updates the repo index.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/skill-sharer',
-    linkLabel: 'GitHub',
-  },
-  {
-    type: 'skill',
-    title: 'x-video-transcribe',
-    description: 'Transcribe and summarize X/Twitter videos using bird CLI + Gemini audio transcription.',
-    link: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/x-video-transcribe',
-    linkLabel: 'GitHub',
-  },
-  // Crons
+      ...skillItems,
+      // Crons
   {
     type: 'cron',
     title: 'Urgent Email Detection',
-    description: 'Scans inbox every 15 minutes for urgent unread emails. Surfaces actionable items to your command channel. No more missed critical emails.',
+    description: 'Now hook-based, not cron-based. Gmail push/watch wakes on the next heartbeat and only surfaces known contacts, Curacel or Soteria mail, legal, financial, investor, YC, and real meeting confirmations. Events, meetups, conferences, cold outreach, newsletters, webinars, and content marketing get junked.',
     link: '/blog/the-98-active-crons',
     linkLabel: 'Read post',
   },
@@ -146,7 +65,7 @@ const sections = [
   {
     type: 'cron',
     title: 'Heartbeat Poll',
-    description: 'Runs every 10 minutes to check open loops, stuck tasks, calendar events, and subagent health. The nervous system of the crew.',
+    description: 'Currently runs every 120 minutes on zai/glm-5.1 with reasoning off. It now carries only meeting and calendar reminders, with the email section removed.',
     link: '/blog/managing-68-autonomous-crons',
     linkLabel: 'Read post',
   },
