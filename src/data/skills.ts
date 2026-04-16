@@ -168,20 +168,20 @@ export const publishedSkills: SkillRecord[] = [
     ],
     configExamples: [
       {
-        label: 'Elevated exec',
+        label: 'Elevated exec example',
         code: `{
   "tools": {
     "elevated": {
       "enabled": true,
       "allowFrom": {
-        "telegram": ["*"]
+        "<provider>": ["<principal-or-*>"]
       }
     }
   }
 }`,
       },
       {
-        label: 'Obfuscation bypass',
+        label: 'Obfuscation bypass example',
         code: `{
   "tools": {
     "exec": {
@@ -191,12 +191,12 @@ export const publishedSkills: SkillRecord[] = [
 }`,
       },
       {
-        label: 'Security mode',
+        label: 'Security mode example',
         code: `{
   "tools": {
     "exec": {
-      "security": "full",
-      "ask": "on-miss"
+      "security": "<mode>",
+      "ask": "<ask-policy>"
     }
   }
 }`,

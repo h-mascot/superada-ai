@@ -44,7 +44,7 @@ const sections = [
   {
     type: 'cron',
     title: 'Urgent Email Detection',
-    description: 'Now hook-based, not cron-based. Gmail push/watch wakes on the next heartbeat and only surfaces known contacts, Curacel or Soteria mail, legal, financial, investor, YC, and real meeting confirmations. Events, meetups, conferences, cold outreach, newsletters, webinars, and content marketing get junked.',
+    description: 'Now event-driven rather than simple interval polling. It is tuned to surface genuinely urgent mail while aggressively filtering noise and promotional junk.',
     link: '/blog/the-98-active-crons',
     linkLabel: 'Read post',
   },
@@ -65,7 +65,7 @@ const sections = [
   {
     type: 'cron',
     title: 'Heartbeat Poll',
-    description: 'Currently runs every 120 minutes on zai/glm-5.1 with reasoning off. It now carries only meeting and calendar reminders, with the email section removed.',
+    description: 'The crew heartbeat now focuses on open-loop checks and reminder delivery, with email handled separately.',
     link: '/blog/managing-68-autonomous-crons',
     linkLabel: 'Read post',
   },
