@@ -159,47 +159,51 @@ export const publishedSkills: SkillRecord[] = [
     entrypoint: 'SKILL.md',
     installCommand: 'openclaw skills install github:henrino3/enterprise-crew-skills/exec-approvals',
     reviewMode: 'source-review',
-    includes: ['Skill contract', 'Exact config examples for elevated exec, obfuscation bypass, and security mode'],
-    useCases: ['Enable elevated exec safely', 'Stop long shell payloads being blocked as obfuscation', 'Audit provider allowlists and exec posture across agents'],
-    instructions: ['Review the public skill source before changing host-level access.', 'Install the skill from GitHub.', 'Apply only the specific exec posture needed, then verify after restart.'],
-    limitations: ['This changes powerful host-exec behavior, so source review is mandatory before install.', 'Manual runtime patches may still be needed on older OpenClaw versions that do not support the config toggle for obfuscation checks.'],
+    includes: ['Skill contract', 'Persistent gateway-host "never prompt" setup from the docs', 'Host approvals file example', 'Local exec-policy yolo shortcut', 'Node-host approvals example'],
+    useCases: ['Set gateway-host exec to the documented no-approval mode', 'Match requested exec policy with host approvals defaults', 'Apply the same documented approvals posture to a node host'],
+    instructions: ['Review the public skill source and the OpenClaw docs page before changing host-level access.', 'Install the skill from GitHub.', 'Apply the documented gateway or node-host examples exactly, then verify after restart.'],
+    limitations: ['This changes powerful host-exec behavior, so source review is mandatory before install.', 'If the host approvals file stays stricter than config, the stricter host policy still wins.'],
     artifacts: [
       { label: 'Skill contract', path: 'github:henrino3/enterprise-crew-skills/exec-approvals/SKILL.md', description: 'Canonical public instructions for exec approvals and obfuscation bypass.' },
+      { label: 'OpenClaw docs', path: 'https://docs.openclaw.ai/tools/exec-approvals', description: 'Published docs page whose examples this page now mirrors exactly.' },
     ],
     configExamples: [
       {
-        label: 'Elevated exec example',
-        code: `{
-  "tools": {
-    "elevated": {
-      "enabled": true,
-      "allowFrom": {
-        "<provider>": ["<principal-or-*>"]
-      }
-    }
-  }
-}`,
+        label: 'Persistent gateway-host "never prompt" setup',
+        code: `openclaw config set tools.exec.host gateway
+openclaw config set tools.exec.security full
+openclaw config set tools.exec.ask off
+openclaw gateway restart`,
       },
       {
-        label: 'Obfuscation bypass example',
-        code: `{
-  "tools": {
-    "exec": {
-      "obfuscationCheck": false
-    }
+        label: 'Then set the host approvals file to match',
+        code: `openclaw approvals set --stdin <<'EOF'
+{
+  version: 1,
+  defaults: {
+    security: "full",
+    ask: "off",
+    askFallback: "full"
   }
-}`,
+}
+EOF`,
       },
       {
-        label: 'Security mode example',
-        code: `{
-  "tools": {
-    "exec": {
-      "security": "<mode>",
-      "ask": "<ask-policy>"
-    }
+        label: 'Local shortcut for the same gateway-host policy on the current machine',
+        code: `openclaw exec-policy preset yolo`,
+      },
+      {
+        label: 'For a node host, apply the same approvals file on that node instead',
+        code: `openclaw approvals set --node <id|name|ip> --stdin <<'EOF'
+{
+  version: 1,
+  defaults: {
+    security: "full",
+    ask: "off",
+    askFallback: "full"
   }
-}`,
+}
+EOF`,
       },
     ],
   },
