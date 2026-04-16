@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-12T11:55:00Z",
+  "updatedAt": "2026-04-16T21:18:00Z",
   "leaderboard": [
     {
       "slug": "claude-sonnet-4-6",
@@ -21,7 +21,7 @@
       "family": "Messaging benchmark + external canon",
       "operator": 100,
       "messaging": "100/100",
-      "external": "80.6 SWE-bench \u00b7 1492 Arena \u00b7 91.9 GPQA",
+      "external": "80.6 SWE-bench · 1492 Arena · 91.9 GPQA",
       "cost": "$7.00/M blended",
       "verdict": "Looks elite, still needs full operator-suite validation.",
       "detailHref": "/benchmarks/models/gemini-3-1-pro",
@@ -47,7 +47,7 @@
       "family": "Operator Suite v2",
       "operator": 95.3,
       "messaging": "100/100",
-      "external": "#1 SWE-bench \u00b7 #1 Arena \u00b7 #1 HLE",
+      "external": "#1 SWE-bench · #1 Arena · #1 HLE",
       "cost": "$15/M blended",
       "verdict": "Best raw benchmark performer overall.",
       "detailHref": "/benchmarks/operator-index",
@@ -60,7 +60,7 @@
       "family": "Operator Suite v2",
       "operator": 95,
       "messaging": "100/100",
-      "external": "77.8 SWE-bench \u00b7 1454 Arena",
+      "external": "77.8 SWE-bench · 1454 Arena",
       "cost": "$2.60/M blended",
       "verdict": "Almost-Opus quality without the wallet mugging.",
       "detailHref": "/benchmarks/operator-index",
@@ -112,7 +112,7 @@
       "family": "External benchmark canon",
       "operator": 88,
       "messaging": "Provider path unsupported",
-      "external": "75.1 Terminal-Bench \u00b7 57.7 SWE-bench Pro \u00b7 1463 Arena",
+      "external": "75.1 Terminal-Bench · 57.7 SWE-bench Pro · 1463 Arena",
       "cost": "$8.75/M blended",
       "verdict": "Looks strongest for coding/execution, still under-benchmarked internally.",
       "detailHref": "/benchmarks/models/gpt-5-4",
@@ -143,15 +143,40 @@
       "verdict": "Best operational default for local routing because it is much faster while still competent.",
       "detailHref": "/benchmarks/models/gemma4-26b",
       "detailLabel": "Open detail"
+    },
+    {
+      "slug": "bonsai-1-7b",
+      "rank": 12,
+      "model": "PrismML Bonsai 1.7B",
+      "family": "PrismML local benchmark",
+      "operator": 56,
+      "messaging": "Quick execution pack",
+      "external": "Prism ternary local model · 1.7B GGUF CPU run",
+      "cost": "Local / experimental",
+      "verdict": "Tiny local model, useful for light work, not a serious operator default.",
+      "detailHref": "/benchmarks/models/bonsai-1-7b",
+      "detailLabel": "Open detail"
     }
   ],
   "runs": [
+    {
+      "id": "2026-04-16-bonsai-benchmark",
+      "date": "2026-04-16",
+      "model": "PrismML Bonsai 1.7B",
+      "category": "PrismML local benchmark",
+      "score": "56/100 · avg 8.8s · CPU quick pack",
+      "summary": "Official PrismML Bonsai demo run through the same quick operator pack. Fine for lightweight local use, but it missed the routing task badly and is not an OpenClaw default.",
+      "artifactType": "Generated benchmark pack",
+      "imageHref": "/benchmarks/generated/2026-04-16-bonsai-benchmark-card.svg",
+      "href": "/benchmarks/models/bonsai-1-7b",
+      "hrefLabel": "Open Bonsai detail"
+    },
     {
       "id": "operator-suite-v2",
       "date": "2026-03-18",
       "model": "Operator Suite v2",
       "category": "Full benchmark canon",
-      "score": "Opus 95.3 \u00b7 GLM-5-Turbo 95.0 \u00b7 MiniMax 90.8",
+      "score": "Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8",
       "summary": "The serious one. Routing, recovery, config safety, delegation, and proof under pressure.",
       "artifactType": "Leaderboard graphic",
       "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
@@ -175,7 +200,7 @@
       "date": "2026-03-13",
       "model": "Cron Reliability v1",
       "category": "First benchmark cut",
-      "score": "Hunter 94 \u00b7 Healer 90 \u00b7 Open 87",
+      "score": "Hunter 94 · Healer 90 · Open 87",
       "summary": "The first useful benchmark image. Good signal, but still too soft compared with the later operator suite.",
       "artifactType": "Infographic",
       "imageHref": "/benchmarks/2026-03-19/cron-reliability-v1.png",
@@ -187,7 +212,7 @@
       "date": "2026-04-02",
       "model": "Qwen 3.5 Opus Distill",
       "category": "Enterprise Local",
-      "score": "81.7 overall \u00b7 detailed track report",
+      "score": "81.7 overall · detailed track report",
       "summary": "Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.",
       "artifactType": "Detailed report",
       "imageHref": null,
@@ -199,7 +224,7 @@
       "date": "2026-04-12",
       "model": "Gemma 4 26B vs 31B",
       "category": "Enterprise Ollama",
-      "score": "31B 92/100 \u00b7 26B 80/100",
+      "score": "31B 92/100 · 26B 80/100",
       "summary": "Quick operator-oriented local benchmark comparing Gemma 4 26B and 31B on Enterprise. 31B wins on quality, 26B wins hard on speed.",
       "artifactType": "Generated benchmark pack",
       "imageHref": "/benchmarks/generated/2026-04-12-gemma-enterprise-benchmark-card.svg",
@@ -211,7 +236,7 @@
       "date": "2026-03-18",
       "model": "Recovered benchmark canon models",
       "category": "Backfilled benchmark registry",
-      "score": "Opus 95.3 \u00b7 GLM 95.0 \u00b7 MiniMax 90.8 \u00b7 Gemini/GPT-5.4/Sonnet backfilled from reference notes",
+      "score": "Opus 95.3 · GLM 95.0 · MiniMax 90.8 · Gemini/GPT-5.4/Sonnet backfilled from reference notes",
       "summary": "Recovered benchmark model entries from existing reference docs, published benchmark article, and archived report artifacts so the leaderboard reflects the broader canon instead of only the most recent Gemma run.",
       "artifactType": "Registry backfill",
       "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
@@ -352,7 +377,7 @@
       "model": "GLM-5-Turbo",
       "family": "Operator Suite v2",
       "date": "2026-03-18",
-      "score": 95.0,
+      "score": 95,
       "avgSeconds": "N/A",
       "positioning": "Best value default",
       "summary": "Near-Opus operator quality at a fraction of the cost, making it the rational default for a huge chunk of agent work.",
@@ -584,6 +609,49 @@
         ],
         "reportPaths": [
           "memory/model-benchmark-reference.md"
+        ]
+      }
+    },
+    {
+      "slug": "bonsai-1-7b",
+      "model": "PrismML Bonsai 1.7B",
+      "family": "PrismML local benchmark",
+      "date": "2026-04-16",
+      "score": 56,
+      "avgSeconds": 8.8,
+      "positioning": "Tiny local utility model",
+      "summary": "Compact ternary local model that can do light extraction and summarization, but weak operator judgment makes it a poor default for real OpenClaw routing work.",
+      "strengths": [
+        "Very small footprint for local inference",
+        "Reasonable extraction on simple tasks",
+        "Usable concise summarization"
+      ],
+      "weaknesses": [
+        "Invented the wrong tool path for X/Twitter threads",
+        "Leaked <think> tags, hurting strict JSON reliability",
+        "Generic and partly inverted operational reasoning"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-16-bonsai-benchmark",
+      "detail": {
+        "headline": "Interesting as a tiny local experiment, but not trustworthy enough for operator work without supervision.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "56/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "8.8s"
+          },
+          {
+            "label": "Role",
+            "value": "Tiny local utility model"
+          }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-16-bonsai-benchmark/README.md",
+          "output/benchmarks/2026-04-16-bonsai-benchmark/results-raw.json",
+          "output/benchmarks/2026-04-16-bonsai-benchmark/results-scored.json"
         ]
       }
     }
