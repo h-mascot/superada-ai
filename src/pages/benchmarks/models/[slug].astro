@@ -60,12 +60,13 @@ const { model } = Astro.props;
       </section>
 
       <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
-        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Proof and artifacts</div>
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Readable report</div>
+        <p style="margin:0 0 1rem; color:#CDBFA9; line-height:1.75;">Open the benchmark report for the human-readable breakdown, verdict, task-by-task analysis, and the most important outputs. Raw files are there if someone wants them, but the report is the actual thing to read.</p>
         <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.9;">
-          {model.detail.reportPaths.map((path) => (
+          {model.detail.reportPaths.map((path, index) => (
             <li>
               <a href={path} target={path.startsWith('http') ? '_blank' : '_self'} rel={path.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#E8DCC8; text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
-                {path}
+                {index === 0 ? 'Open readable benchmark report' : path}
               </a>
             </li>
           ))}

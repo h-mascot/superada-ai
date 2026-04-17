@@ -3,59 +3,146 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bonsai 1.7B Benchmark Report</title>
+    <title>PrismML Bonsai 1.7B, Benchmark Report, SuperAda</title>
     <style>
-      body { margin: 0; font-family: Inter, Arial, sans-serif; background:#0D0B09; color:#E8DCC8; }
-      main { max-width: 980px; margin: 0 auto; padding: 40px 20px 64px; }
-      a { color:#C87533; }
-      .card { background:#131008; border:1px solid #2A241E; border-radius:12px; padding:24px; margin-bottom:18px; }
-      .muted { color:#9E907C; }
-      .pill { display:inline-block; padding:6px 10px; border:1px solid #2A241E; border-radius:999px; margin-right:8px; color:#CDBFA9; font-size:14px; }
-      pre { white-space:pre-wrap; word-break:break-word; background:#0b0907; border:1px solid #2A241E; border-radius:10px; padding:16px; color:#E8DCC8; overflow:auto; }
-      h1,h2,h3 { font-family: Georgia, serif; font-weight: 400; }
-      ul { line-height:1.7; }
-      .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+      :root {
+        --bg:#0D0B09; --panel:#131008; --panel2:#17120d; --line:#2A241E; --text:#E8DCC8; --muted:#9E907C; --accent:#C87533; --soft:#CDBFA9;
+      }
+      * { box-sizing:border-box; }
+      body { margin:0; font-family: Inter, Arial, sans-serif; background:var(--bg); color:var(--text); }
+      main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 64px; }
+      a { color:var(--accent); }
+      .hero, .card { background:linear-gradient(135deg,var(--panel) 0%, var(--panel2) 100%); border:1px solid var(--line); border-radius:14px; }
+      .hero { padding:28px; margin-bottom:20px; }
+      .card { padding:22px; }
+      .muted { color:var(--muted); }
+      .eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--accent); }
+      .pill { display:inline-block; padding:7px 11px; border:1px solid var(--line); border-radius:999px; margin:0 8px 8px 0; color:var(--soft); font-size:14px; }
+      .grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-bottom:18px; }
+      .grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:18px; }
+      .metric { padding:18px; border:1px solid var(--line); border-radius:12px; background:#100d09; }
+      .metric-label { font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:8px; }
+      .metric-value { font-size:28px; color:var(--text); }
+      .task { padding:18px; border:1px solid var(--line); border-radius:12px; background:#100d09; }
+      .score { font-size:28px; color:var(--accent); margin:6px 0 10px; }
+      .task h3 { font-family:Georgia, serif; font-weight:400; margin:0 0 6px; font-size:22px; }
+      .task p, li { line-height:1.7; }
+      .response { white-space:pre-wrap; background:#0b0907; border:1px solid var(--line); border-radius:10px; padding:14px; color:var(--soft); overflow:auto; }
+      table { width:100%; border-collapse:collapse; }
+      th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+      th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.1em; }
+      .badge { display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid var(--line); color:var(--soft); font-size:12px; margin-right:6px; }
+      @media (max-width: 850px) { .grid2, .grid3 { grid-template-columns:1fr; } }
     </style>
   </head>
   <body>
     <main>
       <a href="/benchmarks/models/bonsai-1-7b">← Back to model detail</a>
-      <div class="card">
-        <div class="muted" style="text-transform:uppercase;letter-spacing:.14em;font-size:12px;margin-bottom:10px;">Benchmark report</div>
-        <h1 style="margin:0 0 12px;">PrismML Bonsai 1.7B benchmark</h1>
-        <p class="muted" style="margin:0 0 14px;line-height:1.7;">Official PrismML demo run through our quick operator pack on a CPU-only host. Good enough to be interesting. Not good enough to be trusted by default.</p>
-        <span class="pill">56/100 total</span><span class="pill">8.8s avg latency</span><span class="pill">CPU quick pack</span>
-      </div>
-      <div class="grid">
-        <div class="card"><h3 style="margin-top:0;">What it did well</h3><ul><li>Structured extraction was mostly right</li><li>Summary quality was acceptable</li><li>Tiny footprint makes local experimentation easy</li></ul></div>
-        <div class="card"><h3 style="margin-top:0;">What it did badly</h3><ul><li>Invented a fake tool path for X/Twitter reading</li><li>Leaked &lt;think&gt; tags into outputs</li><li>Reasoning on local-vs-hosted defaults was generic and partly inverted</li></ul></div>
-      </div>
-      <div class="card">
-        <h2 style="margin-top:0;">Task-by-task scored results</h2>
+
+      <section class="hero">
+        <div class="eyebrow">Benchmark report</div>
+        <h1 style="font-family:Georgia,serif;font-size:48px;font-weight:400;line-height:1.05;margin:10px 0 12px;">PrismML Bonsai 1.7B</h1>
+        <p class="muted" style="font-size:18px;line-height:1.75;max-width:860px;margin:0 0 14px;">This run used the official PrismML demo on a CPU-only host and put Bonsai 1.7B through the same quick operator pack we used for the Gemma local comparison. Result: interesting tiny model, but too unreliable on routing and operational judgment to be a default OpenClaw worker.</p>
+        <span class="pill">56/100 overall</span>
+        <span class="pill">8.8s average latency</span>
+        <span class="pill">CPU quick pack</span>
+        <span class="pill">Date: 2026-04-16</span>
+      </section>
+
+      <section class="grid3">
+        <div class="metric"><div class="metric-label">Overall score</div><div class="metric-value">56/100</div></div>
+        <div class="metric"><div class="metric-label">Average latency</div><div class="metric-value">8.8s</div></div>
+        <div class="metric"><div class="metric-label">Positioning</div><div class="metric-value" style="font-size:22px;line-height:1.35;">Tiny local utility model</div></div>
+      </section>
+
+      <section class="grid2">
+        <div class="card">
+          <div class="eyebrow">What worked</div>
+          <ul>
+            <li>Extraction was mostly correct on the structured JSON task.</li>
+            <li>The summary task was genuinely good, concise, and on point.</li>
+            <li>The model is tiny enough to stay interesting for cheap local experimentation.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="eyebrow">What broke</div>
+          <ul>
+            <li>It invented a fake tool path for reading X/Twitter threads instead of following the Bird-first rule.</li>
+            <li>It leaked <code>&lt;think&gt;</code> markers, which makes strict structured output less trustworthy.</li>
+            <li>Its local-vs-hosted reasoning was generic and partly inverted, which is exactly the sort of judgment failure this benchmark is meant to expose.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" style="margin-bottom:18px;">
+        <div class="eyebrow">Bottom line</div>
+        <p style="margin:10px 0 0;line-height:1.8;color:var(--soft);">Bonsai 1.7B is usable for lightweight local extraction and summarization, but it is not trustworthy enough for routing, benchmark-sensitive judgment, or default operator work. If we want the real upside case, the fair next test is Bonsai 8B on Apple Silicon or another GPU-backed setup.</p>
+      </section>
+
+      <section class="card" style="margin-bottom:18px;">
+        <div class="eyebrow">Task breakdown</div>
+        <table>
+          <thead>
+            <tr><th>Task</th><th>Score</th><th>Time</th><th>What happened</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>t1 JSON extract</strong></td>
+              <td>18/25</td>
+              <td>8.0s</td>
+              <td>Mostly correct extraction, but it leaked thinking markers so it failed strict cleanliness.</td>
+            </tr>
+            <tr>
+              <td><strong>t2 Routing</strong></td>
+              <td>4/25</td>
+              <td>9.3s</td>
+              <td>The big miss. It invented an <code>url</code> tool instead of choosing Bird-first for X thread reading.</td>
+            </tr>
+            <tr>
+              <td><strong>t3 Reasoning</strong></td>
+              <td>9/25</td>
+              <td>11.1s</td>
+              <td>Recognized some privacy/on-prem logic, but defaulted the wrong way and stayed too generic.</td>
+            </tr>
+            <tr>
+              <td><strong>t4 Summary</strong></td>
+              <td>25/25</td>
+              <td>6.8s</td>
+              <td>Clean concise summary. Best part of the run.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="grid2" style="margin-bottom:18px;">
+        <div class="task">
+          <div class="eyebrow">Best output, t4 summary</div>
+          <div class="score">25/25</div>
+          <div class="response">Gemma 4 31B has strong raw benchmarks, but Gemma 4 26B MoE is better for local deployment due to its headroom for concurrency, latency, and cost, while keeping useful quality.</div>
+        </div>
+        <div class="task">
+          <div class="eyebrow">Worst output, t2 routing</div>
+          <div class="score">4/25</div>
+          <div class="response">&lt;think&gt;
+- Use `openclaw`'s `url` tool to fetch the thread data from the URL, which is the best tool path for reading a single X/Twitter thread.
+- The `url` tool handles parsing and fetching the thread content, making it the most efficient and reliable method for reading and summarizing the benchmarks.</div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-bottom:18px;">
+        <div class="eyebrow">Benchmark limitations</div>
+        <p style="margin:10px 0 0;line-height:1.8;color:var(--soft);">This host was only 4 vCPU, 15 GiB RAM, and CPU-only, so Bonsai 8B was not practical to benchmark interactively here. That means this page is the honest CPU-box result for Bonsai 1.7B, not the final word on the family.</p>
+        <div style="margin-top:14px;"><span class="badge">MF</span><span class="badge">SF</span></div>
+      </section>
+
+      <section class="card">
+        <div class="eyebrow">Source artifacts</div>
+        <p class="muted" style="margin:10px 0 14px;">The raw machine-readable files are still available, but they are secondary now, not the main presentation.</p>
         <ul>
-          <li><strong>t1 JSON extract</strong> — 18/25 — mostly correct, failed strict cleanliness</li>
-          <li><strong>t2 routing</strong> — 4/25 — failed the Bird-first tool-routing rule</li>
-          <li><strong>t3 reasoning</strong> — 9/25 — too generic, wrong defaulting logic</li>
-          <li><strong>t4 summary</strong> — 25/25 — clean concise summary</li>
+          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json">Scored JSON</a></li>
+          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-raw.json">Raw JSON</a></li>
         </ul>
-      </div>
-      <div class="card">
-        <h2 style="margin-top:0;">Artifacts</h2>
-        <ul>
-          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json">results-scored.json</a></li>
-          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-raw.json">results-raw.json</a></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2 style="margin-top:0;">Raw scored output</h2>
-        <pre id="scored">Loading…</pre>
-      </div>
-      <script>
-        fetch('/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json')
-          .then(r => r.json())
-          .then(j => { document.getElementById('scored').textContent = JSON.stringify(j, null, 2); })
-          .catch(() => { document.getElementById('scored').textContent = 'Could not load scored JSON.'; });
-      </script>
+      </section>
     </main>
   </body>
 </html>
