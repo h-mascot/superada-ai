@@ -1,0 +1,78 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import registry from '../../../data/benchmark-registry.json';
+
+export async function getStaticPaths() {
+  return registry.models.map((model) => ({
+    params: { slug: model.slug },
+    props: { model },
+  }));
+}
+
+const { model } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${model.model} — Benchmarks — SuperAda`} description={model.summary} />
+  </head>
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+    <Header />
+    <main style="max-width:1000px; margin:0 auto; padding:3rem 1.5rem 4rem;">
+      <a href="/benchmarks" style="display:inline-flex; margin-bottom:1.1rem; color:#C87533; font-size:0.9rem; text-decoration:none;">← Back to Benchmarks</a>
+
+      <section style="margin-bottom:2rem; padding:2rem; border:1px solid #2A241E; border-radius:10px; background:linear-gradient(135deg,#131008 0%,#17120d 60%,#1c140d 100%);">
+        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.8rem;">Model Detail</div>
+        <h1 style="font-family:Georgia,serif; font-size:3rem; line-height:1.05; font-weight:400; margin:0 0 0.75rem;">{model.model}</h1>
+        <p style="font-size:1.05rem; color:#CDBFA9; max-width:780px; line-height:1.75; margin:0;">{model.detail.headline}</p>
+      </section>
+
+      <section style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem;">
+        {model.detail.metrics.map((metric) => (
+          <div style="padding:1.2rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+            <div style="font-size:0.78rem; color:#8B7E6A; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.4rem;">{metric.label}</div>
+            <div style="font-size:1.4rem; color:#E8DCC8;">{metric.value}</div>
+          </div>
+        ))}
+      </section>
+
+      <section style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+        <div style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Strengths</div>
+          <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.7;">
+            {model.strengths.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Weaknesses</div>
+          <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.7;">
+            {model.weaknesses.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; margin-bottom:2rem;">
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Operator read</div>
+        <p style="margin:0; color:#CDBFA9; line-height:1.75;">{model.summary}</p>
+      </section>
+
+      <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Readable report</div>
+        <p style="margin:0 0 1rem; color:#CDBFA9; line-height:1.75;">Open the benchmark report for the human-readable breakdown, verdict, task-by-task analysis, and the most important outputs. Raw files are there if someone wants them, but the report is the actual thing to read.</p>
+        <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.9;">
+          {model.detail.reportPaths.map((path, index) => (
+            <li>
+              <a href={path} target={path.startsWith('http') ? '_blank' : '_self'} rel={path.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#E8DCC8; text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
+                {index === 0 ? 'Open readable benchmark report' : path}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
