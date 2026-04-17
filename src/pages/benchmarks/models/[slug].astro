@@ -60,9 +60,15 @@ const { model } = Astro.props;
       </section>
 
       <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
-        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Proof paths</div>
-        <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.7;">
-          {model.detail.reportPaths.map((path) => <li><code>{path}</code></li>)}
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Proof and artifacts</div>
+        <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.9;">
+          {model.detail.reportPaths.map((path) => (
+            <li>
+              <a href={path} target={path.startsWith('http') ? '_blank' : '_self'} rel={path.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#E8DCC8; text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
+                {path}
+              </a>
+            </li>
+          ))}
         </ul>
       </section>
     </main>

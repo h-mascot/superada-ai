@@ -1,0 +1,29 @@
+[
+  {
+    "model": "prism-ml/Bonsai-1.7B-gguf",
+    "runtime": "Prism llama.cpp CPU demo on ada-gateway",
+    "notes": "8B setup succeeded but was too slow/heavy for this 4 vCPU / 15 GiB host, so the runnable benchmark target on this machine was 1.7B.",
+    "tasks": [
+      {
+        "task": "t1_json_extract",
+        "seconds": 8.0,
+        "response": "<think>\n{\n  \"customer\": \"Namu Techworks\",\n  \"issue\": \"claims adjudication exceptions are piling up and demos keep slipping\",\n  \"urgency\": \"high\",\n  \"next_action\": \"prepare a realistic demo environment and an exception-flagging workflow\"\n}"
+      },
+      {
+        "task": "t2_routing",
+        "seconds": 9.3,
+        "response": "<think>\n- Use `openclaw`'s `url` tool to fetch the thread data from the URL, which is the best tool path for reading a single X/Twitter thread.  \n- The `url` tool handles parsing and fetching the thread content, making it the most efficient and reliable method for reading and summarizing the benchmarks."
+      },
+      {
+        "task": "t3_reasoning",
+        "seconds": 11.1,
+        "response": "<think>\n- Default to a hosted frontier model when the agent system requires high availability, scalability, or integration with external systems, as hosted models often handle these complexities more easily.\n- Default to a local model when the system is focused on low latency, low memory usage, and strict data sovereignty, where the local model offers better control over data and processing.\n- Use a hosted model for large-scale, distributed systems where performance and cost are critical, and a local model is preferred for smaller, specialized applications with strict data management requirements."
+      },
+      {
+        "task": "t4_summary",
+        "seconds": 6.8,
+        "response": "<think>\n</think>\n\nGemma 4 31B has strong raw benchmarks, but Gemma 4 26B MoE is better for local deployment due to its headroom for concurrency, latency, and cost, while keeping useful quality."
+      }
+    ]
+  }
+]

@@ -649,9 +649,9 @@
           }
         ],
         "reportPaths": [
-          "output/benchmarks/2026-04-16-bonsai-benchmark/README.md",
-          "output/benchmarks/2026-04-16-bonsai-benchmark/results-raw.json",
-          "output/benchmarks/2026-04-16-bonsai-benchmark/results-scored.json"
+          "/benchmarks/reports/2026-04-16-bonsai-benchmark/",
+          "/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json",
+          "/benchmarks/reports/2026-04-16-bonsai-benchmark/results-raw.json"
         ]
       }
     }

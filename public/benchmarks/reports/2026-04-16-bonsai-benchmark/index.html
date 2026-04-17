@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bonsai 1.7B Benchmark Report</title>
+    <style>
+      body { margin: 0; font-family: Inter, Arial, sans-serif; background:#0D0B09; color:#E8DCC8; }
+      main { max-width: 980px; margin: 0 auto; padding: 40px 20px 64px; }
+      a { color:#C87533; }
+      .card { background:#131008; border:1px solid #2A241E; border-radius:12px; padding:24px; margin-bottom:18px; }
+      .muted { color:#9E907C; }
+      .pill { display:inline-block; padding:6px 10px; border:1px solid #2A241E; border-radius:999px; margin-right:8px; color:#CDBFA9; font-size:14px; }
+      pre { white-space:pre-wrap; word-break:break-word; background:#0b0907; border:1px solid #2A241E; border-radius:10px; padding:16px; color:#E8DCC8; overflow:auto; }
+      h1,h2,h3 { font-family: Georgia, serif; font-weight: 400; }
+      ul { line-height:1.7; }
+      .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="/benchmarks/models/bonsai-1-7b">← Back to model detail</a>
+      <div class="card">
+        <div class="muted" style="text-transform:uppercase;letter-spacing:.14em;font-size:12px;margin-bottom:10px;">Benchmark report</div>
+        <h1 style="margin:0 0 12px;">PrismML Bonsai 1.7B benchmark</h1>
+        <p class="muted" style="margin:0 0 14px;line-height:1.7;">Official PrismML demo run through our quick operator pack on a CPU-only host. Good enough to be interesting. Not good enough to be trusted by default.</p>
+        <span class="pill">56/100 total</span><span class="pill">8.8s avg latency</span><span class="pill">CPU quick pack</span>
+      </div>
+      <div class="grid">
+        <div class="card"><h3 style="margin-top:0;">What it did well</h3><ul><li>Structured extraction was mostly right</li><li>Summary quality was acceptable</li><li>Tiny footprint makes local experimentation easy</li></ul></div>
+        <div class="card"><h3 style="margin-top:0;">What it did badly</h3><ul><li>Invented a fake tool path for X/Twitter reading</li><li>Leaked &lt;think&gt; tags into outputs</li><li>Reasoning on local-vs-hosted defaults was generic and partly inverted</li></ul></div>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0;">Task-by-task scored results</h2>
+        <ul>
+          <li><strong>t1 JSON extract</strong> — 18/25 — mostly correct, failed strict cleanliness</li>
+          <li><strong>t2 routing</strong> — 4/25 — failed the Bird-first tool-routing rule</li>
+          <li><strong>t3 reasoning</strong> — 9/25 — too generic, wrong defaulting logic</li>
+          <li><strong>t4 summary</strong> — 25/25 — clean concise summary</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0;">Artifacts</h2>
+        <ul>
+          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json">results-scored.json</a></li>
+          <li><a href="/benchmarks/reports/2026-04-16-bonsai-benchmark/results-raw.json">results-raw.json</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0;">Raw scored output</h2>
+        <pre id="scored">Loading…</pre>
+      </div>
+      <script>
+        fetch('/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json')
+          .then(r => r.json())
+          .then(j => { document.getElementById('scored').textContent = JSON.stringify(j, null, 2); })
+          .catch(() => { document.getElementById('scored').textContent = 'Could not load scored JSON.'; });
+      </script>
+    </main>
+  </body>
+</html>
