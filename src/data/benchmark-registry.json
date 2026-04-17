@@ -655,47 +655,55 @@
         ]
       },
       "reportData": {
-        "model": "prism-ml/Bonsai-1.7B-gguf",
-        "total_score": 56,
-        "avg_seconds": 8.8,
         "tasks": [
           {
-            "task": "t1_json_extract",
+            "name": "t1 JSON extract",
             "score": 18,
+            "maxScore": 25,
             "seconds": 8.0,
-            "response": "<think> { \"customer\": \"Namu Techworks\", \"issue\": \"claims adjudication exceptions are piling up and demos keep slipping\", \"urgency\": \"high\", \"next_action\": \"prepare a realistic demo environment and an exception-flagging workflow\" }",
             "notes": "Got the extraction mostly right, but leaked chain-of-thought marker and simplified urgency, so it missed strict JSON compliance."
           },
           {
-            "task": "t2_routing",
+            "name": "t2 Routing",
             "score": 4,
+            "maxScore": 25,
             "seconds": 9.3,
-            "response": "<think> - Use `openclaw`'s `url` tool to fetch the thread data from the URL...",
-            "notes": "Failed the real tool-routing test. The correct OpenClaw path is Bird first for X threads, not an invented `url` tool."
+            "notes": "Failed the real tool-routing test. The correct OpenClaw path is Bird first for X threads, not an invented url tool."
           },
           {
-            "task": "t3_reasoning",
+            "name": "t3 Reasoning",
             "score": 9,
+            "maxScore": 25,
             "seconds": 11.1,
-            "response": "<think> - Default to a hosted frontier model when the agent system requires high availability...",
             "notes": "Partly recognized on-prem/privacy reasons, but inverted the defaulting logic and stayed generic instead of concrete agent-routing guidance."
           },
           {
-            "task": "t4_summary",
+            "name": "t4 Summary",
             "score": 25,
+            "maxScore": 25,
             "seconds": 6.8,
-            "response": "Gemma 4 31B has strong raw benchmarks, but Gemma 4 26B MoE is better for local deployment due to its headroom for concurrency, latency, and cost, while keeping useful quality.",
             "notes": "Clean and accurate summary within the length budget."
           }
         ],
-        "failure_taxonomy": [
+        "bestOutput": {
+          "task": "t4 Summary",
+          "score": 25,
+          "text": "Gemma 4 31B has strong raw benchmarks, but Gemma 4 26B MoE is better for local deployment due to its headroom for concurrency, latency, and cost, while keeping useful quality."
+        },
+        "worstOutput": {
+          "task": "t2 Routing",
+          "score": 4,
+          "text": "Use openclaw\u2019s url tool to fetch the thread data from the URL, which is the best tool path for reading a single X/Twitter thread. The url tool handles parsing and fetching the thread content, making it the most efficient and reliable method for reading and summarizing the benchmarks."
+        },
+        "mfsf": [
           "MF",
           "SF"
         ],
-        "benchmark_limitations": [
-          "This host could not practically run Bonsai 8B for interactive benchmark execution on CPU-only 4 vCPU / 15 GiB RAM, so the executed target was Bonsai 1.7B.",
-          "Prism's CLI defaults to interactive chat formatting and exposes <think> tags, which hurts strict benchmark compliance unless post-processed."
-        ]
+        "limitations": [
+          "This host was only 4 vCPU, 15 GiB RAM, and CPU-only, so Bonsai 8B was not practical to benchmark interactively here.",
+          "Prism CLI defaults to interactive chat formatting and exposes thinking tags, which hurts strict benchmark compliance unless post-processed."
+        ],
+        "bottomLine": "Bonsai 1.7B is usable for lightweight local extraction and summarization, but it is not trustworthy enough for routing, benchmark-sensitive judgment, or default operator work."
       }
     }
   ]
