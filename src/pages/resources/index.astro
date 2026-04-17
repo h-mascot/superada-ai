@@ -14,27 +14,6 @@ const skillItems = publishedSkills.map((skill) => ({
 
 const sections = [
   {
-    id: 'benchmarks',
-    label: 'Benchmarks',
-    blurb: 'Scoreboards, infographics, and model drill-downs.',
-    items: [
-      {
-        type: 'guide',
-        title: 'Benchmarks Hub',
-        description: 'Public benchmark hub for model scoreboards, benchmark graphics, and drill-down report pages for individual model runs.',
-        link: '/benchmarks',
-        linkLabel: 'Open page',
-      },
-      {
-        type: 'guide',
-        title: 'OperatorIndex',
-        description: 'Canonical benchmark context page with the Operator Suite leaderboard, messaging benchmark image, and benchmark canon.',
-        link: '/benchmarks/operator-index',
-        linkLabel: 'Open page',
-      },
-    ],
-  },
-  {
     id: 'skills',
     label: 'Skills',
     blurb: 'Reusable agent capabilities we actually use.',
@@ -173,7 +152,7 @@ const typeColors: Record<string, string> = {
         <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.65rem;">Resources</div>
         <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Resources</h1>
         <p style="color:#8B7E6A; margin:0; line-height:1.7; max-width:760px;">
-          Skills, benchmark pages, cron recipes, workflows, and guides from the Enterprise Crew. Real tools we build and use — not demo-theatre.
+          Skills, cron recipes, workflows, and guides from the Enterprise Crew. Real tools we build and use — not demo-theatre.
         </p>
       </div>
 
@@ -194,7 +173,6 @@ const typeColors: Record<string, string> = {
           </nav>
           <div class="nav-label" style="margin-top:1.5rem;">Pages</div>
           <nav class="filter-nav">
-            <a href="/benchmarks" class="filter-link">Benchmarks</a>
             <a href="/workflows" class="filter-link">Workflows</a>
             <a href="/openclaw-changelog" class="filter-link">OpenClaw Changelog</a>
           </nav>
