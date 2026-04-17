@@ -21,7 +21,7 @@
       "family": "Messaging benchmark + external canon",
       "operator": 100,
       "messaging": "100/100",
-      "external": "80.6 SWE-bench · 1492 Arena · 91.9 GPQA",
+      "external": "80.6 SWE-bench \u00b7 1492 Arena \u00b7 91.9 GPQA",
       "cost": "$7.00/M blended",
       "verdict": "Looks elite, still needs full operator-suite validation.",
       "detailHref": "/benchmarks/models/gemini-3-1-pro",
@@ -47,7 +47,7 @@
       "family": "Operator Suite v2",
       "operator": 95.3,
       "messaging": "100/100",
-      "external": "#1 SWE-bench · #1 Arena · #1 HLE",
+      "external": "#1 SWE-bench \u00b7 #1 Arena \u00b7 #1 HLE",
       "cost": "$15/M blended",
       "verdict": "Best raw benchmark performer overall.",
       "detailHref": "/benchmarks/operator-index",
@@ -60,7 +60,7 @@
       "family": "Operator Suite v2",
       "operator": 95,
       "messaging": "100/100",
-      "external": "77.8 SWE-bench · 1454 Arena",
+      "external": "77.8 SWE-bench \u00b7 1454 Arena",
       "cost": "$2.60/M blended",
       "verdict": "Almost-Opus quality without the wallet mugging.",
       "detailHref": "/benchmarks/operator-index",
@@ -112,7 +112,7 @@
       "family": "External benchmark canon",
       "operator": 88,
       "messaging": "Provider path unsupported",
-      "external": "75.1 Terminal-Bench · 57.7 SWE-bench Pro · 1463 Arena",
+      "external": "75.1 Terminal-Bench \u00b7 57.7 SWE-bench Pro \u00b7 1463 Arena",
       "cost": "$8.75/M blended",
       "verdict": "Looks strongest for coding/execution, still under-benchmarked internally.",
       "detailHref": "/benchmarks/models/gpt-5-4",
@@ -151,7 +151,7 @@
       "family": "PrismML local benchmark",
       "operator": 56,
       "messaging": "Quick execution pack",
-      "external": "Prism ternary local model · 1.7B GGUF CPU run",
+      "external": "Prism ternary local model \u00b7 1.7B GGUF CPU run",
       "cost": "Local / experimental",
       "verdict": "Tiny local model, useful for light work, not a serious operator default.",
       "detailHref": "/benchmarks/models/bonsai-1-7b",
@@ -164,7 +164,7 @@
       "date": "2026-04-16",
       "model": "PrismML Bonsai 1.7B",
       "category": "PrismML local benchmark",
-      "score": "56/100 · avg 8.8s · CPU quick pack",
+      "score": "56/100 \u00b7 avg 8.8s \u00b7 CPU quick pack",
       "summary": "Official PrismML Bonsai demo run through the same quick operator pack. Fine for lightweight local use, but it missed the routing task badly and is not an OpenClaw default.",
       "artifactType": "Generated benchmark pack",
       "imageHref": "/benchmarks/generated/2026-04-16-bonsai-benchmark-card.svg",
@@ -176,7 +176,7 @@
       "date": "2026-03-18",
       "model": "Operator Suite v2",
       "category": "Full benchmark canon",
-      "score": "Opus 95.3 · GLM-5-Turbo 95.0 · MiniMax 90.8",
+      "score": "Opus 95.3 \u00b7 GLM-5-Turbo 95.0 \u00b7 MiniMax 90.8",
       "summary": "The serious one. Routing, recovery, config safety, delegation, and proof under pressure.",
       "artifactType": "Leaderboard graphic",
       "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
@@ -200,7 +200,7 @@
       "date": "2026-03-13",
       "model": "Cron Reliability v1",
       "category": "First benchmark cut",
-      "score": "Hunter 94 · Healer 90 · Open 87",
+      "score": "Hunter 94 \u00b7 Healer 90 \u00b7 Open 87",
       "summary": "The first useful benchmark image. Good signal, but still too soft compared with the later operator suite.",
       "artifactType": "Infographic",
       "imageHref": "/benchmarks/2026-03-19/cron-reliability-v1.png",
@@ -212,7 +212,7 @@
       "date": "2026-04-02",
       "model": "Qwen 3.5 Opus Distill",
       "category": "Enterprise Local",
-      "score": "81.7 overall · detailed track report",
+      "score": "81.7 overall \u00b7 detailed track report",
       "summary": "Fresh detailed report page for the Qwen 3.5 Opus-distilled run. Good enough to publish as the first clickable model drill-down.",
       "artifactType": "Detailed report",
       "imageHref": null,
@@ -224,7 +224,7 @@
       "date": "2026-04-12",
       "model": "Gemma 4 26B vs 31B",
       "category": "Enterprise Ollama",
-      "score": "31B 92/100 · 26B 80/100",
+      "score": "31B 92/100 \u00b7 26B 80/100",
       "summary": "Quick operator-oriented local benchmark comparing Gemma 4 26B and 31B on Enterprise. 31B wins on quality, 26B wins hard on speed.",
       "artifactType": "Generated benchmark pack",
       "imageHref": "/benchmarks/generated/2026-04-12-gemma-enterprise-benchmark-card.svg",
@@ -236,7 +236,7 @@
       "date": "2026-03-18",
       "model": "Recovered benchmark canon models",
       "category": "Backfilled benchmark registry",
-      "score": "Opus 95.3 · GLM 95.0 · MiniMax 90.8 · Gemini/GPT-5.4/Sonnet backfilled from reference notes",
+      "score": "Opus 95.3 \u00b7 GLM 95.0 \u00b7 MiniMax 90.8 \u00b7 Gemini/GPT-5.4/Sonnet backfilled from reference notes",
       "summary": "Recovered benchmark model entries from existing reference docs, published benchmark article, and archived report artifacts so the leaderboard reflects the broader canon instead of only the most recent Gemma run.",
       "artifactType": "Registry backfill",
       "imageHref": "/benchmarks/2026-03-19/operator-suite-v2-march18.png",
@@ -652,6 +652,49 @@
           "/benchmarks/reports/2026-04-16-bonsai-benchmark/",
           "/benchmarks/reports/2026-04-16-bonsai-benchmark/results-scored.json",
           "/benchmarks/reports/2026-04-16-bonsai-benchmark/results-raw.json"
+        ]
+      },
+      "reportData": {
+        "model": "prism-ml/Bonsai-1.7B-gguf",
+        "total_score": 56,
+        "avg_seconds": 8.8,
+        "tasks": [
+          {
+            "task": "t1_json_extract",
+            "score": 18,
+            "seconds": 8.0,
+            "response": "<think> { \"customer\": \"Namu Techworks\", \"issue\": \"claims adjudication exceptions are piling up and demos keep slipping\", \"urgency\": \"high\", \"next_action\": \"prepare a realistic demo environment and an exception-flagging workflow\" }",
+            "notes": "Got the extraction mostly right, but leaked chain-of-thought marker and simplified urgency, so it missed strict JSON compliance."
+          },
+          {
+            "task": "t2_routing",
+            "score": 4,
+            "seconds": 9.3,
+            "response": "<think> - Use `openclaw`'s `url` tool to fetch the thread data from the URL...",
+            "notes": "Failed the real tool-routing test. The correct OpenClaw path is Bird first for X threads, not an invented `url` tool."
+          },
+          {
+            "task": "t3_reasoning",
+            "score": 9,
+            "seconds": 11.1,
+            "response": "<think> - Default to a hosted frontier model when the agent system requires high availability...",
+            "notes": "Partly recognized on-prem/privacy reasons, but inverted the defaulting logic and stayed generic instead of concrete agent-routing guidance."
+          },
+          {
+            "task": "t4_summary",
+            "score": 25,
+            "seconds": 6.8,
+            "response": "Gemma 4 31B has strong raw benchmarks, but Gemma 4 26B MoE is better for local deployment due to its headroom for concurrency, latency, and cost, while keeping useful quality.",
+            "notes": "Clean and accurate summary within the length budget."
+          }
+        ],
+        "failure_taxonomy": [
+          "MF",
+          "SF"
+        ],
+        "benchmark_limitations": [
+          "This host could not practically run Bonsai 8B for interactive benchmark execution on CPU-only 4 vCPU / 15 GiB RAM, so the executed target was Bonsai 1.7B.",
+          "Prism's CLI defaults to interactive chat formatting and exposes <think> tags, which hurts strict benchmark compliance unless post-processed."
         ]
       }
     }

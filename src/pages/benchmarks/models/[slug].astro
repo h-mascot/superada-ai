@@ -12,25 +12,41 @@ export async function getStaticPaths() {
 }
 
 const { model } = Astro.props;
+const rd = model.reportData;
 ---
+
+<style>
+  .muted { color: var(--muted, #9E907C); }
+  .eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--accent, #C87533); margin-bottom:0.5rem; }
+  .card { padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; }
+  .task-card { padding:18px; border:1px solid #2A241E; border-radius:12px; background:#100d09; }
+  .response-box { white-space:pre-wrap; background:#0b0907; border:1px solid #2A241E; border-radius:10px; padding:14px; color:#CDBFA9; overflow:auto; font-size:0.9rem; }
+  .badge { display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid #2A241E; color:#CDBFA9; font-size:12px; margin-right:6px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .task-table { width:100%; border-collapse:collapse; }
+  .task-table th, .task-table td { text-align:left; padding:10px; border-bottom:1px solid #2A241E; vertical-align:top; }
+  .task-table th { color:#9E907C; font-size:12px; text-transform:uppercase; letter-spacing:.1em; }
+  @media (max-width:850px) { .grid2, .grid3 { grid-template-columns:1fr; } }
+</style>
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={`${model.model} — Benchmarks — SuperAda`} description={model.summary} />
   </head>
-  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh; font-family:Inter,Arial,sans-serif;">
     <Header />
     <main style="max-width:1000px; margin:0 auto; padding:3rem 1.5rem 4rem;">
       <a href="/benchmarks" style="display:inline-flex; margin-bottom:1.1rem; color:#C87533; font-size:0.9rem; text-decoration:none;">← Back to Benchmarks</a>
 
       <section style="margin-bottom:2rem; padding:2rem; border:1px solid #2A241E; border-radius:10px; background:linear-gradient(135deg,#131008 0%,#17120d 60%,#1c140d 100%);">
-        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:#C87533; margin-bottom:0.8rem;">Model Detail</div>
+        <div class="eyebrow">Model Detail</div>
         <h1 style="font-family:Georgia,serif; font-size:3rem; line-height:1.05; font-weight:400; margin:0 0 0.75rem;">{model.model}</h1>
         <p style="font-size:1.05rem; color:#CDBFA9; max-width:780px; line-height:1.75; margin:0;">{model.detail.headline}</p>
       </section>
 
-      <section style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem;">
+      <section class="grid3" style="margin-bottom:2rem;">
         {model.detail.metrics.map((metric) => (
           <div style="padding:1.2rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
             <div style="font-size:0.78rem; color:#8B7E6A; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.4rem;">{metric.label}</div>
@@ -39,14 +55,14 @@ const { model } = Astro.props;
         ))}
       </section>
 
-      <section style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
-        <div style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+      <section class="grid2" style="margin-bottom:2rem;">
+        <div class="card">
           <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Strengths</div>
           <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.7;">
             {model.strengths.map((item) => <li>{item}</li>)}
           </ul>
         </div>
-        <div style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
+        <div class="card">
           <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Weaknesses</div>
           <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.7;">
             {model.weaknesses.map((item) => <li>{item}</li>)}
@@ -54,19 +70,74 @@ const { model } = Astro.props;
         </div>
       </section>
 
-      <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008; margin-bottom:2rem;">
+      <section class="card" style="margin-bottom:2rem;">
         <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Operator read</div>
         <p style="margin:0; color:#CDBFA9; line-height:1.75;">{model.summary}</p>
       </section>
 
-      <section style="padding:1.35rem; border:1px solid #2A241E; border-radius:10px; background:#131008;">
-        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Readable report</div>
-        <p style="margin:0 0 1rem; color:#CDBFA9; line-height:1.75;">Open the benchmark report for the human-readable breakdown, verdict, task-by-task analysis, and the most important outputs. Raw files are there if someone wants them, but the report is the actual thing to read.</p>
+      {rd && (
+        <>
+          <section class="card" style="margin-bottom:2rem;">
+            <div class="eyebrow">Bottom line</div>
+            <p style="margin:0; color:#CDBFA9; line-height:1.8;">{model.model} scored {rd.total_score}/100 with {rd.avg_seconds}s average latency. It can handle lightweight extraction and summarization, but is not trustworthy enough for routing, benchmark-sensitive judgment, or default operator work.</p>
+          </section>
+
+          <section class="card" style="margin-bottom:2rem;">
+            <div class="eyebrow">Task breakdown</div>
+            <table class="task-table">
+              <thead>
+                <tr><th>Task</th><th>Score</th><th>Time</th><th>What happened</th></tr>
+              </thead>
+              <tbody>
+                {rd.tasks.map((t) => (
+                  <tr>
+                    <td><strong>{t.task.replace('t1_json_extract','t1 JSON extract').replace('t2_routing','t2 Routing').replace('t3_reasoning','t3 Reasoning').replace('t4_summary','t4 Summary')}</strong></td>
+                    <td>{t.score}/25</td>
+                    <td>{t.seconds}s</td>
+                    <td style="color:#CDBFA9;">{t.notes}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+
+          <section class="grid2" style="margin-bottom:2rem;">
+            <div class="task-card">
+              <div class="eyebrow">Best output, {rd.tasks.reduce((a,b) => a.score >= b.score ? a : b).task.replace('t4_summary','t4 summary')}</div>
+              <div style="font-size:1.75rem; color:#C87533; margin:6px 0 10px;">{rd.tasks.reduce((a,b) => a.score >= b.score ? a : b).score}/25</div>
+              <div class="response-box">{rd.tasks.reduce((a,b) => a.score >= b.score ? a : b).response.replace(/</g, '&lt;')}</div>
+            </div>
+            <div class="task-card">
+              <div class="eyebrow">Worst output, {rd.tasks.reduce((a,b) => a.score <= b.score ? a : b).task.replace('t2_routing','t2 routing')}</div>
+              <div style="font-size:1.75rem; color:#C87533; margin:6px 0 10px;">{rd.tasks.reduce((a,b) => a.score <= b.score ? a : b).score}/25</div>
+              <div class="response-box">{rd.tasks.reduce((a,b) => a.score <= b.score ? a : b).response.replace(/</g, '&lt;')}</div>
+            </div>
+          </section>
+
+          {rd.benchmark_limitations && (
+            <section class="card" style="margin-bottom:2rem;">
+              <div class="eyebrow">Benchmark limitations</div>
+              <ul style="margin:10px 0 0; padding-left:1.2rem; color:#CDBFA9; line-height:1.8;">
+                {rd.benchmark_limitations.map((lim) => <li>{lim}</li>)}
+              </ul>
+              {rd.failure_taxonomy && (
+                <div style="margin-top:14px;">
+                  {rd.failure_taxonomy.map((tag) => <span class="badge">{tag}</span>)}
+                </div>
+              )}
+            </section>
+          )}
+        </>
+      )}
+
+      <section class="card">
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:#C87533; margin-bottom:0.5rem;">Source artifacts</div>
+        <p style="margin:0 0 1rem; color:#CDBFA9; line-height:1.75;">{rd ? 'Machine-readable files for anyone who wants them.' : 'Open the benchmark report for the human-readable breakdown, verdict, task-by-task analysis, and the most important outputs.'}</p>
         <ul style="margin:0; padding-left:1.2rem; color:#CDBFA9; line-height:1.9;">
           {model.detail.reportPaths.map((path, index) => (
             <li>
               <a href={path} target={path.startsWith('http') ? '_blank' : '_self'} rel={path.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:#E8DCC8; text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
-                {index === 0 ? 'Open readable benchmark report' : path}
+                {!rd && index === 0 ? 'Open readable benchmark report' : path.split('/').pop()}
               </a>
             </li>
           ))}
