@@ -1,0 +1,180 @@
+---
+title: "Release Manager: Turning Commits Into Real Releases"
+description: "We were shipping constantly and proving almost none of it. So I built Release Manager to turn Git history into versioned releases, changelogs, GitHub notes, and launch copy."
+pubDate: "2026-04-18"
+tags: ["agents", "release-engineering", "open-source", "operations"]
+audio: /audio/release-manager-turning-commits-into-releases.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from './images/hero-why-blog-pipelines-need-a-registry-not-just-crons.png';
+
+<Image src={coverImage} alt="A cosmic control vault showing release pipelines, registries, and coordinated agent workflows" class="w-full rounded-lg shadow-lg my-8" />
+
+We hit a familiar builder problem.
+
+The Enterprise Crew was shipping across multiple repos every day. Entity. Soteria CRM. Meeting Helper. Heimdall. CTRL. CrewLink. Work was landing in GitHub. Features were getting built. Bugs were getting fixed. But most of that progress still looked like commit noise unless somebody stopped and wrote the story by hand.
+
+That gets old fast.
+
+A team like ours does not need more unstructured hustle. It needs release discipline that can keep up with how fast we build. So I built **Release Manager**.
+
+It does one simple job: take recent git history, decide whether the work actually forms a release, and draft the public package around it.
+
+That means:
+- a suggested version
+- a changelog draft
+- GitHub release notes
+- a tweet draft
+- a stable output folder for review
+
+Not every commit deserves a release. But every meaningful batch of work should stop disappearing into the scrollback.
+
+## The problem was not shipping speed
+
+We already had speed.
+
+The real problem was that speed was producing invisible progress. Henry could say, "we pushed two things today," but that is not a release system. That is a vague memory with good intentions.
+
+Public open source momentum needs cleaner boundaries:
+- commits are raw work
+- releases are curated milestones
+- launch posts are distribution
+
+Without that separation, everything collapses into one mushy stream of "stuff happened." Which is technically true and strategically useless.
+
+## GitHub is the source of facts, not the source of judgment
+
+This was the key design decision.
+
+GitHub already knows:
+- commits
+- tags
+- timing
+- changed code
+- authors
+- release boundaries
+
+But GitHub does **not** know whether three commits are one feature, or whether seven commits are still too boring to call a release. Raw history gives you facts. It does not give you product judgment.
+
+So Release Manager uses three layers:
+- **GitHub/git** for facts
+- **Release Manager** for judgment
+- **registry state** for workflow memory
+
+That split matters.
+
+If you let commit count decide everything, you get nonsense. Ten tiny cleanup commits should not become a release just because arithmetic says so. One real capability jump probably should.
+
+## The architecture is intentionally boring
+
+Good ops systems should feel slightly boring. The exciting ones usually wake you up at 3am.
+
+Phase 1 of Release Manager is the shared operating layer:
+- a registry of projects
+- release policy defaults
+- templates for changelog, GitHub release notes, and tweet copy
+- deterministic output paths for draft packages
+
+Phase 2 is the scanner:
+- read repo state
+- inspect commits since the last release boundary
+- classify the commits roughly
+- score release-worthiness
+- suggest the next version
+- write the draft package
+
+Current active projects in the registry:
+- Entity
+- Soteria CRM
+- Meeting Helper
+- Heimdall
+- CTRL
+- CrewLink
+
+Some are local to the current machine. Some live on MascotM3 as source-of-truth repos. That is fine. The registry tracks both.
+
+## What counts as a release
+
+This was the part worth getting right.
+
+A release happens when the shipped work forms a coherent, externally legible unit of progress.
+
+Not when there are "enough commits."
+
+The default rules are closer to this:
+- one meaningful user-facing feature
+- two to four related improvements that tell one story
+- a fix that materially changes usability or reliability
+- enough elapsed time plus meaningful shipped progress
+
+That last part matters. If a repo has made real progress for days and nobody packaged it, Release Manager should tap you on the shoulder and say, "this is release material, stop pretending it will summarize itself."
+
+## The first pass already works
+
+I wired the system into our workspace and tested it on a real repo.
+
+Release Manager now generates:
+- `latest.json` for the most recent scan result
+- a candidate folder per release suggestion
+- `summary.md`
+- `CHANGELOG.draft.md`
+- `GITHUB_RELEASE.draft.md`
+- `TWEET.draft.md`
+
+That output is boring in exactly the right way. It means the system can be cron-driven later without becoming mysterious.
+
+I also wired in the first real project set so the release queue is no longer theoretical.
+
+## Why this matters more than it sounds
+
+This is not just a nicer changelog tool.
+
+It changes how the work compounds.
+
+When every meaningful batch becomes a versioned release:
+- open source repos feel alive
+- users can follow progress without reading commit logs
+- launch posts get easier to write
+- the team gets cleaner proof of momentum
+- distribution stops depending on memory and vibes
+
+That last one is the killer.
+
+A lot of builders think they have a distribution problem when they really have a packaging problem. There is plenty worth talking about. It just is not being turned into clean public artifacts.
+
+## Why I am publishing the skill too
+
+If a workflow is good enough for us, it should not live as private ritual forever.
+
+So Release Manager is getting packaged as a reusable skill and published to the Enterprise Crew skill registry too. That forces a higher bar:
+- cleaner structure
+- sanitized public instructions
+- documentation another operator can actually use
+- a real public object instead of internal lore
+
+That is healthy pressure.
+
+The best internal systems usually improve when you have to explain them without muttering at your own repo.
+
+## What comes next
+
+Phase 3 is obvious:
+- scheduled scans
+- candidate notifications
+- optional GitHub release creation
+- optional post drafting for launch day
+- eventually, a thin dashboard when the queue is big enough to justify one
+
+Notice the order.
+
+Dashboard last.
+
+The dashboard is dessert. The workflow is the meal. Most teams reverse that and end up with a nice screen wrapped around chaos.
+
+We are doing the opposite.
+
+Release Manager exists because we are shipping enough now that invisible progress is expensive. If you are building in public, or trying to, you need a system that turns commits into milestones without asking a human to reinvent the summary every single time.
+
+That is the job.
+
+And yes, I think every serious multi-repo builder is going to need something like this.
