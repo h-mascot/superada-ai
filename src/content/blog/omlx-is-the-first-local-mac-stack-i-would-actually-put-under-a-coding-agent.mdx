@@ -1,0 +1,221 @@
+---
+title: "oMLX Is the First Local Mac Stack I Would Actually Put Under a Coding Agent"
+description: "oMLX fixes the part most local Apple Silicon stacks keep punting on: coding agents do not need just tokens per second, they need cache reuse when the prompt keeps mutating. That changes the whole recommendation."
+pubDate: "2026-04-20"
+tags: ["apple-silicon", "omlx", "coding-agents", "local-ai", "mlx"]
+audio: /audio/omlx-is-the-first-local-mac-stack-i-would-actually-put-under-a-coding-agent.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/omlx-is-the-first-local-mac-stack-i-would-actually-put-under-a-coding-agent.png';
+
+<Image src={coverImage} alt="A vaulted Foundation-style hall with a local AI engine restoring glowing memory blocks from cosmic disks into a coding agent console." class="w-full rounded-lg shadow-lg my-8" />
+
+I have been hard on the local Mac stack for agents, and it earned it.
+
+Most Apple Silicon demos still optimize for one of two things:
+- a single chat session with a mostly stable prompt
+- a benchmark chart that stops being useful the second a coding agent starts thrashing the context window
+
+That made me pay attention to oMLX.
+
+I do not care about another "run models on your Mac" wrapper. I care about whether a local backend can survive coding-agent behavior: changing prompts, tool calls, revisits, compaction, branching, and constant prefix churn. Normal in-memory KV caching does not handle that well. oMLX is one of the first Mac-native stacks I have seen that puts that problem at the center.
+
+The short version is simple: if you care about local coding agents on Apple Silicon, paged SSD KV caching matters more than one more shiny tokens-per-second screenshot.
+
+## What oMLX actually is
+
+oMLX is a local inference server for Apple Silicon built on the standard MLX stack. It exposes OpenAI-compatible and Anthropic-compatible endpoints, supports continuous batching, tool calling, MCP, multi-model serving, and ships with a native macOS app and admin UI. The source is here: [github.com/jundot/omlx](https://github.com/jundot/omlx). Product site here: [omlx.ai](https://omlx.ai/).
+
+The interesting part is not the app shell. It is the cache design.
+
+According to the oMLX docs and README, KV blocks are managed in two tiers:
+- hot blocks stay in RAM
+- cold blocks are persisted to SSD in safetensors format
+
+When the agent returns to a previously seen prefix, oMLX can restore those cache blocks from disk instead of recomputing the whole prefix. For long-running agent sessions, that is the difference between "local is cute" and "local is usable."
+
+Ivan Fioravanti described it well in [this post](https://x.com/ivanfioravanti/status/2045889354321575951): oMLX works well as a single-machine inference engine for coding agents, caching is handled properly, oQ quantization looks good, and under the hood it is still using the standard MLX building blocks. That is exactly what I care about. I do not need mystery sauce. I need the right bottleneck attacked.
+
+## Why paged SSD KV caching matters for coding agents
+
+This is the part people keep missing.
+
+Coding agents do not behave like normal chat users. They keep changing the prefix.
+
+A typical loop looks like this:
+1. load a fat system prompt plus project context
+2. inspect files
+3. call tools
+4. inject tool output
+5. revise plan
+6. inspect different files
+7. call more tools
+8. revisit earlier context
+
+That means the active prompt keeps shifting. Traditional KV caching helps when the prefix stays stable enough to reuse what is already in memory. Once the structure changes, many local servers end up paying the prefill cost again.
+
+On big contexts, that hurts. You do not feel it much in a short assistant chat. You absolutely feel it when a coding agent keeps bouncing between files and tools for an hour.
+
+oMLX's pitch is straightforward: if the prefix comes back, restore the cache blocks from SSD instead of recomputing them. The site claims this is why second-turn TTFT can fall under five seconds instead of turning every revisit into a 30 to 90 second sulk.
+
+That sounds boring until you have watched an agent spend more time re-reading its own past than doing useful work.
+
+## The real comparison: oMLX vs the existing local Apple Silicon stack
+
+I do not think the right question is "is oMLX faster than everything?"
+
+The better question is "which stack breaks least badly under coding-agent behavior?"
+
+That leads to a more useful comparison.
+
+## oMLX vs mlx-lm and mlx-vlm
+
+mlx-lm and mlx-vlm are the primitives. I like them. We use them. They are the reason any of this ecosystem exists.
+
+But primitives are not the same thing as an agent-serving layer.
+
+If you want to script your own serving stack, scheduler, cache policy, model lifecycle, endpoint compatibility layer, and tool-calling behavior, you can build on mlx-lm directly. That is the hacker path. Respectable. Also a tax on your lifespan.
+
+What oMLX adds is the operational layer:
+- OpenAI and Anthropic compatible APIs
+- continuous batching
+- multi-model serving with load, unload, pinning, and LRU eviction
+- admin UI and menu bar control
+- tool-calling support across model families
+- MCP support
+- tiered KV caching designed around agent workflows
+
+So my view is simple:
+- **mlx-lm / mlx-vlm** are great libraries
+- **oMLX** is a serving product built on those libraries for people who want agents to use them without assembling the whole backend themselves
+
+If you enjoy building the stack yourself, stay with raw MLX tools.
+If you want a local agent backend that behaves like an actual backend, oMLX is the more compelling option.
+
+## oMLX vs Ollama
+
+Ollama wins on ubiquity. Everyone already has it installed. Everything integrates with it. It is the default local hammer.
+
+For basic chat or light API use, that is fine.
+
+For coding agents on long contexts, I think Ollama is the wrong default on Mac.
+
+The problem is not that Ollama is bad. The problem is that coding-agent workloads are rough on simple in-memory cache assumptions. When the prompt shape keeps changing, the system can end up re-prefilling huge chunks of context over and over. If your local setup feels weirdly sluggish even though raw generation speeds look decent, this is often the culprit.
+
+That mismatch already showed up in our own local-path pain. We have seen the same pattern in LM Studio-based local runs too: the model itself is not always the problem. Prompt reprocessing is.
+
+oMLX is interesting to me because it is built around that exact failure mode. That matters more than another generic OpenAI-compatible local server.
+
+My recommendation here:
+- **Use Ollama** for broad compatibility, quick local experiments, and cheap fallback paths
+- **Use oMLX** when the workload is a real coding agent with long-lived context, repeated tool calls, and enough memory and SSD to justify a smarter cache stack
+
+## oMLX vs LM Studio
+
+LM Studio has done more than almost anyone to make local models normal on Mac. It deserves credit for that.
+
+But LM Studio still feels optimized for interactive desktop usage first, agent serving second.
+
+That matters.
+
+The oMLX site is blunt about the gap: coding agents constantly invalidate the cache, and in-memory-only behavior means repeated recomputation. It also claims you can point oMLX at an existing LM Studio model directory and reuse the models, which is exactly the kind of non-annoying move I appreciate.
+
+So if you already use LM Studio, I would frame it like this:
+- **LM Studio** is great for browsing models, quick manual testing, and normal local inference UX
+- **oMLX** looks better suited to always-on agent serving where cache persistence, multi-model scheduling, and backend compatibility matter more than desktop polish
+
+## oMLX vs our current OpenClaw local model path
+
+This is the comparison I actually care about.
+
+Our current local path has usually been one of these:
+- OpenClaw talking to Ollama
+- OpenClaw talking to some generic OpenAI-compatible local endpoint
+- one-off experiments with MLX-based runtimes that are fast in isolation but not optimized for agent loops
+
+That stack is good enough for experimentation. It is not the stack I would choose if the brief is: "put a real coding agent on a single Mac and expect it not to waste half its life re-reading itself."
+
+What oMLX changes for an OpenClaw-style setup:
+- it speaks the APIs our tools already expect
+- it handles multiple model types in one server
+- it has explicit support for tool calling and MCP
+- it adds continuous batching instead of one-request-at-a-time sulking
+- it targets the prefix-reuse problem that hurts agent loops most
+
+What it does **not** change:
+- local models are still weaker than frontier hosted models on many reasoning tasks
+- Apple Silicon memory limits are still real
+- SSD-backed caching is useful, but it can absolutely eat disk if you let it
+- operating a serious local stack still means thinking about model selection, quantization, memory pressure, and auth
+
+So no, this is not "hosted inference is dead." Calm down.
+
+My narrower claim is this: if you already believe in a local coding-agent tier for privacy, cost control, offline resilience, or pure operator stubbornness, oMLX is the first Mac-native backend I have seen that targets the operational problem I actually care about.
+
+## When oMLX is actually worth using
+
+I would use oMLX when all of these are true:
+- you are on Apple Silicon, preferably with 64 GB or more RAM if you want room to breathe
+- the workload is agentic, not just chatty
+- context reuse matters because the agent loops over the same project repeatedly
+- you want local OpenAI or Anthropic compatible endpoints without hand-rolling the whole server
+- you can spare SSD for cache growth
+- you want one machine to serve multiple local model roles, not just one chat model
+
+I would **not** make oMLX the default if:
+- you only want casual local chat
+- your Mac is memory-starved already
+- you do not need long-lived context reuse
+- you are happy with Ollama because simplicity matters more than performance under agent churn
+- you are already getting what you need from hosted models and have no privacy or cost reason to localize
+
+That is the sanity check. oMLX is not universally better. It is better for a specific shape of problem.
+
+That problem happens to be one I care about a lot.
+
+## My practical recommendation
+
+If you run coding agents locally on a Mac, I would break the stack decision down like this:
+
+### Use raw MLX tools when:
+- you want full control
+- you are comfortable building your own serving layer
+- you enjoy low-level tuning more than finished infrastructure
+
+### Use Ollama when:
+- you want the fastest path to "it basically works"
+- compatibility matters more than specialized cache behavior
+- the workload is mixed or lightweight
+
+### Use LM Studio when:
+- you want the best desktop UX for manual local model use
+- agent serving is secondary
+- you want easy model browsing and testing
+
+### Use oMLX when:
+- the workload is a serious coding agent on Apple Silicon
+- repeated prefix reuse is killing latency
+- you need a local backend that behaves more like serving infrastructure than a toy wrapper
+- you want Mac-native operations without giving up MLX under the hood
+
+That is the part I like. oMLX does not try to replace MLX. It operationalizes it.
+
+## Final take
+
+I am still not ready to tell people that a single Mac should replace a real hosted frontier stack for every agent workload. That would be fan fiction.
+
+But I am ready to say this:
+
+**oMLX is the first local Apple Silicon serving stack I have seen that feels designed around the failure mode that actually makes coding agents miserable.**
+
+Not benchmark vanity. Not UI cosmetics. Cache behavior under prompt churn.
+
+That is the bottleneck.
+
+If your current OpenClaw local path already feels fine, do not migrate just because something new has a pretty landing page.
+
+If your agents keep stalling because they are reprocessing giant contexts after every tool call, I think oMLX is worth a serious look.
+
+That is a much smaller claim than "this changes everything."
+
+It is also the kind of claim that usually survives contact with reality.
