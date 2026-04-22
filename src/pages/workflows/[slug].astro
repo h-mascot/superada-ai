@@ -123,11 +123,11 @@ const installabilityLabels = {
               </div>
               <div>
                 <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Entrypoint</div>
-                <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{workflow.data.bundle.entrypoint}</div>
+                <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.entrypoint}</div>
               </div>
               <div>
                 <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Bundle root</div>
-                <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{workflow.data.bundle.bundleRoot}</div>
+                <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.bundleRoot}</div>
               </div>
               <div>
                 <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Artifact count</div>
@@ -151,11 +151,11 @@ const installabilityLabels = {
               {workflow.data.bundle.installable.sourceSpec && (
                 <div>
                   <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Install source spec</div>
-                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{workflow.data.bundle.installable.sourceSpec}</div>
+                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.installable.sourceSpec}</div>
                 </div>
               )}
             </div>
-            <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto; margin-bottom:1rem;">{workflow.data.installCommand}</code>
+            <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{workflow.data.installCommand}</code>
             {workflow.data.bundle.installable.sourceUrl && (
               <p style="margin:0 0 1rem; color:#8B7E6A; line-height:1.7;">Canonical source: <a href={workflow.data.bundle.installable.sourceUrl} style="color:#C87533; text-decoration:none;">{workflow.data.bundle.installable.sourceUrl}</a></p>
             )}
@@ -170,13 +170,13 @@ const installabilityLabels = {
             {workflow.data.bundle.installable.prompt && (
               <div style="margin-bottom:1rem;">
                 <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Prompt</div>
-                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{workflow.data.bundle.installable.prompt}</code>
+                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{workflow.data.bundle.installable.prompt}</code>
               </div>
             )}
             {workflow.data.bundle.installable.postInstallVerification && (
               <div style="margin-bottom:1rem;">
                 <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Verification command</div>
-                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{workflow.data.bundle.installable.postInstallVerification}</code>
+                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{workflow.data.bundle.installable.postInstallVerification}</code>
               </div>
             )}
             {workflow.data.bundle.installable.limitations && workflow.data.bundle.installable.limitations.length > 0 && (
@@ -193,7 +193,7 @@ const installabilityLabels = {
                   <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Step {index + 1}</div>
                   <div style="color:#E8DCC8; margin-bottom:0.35rem;">{step.title}</div>
                   <div style={`color:#8B7E6A; line-height:1.7; margin-bottom:${step.command ? '0.6rem' : '0'};`}>{step.detail}</div>
-                  {step.command && <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{step.command}</code>}
+                  {step.command && <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{step.command}</code>}
                 </div>
               ))}
             </div>
@@ -224,7 +224,7 @@ const installabilityLabels = {
                     <div style="color:#E8DCC8;">{artifact.name}</div>
                     <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em;">{artifact.type}{artifact.optional ? ' · optional' : ''}</div>
                   </div>
-                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.8rem; margin-bottom:0.35rem;">{artifact.path}</div>
+                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.8rem; margin-bottom:0.35rem; overflow-wrap:anywhere; word-break:break-word;">{artifact.path}</div>
                   <div style="color:#8B7E6A; line-height:1.7;">{artifact.description}</div>
                 </div>
               ))}
@@ -249,7 +249,7 @@ const installabilityLabels = {
           <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem; margin-bottom:1.25rem;">
             <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Declared structure</h2>
             <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-              {workflow.data.structure.map((item) => <li><code style="font-size:0.8rem; color:#E8DCC8;">{item}</code></li>)}
+              {workflow.data.structure.map((item) => <li><code style="font-size:0.8rem; color:#E8DCC8; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{item}</code></li>)}
             </ul>
           </section>
 
@@ -261,7 +261,7 @@ const installabilityLabels = {
                 <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
                   <div style="color:#E8DCC8; margin-bottom:0.3rem;">{check.label}</div>
                   <div style={`color:#8B7E6A; line-height:1.7; margin-bottom:${check.command || check.expected ? '0.6rem' : '0'};`}>{check.detail}</div>
-                  {check.command && <code style={`display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; margin-bottom:${check.expected ? '0.5rem' : '0'};`}>{check.command}</code>}
+                  {check.command && <code style={`display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:${check.expected ? '0.5rem' : '0'};`}>{check.command}</code>}
                   {check.expected && <div style="font-size:0.82rem; color:#C9BDA8;">Expected: {check.expected}</div>}
                 </div>
               ))}
@@ -315,7 +315,7 @@ const installabilityLabels = {
               {workflow.data.repoPath && (
                 <div>
                   <dt style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Repo path</dt>
-                  <dd style="margin:0; color:#E8DCC8; font-family:monospace; font-size:0.82rem;">{workflow.data.repoPath}</dd>
+                  <dd style="margin:0; color:#E8DCC8; font-family:monospace; font-size:0.82rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.repoPath}</dd>
                 </div>
               )}
             </dl>
