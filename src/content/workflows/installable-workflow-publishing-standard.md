@@ -33,7 +33,7 @@ useCases:
   - Publishing installable skill pages
   - Preventing "documented but not installable" workflow pages
 notes:
-  - Henry rule: if it is published as a workflow or skill on SuperAda, it should be installable unless it is explicitly labeled conceptual.
+  - "Henry rule: if it is published as a workflow or skill on SuperAda, it should be installable unless it is explicitly labeled conceptual."
 bundle:
   id: superada.workflow.installable-publishing-standard
   version: 1.0.0
@@ -59,23 +59,23 @@ bundle:
       - This page defines the rule. It is not itself a runtime install bundle.
 artifacts:
   - name: Stable install URL
-    type: requirement
+    type: doc
     path: /install/<slug>/
     description: Every published workflow or skill must have a stable public install root.
   - name: Installer script
-    type: requirement
+    type: script
     path: /install/<slug>/install.sh
     description: Real installer that copies or installs the assets into the target environment.
   - name: Bundle manifest
-    type: requirement
+    type: config
     path: /install/<slug>/BUNDLE_FILES.txt
     description: Machine-readable artifact list so the installer is reproducible.
   - name: Bundle README
-    type: requirement
+    type: doc
     path: /install/<slug>/README.md
     description: Human-readable install instructions, warnings, and verification steps.
   - name: Verification commands
-    type: requirement
+    type: doc
     path: workflow page frontmatter + README
     description: Manual or automated checks that prove the install actually worked.
 installSteps:
@@ -103,10 +103,10 @@ verification:
   checks:
     - label: Install URL exists
       detail: Visit the published install URL and confirm installer, README, and manifest are reachable.
-      expected: `/install/<slug>/` serves the expected files.
+      expected: "/install/<slug>/ serves the expected files."
     - label: Installer works in a clean workspace
       detail: Run the installer against a test workspace.
-      expected: The expected artifacts land in the right paths and verification commands run.
+      expected: 'The expected artifacts land in the right paths and verification commands run.'
 structure:
   - /install/<slug>/
   - /install/<slug>/install.sh

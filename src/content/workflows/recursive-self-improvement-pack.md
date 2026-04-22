@@ -47,7 +47,7 @@ bundle:
   summary: Daily reflection, promotion, skill evolution, enforcement, and visibility artifacts that work together as one recursive improvement loop.
   availabilityNote: This workflow now publishes a real installable bundle at a stable SuperAda URL. It installs workflow assets into an OpenClaw workspace, then requires manual verification before cron activation.
   installSource:
-    type: download
+    type: url
     label: SuperAda install bundle
     url: https://superada.ai/install/recursive-self-improvement-pack/
     script: bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace
