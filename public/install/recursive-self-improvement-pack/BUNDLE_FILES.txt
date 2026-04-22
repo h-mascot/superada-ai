@@ -1,0 +1,12 @@
+/docs/specs/recursive-improvement-pipeline.md
+/docs/specs/skill-evolution-path.md
+/docs/specs/recursive-visibility.md
+/docs/templates/improvement-candidate.md
+/docs/policies/recidivism-promotion.md
+/scripts/crons/daily-soul-review.sh
+/scripts/crons/recursive-improvement.sh
+/scripts/crons/skill-evolution-review.sh
+/scripts/crons/weekly-self-improvement-review.sh
+/scripts/crons/generate-recursive-visibility.py
+/scripts/enforce-recidivism.py
+/memory/recidivism.json

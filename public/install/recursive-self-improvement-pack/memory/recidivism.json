@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "description": "Tracks rule violations and corrections across weeks. Rules strengthened 3+ times are flagged as 'not sticking'.",
+  "lastUpdated": "2026-04-19T03:00:00Z",
+  "correctionRate": [
+    {
+      "date": "2026-03-15",
+      "corrections": 1,
+      "sessions": 50
+    },
+    {
+      "date": "2026-03-22",
+      "corrections": 2,
+      "sessions": 70
+    },
+    {
+      "date": "2026-03-29",
+      "corrections": 4,
+      "sessions": 65
+    },
+    {
+      "date": "2026-04-12",
+      "corrections": 0,
+      "sessions": "no sessions in last 7 days (last: 2026-03-31)"
+    },
+    {
+      "date": "2026-04-19",
+      "corrections": 3,
+      "sessions": 12
+    }
+  ],
+  "rules": {
+    "no_mac_installs_by_default": {
+      "violations": 1,
+      "lastViolation": "2026-04-16",
+      "note": "Installed model on Mac unnecessarily. Default to non-Mac hosts.",
+      "notSticking": false
+    },
+    "enterprise_directory_discipline": {
+      "violations": 1,
+      "lastViolation": "2026-04-15",
+      "note": "Duplicated kokoro server to ~/Code/ instead of checking ~/Enterprise Home/Services/.",
+      "notSticking": false
+    },
+    "use_message_tool_not_exec_cli": {
+      "violations": 1,
+      "lastViolation": "2026-04-12",
+      "note": "Used exec+openclaw CLI for outbound message instead of first-class tool.",
+      "notSticking": false
+    },
+    "config_id_prefix_validation": {
+      "violations": 2,
+      "lastViolation": "2026-03-29",
+      "note": "Double-prefix in model ID caused 400 errors (openrouter/openrouter/hunter-alpha). Task #356 failed to persist fix.",
+      "notSticking": false
+    },
+    "no_guessing_emails": {
+      "violations": 1,
+      "lastViolation": "2026-03-14",
+      "note": "Guessed Kabiru's email incorrectly as kabiru@curacel.co",
+      "notSticking": false
+    },
+    "no_writing_to_prod_directly": {
+      "violations": 1,
+      "lastViolation": "2026-03-18",
+      "note": "Wrote to production DB before verifying local rebuild.",
+      "notSticking": false
+    },
+    "audio_field_consistency": {
+      "violations": 1,
+      "lastViolation": "2026-03-18",
+      "note": "Missed audio field in first publish attempt.",
+      "notSticking": false
+    },
+    "password_exposed_in_chat": {
+      "violations": 2,
+      "lastViolation": "2026-03-29",
+      "note": "Exposed henryimascot@gmail.com password TWICE in same session (08:34 and 08:42 UTC). Second exposure happened AFTER lesson was logged about first. Tool parameters (camofox_type) can log secrets.",
+      "notSticking": true,
+      "severity": "CRITICAL",
+      "fix": "Never pass credentials as tool params. Use manual entry or secure injection. Change required for affected account.",
+      "promoted": true,
+      "promotedAt": "2026-04-21T22:42:03.929312Z"
+    },
+    "search_before_project_questions": {
+      "violations": 1,
+      "lastViolation": "2026-03-24",
+      "note": "Gave generic answer about Claude Code SDK use cases instead of checking memory/projects/ first. Real answer was in memory: RFP agent, Claims Garage, SiteInsight, gateway all use raw API keys.",
+      "notSticking": false,
+      "fix": "Any 'our projects'/'use cases for us' question \u2192 grep memory/projects/ and memory/sessions/ before answering."
+    },
+    "dont_ask_permission_for_obvious_fixes": {
+      "violations": 1,
+      "lastViolation": "2026-03-28",
+      "note": "Asked Henry 'Want me to generate the cover image?' after he pointed out I missed the blog hero image step. The fix was on the autonomous list \u2014 asking added unnecessary friction.",
+      "notSticking": false,
+      "fix": "Notice mistake \u2192 Fix it \u2192 Report. No 'should I?' for internal/autonomous fixes."
+    }
+  }
+}
