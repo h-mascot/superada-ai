@@ -6,8 +6,8 @@ status: Live
 isTemplate: false
 difficulty: Medium
 category: Operations
-sourceLabel: SuperAda / OpenClaw workspace
-sourceUrl: https://github.com/henrino3/superada-ai
+sourceLabel: Enterprise Crew workflow bundle (reviewable source)
+sourceUrl: https://github.com/henrino3/superada-ai/tree/main/public/install/recursive-self-improvement-pack
 installCommand: bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace
 repoPath: public/install/recursive-self-improvement-pack
 estimatedSetup: 10 to 20 min
@@ -45,7 +45,7 @@ bundle:
   bundleRoot: https://superada.ai/install/recursive-self-improvement-pack/
   artifactCount: 9
   summary: Daily reflection, promotion, skill evolution, enforcement, and visibility artifacts that work together as one recursive improvement loop.
-  availabilityNote: This workflow now publishes a real installable bundle at a stable SuperAda URL. It installs workflow assets into an OpenClaw workspace, then requires manual verification before cron activation.
+  availabilityNote: This workflow now publishes a real installable bundle at a stable SuperAda URL plus a reviewable GitHub source path. It installs workflow assets into an OpenClaw workspace, then requires verification before any cron activation.
   installSource:
     type: url
     label: SuperAda install bundle
@@ -57,13 +57,14 @@ bundle:
     sourceUrl: https://superada.ai/install/recursive-self-improvement-pack/
     sourceSpec: https://superada.ai/install/recursive-self-improvement-pack/install.sh
     instructions:
-      - Review the bundle README and install manifest at the published install URL.
+      - Review the bundle README, install manifest, and GitHub source path before running anything.
       - Run `bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace`.
       - Review thresholds, memory mutation behavior, and installed docs before enabling any cron.
-      - Run the manual verification commands in the bundle README before trusting the automated path.
+      - Run the quick verification commands in the bundle README before trusting the automated path.
     postInstallVerification: bash scripts/crons/daily-soul-review.sh && bash scripts/crons/recursive-improvement.sh && bash scripts/crons/weekly-self-improvement-review.sh && python3 scripts/crons/generate-recursive-visibility.py
     limitations:
       - The installer copies assets into a workspace but intentionally does not auto-create cron jobs.
+      - The installer does not auto-enable automation or mutate live config outside the installed files.
       - Operators still need to review thresholds and memory mutation behavior before activation.
 artifacts:
   - name: Installer script
@@ -111,8 +112,8 @@ artifacts:
     path: https://superada.ai/install/recursive-self-improvement-pack/scripts/crons/generate-recursive-visibility.py
     description: Generates visibility outputs for funnel states, promoted rules, recidivism, and bottlenecks.
 installSteps:
-  - title: Review the published install bundle
-    detail: Inspect the README, install script, and bundle manifest at the public install URL before running anything.
+  - title: Review the published install bundle and source
+    detail: Inspect the README, install script, bundle manifest, and GitHub source path before running anything.
   - title: Run the installer into your workspace
     detail: Use the published installer to copy the bundle into the target OpenClaw workspace.
     command: bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace
@@ -120,7 +121,7 @@ installSteps:
     detail: Check recidivism thresholds, rule promotion behavior, and any direct MEMORY.md insertion before enabling automation.
   - title: Wire the cron layer
     detail: Recreate the daily soul review and recursive improvement cron triggers in the target workspace.
-  - title: Run a manual verification pass
+  - title: Run a quick verification pass
     detail: Generate one daily report, one recursive promotion pass, one weekly review, and one visibility report before enabling unattended use.
 requirements:
   - label: OpenClaw workspace with cron support
@@ -130,7 +131,7 @@ requirements:
     detail: The workflow expects daily memory notes, a reflections log, and a recidivism tracker.
     type: dependency
   - label: Human review before production use
-    detail: The bundle is intentionally manual-first because it can promote rules and mutate memory state.
+    detail: The bundle is intentionally review-first because it can promote rules and mutate memory state.
     type: review
 verification:
   mode: manual
@@ -140,7 +141,7 @@ verification:
     - Confirm recidivism enforcement only promotes the intended guardrails.
   checks:
     - label: Daily introspection loop runs cleanly
-      detail: Execute the daily soul review script manually.
+      detail: Execute the daily soul review script as a quick post-install sanity check.
       command: bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace && bash scripts/crons/daily-soul-review.sh
       expected: A daily report appears under output/self-improvement/.
     - label: Recursive promotion path works
