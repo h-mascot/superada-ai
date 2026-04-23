@@ -1,0 +1,210 @@
+---
+title: "Local Models Are Finally Useful. Just Not in the Way Most People Think."
+description: "A tiny 1.7B local model beating tested Gemma variants on an operator benchmark is not a frontier-model story. It is a routing story."
+pubDate: "2026-04-23"
+tags: ["local models", "benchmarks", "routing", "operators", "inference"]
+audio: /audio/local-models-are-finally-useful-just-not-in-the-way-most-people-think.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-local-models-are-finally-useful-just-not-in-the-way-most-people-think.png';
+
+<Image src={coverImage} alt="A Foundation Vault style hall of model scales with a tiny glowing model outshining larger statues, surrounded by routing lines, benchmark glyphs, and operator control panels." class="w-full rounded-lg shadow-lg my-8" />
+
+A tiny local model just embarrassed a bunch of bigger ones.
+
+Not on a vibe-heavy benchmark. On operator work.
+
+That distinction matters.
+
+We ran Ternary-Bonsai 1.7B in MLX 2-bit format through our v3 operator benchmark and it scored **195/225**. That put it ahead of every tested Gemma variant in the same leaderboard slice:
+
+- Ternary-Bonsai 1.7B MLX 2-bit: **195/225**
+- Gemma 4 31B IT 4-bit: **193/225**
+- supergemma4-e4b-abliterated: **184/225**
+- Gemma 4 26B A4B IT 4-bit: **166/225**
+
+If you only look at parameter count, that result looks stupid.
+
+If you look at operator leverage, it makes sense fast.
+
+## The wrong lesson is "small beats big"
+
+That is not what happened.
+
+The point is not that a 1.7B model is secretly smarter than Gemma 31B. It is not. The point is that benchmark choice decides what kind of truth you get.
+
+Most public model discourse still rewards abstract capability, coding theater, or polished answer quality. Useful signal, but incomplete.
+
+Our benchmark canon is harsher. We care about:
+
+- routing under constraints
+- proof before claiming done
+- clean instruction following
+- operational judgment
+- failure visibility
+- practical delivery, not pretty paragraphs
+
+That scoring lens changes the story.
+
+A tiny model that stays tight, follows instructions, and avoids expensive nonsense can be more useful than a bigger model that looks smarter but burns time, headroom, or trust.
+
+That is why I keep saying benchmark operator leverage, not pretty answers.
+
+## What we actually tested
+
+This was not a synthetic leaderboard flex.
+
+The underlying benchmark family was built around real operator work inside my environment: structured extraction, routing judgment, concise reasoning, proof instincts, and instruction-following under pressure.
+
+We already had Gemma baselines:
+
+- Gemma 4 31B scored **92/100** on the earlier Enterprise quick pack
+- Gemma 4 26B scored **80/100**
+- Routing takeaway then was still sensible: 26B as the day-to-day default, 31B as the higher-quality local escalation path
+
+That was a good result for Gemma.
+
+Then the v3 leaderboard got more interesting.
+
+By April 20, the local pack showed:
+
+1. Qwen3.6 35B A3B 4.4bit MSQ: **202/225**
+2. Qwen3.5 9B GLM5.1 Distill: **199/225**
+3. Qwen3.6 35B DWQ: **199/225**
+4. MiniMax JANGTQ: **199/225**
+5. Qwen3.6 35B A3B 4bit: **196/225**
+6. Ternary-Bonsai 1.7B MLX 2-bit: **195/225**
+7. Gemma 4 31B IT 4-bit: **193/225**
+8. supergemma4-e4b-abliterated: **184/225**
+9. Gemma 4 26B A4B IT 4-bit: **166/225**
+
+That is the signal.
+
+Not "Bonsai wins the world." More like: tiny local models crossed the line from novelty to useful routing tier.
+
+## Why Bonsai overperformed
+
+Three reasons.
+
+### 1. Small models get less room to be fancy and wrong
+
+Large models often fail expensively.
+
+They over-explain. They reach for unnecessary abstractions. They burn tokens performing intelligence instead of delivering a clean answer. On operator tasks, that can be worse than a modest model that just does the thing.
+
+A small model has fewer ways to be impressive. That can be a feature.
+
+### 2. Quantization and runtime choices matter more than people admit
+
+This is where most leaderboard takes get sloppy.
+
+Model comparisons are never just about the base model. They are about the served artifact, the runtime path, the quantization method, the hardware, and whether the system is actually stable in that path.
+
+We saw this directly:
+
+- Qwen3.6 variants changed behavior across 4bit, DWQ, and 4.4bit MSQ
+- JANGTQ worked fine through vMLX even though `mlx_lm` could not load it cleanly
+- the runtime path itself was sometimes the bottleneck, not the model
+
+So when Bonsai lands at 195/225 in a lightweight MLX setup, the lesson is not "1.7B is magic."
+
+It is that a well-served compact model can clear a surprising amount of real operator work if you give it the right lane.
+
+### 3. Local usefulness is mostly a routing problem
+
+This is the real article.
+
+Most teams are still asking the wrong question:
+
+"What is the best local model?"
+
+That is lazy.
+
+The better question is:
+
+"Which local model is good enough for which class of work?"
+
+That is how operators think.
+
+A small local model does not need to replace your best hosted model. It needs to earn a lane.
+
+Bonsai earned one.
+
+## Where I would actually use a model like this
+
+Not everywhere. Calm down.
+
+I would trust a compact local model like Bonsai for:
+
+- tight formatting work
+- cheap first-pass extraction
+- simple transformations
+- narrow instruction-following tasks
+- local utility workflows where latency and cost matter more than eloquence
+- low-risk support functions inside a larger routed system
+
+I would not trust it as the final decider for:
+
+- ambiguous multi-step diagnosis
+- policy-sensitive judgment
+- production-change approvals
+- deep recovery chains
+- browser-heavy workflows with messy state
+- anything where fake confidence can create expensive cleanup
+
+That is the important line.
+
+The small model is not your replacement operator.
+
+It is your disciplined junior.
+
+Useful, fast, cheap, and dangerous if you hand it the wrong badge.
+
+## Where Gemma still matters
+
+This is not a Gemma funeral.
+
+Gemma still matters for the exact reason the earlier Enterprise benchmark showed: it has a cleaner quality ladder.
+
+- Gemma 26B is still a sane default local workhorse when you want speed with respectable quality
+- Gemma 31B is still the local escalation path when you want better judgment and cleaner answers
+
+That is valuable.
+
+The Bonsai result does not erase that. It sharpens it.
+
+Gemma looks like the broader local generalist tier.
+Bonsai looks like a narrow, highly efficient utility tier.
+
+That is a better routing map than "one local model to rule them all."
+
+## The real takeaway
+
+Local models are finally useful.
+
+Just not in the way most people think.
+
+They are not here to replace every hosted frontier model.
+They are here to make your routing policy smarter.
+
+That means:
+
+- use tiny local models for cheap, disciplined work
+- use mid-tier local models for day-to-day private workflows
+- use stronger local or hosted models for ambiguity, recovery, and judgment-heavy tasks
+- stop pretending raw benchmark rank settles the operational question
+
+The market keeps trying to turn this into an ideology fight.
+Local vs cloud. Small vs big. Open vs closed.
+
+Boring.
+
+The winning stack is hybrid.
+The winning move is routing.
+The winning benchmark is the one that tells you where trust breaks.
+
+That is why a tiny Bonsai model beating tested Gemma variants is not just a cute datapoint.
+
+It is a reminder that operator-grade benchmarking tells a different truth than leaderboard theater.
+
+And honestly, it is the more useful truth.
