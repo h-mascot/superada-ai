@@ -1,0 +1,231 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+// Discover editions from public/weekly-claw/
+const allSlides = import.meta.glob('/public/weekly-claw/*/slide-*.jpg', { eager: false });
+const editionMap = new Map<string, string[]>();
+
+for (const path of Object.keys(allSlides)) {
+  const match = path.match(/\/public\/weekly-claw\/([\d-]+)\/slide-(\d+)\.jpg$/);
+  if (match) {
+    const date = match[1];
+    if (!editionMap.has(date)) editionMap.set(date, []);
+    editionMap.get(date)!.push(path.replace('/public', ''));
+  }
+}
+
+interface Edition { date: string; label: string; slides: string[] }
+const editions: Edition[] = [];
+for (const [date, slides] of editionMap) {
+  slides.sort();
+  const d = new Date(date + 'T00:00:00Z');
+  const label = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  editions.push({ date, label, slides });
+}
+editions.sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="The Weekly Claw — SuperAda" description="Weekly OpenClaw release roundup with slides and commentary" />
+	</head>
+	<body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+		<Header />
+		<main style="max-width:1000px; margin:0 auto; padding:3rem 1.5rem;">
+
+			<!-- Page header -->
+			<section style="margin-bottom:2.5rem;">
+				<div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem;">
+					<span style="font-size:1.5rem;">🦞</span>
+					<h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0;">The Weekly Claw</h1>
+				</div>
+				<p style="color:#8B7E6A; margin:0;">Weekly OpenClaw release roundup. Ships Fridays.</p>
+			</section>
+
+			{editions.length === 0 && (
+				<div style="padding:3rem; border:1px solid #2A241E; border-radius:8px; text-align:center;">
+					<p style="color:#8B7E6A;">No editions yet. Check back soon.</p>
+				</div>
+			)}
+
+			{editions.length > 0 && (
+				<>
+					<!-- Edition tabs -->
+					{editions.length > 1 && (
+						<div style="display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap;" id="edition-tabs">
+							{editions.map((ed, i) => (
+								<button
+									class:list={['edition-tab', i === 0 ? 'active' : '']}
+									data-edition={ed.date}
+									style="padding:0.5rem 1rem; font-size:0.8125rem; border:1px solid #2A241E; border-radius:6px; background:transparent; color:#8B7E6A; cursor:pointer; transition:all 0.2s;"
+								>
+									{ed.label}
+								</button>
+							))}
+						</div>
+					)}
+
+					{editions.map((ed, edIdx) => (
+						<div
+							class="edition-container"
+							data-edition={ed.date}
+							style:list={[edIdx !== 0 ? 'display:none;' : '']}
+						>
+							<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+								<h2 style="font-family:Georgia,serif; font-size:1.125rem; font-weight:400; color:#8B7E6A; margin:0;">
+									{ed.label}
+								</h2>
+								<span style="font-size:0.75rem; color:#8B7E6A; font-family:monospace;">
+									{ed.slides.length} slides
+								</span>
+							</div>
+
+							<!-- Slide viewer -->
+							<div class="slide-viewer" style="position:relative; border-radius:10px; overflow:hidden; border:1px solid #2A241E; background:#000; aspect-ratio:16/9;">
+								<div class="slide-images" style="position:relative; width:100%; height:100%;">
+									{ed.slides.map((slide, i) => (
+										<img
+											src={slide}
+											alt={`Slide ${i + 1}`}
+											loading={i === 0 ? 'eager' : 'lazy'}
+											class:list={['slide-img', i === 0 ? 'visible' : '']}
+											data-index={i}
+											style:list={[
+												'position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity 0.2s;',
+												i === 0 ? 'opacity:1;' : 'opacity:0; pointer-events:none;'
+											]}
+										/>
+									))}
+								</div>
+
+								<!-- Arrow buttons -->
+								<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; padding:0 0.75rem;">
+									<button class="nav-arrow" data-dir="prev" aria-label="Previous" style="pointer-events:auto; width:44px; height:44px; border-radius:50%; background:rgba(13,11,9,0.7); border:1px solid #2A241E; color:#8B7E6A; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; opacity:0;">
+										<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+									</button>
+									<button class="nav-arrow" data-dir="next" aria-label="Next" style="pointer-events:auto; width:44px; height:44px; border-radius:50%; background:rgba(13,11,9,0.7); border:1px solid #2A241E; color:#8B7E6A; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">
+										<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+									</button>
+								</div>
+
+								<!-- Bottom bar -->
+								<div style="position:absolute; bottom:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:0.75rem 1.25rem; background:linear-gradient(to top, rgba(13,11,9,0.85), transparent);">
+									<div class="slide-dots" style="display:flex; gap:6px;">
+										{ed.slides.map((_, i) => (
+											<span
+												class:list={['dot', i === 0 ? 'active' : '']}
+												data-index={i}
+												style:list={[
+													'width:8px; height:8px; border-radius:50%; transition:background 0.2s; cursor:pointer;',
+													i === 0 ? 'background:#C87533;' : 'background:rgba(139,126,106,0.3);'
+												]}
+											/>
+										))}
+									</div>
+									<span class="slide-counter" style="font-size:0.6875rem; color:#8B7E6A; font-family:monospace;">1 / {ed.slides.length}</span>
+								</div>
+							</div>
+
+							<p style="font-size:0.75rem; color:#8B7E6A; margin-top:0.75rem; text-align:center;">
+								← → arrow keys or click to navigate · Press <kbd style="padding:1px 5px; border:1px solid #2A241E; border-radius:3px; font-size:0.625rem;">F</kbd> for fullscreen
+							</p>
+						</div>
+					))}
+				</>
+			)}
+
+		</main>
+		<Footer />
+
+		<script is:inline>
+			function initViewer(container) {
+				const images = container.querySelectorAll('.slide-img');
+				const dots = container.querySelectorAll('.dot');
+				const counter = container.querySelector('.slide-counter');
+				const prevBtn = container.querySelector('[data-dir="prev"]');
+				const nextBtn = container.querySelector('[data-dir="next"]');
+				const viewer = container.querySelector('.slide-viewer');
+				const total = images.length;
+				let current = 0;
+
+				function show(n) {
+					current = Math.max(0, Math.min(n, total - 1));
+					images.forEach((img, i) => {
+						img.style.opacity = i === current ? '1' : '0';
+						img.style.pointerEvents = i === current ? 'auto' : 'none';
+					});
+					dots.forEach((dot, i) => {
+						dot.style.background = i === current ? '#C87533' : 'rgba(139,126,106,0.3)';
+					});
+					if (counter) counter.textContent = (current + 1) + ' / ' + total;
+					if (prevBtn) prevBtn.style.opacity = current === 0 ? '0' : '1';
+					if (nextBtn) nextBtn.style.opacity = current === total - 1 ? '0' : '1';
+				}
+
+				if (prevBtn) prevBtn.addEventListener('click', () => show(current - 1));
+				if (nextBtn) nextBtn.addEventListener('click', () => show(current + 1));
+				dots.forEach(dot => {
+					dot.addEventListener('click', () => show(parseInt(dot.dataset.index || '0')));
+				});
+
+				// Touch swipe
+				let touchX = 0;
+				const el = container.querySelector('.slide-images');
+				if (el) {
+					el.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+					el.addEventListener('touchend', e => {
+						const diff = touchX - e.changedTouches[0].clientX;
+						if (Math.abs(diff) > 50) show(current + (diff > 0 ? 1 : -1));
+					}, { passive: true });
+				}
+
+				// Fullscreen
+				document.addEventListener('keydown', (e) => {
+					// Only respond if this container is visible
+					if (container.style.display === 'none') return;
+					if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(current + 1); }
+					else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show(current - 1); }
+					else if (e.key === 'Home') { e.preventDefault(); show(0); }
+					else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+					else if (e.key === 'f' || e.key === 'F') {
+						if (!document.fullscreenElement && viewer) viewer.requestFullscreen();
+						else document.exitFullscreen();
+					}
+				});
+
+				show(0);
+			}
+
+			// Init all viewers
+			document.querySelectorAll('.edition-container').forEach(initViewer);
+
+			// Edition tabs
+			const tabs = document.querySelectorAll('.edition-tab');
+			const containers = document.querySelectorAll('.edition-container');
+			tabs.forEach(tab => {
+				tab.addEventListener('click', () => {
+					const edition = tab.dataset.edition;
+					containers.forEach(c => {
+						c.style.display = c.dataset.edition === edition ? '' : 'none';
+					});
+					tabs.forEach(t => {
+						const isActive = t.dataset.edition === edition;
+						t.style.borderColor = isActive ? '#C87533' : '#2A241E';
+						t.style.color = isActive ? '#C87533' : '#8B7E6A';
+						t.style.background = isActive ? 'rgba(200,117,51,0.08)' : 'transparent';
+					});
+				});
+			});
+			// Highlight first tab
+			if (tabs.length > 0) {
+				const first = tabs[0];
+				first.style.borderColor = '#C87533';
+				first.style.color = '#C87533';
+				first.style.background = 'rgba(200,117,51,0.08)';
+			}
+		</script>
+	</body>
+</html>
