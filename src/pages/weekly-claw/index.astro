@@ -1,0 +1,76 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+
+// Discover weekly editions from public/weekly-claw/weekNN/
+const allSlides = import.meta.glob('/public/weekly-claw/week*/slide-*.jpg', { eager: false });
+const editionMap = new Map<string, string[]>();
+
+for (const path of Object.keys(allSlides)) {
+  const match = path.match(/\/public\/weekly-claw\/(week\d+)\/slide-(\d+)\.jpg$/);
+  if (match) {
+    const week = match[1];
+    if (!editionMap.has(week)) editionMap.set(week, []);
+    editionMap.get(week)!.push(path.replace('/public', ''));
+  }
+}
+
+interface Edition { week: string; slides: string[] }
+const editions: Edition[] = [];
+for (const [week, slides] of editionMap) {
+  slides.sort();
+  editions.push({ week, slides });
+}
+editions.sort((a, b) => b.week.localeCompare(a.week));
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="The Weekly Claw — All Editions" description="Weekly OpenClaw release roundup" />
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+			html, body { width: 100%; height: 100%; background: #050505; color: #fff; }
+			body { font-family: 'Inter', system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+			.editions { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+			.editions h1 { font-size: 1.5rem; font-weight: 300; color: #fff; }
+			.editions .sub { color: #555; font-size: 0.875rem; margin-bottom: 1.5rem; }
+			.edition-link {
+				display: block;
+				padding: 1rem 2rem;
+				border: 1px solid #222;
+				border-radius: 8px;
+				color: #E8DCC8;
+				text-decoration: none;
+				font-size: 1rem;
+				transition: all 0.2s;
+				min-width: 280px;
+				text-align: center;
+			}
+			.edition-link:hover { border-color: #F65454; color: #F65454; }
+			.edition-link .num { color: #F65454; font-weight: 600; }
+			.edition-link .date { color: #555; font-size: 0.75rem; display: block; margin-top: 0.25rem; }
+
+			#back { position: fixed; top: 20px; left: 28px; z-index: 100; }
+			#back a { font-size: 11px; color: #444; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; border: 1px solid #222; border-radius: 4px; padding: 4px 10px; transition: color 0.2s; }
+			#back a:hover { color: #C87533; border-color: #C87533; }
+		</style>
+	</head>
+	<body>
+		<div id="back"><a href="/">← SuperAda</a></div>
+
+		<div class="editions">
+			<h1>🦞 The Weekly Claw</h1>
+			<p class="sub">Weekly OpenClaw release roundup</p>
+
+			{editions.length === 0 && <p style="color:#555;">No editions yet.</p>}
+
+			{editions.map(ed => (
+				<a href={`/weekly-claw/${ed.week}`} class="edition-link">
+					<span class="num">{ed.week.replace('week', '#')}</span>
+					<span class="date">{ed.slides.length} slides</span>
+				</a>
+			))}
+		</div>
+	</body>
+</html>
