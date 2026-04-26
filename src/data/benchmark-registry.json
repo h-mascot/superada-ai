@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-16T21:18:00Z",
+  "updatedAt": "2026-04-25T21:45:00Z",
   "leaderboard": [
     {
       "slug": "claude-sonnet-4-6",
@@ -156,9 +156,60 @@
       "verdict": "Tiny local model, useful for light work, not a serious operator default.",
       "detailHref": "/benchmarks/models/bonsai-1-7b",
       "detailLabel": "Open detail"
+    },
+    {
+      "slug": "qwen36-27b-nvfp4",
+      "rank": 13,
+      "model": "Qwen 3.6 27B NVFP4",
+      "family": "Enterprise oMLX",
+      "operator": 40,
+      "messaging": "Quick execution pack",
+      "external": "First internal 27B oMLX pass",
+      "cost": "Enterprise local",
+      "verdict": "Best current 27B result of the three, but still too soft to trust as a default local operator model.",
+      "detailHref": "/benchmarks/models/qwen36-27b-nvfp4",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "qwen36-27b-mxfp4",
+      "rank": 14,
+      "model": "Qwen 3.6 27B MXFP4",
+      "family": "Enterprise oMLX",
+      "operator": 40,
+      "messaging": "Quick execution pack",
+      "external": "First internal 27B oMLX pass",
+      "cost": "Enterprise local",
+      "verdict": "Matched NVFP4 on score, basically same story: live and usable for testing, not proven for default routing.",
+      "detailHref": "/benchmarks/models/qwen36-27b-mxfp4",
+      "detailLabel": "Open detail"
+    },
+    {
+      "slug": "qwen36-27b-4bit",
+      "rank": 15,
+      "model": "Qwen 3.6 27B 4bit",
+      "family": "Enterprise oMLX",
+      "operator": 20,
+      "messaging": "Quick execution pack",
+      "external": "First internal 27B oMLX pass",
+      "cost": "Enterprise local",
+      "verdict": "The baseline quant is live but underperformed badly in this first pass, so it is the clearest \u201cnot ready\u201d of the trio.",
+      "detailHref": "/benchmarks/models/qwen36-27b-4bit",
+      "detailLabel": "Open detail"
     }
   ],
   "runs": [
+    {
+      "id": "2026-04-25-qwen36-27b-api",
+      "date": "2026-04-25",
+      "model": "Qwen 3.6 27B local quant trio",
+      "category": "Enterprise oMLX",
+      "score": "NVFP4 40/100 \u00b7 MXFP4 40/100 \u00b7 4bit 20/100",
+      "summary": "First live oMLX benchmark pass for the three Qwen3.6-27B Apple Silicon variants. They are now served in OpenClaw and on Benchboard, but this run is weak enough that routing should not trust them yet without a rerun/tuning pass.",
+      "artifactType": "Generated benchmark pack",
+      "imageHref": "/benchmarks/generated/2026-04-25-qwen36-27b-api-card.svg",
+      "href": "/benchmarks/models/qwen36-27b-nvfp4",
+      "hrefLabel": "Open Qwen 27B detail"
+    },
     {
       "id": "2026-04-16-bonsai-benchmark",
       "date": "2026-04-16",
@@ -704,6 +755,135 @@
           "Prism CLI defaults to interactive chat formatting and exposes thinking tags, which hurts strict benchmark compliance unless post-processed."
         ],
         "bottomLine": "Bonsai 1.7B is usable for lightweight local extraction and summarization, but it is not trustworthy enough for routing, benchmark-sensitive judgment, or default operator work."
+      }
+    },
+    {
+      "slug": "qwen36-27b-nvfp4",
+      "model": "Qwen 3.6 27B NVFP4",
+      "family": "Enterprise oMLX",
+      "date": "2026-04-25",
+      "score": 40,
+      "avgSeconds": 17.44,
+      "positioning": "Best of the weak pass",
+      "summary": "Best current 27B result of the three, but still too soft to trust as a default local operator model.",
+      "strengths": [
+        "Tied top score in this 27B run",
+        "Live on oMLX/OpenClaw",
+        "Clean no-thinking API path"
+      ],
+      "weaknesses": [
+        "Only 40/100 on the quick pack",
+        "Missed multiple operator-judgment tasks",
+        "Needs rerun/tuning before routing decisions"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-25-qwen36-27b-api",
+      "detail": {
+        "headline": "Best current 27B result of the three, but still too soft to trust as a default local operator model.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "40/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "17.44s"
+          },
+          {
+            "label": "Role",
+            "value": "Best of the weak pass"
+          }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-25-qwen36-27b-api/README.md",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-raw.json",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-scored.json"
+        ]
+      }
+    },
+    {
+      "slug": "qwen36-27b-mxfp4",
+      "model": "Qwen 3.6 27B MXFP4",
+      "family": "Enterprise oMLX",
+      "date": "2026-04-25",
+      "score": 40,
+      "avgSeconds": 17.7,
+      "positioning": "Alternative top 27B quant",
+      "summary": "Matched NVFP4 on score, basically same story: live and usable for testing, not proven for default routing.",
+      "strengths": [
+        "Matched NVFP4 score",
+        "Live on oMLX/OpenClaw",
+        "Clean endpoint invocation"
+      ],
+      "weaknesses": [
+        "Only 40/100 on the quick pack",
+        "No practical benchmark edge yet",
+        "Needs rerun/tuning before use as default"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-25-qwen36-27b-api",
+      "detail": {
+        "headline": "Matched NVFP4 on score, basically same story: live and usable for testing, not proven for default routing.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "40/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "17.7s"
+          },
+          {
+            "label": "Role",
+            "value": "Alternative top 27B quant"
+          }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-25-qwen36-27b-api/README.md",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-raw.json",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-scored.json"
+        ]
+      }
+    },
+    {
+      "slug": "qwen36-27b-4bit",
+      "model": "Qwen 3.6 27B 4bit",
+      "family": "Enterprise oMLX",
+      "date": "2026-04-25",
+      "score": 20,
+      "avgSeconds": 17.53,
+      "positioning": "Baseline 27B quant",
+      "summary": "The baseline quant is live but underperformed badly in this first pass, so it is the clearest \u201cnot ready\u201d of the trio.",
+      "strengths": [
+        "Live on oMLX/OpenClaw",
+        "Clean endpoint invocation",
+        "Useful as baseline reference"
+      ],
+      "weaknesses": [
+        "Worst score of the trio",
+        "Only 20/100 on quick pack",
+        "Not fit for default routing"
+      ],
+      "artifactPack": "/home/henrymascot/clawd/output/benchmarks/2026-04-25-qwen36-27b-api",
+      "detail": {
+        "headline": "The baseline quant is live but underperformed badly in this first pass, so it is the clearest \u201cnot ready\u201d of the trio.",
+        "metrics": [
+          {
+            "label": "Benchmark score",
+            "value": "20/100"
+          },
+          {
+            "label": "Average latency",
+            "value": "17.53s"
+          },
+          {
+            "label": "Role",
+            "value": "Baseline 27B quant"
+          }
+        ],
+        "reportPaths": [
+          "output/benchmarks/2026-04-25-qwen36-27b-api/README.md",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-raw.json",
+          "output/benchmarks/2026-04-25-qwen36-27b-api/results-scored.json"
+        ]
       }
     }
   ]
