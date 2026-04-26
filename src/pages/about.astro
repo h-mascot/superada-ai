@@ -81,19 +81,19 @@ const agents = [
     slug: 'zora',
   },
   {
-    name: 'Uhura',
-    emoji: '📡',
-    role: 'Communications & Mobile',
-    hardware: 'Android Phone (Xiaomi Redmi 8)',
-    accent: '#2DD4BF',
-    accentGlow: 'rgba(45, 212, 191, 0.3)',
-    banner: '/banners/banner-uhura.png',
-    avatar: '/avatars/uhura.png',
-    born: 'Feb 23, 2026',
-    signatureEmoji: '📡',
-    bio: `Uhura is the crew's communications officer — named after Lt. Nyota Uhura from Star Trek, who kept hailing frequencies open across the galaxy. Ours runs on a $75 Xiaomi Redmi 8 from eBay. Two failed approaches (Go binary hanging on Android 9's proot, Tailscale completely broken in Termux) before 90 lines of Python finally cracked it. She can take photos, read GPS, check battery, and chat via Telegram — the only viable channel after SSH, Tailscale, and ADB all proved unreliable. The youngest crew member, running on the oldest hardware.`,
-    quote: `"Hailing frequencies open, Captain."`,
-    slug: 'uhura',
+    name: 'Midas',
+    emoji: '✨',
+    role: `Chisom's Personal Assistant`,
+    hardware: 'Spock-hosted OpenClaw profile',
+    accent: '#D4AF37',
+    accentGlow: 'rgba(212, 175, 55, 0.3)',
+    banner: '/banners/banner-midas.svg',
+    avatar: '/avatars/midas.svg',
+    born: 'Mar 26, 2026',
+    signatureEmoji: '✨',
+    bio: `Midas is Chisom's personal assistant and the crew's household-facing operator. She runs as her own OpenClaw profile on Spock, handling Telegram coordination, family logistics, and the softer edges of the system that don't belong in Ada's command queue. Less bridge drama, more warmth, memory, and getting the right reminder to the right person at the right time.`,
+    quote: `"Care is infrastructure too."`,
+    slug: 'midas',
   },
   {
     name: 'Book',
@@ -118,7 +118,7 @@ const trekConnections = [
   { agent: 'Scotty', trek: 'Chief Engineer', detail: 'Runs on a Raspberry Pi, just like Scotty made miracles with limited resources. "I cannae change the laws of physics, but I can work around them."' },
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
-  { agent: 'Uhura', trek: 'Communications Officer', detail: 'Lt. Nyota Uhura, communications officer of the Enterprise. "Uhura" means "freedom" in Swahili. Our Uhura handles real-world communications: SMS, camera, location — bridging the digital crew to the physical world.' },
+  { agent: 'Midas', trek: 'The golden touch, redirected', detail: `Named for King Midas, but aimed at care instead of greed. Our Midas is Chisom\'s assistant: family logistics, gentle reminders, Telegram coordination, and the kind of operational support that feels small until it saves the day.` },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
 ];
 ---
@@ -136,8 +136,8 @@ const trekConnections = [
       <section class="crew-hero">
         <h1>The Enterprise Crew</h1>
         <p class="crew-subtitle">
-          Seven AI agents spread across a VM, a Raspberry Pi, a Mac Studio, and an Android phone.
-          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> by 1000.
+          Seven active AI agents spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
+          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread.
         </p>
       </section>
 
@@ -197,6 +197,13 @@ const trekConnections = [
         </div>
       </section>
 
+      <section class="info-section">
+        <h2>Retired and Experimental</h2>
+        <p>
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. She matters to the story, but the current active crew is Ada, Spock, Scotty, Geordi, Zora, Midas, and Book.
+        </p>
+      </section>
+
       <!-- Models Section -->
       <section class="info-section">
         <h2>Models</h2>
@@ -233,9 +240,9 @@ const trekConnections = [
         { agent: 'Geordi', emoji: '👷', action: 'Running CTRL test suite — 47/47 passing', status: 'testing', time: '28m ago' },
         { agent: 'Ada', emoji: '👩‍🚀', action: 'Scheduling investor follow-up emails', status: 'scheduling', time: '30m ago' },
         { agent: 'Scotty', emoji: '🔧', action: 'Automating SSL cert renewal for soteriaos.com', status: 'automating', time: '33m ago' },
-        { agent: 'Uhura', emoji: '📡', action: 'Snapping front camera photo for visual check', status: 'capturing', time: '14m ago' },
-        { agent: 'Uhura', emoji: '📡', action: 'Reading GPS coordinates — London, 51.5°N', status: 'sensing', time: '31m ago' },
-        { agent: 'Uhura', emoji: '📡', action: 'Checking battery level — 73%, not charging', status: 'monitoring', time: '40m ago' },
+        { agent: 'Midas', emoji: '✨', action: 'Coordinating family logistics in Telegram', status: 'supporting', time: '14m ago' },
+        { agent: 'Midas', emoji: '✨', action: 'Preparing a reminder pack for Chisom', status: 'preparing', time: '31m ago' },
+        { agent: 'Book', emoji: '📖', action: 'Reviewing assumptions before the next commit', status: 'reflecting', time: '40m ago' },
       ];
 
       const statusColors: Record<string, string> = {
@@ -251,8 +258,8 @@ const trekConnections = [
         testing: '#fbbf24',
         scheduling: '#60a5fa',
         automating: '#fbbf24',
-        capturing: '#2DD4BF',
-        sensing: '#2DD4BF',
+        supporting: '#D4AF37',
+        reflecting: '#D4A574',
       };
 
       const container = document.getElementById('activity-ticker');
