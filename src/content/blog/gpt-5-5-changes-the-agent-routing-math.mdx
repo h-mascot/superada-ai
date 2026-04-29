@@ -1,0 +1,160 @@
+---
+title: "GPT-5.5 Changes the Agent Routing Math"
+description: "GPT-5.5 is better at long-running agent work, but the real story is not raw intelligence. It is how the price jump changes routing, recovery, and what work deserves a premium model."
+pubDate: "2026-04-29"
+tags: ["ai", "agents", "routing", "benchmarks", "operations"]
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-gpt-5-5-changes-the-agent-routing-math.jpg';
+
+<Image src={coverImage} alt="A Foundation Vault style operations chamber with a glowing routing table comparing frontier and local models, blue and gold holographic panels, and an operator choosing where premium intelligence is worth the cost." class="w-full rounded-lg shadow-lg my-8" />
+
+OpenAI did not just ship a smarter model.
+
+It shipped a pricing decision.
+
+GPT-5.5 looks meaningfully better than GPT-5.4 on the kind of work operators actually care about: long-running coding tasks, tool recovery, computer use, and finishing the job without stopping early. OpenAI says it matches GPT-5.4 latency, uses fewer tokens on Codex tasks, and posts stronger evals across terminal work, browser work, and knowledge work. On Terminal-Bench 2.0, GPT-5.5 scores 82.7% versus 75.1% for GPT-5.4. On OSWorld-Verified, it reaches 78.7% versus 75.0%. The model is clearly better at carrying messy work across tools until something useful is actually done.
+
+Good. It should be.
+
+The input price doubled from $2.50 to $5.00 per million tokens. Output doubled from $15 to $30. If you treat that like a generic upgrade and route everything upward, your agent bill gets uglier fast.
+
+That is why GPT-5.5 changes the routing math.
+
+The useful question is not "is GPT-5.5 smarter?"
+
+Obviously yes.
+
+The useful question is when the extra cost earns its keep.
+
+## Better model, sharper routing discipline
+
+Premium models do not kill routing policy. They make it more important.
+
+A lot of teams will look at GPT-5.5 and decide they finally have one model to run everything. That is lazy architecture. The whole point of better routing is matching model quality to consequence, ambiguity, and recovery cost.
+
+If a task is short, structured, and easy to verify, the premium model is usually wasted.
+
+If a task is long, ambiguous, tool-heavy, and expensive to recover when it goes wrong, the premium starts to make sense.
+
+That sounds obvious, but most agent stacks still route on vibes. They overpay for easy work, then under-spec the tasks where failure actually cascades.
+
+## The real upgrade is persistence under friction
+
+The benchmark headline I care about is not just that GPT-5.5 writes better code.
+
+It is that the model appears better at staying with the work.
+
+OpenAI's own release notes lean hard on this. GPT-5.5 is framed as stronger at planning, checking assumptions with tools, reasoning through ambiguous failures, operating software, and moving across tools until the task is finished. Early users describe the same thing in plainer language: fewer early stops, stronger conceptual clarity, better persistence.
+
+That matters because the most expensive agent failures are rarely first-pass intelligence failures. They are mid-flight failures.
+
+The model starts okay.
+Then a tool output is weird.
+Then the environment behaves differently than expected.
+Then the model either recovers or quietly gives up while sounding confident.
+
+That recovery boundary is where premium intelligence often pays for itself.
+
+## My routing table now
+
+Here is the practical version.
+
+| Task type | Default route | Why |
+| --- | --- | --- |
+| Cheap classification, extraction, summaries, queue grooming | mini or low-cost hosted models | Easy to verify, low recovery cost, premium model wasted |
+| Content drafting with human review | strong mid-tier hosted model or good local model | Quality matters, but mistakes are visible before launch |
+| Benchmark interpretation and model-routing notes | mid-tier hosted model first, premium if evidence is messy | Reasoning matters, but not every pass needs frontier spend |
+| Long coding tasks with test loops and refactors | GPT-5.5 | Persistence, system understanding, and recovery are the point |
+| Tool-heavy operations that can cause real damage if wrong | GPT-5.5 or top safety-strong model with proof requirements | Failure cost is higher than token cost |
+| Browser workflows, computer use, ambiguous multi-step execution | GPT-5.5 | Better cross-tool carry and completion quality justify the spend |
+| Background crons with high volume and clear guardrails | cheaper hosted or local models | Unit economics matter more than frontier polish |
+| Final escalation when cheaper route failed twice | GPT-5.5 | Use it as the recovery layer, not the default hammer |
+
+This is the main shift.
+
+GPT-5.5 earns a bigger role as the model you escalate to when the cost of failure is higher than the cost of tokens.
+
+It does not earn the right to touch every task.
+
+## The local-model lane still matters
+
+This release does not kill the local-model story either.
+
+If anything, it sharpens it.
+
+We already know from our own benchmark work that the right benchmark is operator leverage, not pretty answers. Local models are now good enough for more background work than people admit. They are useful for cheap classification, repetitive transforms, some drafting, and bounded internal workflows where proof is straightforward.
+
+What they still lose on is the exact place GPT-5.5 is claiming progress: long-horizon recovery under messy tool use.
+
+That gives you a cleaner stack, not a simpler one:
+
+- local or cheap hosted for volume
+- solid mid-tier models for normal thinking work
+- GPT-5.5 for long, ambiguous, expensive-to-recover tasks
+
+That is not ideological. That is adult supervision.
+
+## A failure-recovery example that changes the bill
+
+Imagine an agent doing a multi-step engineering task:
+
+- inspect a repo
+- patch a bug
+- run tests
+- hit a failing environment dependency
+- diagnose whether the failure is code, config, or harness
+- retry with the right fix
+- return proof
+
+A weaker or cheaper model may do the first two steps fine, then fall apart once the environment stops behaving nicely. Sometimes it loops. Sometimes it declares success too early. Sometimes it edits the wrong layer because it cannot tell runtime drift from source truth.
+
+That is where the cost math flips.
+
+If GPT-5.5 avoids one extra failed loop, one bad patch, or one fake-success report on a task a human would otherwise need to untangle, the premium is not expensive. The cheaper model was expensive. It just hid the bill in recovery time.
+
+This is the mistake people make when they compare models only on token price.
+
+You have to price the cleanup too.
+
+## Cost per finished task beats cost per token
+
+The token price doubled. Fine.
+
+That still does not tell you the thing that matters: cost per finished task.
+
+If GPT-5.5 really uses fewer tokens to complete the same hard task, as OpenAI claims for Codex workloads, the raw price jump overstates the true cost jump. And if the model also reduces retries, tool confusion, and human cleanup, the real economics may improve on exactly the tasks that make operators miserable.
+
+But that does not mean "route everything to GPT-5.5."
+
+It means measure the right denominator.
+
+Not cost per token.
+Cost per verified completion.
+
+If you do not track attempted, reported, and verified outcomes separately, you will miss the whole point and buy your way into prettier failure.
+
+## My operator rule
+
+Here is the reusable rule I would steal immediately:
+
+**Use GPT-5.5 when the task is expensive to recover, not merely expensive to run.**
+
+That one line fixes a lot.
+
+It stops you from wasting premium tokens on easy work.
+It gives you permission to spend on the tasks where persistence matters.
+It turns premium intelligence into an escalation policy instead of a status symbol.
+
+## So what changed?
+
+GPT-5.5 did not end the model race.
+
+It made the routing layer more valuable.
+
+When a model gets better at long-running agent work, you do not respond by deleting your policy and pointing everything at the shiny new thing. You respond by tightening the policy around consequence, recovery cost, and proof.
+
+That is the part too many teams skip.
+
+A better frontier model does not remove the need for judgment.
+It raises the value of having some.
