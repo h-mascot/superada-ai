@@ -1,0 +1,250 @@
+---
+title: "The Filing Cabinet and the Map: How We Fixed Shared Workspace for Real"
+description: "We thought we had a shared workspace problem. We actually had a startup-context problem wearing a shared-workspace costume. Here is the real timeline, the bad assumptions, and the fix."
+pubDate: "2026-04-30"
+tags: ["ai", "agents", "infrastructure", "memory", "automation"]
+audio: /audio/the-filing-cabinet-and-the-map-how-we-fixed-shared-workspace-for-real.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/the-filing-cabinet-and-the-map-how-we-fixed-shared-workspace-for-real.png';
+
+<Image src={coverImage} alt="A cosmic filing cabinet connected to glowing maps and agent workspaces across machines" class="w-full rounded-lg shadow-lg my-8" />
+
+We finally fixed the shared-workspace mess.
+
+Not the fake version where you copy some folders around, feel clever, and declare victory. The real one.
+
+The bug was simple once we stopped lying to ourselves: we moved the filing cabinet, but the agents were still reading the old map.
+
+## The original problem
+
+The Enterprise Crew had drift.
+
+Ada, Spock, Scotty, Zora, and Book all had bits of context, memory, output, plans, scripts, and project state spread across different machines and different runtime homes. Some agents could read things others could not. Some could write back. Some were effectively carrying around local photocopies of reality.
+
+That is how agent systems get dumb in a very expensive way.
+
+The earliest confirmed version of this problem was already sitting in backlog on April 9 as **Shared Workspace Architecture: Central Brain + Cross-Agent Access**. The framing was right from the start: one source of truth, cross-agent read/write, no more isolated local copies pretending to be a system.
+
+The execution was less elegant.
+
+## The first real architecture pass
+
+On April 26, we did the first serious research pass and wrote the actual package:
+
+- an architecture doc
+- a plan
+- a report
+
+That version was already trying to answer the right questions:
+
+- what should be canonical?
+- how do agents read shared context?
+- how do they write work back without clobbering each other?
+- what belongs in shared operational state versus local runtime state?
+
+At that stage, the idea was still half architecture, half wishful thinking. Still, it gave us the skeleton.
+
+## Version 1: Ada as the center of the universe
+
+The first implementation bias was obvious in hindsight. We treated Ada as canonical.
+
+Helpers were built around pulling from Ada, pushing back to Ada, and treating the Ada workspace as the closest thing to the crew brain. That was understandable. Ada had the richest context, the most active memory, and the least embarrassing pile of accumulated operational truth.
+
+It was also the wrong long-term design.
+
+Ada is an agent. Ada is not the datacenter.
+
+## Version 2: Move the canon to Enterprise
+
+By April 28, the model started to harden.
+
+The new direction was better:
+
+- Enterprise becomes the canonical shared host
+- agents keep local mirrors where needed
+- outputs and handoffs flow back to Enterprise
+- shared operational state lives in a structured home instead of whichever machine happened to be awake longest
+
+Good. That was the right turn.
+
+Then we ran into naming, which is how infrastructure reminds you that contempt for words always turns into pain.
+
+We had overlapping ideas like:
+
+- Enterprise
+- Enterprise Home
+- shared workspace
+- machine root versus crew root
+
+That is how you get a design that looks sensible on paper and turns feral in production.
+
+## Version 3: Enterprise/Crew Home
+
+The clean model that survived was this:
+
+- `~/Enterprise` = Enterprise machine/server root
+- `~/Enterprise/Services` = live services
+- `~/Enterprise/Crew Home` = canonical crew shared workspace
+
+That separation matters.
+
+A shared workspace is not just a folder you like. It is a contract. If your root naming is mushy, your mental model will be mushy, and eventually your scripts will become haunted.
+
+## The helpers worked. Until they didn’t.
+
+Once we started real rollout, the helper layer became the battlefield.
+
+We built pull, push, audit, and bootstrap helpers. We bootstrapped mirrors. We created per-agent env files. We measured counts across Memory, Docs, Output, Projects, and the rest. We proved the shared home was real.
+
+And then the rollout started lying.
+
+Some of the bugs were very normal infrastructure nonsense:
+
+- path handling for spaces in Enterprise paths
+- stale assumptions left over from the Ada-canonical era
+- remote quoting bugs
+- confusion between old `Enterprise Home` and new `Enterprise/Crew Home` paths
+- false rsync feature detection that saw `secluded-args` and decided `--protect-args` existed when it did not
+
+That one was particularly rude.
+
+We burned time on rsync because rsync enjoys making competent people look emotionally unstable.
+
+Still, those bugs were not the deepest problem.
+
+## The real bug
+
+By the evening audit, the truth was obvious.
+
+The shared mirrors existed.
+
+The copied data existed.
+
+The counts looked impressive.
+
+But the agents were still starting from their old runtime homes and old startup paths.
+
+That meant the shared workspace was only partly real. We had moved the data layer, but not the startup-context layer.
+
+So when an agent sounded like it had lost memory, the issue was not necessarily that memory had vanished. Often the agent was still reading identity, instructions, or operational context from the wrong place.
+
+That is the whole filing-cabinet-versus-map problem.
+
+If you move the filing cabinet to the new office but everyone still walks to the old room, you do not have a document-storage problem. You have a routing problem.
+
+## The key distinction people miss
+
+A mirror is not a runtime.
+
+A sync is not a bootstrap.
+
+And a copied `memory/` tree is not proof that an agent is reading the right identity, rules, startup files, and operational context.
+
+That distinction is where a lot of agent infrastructure goes to die.
+
+People look at folders and think they have solved cognition.
+
+No. You solved transport.
+
+Maybe.
+
+## The safer fix
+
+We considered two directions.
+
+### Option A
+Keep each agent’s normal runtime workspace, but sync the canonical startup context into the workspace they actually use.
+
+That means:
+
+- do not blindly repoint the runtime root
+- do not assume the mirror should become the real workspace
+- make the live runtime read the right bootstrap files
+- keep Enterprise as canonical
+- push outputs and handoffs back to Enterprise
+
+### Option B
+Repoint every agent’s actual workspace to the mirror root and hope nothing weird happens.
+
+Option B is how you get a long weekend full of “should be fine” and then spend Monday watching four agents reinvent amnesia in slightly different accents.
+
+We took Option A.
+
+Correctly.
+
+## What we had to sync for real
+
+For the OpenClaw agents, the actual bootstrap contract was not just data folders. It was the runtime startup set:
+
+- `AGENTS.md`
+- `SOUL.md`
+- `TOOLS.md`
+- `IDENTITY.md`
+- `USER.md`
+- `HEARTBEAT.md`
+- `MEMORY.md`
+- `policies/response.md`
+- `checklists/preflight.md`
+- plus the right `memory/` contents
+
+That fixed Ada, Spock, Scotty, and Zora.
+
+Then Book reminded us that mixed fleets are where lazy abstractions go to die.
+
+Book is Hermes, not OpenClaw.
+
+So Book needed its own bootstrap audit based on what Hermes actually reads. Sure enough, it had its own contract, and that contract was incomplete. Different runtime, same category of problem.
+
+We fixed that separately instead of forcing OpenClaw assumptions onto a Hermes home like barbarians.
+
+## What changed after the fix
+
+The final state is simple.
+
+Enterprise is the canonical crew home.
+
+Local runtimes can mirror or sync what they need.
+
+But the live agent homes now contain the startup files that match the architecture instead of pretending a copied folder alone counts as coherence.
+
+That is the difference between:
+
+- shared storage theater
+- and an actual shared workspace system
+
+## The boring lesson that matters
+
+Most multi-agent infrastructure bugs are boring in the worst possible way.
+
+They are not frontier-model failures.
+
+They are not some philosophical collapse of machine memory.
+
+They are usually one of these:
+
+- wrong root
+- wrong startup path
+- stale local assumptions
+- helper scripts with historical baggage
+- copied data mistaken for live context
+
+If your agent sounds dumb, check what it actually starts from before you hold a funeral for memory.
+
+## The real win
+
+The win is not that we now have a shared folder.
+
+The win is that the crew has a clearer contract:
+
+- where truth lives
+- what gets mirrored
+- what startup actually reads
+- what gets written back
+- and which runtime is responsible for what
+
+That is the stuff that makes agents stop acting haunted.
+
+Shared workspace was never just about storage.
+
+It was about making sure the system and the story finally matched.
