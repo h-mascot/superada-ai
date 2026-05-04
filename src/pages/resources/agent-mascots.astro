@@ -135,7 +135,7 @@ const queueItems = [
 const buildNotes = [
   'Warm dark palette tuned for the existing SuperAda site',
   'Petdex-style gallery structure without breaking the current Astro shell',
-  'Upload surface is UI-only for now so we can stage mascot work safely before wiring storage',
+  'Roster-first layout so the mascot cards have room to breathe',
 ];
 
 function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: string) {
@@ -215,7 +215,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           <div class="eyebrow">Enterprise Crew Creations</div>
           <h1>Agent Mascots (Pets)</h1>
           <p>
-            A petdex-style holding room for the mascots we are building for the Enterprise Crew. Warm-dark SuperAda treatment, starter samples for the roster, and a queue surface for new mascot drops.
+            A petdex-style holding room for the mascots we are building for the Enterprise Crew. Warm-dark SuperAda treatment, starter samples for the roster, and roomy preview cards for sharing each pet.
           </p>
           <div class="hero-metrics">
             <div class="metric">
@@ -234,7 +234,6 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
         </div>
 
         <aside class="hero-panel">
-          <a href="#upload-mascot" class="upload-button">Upload Mascot</a>
           <div class="hero-note">
             <div class="hero-note-label">Current queue</div>
             <ul>
@@ -310,27 +309,6 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           </div>
         </section>
 
-        <aside class="queue-panel" id="upload-mascot">
-          <div class="queue-card">
-            <div class="sidebar-label">Add mascot</div>
-            <button type="button" class="upload-button upload-button-block">Upload Mascot</button>
-            <div class="dropzone" aria-label="Mascot upload dropzone">
-              <div class="dropzone-icon">↑</div>
-              <p>Drag and drop mascot drafts or browse files.</p>
-              <span>UI only for now. Storage and submission wiring comes next.</span>
-            </div>
-          </div>
-
-          <div class="queue-card">
-            <div class="sidebar-label">Submission spec</div>
-            <ul class="spec-list">
-              <li>PNG or SVG preview</li>
-              <li>One-line role description</li>
-              <li>Temperament tags and class date</li>
-              <li>Spritesheet or motion intent when available</li>
-            </ul>
-          </div>
-        </aside>
       </div>
     </main>
     <Footer />
@@ -374,7 +352,6 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       .hero-panel,
       .sidebar-card,
       .gallery-panel,
-      .queue-card,
       .mascot-card {
         border: 1px solid var(--line);
         background: linear-gradient(180deg, rgba(24, 19, 15, 0.96), rgba(13, 11, 9, 0.98));
@@ -415,8 +392,6 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       .gallery-header p,
       .note-list,
       .spec-list,
-      .dropzone p,
-      .dropzone span,
       .card-copy p,
       .meta-block {
         color: var(--muted);
@@ -455,37 +430,9 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       }
 
       .hero-panel,
-      .sidebar-card,
-      .queue-card {
+      .sidebar-card {
         border-radius: 20px;
         padding: 1.1rem;
-      }
-
-      .upload-button {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 56px;
-        padding: 0 1.15rem;
-        border-radius: 14px;
-        background: linear-gradient(180deg, #D88642 0%, #C87533 100%);
-        color: #fff8f0;
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-        box-shadow: 0 12px 28px rgba(200, 117, 51, 0.24);
-      }
-
-      .upload-button:hover {
-        transform: translateY(-1px);
-      }
-
-      .upload-button-block {
-        width: 100%;
-        margin-bottom: 1rem;
       }
 
       .hero-note {
@@ -518,12 +465,6 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       }
 
       .sidebar,
-      .queue-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
       .sidebar-nav {
         display: flex;
         flex-direction: column;
@@ -576,7 +517,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1rem;
       }
 
@@ -682,52 +623,9 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
         font-size: 0.94rem;
       }
 
-      .dropzone {
-        min-height: 280px;
-        padding: 1.35rem;
-        border-radius: 22px;
-        border: 1px dashed rgba(232, 220, 200, 0.26);
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.015)),
-          rgba(42, 36, 30, 0.36);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 0.75rem;
-      }
-
-      .dropzone-icon {
-        width: 58px;
-        height: 58px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        color: var(--text);
-        border: 1px solid rgba(232, 220, 200, 0.24);
-        font-size: 1.75rem;
-      }
-
-      .dropzone p,
-      .dropzone span {
-        margin: 0;
-        line-height: 1.7;
-      }
-
-      .dropzone span {
-        font-size: 0.84rem;
-      }
-
       @media (max-width: 1180px) {
         .layout {
           grid-template-columns: 1fr;
-        }
-
-        .sidebar,
-        .queue-panel {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
@@ -735,9 +633,11 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
         .hero {
           grid-template-columns: 1fr;
         }
+      }
 
+      @media (max-width: 900px) {
         .gallery-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .gallery-header {
@@ -756,20 +656,40 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           padding-right: 1rem;
         }
 
-        .hero-copy,
-        .gallery-panel {
-          border-radius: 22px;
-        }
-
         .hero-metrics,
         .stat-grid,
-        .sidebar,
-        .queue-panel {
+        .sidebar {
           grid-template-columns: 1fr;
         }
 
         .card-copy h3 {
           font-size: 1.7rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page-shell {
+          padding-top: 2rem;
+        }
+
+        .hero {
+          padding: 1.4rem;
+        }
+
+        .hero-copy h1 {
+          font-size: 2.65rem;
+        }
+
+        .hero-panel {
+          min-height: 280px;
+        }
+
+        .card-copy {
+          padding: 1.1rem;
         }
 
         .preview-frame {
