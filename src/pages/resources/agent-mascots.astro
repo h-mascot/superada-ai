@@ -215,9 +215,9 @@ const resourceNav = [
 ];
 
 const atlasStats = [
-  { label: 'Mascots', value: resourceCounts.mascots, copy: 'Pets, rigs, cards, and animation-ready agent companions.', href: '#mascot-roster', cta: 'Browse mascots' },
+  { label: 'Tools', value: resourceCounts.tools, copy: 'Reusable tools, templates, and utilities to build, test, and ship.', href: '#tools', cta: 'Browse tools' },
   { label: 'Latest updates', value: resourceCounts.changelog, copy: 'New builds, logs, and resource changes from the bridge.', href: '/openclaw-changelog', cta: "See what's new" },
-  { label: 'Crons', value: resourceCounts.crons, copy: 'Scheduled jobs, heartbeat checks, and operator automations.', href: '#crons', cta: 'Review crons' },
+  { label: 'Popular bundles', value: '6', copy: 'Most saved bundles by the crew.', href: '#workflow-packs', cta: 'View popular' },
 ];
 
 const resourceTabs = [
@@ -233,15 +233,15 @@ const resourceTabs = [
 ];
 
 const resourceCards = [
-  { title: 'Agent Mascots (Pets)', meta: `${resourceCounts.mascots} items`, status: 'Updated', anchor: 'mascot-roster', copy: 'Pets that represent coding agents like Codex. Includes cards, rigs, crafts, and animation notes.' },
+  { title: 'Agent Mascots (Pets)', meta: `${resourceCounts.mascots} items`, status: 'Updated', anchor: 'mascot-roster', copy: 'Pets that represent our agents. Includes cards, rigs, crafts, and animations.' },
   { title: 'OpenClaw Weekly Claw', meta: `${resourceCounts.weeklyClaw} issues`, status: 'New', anchor: 'weekly-claw', copy: 'Weekly digest for OpenClaw progress, field notes, experiments, and shipped changes.' },
   { title: 'Changelog', meta: `${resourceCounts.changelog} updates`, status: 'Updated', anchor: 'changelog', copy: 'Product changes, fixes, release notes, and operator-facing deltas.' },
   { title: 'Crons', meta: `${resourceCounts.crons} workflows`, status: 'Live', anchor: 'crons', copy: 'Scheduled jobs, reminders, heartbeat checks, and recurring operator automations.' },
-  { title: 'Benchmarks', meta: `${resourceCounts.benchmarks} suites`, status: 'Updated', anchor: 'benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tools, and reliability.' },
+  { title: 'Benchmarks', meta: `${resourceCounts.benchmarks} suites`, status: 'Updated', anchor: 'benchmarks', copy: 'Evaluation suites and results across reasoning, memory, and tooling.' },
   { title: 'Workflow Packs', meta: `${resourceCounts.workflowPacks} packs`, status: 'New', anchor: 'workflow-packs', copy: 'Reusable bundles for real operator work. Deploy, adapt, ship.' },
   { title: 'Crew Guides', meta: `${resourceCounts.crewGuides} guides`, status: 'Updated', anchor: 'crew-guides', copy: 'How-tos, playbooks, and reference material for working with the Enterprise Crew.' },
-  { title: 'Tools', meta: `${resourceCounts.tools} tools`, status: 'Updated', anchor: 'tools', copy: 'Templates, prompts, model notes, and utilities used by the crew.' },
-  { title: 'Ship Notes', meta: `${resourceCounts.shipNotes} notes`, status: 'Updated', anchor: 'ship-notes', copy: 'Logs, decisions, and bridge notes from shipped work.' },
+  { title: 'Tools', meta: `${resourceCounts.tools} tools`, status: 'Updated', anchor: 'tools', copy: 'Templates, prompts, models, utilities, and tooling for faster builds.' },
+  { title: 'Ship Notes', meta: `${resourceCounts.shipNotes} notes`, status: 'Updated', anchor: 'ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
 ];
 
 ---
@@ -277,8 +277,8 @@ const resourceCards = [
           <div class="submit-card">
             <div class="submit-icon">＋</div>
             <h2>Suggest a resource</h2>
-            <p>Send a mascot, cron, changelog item, or tool idea for the Enterprise Crew library.</p>
-            <a href="mailto:hello@superada.ai">Submit resource</a>
+            <p>Share something valuable with the crew.</p>
+            <a href="mailto:hello@superada.ai">Submit resource =&gt;</a>
           </div>
         </aside>
 
@@ -301,7 +301,7 @@ const resourceCards = [
             <div>
               <div class="breadcrumb">Resources / Discovery</div>
               <h1 id="resource-atlas-title">Resource Atlas</h1>
-              <p>gallery for mascots/pets for coding agents like codex etc that, the Enterprise Crew builds and shares.</p>
+              <p>Everything the Enterprise Crew has built, tested, and learned. Explore guides, mascots, benchmarks, workflows, tools, and ship notes - curated for building better AI systems.</p>
             </div>
           </section>
 
@@ -499,7 +499,7 @@ const resourceCards = [
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        margin-bottom: 1.6rem;
+        margin-bottom: 1.35rem;
         color: var(--text);
         text-decoration: none;
         font-family: Georgia, serif;
@@ -634,7 +634,31 @@ const resourceCards = [
         gap: 0.45rem;
       }
 
-      .top-menu a,
+      .top-menu a {
+        position: relative;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.35rem 0;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+      }
+
+      .top-menu a.is-current,
+      .top-menu a:hover {
+        color: var(--text);
+      }
+
+      .top-menu a.is-current::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.86rem;
+        height: 1px;
+        background: var(--accent);
+      }
+
       .theme-switcher button,
       .tab-row a,
       .filter-button,
@@ -648,7 +672,6 @@ const resourceCards = [
         font: inherit;
       }
 
-      .top-menu a.is-current,
       .theme-switcher button.is-active,
       .tab-row a.is-active {
         color: var(--text);
@@ -657,7 +680,7 @@ const resourceCards = [
       }
 
       .atlas-hero {
-        padding: clamp(1.5rem, 4vw, 3.4rem);
+        padding: clamp(1.35rem, 3.4vw, 2.8rem);
         border: 1px solid var(--line);
         border-radius: 28px;
         background:
@@ -668,7 +691,7 @@ const resourceCards = [
       .atlas-hero h1 {
         margin: 0.45rem 0 0.85rem;
         font-family: Georgia, serif;
-        font-size: clamp(2.7rem, 5.7vw, 5.2rem);
+        font-size: clamp(2.4rem, 4.8vw, 4.45rem);
         line-height: 0.9;
         font-weight: 400;
         letter-spacing: -0.06em;
@@ -774,7 +797,7 @@ const resourceCards = [
       }
 
       .resource-card h2 {
-        margin: 1.8rem 0 0.45rem;
+        margin: 1.15rem 0 0.45rem;
         font-family: Georgia, serif;
         font-size: 1.5rem;
         font-weight: 400;
