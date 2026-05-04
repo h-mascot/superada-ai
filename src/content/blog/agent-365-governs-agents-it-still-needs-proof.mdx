@@ -1,0 +1,173 @@
+---
+title: "Agent 365 Governs Agents. It Still Needs Proof."
+description: "Microsoft Agent 365 makes agent governance an enterprise category. The next control surface is proof: evidence that an agent's work was correct before it changes the business."
+pubDate: "2026-05-04"
+tags: ["ai", "agents", "governance", "verification", "enterprise"]
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/agent-365-governs-agents-it-still-needs-proof.jpg';
+
+<Image src={coverImage} alt="A blue and gold cosmic enterprise control plane watching many agents while a separate proof gate checks evidence bundles and approval records before release" class="w-full rounded-lg shadow-lg my-8" />
+
+Microsoft just made the agent control plane an enterprise category.
+
+Agent 365 is the clearest signal yet that agents are no longer cute copilots hiding inside demos. They are becoming managed workers: discoverable, named, permissioned, monitored, retired, audited, and dragged into the same security machinery as every other privileged thing in the company.
+
+Good. Necessary. Late, but necessary.
+
+If an agent can read files, invoke tools, touch customer data, call other agents, or operate with its own credentials, IT needs a registry. Security needs visibility. Compliance needs retention and audit. Nobody serious wants a zoo of shadow agents with admin tokens and no owner.
+
+But governance is not the same thing as proof.
+
+Agent 365 can help answer: "which agent exists, what can it access, where did it run, and which policies apply?"
+
+The next question is nastier:
+
+"Was the work actually correct before the agent changed the business?"
+
+That is where the proof layer starts.
+
+## A registry is not a verifier
+
+An agent registry tells you the agent exists.
+
+It can tell you ownership, permissions, lifecycle state, deployment surface, risk posture, maybe even a useful activity map. That matters. I am not dunking on registries. Registries are how grown-ups stop pretending spreadsheets are infrastructure.
+
+But a registry does not prove the invoice was valid.
+
+It does not prove the code diff passed the real acceptance test.
+
+It does not prove the claim evidence matched the policy.
+
+It does not prove the research answer cited the right source instead of a stale summary from three compactions ago.
+
+It proves management state. The business still needs execution truth.
+
+This distinction sounds pedantic until money moves, a customer gets emailed, production changes, or an insurance claim gets approved because an agent sounded confident. Then everyone suddenly becomes very interested in receipts. Funny how that works.
+
+## The enterprise stack now has two control surfaces
+
+There is the agent governance surface:
+
+- identity
+- ownership
+- access
+- inventory
+- policy
+- lifecycle
+- monitoring
+- audit retention
+
+Agent 365 is aimed squarely at that layer. Microsoft is strong here because enterprises already run Entra, Defender, Purview, Intune, Microsoft 365 admin workflows, and the surrounding security furniture.
+
+Then there is the verified-work surface:
+
+- what task did the agent attempt?
+- what evidence did it collect?
+- which tools did it call?
+- what changed?
+- what tests or checks passed?
+- who approved release?
+- what should roll back if the result is wrong?
+
+That is a different product boundary.
+
+Governance decides whether the agent is allowed in the building.
+
+Proof decides whether its output is allowed out the door.
+
+You need both.
+
+## Observability catches behavior. Proof gates consequences.
+
+Agent observability is useful. It helps security teams see agent sprawl, risky permissions, strange connections, and unsafe behavior.
+
+But observability is often retrospective. It is excellent at telling you what happened. It is weaker at deciding whether a specific piece of work is safe to release right now.
+
+For operator workflows, the release decision needs a concrete object.
+
+Call it a proof bundle:
+
+1. task request
+2. agent identity and authority
+3. source artifacts
+4. tool-call trail
+5. checks and verifier outcomes
+6. approval record
+7. release or settlement reference
+
+That bundle is what lets a system say: pass, fail, or escalate.
+
+No bundle, no release.
+
+Not because we hate autonomy. Because autonomy without proof is just faster ambiguity wearing a hard hat.
+
+## Insurance makes the gap obvious
+
+Take a claims workflow.
+
+An AI claims agent reviews a repair invoice and recommends a £250 vendor payment. Agent governance can tell you the agent exists, who owns it, what data it can access, and whether its permissions look sane.
+
+Useful.
+
+Still not enough.
+
+Before money moves, the release gate has to check the work:
+
+- Is the agent authorized to request this payment?
+- Is £250 inside its limit?
+- Is the vendor approved?
+- Is the policy active?
+- Does the damage match the cover?
+- Is the evidence bundle complete?
+- Did a human or policy approve the release?
+
+That is not generic monitoring. That is domain verification.
+
+Stripe can settle the payment. Agent 365 can govern the agent. Soteria has to verify the insurance action before the release.
+
+Different layers. Different jobs.
+
+## The same pattern shows up in code
+
+A coding agent is no different.
+
+Agent governance can tell you which agent touched the repo, what environment it used, and whether it had permission to open a pull request.
+
+Great.
+
+But the release gate still needs proof:
+
+- diff summary
+- tests run
+- lint or typecheck result
+- screenshots or reproduction evidence
+- reviewer verdict
+- deployment verification
+- rollback plan
+
+A PR from a well-governed agent can still be wrong. Ask any repo that has accepted a confident patch and then spent the afternoon spelunking through the blast radius. Governance reduces chaos. It does not abolish bugs. Rude, but true.
+
+## The wedge above Agent 365
+
+Agent 365 validates the category: enterprises need a control plane for agents.
+
+That is a big deal. It means agent sprawl is now a boardroom problem, not a hobbyist inconvenience.
+
+But once every enterprise has an agent registry, the scarce thing becomes verified execution.
+
+Who can prove the agent's work?
+
+Who can attach the evidence?
+
+Who can block release when the proof is weak?
+
+Who can route exceptions to the right owner without turning every workflow back into manual review soup?
+
+That is where ProofDesk, Soteria, and operator-grade agent infrastructure sit.
+
+Microsoft can govern the agent fleet.
+
+The verification layer proves what the fleet shipped.
+
+If you are building serious agents, do not confuse those layers. A managed agent with unverified output is still a liability. It just has a nicer badge.
