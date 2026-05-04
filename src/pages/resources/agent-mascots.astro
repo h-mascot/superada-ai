@@ -189,290 +189,638 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
+
+const resourceNav = [
+  { label: 'Overview', href: '/resources', count: null },
+  { label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: '14', active: true },
+  { label: 'OpenClaw Weekly Claw', href: '/resources/openclaw-weekly-claw', count: '12' },
+  { label: 'Changelog', href: '/resources/changelog', count: '19' },
+  { label: 'Crons', href: '/resources/crons', count: '8' },
+  { label: 'Benchmarks', href: '/benchmarks', count: '8' },
+  { label: 'Workflow Packs', href: '/workflows', count: '12' },
+  { label: 'Crew Guides', href: '/resources/crew-guides', count: '10' },
+  { label: 'Tools', href: '/resources/tools', count: '22' },
+  { label: 'Ship Notes', href: '/ship-log', count: '9' },
+];
+
+const atlasStats = [
+  { label: 'Mascots', value: '14', copy: 'Pets, rigs, cards, and animation-ready agent companions.', href: '#mascot-roster', cta: 'Browse mascots' },
+  { label: 'Latest updates', value: '19', copy: 'New builds, logs, and resource changes from the bridge.', href: '/resources/changelog', cta: "See what's new" },
+  { label: 'OpenClaw crons', value: '8', copy: 'Recurring checks, scheduled jobs, and operator automations.', href: '/resources/crons', cta: 'Review crons' },
+];
+
+const resourceTabs = [
+  'Agent Mascots (Pets)',
+  'OpenClaw Weekly Claw',
+  'Changelog',
+  'Crons',
+  'Benchmarks',
+  'Workflow Packs',
+  'Crew Guides',
+  'Tools',
+  'Ship Notes',
+];
+
+const resourceCards = [
+  { title: 'Agent Mascots (Pets)', meta: '14 items', status: 'Updated', copy: 'Pets that represent coding agents like Codex. Includes cards, rigs, crafts, and animation notes.' },
+  { title: 'OpenClaw Weekly Claw', meta: '12 issues', status: 'New', copy: 'Weekly digest for OpenClaw progress, field notes, experiments, and shipped changes.' },
+  { title: 'Changelog', meta: '19 updates', status: 'Updated', copy: 'Product changes, fixes, release notes, and operator-facing deltas.' },
+  { title: 'Crons', meta: '8 workflows', status: 'Live', copy: 'Scheduled automations, reminders, heartbeat jobs, and recurring checks.' },
+  { title: 'Benchmarks', meta: '8 suites', status: 'Updated', copy: 'Evaluation suites and results across reasoning, memory, tools, and reliability.' },
+  { title: 'Workflow Packs', meta: '12 packs', status: 'New', copy: 'Reusable bundles for real operator work. Deploy, adapt, ship.' },
+];
+
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead
-      title="Agent Mascots (Pets) — SuperAda Resources"
+      title="Agent Mascots (Pets) - SuperAda Resources"
       description="gallery for mascots/pets for coding agents like codex etc that, the Enterprise Crew builds and shares."
       image="/favicon.png"
     />
   </head>
-  <body class="mascots-body">
+  <body class="mascots-body" data-theme="ember">
     <Header />
-    <main class="mascots-shell">
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow">Enterprise Crew Creations</div>
-          <h1>Agent Mascots (Pets)</h1>
-          <p>
-            gallery for mascots/pets for coding agents like codex etc that, the Enterprise Crew builds and shares.
-          </p>
+    <main class="atlas-shell">
+      <div class="atlas-frame">
+        <aside class="resource-sidebar" aria-label="Resources navigation">
+          <a class="sidebar-brand" href="/resources" aria-label="SuperAda resources">
+            <img src="/superada-icon.png" alt="" width="34" height="34" />
+            <span>SuperAda</span>
+          </a>
 
-        </div>
-      </section>
+          <div class="sidebar-label">Resources</div>
+          <nav class="resource-nav">
+            {resourceNav.map((item) => (
+              <a href={item.href} class:list={[{ 'is-active': item.active }]}>
+                <span>{item.label}</span>
+                {item.count && <strong>{item.count}</strong>}
+              </a>
+            ))}
+          </nav>
 
-      <div class="layout">
-        <aside class="sidebar">
-          <div class="sidebar-card">
-            <div class="sidebar-label">Resources</div>
-            <nav class="sidebar-nav">
-              <a href="/resources">Assets &amp; Guides</a>
-              <a href="/resources/agent-mascots" class="is-active">Agent Mascots</a>
-              <a href="/benchmarks">Benchmarks</a>
-              <a href="/workflows">Workflows</a>
-            </nav>
-          </div>
-
-          <div class="sidebar-card">
-            <div class="sidebar-label">Build notes</div>
-            <ul class="note-list">
-              {buildNotes.map((note) => <li>{note}</li>)}
-            </ul>
+          <div class="submit-card">
+            <div class="submit-icon">＋</div>
+            <h2>Suggest a resource</h2>
+            <p>Send a mascot, cron, changelog item, or tool idea for the Enterprise Crew library.</p>
+            <a href="mailto:hello@superada.ai">Submit resource</a>
           </div>
         </aside>
 
-        <section class="gallery-panel">
-          <div class="gallery-header">
-            <div>
-              <div class="section-kicker">Resource</div>
-              <h2>Enterprise Crew mascot roster</h2>
+        <section class="atlas-content">
+          <div class="atlas-topbar" aria-label="Color scheme controls">
+            <span>Color schemes</span>
+            <div class="theme-switcher" aria-label="Color scheme">
+              <button type="button" class="is-active" data-set-theme="ember">Ember</button>
+              <button type="button" data-set-theme="violet">Violet</button>
+              <button type="button" data-set-theme="slate">Slate</button>
             </div>
           </div>
 
-          <div class="gallery-grid">
-            {mascots.map((mascot) => (
-              <article class="mascot-card">
-                <div class="preview-frame" style={`background:${mascot.panel};`}>
-                  <img
-                    src={pixelArt(mascot.kind, mascot.accent, mascot.panel, mascot.collar)}
-                    alt={`${mascot.name} ${mascot.kind.toLowerCase()} mascot preview`}
-                    loading="lazy"
-                  />
-                </div>
-                <div class="card-copy">
-                  <h3>{mascot.name}</h3>
-                  <div class="meta-line">Agent type: {mascot.role}</div>
-                  <div class="meta-block">
-                    <span>Creator: {mascot.creator}</span>
-                    <span>Class / date: {mascot.classDate}</span>
-                  </div>
-                  <p>{mascot.bio}</p>
-                  <div class="tag-row">
-                    {mascot.tags.map((tag) => <span>{tag}</span>)}
-                  </div>
-                  <dl class="stat-grid">
-                    {mascot.stats.map((stat) => (
-                      <div>
-                        <dt>{stat.label}</dt>
-                        <dd>{stat.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
+          <section class="atlas-hero">
+            <div>
+              <div class="breadcrumb">Resources / Discovery</div>
+              <h1>Resource Atlas</h1>
+              <p>gallery for mascots/pets for coding agents like codex etc that, the Enterprise Crew builds and shares.</p>
+            </div>
+          </section>
+
+          <section class="stat-strip" aria-label="Resource highlights">
+            {atlasStats.map((stat) => (
+              <article class="stat-card">
+                <div class="stat-label">{stat.label}</div>
+                <strong>{stat.value}</strong>
+                <p>{stat.copy}</p>
+                <a href={stat.href}>{stat.cta} &gt;</a>
               </article>
             ))}
-          </div>
-        </section>
+          </section>
 
+          <section class="discovery-panel" aria-label="Resource discovery">
+            <div class="search-row">
+              <label class="search-box">
+                <span>⌕</span>
+                <input type="search" placeholder="Search resources, guides, mascots, workflows, tools..." />
+              </label>
+              <select aria-label="Sort resources">
+                <option>Relevance</option>
+                <option>Newest</option>
+                <option>Most used</option>
+              </select>
+              <button type="button" class="filter-button">Filters</button>
+            </div>
+
+            <div class="tab-row" aria-label="Resource categories">
+              {resourceTabs.map((tab, index) => (
+                <a href={index === 0 ? '#mascot-roster' : '#resource-cards'} class:list={[{ 'is-active': index === 0 }]}>{tab}</a>
+              ))}
+            </div>
+
+            <div class="resource-card-grid" id="resource-cards">
+              {resourceCards.map((card) => (
+                <article class="resource-card">
+                  <div class="card-topline">
+                    <span>{card.meta}</span>
+                    <strong>{card.status}</strong>
+                  </div>
+                  <h2>{card.title}</h2>
+                  <p>{card.copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="mascot-section" id="mascot-roster">
+            <div class="section-heading">
+              <div>
+                <div class="section-kicker">Agent Mascots (Pets)</div>
+                <h2>Enterprise Crew mascot roster</h2>
+              </div>
+              <p>Pixel-style pets for coding agents, docs, changelogs, crons, and launch surfaces.</p>
+            </div>
+
+            <div class="mascot-grid">
+              {mascots.map((mascot) => (
+                <article class="mascot-card">
+                  <div class="preview-frame" style={`background:${mascot.panel};`}>
+                    <img
+                      src={pixelArt(mascot.kind, mascot.accent, mascot.panel, mascot.collar)}
+                      alt={`${mascot.name} ${mascot.kind.toLowerCase()} mascot preview`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="card-copy">
+                    <div class="meta-line">{mascot.role}</div>
+                    <h3>{mascot.name}</h3>
+                    <p>{mascot.bio}</p>
+                    <div class="meta-block">
+                      <span>Creator: {mascot.creator}</span>
+                      <span>Class / date: {mascot.classDate}</span>
+                    </div>
+                    <div class="tag-row">
+                      {mascot.tags.map((tag) => <span>{tag}</span>)}
+                    </div>
+                    <dl class="stat-grid">
+                      {mascot.stats.map((stat) => (
+                        <div>
+                          <dt>{stat.label}</dt>
+                          <dd>{stat.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        </section>
       </div>
     </main>
     <Footer />
 
+    <script is:inline>
+      const body = document.body;
+      const buttons = document.querySelectorAll('[data-set-theme]');
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          body.dataset.theme = button.dataset.setTheme;
+          buttons.forEach((item) => item.classList.toggle('is-active', item === button));
+        });
+      });
+    </script>
+
     <style>
       :root {
-        --bg: #0D0B09;
-        --panel: #15110d;
-        --panel-strong: #18130f;
-        --panel-soft: #1d1712;
-        --line: #2A241E;
-        --text: #E8DCC8;
-        --muted: #8B7E6A;
-        --accent: #C87533;
+        --bg: #0d0b09;
+        --surface: #14100d;
+        --surface-2: #1b1510;
+        --surface-3: #211a14;
+        --line: rgba(232, 220, 200, 0.12);
+        --line-strong: rgba(232, 220, 200, 0.2);
+        --text: #eadfce;
+        --muted: #938673;
+        --accent: #c87533;
+        --accent-2: #f0c67f;
+        --glow: rgba(200, 117, 51, 0.18);
+      }
+
+      .mascots-body[data-theme="violet"] {
+        --bg: #0f0d16;
+        --surface: #171320;
+        --surface-2: #21182c;
+        --surface-3: #2b2138;
+        --line: rgba(225, 214, 255, 0.13);
+        --line-strong: rgba(225, 214, 255, 0.24);
+        --text: #eee8ff;
+        --muted: #aaa0bd;
+        --accent: #b98cff;
+        --accent-2: #f0c67f;
+        --glow: rgba(185, 140, 255, 0.18);
+      }
+
+      .mascots-body[data-theme="slate"] {
+        --bg: #090f11;
+        --surface: #101719;
+        --surface-2: #142023;
+        --surface-3: #1a2a2e;
+        --line: rgba(214, 239, 236, 0.12);
+        --line-strong: rgba(214, 239, 236, 0.22);
+        --text: #e4f0ec;
+        --muted: #8ca39f;
+        --accent: #66c6b2;
+        --accent-2: #d2b36f;
+        --glow: rgba(102, 198, 178, 0.16);
       }
 
       .mascots-body {
         margin: 0;
         min-height: 100vh;
         background:
-          radial-gradient(circle at top, rgba(200, 117, 51, 0.1), transparent 28%),
-          linear-gradient(180deg, #110e0b 0%, var(--bg) 32%);
+          radial-gradient(circle at 74% 0%, var(--glow), transparent 30rem),
+          radial-gradient(circle at 0% 18%, rgba(255, 255, 255, 0.045), transparent 20rem),
+          var(--bg);
         color: var(--text);
       }
 
-      .mascots-shell {
-        max-width: 1360px;
+      .atlas-shell {
+        max-width: 1480px;
         margin: 0 auto;
-        padding: 3rem 1.5rem 4rem;
+        padding: 1.25rem 1rem 4rem;
       }
 
-      .hero {
-        margin-bottom: 2rem;
+      .atlas-frame {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 1rem;
+        align-items: start;
       }
 
-      .hero-copy,
-      .sidebar-card,
-      .gallery-panel,
-      .mascot-card {
+      .resource-sidebar,
+      .atlas-content,
+      .stat-card,
+      .discovery-panel,
+      .resource-card,
+      .mascot-card,
+      .submit-card {
         border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(24, 19, 15, 0.96), rgba(13, 11, 9, 0.98));
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.012)), var(--surface);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
       }
 
-      .hero-copy {
-        border-radius: 24px;
-        padding: 2rem;
+      .resource-sidebar {
+        position: sticky;
+        top: 1rem;
+        min-height: calc(100vh - 2rem);
+        border-radius: 28px;
+        padding: 1.1rem;
       }
 
-      .eyebrow,
-      .section-kicker,
+      .sidebar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.6rem;
+        color: var(--text);
+        text-decoration: none;
+        font-family: Georgia, serif;
+        font-size: 1.24rem;
+      }
+
+      .sidebar-brand img {
+        border-radius: 0.7rem;
+        box-shadow: 0 0 0 1px var(--line-strong);
+      }
+
       .sidebar-label,
-      .metric-label,
+      .breadcrumb,
+      .stat-label,
+      .section-kicker,
       .meta-line,
-      .stat-grid dt {
+      .stat-grid dt,
+      .card-topline {
         text-transform: uppercase;
         letter-spacing: 0.12em;
         font-size: 0.72rem;
       }
 
-      .eyebrow,
-      .section-kicker,
-      .sidebar-label {
+      .sidebar-label,
+      .breadcrumb,
+      .stat-label,
+      .section-kicker {
         color: var(--accent);
       }
 
-      .hero-copy h1 {
-        margin: 0.4rem 0 0.75rem;
-        font-family: Georgia, serif;
-        font-size: clamp(2.75rem, 5vw, 4.4rem);
-        line-height: 0.96;
-        font-weight: 400;
+      .resource-nav {
+        display: grid;
+        gap: 0.35rem;
+        margin-top: 0.8rem;
       }
 
-      .hero-copy p,
-      .note-list,
-      .spec-list,
+      .resource-nav a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.78rem 0.85rem;
+        border-radius: 14px;
+        color: var(--muted);
+        text-decoration: none;
+        border: 1px solid transparent;
+      }
+
+      .resource-nav a:hover,
+      .resource-nav a.is-active {
+        color: var(--text);
+        border-color: var(--line-strong);
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .resource-nav strong {
+        min-width: 1.8rem;
+        text-align: center;
+        padding: 0.15rem 0.4rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.055);
+        color: var(--text);
+        font-size: 0.72rem;
+      }
+
+      .submit-card {
+        margin-top: 1.2rem;
+        border-radius: 22px;
+        padding: 1rem;
+        background: linear-gradient(145deg, var(--surface-2), var(--surface));
+      }
+
+      .submit-icon {
+        width: 2.2rem;
+        height: 2.2rem;
+        display: grid;
+        place-items: center;
+        border-radius: 0.8rem;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--accent-2);
+      }
+
+      .submit-card h2 {
+        margin: 0.8rem 0 0.35rem;
+        font-size: 1rem;
+      }
+
+      .submit-card p,
+      .resource-card p,
+      .stat-card p,
+      .section-heading p,
       .card-copy p,
       .meta-block {
         color: var(--muted);
       }
 
-      .hero-copy p {
-        max-width: 62ch;
+      .submit-card p {
+        margin: 0 0 0.8rem;
+        line-height: 1.55;
+        font-size: 0.9rem;
+      }
+
+      .submit-card a,
+      .stat-card a {
+        color: var(--accent-2);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .atlas-content {
+        min-width: 0;
+        border-radius: 30px;
+        padding: 1rem;
+        background: color-mix(in srgb, var(--surface) 94%, transparent);
+      }
+
+      .atlas-topbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+      }
+
+      .atlas-topbar span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .theme-switcher,
+      .tab-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+
+      .theme-switcher button,
+      .tab-row a,
+      .filter-button,
+      .search-row select {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--muted);
+        text-decoration: none;
+        padding: 0.55rem 0.8rem;
+        font: inherit;
+      }
+
+      .theme-switcher button.is-active,
+      .tab-row a.is-active {
+        color: var(--text);
+        border-color: var(--line-strong);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .atlas-hero {
+        padding: clamp(1.5rem, 4vw, 3.4rem);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background:
+          linear-gradient(135deg, color-mix(in srgb, var(--accent) 13%, transparent), transparent 36%),
+          linear-gradient(180deg, var(--surface-2), var(--surface));
+      }
+
+      .atlas-hero h1 {
+        margin: 0.45rem 0 0.85rem;
+        font-family: Georgia, serif;
+        font-size: clamp(3.2rem, 8vw, 7.2rem);
+        line-height: 0.9;
+        font-weight: 400;
+        letter-spacing: -0.06em;
+      }
+
+      .atlas-hero p {
+        max-width: 66ch;
         margin: 0;
-        font-size: 1rem;
+        color: var(--muted);
+        font-size: 1.08rem;
         line-height: 1.8;
       }
 
-      .sidebar-card {
-        border-radius: 20px;
-        padding: 1.1rem;
-      }
-
-      .note-list,
-      .spec-list {
-        margin: 0;
-        padding-left: 1.1rem;
-        line-height: 1.7;
-      }
-
-      .layout {
+      .stat-strip {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 1.25rem;
-        align-items: start;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.85rem;
+        margin: 0.85rem 0;
       }
 
-      .sidebar,
-      .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        margin-top: 0.7rem;
+      .stat-card {
+        border-radius: 22px;
+        padding: 1.15rem;
       }
 
-      .sidebar-nav a {
+      .stat-card strong {
         display: block;
-        padding: 0.8rem 0.9rem;
-        border-radius: 12px;
-        color: var(--muted);
-        text-decoration: none;
-        border: 1px solid transparent;
-        transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-      }
-
-      .sidebar-nav a:hover,
-      .sidebar-nav a.is-active {
-        color: var(--text);
-        border-color: rgba(232, 220, 200, 0.28);
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .gallery-panel {
-        border-radius: 28px;
-        padding: 1.75rem;
-        min-width: 0;
-      }
-
-      .gallery-header {
-        display: flex;
-        justify-content: space-between;
-        gap: 1.5rem;
-        align-items: end;
-        margin-bottom: 1.2rem;
-      }
-
-      .gallery-header h2 {
-        margin: 0.3rem 0 0;
+        margin: 0.35rem 0;
         font-family: Georgia, serif;
-        font-size: 2.1rem;
+        font-size: 3rem;
+        line-height: 1;
         font-weight: 400;
       }
 
-      .gallery-grid {
+      .stat-card p,
+      .resource-card p,
+      .card-copy p {
+        line-height: 1.65;
+      }
+
+      .discovery-panel,
+      .mascot-section {
+        border-radius: 26px;
+        padding: 1rem;
+        margin-top: 0.85rem;
+      }
+
+      .search-row {
         display: grid;
-        grid-template-columns: repeat(2, minmax(320px, 1fr));
-        gap: 1.15rem;
+        grid-template-columns: minmax(0, 1fr) 150px auto;
+        gap: 0.7rem;
+      }
+
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.65rem 0.9rem;
+        background: rgba(0, 0, 0, 0.16);
+        color: var(--muted);
+      }
+
+      .search-box input {
+        width: 100%;
+        border: 0;
+        outline: 0;
+        color: var(--text);
+        background: transparent;
+        font: inherit;
+      }
+
+      .search-box input::placeholder {
+        color: color-mix(in srgb, var(--muted) 75%, transparent);
+      }
+
+      .tab-row {
+        margin: 0.95rem 0;
+      }
+
+      .resource-card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+
+      .resource-card {
+        border-radius: 22px;
+        padding: 1rem;
+        min-height: 170px;
+      }
+
+      .card-topline {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--muted);
+      }
+
+      .card-topline strong {
+        color: var(--accent-2);
+      }
+
+      .resource-card h2 {
+        margin: 1.8rem 0 0.45rem;
+        font-family: Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      .resource-card p,
+      .stat-card p {
+        margin: 0 0 0.85rem;
+      }
+
+      .mascot-section {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      }
+
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-heading h2 {
+        margin: 0.25rem 0 0;
+        font-family: Georgia, serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 400;
+      }
+
+      .section-heading p {
+        max-width: 32ch;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .mascot-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
       }
 
       .mascot-card {
         border-radius: 24px;
         overflow: hidden;
-        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-      }
-
-      .mascot-card:hover {
-        transform: translateY(-2px);
-        border-color: rgba(200, 117, 51, 0.34);
-        background: linear-gradient(180deg, rgba(29, 23, 18, 0.98), rgba(13, 11, 9, 0.98));
       }
 
       .mascot-card:first-child {
-        grid-column: 1 / -1;
+        grid-column: span 2;
         display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-      }
-
-      .mascot-card:first-child .preview-frame {
-        min-height: 360px;
-      }
-
-      .mascot-card:first-child .card-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 2rem;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
       }
 
       .preview-frame {
         position: relative;
-        min-height: 260px;
+        min-height: 230px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+      }
+
+      .mascot-card:first-child .preview-frame {
+        min-height: 360px;
       }
 
       .preview-frame::after {
@@ -483,158 +831,147 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 36%),
           linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
           linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-        background-size: auto, 72px 72px, 72px 72px;
-        opacity: 0.35;
+        background-size: auto, 64px 64px, 64px 64px;
+        opacity: 0.4;
         pointer-events: none;
       }
 
       .preview-frame img {
+        position: relative;
+        z-index: 1;
         width: min(88%, 360px);
         aspect-ratio: 16 / 11;
         object-fit: contain;
         image-rendering: pixelated;
         filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));
-        position: relative;
-        z-index: 1;
       }
 
       .card-copy {
-        padding: 1.2rem 1.2rem 1.35rem;
+        padding: 1rem;
+      }
+
+      .mascot-card:first-child .card-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.4rem;
       }
 
       .card-copy h3 {
-        margin: 0 0 0.4rem;
+        margin: 0.2rem 0 0.55rem;
         font-family: Georgia, serif;
         font-size: 2rem;
         font-weight: 400;
       }
 
       .meta-line {
-        color: var(--text);
-        margin-bottom: 0.7rem;
+        color: var(--accent-2);
       }
 
       .meta-block {
         display: grid;
         gap: 0.18rem;
-        font-size: 0.92rem;
-      }
-
-      .card-copy p {
-        margin: 0.9rem 0 1rem;
-        line-height: 1.7;
+        margin-bottom: 0.85rem;
+        font-size: 0.88rem;
       }
 
       .tag-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
+        gap: 0.45rem;
+        margin-bottom: 0.9rem;
       }
 
       .tag-row span {
-        padding: 0.3rem 0.58rem;
+        padding: 0.28rem 0.55rem;
         border-radius: 999px;
-        border: 1px solid rgba(139, 126, 106, 0.24);
-        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
         color: var(--text);
-        font-size: 0.8rem;
+        background: rgba(255, 255, 255, 0.035);
+        font-size: 0.78rem;
       }
 
       .stat-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.65rem;
+        gap: 0.55rem;
         margin: 0;
       }
 
       .stat-grid div {
-        padding-top: 0.8rem;
-        border-top: 1px solid rgba(139, 126, 106, 0.18);
+        padding-top: 0.7rem;
+        border-top: 1px solid var(--line);
       }
 
       .stat-grid dt {
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.25rem;
         color: var(--muted);
       }
 
       .stat-grid dd {
         margin: 0;
-        font-size: 0.94rem;
+        font-size: 0.88rem;
       }
 
       @media (max-width: 1180px) {
-        .layout {
+        .atlas-frame {
           grid-template-columns: 1fr;
         }
 
-        .sidebar {
-          display: grid;
+        .resource-sidebar {
+          position: static;
+          min-height: 0;
+        }
+
+        .resource-nav,
+        .mascot-grid,
+        .resource-card-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 1rem;
         }
       }
 
       @media (max-width: 900px) {
-        .gallery-grid {
+        .stat-strip,
+        .resource-card-grid,
+        .mascot-grid,
+        .search-row {
           grid-template-columns: 1fr;
         }
 
         .mascot-card:first-child {
+          grid-column: auto;
           grid-template-columns: 1fr;
         }
 
-        .gallery-header {
+        .section-heading,
+        .atlas-topbar {
           flex-direction: column;
           align-items: start;
-        }
-
-      }
-
-      @media (max-width: 720px) {
-        .mascots-shell {
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-
-        .stat-grid,
-        .sidebar {
-          grid-template-columns: 1fr;
-        }
-
-        .card-copy h3 {
-          font-size: 1.7rem;
         }
       }
 
       @media (max-width: 640px) {
-        .gallery-grid {
+        .atlas-shell {
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+        }
+
+        .atlas-content,
+        .resource-sidebar {
+          border-radius: 22px;
+        }
+
+        .atlas-hero {
+          padding: 1.35rem;
+        }
+
+        .atlas-hero h1 {
+          font-size: 3rem;
+        }
+
+        .resource-nav,
+        .stat-grid {
           grid-template-columns: 1fr;
-        }
-
-        .page-shell {
-          padding-top: 2rem;
-        }
-
-        .hero-copy {
-          padding: 1.4rem;
-        }
-
-        .hero-copy h1 {
-          font-size: 2.65rem;
-        }
-
-        .card-copy {
-          padding: 1.1rem;
-        }
-
-        .preview-frame,
-        .mascot-card:first-child .preview-frame {
-          min-height: 210px;
-        }
-
-        .mascot-card:first-child .card-copy {
-          padding: 1.1rem;
         }
       }
     </style>
