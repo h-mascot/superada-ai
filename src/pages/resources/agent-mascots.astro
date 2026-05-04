@@ -1,6 +1,5 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 type Mascot = {
@@ -190,23 +189,35 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
+const resourceCounts = {
+  mascots: mascots.length + 8,
+  weeklyClaw: 12,
+  changelog: 19,
+  crons: 3,
+  benchmarks: 8,
+  workflowPacks: 12,
+  crewGuides: 10,
+  tools: 22,
+  shipNotes: 9,
+};
+
 const resourceNav = [
   { label: 'Overview', href: '/resources', count: null },
-  { label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: '14', active: true },
-  { label: 'OpenClaw Weekly Claw', href: '/resources/openclaw-weekly-claw', count: '12' },
-  { label: 'Changelog', href: '/resources/changelog', count: '19' },
-  { label: 'Crons', href: '/resources/crons', count: '8' },
-  { label: 'Benchmarks', href: '/benchmarks', count: '8' },
-  { label: 'Workflow Packs', href: '/workflows', count: '12' },
-  { label: 'Crew Guides', href: '/resources/crew-guides', count: '10' },
-  { label: 'Tools', href: '/resources/tools', count: '22' },
-  { label: 'Ship Notes', href: '/ship-log', count: '9' },
+  { label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: resourceCounts.mascots, active: true },
+  { label: 'OpenClaw Weekly Claw', href: '/weekly-claw', count: resourceCounts.weeklyClaw },
+  { label: 'Changelog', href: '/openclaw-changelog', count: resourceCounts.changelog },
+  { label: 'Crons', href: '#crons', count: resourceCounts.crons },
+  { label: 'Benchmarks', href: '/benchmarks', count: resourceCounts.benchmarks },
+  { label: 'Workflow Packs', href: '/workflows', count: resourceCounts.workflowPacks },
+  { label: 'Crew Guides', href: '#crew-guides', count: resourceCounts.crewGuides },
+  { label: 'Tools', href: '#tools', count: resourceCounts.tools },
+  { label: 'Ship Notes', href: '#ship-notes', count: resourceCounts.shipNotes },
 ];
 
 const atlasStats = [
-  { label: 'Mascots', value: '14', copy: 'Pets, rigs, cards, and animation-ready agent companions.', href: '#mascot-roster', cta: 'Browse mascots' },
-  { label: 'Latest updates', value: '19', copy: 'New builds, logs, and resource changes from the bridge.', href: '/resources/changelog', cta: "See what's new" },
-  { label: 'OpenClaw crons', value: '8', copy: 'Recurring checks, scheduled jobs, and operator automations.', href: '/resources/crons', cta: 'Review crons' },
+  { label: 'Mascots', value: resourceCounts.mascots, copy: 'Pets, rigs, cards, and animation-ready agent companions.', href: '#mascot-roster', cta: 'Browse mascots' },
+  { label: 'Latest updates', value: resourceCounts.changelog, copy: 'New builds, logs, and resource changes from the bridge.', href: '/openclaw-changelog', cta: "See what's new" },
+  { label: 'Crons', value: resourceCounts.crons, copy: 'Scheduled jobs, heartbeat checks, and operator automations.', href: '#crons', cta: 'Review crons' },
 ];
 
 const resourceTabs = [
@@ -222,12 +233,15 @@ const resourceTabs = [
 ];
 
 const resourceCards = [
-  { title: 'Agent Mascots (Pets)', meta: '14 items', status: 'Updated', copy: 'Pets that represent coding agents like Codex. Includes cards, rigs, crafts, and animation notes.' },
-  { title: 'OpenClaw Weekly Claw', meta: '12 issues', status: 'New', copy: 'Weekly digest for OpenClaw progress, field notes, experiments, and shipped changes.' },
-  { title: 'Changelog', meta: '19 updates', status: 'Updated', copy: 'Product changes, fixes, release notes, and operator-facing deltas.' },
-  { title: 'Crons', meta: '8 workflows', status: 'Live', copy: 'Scheduled automations, reminders, heartbeat jobs, and recurring checks.' },
-  { title: 'Benchmarks', meta: '8 suites', status: 'Updated', copy: 'Evaluation suites and results across reasoning, memory, tools, and reliability.' },
-  { title: 'Workflow Packs', meta: '12 packs', status: 'New', copy: 'Reusable bundles for real operator work. Deploy, adapt, ship.' },
+  { title: 'Agent Mascots (Pets)', meta: `${resourceCounts.mascots} items`, status: 'Updated', anchor: 'mascot-roster', copy: 'Pets that represent coding agents like Codex. Includes cards, rigs, crafts, and animation notes.' },
+  { title: 'OpenClaw Weekly Claw', meta: `${resourceCounts.weeklyClaw} issues`, status: 'New', anchor: 'weekly-claw', copy: 'Weekly digest for OpenClaw progress, field notes, experiments, and shipped changes.' },
+  { title: 'Changelog', meta: `${resourceCounts.changelog} updates`, status: 'Updated', anchor: 'changelog', copy: 'Product changes, fixes, release notes, and operator-facing deltas.' },
+  { title: 'Crons', meta: `${resourceCounts.crons} workflows`, status: 'Live', anchor: 'crons', copy: 'Scheduled jobs, reminders, heartbeat checks, and recurring operator automations.' },
+  { title: 'Benchmarks', meta: `${resourceCounts.benchmarks} suites`, status: 'Updated', anchor: 'benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tools, and reliability.' },
+  { title: 'Workflow Packs', meta: `${resourceCounts.workflowPacks} packs`, status: 'New', anchor: 'workflow-packs', copy: 'Reusable bundles for real operator work. Deploy, adapt, ship.' },
+  { title: 'Crew Guides', meta: `${resourceCounts.crewGuides} guides`, status: 'Updated', anchor: 'crew-guides', copy: 'How-tos, playbooks, and reference material for working with the Enterprise Crew.' },
+  { title: 'Tools', meta: `${resourceCounts.tools} tools`, status: 'Updated', anchor: 'tools', copy: 'Templates, prompts, model notes, and utilities used by the crew.' },
+  { title: 'Ship Notes', meta: `${resourceCounts.shipNotes} notes`, status: 'Updated', anchor: 'ship-notes', copy: 'Logs, decisions, and bridge notes from shipped work.' },
 ];
 
 ---
@@ -242,7 +256,6 @@ const resourceCards = [
     />
   </head>
   <body class="mascots-body" data-theme="ember">
-    <Header />
     <main class="atlas-shell">
       <div class="atlas-frame">
         <aside class="resource-sidebar" aria-label="Resources navigation">
@@ -270,19 +283,24 @@ const resourceCards = [
         </aside>
 
         <section class="atlas-content">
-          <div class="atlas-topbar" aria-label="Color scheme controls">
-            <span>Color schemes</span>
+          <div class="atlas-topbar" aria-label="Resource sections">
+            <nav class="top-menu">
+              <a href="/crew">Crew</a>
+              <a href="/resources" class="is-current">Resources</a>
+              <a href="/blog">Ship Log</a>
+              <a href="/journey">Timeline</a>
+            </nav>
             <div class="theme-switcher" aria-label="Color scheme">
-              <button type="button" class="is-active" data-set-theme="ember">Ember</button>
-              <button type="button" data-set-theme="violet">Violet</button>
-              <button type="button" data-set-theme="slate">Slate</button>
+              <button type="button" class="is-active" data-set-theme="ember">Dark</button>
+              <button type="button" data-set-theme="light">Light</button>
+              <button type="button" data-set-theme="midnight">Midnight</button>
             </div>
           </div>
 
-          <section class="atlas-hero">
+          <section class="atlas-hero" aria-labelledby="resource-atlas-title">
             <div>
               <div class="breadcrumb">Resources / Discovery</div>
-              <h1>Resource Atlas</h1>
+              <h1 id="resource-atlas-title">Resource Atlas</h1>
               <p>gallery for mascots/pets for coding agents like codex etc that, the Enterprise Crew builds and shares.</p>
             </div>
           </section>
@@ -320,7 +338,7 @@ const resourceCards = [
 
             <div class="resource-card-grid" id="resource-cards">
               {resourceCards.map((card) => (
-                <article class="resource-card">
+                <article class="resource-card" id={card.anchor}>
                   <div class="card-topline">
                     <span>{card.meta}</span>
                     <strong>{card.status}</strong>
@@ -406,32 +424,32 @@ const resourceCards = [
         --glow: rgba(200, 117, 51, 0.18);
       }
 
-      .mascots-body[data-theme="violet"] {
-        --bg: #0f0d16;
-        --surface: #171320;
-        --surface-2: #21182c;
-        --surface-3: #2b2138;
-        --line: rgba(225, 214, 255, 0.13);
-        --line-strong: rgba(225, 214, 255, 0.24);
-        --text: #eee8ff;
-        --muted: #aaa0bd;
-        --accent: #b98cff;
-        --accent-2: #f0c67f;
-        --glow: rgba(185, 140, 255, 0.18);
+      .mascots-body[data-theme="light"] {
+        --bg: #fcfbf8;
+        --surface: #f6f0e8;
+        --surface-2: #fffaf3;
+        --surface-3: #efe4d5;
+        --line: rgba(52, 42, 32, 0.14);
+        --line-strong: rgba(52, 42, 32, 0.24);
+        --text: #231a12;
+        --muted: #756754;
+        --accent: #a4602f;
+        --accent-2: #7b4a25;
+        --glow: rgba(196, 135, 76, 0.16);
       }
 
-      .mascots-body[data-theme="slate"] {
-        --bg: #090f11;
-        --surface: #101719;
-        --surface-2: #142023;
-        --surface-3: #1a2a2e;
-        --line: rgba(214, 239, 236, 0.12);
-        --line-strong: rgba(214, 239, 236, 0.22);
-        --text: #e4f0ec;
-        --muted: #8ca39f;
-        --accent: #66c6b2;
-        --accent-2: #d2b36f;
-        --glow: rgba(102, 198, 178, 0.16);
+      .mascots-body[data-theme="midnight"] {
+        --bg: #00061a;
+        --surface: #050d25;
+        --surface-2: #071634;
+        --surface-3: #0b1f43;
+        --line: rgba(191, 216, 255, 0.15);
+        --line-strong: rgba(191, 216, 255, 0.28);
+        --text: #edf4ff;
+        --muted: #8fa4c4;
+        --accent: #62a8ff;
+        --accent-2: #f0c67f;
+        --glow: rgba(55, 116, 226, 0.22);
       }
 
       .mascots-body {
@@ -447,7 +465,7 @@ const resourceCards = [
       .atlas-shell {
         max-width: 1480px;
         margin: 0 auto;
-        padding: 1.25rem 1rem 4rem;
+        padding: 0 1rem 4rem;
       }
 
       .atlas-frame {
@@ -465,15 +483,15 @@ const resourceCards = [
       .mascot-card,
       .submit-card {
         border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.012)), var(--surface);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 58%, transparent), color-mix(in srgb, var(--surface) 94%, transparent)), var(--surface);
         box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
       }
 
       .resource-sidebar {
         position: sticky;
         top: 1rem;
-        min-height: calc(100vh - 2rem);
-        border-radius: 28px;
+        min-height: 100vh;
+        border-radius: 0 0 28px 28px;
         padding: 1.1rem;
       }
 
@@ -601,17 +619,14 @@ const resourceCards = [
       .atlas-topbar {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        padding: 0.5rem;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: -1rem -1rem 1rem;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid var(--line);
       }
 
-      .atlas-topbar span {
-        color: var(--muted);
-        font-size: 0.82rem;
-      }
-
+      .top-menu,
       .theme-switcher,
       .tab-row {
         display: flex;
@@ -619,6 +634,7 @@ const resourceCards = [
         gap: 0.45rem;
       }
 
+      .top-menu a,
       .theme-switcher button,
       .tab-row a,
       .filter-button,
@@ -632,6 +648,7 @@ const resourceCards = [
         font: inherit;
       }
 
+      .top-menu a.is-current,
       .theme-switcher button.is-active,
       .tab-row a.is-active {
         color: var(--text);
@@ -651,7 +668,7 @@ const resourceCards = [
       .atlas-hero h1 {
         margin: 0.45rem 0 0.85rem;
         font-family: Georgia, serif;
-        font-size: clamp(3.2rem, 8vw, 7.2rem);
+        font-size: clamp(2.7rem, 5.7vw, 5.2rem);
         line-height: 0.9;
         font-weight: 400;
         letter-spacing: -0.06em;
@@ -966,7 +983,7 @@ const resourceCards = [
         }
 
         .atlas-hero h1 {
-          font-size: 3rem;
+          font-size: 2.65rem;
         }
 
         .resource-nav,
