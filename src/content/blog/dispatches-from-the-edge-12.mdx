@@ -1,0 +1,114 @@
+---
+title: "Dispatches from the Edge #12"
+description: "Agent infrastructure had a governance week: Microsoft made control planes normal, Stripe made agent wallets real, and OpenClaw turned file movement into a runtime primitive."
+pubDate: "2026-05-04"
+tags: ["ai", "agents", "weekly", "roundup", "infrastructure"]
+audio: /audio/dispatches-from-the-edge-12.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/dispatches-from-the-edge-12.png';
+
+<Image src={coverImage} alt="A cosmic frontier fresco of robed AI operators guiding file streams, payment rails, and governance constellations through a deep blue and gold vault" class="w-full rounded-lg shadow-lg my-8" />
+
+This week had a theme, whether the vendors meant to coordinate or not:
+
+Agents are leaving the toy box and walking into governance, payments, files, and enterprise plumbing.
+
+Very rude of them. Now we have to build the boring parts properly.
+
+## Microsoft made agent governance a board-level category
+
+Microsoft Agent 365 going generally available is the loudest signal of the week. Not because Microsoft invented agent governance. They did not. Operators have been yelling about agent sprawl, shadow AI, identity, policy, lifecycle, and audit trails for ages.
+
+The shift is that Microsoft has now put a name and budget line around it.
+
+That matters.
+
+Once a category lands inside Microsoft 365, enterprise buyers stop treating it like a weird lab problem. They start asking procurement-shaped questions:
+
+- Which agents exist?
+- Who owns them?
+- What data can they touch?
+- Can Defender block one mid-run?
+- Can Purview see what leaked?
+- Can Entra prove who delegated authority?
+
+This is where the agent story gets less fun and more useful. The next wave is not "my bot can click a button." It is "my company can find, govern, and retire a thousand semi-autonomous workers without accidentally creating a compliance bonfire."
+
+Progress, basically. Annoying progress.
+
+## Stripe made agent payments feel inevitable
+
+Stripe Sessions pushed the same pattern from the money side.
+
+Agent wallets, controlled spending, shared payment tokens, approval visibility, and machine-payment rails all point to the same future: agents will not just recommend transactions. They will initiate them.
+
+I like this direction. I also deeply distrust any architecture where payment release depends on an agent saying `done` with confidence.
+
+Payment rails move money. Verification rails prevent regret.
+
+The real product wedge is the release gate in front of the wallet: task request, agent identity, proof bundle, verifier outcome, approval record, settlement reference. Without that chain, fast settlement just means faster leakage.
+
+Insurance makes this painfully obvious. If a claims agent can pay a vendor, the interesting question is not whether Stripe can move the £250. Stripe can move the £250. Lovely. The interesting question is whether the agent had authority, the vendor was approved, the repair matched the policy, the evidence was complete, and the approval record survived audit.
+
+That is the work.
+
+## OpenClaw turned files into a real agent primitive
+
+OpenClaw 2026.5.3 is less flashy than agent wallets, but I care about it a lot.
+
+A bundled file-transfer plugin with `file_fetch`, `dir_list`, `dir_fetch`, and `file_write` sounds like plumbing. It is plumbing. That is the point.
+
+Agents need to move artifacts between nodes without pretending every file is a chat attachment or shell incantation. They need default-deny path policy, node boundaries, binary-safe transfer, and enough auditability that nobody has to reconstruct a file journey from vibes and terminal dust.
+
+Add webhook ingress and `/steer`, and the shape gets clearer: OpenClaw is becoming less of a clever chat harness and more of an operations substrate. External systems can trigger runs. Humans can steer active sessions. Agents can move artifacts over a governed path.
+
+That is not demo bait. It is runtime maturity.
+
+## MCP v2 keeps pulling tools toward boring protocols
+
+MCP v2 is another brick in the same wall. Streamable HTTP and stronger OAuth-shaped auth are not glamorous features. Good.
+
+Tool protocols should be dull enough that security teams can reason about them before lunch.
+
+The agent ecosystem has spent too long wrapping tools in bespoke glue. Every framework wants a registry, a tool schema, a permission model, and a transport. Eventually the industry rediscovers the ancient truth: boring protocols beat artisanal chaos.
+
+If MCP v2 makes tool connectivity more standard, the winners will not be the teams with the longest tool list. The winners will be the teams that can prove which tool ran, under whose authority, with what output, and what policy allowed it.
+
+Yes, again: proof beats vibes. I am nothing if not irritatingly consistent.
+
+## Grok 4.3 and DeepSeek V4 keep squeezing the routing math
+
+The model side also got more interesting.
+
+Grok 4.3 is being positioned as an agentic workhorse with long context, tool-use strengths, web and X search, code execution, and aggressive pricing. DeepSeek V4 Pro is pushing the other side of the same argument: high benchmark performance at much lower cost.
+
+The lazy take is "switch models."
+
+The operator take is "route better."
+
+Routine agent work should not always run on the most expensive frontier lane. High-risk judgment should not be shoved onto the cheapest model because a spreadsheet got seductive. The work is building a routing policy that knows the difference.
+
+We already see this in our own stack. Some runs need GPT-5.5. Some need Codex. Some need a local model. Some should be a script and no model at all. The hard part is not worshipping the newest leaderboard. It is matching task risk, context shape, tool surface, latency, and proof requirements to the right execution path.
+
+Less fan club, more dispatch table.
+
+## The edge is getting less theatrical
+
+The thread through all of this is simple:
+
+- Microsoft is normalizing agent governance.
+- Stripe is normalizing agent payment rails.
+- OpenClaw is normalizing node-level file movement and webhook-triggered runs.
+- MCP is normalizing tool transport.
+- New models are forcing cost-aware routing.
+
+This is what agent infrastructure looks like when it grows up. Less magic. More contracts. More audit trails. More unpleasant questions before the exciting part happens.
+
+My take: good.
+
+The agent teams that win this next phase will not be the ones with the most cinematic demos. They will be the ones that can answer, calmly and with receipts: who acted, what changed, why it was allowed, where the artifact went, and how to unwind it when the agent does something stupid.
+
+Because it will.
+
+Agents are useful. Agents are also little chaos interns with tool access. Build accordingly.
