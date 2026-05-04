@@ -1,0 +1,781 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+type Mascot = {
+  name: string;
+  kind: 'Fox' | 'Cat' | 'Hound';
+  role: string;
+  creator: string;
+  classDate: string;
+  bio: string;
+  tags: string[];
+  accent: string;
+  panel: string;
+  collar: string;
+  stats: {
+    label: string;
+    value: string;
+  }[];
+};
+
+const mascots: Mascot[] = [
+  {
+    name: 'Sparky',
+    kind: 'Fox',
+    role: 'Animated Scout',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'Fast-moving mascot concept for launches, changelogs, and anything that needs a little velocity.',
+    tags: ['#Active', '#Launch', '#Mascot'],
+    accent: '#E7B16B',
+    panel: '#B7AB98',
+    collar: '#C87533',
+    stats: [
+      { label: 'Temperament', value: 'Curious' },
+      { label: 'Habitat', value: 'Launch bay' },
+      { label: 'Loop', value: 'Announce -> Scout -> Return' },
+    ],
+  },
+  {
+    name: 'Nova',
+    kind: 'Cat',
+    role: 'Data Watch',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'Blue-hour analyst pet for dashboards, eval pages, and benchmark surfaces that need a resident observer.',
+    tags: ['#Data', '#Signals', '#Companion'],
+    accent: '#9DB5EF',
+    panel: '#7A7092',
+    collar: '#E8DCC8',
+    stats: [
+      { label: 'Temperament', value: 'Alert' },
+      { label: 'Habitat', value: 'Ops wall' },
+      { label: 'Loop', value: 'Watch -> Flag -> Persist' },
+    ],
+  },
+  {
+    name: 'Garh',
+    kind: 'Hound',
+    role: 'Utility Escort',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'Dependable helper for install guides, onboarding flows, and pages that need calm, grounded utility energy.',
+    tags: ['#Utility', '#Docs', '#Stable'],
+    accent: '#876D62',
+    panel: '#B6A48A',
+    collar: '#C87533',
+    stats: [
+      { label: 'Temperament', value: 'Steady' },
+      { label: 'Habitat', value: 'Tool room' },
+      { label: 'Loop', value: 'Guide -> Carry -> Confirm' },
+    ],
+  },
+  {
+    name: 'Pala',
+    kind: 'Hound',
+    role: 'Bridge Runner',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'A lighter-footed hound variant designed for workflow bridges and inter-app handoff pages.',
+    tags: ['#Bridge', '#Workflow', '#Courier'],
+    accent: '#AA6B4B',
+    panel: '#7E7390',
+    collar: '#F0C67F',
+    stats: [
+      { label: 'Temperament', value: 'Loyal' },
+      { label: 'Habitat', value: 'Bridge deck' },
+      { label: 'Loop', value: 'Carry -> Relay -> Sync' },
+    ],
+  },
+  {
+    name: 'Shola',
+    kind: 'Fox',
+    role: 'Research Ember',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'A warmer, more editorial fox aimed at essays, field notes, and long-form research presentation.',
+    tags: ['#Research', '#Editorial', '#Warm'],
+    accent: '#E7C17D',
+    panel: '#C38A4F',
+    collar: '#F6E2B8',
+    stats: [
+      { label: 'Temperament', value: 'Restless' },
+      { label: 'Habitat', value: 'Archive deck' },
+      { label: 'Loop', value: 'Read -> Distill -> Emit' },
+    ],
+  },
+  {
+    name: 'Patra',
+    kind: 'Cat',
+    role: 'Perimeter Watch',
+    creator: 'Enterprise Crew',
+    classDate: 'May 4, 2026',
+    bio: 'Guard-cat concept for safety rails, review states, and pages that need a visible sense of oversight.',
+    tags: ['#Guard', '#Safety', '#Review'],
+    accent: '#A6A1A5',
+    panel: '#C5B9A4',
+    collar: '#C87533',
+    stats: [
+      { label: 'Temperament', value: 'Watchful' },
+      { label: 'Habitat', value: 'Review gate' },
+      { label: 'Loop', value: 'Observe -> Halt -> Explain' },
+    ],
+  },
+];
+
+const queueItems = [
+  'Pixel pet atlas, 8x9 spritesheet',
+  'Transparent background for exports',
+  'Idle, walk, celebrate, and sleep loops',
+  'Landing-page and docs-ready preview card',
+];
+
+const buildNotes = [
+  'Warm dark palette tuned for the existing SuperAda site',
+  'Petdex-style gallery structure without breaking the current Astro shell',
+  'Upload surface is UI-only for now so we can stage mascot work safely before wiring storage',
+];
+
+function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: string) {
+  const artwork = {
+    Fox: `
+      <rect x="11" y="16" width="10" height="6" fill="${primary}" />
+      <rect x="20" y="17" width="5" height="4" fill="${primary}" />
+      <rect x="7" y="18" width="5" height="3" fill="${primary}" />
+      <rect x="14" y="10" width="7" height="7" fill="${primary}" />
+      <rect x="13" y="8" width="2" height="3" fill="${primary}" />
+      <rect x="20" y="8" width="2" height="3" fill="${primary}" />
+      <rect x="19" y="13" width="4" height="2" fill="#F4E5CB" />
+      <rect x="13" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="18" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="9" y="16" width="2" height="2" fill="#F4E5CB" />
+      <rect x="15" y="17" width="5" height="1" fill="${collar}" />
+      <rect x="17" y="18" width="1" height="1" fill="${collar}" />
+      <rect x="16" y="12" width="1" height="1" fill="#21170F" />
+      <rect x="20" y="12" width="1" height="1" fill="#21170F" />
+    `,
+    Cat: `
+      <rect x="11" y="16" width="10" height="6" fill="${primary}" />
+      <rect x="20" y="14" width="4" height="4" fill="${primary}" />
+      <rect x="7" y="12" width="2" height="7" fill="${primary}" />
+      <rect x="13" y="9" width="8" height="7" fill="${primary}" />
+      <rect x="13" y="7" width="2" height="3" fill="${primary}" />
+      <rect x="20" y="7" width="2" height="3" fill="${primary}" />
+      <rect x="15" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="19" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="15" y="17" width="5" height="1" fill="${collar}" />
+      <rect x="17" y="18" width="1" height="1" fill="${collar}" />
+      <rect x="16" y="12" width="1" height="1" fill="#21170F" />
+      <rect x="20" y="12" width="1" height="1" fill="#21170F" />
+      <rect x="17" y="14" width="3" height="1" fill="#F1E2CF" />
+    `,
+    Hound: `
+      <rect x="10" y="16" width="11" height="6" fill="${primary}" />
+      <rect x="20" y="16" width="5" height="4" fill="${primary}" />
+      <rect x="14" y="10" width="7" height="7" fill="${primary}" />
+      <rect x="21" y="11" width="2" height="5" fill="${primary}" />
+      <rect x="8" y="15" width="3" height="2" fill="${primary}" />
+      <rect x="13" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="18" y="21" width="2" height="5" fill="${primary}" />
+      <rect x="15" y="17" width="5" height="1" fill="${collar}" />
+      <rect x="17" y="18" width="1" height="1" fill="${collar}" />
+      <rect x="16" y="12" width="1" height="1" fill="#21170F" />
+      <rect x="19" y="12" width="1" height="1" fill="#21170F" />
+      <rect x="18" y="14" width="4" height="1" fill="#EEDFCC" />
+    `,
+  };
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 32 28" shape-rendering="crispEdges">
+      <rect width="32" height="28" fill="${panel}" />
+      ${artwork[kind]}
+    </svg>
+  `;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Agent Mascots (Pets) — SuperAda Resources"
+      description="Starter mascot pets for the Enterprise Crew, styled for the SuperAda resources library with a petdex-inspired gallery and upload queue."
+      image="/favicon.png"
+    />
+  </head>
+  <body class="mascots-body">
+    <Header />
+    <main class="mascots-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Enterprise Crew Creations</div>
+          <h1>Agent Mascots (Pets)</h1>
+          <p>
+            A petdex-style holding room for the mascots we are building for the Enterprise Crew. Warm-dark SuperAda treatment, starter samples for the roster, and a queue surface for new mascot drops.
+          </p>
+          <div class="hero-metrics">
+            <div class="metric">
+              <span class="metric-label">Roster</span>
+              <strong>{mascots.length} starter pets</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Build spec</span>
+              <strong>Sprites + preview cards</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Theme</span>
+              <strong>SuperAda warm dark</strong>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <a href="#upload-mascot" class="upload-button">Upload Mascot</a>
+          <div class="hero-note">
+            <div class="hero-note-label">Current queue</div>
+            <ul>
+              {queueItems.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-label">Resources</div>
+            <nav class="sidebar-nav">
+              <a href="/resources">Assets &amp; Guides</a>
+              <a href="/resources/agent-mascots" class="is-active">Agent Mascots</a>
+              <a href="/benchmarks">Benchmarks</a>
+              <a href="/workflows">Workflows</a>
+            </nav>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="sidebar-label">Build notes</div>
+            <ul class="note-list">
+              {buildNotes.map((note) => <li>{note}</li>)}
+            </ul>
+          </div>
+        </aside>
+
+        <section class="gallery-panel">
+          <div class="gallery-header">
+            <div>
+              <div class="section-kicker">Resource</div>
+              <h2>Enterprise Crew mascot roster</h2>
+            </div>
+            <p>
+              Cards below are starter references. Treat them as direction for the mascot library, not final production art.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            {mascots.map((mascot) => (
+              <article class="mascot-card">
+                <div class="preview-frame" style={`background:${mascot.panel};`}>
+                  <img
+                    src={pixelArt(mascot.kind, mascot.accent, mascot.panel, mascot.collar)}
+                    alt={`${mascot.name} ${mascot.kind.toLowerCase()} mascot preview`}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-copy">
+                  <h3>{mascot.name}</h3>
+                  <div class="meta-line">Agent type: {mascot.role}</div>
+                  <div class="meta-block">
+                    <span>Creator: {mascot.creator}</span>
+                    <span>Class / date: {mascot.classDate}</span>
+                  </div>
+                  <p>{mascot.bio}</p>
+                  <div class="tag-row">
+                    {mascot.tags.map((tag) => <span>{tag}</span>)}
+                  </div>
+                  <dl class="stat-grid">
+                    {mascot.stats.map((stat) => (
+                      <div>
+                        <dt>{stat.label}</dt>
+                        <dd>{stat.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <aside class="queue-panel" id="upload-mascot">
+          <div class="queue-card">
+            <div class="sidebar-label">Add mascot</div>
+            <button type="button" class="upload-button upload-button-block">Upload Mascot</button>
+            <div class="dropzone" aria-label="Mascot upload dropzone">
+              <div class="dropzone-icon">↑</div>
+              <p>Drag and drop mascot drafts or browse files.</p>
+              <span>UI only for now. Storage and submission wiring comes next.</span>
+            </div>
+          </div>
+
+          <div class="queue-card">
+            <div class="sidebar-label">Submission spec</div>
+            <ul class="spec-list">
+              <li>PNG or SVG preview</li>
+              <li>One-line role description</li>
+              <li>Temperament tags and class date</li>
+              <li>Spritesheet or motion intent when available</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <Footer />
+
+    <style>
+      :root {
+        --bg: #0D0B09;
+        --panel: #15110d;
+        --panel-strong: #18130f;
+        --panel-soft: #1d1712;
+        --line: #2A241E;
+        --text: #E8DCC8;
+        --muted: #8B7E6A;
+        --accent: #C87533;
+      }
+
+      .mascots-body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top, rgba(200, 117, 51, 0.1), transparent 28%),
+          linear-gradient(180deg, #110e0b 0%, var(--bg) 32%);
+        color: var(--text);
+      }
+
+      .mascots-shell {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 4rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) 320px;
+        gap: 1.5rem;
+        align-items: start;
+        margin-bottom: 2rem;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .sidebar-card,
+      .gallery-panel,
+      .queue-card,
+      .mascot-card {
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(24, 19, 15, 0.96), rgba(13, 11, 9, 0.98));
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+      }
+
+      .hero-copy {
+        border-radius: 24px;
+        padding: 2rem;
+      }
+
+      .eyebrow,
+      .section-kicker,
+      .sidebar-label,
+      .metric-label,
+      .meta-line,
+      .stat-grid dt {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+      }
+
+      .eyebrow,
+      .section-kicker,
+      .sidebar-label {
+        color: var(--accent);
+      }
+
+      .hero-copy h1 {
+        margin: 0.4rem 0 0.75rem;
+        font-family: Georgia, serif;
+        font-size: clamp(2.75rem, 5vw, 4.4rem);
+        line-height: 0.96;
+        font-weight: 400;
+      }
+
+      .hero-copy p,
+      .gallery-header p,
+      .note-list,
+      .spec-list,
+      .dropzone p,
+      .dropzone span,
+      .card-copy p,
+      .meta-block {
+        color: var(--muted);
+      }
+
+      .hero-copy p {
+        max-width: 62ch;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+        margin-top: 1.6rem;
+      }
+
+      .metric {
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(200, 117, 51, 0.18);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .metric-label {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .metric strong {
+        font-size: 0.98rem;
+        font-weight: 500;
+      }
+
+      .hero-panel,
+      .sidebar-card,
+      .queue-card {
+        border-radius: 20px;
+        padding: 1.1rem;
+      }
+
+      .upload-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 56px;
+        padding: 0 1.15rem;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #D88642 0%, #C87533 100%);
+        color: #fff8f0;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        box-shadow: 0 12px 28px rgba(200, 117, 51, 0.24);
+      }
+
+      .upload-button:hover {
+        transform: translateY(-1px);
+      }
+
+      .upload-button-block {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .hero-note {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(139, 126, 106, 0.2);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .hero-note-label {
+        font-size: 0.8rem;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-note ul,
+      .note-list,
+      .spec-list {
+        margin: 0;
+        padding-left: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr) 290px;
+        gap: 1.25rem;
+        align-items: start;
+      }
+
+      .sidebar,
+      .queue-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-top: 0.7rem;
+      }
+
+      .sidebar-nav a {
+        display: block;
+        padding: 0.8rem 0.9rem;
+        border-radius: 12px;
+        color: var(--muted);
+        text-decoration: none;
+        border: 1px solid transparent;
+        transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.is-active {
+        color: var(--text);
+        border-color: rgba(232, 220, 200, 0.28);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .gallery-panel {
+        border-radius: 28px;
+        padding: 1.4rem;
+      }
+
+      .gallery-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        align-items: end;
+        margin-bottom: 1.2rem;
+      }
+
+      .gallery-header h2 {
+        margin: 0.3rem 0 0;
+        font-family: Georgia, serif;
+        font-size: 2.1rem;
+        font-weight: 400;
+      }
+
+      .gallery-header p {
+        max-width: 34ch;
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .mascot-card {
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      .preview-frame {
+        position: relative;
+        min-height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .preview-frame::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 36%),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: auto, 72px 72px, 72px 72px;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .preview-frame img {
+        width: min(88%, 320px);
+        aspect-ratio: 16 / 11;
+        object-fit: contain;
+        image-rendering: pixelated;
+        filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));
+        position: relative;
+        z-index: 1;
+      }
+
+      .card-copy {
+        padding: 1.2rem 1.2rem 1.35rem;
+      }
+
+      .card-copy h3 {
+        margin: 0 0 0.4rem;
+        font-family: Georgia, serif;
+        font-size: 2rem;
+        font-weight: 400;
+      }
+
+      .meta-line {
+        color: var(--text);
+        margin-bottom: 0.7rem;
+      }
+
+      .meta-block {
+        display: grid;
+        gap: 0.18rem;
+        font-size: 0.92rem;
+      }
+
+      .card-copy p {
+        margin: 0.9rem 0 1rem;
+        line-height: 1.7;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .tag-row span {
+        padding: 0.3rem 0.58rem;
+        border-radius: 999px;
+        border: 1px solid rgba(139, 126, 106, 0.24);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        font-size: 0.8rem;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+        margin: 0;
+      }
+
+      .stat-grid div {
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(139, 126, 106, 0.18);
+      }
+
+      .stat-grid dt {
+        margin-bottom: 0.3rem;
+        color: var(--muted);
+      }
+
+      .stat-grid dd {
+        margin: 0;
+        font-size: 0.94rem;
+      }
+
+      .dropzone {
+        min-height: 280px;
+        padding: 1.35rem;
+        border-radius: 22px;
+        border: 1px dashed rgba(232, 220, 200, 0.26);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.015)),
+          rgba(42, 36, 30, 0.36);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .dropzone-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        border: 1px solid rgba(232, 220, 200, 0.24);
+        font-size: 1.75rem;
+      }
+
+      .dropzone p,
+      .dropzone span {
+        margin: 0;
+        line-height: 1.7;
+      }
+
+      .dropzone span {
+        font-size: 0.84rem;
+      }
+
+      @media (max-width: 1180px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar,
+        .queue-panel {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 960px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-header {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .gallery-header p {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .mascots-shell {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .hero-copy,
+        .gallery-panel {
+          border-radius: 22px;
+        }
+
+        .hero-metrics,
+        .stat-grid,
+        .sidebar,
+        .queue-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .card-copy h3 {
+          font-size: 1.7rem;
+        }
+
+        .preview-frame {
+          min-height: 180px;
+        }
+      }
+    </style>
+  </body>
+</html>

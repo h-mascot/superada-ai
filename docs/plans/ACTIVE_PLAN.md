@@ -1,9 +1,9 @@
 # ACTIVE PLAN
 
-Current plan: `docs/plans/2026-04-16-skill-pages-install-contracts-plan.md`
+Current plan: `docs/plans/2026-05-04-agent-mascots-pets-page-plan.md`
 
 ## Goal
-Create first-class skill detail pages on SuperAda.ai with install contracts, rewire resource links, and correct stale settings.
+Add a new Agent Mascots (Pets) resources page, wire it into the Resources navigation, replace the default favicon, and verify the site builds cleanly.
 
 ## Next step
-Commit and push the verified site changes to main.
+Review and commit the verified site changes.
