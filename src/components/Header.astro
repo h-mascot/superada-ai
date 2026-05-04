@@ -4,8 +4,9 @@ const { pathname } = Astro.url;
 
 <header class="site-header">
 	<nav class="site-nav">
-		<a href="/" class="site-logo">
-			SuperAda
+		<a href="/" class="site-logo" aria-label="SuperAda home">
+			<img src="/superada-icon.png" alt="" class="site-logo-mark" width="28" height="28" />
+			<span>SuperAda</span>
 		</a>
 		<div class="nav-links">
 			<a href="/about" class="nav-link">Crew</a>
@@ -33,12 +34,22 @@ const { pathname } = Astro.url;
 	}
 
 	.site-logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.65rem;
 		font-family: Georgia, serif;
 		font-size: 1.125rem;
 		color: #E8DCC8;
 		text-decoration: none;
 		letter-spacing: 0.02em;
 		flex-shrink: 0;
+	}
+
+	.site-logo-mark {
+		width: 1.75rem;
+		height: 1.75rem;
+		border-radius: 0.55rem;
+		box-shadow: 0 0 0 1px rgba(200, 117, 51, 0.28), 0 10px 24px rgba(0, 0, 0, 0.28);
 	}
 
 	.nav-links {
@@ -77,7 +88,13 @@ const { pathname } = Astro.url;
 		}
 
 		.site-logo {
+			gap: 0.5rem;
 			font-size: 1rem;
+		}
+
+		.site-logo-mark {
+			width: 1.55rem;
+			height: 1.55rem;
 		}
 	}
 
