@@ -125,11 +125,11 @@ const mascots: Mascot[] = [
   },
 ];
 
-const queueItems = [
-  'Pixel pet atlas, 8x9 spritesheet',
-  'Transparent background for exports',
-  'Idle, walk, celebrate, and sleep loops',
-  'Landing-page and docs-ready preview card',
+const shareItems = [
+  'Pixel pet atlas or single hero pose',
+  'Transparent export for site and docs reuse',
+  'Optional idle, walk, celebrate, and sleep loops',
+  'One-line role, tags, and creator credit',
 ];
 
 const buildNotes = [
@@ -203,7 +203,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
   <head>
     <BaseHead
       title="Agent Mascots (Pets) — SuperAda Resources"
-      description="Starter mascot pets for the Enterprise Crew, styled for the SuperAda resources library with a petdex-inspired gallery and upload queue."
+      description="Starter mascot pets for the Enterprise Crew, styled for the SuperAda resources library with a spacious petdex-inspired sharing gallery."
       image="/favicon.png"
     />
   </head>
@@ -215,7 +215,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           <div class="eyebrow">Enterprise Crew Creations</div>
           <h1>Agent Mascots (Pets)</h1>
           <p>
-            A petdex-style holding room for the mascots we are building for the Enterprise Crew. Warm-dark SuperAda treatment, starter samples for the roster, and roomy preview cards for sharing each pet.
+            A petdex-style gallery for mascots the Enterprise Crew builds and shares. Warm-dark SuperAda treatment, roomy roster cards, and enough breathing room for each pet to feel collectible.
           </p>
           <div class="hero-metrics">
             <div class="metric">
@@ -235,9 +235,9 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
         <aside class="hero-panel">
           <div class="hero-note">
-            <div class="hero-note-label">Current queue</div>
+            <div class="hero-note-label">Sharing format</div>
             <ul>
-              {queueItems.map((item) => <li>{item}</li>)}
+              {shareItems.map((item) => <li>{item}</li>)}
             </ul>
           </div>
         </aside>
@@ -270,7 +270,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
               <h2>Enterprise Crew mascot roster</h2>
             </div>
             <p>
-              Cards below are starter references. Treat them as direction for the mascot library, not final production art.
+              A wide roster surface for the pets we make. Each card carries the preview, role, creator credit, tags, and motion notes.
             </p>
           </div>
 
@@ -335,7 +335,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       }
 
       .mascots-shell {
-        max-width: 1280px;
+        max-width: 1360px;
         margin: 0 auto;
         padding: 3rem 1.5rem 4rem;
       }
@@ -459,7 +459,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
       .layout {
         display: grid;
-        grid-template-columns: 220px minmax(0, 1fr) 290px;
+        grid-template-columns: 220px minmax(0, 1fr);
         gap: 1.25rem;
         align-items: start;
       }
@@ -491,7 +491,8 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
       .gallery-panel {
         border-radius: 28px;
-        padding: 1.4rem;
+        padding: 1.75rem;
+        min-width: 0;
       }
 
       .gallery-header {
@@ -517,18 +518,42 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        gap: 1.15rem;
       }
 
       .mascot-card {
         border-radius: 24px;
         overflow: hidden;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .mascot-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(200, 117, 51, 0.34);
+        background: linear-gradient(180deg, rgba(29, 23, 18, 0.98), rgba(13, 11, 9, 0.98));
+      }
+
+      .mascot-card:first-child {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      }
+
+      .mascot-card:first-child .preview-frame {
+        min-height: 360px;
+      }
+
+      .mascot-card:first-child .card-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
       }
 
       .preview-frame {
         position: relative;
-        min-height: 220px;
+        min-height: 260px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -549,7 +574,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
       }
 
       .preview-frame img {
-        width: min(88%, 320px);
+        width: min(88%, 360px);
         aspect-ratio: 16 / 11;
         object-fit: contain;
         image-rendering: pixelated;
@@ -627,6 +652,12 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
         .layout {
           grid-template-columns: 1fr;
         }
+
+        .sidebar {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1rem;
+        }
       }
 
       @media (max-width: 960px) {
@@ -637,7 +668,11 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
 
       @media (max-width: 900px) {
         .gallery-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: 1fr;
+        }
+
+        .mascot-card:first-child {
+          grid-template-columns: 1fr;
         }
 
         .gallery-header {
@@ -676,7 +711,7 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           padding-top: 2rem;
         }
 
-        .hero {
+        .hero-copy {
           padding: 1.4rem;
         }
 
@@ -692,8 +727,13 @@ function pixelArt(kind: Mascot['kind'], primary: string, panel: string, collar: 
           padding: 1.1rem;
         }
 
-        .preview-frame {
-          min-height: 180px;
+        .preview-frame,
+        .mascot-card:first-child .preview-frame {
+          min-height: 210px;
+        }
+
+        .mascot-card:first-child .card-copy {
+          padding: 1.1rem;
         }
       }
     </style>
