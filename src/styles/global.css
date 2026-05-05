@@ -196,9 +196,9 @@ html[data-theme="neon"] .home-card { background: linear-gradient(145deg, color-m
 .mascot-roster { margin-top: 34px; }
 .mascot-roster.is-standalone { margin-top: 44px; }
 .mascot-heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:18px; }
-.mascot-heading h1,.resource-page-head h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(46px, 5vw, 72px); font-weight: 500; letter-spacing: -.055em; line-height: 1.02; margin: 0; }
+.mascot-heading h1,.resource-page-head h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 4.8vw, 68px); font-weight: 500; letter-spacing: -.055em; line-height: 1.02; margin: 0; }
+.mascot-heading h1 { white-space:nowrap; }
 .mascot-heading h2 { font-size: 38px; }
-.mascot-heading p { max-width: 420px; color: var(--muted); }
 .mascot-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
 .mascot-grid { align-items:stretch; }
 .mascot-card { background:var(--panel); border:1px solid var(--border); border-radius:22px; padding:16px; height:100%; display:grid; grid-template-rows:auto auto auto 1fr auto; }
