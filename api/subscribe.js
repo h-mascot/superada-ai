@@ -1,0 +1,138 @@
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TOPICS = new Set(['ship-log', 'releases', 'weekly-claw', 'tools-skills', 'workflow-packs']);
+
+function send(res, status, body) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.end(JSON.stringify(body));
+}
+
+function parseBody(req) {
+  if (typeof req.body === 'object' && req.body !== null) return req.body;
+  if (typeof req.body === 'string') {
+    try { return JSON.parse(req.body); } catch { return {}; }
+  }
+  return new Promise((resolve) => {
+    let raw = '';
+    req.on('data', (chunk) => { raw += chunk; });
+    req.on('end', () => {
+      try { resolve(JSON.parse(raw || '{}')); } catch { resolve({}); }
+    });
+  });
+}
+
+function cleanString(value, max = 160) {
+  return String(value || '').replace(/[\u0000-\u001f\u007f]/g, '').trim().slice(0, max);
+}
+
+async function githubRequest(path, options = {}) {
+  const token = process.env.SUBSCRIBER_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
+  if (!token) throw new Error('missing_github_token');
+  const response = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'User-Agent': 'superada-subscribe-api',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers || {}),
+    },
+  });
+  const text = await response.text();
+  const data = text ? JSON.parse(text) : null;
+  if (!response.ok) {
+    const err = new Error(data?.message || `github_${response.status}`);
+    err.status = response.status;
+    throw err;
+  }
+  return data;
+}
+
+async function readStore(owner, repo, path) {
+  try {
+    const file = await githubRequest(`/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`);
+    const content = Buffer.from(file.content || '', 'base64').toString('utf8');
+    return { sha: file.sha, store: JSON.parse(content || '{"subscribers":[]}') };
+  } catch (err) {
+    if (err.status === 404) return { sha: null, store: { subscribers: [] } };
+    throw err;
+  }
+}
+
+async function writeStore(owner, repo, path, sha, store) {
+  const content = Buffer.from(JSON.stringify(store, null, 2) + '\n', 'utf8').toString('base64');
+  return githubRequest(`/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: 'Add SuperAda subscriber',
+      content,
+      ...(sha ? { sha } : {}),
+    }),
+  });
+}
+
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://superada.ai');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return send(res, 204, {});
+  if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'POST only' });
+
+  try {
+    const body = await parseBody(req);
+    if (cleanString(body.company)) return send(res, 200, { ok: true });
+
+    const email = cleanString(body.email, 254).toLowerCase();
+    const subscriberType = cleanString(body.subscriberType, 20) === 'agent' ? 'agent' : 'human';
+    const topics = Array.isArray(body.topics)
+      ? body.topics.map((topic) => cleanString(topic, 40)).filter((topic) => TOPICS.has(topic))
+      : [];
+
+    if (!EMAIL_RE.test(email)) return send(res, 400, { ok: false, error: 'Enter a valid email.' });
+    if (!topics.length) return send(res, 400, { ok: false, error: 'Pick at least one update type.' });
+
+    const repoSpec = process.env.SUBSCRIBER_REPO || 'h-mascot/superada-subscribers';
+    const [owner, repo] = repoSpec.split('/');
+    const path = process.env.SUBSCRIBER_FILE || 'subscribers.json';
+    if (!owner || !repo) throw new Error('bad_subscriber_repo');
+
+    const now = new Date().toISOString();
+    const record = {
+      email,
+      subscriberType,
+      name: cleanString(body.name, 120),
+      agentName: subscriberType === 'agent' ? cleanString(body.agentName, 120) : '',
+      agentUrl: subscriberType === 'agent' ? cleanString(body.agentUrl, 240) : '',
+      topics,
+      cadence: subscriberType === 'agent' ? 'weekly-agent-check' : 'on-post-or-release',
+      source: 'superada.ai/subscribe',
+      status: 'active',
+    };
+
+    const { sha, store } = await readStore(owner, repo, path);
+    const subscribers = Array.isArray(store.subscribers) ? store.subscribers : [];
+    const key = `${subscriberType}:${email}`;
+    const existingIndex = subscribers.findIndex((item) => `${item.subscriberType || 'human'}:${String(item.email || '').toLowerCase()}` === key);
+
+    if (existingIndex >= 0) {
+      subscribers[existingIndex] = { ...subscribers[existingIndex], ...record, updatedAt: now };
+    } else {
+      subscribers.push({ id: crypto.randomUUID(), ...record, createdAt: now, updatedAt: now });
+    }
+
+    store.subscribers = subscribers.sort((a, b) => String(a.email).localeCompare(String(b.email)));
+    store.updatedAt = now;
+    await writeStore(owner, repo, path, sha, store);
+
+    return send(res, 200, {
+      ok: true,
+      message: subscriberType === 'agent'
+        ? 'Agent subscribed. Install the watcher skill to check SuperAda weekly.'
+        : 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.',
+    });
+  } catch (err) {
+    console.error('subscribe_failed', err);
+    return send(res, 500, { ok: false, error: 'Subscription storage is not configured yet.' });
+  }
+}

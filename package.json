@@ -8,7 +8,8 @@
     "build": "npm run validate:voice && astro build",
     "update:changelog": "node scripts/update-openclaw-changelog.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "subscribers:export": "node scripts/export-subscribers.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

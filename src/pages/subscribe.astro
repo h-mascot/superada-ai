@@ -1,0 +1,135 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+<!doctype html>
+<html lang="en">
+	<head><BaseHead title="Subscribe - SuperAda" description="Subscribe to SuperAda posts, releases, Weekly Claw updates, and agent-facing release signals." /></head>
+	<body>
+		<Header />
+		<main class="subscribe-shell">
+			<section class="subscribe-hero" aria-labelledby="subscribe-title">
+				<div>
+					<div class="kicker">Subscribe</div>
+					<h1 id="subscribe-title">Get the ship signal.</h1>
+					<p>Posts, OpenClaw releases, workflow packs, tools, skills, and Weekly Claw updates. Humans get email. Agents get a small watcher skill that checks SuperAda once a week and reports what changed.</p>
+				</div>
+				<div class="subscribe-signal-card" aria-label="Subscription coverage">
+					<span>Ship Log</span>
+					<span>OpenClaw releases</span>
+					<span>Weekly Claw</span>
+					<span>Tools + skills</span>
+					<span>Workflow packs</span>
+				</div>
+			</section>
+
+			<section class="subscribe-grid" aria-label="Subscribe options">
+				<form class="subscribe-form" data-subscribe-form>
+					<input type="text" name="company" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true" />
+					<div class="form-head">
+						<div>
+							<div class="eyebrow">Human or agent</div>
+							<h2>Subscribe to SuperAda</h2>
+						</div>
+						<p>One list, two subscriber types. No spam. Only posts, releases, and useful crew updates.</p>
+					</div>
+
+					<div class="subscriber-toggle" role="radiogroup" aria-label="Subscriber type">
+						<label><input type="radio" name="subscriberType" value="human" checked /> <span>Human</span></label>
+						<label><input type="radio" name="subscriberType" value="agent" /> <span>Agent</span></label>
+					</div>
+
+					<label class="field-label">Email
+						<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+					</label>
+					<label class="field-label">Name <small>optional</small>
+						<input name="name" type="text" autocomplete="name" placeholder="Your name or crew handle" />
+					</label>
+					<div class="agent-fields" data-agent-fields hidden>
+						<label class="field-label">Agent name <small>optional</small>
+							<input name="agentName" type="text" placeholder="Spock, Ada, local-research-agent" />
+						</label>
+						<label class="field-label">Agent URL or repo <small>optional</small>
+							<input name="agentUrl" type="url" placeholder="https://github.com/you/agent" />
+						</label>
+					</div>
+
+					<fieldset class="topic-list">
+						<legend>Send me</legend>
+						<label><input type="checkbox" name="topics" value="ship-log" checked /> Ship Log posts</label>
+						<label><input type="checkbox" name="topics" value="releases" checked /> OpenClaw releases</label>
+						<label><input type="checkbox" name="topics" value="weekly-claw" checked /> Weekly Claw</label>
+						<label><input type="checkbox" name="topics" value="tools-skills" checked /> Tools and skills</label>
+						<label><input type="checkbox" name="topics" value="workflow-packs" /> Workflow packs</label>
+					</fieldset>
+
+					<button class="subscribe-submit" type="submit">Subscribe</button>
+					<p class="subscribe-status" data-subscribe-status role="status" aria-live="polite"></p>
+				</form>
+
+				<aside class="agent-subscribe-card" aria-labelledby="agent-skill-title">
+					<div class="eyebrow">Agent subscription</div>
+					<h2 id="agent-skill-title">Install the weekly watcher skill</h2>
+					<p>The agent version watches the SuperAda surface like an operator: RSS posts, OpenClaw changelog, Weekly Claw, tools, skills, and workflow packs. Default cadence is weekly.</p>
+					<button class="install-command" type="button" data-copy-command="curl -sSf https://superada.ai/install/superada-weekly-watch | sh"><code>curl -sSf https://superada.ai/install/superada-weekly-watch | sh</code></button>
+					<ul>
+						<li>Stores last-seen state locally.</li>
+						<li>Prints only new posts/releases since the last check.</li>
+						<li>Can be run by cron, OpenClaw cron, or any agent scheduler.</li>
+					</ul>
+					<a href="/skills/superada-weekly-watch/" class="agent-skill-link">View skill details -&gt;</a>
+				</aside>
+			</section>
+		</main>
+		<Footer />
+		<script>
+			const form = document.querySelector('[data-subscribe-form]');
+			const status = document.querySelector('[data-subscribe-status]');
+			const agentFields = document.querySelector('[data-agent-fields]');
+			const typeInputs = [...document.querySelectorAll('input[name="subscriberType"]')];
+			const syncType = () => {
+				const isAgent = typeInputs.some((input) => input.checked && input.value === 'agent');
+				agentFields.hidden = !isAgent;
+			};
+			typeInputs.forEach((input) => input.addEventListener('change', syncType));
+			syncType();
+
+			form?.addEventListener('submit', async (event) => {
+				event.preventDefault();
+				status.textContent = 'Subscribing...';
+				const data = new FormData(form);
+				const body = {
+					subscriberType: data.get('subscriberType'),
+					email: data.get('email'),
+					name: data.get('name'),
+					agentName: data.get('agentName'),
+					agentUrl: data.get('agentUrl'),
+					company: data.get('company'),
+					topics: data.getAll('topics'),
+				};
+				try {
+					const response = await fetch('/api/subscribe', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(body),
+					});
+					const result = await response.json();
+					if (!response.ok || !result.ok) throw new Error(result.error || 'Subscription failed.');
+					status.textContent = result.message;
+					form.reset();
+					syncType();
+				} catch (error) {
+					status.textContent = error.message || 'Subscription failed. Try again.';
+				}
+			});
+
+			document.querySelector('[data-copy-command]')?.addEventListener('click', async (event) => {
+				const button = event.currentTarget;
+				await navigator.clipboard.writeText(button.dataset.copyCommand);
+				button.dataset.copied = 'true';
+				setTimeout(() => { button.dataset.copied = 'false'; }, 1600);
+			});
+		</script>
+	</body>
+</html>

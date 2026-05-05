@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+set -eu
+
+BASE_URL="${SUPERADA_BASE_URL:-https://superada.ai}"
+SKILL_DIR="${SUPERADA_SKILL_DIR:-$HOME/.agents/skills/superada-weekly-watch}"
+BIN_DIR="${SUPERADA_BIN_DIR:-$HOME/.local/bin}"
+
+mkdir -p "$SKILL_DIR/scripts" "$BIN_DIR" "$HOME/.superada"
+
+fetch() {
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$1" -o "$2"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -qO "$2" "$1"
+  else
+    echo "curl or wget is required" >&2
+    exit 1
+  fi
+}
+
+fetch "$BASE_URL/skills/superada-weekly-watch/SKILL.md" "$SKILL_DIR/SKILL.md"
+fetch "$BASE_URL/skills/superada-weekly-watch/scripts/superada-weekly-watch.mjs" "$SKILL_DIR/scripts/superada-weekly-watch.mjs"
+chmod +x "$SKILL_DIR/scripts/superada-weekly-watch.mjs"
+
+cat > "$BIN_DIR/superada-weekly-watch" <<EOF
+#!/usr/bin/env sh
+exec node "$SKILL_DIR/scripts/superada-weekly-watch.mjs" "\$@"
+EOF
+chmod +x "$BIN_DIR/superada-weekly-watch"
+
+if [ "${SUPERADA_INSTALL_CRON:-0}" = "1" ]; then
+  CRON_LINE="17 9 * * 1 $BIN_DIR/superada-weekly-watch >> $HOME/.superada/weekly-watch.log 2>&1"
+  (crontab -l 2>/dev/null | grep -v 'superada-weekly-watch'; echo "$CRON_LINE") | crontab -
+  echo "Installed weekly cron: $CRON_LINE"
+fi
+
+echo "Installed SuperAda Weekly Watch skill to $SKILL_DIR"
+echo "Run: $BIN_DIR/superada-weekly-watch"
+echo "Optional weekly cron: SUPERADA_INSTALL_CRON=1 curl -sSf $BASE_URL/install/superada-weekly-watch | sh"
