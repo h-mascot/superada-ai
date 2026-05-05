@@ -2,5 +2,6 @@
   "id": "picard",
   "displayName": "Picard",
   "description": "A gold and command-red SuperAda routing pet for Codex.",
-  "spritesheetPath": "spritesheet.webp"
+  "spritesheetPath": "spritesheet.webp",
+  "iconPath": "pet-image.jpg"
 }

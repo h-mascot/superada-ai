@@ -2,5 +2,6 @@
   "id": "spock",
   "displayName": "Spock",
   "description": "A blue and teal logic-first SuperAda research pet for Codex.",
-  "spritesheetPath": "spritesheet.webp"
+  "spritesheetPath": "spritesheet.webp",
+  "iconPath": "pet-image.jpg"
 }
