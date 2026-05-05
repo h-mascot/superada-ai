@@ -141,22 +141,22 @@ html[data-theme="neon"] .home-card { background: linear-gradient(145deg, color-m
 .resource-nav a:hover,.resource-nav a.is-active { color: var(--text); border-color: color-mix(in srgb, var(--accent) 46%, var(--border)); background: color-mix(in srgb, var(--accent-soft) 62%, var(--panel) 38%); box-shadow: 0 12px 38px color-mix(in srgb, var(--glow) 34%, transparent); }
 .resource-nav strong { color: var(--faint); font-size: 12px; font-weight: 700; }
 .nav-main { display:flex; align-items:center; gap:10px; }
-.atlas-icon { width: 18px; height: 18px; display:inline-grid; place-items:center; position:relative; color: currentColor; flex:0 0 auto; }
+.atlas-icon { --icon-shift:0px; width:18px; height:18px; display:inline-grid; place-items:center; position:relative; color:currentColor; flex:0 0 auto; }
 .atlas-icon::before,.atlas-icon::after,.atlas-icon i,.atlas-icon i::before,.atlas-icon i::after { content:''; position:absolute; display:block; }
-.atlas-icon-workflow::before { width:6px;height:6px;border:1.5px solid currentColor;border-radius:50%;left:1px;top:6px;box-shadow:10px -5px 0 -1.5px var(--panel),10px -5px 0 0 currentColor,10px 5px 0 -1.5px var(--panel),10px 5px 0 0 currentColor; } .atlas-icon-workflow::after { width:11px;height:1.5px;background:currentColor;left:6px;top:9px;box-shadow:0 -5px 0 -1px currentColor,0 5px 0 -1px currentColor; }
-.atlas-icon-book::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:2px 5px 5px 2px;left:2px;top:2px; } .atlas-icon-book::after { width:1.5px;height:12px;background:currentColor;left:7px;top:3px;opacity:.8; }
-.atlas-icon-overview::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:4px;left:2px;top:2px;box-shadow:5px 5px 0 -2px currentColor; }
-.atlas-icon-calendar::before { width:14px;height:13px;border:1.5px solid currentColor;border-radius:3px;left:2px;top:3px; } .atlas-icon-calendar::after { width:10px;height:1.5px;background:currentColor;left:4px;top:7px; }
-.atlas-icon-star::before { width:15px;height:15px;left:1px;top:1px;background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 56%,79% 92%,50% 70%,21% 92%,32% 56%,2% 35%,39% 35%); }
-.atlas-icon-pet::before { width:12px;height:9px;border:1.5px solid currentColor;border-radius:8px 8px 6px 6px;top:6px;left:3px; }
-.atlas-icon-pet::after { width:4px;height:4px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg);top:3px;left:4px; }
-.atlas-icon-bars::before { width:14px;height:2px;background:currentColor;top:4px;left:2px;box-shadow:0 5px 0 currentColor,0 10px 0 currentColor; }
-.atlas-icon-stack::before { width:13px;height:9px;border:1.5px solid currentColor;left:2px;top:5px;box-shadow:3px -3px 0 -1px var(--panel),3px -3px 0 0 currentColor; }
-.atlas-icon-circle::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:50%;left:2px;top:2px; }
-.atlas-icon-grid::before { width:5px;height:5px;background:currentColor;left:3px;top:3px;box-shadow:8px 0 0 currentColor,0 8px 0 currentColor,8px 8px 0 currentColor; }
-.atlas-icon-note::before { width:12px;height:14px;border:1.5px solid currentColor;left:3px;top:2px; }
-.atlas-icon-cron::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:50%;left:2px;top:2px; } .atlas-icon-cron::after { width:5px;height:1.5px;background:currentColor;left:8px;top:8px;transform-origin:left center;transform:rotate(-45deg); }
-.atlas-icon-claw::before { width:12px;height:12px;border:1.5px solid currentColor;border-radius:50% 50% 45% 45%;left:3px;top:4px; } .atlas-icon-spark::before,.atlas-icon-spark::after { width:1.5px;height:15px;background:currentColor;left:8px;top:1px; } .atlas-icon-spark::after { transform:rotate(90deg); }
+.atlas-icon-workflow::before { width:6px;height:6px;border:1.5px solid currentColor;border-radius:50%;left:calc(var(--icon-shift) + 1px);top:calc(var(--icon-shift) + 6px);box-shadow:10px -5px 0 -1.5px var(--panel),10px -5px 0 0 currentColor,10px 5px 0 -1.5px var(--panel),10px 5px 0 0 currentColor; } .atlas-icon-workflow::after { width:11px;height:1.5px;background:currentColor;left:calc(var(--icon-shift) + 6px);top:calc(var(--icon-shift) + 9px);box-shadow:0 -5px 0 -1px currentColor,0 5px 0 -1px currentColor; }
+.atlas-icon-book::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:2px 5px 5px 2px;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 2px); } .atlas-icon-book::after { width:1.5px;height:12px;background:currentColor;left:calc(var(--icon-shift) + 7px);top:calc(var(--icon-shift) + 3px);opacity:.8; }
+.atlas-icon-overview::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:4px;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 2px);box-shadow:5px 5px 0 -2px currentColor; }
+.atlas-icon-calendar::before { width:14px;height:13px;border:1.5px solid currentColor;border-radius:3px;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 3px); } .atlas-icon-calendar::after { width:10px;height:1.5px;background:currentColor;left:calc(var(--icon-shift) + 4px);top:calc(var(--icon-shift) + 7px); }
+.atlas-icon-star::before { width:15px;height:15px;left:calc(var(--icon-shift) + 1px);top:calc(var(--icon-shift) + 1px);background:currentColor;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 56%,79% 92%,50% 70%,21% 92%,32% 56%,2% 35%,39% 35%); }
+.atlas-icon-pet::before { width:12px;height:9px;border:1.5px solid currentColor;border-radius:8px 8px 6px 6px;top:calc(var(--icon-shift) + 6px);left:calc(var(--icon-shift) + 3px); }
+.atlas-icon-pet::after { width:4px;height:4px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg);top:calc(var(--icon-shift) + 3px);left:calc(var(--icon-shift) + 4px); }
+.atlas-icon-bars::before { width:14px;height:2px;background:currentColor;top:calc(var(--icon-shift) + 4px);left:calc(var(--icon-shift) + 2px);box-shadow:0 5px 0 currentColor,0 10px 0 currentColor; }
+.atlas-icon-stack::before { width:13px;height:9px;border:1.5px solid currentColor;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 5px);box-shadow:3px -3px 0 -1px var(--panel),3px -3px 0 0 currentColor; }
+.atlas-icon-circle::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:50%;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 2px); }
+.atlas-icon-grid::before { width:5px;height:5px;background:currentColor;left:calc(var(--icon-shift) + 3px);top:calc(var(--icon-shift) + 3px);box-shadow:8px 0 0 currentColor,0 8px 0 currentColor,8px 8px 0 currentColor; }
+.atlas-icon-note::before { width:12px;height:14px;border:1.5px solid currentColor;left:calc(var(--icon-shift) + 3px);top:calc(var(--icon-shift) + 2px); }
+.atlas-icon-cron::before { width:13px;height:13px;border:1.5px solid currentColor;border-radius:50%;left:calc(var(--icon-shift) + 2px);top:calc(var(--icon-shift) + 2px); } .atlas-icon-cron::after { width:5px;height:1.5px;background:currentColor;left:calc(var(--icon-shift) + 8px);top:calc(var(--icon-shift) + 8px);transform-origin:left center;transform:rotate(-45deg); }
+.atlas-icon-claw::before { width:12px;height:12px;border:1.5px solid currentColor;border-radius:50% 50% 45% 45%;left:calc(var(--icon-shift) + 3px);top:calc(var(--icon-shift) + 4px); } .atlas-icon-spark::before,.atlas-icon-spark::after { width:1.5px;height:15px;background:currentColor;left:calc(var(--icon-shift) + 8px);top:calc(var(--icon-shift) + 1px); } .atlas-icon-spark::after { transform:rotate(90deg); }
 .submit-card { margin-top: 34px; padding: 22px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(160deg, var(--panel), var(--panel-soft)); box-shadow: 0 16px 50px color-mix(in srgb, var(--glow) 18%, transparent); }
 .submit-icon { width:34px;height:34px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--border);background:var(--accent-soft);color:var(--accent);margin-bottom:16px; }
 .submit-card h2 { font-size: 19px; margin-bottom: 8px; }
@@ -170,7 +170,7 @@ html[data-theme="neon"] .home-card { background: linear-gradient(145deg, color-m
 .stat-strip { display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap:14px; margin-bottom: 20px; }
 .stat-card { position:relative; min-height: 182px; padding: 23px; border:1px solid var(--border); border-radius:24px; background:linear-gradient(180deg, var(--panel), color-mix(in srgb, var(--panel-soft) 72%, transparent)); box-shadow:0 14px 42px color-mix(in srgb, var(--glow) 14%, transparent); }
 .stat-card-head { display:flex; align-items:center; justify-content:space-between; gap:16px; }
-.stat-card-head .atlas-icon { color:var(--accent); width:22px; height:22px; }
+.stat-card-head .atlas-icon { --icon-shift:2px; color:var(--accent); width:22px; height:22px; }
 .stat-label,.tab-row a,.filter-button,.search-row select,.card-meta { font-size:11px;font-weight:850;letter-spacing:.15em;text-transform:uppercase; }
 .stat-card strong { display:block;font-size:58px;letter-spacing:-.075em;line-height:.92;margin:18px 0 13px;font-family:Georgia,'Times New Roman',serif;font-weight:500; }
 .stat-card p { color:var(--muted);font-size:14px;line-height:1.5;margin-bottom:14px; }
@@ -187,7 +187,7 @@ html[data-theme="neon"] .home-card { background: linear-gradient(145deg, color-m
 .resource-card[hidden] { display:none; }
 .resource-card:hover { border-color:color-mix(in srgb, var(--accent) 58%, var(--border)); transform:translateY(-2px); box-shadow:0 20px 58px color-mix(in srgb, var(--glow) 36%, transparent); }
 .resource-card:hover .atlas-icon { background:var(--accent-soft); border-color:color-mix(in srgb, var(--accent) 44%, var(--border)); }
-.resource-card .atlas-icon { color:var(--accent); margin-bottom:28px; width:42px; height:42px; border-radius:15px; border:1px solid var(--border); background:color-mix(in srgb, var(--accent-soft) 46%, transparent); transition:background .18s ease, border-color .18s ease; }
+.resource-card .atlas-icon { --icon-shift:12px; color:var(--accent); margin-bottom:28px; width:42px; height:42px; border-radius:15px; border:1px solid var(--border); background:color-mix(in srgb, var(--accent-soft) 46%, transparent); transition:background .18s ease, border-color .18s ease; }
 .resource-card h2 { font-size:22px; margin-bottom:12px; }
 .resource-card p { color:var(--muted); font-size:14px; line-height:1.58; }
 .card-meta { margin-top:auto; display:flex; gap:10px; color:var(--muted); padding-top:20px; }
