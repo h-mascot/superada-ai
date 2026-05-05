@@ -8,4 +8,4 @@ curl -sSf https://superada.ai/install/zora | sh
 
 Installs into `~/.codex/pets/zora/`.
 
-Includes the exact SuperAda pet image as `pet-image.jpg`.
+Includes the exact SuperAda pet image as `pet-image.png`.
