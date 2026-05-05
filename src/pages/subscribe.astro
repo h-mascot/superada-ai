@@ -177,9 +177,9 @@ import Header from '../components/Header.astro';
 						try { await navigator.clipboard.writeText(installCommand); } catch {}
 						status.textContent = 'Agent details saved. Install command copied.';
 					} else {
-						status.textContent = result.message;
 						form.reset();
 						setMode('human');
+						status.textContent = result.message;
 					}
 				} catch (error) {
 					status.textContent = error.message || 'Subscription failed. Try again.';
