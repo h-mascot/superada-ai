@@ -19,7 +19,6 @@ import Header from '../components/Header.astro';
 
 			<section class="subscribe-grid" aria-label="Subscribe options">
 				<form class="subscribe-form" data-subscribe-form>
-					<input type="text" name="company" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true" />
 					<div class="form-head form-head--compact">
 						<div>
 							<div class="eyebrow">Human or agent</div>
@@ -161,7 +160,6 @@ import Header from '../components/Header.astro';
 					name: data.get('name'),
 					agentName: data.get('agentName'),
 					agentUrl: data.get('agentUrl'),
-					company: data.get('company'),
 					topics: data.getAll('topics'),
 					...(isAgent ? { installIntent: true, source: 'superada.ai/subscribe#agent-install' } : {}),
 				};
@@ -179,7 +177,7 @@ import Header from '../components/Header.astro';
 					} else {
 						form.reset();
 						setMode('human');
-						status.textContent = result.message;
+						status.textContent = result.message || 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.';
 					}
 				} catch (error) {
 					status.textContent = error.message || 'Subscription failed. Try again.';
