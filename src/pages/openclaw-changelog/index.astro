@@ -74,23 +74,29 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
         </aside>
 
         <section class="versions-column" id="versions-column">
-          {versionCards.map((version) => (
-            <article
+          {versionCards.map((version, versionIndex) => (
+            <details
               class="version-card"
               id={`v-${version.version}`}
               data-version-card
               data-version={version.version}
+              data-default-open={versionIndex === 0 ? 'true' : 'false'}
+              open={versionIndex === 0}
             >
-              <header class="version-summary">
-                <div>
+              <summary class="version-summary">
+                <div class="summary-main">
                   <div class="version-kicker">Release</div>
                   <h2>
                     <a href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">{version.version}</a>
                   </h2>
                   <p>{version.date}</p>
                 </div>
-                <a class="summary-link" href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">Open upstream ↗</a>
-              </header>
+                <span class="summary-actions">
+                  <span class="change-count">{version.items.length} changes</span>
+                  <a class="summary-link" href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">Open upstream ↗</a>
+                  <span class="collapse-indicator" aria-hidden="true"></span>
+                </span>
+              </summary>
 
               <div class="version-body">
                 <div class="changelog-list">
@@ -112,7 +118,7 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
                   ))}
                 </div>
               </div>
-            </article>
+            </details>
           ))}
         </section>
       </div>
@@ -122,9 +128,32 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     <script is:inline>
       const searchInput = document.getElementById('feature-search');
       const versionCards = Array.from(document.querySelectorAll('[data-version-card]'));
+      let wasSearching = false;
+      let savedOpenState = new Map();
+
+      versionCards.forEach((card) => {
+        card.querySelectorAll('.summary-link, .version-summary h2 a').forEach((link) => {
+          link.addEventListener('click', (event) => event.stopPropagation());
+        });
+      });
+
+      const restoreOpenState = () => {
+        versionCards.forEach((card) => {
+          const shouldOpen = savedOpenState.has(card)
+            ? savedOpenState.get(card)
+            : card.dataset.defaultOpen === 'true';
+          card.open = Boolean(shouldOpen);
+        });
+        savedOpenState = new Map();
+      };
 
       const applyFilters = () => {
         const searchValue = (searchInput?.value || '').trim().toLowerCase();
+        const isSearching = searchValue.length > 0;
+
+        if (isSearching && !wasSearching) {
+          savedOpenState = new Map(versionCards.map((card) => [card, card.open]));
+        }
 
         versionCards.forEach((card) => {
           const items = Array.from(card.querySelectorAll('.changelog-list-item'));
@@ -138,7 +167,16 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
           });
 
           card.toggleAttribute('hidden', visibleCount === 0);
+          if (isSearching) {
+            card.open = visibleCount > 0;
+          }
         });
+
+        if (!isSearching && wasSearching) {
+          restoreOpenState();
+        }
+
+        wasSearching = isSearching;
       };
 
       searchInput?.addEventListener('input', applyFilters);
@@ -147,6 +185,10 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
 </html>
 
 <style>
+  :global(html) {
+    scroll-behavior: auto;
+  }
+
   .changelog-shell {
     max-width: 1220px;
     margin: 0 auto;
@@ -265,18 +307,28 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
 
   .sidebar-card {
     position: sticky;
-    top: 1rem;
+    top: 5.25rem;
+    max-height: calc(100vh - 6.5rem);
+    overflow: hidden;
   }
 
   .sidebar-inner {
     padding: 1rem;
+    max-height: inherit;
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
   }
 
   .version-nav {
     display: flex;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     flex-direction: column;
     gap: 0.55rem;
     margin-top: 1rem;
+    padding-right: 0.25rem;
   }
 
   .version-nav-link {
@@ -308,7 +360,8 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
   }
 
   .version-card {
-    overflow: hidden;
+    overflow: clip;
+    scroll-margin-top: 5.5rem;
   }
 
   .version-summary {
@@ -318,6 +371,16 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     gap: 1rem;
     padding: 1.35rem;
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .version-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .version-card:not([open]) .version-summary {
+    border-bottom: 0;
   }
 
   .version-summary h2 {
@@ -339,6 +402,20 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     margin: 0.35rem 0 0;
   }
 
+  .summary-actions {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .change-count {
+    color: var(--muted);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
   .summary-link {
     display: inline-flex;
     align-items: center;
@@ -350,6 +427,26 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     text-decoration: none;
     white-space: nowrap;
     background: rgba(255, 255, 255, 0.02);
+  }
+
+  .collapse-indicator {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid #342c25;
+    border-radius: 999px;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .collapse-indicator::before {
+    content: '+';
+    font: 700 1.05rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .version-card[open] .collapse-indicator::before {
+    content: '−';
   }
 
   .version-body {
@@ -422,6 +519,12 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
 
     .sidebar-card {
       position: static;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .version-nav {
+      max-height: 18rem;
     }
   }
 
@@ -438,6 +541,11 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     .version-summary {
       flex-direction: column;
       padding: 1rem;
+    }
+
+    .summary-actions {
+      width: 100%;
+      justify-content: space-between;
     }
 
     .version-summary h2 {
