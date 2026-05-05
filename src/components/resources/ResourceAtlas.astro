@@ -71,18 +71,17 @@ const shipNoteItems: ResourceItem[] = [
 ];
 
 const toolItems: ResourceItem[] = [
-	{ title: 'Skills', icon: 'spark', meta: `${publishedSkills.length} skills`, status: 'UPDATED', href: '/resources/skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest setup labels.' },
-	{ title: 'Crons', icon: 'cron', meta: `${cronItems.length} recipes`, status: 'LIVE', href: '/resources/crons', copy: 'Scheduled operations, monitoring jobs, heartbeat checks, and publishing automation.' },
-	{ title: 'Workflow Packs', icon: 'workflow', meta: '12 packs', status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
-	{ title: 'Benchmarks', icon: 'bars', meta: '8 items', status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites, model pages, and operator-grade benchmark reports.' },
-	{ title: 'Changelog', icon: 'note', meta: 'Updates', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Recent releases and implementation notes from the crew.' },
-	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: '/weekly-claw', copy: 'Weekly publishing surface for OpenClaw and Enterprise Crew progress.' },
+	{ title: 'Entity', icon: 'grid', meta: 'Agent workspace', status: 'GITHUB', href: 'https://github.com/h-mascot/entity', copy: 'Agent-native workspace for mission control, files, chat, tasks, and runtime operations.' },
+	{ title: 'Helm', icon: 'overview', meta: 'Command layer', status: 'GITHUB', href: 'https://github.com/h-mascot/helm', copy: 'Operator command surface for steering agent crews, routing work, and keeping runs controlled.' },
+	{ title: 'Shuttle', icon: 'workflow', meta: 'Delivery layer', status: 'GITHUB', href: 'https://github.com/h-mascot/shuttle', copy: 'Transport and deployment tooling for moving agent work from local builds into live systems.' },
+	{ title: 'CTRL', icon: 'bars', meta: 'Testing framework', status: 'GITHUB', href: 'https://github.com/h-mascot/ctrl', copy: 'Close The Running Loop testing methodology for proving agent outputs before shipping.' },
+	{ title: 'Heimdall', icon: 'spark', meta: 'Security scanner', status: 'GITHUB', href: 'https://github.com/h-mascot/heimdall', copy: 'Security scanner for AI agent skills, install-time risk checks, and supply-chain hardening.' },
 ];
 
 const nav = [
 	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
 	{ icon: 'pet', label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: '3', key: 'mascots' },
-	{ icon: 'grid', label: 'Tools', href: '/resources/tools', count: '28', key: 'tools' },
+	{ icon: 'grid', label: 'Tools', href: '/resources/tools', count: '5', key: 'tools' },
 	{ icon: 'stack', label: 'Workflow Packs', href: '/resources/workflow-packs', count: '12', key: 'workflow-packs' },
 	{ icon: 'spark', label: 'Skills', href: '/resources/skills', count: String(publishedSkills.length), key: 'skills' },
 	{ icon: 'cron', label: 'Crons', href: '/resources/crons', count: String(cronItems.length), key: 'crons' },
@@ -94,13 +93,13 @@ const nav = [
 ];
 
 const stats = [
-	{ label: 'Tools', value: '28', icon: 'grid', copy: 'Templates, prompts, models, utilities, skills, and operating aids.', href: '/resources/tools', cta: 'Browse tools' },
+	{ label: 'Tools', value: '5', icon: 'grid', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.', href: '/resources/tools', cta: 'Browse tools' },
 	{ label: 'Workflow packs', value: '12', icon: 'workflow', copy: 'Reusable bundles for operator work, publishing, research, and security.', href: '/resources/workflow-packs', cta: 'Open packs' },
 	{ label: 'Operational content', value: '46', icon: 'star', copy: 'Skills, crons, guides, ship notes, benchmarks, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
 ];
 
 const overviewCards: ResourceItem[] = [
-	{ title: 'Tools', icon: 'grid', meta: '28 items', status: 'UPDATED', href: '/resources/tools', copy: 'Templates, prompts, models, utilities, skills, and tooling for faster builds.' },
+	{ title: 'Tools', icon: 'grid', meta: '5 tools', status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: 'Workflow Packs', icon: 'workflow', meta: '12 items', status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
 	{ title: 'Agent Mascots (Pets)', icon: 'pet', meta: '3 pets', status: 'LIVE', href: '/resources/agent-mascots', copy: 'Spock, Picard, and Zora mascot concepts for crew surfaces.' },
 	{ title: 'Skills', icon: 'spark', meta: `${publishedSkills.length} skills`, status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
@@ -113,7 +112,7 @@ const overviewCards: ResourceItem[] = [
 const tabs = ['All', 'Tools', 'Workflow Packs', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Ship Notes'];
 
 const pageCopy: Record<string, { kicker: string; title: string; copy: string; items: ResourceItem[] }> = {
-	tools: { kicker: 'Tools', title: 'Tools', copy: 'Templates, prompts, models, utilities, skills, and operating aids used by the Enterprise Crew.', items: toolItems },
+	tools: { kicker: 'Tools', title: 'Tools', copy: 'Published software from the crew: GitHub-backed projects we built and ship.', items: toolItems },
 	'workflow-packs': { kicker: 'Workflow Packs', title: 'Workflow packs', copy: 'Reusable bundles and workflow patterns for operations, publishing, research, and security.', items: workflowItems },
 	skills: { kicker: 'Skills', title: 'Skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest installability labels.', items: skillItems },
 	crons: { kicker: 'Crons', title: 'Crons', copy: 'Scheduled agent operations from the old resource library, cleaned up into a real resource page.', items: cronItems },
