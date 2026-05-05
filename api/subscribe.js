@@ -88,8 +88,12 @@ export default async function handler(req, res) {
     const topics = Array.isArray(body.topics)
       ? body.topics.map((topic) => cleanString(topic, 40)).filter((topic) => TOPICS.has(topic))
       : [];
+    const agentName = subscriberType === 'agent' ? cleanString(body.agentName, 120) : '';
+    const agentUrl = subscriberType === 'agent' ? cleanString(body.agentUrl, 240) : '';
+    const hasEmail = EMAIL_RE.test(email);
 
-    if (!EMAIL_RE.test(email)) return send(res, 400, { ok: false, error: 'Enter a valid email.' });
+    if (subscriberType === 'human' && !hasEmail) return send(res, 400, { ok: false, error: 'Enter a valid email.' });
+    if (subscriberType === 'agent' && email && !hasEmail) return send(res, 400, { ok: false, error: 'Enter a valid email or leave it blank.' });
     if (!topics.length) return send(res, 400, { ok: false, error: 'Pick at least one update type.' });
 
     const repoSpec = process.env.SUBSCRIBER_REPO || 'h-mascot/superada-subscribers';
@@ -99,21 +103,41 @@ export default async function handler(req, res) {
 
     const now = new Date().toISOString();
     const record = {
-      email,
+      email: hasEmail ? email : '',
       subscriberType,
-      name: cleanString(body.name, 120),
-      agentName: subscriberType === 'agent' ? cleanString(body.agentName, 120) : '',
-      agentUrl: subscriberType === 'agent' ? cleanString(body.agentUrl, 240) : '',
+      name: subscriberType === 'human' ? cleanString(body.name, 120) : '',
+      agentName,
+      agentUrl,
       topics,
       cadence: subscriberType === 'agent' ? 'weekly-agent-check' : 'on-post-or-release',
-      source: 'superada.ai/subscribe',
+      source: subscriberType === 'agent' ? 'superada.ai/subscribe/install' : 'superada.ai/subscribe',
       status: 'active',
+      ...(subscriberType === 'agent' ? {
+        installIntent: true,
+        installRequestedAt: now,
+        installCommand: 'curl -sSf https://superada.ai/install/superada-weekly-watch | sh',
+      } : {}),
     };
 
     const { sha, store } = await readStore(owner, repo, path);
     const subscribers = Array.isArray(store.subscribers) ? store.subscribers : [];
-    const key = `${subscriberType}:${email}`;
-    const existingIndex = subscribers.findIndex((item) => `${item.subscriberType || 'human'}:${String(item.email || '').toLowerCase()}` === key);
+    const agentKey = agentUrl ? `agent-url:${agentUrl.toLowerCase()}` : agentName ? `agent-name:${agentName.toLowerCase()}` : '';
+    const key = subscriberType === 'agent'
+      ? (hasEmail ? `agent-email:${email}` : agentKey)
+      : `human:${email}`;
+    const existingIndex = key
+      ? subscribers.findIndex((item) => {
+        const itemType = item.subscriberType || 'human';
+        if (itemType === 'agent') {
+          const itemEmail = String(item.email || '').toLowerCase();
+          const itemUrl = String(item.agentUrl || '').toLowerCase();
+          const itemName = String(item.agentName || '').toLowerCase();
+          const itemKey = itemEmail ? `agent-email:${itemEmail}` : itemUrl ? `agent-url:${itemUrl}` : itemName ? `agent-name:${itemName}` : '';
+          return itemKey === key;
+        }
+        return `human:${String(item.email || '').toLowerCase()}` === key;
+      })
+      : -1;
 
     if (existingIndex >= 0) {
       subscribers[existingIndex] = { ...subscribers[existingIndex], ...record, updatedAt: now };
@@ -121,14 +145,14 @@ export default async function handler(req, res) {
       subscribers.push({ id: crypto.randomUUID(), ...record, createdAt: now, updatedAt: now });
     }
 
-    store.subscribers = subscribers.sort((a, b) => String(a.email).localeCompare(String(b.email)));
+    store.subscribers = subscribers.sort((a, b) => String(a.email || a.agentName || a.agentUrl || '').localeCompare(String(b.email || b.agentName || b.agentUrl || '')));
     store.updatedAt = now;
     await writeStore(owner, repo, path, sha, store);
 
     return send(res, 200, {
       ok: true,
       message: subscriberType === 'agent'
-        ? 'Agent subscribed. Install the watcher skill to check SuperAda weekly.'
+        ? 'Agent details saved. Install the watcher skill to check SuperAda weekly.'
         : 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.',
     });
   } catch (err) {
