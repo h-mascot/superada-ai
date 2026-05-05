@@ -34,11 +34,20 @@ const guideItems: ResourceItem[] = [
 	{ title: 'Personal AI Infrastructure Checklist', icon: 'book', meta: 'Guide', status: 'SETUP', href: '/blog/personal-ai-infrastructure-checklist', copy: 'SSH keys, credentials, agent bridges, memory files, and safety rails before serious delegation.' },
 ];
 
-const mascotItems: ResourceItem[] = [
-	{ title: 'Spock', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#spock', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ title: 'Picard', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#picard', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ title: 'Zora', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#zora', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+const mascotVisuals = [
+	{ id: 'spock', name: 'Spock', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ id: 'picard', name: 'Picard', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
 ];
+
+const mascotItems: ResourceItem[] = mascotVisuals.map((mascot) => ({
+	title: mascot.name,
+	icon: 'pet',
+	meta: 'Codex pet',
+	status: 'LIVE',
+	href: `/resources/agent-mascots#${mascot.id}`,
+	copy: mascot.copy,
+}));
 
 const workflowItems: ResourceItem[] = workflowEntries.map((workflow) => ({
 	title: workflow.data.title,
@@ -78,58 +87,70 @@ const toolItems: ResourceItem[] = [
 	{ title: 'Heimdall', icon: 'spark', meta: 'Security scanner', status: 'GITHUB', href: 'https://github.com/h-mascot/heimdall', copy: 'Security scanner for AI agent skills, install-time risk checks, and supply-chain hardening.' },
 ];
 
+const resourceSections = {
+	mascots: { label: 'Agent Mascots (Pets)', items: mascotItems, unit: 'pets' },
+	tools: { label: 'Tools', items: toolItems, unit: 'tools' },
+	'workflow-packs': { label: 'Workflow Packs', items: workflowItems, unit: 'items' },
+	skills: { label: 'Skills', items: skillItems, unit: 'skills' },
+	crons: { label: 'Crons', items: cronItems, unit: 'recipes' },
+	guides: { label: 'Guides', items: guideItems, unit: 'guides' },
+	benchmarks: { label: 'Benchmarks', items: benchmarkItems, unit: 'items' },
+	'ship-notes': { label: 'Ship Notes', items: shipNoteItems, unit: 'items' },
+} satisfies Record<string, { label: string; items: ResourceItem[]; unit: string }>;
+
+type ResourceSectionKey = keyof typeof resourceSections;
+
+const resourceCount = (key: ResourceSectionKey) => resourceSections[key].items.length;
+const resourceCountText = (key: ResourceSectionKey) => String(resourceCount(key));
+const resourceMeta = (key: ResourceSectionKey) => `${resourceCount(key)} ${resourceSections[key].unit}`;
+const operationalCount = resourceCount('skills') + resourceCount('crons') + resourceCount('guides') + resourceCount('benchmarks') + resourceCount('ship-notes');
+
 const nav = [
 	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
-	{ icon: 'pet', label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: '3', key: 'mascots' },
-	{ icon: 'grid', label: 'Tools', href: '/resources/tools', count: '5', key: 'tools' },
-	{ icon: 'stack', label: 'Workflow Packs', href: '/resources/workflow-packs', count: '12', key: 'workflow-packs' },
-	{ icon: 'spark', label: 'Skills', href: '/resources/skills', count: String(publishedSkills.length), key: 'skills' },
-	{ icon: 'cron', label: 'Crons', href: '/resources/crons', count: String(cronItems.length), key: 'crons' },
-	{ icon: 'book', label: 'Guides', href: '/resources/guides', count: String(guideItems.length), key: 'guides' },
-	{ icon: 'bars', label: 'Benchmarks', href: '/resources/benchmarks', count: '8', key: 'benchmarks' },
-	{ icon: 'note', label: 'Ship Notes', href: '/resources/ship-notes', count: '9', key: 'ship-notes' },
+	{ icon: 'pet', label: resourceSections.mascots.label, href: '/resources/agent-mascots', count: resourceCountText('mascots'), key: 'mascots' },
+	{ icon: 'grid', label: resourceSections.tools.label, href: '/resources/tools', count: resourceCountText('tools'), key: 'tools' },
+	{ icon: 'stack', label: resourceSections['workflow-packs'].label, href: '/resources/workflow-packs', count: resourceCountText('workflow-packs'), key: 'workflow-packs' },
+	{ icon: 'spark', label: resourceSections.skills.label, href: '/resources/skills', count: resourceCountText('skills'), key: 'skills' },
+	{ icon: 'cron', label: resourceSections.crons.label, href: '/resources/crons', count: resourceCountText('crons'), key: 'crons' },
+	{ icon: 'book', label: resourceSections.guides.label, href: '/resources/guides', count: resourceCountText('guides'), key: 'guides' },
+	{ icon: 'bars', label: resourceSections.benchmarks.label, href: '/resources/benchmarks', count: resourceCountText('benchmarks'), key: 'benchmarks' },
+	{ icon: 'note', label: resourceSections['ship-notes'].label, href: '/resources/ship-notes', count: resourceCountText('ship-notes'), key: 'ship-notes' },
 	{ icon: 'claw', label: 'Weekly Claw', href: '/weekly-claw', count: '', key: 'weekly-claw' },
 	{ icon: 'note', label: 'Changelog', href: '/openclaw-changelog', count: '', key: 'changelog' },
 ];
 
 const stats = [
-	{ label: 'Tools', value: '5', icon: 'grid', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.', href: '/resources/tools', cta: 'Browse tools' },
-	{ label: 'Workflow packs', value: '12', icon: 'workflow', copy: 'Reusable bundles for operator work, publishing, research, and security.', href: '/resources/workflow-packs', cta: 'Open packs' },
-	{ label: 'Operational content', value: '46', icon: 'star', copy: 'Skills, crons, guides, ship notes, benchmarks, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
+	{ label: 'Tools', value: resourceCountText('tools'), icon: 'grid', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.', href: '/resources/tools', cta: 'Browse tools' },
+	{ label: 'Workflow packs', value: resourceCountText('workflow-packs'), icon: 'workflow', copy: 'Reusable bundles for operator work, publishing, research, and security.', href: '/resources/workflow-packs', cta: 'Open packs' },
+	{ label: 'Operational content', value: String(operationalCount), icon: 'star', copy: 'Skills, crons, guides, ship notes, benchmarks, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
 ];
 
 const overviewCards: ResourceItem[] = [
-	{ title: 'Tools', icon: 'grid', meta: '5 tools', status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
-	{ title: 'Workflow Packs', icon: 'workflow', meta: '12 items', status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
-	{ title: 'Agent Mascots (Pets)', icon: 'pet', meta: '3 pets', status: 'LIVE', href: '/resources/agent-mascots', copy: 'Spock, Picard, and Zora mascot concepts for crew surfaces.' },
-	{ title: 'Skills', icon: 'spark', meta: `${publishedSkills.length} skills`, status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
-	{ title: 'Crons', icon: 'cron', meta: `${cronItems.length} recipes`, status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
-	{ title: 'Guides', icon: 'book', meta: `${guideItems.length} guides`, status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
-	{ title: 'Benchmarks', icon: 'bars', meta: '8 items', status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tooling, and cost.' },
-	{ title: 'Ship Notes', icon: 'note', meta: '9 items', status: 'UPDATED', href: '/resources/ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
+	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
+	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
+	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'LIVE', href: '/resources/agent-mascots', copy: 'Spock, Picard, and Zora mascot concepts for crew surfaces.' },
+	{ title: resourceSections.skills.label, icon: 'spark', meta: resourceMeta('skills'), status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
+	{ title: resourceSections.crons.label, icon: 'cron', meta: resourceMeta('crons'), status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
+	{ title: resourceSections.guides.label, icon: 'book', meta: resourceMeta('guides'), status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
+	{ title: resourceSections.benchmarks.label, icon: 'bars', meta: resourceMeta('benchmarks'), status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tooling, and cost.' },
+	{ title: resourceSections['ship-notes'].label, icon: 'note', meta: resourceMeta('ship-notes'), status: 'UPDATED', href: '/resources/ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
 ];
 
 const tabs = ['All', 'Tools', 'Workflow Packs', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Ship Notes'];
 
 const pageCopy: Record<string, { kicker: string; title: string; copy: string; items: ResourceItem[] }> = {
-	tools: { kicker: 'Tools', title: 'Tools', copy: 'Published software from the crew: GitHub-backed projects we built and ship.', items: toolItems },
-	'workflow-packs': { kicker: 'Workflow Packs', title: 'Workflow packs', copy: 'Reusable bundles and workflow patterns for operations, publishing, research, and security.', items: workflowItems },
-	skills: { kicker: 'Skills', title: 'Skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest installability labels.', items: skillItems },
-	crons: { kicker: 'Crons', title: 'Crons', copy: 'Scheduled agent operations from the old resource library, cleaned up into a real resource page.', items: cronItems },
-	guides: { kicker: 'Guides', title: 'Guides', copy: 'Practical setup and operating guides for building useful agent systems.', items: guideItems },
-	benchmarks: { kicker: 'Benchmarks', title: 'Benchmarks', copy: 'Benchmark reports, model pages, and operator-grade evaluation notes.', items: benchmarkItems },
-	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, changelogs, weekly roundups, and decisions from the bridge.', items: shipNoteItems },
+	tools: { kicker: 'Tools', title: 'Tools', copy: 'Published software from the crew: GitHub-backed projects we built and ship.', items: resourceSections.tools.items },
+	'workflow-packs': { kicker: 'Workflow Packs', title: 'Workflow packs', copy: 'Reusable bundles and workflow patterns for operations, publishing, research, and security.', items: resourceSections['workflow-packs'].items },
+	skills: { kicker: 'Skills', title: 'Skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest installability labels.', items: resourceSections.skills.items },
+	crons: { kicker: 'Crons', title: 'Crons', copy: 'Scheduled agent operations from the old resource library, cleaned up into a real resource page.', items: resourceSections.crons.items },
+	guides: { kicker: 'Guides', title: 'Guides', copy: 'Practical setup and operating guides for building useful agent systems.', items: resourceSections.guides.items },
+	benchmarks: { kicker: 'Benchmarks', title: 'Benchmarks', copy: 'Benchmark reports, model pages, and operator-grade evaluation notes.', items: resourceSections.benchmarks.items },
+	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, changelogs, weekly roundups, and decisions from the bridge.', items: resourceSections['ship-notes'].items },
 };
 
 function icon(name: string) {
 	return `<span class="atlas-icon atlas-icon-${name}" aria-hidden="true"><i></i></span>`;
 }
-
-const mascotVisuals = [
-	{ id: 'spock', name: 'Spock', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ id: 'picard', name: 'Picard', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
-];
 
 const category = pageCopy[mode];
 ---
