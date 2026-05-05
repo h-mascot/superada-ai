@@ -129,7 +129,7 @@ import Header from '../components/Header.astro';
 			const typeInputs = [...document.querySelectorAll('input[name="subscriberType"]')];
 			const installCommand = 'curl -sSf https://superada.ai/install/superada-weekly-watch | sh';
 
-			const setMode = (mode) => {
+			const setMode = (mode, options = {}) => {
 				typeInputs.forEach((input) => { input.checked = input.value === mode; });
 				const isAgent = mode === 'agent';
 				agentFields.hidden = !isAgent;

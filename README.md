@@ -40,6 +40,10 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
+## Operations
+
+- Subscriber storage and monitoring: [`docs/subscribers.md`](docs/subscribers.md)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
