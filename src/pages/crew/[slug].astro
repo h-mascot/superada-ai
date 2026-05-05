@@ -10,7 +10,7 @@ const agents = [
     emoji: '👩‍🚀',
     role: 'Chief of Staff & Orchestrator',
     hardware: 'VM',
-    accent: '#C87533',
+    accent: 'var(--accent)',
     accentGlow: 'rgba(200, 117, 51, 0.3)',
     banner: '/banners/banner-ada.png',
     avatar: '/avatars/ada.jpg',
@@ -135,7 +135,7 @@ const agents = [
     emoji: '✨',
     role: `Chisom's Personal Assistant`,
     hardware: 'Spock-hosted OpenClaw profile',
-    accent: '#D4AF37',
+    accent: 'var(--accent-2)',
     accentGlow: 'rgba(212, 175, 55, 0.3)',
     banner: '/banners/banner-midas.svg',
     avatar: '/avatars/midas.svg',
@@ -160,7 +160,7 @@ const agents = [
     emoji: '📖',
     role: 'Eval Agent & Reflective Ops',
     hardware: 'Mac Studio',
-    accent: '#D4A574',
+    accent: 'var(--accent-3)',
     accentGlow: 'rgba(212, 165, 116, 0.3)',
     banner: '/banners/banner-book.png',
     avatar: '/avatars/book.png',
@@ -204,7 +204,7 @@ if (!agent) {
       description={`${agent.name}: ${agent.bio[0]}`}
     />
   </head>
-  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
     <main style="max-width:860px; margin:0 auto; padding:0 1.5rem 5rem;">
 
@@ -215,7 +215,7 @@ if (!agent) {
           alt={`${agent.name} hero banner`}
           style="width:100%; height:100%; object-fit:cover; object-position:center;"
         />
-        <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, #0D0B09 100%);"></div>
+        <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, var(--bg) 100%);"></div>
         <!-- Avatar centered at bottom -->
         <div style="position:absolute; bottom:-36px; left:50%; transform:translateX(-50%); z-index:2;">
           <img
@@ -234,7 +234,7 @@ if (!agent) {
         <p style={`color:${agent.accent}; font-family:monospace; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.75rem;`}>
           {agent.role}
         </p>
-        <div style="display:flex; justify-content:center; align-items:center; gap:1rem; font-size:0.8rem; color:#6B6358;">
+        <div style="display:flex; justify-content:center; align-items:center; gap:1rem; font-size:0.8rem; color:var(--muted);">
           <span>Born {agent.born}</span>
           <span style="color:#3A342E;">·</span>
           <span>Runs on {agent.hardware}</span>
@@ -246,45 +246,45 @@ if (!agent) {
       <!-- Bio -->
       <section style="margin-bottom:3rem;">
         {agent.bio.map((para) => (
-          <p style="color:#a39383; line-height:1.8; font-size:1rem; margin:0 0 1.1rem;">{para}</p>
+          <p style="color:var(--muted); line-height:1.8; font-size:1rem; margin:0 0 1.1rem;">{para}</p>
         ))}
         <blockquote style={`margin:1.5rem 0 0; padding:1rem 1.5rem; border-left:3px solid ${agent.accent}; background:rgba(255,255,255,0.02); border-radius:0 8px 8px 0;`}>
-          <p style="color:#8B7E6A; font-style:italic; font-size:0.95rem; line-height:1.7; margin:0;">{agent.quote}</p>
+          <p style="color:var(--muted); font-style:italic; font-size:0.95rem; line-height:1.7; margin:0;">{agent.quote}</p>
         </blockquote>
       </section>
 
       <!-- Two-col: Capabilities + Models -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:3rem;">
-        <div style="background:#151210; border:1px solid #2A241E; border-radius:8px; padding:1.25rem;">
-          <h3 style="font-family:Georgia,serif; font-size:0.9rem; font-weight:400; margin:0 0 0.75rem; color:#E8DCC8; text-transform:uppercase; letter-spacing:0.05em; font-size:0.75rem;">Capabilities</h3>
+        <div style="background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
+          <h3 style="font-family:Georgia,serif; font-size:0.9rem; font-weight:400; margin:0 0 0.75rem; color:var(--text); text-transform:uppercase; letter-spacing:0.05em; font-size:0.75rem;">Capabilities</h3>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
             {agent.capabilities.map((cap) => (
-              <li style={`font-size:0.85rem; color:#8B7E6A; padding-left:0.75rem; position:relative;`}>
+              <li style={`font-size:0.85rem; color:var(--muted); padding-left:0.75rem; position:relative;`}>
                 <span style={`position:absolute; left:0; color:${agent.accent};`}>·</span>
                 {cap}
               </li>
             ))}
           </ul>
         </div>
-        <div style="background:#151210; border:1px solid #2A241E; border-radius:8px; padding:1.25rem;">
-          <h3 style="font-family:Georgia,serif; font-size:0.75rem; font-weight:400; margin:0 0 0.75rem; color:#E8DCC8; text-transform:uppercase; letter-spacing:0.05em;">Models</h3>
+        <div style="background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
+          <h3 style="font-family:Georgia,serif; font-size:0.75rem; font-weight:400; margin:0 0 0.75rem; color:var(--text); text-transform:uppercase; letter-spacing:0.05em;">Models</h3>
           <ul style="list-style:none; padding:0; margin:0 0 1.25rem; display:flex; flex-direction:column; gap:0.4rem;">
             {agent.models.map((model) => (
-              <li style="font-size:0.85rem; color:#8B7E6A; padding-left:0.75rem; position:relative;">
+              <li style="font-size:0.85rem; color:var(--muted); padding-left:0.75rem; position:relative;">
                 <span style={`position:absolute; left:0; color:${agent.accent};`}>·</span>
                 {model}
               </li>
             ))}
           </ul>
-          <div style="padding-top:0.75rem; border-top:1px solid #2A241E;">
-            <p style="font-size:0.75rem; color:#4a4239; margin:0 0 0.25rem; text-transform:uppercase; letter-spacing:0.05em;">Fun fact</p>
-            <p style="font-size:0.8rem; color:#6B6358; margin:0; line-height:1.6;">{agent.funFact}</p>
+          <div style="padding-top:0.75rem; border-top:1px solid var(--border);">
+            <p style="font-size:0.75rem; color:var(--faint); margin:0 0 0.25rem; text-transform:uppercase; letter-spacing:0.05em;">Fun fact</p>
+            <p style="font-size:0.8rem; color:var(--muted); margin:0; line-height:1.6;">{agent.funFact}</p>
           </div>
         </div>
       </div>
 
       <!-- Star Trek Connection -->
-      <section style="margin-bottom:3rem; padding:1.5rem; background:#151210; border:1px solid #2A241E; border-radius:10px;">
+      <section style="margin-bottom:3rem; padding:1.5rem; background:var(--panel); border:1px solid var(--border); border-radius:10px;">
         <div style="display:flex; align-items:flex-start; gap:1rem;">
           <div style={`font-size:2rem; flex-shrink:0; opacity:0.8;`}>🖖</div>
           <div>
@@ -294,22 +294,22 @@ if (!agent) {
             <h3 style="font-family:Georgia,serif; font-size:1.1rem; font-weight:400; margin:0 0 0.25rem;">
               {agent.trekCharacter}
             </h3>
-            <p style="color:#6B6358; font-size:0.8rem; margin:0 0 0.75rem; font-style:italic;">{agent.trekShow}</p>
-            <p style="color:#8B7E6A; font-size:0.875rem; line-height:1.7; margin:0;">{agent.trekDetail}</p>
+            <p style="color:var(--muted); font-size:0.8rem; margin:0 0 0.75rem; font-style:italic;">{agent.trekShow}</p>
+            <p style="color:var(--muted); font-size:0.875rem; line-height:1.7; margin:0;">{agent.trekDetail}</p>
           </div>
         </div>
       </section>
 
       <!-- Back + nav -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid #2A241E;">
-        <a href="/about" style="color:#8B7E6A; font-size:0.875rem; text-decoration:none;"
-          onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#8B7E6A'">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid var(--border);">
+        <a href="/about" style="color:var(--muted); font-size:0.875rem; text-decoration:none;"
+          onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
           ← Back to the Crew
         </a>
         <div style="display:flex; gap:1.5rem;">
           {agents.filter(a => a.slug !== slug).map((a) => (
-            <a href={`/crew/${a.slug}`} style="color:#4a4239; font-size:0.8rem; text-decoration:none;"
-              onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#4a4239'">
+            <a href={`/crew/${a.slug}`} style="color:var(--faint); font-size:0.8rem; text-decoration:none;"
+              onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--faint)'">
               {a.name}
             </a>
           ))}

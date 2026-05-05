@@ -20,7 +20,7 @@ const availabilityLabel = {
 } as const;
 const availabilityColor = {
   'agent-installable': '#059669',
-  manual: '#C87533',
+  manual: 'var(--accent)',
 } as const;
 const reviewLabel = {
   'source-review': 'Source review',
@@ -37,10 +37,10 @@ const agentPrompt = skill.installCommand
   <head>
     <BaseHead title={`${skill.title} — Skill`} description={skill.description} />
   </head>
-  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
     <main style="max-width:1080px; margin:0 auto; padding:3rem 1.5rem;">
-      <a href="/skills" style="display:inline-block; color:#C87533; text-decoration:none; font-size:0.85rem; margin-bottom:1.25rem;">← Back to skills</a>
+      <a href="/skills" style="display:inline-block; color:var(--accent); text-decoration:none; font-size:0.85rem; margin-bottom:1.25rem;">← Back to skills</a>
 
       <div class="skill-layout">
         <article style="min-width:0;">
@@ -48,70 +48,70 @@ const agentPrompt = skill.installCommand
             <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${availabilityColor[skill.availability]}; background:${availabilityColor[skill.availability]}18; border:1px solid ${availabilityColor[skill.availability]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
               {availabilityLabel[skill.availability]}
             </span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">{skill.category}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">{reviewLabel[skill.reviewMode]}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:#8B7E6A; border:1px solid #2A241E; border-radius:999px; padding:0.2rem 0.5rem;">{skill.estimatedSetup}</span>
+            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{skill.category}</span>
+            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{reviewLabel[skill.reviewMode]}</span>
+            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{skill.estimatedSetup}</span>
           </div>
 
           <h1 style="font-family:Georgia,serif; font-size:3rem; font-weight:400; margin:0 0 0.6rem; line-height:1.1;">{skill.title}</h1>
           <p style="font-size:1.15rem; color:#C9BDA8; margin:0 0 1rem; line-height:1.7;">{skill.tagline}</p>
-          <p style="color:#8B7E6A; margin:0 0 1.5rem; line-height:1.8;">{skill.description}</p>
+          <p style="color:var(--muted); margin:0 0 1.5rem; line-height:1.8;">{skill.description}</p>
 
-          <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Install contract</div>
+          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
+            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Install contract</div>
             <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Source</div>
-                <div style="color:#E8DCC8;">{skill.sourceLabel}</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Source</div>
+                <div style="color:var(--text);">{skill.sourceLabel}</div>
               </div>
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Entrypoint</div>
-                <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{skill.entrypoint}</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Entrypoint</div>
+                <div style="color:var(--text); font-family:monospace; font-size:0.88rem;">{skill.entrypoint}</div>
               </div>
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Installability</div>
-                <div style="color:#E8DCC8;">{skill.availability === 'agent-installable' ? 'Ready for agent install' : 'Viewable, but manual setup only'}</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Installability</div>
+                <div style="color:var(--text);">{skill.availability === 'agent-installable' ? 'Ready for agent install' : 'Viewable, but manual setup only'}</div>
               </div>
               {skill.sourceSpec && (
                 <div>
-                  <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Source spec</div>
-                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.88rem;">{skill.sourceSpec}</div>
+                  <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Source spec</div>
+                  <div style="color:var(--text); font-family:monospace; font-size:0.88rem;">{skill.sourceSpec}</div>
                 </div>
               )}
             </div>
 
-            <p style="color:#8B7E6A; font-size:0.92rem; line-height:1.75; margin:0 0 0.9rem;">
+            <p style="color:var(--muted); font-size:0.92rem; line-height:1.75; margin:0 0 0.9rem;">
               This page is designed to be the thing you send to another agent. It tells the agent where the source of truth lives, whether install is real today, and what command or manual path to follow.
             </p>
 
-            <div style="border:1px solid #2A241E; border-radius:10px; background:#100D0A; padding:0.9rem; margin-bottom:0.9rem;">
-              <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Canonical source</div>
-              <a href={skill.sourceUrl} style="color:#C87533; text-decoration:none; word-break:break-word;">{skill.sourceUrl}</a>
+            <div style="border:1px solid var(--border); border-radius:10px; background:#100D0A; padding:0.9rem; margin-bottom:0.9rem;">
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Canonical source</div>
+              <a href={skill.sourceUrl} style="color:var(--accent); text-decoration:none; word-break:break-word;">{skill.sourceUrl}</a>
             </div>
 
             {skill.installCommand ? (
               <div style="margin-bottom:0.9rem;">
-                <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install command</div>
-                <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto;">{skill.installCommand}</code>
+                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install command</div>
+                <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto;">{skill.installCommand}</code>
               </div>
             ) : (
               <div style="border:1px solid #3A2A1E; border-radius:10px; background:#18110C; padding:0.9rem; color:#C9BDA8; line-height:1.75; margin-bottom:0.9rem;">
-                This one does not currently publish a clean <code style="font-size:0.8rem; color:#E8DCC8;">openclaw skills install</code> contract. Read the repo and follow the manual setup path instead.
+                This one does not currently publish a clean <code style="font-size:0.8rem; color:var(--text);">openclaw skills install</code> contract. Read the repo and follow the manual setup path instead.
               </div>
             )}
 
             <div>
-              <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Prompt to hand another agent</div>
-              <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.8rem 0.9rem; font-size:0.8rem; overflow:auto;">{agentPrompt}</code>
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Prompt to hand another agent</div>
+              <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; font-size:0.8rem; overflow:auto;">{agentPrompt}</code>
             </div>
           </section>
 
-          <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem; margin-bottom:1.25rem;">
+          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
             <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Install steps</h2>
             <div style="display:grid; gap:0.8rem;">
               {skill.instructions.map((step, index) => (
-                <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Step {index + 1}</div>
+                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
+                  <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Step {index + 1}</div>
                   <div style="color:#C9BDA8; line-height:1.75;">{step}</div>
                 </div>
               ))}
@@ -119,13 +119,13 @@ const agentPrompt = skill.installCommand
           </section>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.25rem;">
-            <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem;">
+            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
               <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">What it covers</h2>
               <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
                 {skill.includes.map((item) => <li>{item}</li>)}
               </ul>
             </section>
-            <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem;">
+            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
               <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Good use cases</h2>
               <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
                 {skill.useCases.map((item) => <li>{item}</li>)}
@@ -133,29 +133,29 @@ const agentPrompt = skill.installCommand
             </section>
           </div>
 
-          <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem; margin-bottom:1.25rem;">
+          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
             <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Published artifacts</h2>
             <div style="display:grid; gap:0.75rem;">
               {skill.artifacts.map((artifact) => (
-                <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
+                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
                   <div style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:0.25rem;">
-                    <div style="color:#E8DCC8;">{artifact.label}</div>
+                    <div style="color:var(--text);">{artifact.label}</div>
                   </div>
-                  <div style="color:#E8DCC8; font-family:monospace; font-size:0.8rem; margin-bottom:0.35rem; word-break:break-word;">{artifact.path}</div>
-                  <div style="color:#8B7E6A; line-height:1.7;">{artifact.description}</div>
+                  <div style="color:var(--text); font-family:monospace; font-size:0.8rem; margin-bottom:0.35rem; word-break:break-word;">{artifact.path}</div>
+                  <div style="color:var(--muted); line-height:1.7;">{artifact.description}</div>
                 </div>
               ))}
             </div>
           </section>
 
           {skill.configExamples && skill.configExamples.length > 0 && (
-            <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem; margin-bottom:1.25rem;">
+            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
               <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Current published config examples</h2>
               <div style="display:grid; gap:0.8rem;">
                 {skill.configExamples.map((example) => (
-                  <div style="border:1px solid #2A241E; border-radius:10px; padding:0.9rem; background:#100D0A;">
-                    <div style="color:#E8DCC8; margin-bottom:0.5rem;">{example.label}</div>
-                    <code style="display:block; color:#E8DCC8; background:#0D0B09; border:1px solid #2A241E; border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; white-space:pre;">{example.code}</code>
+                  <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
+                    <div style="color:var(--text); margin-bottom:0.5rem;">{example.label}</div>
+                    <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; white-space:pre;">{example.code}</code>
                   </div>
                 ))}
               </div>
@@ -163,7 +163,7 @@ const agentPrompt = skill.installCommand
           )}
 
           {skill.limitations && skill.limitations.length > 0 && (
-            <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem; margin-bottom:1.25rem;">
+            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
               <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Current limits</h2>
               <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
                 {skill.limitations.map((item) => <li>{item}</li>)}
@@ -173,32 +173,32 @@ const agentPrompt = skill.installCommand
         </article>
 
         <aside style="display:grid; gap:1rem; align-self:start;">
-          <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem;">
-            <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.65rem;">Quick facts</div>
+          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
+            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.65rem;">Quick facts</div>
             <div style="display:grid; gap:0.85rem;">
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Installability</div>
-                <div style="color:#E8DCC8;">{availabilityLabel[skill.availability]}</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Installability</div>
+                <div style="color:var(--text);">{availabilityLabel[skill.availability]}</div>
               </div>
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Review before use</div>
-                <div style="color:#E8DCC8;">{reviewLabel[skill.reviewMode]}</div>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Review before use</div>
+                <div style="color:var(--text);">{reviewLabel[skill.reviewMode]}</div>
               </div>
               <div>
-                <div style="font-size:0.75rem; color:#8B7E6A; margin-bottom:0.2rem;">Source</div>
-                <a href={skill.sourceUrl} style="color:#C87533; text-decoration:none; word-break:break-word;">Open GitHub</a>
+                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Source</div>
+                <a href={skill.sourceUrl} style="color:var(--accent); text-decoration:none; word-break:break-word;">Open GitHub</a>
               </div>
             </div>
           </section>
 
           {relatedSkills.length > 0 && (
-            <section style="border:1px solid #2A241E; border-radius:12px; background:#131008; padding:1rem;">
-              <div style="font-size:0.72rem; color:#C87533; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.65rem;">Related skills</div>
+            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.65rem;">Related skills</div>
               <div style="display:grid; gap:0.85rem;">
                 {relatedSkills.map((entry) => (
-                  <a href={`/skills/${entry.slug}/`} style="text-decoration:none; color:inherit; border-top:1px solid #2A241E; padding-top:0.8rem;">
-                    <div style="color:#E8DCC8; margin-bottom:0.25rem;">{entry.title}</div>
-                    <div style="color:#8B7E6A; line-height:1.7; font-size:0.92rem;">{entry.description}</div>
+                  <a href={`/skills/${entry.slug}/`} style="text-decoration:none; color:inherit; border-top:1px solid var(--border); padding-top:0.8rem;">
+                    <div style="color:var(--text); margin-bottom:0.25rem;">{entry.title}</div>
+                    <div style="color:var(--muted); line-height:1.7; font-size:0.92rem;">{entry.description}</div>
                   </a>
                 ))}
               </div>

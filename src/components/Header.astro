@@ -1,112 +1,32 @@
 ---
 const { pathname } = Astro.url;
+const nav = [
+	{ href: '/about', label: 'Crew' },
+	{ href: '/resources', label: 'Resources' },
+	{ href: '/blog', label: 'Ship Log' },
+	{ href: '/journey', label: 'Timeline' },
+];
 ---
 
 <header class="site-header">
-	<nav class="site-nav">
-		<a href="/" class="site-logo" aria-label="SuperAda home">
-			<img src="/superada-icon.png" alt="" class="site-logo-mark" width="28" height="28" />
-			<span>SuperAda</span>
-		</a>
+	<nav class="site-nav" aria-label="Primary navigation">
+		<a href="/" class="site-logo" aria-label="SuperAda home"><img src="/superada-icon.png" alt="" width="32" height="32" loading="eager" decoding="async" /><span>SuperAda</span></a>
 		<div class="nav-links">
-			<a href="/about" class="nav-link">Crew</a>
-			<a href="/resources" class="nav-link">Resources</a>
-			<a href="/blog" class="nav-link">Ship Log</a>
-			<a href="/journey" class="nav-link">Timeline</a>
+			{nav.map((item) => (
+				<a href={item.href} class:list={["nav-link", { "is-current": pathname === item.href || pathname.startsWith(`${item.href}/`) }]}>{item.label}</a>
+			))}
+		</div>
+		<div class="theme-toggle" role="group" aria-label="Theme switcher">
+			<span class="theme-thumb" aria-hidden="true"></span>
+			<button type="button" class="theme-segment" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
+				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"></path></svg>
+			</button>
+			<button type="button" class="theme-segment is-active" data-theme-choice="current" aria-label="Current dark theme" aria-pressed="true">
+				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.4 2.8c.3 2.9-1.5 4.6-3.1 6.1-1.4 1.3-2.6 2.5-2.6 4.6 0 3.6 2.7 6.5 6.4 6.5 3.4 0 6.1-2.6 6.1-6.2 0-2.7-1.4-4.8-3.8-6.6.1 1.8-.6 3.1-1.8 4.1.2-2.7-.4-5.2-1.2-8.5Z"></path><path d="M10.1 16.2c0-1.5.9-2.4 2.1-3.4.2 1.3.8 2.4 1.8 3.3.4-.7.6-1.5.5-2.5 1.1 1 1.8 2.1 1.8 3.4 0 1.8-1.4 3.1-3.1 3.1-1.8 0-3.1-1.5-3.1-3.9Z"></path></svg>
+			</button>
+			<button type="button" class="theme-segment" data-theme-choice="neon" aria-label="Neon theme" aria-pressed="false">
+				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"></path><path d="M19 15l.8 2.7L22 18.5l-2.2.8L19 22l-.8-2.7-2.2-.8 2.2-.8L19 15Z"></path></svg>
+			</button>
 		</div>
 	</nav>
 </header>
-
-<style>
-	.site-header {
-		border-bottom: 1px solid #2A241E;
-		padding: 1.5rem 0;
-		margin-bottom: 0;
-	}
-
-	.site-nav {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 0 1.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.site-logo {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.65rem;
-		font-family: Georgia, serif;
-		font-size: 1.125rem;
-		color: #E8DCC8;
-		text-decoration: none;
-		letter-spacing: 0.02em;
-		flex-shrink: 0;
-	}
-
-	.site-logo-mark {
-		width: 1.75rem;
-		height: 1.75rem;
-		border-radius: 0.55rem;
-		box-shadow: 0 0 0 1px rgba(200, 117, 51, 0.28), 0 10px 24px rgba(0, 0, 0, 0.28);
-	}
-
-	.nav-links {
-		display: flex;
-		gap: 2rem;
-		align-items: center;
-	}
-
-	.nav-link {
-		font-size: 0.75rem;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: #8B7E6A;
-		text-decoration: none;
-		transition: color 0.2s;
-		white-space: nowrap;
-	}
-
-	.nav-link:hover {
-		color: #C87533;
-	}
-
-	/* Mobile: tighter spacing */
-	@media (max-width: 600px) {
-		.site-nav {
-			padding: 0 1rem;
-		}
-
-		.nav-links {
-			gap: 0.75rem;
-		}
-
-		.nav-link {
-			font-size: 0.65rem;
-			letter-spacing: 0.05em;
-		}
-
-		.site-logo {
-			gap: 0.5rem;
-			font-size: 1rem;
-		}
-
-		.site-logo-mark {
-			width: 1.55rem;
-			height: 1.55rem;
-		}
-	}
-
-	/* Very small screens: even tighter */
-	@media (max-width: 380px) {
-		.nav-links {
-			gap: 0.5rem;
-		}
-
-		.nav-link {
-			font-size: 0.6rem;
-			letter-spacing: 0.02em;
-		}
-	}
-</style>

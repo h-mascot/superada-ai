@@ -53,10 +53,10 @@ const categories = Object.entries(categoryCounts)
         align-items: center;
         gap: 0.375rem;
         padding: 0.375rem 0.875rem;
-        border: 1px solid #2A241E;
+        border: 1px solid var(--border);
         border-radius: 999px;
         background: transparent;
-        color: #8B7E6A;
+        color: var(--muted);
         font-size: 0.8125rem;
         font-family: inherit;
         cursor: pointer;
@@ -64,13 +64,13 @@ const categories = Object.entries(categoryCounts)
         white-space: nowrap; flex-shrink: 0;
       }
       .filter-pill:hover {
-        border-color: #C87533;
-        color: #E8DCC8;
+        border-color: var(--accent);
+        color: var(--text);
       }
       .filter-pill[data-active="true"] {
-        background: #C87533;
-        border-color: #C87533;
-        color: #0D0B09;
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--bg);
         font-weight: 600;
       }
       .filter-pill .count {
@@ -88,12 +88,12 @@ const categories = Object.entries(categoryCounts)
       }
     </style>
   </head>
-  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
     <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
 
       <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.4rem;">Ship Log</h1>
-      <p style="color:#8B7E6A; font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
+      <p style="color:var(--muted); font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
 
       <!-- Filter controls -->
       
@@ -106,17 +106,17 @@ const categories = Object.entries(categoryCounts)
           style="
             width:100%;
             padding:0.625rem 1rem;
-            background:#131008;
-            border:1px solid #2A241E;
+            background:var(--panel);
+            border:1px solid var(--border);
             border-radius:4px;
-            color:#E8DCC8;
+            color:var(--text);
             font-size:0.9375rem;
             font-family:inherit;
             outline:none;
             box-sizing:border-box;
           "
-          onfocus="this.style.borderColor='#C87533'"
-          onblur="this.style.borderColor='#2A241E'"
+          onfocus="this.style.borderColor='var(--accent)'"
+          onblur="this.style.borderColor='var(--border)'"
         />
       </div>
 
@@ -141,20 +141,20 @@ const categories = Object.entries(categoryCounts)
               data-tags={(post.data.tags || []).join(',')}
               data-title={post.data.title.toLowerCase()}
               data-hidden="false"
-              style={`display:flex; gap:1.5rem; align-items:baseline; padding:1rem 0; border-top:1px solid #2A241E; text-decoration:none;${i === posts.length - 1 ? ' border-bottom:1px solid #2A241E;' : ''}`}
+              style={`display:flex; gap:1.5rem; align-items:baseline; padding:1rem 0; border-top:1px solid var(--border); text-decoration:none;${i === posts.length - 1 ? ' border-bottom:1px solid var(--border);' : ''}`}
             >
-              <span style="font-size:0.8125rem; color:#8B7E6A; white-space:nowrap; flex-shrink:0; min-width:5.5rem; font-variant-numeric:tabular-nums;">
+              <span style="font-size:0.8125rem; color:var(--muted); white-space:nowrap; flex-shrink:0; min-width:5.5rem; font-variant-numeric:tabular-nums;">
                 <FormattedDate date={post.data.pubDate} />
               </span>
-              <span style="color:#E8DCC8; font-size:0.9375rem; line-height:1.5; transition:color 0.15s;"
-                onmouseover="this.style.color='#C87533'" onmouseout="this.style.color='#E8DCC8'">
+              <span style="color:var(--text); font-size:0.9375rem; line-height:1.5; transition:color 0.15s;"
+                onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">
                 {post.data.title}
               </span>
             </a>
           ))}
         </div>
       ) : (
-        <p style="color:#8B7E6A; padding:2rem 0; border-top:1px solid #2A241E;">No posts yet. Check back soon.</p>
+        <p style="color:var(--muted); padding:2rem 0; border-top:1px solid var(--border);">No posts yet. Check back soon.</p>
       )}
 
     </main>
@@ -184,8 +184,8 @@ const categories = Object.entries(categoryCounts)
             (p) => (p as HTMLElement).dataset.hidden === 'false'
           ) as HTMLElement[];
           visible.forEach((el, i) => {
-            el.style.borderTop = '1px solid #2A241E';
-            el.style.borderBottom = i === visible.length - 1 ? '1px solid #2A241E' : 'none';
+            el.style.borderTop = '1px solid var(--border)';
+            el.style.borderBottom = i === visible.length - 1 ? '1px solid var(--border)' : 'none';
           });
         }
 

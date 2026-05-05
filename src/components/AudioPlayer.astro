@@ -61,8 +61,8 @@ const { audioSrc, articleText } = Astro.props;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background: #1a1510;
-    border: 1px solid #2A241E;
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.75rem 1rem;
   }
@@ -74,7 +74,7 @@ const { audioSrc, articleText } = Astro.props;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #C87533;
+    background: var(--accent);
     border: none;
     cursor: pointer;
     transition: background 0.2s;
@@ -82,13 +82,13 @@ const { audioSrc, articleText } = Astro.props;
   }
 
   .play-button:hover {
-    background: #d98a44;
+    background: var(--accent-2);
   }
 
   .btn-icon {
     width: 16px;
     height: 16px;
-    color: #0D0B09;
+    color: var(--bg);
   }
 
   .btn-icon.hidden {
@@ -104,18 +104,18 @@ const { audioSrc, articleText } = Astro.props;
   .headphones-icon {
     width: 16px;
     height: 16px;
-    color: #8B7E6A;
+    color: var(--muted);
   }
 
   .listen-text {
     font-size: 0.8125rem;
-    color: #8B7E6A;
+    color: var(--muted);
     white-space: nowrap;
   }
 
   .time-display {
     font-size: 0.8125rem;
-    color: #C87533;
+    color: var(--accent);
     font-family: 'SF Mono', 'Fira Code', monospace;
     min-width: 40px;
   }
@@ -123,7 +123,7 @@ const { audioSrc, articleText } = Astro.props;
   .divider {
     width: 1px;
     height: 16px;
-    background: #2A241E;
+    background: var(--border);
   }
 
   .speed-buttons {
@@ -134,7 +134,7 @@ const { audioSrc, articleText } = Astro.props;
 
   .speed-btn {
     font-size: 0.75rem;
-    color: #5a5248;
+    color: var(--muted);
     background: none;
     border: none;
     cursor: pointer;
@@ -144,12 +144,12 @@ const { audioSrc, articleText } = Astro.props;
   }
 
   .speed-btn:hover {
-    color: #E8DCC8;
+    color: var(--text);
   }
 
   .speed-btn.active {
-    color: #E8DCC8;
-    background: #2A241E;
+    color: var(--text);
+    background: var(--border);
   }
 
   .spacer {
@@ -158,7 +158,7 @@ const { audioSrc, articleText } = Astro.props;
 
   .tts-badge {
     font-size: 0.6875rem;
-    color: #5a5248;
+    color: var(--muted);
     font-style: italic;
     white-space: nowrap;
   }

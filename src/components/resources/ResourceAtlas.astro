@@ -1,0 +1,270 @@
+---
+import { getCollection } from 'astro:content';
+import { publishedSkills } from '../../data/skills';
+
+interface ResourceItem {
+	title: string;
+	icon: string;
+	meta: string;
+	status?: string;
+	href: string;
+	copy: string;
+	type?: string;
+}
+
+interface Props { active?: string; mode?: 'overview' | 'mascots' | 'tools' | 'workflow-packs' | 'skills' | 'crons' | 'guides' | 'benchmarks' | 'ship-notes'; }
+const { active = 'overview', mode = 'overview' } = Astro.props;
+
+const workflowEntries = (await getCollection('workflows'))
+	.filter((workflow) => !workflow.data.isTemplate)
+	.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const cronItems: ResourceItem[] = [
+	{ title: 'Urgent Email Detection', icon: 'cron', meta: 'Cron recipe', status: 'LIVE', href: '/blog/the-98-active-crons', copy: 'Event-driven email surfacing tuned for genuinely urgent mail while filtering noise and promotional junk.' },
+	{ title: 'Slack Triage', icon: 'cron', meta: 'Cron recipe', status: 'LIVE', href: '/blog/the-98-active-crons', copy: 'Checks mentions, DMs, and action items on a schedule, then surfaces only what needs action.' },
+	{ title: 'Weekly Community Publisher', icon: 'cron', meta: 'Publishing cron', status: 'LIVE', href: '/blog/why-blog-pipelines-need-a-registry-not-just-crons', copy: 'Publishes weekly roundup posts with a registry pattern instead of one-off manual publishing.' },
+	{ title: 'Heartbeat Poll', icon: 'cron', meta: 'Runtime cron', status: 'LIVE', href: '/blog/managing-68-autonomous-crons', copy: 'Open-loop checks and reminder delivery for keeping the crew alive without noisy status spam.' },
+	{ title: 'OpenClaw Weekly Claw', icon: 'cron', meta: 'Weekly roundup', status: 'LIVE', href: '/weekly-claw', copy: 'Scheduled OpenClaw roundup publishing for Enterprise Crew updates.' },
+];
+
+const guideItems: ResourceItem[] = [
+	{ title: 'Getting Started with Agents', icon: 'book', meta: 'Guide', status: 'START', href: '/blog/personal-ai-infrastructure-checklist', copy: 'Install OpenClaw, configure a skill, set up a cron, and run a real agent workflow.' },
+	{ title: 'The Three Policies That Make Agents Useful', icon: 'book', meta: 'Guide', status: 'CORE', href: '/blog/the-three-policies-that-make-agents-actually-useful', copy: 'response.md, preflight.md, and rules.md: the files that turn a chatbot into an operator.' },
+	{ title: 'Managing 68 Autonomous Crons', icon: 'book', meta: 'Guide', status: 'OPS', href: '/blog/managing-68-autonomous-crons', copy: 'Registry patterns, naming conventions, and health monitoring for scheduled agent jobs.' },
+	{ title: 'Personal AI Infrastructure Checklist', icon: 'book', meta: 'Guide', status: 'SETUP', href: '/blog/personal-ai-infrastructure-checklist', copy: 'SSH keys, credentials, agent bridges, memory files, and safety rails before serious delegation.' },
+];
+
+const mascotItems: ResourceItem[] = [
+	{ title: 'Spock', icon: 'pet', meta: 'Research pet', status: 'LIVE', href: '/resources/agent-mascots#spock', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ title: 'Picard', icon: 'pet', meta: 'Command pet', status: 'LIVE', href: '/resources/agent-mascots#picard', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ title: 'Zora', icon: 'pet', meta: 'Memory pet', status: 'LIVE', href: '/resources/agent-mascots#zora', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+];
+
+const workflowItems: ResourceItem[] = workflowEntries.map((workflow) => ({
+	title: workflow.data.title,
+	icon: 'workflow',
+	meta: `${workflow.data.category} · ${workflow.data.estimatedSetup}`,
+	status: workflow.data.status,
+	href: `/workflows/${workflow.id}/`,
+	copy: workflow.data.summary,
+}));
+
+const skillItems: ResourceItem[] = publishedSkills.map((skill) => ({
+	title: skill.title,
+	icon: 'spark',
+	meta: `${skill.category} · ${skill.estimatedSetup}`,
+	status: skill.availability === 'agent-installable' ? 'INSTALLABLE' : 'MANUAL',
+	href: `/skills/${skill.slug}/`,
+	copy: skill.description,
+}));
+
+const benchmarkItems: ResourceItem[] = [
+	{ title: 'Operator Index', icon: 'bars', meta: 'Benchmark', status: 'UPDATED', href: '/benchmarks/operator-index', copy: 'Operator-grade ranking across model usefulness, routing, reliability, and cost.' },
+	{ title: 'Model Benchmarks', icon: 'bars', meta: 'Benchmark set', status: 'UPDATED', href: '/benchmarks', copy: 'Model drill-down pages and benchmark graphics from Enterprise Crew evaluations.' },
+	{ title: 'Benchmarks That Actually Matter', icon: 'note', meta: 'Ship note', status: 'READ', href: '/blog/benchmarks-that-actually-matter', copy: 'Why real operator benchmarks beat demo sparkle and synthetic leaderboard theatre.' },
+];
+
+const shipNoteItems: ResourceItem[] = [
+	{ title: 'Ship Log', icon: 'note', meta: 'Notes', status: 'UPDATED', href: '/blog', copy: 'Mission updates, decisions, lessons, and important notes from the bridge.' },
+	{ title: 'OpenClaw Changelog', icon: 'note', meta: 'Changelog', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Implementation-level changes, releases, and crew infrastructure updates.' },
+	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: '/weekly-claw', copy: 'Weekly dispatches and OpenClaw roundups from the Enterprise Crew.' },
+];
+
+const toolItems: ResourceItem[] = [
+	{ title: 'Skills', icon: 'spark', meta: `${publishedSkills.length} skills`, status: 'UPDATED', href: '/resources/skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest setup labels.' },
+	{ title: 'Crons', icon: 'cron', meta: `${cronItems.length} recipes`, status: 'LIVE', href: '/resources/crons', copy: 'Scheduled operations, monitoring jobs, heartbeat checks, and publishing automation.' },
+	{ title: 'Workflow Packs', icon: 'workflow', meta: '12 packs', status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
+	{ title: 'Benchmarks', icon: 'bars', meta: '8 items', status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites, model pages, and operator-grade benchmark reports.' },
+	{ title: 'Changelog', icon: 'note', meta: 'Updates', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Recent releases and implementation notes from the crew.' },
+	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: '/weekly-claw', copy: 'Weekly publishing surface for OpenClaw and Enterprise Crew progress.' },
+];
+
+const nav = [
+	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
+	{ icon: 'pet', label: 'Agent Mascots (Pets)', href: '/resources/agent-mascots', count: '3', key: 'mascots' },
+	{ icon: 'grid', label: 'Tools', href: '/resources/tools', count: '28', key: 'tools' },
+	{ icon: 'stack', label: 'Workflow Packs', href: '/resources/workflow-packs', count: '12', key: 'workflow-packs' },
+	{ icon: 'spark', label: 'Skills', href: '/resources/skills', count: String(publishedSkills.length), key: 'skills' },
+	{ icon: 'cron', label: 'Crons', href: '/resources/crons', count: String(cronItems.length), key: 'crons' },
+	{ icon: 'book', label: 'Guides', href: '/resources/guides', count: String(guideItems.length), key: 'guides' },
+	{ icon: 'bars', label: 'Benchmarks', href: '/resources/benchmarks', count: '8', key: 'benchmarks' },
+	{ icon: 'note', label: 'Ship Notes', href: '/resources/ship-notes', count: '9', key: 'ship-notes' },
+	{ icon: 'claw', label: 'Weekly Claw', href: '/weekly-claw', count: '', key: 'weekly-claw' },
+	{ icon: 'note', label: 'Changelog', href: '/openclaw-changelog', count: '', key: 'changelog' },
+];
+
+const stats = [
+	{ label: 'Tools', value: '28', icon: 'grid', copy: 'Templates, prompts, models, utilities, skills, and operating aids.', href: '/resources/tools', cta: 'Browse tools' },
+	{ label: 'Workflow packs', value: '12', icon: 'workflow', copy: 'Reusable bundles for operator work, publishing, research, and security.', href: '/resources/workflow-packs', cta: 'Open packs' },
+	{ label: 'Operational content', value: '46', icon: 'star', copy: 'Skills, crons, guides, ship notes, benchmarks, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
+];
+
+const overviewCards: ResourceItem[] = [
+	{ title: 'Tools', icon: 'grid', meta: '28 items', status: 'UPDATED', href: '/resources/tools', copy: 'Templates, prompts, models, utilities, skills, and tooling for faster builds.' },
+	{ title: 'Workflow Packs', icon: 'workflow', meta: '12 items', status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
+	{ title: 'Agent Mascots (Pets)', icon: 'pet', meta: '3 pets', status: 'LIVE', href: '/resources/agent-mascots', copy: 'Spock, Picard, and Zora mascot concepts for crew surfaces.' },
+	{ title: 'Skills', icon: 'spark', meta: `${publishedSkills.length} skills`, status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
+	{ title: 'Crons', icon: 'cron', meta: `${cronItems.length} recipes`, status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
+	{ title: 'Guides', icon: 'book', meta: `${guideItems.length} guides`, status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
+	{ title: 'Benchmarks', icon: 'bars', meta: '8 items', status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tooling, and cost.' },
+	{ title: 'Ship Notes', icon: 'note', meta: '9 items', status: 'UPDATED', href: '/resources/ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
+];
+
+const tabs = ['All', 'Tools', 'Workflow Packs', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Ship Notes'];
+
+const pageCopy: Record<string, { kicker: string; title: string; copy: string; items: ResourceItem[] }> = {
+	tools: { kicker: 'Tools', title: 'Tools', copy: 'Templates, prompts, models, utilities, skills, and operating aids used by the Enterprise Crew.', items: toolItems },
+	'workflow-packs': { kicker: 'Workflow Packs', title: 'Workflow packs', copy: 'Reusable bundles and workflow patterns for operations, publishing, research, and security.', items: workflowItems },
+	skills: { kicker: 'Skills', title: 'Skills', copy: 'Public Enterprise Crew skills with source links, install contracts, and honest installability labels.', items: skillItems },
+	crons: { kicker: 'Crons', title: 'Crons', copy: 'Scheduled agent operations from the old resource library, cleaned up into a real resource page.', items: cronItems },
+	guides: { kicker: 'Guides', title: 'Guides', copy: 'Practical setup and operating guides for building useful agent systems.', items: guideItems },
+	benchmarks: { kicker: 'Benchmarks', title: 'Benchmarks', copy: 'Benchmark reports, model pages, and operator-grade evaluation notes.', items: benchmarkItems },
+	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, changelogs, weekly roundups, and decisions from the bridge.', items: shipNoteItems },
+};
+
+function icon(name: string) {
+	return `<span class="atlas-icon atlas-icon-${name}" aria-hidden="true"><i></i></span>`;
+}
+
+function pet(primary: string, panel: string) {
+	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 32 22" shape-rendering="crispEdges"><rect width="32" height="22" fill="${panel}"/><rect x="10" y="12" width="12" height="5" fill="${primary}"/><rect x="20" y="13" width="4" height="3" fill="${primary}"/><rect x="13" y="7" width="7" height="6" fill="${primary}"/><rect x="12" y="5" width="2" height="3" fill="${primary}"/><rect x="19" y="5" width="2" height="3" fill="${primary}"/><rect x="14" y="17" width="2" height="4" fill="${primary}"/><rect x="19" y="17" width="2" height="4" fill="${primary}"/><rect x="16" y="10" width="1" height="1" fill="#17130f"/><rect x="19" y="10" width="1" height="1" fill="#17130f"/><rect x="16" y="13" width="5" height="1" fill="#f3e5cd"/></svg>`;
+	return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+const mascotVisuals = [
+	{ id: 'spock', name: 'Spock', role: 'Research pet', kind: 'Vulcan cat', primary: '#8fb5ff', panel: '#1a263d', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ id: 'picard', name: 'Picard', role: 'Command pet', kind: 'Captain hound', primary: '#e1a15a', panel: '#2b1d13', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ id: 'zora', name: 'Zora', role: 'Memory pet', kind: 'Archive fox', primary: '#c28bff', panel: '#21162f', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+];
+
+const category = pageCopy[mode];
+---
+
+<main class="atlas-shell">
+	<div class="atlas-layout">
+		<aside class="resource-sidebar" aria-label="Resources navigation">
+			<a class="sidebar-logo" href="/">SuperAda</a>
+			<div class="sidebar-label">Resources</div>
+			<nav class="resource-nav">
+				{nav.map((item) => (
+					<a href={item.href} class:list={[{ 'is-active': active === item.key }]}>
+						<span class="nav-main"><Fragment set:html={icon(item.icon)} />{item.label}</span>
+						<strong>{item.count}</strong>
+					</a>
+				))}
+			</nav>
+
+			<div class="submit-card">
+				<div class="submit-icon">+</div>
+				<h2>Suggest a resource</h2>
+				<p>Share something valuable with the crew.</p>
+				<a href="mailto:hello@superada.ai">Submit resource &gt;</a>
+			</div>
+		</aside>
+
+		<section class="atlas-main">
+			{mode === 'overview' && (
+				<>
+					<section class="atlas-hero" aria-labelledby="resource-atlas-title">
+						<div>
+							<div class="breadcrumb">Resources / Discovery</div>
+							<h1 id="resource-atlas-title">Resource Atlas</h1>
+							<p>Everything the Enterprise Crew has built, tested, and learned. Explore tools, workflow packs, skills, crons, guides, mascots, benchmarks, and ship notes curated for building better AI systems.</p>
+						</div>
+					</section>
+
+					<section class="stat-strip" aria-label="Resource highlights">
+						{stats.map((stat) => (
+							<article class="stat-card">
+								<div class="stat-card-head"><div class="stat-label">{stat.label}</div><Fragment set:html={icon(stat.icon)} /></div>
+								<strong>{stat.value}</strong>
+								<p>{stat.copy}</p>
+								<a href={stat.href}>{stat.cta} -&gt;</a>
+							</article>
+						))}
+					</section>
+
+					<section class="discovery-panel" aria-label="Resource discovery">
+						<div class="search-row">
+							<label class="search-box">
+								<span>⌕</span>
+								<input data-resource-search type="search" placeholder="Search tools, workflow packs, skills, crons, guides, mascots..." />
+							</label>
+							<select aria-label="Sort resources"><option>Sort: Relevance</option><option>Sort: Newest</option><option>Sort: Most used</option></select>
+							<button type="button" class="filter-button">Filters</button>
+						</div>
+
+						<div class="tab-row" aria-label="Resource categories">
+							{tabs.map((tab, index) => <a href="#resource-cards" class:list={[{ 'is-active': index === 0 }]}>{tab}</a>)}
+						</div>
+
+						<div class="resource-card-grid" id="resource-cards" data-resource-grid>
+							{overviewCards.map((card) => (
+								<a class="resource-card" href={card.href} data-title={card.title.toLowerCase()} data-copy={card.copy.toLowerCase()}>
+									<Fragment set:html={icon(card.icon)} />
+									<h2>{card.title}</h2>
+									<p>{card.copy}</p>
+									<div class="card-meta"><span>{card.meta}</span><strong>{card.status}</strong></div>
+								</a>
+							))}
+						</div>
+					</section>
+				</>
+			)}
+
+			{mode === 'mascots' && (
+				<section class="mascot-roster is-standalone" id="mascot-roster">
+					<div class="mascot-heading">
+						<div>
+							<div class="eyebrow">Agent Mascots (Pets)</div>
+							<h1>Enterprise Crew mascot roster</h1>
+						</div>
+						<p>Only the three active mascot concepts for now: Spock, Picard, and Zora.</p>
+					</div>
+					<div class="mascot-grid">
+						{mascotVisuals.map((mascot) => (
+							<article class="mascot-card" id={mascot.id}>
+								<div class="preview-frame" style={`background:${mascot.panel};`}><img src={pet(mascot.primary, mascot.panel)} alt={`${mascot.name} ${mascot.kind} mascot preview`} loading="lazy" /></div>
+								<div class="meta-line">{mascot.role}</div>
+								<h2>{mascot.name}</h2>
+								<p>{mascot.copy}</p>
+							</article>
+						))}
+					</div>
+				</section>
+			)}
+
+			{category && mode !== 'overview' && mode !== 'mascots' && (
+				<section class="resource-page">
+					<div class="resource-page-head">
+						<div class="eyebrow">{category.kicker}</div>
+						<h1>{category.title}</h1>
+						<p>{category.copy}</p>
+					</div>
+					<div class="resource-card-grid resource-list-grid" data-resource-grid>
+						{category.items.map((item) => (
+							<a class="resource-card resource-list-card" href={item.href} data-title={item.title.toLowerCase()} data-copy={item.copy.toLowerCase()}>
+								<Fragment set:html={icon(item.icon)} />
+								<h2>{item.title}</h2>
+								<p>{item.copy}</p>
+								<div class="card-meta"><span>{item.meta}</span>{item.status && <strong>{item.status}</strong>}</div>
+							</a>
+						))}
+					</div>
+				</section>
+			)}
+		</section>
+	</div>
+</main>
+
+<script is:inline>
+	const input = document.querySelector('[data-resource-search]');
+	const cards = Array.from(document.querySelectorAll('[data-resource-grid] .resource-card'));
+	input?.addEventListener('input', () => {
+		const q = input.value.trim().toLowerCase();
+		cards.forEach((card) => {
+			const hit = !q || card.dataset.title?.includes(q) || card.dataset.copy?.includes(q);
+			card.toggleAttribute('hidden', !hit);
+		});
+	});
+</script>

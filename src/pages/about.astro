@@ -10,7 +10,7 @@ const agents = [
     emoji: '👩‍🚀',
     role: 'Chief of Staff & Orchestrator',
     hardware: 'VM',
-    accent: '#C87533',
+    accent: 'var(--accent)',
     accentGlow: 'rgba(200, 117, 51, 0.3)',
     banner: '/banners/banner-ada.png',
     avatar: '/avatars/ada.jpg',
@@ -85,7 +85,7 @@ const agents = [
     emoji: '✨',
     role: `Chisom's Personal Assistant`,
     hardware: 'Spock-hosted OpenClaw profile',
-    accent: '#D4AF37',
+    accent: 'var(--accent-2)',
     accentGlow: 'rgba(212, 175, 55, 0.3)',
     banner: '/banners/banner-midas.svg',
     avatar: '/avatars/midas.svg',
@@ -100,7 +100,7 @@ const agents = [
     emoji: '📖',
     role: 'Eval Agent & Reflective Ops',
     hardware: 'Mac Studio',
-    accent: '#D4A574',
+    accent: 'var(--accent-3)',
     accentGlow: 'rgba(212, 165, 116, 0.3)',
     banner: '/banners/banner-book.png',
     avatar: '/avatars/book.png',
@@ -258,8 +258,8 @@ const trekConnections = [
         testing: '#fbbf24',
         scheduling: '#60a5fa',
         automating: '#fbbf24',
-        supporting: '#D4AF37',
-        reflecting: '#D4A574',
+        supporting: 'var(--accent-2)',
+        reflecting: 'var(--accent-3)',
       };
 
       const container = document.getElementById('activity-ticker');
@@ -318,8 +318,8 @@ const trekConnections = [
     <style is:global>
       /* ===== Crew Page ===== */
       body {
-        background: #0D0B09;
-        color: #E8DCC8;
+        background: var(--bg);
+        color: var(--text);
         min-height: 100vh;
       }
 
@@ -344,7 +344,7 @@ const trekConnections = [
       }
 
       .crew-subtitle {
-        color: #8B7E6A;
+        color: var(--muted);
         font-size: 1.05rem;
         line-height: 1.7;
         max-width: 600px;
@@ -352,7 +352,7 @@ const trekConnections = [
       }
 
       .crew-subtitle a {
-        color: #C87533;
+        color: var(--accent);
         text-decoration: none;
       }
 
@@ -369,8 +369,8 @@ const trekConnections = [
       }
 
       .agent-card {
-        background: #151210;
-        border: 1px solid #2A241E;
+        background: var(--panel);
+        border: 1px solid var(--border);
         border-radius: 12px;
         overflow: hidden;
         transition: border-color 0.3s, box-shadow 0.3s;
@@ -402,7 +402,7 @@ const trekConnections = [
         left: 0;
         right: 0;
         height: 80px;
-        background: linear-gradient(transparent, #151210);
+        background: linear-gradient(transparent, var(--panel));
       }
 
       .agent-avatar-wrap {
@@ -452,7 +452,7 @@ const trekConnections = [
       }
 
       .agent-bio {
-        color: #a39383;
+        color: var(--muted);
         font-size: 0.95rem;
         line-height: 1.75;
         margin: 0 0 1rem;
@@ -460,7 +460,7 @@ const trekConnections = [
       }
 
       .agent-quote {
-        color: #8B7E6A;
+        color: var(--muted);
         font-style: italic;
         font-size: 0.9rem;
         line-height: 1.6;
@@ -478,12 +478,12 @@ const trekConnections = [
         align-items: center;
         gap: 0.75rem;
         font-size: 0.8rem;
-        color: #6B6358;
+        color: var(--muted);
         margin-bottom: 1rem;
       }
 
       .stat-label {
-        color: #4a4239;
+        color: var(--faint);
         text-transform: uppercase;
         font-size: 0.7rem;
         letter-spacing: 0.05em;
@@ -512,7 +512,7 @@ const trekConnections = [
       .trek-section {
         margin-bottom: 4rem;
         padding-top: 2rem;
-        border-top: 1px solid #2A241E;
+        border-top: 1px solid var(--border);
       }
 
       .trek-section h2 {
@@ -524,7 +524,7 @@ const trekConnections = [
       }
 
       .trek-intro {
-        color: #8B7E6A;
+        color: var(--muted);
         text-align: center;
         max-width: 600px;
         margin: 0 auto 2rem;
@@ -538,8 +538,8 @@ const trekConnections = [
       }
 
       .trek-item {
-        background: #151210;
-        border: 1px solid #2A241E;
+        background: var(--panel);
+        border: 1px solid var(--border);
         border-radius: 8px;
         padding: 1.25rem;
       }
@@ -553,7 +553,7 @@ const trekConnections = [
 
       .trek-role {
         display: block;
-        color: #C87533;
+        color: var(--accent);
         font-size: 0.75rem;
         font-family: monospace;
         text-transform: uppercase;
@@ -562,7 +562,7 @@ const trekConnections = [
       }
 
       .trek-detail {
-        color: #8B7E6A;
+        color: var(--muted);
         font-size: 0.85rem;
         line-height: 1.6;
         margin: 0;
@@ -572,7 +572,7 @@ const trekConnections = [
       .ticker-section {
         margin-bottom: 4rem;
         padding-top: 2rem;
-        border-top: 1px solid #2A241E;
+        border-top: 1px solid var(--border);
       }
 
       .ticker-section h2 {
@@ -584,7 +584,7 @@ const trekConnections = [
       }
 
       .ticker-subtitle {
-        color: #4a4239;
+        color: var(--faint);
         font-size: 0.8rem;
         text-align: center;
         text-transform: uppercase;
@@ -597,9 +597,9 @@ const trekConnections = [
         flex-direction: column;
         gap: 0;
         overflow: hidden;
-        border: 1px solid #2A241E;
+        border: 1px solid var(--border);
         border-radius: 8px;
-        background: #0f0d0b;
+        background: var(--panel);
       }
 
       .ticker-item {
@@ -607,7 +607,7 @@ const trekConnections = [
         align-items: center;
         gap: 0.75rem;
         padding: 0.85rem 1.25rem;
-        border-bottom: 1px solid #1a1714;
+        border-bottom: 1px solid var(--border);
         font-size: 0.85rem;
         transition: opacity 0.5s, transform 0.5s;
       }
@@ -632,14 +632,14 @@ const trekConnections = [
       }
 
       .ticker-agent {
-        color: #E8DCC8;
+        color: var(--text);
         font-weight: 500;
         min-width: 55px;
         flex-shrink: 0;
       }
 
       .ticker-action {
-        color: #8B7E6A;
+        color: var(--muted);
         flex: 1;
         min-width: 0;
         overflow: hidden;
@@ -658,7 +658,7 @@ const trekConnections = [
       }
 
       .ticker-time {
-        color: #4a4239;
+        color: var(--faint);
         font-size: 0.75rem;
         flex-shrink: 0;
         min-width: 50px;
@@ -669,7 +669,7 @@ const trekConnections = [
       .info-section {
         margin-bottom: 2.5rem;
         padding-top: 2rem;
-        border-top: 1px solid #2A241E;
+        border-top: 1px solid var(--border);
       }
 
       .info-section h2 {
@@ -680,13 +680,13 @@ const trekConnections = [
       }
 
       .info-section p {
-        color: #8B7E6A;
+        color: var(--muted);
         line-height: 1.75;
         margin: 0 0 0.75rem;
       }
 
       .info-section a {
-        color: #C87533;
+        color: var(--accent);
         text-decoration: none;
       }
 

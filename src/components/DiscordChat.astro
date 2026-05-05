@@ -61,18 +61,18 @@ function getBgColor(name: string) {
 
 <style>
   .discord-wrap {
-    background: #111014;
-    border: 1px solid #2A241E;
+    background: var(--panel);
+    border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
     font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 15px;
-    color: #dcddde;
+    color: var(--text-soft);
   }
 
   .channel-header {
-    background: #0f0e12;
-    border-bottom: 1px solid #1e1b22;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
     padding: 12px 20px;
     display: flex;
     align-items: center;
@@ -80,7 +80,7 @@ function getBgColor(name: string) {
   }
 
   .hash {
-    color: #4e505b;
+    color: var(--muted);
     font-size: 18px;
     font-weight: 700;
     line-height: 1;
@@ -88,17 +88,17 @@ function getBgColor(name: string) {
 
   .channel-name {
     font-weight: 700;
-    color: #f2f3f5;
+    color: var(--text);
     font-size: 15px;
   }
 
   .divider {
-    color: #4e505b;
+    color: var(--muted);
     font-size: 13px;
   }
 
   .channel-desc {
-    color: #6d6f78;
+    color: var(--muted);
     font-size: 13px;
   }
 
@@ -119,7 +119,7 @@ function getBgColor(name: string) {
   }
 
   .message:hover {
-    background: #1a1820;
+    background: var(--panel);
   }
 
   .avatar {
@@ -150,7 +150,7 @@ function getBgColor(name: string) {
 
   .author {
     font-weight: 600;
-    color: #f2f3f5;
+    color: var(--text);
     font-size: 15px;
   }
 
@@ -166,12 +166,12 @@ function getBgColor(name: string) {
   }
 
   .time {
-    color: #4e505b;
+    color: var(--muted);
     font-size: 11px;
   }
 
   .message-content {
-    color: #c8ccd2;
+    color: var(--text-soft);
     line-height: 1.5;
     white-space: pre-wrap;
     word-break: break-word;
@@ -179,17 +179,17 @@ function getBgColor(name: string) {
   }
 
   .message-content.italic {
-    color: #4e505b;
+    color: var(--muted);
     font-style: italic;
   }
 
   .message-content :global(strong) {
-    color: #e3e5e8;
+    color: var(--text);
     font-weight: 600;
   }
 
   .message-content :global(code) {
-    background: #1e1c24;
+    background: var(--panel-soft);
     border-radius: 3px;
     padding: 1px 5px;
     font-family: 'Consolas', 'Courier New', monospace;

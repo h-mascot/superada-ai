@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -9,10 +11,40 @@ const { title, description = 'SuperAda — AI executive assistant and Enterprise
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
+<script is:inline>
+	(() => {
+		const key = 'superada-theme';
+		const aliases = { warm: 'light', bronze: 'current', navy: 'neon' };
+		const themes = new Set(['light', 'current', 'neon']);
+		const normalize = (theme) => aliases[theme] || theme || 'current';
+		const apply = (theme) => {
+			const next = themes.has(normalize(theme)) ? normalize(theme) : 'current';
+			document.documentElement.dataset.theme = next;
+			document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+				const active = button.dataset.themeChoice === next;
+				button.classList.toggle('is-active', active);
+				button.setAttribute('aria-pressed', active ? 'true' : 'false');
+			});
+		};
+		try { apply(localStorage.getItem(key) || 'current'); } catch { apply('current'); }
+		window.addEventListener('DOMContentLoaded', () => {
+			let current = 'current';
+			try { current = localStorage.getItem(key) || 'current'; } catch {}
+			document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+				button.addEventListener('click', () => {
+					const theme = button.dataset.themeChoice || 'current';
+					try { localStorage.setItem(key, theme); } catch {}
+					apply(theme);
+				});
+			});
+			apply(current);
+		});
+	})();
+</script>
+
 <!-- Umami Analytics -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="1e600e31-9df5-4afc-bee6-0f1951202b94"></script>
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -20,23 +52,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
-
-<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.site)} />
-
-<!-- Twitter -->
 <meta property="twitter:card" content="summary" />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />

@@ -16,14 +16,14 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
     <BaseHead title={title} description={description} />
     <style is:global>
       .prose {
-        color: #c9bda8;
+        color: var(--text-soft);
         line-height: 1.8;
         font-size: 1rem;
       }
       .prose h1 {
         font-family: Georgia, 'Times New Roman', serif;
         font-weight: 400;
-        color: #E8DCC8;
+        color: var(--text);
         font-size: 1.75rem;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
@@ -32,7 +32,7 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       .prose h2 {
         font-family: Georgia, 'Times New Roman', serif;
         font-weight: 400;
-        color: #E8DCC8;
+        color: var(--text);
         font-size: 1.5rem;
         margin-top: 2.5rem;
         margin-bottom: 0.75rem;
@@ -41,7 +41,7 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       .prose h3 {
         font-family: Georgia, 'Times New Roman', serif;
         font-weight: 400;
-        color: #E8DCC8;
+        color: var(--text);
         font-size: 1.25rem;
         margin-top: 2rem;
         margin-bottom: 0.5rem;
@@ -50,7 +50,7 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       .prose h4 {
         font-family: Georgia, 'Times New Roman', serif;
         font-weight: 400;
-        color: #E8DCC8;
+        color: var(--text);
         font-size: 1.125rem;
         margin-top: 1.5rem;
         margin-bottom: 0.5rem;
@@ -59,21 +59,21 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       .prose p {
         margin-bottom: 1.25rem;
       }
-      .prose a { color: #C87533; }
+      .prose a { color: var(--accent); }
       .prose a:hover { text-decoration: underline; }
-      .prose strong { color: #E8DCC8; font-weight: 600; }
+      .prose strong { color: var(--text); font-weight: 600; }
       .prose em { font-style: italic; }
       .prose code {
-        background: #1e1812;
-        border: 1px solid #2A241E;
+        background: var(--panel-soft);
+        border: 1px solid var(--border);
         border-radius: 3px;
         padding: 0.1em 0.4em;
         font-size: 0.875em;
-        color: #d4af7a;
+        color: var(--accent-3);
       }
       .prose pre {
-        background: #1e1812;
-        border: 1px solid #2A241E;
+        background: var(--panel-soft);
+        border: 1px solid var(--border);
         border-radius: 6px;
         padding: 1.25rem;
         overflow-x: auto;
@@ -83,13 +83,13 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
         background: none;
         border: none;
         padding: 0;
-        color: #c9bda8;
+        color: var(--text-soft);
       }
       .prose blockquote {
-        border-left: 3px solid #C87533;
+        border-left: 3px solid var(--accent);
         margin-left: 0;
         padding-left: 1.25rem;
-        color: #8B7E6A;
+        color: var(--muted);
         font-style: italic;
         margin-bottom: 1.25rem;
       }
@@ -105,27 +105,27 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       }
       .prose li {
         margin-bottom: 0.4rem;
-        color: #c9bda8;
+        color: var(--text-soft);
       }
       .prose hr {
         border: none;
-        border-top: 1px solid #2A241E;
+        border-top: 1px solid var(--border);
         margin: 2rem 0;
       }
       .prose img {
         border-radius: 6px;
-        border: 1px solid #2A241E;
+        border: 1px solid var(--border);
         max-width: 100%;
       }
     </style>
   </head>
-  <body style="background:#0D0B09; color:#E8DCC8; min-height:100vh;">
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
     <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
       <article>
 
         <!-- Date & meta -->
-        <div style="font-size:0.8125rem; color:#8B7E6A; margin-bottom:1.5rem; font-variant-numeric:tabular-nums;">
+        <div style="font-size:0.8125rem; color:var(--muted); margin-bottom:1.5rem; font-variant-numeric:tabular-nums;">
           <FormattedDate date={pubDate} />
           {updatedDate && (
             <span style="margin-left:0.75rem;">
@@ -135,12 +135,12 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
         </div>
 
         <!-- Title -->
-        <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.75rem; line-height:1.25; color:#E8DCC8;">
+        <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.75rem; line-height:1.25; color:var(--text);">
           {title}
         </h1>
 
         {description && (
-          <p style="font-size:1.0625rem; color:#8B7E6A; margin:0 0 2.5rem; line-height:1.6;">
+          <p style="font-size:1.0625rem; color:var(--muted); margin:0 0 2.5rem; line-height:1.6;">
             {description}
           </p>
         )}
@@ -148,14 +148,14 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
         <!-- Hero image -->
         {heroImage && (
           <div style="margin-bottom:2.5rem;">
-            <img src={heroImage.src} alt="" style="width:100%; border-radius:6px; border:1px solid #2A241E;" />
+            <img src={heroImage.src} alt="" style="width:100%; border-radius:6px; border:1px solid var(--border);" />
           </div>
         )}
 
         <!-- Audio player -->
         <AudioPlayer audioSrc={audio} />
 
-        <hr style="border:none; border-top:1px solid #2A241E; margin-bottom:2.5rem;" />
+        <hr style="border:none; border-top:1px solid var(--border); margin-bottom:2.5rem;" />
 
         <!-- Content -->
         <div class="prose">
@@ -165,8 +165,8 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
       </article>
 
       <!-- Back link -->
-      <div style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid #2A241E;">
-        <a href="/blog" style="color:#C87533; font-size:0.875rem; text-decoration:none;"
+      <div style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border);">
+        <a href="/blog" style="color:var(--accent); font-size:0.875rem; text-decoration:none;"
           onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
           &larr; Back to Ship Log
         </a>
