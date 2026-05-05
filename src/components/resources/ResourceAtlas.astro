@@ -35,16 +35,18 @@ const guideItems: ResourceItem[] = [
 ];
 
 const mascotVisuals = [
-	{ id: 'spock', name: 'Spock', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ id: 'picard', name: 'Picard', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+	{ id: 'spock', name: 'Spock', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', available: true, copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ id: 'picard', name: 'Picard', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', available: true, copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', available: true, copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+	{ id: 'burnham', name: 'Burnham', kind: 'Science officer', icon: '/pets/burnham/pet-image.jpg', zip: '', install: '', available: false, copy: 'Command-science mascot for decisive action, discovery, and brave crew calls. Still cooking.' },
+	{ id: 'tilly', name: 'Tilly', kind: 'Cadet engineer', icon: '/pets/tilly/pet-image.jpg', zip: '', install: '', available: false, copy: 'Bright engineering mascot for experiments, momentum, and practical optimism. Still cooking.' },
 ];
 
 const mascotItems: ResourceItem[] = mascotVisuals.map((mascot) => ({
 	title: mascot.name,
 	icon: 'pet',
 	meta: 'Codex pet',
-	status: 'LIVE',
+	status: mascot.available ? 'LIVE' : 'COOKING',
 	href: `/resources/agent-mascots#${mascot.id}`,
 	copy: mascot.copy,
 }));
@@ -127,7 +129,7 @@ const stats = [
 const overviewCards: ResourceItem[] = [
 	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
-	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'LIVE', href: '/resources/agent-mascots', copy: 'Spock, Picard, and Zora mascot concepts for crew surfaces.' },
+	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'UPDATED', href: '/resources/agent-mascots', copy: 'Spock, Picard, Zora, Burnham, and Tilly mascot concepts for crew surfaces.' },
 	{ title: resourceSections.skills.label, icon: 'spark', meta: resourceMeta('skills'), status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
 	{ title: resourceSections.crons.label, icon: 'cron', meta: resourceMeta('crons'), status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
 	{ title: resourceSections.guides.label, icon: 'book', meta: resourceMeta('guides'), status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
@@ -233,14 +235,23 @@ const category = pageCopy[mode];
 					</div>
 					<div class="mascot-grid">
 						{mascotVisuals.map((mascot) => (
-							<article class="mascot-card" id={mascot.id}>
+							<article class:list={["mascot-card", { "is-pending": !mascot.available }]} id={mascot.id}>
 								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} Codex pet`} loading="lazy" /></div>
-								<h2>{mascot.name}</h2>
+								<div class="mascot-title-row"><h2>{mascot.name}</h2>{!mascot.available && <span>Cooking</span>}</div>
 								<p>{mascot.copy}</p>
 								<div class="pet-install-card">
 									<div class="pet-path">~/.codex/pets/{mascot.id}/</div>
-									<button type="button" class="pet-command" data-copy-command={mascot.install} aria-label={`Copy ${mascot.name} install command`}><span>$</span> {mascot.install}</button>
-									<a class="pet-download" href={mascot.zip} download>Download pet zip</a>
+									{mascot.available ? (
+										<>
+											<button type="button" class="pet-command" data-copy-command={mascot.install} aria-label={`Copy ${mascot.name} install command`}><span>$</span> {mascot.install}</button>
+											<a class="pet-download" href={mascot.zip} download>Download pet zip</a>
+										</>
+									) : (
+										<>
+											<button type="button" class="pet-command is-disabled" disabled aria-label={`${mascot.name} install unavailable`}><span>$</span> Install pending</button>
+											<span class="pet-download is-disabled" aria-disabled="true">Download pending</span>
+										</>
+									)}
 								</div>
 							</article>
 						))}
