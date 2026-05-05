@@ -1,0 +1,14 @@
+{
+  "id": "spock",
+  "displayName": "Spock",
+  "description": "A tiny blue Vulcan research cat for Codex: calm, logical, and evidence-first.",
+  "spritesheetPath": "spritesheet.webp",
+  "author": "SuperAda",
+  "tags": [
+    "superada",
+    "enterprise-crew",
+    "codex-pet"
+  ],
+  "source": "superada.ai",
+  "sourceUrl": "https://superada.ai/resources/agent-mascots#spock"
+}

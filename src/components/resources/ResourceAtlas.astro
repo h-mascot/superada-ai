@@ -126,15 +126,10 @@ function icon(name: string) {
 	return `<span class="atlas-icon atlas-icon-${name}" aria-hidden="true"><i></i></span>`;
 }
 
-function pet(primary: string, panel: string) {
-	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 32 22" shape-rendering="crispEdges"><rect width="32" height="22" fill="${panel}"/><rect x="10" y="12" width="12" height="5" fill="${primary}"/><rect x="20" y="13" width="4" height="3" fill="${primary}"/><rect x="13" y="7" width="7" height="6" fill="${primary}"/><rect x="12" y="5" width="2" height="3" fill="${primary}"/><rect x="19" y="5" width="2" height="3" fill="${primary}"/><rect x="14" y="17" width="2" height="4" fill="${primary}"/><rect x="19" y="17" width="2" height="4" fill="${primary}"/><rect x="16" y="10" width="1" height="1" fill="#17130f"/><rect x="19" y="10" width="1" height="1" fill="#17130f"/><rect x="16" y="13" width="5" height="1" fill="#f3e5cd"/></svg>`;
-	return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-}
-
 const mascotVisuals = [
-	{ id: 'spock', name: 'Spock', role: 'Research pet', kind: 'Vulcan cat', primary: '#8fb5ff', panel: '#1a263d', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ id: 'picard', name: 'Picard', role: 'Command pet', kind: 'Captain hound', primary: '#e1a15a', panel: '#2b1d13', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ id: 'zora', name: 'Zora', role: 'Memory pet', kind: 'Archive fox', primary: '#c28bff', panel: '#21162f', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+	{ id: 'spock', name: 'Spock', role: 'Research pet', kind: 'Vulcan cat', icon: '/pets/spock/icon.png', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ id: 'picard', name: 'Picard', role: 'Command pet', kind: 'Captain hound', icon: '/pets/picard/icon.png', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ id: 'zora', name: 'Zora', role: 'Memory pet', kind: 'Archive fox', icon: '/pets/zora/icon.png', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
 ];
 
 const category = pageCopy[mode];
@@ -224,10 +219,15 @@ const category = pageCopy[mode];
 					<div class="mascot-grid">
 						{mascotVisuals.map((mascot) => (
 							<article class="mascot-card" id={mascot.id}>
-								<div class="preview-frame" style={`background:${mascot.panel};`}><img src={pet(mascot.primary, mascot.panel)} alt={`${mascot.name} ${mascot.kind} mascot preview`} loading="lazy" /></div>
+								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} ${mascot.kind} Codex pet icon`} loading="lazy" /></div>
 								<div class="meta-line">{mascot.role}</div>
 								<h2>{mascot.name}</h2>
 								<p>{mascot.copy}</p>
+								<div class="pet-install-card">
+									<div class="pet-path">~/.codex/pets/{mascot.id}/</div>
+									<button type="button" class="pet-command" data-copy-command={mascot.install} aria-label={`Copy ${mascot.name} install command`}><span>$</span> {mascot.install}</button>
+									<a class="pet-download" href={mascot.zip} download>Download pet zip</a>
+								</div>
 							</article>
 						))}
 					</div>
@@ -265,6 +265,19 @@ const category = pageCopy[mode];
 		cards.forEach((card) => {
 			const hit = !q || card.dataset.title?.includes(q) || card.dataset.copy?.includes(q);
 			card.toggleAttribute('hidden', !hit);
+		});
+	});
+
+	document.querySelectorAll('[data-copy-command]').forEach((button) => {
+		button.addEventListener('click', async () => {
+			const command = button.getAttribute('data-copy-command') || '';
+			try {
+				await navigator.clipboard.writeText(command);
+				button.setAttribute('data-copied', 'true');
+				setTimeout(() => button.removeAttribute('data-copied'), 1400);
+			} catch {
+				window.prompt('Copy install command', command);
+			}
 		});
 	});
 </script>

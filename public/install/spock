@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+PET_ID="spock"
+BASE_URL="https://superada.ai/pets/spock"
+DEST="${CODEX_PETS_DIR:-$HOME/.codex/pets}/$PET_ID"
+mkdir -p "$DEST"
+curl -fsSL "$BASE_URL/pet.json" -o "$DEST/pet.json"
+curl -fsSL "$BASE_URL/spritesheet.webp" -o "$DEST/spritesheet.webp"
+echo "Installed SuperAda Spock pet to $DEST"
+echo "Open Codex Settings > Appearance > Pets, then select Spock."
