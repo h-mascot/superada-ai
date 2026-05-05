@@ -1,14 +1,6 @@
 {
   "id": "picard",
   "displayName": "Picard",
-  "description": "A tiny captain hound Codex pet with command presence, steady judgment, and bridge energy.",
-  "spritesheetPath": "spritesheet.webp",
-  "author": "SuperAda",
-  "tags": [
-    "superada",
-    "enterprise-crew",
-    "codex-pet"
-  ],
-  "source": "superada.ai",
-  "sourceUrl": "https://superada.ai/resources/agent-mascots#picard"
+  "description": "A gold and command-red SuperAda routing pet for Codex.",
+  "spritesheetPath": "spritesheet.webp"
 }

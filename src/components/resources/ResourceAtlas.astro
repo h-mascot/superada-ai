@@ -211,15 +211,14 @@ const category = pageCopy[mode];
 				<section class="mascot-roster is-standalone" id="mascot-roster">
 					<div class="mascot-heading">
 						<div>
-							<div class="eyebrow">Agent Mascots (Pets)</div>
-							<h1>Enterprise Crew mascot roster</h1>
+							<h1>Agent Mascots (Pets)</h1>
 						</div>
-						<p>Only the three active mascot concepts for now: Spock, Picard, and Zora.</p>
+						<p>Only the three active mascot pets for now: Spock, Picard, and Zora.</p>
 					</div>
 					<div class="mascot-grid">
 						{mascotVisuals.map((mascot) => (
 							<article class="mascot-card" id={mascot.id}>
-								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} ${mascot.kind} Codex pet icon`} loading="lazy" /></div>
+								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} Codex pet`} loading="lazy" /></div>
 								<div class="meta-line">{mascot.role}</div>
 								<h2>{mascot.name}</h2>
 								<p>{mascot.copy}</p>

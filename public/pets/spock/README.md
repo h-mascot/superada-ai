@@ -1,9 +1,9 @@
-# Spock Codex pet
+# Spock Codex Pet
 
 Install with:
 
-```sh
+```bash
 curl -sSf https://superada.ai/install/spock | sh
 ```
 
-Or copy this folder to `~/.codex/pets/spock/`.
+Installs into `~/.codex/pets/spock/`.

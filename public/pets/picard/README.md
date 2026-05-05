@@ -1,9 +1,9 @@
-# Picard Codex pet
+# Picard Codex Pet
 
 Install with:
 
-```sh
+```bash
 curl -sSf https://superada.ai/install/picard | sh
 ```
 
-Or copy this folder to `~/.codex/pets/picard/`.
+Installs into `~/.codex/pets/picard/`.

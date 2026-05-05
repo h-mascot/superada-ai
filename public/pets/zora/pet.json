@@ -1,14 +1,6 @@
 {
   "id": "zora",
   "displayName": "Zora",
-  "description": "A tiny archive fox Codex pet for memory, continuity, and shared crew context.",
-  "spritesheetPath": "spritesheet.webp",
-  "author": "SuperAda",
-  "tags": [
-    "superada",
-    "enterprise-crew",
-    "codex-pet"
-  ],
-  "source": "superada.ai",
-  "sourceUrl": "https://superada.ai/resources/agent-mascots#zora"
+  "description": "A purple and cyan SuperAda memory pet for Codex.",
+  "spritesheetPath": "spritesheet.webp"
 }
