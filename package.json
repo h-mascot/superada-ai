@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "validate:voice": "python3 scripts/validate-superada-voice.py",
     "build": "npm run validate:voice && astro build",
+    "update:changelog": "node scripts/update-openclaw-changelog.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

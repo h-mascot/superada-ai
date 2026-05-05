@@ -2,38 +2,26 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { CATEGORY_COLORS, CHANGELOG_VERSIONS } from '../../data/changelog';
+import { CHANGELOG_SOURCE_URL, CHANGELOG_VERSIONS } from '../../data/changelog';
 
-const categoryOrder = Object.keys(CATEGORY_COLORS);
-const fullChangelogBase = 'https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md';
-
-const getStatusMeta = (feature: (typeof CHANGELOG_VERSIONS)[number]['features'][number]) => {
-  if (feature.testStatus === 'tested' && feature.testableBy === 'agent') {
-    return { icon: '✅', label: 'Self-tested', tone: '#34D399' };
-  }
-
-  if (feature.testStatus === 'tested') {
-    return { icon: '🟢', label: 'Tested', tone: '#34D399' };
-  }
-
-  if (feature.testStatus === 'needs-setup' || feature.testableBy === 'henry') {
-    return { icon: '🟡', label: 'Needs Henry', tone: '#FBBF24' };
-  }
-
-  return { icon: '⬜', label: 'Not tested yet', tone: '#94A3B8' };
-};
-
-const versionCards = CHANGELOG_VERSIONS.map((version) => {
-  const testedCount = version.features.filter((feature) => feature.testStatus === 'tested').length;
-  const pendingCount = version.features.length - testedCount;
+const versionCards = CHANGELOG_VERSIONS.filter((version) => version.features.length > 0).map((version) => {
+  const fullChangelogHref = version.href || `${CHANGELOG_SOURCE_URL}#${version.version.replace(/\./g, '')}`;
+  const items = version.features.map((feature) => ({
+    title: feature.title,
+    description: feature.description,
+    href: feature.href || fullChangelogHref,
+    type: 'Change',
+  }));
 
   return {
     ...version,
-    testedCount,
-    pendingCount,
-    fullChangelogHref: `${fullChangelogBase}#${version.version.replace(/\./g, '')}`,
+    fullChangelogHref,
+    items,
   };
 });
+
+const totalItems = versionCards.reduce((sum, version) => sum + version.items.length, 0);
+const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.length, 0);
 ---
 
 <!doctype html>
@@ -41,7 +29,7 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
   <head>
     <BaseHead
       title="OpenClaw Changelog & Feature Tracker"
-      description="Track new OpenClaw features by release, filter by category, and mark what Ada, Spock, Scotty, and Zora have tested."
+      description="A clean release reference for OpenClaw versions, shipped items, and upstream changelog links."
     />
   </head>
   <body style="background:var(--bg); color:var(--text); min-height:100vh;">
@@ -52,13 +40,13 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
         <div class="hero-kicker">OpenClaw releases</div>
         <h1>OpenClaw Changelog &amp; Feature Tracker</h1>
         <p class="hero-copy">
-          A working reference for the Enterprise Crew. Scan what shipped, filter by subsystem,
-          decide what Ada can self-test versus what needs Henry, and keep release validation from turning into guesswork.
+          A working reference for the Enterprise Crew. Scan what shipped by version, open the upstream release notes,
+          and follow each listed item back to its source when a PR or issue is available.
         </p>
         <div class="hero-meta">
-          <div class="meta-pill"><strong>{versionCards.length}</strong><span>stable releases</span></div>
-          <div class="meta-pill"><strong>{versionCards.reduce((sum, version) => sum + version.features.length, 0)}</strong><span>grouped features</span></div>
-          <div class="meta-pill"><strong>{versionCards.reduce((sum, version) => sum + version.fixes.length, 0)}</strong><span>fix entries linked back to upstream</span></div>
+          <div class="meta-pill"><strong>{versionCards.length}</strong><span>release sections</span></div>
+          <div class="meta-pill"><strong>{totalItems}</strong><span>listed changes</span></div>
+          <div class="meta-pill"><strong>{totalFixes}</strong><span>fix entries</span></div>
         </div>
       </section>
 
@@ -67,30 +55,18 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
           <span>Search</span>
           <input id="feature-search" type="search" placeholder="Memory, Codex, Matrix, 2026.4.10..." />
         </label>
-
-        <button id="reset-test-state" class="reset-btn" title="Clear all test progress">Reset tests</button>
-
-    <label class="filter-wrap">
-          <span>Category</span>
-          <select id="category-filter">
-            <option value="all">All categories</option>
-            {categoryOrder.map((category) => (
-              <option value={category}>{category}</option>
-            ))}
-          </select>
-        </label>
       </section>
 
       <div class="page-grid">
         <aside class="sidebar-card">
           <div class="sidebar-inner">
             <div class="sidebar-title">Versions</div>
-            <div class="sidebar-subtitle">Newest first, jump straight to a release</div>
+            <div class="sidebar-subtitle">Newest first. Version numbers open the upstream OpenClaw changelog.</div>
             <nav class="version-nav">
               {versionCards.map((version) => (
-                <a href={`#v-${version.version}`} class="version-nav-link" data-version-link={version.version}>
+                <a href={version.fullChangelogHref} class="version-nav-link" target="_blank" rel="noopener noreferrer">
                   <span>{version.version}</span>
-                  <small>{version.features.length} features</small>
+                  <small>{version.items.length} changes ↗</small>
                 </a>
               ))}
             </nav>
@@ -98,73 +74,45 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
         </aside>
 
         <section class="versions-column" id="versions-column">
-          {versionCards.map((version, index) => (
-            <details
+          {versionCards.map((version) => (
+            <article
               class="version-card"
               id={`v-${version.version}`}
+              data-version-card
               data-version={version.version}
-              open={index === 0}
             >
-              <summary class="version-summary">
+              <header class="version-summary">
                 <div>
-                  <div class="version-kicker">Release {version.version}</div>
-                  <h2>{version.version}</h2>
+                  <div class="version-kicker">Release</div>
+                  <h2>
+                    <a href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">{version.version}</a>
+                  </h2>
                   <p>{version.date}</p>
                 </div>
-                <div class="summary-stats">
-                  <div class="stat-pill"><strong>{version.features.length}</strong><span>features</span></div>
-                  <div class="stat-pill stat-green"><strong>{version.testedCount}</strong><span>tested</span></div>
-                  <div class="stat-pill stat-amber"><strong>{version.pendingCount}</strong><span>pending</span></div>
-                </div>
-              </summary>
-
-              <div class="summary-bar">
-                <span class="bar-tested" style={`width:${version.features.length ? (version.testedCount / version.features.length) * 100 : 0}%`}></span>
-                <span class="bar-pending" style={`width:${version.features.length ? (version.pendingCount / version.features.length) * 100 : 0}%`}></span>
-              </div>
+                <a class="summary-link" href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">Open upstream ↗</a>
+              </header>
 
               <div class="version-body">
-                <div class="feature-grid">
-                  {version.features.map((feature) => {
-                    const status = getStatusMeta(feature);
-                    return (
-                      <article
-                        class="feature-card"
-                        data-feature-version={version.version}
-                        data-feature-category={feature.category}
-                        data-feature-search={`${version.version} ${feature.category} ${feature.title} ${feature.description}`.toLowerCase()}
-                        style={`--feature-accent:${CATEGORY_COLORS[feature.category]}; --status-tone:${status.tone};`}
-                      >
-                        <div class="feature-topline">
-                          <span class="category-chip">{feature.category}</span>
-                          <span class="status-chip">{status.icon} {status.label}</span>
-                        </div>
-                        <h3>{feature.title}</h3>
-                        <p>{feature.description}</p>
-                        <div class="feature-meta-row">
-                          <span class="meta-tag">{feature.testableBy === 'agent' ? 'Agent-testable' : feature.testableBy === 'both' ? 'Agent + Henry' : 'Henry-only'}</span>
-                          {feature.prLink && (
-                            <a href={feature.prLink} target="_blank" rel="noopener noreferrer">PR ↗</a>
-                          )}
-                          {feature.docsLink && (
-                            <a href={feature.docsLink} target="_blank" rel="noopener noreferrer">Docs ↗</a>
-                          )}
-                        </div>
-                        {feature.testNotes && <div class="test-note">{feature.testNotes}</div>}
-                      </article>
-                    );
-                  })}
-                </div>
-
-                <div class="fixes-row">
-                  <div>
-                    <div class="fixes-label">Fixes</div>
-                    <div class="fixes-copy">{version.fixes.length} upstream fix entries in this release.</div>
-                  </div>
-                  <a href={version.fullChangelogHref} target="_blank" rel="noopener noreferrer">View full changelog ↗</a>
+                <div class="changelog-list">
+                  {version.items.map((item, index) => (
+                    <a
+                      class="changelog-list-item"
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-feature-search={`${version.version} ${item.type} ${item.title} ${item.description}`.toLowerCase()}
+                    >
+                      <span class="item-thumb">{String(index + 1).padStart(2, '0')}</span>
+                      <span class="item-copy">
+                        <strong>{item.title}</strong>
+                        <small>{item.description}</small>
+                      </span>
+                      <span class="item-arrow">↗</span>
+                    </a>
+                  ))}
                 </div>
               </div>
-            </details>
+            </article>
           ))}
         </section>
       </div>
@@ -172,119 +120,28 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     <Footer />
 
     <script is:inline>
-      const LS_KEY = 'openclaw-changelog-test-state';
-
-      const loadTestState = () => {
-        try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { return {}; }
-      };
-
-      const saveTestState = (state) => {
-        try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {}
-      };
-
-      const STATUS_CYCLE = ['not-tested', 'tested', 'needs-setup'];
-      const STATUS_META = {
-        'tested':       { icon: '✅', label: 'Tested',    tone: '#34D399' },
-        'not-tested':   { icon: '⬜', label: 'Not tested', tone: '#94A3B8' },
-        'needs-setup':  { icon: '🟡', label: 'Needs setup', tone: '#FBBF24' },
-      };
-
-      const featureKey = (el) => `${el.dataset.featureVersion}::${el.querySelector('h3')?.textContent}`;
-
-      // Restore saved state on load
-      const savedState = loadTestState();
-      document.querySelectorAll('.feature-card').forEach((card) => {
-        const key = featureKey(card);
-        const status = savedState[key];
-        if (status && STATUS_META[status]) {
-          applyStatus(card, status);
-        }
-      });
-      refreshCounters();
-
-      function applyStatus(card, status) {
-        const meta = STATUS_META[status];
-        const chip = card.querySelector('.status-chip');
-        if (!chip) return;
-        chip.textContent = `${meta.icon} ${meta.label}`;
-        chip.style.color = meta.tone;
-        card.dataset.testStatus = status;
-        card.style.setProperty('--status-tone', meta.tone);
-      }
-
-      function refreshCounters() {
-        document.querySelectorAll('.version-card').forEach((card) => {
-          const features = card.querySelectorAll('.feature-card');
-          let tested = 0, total = features.length;
-          features.forEach((f) => { if (f.dataset.testStatus === 'tested') tested++; });
-          const pills = card.querySelectorAll('.stat-pill');
-          if (pills[1]) pills[1].querySelector('strong').textContent = tested;
-          if (pills[2]) pills[2].querySelector('strong').textContent = total - tested;
-          const bar = card.querySelector('.bar-tested');
-          if (bar) bar.style.width = total ? `${(tested / total) * 100}%` : '0%';
-          const barP = card.querySelector('.bar-pending');
-          if (barP) barP.style.width = total ? `${((total - tested) / total) * 100}%` : '0%';
-        });
-      }
-
-      // Click to toggle
-      document.querySelectorAll('.status-chip').forEach((chip) => {
-        chip.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const card = chip.closest('.feature-card');
-          const key = featureKey(card);
-          const current = card.dataset.testStatus || 'not-tested';
-          const idx = STATUS_CYCLE.indexOf(current);
-          const next = STATUS_CYCLE[(idx + 1) % STATUS_CYCLE.length];
-          applyStatus(card, next);
-          const state = loadTestState();
-          state[key] = next;
-          saveTestState(state);
-          refreshCounters();
-        });
-      });
-
-      // Reset button
-      document.getElementById('reset-test-state')?.addEventListener('click', () => {
-        localStorage.removeItem(LS_KEY);
-        document.querySelectorAll('.feature-card').forEach((card) => {
-          const testableBy = card.dataset.featureSearch?.includes('henry-only') ? 'henry' : 'agent';
-          const defaultStatus = testableBy === 'henry' ? 'not-tested' : 'not-tested';
-          applyStatus(card, 'not-tested');
-        });
-        refreshCounters();
-      });
-
-      // Search + filter
       const searchInput = document.getElementById('feature-search');
-      const categoryFilter = document.getElementById('category-filter');
-      const versionCards = Array.from(document.querySelectorAll('.version-card'));
+      const versionCards = Array.from(document.querySelectorAll('[data-version-card]'));
 
       const applyFilters = () => {
         const searchValue = (searchInput?.value || '').trim().toLowerCase();
-        const categoryValue = categoryFilter?.value || 'all';
 
         versionCards.forEach((card) => {
-          const features = Array.from(card.querySelectorAll('.feature-card'));
+          const items = Array.from(card.querySelectorAll('.changelog-list-item'));
           let visibleCount = 0;
 
-          features.forEach((feature) => {
-            const category = feature.getAttribute('data-feature-category');
-            const haystack = feature.getAttribute('data-feature-search') || '';
-            const matchesCategory = categoryValue === 'all' || category === categoryValue;
-            const matchesSearch = !searchValue || haystack.includes(searchValue);
-            const show = matchesCategory && matchesSearch;
-            feature.style.display = show ? '' : 'none';
+          items.forEach((item) => {
+            const haystack = item.getAttribute('data-feature-search') || '';
+            const show = !searchValue || haystack.includes(searchValue);
+            item.toggleAttribute('hidden', !show);
             if (show) visibleCount += 1;
           });
 
-          card.style.display = visibleCount > 0 ? '' : 'none';
-          if (visibleCount > 0 && searchValue) card.open = true;
+          card.toggleAttribute('hidden', visibleCount === 0);
         });
       };
 
       searchInput?.addEventListener('input', applyFilters);
-      categoryFilter?.addEventListener('change', applyFilters);
     </script>
   </body>
 </html>
@@ -320,7 +177,6 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
 
   .hero-kicker,
   .version-kicker,
-  .fixes-label,
   .sidebar-title,
   .control-bar label span {
     font-size: 0.78rem;
@@ -355,8 +211,7 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     gap: 0.8rem;
   }
 
-  .meta-pill,
-  .stat-pill {
+  .meta-pill {
     display: inline-flex;
     align-items: baseline;
     gap: 0.45rem;
@@ -366,24 +221,21 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  .meta-pill strong,
-  .stat-pill strong {
+  .meta-pill strong {
     font-size: 1rem;
     color: var(--text);
   }
 
   .meta-pill span,
-  .stat-pill span,
   .version-summary p,
-  .sidebar-subtitle,
-  .fixes-copy {
+  .sidebar-subtitle {
     color: var(--muted);
   }
 
   .control-bar {
     padding: 1rem;
     display: grid;
-    grid-template-columns: 1.6fr 0.7fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 1.2rem;
   }
@@ -394,8 +246,7 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     gap: 0.5rem;
   }
 
-  .control-bar input,
-  .control-bar select {
+  .control-bar input {
     width: 100%;
     border-radius: 12px;
     border: 1px solid #3A3027;
@@ -440,6 +291,12 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     text-decoration: none;
   }
 
+  .version-nav-link:hover,
+  .changelog-list-item:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    background: color-mix(in srgb, var(--accent-soft) 26%, #100d0a);
+  }
+
   .version-nav-link small {
     color: var(--muted);
   }
@@ -455,17 +312,12 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
   }
 
   .version-summary {
-    list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: start;
     gap: 1rem;
     padding: 1.35rem;
-    cursor: pointer;
-  }
-
-  .version-summary::-webkit-details-marker {
-    display: none;
+    border-bottom: 1px solid var(--border);
   }
 
   .version-summary h2 {
@@ -473,151 +325,98 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
     margin-top: 0.2rem;
   }
 
+  .version-summary h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .version-summary h2 a:hover,
+  .summary-link:hover {
+    color: var(--accent);
+  }
+
   .version-summary p {
     margin: 0.35rem 0 0;
   }
 
-  .summary-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.65rem;
-  }
-
-  .stat-green strong { color: #34D399; }
-  .stat-amber strong { color: #FBBF24; }
-
-  .summary-bar {
-    display: flex;
-    height: 8px;
-    background: #1A1510;
-  }
-
-  .bar-tested { background: #34D399; }
-  .bar-pending { background: #5B524A; }
-
-  .version-body {
-    padding: 1.2rem 1.35rem 1.35rem;
-  }
-
-  .version-body .fixes-row {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .feature-card {
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1rem;
-    background: #0F0C09;
-    border-top: 3px solid var(--feature-accent);
-  }
-
-  .feature-topline,
-  .feature-meta-row,
-  .fixes-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.7rem;
-    align-items: center;
-  }
-
-  .category-chip,
-  .status-chip,
-  .meta-tag {
+  .summary-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
+    justify-content: center;
+    border: 1px solid #342c25;
     border-radius: 999px;
-    padding: 0.32rem 0.7rem;
-    border: 1px solid #312821;
-    background: #17120D;
+    padding: 0.65rem 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.02);
   }
 
-  .category-chip { color: var(--feature-accent); }
-  .status-chip {
-    color: var(--status-tone);
-    cursor: pointer;
-    transition: opacity 0.15s;
+  .version-body {
+    padding: 1rem 1.35rem 1.35rem;
   }
 
-  .status-chip:hover {
-    opacity: 0.75;
+  .changelog-list {
+    display: grid;
+    gap: 0.75rem;
   }
-  .meta-tag { color: var(--text-soft); }
 
-  .feature-card h3 {
-    margin: 0.9rem 0 0.55rem;
-    font-size: 1.1rem;
+  .changelog-list-item {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+    gap: 0.9rem;
+    align-items: start;
+    min-height: 84px;
+    padding: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #0F0C09;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .changelog-list-item[hidden],
+  .version-card[hidden] {
+    display: none;
+  }
+
+  .item-thumb {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 14px;
+    border: 1px solid #342c25;
+    background: color-mix(in srgb, var(--accent-soft) 42%, transparent);
+    color: var(--accent);
+    font: 800 0.78rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .item-copy {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .item-copy strong {
     font-family: Georgia, serif;
+    font-size: 1.08rem;
     font-weight: 400;
   }
 
-  .feature-card p,
-  .fixes-row a,
-  .feature-meta-row a {
+  .item-copy small {
     color: var(--text-soft);
+    line-height: 1.65;
+    font-size: 0.92rem;
   }
 
-  .feature-card p {
-    margin: 0 0 1rem;
-    line-height: 1.7;
-  }
-
-  .feature-meta-row a,
-  .fixes-row a {
+  .item-arrow {
     color: var(--accent);
-    font-size: 0.9rem;
-  }
-
-  .fixes-row {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
+    padding-top: 0.12rem;
   }
 
   @media (max-width: 960px) {
-    .page-grid,
-    .control-bar,
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .sidebar-card {
-      position: static;
-    }
-  }
-
-  .reset-btn {
-    font: inherit;
-    font-size: 0.82rem;
-    padding: 0.55rem 0.9rem;
-    border-radius: 12px;
-    border: 1px solid #3A3027;
-    background: var(--bg);
-    color: var(--muted);
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-    align-self: flex-end;
-  }
-
-  .reset-btn:hover {
-    color: #FBBF24;
-    border-color: #FBBF24;
-  }
-
-  @media (max-width: 960px) {
-    .page-grid,
-    .control-bar,
-    .feature-grid {
+    .page-grid {
       grid-template-columns: 1fr;
     }
 
@@ -638,15 +437,19 @@ const versionCards = CHANGELOG_VERSIONS.map((version) => {
 
     .version-summary {
       flex-direction: column;
-      padding: 1rem 0;
-    }
-
-    .summary-stats {
-      justify-content: flex-start;
+      padding: 1rem;
     }
 
     .version-summary h2 {
       font-size: 1.65rem;
+    }
+
+    .changelog-list-item {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+    }
+
+    .item-arrow {
+      display: none;
     }
   }
 </style>

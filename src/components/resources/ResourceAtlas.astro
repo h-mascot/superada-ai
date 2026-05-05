@@ -35,9 +35,9 @@ const guideItems: ResourceItem[] = [
 ];
 
 const mascotItems: ResourceItem[] = [
-	{ title: 'Spock', icon: 'pet', meta: 'Research pet', status: 'LIVE', href: '/resources/agent-mascots#spock', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ title: 'Picard', icon: 'pet', meta: 'Command pet', status: 'LIVE', href: '/resources/agent-mascots#picard', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ title: 'Zora', icon: 'pet', meta: 'Memory pet', status: 'LIVE', href: '/resources/agent-mascots#zora', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+	{ title: 'Spock', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#spock', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ title: 'Picard', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#picard', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ title: 'Zora', icon: 'pet', meta: 'Codex pet', status: 'LIVE', href: '/resources/agent-mascots#zora', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
 ];
 
 const workflowItems: ResourceItem[] = workflowEntries.map((workflow) => ({
@@ -126,9 +126,9 @@ function icon(name: string) {
 }
 
 const mascotVisuals = [
-	{ id: 'spock', name: 'Spock', role: 'Research pet', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
-	{ id: 'picard', name: 'Picard', role: 'Command pet', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
-	{ id: 'zora', name: 'Zora', role: 'Memory pet', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
+	{ id: 'spock', name: 'Spock', kind: 'Vulcan cat', icon: '/pets/spock/pet-image.jpg', zip: '/pets/spock/spock-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/spock | sh', copy: 'Logic-first mascot for research, analysis, evidence, and operational clarity.' },
+	{ id: 'picard', name: 'Picard', kind: 'Captain hound', icon: '/pets/picard/pet-image.jpg', zip: '/pets/picard/picard-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/picard | sh', copy: 'Command presence for routing, judgment, mission framing, and executive crew moments.' },
+	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
 ];
 
 const category = pageCopy[mode];
@@ -215,7 +215,6 @@ const category = pageCopy[mode];
 						{mascotVisuals.map((mascot) => (
 							<article class="mascot-card" id={mascot.id}>
 								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} Codex pet`} loading="lazy" /></div>
-								<div class="meta-line">{mascot.role}</div>
 								<h2>{mascot.name}</h2>
 								<p>{mascot.copy}</p>
 								<div class="pet-install-card">
