@@ -40,6 +40,7 @@ const mascotVisuals = [
 	{ id: 'zora', name: 'Zora', kind: 'Archive fox', icon: '/pets/zora/pet-image.jpg', zip: '/pets/zora/zora-codex-pet.zip', install: 'curl -sSf https://superada.ai/install/zora | sh', available: true, copy: 'Knowledge-keeper mascot for memory, continuity, graph context, and shared crew state.' },
 	{ id: 'burnham', name: 'Burnham', kind: 'Science officer', icon: '/pets/burnham/pet-image.jpg', zip: '', install: '', available: false, copy: 'Command-science mascot for decisive action, discovery, and brave crew calls. Still cooking.' },
 	{ id: 'tilly', name: 'Tilly', kind: 'Cadet engineer', icon: '/pets/tilly/pet-image.jpg', zip: '', install: '', available: false, copy: 'Bright engineering mascot for experiments, momentum, and practical optimism. Still cooking.' },
+	{ id: 'saru', name: 'Saru', kind: 'First officer', icon: '/pets/saru/pet-image.jpg', zip: '', install: '', available: false, copy: 'Steady command mascot for risk sense, caution, and clear-headed crew judgment. Still cooking.' },
 ];
 
 const mascotItems: ResourceItem[] = mascotVisuals.map((mascot) => ({
@@ -129,7 +130,7 @@ const stats = [
 const overviewCards: ResourceItem[] = [
 	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
-	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'UPDATED', href: '/resources/agent-mascots', copy: 'Spock, Picard, Zora, Burnham, and Tilly mascot concepts for crew surfaces.' },
+	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'UPDATED', href: '/resources/agent-mascots', copy: 'Spock, Picard, Zora, Burnham, Tilly, and Saru mascot concepts for crew surfaces.' },
 	{ title: resourceSections.skills.label, icon: 'spark', meta: resourceMeta('skills'), status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
 	{ title: resourceSections.crons.label, icon: 'cron', meta: resourceMeta('crons'), status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
 	{ title: resourceSections.guides.label, icon: 'book', meta: resourceMeta('guides'), status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
