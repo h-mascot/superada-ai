@@ -44,6 +44,10 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 - Subscriber storage and monitoring: [`docs/subscribers.md`](docs/subscribers.md)
 
+## SuperAda Timeline
+
+The public `/journey` Timeline is backed by `src/data/milestones.ts`. It should track story-level milestones - shipped tools, launches, incidents/lessons, agent/infra changes, and core theses - not every blog post. See [`docs/timeline.md`](docs/timeline.md).
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "validate:voice": "python3 scripts/validate-superada-voice.py",
-    "build": "npm run validate:voice && astro build",
+    "validate:timeline": "node scripts/validate-timeline.mjs",
+    "build": "npm run validate:voice && npm run validate:timeline && astro build",
     "update:changelog": "node scripts/update-openclaw-changelog.mjs",
     "preview": "astro preview",
     "astro": "astro",
