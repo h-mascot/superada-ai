@@ -39,14 +39,14 @@ notes:
   - This listing describes an externally hosted skill bundle. It does not imply those runtime files are checked into this website repo.
 bundle:
   id: superada.workflow.entity-mission-control-bootstrap
-  version: 1.1.0
+  version: 1.2.0
   classification: external
   installMode: agent-installable
   reviewStatus: source-review
   entrypoint: SKILL.md
   bundleRoot: github:henrino3/enterprise-crew-skills/entity-mc
-  artifactCount: 6
-  summary: A reusable external ops bundle that keeps the helper runtime canonical, applies per-agent manifests, creates tasks from structured intake, and gives operators a safe rollout plus rollback path.
+  artifactCount: 7
+  summary: A reusable external ops bundle that keeps the helper runtime canonical, installs portable MC operating memory, applies per-agent manifests, creates tasks from structured intake, and gives operators a safe rollout plus rollback path.
   availabilityNote: Installs from the linked GitHub skill source through OpenClaw. The artifacts below describe the external bundle shape, not local files in this repo.
   installSource:
     type: github
@@ -68,6 +68,7 @@ bundle:
       - Bundle install is real, but per-host rollout still needs operator review and host-specific manifest selection.
       - The runtime artifacts live in the external skills repo, not in this website repo.
       - Auto-pull executes existing tasks; automatic task creation requires explicit structured input or a source-specific watcher feeding mc-intake.sh.
+      - Portable context is intentionally small; host-specific secrets, private memory, and local paths belong in manifests or local memory, not the public bundle.
 artifacts:
   - name: Skill contract
     type: skill
@@ -81,6 +82,10 @@ artifacts:
     type: script
     path: github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
     description: "Conservative JSON/JSONL intake helper that dedupes and creates Mission Control tasks from explicit structured signals."
+  - name: Portable MC operating context
+    type: doc
+    path: github:henrino3/enterprise-crew-skills/entity-mc/context/
+    description: "Public-safe MC operating memory: task lifecycle, review/blocker contract, evidence rules, and Entity MC runtime behavior. Installed into .entity-mc/context/ and injected by mc-build-context.sh."
   - name: Per-agent manifests
     type: manifest
     path: github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
@@ -100,7 +105,7 @@ installSteps:
     detail: Pull the Entity Mission Control bootstrap workflow into the local OpenClaw environment.
     command: openclaw skills install github:henrino3/enterprise-crew-skills/entity-mc
   - title: Review the canonical runtime and manifests locally
-    detail: After install, inspect source-scripts/, the per-agent .env manifests, and the optional intake settings before rollout.
+    detail: After install, inspect source-scripts/, context/, the per-agent .env manifests, and the optional intake settings before rollout.
   - title: Run the install helper for the target machine
     detail: Apply the canonical runtime and the matching per-agent manifest on the chosen host.
     command: bash skills/entity-mc/install.sh --manifest skills/entity-mc/manifests/<agent>.env
@@ -127,7 +132,7 @@ verification:
     - Compare generated agent state against the canonical runtime to catch drift.
   checks:
     - label: Source bundle review
-      detail: Confirm the linked GitHub bundle exposes SKILL.md, source-scripts/, manifests/*.env, install.sh, verify.sh, rollback.sh, and VERSION.
+      detail: Confirm the linked GitHub bundle exposes SKILL.md, source-scripts/, context/, manifests/*.env, install.sh, verify.sh, rollback.sh, and VERSION.
       expected: The source repository contains the referenced files and directories described by this listing.
     - label: Bundle install present
       detail: Confirm the skill is discoverable in the local OpenClaw environment after installation.
@@ -140,6 +145,10 @@ verification:
       detail: Confirm the installed scripts directory includes mc.sh, mc-auto-pull.sh, mc-assign-model.sh, mc-build-context.sh, mc-stall-check.sh, and mc-intake.sh.
       command: ls scripts/mc*.sh
       expected: All six runtime scripts are present and executable.
+    - label: Portable context present
+      detail: Confirm the installed context pack exists and will be injected into pulled tasks.
+      command: ls .entity-mc/context/*.md && bash scripts/mc-build-context.sh '{"task_id":"0","task_name":"context smoke","task_description":"smoke","skill":"none","context":""}' | grep "Entity MC Operating Context"
+      expected: Context files exist and the generated prompt includes Entity MC Operating Context.
     - label: Intake dry run
       detail: Confirm structured intake can build a task payload without mutating Mission Control.
       command: bash scripts/mc-intake.sh create --title "Entity MC intake smoke" --description "Dry run" --assignee Ada --dry-run
@@ -149,6 +158,7 @@ structure:
   - github:henrino3/enterprise-crew-skills/entity-mc/SKILL.md
   - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/
   - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
+  - github:henrino3/enterprise-crew-skills/entity-mc/context/
   - github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
   - github:henrino3/enterprise-crew-skills/entity-mc/install.sh
   - github:henrino3/enterprise-crew-skills/entity-mc/verify.sh
@@ -158,7 +168,7 @@ structure:
 A narrow workflow bundle for teams running one operational runtime across several agents and machines, with the real source of truth living in the linked external repo.
 
 
-Version 1.1 adds structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
+Version 1.2 adds portable MC operating memory. Version 1.1 added structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
 
 Runtime scripts currently installed by the bundle:
 
@@ -170,3 +180,6 @@ Runtime scripts currently installed by the bundle:
 - `mc-intake.sh` - structured task intake into Mission Control
 
 The installer, not the scripts, writes the cron block. `install.sh` calls the shared library function that renders a marked `ENTITY_MC:<AgentName>` crontab section for auto-pull and stall checks. Intake cron is optional and off by default until the operator defines what source is allowed to feed the inbox.
+
+
+The installed context pack is the important part for giving MC to other agents. It gives them the task lifecycle, review/blocker contract, evidence rules, duplicate avoidance, and runtime safety rules without copying Ada's private memory. Scripts are the hands. Context is the adult supervision.
