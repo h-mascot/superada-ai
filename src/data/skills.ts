@@ -126,7 +126,7 @@ export const publishedSkills: SkillRecord[] = [
   {
     slug: 'entity-mc',
     title: 'entity-mc',
-    description: 'Bootstrap Entity Mission Control helper runtime for crew agents — shared canonical bundle, per-agent manifest, safe cron install, verification, and rollback.',
+    description: 'Bootstrap Entity Mission Control helper runtime for crew agents — shared canonical bundle, structured intake, per-agent manifest, safe cron install, verification, and rollback.',
     tagline: 'Put Mission Control under the agent, not beside it.',
     category: 'Operations',
     availability: 'agent-installable',
@@ -137,12 +137,13 @@ export const publishedSkills: SkillRecord[] = [
     entrypoint: 'SKILL.md',
     installCommand: 'openclaw skills install github:henrino3/enterprise-crew-skills/entity-mc',
     reviewMode: 'source-review',
-    includes: ['Skill contract', 'Source scripts', 'Runtime manifests'],
-    useCases: ['Bootstrap Mission Control on a new agent', 'Install safe task-management helpers', 'Set up pull and stall-check routines'],
-    instructions: ['Review the GitHub bundle and manifests.', 'Install it into OpenClaw from the source spec.', 'Run the bootstrap flow on the target agent.'],
+    includes: ['Skill contract', 'Source scripts', 'Structured intake', 'Runtime manifests'],
+    useCases: ['Bootstrap Mission Control on a new agent', 'Install safe task-management helpers', 'Set up pull and stall-check routines', 'Create MC tasks from structured JSON/JSONL intake'],
+    instructions: ['Review the GitHub bundle and manifests.', 'Install it into OpenClaw from the source spec.', 'Run the bootstrap flow on the target agent.', 'Only enable intake cron after defining a source-specific inbox policy.'],
     artifacts: [
       { label: 'Skill contract', path: 'github:henrino3/enterprise-crew-skills/entity-mc/SKILL.md', description: 'Canonical bootstrap instructions.' },
-      { label: 'Source scripts', path: 'github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/', description: 'Mission Control helper scripts.' },
+      { label: 'Source scripts', path: 'github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/', description: 'Mission Control helper scripts, including mc-intake.sh.' },
+      { label: 'Structured intake', path: 'github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh', description: 'JSON/JSONL intake helper for creating MC tasks from explicit structured signals.' },
     ],
   },
   {

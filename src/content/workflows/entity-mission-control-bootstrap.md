@@ -1,6 +1,6 @@
 ---
 title: Entity Mission Control Bootstrap
-summary: Installs from a real external skill bundle that bootstraps the Entity Mission Control helper runtime for a crew of agents with shared scripts, per-agent manifests, and supervised rollout steps.
+summary: Installs from a real external skill bundle that bootstraps the Entity Mission Control helper runtime for a crew of agents with shared scripts, structured task intake, per-agent manifests, and supervised rollout steps.
 tagline: Turn a loose cluster of agents into a repeatable ops surface.
 status: Live
 difficulty: Advanced
@@ -22,6 +22,7 @@ stack:
   - cron-safe rollout
 outcomes:
   - Shared helper runtime across agents
+  - Structured task intake into Mission Control
   - Safe rollout with verification and rollback
   - Per-agent manifests without duplicating core scripts
 includes:
@@ -29,6 +30,7 @@ includes:
   - Verification pass
   - Rollback path
   - Canonical source bundle
+  - Structured intake helper
 useCases:
   - Standardize agent helper scripts across multiple machines
   - Roll out Mission Control updates without hand-editing every node
@@ -37,14 +39,14 @@ notes:
   - This listing describes an externally hosted skill bundle. It does not imply those runtime files are checked into this website repo.
 bundle:
   id: superada.workflow.entity-mission-control-bootstrap
-  version: 1.0.0
+  version: 1.1.0
   classification: external
   installMode: agent-installable
   reviewStatus: source-review
   entrypoint: SKILL.md
   bundleRoot: github:henrino3/enterprise-crew-skills/entity-mc
-  artifactCount: 5
-  summary: A reusable external ops bundle that keeps the helper runtime canonical, applies per-agent manifests, and gives operators a safe rollout plus rollback path.
+  artifactCount: 6
+  summary: A reusable external ops bundle that keeps the helper runtime canonical, applies per-agent manifests, creates tasks from structured intake, and gives operators a safe rollout plus rollback path.
   availabilityNote: Installs from the linked GitHub skill source through OpenClaw. The artifacts below describe the external bundle shape, not local files in this repo.
   installSource:
     type: github
@@ -65,6 +67,7 @@ bundle:
     limitations:
       - Bundle install is real, but per-host rollout still needs operator review and host-specific manifest selection.
       - The runtime artifacts live in the external skills repo, not in this website repo.
+      - Auto-pull executes existing tasks; automatic task creation requires explicit structured input or a source-specific watcher feeding mc-intake.sh.
 artifacts:
   - name: Skill contract
     type: skill
@@ -72,20 +75,24 @@ artifacts:
     description: Defines the bootstrap workflow, shared runtime assumptions, and rollout guardrails.
   - name: Canonical helper runtime
     type: bundle
-    path: github:henrino3/enterprise-crew-skills/entity-mc/runtime/
-    description: Shared scripts and helper assets that should remain canonical across agent installs.
+    path: github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/
+    description: "Shared Mission Control helper scripts: mc.sh, mc-auto-pull.sh, mc-assign-model.sh, mc-build-context.sh, mc-stall-check.sh, and mc-intake.sh."
+  - name: Structured intake helper
+    type: script
+    path: github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
+    description: "Conservative JSON/JSONL intake helper that dedupes and creates Mission Control tasks from explicit structured signals."
   - name: Per-agent manifests
     type: manifest
-    path: github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.yaml
-    description: Agent-specific manifest files that map the canonical runtime onto each operator without duplicating scripts.
-  - name: Install scripts
+    path: github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
+    description: Agent-specific env manifests that map the canonical runtime onto each operator without duplicating scripts.
+  - name: Install helper
     type: script
-    path: github:henrino3/enterprise-crew-skills/entity-mc/scripts/install-*.sh
-    description: Manual install and rollout helpers used during first deployment or updates.
-  - name: Rollback notes
-    type: doc
-    path: github:henrino3/enterprise-crew-skills/entity-mc/README.md
-    description: Human-readable rollback and verification guidance for operators doing a supervised rollout.
+    path: github:henrino3/enterprise-crew-skills/entity-mc/install.sh
+    description: "Idempotent installer that stages the runtime, writes wrappers, and installs the marked cron block."
+  - name: Verify and rollback helpers
+    type: script
+    path: github:henrino3/enterprise-crew-skills/entity-mc/verify.sh and github:henrino3/enterprise-crew-skills/entity-mc/rollback.sh
+    description: Verification and rollback helpers used during supervised rollout.
 installSteps:
   - title: Review the external bundle source
     detail: Inspect the linked skill files, runtime layout, and manifests before rollout so the install stays deliberate.
@@ -93,11 +100,15 @@ installSteps:
     detail: Pull the Entity Mission Control bootstrap workflow into the local OpenClaw environment.
     command: openclaw skills install github:henrino3/enterprise-crew-skills/entity-mc
   - title: Review the canonical runtime and manifests locally
-    detail: After install, inspect the shared runtime files and the per-agent manifest mapping before rollout.
+    detail: After install, inspect source-scripts/, the per-agent .env manifests, and the optional intake settings before rollout.
   - title: Run the install helper for the target machine
     detail: Apply the canonical runtime and the matching per-agent manifest on the chosen host.
+    command: bash skills/entity-mc/install.sh --manifest skills/entity-mc/manifests/<agent>.env
   - title: Verify and keep rollback ready
     detail: Confirm the helper runtime is active on each target agent before removing the previous version.
+    command: bash skills/entity-mc/verify.sh --manifest skills/entity-mc/manifests/<agent>.env
+  - title: Wire structured intake only when a source policy exists
+    detail: Use mc-intake.sh directly or feed .entity-mc/intake/inbox.jsonl from a source-specific watcher. Intake cron is off by default.
 requirements:
   - label: OpenClaw runtime with skill install access
     detail: The host needs a functioning OpenClaw environment capable of loading local skills and running shell helpers.
@@ -116,7 +127,7 @@ verification:
     - Compare generated agent state against the canonical runtime to catch drift.
   checks:
     - label: Source bundle review
-      detail: Confirm the linked GitHub bundle exposes the expected skill contract, runtime directory, manifests, and install helpers.
+      detail: Confirm the linked GitHub bundle exposes SKILL.md, source-scripts/, manifests/*.env, install.sh, verify.sh, rollback.sh, and VERSION.
       expected: The source repository contains the referenced files and directories described by this listing.
     - label: Bundle install present
       detail: Confirm the skill is discoverable in the local OpenClaw environment after installation.
@@ -125,12 +136,37 @@ verification:
     - label: Manifest applied
       detail: Check that the target machine received the intended per-agent manifest and helper runtime files.
       expected: The target host shows the expected manifest-backed runtime files without duplication drift.
+    - label: Runtime scripts present
+      detail: Confirm the installed scripts directory includes mc.sh, mc-auto-pull.sh, mc-assign-model.sh, mc-build-context.sh, mc-stall-check.sh, and mc-intake.sh.
+      command: ls scripts/mc*.sh
+      expected: All six runtime scripts are present and executable.
+    - label: Intake dry run
+      detail: Confirm structured intake can build a task payload without mutating Mission Control.
+      command: bash scripts/mc-intake.sh create --title "Entity MC intake smoke" --description "Dry run" --assignee Ada --dry-run
+      expected: JSON output with action=dry_run and a payload containing metadata.intake=true.
 structure:
   - github:henrino3/enterprise-crew-skills/entity-mc/
   - github:henrino3/enterprise-crew-skills/entity-mc/SKILL.md
-  - github:henrino3/enterprise-crew-skills/entity-mc/runtime/
-  - github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.yaml
-  - github:henrino3/enterprise-crew-skills/entity-mc/scripts/install-*.sh
+  - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/
+  - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
+  - github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
+  - github:henrino3/enterprise-crew-skills/entity-mc/install.sh
+  - github:henrino3/enterprise-crew-skills/entity-mc/verify.sh
+  - github:henrino3/enterprise-crew-skills/entity-mc/rollback.sh
 ---
 
 A narrow workflow bundle for teams running one operational runtime across several agents and machines, with the real source of truth living in the linked external repo.
+
+
+Version 1.1 adds structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
+
+Runtime scripts currently installed by the bundle:
+
+- `mc.sh` - manual Mission Control helper, including `review <id> <output>`
+- `mc-auto-pull.sh` - claims assigned tasks and spawns the local agent
+- `mc-assign-model.sh` - model assignment helper
+- `mc-build-context.sh` - task-context builder for spawned work
+- `mc-stall-check.sh` - stale task detection
+- `mc-intake.sh` - structured task intake into Mission Control
+
+The installer, not the scripts, writes the cron block. `install.sh` calls the shared library function that renders a marked `ENTITY_MC:<AgentName>` crontab section for auto-pull and stall checks. Intake cron is optional and off by default until the operator defines what source is allowed to feed the inbox.
