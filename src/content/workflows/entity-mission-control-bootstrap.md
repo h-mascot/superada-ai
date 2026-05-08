@@ -39,13 +39,13 @@ notes:
   - This listing describes an externally hosted skill bundle. It does not imply those runtime files are checked into this website repo.
 bundle:
   id: superada.workflow.entity-mission-control-bootstrap
-  version: 1.3.0
+  version: 1.3.1
   classification: external
   installMode: manual
   reviewStatus: source-review
   entrypoint: SKILL.md
   bundleRoot: github:henrino3/enterprise-crew-skills/entity-mc
-  artifactCount: 7
+  artifactCount: 8
   summary: A reusable external ops bundle that keeps the helper runtime canonical, installs portable MC operating memory, applies per-agent manifests, creates tasks from structured intake, and gives operators a safe rollout plus rollback path.
   availabilityNote: GitHub source specs are not supported by every OpenClaw CLI build. OpenClaw 2026.5.4 accepts ClawHub slugs for `openclaw skills install`, not `github:owner/repo/path`, so this workflow uses a GitHub clone/copy fallback and then runs `install-auto.sh` to install wrappers, write the Entity MC cron block, and verify the result.
   installSource:
@@ -61,7 +61,7 @@ bundle:
     instructions:
       - Review the linked GitHub bundle before install so the runtime, manifests, and helper scripts are understood.
       - "If `openclaw skills install --help` only accepts a ClawHub slug, do not use the `github:` source spec. Clone the source repo, copy `entity-mc` into the local `skills/entity-mc` workspace path, and run `bash skills/entity-mc/install-auto.sh`."
-      - "`install-auto.sh` creates an auto manifest for the current workspace, installs wrappers, writes the auto-pull and stall-check cron entries, then runs verification."
+      - "`install-auto.sh` creates an auto manifest for the current workspace, installs wrappers, installs portable MC/intake setup context, writes the auto-pull and stall-check cron entries, then runs verification."
       - Inspect the installed skill locally and verify the installed cron block before wider rollout.
     postInstallVerification: bash skills/entity-mc/verify.sh --manifest skills/entity-mc/manifests/auto.env
     limitations:
@@ -87,6 +87,10 @@ artifacts:
     type: doc
     path: github:henrino3/enterprise-crew-skills/entity-mc/context/
     description: "Public-safe MC operating memory: task lifecycle, review/blocker contract, evidence rules, and Entity MC runtime behavior. Installed into .entity-mc/context/ and injected by mc-build-context.sh."
+  - name: Intake setup memory
+    type: doc
+    path: github:henrino3/enterprise-crew-skills/entity-mc/context/mc-intake-setup.md
+    description: Portable onboarding memory that tells a newly installed workspace how to define intake source policy, candidate JSON/JSONL shape, dedupe keys, review boundaries, and safe enablement before turning on the intake cron.
   - name: Per-agent manifests
     type: manifest
     path: github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
@@ -103,7 +107,7 @@ installSteps:
   - title: Review the external bundle source
     detail: Inspect the linked skill files, runtime layout, and manifests before rollout so the install stays deliberate.
   - title: Install the bundle
-    detail: Pull the Entity Mission Control bootstrap workflow into the local OpenClaw environment and run the auto installer. This writes wrappers, installs the default cron block, and verifies the install.
+    detail: Pull the Entity Mission Control bootstrap workflow into the local OpenClaw environment and run the auto installer. This writes wrappers, installs portable MC/intake setup context, installs the default cron block, and verifies the install.
     command: git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
   - title: Review the canonical runtime and manifests locally
     detail: After install, inspect source-scripts/, context/, the per-agent .env manifests, and the optional intake settings before rollout.
@@ -138,7 +142,7 @@ verification:
     - label: Bundle install present
       detail: Confirm the copied skill exists in the local OpenClaw workspace after installation.
       command: test -f skills/entity-mc/SKILL.md && ls skills/entity-mc
-      expected: The installed workspace path contains SKILL.md, source-scripts/, context/, manifests/auto.env, install-auto.sh, install.sh, verify.sh, rollback.sh, and VERSION, and the crontab contains exactly one ENTITY_MC block for the agent.
+      expected: The installed workspace path contains SKILL.md, source-scripts/, context/mc-intake-setup.md, manifests/auto.env, install-auto.sh, install.sh, verify.sh, rollback.sh, and VERSION, and the crontab contains exactly one ENTITY_MC block for the agent.
     - label: Manifest applied
       detail: Check that the target machine received the intended per-agent manifest and helper runtime files.
       expected: The target host shows the expected manifest-backed runtime files without duplication drift.
@@ -160,6 +164,7 @@ structure:
   - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/
   - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
   - github:henrino3/enterprise-crew-skills/entity-mc/context/
+  - github:henrino3/enterprise-crew-skills/entity-mc/context/mc-intake-setup.md
   - github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
   - github:henrino3/enterprise-crew-skills/entity-mc/install.sh
   - github:henrino3/enterprise-crew-skills/entity-mc/verify.sh
@@ -169,7 +174,7 @@ structure:
 A narrow workflow bundle for teams running one operational runtime across several agents and machines, with the real source of truth living in the linked external repo.
 
 
-Version 1.3 turns the fallback into a real install: clone/copy the bundle, then run `install-auto.sh` so wrappers, auto-pull cron, stall-check cron, and verification happen automatically. Version 1.2.1 fixed the install contract for real-world OpenClaw CLI compatibility: older builds such as 2026.5.4 treat `openclaw skills install` as a ClawHub-slug installer and reject `github:owner/repo/path` as an invalid slug. Version 1.2 added portable MC operating memory. Version 1.1 added structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
+Version 1.3.1 adds portable intake onboarding memory: the bundle now installs `mc-intake-setup.md` into `.entity-mc/context/` so other workspaces know how to write a source policy, candidate schema, dedupe key, and review boundary before enabling intake. Version 1.3 turned the fallback into a real install: clone/copy the bundle, then run `install-auto.sh` so wrappers, auto-pull cron, stall-check cron, and verification happen automatically. Version 1.2.1 fixed the install contract for real-world OpenClaw CLI compatibility: older builds such as 2026.5.4 treat `openclaw skills install` as a ClawHub-slug installer and reject `github:owner/repo/path` as an invalid slug. Version 1.2 added portable MC operating memory. Version 1.1 added structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
 
 Runtime scripts currently installed by the bundle:
 

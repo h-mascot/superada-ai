@@ -137,9 +137,9 @@ export const publishedSkills: SkillRecord[] = [
     entrypoint: 'SKILL.md',
     installCommand: 'git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh',
     reviewMode: 'source-review',
-    includes: ['Skill contract', 'Source scripts', 'Structured intake', 'Runtime manifests', 'Auto cron installer'],
+    includes: ['Skill contract', 'Source scripts', 'Structured intake', 'Runtime manifests', 'Auto cron installer', 'Intake setup memory'],
     useCases: ['Bootstrap Mission Control on a new agent', 'Install safe task-management helpers', 'Set up pull and stall-check routines', 'Create MC tasks from structured JSON/JSONL intake'],
-    instructions: ['Review the GitHub bundle and manifests.', 'If your OpenClaw CLI only accepts ClawHub slugs, clone the GitHub source, copy entity-mc into skills/entity-mc, then run install-auto.sh.', 'install-auto.sh writes wrappers, installs auto-pull and stall-check crons, and verifies the result.', 'Only enable intake cron after defining a source-specific inbox policy.'],
+    instructions: ['Review the GitHub bundle and manifests.', 'If your OpenClaw CLI only accepts ClawHub slugs, clone the GitHub source, copy entity-mc into skills/entity-mc, then run install-auto.sh.', 'install-auto.sh writes wrappers, installs portable MC/intake setup context, installs auto-pull and stall-check crons, and verifies the result.', 'Only enable intake cron after defining a source-specific inbox policy from the installed mc-intake-setup.md context.'],
     artifacts: [
       { label: 'Skill contract', path: 'github:henrino3/enterprise-crew-skills/entity-mc/SKILL.md', description: 'Canonical bootstrap instructions.' },
       { label: 'Source scripts', path: 'github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/', description: 'Mission Control helper scripts, including mc-intake.sh.' },
