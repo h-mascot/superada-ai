@@ -3,47 +3,23 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const title = 'OpenClaw Community Engagement Read | SuperAda';
-const description = 'Unlisted readout from Discord analytics exports: active members, support funnel behavior, channel concentration, and dashboard candidates.';
+const title = 'OpenClaw Community Engagement Dashboard | SuperAda';
+const description = 'Passworded mod dashboard from Discord analytics exports: support funnel, retained builder core, channel concentration, and recommended engagement model.';
 
-const periodSummary = [
-  { period: '2026-02-05', visitors: 58567, communicators: 7203, pct: 12.3, messages: 141061, mpc: 19.6, voice: 469, joins: 59999, leavers: 3138, net: 56861 },
-  { period: '2026-03-07', visitors: 85889, communicators: 9043, pct: 10.5, messages: 210381, mpc: 23.3, voice: 1560, joins: 47754, leavers: 6068, net: 41686 },
-  { period: '2026-04-06', visitors: 79583, communicators: 5819, pct: 7.3, messages: 152792, mpc: 26.3, voice: 1101, joins: 28679, leavers: 5163, net: 23516 },
-  { period: '2026-05-06', visitors: 61858, communicators: 3445, pct: 5.6, messages: 100865, mpc: 29.3, voice: 589, joins: 10842, leavers: 5174, net: 5668 },
-];
-
+const periodSummary = [{"period": "2026-02-05", "visitors": 58567, "visitor_communicator_pct": 12.3, "estimated_communicators": 7203, "new_members": 59999, "new_member_communicated_pct": 6.57, "estimated_new_member_communicators": 3940, "new_member_opened_channels_pct": 45.61, "estimated_new_members_opened_channels": 27368, "messages": 141061, "messages_per_communicator": 19.58, "speaking_minutes": 28114, "total_joins": 59999, "vanity_joins": 50561, "invite_joins": 9451, "discovery_joins": 0, "other_joins": 7}, {"period": "2026-03-07", "visitors": 85889, "visitor_communicator_pct": 10.53, "estimated_communicators": 9043, "new_members": 47754, "new_member_communicated_pct": 7.18, "estimated_new_member_communicators": 3431, "new_member_opened_channels_pct": 44.11, "estimated_new_members_opened_channels": 21066, "messages": 210381, "messages_per_communicator": 23.26, "speaking_minutes": 93615, "total_joins": 47754, "vanity_joins": 40702, "invite_joins": 6327, "discovery_joins": 675, "other_joins": 64}, {"period": "2026-04-06", "visitors": 79583, "visitor_communicator_pct": 7.31, "estimated_communicators": 5819, "new_members": 28679, "new_member_communicated_pct": 6.44, "estimated_new_member_communicators": 1848, "new_member_opened_channels_pct": 39.79, "estimated_new_members_opened_channels": 11410, "messages": 152792, "messages_per_communicator": 26.26, "speaking_minutes": 66072, "total_joins": 28679, "vanity_joins": 23153, "invite_joins": 3084, "discovery_joins": 1946, "other_joins": 501}, {"period": "2026-05-06", "visitors": 61858, "visitor_communicator_pct": 5.57, "estimated_communicators": 3445, "new_members": 10842, "new_member_communicated_pct": 7.69, "estimated_new_member_communicators": 834, "new_member_opened_channels_pct": 40.93, "estimated_new_members_opened_channels": 4438, "messages": 100865, "messages_per_communicator": 29.28, "speaking_minutes": 35336, "total_joins": 10842, "vanity_joins": 8715, "invite_joins": 1111, "discovery_joins": 918, "other_joins": 100}];
+const channelRows = [{"channel": "general", "readers": 10743, "chatters": 1907, "messages": 43680, "messages_per_chatter": 22.9, "chatter_reader_pct": 17.8}, {"channel": "help", "readers": 7380, "chatters": 1439, "messages": 19727, "messages_per_chatter": 13.7, "chatter_reader_pct": 19.5}, {"channel": "maintainers", "readers": 64, "chatters": 54, "messages": 9454, "messages_per_chatter": 175.1, "chatter_reader_pct": 84.4}, {"channel": "shell-society", "readers": 61, "chatters": 33, "messages": 4925, "messages_per_chatter": 149.2, "chatter_reader_pct": 54.1}, {"channel": "users-helping-users", "readers": 3537, "chatters": 793, "messages": 4892, "messages_per_chatter": 6.2, "chatter_reader_pct": 22.4}, {"channel": "Developers", "readers": 2239, "chatters": 267, "messages": 4854, "messages_per_chatter": 18.2, "chatter_reader_pct": 11.9}, {"channel": "The Community", "readers": 1858, "chatters": 202, "messages": 4169, "messages_per_chatter": 20.6, "chatter_reader_pct": 10.9}, {"channel": "clawtributors", "readers": 1612, "chatters": 188, "messages": 1341, "messages_per_chatter": 7.1, "chatter_reader_pct": 11.7}, {"channel": "maintainer-offtopic", "readers": 49, "chatters": 31, "messages": 713, "messages_per_chatter": 23.0, "chatter_reader_pct": 63.3}, {"channel": "tech-中国", "readers": 991, "chatters": 86, "messages": 674, "messages_per_chatter": 7.8, "chatter_reader_pct": 8.7}];
+const referrers = [{"domain": "openclaw.ai", "joins": 1341}, {"domain": "www.google.com", "joins": 845}, {"domain": "docs.openclaw.ai", "joins": 528}, {"domain": "github.com", "joins": 237}, {"domain": "www.youtube.com", "joins": 115}, {"domain": "discord.com", "joins": 115}, {"domain": "t.co", "joins": 108}, {"domain": "www.bing.com", "joins": 75}, {"domain": "www.reddit.com", "joins": 63}, {"domain": "search.brave.com", "joins": 58}, {"domain": "www.midjourney.com", "joins": 57}, {"domain": "duckduckgo.com", "joins": 28}];
+const retentionRows = [{"cohort": "2026-02-22", "new_members": 86215, "pct_retained": 24.7, "estimated_retained": 21291}, {"cohort": "2026-03-24", "new_members": 38134, "pct_retained": 23.88, "estimated_retained": 9107}, {"cohort": "2026-04-23", "new_members": 15696, "pct_retained": 25.23, "estimated_retained": 3960}];
+const leaverRows = [{"period": "2026-02-05", "total_leavers": 3138, "Members for 1 month+": 1, "Members for 1 month+_pct": 0.0, "Members for < 1 month": 3137, "Members for < 1 month_pct": 100.0}, {"period": "2026-03-07", "total_leavers": 6068, "Members for 1 month+": 742, "Members for 1 month+_pct": 12.2, "Members for < 1 month": 5326, "Members for < 1 month_pct": 87.8}, {"period": "2026-04-06", "total_leavers": 5163, "Members for 1 month+": 2172, "Members for 1 month+_pct": 42.1, "Members for < 1 month": 2991, "Members for < 1 month_pct": 57.9}, {"period": "2026-05-06", "total_leavers": 5174, "Members for 1 month+": 3557, "Members for 1 month+_pct": 68.7, "Members for < 1 month": 1617, "Members for < 1 month_pct": 31.3}];
+const muterRows = [{"period": "2026-02-05", "total_muters": 2555, "Existing Members": 267, "Existing Members_pct": 10.5, "New Members": 2288, "New Members_pct": 89.5}, {"period": "2026-03-07", "total_muters": 3359, "Existing Members": 1489, "Existing Members_pct": 44.3, "New Members": 1870, "New Members_pct": 55.7}, {"period": "2026-04-06", "total_muters": 2234, "Existing Members": 1132, "Existing Members_pct": 50.7, "New Members": 1102, "New Members_pct": 49.3}, {"period": "2026-05-06", "total_muters": 1491, "Existing Members": 1009, "Existing Members_pct": 67.7, "New Members": 482, "New Members_pct": 32.3}];
 const latest = periodSummary[periodSummary.length - 1];
-const channelRows = [
-  { channel: 'general', readers: 10743, chatters: 1907, messages: 43680, ratio: '17.8%' },
-  { channel: 'help', readers: 7380, chatters: 1439, messages: 19727, ratio: '19.5%' },
-  { channel: 'maintainers', readers: 64, chatters: 54, messages: 9454, ratio: '84.4%' },
-  { channel: 'shell-society', readers: 61, chatters: 33, messages: 4925, ratio: '54.1%' },
-  { channel: 'users-helping-users', readers: 3537, chatters: 793, messages: 4892, ratio: '22.4%' },
-  { channel: 'Developers', readers: 2239, chatters: 267, messages: 4854, ratio: '11.9%' },
-  { channel: 'The Community', readers: 1858, chatters: 202, messages: 4169, ratio: '10.9%' },
-  { channel: 'showcase', readers: 3431, chatters: 278, messages: 400, ratio: '8.1%' },
-];
-
-const referrers = [
-  { source: 'openclaw.ai', joins: 1341 },
-  { source: 'Google', joins: 845 },
-  { source: 'docs.openclaw.ai', joins: 528 },
-  { source: 'GitHub', joins: 237 },
-  { source: 'YouTube', joins: 115 },
-  { source: 'Discord', joins: 115 },
-  { source: 'X / Twitter', joins: 108 },
-  { source: 'Bing', joins: 75 },
-  { source: 'Reddit', joins: 63 },
-];
-
-const dashboardBlocks = [
-  'Joins → visitors → opened channels → communicated → retained 30d → retained 90d',
-  'New-user support funnel: first question, time to answer, answer quality, return visits',
-  'Long-term builder core: repeat chatters, voice regulars, showcase posts, project participation',
-  'Channel health: readers, chatters, messages, chatter/read ratio, messages per chatter',
-  'Acquisition: join source, referring domain, docs/content/search contribution',
-  'Community risk: new vs existing leavers, muters, unanswered help threads, support load',
+const totalMembers = 156328;
+const trend = {"member_growth_total": {"start": 29669, "end": 156328, "net": 126659, "pct": 426.9}, "new_members_decline_first_to_latest_pct": -81.9, "visitor_communication_rate_decline_points": -6.73, "estimated_communicators_decline_first_to_latest_pct": -52.2, "messages_decline_from_peak_pct": -52.1, "messages_per_communicator_increase_first_to_latest_pct": 49.5, "voice_minutes_decline_from_peak_pct": -62.3, "vanity_join_share_latest_pct": 80.4};
+const dashboardImages = [
+  { src: '/images/mods/community-engagement/dashboard-1-funnel.png', alt: 'OpenClaw Discord support funnel dashboard' },
+  { src: '/images/mods/community-engagement/dashboard-2-retention-core.png', alt: 'OpenClaw active core retention and intensity dashboard' },
+  { src: '/images/mods/community-engagement/dashboard-3-channel-concentration.png', alt: 'OpenClaw Discord channel concentration dashboard' },
+  { src: '/images/mods/community-engagement/dashboard-4-operating-model.png', alt: 'OpenClaw support funnel versus builder community operating model dashboard' },
 ];
 ---
 
@@ -55,70 +31,58 @@ const dashboardBlocks = [
   </head>
   <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
-    <main style="max-width:1120px; margin:0 auto; padding:3rem 1.25rem 4rem;">
-      <section style="padding:2rem; border:1px solid var(--border); border-radius:16px; background:linear-gradient(135deg,var(--panel) 0%,var(--panel-soft) 70%); margin-bottom:1.5rem;">
-        <div style="font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.85rem;">Unlisted mod readout</div>
-        <h1 style="font-family:Georgia,serif; font-size:clamp(2.25rem,5vw,4rem); line-height:1.02; font-weight:400; margin:0 0 1rem;">OpenClaw community engagement is not one problem.</h1>
-        <p style="font-size:1.15rem; color:var(--text-soft); max-width:820px; line-height:1.75; margin:0;">
-          The Discord analytics point to two different products living in the same server: a high-volume support funnel for new users, and a much smaller long-term builder community. Treating them as one thing is how teams end up debating hackathons when the real question is segmentation.
+    <main style="max-width:1180px; margin:0 auto; padding:3rem 1.25rem 4rem;">
+      <section style="padding:2rem; border:1px solid var(--border); border-radius:18px; background:linear-gradient(135deg,var(--panel) 0%,#111827 55%,#0F0C0A 100%); margin-bottom:1.5rem;">
+        <div style="font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.85rem;">Passworded mod dashboard · Discord CSV exports</div>
+        <h1 style="font-family:Georgia,serif; font-size:clamp(2.25rem,5vw,4.25rem); line-height:1.02; font-weight:400; margin:0 0 1rem;">OpenClaw has two communities hiding inside one Discord.</h1>
+        <p style="font-size:1.15rem; color:var(--text-soft); max-width:880px; line-height:1.75; margin:0;">
+          The data does not say “Discord is dead.” It says the server is doing two jobs at once: a massive new-user support funnel and a much smaller, higher-intensity builder core. Hackathons help the second job. They do not replace the first.
         </p>
       </section>
 
       <section style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-bottom:1.5rem;">
-        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Latest member count</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">156,328</strong></article>
-        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">30-day communicators</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.communicators.toLocaleString()}</strong></article>
-        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Visitor → communicator</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.pct}%</strong></article>
-        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">30-day messages</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.messages.toLocaleString()}</strong></article>
+        <article style="padding:1.15rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Members now</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{totalMembers.toLocaleString()}</strong></article>
+        <article style="padding:1.15rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Latest est. communicators</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.estimated_communicators.toLocaleString()}</strong></article>
+        <article style="padding:1.15rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Visitor → communicator</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.visitor_communicator_pct}%</strong></article>
+        <article style="padding:1.15rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Messages / communicator</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.messages_per_communicator}</strong></article>
+      </section>
+
+      <section style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin-bottom:1.5rem;">
+        {dashboardImages.map((image) => (
+          <figure style="margin:0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--panel);">
+            <img src={image.src} alt={image.alt} loading="lazy" style="display:block; width:100%; height:auto;" />
+          </figure>
+        ))}
       </section>
 
       <section style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:1rem; margin-bottom:1.5rem;">
         <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
-          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Main read</div>
-          <h2 style="font-family:Georgia,serif; font-size:2rem; line-height:1.15; font-weight:400; margin:0 0 0.8rem;">The server is still large, but contribution has narrowed.</h2>
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Ultrathink read</div>
+          <h2 style="font-family:Georgia,serif; font-size:2rem; line-height:1.15; font-weight:400; margin:0 0 0.8rem;">The active population narrowed, but the remaining core got louder.</h2>
           <p style="color:var(--text-soft); line-height:1.8; margin:0 0 1rem;">
-            Communicators fell from about 7,200 to 3,445 across the exported windows. Visitor-to-communicator rate fell from 12.3% to 5.6%. The headline member count is useful for reach, but it is a poor operating metric for community health.
+            New members fell {Math.abs(trend.new_members_decline_first_to_latest_pct)}% from the first export window to the latest. Estimated communicators fell {Math.abs(trend.estimated_communicators_decline_first_to_latest_pct)}%. Messages are down {Math.abs(trend.messages_decline_from_peak_pct)}% from the March peak.
           </p>
           <p style="color:var(--text-soft); line-height:1.8; margin:0;">
-            The twist: messages per communicator rose from 19.6 to 29.3. That is not a flat collapse. It is a consolidation into a smaller, more intense core. Very normal for a product Discord after the novelty wave burns off. Still annoying. Data often is.
+            But messages per communicator rose {trend.messages_per_communicator_increase_first_to_latest_pct}%. That is the important wrinkle: this is not silence, it is consolidation. Smaller core, higher intensity. Very normal post-hype behavior. Also exactly how teams trick themselves with vanity totals.
           </p>
         </article>
         <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:#0F0C0A;">
-          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Strategic question</div>
-          <h2 style="font-family:Georgia,serif; font-size:1.65rem; line-height:1.2; font-weight:400; margin:0 0 0.8rem;">Support funnel or builder community?</h2>
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Recommendation</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.65rem; line-height:1.2; font-weight:400; margin:0 0 0.8rem;">Run two operating loops.</h2>
           <p style="color:var(--muted); line-height:1.8; margin:0;">
-            If this is a support funnel, churn is expected and success means getting new users unstuck quickly. If this is a long-term community, support alone will not hold experienced users. You need recurring hooks: showcases, challenges, office hours, hackathons, contributor programs, and status loops for power users.
+            For new users: measure activation, time-to-answer, unanswered help, docs gaps, and first successful setup. For experienced users: measure repeat chatters, voice regulars, showcase posts, project contributions, and event participation. Hackathons belong here, not as a generic cure-all.
           </p>
         </article>
       </section>
 
       <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel); margin-bottom:1.5rem; overflow-x:auto;">
         <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Exported period trend</div>
-        <table style="width:100%; border-collapse:collapse; min-width:820px;">
-          <thead>
-            <tr style="text-align:left; color:var(--muted); font-size:0.8rem;">
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Period</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Visitors</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Communicators</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Communicated</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Messages</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Msg / communicator</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Voice hours</th>
-              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Net growth</th>
-            </tr>
-          </thead>
+        <table style="width:100%; border-collapse:collapse; min-width:900px;">
+          <thead><tr style="text-align:left; color:var(--muted); font-size:0.8rem;">
+            <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Period</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Visitors</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Est. communicators</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Communicated</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">New members</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Messages</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Msg / communicator</th><th style="padding:0.75rem; border-bottom:1px solid var(--border);">Voice minutes</th>
+          </tr></thead>
           <tbody>
-            {periodSummary.map((row) => (
-              <tr>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border); color:var(--text);">{row.period}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.visitors.toLocaleString()}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.communicators.toLocaleString()}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.pct}%</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.messages.toLocaleString()}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.mpc}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.voice.toLocaleString()}</td>
-                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.net.toLocaleString()}</td>
-              </tr>
-            ))}
+            {periodSummary.map((row) => (<tr><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.period}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.visitors.toLocaleString()}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.estimated_communicators.toLocaleString()}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.visitor_communicator_pct}%</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.new_members.toLocaleString()}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.messages.toLocaleString()}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.messages_per_communicator}</td><td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.speaking_minutes.toLocaleString()}</td></tr>))}
           </tbody>
         </table>
       </section>
@@ -126,48 +90,40 @@ const dashboardBlocks = [
       <section style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
         <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
           <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Channel concentration</div>
-          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">Support is the public engine.</h2>
+          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">A few rooms carry the server.</h2>
           <div style="display:flex; flex-direction:column; gap:0.7rem;">
-            {channelRows.map((row) => (
-              <div>
-                <div style="display:flex; justify-content:space-between; gap:1rem; font-size:0.92rem;"><span>{row.channel}</span><span style="color:var(--muted);">{row.messages.toLocaleString()} msgs · {row.chatters.toLocaleString()} chatters</span></div>
-                <div style="height:8px; border-radius:999px; background:var(--panel-soft); overflow:hidden; margin-top:0.35rem;"><div style={`height:100%; width:${Math.max(4, (row.messages / 43680) * 100)}%; background:var(--accent); border-radius:999px;`}></div></div>
-              </div>
-            ))}
+            {channelRows.map((row) => (<div><div style="display:flex; justify-content:space-between; gap:1rem; font-size:0.92rem;"><span>{row.channel}</span><span style="color:var(--muted);">{row.messages.toLocaleString()} msgs · {row.chatters.toLocaleString()} chatters</span></div><div style="height:8px; border-radius:999px; background:var(--panel-soft); overflow:hidden; margin-top:0.35rem;"><div style={`height:100%; width:${Math.max(4, (row.messages / channelRows[0].messages) * 100)}%; background:var(--accent); border-radius:999px;`}></div></div></div>))}
           </div>
         </article>
         <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
-          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Acquisition</div>
-          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">Direct, docs, search, GitHub.</h2>
-          <p style="color:var(--muted); line-height:1.75; margin:0 0 1rem;">Latest joins were about 80% vanity URL. Known referrers point to the site, Google, docs, GitHub, YouTube, Discord, X, and Reddit.</p>
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Retention and churn</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">Retention is not zero. It is just not the headline number.</h2>
+          <p style="color:var(--muted); line-height:1.75; margin:0 0 1rem;">Discord's aggregate retention export sits around 24–25%. The better next step is user-level 7/30/90-day cohorts by join source and first action.</p>
           <div style="display:flex; flex-direction:column; gap:0.65rem;">
-            {referrers.map((row) => (
-              <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:0.45rem;"><span>{row.source}</span><span style="color:var(--muted);">{row.joins.toLocaleString()}</span></div>
-            ))}
+            {retentionRows.map((row) => (<div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:0.45rem;"><span>{row.cohort}</span><span style="color:var(--muted);">{row.pct_retained}% · {row.estimated_retained.toLocaleString()} retained</span></div>))}
           </div>
         </article>
       </section>
 
       <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:#0F0C0A; margin-bottom:1.5rem;">
-        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Recommendation</div>
-        <h2 style="font-family:Georgia,serif; font-size:1.9rem; font-weight:400; margin:0 0 1rem;">Do not debate hackathon in isolation.</h2>
+        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">What this means for hackathons</div>
+        <h2 style="font-family:Georgia,serif; font-size:1.9rem; font-weight:400; margin:0 0 1rem;">Yes to hackathons, but aim them at the right segment.</h2>
         <p style="color:var(--text-soft); line-height:1.8; margin:0 0 1rem;">
-          First decide what the community is being optimized for. If the goal is support, measure first-30-day success: activation, time-to-answer, unanswered questions, docs gaps, and whether new users get unstuck. If the goal is long-term builder community, measure repeat contributors and create hooks that give experienced users a reason to come back.
+          Hackathons are not a support-funnel metric. They are a builder-core retention mechanism. Use them to pull experienced users back into public creation, create artifacts worth showcasing, and give power users status. Keep the support funnel separate and boring: answer fast, route docs, close loops.
         </p>
         <p style="color:var(--text-soft); line-height:1.8; margin:0;">
-          A hackathon is a good tool for the second job. It is not a magic defibrillator for a Discord that mostly behaves like a support queue. Tiny distinction. Massive operational consequences.
+          The real dashboard should eventually track both: “new users supported in their first 30 days” and “experienced builders still contributing after 90 days.” One number for reach, one for retained community. Anything else is Discord astrology with extra steps.
         </p>
       </section>
 
       <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
-        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Dashboard blueprint</div>
-        <h2 style="font-family:Georgia,serif; font-size:1.8rem; font-weight:400; margin:0 0 1rem;">What to build next</h2>
-        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.8rem;">
-          {dashboardBlocks.map((item) => (
-            <div style="padding:1rem; border:1px solid var(--border); border-radius:12px; color:var(--text-soft); line-height:1.65; background:var(--panel-soft);">{item}</div>
-          ))}
-        </div>
-        <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:1rem 0 0;">Source: Discord analytics CSV exports saved from MascotM3 Downloads on 2026-05-08. This page is intentionally unlisted and marked noindex.</p>
+        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Caveats</div>
+        <ul style="color:var(--text-soft); line-height:1.8; margin:0; padding-left:1.25rem;">
+          <li>These are aggregate Discord analytics CSVs, not per-user event logs.</li>
+          <li>True cohort analysis needs join date, first message, last message, voice/event attendance, and contribution data.</li>
+          <li>Communicator counts are estimated from exported percentages where Discord gave rates instead of raw counts.</li>
+          <li>GPT image generation was attempted, but the OpenAI account hit a billing hard limit, so the published dashboards are locally rendered from the CSV data in the requested style instead of generated by GPT Image 2.0.</li>
+        </ul>
       </section>
     </main>
     <Footer />
