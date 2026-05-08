@@ -39,13 +39,13 @@ notes:
   - This listing describes an externally hosted skill bundle. It does not imply those runtime files are checked into this website repo.
 bundle:
   id: superada.workflow.entity-mission-control-bootstrap
-  version: 1.3.1
+  version: 1.3.2
   classification: external
   installMode: manual
   reviewStatus: source-review
   entrypoint: SKILL.md
   bundleRoot: github:henrino3/enterprise-crew-skills/entity-mc
-  artifactCount: 8
+  artifactCount: 9
   summary: A reusable external ops bundle that keeps the helper runtime canonical, installs portable MC operating memory, applies per-agent manifests, creates tasks from structured intake, and gives operators a safe rollout plus rollback path.
   availabilityNote: GitHub source specs are not supported by every OpenClaw CLI build. OpenClaw 2026.5.4 accepts ClawHub slugs for `openclaw skills install`, not `github:owner/repo/path`, so this workflow uses a GitHub clone/copy fallback and then runs `install-auto.sh` to install wrappers, write the Entity MC cron block, and verify the result.
   installSource:
@@ -91,6 +91,10 @@ artifacts:
     type: doc
     path: github:henrino3/enterprise-crew-skills/entity-mc/context/mc-intake-setup.md
     description: Portable onboarding memory that tells a newly installed workspace how to define intake source policy, candidate JSON/JSONL shape, dedupe keys, review boundaries, and safe enablement before turning on the intake cron.
+  - name: Onboarding flow document
+    type: doc
+    path: github:henrino3/enterprise-crew-skills/entity-mc/docs/onboarding-flow.md
+    description: End-to-end explanation of install, default crons, portable context, MC intake policy setup, watcher JSONL flow, intake cron enablement, and verification.
   - name: Per-agent manifests
     type: manifest
     path: github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
@@ -165,6 +169,7 @@ structure:
   - github:henrino3/enterprise-crew-skills/entity-mc/source-scripts/mc-intake.sh
   - github:henrino3/enterprise-crew-skills/entity-mc/context/
   - github:henrino3/enterprise-crew-skills/entity-mc/context/mc-intake-setup.md
+  - github:henrino3/enterprise-crew-skills/entity-mc/docs/onboarding-flow.md
   - github:henrino3/enterprise-crew-skills/entity-mc/manifests/*.env
   - github:henrino3/enterprise-crew-skills/entity-mc/install.sh
   - github:henrino3/enterprise-crew-skills/entity-mc/verify.sh
@@ -174,7 +179,7 @@ structure:
 A narrow workflow bundle for teams running one operational runtime across several agents and machines, with the real source of truth living in the linked external repo.
 
 
-Version 1.3.1 adds portable intake onboarding memory: the bundle now installs `mc-intake-setup.md` into `.entity-mc/context/` so other workspaces know how to write a source policy, candidate schema, dedupe key, and review boundary before enabling intake. Version 1.3 turned the fallback into a real install: clone/copy the bundle, then run `install-auto.sh` so wrappers, auto-pull cron, stall-check cron, and verification happen automatically. Version 1.2.1 fixed the install contract for real-world OpenClaw CLI compatibility: older builds such as 2026.5.4 treat `openclaw skills install` as a ClawHub-slug installer and reject `github:owner/repo/path` as an invalid slug. Version 1.2 added portable MC operating memory. Version 1.1 added structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
+Version 1.3.2 adds an end-to-end onboarding flow document at `docs/onboarding-flow.md`. Version 1.3.1 added portable intake onboarding memory: the bundle now installs `mc-intake-setup.md` into `.entity-mc/context/` so other workspaces know how to write a source policy, candidate schema, dedupe key, and review boundary before enabling intake. Version 1.3 turned the fallback into a real install: clone/copy the bundle, then run `install-auto.sh` so wrappers, auto-pull cron, stall-check cron, and verification happen automatically. Version 1.2.1 fixed the install contract for real-world OpenClaw CLI compatibility: older builds such as 2026.5.4 treat `openclaw skills install` as a ClawHub-slug installer and reject `github:owner/repo/path` as an invalid slug. Version 1.2 added portable MC operating memory. Version 1.1 added structured intake. The bundle still does not spy on chats or infer tasks from vibes. `mc-intake.sh` creates tasks from explicit JSON or JSONL candidates, then the auto-pull cron can claim and execute those tasks. That separation matters: intake is the dispatcher, auto-pull is the worker. Mixing them is how task boards become haunted.
 
 Runtime scripts currently installed by the bundle:
 
