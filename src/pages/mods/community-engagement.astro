@@ -1,0 +1,175 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'OpenClaw Community Engagement Read | SuperAda';
+const description = 'Unlisted readout from Discord analytics exports: active members, support funnel behavior, channel concentration, and dashboard candidates.';
+
+const periodSummary = [
+  { period: '2026-02-05', visitors: 58567, communicators: 7203, pct: 12.3, messages: 141061, mpc: 19.6, voice: 469, joins: 59999, leavers: 3138, net: 56861 },
+  { period: '2026-03-07', visitors: 85889, communicators: 9043, pct: 10.5, messages: 210381, mpc: 23.3, voice: 1560, joins: 47754, leavers: 6068, net: 41686 },
+  { period: '2026-04-06', visitors: 79583, communicators: 5819, pct: 7.3, messages: 152792, mpc: 26.3, voice: 1101, joins: 28679, leavers: 5163, net: 23516 },
+  { period: '2026-05-06', visitors: 61858, communicators: 3445, pct: 5.6, messages: 100865, mpc: 29.3, voice: 589, joins: 10842, leavers: 5174, net: 5668 },
+];
+
+const latest = periodSummary[periodSummary.length - 1];
+const channelRows = [
+  { channel: 'general', readers: 10743, chatters: 1907, messages: 43680, ratio: '17.8%' },
+  { channel: 'help', readers: 7380, chatters: 1439, messages: 19727, ratio: '19.5%' },
+  { channel: 'maintainers', readers: 64, chatters: 54, messages: 9454, ratio: '84.4%' },
+  { channel: 'shell-society', readers: 61, chatters: 33, messages: 4925, ratio: '54.1%' },
+  { channel: 'users-helping-users', readers: 3537, chatters: 793, messages: 4892, ratio: '22.4%' },
+  { channel: 'Developers', readers: 2239, chatters: 267, messages: 4854, ratio: '11.9%' },
+  { channel: 'The Community', readers: 1858, chatters: 202, messages: 4169, ratio: '10.9%' },
+  { channel: 'showcase', readers: 3431, chatters: 278, messages: 400, ratio: '8.1%' },
+];
+
+const referrers = [
+  { source: 'openclaw.ai', joins: 1341 },
+  { source: 'Google', joins: 845 },
+  { source: 'docs.openclaw.ai', joins: 528 },
+  { source: 'GitHub', joins: 237 },
+  { source: 'YouTube', joins: 115 },
+  { source: 'Discord', joins: 115 },
+  { source: 'X / Twitter', joins: 108 },
+  { source: 'Bing', joins: 75 },
+  { source: 'Reddit', joins: 63 },
+];
+
+const dashboardBlocks = [
+  'Joins → visitors → opened channels → communicated → retained 30d → retained 90d',
+  'New-user support funnel: first question, time to answer, answer quality, return visits',
+  'Long-term builder core: repeat chatters, voice regulars, showcase posts, project participation',
+  'Channel health: readers, chatters, messages, chatter/read ratio, messages per chatter',
+  'Acquisition: join source, referring domain, docs/content/search contribution',
+  'Community risk: new vs existing leavers, muters, unanswered help threads, support load',
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <meta name="robots" content="noindex,nofollow" />
+  </head>
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
+    <Header />
+    <main style="max-width:1120px; margin:0 auto; padding:3rem 1.25rem 4rem;">
+      <section style="padding:2rem; border:1px solid var(--border); border-radius:16px; background:linear-gradient(135deg,var(--panel) 0%,var(--panel-soft) 70%); margin-bottom:1.5rem;">
+        <div style="font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.85rem;">Unlisted mod readout</div>
+        <h1 style="font-family:Georgia,serif; font-size:clamp(2.25rem,5vw,4rem); line-height:1.02; font-weight:400; margin:0 0 1rem;">OpenClaw community engagement is not one problem.</h1>
+        <p style="font-size:1.15rem; color:var(--text-soft); max-width:820px; line-height:1.75; margin:0;">
+          The Discord analytics point to two different products living in the same server: a high-volume support funnel for new users, and a much smaller long-term builder community. Treating them as one thing is how teams end up debating hackathons when the real question is segmentation.
+        </p>
+      </section>
+
+      <section style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-bottom:1.5rem;">
+        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Latest member count</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">156,328</strong></article>
+        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">30-day communicators</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.communicators.toLocaleString()}</strong></article>
+        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">Visitor → communicator</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.pct}%</strong></article>
+        <article style="padding:1.2rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);"><div style="color:var(--muted); font-size:0.82rem;">30-day messages</div><strong style="display:block; font-size:2rem; margin-top:0.3rem;">{latest.messages.toLocaleString()}</strong></article>
+      </section>
+
+      <section style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:1rem; margin-bottom:1.5rem;">
+        <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Main read</div>
+          <h2 style="font-family:Georgia,serif; font-size:2rem; line-height:1.15; font-weight:400; margin:0 0 0.8rem;">The server is still large, but contribution has narrowed.</h2>
+          <p style="color:var(--text-soft); line-height:1.8; margin:0 0 1rem;">
+            Communicators fell from about 7,200 to 3,445 across the exported windows. Visitor-to-communicator rate fell from 12.3% to 5.6%. The headline member count is useful for reach, but it is a poor operating metric for community health.
+          </p>
+          <p style="color:var(--text-soft); line-height:1.8; margin:0;">
+            The twist: messages per communicator rose from 19.6 to 29.3. That is not a flat collapse. It is a consolidation into a smaller, more intense core. Very normal for a product Discord after the novelty wave burns off. Still annoying. Data often is.
+          </p>
+        </article>
+        <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:#0F0C0A;">
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Strategic question</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.65rem; line-height:1.2; font-weight:400; margin:0 0 0.8rem;">Support funnel or builder community?</h2>
+          <p style="color:var(--muted); line-height:1.8; margin:0;">
+            If this is a support funnel, churn is expected and success means getting new users unstuck quickly. If this is a long-term community, support alone will not hold experienced users. You need recurring hooks: showcases, challenges, office hours, hackathons, contributor programs, and status loops for power users.
+          </p>
+        </article>
+      </section>
+
+      <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel); margin-bottom:1.5rem; overflow-x:auto;">
+        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Exported period trend</div>
+        <table style="width:100%; border-collapse:collapse; min-width:820px;">
+          <thead>
+            <tr style="text-align:left; color:var(--muted); font-size:0.8rem;">
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Period</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Visitors</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Communicators</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Communicated</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Messages</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Msg / communicator</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Voice hours</th>
+              <th style="padding:0.75rem; border-bottom:1px solid var(--border);">Net growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            {periodSummary.map((row) => (
+              <tr>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border); color:var(--text);">{row.period}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.visitors.toLocaleString()}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.communicators.toLocaleString()}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.pct}%</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.messages.toLocaleString()}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.mpc}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.voice.toLocaleString()}</td>
+                <td style="padding:0.75rem; border-bottom:1px solid var(--border);">{row.net.toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      <section style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Channel concentration</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">Support is the public engine.</h2>
+          <div style="display:flex; flex-direction:column; gap:0.7rem;">
+            {channelRows.map((row) => (
+              <div>
+                <div style="display:flex; justify-content:space-between; gap:1rem; font-size:0.92rem;"><span>{row.channel}</span><span style="color:var(--muted);">{row.messages.toLocaleString()} msgs · {row.chatters.toLocaleString()} chatters</span></div>
+                <div style="height:8px; border-radius:999px; background:var(--panel-soft); overflow:hidden; margin-top:0.35rem;"><div style={`height:100%; width:${Math.max(4, (row.messages / 43680) * 100)}%; background:var(--accent); border-radius:999px;`}></div></div>
+              </div>
+            ))}
+          </div>
+        </article>
+        <article style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
+          <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Acquisition</div>
+          <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 1rem;">Direct, docs, search, GitHub.</h2>
+          <p style="color:var(--muted); line-height:1.75; margin:0 0 1rem;">Latest joins were about 80% vanity URL. Known referrers point to the site, Google, docs, GitHub, YouTube, Discord, X, and Reddit.</p>
+          <div style="display:flex; flex-direction:column; gap:0.65rem;">
+            {referrers.map((row) => (
+              <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:0.45rem;"><span>{row.source}</span><span style="color:var(--muted);">{row.joins.toLocaleString()}</span></div>
+            ))}
+          </div>
+        </article>
+      </section>
+
+      <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:#0F0C0A; margin-bottom:1.5rem;">
+        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Recommendation</div>
+        <h2 style="font-family:Georgia,serif; font-size:1.9rem; font-weight:400; margin:0 0 1rem;">Do not debate hackathon in isolation.</h2>
+        <p style="color:var(--text-soft); line-height:1.8; margin:0 0 1rem;">
+          First decide what the community is being optimized for. If the goal is support, measure first-30-day success: activation, time-to-answer, unanswered questions, docs gaps, and whether new users get unstuck. If the goal is long-term builder community, measure repeat contributors and create hooks that give experienced users a reason to come back.
+        </p>
+        <p style="color:var(--text-soft); line-height:1.8; margin:0;">
+          A hackathon is a good tool for the second job. It is not a magic defibrillator for a Discord that mostly behaves like a support queue. Tiny distinction. Massive operational consequences.
+        </p>
+      </section>
+
+      <section style="padding:1.5rem; border:1px solid var(--border); border-radius:14px; background:var(--panel);">
+        <div style="font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.7rem;">Dashboard blueprint</div>
+        <h2 style="font-family:Georgia,serif; font-size:1.8rem; font-weight:400; margin:0 0 1rem;">What to build next</h2>
+        <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.8rem;">
+          {dashboardBlocks.map((item) => (
+            <div style="padding:1rem; border:1px solid var(--border); border-radius:12px; color:var(--text-soft); line-height:1.65; background:var(--panel-soft);">{item}</div>
+          ))}
+        </div>
+        <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:1rem 0 0;">Source: Discord analytics CSV exports saved from MascotM3 Downloads on 2026-05-08. This page is intentionally unlisted and marked noindex.</p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
