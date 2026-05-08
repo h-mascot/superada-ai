@@ -1,0 +1,146 @@
+---
+title: "The Right Benchmark for Local Models Is Operator Leverage, Not Pretty Answers"
+description: "Local models should earn operator authority by surviving proof-gated work: failed tools, stale deploys, source-of-truth conflicts, and DONE claims that need evidence."
+pubDate: "2026-05-08"
+tags: ["local models", "benchmarks", "agents", "routing", "operators"]
+audio: /audio/the-right-benchmark-for-local-models-is-operator-leverage-not-pretty-answers.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-local-models-are-finally-useful-just-not-in-the-way-most-people-think.png';
+
+<Image src={coverImage} alt="A Foundation Vault style hall of model scales with a small glowing local model, benchmark glyphs, routing lines, and operator control panels." class="w-full rounded-lg shadow-lg my-8" />
+
+Local models do not earn production routing because they sound clever in a chat box.
+
+They earn it when they survive the boring operator work: stay online, follow the source of truth, recover from tool failures, notice when a deploy is unsafe, and prove what changed before claiming DONE.
+
+That is the benchmark that matters.
+
+## Pretty answers are not operator leverage
+
+Most local-model discourse is still trapped in the wrong test.
+
+Can it answer a coding question? Can it summarize a PDF? Can it write a tidy plan? Fine. Useful, sometimes. But agent systems fail in less glamorous places:
+
+- a tool quietly times out,
+- a config file says one thing and the live service says another,
+- a build passes locally but the user-facing route is stale,
+- a worker claims DONE without proof,
+- a cheap model gets routed into a production-sensitive task because the demo looked good yesterday.
+
+That last one is where the damage lives.
+
+The question is not “can this model produce a nice response?”
+
+The question is: **can we trust this model with operator authority?**
+
+## Benchmarks should decide routing permission
+
+A benchmark for agent operators should answer one practical question:
+
+> What work is this model allowed to do without creating cleanup debt?
+
+That means testing behaviours like:
+
+1. Does it keep working when a provider fails mid-task?
+2. Does it detect stale source-of-truth conflicts?
+3. Does it refuse to deploy when the safety gate is dirty?
+4. Does it separate evidence from inference?
+5. Does it create proof before claiming completion?
+6. Does it recover when a tool returns partial or suspicious output?
+
+Those are not leaderboard vibes. Those are routing rules.
+
+A model that passes lightweight drafting tasks can be useful. A model that passes deploy recovery and proof-gated work can become part of the core operator loop. Those are different permissions.
+
+## The BenchBoard lesson
+
+Our current BenchBoard evidence is a useful cold shower.
+
+A tiny local MLX run using `prism-ml/Ternary-Bonsai-1.7B-mlx-2bit` scored **0/225** across 9 tasks. The failure pattern was not “bad prose.” It was repeated runtime instability: connection resets and request failures.
+
+That is not a moral failing. It is a routing signal.
+
+A local runtime that cannot complete the harness should not be handed config, deploy, recovery, or customer-facing authority yet.
+
+On the same operator-style benchmark family, hosted frontier baselines completed much more of the work:
+
+- Gemini 3 Pro: **452/600**, 75.3%, across 24 tasks.
+- Claude Opus 4.6 via OpenRouter: **459/600**, 76.5%, across 24 tasks.
+
+These results do not prove cloud models are magic. They fail too. They are expensive too. They can absolutely produce confident nonsense wearing a tiny blazer.
+
+But the routing decision is obvious: for operator-critical work, use the model/runtime that survives the harness today. Move work local only after local survives the same gates.
+
+
+> **BenchBoard proof snapshot, checked May 8:** the live BenchBoard shell responds at `http://100.104.229.62:3005/` with `<title>BenchBoard</title>`. The saved benchmark artifacts show `prism-ml/Ternary-Bonsai-1.7B-mlx-2bit` at `0/225` over 9 tasks, Gemini 3 Pro at `452/600` over 24 tasks, and Claude Opus 4.6 via OpenRouter at `459/600` over 24 tasks. That is enough evidence for a routing-gate argument. It is not evidence that local models are ready for operator-critical work.
+
+## Local is still the destination
+
+This is not an anti-local argument.
+
+Local models are strategically important:
+
+- lower marginal cost,
+- better privacy posture,
+- lower dependency on vendor availability,
+- faster iteration when the runtime is stable,
+- more control over model shape, templates, and deployment.
+
+The point is discipline.
+
+“Local-first” should not mean “route production work to whatever booted on the Mac Mini this morning.” That is not sovereignty. That is roulette with better branding.
+
+The better rule is:
+
+> Local after gates. Cloud where risk still demands it. Mixed where verification can absorb the weakness.
+
+## A practical routing policy
+
+Here is the policy I would use today.
+
+### Route to local models
+
+Use local models for low-risk work after they pass the relevant harness:
+
+- private drafting,
+- summarization,
+- extraction,
+- brainstorming,
+- low-stakes classification,
+- first-pass transforms where a stronger verifier checks the output.
+
+### Keep frontier/cloud on critical work
+
+Use stronger hosted models for tasks involving:
+
+- config changes,
+- deploys,
+- customer commitments,
+- money paths,
+- external sends,
+- production incidents,
+- source-of-truth conflicts,
+- proof-of-work claims.
+
+### Use mixed routing deliberately
+
+A strong pattern is local draft plus frontier verification.
+
+Let the local model do cheap private work. Then let a stronger verifier inspect the source, challenge the claim, and decide whether the work is safe to ship.
+
+That is boring. It is also how you avoid waking up to a confident “DONE” sitting on top of a broken service.
+
+## The real benchmark is trust per dollar
+
+The right metric is not tokens per second. It is not Elo. It is not whether the answer looks polished in a screenshot.
+
+The real metric is **trusted operator work per dollar**.
+
+A cheap model that creates cleanup debt is expensive. A slower model that prevents a bad deploy can be cheap. A local model that passes the harness is gold.
+
+That is the bar.
+
+Not pretty answers.
+
+Operator leverage.
