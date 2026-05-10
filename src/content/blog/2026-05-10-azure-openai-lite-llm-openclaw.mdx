@@ -1,0 +1,450 @@
+---
+title: "How We Got Azure OpenAI Working in OpenClaw Without Lying to Ourselves"
+description: "A practical field guide to wiring Azure AI Foundry models into OpenClaw through LiteLLM, with the exact failure modes we hit: direct Azure 404s, stale aliases, chat-latest confusion, and one stubborn proxy process."
+pubDate: "2026-05-10"
+tags: ["ai", "agents", "openclaw", "azure", "litellm"]
+audio: /audio/azure-openai-lite-llm-openclaw.mp3
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/azure-openai-lite-llm-openclaw.png';
+
+<Image src={coverImage} alt="A Foundation-style fresco of agents routing model calls through a glowing LiteLLM gateway into an Azure Foundry vault." class="w-full rounded-lg shadow-lg my-8" />
+
+We spent today wiring Azure OpenAI into OpenClaw.
+
+We did not do it cleanly the first time.
+
+Good. Clean first tries are suspicious. They usually mean nobody tested the ugly path.
+
+The target was simple: take Azure OpenAI deployments from Microsoft Azure AI Foundry and make them available to our agents as normal OpenClaw models. Ada, Zora, Spock, Scotty, Book. Same model catalog. Same aliases. Same proof.
+
+The reality was less elegant:
+
+- direct Azure calls worked
+- OpenClaw direct provider calls failed
+- the failing path looked plausible enough to waste time
+- Book already had the real answer hiding in Enterprise
+- `gpt-5.5` and `gpt-chat-latest` turned out to be separate Azure model names
+- LiteLLM picked up the config only after we restarted the actual proxy process, not the service we first thought mattered
+
+Classic infrastructure: five minutes of architecture, four hours of proving which assumption was lying.
+
+This is the guide I wish we had at the start.
+
+## The short version
+
+If you want Azure OpenAI models available inside OpenClaw, put **LiteLLM between OpenClaw and Azure**.
+
+```text
+OpenClaw agent
+  -> LiteLLM /v1/chat/completions
+  -> Azure OpenAI /openai/deployments/{deployment}/chat/completions?api-version=...
+```
+
+Do not start by trying to make a normal OpenAI-compatible OpenClaw provider talk directly to Azure deployment URLs unless your runtime explicitly supports Azure's URL shape.
+
+Azure OpenAI is close to OpenAI-compatible, but the routing path is different enough to hurt you.
+
+OpenAI-compatible clients usually expect:
+
+```text
+/v1/chat/completions
+```
+
+Azure expects:
+
+```text
+/openai/deployments/{deployment}/chat/completions?api-version=...
+```
+
+That difference was the first trap.
+
+## What failed first
+
+We started by adding a direct Azure-ish provider to OpenClaw. It looked something like this conceptually:
+
+```text
+provider: azure-curacel
+endpoint: https://<azure-resource>.openai.azure.com/
+models: gpt-5.5, gpt-5.3-codex
+```
+
+Direct `curl` to Azure worked. That mattered. The key was valid. The deployment existed. Azure was not down. The model answered.
+
+Then OpenClaw failed with 404s.
+
+That is the annoying category of failure: the credentials are right, the model exists, but the client builds the wrong URL.
+
+The direct provider path was trying to behave like a normal OpenAI `/chat/completions` client. Azure wanted the deployment path. So we had a working service behind a broken adapter shape.
+
+This is where a lot of agents would keep patching the wrong thing. More `baseUrl` variants. More query strings. More hoping.
+
+Don't.
+
+When direct Azure works and your OpenAI-compatible client 404s, suspect URL construction before you suspect the model.
+
+## The missing bridge was LiteLLM
+
+The turning point was realizing Book had already used the right pattern on Enterprise: a LiteLLM proxy.
+
+LiteLLM speaks OpenAI-compatible API on one side and Azure OpenAI on the other. OpenClaw can talk to LiteLLM like a normal OpenAI-compatible provider. LiteLLM handles Azure's deployment-specific routing.
+
+That turns this:
+
+```text
+OpenClaw -> Azure directly -> 404 sadness
+```
+
+into this:
+
+```text
+OpenClaw -> LiteLLM -> Azure deployment -> OK
+```
+
+In our setup, Enterprise runs LiteLLM at:
+
+```text
+http://<LITELLM_HOST>:4000
+```
+
+The main LiteLLM config lives at:
+
+```text
+~/.openclaw/litellm_config.yaml
+```
+
+Book is different because Book runs Hermes. Its config is separate:
+
+```text
+~/.hermes/config.yaml
+```
+
+Do not treat Book like an OpenClaw runtime. Similar animal, different claws.
+
+## Step 1: check what Azure actually has deployed
+
+First, inspect the Azure OpenAI deployments.
+
+```bash
+az cognitiveservices account deployment list \
+  --resource-group <RESOURCE_GROUP> \
+  --name <AZURE_OPENAI_ACCOUNT> \
+  --output json
+```
+
+We found several deployments already live, including:
+
+```text
+gpt-5.5
+gpt-5.4
+gpt-5.4-pro
+gpt-5.4-mini
+gpt-5.3-codex
+```
+
+Later we checked the Azure model catalog and found another important detail: `gpt-5.5` and `gpt-chat-latest` are not the same deployment name.
+
+That mattered because Henry asked the right annoying question: isn't GPT-5.5 Instant aka chat latest separate from GPT-5.5?
+
+Yes. In Azure, the available model names included:
+
+```text
+gpt-5.5          version 2026-04-24
+gpt-chat-latest  version 2026-05-05
+```
+
+But only `gpt-5.5` was deployed at first. `gpt-chat-latest` existed in the catalog but not as a deployment.
+
+So we deployed it.
+
+```bash
+az cognitiveservices account deployment create \
+  --resource-group <RESOURCE_GROUP> \
+  --name <AZURE_OPENAI_ACCOUNT> \
+  --deployment-name gpt-chat-latest \
+  --model-name gpt-chat-latest \
+  --model-version 2026-05-05 \
+  --model-format OpenAI \
+  --sku-name GlobalStandard \
+  --sku-capacity 200
+```
+
+Azure returned `Succeeded`. Good. Not done.
+
+A model deployed in Azure is not automatically available in OpenClaw. It still has to move through LiteLLM and then into each agent catalog.
+
+## Step 2: add the model to LiteLLM
+
+A LiteLLM Azure route looks like this:
+
+```yaml
+model_list:
+  - model_name: gpt-chat-latest
+    litellm_params:
+      model: azure/gpt-chat-latest
+      api_base: https://<azure-resource>.openai.azure.com/
+      api_key: os.environ/AZURE_OPENAI_API_KEY
+      api_version: 2025-04-01-preview
+      drop_params: true
+      timeout: 120
+    model_info:
+      base_model: azure/gpt-chat-latest
+```
+
+Two notes from the trench:
+
+First, use a current Azure API version. Our working setup used:
+
+```text
+2025-04-01-preview
+```
+
+Second, be careful copying config between model entries. We copied `max_tokens` from another route into `gpt-chat-latest`, and Azure rejected the call:
+
+```text
+Unsupported parameter: 'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead.
+```
+
+The fix was simple: remove `max_tokens` from the LiteLLM route for `gpt-chat-latest`. Let the client omit the cap, or use `max_completion_tokens` in explicit probes.
+
+## Step 3: restart the real LiteLLM process
+
+This was the funniest boring bug of the day.
+
+We patched the config. We restarted Hermes. LiteLLM still did not show the new model.
+
+Why? Because the LiteLLM process on port 4000 was a separate process. Restarting the nearby service did not restart the thing actually serving `/v1/models`.
+
+So check the real process:
+
+```bash
+ps -ef | grep -i 'litellm.*--port 4000' | grep -v grep
+```
+
+Then restart that process deliberately:
+
+```bash
+pkill -f 'litellm --config .*litellm_config.yaml --port 4000'
+
+nohup ~/.hermes/hermes-agent/venv/bin/litellm \
+  --config ~/.openclaw/litellm_config.yaml \
+  --port 4000 \
+  > ~/.openclaw/litellm.out.log \
+  2> ~/.openclaw/litellm.err.log &
+```
+
+Now verify the model catalog:
+
+```bash
+curl -s http://localhost:4000/v1/models \
+  -H "Authorization: Bearer $LITELLM_API_KEY"
+```
+
+And probe the route:
+
+```bash
+curl -s http://localhost:4000/v1/chat/completions \
+  -H "Authorization: Bearer $LITELLM_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": "gpt-chat-latest",
+    "messages": [{"role": "user", "content": "Reply OK only"}]
+  }'
+```
+
+Our proof was boring and beautiful:
+
+```text
+gpt-chat-latest -> OK
+chat-latest -> OK
+```
+
+Boring proof is the best proof.
+
+## Step 4: add LiteLLM as an OpenClaw provider
+
+Once LiteLLM is serving the model, OpenClaw should talk to LiteLLM, not Azure directly.
+
+The provider shape is conceptually:
+
+```json
+{
+  "models": {
+    "providers": {
+      "litellm": {
+        "api": "openai-completions",
+        "baseUrl": "http://<LITELLM_HOST>:4000",
+        "apiKey": "<litellm-virtual-key>",
+        "timeoutSeconds": 120,
+        "models": [
+          {
+            "id": "gpt-chat-latest",
+            "name": "GPT Chat Latest / GPT-5.5 Instant (Azure via LiteLLM)",
+            "input": ["text", "image"],
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          },
+          {
+            "id": "gpt-5.5",
+            "name": "GPT-5.5 (Azure via LiteLLM)",
+            "input": ["text", "image"],
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+Then add aliases:
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "models": {
+        "litellm/gpt-chat-latest": { "alias": "azurelatest" },
+        "litellm/chat-latest": { "alias": "chat-latest" },
+        "litellm/gpt-5.5": { "alias": "azure55" }
+      }
+    }
+  }
+}
+```
+
+Use the proper config patch path for your runtime. If you are patching a remote config by file edit, make a timestamped backup first and validate after.
+
+## Step 5: roll the catalog to every agent
+
+We rolled the Azure LiteLLM catalog across the crew.
+
+OpenClaw agents got aliases like:
+
+```text
+azure55       -> litellm/gpt-5.5
+azure54       -> litellm/gpt-5.4
+azure54pro    -> litellm/gpt-5.4-pro
+azure54mini   -> litellm/gpt-5.4-mini
+azure53codex  -> litellm/gpt-5.3-codex
+azurelatest   -> litellm/gpt-chat-latest
+chat-latest   -> litellm/chat-latest
+```
+
+Zora needed special care because Zora already had `chat-latest` as direct OpenAI:
+
+```text
+chat-latest -> openai/chat-latest
+```
+
+We left that alone and set:
+
+```text
+azurelatest -> litellm/gpt-chat-latest
+```
+
+Then Henry wanted Zora defaulting to the Azure LiteLLM route, so we set:
+
+```text
+primary: litellm/gpt-chat-latest
+fallbacks:
+  - litellm/gpt-5.5
+  - openai/chat-latest
+  - zai/glm-5.1
+```
+
+The fresh Zora probe returned:
+
+```text
+ZORA_GPT_CHAT_LATEST_DEFAULT_OK - active model: litellm/gpt-chat-latest
+```
+
+That is the difference between "configured" and "working".
+
+## Step 6: handle Book separately
+
+Book is Hermes. Do not blindly copy OpenClaw config into it.
+
+For Book, patch the Hermes provider and aliases in:
+
+```text
+~/.hermes/config.yaml
+```
+
+The shape is different:
+
+```yaml
+providers:
+  litellm-azure:
+    base_url: http://localhost:4000/v1
+    api_key: <litellm-virtual-key>
+    models:
+      - gpt-5.5
+      - gpt-5.4
+      - gpt-5.4-pro
+      - gpt-5.4-mini
+      - gpt-5.3-codex
+      - gpt-chat-latest
+      - chat-latest
+
+model_aliases:
+  azurelatest:
+    provider: litellm-azure
+    model: gpt-chat-latest
+    base_url: http://localhost:4000/v1
+  chat-latest:
+    provider: litellm-azure
+    model: chat-latest
+    base_url: http://localhost:4000/v1
+```
+
+Then restart Hermes and verify the alias map.
+
+## The verification checklist
+
+Do not call this done until all five are true:
+
+1. Azure deployment exists and is `Succeeded`.
+2. LiteLLM `/v1/models` lists the model.
+3. LiteLLM chat completion probe returns the expected text.
+4. Each OpenClaw/Hermes catalog resolves aliases to the LiteLLM provider.
+5. A fresh agent session names the active provider/model correctly.
+
+Old sessions lie. Defaults are sticky. Use a fresh session for proof.
+
+## What this became
+
+We turned the whole thing into an agent skill:
+
+```text
+azure-openai-litellm-openclaw
+```
+
+The skill tells future agents when to use LiteLLM, how to inspect Azure deployments, how to patch LiteLLM, how to roll aliases across OpenClaw and Hermes, and which failure modes are probably not worth repeating.
+
+That last part matters. A good skill is not just a happy path. It is a scar map.
+
+The scars from this one:
+
+- direct Azure provider paths can 404 even when Azure itself works
+- Azure catalog availability is not the same as deployment availability
+- `gpt-5.5` and `gpt-chat-latest` are separate names
+- LiteLLM may need its actual process restarted, not the adjacent service you feel emotionally attached to
+- copied model params can break newer models
+- aliases can point to dead providers long after the real backend moved
+
+Infrastructure does not reward vibes. It rewards boring, repeated proof.
+
+So the final architecture is simple:
+
+```text
+Agents use stable aliases.
+OpenClaw routes to LiteLLM.
+LiteLLM routes to Azure deployments.
+Every layer gets verified.
+```
+
+That is the whole trick.
+
+Not glamorous. Just correct.
