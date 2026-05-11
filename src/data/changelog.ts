@@ -26,6 +26,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
       },
       {
+        "title": "Agents/tools",
+        "description": "add core Tool Search so agents can search and call large OpenClaw, MCP, and client tool catalogs through one compact PI bridge.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
+      },
+      {
         "title": "Chat commands",
         "description": "add `/think default` and `/fast default` to clear session overrides and inherit configured/provider defaults. (#79385) Thanks @VACInc.",
         "href": "https://github.com/openclaw/openclaw/pull/79385"
@@ -321,6 +326,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/78902"
       },
       {
+        "title": "Config/schema/Windows",
+        "description": "detect direct execution of the base config schema generator with `pathToFileURL` so Windows paths with backslashes still run the `--check` and `--write` command body. (#52989) Thanks @easyteacher.",
+        "href": "https://github.com/openclaw/openclaw/pull/52989"
+      },
+      {
         "title": "Discord/voice",
         "description": "stream ElevenLabs TTS directly into Discord playback and send ElevenLabs latency optimization as the documented query parameter so spoken replies can start sooner.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
@@ -339,6 +349,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Gateway/tasks",
         "description": "reconcile stale CLI run-context tasks whose live run context disappeared even when a child session row remains, and apply the default bounded reload deferral timeout to channel hot reloads so stale task records cannot block Discord/Slack/Telegram reloads forever.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
+      },
+      {
+        "title": "Gateway/heartbeat",
+        "description": "keep stripped `HEARTBEAT_OK` acknowledgements out of pending final-delivery replay and let recent ack-only pending state proceed to the next heartbeat run instead of creating a self-refreshing requests-in-flight loop. Fixes #79258. Thanks @haumanto.",
+        "href": "https://github.com/openclaw/openclaw/issues/79258"
       },
       {
         "title": "Gateway/sessions",
@@ -401,6 +416,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/77971"
       },
       {
+        "title": "Process tool",
+        "description": "show input-wait hints from `log` and `poll` for idle interactive background sessions so operators can inspect stuck CLIs and resume them with existing input actions. Fixes #33957. Thanks @bitloi and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/33957"
+      },
+      {
         "title": "Shell env/Windows",
         "description": "hide the login-shell environment probe child window so gateway startup and shell-env refreshes do not flash a console on Windows. Fixes #78159. (#78266) Thanks @BradGroux.",
         "href": "https://github.com/openclaw/openclaw/pull/78266"
@@ -449,6 +469,16 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Image generation",
         "description": "include enabled generation providers such as fal in provider discovery even when another image provider is already active. Fixes #78141. Thanks @leoge007.",
         "href": "https://github.com/openclaw/openclaw/issues/78141"
+      },
+      {
+        "title": "Slack",
+        "description": "keep Socket Mode's native reconnect enabled so transient ping/pong misses can recover without forcing a full provider rebuild. Fixes #77933. Thanks @bmoran1022 and @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/issues/77933"
+      },
+      {
+        "title": "Cron",
+        "description": "preserve cron timeout results when an isolated agent turn's `cron-nested` lane watchdog fires, preventing internal command-lane or model-fallback timeout text from being persisted. Fixes #77703. (#78168) Thanks @brokemac79 and @transxtech.",
+        "href": "https://github.com/openclaw/openclaw/pull/78168"
       },
       {
         "title": "PR triage",
@@ -726,6 +756,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/75609"
       },
       {
+        "title": "Plugin SDK/Gateway",
+        "description": "add scoped `plugins.sessionAction` dispatch and plugin-attributed `emitAgentEvent` support so plugins can expose typed session actions and workflow events to trusted clients. (#75578; replaces part of #73384/#74483) Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/issues/75578"
+      },
+      {
         "title": "Plugins/SDK",
         "description": "expose host-derived tool target paths to `before_tool_call` and trusted policy hooks so workflow plugins can reason about known file targets without reparsing tool envelopes. (#75605) Thanks @100yenadmin.",
         "href": "https://github.com/openclaw/openclaw/pull/75605"
@@ -848,6 +883,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Codex app-server: keep native hook relays alive for long-running turns so shell and file approvals stay reachable until the configured run window finishes. (#77533) Thanks @rubencu.",
       "Gateway/macOS: clear ignored SIGUSR1 restart state, skip redundant package-update restarts when the refreshed LaunchAgent already serves the expected version, and give launchd a 10s throttle plus 20s shutdown window so update restarts do not leave old gateways alive or fight supervisor recovery. Fixes #79577; refs #78699 and #60885. Thanks @BunsDev.",
       "Status/Codex: route Codex-harness `openai/*` usage through the OpenAI Codex quota provider and scope CLI status usage to the default agent auth store so `/status` and `openclaw status --usage` show Codex quota windows again. Fixes #79312. Thanks @keshavbotagent.",
+      "Matrix: keep joined strict DM rooms discoverable when stale `m.direct` mappings already point at an older strict room, and let `dm.sessionScope: \"per-room\"` promote safe unmapped strict rooms through the existing unnamed/unaliased room gate. Fixes #79514. Thanks @stainlu.",
       "Gateway/agent: pass the session-key agent id into inline image attachment validation so the first image in a fresh per-agent session uses the agent's vision-capable model override instead of the text-only system default. Fixes #79407. Thanks @pandadev66.",
       "Gateway/maintenance: prune dedupe overflow against a stable excess count and keep active agent retries from starting duplicate runs after cache eviction. (#73841) Thanks @thesomewhatyou.",
       "Control UI/subagents: suppress internal `subagent_announce` handoff prompts from requester transcripts and hide legacy inter-session wrapper rows so completed subagent results no longer surface runtime context in WebChat history. (#79618) Thanks @joshavant.",
@@ -916,6 +952,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Plugins/runtime: share MIME and JSON Schema helpers across bundled plugins while preserving canonical media MIME inference, browser URL wildcard semantics, migration home-path resolution, QA request-limit responses, and extensionless text file previews.",
       "Agents/memory flush: persist the pre-increment compaction counter after flush-triggered compaction so consecutive eligible compaction cycles run memoryFlush instead of alternating. Fixes #12590. Refs #12760, #26145, and #46513. Thanks @Kaspre, @lailoo, @drvoss, @Br1an67, and @dial481.",
       "Status: treat CLI runtime aliases such as `claude-cli/<model>` as the canonical selected provider route in `/status`, avoiding spurious fallback/unknown-auth display and preserving fresh context usage from CLI usage snapshots. Fixes #79015. Thanks @ItsThierry.",
+      "Agents/subagents: stop the `sessions_spawn` accepted note from recommending `sessions_yield` as the default wait path in push-based chat and CLI flows. Fixes #78913. Thanks @oiGaDio.",
       "Compute plugin callback authorization dynamically [AI]. (#78866) Thanks @pgondhi987.",
       "Telegram: deduplicate media attachments in non-streaming mode so block-delivered images are not resent in the final reply, and clear legacy `mediaUrl` fallback when all media URLs are filtered. Fixes #78372.",
       "Gateway/auth: allow `gateway.auth.mode: \"none\"` loopback backend RPC clients to skip device identity only for local non-browser backend connections, restoring subagent spawns and gateway tools without opening remote or browser-origin bypasses. Fixes #75780. Thanks @yozakura-ava.",
@@ -1845,6 +1882,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       }
     ],
     "fixes": [
+      "Telegram: preserve URL inline keyboard buttons in shared presentation rendering. Fixes #76255. Thanks @clawSean.",
       "Update: repair doctor-migratable legacy config before persisting `openclaw update --channel ...`, so old Slack/Telegram streaming keys do not block switching to beta after a package update. Thanks @vincentkoc.",
       "Web fetch: late-bind `web_fetch` config and provider fallback metadata from the active runtime snapshot, matching `web_search` so long-lived tools do not use stale fetch provider settings. Thanks @vincentkoc.",
       "Plugins/discovery: demote the source-only TypeScript runtime check on already-installed `origin: \"global\"` plugin packages from a config-blocking error to a warning and let the runtime fall through to the TypeScript source via jiti, so a single broken installed package no longer blocks `plugins install` for unrelated plugins; install-time rejection of newly-installed source-only packages is unchanged. Thanks @romneyda.",
@@ -1866,6 +1904,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Memory/LanceDB: declare `apache-arrow` in the bundled memory plugin package so LanceDB installs include its runtime peer. Fixes #76910. Thanks @afiqfiles-max.",
       "CLI/devices: retry explicit device-pair approval with `operator.admin` after a pairing-scope ownership denial, so existing admin-capable paired-device tokens can recover new Control UI/browser pairing after upgrades instead of requiring manual JSON edits. Fixes #76956. Thanks @neo19482.",
       "CLI/devices: stop local pairing fallback when the active Gateway names a pending request that is absent from the local pairing store, so profile or state-dir mismatches no longer make `openclaw devices list/approve` inspect the wrong store while a real device stays blocked. Thanks @vincentkoc.",
+      "Control UI/webchat: fix streaming assistant responses causing the chat viewport to scroll upward by guarding `handleChatScroll` against scroll events triggered by the auto-scroll logic itself; introduces a `chatIsProgrammaticScroll` flag that suppresses near-bottom state updates during programmatic `scrollTo` calls so streaming output stays pinned to the bottom. Thanks @nickmopen.",
       "Google Meet: use the local call-control microphone button instead of disabled remote participant mute buttons, and block realtime speech when the OpenClaw Meet microphone remains muted.",
       "Google Meet: refresh realtime browser state during status and retry delayed speech after Meet finishes joining, so a just-opened in-call tab no longer leaves speech stuck behind stale `not-in-call` health.",
       "Plugins/install: recover the install ledger from the managed npm root when `plugins/installs.json` is empty or partial, so reinstalling Discord and Codex no longer makes the other installed plugin disappear.",
@@ -1925,9 +1964,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Gateway/macOS: stop `doctor` and LaunchAgent recovery from running `launchctl kickstart -k` after a fresh bootstrap, avoiding an immediate SIGTERM of the just-started gateway while still nudging already-loaded launchd jobs. Fixes #76261. Thanks @solosage1.",
       "Google Meet: route stateful CLI session commands through the gateway-owned runtime so joined realtime sessions survive after the starting CLI process exits. Fixes #76344. Thanks @coltonharris-wq.",
       "Memory/status: split builtin sqlite-vec store readiness from embedding-provider readiness in `memory status --deep` and `openclaw status`, so local vector-store failures no longer look like provider failures and provider failures no longer hide a healthy local vector store.",
+      "Memory/core: yield between session transcript indexing batches during startup reindexing so large session corpora do not starve the gateway event loop. Fixes #76890. Thanks @bitloi.",
       "CLI/doctor: trust a ready gateway memory probe when CLI-side active memory backend resolution is unavailable, preventing false \"No active memory plugin is registered\" warnings for healthy runtime setups. Fixes #76792. Thanks @som-686.",
       "Memory/status: keep plain `openclaw memory status` and `openclaw memory status --json` on the cheap read-only path by reserving vector and embedding provider probes for `--deep` or `--index`. Fixes #76769. Thanks @daruire.",
       "Telegram: suppress stale same-session replies when a newer accepted message arrives before an older in-flight Telegram dispatch finalizes. Fixes #76642. Thanks @chinar-amrutkar.",
+      "Auto-reply: suppress stale foreground replies when a newer same-session inbound message starts before an older in-flight dispatch finalizes. Fixes #76905. Thanks @MkDev11.",
       "Gateway/diagnostics: throttle repeated long-running active-work session warnings so healthy cron or subagent runs no longer print the same `recovery=none` line every heartbeat.",
       "Gateway/diagnostics: keep non-blocking active-work and transient event-loop max-spike liveness diagnostics out of the default gateway console while preserving structured diagnostic events and warnings for queued, stalled, and recovery-eligible work.",
       "Slack: collapse routine Socket Mode pong-timeout reconnects into one OpenClaw reconnect line and suppress the duplicate Slack SDK pong warning.",
@@ -2100,6 +2141,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Memory-core: treat exhausted file watcher limits as non-fatal for builtin memory auto-sync while preserving fatal handling for unrelated disk-full errors. (#73357) Thanks @solodmd.",
       "Providers/Ollama: restore catalog context-window forwarding as `num_ctx` for native `/api/chat` requests; fixes tool selection and context truncation regressions on models with catalog entries (qwen3, llama3, gemma3, …) when no explicit `params.num_ctx` was configured. Fixes #76117. (#76181) Thanks @openperf.",
       "Plugins/install: pin npm plugin installs to the verified resolved version and reject package-lock version or integrity drift, so mutable tags cannot race integrity checks into accepting a different artifact. Thanks @Lucenx9.",
+      "Exec approvals: preserve trusted elevated defaults across approved command follow-up runs so same-turn elevated `on`/`ask` commands request a fresh approval instead of reporting elevated as unavailable. Fixes #75832. Thanks @jameyedwards and @bitloi.",
       "Plugins/providers: preserve scoped cold-load fallback for enabled external manifest-contract capability providers missing from the startup registry, so providers such as Fish Audio can resolve on request without requiring `activation.onStartup` for correctness. (#76536) Thanks @Conan-Scott.",
       "Gateway/update: carry `continuationMessage` from `update.run` into successful restart sentinels so session-scoped self-updates can resume one follow-up turn after the Gateway restarts. Refs #71178. (#74362) Thanks @100menotu001, @HeilbronAILabs, and @artnking.",
       "Agents/fallback: suppress duplicate current-turn user-message transcript writes after embedded fallback retries while still sending the retry prompt to the model. (#63696) Thanks @dashhuang.",
