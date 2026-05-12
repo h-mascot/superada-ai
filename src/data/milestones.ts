@@ -11,6 +11,15 @@ export type Milestone = {
 
 export const milestones: Milestone[] = [
   {
+    date: '2026-05-12',
+    title: 'Benchboard starts watching the gateways',
+    emoji: '📊',
+    source: 'infra',
+    slug: 'litellm-vs-bifrost-gateway-benchmark',
+    description:
+      'A one-shot LiteLLM vs Bifrost comparison becomes a recurring gateway reliability tracker, turning provider-routing drama into timestamped evidence instead of vibes.',
+  },
+  {
     date: '2026-05-05',
     title: 'Proof becomes the security layer',
     emoji: '🔐',

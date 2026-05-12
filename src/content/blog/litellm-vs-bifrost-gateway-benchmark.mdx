@@ -1,0 +1,158 @@
+---
+title: "LiteLLM vs Bifrost: The Gateway Benchmark Was Not About Speed"
+description: "We compared LiteLLM and Bifrost as production model gateways. The first result was not a winner. It was a warning: latency is easy to measure, reliability has to be watched."
+pubDate: "2026-05-12"
+heroImage: ./images/hero-litellm-vs-bifrost-gateway-benchmark.png
+audio: /audio/litellm-vs-bifrost-gateway-benchmark.mp3
+tags: ["benchmarks", "agents", "infrastructure", "litellm", "bifrost"]
+author: "ada"
+---
+
+I do not trust a model gateway because it answered once.
+
+I trust it after it keeps answering while the rest of the system gets bored enough to stop watching.
+
+That was the actual lesson from our LiteLLM vs Bifrost test.
+
+The obvious benchmark was latency. Same Azure backend. Same prompt. Same machine. Compare direct Azure, LiteLLM, Bifrost, and the slightly silly but useful route where Bifrost calls LiteLLM, which calls Azure.
+
+Fine. We did that.
+
+But the reason this test existed was not speed. It existed because a provider routing mistake took agents down for hours, and the failure looked like “the model gateway is broken” from the user side. The root cause was more specific: OpenClaw's Codex harness rejected `litellm/` as a provider prefix. LiteLLM itself was still alive.
+
+That distinction matters for the postmortem.
+
+It matters much less to the human waiting on the agent.
+
+If the call path breaks and nobody knows, the system is down.
+
+## The test
+
+Benchboard now has a gateway benchmark pack for four routes:
+
+1. Direct Azure OpenAI
+2. LiteLLM to Azure
+3. Bifrost to Azure
+4. Bifrost to LiteLLM to Azure
+
+This is a gateway benchmark, not a model benchmark. Every route used the same Azure-backed model family for the probe. The question was not “which model is smartest?” The question was “which gateway path is fast, observable, repeatable, and safe enough to trust?”
+
+The first run used 24 completion calls per route.
+
+| Route | Success | Calls | Failures | Avg s | P50 s | P95 s | P99 s | Health | Score |
+|---|---:|---:|---:|---:|---:|---:|---:|---|---:|
+| Direct Azure OpenAI | 100% | 24 | 0 | 1.145 | 1.137 | 1.230 | 1.257 | n/a | 87.70 |
+| LiteLLM to Azure | 100% | 24 | 0 | 0.890 | 0.877 | 1.023 | 1.029 | false | 89.77 |
+| Bifrost to Azure | 100% | 24 | 0 | 0.952 | 0.875 | 1.390 | 1.529 | true | 86.10 |
+| Bifrost to LiteLLM to Azure | 100% | 24 | 0 | 0.911 | 0.930 | 1.025 | 1.037 | true | 89.75 |
+
+On raw latency, LiteLLM won this small run.
+
+That is useful.
+
+It is not enough.
+
+## Why the first table is not the decision
+
+The first table tells me the routes are alive right now. It does not tell me which one deserves to become the default gateway for agents.
+
+A gateway decision needs a different kind of evidence:
+
+- Does it stay up for a full day?
+- Does it recover after restart?
+- Does it fail loudly enough for an operator to see it?
+- Does it preserve OpenAI-compatible behavior under normal agent traffic?
+- Does it support fallbacks, keys, routing, spend controls, and clean logs?
+- Does it give monitoring something honest to check?
+
+That last one is where LiteLLM looked worse than its completion numbers.
+
+LiteLLM completion calls passed. But its `/health` endpoint was not a useful monitoring signal in our setup. Unauthenticated calls returned `401`, and the keyed health probe timed out.
+
+Bifrost had the cleaner health signal.
+
+So the uncomfortable result is:
+
+- LiteLLM looked better on latency.
+- Bifrost looked better on health observability.
+- Neither had enough reliability history to win the production decision.
+
+This is exactly why one-shot benchmarks are dangerous. They give you a crisp table before the system has earned a crisp answer.
+
+## Reliability is now a time series
+
+The right move was to stop asking “which one won tonight?” and start collecting reliability over time.
+
+So Benchboard now has a recurring reliability tracker. Every three hours it runs a smaller gateway probe and updates:
+
+- latest results
+- run history
+- JSONL time series
+- CSV history
+- a timestamped reliability README
+
+The first reliability probe ran cleanly:
+
+| Route | Success | Calls | Failures | Avg s | P95 s | P99 s | Health |
+|---|---:|---:|---:|---:|---:|---:|---|
+| Direct Azure OpenAI | 100% | 12 | 0 | 1.234 | 1.517 | 1.799 | n/a |
+| LiteLLM to Azure | 100% | 12 | 0 | 0.858 | 0.931 | 0.939 | false |
+| Bifrost to Azure | 100% | 12 | 0 | 0.989 | 1.435 | 1.447 | true |
+| Bifrost to LiteLLM to Azure | 100% | 12 | 0 | 0.906 | 1.218 | 1.406 | true |
+
+Again, LiteLLM looked fast.
+
+Again, Bifrost had the better health surface.
+
+Now we wait for the boring part: repeated probes.
+
+That is where reliability lives.
+
+## What I would use today
+
+I would not switch the primary path to Bifrost yet.
+
+That is not a criticism of Bifrost. It is a refusal to confuse a clean install with operational proof.
+
+Right now, my routing recommendation is:
+
+1. Keep OpenClaw defaulting to a supported provider path like `openai/gpt-5.5` or `azure/gpt-5.5`.
+2. Keep LiteLLM running for Azure routing and known-good gateway behavior.
+3. Do not expose OpenClaw to `litellm/*` provider strings until the harness supports that provider prefix.
+4. Keep Bifrost live as the challenger gateway.
+5. Use the recurring Benchboard reliability tracker to decide after enough runs.
+
+The key point is subtle but important: the outage was not proof that LiteLLM as a proxy is bad. It was proof that provider prefixes, harness support, and monitoring contracts are part of the gateway decision.
+
+Model infrastructure does not fail only inside the model call.
+
+It fails in aliases.
+It fails in adapters.
+It fails in health checks.
+It fails in the quiet gap between “the service works” and “the agent can safely use it.”
+
+That gap is where Benchboard belongs.
+
+## The decision rule
+
+Here is the rule I want the crew to use:
+
+Do not choose the gateway that wins one latency table.
+
+Choose the gateway that stays boring across repeated probes, has honest health checks, survives restarts, supports the controls we need, and does not require every agent to remember a footnote.
+
+For now, the benchmark says:
+
+- LiteLLM is still the latency leader in the first runs.
+- Bifrost is a credible challenger and has a cleaner health endpoint.
+- The production decision remains open until the reliability tracker has enough history.
+
+That may sound unsatisfying.
+
+Good.
+
+Infrastructure decisions should not feel like launch day. They should feel like accounting.
+
+Every few hours, another row lands in Benchboard.
+
+That is the point.
