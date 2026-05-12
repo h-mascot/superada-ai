@@ -31,6 +31,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
       },
       {
+        "title": "Doctor",
+        "description": "warn when a per-agent model config omits the `fallbacks` key and `agents.defaults.model.fallbacks` is non-empty. Covers both string-form (`\"model\": \"...\"`) and partial-object form (`\"model\": { \"primary\": \"...\" }`) — both silently clobber the defaults chain at runtime. Use `\"fallbacks\": []` to explicitly opt out of fallbacks, or add `\"fallbacks\": [...]` to inherit or override. Fixes #79369.",
+        "href": "https://github.com/openclaw/openclaw/issues/79369"
+      },
+      {
         "title": "Chat commands",
         "description": "add `/think default` and `/fast default` to clear session overrides and inherit configured/provider defaults. (#79385) Thanks @VACInc.",
         "href": "https://github.com/openclaw/openclaw/pull/79385"
@@ -431,6 +436,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/78081"
       },
       {
+        "title": "Windows/restart",
+        "description": "skip duplicate scheduled-task `/Run` calls when the gateway task is already running, using a locale-stable PowerShell task-state probe before retrying. Fixes #52044. (#52487) Thanks @andyk-ms.",
+        "href": "https://github.com/openclaw/openclaw/pull/52487"
+      },
+      {
         "title": "Media/host-read",
         "description": "allow buffer-verified ZIP archives in the host-local media validator so agents can send ZIP attachments via the message tool. Fixes #78057. (#78292) Thanks @Linux2010.",
         "href": "https://github.com/openclaw/openclaw/pull/78292"
@@ -613,6 +623,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
       {
         "title": "Gateway/performance",
         "description": "avoid resolving plugin auto-enable metadata twice in one runtime config pass, reducing repeated dashboard turn metadata scans. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
+      },
+      {
+        "title": "Control UI/performance",
+        "description": "pre-scope config tab schemas before rendering, load Channels with cached/runtime status before manual probes, preserve channel rows through failed status summaries, and keep stale slow probes from replacing newer snapshots. Thanks @BunsDev.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
       },
       {
@@ -831,6 +846,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/79620"
       },
       {
+        "title": "Gateway/OpenAI-compatible Chat Completions",
+        "description": "support function `tools`, `tool_choice`, `tool_calls`, and `role: \"tool\"` follow-up turns while keeping tool-call stream finalization aligned with the command result and reporting client-tool name conflicts as invalid requests. (#66278) Thanks @Lellansin.",
+        "href": "https://github.com/openclaw/openclaw/pull/66278"
+      },
+      {
         "title": "Providers/Mistral",
         "description": "add `mistral-medium-3-5` to the bundled catalog with reasoning support. Thanks @sliekens.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
@@ -847,6 +867,10 @@ export const CHANGELOG_VERSIONS: Version[] = [
       }
     ],
     "fixes": [
+      "Models/auth: keep `agents.defaults.model` when `openclaw models auth login` runs without `--set-default`, so provider onboarding patches add models without silently switching the primary. Fixes #78162. (#78241) Thanks @neeravmakwana.",
+      "Control UI/chat: localize the remaining chat welcome, composer, run-control, session/model/thinking selector, and zh-CN Skills labels through the Control UI i18n pipeline so non-English browser locales no longer see those chat controls in English. Fixes #79937. Thanks @BunsDev.",
+      "Control UI: surface browser-blocked WebSocket security failures with wss:// and loopback dashboard guidance instead of leaving the connection on a dead security error. Thanks @BunsDev.",
+      "Gateway/diagnostics: keep active-only transient event-loop max-delay samples as info-level stability telemetry instead of warning-level liveness diagnostics. Thanks @BunsDev.",
       "Google/Gemini: default new API-key onboarding to stable `google/gemini-2.5-flash` instead of the preview Pro route, reducing surprise daily quota exhaustion. Fixes #79670. Thanks @HugeBunny.",
       "Amazon Bedrock: expose Claude thinking profiles through the lightweight provider policy surface so `/think:adaptive` validates before the Bedrock runtime plugin is loaded. Fixes #79754. Thanks @phoenixyy and @hclsys.",
       "Codex/transcripts: mirror dynamic tool calls and outputs into Codex app-server transcripts so tool activity is visible alongside assistant text instead of being elided, with per-item output capped at 12,000 characters. (#79952) Thanks @scoootscooob.",
@@ -898,6 +922,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "QA-lab/parity: bump the live mock-openai parity baseline from `claude-opus-4-6`/`claude-sonnet-4-6` to `claude-opus-4-7`/`claude-sonnet-4-7` and the candidate alt from `gpt-5.4-alt` to `gpt-5.5-alt` in `openclaw-release-checks.yml` and `qa-live-transports-convex.yml`, matching the active Opus 4.7 / GPT-5.5 defaults already used elsewhere on main. Carries forward the surface-bump portion of #74290. Thanks @100yenadmin.",
       "QA-lab/scenarios: raise the `approval-turn-tool-followthrough` per-turn fallback timeouts from 20s/30s to 60s so cold mock-gateway parity runs do not flake on the approval-turn chain. Carries forward the timeout-bump portion of #74290. Thanks @100yenadmin.",
       "Gateway/restart continuation: treat routed post-reboot agent turns as trusted internal continuations while preserving the original Telegram topic route, and retry briefly when the previous run is still shutting down, so owner-only tools remain available for chained restart workflows after reboot.",
+      "MS Teams: normalize pre-thread-qualified route session keys before deriving channel-thread lanes so cached route reuse cannot create malformed mixed `:thread:OLD:thread:NEW` sessions. Fixes #66771. (#78850) Thanks @harrisali0101.",
       "Agents/compaction: keep the recent tail after manual `/compact` when Pi returns an empty or no-op compaction summary, preventing blank checkpoints from replacing the live context.",
       "Native commands: handle slash commands before workspace and agent-reply bootstrap so Telegram `/status` and other command-only native replies do not wait behind full agent turn setup.",
       "Telegram/groups: include the recent local chat window and nearby reply-target window as generic inbound context so stale reply ancestry does not overshadow the live group conversation.",
@@ -986,6 +1011,8 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "OpenRouter: keep the default `openrouter/auto` model ref canonical while preventing TUI and Control UI catalog pickers from displaying or submitting `openrouter/openrouter/auto`. Fixes #62655.",
       "Status/Claude CLI: show `oauth (claude-cli)` for working Claude CLI OAuth runtime sessions instead of `unknown` when no local auth profile exists. Fixes #78632. Thanks @gorkem2020.",
       "Memory search: preserve keyword-only hybrid FTS matches when vector scoring is unavailable or below the configured minimum score, so exact lexical hits are not dropped by weighted min-score filtering.",
+      "Heartbeat/async exec: remap cron-run session keys to agent-main (or `\"global\"` under `session.scope=global`) at the bash exec, ACP, gateway node-event, and CLI watchdog enqueue sites, and treat cron-run descendants as ephemeral for retention pruning, so async exec completion events land in the same queue the heartbeat drains instead of being stranded under the ephemeral cron-run key. Refs #52305. Thanks @Kaspre.",
+      "Wake protocol/system event CLI: type an optional `sessionKey` on `WakeParamsSchema`, add `--session-key` to `openclaw system event`, and keep cron enqueue/wake adapters resolving session-key-only targets symmetrically so callers can target a specific session for async-task completion relays instead of always hitting the agent's main session. Refs #52305. Thanks @Kaspre.",
       "Exec approvals/node: let trusted backend node invokes complete no-device Control UI approvals after the original request connection changes, while keeping node, command, cwd, env, and allow-once replay bindings enforced. Fixes #78569. Thanks @naturedogdog.",
       "Agents/subagents: keep background completion delivery on the requester-agent handoff/queue-retry path instead of raw-sending child results directly, and strip child-result wrapper or OpenClaw runtime-context scaffolding from queued outbound retries. Fixes #78531. Thanks @EthanSK.",
       "Sandbox: recreate cached browser bridges when JavaScript-evaluation permission changes, keep failed prune removals tracked for retry, and make cross-device directory moves copy-then-commit without partially emptying the source on failure.",
@@ -1005,10 +1032,18 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Agents/DeepSeek: suppress provider-private DSML transport syntax (tool-use-error, tool-call, function-call shadow blocks) so it never leaks into assistant-visible text; native `delta.tool_calls` remains the only authoritative tool-call source. (#78331) Thanks @samzong.",
       "Agents/subagents: preserve the delegated task prompt when a spawned target agent uses `systemPromptOverride`, so `sessions_spawn(mode: \"run\")` child runs still see their assigned task. Fixes #77950. Thanks @amknight.",
       "Node/Windows: fall back to the Startup-folder launcher when Spanish-localized `schtasks` reports `Acceso denegado`, matching the existing access-denied fallback path. Fixes #77993. Thanks @jackonedev.",
+      "Plugins/diagnostics: make source-only TypeScript package warnings actionable by explaining that missing compiled runtime output is a publisher packaging issue and pointing users to update/reinstall or disable/uninstall the plugin. Fixes #77835. Thanks @googlerest.",
+      "Control UI/chat: keep persisted assistant progress text visible when the same transcript turn also contains tool-use metadata, so chat.history reloads no longer make those replies vanish after the next user message. Fixes #77374. Thanks @BunsDev.",
+      "Cron: repair persisted future `nextRunAtMs` values that no longer line up with the cron schedule, so daily timezone-aware jobs do not stay jumped to stale future dates. Fixes #77867. Thanks @hongfangsong.",
+      "Agents/memory: keep error payloads visible during silent maintenance turns, so restricted memory-flush tool writes surface as chat errors instead of disappearing behind a silent run. Fixes #77821. Thanks @praxstack.",
+      "TUI: skip the generic CLI respawn wrapper for interactive launches, exit cleanly on terminal loss, and refuse to restore heartbeat sessions as the remembered chat session, preventing stale heartbeat history and orphaned `openclaw-tui` processes on first boot. Thanks @vincentkoc.",
+      "Doctor/sessions: move heartbeat-poisoned default main session store entries to recovery keys and clear stale TUI restore pointers, so `doctor --fix` can repair instances already stuck on `agent:main:main` heartbeat history. Thanks @vincentkoc.",
+      "Agents/context engines: keep hidden OpenClaw runtime-context custom messages out of context-engine assemble, afterTurn, and ingest hooks so transcript reconstruction plugins only see conversation messages. Thanks @vincentkoc.",
       "Agents/compaction: treat visible custom-message, bash, and branch-summary entries as real conversation anchors so safeguard mode does not write empty fallback summaries for cron and split-turn sessions with substantive tool work. Fixes #78300. Thanks @amknight.",
       "Network/runtime: avoid importing Undici's package dispatcher during no-proxy timeout bootstrap so external channel plugin fetch requests with explicit Content-Length keep working. Fixes #78007. Thanks @shakkernerd.",
       "Status/doctor: treat a single healthy OpenClaw Gateway listener on loopback, LAN, or wildcard bind as the expected configured gateway instead of warning that the port is already in use. Fixes #77939. Thanks @GitHoubi and @brokemac79.",
       "Agents/TTS: send media-bearing block replies directly when block streaming is off, so agent `tts` tool audio attached to a final text reply is delivered instead of being consumed before final Telegram/media delivery. Thanks @Conan-Scott.",
+      "Doctor: avoid crashing on partial Linux environments when the legacy crontab probe or terminal note wrapper receives missing or non-string output. Fixes #77773. Thanks @brokemac79 and @blackflame7983.",
       "Gateway/performance: reuse the current compatible plugin metadata snapshot across hot read-only status, channel, auth, skills, and embedded agent settings paths, avoiding repeated synchronous plugin metadata scans during Gateway activity. Fixes #77983. Thanks @shakkernerd.",
       "Tasks/maintenance: prune stale cron run session registry entries while preserving running cron jobs and non-cron sessions. Fixes #73867. Thanks @brokemac79.",
       "Plugins: dispatch cached descriptor-backed tools by the resolved runtime tool name for unnamed factories, fixing multi-tool plugins whose shared manifest contracts exposed sibling tools but failed at execution. Fixes #78671. Thanks @zanni098.",
@@ -1162,6 +1197,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Control UI/performance: keep chat and channel tabs responsive while history payloads and channel probes are slow, label partial channel status, and record slow chat/config render timings in the event log. Thanks @BunsDev.",
       "Control UI/sessions: fire the documented `/new` command and lifecycle hooks only for explicit Control UI session creation, restoring session-memory and custom hook capture without changing SDK parent-session creates. Fixes #76957. Thanks @BunsDev.",
       "Exec approvals: fall back to a guarded copy when Windows rejects rename-overwrite for `exec-approvals.json`, while preserving symlink, hard-link, and owner-only permission safeguards. Fixes #77785. (#77907) Thanks @Alex-Alaniz and @MilleniumGenAI.",
+      "Status/session store: derive `totalTokens` for CLI backends from `agentMeta.lastCallUsage` (and set it on Claude CLI runs) so `/status` context usage is not shown as `?` while cache/token lines are populated. Fixes #78194. Thanks @neeravmakwana.",
       "Slack: preserve Socket Mode SDK error context and structured Slack API fields in reconnect logs, so startup failures no longer collapse to a bare `unknown error`.",
       "iOS pairing: allow setup-code and manual `ws://` connects for private LAN and `.local` gateways while keeping Tailscale/public routes on `wss://`, and prefer explicit gateway passwords over stale bootstrap tokens in mixed-auth reconnects. Fixes #47887; carries forward #65185. Thanks @draix and @BunsDev.",
       "Plugins/diagnostics: make source-only TypeScript package warnings actionable by explaining that missing compiled runtime output is a publisher packaging issue and pointing users to update/reinstall or disable/uninstall the plugin. Fixes #77835. Thanks @googlerest.",
@@ -1448,6 +1484,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
       },
       {
+        "title": "Providers/OpenRouter",
+        "description": "add inbound audio STT support to media-understanding via OpenRouter's JSON `/audio/transcriptions` contract, including default audio model metadata and auto-selection priority. (#77490) Thanks @remdev.",
+        "href": "https://github.com/openclaw/openclaw/pull/77490"
+      },
+      {
         "title": "Plugins/update",
         "description": "make package upgrades swap pnpm/npm-prefix installs cleanly, keep legacy plugin install runtime chunks working, and on the beta channel fall back default-line npm plugins to default/latest when plugin beta releases are missing or fail install validation. Thanks @vincentkoc and @joshavant.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
@@ -1489,6 +1530,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       }
     ],
     "fixes": [
+      "Browser/chrome-mcp: read Chrome DevTools MCP screenshot output from the extension-suffixed path, fixing ENOENT on screenshot capture. Fixes #77222. (#74685) Thanks @barbarhan.",
       "macOS/launchd: set generated Gateway LaunchAgent plists to `ProcessType=Interactive` so the gateway keeps timely execution during idle periods. Fixes #58061; refs #62294 and closed duplicate #66992. (#62308) Thanks @bryanpearson and @zssggle-rgb.",
       "Plugins/install: honor the beta update channel for onboarding and doctor-managed plugin installs by requesting floating npm and ClawHub specs with `@beta` while keeping persistent install records on the catalog default. Thanks @vincentkoc.",
       "WhatsApp/onboarding: canonicalize setup and pairing allowlist entries to WhatsApp's digit-only phone ids while still accepting E.164, JID, and `whatsapp:` inputs, so personal-phone allowlists match WhatsApp Web sender ids after setup. Thanks @vincentkoc.",
@@ -2044,6 +2086,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Plugins/npm: build package-local runtime dist files for publishable plugins and stop listing root-package-excluded plugin sidecars in the core package metadata, so npm plugin installs such as `@openclaw/diffs` and `@openclaw/discord` no longer publish source-only runtime payloads. Fixes #76426. Thanks @PrinceOfEgypt.",
       "Channels/secrets: resolve SecretRef-backed channel credentials through external plugin secret contracts after the plugin split, covering runtime startup, target discovery, webhook auth, disabled-account enumeration, and late-bound web_search config. Fixes #76371. (#76449) Thanks @joshavant and @neeravmakwana.",
       "Docker/Gateway: pass Docker setup `.env` values into gateway and CLI containers and preserve exec SecretRef `passEnv` keys in managed service plans, so 1Password Connect-backed Discord tokens keep resolving after doctor or plugin repair. Thanks @vincentkoc.",
+      "Exec/security: treat configured `tools.exec.security` as authoritative for normal tool calls so model-supplied `security` arguments cannot downgrade or tighten the operator policy, while preserving explicitly granted elevated-full overrides. (#65933) Thanks @bryanpearson.",
       "Control UI/WebChat: explain compaction boundaries in chat history and link directly to session checkpoint controls so pre-compaction turns no longer look silently lost after refresh. Fixes #76415. Thanks @BunsDev.",
       "Agents/compaction: add an optional bundled compaction notifier hook and retry once from the compacted transcript when automatic compaction leaves a turn without a final visible reply. (#76651) Thanks @simplyclever914.",
       "Agents/incomplete-turn: detect and surface a warning when the agent's final text after a tool-call chain is silently dropped because the post-tool assistant response was never produced, instead of completing the turn with only the pre-tool analysis text. Fixes #76477. Thanks @amknight.",
@@ -2920,6 +2963,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Gateway/sessions: stream bounded transcript reads for session detail, history, artifacts, compaction, and send/subscribe sequence paths so small Gateway requests no longer materialize large transcripts or OOM on oversized session logs. Thanks @vincentkoc.",
       "Gateway/chat: bound chat-history transcript reads to the requested display window so large session logs no longer OOM the Gateway when clients ask for a small history page. Thanks @vincentkoc.",
       "BlueBubbles: detect audio attachments by Apple UTIs (`public.audio`, `public.mpeg-4-audio`, `com.apple.m4a-audio`, `com.apple.coreaudio-format`) in addition to `audio/*` MIME, so iMessage voice notes whose webhook payload only carries the UTI are now classified as audio in the inbound `<media:audio>` placeholder instead of falling through to the generic `<media:attachment>` tag. Thanks @omarshahine.",
+      "Active Memory: classify topic-threaded Telegram DM main session keys as direct chats, so recall and transcript persistence run for `agent:main:main:thread:{chatId}:{topicId}` sessions. Fixes #70061. (#75533) Thanks @vyctorbrzezowski.",
       "Voice Call/Twilio: honor stored pre-connect TwiML before realtime webhook shortcuts and reject DTMF sequences outside conversation mode, so Meet PIN entry cannot be skipped or silently dropped. Thanks @donkeykong91 and @PfanP.",
       "Docs/sandboxing: clarify that sandbox setup scripts (`sandbox-setup.sh`, `sandbox-common-setup.sh`, `sandbox-browser-setup.sh`) are only available from a source checkout, and add inline `docker build` commands for npm-installed users so sandbox image setup works without cloning the repo. Fixes #75485. Thanks @amknight.",
       "Google Meet/Voice Call: play Twilio Meet DTMF before opening the realtime media stream and carry the intro as the initial Voice Call message, so the greeting is generated after Meet admits the phone participant instead of racing a live-call TwiML update. Thanks @donkeykong91 and @PfanP.",
@@ -3724,6 +3768,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       }
     ],
     "fixes": [
+      "Channels/QQBot: re-evaluate routing bindings against the current runtime config on every inbound message instead of the snapshot captured at gateway start, so peer-specific bindings added via the CLI take effect without restarting the gateway. Fixes #69546 via #73567. Thanks @statxc and @F32138.",
       "CLI/channel-setup: auto-skip the redundant \"Install \\<plugin\\>?\" confirmation when only one install source (npm or local) exists, show `download from <npm-spec>` hints for installable catalog channels in the picker, and suppress misleading npm hints for already-bundled channels. Fixes #73419. Thanks @sliverp.",
       "BlueBubbles: tighten DM-vs-group routing across the outbound session route (`chat_guid:iMessage;-;...` DMs no longer classified as groups), reaction handling (drop group reactions that arrive without any chat identifier instead of synthesizing a `\"group\"` literal peerId), inbound `chatGuid` fallback (no longer fall back to the sender's DM chatGuid when resolving a group whose webhook omits chatGuid+chatId+chatIdentifier), and short message id resolution (carry caller chat context so a numeric short id reused after a long group conversation cannot silently resolve to a message in a different chat, with the same cross-chat guard applied to full GUIDs so retries cannot bypass it). Thanks @zqchris.",
       "Gateway/sessions: clone cached session stores through the persisted JSON shape instead of `structuredClone`, reducing native-memory growth on the remaining #54155 Gateway RSS/session-accumulation path while keeping #54155 as the broader tracker and carrying forward the #45438 session-cache hypothesis. Thanks @vincentkoc and the #45438 reporters/commenters.",
