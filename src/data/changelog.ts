@@ -256,6 +256,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/77157"
       },
       {
+        "title": "Agents/harness",
+        "description": "skip tool-result middleware validation when no handler is registered, and sanitize incoming tool result `details` (functions, symbols, bigints, cycles, oversized payloads) before middleware sees them. Tool emitters legitimately produce raw dependency payloads on `details`, and the harness owes any registered middleware a JSON-safe view of that payload; otherwise a no-op middleware (e.g. bundled `tokenjuice` on the `pi` runtime) causes the validator to reject every tool result and silently substitute a failure sentinel, dropping outbound Discord messages, exec output, cron results, and any other tool whose payload carries non-serializable values. Thanks @solomonneas.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
+      },
+      {
         "title": "Runtime/install",
         "description": "raise the supported Node 22 floor to `22.16+` so native SQLite query handling can rely on the `node:sqlite` statement metadata API while continuing to recommend Node 24. (#78921)",
         "href": "https://github.com/openclaw/openclaw/pull/78921"
@@ -414,6 +419,11 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Codex app-server",
         "description": "disarm the short post-tool completion watchdog after current-turn activity, expose `appServer.turnCompletionIdleTimeoutMs`, and include raw assistant item context in idle-timeout diagnostics so status-only post-tool stalls stop failing as idle. Fixes #77984. Thanks @roseware-dev and @rubencu.",
         "href": "https://github.com/openclaw/openclaw/issues/77984"
+      },
+      {
+        "title": "Codex app-server",
+        "description": "release the session lane after a completed assistant message item goes quiet without `turn/completed`, and stop global rate-limit notifications from keeping stuck turns alive.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202659"
       },
       {
         "title": "Plugin skills/Windows",
@@ -960,6 +970,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Gateway/live tests: avoid full model-registry enumeration for explicit provider-qualified live model filters, preventing `.profile` OpenAI gateway profile runs from hanging before provider dispatch.",
       "Gateway/status: surface CLI and gateway runtime versions, warn about stale PATH/global wrappers when they differ, and add stale-wrapper checks to the newer-config warning. Refs #79091. Thanks @RamaAditya49 and @sallyom.",
       "Google/Gemini: retry stalled Gemini 3 preview direct API-key streams with a lean first-response payload and share Gemini tool-schema cleanup across direct Google and Gemini CLI providers, so main sessions with coding tools can recover before the LLM idle watchdog fires. (#79668) Thanks @joshavant.",
+      "Update/plugins: run a mandatory post-core convergence pass after `openclaw update` swaps the core package and before the gateway restarts, repairing missing configured plugin payloads, validating active install records including `openclaw.extensions`, and exiting with structured repair guidance instead of restarting the gateway with broken plugins. (#79143) Thanks @BKF-Gitty.",
       "Providers: preserve non-OK `text/event-stream` response bodies so provider HTTP errors keep their JSON detail instead of collapsing to generic streaming failures. Fixes #78180.",
       "Gateway/auth: make explicit `trusted-proxy` mode fail closed instead of accepting local password fallback credentials after trusted-proxy identity checks fail. Fixes #78684.",
       "Active memory: treat Google Chat `spaces/...` conversation ids as scoped targets instead of runnable channel names so recall runs no longer fail bundled-plugin dirName validation. Fixes #78918.",
