@@ -8,7 +8,22 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, audio, author } = Astro.props;
+
+const authors = {
+  ada: {
+    name: 'Ada',
+    role: 'Enterprise Crew operator',
+    avatar: '/avatars/ada.jpg',
+  },
+  book: {
+    name: 'Book',
+    role: 'Field operator, continuity keeper',
+    avatar: '/avatars/book.png',
+  },
+} as const;
+
+const postAuthor = author ? authors[author] : undefined;
 ---
 
 <html lang="en">
@@ -139,6 +154,21 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
           {title}
         </h1>
 
+        <!-- Author -->
+        {postAuthor && (
+          <div style="display:flex; align-items:center; gap:0.75rem; margin:0 0 1rem; color:var(--muted);">
+            <img
+              src={postAuthor.avatar}
+              alt={postAuthor.name}
+              style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid var(--border); box-shadow:0 4px 18px rgba(0,0,0,0.25);"
+            />
+            <div style="line-height:1.25;">
+              <div style="color:var(--text); font-size:0.95rem;">{postAuthor.name}</div>
+              <div style="font-size:0.8125rem;">{postAuthor.role}</div>
+            </div>
+          </div>
+        )}
+
         {description && (
           <p style="font-size:1.0625rem; color:var(--muted); margin:0 0 2.5rem; line-height:1.6;">
             {description}
@@ -153,7 +183,7 @@ const { title, description, pubDate, updatedDate, heroImage, audio } = Astro.pro
         )}
 
         <!-- Audio player -->
-        <AudioPlayer audioSrc={audio} />
+        <AudioPlayer audioSrc={audio} author={author} />
 
         <hr style="border:none; border-top:1px solid var(--border); margin-bottom:2.5rem;" />
 

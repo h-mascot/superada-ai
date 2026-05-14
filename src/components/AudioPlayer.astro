@@ -2,12 +2,13 @@
 interface Props {
   audioSrc?: string;
   articleText?: string;
+  author?: 'ada' | 'book';
 }
 
-const { audioSrc, articleText } = Astro.props;
+const { audioSrc, articleText, author } = Astro.props;
 ---
 
-<div class="audio-player" data-has-audio={audioSrc ? "true" : "false"}>
+<div class="audio-player" data-has-audio={audioSrc ? "true" : "false"} data-author={author || "ada"}>
   <div class="audio-player-inner">
     <button 
       id="play-btn"
@@ -180,6 +181,7 @@ const { audioSrc, articleText } = Astro.props;
 <script>
   const playerEl = document.querySelector('.audio-player') as HTMLElement;
   const hasAudio = playerEl?.dataset.hasAudio === 'true';
+  const author = playerEl?.dataset.author || 'ada';
   const audio = document.getElementById('audio-element') as HTMLAudioElement;
   const playBtn = document.getElementById('play-btn');
   const playIcon = document.getElementById('play-icon');
@@ -270,9 +272,13 @@ const { audioSrc, articleText } = Astro.props;
         ttsUtterance.lang = 'en-US';
         
         const voices = window.speechSynthesis.getVoices();
-        const preferred = voices.find(v => 
-          v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Google')
+        const bookVoice = voices.find(v =>
+          v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('Google UK English Male')
         );
+        const adaVoice = voices.find(v =>
+          v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Daniel')
+        );
+        const preferred = author === 'book' ? (bookVoice || adaVoice) : (adaVoice || bookVoice);
         if (preferred) ttsUtterance.voice = preferred;
 
         ttsStartTime = Date.now();
