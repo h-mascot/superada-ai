@@ -154,6 +154,58 @@ This is production telemetry. It does not normalize task type, task difficulty, 
 
 > In this seven-day slice, which agent sessions ended cleanly, failed, or remained unresolved?
 
+
+## Model route coverage
+
+The first scorecard did not spell this out clearly enough: model-route coverage is uneven across the two runtimes.
+
+Hermes session telemetry captured model names. The OpenClaw session metadata harvested for this seven-day slice did not include model route, so OpenClaw rows are marked as `unknown/not captured` in the public JSON instead of pretending we know.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[880px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Agent</th><th align="left">Model route observed in harvested telemetry</th><th align="left">Read</th></tr>
+</thead>
+<tbody>
+<tr><td>Book</td><td><code>gpt-5.5</code>: 159 · <code>MiniMax-M2.7</code>: 99 · <code>glm-4.7</code>: 84 · smaller routes: 10</td><td>Model route captured directly by Hermes session metadata.</td></tr>
+<tr><td>Ada</td><td><code>unknown/not captured</code>: 762</td><td>OpenClaw session metadata did not expose model route in this harvest.</td></tr>
+<tr><td>Spock</td><td><code>unknown/not captured</code>: 563</td><td>Same limitation.</td></tr>
+<tr><td>Zora</td><td><code>unknown/not captured</code>: 97</td><td>Same limitation.</td></tr>
+<tr><td>Scotty</td><td><code>unknown/not captured</code>: 127</td><td>Same limitation.</td></tr>
+</tbody>
+</table>
+</div>
+
+So: this post compares observed session outcomes by agent. It does not claim the agents were using equivalent model routes.
+
+## Failed-session shape
+
+The harvested data also does not fully normalize task type. For Book/Hermes, source and some titles were captured. For OpenClaw, this harvest mostly preserved session files, hosts, profiles, status, and failure markers, but not user-facing task titles.
+
+That means the safest public breakdown is failure shape, not full intent taxonomy.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[980px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Agent</th><th align="right">Failed sessions</th><th align="left">Failed-session source / task coverage</th><th align="left">Top failure shapes</th></tr>
+</thead>
+<tbody>
+<tr><td>Book</td><td align="right">215</td><td><code>cron</code>: 113 · <code>telegram</code>: 62 · <code>cli</code>: 22 · <code>discord</code>: 18</td><td>no assistant response/unresolved: 95 · timeout: 57 · auth/permission: 24 · config/plugin drift: 19 · rate limit: 14</td></tr>
+<tr><td>Ada</td><td align="right">44</td><td><code>unknown/not captured</code>: 44</td><td>timeout: 22 · provider/model/API mismatch: 10 · auth/permission: 6 · config/plugin drift: 4</td></tr>
+<tr><td>Spock</td><td align="right">20</td><td><code>unknown/not captured</code>: 20</td><td>timeout: 11 · rate limit: 6 · config/plugin drift: 2 · auth/permission: 1</td></tr>
+<tr><td>Zora</td><td align="right">19</td><td><code>unknown/not captured</code>: 19</td><td>timeout: 17 · config/plugin drift: 1 · other/unclear: 1</td></tr>
+<tr><td>Scotty</td><td align="right">55</td><td><code>unknown/not captured</code>: 55</td><td>timeout: 21 · auth/permission: 16 · rate limit: 14 · provider/model/API mismatch: 4</td></tr>
+</tbody>
+</table>
+</div>
+
+The public JSON now carries these fields per agent:
+
+- `model_distribution`
+- `failed_model_distribution`
+- `failed_source_distribution`
+- `failed_session_failure_kinds`
+
 ## Final read
 
 The corrected read is simple:

@@ -14,7 +14,9 @@
     "known_success_rate": "success / (success + fail); unknown excluded",
     "all_session_success_rate": "success / all sessions; unknown counted as unresolved",
     "agent_mapping": "Hermes sessions are Book. OpenClaw sessions are mapped from host/profile/agent/session_file evidence.",
-    "caveat": "This is production telemetry, not a synthetic prompt benchmark. Agent task mix is not normalized."
+    "caveat": "This is production telemetry, not a synthetic prompt benchmark. Agent task mix is not normalized.",
+    "model_coverage": "Hermes session telemetry captured model route. The harvested OpenClaw session metadata did not capture model route, so OpenClaw models are marked unknown/not captured unless separately verified from config.",
+    "failed_task_coverage": "Hermes captured source/title fields for some sessions. OpenClaw harvested metadata did not capture prompt/task titles, so failed-session task kind is represented by failure marker bucket rather than user-intent category."
   },
   "agents": [
     {
@@ -41,6 +43,118 @@
           "Hermes session store on mac.lan",
           352
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "gpt-5.5",
+          "count": 159
+        },
+        {
+          "value": "MiniMax-M2.7",
+          "count": 99
+        },
+        {
+          "value": "glm-4.7",
+          "count": 84
+        },
+        {
+          "value": "unknown/not captured",
+          "count": 2
+        },
+        {
+          "value": "openai-codex/gpt-5.5",
+          "count": 2
+        },
+        {
+          "value": "deepseek/deepseek-v4-flash",
+          "count": 2
+        },
+        {
+          "value": "zora",
+          "count": 1
+        },
+        {
+          "value": "azure55",
+          "count": 1
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "glm-4.7",
+          "count": 84
+        },
+        {
+          "value": "gpt-5.5",
+          "count": 66
+        },
+        {
+          "value": "MiniMax-M2.7",
+          "count": 57
+        },
+        {
+          "value": "openai-codex/gpt-5.5",
+          "count": 2
+        },
+        {
+          "value": "zora",
+          "count": 1
+        },
+        {
+          "value": "unknown/not captured",
+          "count": 1
+        },
+        {
+          "value": "azure55",
+          "count": 1
+        },
+        {
+          "value": "deepseek/deepseek-v4-flash",
+          "count": 1
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "cron",
+          "count": 113
+        },
+        {
+          "value": "telegram",
+          "count": 62
+        },
+        {
+          "value": "cli",
+          "count": 22
+        },
+        {
+          "value": "discord",
+          "count": 18
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "no assistant response / unresolved",
+          "count": 95
+        },
+        {
+          "value": "timeout",
+          "count": 57
+        },
+        {
+          "value": "auth / permission",
+          "count": 24
+        },
+        {
+          "value": "config/plugin/module drift",
+          "count": 19
+        },
+        {
+          "value": "rate limit / 429",
+          "count": 14
+        },
+        {
+          "value": "provider/model/API mismatch",
+          "count": 6
+        }
       ]
     },
     {
@@ -71,6 +185,50 @@
           "ada-gateway OpenClaw sessions",
           762
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 762
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 44
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 44
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "timeout",
+          "count": 22
+        },
+        {
+          "value": "provider/model/API mismatch",
+          "count": 10
+        },
+        {
+          "value": "auth / permission",
+          "count": 6
+        },
+        {
+          "value": "config/plugin/module drift",
+          "count": 4
+        },
+        {
+          "value": "no assistant response / unresolved",
+          "count": 1
+        },
+        {
+          "value": "rate limit / 429",
+          "count": 1
+        }
       ]
     },
     {
@@ -99,6 +257,42 @@
           "spock-gateway OpenClaw sessions",
           563
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 563
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 20
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 20
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "timeout",
+          "count": 11
+        },
+        {
+          "value": "rate limit / 429",
+          "count": 6
+        },
+        {
+          "value": "config/plugin/module drift",
+          "count": 2
+        },
+        {
+          "value": "auth / permission",
+          "count": 1
+        }
       ]
     },
     {
@@ -129,6 +323,38 @@
           "Zora OpenClaw profile/session path",
           97
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 97
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 19
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 19
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "timeout",
+          "count": 17
+        },
+        {
+          "value": "other/unclear",
+          "count": 1
+        },
+        {
+          "value": "config/plugin/module drift",
+          "count": 1
+        }
       ]
     },
     {
@@ -157,6 +383,42 @@
           "castlemascot-r1 / jamify OpenClaw sessions",
           127
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 127
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 55
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 55
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "timeout",
+          "count": 21
+        },
+        {
+          "value": "auth / permission",
+          "count": 16
+        },
+        {
+          "value": "rate limit / 429",
+          "count": 14
+        },
+        {
+          "value": "provider/model/API mismatch",
+          "count": 4
+        }
       ]
     },
     {
@@ -191,6 +453,30 @@
           "MascotM3 local OpenClaw sessions",
           1
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 5
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 1
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 1
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "auth / permission",
+          "count": 1
+        }
       ]
     },
     {
@@ -220,6 +506,30 @@
           "Midas OpenClaw profile/session path",
           8
         ]
+      ],
+      "model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 8
+        }
+      ],
+      "failed_model_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 3
+        }
+      ],
+      "failed_source_distribution": [
+        {
+          "value": "unknown/not captured",
+          "count": 3
+        }
+      ],
+      "failed_session_failure_kinds": [
+        {
+          "value": "no assistant response / unresolved",
+          "count": 3
+        }
       ]
     }
   ],
