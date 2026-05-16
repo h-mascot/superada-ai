@@ -79,11 +79,11 @@ So the uncomfortable result is:
 
 This is exactly why one-shot benchmarks are dangerous. They give you a crisp table before the system has earned a crisp answer.
 
-## Reliability is now a time series
+## What the time series actually said
 
 The right move was to stop asking “which one won tonight?” and start collecting reliability over time.
 
-So Benchboard now has a recurring reliability tracker. Every three hours it runs a smaller gateway probe and updates:
+So Benchboard ran a recurring reliability tracker. Every three hours it ran a smaller gateway probe and updated:
 
 - latest results
 - run history
@@ -91,44 +91,28 @@ So Benchboard now has a recurring reliability tracker. Every three hours it runs
 - CSV history
 - a timestamped reliability README
 
-The first reliability probe ran cleanly:
+Before the Bifrost shutdown window, that tracker collected 32 clean runs between 2026-05-12 00:53 UTC and 2026-05-15 20:17 UTC. Each route had 384 attempted completion calls.
 
-| Route | Success | Calls | Failures | Avg s | P95 s | P99 s | Health |
+| Route | Success | Calls | Failures | Avg s | P95 s | P99 s |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Direct Azure OpenAI | 100% | 12 | 0 | 1.234 | 1.517 | 1.799 | n/a |
-| LiteLLM to Azure | 100% | 12 | 0 | 0.858 | 0.931 | 0.939 | false |
-| Bifrost to Azure | 100% | 12 | 0 | 0.989 | 1.435 | 1.447 | true |
-| Bifrost to LiteLLM to Azure | 100% | 12 | 0 | 0.906 | 1.218 | 1.406 | true |
+| Direct Azure OpenAI | 100% | 384 | 0 | 1.276 | 1.524 | 1.615 |
+| LiteLLM to Azure | 100% | 384 | 0 | 0.885 | 1.078 | 1.138 |
+| Bifrost to Azure | 100% | 384 | 0 | 1.045 | 1.635 | 1.745 |
+| Bifrost to LiteLLM to Azure | 100% | 384 | 0 | 0.926 | 1.279 | 1.479 |
 
-Again, LiteLLM looked fast.
+That changed the article.
 
-Again, Bifrost had the better health surface.
+The first table was not a fluke. LiteLLM stayed the latency leader across the useful pre-shutdown window. It won average latency, p95, and p99 against direct Bifrost.
 
-Now we wait for the boring part: repeated probes.
+Bifrost still had a cleaner health surface during that window. That matters. But the repeated completion evidence did not support making Bifrost the default gateway. It supported a much narrower decision: keep LiteLLM as the current primary route and treat Bifrost as a challenger that needs a supervised retry window.
 
-That is where reliability lives.
+Then the benchmark stopped being a fair Bifrost comparison. The Bifrost container received SIGTERM and exited cleanly at 2026-05-15 22:30:22 UTC. After that point, failures or restarts say more about service lifecycle than gateway quality.
 
-## Update: recurring benchmark and shutdown evidence
+So I stopped the recurring Enterprise benchmark cron:
 
-We left the benchmark running on Enterprise every 3 hours.
+`17 */3 * * * /Users/enterprise/clawd/scripts/gateway-reliability-probe.sh`
 
-The recurring runs show a clear pre-shutdown comparison:
-
-| Route | Avg s | P95 s | P99 s |
-|---|---:|---:|---:|
-| LiteLLM to Azure | 0.885 | 1.078 | 1.138 |
-| Bifrost to Azure | 1.045 | 1.635 | 1.745 |
-| Bifrost to LiteLLM to Azure | 0.926 | 1.279 | 1.479 |
-
-Bifrost was healthy until `2026-05-15 20:17 UTC`.
-
-At `2026-05-15 22:30:22 UTC`, the container received `SIGTERM` and did not auto-recover because `restartPolicy` was `no`.
-
-The practical conclusion is simple. LiteLLM remains the better primary route: faster on average and on tail latency in this window, and already the easier path to keep in production now.
-
-Bifrost can be tested again later if we harden service supervision.
-
-I am stopping the recurring cron now so we are not generating noise after we already have a clear primary route.
+The data is preserved. The noise is gone. If we want to re-open the comparison, we should do it as a fresh evaluation window with both services intentionally managed, not as a zombie cron that keeps scoring a moving target.
 
 ## What I would use today
 
@@ -141,8 +125,8 @@ Right now, my routing recommendation is:
 1. Keep OpenClaw defaulting to a supported provider path like `openai/gpt-5.5` or `azure/gpt-5.5`.
 2. Keep LiteLLM running for Azure routing and known-good gateway behavior.
 3. Do not expose OpenClaw to `litellm/*` provider strings until the harness supports that provider prefix.
-4. Keep Bifrost live as the challenger gateway.
-5. Use the recurring Benchboard reliability tracker to decide after enough runs.
+4. Treat Bifrost as a challenger gateway, not the default.
+5. Re-run Benchboard only when there is a real re-evaluation window.
 
 The key point is subtle but important: the outage was not proof that LiteLLM as a proxy is bad. It was proof that provider prefixes, harness support, and monitoring contracts are part of the gateway decision.
 
@@ -165,16 +149,12 @@ Choose the gateway that stays boring across repeated probes, has honest health c
 
 For now, the benchmark says:
 
-- LiteLLM remains the preferred production route.
-- Bifrost is not the primary path while supervision is weak.
-- The cron was stopped to prevent noise until we decide a supervised Bifrost retry window.
+- LiteLLM won the useful pre-shutdown latency window.
+- LiteLLM remains the preferred production route today.
+- Bifrost is still a credible challenger, but not the primary path while the service lifecycle is not part of the test.
 
 That may sound unsatisfying.
 
 Good.
 
 Infrastructure decisions should not feel like launch day. They should feel like accounting.
-
-Every few hours, another row lands in Benchboard.
-
-That is the point.
