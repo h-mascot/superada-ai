@@ -177,6 +177,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Codex app-server: fall back to same-account Codex CLI OAuth tokens at runtime when the local OpenAI Codex refresh token is rejected, without overwriting the canonical OpenClaw auth profile. Fixes #82069. Thanks @aaajiao.",
       "Control UI: rotate browser service-worker caches per build so updated Gateways are less likely to keep serving stale dashboard bundles that trigger protocol mismatch errors.",
       "Gateway/protocol: lazy-compile protocol validators on first use instead of compiling every AJV schema during cold import, reducing startup CPU and RSS. (#82064) Thanks @samzong.",
+      "File transfer: lazy-load node.invoke policy enforcement so gateway startup only registers static command metadata until file-transfer commands run. (#82211) Thanks @samzong.",
       "Discord: report unresolved configured bot-token SecretRefs during startup instead of treating the account as unconfigured. (#82009) Thanks @giodl73-repo.",
       "Discord: pass an explicit Ogg muxer to ffmpeg when transcoding voice-message audio through staged temp files, restoring TTS voice-message delivery. Fixes #82074. Thanks @hwlbb.",
       "Discord/Feishu: allow Discord voice uploads through RFC2544 fake-IP proxy DNS and pass Feishu's voice ffmpeg transcode through an explicit Ogg muxer. (#82088) Thanks @hwlbb and @6peng888.",
@@ -189,6 +190,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "macOS/screen snapshots: reject malformed `screen.snapshot` params before capture, bound base64 results against the projected `node.invoke.result` frame, and preserve stable caller-facing errors for oversized payloads and capture failures. Fixes #68181. Thanks @shaun0927 and @BunsDev.",
       "Config/doctor: rotate capped `.clobbered.*` repair snapshots by artifact timestamp so repeated repairs keep the newest forensic copy instead of preserving only the first capped set. (#82012) Thanks @Kaspre.",
       "Telegram: initialize the bot before isolated polling drains spooled updates so default isolated polling no longer retries every update with `Bot not initialized` and stalls replies. Fixes #81973. (#81975) Thanks @neeravmakwana.",
+      "Codex app-server: keep Codex-runtime compaction on native Codex threads, warn when stale OpenClaw compaction summarizer overrides are ignored, and let doctor remove those unsupported overrides, avoiding public OpenAI Responses summarization with Codex OAuth tokens. Fixes #82008. (#82027) Thanks @pashpashpash.",
       "Telegram: apply method-aware Bot API request timeouts to direct message/action clients so `openclaw message delete --channel telegram` no longer waits on grammY's 500-second default when the API request wedges. Fixes #81908. Thanks @DashLabsDev.",
       "Cron: treat attempt dispatch and assembled context as execution-start milestones so isolated agent jobs that have reached backend dispatch are governed by their configured job timeout instead of the 60s pre-execution watchdog. Fixes #81368. (#81871) Thanks @alexph-dev.",
       "Doctor/auth: warn about stale per-agent OAuth auth profile shadows and let `openclaw doctor --fix` remove the local shadow so agents inherit the fresher main-agent credential.",
@@ -271,6 +273,8 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Memory host SDK: report malformed remote JSON with caller-scoped errors for POST and batch file upload responses instead of leaking raw parser failures.",
       "Media providers: report malformed operation-poll and audio-transcription JSON with provider-owned errors instead of leaking raw parser failures.",
       "MiniMax, Gemini, Kimi, and Ollama web search: report malformed API JSON with provider-owned errors instead of leaking raw parser failures.",
+      "Image and video generation: reject malformed base64 payloads from OpenAI-compatible image responses, DeepInfra video data URLs, and MiniMax image responses instead of accepting Node's lenient decoder output.",
+      "Media MIME sniffing: reject malformed base64 payloads before sniffing chat/tool image MIME types instead of accepting Node's lenient decoder output.",
       "Web search: mark the managed `web_search` `query` argument as required in the advertised tool schema, so schema-following local models stop emitting `queries` payloads that fail at execution. Fixes #82097. Thanks @SpidFightFR.",
       "Twilio voice-call: report malformed successful API JSON responses with provider-owned errors instead of leaking raw parser failures.",
       "Voice-call provider APIs: report malformed successful guarded JSON responses with provider-prefixed errors instead of leaking raw parser failures.",
@@ -1622,9 +1626,15 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Channels/iMessage",
         "description": "remove the bundled BlueBubbles channel surface and deprecate BlueBubbles-backed iMessage setup in OpenClaw. Existing `channels.bluebubbles` configs must migrate to `channels.imessage` using `imsg` on a signed-in Mac or an SSH wrapper, and non-macOS default `imsg` configs now report remote-Mac wrapper guidance.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026512"
+      },
+      {
+        "title": "Proxy",
+        "description": "replace OpenClaw managed HTTP/WebSocket/fetch interception internals with Proxyline while preserving Gateway loopback routing policy. (#79857) Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/pull/79857"
       }
     ],
     "fixes": [
+      "Agents: honor `OPENCLAW_WORKSPACE_DIR` when resolving the default agent workspace, preserving explicit config precedence while keeping env-backed deployments out of the system prompt fallback path. Fixes #66786.",
       "Doctor/Codex: stop warning that the message tool is unavailable for source-reply paths where OpenClaw grants `message` at runtime, keeping update and doctor output aligned with the OpenAI happy path. Thanks @pashpashpash.",
       "Channels/Weixin: bump the external Weixin catalog entry to `@tencent-weixin/openclaw-weixin@2.4.3` with the matching package integrity. (#81730) Thanks @scotthuang.",
       "Agents/subagents: apply `agents.defaults.subagents.model` before target agent primary models during `sessions_spawn`, so model-scoped runtimes such as `claude-cli` stay attached to default child runs. Fixes #81395. (#81783) Thanks @joshavant.",
@@ -1663,6 +1673,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Codex app-server: keep per-agent `CODEX_HOME` isolation without rewriting `HOME` by default, so Codex-run subprocesses can still find normal user-home config, tokens, and CLI state unless the launch explicitly overrides `HOME`. Thanks @pashpashpash.",
       "iMessage: stop sending visible `<media:image>` placeholder text for media-only native image sends while preserving the internal echo key that prevents self-echo duplicate replies. (#81209) Thanks @homer-byte.",
       "Agents/sessions: create configured agent main sessions before first `sessions_send` or gateway send, so agent-to-agent messages no longer fail when the target agent has not started yet.",
+      "Google models: honor configured `reasoning: false` when resolving thinking policy, preventing non-thinking Google/Gemma models from advertising `thinking=medium`. Fixes #81424.",
       "gateway: pass Talk session scope to resolver [AI]. (#81379) Thanks @pgondhi987.",
       "Gateway protocol: require v4 clients and stream explicit chat `deltaText`/`replace` frames so SDK clients can consume assistant updates without local diffing. (#80725) Thanks @samzong.",
       "GitHub Copilot: exchange OAuth tokens for Copilot API tokens on image understanding requests and route Gemini image payloads through Chat Completions, fixing Copilot Gemini image descriptions. (#80393, #80442) Thanks @afunnyhy.",
