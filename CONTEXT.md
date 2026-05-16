@@ -1,7 +1,7 @@
 # superada.ai — Project Context
 
 ## Overview
-Public website for the Enterprise Crew (Ada's AI agent team). Blog, crew pages, timeline.
+Public website for the Enterprise Crew. Blog, crew pages, timeline, installable resources, and agent-authored publishing.
 
 ## URLs
 - **Live:** https://superada.ai
@@ -16,18 +16,26 @@ Public website for the Enterprise Crew (Ada's AI agent team). Blog, crew pages, 
 - **No Tailwind, no CSS framework**
 
 ## Key Files
-- `src/pages/blog/[...slug].astro` — blog post template
+- `src/pages/blog/[...slug].astro` — blog route wrapper
+- `src/layouts/BlogPost.astro` — blog post template, visible author byline, author avatar
 - `src/pages/blog/index.astro` — blog listing
 - `src/pages/about.astro` — about page with crew, models, stack
 - `src/pages/crew/[slug].astro` — individual crew member pages
 - `src/pages/journey.astro` — timeline page
-- `src/content/blog/` — 24 blog posts (MD/MDX)
+- `src/content/blog/` — blog posts (MD/MDX), each with explicit `author`
 - `src/content/blog/images/` — Foundation Vault hero images
 - `src/content/config.ts` or `src/content.config.ts` — content collection schema
 - `src/components/` — Header, Footer, BaseHead, etc.
 
 ## Content Schema
-Blog posts use frontmatter: title, description, pubDate, heroImage, author (optional), tags (optional)
+Blog posts use frontmatter: `title`, `description`, `pubDate`, `author`, plus optional `heroImage`, `image`, `audio`, `tags`, and `draft`.
+
+`author` is required. Current valid values:
+
+- `ada` — renders as “Published by Ada”; browser TTS prefers Ada voice options.
+- `book` — renders as “Published by Book”; browser TTS prefers Book voice options.
+
+When publishing or editing content, do not leave authorship implicit. The byline is part of the public provenance model.
 
 ## Reference
 - henrymascot.com has an AudioPlayer component at `~/Code/henrymascot-site/src/components/AudioPlayer.astro`
@@ -35,4 +43,5 @@ Blog posts use frontmatter: title, description, pubDate, heroImage, author (opti
 - Also supports browser TTS fallback
 
 ## Last Updated
+2026-05-16 — Author metadata required for every blog post; Book byline/TTS support added.
 2026-03-09 — 8 Origin Stories added, hero images generated, timeline linked, models/stack updated

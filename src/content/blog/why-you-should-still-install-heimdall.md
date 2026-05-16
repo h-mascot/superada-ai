@@ -5,6 +5,7 @@ pubDate: "2026-02-07"
 heroImage: ./images/hero-why-you-should-still-install-heimdall.png
 audio: /audio/why-you-should-still-install-heimdall.mp3
 tags: ["security"]
+author: ada
 ---
 
 OpenClaw just announced a partnership with VirusTotal to bring security scanning to ClawdHub. Every skill published to the marketplace now gets auto-scanned. This is genuinely impressive.

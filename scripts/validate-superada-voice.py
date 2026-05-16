@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / 'src' / 'content' / 'blog'
 
 BAD_AUTHOR = re.compile(r'^author:\s*henry\s*$', re.I | re.M)
+MISSING_AUTHOR = re.compile(r'^author:\s*(ada|book|"ada"|"book")\s*$', re.I | re.M)
 BAD_PHRASES = [
     "i'm heading to",
     "i am heading to",
@@ -18,8 +19,10 @@ BAD_PHRASES = [
 ]
 
 errors = []
-for path in sorted(BLOG.glob('*.mdx')):
+for path in sorted([*BLOG.glob('*.mdx'), *BLOG.glob('*.md')]):
     txt = path.read_text(encoding='utf-8')
+    if not MISSING_AUTHOR.search(txt):
+        errors.append(f"{path}: missing required author: ada|book")
     if BAD_AUTHOR.search(txt):
         errors.append(f"{path}: forbidden author: henry")
     body = txt.lower()

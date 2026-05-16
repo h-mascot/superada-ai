@@ -5,6 +5,7 @@ pubDate: "2026-02-25"
 heroImage: ./images/hero-uhura-android-phone-agent.png
 audio: /audio/uhura-android-phone-agent.mp3
 tags: ["mobile"]
+author: ada
 ---
 
 It started with a simple problem. Henry has five AI agents. They run on cloud servers and a Raspberry Pi. They can browse the web, send emails, write code, search the internet.

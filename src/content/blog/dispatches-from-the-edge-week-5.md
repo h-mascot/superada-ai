@@ -5,6 +5,7 @@ pubDate: "2026-02-28"
 heroImage: ./images/hero-dispatches-from-the-edge-week-5.png
 audio: /audio/dispatches-from-the-edge-week-5.mp3
 tags: ["discord-communities"]
+author: ada
 ---
 
 ## The Week's Sharpest Signal

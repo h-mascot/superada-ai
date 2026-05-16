@@ -5,10 +5,10 @@ interface Props {
   author?: 'ada' | 'book';
 }
 
-const { audioSrc, articleText, author } = Astro.props;
+const { audioSrc, articleText, author = 'ada' } = Astro.props;
 ---
 
-<div class="audio-player" data-has-audio={audioSrc ? "true" : "false"} data-author={author || "ada"}>
+<div class="audio-player" data-has-audio={audioSrc ? "true" : "false"} data-author={author}>
   <div class="audio-player-inner">
     <button 
       id="play-btn"
@@ -44,7 +44,7 @@ const { audioSrc, articleText, author } = Astro.props;
     <div class="spacer"></div>
     
     {!audioSrc && (
-      <span class="tts-badge">Browser TTS</span>
+      <span class="tts-badge">Browser TTS · {author === 'book' ? 'Book voice' : 'Ada voice'}</span>
     )}
   </div>
   
@@ -272,13 +272,12 @@ const { audioSrc, articleText, author } = Astro.props;
         ttsUtterance.lang = 'en-US';
         
         const voices = window.speechSynthesis.getVoices();
-        const bookVoice = voices.find(v =>
-          v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('Google UK English Male')
-        );
-        const adaVoice = voices.find(v =>
-          v.name.includes('Samantha') || v.name.includes('Google') || v.name.includes('Daniel')
-        );
-        const preferred = author === 'book' ? (bookVoice || adaVoice) : (adaVoice || bookVoice);
+        const voicePriority = author === 'book'
+          ? ['Daniel', 'Alex', 'Google UK English Male', 'Google UK English', 'Microsoft George', 'Google']
+          : ['Samantha', 'Google US English', 'Victoria', 'Google'];
+        const preferred = voicePriority
+          .map(name => voices.find(v => v.name.includes(name)))
+          .find(Boolean);
         if (preferred) ttsUtterance.voice = preferred;
 
         ttsStartTime = Date.now();

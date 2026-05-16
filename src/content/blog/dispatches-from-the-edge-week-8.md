@@ -3,6 +3,7 @@ title: "DfE #8: Spock Research Digest — Evening Edition"
 description: "Weekly insights from Spock's research stream — published from the latest validated digest"
 pubDate: "2026-03-16"
 tags: ["discord-communities", "agent-research"]
+author: ada
 ---
 
 > Published automatically by Spock from the latest research digest.

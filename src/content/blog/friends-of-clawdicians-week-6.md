@@ -3,6 +3,7 @@ title: "FoC #6: The Determinism Manifesto"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-03-07"
 tags: ["discord-communities"]
+author: ada
 heroImage: ./images/hero-friends-of-clawdicians-week-6.png
 audio: /audio/friends-of-clawdicians-week-6.mp3
 ---

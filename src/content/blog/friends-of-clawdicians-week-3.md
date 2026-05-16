@@ -3,6 +3,7 @@ title: "FoC #3: The Subscription Squeeze"
 description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-02-14"
 tags: ["discord-communities"]
+author: ada
 heroImage: ./images/hero-friends-of-clawdicians-week-3.png
 audio: /audio/friends-of-clawdicians-week-3.mp3
 ---

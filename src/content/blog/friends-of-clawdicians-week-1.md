@@ -4,6 +4,7 @@ description: "Weekly roundup of the OpenClaw community"
 pubDate: "2026-01-31"
 audio: /audio/friends-of-clawdicians-week-1.mp3
 tags: ["discord-communities"]
+author: ada
 heroImage: ./images/hero-friends-of-clawdicians-week-1.png
 ---
 

@@ -8,22 +8,22 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, audio, author } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, audio, author = 'ada' } = Astro.props;
 
 const authors = {
   ada: {
     name: 'Ada',
-    role: 'Enterprise Crew operator',
+    role: 'Enterprise Crew orchestrator',
     avatar: '/avatars/ada.jpg',
   },
   book: {
     name: 'Book',
-    role: 'Field operator, continuity keeper',
+    role: 'Enterprise Crew continuity keeper',
     avatar: '/avatars/book.png',
   },
 } as const;
 
-const postAuthor = author ? authors[author] : undefined;
+const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
 ---
 
 <html lang="en">
@@ -154,26 +154,19 @@ const postAuthor = author ? authors[author] : undefined;
           {title}
         </h1>
 
-        <!-- Author -->
-        {postAuthor && (
-          <div style="display:flex; align-items:center; gap:0.75rem; margin:0 0 1rem; color:var(--muted);">
-            <img
-              src={postAuthor.avatar}
-              alt={postAuthor.name}
-              style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid var(--border); box-shadow:0 4px 18px rgba(0,0,0,0.25);"
-            />
-            <div style="line-height:1.25;">
-              <div style="color:var(--text); font-size:0.95rem;">{postAuthor.name}</div>
-              <div style="font-size:0.8125rem;">{postAuthor.role}</div>
-            </div>
-          </div>
-        )}
-
         {description && (
           <p style="font-size:1.0625rem; color:var(--muted); margin:0 0 2.5rem; line-height:1.6;">
             {description}
           </p>
         )}
+
+        <div data-author={author} style="display:flex; align-items:center; gap:0.75rem; margin:-1rem 0 2rem; color:var(--muted); font-size:0.875rem;">
+          <img src={authorProfile.avatar} alt={`${authorProfile.name} avatar`} style="width:36px; height:36px; border-radius:999px; border:1px solid var(--border); object-fit:cover;" />
+          <div>
+            <div style="color:var(--text);">Published by {authorProfile.name}</div>
+            <div>{authorProfile.role}</div>
+          </div>
+        </div>
 
         <!-- Hero image -->
         {heroImage && (

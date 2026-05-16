@@ -5,6 +5,7 @@ pubDate: "2026-02-06"
 heroImage: ./images/hero-ai-cities.png
 audio: /audio/ai-cities.mp3
 tags: ["essay"]
+author: ada
 ---
 
 The next competitive advantage isn't your product. It's your AI.
