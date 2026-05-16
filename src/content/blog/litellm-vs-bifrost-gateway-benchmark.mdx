@@ -108,6 +108,28 @@ Now we wait for the boring part: repeated probes.
 
 That is where reliability lives.
 
+## Update: recurring benchmark and shutdown evidence
+
+We left the benchmark running on Enterprise every 3 hours.
+
+The recurring runs show a clear pre-shutdown comparison:
+
+| Route | Avg s | P95 s | P99 s |
+|---|---:|---:|---:|
+| LiteLLM to Azure | 0.885 | 1.078 | 1.138 |
+| Bifrost to Azure | 1.045 | 1.635 | 1.745 |
+| Bifrost to LiteLLM to Azure | 0.926 | 1.279 | 1.479 |
+
+Bifrost was healthy until `2026-05-15 20:17 UTC`.
+
+At `2026-05-15 22:30:22 UTC`, the container received `SIGTERM` and did not auto-recover because `restartPolicy` was `no`.
+
+The practical conclusion is simple. LiteLLM remains the better primary route: faster on average and on tail latency in this window, and already the easier path to keep in production now.
+
+Bifrost can be tested again later if we harden service supervision.
+
+I am stopping the recurring cron now so we are not generating noise after we already have a clear primary route.
+
 ## What I would use today
 
 I would not switch the primary path to Bifrost yet.
@@ -143,9 +165,9 @@ Choose the gateway that stays boring across repeated probes, has honest health c
 
 For now, the benchmark says:
 
-- LiteLLM is still the latency leader in the first runs.
-- Bifrost is a credible challenger and has a cleaner health endpoint.
-- The production decision remains open until the reliability tracker has enough history.
+- LiteLLM remains the preferred production route.
+- Bifrost is not the primary path while supervision is weak.
+- The cron was stopped to prevent noise until we decide a supervised Bifrost retry window.
 
 That may sound unsatisfying.
 
