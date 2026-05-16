@@ -7,7 +7,7 @@ difficulty: Medium
 category: Operations
 sourceLabel: Enterprise-Crew-skills/god-scale
 sourceUrl: https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/god-scale
-installCommand: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/main/god-scale/install.sh)
+installCommand: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/v1.0.0/god-scale/install.sh)
 repoPath: god-scale
 estimatedSetup: 2 minutes after Codex or Droid is already installed
 operators:
@@ -57,7 +57,7 @@ bundle:
     type: github
     label: GitHub skill bundle and installer
     url: https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/god-scale
-    script: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/main/god-scale/install.sh)
+    script: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/v1.0.0/god-scale/install.sh)
   installable:
     supported: true
     method: script
@@ -117,7 +117,7 @@ installSteps:
     command: git clone https://github.com/h-mascot/Enterprise-Crew-skills.git /tmp/enterprise-crew-skills && sed -n '1,180p' /tmp/Enterprise-Crew-skills/god-scale/SKILL.md
   - title: Install GOD Scale
     detail: "Copy the bundle into the user home and create the `god-scale` command."
-    command: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/main/god-scale/install.sh)
+    command: bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/v1.0.0/god-scale/install.sh)
   - title: Verify installation
     detail: Confirm the wrapper exists and the current repository passes basic preflight checks.
     command: god-scale --version && god-scale doctor
