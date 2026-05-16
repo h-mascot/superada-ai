@@ -1,0 +1,249 @@
+{
+  "benchmark": "Agent Reliability Scorecard",
+  "window_utc": {
+    "start": "2026-05-09T13:41:58Z",
+    "end": "2026-05-16T13:42:28Z"
+  },
+  "methodology": {
+    "unit_of_comparison": "agent identity, not runtime aggregate",
+    "status_labels": [
+      "success",
+      "fail",
+      "unknown"
+    ],
+    "known_success_rate": "success / (success + fail); unknown excluded",
+    "all_session_success_rate": "success / all sessions; unknown counted as unresolved",
+    "agent_mapping": "Hermes sessions are Book. OpenClaw sessions are mapped from host/profile/agent/session_file evidence.",
+    "caveat": "This is production telemetry, not a synthetic prompt benchmark. Agent task mix is not normalized."
+  },
+  "agents": [
+    {
+      "agent": "Book",
+      "runtime": "Hermes",
+      "icon": "hermes",
+      "sessions": 352,
+      "success": 81,
+      "fail": 215,
+      "unknown": 56,
+      "known_sessions": 296,
+      "known_success_rate": 0.2736,
+      "known_success_percent": 27.4,
+      "all_session_success_rate": 0.2301,
+      "all_session_success_percent": 23.0,
+      "session_bytes": 0,
+      "attributed_failure_events": 1755,
+      "hosts": {
+        "mac.lan": 352
+      },
+      "raw_agent_ids": {},
+      "mapping_evidence": [
+        [
+          "Hermes session store on mac.lan",
+          352
+        ]
+      ]
+    },
+    {
+      "agent": "Ada",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 762,
+      "success": 711,
+      "fail": 44,
+      "unknown": 7,
+      "known_sessions": 755,
+      "known_success_rate": 0.9417,
+      "known_success_percent": 94.2,
+      "all_session_success_rate": 0.9331,
+      "all_session_success_percent": 93.3,
+      "session_bytes": 26171076,
+      "attributed_failure_events": 3282,
+      "hosts": {
+        "ada-gateway": 762
+      },
+      "raw_agent_ids": {
+        "asym": 35,
+        "main": 298,
+        "cron-pi": 429
+      },
+      "mapping_evidence": [
+        [
+          "ada-gateway OpenClaw sessions",
+          762
+        ]
+      ]
+    },
+    {
+      "agent": "Spock",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 563,
+      "success": 543,
+      "fail": 20,
+      "unknown": 0,
+      "known_sessions": 563,
+      "known_success_rate": 0.9645,
+      "known_success_percent": 96.4,
+      "all_session_success_rate": 0.9645,
+      "all_session_success_percent": 96.4,
+      "session_bytes": 9583876,
+      "attributed_failure_events": 352,
+      "hosts": {
+        "spock-gateway": 563
+      },
+      "raw_agent_ids": {
+        "main": 563
+      },
+      "mapping_evidence": [
+        [
+          "spock-gateway OpenClaw sessions",
+          563
+        ]
+      ]
+    },
+    {
+      "agent": "Zora",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 97,
+      "success": 78,
+      "fail": 19,
+      "unknown": 0,
+      "known_sessions": 97,
+      "known_success_rate": 0.8041,
+      "known_success_percent": 80.4,
+      "all_session_success_rate": 0.8041,
+      "all_session_success_percent": 80.4,
+      "session_bytes": 20355151,
+      "attributed_failure_events": 1383,
+      "hosts": {
+        "MascotM3": 77,
+        "mac.lan": 20
+      },
+      "raw_agent_ids": {
+        "main": 84,
+        "zora": 13
+      },
+      "mapping_evidence": [
+        [
+          "Zora OpenClaw profile/session path",
+          97
+        ]
+      ]
+    },
+    {
+      "agent": "Scotty",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 127,
+      "success": 72,
+      "fail": 55,
+      "unknown": 0,
+      "known_sessions": 127,
+      "known_success_rate": 0.5669,
+      "known_success_percent": 56.7,
+      "all_session_success_rate": 0.5669,
+      "all_session_success_percent": 56.7,
+      "session_bytes": 103417164,
+      "attributed_failure_events": 0,
+      "hosts": {
+        "castlemascot-r1": 127
+      },
+      "raw_agent_ids": {
+        "main": 127
+      },
+      "mapping_evidence": [
+        [
+          "castlemascot-r1 / jamify OpenClaw sessions",
+          127
+        ]
+      ]
+    },
+    {
+      "agent": "OpenClaw local",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 5,
+      "success": 4,
+      "fail": 1,
+      "unknown": 0,
+      "known_sessions": 5,
+      "known_success_rate": 0.8,
+      "known_success_percent": 80.0,
+      "all_session_success_rate": 0.8,
+      "all_session_success_percent": 80.0,
+      "session_bytes": 1678078,
+      "attributed_failure_events": 2075,
+      "hosts": {
+        "MascotM3": 1,
+        "mac.lan": 4
+      },
+      "raw_agent_ids": {
+        "main": 4,
+        "ada": 1
+      },
+      "mapping_evidence": [
+        [
+          "mac.lan local OpenClaw sessions",
+          4
+        ],
+        [
+          "MascotM3 local OpenClaw sessions",
+          1
+        ]
+      ]
+    },
+    {
+      "agent": "Midas",
+      "runtime": "OpenClaw",
+      "icon": "openclaw",
+      "sessions": 8,
+      "success": 5,
+      "fail": 3,
+      "unknown": 0,
+      "known_sessions": 8,
+      "known_success_rate": 0.625,
+      "known_success_percent": 62.5,
+      "all_session_success_rate": 0.625,
+      "all_session_success_percent": 62.5,
+      "session_bytes": 13672,
+      "attributed_failure_events": 0,
+      "hosts": {
+        "spock-gateway": 8
+      },
+      "raw_agent_ids": {
+        "midas": 1,
+        "main": 7
+      },
+      "mapping_evidence": [
+        [
+          "Midas OpenClaw profile/session path",
+          8
+        ]
+      ]
+    }
+  ],
+  "runtime_rollup": {
+    "Hermes": {
+      "sessions": 352,
+      "success_sessions": 81,
+      "fail_sessions": 215,
+      "unknown_sessions": 56,
+      "session_success_rate": 0.2736,
+      "deduped_failure_log_events": 1755
+    },
+    "OpenClaw": {
+      "sessions": 1562,
+      "success_sessions": 1413,
+      "fail_sessions": 142,
+      "unknown_sessions": 7,
+      "session_success_rate": 0.9087,
+      "deduped_failure_log_events": 5337
+    }
+  },
+  "source_artifacts": {
+    "combined_summary": "/Users/enterprise/analyses/2026-05-16-hermes-vs-openclaw-reliability/assets/data/combined_summary_v2.json",
+    "public_json": "/benchmarks/2026-05-16-hermes-openclaw-reliability/agent-results-summary.json",
+    "public_scorecard": "/benchmarks/2026-05-16-hermes-openclaw-reliability/agent-scorecard.png"
+  }
+}
