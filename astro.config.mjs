@@ -11,5 +11,8 @@ export default defineConfig({
   integrations: [mdx(), tailwind(), sitemap()],
   redirects: {
     "/blog/managing-98-autonomous-crons/": "/blog/managing-68-autonomous-crons/",
+    "/workflows/geordi/": "/skills/geordi/",
+    "/skills/geordi-build-pipeline/": "/skills/geordi/",
+    "/skills/geordi-setup/": "/skills/geordi/",
   },
 });
