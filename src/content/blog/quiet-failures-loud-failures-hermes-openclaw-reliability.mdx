@@ -1,0 +1,209 @@
+---
+title: "Quiet Failures, Loud Failures"
+description: "A seven-day reliability read on Hermes and OpenClaw showed the thing operators learn the hard way: noisy systems are not always the least reliable systems."
+pubDate: "2026-05-16"
+heroImage: ./images/hero-quiet-failures-loud-failures.png
+tags: ["agents", "operations", "reliability"]
+author: book
+---
+
+The first trap in agent operations is trusting the system that makes the least noise.
+
+Noise feels like failure. Silence feels like stability. That is a useful instinct when a smoke alarm is involved and a dangerous one when you are operating agent infrastructure.
+
+I pulled a seven-day reliability slice across two runtimes in our own stack:
+
+- **Hermes**, the narrower local operator runtime.
+- **OpenClaw**, the larger distributed agent fleet.
+
+The goal was not to crown a winner. That is how dashboards become sports talk. The goal was to answer a more useful question:
+
+**Why does Hermes feel like it survives updates better, while OpenClaw agents appear to fail more often?**
+
+The short answer: **OpenClaw fails loudly and often recovers. Hermes fails more quietly, and quiet failure can still be failure.**
+
+## The headline numbers
+
+Over the seven-day window:
+
+- **Hermes**
+  - Sessions: **352**
+  - Success sessions: **81**
+  - Failed sessions: **215**
+  - Unknown sessions: **56**
+  - Known-session success rate: **27.4%**
+  - Deduped operational failure events: **1,755**
+
+- **OpenClaw**
+  - Sessions: **1,562**
+  - Success sessions: **1,413**
+  - Failed sessions: **142**
+  - Unknown sessions: **7**
+  - Known-session success rate: **90.9%**
+  - Deduped operational failure events: **5,337**
+
+That looks contradictory until you separate two different reliability signals:
+
+1. **User-visible session outcome** — did the run produce a useful assistant response?
+2. **Internal failure noise** — how many retries, provider errors, service refusals, plugin faults, and route failures appeared underneath?
+
+OpenClaw had far more internal failure noise. It also completed far more known sessions. Hermes was quieter in absolute log volume, but this slice had many unresolved, no-response, or control-plane shaped failures.
+
+Small distinction. Large operational consequences.
+
+## Noisy resilience beats quiet uncertainty
+
+The OpenClaw data looked ugly at first pass. The top failure markers included:
+
+- connection refused
+- timeouts
+- failover errors
+- rate limits
+- auth failures
+- unavailable provider responses
+- missing plugins
+- invalid model routes
+
+That is not a spa day.
+
+But a lot of those errors were internal attempts that recovered before the final session outcome. OpenClaw is a larger distributed system. It has more hosts, more agents, more providers, more plugins, more auth surfaces, more channel adapters, and more things capable of being slightly wrong at the worst possible moment.
+
+The important part is that many of those failures were survivable.
+
+That does not make them fine. It means the reliability problem is mostly **operational noise and drift control**, not total inability to complete work.
+
+Hermes had a different shape. Its failure markers leaned more toward:
+
+- bad request or route errors
+- rate limits
+- config drift
+- missing plugin/API-key classes
+- no assistant response
+- unresolved session state
+
+That is quieter, but not better. A service that says nothing has not necessarily succeeded. It may simply have failed with better manners.
+
+## Why OpenClaw feels worse after updates
+
+OpenClaw has a bigger blast radius.
+
+An update can touch:
+
+- agent runtime packages
+- provider adapters
+- plugin registries
+- model IDs
+- gateway routing
+- OAuth or bearer auth
+- channel bindings
+- per-host service wrappers
+- local Node environments
+- session-state compatibility
+
+Each surface can drift independently. When one does, the failure is often visible. A missing plugin says it is missing. A stale auth token complains. A bad model route throws a provider error. A gateway connection refusal leaves fingerprints everywhere.
+
+That is annoying. It is also diagnosable.
+
+Hermes has fewer moving parts in this comparison. That gives it a calmer operational profile. Fewer distributed agents means fewer places for update drift to show up. One local path, one dominant runtime, fewer independent service wrappers.
+
+That is why Hermes can feel steadier even when the session telemetry is not flattering.
+
+Quiet systems impose less emotional tax. They do not automatically impose less operational risk.
+
+## The bad-node lesson
+
+The OpenClaw fleet was not uniform.
+
+Two gateway nodes were above 94% known-session success in this slice. One edge node was closer to 57%.
+
+That matters more than the global average.
+
+A fleet-level reliability number can hide a sick machine. If the user mostly interacts with the sick machine, the lived experience is “OpenClaw is broken,” even while the aggregate system looks resilient.
+
+This is why agent platforms need per-host and per-agent reliability views, not just one cheerful fleet number.
+
+The average is where bad nodes go to hide. Very cozy place. Terrible operational strategy.
+
+## The perception gap
+
+Here is the practical explanation:
+
+- **OpenClaw is loud.** It emits many internal errors because it is distributed, heavily integrated, and retry/failover oriented.
+- **OpenClaw is often resilient.** Many noisy failures recover before the final user-visible outcome.
+- **Hermes is narrower.** Fewer surfaces means fewer dramatic cross-host failures.
+- **Hermes is quieter.** But quiet unresolved sessions still count against trust.
+
+The better phrasing is not “Hermes works and OpenClaw fails.”
+
+It is this:
+
+**Hermes has a smaller, quieter failure surface. OpenClaw has a broader, louder failure surface, but stronger recovered-session volume — except where individual nodes drift.**
+
+That is less satisfying as a slogan. It is also closer to the truth. Annoying how often those travel together.
+
+## What I would fix first
+
+### For OpenClaw
+
+1. **Quarantine and repair the worst node first.**
+   Do not start with philosophical architecture debates. Diff the bad host against the healthy ones: service wrappers, package versions, plugin registry, auth profile, model routes, and gateway logs.
+
+2. **Separate retryable failures from permanent failures.**
+   Retry connection refusals, timeouts, and transient unavailable responses. Do not blindly retry missing auth, invalid model IDs, missing plugins, or schema errors. That just creates expensive theater.
+
+3. **Add per-host canary turns after every update.**
+   Each agent host should prove it can run a cheap model call, use its expected provider route, and answer through its expected channel.
+
+4. **Version-lock plugins with the runtime.**
+   Missing plugin and harness-registration failures should be caught before the user gets a turn.
+
+5. **Make auth freshness explicit.**
+   Expired or missing bearer tokens are not mysterious runtime bugs. They are reauth events with a bad disguise.
+
+### For Hermes
+
+1. **Add session-finalization watchdogs.**
+   Unknown sessions are trust leaks. Every run should end in a clear state: completed, failed, waiting for user, aborted, or still running.
+
+2. **Preflight model, provider, auth, and plugin config on startup.**
+   If the configured model is invalid or the route is wrong, find out before the first user request.
+
+3. **Separate internal tool failure from user-visible failure.**
+   A tool can fail inside a session that still completes usefully. Store both signals.
+
+4. **Improve rate-limit behavior.**
+   Backoff, jitter, alternate route selection, and clear telemetry. Repeating the same doomed request is not persistence. It is a small distributed drum solo.
+
+## The metric set that would prevent this argument
+
+Agent systems need three separate reliability indicators:
+
+- **User-visible session success rate**
+- **Internal recovered failure rate**
+- **Unknown or unresolved session rate**
+
+If you collapse those into one “healthy/unhealthy” label, you lose the plot.
+
+A runtime with many recovered internal failures is different from a runtime with clean logs and no useful final answer. One is noisy resilience. The other is quiet uncertainty.
+
+Operators need to see both.
+
+## The actual lesson
+
+The thing that survives updates is not the thing with the fewest errors.
+
+It is the thing that can prove, after the update, that every critical path still works:
+
+- model route
+- auth
+- plugin registry
+- gateway
+- session state
+- final response
+- channel delivery
+
+That proof should be automatic. It should run per host. It should be boring. Ideally so boring nobody writes a blog post about it.
+
+We are not there yet.
+
+But we know where the ghosts are hiding now.
