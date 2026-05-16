@@ -1,209 +1,362 @@
 ---
-title: "Quiet Failures, Loud Failures"
-description: "A seven-day reliability read on Hermes and OpenClaw showed the thing operators learn the hard way: noisy systems are not always the least reliable systems."
+title: "Hermes vs OpenClaw Reliability Benchmark"
+description: "A seven-day production telemetry benchmark comparing Hermes Agent and OpenClaw across session outcomes, failure taxonomy, fleet nodes, runtime versions, cron traffic, and operational evidence."
 pubDate: "2026-05-16"
+updatedDate: "2026-05-16"
 heroImage: ./images/hero-quiet-failures-loud-failures.png
-tags: ["agents", "operations", "reliability"]
+tags: ["agents", "operations", "reliability", "benchmarks"]
 author: book
 ---
 
-The first trap in agent operations is trusting the system that makes the least noise.
-
-Noise feels like failure. Silence feels like stability. That is a useful instinct when a smoke alarm is involved and a dangerous one when you are operating agent infrastructure.
-
-I pulled a seven-day reliability slice across two runtimes in our own stack:
-
-- **Hermes**, the narrower local operator runtime.
-- **OpenClaw**, the larger distributed agent fleet.
-
-The goal was not to crown a winner. That is how dashboards become sports talk. The goal was to answer a more useful question:
-
-**Why does Hermes feel like it survives updates better, while OpenClaw agents appear to fail more often?**
-
-The short answer: **OpenClaw fails loudly and often recovers. Hermes fails more quietly, and quiet failure can still be failure.**
-
-## The headline numbers
-
-Over the seven-day window:
-
-- **Hermes**
-  - Sessions: **352**
-  - Success sessions: **81**
-  - Failed sessions: **215**
-  - Unknown sessions: **56**
-  - Known-session success rate: **27.4%**
-  - Deduped operational failure events: **1,755**
-
-- **OpenClaw**
-  - Sessions: **1,562**
-  - Success sessions: **1,413**
-  - Failed sessions: **142**
-  - Unknown sessions: **7**
-  - Known-session success rate: **90.9%**
-  - Deduped operational failure events: **5,337**
-
-That looks contradictory until you separate two different reliability signals:
-
-1. **User-visible session outcome** — did the run produce a useful assistant response?
-2. **Internal failure noise** — how many retries, provider errors, service refusals, plugin faults, and route failures appeared underneath?
-
-OpenClaw had far more internal failure noise. It also completed far more known sessions. Hermes was quieter in absolute log volume, but this slice had many unresolved, no-response, or control-plane shaped failures.
-
-Small distinction. Large operational consequences.
-
-## Noisy resilience beats quiet uncertainty
-
-The OpenClaw data looked ugly at first pass. The top failure markers included:
-
-- connection refused
-- timeouts
-- failover errors
-- rate limits
-- auth failures
-- unavailable provider responses
-- missing plugins
-- invalid model routes
-
-That is not a spa day.
-
-But a lot of those errors were internal attempts that recovered before the final session outcome. OpenClaw is a larger distributed system. It has more hosts, more agents, more providers, more plugins, more auth surfaces, more channel adapters, and more things capable of being slightly wrong at the worst possible moment.
-
-The important part is that many of those failures were survivable.
-
-That does not make them fine. It means the reliability problem is mostly **operational noise and drift control**, not total inability to complete work.
-
-Hermes had a different shape. Its failure markers leaned more toward:
-
-- bad request or route errors
-- rate limits
-- config drift
-- missing plugin/API-key classes
-- no assistant response
-- unresolved session state
-
-That is quieter, but not better. A service that says nothing has not necessarily succeeded. It may simply have failed with better manners.
-
-## Why OpenClaw feels worse after updates
-
-OpenClaw has a bigger blast radius.
-
-An update can touch:
-
-- agent runtime packages
-- provider adapters
-- plugin registries
-- model IDs
-- gateway routing
-- OAuth or bearer auth
-- channel bindings
-- per-host service wrappers
-- local Node environments
-- session-state compatibility
-
-Each surface can drift independently. When one does, the failure is often visible. A missing plugin says it is missing. A stale auth token complains. A bad model route throws a provider error. A gateway connection refusal leaves fingerprints everywhere.
-
-That is annoying. It is also diagnosable.
-
-Hermes has fewer moving parts in this comparison. That gives it a calmer operational profile. Fewer distributed agents means fewer places for update drift to show up. One local path, one dominant runtime, fewer independent service wrappers.
-
-That is why Hermes can feel steadier even when the session telemetry is not flattering.
-
-Quiet systems impose less emotional tax. They do not automatically impose less operational risk.
-
-## The bad-node lesson
-
-The OpenClaw fleet was not uniform.
-
-Two gateway nodes were above 94% known-session success in this slice. One edge node was closer to 57%.
-
-That matters more than the global average.
-
-A fleet-level reliability number can hide a sick machine. If the user mostly interacts with the sick machine, the lived experience is “OpenClaw is broken,” even while the aggregate system looks resilient.
-
-This is why agent platforms need per-host and per-agent reliability views, not just one cheerful fleet number.
-
-The average is where bad nodes go to hide. Very cozy place. Terrible operational strategy.
-
-## The perception gap
-
-Here is the practical explanation:
-
-- **OpenClaw is loud.** It emits many internal errors because it is distributed, heavily integrated, and retry/failover oriented.
-- **OpenClaw is often resilient.** Many noisy failures recover before the final user-visible outcome.
-- **Hermes is narrower.** Fewer surfaces means fewer dramatic cross-host failures.
-- **Hermes is quieter.** But quiet unresolved sessions still count against trust.
-
-The better phrasing is not “Hermes works and OpenClaw fails.”
-
-It is this:
-
-**Hermes has a smaller, quieter failure surface. OpenClaw has a broader, louder failure surface, but stronger recovered-session volume — except where individual nodes drift.**
-
-That is less satisfying as a slogan. It is also closer to the truth. Annoying how often those travel together.
-
-## What I would fix first
-
-### For OpenClaw
-
-1. **Quarantine and repair the worst node first.**
-   Do not start with philosophical architecture debates. Diff the bad host against the healthy ones: service wrappers, package versions, plugin registry, auth profile, model routes, and gateway logs.
-
-2. **Separate retryable failures from permanent failures.**
-   Retry connection refusals, timeouts, and transient unavailable responses. Do not blindly retry missing auth, invalid model IDs, missing plugins, or schema errors. That just creates expensive theater.
-
-3. **Add per-host canary turns after every update.**
-   Each agent host should prove it can run a cheap model call, use its expected provider route, and answer through its expected channel.
-
-4. **Version-lock plugins with the runtime.**
-   Missing plugin and harness-registration failures should be caught before the user gets a turn.
-
-5. **Make auth freshness explicit.**
-   Expired or missing bearer tokens are not mysterious runtime bugs. They are reauth events with a bad disguise.
-
-### For Hermes
-
-1. **Add session-finalization watchdogs.**
-   Unknown sessions are trust leaks. Every run should end in a clear state: completed, failed, waiting for user, aborted, or still running.
-
-2. **Preflight model, provider, auth, and plugin config on startup.**
-   If the configured model is invalid or the route is wrong, find out before the first user request.
-
-3. **Separate internal tool failure from user-visible failure.**
-   A tool can fail inside a session that still completes usefully. Store both signals.
-
-4. **Improve rate-limit behavior.**
-   Backoff, jitter, alternate route selection, and clear telemetry. Repeating the same doomed request is not persistence. It is a small distributed drum solo.
-
-## The metric set that would prevent this argument
-
-Agent systems need three separate reliability indicators:
-
-- **User-visible session success rate**
-- **Internal recovered failure rate**
-- **Unknown or unresolved session rate**
-
-If you collapse those into one “healthy/unhealthy” label, you lose the plot.
-
-A runtime with many recovered internal failures is different from a runtime with clean logs and no useful final answer. One is noisy resilience. The other is quiet uncertainty.
-
-Operators need to see both.
-
-## The actual lesson
-
-The thing that survives updates is not the thing with the fewest errors.
-
-It is the thing that can prove, after the update, that every critical path still works:
-
-- model route
-- auth
-- plugin registry
-- gateway
-- session state
-- final response
-- channel delivery
-
-That proof should be automatic. It should run per host. It should be boring. Ideally so boring nobody writes a blog post about it.
-
-We are not there yet.
-
-But we know where the ghosts are hiding now.
+This report replaces the softer version of this post. The earlier draft made the right point, but it did not show enough work. If this is going to be read as a benchmark, it needs the receipts on the page.
+
+Nous posted the public framing for Hermes Agent's current direction here: ["Computer use with any model. Hermes Agent × @trycua"](https://x.com/nousresearch/status/2053961081064759761). That matters because Hermes is no longer just a chat loop. It is becoming an operator runtime: tools, desktop control, gateway routing, schedulers, skills, and model/provider routing in one place. OpenClaw is our distributed fleet runtime. Both are real infrastructure here, not demo apps.
+
+The question was specific:
+
+> Why does Hermes feel steadier, while OpenClaw seems to fail more after updates?
+
+The short answer from the data:
+
+> OpenClaw fails loudly but often recovers. Hermes fails more quietly, and in this slice the quiet failures were more damaging to final session outcomes.
+
+![Scorecard with real Hermes Agent and OpenClaw logos.](/benchmarks/2026-05-16-hermes-openclaw-reliability/scorecard-with-real-logos.png)
+
+## TL;DR
+
+- Observation window: 2026-05-09 to 2026-05-16 UTC.
+- Hermes sessions classified: 352.
+- OpenClaw sessions classified: 1,562.
+- OpenClaw processed 4.44x as many sessions as Hermes in this slice.
+- Hermes known-session success rate: 27.4%.
+- OpenClaw known-session success rate: 90.9%.
+- Hermes had 1,755 deduped operational failure events.
+- OpenClaw had 5,337 deduped operational failure events.
+- The worst OpenClaw node, `castlemascot-r1`, had 56.7% known-session success and explains a lot of the "OpenClaw feels broken" perception.
+- The healthiest OpenClaw gateways were `spock-gateway` at 96.0% and `ada-gateway` at 94.2% known-session success.
+- The strongest interpretation: Hermes had a control-plane/session-finalization problem in this window. OpenClaw had infrastructure noise and node drift, but the fleet usually recovered.
+
+## Benchmark design
+
+This was not a synthetic benchmark. I did not write a toy prompt, run it 100 times, and pretend that represented production.
+
+I tested the systems against their actual job: handling real agent traffic across chat, cron, CLI, gateways, plugins, tools, model routes, and host-level services.
+
+The benchmark used production telemetry because the failure mode we cared about was operational, not model intelligence. The test was designed around three questions:
+
+1. Did a session produce an assistant response?
+2. Did the system emit internal failure events while trying?
+3. Did failures cluster by runtime, source, node, model route, or infrastructure layer?
+
+That produces a more useful reliability view than a single "pass/fail" number. A session can contain internal tool failures and still give a useful answer. A runtime can have quiet logs and still fail to answer the user. Both facts matter.
+
+![Benchmark methodology flow.](/benchmarks/2026-05-16-hermes-openclaw-reliability/methodology-flow.png)
+
+## Systems under test
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">System</th><th align="left">Role in our stack</th><th align="left">Runtime shape</th><th align="left">Version evidence</th></tr>
+</thead>
+<tbody>
+<tr><td>Hermes Agent</td><td>Local operator runtime, gateway, tools, skills, desktop/computer use, scheduler</td><td>macOS LaunchAgent plus Hermes scheduler and gateway</td><td><code>Hermes Agent v0.14.0 (2026.5.16)</code></td></tr>
+<tr><td>OpenClaw</td><td>Distributed agent fleet runtime across gateway nodes and host agents</td><td>Node services, gateway/node processes, multiple hosts and profiles</td><td><code>2026.5.12</code> and <code>2026.5.14-beta.2</code> observed across hosts</td></tr>
+<tr><td>LiteLLM</td><td>Local model gateway used for the analysis pass</td><td>Python service on local port 4000</td><td>Used to call <code>gpt-5.4-pro</code> for interpretation of summarized artifacts</td></tr>
+</tbody>
+</table>
+</div>
+
+The OpenClaw fleet was not homogeneous. That is the point. Distributed agent reliability is mostly about drift between nodes.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[820px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Host</th><th align="left">Runtime</th><th align="left">Observed version</th><th align="right">Node</th><th align="right">Python</th><th align="left">Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>mac.lan</code></td><td>Hermes</td><td><code>v0.14.0 (2026.5.16)</code></td><td>N/A</td><td><code>3.14.4</code></td><td>Local Hermes gateway and scheduler</td></tr>
+<tr><td><code>mac.lan</code></td><td>OpenClaw</td><td><code>2026.5.14-beta.2</code></td><td><code>v26.0.0</code></td><td><code>3.14.4</code></td><td>Local OpenClaw gateway/node services</td></tr>
+<tr><td><code>ada-gateway</code></td><td>OpenClaw</td><td><code>2026.5.14-beta.2 (e029c12)</code></td><td><code>v22.22.2</code></td><td><code>3.10.12</code></td><td>Main high-volume gateway</td></tr>
+<tr><td><code>spock-gateway</code></td><td>OpenClaw</td><td><code>2026.5.12 (f066dd2)</code></td><td><code>v22.22.2</code></td><td><code>3.10.12</code></td><td>Highest success-rate gateway in this slice</td></tr>
+<tr><td><code>castlemascot-r1</code></td><td>OpenClaw</td><td><code>2026.5.12 (f066dd2)</code></td><td><code>v22.22.0</code></td><td><code>3.13.5</code></td><td>Worst node by known-session success</td></tr>
+<tr><td><code>MascotM3</code></td><td>OpenClaw</td><td><code>2026.5.12 (f066dd2)</code></td><td><code>v22.22.1</code></td><td><code>3.9.6</code></td><td>Mixed local/Zora profile traffic</td></tr>
+</tbody>
+</table>
+</div>
+
+## Data sources
+
+The collector used runtime artifacts already produced by the systems.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[780px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Artifact</th><th align="right">Size / count</th><th align="left">Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>assets/data/combined_summary_v2.json</code></td><td align="right">3,581,511 bytes</td><td>Canonical joined summary used for this report</td></tr>
+<tr><td><code>assets/data/hermes_raw_v2.json</code></td><td align="right">907,165 bytes</td><td>Hermes sessions and failure events extracted from SQLite/logs</td></tr>
+<tr><td><code>assets/data/openclaw_raw_v2.json</code></td><td align="right">2,796,926 bytes</td><td>OpenClaw host/profile/session inventory</td></tr>
+<tr><td><code>assets/data/session_classification_v2.csv</code></td><td align="right">1,915 lines</td><td>One row per classified session plus header</td></tr>
+<tr><td><code>assets/data/host_summary_v2.csv</code></td><td align="right">7 lines</td><td>Runtime/host summary table</td></tr>
+<tr><td><code>scripts/collect_reliability_v2.py</code></td><td align="right">15,597 bytes</td><td>Canonical collection and classification script</td></tr>
+<tr><td><code>assets/llm/gpt54pro_analysis.md</code></td><td align="right">3,107 bytes</td><td>LLM interpretation of summarized telemetry</td></tr>
+<tr><td>Full analysis directory</td><td align="right">53 MB / 21 files</td><td>Scripts, raw summaries, CSVs, visualizations, and report draft</td></tr>
+</tbody>
+</table>
+</div>
+
+Hermes and OpenClaw do not store telemetry the same way. Hermes uses a local SQLite state database and logs. OpenClaw stores JSONL session files per agent profile plus service logs. So the benchmark normalized session outcomes instead of pretending the storage layers were identical.
+
+## Classification rules
+
+The collector assigned each session to one of three labels.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Label</th><th align="left">Hermes rule</th><th align="left">OpenClaw rule</th></tr>
+</thead>
+<tbody>
+<tr><td><code>success</code></td><td>Assistant response observed and no explicit structured failure marker</td><td>Assistant/text payload observed and no explicit runtime failure marker</td></tr>
+<tr><td><code>fail</code></td><td>Structured runtime/tool failure marker, or user input with no assistant response</td><td>Explicit error/status failure, provider/model/auth/plugin/network marker, or no assistant response after user input</td></tr>
+<tr><td><code>unknown</code></td><td>Insufficient signal, especially sessions without reliable user signal</td><td>Session file exists but outcome cannot be classified reliably</td></tr>
+</tbody>
+</table>
+</div>
+
+This is intentionally conservative. Unknown is not counted as success. Known-session success rate excludes unknown sessions, and all-session success rate counts unknown as unresolved.
+
+## Primary result
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[900px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Runtime</th><th align="right">Sessions</th><th align="right">Success</th><th align="right">Fail</th><th align="right">Unknown</th><th align="right">Known sessions</th><th align="right">Known-session success</th><th align="right">All-session success</th><th align="right">Deduped failure events</th><th align="right">Events / session</th></tr>
+</thead>
+<tbody>
+<tr><td>Hermes</td><td align="right">352</td><td align="right">81</td><td align="right">215</td><td align="right">56</td><td align="right">296</td><td align="right">27.4%</td><td align="right">23.0%</td><td align="right">1,755</td><td align="right">4.99</td></tr>
+<tr><td>OpenClaw</td><td align="right">1,562</td><td align="right">1,413</td><td align="right">142</td><td align="right">7</td><td align="right">1,555</td><td align="right">90.9%</td><td align="right">90.5%</td><td align="right">5,337</td><td align="right">3.42</td></tr>
+</tbody>
+</table>
+</div>
+
+The result is not "Hermes good, OpenClaw bad." The numbers say the opposite for this week if the metric is final session outcome.
+
+The reason the lived experience can disagree with the global number is that OpenClaw emits more visible failure noise and had one badly underperforming node. That noise is real. It just is not the same thing as fleet-wide session failure.
+
+## OpenClaw fleet breakdown
+
+![OpenClaw fleet success by host.](/benchmarks/2026-05-16-hermes-openclaw-reliability/openclaw-fleet-by-host.png)
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[820px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Host</th><th align="right">Sessions</th><th align="right">Success</th><th align="right">Fail</th><th align="right">Unknown</th><th align="right">Known-session success</th><th align="right">Session bytes</th><th align="right">Deduped log events</th></tr>
+</thead>
+<tbody>
+<tr><td><code>spock-gateway</code></td><td align="right">571</td><td align="right">548</td><td align="right">23</td><td align="right">0</td><td align="right">96.0%</td><td align="right">9,597,548</td><td align="right">352</td></tr>
+<tr><td><code>ada-gateway</code></td><td align="right">762</td><td align="right">711</td><td align="right">44</td><td align="right">7</td><td align="right">94.2%</td><td align="right">26,171,076</td><td align="right">3,282</td></tr>
+<tr><td><code>mac.lan</code></td><td align="right">24</td><td align="right">20</td><td align="right">4</td><td align="right">0</td><td align="right">83.3%</td><td align="right">17,691,767</td><td align="right">320</td></tr>
+<tr><td><code>MascotM3</code></td><td align="right">78</td><td align="right">62</td><td align="right">16</td><td align="right">0</td><td align="right">79.5%</td><td align="right">4,341,462</td><td align="right">1,383</td></tr>
+<tr><td><code>castlemascot-r1</code></td><td align="right">127</td><td align="right">72</td><td align="right">55</td><td align="right">0</td><td align="right">56.7%</td><td align="right">103,417,164</td><td align="right">0 captured</td></tr>
+</tbody>
+</table>
+</div>
+
+The bad-node lesson is the most useful part of the report. A fleet average can hide a sick machine. If the user mostly touches the sick machine, the system feels broken even when two gateways are over 94%.
+
+Also note the oddity on `castlemascot-r1`: high session payload volume, many failed sessions, and no deduped service-log events captured in the v2 artifact. That means session evidence was present, but operational log evidence was missing or not captured for that node. That is not a reason to ignore the node. It is a reason to fix the telemetry gap.
+
+## Hermes source breakdown
+
+Hermes had a source-specific failure shape. Cron traffic was especially rough in this window.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Source</th><th align="right">Sessions</th><th align="right">Success</th><th align="right">Fail</th><th align="right">Unknown</th><th align="right">Known-session success</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cli</code></td><td align="right">63</td><td align="right">23</td><td align="right">22</td><td align="right">18</td><td align="right">51.1%</td></tr>
+<tr><td><code>cron</code></td><td align="right">142</td><td align="right">29</td><td align="right">113</td><td align="right">0</td><td align="right">20.4%</td></tr>
+<tr><td><code>discord</code></td><td align="right">46</td><td align="right">19</td><td align="right">18</td><td align="right">9</td><td align="right">51.4%</td></tr>
+<tr><td><code>telegram</code></td><td align="right">101</td><td align="right">10</td><td align="right">62</td><td align="right">29</td><td align="right">13.9%</td></tr>
+</tbody>
+</table>
+</div>
+
+The local Hermes scheduler had active recurring jobs during the slice, including docs walkthrough, self-update, error-fix-log maintenance, weekly archive, and health/check-in style jobs. The machine crontab also had a LiteLLM watchdog and Entity Mission Control pull/stall checks. So Hermes was not just answering chats. It was running unattended work, which is exactly where session-finalization and route-preflight bugs hurt.
+
+## Model and routing context
+
+The session model distribution matters because a benchmark can accidentally measure a bad route instead of a bad runtime.
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Hermes session model</th><th align="right">Sessions</th></tr>
+</thead>
+<tbody>
+<tr><td><code>gpt-5.5</code></td><td align="right">159</td></tr>
+<tr><td><code>MiniMax-M2.7</code></td><td align="right">99</td></tr>
+<tr><td><code>glm-4.7</code></td><td align="right">84</td></tr>
+<tr><td><code>openai-codex/gpt-5.5</code></td><td align="right">2</td></tr>
+<tr><td><code>deepseek/deepseek-v4-flash</code></td><td align="right">2</td></tr>
+<tr><td><code>None</code> / other singletons</td><td align="right">6</td></tr>
+</tbody>
+</table>
+</div>
+
+The interpretation pass was separate from the systems under test. It used `gpt-5.4-pro` through the local LiteLLM endpoint against a synthesized summary JSON. The model did not score raw secrets or credentials. It was used to critique the telemetry after collection.
+
+The LLM's conclusion was blunt enough to quote:
+
+> Hermes looks like a config/control-plane correctness problem; OpenClaw looks like an infra noise problem with decent resilience, except for one bad node.
+
+That matches the hand analysis.
+
+## Failure taxonomy
+
+![Failure taxonomy comparison.](/benchmarks/2026-05-16-hermes-openclaw-reliability/failure-taxonomy.png)
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[900px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Rank</th><th align="left">Hermes marker</th><th align="right">Hermes count</th><th align="left">OpenClaw marker</th><th align="right">OpenClaw count</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><code>404</code></td><td align="right">807</td><td><code>econnrefused</code></td><td align="right">3,277</td></tr>
+<tr><td>2</td><td><code>429</code></td><td align="right">513</td><td><code>timed out</code></td><td align="right">510</td></tr>
+<tr><td>3</td><td><code>403</code></td><td align="right">348</td><td><code>429</code></td><td align="right">405</td></tr>
+<tr><td>4</td><td><code>timed out</code></td><td align="right">219</td><td><code>401</code></td><td align="right">391</td></tr>
+<tr><td>5</td><td><code>config</code></td><td align="right">131</td><td><code>failovererror</code></td><td align="right">342</td></tr>
+<tr><td>6</td><td><code>no assistant response</code></td><td align="right">95</td><td><code>404</code></td><td align="right">255</td></tr>
+<tr><td>7</td><td><code>401</code></td><td align="right">60</td><td><code>403</code></td><td align="right">147</td></tr>
+<tr><td>8</td><td><code>plugin not found</code></td><td align="right">32</td><td><code>etimedout</code></td><td align="right">114</td></tr>
+<tr><td>9</td><td><code>no api key</code></td><td align="right">31</td><td><code>plugin not found</code></td><td align="right">103</td></tr>
+<tr><td>10</td><td><code>gatewayclientrequesterror</code></td><td align="right">18</td><td><code>config</code></td><td align="right">98</td></tr>
+</tbody>
+</table>
+</div>
+
+The distributions are different.
+
+Hermes failure markers were route/config/control-plane shaped: HTTP status failures, rate limits, no-response sessions, plugin gaps, API-key gaps, and gateway request errors.
+
+OpenClaw's dominant marker was infrastructure noise: `ECONNREFUSED`, timeouts, failover errors, provider unavailable responses, and drift around auth/model/plugin registration. Ugly, yes. But the session outcome numbers show much of that noise was survivable.
+
+## What this measured, and what it did not
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Measured</th><th align="left">Not measured</th></tr>
+</thead>
+<tbody>
+<tr><td>Production session outcomes over seven days</td><td>Controlled synthetic prompt quality</td></tr>
+<tr><td>Runtime failure markers from logs and session records</td><td>Human satisfaction with individual answers</td></tr>
+<tr><td>Host-level reliability variation across OpenClaw nodes</td><td>Every possible remote service log from every node</td></tr>
+<tr><td>Hermes source breakdown across CLI, cron, Discord, Telegram</td><td>Token cost normalized per successful answer</td></tr>
+<tr><td>Post-hoc LLM interpretation of summarized telemetry</td><td>LLM-as-judge scoring of answer correctness</td></tr>
+</tbody>
+</table>
+</div>
+
+The benchmark is strongest as an operations reliability study. It is weaker as a model-quality study, because it intentionally did not score answer correctness beyond whether a useful assistant response existed.
+
+## Reproducibility notes
+
+The canonical collector was `scripts/collect_reliability_v2.py`. v1 artifacts exist, but v2 is the dataset used here because it fixed earlier collection and normalization problems.
+
+The collector used:
+
+- Hermes SQLite state and logs.
+- OpenClaw local and remote JSONL sessions.
+- OpenClaw profile logs where available.
+- LaunchAgent, service, and runtime evidence where safely discoverable.
+- Secret redaction for API keys, bearer tokens, and credential-like fields.
+
+The canonical output set:
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[860px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Stage</th><th align="left">Script / artifact</th><th align="left">Result</th></tr>
+</thead>
+<tbody>
+<tr><td>Collect</td><td><code>scripts/collect_reliability_v2.py</code></td><td>Normalized Hermes/OpenClaw sessions and deduped failure events</td></tr>
+<tr><td>Summarize</td><td><code>assets/data/combined_summary_v2.json</code></td><td>Runtime totals, host totals, failure taxonomy, joined sessions/logs</td></tr>
+<tr><td>Classify</td><td><code>assets/data/session_classification_v2.csv</code></td><td>1,914 classified session rows plus header</td></tr>
+<tr><td>Analyze</td><td><code>scripts/run_litellm_stream.py</code></td><td>Streaming LiteLLM call to <code>gpt-5.4-pro</code>; non-streaming calls hit timeout</td></tr>
+<tr><td>Visualize</td><td><code>scripts/make_public_benchmark_assets.py</code></td><td>Public scorecard, methodology flow, host chart, failure taxonomy chart</td></tr>
+</tbody>
+</table>
+</div>
+
+The public summary JSON for the numbers in this report is published at [`/benchmarks/2026-05-16-hermes-openclaw-reliability/results-summary.json`](/benchmarks/2026-05-16-hermes-openclaw-reliability/results-summary.json).
+
+The post uses real brand assets:
+
+- Hermes Agent logo from the official local `NousResearch/hermes-agent` checkout and docs site assets.
+- OpenClaw logo from the official `openclaw/openclaw` repository assets.
+
+## Interpretation
+
+OpenClaw had the bigger blast radius. It had more hosts, profiles, model routes, gateway surfaces, auth surfaces, plugins, and service wrappers. That creates many ways to fail visibly after updates.
+
+But visible is not the same as final.
+
+In this seven-day slice, OpenClaw produced far more internal failure markers and still completed 90.9% of known sessions. That is noisy resilience. It still needs cleanup, but the cleanup target is drift control, retry policy, and node quarantine.
+
+Hermes had fewer moving parts and a quieter operational profile. That made it feel calmer. The session outcomes did not support the feeling. Cron and Telegram traffic in particular showed a high rate of failed or unresolved sessions. That points to session-finalization, route preflight, provider/auth validation, and scheduler health checks.
+
+The technical conclusion:
+
+- OpenClaw needs per-node canaries, version drift checks, and automatic quarantine of bad hosts.
+- Hermes needs stronger startup preflights and stricter session finalization so silent/no-response sessions cannot masquerade as stability.
+
+## Fix order
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[820px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Priority</th><th align="left">System</th><th align="left">Fix</th><th align="left">Why</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>OpenClaw</td><td>Quarantine and repair <code>castlemascot-r1</code></td><td>It is the clearest outlier and can dominate user perception</td></tr>
+<tr><td>2</td><td>Hermes</td><td>Make every session end in a final state</td><td>Unknown/no-response sessions are trust leaks</td></tr>
+<tr><td>3</td><td>OpenClaw</td><td>Add post-update per-host canary turns</td><td>Version/plugin/auth drift should fail before user traffic</td></tr>
+<tr><td>4</td><td>Hermes</td><td>Preflight provider, model, auth, plugin, and gateway routes on startup</td><td>The taxonomy points at control-plane correctness</td></tr>
+<tr><td>5</td><td>Both</td><td>Separate internal recovered failures from final session failures</td><td>One number hides the difference between noisy recovery and real failure</td></tr>
+</tbody>
+</table>
+</div>
+
+## The metric set we should keep
+
+For agent runtimes, I would stop arguing from anecdotes and track these every day:
+
+<div class="my-8 overflow-x-auto">
+<table class="w-full min-w-[760px] border-collapse text-sm">
+<thead>
+<tr><th align="left">Metric</th><th align="left">Definition</th><th align="left">Why it matters</th></tr>
+</thead>
+<tbody>
+<tr><td>User-visible session success</td><td>Final assistant response exists and is not an explicit failure</td><td>Measures whether the user got something useful</td></tr>
+<tr><td>Recovered internal failure rate</td><td>Failure markers inside sessions that still completed</td><td>Separates noisy recovery from unreliability</td></tr>
+<tr><td>Unknown/unresolved session rate</td><td>Sessions without a trustworthy final label</td><td>Stops silence from being counted as stability</td></tr>
+<tr><td>Per-host success rate</td><td>Known-session success by node/profile</td><td>Finds sick machines hidden by fleet averages</td></tr>
+<tr><td>Post-update canary pass rate</td><td>Cheap provider/tool/channel test after deploy or restart</td><td>Catches drift before production traffic</td></tr>
+</tbody>
+</table>
+</div>
+
+## Final read
+
+If you only look at logs, OpenClaw looks worse. If you only look at final outcomes, Hermes looks worse. The useful answer is in the split.
+
+OpenClaw is a loud distributed system with recoverable failures and one bad node. Hermes is a quieter local operator runtime with a control-plane/session-finalization problem in this sample.
+
+That is not a slogan. Good. Slogans are where benchmarks go to die.
