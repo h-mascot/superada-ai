@@ -1,0 +1,48 @@
+#!/usr/bin/env sh
+set -eu
+
+BASE_URL="${SUPERADA_BASE_URL:-https://superada.ai}"
+SKILL_DIR="${SUPERADA_SKILL_DIR:-$HOME/.agents/skills/beeper}"
+BIN_DIR="${SUPERADA_BIN_DIR:-$HOME/.local/bin}"
+
+mkdir -p "$SKILL_DIR/scripts" "$BIN_DIR" "$HOME/.config/beeper"
+
+fetch() {
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$1" -o "$2"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -qO "$2" "$1"
+  else
+    echo "curl or wget is required" >&2
+    exit 1
+  fi
+}
+
+fetch "$BASE_URL/skills/beeper/SKILL.md" "$SKILL_DIR/SKILL.md"
+fetch "$BASE_URL/skills/beeper/scripts/beeper.sh" "$SKILL_DIR/scripts/beeper.sh"
+fetch "$BASE_URL/skills/beeper/scripts/search-chats.sh" "$SKILL_DIR/scripts/search-chats.sh"
+fetch "$BASE_URL/skills/beeper/scripts/send-message.sh" "$SKILL_DIR/scripts/send-message.sh"
+chmod +x "$SKILL_DIR/scripts/"*.sh
+
+cat > "$BIN_DIR/beeper-agent" <<EOF
+#!/usr/bin/env sh
+exec "$SKILL_DIR/scripts/beeper.sh" "\$@"
+EOF
+chmod +x "$BIN_DIR/beeper-agent"
+
+cat > "$BIN_DIR/beeper-search-chats" <<EOF
+#!/usr/bin/env sh
+exec "$SKILL_DIR/scripts/search-chats.sh" "\$@"
+EOF
+chmod +x "$BIN_DIR/beeper-search-chats"
+
+cat > "$BIN_DIR/beeper-send-message" <<EOF
+#!/usr/bin/env sh
+exec "$SKILL_DIR/scripts/send-message.sh" "\$@"
+EOF
+chmod +x "$BIN_DIR/beeper-send-message"
+
+echo "Installed Beeper skill to $SKILL_DIR"
+echo "Set BEEPER_API_KEY or write your key to $HOME/.config/beeper/api-key"
+echo "Run: $BIN_DIR/beeper-agent test"
+

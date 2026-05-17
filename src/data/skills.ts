@@ -78,6 +78,46 @@ export const publishedSkills: SkillRecord[] = [
     ],
   },
   {
+    slug: 'beeper',
+    title: 'Beeper Desktop API',
+    description: 'Send, search, and inspect operator-approved messages across WhatsApp, LinkedIn, Instagram, Discord, Telegram, Signal, Messenger, Slack, and other Beeper-connected networks through the Beeper Desktop API.',
+    tagline: 'One local messaging surface for agents that need real chat context.',
+    category: 'Operations',
+    availability: 'agent-installable',
+    estimatedSetup: '3 minutes',
+    sourceLabel: 'superada-ai/public/skills/beeper',
+    sourceUrl: 'https://github.com/henrino3/superada-ai/tree/main/public/skills/beeper',
+    sourceSpec: 'https://superada.ai/skills/beeper/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/beeper | sh',
+    reviewMode: 'source-review',
+    includes: ['Skill contract', 'Beeper CLI helper', 'Chat search helper', 'Operator-approved send helper', 'Curl installer'],
+    useCases: ['Search Discord DMs or cross-network chats through Beeper', 'Find a chat by participant or title', 'Read recent messages from a known chat ID', 'Send approved follow-up messages across Beeper-connected networks'],
+    instructions: ['Review the public skill bundle before installing because it can access private chat data.', 'Install with the SuperAda curl installer.', 'Enable Beeper Desktop API, then set BEEPER_API_KEY or write the key to ~/.config/beeper/api-key.', 'If Beeper runs on another trusted machine, create an SSH tunnel to localhost:23373 or set BEEPER_SSH_HOST.', 'Run beeper-agent test before using search or send helpers.'],
+    limitations: ['Requires Beeper Desktop to be running and logged in.', 'Only accesses chats available to the operator in Beeper.', 'Sending messages must remain operator-approved; this is not a bulk outreach tool.', 'Bulk chat export is intentionally not part of the public install path.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/beeper/SKILL.md', description: 'Agent-facing usage, guardrails, setup, and Beeper Desktop API notes.' },
+      { label: 'CLI helper', path: 'https://superada.ai/skills/beeper/scripts/beeper.sh', description: 'Small shell CLI for accounts, chats, messages, search, and raw API calls.' },
+      { label: 'Chat search helper', path: 'https://superada.ai/skills/beeper/scripts/search-chats.sh', description: 'Convenience wrapper for listing recent chats or searching by name/title.' },
+      { label: 'Send helper', path: 'https://superada.ai/skills/beeper/scripts/send-message.sh', description: 'Operator-approved message send helper that resolves a matching chat first.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/beeper', description: 'Shell installer for local agent runtimes.' },
+    ],
+    configExamples: [
+      {
+        label: 'Local Beeper Desktop API',
+        code: `export BEEPER_API_BASE="http://127.0.0.1:23373"
+export BEEPER_API_KEY="paste-api-key-here"
+beeper-agent test`,
+      },
+      {
+        label: 'Remote Beeper machine through an SSH tunnel',
+        code: `ssh -N -L 23373:127.0.0.1:23373 user@beeper-host
+export BEEPER_API_BASE="http://127.0.0.1:23373"
+beeper-agent test`,
+      },
+    ],
+  },
+  {
     slug: 'council',
     title: 'council',
     description: 'Topic-aware multi-agent council for structured debate, challenge, and synthesis across engineering, sales, support, product, ops, and strategy topics.',
