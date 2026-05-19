@@ -6,7 +6,7 @@ status: Live
 difficulty: Advanced
 category: Operations
 sourceLabel: Enterprise Crew openclaw-beta-testing workflow
-sourceUrl: https://github.com/openclaw/openclaw/issues/83456
+sourceUrl: https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/openclaw-beta-testing
 installCommand: Review the workflow, create an MC task for the target beta and agent, run Phase 1 on one canary, then expand only after the canary decision is pass-expand.
 repoPath: skills/openclaw-beta-testing
 estimatedSetup: Manual review required
@@ -60,21 +60,21 @@ notes:
   - Public examples intentionally omit private hostnames, tokens, and internal file paths.
 bundle:
   id: superada.workflow.openclaw-beta-canary-testing
-  version: 1.2.0
-  classification: conceptual
+  version: 1.2.1
+  classification: external
   installMode: manual
   reviewStatus: manual-review
   entrypoint: SKILL.md
   bundleRoot: skills/openclaw-beta-testing
   artifactCount: 9
   summary: A disciplined beta-testing workflow that starts with Mission Control intake, runs one controlled canary, schedules checkbacks, classifies the result, submits high-quality issues when failures are found, and follows each issue until it produces a retest, an external evidence comment, or an internal lesson.
-  availabilityNote: This is currently published as an operating workflow, not as a public one-command installer. Adapt the phases to your own OpenClaw fleet, Mission Control equivalent, and issue tracker.
+  availabilityNote: This is published as a public GitHub workflow bundle. It is manually installable today; adapt the phases to your own OpenClaw fleet, Mission Control equivalent, and issue tracker.
   installSource:
     type: manual
-    label: Internal operating workflow
-    url: https://superada.ai/workflows/openclaw-beta-canary-testing/
+    label: GitHub workflow bundle
+    url: https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/openclaw-beta-testing
   installable:
-    supported: false
+    supported: true
     method: manual
     instructions:
       - Create a task before changing any target agent.
@@ -108,8 +108,8 @@ artifacts:
     description: Resume state for long observation windows so the canary does not depend on memory.
   - name: Issue registry
     type: doc
-    path: skills/openclaw-beta-testing/state/issues.json
-    description: Tracks submitted beta issues, maintainer responses, and next actions.
+    path: skills/openclaw-beta-testing/state/issues.example.json
+    description: Example schema for tracking submitted beta issues, maintainer responses, and next actions.
   - name: Issue-intelligence report
     type: template
     path: output/openclaw-beta/issue-intelligence/<date>-issue-followup.md
