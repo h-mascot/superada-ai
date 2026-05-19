@@ -60,13 +60,13 @@ notes:
   - Public examples intentionally omit private hostnames, tokens, and internal file paths.
 bundle:
   id: superada.workflow.openclaw-beta-canary-testing
-  version: 1.2.1
+  version: 1.2.2
   classification: external
   installMode: manual
   reviewStatus: manual-review
   entrypoint: SKILL.md
   bundleRoot: skills/openclaw-beta-testing
-  artifactCount: 9
+  artifactCount: 11
   summary: A disciplined beta-testing workflow that starts with Mission Control intake, runs one controlled canary, schedules checkbacks, classifies the result, submits high-quality issues when failures are found, and follows each issue until it produces a retest, an external evidence comment, or an internal lesson.
   availabilityNote: This is published as a public GitHub workflow bundle. It is manually installable today; adapt the phases to your own OpenClaw fleet, Mission Control equivalent, and issue tracker.
   installSource:
@@ -90,10 +90,22 @@ bundle:
       - Requires a task board or equivalent evidence trail to avoid forgotten checkbacks.
       - Exact commands and host routing should be adapted to the operator's fleet.
 artifacts:
+  - name: Public GitHub workflow bundle
+    type: bundle
+    path: https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/openclaw-beta-testing
+    description: Public source for the reusable OpenClaw beta-testing workflow.
   - name: Beta testing skill
     type: skill
-    path: skills/openclaw-beta-testing/SKILL.md
+    path: https://github.com/h-mascot/Enterprise-Crew-skills/blob/main/openclaw-beta-testing/SKILL.md
     description: Defines intake, canary, deep run, report, and issue-intelligence behavior.
+  - name: GitHub issue filing template
+    type: template
+    path: https://github.com/h-mascot/Enterprise-Crew-skills/blob/main/openclaw-beta-testing/references/github-issue-template.md
+    description: Shareable issue-writing format for converting beta findings into crisp upstream reports.
+  - name: Upstream OpenClaw bug template
+    type: template
+    path: https://github.com/openclaw/openclaw/blob/main/.github/ISSUE_TEMPLATE/bug_report.yml
+    description: Current upstream GitHub bug-report form to check before filing against OpenClaw.
   - name: Mission Control task
     type: concept
     path: "MC task: OpenClaw beta canary"
@@ -108,7 +120,7 @@ artifacts:
     description: Resume state for long observation windows so the canary does not depend on memory.
   - name: Issue registry
     type: doc
-    path: skills/openclaw-beta-testing/state/issues.example.json
+    path: https://github.com/h-mascot/Enterprise-Crew-skills/blob/main/openclaw-beta-testing/state/issues.example.json
     description: Example schema for tracking submitted beta issues, maintainer responses, and next actions.
   - name: Issue-intelligence report
     type: template
@@ -194,10 +206,12 @@ verification:
       detail: Confirm fixed, in-progress, or evidence-requested issues create a retest task or run.
       expected: The affected canary lane is rerun instead of guessed from stale evidence.
 structure:
+  - https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/openclaw-beta-testing
   - skills/openclaw-beta-testing/SKILL.md
+  - skills/openclaw-beta-testing/references/github-issue-template.md
+  - skills/openclaw-beta-testing/state/issues.example.json
   - output/openclaw-beta/<date>-<agent>-canary-report.md
   - output/openclaw-beta/issue-intelligence/
-  - skills/openclaw-beta-testing/state/issues.json
   - docs/plans/<date>-openclaw-beta-<agent>-canary-plan.md
   - Mission Control task with peer review metadata
 ---
