@@ -1,9 +1,9 @@
 # ACTIVE PLAN
 
-Current plan: `docs/plans/2026-05-04-agent-mascots-pets-page-plan.md`
+Current plan: `docs/plans/2026-05-19-superada-clawhub-sync-plan.md`
 
 ## Goal
-Add a new Agent Mascots (Pets) resources page, wire it into the Resources navigation, replace the default favicon, and verify the site builds cleanly.
+Connect installable SuperAda skills and workflow resources to ClawHub publishing.
 
 ## Next step
-Review and commit the verified site changes.
+Run `npm run clawhub:plan`, fix any sync issues, then build the site.

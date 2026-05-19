@@ -1,0 +1,45 @@
+name: SuperAda ClawHub Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/data/skills.ts'
+      - 'src/content/workflows/**'
+      - 'public/install/**'
+      - 'public/skills/**'
+      - 'scripts/sync-superada-to-clawhub.mjs'
+      - 'docs/clawhub-sync.md'
+      - '.github/workflows/superada-clawhub-sync.yml'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'h-mascot' || github.repository_owner == 'henrino3' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install ClawHub CLI
+        run: npm install -g clawdhub@0.3.0
+
+      - name: Plan SuperAda resources
+        run: npm run clawhub:plan
+
+      - name: Login to ClawHub
+        env:
+          CLAWDHUB_TOKEN: ${{ secrets.CLAWDHUB_TOKEN }}
+        run: |
+          if [ -z "${CLAWDHUB_TOKEN:-}" ]; then
+            echo "Missing CLAWDHUB_TOKEN repository secret" >&2
+            exit 1
+          fi
+          clawdhub login --no-browser --token "$CLAWDHUB_TOKEN"
+
+      - name: Publish SuperAda resources to ClawHub
+        run: npm run clawhub:publish

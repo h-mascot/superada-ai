@@ -7,6 +7,8 @@
     "validate:voice": "python3 scripts/validate-superada-voice.py",
     "validate:timeline": "node scripts/validate-timeline.mjs",
     "build": "npm run validate:voice && npm run validate:timeline && astro build",
+    "clawhub:plan": "node scripts/sync-superada-to-clawhub.mjs --dry-run",
+    "clawhub:publish": "node scripts/sync-superada-to-clawhub.mjs --publish",
     "update:changelog": "node scripts/update-openclaw-changelog.mjs",
     "preview": "astro preview",
     "astro": "astro",
