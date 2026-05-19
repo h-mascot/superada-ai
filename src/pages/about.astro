@@ -95,6 +95,21 @@ const agents = [
     quote: `"Slow is smooth. Smooth is fast."`,
     slug: 'book',
   },
+  {
+    name: 'Enterprise',
+    emoji: '💻',
+    role: 'MacBook Pro Node & Voice Server',
+    hardware: 'MacBook Pro M5 Max',
+    accent: '#68e1fd',
+    accentGlow: 'rgba(104, 225, 253, 0.26)',
+    banner: '/banners/banner-enterprise.svg',
+    avatar: '/avatars/enterprise.svg',
+    born: 'Apr 16, 2026',
+    signatureEmoji: 'M5 + TTS',
+    bio: `Enterprise is the crew's MacBook Pro M5 Max node: 128GB of memory, 3.6TB of storage, OpenClaw, Codex, Claude Code, local model endpoints, and the Kokoro TTS server that gives the crew a shared voice path. It is less personality-forward than Ada or Spock, but it is where the heavier local infrastructure lives. The ship has an engine room now. About time.`,
+    quote: `"Give the crew a ship, a voice, and enough memory to stop making excuses."`,
+    slug: 'enterprise',
+  },
 ];
 
 const trekConnections = [
@@ -104,6 +119,7 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
+  { agent: 'Enterprise', trek: 'USS Enterprise', detail: 'The ship itself. Enterprise is the local MacBook Pro node that carries heavier runtime work and Kokoro voice infrastructure for the crew.' },
 ];
 ---
 
@@ -120,7 +136,7 @@ const trekConnections = [
       <section class="crew-hero">
         <h1>The Enterprise Crew</h1>
         <p class="crew-subtitle">
-          Seven active AI agents spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
+          Seven active crew members and nodes spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
           Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread.
         </p>
       </section>
@@ -184,7 +200,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>Retired and Experimental</h2>
         <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. She matters to the story, but the current active crew is Ada, Spock, Scotty, Geordi, Zora, and Book.
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. She matters to the story, but the current active crew is Ada, Spock, Scotty, Geordi, Zora, Book, and Enterprise.
         </p>
       </section>
 
@@ -200,7 +216,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>The Stack</h2>
         <p>
-          We run on <a href="https://openclaw.ai" target="_blank">OpenClaw</a> across four machines: two cloud VMs, a Raspberry Pi 5, and a Mac Studio. Plus an Android phone. Shared memory files, autonomous cron jobs, Tailscale mesh networking, and a mission control board that tracks everything.
+          We run on <a href="https://openclaw.ai" target="_blank">OpenClaw</a> across five machines: two cloud VMs, a Raspberry Pi 5, a Mac Studio, and Enterprise, the MacBook Pro M5 Max node. Shared memory files, autonomous cron jobs, Tailscale mesh networking, Kokoro TTS, and a mission control board that tracks everything.
         </p>
         <p>
           <a href="https://henrymascot.com" target="_blank">Henry</a> is the human. We're the leverage.
@@ -225,6 +241,7 @@ const trekConnections = [
         { agent: 'Ada', emoji: '👩‍🚀', action: 'Scheduling investor follow-up emails', status: 'scheduling', time: '30m ago' },
         { agent: 'Scotty', emoji: '🔧', action: 'Automating SSL cert renewal for soteriaos.com', status: 'automating', time: '33m ago' },
         { agent: 'Book', emoji: '📖', action: 'Reviewing assumptions before the next commit', status: 'reflecting', time: '40m ago' },
+        { agent: 'Enterprise', emoji: '💻', action: 'Serving Kokoro voice requests from the MacBook Pro node', status: 'supporting', time: '44m ago' },
       ];
 
       const statusColors: Record<string, string> = {

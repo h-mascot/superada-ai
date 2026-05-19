@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Enterprise banner</title>
+  <desc id="desc">A cinematic MacBook Pro voice server banner with starfield, console lines, and Kokoro audio waveforms.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.5" stop-color="#14213d"/>
+      <stop offset="1" stop-color="#2a173f"/>
+    </linearGradient>
+    <radialGradient id="core" cx="70%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#f6d58a" stop-opacity=".35"/>
+      <stop offset=".46" stop-color="#6bd7ff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#07111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="metal" x1="300" x2="1120" y1="235" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#edf2f8"/>
+      <stop offset=".42" stop-color="#8895a8"/>
+      <stop offset="1" stop-color="#f7fafc"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="392" x2="1006" y1="120" y2="315" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d1426"/>
+      <stop offset=".65" stop-color="#16294a"/>
+      <stop offset="1" stop-color="#1c1231"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="520" fill="url(#sky)"/>
+  <rect width="1400" height="520" fill="url(#core)"/>
+  <g fill="#f7d68a" opacity=".7">
+    <circle cx="92" cy="92" r="2"/>
+    <circle cx="198" cy="44" r="1.5"/>
+    <circle cx="386" cy="78" r="1.5"/>
+    <circle cx="1130" cy="56" r="2"/>
+    <circle cx="1240" cy="132" r="1.5"/>
+    <circle cx="1310" cy="308" r="2"/>
+  </g>
+  <g opacity=".34" stroke="#6bd7ff" stroke-width="1">
+    <path d="M0 388h1400"/>
+    <path d="M0 430h1400"/>
+    <path d="M128 0v520"/>
+    <path d="M1178 0v520"/>
+    <path d="M0 520 420 0"/>
+    <path d="M980 0 1400 520"/>
+  </g>
+  <g>
+    <path d="M330 118c0-28 22-50 50-50h640c28 0 50 22 50 50v260H330V118Z" fill="url(#metal)" opacity=".96"/>
+    <path d="M378 119c0-11 9-20 20-20h604c11 0 20 9 20 20v227H378V119Z" fill="url(#screen)"/>
+    <path d="M248 378h904l-70 72H318l-70-72Z" fill="#cfd7e3"/>
+    <path d="M573 392h254l-17 24H590l-17-24Z" fill="#727d8f"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-width="12">
+    <path d="M520 260v-82" stroke="#6bd7ff"/>
+    <path d="M578 288V150" stroke="#f7d68a"/>
+    <path d="M636 304V132" stroke="#6bd7ff"/>
+    <path d="M694 274V162" stroke="#f7d68a"/>
+    <path d="M752 302V134" stroke="#6bd7ff"/>
+    <path d="M810 286V150" stroke="#f7d68a"/>
+    <path d="M868 252v-70" stroke="#6bd7ff"/>
+  </g>
+  <text x="86" y="126" fill="#f7d68a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="3">ENTERPRISE NODE</text>
+  <text x="86" y="166" fill="#d7e5f2" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" opacity=".8">M5 MAX / KOKORO TTS / OPENCLAW</text>
+</svg>

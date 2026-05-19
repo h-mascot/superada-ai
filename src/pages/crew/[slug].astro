@@ -155,11 +155,36 @@ const agents = [
     models: ['Claude Sonnet 4.5 (primary)', 'GLM-5 (fallback)'],
     funFact: 'Book\'s first task on Mission Control was literally "Prove you work." He did — by evaluating himself.',
   },
+  {
+    name: 'Enterprise',
+    emoji: '💻',
+    role: 'MacBook Pro Node & Voice Server',
+    hardware: 'MacBook Pro M5 Max',
+    accent: '#68e1fd',
+    accentGlow: 'rgba(104, 225, 253, 0.26)',
+    banner: '/banners/banner-enterprise.svg',
+    avatar: '/avatars/enterprise.svg',
+    born: 'Apr 16, 2026',
+    signatureEmoji: 'M5 + TTS',
+    slug: 'enterprise',
+    trekCharacter: 'USS Enterprise, the ship itself',
+    trekShow: 'Star Trek',
+    trekDetail: 'The Enterprise is not another officer on the bridge. It is the ship: the infrastructure that lets the crew move, coordinate, and survive the weird decisions made by everyone aboard. The node named Enterprise plays the same role for the crew: local MacBook Pro compute, OpenClaw runtime support, local model endpoints, and Kokoro TTS.',
+    bio: [
+      'Enterprise is the crew\'s MacBook Pro M5 Max node: 128GB of memory, 3.6TB of storage, OpenClaw, Node, Python, GitHub CLI, Claude Code, Codex, local model endpoints, and the Kokoro TTS server.',
+      'It is less personality-forward than Ada or Spock because its job is infrastructure. Enterprise carries heavier local services, gives the crew a shared voice path through Kokoro, and anchors the newer local-first systems that do not belong on the smaller gateways.',
+      'The name is literal. A crew needs a ship. Enterprise is the ship: compute, voice, services, and enough headroom for the next questionable idea Henry has at midnight.',
+    ],
+    quote: '"Give the crew a ship, a voice, and enough memory to stop making excuses."',
+    capabilities: ['OpenClaw node runtime', 'Kokoro TTS server', 'Local model endpoints', 'Codex and Claude Code', 'Service hosting', 'High-memory local workloads'],
+    models: ['Local MLX and Ollama endpoints', 'Codex CLI', 'Claude Code CLI', 'OpenClaw model routing'],
+    funFact: 'Enterprise runs the Kokoro TTS endpoint the crew uses for OpenAI-compatible speech at /v1/audio/speech.',
+  },
 ];
 
 export function getStaticPaths() {
   // agents list is re-declared here so getStaticPaths can access it
-  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book'];
+  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book', 'enterprise'];
   return allSlugs.map((slug) => ({ params: { slug } }));
 }
 
@@ -229,7 +254,7 @@ if (!agent) {
       </section>
 
       <!-- Two-col: Capabilities + Models -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:3rem;">
+      <div class="detail-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:3rem;">
         <div style="background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:1.25rem;">
           <h3 style="font-family:Georgia,serif; font-size:0.9rem; font-weight:400; margin:0 0 0.75rem; color:var(--text); text-transform:uppercase; letter-spacing:0.05em; font-size:0.75rem;">Capabilities</h3>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.4rem;">
@@ -261,7 +286,7 @@ if (!agent) {
       <!-- Star Trek Connection -->
       <section style="margin-bottom:3rem; padding:1.5rem; background:var(--panel); border:1px solid var(--border); border-radius:10px;">
         <div style="display:flex; align-items:flex-start; gap:1rem;">
-          <div style={`font-size:2rem; flex-shrink:0; opacity:0.8;`}>🖖</div>
+          <div style={`font-size:2rem; flex-shrink:0; opacity:0.8;`}>✦</div>
           <div>
             <p style={`color:${agent.accent}; font-family:monospace; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; margin:0 0 0.2rem;`}>
               Star Trek Connection
@@ -276,12 +301,12 @@ if (!agent) {
       </section>
 
       <!-- Back + nav -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid var(--border);">
-        <a href="/about" style="color:var(--muted); font-size:0.875rem; text-decoration:none;"
+      <div class="detail-footer-nav" style="display:flex; justify-content:space-between; align-items:center; padding-top:2rem; border-top:1px solid var(--border);">
+        <a class="detail-back-link" href="/about" style="color:var(--muted); font-size:0.875rem; text-decoration:none;"
           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">
           ← Back to the Crew
         </a>
-        <div style="display:flex; gap:1.5rem;">
+        <div class="detail-peer-links" style="display:flex; gap:1.5rem;">
           {agents.filter(a => a.slug !== slug).map((a) => (
             <a href={`/crew/${a.slug}`} style="color:var(--faint); font-size:0.8rem; text-decoration:none;"
               onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--faint)'">
@@ -293,5 +318,27 @@ if (!agent) {
 
     </main>
     <Footer />
+    <style>
+      @media (max-width: 640px) {
+        .detail-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        .detail-footer-nav {
+          align-items: flex-start !important;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .detail-back-link {
+          white-space: nowrap;
+        }
+
+        .detail-peer-links {
+          flex-wrap: wrap;
+          gap: 0.75rem 1rem !important;
+        }
+      }
+    </style>
   </body>
 </html>
