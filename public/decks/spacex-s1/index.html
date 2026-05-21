@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpaceX S-1: IPO Slide Summary</title>
+  <style>
+    :root {
+      --bg: #07090d;
+      --surface: #111722;
+      --surface-2: #172033;
+      --ink: #f4f7fb;
+      --muted: #9aa7bd;
+      --accent: #f4c84a;
+      --accent-2: #58d5c9;
+      --success: #4ade80;
+      --warning: #f59e0b;
+      --danger: #fb7185;
+      --line: rgba(255,255,255,.13);
+      --shadow: 0 18px 60px rgba(0,0,0,.42);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { overflow: hidden; }
+    button, a { font: inherit; }
+    .deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+    .slides { height: 100%; display: flex; transition: transform .38s cubic-bezier(.22,.61,.36,1); }
+    .slide { min-width: 100vw; height: 100vh; padding: clamp(22px, 4vw, 58px); display: grid; align-content: center; position: relative; overflow-y: auto; }
+    .slide::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: radial-gradient(circle at 78% 14%, rgba(88,213,201,.16), transparent 26%), radial-gradient(circle at 18% 78%, rgba(244,200,74,.11), transparent 25%); }
+    .content { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; width: 100%; }
+    .kicker { color: var(--accent-2); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 800; margin-bottom: 14px; }
+    h1, h2 { margin: 0; letter-spacing: 0; line-height: .98; }
+    h1 { font-size: clamp(46px, 8vw, 104px); max-width: 980px; }
+    h2 { font-size: clamp(34px, 6vw, 72px); max-width: 1000px; }
+    h3 { margin: 0 0 10px; font-size: 18px; }
+    p { color: var(--muted); font-size: clamp(17px, 2vw, 24px); line-height: 1.45; max-width: 860px; }
+    .lead { color: var(--ink); font-size: clamp(21px, 2.5vw, 31px); max-width: 960px; }
+    .grid { display: grid; gap: 16px; }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035)); border: 1px solid var(--line); border-radius: 8px; padding: 18px; box-shadow: var(--shadow); }
+    .metric { min-height: 128px; display: flex; flex-direction: column; justify-content: space-between; }
+    .metric .value { font-size: clamp(32px, 5vw, 62px); line-height: 1; font-weight: 850; color: var(--ink); }
+    .metric .label { color: var(--muted); font-size: 14px; line-height: 1.35; margin-top: 10px; }
+    .tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; color: var(--ink); background: rgba(255,255,255,.05); font-size: 13px; font-weight: 700; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+    .bar-row { display: grid; grid-template-columns: 140px 1fr 90px; gap: 12px; align-items: center; margin: 13px 0; color: var(--muted); }
+    .bar { height: 14px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; border: 1px solid var(--line); }
+    .bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+    .bar-row strong { color: var(--ink); text-align: right; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+    .time { border-top: 3px solid var(--accent); padding-top: 14px; }
+    .time b { display: block; color: var(--ink); font-size: 18px; margin-bottom: 8px; }
+    .time span { color: var(--muted); font-size: 14px; line-height: 1.4; }
+    .quote { border-left: 4px solid var(--accent); padding: 8px 0 8px 20px; color: var(--ink); font-size: clamp(24px, 3vw, 42px); line-height: 1.16; max-width: 1020px; }
+    .split { display: grid; grid-template-columns: 1.08fr .92fr; gap: 28px; align-items: center; }
+    .list { display: grid; gap: 12px; margin-top: 22px; }
+    .list div { display: grid; grid-template-columns: 26px 1fr; gap: 10px; color: var(--muted); line-height: 1.38; font-size: 17px; }
+    .list b { color: var(--accent); }
+    .table { width: 100%; border-collapse: collapse; font-size: 15px; color: var(--muted); }
+    .table th, .table td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+    .table th { color: var(--ink); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+    .table td:last-child, .table th:last-child { text-align: right; color: var(--ink); }
+    .nav { position: fixed; z-index: 4; left: 22px; right: 22px; bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px; pointer-events: none; }
+    .nav button, .nav a { pointer-events: auto; border: 1px solid var(--line); background: rgba(17,23,34,.86); color: var(--ink); border-radius: 8px; padding: 10px 13px; text-decoration: none; cursor: pointer; backdrop-filter: blur(10px); }
+    .nav button:hover, .nav a:hover { border-color: rgba(244,200,74,.7); }
+    .counter { color: var(--muted); background: rgba(17,23,34,.78); border: 1px solid var(--line); border-radius: 8px; padding: 10px 13px; backdrop-filter: blur(10px); }
+    .progress { position: fixed; left: 0; right: 0; top: 0; height: 4px; background: rgba(255,255,255,.08); z-index: 5; }
+    .progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .3s ease; }
+    .source { font-size: 13px; color: var(--muted); margin-top: 22px; }
+    .source a { color: var(--accent-2); }
+    .warning { color: var(--warning); }
+    .danger { color: var(--danger); }
+    .success { color: var(--success); }
+    .small { font-size: 14px; }
+
+    @media (max-width: 820px) {
+      body { overflow: auto; }
+      .deck { height: auto; overflow: visible; }
+      .slides { display: block; transform: none !important; height: auto; }
+      .slide { min-width: 0; min-height: 100vh; height: auto; padding: 30px 18px 84px; }
+      .grid.cols-2, .grid.cols-3, .grid.cols-4, .split, .timeline { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 94px 1fr 70px; }
+      .nav button { display: none; }
+      .counter { margin-left: auto; }
+    }
+
+    @media print {
+      body { overflow: visible; background: #fff; color: #111; }
+      .deck, .slide { height: auto; overflow: visible; }
+      .slides { display: block; transform: none !important; }
+      .slide { page-break-after: always; min-height: 100vh; }
+      .nav, .progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="SpaceX S-1 slide summary">
+    <div class="progress"><span id="progress"></span></div>
+    <div class="slides" id="slides">
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">SEC S-1 | filed May 20, 2026</div>
+          <h1>SpaceX files to go public</h1>
+          <p class="lead">The S-1 sells SpaceX as a three-engine company: Starlink cash generation, Starship-enabled expansion, and xAI/X-powered AI infrastructure.</p>
+          <div class="tags">
+            <span class="tag">Ticker: SPCX</span>
+            <span class="tag">Nasdaq + Nasdaq Texas</span>
+            <span class="tag">Class A IPO</span>
+            <span class="tag">Controlled company</span>
+          </div>
+          <div class="source">Primary source: <a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm">SEC filing</a></div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content split">
+          <div>
+            <div class="kicker">The thesis</div>
+            <h2>Starlink funds it. Starship unlocks it. AI consumes the capital.</h2>
+            <p>The offering is not priced yet, but the story is already clear: investors are being asked to underwrite a vertically integrated Space + Connectivity + AI platform with Musk retaining control.</p>
+          </div>
+          <div class="grid">
+            <div class="card metric"><div class="value">$18.7B</div><div class="label">2025 consolidated revenue</div></div>
+            <div class="card metric"><div class="value">$6.6B</div><div class="label">2025 adjusted EBITDA</div></div>
+            <div class="card metric"><div class="value">$20.7B</div><div class="label">2025 total capex</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Offering structure</div>
+          <h2>The blanks matter</h2>
+          <p>Share count, price range, proceeds, and post-offering ownership percentages are placeholders. The S-1 gives the structure and strategy before it gives valuation.</p>
+          <div class="grid cols-3" style="margin-top:26px">
+            <div class="card">
+              <h3>Security</h3>
+              <p class="small">Class A common stock, par value $0.001 per share.</p>
+            </div>
+            <div class="card">
+              <h3>Listing</h3>
+              <p class="small">Applied to list on Nasdaq and Nasdaq Texas under <b>SPCX</b>.</p>
+            </div>
+            <div class="card">
+              <h3>Use of proceeds</h3>
+              <p class="small">AI compute, launch infrastructure, launch vehicles, satellite constellation scale, and general corporate purposes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Governance</div>
+          <h2>Public economics, private-style control</h2>
+          <div class="grid cols-2" style="margin-top:28px">
+            <div class="card">
+              <h3>Voting stack</h3>
+              <div class="list">
+                <div><b>1</b><span>Class A gets one vote per share.</span></div>
+                <div><b>10</b><span>Class B gets 10 votes per share.</span></div>
+                <div><b>B</b><span>Class B shareholders elect a majority of the board.</span></div>
+              </div>
+            </div>
+            <div class="card">
+              <h3>Musk control</h3>
+              <p>SpaceX states Musk will be able to control matters requiring shareholder approval and that the company expects to be a Nasdaq “controlled company.”</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Segment economics</div>
+          <h2>Connectivity is carrying the P&L</h2>
+          <table class="table" style="margin-top:26px">
+            <thead><tr><th>Segment</th><th>2025 Revenue</th><th>2025 Operating Income/Loss</th><th>2025 Adj. EBITDA</th></tr></thead>
+            <tbody>
+              <tr><td>Space</td><td>$4.086B</td><td>$(657M)</td><td>$653M</td></tr>
+              <tr><td>Connectivity</td><td>$11.387B</td><td>$4.423B</td><td>$7.168B</td></tr>
+              <tr><td>AI</td><td>$3.201B</td><td>$(6.355B)</td><td>$(1.237B)</td></tr>
+            </tbody>
+          </table>
+          <p>Starlink/Connectivity is the scaled profit center. AI is real revenue, but still the largest loss engine.</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content split">
+          <div>
+            <div class="kicker">Capital intensity</div>
+            <h2>Q1 capex tells you where the company is going</h2>
+            <p>In Q1 2026, SpaceX spent more on AI capex than the whole company spent on Space and Connectivity combined.</p>
+          </div>
+          <div class="card">
+            <div class="bar-row"><span>AI</span><div class="bar"><span style="width:76%"></span></div><strong>$7.72B</strong></div>
+            <div class="bar-row"><span>Connectivity</span><div class="bar"><span style="width:13%"></span></div><strong>$1.33B</strong></div>
+            <div class="bar-row"><span>Space</span><div class="bar"><span style="width:10%"></span></div><strong>$1.05B</strong></div>
+            <p class="small">Q1 2026 capex total: $10.107B.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Starlink scale</div>
+          <h2>The cash machine has numbers now</h2>
+          <div class="grid cols-4" style="margin-top:26px">
+            <div class="card metric"><div class="value">10.3M</div><div class="label">Starlink subscribers</div></div>
+            <div class="card metric"><div class="value">$66</div><div class="label">ARPU per month, Q1 2026</div></div>
+            <div class="card metric"><div class="value">9,600</div><div class="label">Broadband + mobile satellites</div></div>
+            <div class="card metric"><div class="value">164</div><div class="label">Countries, territories, and markets</div></div>
+          </div>
+          <p>Connectivity generated $3.257B revenue and $1.188B operating income in Q1 2026.</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Starship dependency</div>
+          <h2>The risk factor and the upside are the same word: Starship</h2>
+          <div class="timeline">
+            <div class="time"><b>2023</b><span>Starship first launched.</span></div>
+            <div class="time"><b>Mar 2026</b><span>11 Starship flight tests completed.</span></div>
+            <div class="time"><b>H2 2026</b><span>Expected payload delivery to orbit and V3 Starlink deployment.</span></div>
+            <div class="time"><b>2028</b><span>Orbital AI compute satellites targeted as early as this year.</span></div>
+          </div>
+          <p>The S-1 repeatedly ties next-gen Starlink, satellite-to-mobile, orbital AI compute, lunar economy, and Mars ambitions to Starship cadence and reusability.</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">xAI + X</div>
+          <h2>This is also an AI infrastructure IPO</h2>
+          <div class="grid cols-3" style="margin-top:26px">
+            <div class="card metric"><div class="value">$3.2B</div><div class="label">AI segment 2025 revenue</div></div>
+            <div class="card metric"><div class="value">$(6.4B)</div><div class="label">AI segment 2025 operating loss</div></div>
+            <div class="card metric"><div class="value">1.3B+</div><div class="label">Supported accounts active in LTM across Grok + X platforms</div></div>
+          </div>
+          <p>xAI was acquired by SpaceX effective Feb. 2, 2026. X is framed as distribution and real-time data for Grok.</p>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Orbital AI</div>
+          <h2>The wildest slide is not marketing fluff. It is in the S-1.</h2>
+          <div class="quote">SpaceX says reusable rockets, satellite manufacturing, and Starlink can enable “massive AI compute satellite constellations” with potentially millions of satellites.</div>
+          <div class="tags">
+            <span class="tag">Sun-synchronous orbit</span>
+            <span class="tag">AI inference demand</span>
+            <span class="tag">Starlink backhaul</span>
+            <span class="tag">Target: as early as 2028</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Risks</div>
+          <h2>The risk stack is concentrated, not random</h2>
+          <div class="grid cols-2" style="margin-top:26px">
+            <div class="card"><h3 class="warning">Execution</h3><p>Starship cadence, reusability, orbital AI, chip manufacturing, data centers, and huge constellation scaling.</p></div>
+            <div class="card"><h3 class="warning">Regulatory</h3><p>FAA launch/reentry approvals, FCC and international spectrum, foreign legal regimes, online safety rules for X/AI.</p></div>
+            <div class="card"><h3 class="danger">Capital</h3><p>Heavy capex, substantial indebtedness, operating losses, and dependency on financing if cash flow is insufficient.</p></div>
+            <div class="card"><h3 class="danger">Control</h3><p>Dual-class voting gives public holders limited influence over governance and director election.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content split">
+          <div>
+            <div class="kicker">Investor read</div>
+            <h2>The whole deal turns on one bridge</h2>
+            <p>Can Connectivity keep compounding enough cash and operating leverage to fund Starship and AI until those bets stop being mostly capital absorption?</p>
+          </div>
+          <div class="card">
+            <h3>What to watch in the next amendment</h3>
+            <div class="list">
+              <div><b>1</b><span>Price range and implied valuation.</span></div>
+              <div><b>2</b><span>Share count and post-offering float.</span></div>
+              <div><b>3</b><span>Musk voting control percentages.</span></div>
+              <div><b>4</b><span>AI capex runway and debt disclosures.</span></div>
+              <div><b>5</b><span>Any Starship milestone changes before effectiveness.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Source appendix</div>
+          <h2>Claims are from the S-1</h2>
+          <p>The deck uses the May 20, 2026 Space Exploration Technologies Corp. Form S-1 and extracted filing text. Pricing, share count, proceeds, and voting percentages remain blank in the preliminary prospectus.</p>
+          <div class="grid cols-2" style="margin-top:26px">
+            <div class="card"><h3>Source pack</h3><p class="small"><a href="./2026-05-20-spacex-s1-source-pack.md">2026-05-20-spacex-s1-source-pack.md</a></p></div>
+            <div class="card"><h3>SEC filing</h3><p class="small"><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm">spaceexplorationtechnologi.htm</a></p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide">
+        <div class="content">
+          <div class="kicker">Other resources</div>
+          <h2>Useful follow-up links</h2>
+          <div class="grid cols-2" style="margin-top:26px">
+            <div class="card"><h3>SEC company filings</h3><p class="small"><a href="https://www.sec.gov/edgar/browse/?CIK=1181412">Space Exploration Technologies Corp. EDGAR profile</a></p></div>
+            <div class="card"><h3>Nasdaq controlled company rules</h3><p class="small"><a href="https://listingcenter.nasdaq.com/rulebook/nasdaq/rules/Nasdaq%205600%20Series">Nasdaq 5600 corporate governance series</a></p></div>
+            <div class="card"><h3>Starlink operating context</h3><p class="small"><a href="https://www.starlink.com/">Starlink service site</a></p></div>
+            <div class="card"><h3>Starship launch regulation</h3><p class="small"><a href="https://www.faa.gov/space/stakeholder_engagement/spacex_starship">FAA SpaceX Starship licensing page</a></p></div>
+          </div>
+          <p>This is the watchlist for the next S-1 amendment: valuation, share count, Musk voting percentage, AI capex runway, and any Starship schedule movement.</p>
+        </div>
+      </section>
+    </div>
+    <nav class="nav" aria-label="Slide controls">
+      <button id="prev" type="button" aria-label="Previous slide">← Prev</button>
+      <div class="counter"><span id="current">1</span> / <span id="total">14</span></div>
+      <a href="./2026-05-20-spacex-s1-slides.zip" download>Download zip</a>
+      <a href="./2026-05-20-spacex-s1-source-pack.md">Source pack</a>
+      <button id="next" type="button" aria-label="Next slide">Next →</button>
+    </nav>
+  </main>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const strip = document.getElementById('slides');
+    const currentEl = document.getElementById('current');
+    const totalEl = document.getElementById('total');
+    const progress = document.getElementById('progress');
+    let index = 0;
+    totalEl.textContent = slides.length;
+    function render() {
+      strip.style.transform = `translateX(-${index * 100}vw)`;
+      currentEl.textContent = index + 1;
+      progress.style.width = ((index + 1) / slides.length * 100) + '%';
+      location.hash = 'slide-' + (index + 1);
+    }
+    function go(delta) {
+      index = Math.max(0, Math.min(slides.length - 1, index + delta));
+      render();
+    }
+    document.getElementById('prev').addEventListener('click', () => go(-1));
+    document.getElementById('next').addEventListener('click', () => go(1));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') go(1);
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') go(-1);
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('a, button')) return;
+      if (window.matchMedia('(max-width: 820px)').matches) return;
+      go(1);
+    });
+    const match = location.hash.match(/slide-(\d+)/);
+    if (match) index = Math.max(0, Math.min(slides.length - 1, Number(match[1]) - 1));
+    render();
+  </script>
+</body>
+</html>
