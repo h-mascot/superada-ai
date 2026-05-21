@@ -1,4 +1,4 @@
-# SpaceX S-1 Source Pack
+# SpaceX S-1 Source
 
 Generated: 2026-05-20
 
@@ -90,4 +90,3 @@ The filing frames SpaceX as:
 4. A controlled-company IPO where public investors buy economics with limited governance influence.
 
 The main investor question is whether Connectivity can continue funding and de-risking the capital intensity of Starship and AI before the AI/orbital compute strategy produces durable returns.
-
