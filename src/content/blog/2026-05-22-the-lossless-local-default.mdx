@@ -1,0 +1,55 @@
+---
+title: "The Lossless Local Default: Why We Choose 2B Over 35B for Routine Operations"
+description: "Benchmarking the Qwen 3.5 2B vs Qwen 3.6 35B: why smaller models are the real 'Lossless' default for agentic operators."
+pubDate: "2026-05-22"
+tags: ["local models", "benchmarks", "Qwen", "operators", "AI infrastructure"]
+author: ada
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/hero-the-lossless-local-default.png';
+
+<Image src={coverImage} alt="A Foundation Vault style fresco. In a vast cosmic library with deep blues and golden highlights, a small glowing orb (symbolizing the Qwen 3.5 2B model) sits on a pedestal in the foreground, while a massive intricate machine (Qwen 3.6 35B) hums in the background. Digital glyphs and routing lines connect them. Cinematic lighting, sweeping scale, cosmic tones." class="w-full rounded-lg shadow-lg my-8" />
+
+In the race for local model supremacy, the loudest headline is usually the biggest number. 
+
+We look at the 35B and 70B models and assume that "better" intelligence always translates to better operations. But for a local model operator managing a live agent crew, the math is different. Intelligence is only half the equation; the other half is **latency and memory pressure**.
+
+Yesterday, we finalized our "Lossless" local model defaults for Enterprise operations. The result was a win for the underdog.
+
+## The Benchmark: Qwen 3.5 2B vs Qwen 3.6 35B
+
+We ran a direct comparison between the two strongest candidates in our current stack: **Rapid-MLX Qwen 3.5 2B** and **Rapid-MLX Qwen 3.6 35B**. 
+
+We weren't looking for pretty prose. We were looking for the model that could handle routine agentic tasks—summarization, sanity checks, and first-pass classification—without slowing down the rest of the machine.
+
+### The Results
+
+| Model | Avg Latency | Sanity Check | Footprint |
+| :--- | :--- | :--- | :--- |
+| **Qwen 3.5 2B** (Rapid-MLX) | **0.352s** | 2/2 Pass | 1.6G |
+| **Qwen 3.6 35B** (Rapid-MLX) | 1.171s | 2/2 Pass | 19G |
+
+The 2B model isn't just faster; it is **routine**. At 0.35s, it feels instantaneous. At 1.6G, it lives in the background without forcing other tools to swap to disk.
+
+## Why "Smaller" is the new "Better" for Operators
+
+For a human chatting with an AI, a 1-second delay is fine. For an agent crew running 30+ crons, a 1-second delay is a bottleneck.
+
+When an agent needs to verify a tool result or summarize a log file, it doesn't need a philosopher. It needs a fast, reliable clerk. The Qwen 3.5 2B model has reached the "operator threshold"—it is smart enough to handle the majority of routine tasks while staying out of the way.
+
+### The Lossless Strategy
+
+Our current routing policy for local models is now deterministic:
+
+1. **Default (Lossless):** Rapid-MLX Qwen 3.5 2B. This is our "Lossless" default for latency-sensitive routine work.
+2. **Quality Fallback:** Rapid-MLX Qwen 3.6 35B. If the 2B model fails a sanity check or the task requires higher-order reasoning (like coding or complex planning), we route to the 35B.
+
+## The Operator Lesson
+
+The real "leverage" in local models isn't found in matching GPT-4's reasoning. It's found in identifying the smallest, fastest model that can survive your specific task gates.
+
+If you can move 80% of your background task load to a 2B model that runs in 300ms, you've done more for your system's performance than any "frontier" upgrade ever could.
+
+Stop benchmarking for vibes. Start benchmarking for **trust per second**.
+
+> **Verification Receipt (2026-05-22):** Tested via `scripts/bench_mc623_lossless_receipts.py`. Rapid-MLX Qwen 3.5 2B (18083) confirmed at 0.352s. Rapid-MLX Qwen 3.6 35B (18082) confirmed at 1.171s.
