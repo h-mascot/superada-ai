@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<title>Tilt x Asymptotes — Agentic Performance Management Pilot</title>
+<style>
+:root{
+  --bg:#f7f3ea; --surface:#fffdf8; --surface-2:#efe7d8; --ink:#161514; --muted:#6d665c;
+  --accent:#b7791f; --accent-2:#2563eb; --success:#15803d; --warning:#b45309; --danger:#b91c1c;
+  --line:#dfd4c2; --shadow:0 18px 50px rgba(55,39,18,.12); --radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at top left,#fff6dc 0,#f7f3ea 32%,#eee4d4 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}
+a{color:var(--accent-2);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:28px} .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch;padding:34px 0 18px}
+.panel{background:rgba(255,253,248,.86);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.hero-main{padding:34px}.eyebrow{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent)}h1{font-size:clamp(34px,5vw,64px);line-height:.95;margin:12px 0 18px;letter-spacing:-.055em} .thesis{font-size:clamp(18px,2.2vw,24px);color:#2e2a25;max-width:780px}.hero-side{padding:24px;display:flex;flex-direction:column;gap:14px}.metric{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:18px;background:#faf4e8;border:1px solid #eadcc6}.metric b{font-size:24px}.metric span{display:block;color:var(--muted);font-size:14px}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.pill{border:1px solid var(--line);background:#fff8ec;border-radius:999px;padding:8px 11px;color:#4f453a;font-size:13px;font-weight:700}.nav{position:sticky;top:0;z-index:10;background:rgba(247,243,234,.88);backdrop-filter:blur(14px);border-block:1px solid var(--line)}.nav-inner{max-width:1180px;margin:0 auto;padding:10px 28px;display:flex;gap:10px;overflow:auto}.nav a{white-space:nowrap;border:1px solid var(--line);background:#fffaf1;border-radius:999px;padding:8px 12px;color:#403a33;font-size:13px;font-weight:700}
+section{padding:38px 0}.section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}h2{font-size:34px;letter-spacing:-.035em;margin:0}.sub{color:var(--muted);max-width:680px}.grid{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:22px}.card h3{margin:0 0 10px;font-size:21px;letter-spacing:-.02em}.card p{margin:0 0 12px;color:#403a33}.card ul{margin:10px 0 0;padding-left:18px}.card li{margin:6px 0}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;margin:0 5px 7px 0}.tag.evidence{background:#e7f0ff;color:#1d4ed8}.tag.infer{background:#fff1d6;color:#9a5a05}.tag.risk{background:#fee2e2;color:#991b1b}.tag.go{background:#dcfce7;color:#166534}.quote{font-size:24px;letter-spacing:-.025em;border-left:5px solid var(--accent);padding:18px 22px;background:#fff8ec;border-radius:0 18px 18px 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{position:relative;padding:18px;background:#fffdf8;border:1px solid var(--line);border-radius:18px;min-height:155px}.step strong{display:block;color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.step h3{font-size:18px;margin:0 0 8px}.step p{font-size:14px;color:var(--muted);margin:0}.meeting{display:grid;grid-template-columns:280px 1fr;gap:16px}.agenda-list{counter-reset:item}.agenda{display:grid;grid-template-columns:48px 1fr;gap:12px;padding:16px;border-bottom:1px solid var(--line)}.agenda:last-child{border-bottom:none}.num{height:36px;width:36px;border-radius:50%;background:#1f2937;color:white;display:grid;place-items:center;font-weight:900}.decision{border:2px solid var(--accent);background:linear-gradient(135deg,#fff8eb,#fffdf8)}.matrix{width:100%;border-collapse:collapse;overflow:hidden;border-radius:18px}.matrix th,.matrix td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}.matrix th{background:#f0e3cf}.matrix td{background:#fffdf8}.small{font-size:13px;color:var(--muted)}.copybar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:999px;background:#1f2937;color:white;font-weight:800;padding:11px 15px;cursor:pointer}.btn.secondary{background:#fffdf8;color:#1f2937;border:1px solid var(--line)}details{border:1px solid var(--line);border-radius:16px;background:#fffdf8;padding:14px}summary{cursor:pointer;font-weight:800}.footer{padding:30px 0 60px;color:var(--muted);font-size:13px}.warn{border-left:5px solid var(--warning)}.danger{border-left:5px solid var(--danger)}.success{border-left:5px solid var(--success)}
+@media(max-width:900px){.hero,.grid-2,.grid-3,.flow,.meeting{grid-template-columns:1fr}.wrap{padding:18px}.nav-inner{padding:10px 18px}.hero-main{padding:24px}h1{font-size:42px}.step{min-height:auto}.section-title{display:block}}
+@media print{.nav,.copybar{display:none}.panel{box-shadow:none}body{background:white}.wrap{max-width:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-main panel">
+      <div class="eyebrow">Tilt x Asymptotes · Meeting operating brief</div>
+      <h1>Turn Tilt’s agenda into a pilot close.</h1>
+      <p class="thesis">Tilt already chose the wedge: <b>Performance Management through AI</b>. The meeting should land a concrete MVP workflow, success criteria, data boundaries, and decision path — not drift into AI transformation soup.</p>
+      <div class="pillrow"><span class="pill">Claude + Cowork native</span><span class="pill">Context repo-aware</span><span class="pill">Manager evidence layer</span><span class="pill">No AI judge</span><span class="pill">Outcome-based pilot</span></div>
+      <div class="copybar"><button class="btn" onclick="copyText('opener')">Copy opener</button><button class="btn secondary" onclick="window.print()">Print / Save PDF</button></div>
+    </div>
+    <aside class="hero-side panel">
+      <div class="metric"><b>1</b><span>Problem space: transforming Performance Management through AI.</span></div>
+      <div class="metric"><b>4</b><span>Meeting outputs: problem, opportunity, MVP, success criteria.</span></div>
+      <div class="metric"><b>5 wks</b><span>Recommended pilot path from charter to readout.</span></div>
+      <div class="metric"><b>0</b><span>Automated ratings, promotion, comp, PIP, or termination decisions in phase one.</span></div>
+    </aside>
+  </header>
+</div>
+<nav class="nav"><div class="nav-inner"><a href="#know">What we know</a><a href="#objective">Objective & asks</a><a href="#mvp">MVP</a><a href="#plan">Next weeks</a><a href="#meeting">Meeting</a><a href="#risks">Risks</a><a href="#sources">Sources</a></div></nav>
+<main class="wrap">
+<section id="know">
+  <div class="section-title"><h2>What we know</h2><p class="sub">Evidence from Liz’s first meeting notes and Tilt’s own agenda. This is not a cold pitch anymore; they are inviting a scoping/design session.</p></div>
+  <div class="grid grid-3">
+    <div class="card panel"><span class="tag evidence">Evidence</span><h3>They want AI-native operating change</h3><p>Founder/CTO sponsorship is strong. The competitive fear is “2–3 people shops building AI-native from day 1,” not incumbents.</p></div>
+    <div class="card panel"><span class="tag evidence">Evidence</span><h3>They have stack gravity</h3><p>They are fully on Claude + Cowork, moving away from OpenAI, not using Gemini, and have a CFO-driven context repo.</p></div>
+    <div class="card panel"><span class="tag evidence">Evidence</span><h3>Adoption is uneven</h3><p>Leadership adoption is strong, middle layer weaker. Training is clunky. Engineers fear losing craft.</p></div>
+    <div class="card panel"><span class="tag evidence">Evidence</span><h3>The process pain is named</h3><p>“Everyone hates performance reviews and feedback.” They care about promotion transparency and time saved.</p></div>
+    <div class="card panel"><span class="tag evidence">Evidence</span><h3>The agenda is explicit</h3><p>Scope/design an outcome-based agentic workflow for transforming Performance Management through AI.</p></div>
+    <div class="card panel"><span class="tag infer">Inference</span><h3>The real gap is structure</h3><p>They do not need another AI pep talk. They need an operating workflow that turns “shooting from the hip” into trusted change.</p></div>
+  </div>
+</section>
+<section id="objective">
+  <div class="section-title"><h2>Objective & asks</h2><p class="sub">What Tilt is explicitly asking, plus the implied job behind it.</p></div>
+  <div class="grid grid-2">
+    <div class="card panel decision"><h3>Inferred objective</h3><p class="quote">Use Performance Management as a high-leverage proof point for AI-native work: clearer performance signals, lower admin burden, better promotion transparency, and a workflow managers trust.</p></div>
+    <div class="card panel"><h3>Their asks</h3><ul><li><b>Explicit:</b> define problem space, scope opportunity, identify MVP use case, define success criteria.</li><li><b>Implicit:</b> operationalize “performance signals.”</li><li><b>Implicit:</b> reduce manager + employee admin burden.</li><li><b>Implicit:</b> fit Claude/Cowork/context repo.</li><li><b>Implicit:</b> avoid surveillance/craft-replacement blowback.</li></ul></div>
+  </div>
+</section>
+<section id="mvp">
+  <div class="section-title"><h2>Recommended MVP</h2><p class="sub">Make managers more evidenced and consistent. Do not make AI the judge.</p></div>
+  <div class="grid grid-2">
+    <div class="card panel success"><span class="tag go">Recommended</span><h3>Performance Signal & Review Calibration Agent</h3><p>An agentic workflow that assembles source-backed evidence, maps it to the rubric, flags weak claims/missing signals, reduces manager prep time, and creates calibration packets for People.</p><ul><li>Manager pre-review brief</li><li>Evidence map against rubric</li><li>Missing-signal checklist</li><li>Unsupported-claim flags</li><li>Coaching prompts for feedback delivery</li><li>Calibration packet + audit trail</li></ul></div>
+    <div class="card panel danger"><span class="tag risk">Do not do</span><h3>AI performance decisioning</h3><p>Phase one should explicitly exclude high-risk decision automation.</p><ul><li>No automated ratings</li><li>No promotion/comp/PIP/termination recommendations</li><li>No opaque employee scoring</li><li>No raw Claude-usage-as-performance metric</li><li>No private DM surveillance</li></ul></div>
+  </div>
+</section>
+<section id="plan">
+  <div class="section-title"><h2>If they accept: next few weeks</h2><p class="sub">A bounded path from meeting commitment to a scale/no-scale decision.</p></div>
+  <div class="flow">
+    <div class="step"><strong>24–48h</strong><h3>Pilot charter</h3><p>Problem, MVP, cohort, data in/out, outputs, success metrics, timeline, controls, commercial next step.</p></div>
+    <div class="step"><strong>Week 1</strong><h3>Diagnostic map</h3><p>Interview Liz/Gena/Ben/Sam + managers. Map review workflow, signals, data, pain, and red lines.</p></div>
+    <div class="step"><strong>Week 2</strong><h3>MVP design</h3><p>Select cohort and shadow/live mode. Design templates, baseline, evaluation rubric, governance.</p></div>
+    <div class="step"><strong>Weeks 3–4</strong><h3>Build + run</h3><p>Configure workflow around existing stack. Run on historical/sample/opt-in pilot data with audit trails.</p></div>
+    <div class="step"><strong>Week 5</strong><h3>Readout</h3><p>Assess time saved, evidence quality, trust, failure modes, tech fit. Expand, adjust, or stop.</p></div>
+  </div>
+</section>
+<section id="meeting">
+  <div class="section-title"><h2>Walk backward to the meeting</h2><p class="sub">The meeting should end with commitment to a pilot charter/proposal. Everything before that should earn the commitment.</p></div>
+  <div class="meeting">
+    <div class="card panel decision"><h3>Desired close</h3><p>“Send us the pilot charter/proposal. Here is the owner, cohort hypothesis, data boundary, success criteria, and decision path.”</p><div class="copybar"><button class="btn" onclick="copyText('close')">Copy close</button></div></div>
+    <div class="panel agenda-list">
+      <div class="agenda"><div class="num">1</div><div><b>Re-anchor to their agenda</b><br><span class="small">Confirm: one problem space, outcome-based agentic workflow, MVP, success criteria.</span></div></div>
+      <div class="agenda"><div class="num">2</div><div><b>Map current performance workflow</b><br><span class="small">Where do reviews, feedback, calibration, promotion, and admin break today?</span></div></div>
+      <div class="agenda"><div class="num">3</div><div><b>Define performance signals</b><br><span class="small">Goals, project outcomes, manager notes, peer feedback, context repo, Cowork/Claude artifacts — what counts and what does not?</span></div></div>
+      <div class="agenda"><div class="num">4</div><div><b>Choose MVP</b><br><span class="small">Recommend review prep + calibration evidence pack, unless workflow map falsifies it.</span></div></div>
+      <div class="agenda"><div class="num">5</div><div><b>Lock controls + success metrics</b><br><span class="small">Data boundaries, shadow/live mode, no automated decisioning, metrics that prove value.</span></div></div>
+      <div class="agenda"><div class="num">6</div><div><b>Confirm decision path</b><br><span class="small">Owner, budget, security/procurement, timeline, next artifact.</span></div></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-title"><h2>Use this language</h2><p class="sub">The words matter because people-data + AI can get creepy fast.</p></div>
+  <div class="grid grid-2">
+    <div class="card panel"><h3>Opener</h3><p id="opener">“Your agenda already points to Performance Management as the high-leverage area. Our goal today should be to leave with a concrete MVP workflow, not a generic AI transformation plan. Since the agenda is explicitly about performance signals and admin burden, I’d suggest we test review prep and calibration as the first wedge — manager judgment with better evidence, not AI deciding performance.”</p></div>
+    <div class="card panel"><h3>Close</h3><p id="close">“If we agree this is the right wedge, the next step should be a one-page pilot charter: MVP workflow, cohort, data in/out, outputs, success metrics, controls, timeline, and the approval path. Then you can decide quickly whether this is worth funding as a bounded pilot.”</p></div>
+  </div>
+</section>
+<section id="risks">
+  <div class="section-title"><h2>Risks, blind spots, falsifiers</h2><p class="sub">Things to surface early so the room trusts the process.</p></div>
+  <table class="matrix"><thead><tr><th>Category</th><th>What to watch</th><th>Meeting question</th></tr></thead><tbody>
+    <tr><td>Data</td><td>Unknown HRIS/performance tool, rubric maturity, Cowork/context repo shape.</td><td>“Where does review evidence live today, and what is approved for AI use?”</td></tr>
+    <tr><td>Trust</td><td>AI scoring, surveillance, raw Claude-usage performance metrics, engineer craft fears.</td><td>“What should be explicitly off-limits in phase one?”</td></tr>
+    <tr><td>Timing</td><td>Unknown review-cycle calendar and urgency.</td><td>“What timeline matters for the next performance cycle?”</td></tr>
+    <tr><td>Buyer path</td><td>Budget owner unclear: People, AI Enablement, Mac/CFO, founders.</td><td>“If the charter is compelling, who needs to approve the pilot?”</td></tr>
+    <tr><td>Falsifier</td><td>The real urgent pain may be onboarding or org design, not performance.</td><td>“Is performance definitely the first workflow, or just the best candidate so far?”</td></tr>
+  </tbody></table>
+</section>
+<section id="sources">
+  <div class="section-title"><h2>Source trail</h2><p class="sub">Primary artifacts and research used for this brief.</p></div>
+  <div class="grid grid-2">
+    <details open><summary>Inputs used</summary><ul><li>First Tilt discovery-call notes with Liz Anderson.</li><li>Tilt’s own meeting agenda screenshot.</li><li>Asymptotes/Tilt second-call prep notes.</li><li>Public research on AI-assisted performance-management patterns and employment-AI risks.</li></ul></details>
+    <details><summary>Evidence standard</summary><p>The brief separates observed facts from inference. Its recommendation is intentionally scoped away from automated ratings, promotion decisions, compensation decisions, PIPs, terminations, and raw AI-usage scoring.</p></details>
+  </div>
+</section>
+<div class="footer">Unlisted working brief for the Tilt x Asymptotes performance-management scoping conversation. Theme: Editorial Light. No external assets.</div>
+</main>
+<script>
+function copyText(id){const el=document.getElementById(id);navigator.clipboard.writeText(el.innerText).then(()=>{const b=event.target;const old=b.innerText;b.innerText='Copied';setTimeout(()=>b.innerText=old,900);});}
+</script>
+</body>
+</html>
