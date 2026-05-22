@@ -112,6 +112,23 @@ const agents = [
   },
 ];
 
+const adjacentAgents = [
+  {
+    name: 'Midas',
+    emoji: '✨',
+    role: "Chisom's Personal Assistant",
+    hardware: 'Spock VM',
+    accent: '#d4af37',
+    accentGlow: 'rgba(212, 175, 55, 0.28)',
+    banner: '/banners/banner-midas.svg',
+    avatar: '/avatars/midas.svg',
+    born: 'Feb 17, 2026',
+    signatureEmoji: 'Personal agent',
+    bio: `Midas is real and active, but she is not Enterprise Crew. She is Chisom's personal assistant, hosted from the Spock machine with a separate OpenClaw profile and Telegram lane. She belongs in the broader agent inventory, not in crew-wide routing, health reports, or Enterprise Crew operations unless Henry explicitly asks for Midas work.`,
+    quote: `"Useful, separate, and intentionally not folded into the bridge roster."`,
+  },
+];
+
 const trekConnections = [
   { agent: 'Ada', trek: 'Operations Officer', detail: '"Ada" means "first daughter" in Igbo — fitting for the first agent born. Like a Starfleet operations officer, she keeps every system coordinated.' },
   { agent: 'Spock', trek: 'Science Officer', detail: 'Originally named "Seven" (of Nine), renamed to Spock. Pure analytical precision — turns raw data into actionable intelligence.' },
@@ -137,7 +154,7 @@ const trekConnections = [
         <h1>The Enterprise Crew</h1>
         <p class="crew-subtitle">
           Seven active crew members and nodes spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
-          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread.
+          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread. Adjacent personal and dormant agents are tracked separately so the roster does not lie to itself in public.
         </p>
       </section>
 
@@ -171,6 +188,40 @@ const trekConnections = [
         ))}
       </section>
 
+      <section class="adjacent-section">
+        <h2>Adjacent, Not Enterprise Crew</h2>
+        <p class="adjacent-intro">
+          The wider agent inventory includes personal assistants and experiments. They matter, but they are not all part of the active Enterprise Crew.
+        </p>
+        <div class="agent-cards adjacent-cards">
+          {adjacentAgents.map((agent) => (
+            <article class="agent-card adjacent-card" style={`--agent-accent: ${agent.accent}; --agent-glow: ${agent.accentGlow};`}>
+              <div class="agent-banner-wrap">
+                <img src={agent.banner} alt={`${agent.name} banner`} class="agent-banner" loading="lazy" />
+                <div class="agent-avatar-wrap">
+                  <img src={agent.avatar} alt={agent.name} class="agent-avatar" />
+                </div>
+              </div>
+              <div class="agent-body">
+                <div class="agent-header">
+                  <h2>{agent.name} <span class="agent-emoji">{agent.emoji}</span></h2>
+                  <span class="agent-role">{agent.role}</span>
+                </div>
+                <p class="agent-bio">{agent.bio}</p>
+                <blockquote class="agent-quote">{agent.quote}</blockquote>
+                <div class="agent-stats">
+                  <span class="stat"><span class="stat-label">Born</span> {agent.born}</span>
+                  <span class="stat-divider">·</span>
+                  <span class="stat"><span class="stat-label">Runs on</span> {agent.hardware}</span>
+                  <span class="stat-divider">·</span>
+                  <span class="stat">{agent.signatureEmoji}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <!-- Star Trek Connection -->
       <section class="trek-section">
         <h2>Named for the Stars</h2>
@@ -200,7 +251,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>Retired and Experimental</h2>
         <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. She matters to the story, but the current active crew is Ada, Spock, Scotty, Geordi, Zora, Book, and Enterprise.
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current active Enterprise Crew is Ada, Spock, Scotty, Geordi, Zora, Book, and Enterprise.
         </p>
       </section>
 
@@ -505,6 +556,39 @@ const trekConnections = [
       .agent-readmore:hover {
         opacity: 1;
         text-decoration: underline;
+      }
+
+      .adjacent-section {
+        margin-bottom: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .adjacent-section h2 {
+        font-family: Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0 0 0.75rem;
+        text-align: center;
+      }
+
+      .adjacent-intro {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        max-width: 620px;
+        margin: 0 auto 1.5rem;
+        text-align: center;
+      }
+
+      .adjacent-cards {
+        margin-bottom: 0;
+      }
+
+      .adjacent-card {
+        max-width: 720px;
+        margin: 0 auto;
+        width: 100%;
       }
 
       /* Star Trek Section */
