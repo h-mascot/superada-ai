@@ -1,9 +1,3 @@
-# ACTIVE PLAN
+# Active Plan
 
-Current plan: `docs/plans/2026-05-19-add-enterprise-crew-page-plan.md`
-
-## Goal
-Add Enterprise to the SuperAda.ai crew page and crew detail routes.
-
-## Next step
-Complete. Production verification passed for `/about` and `/crew/enterprise/`.
+- [2026-05-24 Tilt brief refresh + OpenClaw release reply](./2026-05-24-tilt-brief-refresh-and-openclaw-reply-plan.md)
