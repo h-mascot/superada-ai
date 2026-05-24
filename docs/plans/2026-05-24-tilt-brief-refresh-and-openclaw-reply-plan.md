@@ -9,8 +9,8 @@ Update the unlisted SuperAda Tilt page with corrected public research, stronger 
 - [x] Research correct Tilt public profile and company context.
 - [x] Edit unlisted page to remove wrong fintech/lender assumptions and add social-commerce/live-commerce headwinds.
 - [x] Build locally and inspect generated output.
-- [ ] Deploy/push to SuperAda and verify live URL HTTP 200/content.
-- [ ] Reply to OpenClaw release tweet.
+- [x] Deploy/push to SuperAda and verify live URL HTTP 200/content.
+- [x] Reply to OpenClaw release tweet.
 - [ ] Update Mission Control/review evidence if MC is available.
 
 ## Files touched
@@ -21,6 +21,7 @@ Update the unlisted SuperAda Tilt page with corrected public research, stronger 
 ## Progress log
 - 2026-05-24: Current page already contains a section but it appears to conflate Tilt with a fintech/lender. Public research points to UK live-shopping/social-commerce Tilt: 21-100 employees, King's Cross, ex-Revolut founders, £13.7m/$18m Series A, Snap AI listing feature, 47% sales/sell-through efficiency uplift, 94.8% product identification accuracy.
 - 2026-05-24: Edited page, removed wrong fintech/lender framing, added live-commerce headwinds, team-size caveats, Snap/Series A public evidence, and Trust & Marketplace Quality Agent. Build passed.
+- 2026-05-24: Pushed commit ae10d61, manually deployed Vercel production, verified custom domain contains new sections and no old fintech/lender framing. Replied to OpenClaw release tweet: https://x.com/i/status/2058409346615202256
 
 ## Resume instructions
 Continue from editing the public HTML page. Use evidence labels/caveats. Do not imply regulated lending unless new evidence confirms it. Build with `npm run build`, then push/deploy and verify https://superada.ai/unlisted/tilt-agentic-performance/.
