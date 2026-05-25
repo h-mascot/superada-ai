@@ -1,0 +1,39 @@
+timestamp=2026-05-25T18:16:30+00:00
+service:
+MainPID=3457843
+NRestarts=1
+ActiveState=active
+SubState=running
+ActiveEnterTimestamp=Mon 2026-05-25 18:15:15 UTC
+health:
+{"ok":true,"status":"live","ready":true,"degraded":false,"failing":[],"uptimeMs":61759,"eventLoop":{"degraded":false,"reasons":[],"intervalMs":14784,"delayP99Ms":23.3,"delayMaxMs":99.4,"utilization":0.11,"cpuCoreRatio":0.216}}ready:
+{"ready":true,"failing":[],"uptimeMs":61954,"eventLoop":{"degraded":false,"reasons":[],"intervalMs":14784,"delayP99Ms":23.3,"delayMaxMs":99.4,"utilization":0.11,"cpuCoreRatio":0.216}}monitor:
+2026-05-25T18:16:31+00:00 ALERT status=telegram_alert_sent reasons=discord_connectivity_degraded_log actions=
+{
+  "checkedAt": "2026-05-25T18:16:31+00:00",
+  "service": "openclaw-gateway.service",
+  "serviceState": "active",
+  "mainPid": 3457843,
+  "health": "{\"ok\":true,\"status\":\"live\",\"ready\":true,\"degraded\":false,\"failing\":[],\"uptimeMs\":61992,\"eventLoop\":{\"degraded\":false,\"reasons\":[],\"intervalMs\":14784,\"delayP99Ms\":23.3,\"delayMaxMs\":99.4,\"utilization\":0.11,\"cpuCoreRatio\":0.216}}",
+  "gatewayCpuPercent": 76.6,
+  "gatewayMemPercent": 2.3,
+  "reasons": [
+    "discord_connectivity_degraded_log"
+  ],
+  "actions": [],
+  "ok": false,
+  "alertStatus": "telegram_alert_sent"
+}
+config-values:
+plugins.entries.mission-control-auto.enabled=true
+plugins.entries.context-injector.enabled=true
+plugins.entries.discord-thread-title-hook.enabled=true
+channels.discord.voice.autoJoin=[
+  {
+    "guildId": "1471344550210703557",
+    "channelId": "1471344552047673478"
+  }
+]
+agents.defaults.maxConcurrent=1
+agents.defaults.subagents.maxConcurrent=4
+native-hook-relay-env:

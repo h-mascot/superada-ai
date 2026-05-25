@@ -1,0 +1,48 @@
+timestamp=2026-05-25T18:08:26+00:00
+MainPID=3454082
+NRestarts=0
+ActiveState=active
+SubState=running
+ActiveEnterTimestamp=Mon 2026-05-25 18:04:20 UTC
+health:
+{"ok":true,"status":"live","ready":true,"degraded":false,"failing":[],"uptimeMs":231352,"eventLoop":{"degraded":false,"reasons":[],"intervalMs":25240,"delayP99Ms":90,"delayMaxMs":99.7,"utilization":0.192,"cpuCoreRatio":0.237}}health_err:
+ready:
+{"ready":true,"failing":[],"uptimeMs":231640,"eventLoop":{"degraded":false,"reasons":[],"intervalMs":25240,"delayP99Ms":90,"delayMaxMs":99.7,"utilization":0.192,"cpuCoreRatio":0.237}}values:
+plugins.entries.mission-control-auto.enabled=true
+plugins.entries.context-injector.enabled=true
+plugins.entries.discord-thread-title-hook.enabled=true
+channels.discord.voice.autoJoin=[
+  {
+    "guildId": "1471344550210703557",
+    "channelId": "1471344552047673478"
+  }
+]
+systemd native relay env:
+process:
+    PID %CPU %MEM ELAPSED STAT COMMAND
+3454082 43.9  2.5     268 Ssl  openclaw
+recent logs:
+2026-05-25T18:06:29+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:29.647+00:00 [tools] gateway failed: gateway config.patch cannot change protected config paths: plugins.entries.context-injector.enabled, plugins.entries.discord-thread-title-hook.enabled, plugins.entries.mission-control-auto.enabled raw_params={"action":"config.patch","raw":"{\"plugins\":{\"entries\":{\"mission-control-auto\":{\"enabled\":true},\"context-injector\":{\"enabled\":true},\"discord-thread-title-hook\":{\"enabled\":true}}}}","note":"Re-enable hooks/plugins disabled during MC #693 containment per Henry after Book fix; voice autojoin handled separately because previous target needs recovery.","timeoutMs":20000}
+2026-05-25T18:06:58+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:58.957+00:00 [plugins] embedded acpx runtime backend ready
+2026-05-25T18:06:58+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:58.970+00:00 [plugins] [voice-call] Webhook server listening on http://127.0.0.1:3334/voice/webhook
+2026-05-25T18:06:59+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:59.035+00:00 [voice-call] Tailscale funnel active: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:06:59+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:59.042+00:00 [plugins] [voice-call] Realtime voice provider: openai
+2026-05-25T18:06:59+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:59.058+00:00 [plugins] [voice-call] Runtime initialized
+2026-05-25T18:06:59+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:06:59.062+00:00 [plugins] [voice-call] Webhook URL: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.385+00:00 [plugins] embedded acpx runtime backend ready
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.396+00:00 [plugins] [voice-call] Webhook server listening on http://127.0.0.1:3334/voice/webhook
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.456+00:00 [voice-call] Tailscale funnel active: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.464+00:00 [plugins] [voice-call] Realtime voice provider: openai
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.476+00:00 [plugins] [voice-call] Runtime initialized
+2026-05-25T18:07:12+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:12.480+00:00 [plugins] [voice-call] Webhook URL: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:07:20+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:20.280+00:00 [reload] config change detected; evaluating reload (meta.lastTouchedAt, plugins.entries.discord-thread-title-hook.enabled)
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.118+00:00 [plugins] embedded acpx runtime backend ready
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.124+00:00 [reload] config hot reload applied (plugins.entries.discord-thread-title-hook.enabled)
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.129+00:00 [plugins] [voice-call] Webhook server listening on http://127.0.0.1:3334/voice/webhook
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.379+00:00 [voice-call] Tailscale funnel active: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.387+00:00 [plugins] [voice-call] Realtime voice provider: openai
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.401+00:00 [plugins] [voice-call] Runtime initialized
+2026-05-25T18:07:27+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:27.406+00:00 [plugins] [voice-call] Webhook URL: https://ada-gateway.tail032b4d.ts.net/voice/webhook
+2026-05-25T18:07:34+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:34.625+00:00 [reload] config change detected; evaluating reload (meta.lastTouchedAt, channels.discord.voice.autoJoin)
+2026-05-25T18:07:40+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:07:40.174+00:00 [reload] config change requires channel reload (discord) — deferring until 2 operation(s), 1 reply(ies), 1 embedded run(s), 1 background task run(s) complete
+2026-05-25T18:08:09+0000 ada-gateway openclaw-gateway-with-startup-context[3454082]: 2026-05-25T18:08:09.213+00:00 [gateway-tool] gateway tool: restart requested (delayMs=default, reason=Apply Henry-requested re-enable of hooks/voice autojoin and native Codex hook relay after MC #693 stabilization.)
