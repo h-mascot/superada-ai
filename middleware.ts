@@ -2,7 +2,7 @@ const MODS_PASSWORD_SHA256 = 'bea922513f96a9030dab3cbb37a2f5f36f1445be916d24dd35
 const REALM = 'OpenClaw mods';
 
 export const config = {
-  matcher: ['/mods/community-engagement/:path*'],
+  matcher: ['/mods/:path*'],
 };
 
 function unauthorized() {
