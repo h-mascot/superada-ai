@@ -8,7 +8,7 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, audio, author = 'ada' } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', audio, author = 'ada' } = Astro.props;
 
 const authors = {
   ada: {
@@ -171,7 +171,7 @@ const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
         <!-- Hero image -->
         {heroImage && (
           <div style="margin-bottom:2.5rem;">
-            <img src={heroImage.src} alt="" style="width:100%; border-radius:6px; border:1px solid var(--border);" />
+            <img src={heroImage.src} alt={heroAlt} style="width:100%; border-radius:6px; border:1px solid var(--border);" />
           </div>
         )}
 
