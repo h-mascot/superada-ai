@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnifica Humanitas — Audio Slide Deck</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Palatino', 'Georgia', 'Times New Roman', serif;
+            background: #1a1a1a;
+            color: #e8e8e8;
+            overflow-x: hidden;
+        }
+        .slide {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6vh 8vw;
+            background: linear-gradient(145deg, #1a1a1a 0%, #2a1f1f 100%);
+            scroll-snap-align: start;
+        }
+        .slide:nth-child(odd) { background: linear-gradient(145deg, #1a1a1a 0%, #1f2a1f 100%); }
+        .slide:first-child { background: linear-gradient(145deg, #1a1a1a 0%, #1f1f2a 100%); }
+        .slide:last-child { background: linear-gradient(145deg, #1a1a1a 0%, #2a1f1f 100%); }
+        .slide-inner { max-width: 960px; margin: 0 auto; width: 100%; }
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+        h1 em { font-style: italic; color: #d4a574; }
+        h1 strong { font-weight: 700; }
+        h2 {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 400;
+            color: #d4a574;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.4em;
+            border-bottom: 1px solid #3a3a3a;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            font-weight: 400;
+            color: #c8b088;
+            margin-bottom: 0.3em;
+        }
+        p, li {
+            font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin-bottom: 0.6em;
+        }
+        p strong, li strong { color: #f0e0c0; }
+        p em { color: #d4a574; font-style: italic; }
+        ul { list-style: none; padding-left: 0; }
+        ul li::before { content: "— "; color: #d4a574; }
+        ul ul { padding-left: 1.5em; }
+        ul ul li::before { content: "▸ "; color: #b89470; }
+        .quote {
+            border-left: 3px solid #d4a574;
+            padding: 0.6em 1.2em;
+            margin: 0.8em 0;
+            font-style: italic;
+            color: #c0b8a0;
+            background: rgba(212,165,116,0.06);
+            border-radius: 0 4px 4px 0;
+        }
+        .label {
+            display: inline-block;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #b89470;
+            background: rgba(212,165,116,0.1);
+            padding: 0.2em 0.8em;
+            border-radius: 20px;
+            margin-bottom: 0.8em;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin-top: 0.8em;
+        }
+        .two-col h3 { margin-bottom: 0.8em; }
+        .highlight-box {
+            background: rgba(212,165,116,0.08);
+            border: 1px solid rgba(212,165,116,0.2);
+            border-radius: 8px;
+            padding: 1.2em;
+            margin: 0.6em 0;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8em 2em;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            font-size: 0.85em;
+        }
+        .nav-bar .counter { color: #b89470; }
+        .nav-bar button {
+            background: none; border: 1px solid #d4a574; color: #d4a574;
+            padding: 0.4em 1.2em; border-radius: 4px; cursor: pointer;
+            font-family: inherit; font-size: 0.95em;
+            transition: 0.2s;
+        }
+        .nav-bar button:hover { background: #d4a574; color: #1a1a1a; }
+        .nav-bar button:disabled { opacity: 0.3; cursor: default; }
+        .slide-hidden { display: none !important; }
+        .slide-visible { display: flex !important; }
+        .audio-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0.5em 2em;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+        .audio-bar audio { flex: 1; height: 40px; }
+        .audio-bar .track-label { color: #b89470; font-size: 0.8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 0 0 auto; max-width: 300px; }
+        @media (max-width: 768px) {
+            .slide { padding: 4vh 5vw; }
+            .two-col { grid-template-columns: 1fr; gap: 1em; }
+            .audio-bar { flex-direction: column; padding: 0.3em 1em; }
+            .audio-bar audio { width: 100%; }
+            .nav-bar { padding: 0.4em 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="audio-bar">
+    <span class="track-label" id="trackLabel">Track: —</span>
+    <audio id="mainAudio" controls preload="auto">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<div class="nav-bar" style="bottom:60px">
+    <button id="prevBtn" onclick="go(-1)">← Previous</button>
+    <span class="counter" id="slideCounter">1 / 23</span>
+    <button id="nextBtn" onclick="go(1)">Next →</button>
+</div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide slide-visible" id="s1">
+    <div class="slide-inner">
+        <span class="label">Encyclical Letter · 15 May 2026</span>
+        <h1><em>Magnifica Humanitas</em><br><strong>Pope Leo XIV</strong></h1>
+        <p style="font-size:1.15em; color:#c8b088; margin-bottom:2em;">On Safeguarding the Human Person<br>in the Time of Artificial Intelligence</p>
+        <div class="quote">"Humanity, created by God in all its grandeur, is today facing a pivotal choice:<br>either to construct a new Tower of Babel or to build the city<br>in which God and humanity dwell together."</div>
+        <p style="margin-top:2em; font-size:0.9em; color:#b89470;">Presented as a narrated slide deck walkthrough</p>
+    </div>
+</div>
+
+<!-- SLIDE 2: Overview & Structure -->
+<div class="slide slide-hidden" id="s2">
+    <div class="slide-inner">
+        <span class="label">Overview</span>
+        <h2>Architecture of the Encyclical</h2>
+        <div class="two-col">
+            <div>
+                <h3>Biblical Lens</h3>
+                <ul>
+                    <li><strong>Tower of Babel</strong> (Gen 11) — uniformity, pride, dehumanization</li>
+                    <li><strong>Nehemiah</strong> (Neh 2–6) — prayer, shared rebuilding, diversity as resource</li>
+                </ul>
+                <h3 style="margin-top:1em;">Five Chapters</h3>
+                <ul>
+                    <li><strong>Ch 1:</strong> Dynamic approach — Social Doctrine as living tradition</li>
+                    <li><strong>Ch 2:</strong> Foundations & principles — dignity, common good, subsidiarity, solidarity, justice</li>
+                    <li><strong>Ch 3:</strong> Technology & dominance — AI analyzed through theological lens</li>
+                    <li><strong>Ch 4:</strong> Safeguarding humanity — truth, work, freedom</li>
+                    <li><strong>Ch 5:</strong> Culture of power vs. civilization of love</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Central Argument</h3>
+                <p>The choice is <strong>not "yes or no" to technology</strong> — it is <strong>Babel vs. Jerusalem</strong>:<br>between a power that dominates and a people who rebuild together in God's presence.</p>
+                <div class="highlight-box">
+                    <p style="margin:0;"><strong>Key question</strong> (§129, citing John Paul II):<br>"Does AI make human life on earth 'more human' in every aspect? Does it make it more worthy of man?"</p>
+                </div>
+                <h3>Four-Pillar Conclusion</h3>
+                <ul>
+                    <li>Contemplate the <strong>Incarnation</strong></li>
+                    <li>Live <strong>Eucharistic unity</strong></li>
+                    <li>Build for the <strong>common good</strong></li>
+                    <li>Pray with <strong>Mary's Magnificat</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: Introduction — The Pivotal Choice -->
+<div class="slide slide-hidden" id="s3">
+    <div class="slide-inner">
+        <span class="label">Introduction · §§ 1–16</span>
+        <h2>The Pivotal Choice</h2>
+        <p>"Each generation inherits the task of shaping its own era… Yet every era also runs the risk of creating an inhumane and more unjust world."</p>
+        <div class="two-col">
+            <div>
+                <h3>Two Biblical Images</h3>
+                <div class="highlight-box">
+                    <p><strong>Babel</strong> (§7): A single language, a single technology, a single direction. Built on pride, uniformity, self-sufficiency. Result: dispersion, confusion.</p>
+                </div>
+                <div class="highlight-box">
+                    <p><strong>Nehemiah</strong> (§8): Prayer, shared responsibility, diversity of roles. "The city is reborn, not through the initiative of one man, but through the shared responsibility of all."</p>
+                </div>
+            </div>
+            <div>
+                <h3>Four Conditions for Building (§§11–14)</h3>
+                <ul>
+                    <li><strong>Relationship with God</strong> — "our heart is restless until it rests in you" (Augustine)</li>
+                    <li><strong>Accepting human limits</strong> — weakness is not an error to be corrected</li>
+                    <li><strong>Shared responsibility</strong> — subsidiarity, everyone has a section of the wall</li>
+                    <li><strong>Evangelical language</strong> — clarity that sheds light, frankness that unlocks possibilities</li>
+                </ul>
+                <p style="margin-top:1em;">"Let us not be afraid to get our hands dirty on the 'construction site' of our time."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: The res novae of our time -->
+<div class="slide slide-hidden" id="s4">
+    <div class="slide-inner">
+        <span class="label">Introduction · §§ 4–6</span>
+        <h2>The <em>Res Novae</em> of Our Time</h2>
+        <p>Leo XIII faced the "new things" of the industrial age. Today, <strong>AI and digitalization</strong> are the <em>res novae</em> — "new things" — of our era.</p>
+        <div class="two-col">
+            <div>
+                <h3>Technology's Ambiguity</h3>
+                <p>"Technology should not be considered, in itself, as a force antagonistic to humanity." But today's power is <strong>unprecedented</strong>:</p>
+                <ul>
+                    <li>Interwoven into daily life, shaping decision-making</li>
+                    <li>Never has humanity had such power over itself (cf. <em>Laudato Si'</em> 104)</li>
+                    <li>Primarily <strong>private, transnational</strong> — surpassing many governments' capacity</li>
+                </ul>
+            </div>
+            <div>
+                <h3>The Need for Discernment</h3>
+                <p>"We must realistically ask ourselves who holds this power today and how they use it." (Francis)</p>
+                <p>Crucial questions we can no longer avoid:</p>
+                <ul>
+                    <li><strong>Where are we going?</strong></li>
+                    <li><strong>Toward what goal?</strong></li>
+                    <li><strong>What direction should we choose?</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: Chapter One — Dynamic Approach -->
+<div class="slide slide-hidden" id="s5">
+    <div class="slide-inner">
+        <span class="label">Chapter One · §§ 17–45</span>
+        <h2>A Dynamic Approach Faithful to the Gospel</h2>
+        <p>The Church's Social Doctrine is <strong>not an inert set of concepts</strong> but a <strong>living <em>corpus</em></strong> that grows through dialogue with history.</p>
+        <div class="two-col">
+            <div>
+                <h3>Key Principles</h3>
+                <ul>
+                    <li><strong>Autonomy of earthly realities</strong> — creation has its own laws and values (GS 36)</li>
+                    <li><strong>Distinction</strong> between ecclesial and political communities</li>
+                    <li>Church as "sacrament… of communion with God and of the unity of the entire human race" (LG 1)</li>
+                    <li>Dialogue with <strong>human sciences</strong> — "precious allies"</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Social Doctrine as Shared Discernment</h3>
+                <p>"Truth is not a territory to be defended, but a good to be shared."</p>
+                <p>The Pope affirms Francis' insight: <strong>"time is greater than space"</strong> — what matters is initiating good processes, not occupying positions of power.</p>
+                <p>Truth is like a <strong>polyhedron</strong> — one truth reflected from different angles.</p>
+                <p>Social Doctrine is a <strong>theology of communion in history</strong>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: Development of Social Doctrine — Leo XIII through Vatican II -->
+<div class="slide slide-hidden" id="s6">
+    <div class="slide-inner">
+        <span class="label">Chapter One · §§ 28–36</span>
+        <h2>From Leo XIII to Vatican II</h2>
+        <p>"What we now call the 'Social Doctrine of the Church' is not a spontaneous product of the modern age."</p>
+        <div class="two-col">
+            <div>
+                <h3>Leo XIII → Pius XII</h3>
+                <ul>
+                    <li><strong>Leo XIII</strong> (1891): <em>Rerum Novarum</em> — "Magna Carta" of Christian social action. Dignity of work, fair wage, primacy of labor over capital.</li>
+                    <li><strong>Pius XI</strong> (1931): <em>Quadragesimo Anno</em> — subsidiarity, critique of concentrated power, denunciation of totalitarianism.</li>
+                    <li><strong>Pius XII</strong>: International order based on natural law, rule of law, democracy, economic imbalances as conflict drivers.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>John XXIII → Vatican II</h3>
+                <ul>
+                    <li><strong>John XXIII</strong>: <em>Mater et Magistra</em> & <em>Pacem in Terris</em> — human rights as shared framework, universal perspective, appeal to all people of goodwill.</li>
+                    <li><strong>Vatican II</strong> (1965): <em>Gaudium et Spes</em> — Church close to humanity, engaged with the world. Method of discernment: interpret historical changes guided by Gospel and human expertise.</li>
+                    <li><strong><em>Dignitatis Humanae</em></strong> — religious freedom as a fundamental right grounded in human dignity.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: Development — Paul VI through Francis -->
+<div class="slide slide-hidden" id="s7">
+    <div class="slide-inner">
+        <span class="label">Chapter One · §§ 35–45</span>
+        <h2>Paul VI to Pope Francis</h2>
+        <div class="two-col">
+            <div>
+                <h3>Paul VI & John Paul II</h3>
+                <ul>
+                    <li><strong>Paul VI</strong>: <em>Populorum Progressio</em> — integral human development as "the new name for peace." <em>Octogesima Adveniens</em> — Gospel not outdated.</li>
+                    <li><strong>John Paul II</strong>: <em>Laborem Exercens</em> — work as fundamental good. <em>Sollicitudo Rei Socialis</em> — solidarity, "structures of sin." <em>Centesimus Annus</em> — democracy & market must serve common good.</li>
+                </ul>
+                <h3 style="margin-top:1em;">Benedict XVI</h3>
+                <ul>
+                    <li><em>Caritas in Veritate</em> — charity at the heart of Social Doctrine. Critique of purely commercial mentality. Development must be "inclusive and sustainable."</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Pope Francis</h3>
+                <ul>
+                    <li><strong><em>Evangelii Gaudium</em></strong> — Gospel has intrinsic social dimension. Synodal Church.</li>
+                    <li><strong><em>Laudato Si'</em></strong> — integral ecology: "the cry of the earth and the cry of the poor cannot be separated." Critique of technocratic paradigm.</li>
+                    <li><strong><em>Fratelli Tutti</em></strong> — social friendship, universal fraternity, culture of encounter.</li>
+                    <li><strong><em>Dilexit Nos</em></strong> — social endeavors inseparable from personal relationship with Christ.</li>
+                </ul>
+                <p style="margin-top:1em;">The result: a <strong>harmonious, living tradition</strong> — different emphases, progressive insights, never interrupted.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: Chapter Two — Foundations: The Human Person -->
+<div class="slide slide-hidden" id="s8">
+    <div class="slide-inner">
+        <span class="label">Chapter Two · §§ 46–53</span>
+        <h2>Foundations: The Human Person</h2>
+        <p>At the heart of Social Doctrine: <strong>the mystery of the Triune God</strong> — a communion of Persons, love itself in relationship.</p>
+        <div class="two-col">
+            <div>
+                <h3>Created in God's Image</h3>
+                <p>"Every human person is planned and willed by God to enter into communion with him, with others, and with creation."</p>
+                <p>Dignity is <strong>not earned</strong> — it is a gift. It does not depend on abilities, wealth, or achievements.</p>
+                <div class="highlight-box">
+                    <p><strong><em>Dignitas Infinita</em></strong> (2024): "Every human person possesses an infinite dignity, inalienably grounded in his or her very being."</p>
+                </div>
+            </div>
+            <div>
+                <h3>Ontological Dignity</h3>
+                <p>The Pope distinguishes four senses of dignity:</p>
+                <ul>
+                    <li><strong>Moral</strong> — how one directs choices</li>
+                    <li><strong>Social</strong> — living conditions and respect</li>
+                    <li><strong>Existential</strong> — how one perceives one's own worth</li>
+                    <li><strong>Ontological</strong> — <em>the fundamental level</em>: belongs to every human being simply by existing, willed and loved by God. "No sin, failure, humiliation or exclusion can diminish" this.</li>
+                </ul>
+                <p style="margin-top:1em;">The Pope warns against the ideology that suggests persons must <strong>earn or justify their worth</strong> — reducing them to a means.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 9: Chapter Two — Principles: Common Good, Universal Destination, Subsidiarity -->
+<div class="slide slide-hidden" id="s9">
+    <div class="slide-inner">
+        <span class="label">Chapter Two · §§ 59–72</span>
+        <h2>Principles: Common Good · Universal Destination · Subsidiarity</h2>
+        <div class="two-col">
+            <div>
+                <h3>Common Good (§§59–64)</h3>
+                <p>"The sum total of social conditions which allow people… to reach their fulfillment more fully and more easily." (GS 26)</p>
+                <p>The whole is <strong>greater than the sum of its parts</strong>. The common good is a "plus" — the result of interaction and mutual influence.</p>
+                <p>International dimension: the Pope insists <strong>no nation should be eliminated or subjugated</strong> — "gravely immoral and therefore unacceptable."</p>
+                <h3 style="margin-top:1em;">Universal Destination of Goods (§§65–67)</h3>
+                <p>Earth's goods are given to the <strong>entire human family</strong>. Private property is legitimate but <strong>never absolute</strong>.</p>
+                <div class="highlight-box">
+                    <p><strong>New application</strong>: This principle now extends to <strong>patents, algorithms, digital platforms, technological infrastructure, and data</strong>.</p>
+                </div>
+            </div>
+            <div>
+                <h3>Subsidiarity (§§68–72)</h3>
+                <p>Higher-level authorities must <strong>not supplant</strong> individuals, families, and intermediary organizations.</p>
+                <p><strong>Applied to the digital age</strong> (§71): The "highest level" is not the State but <strong>major economic and technological actors</strong> — companies and platforms that define conditions for access, rules of visibility, forms of interaction.</p>
+                <p>Subsidiarity requires: transparency, accountability, independent checks, equitable access to data, avenues for recourse.</p>
+                <p>States and transnational bodies must ensure <strong>fair rules and effective safeguards</strong> so that local communities, schools, universities, and associations have a voice.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: Chapter Two — Solidarity, Social Justice, Integral Development -->
+<div class="slide slide-hidden" id="s10">
+    <div class="slide-inner">
+        <span class="label">Chapter Two · §§ 73–89</span>
+        <h2>Solidarity · Social Justice · Integral Development · Examen</h2>
+        <div class="two-col">
+            <div>
+                <h3>Solidarity (§§73–76)</h3>
+                <p>Both a <strong>principle</strong> (interdependence) and a <strong>virtue</strong> (firm determination for the common good).</p>
+                <p>Intimate link with subsidiarity: one without the other degenerates.</p>
+                <p>Extended to the <strong>"digital ecosystem"</strong> — decisions about data, algorithms, and AI must consider future generations.</p>
+                <h3>Social Justice (§§77–81)</h3>
+                <p>Begins with the <strong>least among us</strong>. A litmus test: <strong>treatment of migrants, refugees</strong>. Two commitments: protect those forced to leave, and promote the right to remain.</p>
+                <h3>Integral Human Development (§§82–85)</h3>
+                <p>Development must foster "each man and the whole man." The Pope calls for <strong>metrics beyond GDP</strong>.</p>
+            </div>
+            <div>
+                <h3>An Examen for the Church (§§86–89)</h3>
+                <p>The Pope turns the principles <strong>inward</strong> — the Church herself must be examined:</p>
+                <ul>
+                    <li><strong>Synodality</strong> — culture of transparency, accountability, evaluation</li>
+                    <li><strong>Subsidiarity in governance</strong> — valuing charisms, avoiding paternalism</li>
+                    <li><strong>Solidarity nourished by the Eucharist</strong> — Baptism, Confirmation, Eucharist unite us as one Body</li>
+                    <li><strong>Justice within the Church</strong> — listening to victims of abuse, just reparation, preventing recurrence</li>
+                    <li><strong>Concrete sharing of goods</strong> — following the early Church (Acts 4:34)</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>"Only to the extent that we are open to the action of the Holy Spirit will these principles become incarnate in ecclesial life."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: Chapter Three — The Technocratic Paradigm & Digital Power -->
+<div class="slide slide-hidden" id="s11">
+    <div class="slide-inner">
+        <span class="label">Chapter Three · §§ 90–96</span>
+        <h2>The Technocratic Paradigm & Digital Power</h2>
+        <p>Building on <em>Laudato Si'</em> — the Pope denounces the tendency to let <strong>efficiency, control, and profit</strong> alone shape all decisions.</p>
+        <div class="two-col">
+            <div>
+                <h3>The Danger</h3>
+                <p>"When technology becomes the standard by which everything is judged, it begins to dictate what matters and what can be discarded, reducing creation to an object of exploitation and human beings to mere cogs."</p>
+                <p>The Pope cites <strong>Romano Guardini</strong>: "Contemporary man has not been trained to use power well."</p>
+                <p>He warns: technological progress without ethical progress = <strong>"having more" without "being more"</strong>.</p>
+            </div>
+            <div>
+                <h3>Concentration of Power</h3>
+                <p>Control over platforms, infrastructure, data, and computing power rests not with States but with <strong>major economic and technological actors</strong>.</p>
+                <p>This power tends to become <strong>opaque and evade public oversight</strong>.</p>
+                <p>The criteria for judgment: <strong>dignity, common good, universal destination, subsidiarity, solidarity, social justice</strong>.</p>
+                <div class="highlight-box">
+                    <p>"We must assess whether the power of digital infrastructures and algorithms truly fosters participation and responsibility, protects the vulnerable, ensures fair access to opportunities."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12: Chapter Three — What AI Is and Is Not -->
+<div class="slide slide-hidden" id="s12">
+    <div class="slide-inner">
+        <span class="label">Chapter Three · §§ 97–101</span>
+        <h2>What Artificial Intelligence Is — and Is Not</h2>
+        <div class="two-col">
+            <div>
+                <h3>AI's Limits</h3>
+                <p>"We must avoid the misconception of equating this type of 'intelligence' with that of human beings."</p>
+                <p>AI systems:</p>
+                <ul>
+                    <li>Do <strong>not undergo experiences</strong></li>
+                    <li>Do <strong>not possess a body</strong></li>
+                    <li>Do <strong>not feel joy or pain</strong></li>
+                    <li>Do <strong>not mature through relationships</strong></li>
+                    <li>Do <strong>not have a moral conscience</strong></li>
+                    <li>May <strong>simulate empathy</strong> but do <strong>not understand</strong> what they produce</li>
+                </ul>
+                <p>Their "learning" is <strong>statistical adaptation</strong> — not inner growth.</p>
+            </div>
+            <div>
+                <h3>Three Personal Risks (§100)</h3>
+                <ul>
+                    <li><strong>Excessive reliance</strong> — ready-made answers weaken creativity and judgment</li>
+                    <li><strong>False objectivity</strong> — reflects cultural assumptions of designers</li>
+                    <li><strong>Simulated relationships</strong> — "the danger is not that a person may believe they are communicating with another person, but that they may gradually lose the very desire to form genuine human connections."</li>
+                </ul>
+                <h3 style="margin-top:1em;">Environmental Impact</h3>
+                <p>AI requires enormous <strong>energy and water</strong>, significantly influencing carbon emissions. The Pope calls for sustainable technological solutions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 13: Chapter Three — Responsibility, Transparency, Governance -->
+<div class="slide slide-hidden" id="s13">
+    <div class="slide-inner">
+        <span class="label">Chapter Three · §§ 102–111</span>
+        <h2>Responsibility · Transparency · Governance of AI</h2>
+        <div class="two-col">
+            <div>
+                <h3>AI Is Never Morally Neutral</h3>
+                <p>"Every technical tool embodies choices and priorities through what it measures, ignores, and optimizes, and how it classifies people and situations."</p>
+                <p>Ethical discernment must examine <strong>how a system is designed</strong> and <strong>what vision of the human person is embedded</strong> in its data and models.</p>
+                <div class="highlight-box">
+                    <p><strong>Key demand</strong>: "A more moral AI is not enough if that morality is determined by a few. What is needed is a more active political involvement."</p>
+                </div>
+            </div>
+            <div>
+                <h3>Data as a Common Good</h3>
+                <p>"Ownership of data cannot be left solely in private hands but must be appropriately regulated. Data is the product of many contributors and should not be treated as something to be sold off or entrusted to a select few."</p>
+                <h3>"Disarming" AI (§110)</h3>
+                <p>The Pope introduces a powerful image: <strong>disarming AI</strong> — freeing it from the mentality of "armed" competition (military, economic, cognitive).</p>
+                <p>"To disarm does not mean rejecting technology, but preventing it from dominating humanity."</p>
+                <p style="margin-top:1em;"><strong>Appeal to developers</strong> (§111): "Every design choice reflects a vision of humanity."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14: Chapter Three — What Must Not Be Lost; Transhumanism -->
+<div class="slide slide-hidden" id="s14">
+    <div class="slide-inner">
+        <span class="label">Chapter Three · §§ 112–126</span>
+        <h2>What Must Not Be Lost</h2>
+        <div class="two-col">
+            <div>
+                <h3>The Heart, Limits, and Grandeur</h3>
+                <p>"Humanity flourishes not <strong><em>despite</em></strong> limitations, but often <strong><em>through</em></strong> them."</p>
+                <p>Compassion, generosity, spiritual experience emerge precisely within our limits.</p>
+                <p>"To eliminate suffering entirely would mean, in the end, extinguishing love and desire as well."</p>
+                <p>The Pope cites <strong>Viktor Frankl</strong> on humanity's duality: "man is that being who invented the gas chambers of Auschwitz; however, he is also that being who entered those gas chambers upright, with the Lord's Prayer on his lips."</p>
+            </div>
+            <div>
+                <h3>Transhumanism & Posthumanism (§§115–117)</h3>
+                <p>The Pope critiques these currents as the <strong>ideological background</strong> of many tech centers.</p>
+                <p>"If the human being is treated as something to be perfected or surpassed, it becomes easier to accept that some lives are less useful, less desirable, or less worthy."</p>
+                <p><strong>Key distinction</strong>: "It is one thing to integrate technology within a human-centered, relational vision; it is quite another to be guided by an outlook that devalues human limits and promises a purely technical form of 'salvation.'"</p>
+                <h3 style="margin-top:1em;">Institutions & Witnesses (§§123–126)</h3>
+                <p>The Pope lists institutions that protect shared life (Red Cross, UN, Universal Declaration, Refugee Convention) and exemplary figures (MLK, Mandela, Teresa of Calcutta, etc.). He honors the <strong>"martyrs of everyday life"</strong> — parents, nurses, volunteers.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15: Chapter Three — Grace & Christian Humanism; Two Cities -->
+<div class="slide slide-hidden" id="s15">
+    <div class="slide-inner">
+        <span class="label">Chapter Three · §§ 127–130</span>
+        <h2>The Authentic "More Than Human" · Two Cities</h2>
+        <div class="two-col">
+            <div>
+                <h3>Grace and Christian Humanism</h3>
+                <p>"The Christian tradition has maintained that human beings are not confined by the boundaries of their own nature; rather, they are called to self-transcendence… through their fulfillment in love."</p>
+                <p>Citing <strong>Francis</strong>: "We become fully human when we become more than human, when we let God bring us beyond ourselves in order to attain the fullest truth of our being."</p>
+                <p>"What saves humanity is not enhanced self-sufficiency, but a relationship that liberates, a communion that transforms."</p>
+                <div class="highlight-box">
+                    <p>"For an algorithm, an error is a flaw to be corrected; for a person, however, an error can be a catalyst for profound change. A person's future is not calculable."</p>
+                </div>
+            </div>
+            <div>
+                <h3>Two Cities and Two Loves</h3>
+                <p>The Pope closes the chapter with <strong>Augustine's two loves</strong>:</p>
+                <div class="quote">
+                    "Two loves have built two cities: the earthly city, the love of self even to the contempt of God; the heavenly city, the love of God even to the contempt of self."
+                </div>
+                <p>"The construction of Babel or the rebuilding of Jerusalem begins within each one of us."</p>
+                <p><strong>Ultimate criterion</strong> (citing John Paul II): "Does AI make human life on earth 'more human' in every aspect? Does it make it more worthy of man?"</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 16: Chapter Four — Truth as a Common Good -->
+<div class="slide slide-hidden" id="s16">
+    <div class="slide-inner">
+        <span class="label">Chapter Four · §§ 131–147</span>
+        <h2>Truth as a Common Good</h2>
+        <div class="two-col">
+            <div>
+                <h3>Truth and Democracy</h3>
+                <p>"Disinformation did not begin with AI, yet today it finds a powerful amplifier in AI."</p>
+                <p>The Pope warns: indifference to truth leads to <strong>totalitarianism</strong>. He cites <strong>Hannah Arendt</strong>: totalitarianism's ideal subjects are those for whom "the distinction between fact and fiction… no longer exist."</p>
+                <p>"Democracy does not consist of rules and procedures alone, but above all of a solid concordance with the facts."</p>
+                <h3>Communication & Collective Imagination</h3>
+                <p>Those who control digital platforms have <strong>immense power to shape culture</strong>. The Pope calls for an <strong>ecology of communication</strong>: transparency, protection of data, serious journalism.</p>
+            </div>
+            <div>
+                <h3>Educational Alliance (§§139–147)</h3>
+                <p>The Pope warns about <strong>early and unsupervised exposure to digital devices</strong>: negative impacts on sleep, attention, emotions, relationships; exposure to violent and degrading content.</p>
+                <p>He calls for a <strong>legislative alliance</strong> to protect minors: age limits, holding platforms accountable, protecting against online exploitation.</p>
+                <div class="highlight-box">
+                    <p><strong>Three challenges for schools</strong>:<br>1. Socio-political — inequality in access<br>2. Pedagogical — outdated curricula<br>3. Intellectual — fragmented knowledge</p>
+                </div>
+                <p>"Schools are not called to follow the pace of the digital world, but to offer that which the digital sphere by itself cannot provide: a shared time for learning and developing trustworthy relationships."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 17: Chapter Four — The Dignity of Work -->
+<div class="slide slide-hidden" id="s17">
+    <div class="slide-inner">
+        <span class="label">Chapter Four · §§ 148–169</span>
+        <h2>The Dignity of Work in the Digital Transition</h2>
+        <div class="two-col">
+            <div>
+                <h3>Work as Fundamental Good</h3>
+                <p>Work is "the essential key" to understanding the entire social question (John Paul II).</p>
+                <p>Work is <strong>not simply an instrument</strong> — it expresses and enhances dignity. The Pope cites <strong>St. Benedict</strong>: prayer and work united.</p>
+                <h3>Risks of Automation</h3>
+                <p>"While AI promises to boost productivity… it frequently forces workers to adapt to the speed and demands of machines, rather than machines being designed to support those who work."</p>
+                <p>Risk of <strong>de-skilling, automated surveillance, rigid tasks</strong> — eroding workers' sense of <strong>agency</strong>.</p>
+            </div>
+            <div>
+                <h3>Proactive Policies (§156)</h3>
+                <p>The Pope calls for:</p>
+                <ul>
+                    <li><strong>Social criteria for innovation</strong> — every automation must protect employment, retraining, and participation</li>
+                    <li><strong>Continuous training</strong> accessible to all</li>
+                    <li><strong>Corporate commitment</strong> to include dignity and quality of work among indicators of success</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>"More than ever, in the age of AI and robotics, it is no longer possible to rely solely on the 'invisible hand' of the market."</p>
+                </div>
+                <p>The Pope calls for <strong>metrics beyond GDP</strong> (§159) and critiques finance that operates without "anthropological and moral foundations."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 18: Chapter Four — Protecting Freedom; New Forms of Slavery -->
+<div class="slide slide-hidden" id="s18">
+    <div class="slide-inner">
+        <span class="label">Chapter Four · §§ 170–181</span>
+        <h2>Protecting Freedom · Breaking Chains of Slavery</h2>
+        <div class="two-col">
+            <div>
+                <h3>Dependencies & Societal Control (§§170–172)</h3>
+                <p>The "digital attention economy" exploits vulnerabilities and weakens <strong>inner freedom</strong>.</p>
+                <p>The Pope warns about <strong>social control through data</strong>: profiling, predicting, influencing behavior — often without awareness.</p>
+                <p>"Freedom in the digital age is not merely a matter of interiority but also a public concern. It calls for clear rules, transparency, the possibility of recourse and proportionate limits."</p>
+                <p>Some post-humanist currents envision <strong>"second-class" human beings</strong> — subordinate to elite interests.</p>
+            </div>
+            <div>
+                <h3>New Forms of Slavery (§§173–179)</h3>
+                <p>A <strong>powerful denunciation</strong>: the digital economy relies on <strong>invisible labor</strong> — data labeling, model training, content moderation — often young people, predominantly women, working for minimal wages. <strong>Children</strong> extract rare earth elements in dangerous conditions.</p>
+                <p><strong>New colonialism</strong>: not of bodies but of <strong>data</strong> — health data, genetic maps, demographic information extracted from vulnerable regions.</p>
+                <div class="highlight-box">
+                    <p>"If technology promises emancipation, yet produces new forms of global subordination, it stands in contradiction to the fundamental principle of human dignity."</p>
+                </div>
+                <p>The Pope <strong>asks for pardon</strong> (§176) for the Church's historical complicity in slavery — acknowledging it took 18 centuries for explicit condemnation. He calls this "a wound in Christian memory" and urges vigilance.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19: Chapter Five — The Culture of Power -->
+<div class="slide slide-hidden" id="s19">
+    <div class="slide-inner">
+        <span class="label">Chapter Five · §§ 182–209</span>
+        <h2>The Culture of Power</h2>
+        <div class="two-col">
+            <div>
+                <h3>Normalization of War</h3>
+                <p>The Pope declares the <strong>"just war" theory outdated</strong> (§192) — "it has all too often been used to justify any kind of war."</p>
+                <p>He denounces a <strong>paradigm shift</strong>: war is no longer treated as a last resort. Algorithms that reward conflict, loss of historical memory (Holocaust, World Wars), and polarizing media narratives fuel this shift.</p>
+                <p>"Humanity possesses far more effective and capable tools for promoting human life and resolving conflicts, such as dialogue, diplomacy and forgiveness."</p>
+                <h3>Force Without Limits (§§193–196)</h3>
+                <p>The military-industrial complex, the arms market, nuclear deterrence, and the development of "miniaturized" weapons make war seem more viable.</p>
+            </div>
+            <div>
+                <h3>Weapons and AI (§§197–200)</h3>
+                <p><strong>No algorithm can make war morally acceptable.</strong> Lethal decisions cannot be delegated to automated systems.</p>
+                <p><strong>Three criteria</strong>:</p>
+                <ul>
+                    <li><strong>Personal responsibility</strong> — chain of responsibility must be identifiable</li>
+                    <li><strong>Moral timeframe</strong> — speed should not justify irreversible decisions</li>
+                    <li><strong>Protection of civilians</strong> — technology must not lower the moral threshold</li>
+                </ul>
+                <h3>Crisis of Multilateralism (§§201–209)</h3>
+                <p>The Pope critiques the weakening of international institutions, the rise of "might makes right," and a <strong>false realism</strong> that treats war as inevitable. He warns against nihilism and pragmatism that normalize grave errors.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 20: Chapter Five — Building the Civilization of Love -->
+<div class="slide slide-hidden" id="s20">
+    <div class="slide-inner">
+        <span class="label">Chapter Five · §§ 210–228</span>
+        <h2>Building the Civilization of Love</h2>
+        <div class="two-col">
+            <div>
+                <h3>Five Practical Paths</h3>
+                <p><strong>1. Disarm words</strong> (§214) — "Let us disarm words and we will help to disarm the world."</p>
+                <p><strong>2. Build peace through justice</strong> (§215) — citing Augustine: "Do you wish to attain peace? Then practice justice!"</p>
+                <p><strong>3. Adopt the perspective of victims</strong> (§§216–217) — cannot remain neutral when civilians are bombed, hospitals attacked. "Touching the wounded flesh" (Francis).</p>
+                <p><strong>4. Cultivate a healthy realism</strong> (§218) — neither idealism nor cynicism, but viable paths for peace.</p>
+                <p><strong>5. Revive dialogue and multilateralism</strong> (§§219–227) — the Pope quotes his own appeal: "Let us meet, let us talk, let us negotiate! War is never inevitable."</p>
+            </div>
+            <div>
+                <h3>Interreligious Dialogue</h3>
+                <p>"At the heart of the great spiritual paths lies a message of peace." Those who use God's name to legitimize violence "betray his true nature."</p>
+                <h3>Diplomacy & the Holy See</h3>
+                <p>The Holy See's diplomacy adopts the Gospel's principle of <strong>mercy as a concrete criterion for political action</strong>.</p>
+                <div class="highlight-box">
+                    <p><strong>Praying and hoping</strong> (§228): The Pope returns to his first "Urbi et Orbi" blessing — "Peace be with you! It is the peace of the risen Christ. A peace that is unarmed and disarming, humble and persevering."</p>
+                </div>
+                <p>The Pope quotes <strong>Tolkien</strong> (§213): "It is not our part to master all the tides of the world, but to do what is in us for the succour of those years wherein we are set."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21: Conclusion — The Word Became Flesh -->
+<div class="slide slide-hidden" id="s21">
+    <div class="slide-inner">
+        <span class="label">Conclusion · §§ 229–233</span>
+        <h2>The Word Became Flesh</h2>
+        <p>The Pope returns to the <strong>Incarnation</strong> as the decisive response to transhumanist dreams.</p>
+        <div class="two-col">
+            <div>
+                <h3>God Descends into Weakness</h3>
+                <p>"The living God descends into our history in order to free us from all forms of slavery. He takes upon himself our weakness and transforms it into a setting for salvation."</p>
+                <p>Citing <strong>Pierre de Bérulle</strong>: "Man is God and this God-Man passes through all those stages, endures all those states and ennobles them, sanctifies them, deifies them in himself!"</p>
+                <div class="highlight-box">
+                    <p>"What saves humanity is the divine love that descends into the most fragile point of our history and renews it from within."</p>
+                </div>
+            </div>
+            <div>
+                <h3>The Grandeur of Humanity</h3>
+                <p>"No computational system, however sophisticated, can create a heart that gives itself, or a conscience that discerns good from evil."</p>
+                <p>The Pope speaks of <strong>"recapitulation"</strong> (Eph 1:10) — the certainty that all things will be brought back to Christ. "Nothing will be lost that is authentically human."</p>
+                <p>"Even when machines excel in efficiency, a human face that asks to be gazed upon remains the center of our history."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22: Conclusion — One Body; Construction Site; Magnificat -->
+<div class="slide slide-hidden" id="s22">
+    <div class="slide-inner">
+        <span class="label">Conclusion · §§ 234–245</span>
+        <h2>One Body · The Construction Site · The Magnificat</h2>
+        <div class="two-col">
+            <div>
+                <h3>Eucharistic Spirituality (§§234–235)</h3>
+                <p>The Eucharist is the sacrament of unity. Citing Augustine: "Be then a member of the Body of Christ that your Amen may be true!"</p>
+                <p>The Church, nourished by the Eucharist, must make visible a different paradigm — one that preserves human connections, gives a voice to the invisible.</p>
+                <h3>Four Calls (§§236–240)</h3>
+                <ul>
+                    <li><strong>Remain faithful to the truth</strong> — cultivate hearts that love truth over appealing content</li>
+                    <li><strong>Invest in education</strong> — the digital world is a "new continent to be evangelized"</li>
+                    <li><strong>Cultivate relationships</strong> — cherish physical presence, shared meals, time with the lonely</li>
+                    <li><strong>Love justice and peace</strong> — examine supply chains, working conditions, mechanisms that profit from war</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Return to Nehemiah (§241)</h3>
+                <p>"Nehemiah heard the cry of a devastated city, brought that pain to prayer, discerned before God… rebuilt the walls of Jerusalem brick by brick."</p>
+                <p>We are called to enter <strong>the construction sites of history</strong> — research laboratories, tech companies, schools, media, institutions, local communities.</p>
+                <h3>The Magnificat (§§243–245)</h3>
+                <div class="quote">
+                    "Mary teaches us to look at the world from a lower position: through the eyes of those who suffer… to view history through the eyes of the little ones… to interpret events from the viewpoint of the widow, the orphan, the stranger, the wounded child, the exile and the fugitive."
+                </div>
+                <p>The Pope entrusts our desire to the <strong>Mother of Christ, the Woman of the Magnificat</strong>, that she may guide our steps through this time of change.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 23: Closing -->
+<div class="slide slide-hidden" id="s23">
+    <div class="slide-inner">
+        <span class="label">Closing</span>
+        <h2><em>Magnifica Humanitas</em></h2>
+        <p style="font-size:1.1em; margin-bottom:1.5em;">Given in Rome, at Saint Peter's, on 15 May 2026, the second year of the Pontificate of <strong>Pope Leo XIV</strong>.</p>
+        <div class="highlight-box">
+            <p style="font-style:italic; color:#d4a574;">"Let each builder choose with care how to build." — 1 Corinthians 3:10</p>
+        </div>
+        <div class="two-col" style="margin-top:1.5em;">
+            <div>
+                <h3>Summary of the Encyclical's Contribution</h3>
+                <ul>
+                    <li><strong>Babel/Nehemiah framework</strong> — biblical lens for technological choices</li>
+                    <li><strong>Universal destination extended</strong> — to data, algorithms, digital infrastructure</li>
+                    <li><strong>"Disarming" AI</strong> — freeing technology from competitive, militaristic mindsets</li>
+                    <li><strong>Church's historical honesty</strong> — acknowledgment of failures regarding slavery</li>
+                    <li><strong>Critique of transhumanism</strong> — as ideology that devalues human limits</li>
+                    <li><strong>"Just war" outdated</strong> — strong statement on peace</li>
+                    <li><strong>Synodal governance</strong> — integrated into Social Doctrine</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Four-Pillar Program</h3>
+                <ul>
+                    <li>Contemplate the <strong>Incarnation</strong> — God descends into weakness</li>
+                    <li>Live <strong>Eucharistic unity</strong> — one Body in Christ</li>
+                    <li>Build for the <strong>common good</strong> — enter the construction sites of history</li>
+                    <li>Pray with <strong>Mary's Magnificat</strong> — see history from the viewpoint of the lowly</li>
+                </ul>
+                <p style="margin-top:1em; color:#b89470;">"Even the era of AI can become a time in which the Holy Spirit brings about the civilization of love in our lives."</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    const total = slides.length;
+
+    // Audio mapping: which audio segment plays for which slide
+    const audioMap = {
+        1: 'audio_segments/segment_1.mp3',
+        2: 'audio_segments/segment_1.mp3',
+        3: 'audio_segments/segment_1.mp3',
+        4: 'audio_segments/segment_1.mp3',
+        5: 'audio_segments/segment_2.mp3',
+        6: 'audio_segments/segment_2.mp3',
+        7: 'audio_segments/segment_2.mp3',
+        8: 'audio_segments/segment_3.mp3',
+        9: 'audio_segments/segment_3.mp3',
+        10: 'audio_segments/segment_3.mp3',
+        11: 'audio_segments/segment_4.mp3',
+        12: 'audio_segments/segment_4.mp3',
+        13: 'audio_segments/segment_5.mp3',
+        14: 'audio_segments/segment_5.mp3',
+        15: 'audio_segments/segment_5.mp3',
+        16: 'audio_segments/segment_6.mp3',
+        17: 'audio_segments/segment_7.mp3',
+        18: 'audio_segments/segment_8.mp3',
+        19: 'audio_segments/segment_9.mp3',
+        20: 'audio_segments/segment_10.mp3',
+        21: 'audio_segments/segment_11.mp3',
+        22: 'audio_segments/segment_12.mp3',
+        23: 'audio_segments/segment_12.mp3'
+    };
+
+    const trackLabels = {
+        1: 'Introduction & Overview',
+        2: 'Introduction & Overview',
+        3: 'Introduction & Overview',
+        4: 'Introduction & Overview',
+        5: 'Ch 1: Dynamic Approach',
+        6: 'Ch 1: Leo XIII → Vatican II',
+        7: 'Ch 1: Paul VI → Francis',
+        8: 'Ch 2: The Human Person',
+        9: 'Ch 2: Principles',
+        10: 'Ch 2: Solidarity, Justice, Examen',
+        11: 'Ch 3: Technocratic Paradigm',
+        12: 'Ch 3: What AI Is',
+        13: 'Ch 3: Governance of AI',
+        14: 'Ch 3: What Must Not Be Lost',
+        15: 'Ch 3: Grace & Two Cities',
+        16: 'Ch 4: Truth as Common Good',
+        17: 'Ch 4: Dignity of Work',
+        18: 'Ch 4: Freedom & Slavery',
+        19: 'Ch 5: Culture of Power',
+        20: 'Ch 5: Civilization of Love',
+        21: 'Conclusion: Incarnation',
+        22: 'Conclusion: One Body, Magnificat',
+        23: 'Closing Summary'
+    };
+
+    const audio = document.getElementById('mainAudio');
+    const trackLabel = document.getElementById('trackLabel');
+
+    function updateNav() {
+        document.getElementById('slideCounter').textContent = `${current + 1} / ${total}`;
+        document.getElementById('prevBtn').disabled = (current === 0);
+        document.getElementById('nextBtn').disabled = (current === total - 1);
+    }
+
+    function loadAudio(slideIndex) {
+        const idx = slideIndex + 1;
+        const src = audioMap[idx];
+        const label = trackLabels[idx] || '—';
+        if (src && audio) {
+            // Check if source changed
+            const currentSrc = audio.getAttribute('src');
+            if (currentSrc !== src) {
+                audio.setAttribute('src', src);
+                audio.load();
+                audio.play().catch(() => {});
+            }
+            trackLabel.textContent = `Track: ${label}`;
+        }
+    }
+
+    function showSlide(index) {
+        slides.forEach((s, i) => {
+            s.classList.toggle('slide-visible', i === index);
+            s.classList.toggle('slide-hidden', i !== index);
+        });
+        current = index;
+        updateNav();
+        loadAudio(index);
+    }
+
+    function go(delta) {
+        const next = current + delta;
+        if (next >= 0 && next < total) {
+            showSlide(next);
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+        if (e.key === 'Home') { showSlide(0); }
+        if (e.key === 'End') { showSlide(total - 1); }
+    });
+
+    // Auto-start audio on first slide
+    window.addEventListener('load', () => {
+        loadAudio(0);
+    });
+
+    updateNav();
+</script>
+
+</body>
+</html>

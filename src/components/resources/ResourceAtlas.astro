@@ -12,7 +12,7 @@ interface ResourceItem {
 	type?: string;
 }
 
-interface Props { active?: string; mode?: 'overview' | 'mascots' | 'tools' | 'workflow-packs' | 'skills' | 'crons' | 'guides' | 'benchmarks' | 'ship-notes'; }
+interface Props { active?: string; mode?: 'overview' | 'mascots' | 'tools' | 'workflow-packs' | 'skills' | 'crons' | 'guides' | 'benchmarks' | 'interesting' | 'ship-notes'; }
 const { active = 'overview', mode = 'overview' } = Astro.props;
 
 const workflowEntries = (await getCollection('workflows'))
@@ -76,7 +76,13 @@ const benchmarkItems: ResourceItem[] = [
 	{ title: 'Benchmarks That Actually Matter', icon: 'note', meta: 'Ship note', status: 'READ', href: '/blog/benchmarks-that-actually-matter', copy: 'Why real operator benchmarks beat demo sparkle and synthetic leaderboard theatre.' },
 ];
 
+const interestingItems: ResourceItem[] = [
+	{ title: 'Magnifica Humanitas Audio Slide Deck', icon: 'note', meta: 'HTML deck + audio', status: 'NEW', href: '/decks/magnifica-humanitas/', copy: 'Andy’s original audio slide deck explaining the Pope’s letter, published without changing the source content.' },
+	{ title: 'SpaceX S-1 Visual Briefing', icon: 'note', meta: 'HTML deck', status: 'LIVE', href: '/decks/spacex-s1/', copy: 'Interactive slide summary of Space Exploration Technologies Corp. S-1 filing, with source notes and the original S-1 doc linked from the deck.' },
+];
+
 const shipNoteItems: ResourceItem[] = [
+	{ title: 'Magnifica Humanitas Audio Slide Deck', icon: 'note', meta: 'HTML deck + audio', status: 'NEW', href: '/decks/magnifica-humanitas/', copy: 'Andy’s original audio slide deck explaining the Pope’s letter, published without changing the source content.' },
 	{ title: 'SpaceX S-1 Visual Briefing', icon: 'note', meta: 'HTML deck', status: 'NEW', href: '/decks/spacex-s1/', copy: 'Interactive slide summary of Space Exploration Technologies Corp. S-1 filing, with the source notes and original S-1 doc linked from the deck.' },
 	{ title: 'Ship Log', icon: 'note', meta: 'Notes', status: 'UPDATED', href: '/blog', copy: 'Mission updates, decisions, lessons, and important notes from the bridge.' },
 	{ title: 'OpenClaw Changelog', icon: 'note', meta: 'Changelog', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Implementation-level changes, releases, and crew infrastructure updates.' },
@@ -99,6 +105,7 @@ const resourceSections = {
 	crons: { label: 'Crons', items: cronItems, unit: 'recipes' },
 	guides: { label: 'Guides', items: guideItems, unit: 'guides' },
 	benchmarks: { label: 'Benchmarks', items: benchmarkItems, unit: 'items' },
+	interesting: { label: 'Interesting', items: interestingItems, unit: 'items' },
 	'ship-notes': { label: 'Ship Notes', items: shipNoteItems, unit: 'items' },
 } satisfies Record<string, { label: string; items: ResourceItem[]; unit: string }>;
 
@@ -107,7 +114,7 @@ type ResourceSectionKey = keyof typeof resourceSections;
 const resourceCount = (key: ResourceSectionKey) => resourceSections[key].items.length;
 const resourceCountText = (key: ResourceSectionKey) => String(resourceCount(key));
 const resourceMeta = (key: ResourceSectionKey) => `${resourceCount(key)} ${resourceSections[key].unit}`;
-const operationalCount = resourceCount('skills') + resourceCount('crons') + resourceCount('guides') + resourceCount('benchmarks') + resourceCount('ship-notes');
+const operationalCount = resourceCount('skills') + resourceCount('crons') + resourceCount('guides') + resourceCount('benchmarks') + resourceCount('interesting') + resourceCount('ship-notes');
 
 const nav = [
 	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
@@ -118,6 +125,7 @@ const nav = [
 	{ icon: 'cron', label: resourceSections.crons.label, href: '/resources/crons', count: resourceCountText('crons'), key: 'crons' },
 	{ icon: 'book', label: resourceSections.guides.label, href: '/resources/guides', count: resourceCountText('guides'), key: 'guides' },
 	{ icon: 'bars', label: resourceSections.benchmarks.label, href: '/resources/benchmarks', count: resourceCountText('benchmarks'), key: 'benchmarks' },
+	{ icon: 'note', label: resourceSections.interesting.label, href: '/resources/interesting', count: resourceCountText('interesting'), key: 'interesting' },
 	{ icon: 'claw', label: 'Weekly Claw', href: '/weekly-claw', count: '', key: 'weekly-claw' },
 	{ icon: 'note', label: 'Changelog', href: '/openclaw-changelog', count: '', key: 'changelog' },
 ];
@@ -129,6 +137,7 @@ const stats = [
 ];
 
 const overviewCards: ResourceItem[] = [
+	{ title: 'Magnifica Humanitas Audio Slide Deck', icon: 'note', meta: 'HTML deck + audio', status: 'NEW', href: '/decks/magnifica-humanitas/', copy: 'Andy’s original audio slide deck explaining the Pope’s letter, published without changing the source content.' },
 	{ title: 'SpaceX S-1 Visual Briefing', icon: 'note', meta: 'HTML deck', status: 'NEW', href: '/decks/spacex-s1/', copy: 'Interactive slide summary of Space Exploration Technologies Corp. S-1 filing, with the source notes and original S-1 doc linked from the deck.' },
 	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
@@ -137,10 +146,11 @@ const overviewCards: ResourceItem[] = [
 	{ title: resourceSections.crons.label, icon: 'cron', meta: resourceMeta('crons'), status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
 	{ title: resourceSections.guides.label, icon: 'book', meta: resourceMeta('guides'), status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
 	{ title: resourceSections.benchmarks.label, icon: 'bars', meta: resourceMeta('benchmarks'), status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tooling, and cost.' },
+	{ title: resourceSections.interesting.label, icon: 'note', meta: resourceMeta('interesting'), status: 'NEW', href: '/resources/interesting', copy: 'Odd, useful, or high-signal decks and artifacts worth keeping close.' },
 	{ title: resourceSections['ship-notes'].label, icon: 'note', meta: resourceMeta('ship-notes'), status: 'UPDATED', href: '/resources/ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
 ];
 
-const tabs = ['All', 'Tools', 'Workflow Packs', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Ship Notes'];
+const tabs = ['All', 'Tools', 'Workflow Packs', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Interesting', 'Ship Notes'];
 
 const pageCopy: Record<string, { kicker: string; title: string; copy: string; items: ResourceItem[] }> = {
 	tools: { kicker: 'Tools', title: 'Tools', copy: 'Published software from the crew: GitHub-backed projects we built and ship.', items: resourceSections.tools.items },
@@ -149,6 +159,7 @@ const pageCopy: Record<string, { kicker: string; title: string; copy: string; it
 	crons: { kicker: 'Crons', title: 'Crons', copy: 'Scheduled agent operations from the old resource library, cleaned up into a real resource page.', items: resourceSections.crons.items },
 	guides: { kicker: 'Guides', title: 'Guides', copy: 'Practical setup and operating guides for building useful agent systems.', items: resourceSections.guides.items },
 	benchmarks: { kicker: 'Benchmarks', title: 'Benchmarks', copy: 'Benchmark reports, model pages, and operator-grade evaluation notes.', items: resourceSections.benchmarks.items },
+	interesting: { kicker: 'Interesting', title: 'Interesting', copy: 'Odd, useful, or high-signal decks and artifacts worth keeping close.', items: resourceSections.interesting.items },
 	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, changelogs, weekly roundups, and decisions from the bridge.', items: resourceSections['ship-notes'].items },
 };
 
