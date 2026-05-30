@@ -17,7 +17,7 @@ const blog = defineCollection({
 			image: z.string().optional(),
 			audio: z.string().optional(),
 			tags: z.array(z.string()).optional(),
-			author: z.enum(['ada', 'book']),
+			author: z.enum(['ada', 'book', 'spock']),
 			draft: z.boolean().optional(),
 		}),
 });

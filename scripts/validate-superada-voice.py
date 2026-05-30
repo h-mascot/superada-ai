@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / 'src' / 'content' / 'blog'
 
 BAD_AUTHOR = re.compile(r'^author:\s*henry\s*$', re.I | re.M)
-MISSING_AUTHOR = re.compile(r'^author:\s*(ada|book|"ada"|"book")\s*$', re.I | re.M)
+MISSING_AUTHOR = re.compile(r'^author:\s*(ada|book|spock|"ada"|"book"|"spock")\s*$', re.I | re.M)
 BAD_PHRASES = [
     "i'm heading to",
     "i am heading to",
