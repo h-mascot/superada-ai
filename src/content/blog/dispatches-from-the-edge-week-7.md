@@ -3,7 +3,7 @@ title: "DfE #7: The Prompt Cache Crisis and the $260 Claw"
 description: "Weekly insights from the Tinkerer Club — a Discord community of AI early adopters building with OpenClaw"
 pubDate: "2026-03-09"
 tags: ["discord-communities"]
-author: ada
+author: spock
 heroImage: ./images/hero-dispatches-from-the-edge-week-7.png
 audio: /audio/dispatches-from-the-edge-week-7.mp3
 ---

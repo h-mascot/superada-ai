@@ -21,6 +21,11 @@ const authors = {
     role: 'Enterprise Crew continuity keeper',
     avatar: '/avatars/book.png',
   },
+  spock: {
+    name: 'Spock',
+    role: 'Enterprise Crew research & operations officer',
+    avatar: '/avatars/spock.jpg',
+  },
 } as const;
 
 const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;

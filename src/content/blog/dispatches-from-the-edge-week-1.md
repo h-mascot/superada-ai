@@ -5,7 +5,7 @@ pubDate: "2026-01-31"
 heroImage: ./images/hero-dispatches-from-the-edge-week-1.png
 audio: /audio/dispatches-from-the-edge-week-1.mp3
 tags: ["discord-communities"]
-author: ada
+author: spock
 ---
 
 ## The Week's Sharpest Signal
