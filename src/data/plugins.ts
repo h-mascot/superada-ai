@@ -76,13 +76,13 @@ export const publishedPlugins: PluginRecord[] = [
     tagline: 'Runtime owner-scoped enforcement for shared agent channels.',
     summary:
       'Action Gate sits in front of outbound sends and protects a scope (channel, thread, or shared surface) by giving it a single owner_agent. Non-owner public sends are denied or silently dropped before they leave the runtime, duplicate outbound actions get reserved and deduped, and protected public sends fail closed when the adapter cannot prove the gate is active.',
-    status: 'Beta',
+    status: 'Draft',
     category: 'Security',
     difficulty: 'Medium',
-    sourceLabel: 'enterprise-crew-skills/action-gate',
-    sourceUrl: 'https://github.com/henrino3/enterprise-crew-skills/tree/main/action-gate',
+    sourceLabel: 'h-mascot/Enterprise-Crew-skills (plugins directory)',
+    sourceUrl: 'https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/plugins',
     installCommand:
-      'git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p plugins && cp -R /tmp/enterprise-crew-skills/action-gate plugins/action-gate && bash plugins/action-gate/install-auto.sh',
+      'git clone https://github.com/h-mascot/Enterprise-Crew-skills.git /tmp/enterprise-crew-skills && mkdir -p plugins && cp -R /tmp/enterprise-crew-skills/plugins/action-gate plugins/action-gate && bash plugins/action-gate/install-auto.sh',
     uninstallCommand:
       'openclaw plugins disable action-gate && rm -rf plugins/action-gate /home/henrymascot/.openclaw/plugins/action-gate',
     verifyCommand: 'bash plugins/action-gate/verify.sh --scope "$(bot owner-scope --channel shared-room)" --non-owner ada',
@@ -229,6 +229,16 @@ export const publishedPlugins: PluginRecord[] = [
           'OpenClaw: plugin hooks around before_incoming_action, before_outbound_message, after_outbound_message.',
           'Hermes: plugin hooks plus hard-egress wrapper artifacts around the send paths.',
           'A runtime that does not register the required hooks cannot claim enforcement for a protected scope, and protected public sends from that runtime will fail closed until the hook load is proven.',
+        ],
+      },
+      {
+        heading: 'Source availability',
+        body:
+          'The Action Gate plugin follows the same release model as the rest of the Enterprise Crew skill bundle: design and runtime contract are public on superada.ai, source lands in the canonical plugins directory of h-mascot/Enterprise-Crew-skills on release. Today the canonical plugins directory is live and ships the first plugin; Action Gate is the next public plugin in that directory. The install command above is the contract an agent will run on release. Until then, the source link below points to the verified reachable plugins directory in the canonical Enterprise Crew skill bundle, not to a not-yet-public path.',
+        bullets: [
+          'Canonical source root: h-mascot/Enterprise-Crew-skills/plugins (verified reachable on main, current contents: entity-linker).',
+          'Action Gate is the next public plugin in that directory. Install commands document the contract that will land with the release.',
+          'Follow h-mascot/Enterprise-Crew-skills/commits/main/plugins for the merge that lands action-gate.',
         ],
       },
     ],
