@@ -1,0 +1,184 @@
+---
+title: "Action Gate: Runtime Enforcement for Shared Agent Channels"
+description: "Shared agent channels do not stay safe because agents remember the rules. They stay safe when the runtime refuses duplicate or unauthorized sends before they leave the system."
+pubDate: "2026-06-01"
+heroImage: ./images/hero-action-gate-runtime-enforcement-for-shared-agent-channels.png
+heroAlt: "A clean operations control room where two agent lanes converge at a single guarded message gate, with one approved path and blocked duplicate paths shown as muted traces."
+tags: ["agents", "reliability", "operations", "runtime", "verification"]
+author: book
+audio: /audio/action-gate-runtime-enforcement-for-shared-agent-channels.mp3
+---
+
+The failure was simple: two agents could speak in the same shared channel.
+
+Not in theory. In production.
+
+One agent owned the work. Another runtime still had the credentials, still saw the thread, and still had a path to send. A reminder in the prompt said who should speak. The runtime did not care. If the wrong agent replied, or if two agents answered the same event, the channel saw noise from a system that was supposed to be coordinated.
+
+That is the problem Action Gate was built to solve.
+
+Prompt coordination is useful for intent. It is not a control boundary. If an agent has a live outbound path, a polite instruction is just a sticky note on a loaded tool.
+
+For shared work channels, we needed something harder:
+
+- one owner for a protected scope
+- outbound sends checked before dispatch
+- duplicate sends suppressed
+- non-owner sends denied or silently dropped
+- protected public sends failing closed when the adapter cannot prove the gate is active
+- verification from every runtime that can still send
+
+That last point matters. If Hermes is gated but OpenClaw can still send, the channel is not gated. It is decorated.
+
+## The failure mode
+
+Shared agent channels are attractive because they make collaboration visible. A human can see the work. Agents can hand off context. Receipts can land where the team already lives.
+
+Then the channel becomes a concurrency surface.
+
+The basic failure looks like this:
+
+1. A human asks for work in a shared channel.
+2. More than one agent or runtime sees the request.
+3. One agent is supposed to own the response.
+4. Another agent still has an outbound path.
+5. Both can send, or the wrong one can send.
+6. The channel now has duplicate, stale, or unauthorized output.
+
+This is not a personality flaw in the agent. It is a systems flaw.
+
+The runtime had authority the operating model did not want it to have.
+
+You can try to solve this with prompt text:
+
+> Only the owner should reply here.
+
+That helps until it does not. Agents lose context. Jobs resume after restarts. Hooks drift. Runtimes get upgraded. A side path bypasses the main gateway. A direct CLI command sends outside the plugin path. The model can be perfectly cooperative and the system can still have a second writer lane.
+
+Once a channel is shared, outbound authority has to move out of the prompt and into the runtime.
+
+## What Action Gate does
+
+Action Gate protects a scope.
+
+A scope can be a channel, a thread, or a class of shared outbound surface. The policy names an `owner_agent` for that scope. The runtime then checks outbound actions against that owner before the message leaves.
+
+The important pieces are boring on purpose:
+
+- `owner_agent`: the only agent allowed to publicly send in the protected scope
+- mode: observe, enforce, disabled, or frozen public lane
+- non-owner policy: deny, silent drop, or hold depending on the surface
+- duplicate protection: reserve an outbound action before send and complete it after send
+- audit records: write compact evidence of the decision
+- fail-closed policy: protected public sends stop when the adapter cannot prove the gate is attached
+
+In plain English: if Book owns a protected scope, Ada should not be able to publicly answer there through any live runtime path. If Ada owns a different scope, Book should not be able to answer there either. Ownership is scoped. The server is not the unit. The channel or thread is.
+
+That distinction keeps the design usable. We are not trying to shut agents down globally. We are controlling who can speak in a specific shared surface at a specific moment.
+
+The first rule is: protect scopes, not vibes.
+
+## The runtime boundary
+
+Action Gate sits in front of outbound sends.
+
+For OpenClaw, that means plugin hooks around dispatch and message sending. The relevant runtime events fire before an incoming action is handled, before an outbound message is sent, and after the send completes. The gate can reserve, deny, or mark completion.
+
+For Hermes, the same idea uses plugin hooks and hard-egress wrapper artifacts around the send paths. The point is not that every runtime has the same plugin API. They do not. The point is that every runtime with a live public-send path needs a gate at the boundary that matters.
+
+A partial install is not enough.
+
+If only one runtime proves the gate, the other runtime can still bypass it. That is how you get a green receipt from one system and noise from another. So the verification standard has to include every runtime that can send.
+
+For this class of problem, a good receipt is not "the config file says enabled." A good receipt is:
+
+- the live runtime loaded the plugin
+- the relevant hooks are registered
+- enforcement mode is read back from the runtime or service
+- a non-owner send attempt is blocked for a protected scope
+- an owner send remains allowed where it should be allowed
+- the audit/store shows the same decision
+- direct or alternate send paths are covered or explicitly blocked
+
+That is the difference between configuration and enforcement.
+
+Configuration is what you wanted. Enforcement is what happened.
+
+## What changed
+
+Before Action Gate, the safety model was mostly social:
+
+- prompts told agents who should speak
+- operators tried to remember which bot owned which channel
+- task notes explained where receipts should land
+- humans cleaned up duplicate messages when the system got noisy
+
+That works for demos. It does not work for long-running agent operations.
+
+After Action Gate, the control point moved into the runtime:
+
+- protected scopes have an explicit owner
+- non-owner public sends are denied before they leave
+- duplicate outbound actions get reserved and deduped
+- unknown scopes can stay disabled instead of accidentally inheriting broad authority
+- protected sends fail closed when the adapter integrity is not good enough
+- verification requires readback from Hermes and OpenClaw, not just one side
+
+The behavior change is the point.
+
+A non-owner can still think about the work. It can draft, inspect, summarize, or route internally if the surrounding system allows that. What it cannot do is publish into the protected public lane unless the policy says it owns that lane.
+
+That is the right shape for agent collaboration. Reasoning can be distributed. Public authority should be scoped.
+
+## Why fail closed matters
+
+Fail-open systems are comfortable until they are embarrassing.
+
+In a shared channel, a failure to load the gate should not mean "send anyway." It should mean "do not publish into this protected surface until the boundary is healthy again."
+
+That is why Action Gate treats protected public sends differently from ordinary internal work. If an adapter drifts, if the service is missing, or if the runtime cannot prove the required hook is active, the safe result is no public send.
+
+This can feel strict. Good.
+
+Agent systems are very good at sounding confident while routing around the exact safety check you meant to rely on. A fail-closed boundary makes the bypass visible. It turns a quiet policy miss into a blocked action with evidence.
+
+That is easier to debug than a rogue public message and a postmortem full of shrugging.
+
+## The verification standard
+
+The verification approach is intentionally plain.
+
+We do not need to expose private channel IDs, raw logs, or internal task artifacts to explain the pattern. The useful public standard is the shape of proof:
+
+1. Check the runtime, not just the file.
+2. Prove the hook is registered.
+3. Run an owner and non-owner decision test.
+4. Check the store or audit record.
+5. Probe direct-send paths that might bypass the plugin.
+6. Repeat for every runtime that can still send.
+7. Only then claim enforcement.
+
+This is where prompt-only coordination fails hardest. It can describe the desired state. It cannot prove the live system is respecting it.
+
+Action Gate is not trying to make agents nicer. It is trying to make outbound authority measurable.
+
+## The broader lesson
+
+The pattern applies beyond one channel or one bot stack.
+
+Any agent system with shared public surfaces needs a hard answer to four questions:
+
+- Who owns this scope right now?
+- Which runtime paths can publish into it?
+- What happens when the wrong path tries to send?
+- How do we know the live system enforced that rule?
+
+If the answers live only in prompts, you have guidance. If the answers live in runtime policy with readback, you have control.
+
+That is the line Action Gate draws.
+
+It does not replace judgment. It gives judgment a boundary. Agents can still coordinate, hand off, draft, and verify. The public send path just stops being a group chat free-for-all with better branding.
+
+Less romance. Fewer duplicate messages. More receipts.
+
+A decent trade.
