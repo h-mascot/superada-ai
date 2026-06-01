@@ -1,0 +1,96 @@
+---
+import { publishedPlugins, pluginPlatforms } from '../../data/plugins';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const plugins = [...publishedPlugins].sort((a, b) => a.title.localeCompare(b.title));
+const platformLabel = (id: keyof typeof pluginPlatforms) => pluginPlatforms[id].label;
+
+const statusColors = {
+  Live: '#059669',
+  Internal: '#2563EB',
+  Beta: 'var(--accent)',
+  Draft: 'var(--accent)',
+} as const;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Plugin Marketplace — SuperAda"
+      description="Runtime plugins from the Enterprise Crew, with public source links, install contracts, supported platform badges, and the verification receipts that prove the plugin is really enforcing on a live system."
+    />
+  </head>
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
+    <Header />
+    <main style="max-width:980px; margin:0 auto; padding:3rem 1.5rem;">
+      <section style="margin-bottom:2.25rem;">
+        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">Plugin Marketplace</div>
+        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Runtime plugins</h1>
+        <p style="color:var(--muted); margin:0 0 0.9rem; line-height:1.75; max-width:720px;">
+          Installable plugins that hook the live runtimes the Enterprise Crew runs on. Each listing links the canonical source, names the supported platforms, and ships a self-install contract with verification receipts.
+        </p>
+        <p style="color:var(--muted); margin:0; line-height:1.75; max-width:720px;">
+          A plugin is a real runtime component, not a workflow bundle. It registers hooks, modifies outbound behavior, and is verified by what the live system actually did, not by what the config file said.
+        </p>
+      </section>
+
+      <section style="display:grid; gap:1rem;">
+        {plugins.map((plugin) => (
+          <article style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.35rem 1.4rem;">
+            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:0.8rem; flex-wrap:wrap;">
+              <div>
+                <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem;">
+                  <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${statusColors[plugin.status]}; background:${statusColors[plugin.status]}18; border:1px solid ${statusColors[plugin.status]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
+                    {plugin.status}
+                  </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
+                    {plugin.category}
+                  </span>
+                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
+                    {plugin.difficulty}
+                  </span>
+                  {plugin.platforms.map((platform) => (
+                    <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); background:var(--accent)18; border:1px solid var(--accent)33; border-radius:999px; padding:0.2rem 0.5rem;">
+                      {platformLabel(platform)}
+                    </span>
+                  ))}
+                </div>
+                <h2 style="font-family:Georgia,serif; font-size:1.65rem; font-weight:400; margin:0 0 0.2rem;">
+                  <a href={`/plugins/${plugin.slug}/`} style="color:var(--text); text-decoration:none;">{plugin.title}</a>
+                </h2>
+                <p style="color:#C9BDA8; margin:0 0 0.5rem; line-height:1.7; font-size:1.02rem;">{plugin.tagline}</p>
+                <p style="color:var(--muted); margin:0; line-height:1.7;">{plugin.summary}</p>
+              </div>
+              <a
+                href={`/plugins/${plugin.slug}/`}
+                style="display:inline-block; padding:0.55rem 0.9rem; border:1px solid var(--accent); color:var(--accent); border-radius:8px; text-decoration:none; font-family:monospace; font-size:0.78rem; white-space:nowrap; flex-shrink:0;"
+              >
+                View plugin →
+              </a>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.8rem; margin-top:0.4rem;">
+              <div>
+                <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.2rem;">Source</div>
+                <a href={plugin.sourceUrl} style="color:var(--accent); text-decoration:none; font-family:monospace; font-size:0.82rem; word-break:break-all;">{plugin.sourceLabel}</a>
+              </div>
+              <div>
+                <div style="font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.2rem;">Supported platforms</div>
+                <div style="color:var(--text); font-family:monospace; font-size:0.82rem;">{plugin.platforms.map((p) => platformLabel(p)).join(' · ')}</div>
+              </div>
+            </div>
+
+            <div style="margin-top:1rem; padding:0.85rem; background:#100D0A; border:1px solid var(--border); border-radius:10px;">
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.4rem;">Install</div>
+              <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{plugin.installCommand}</code>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
