@@ -34,6 +34,45 @@ export type SkillRecord = {
 
 export const publishedSkills: SkillRecord[] = [
   {
+    slug: 'super-spec',
+    title: 'Super Spec',
+    description: 'Compile messy operator context into a builder-ready product, technical, implementation, ops, or agent handoff spec with proof gates, route receipts, and reviewer prompts.',
+    tagline: 'Turn rough intent into a spec another agent can actually build.',
+    category: 'Meta',
+    availability: 'agent-installable',
+    estimatedSetup: '2 minutes',
+    sourceLabel: 'superada-ai/public/skills/super-spec',
+    sourceUrl: 'https://github.com/henrino3/superada-ai/tree/main/public/skills/super-spec',
+    sourceSpec: 'https://superada.ai/skills/super-spec/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/super-spec | sh',
+    reviewMode: 'source-review',
+    includes: ['Skill contract', 'Super Spec runner', 'Pro preflight helper', 'Fail-closed Pro routing notes', 'Curl installer'],
+    useCases: ['Create build-ready implementation specs from rough notes', 'Write PRD/RFC/ops handoffs with proof gates', 'Prepare agent-builder prompts that survive context compaction', 'Audit whether a spec was actually produced by Pro or an explicit fallback'],
+    instructions: ['Review the public skill contract and runner before installing.', 'Install with the SuperAda curl installer.', 'Configure a Pro route if you want GPT-5.4 Pro/Oracle output; otherwise run with --no-pro explicitly.', 'Check the generated route JSON before claiming which model produced the spec.'],
+    limitations: ['Does not replace product judgment; unresolved evidence must stay in Open Questions.', 'Long Pro runs may need 60-minute timeouts or split passes.', 'Fail-closed behavior means a broken Pro route stops the run unless fallback is explicitly allowed.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/super-spec/SKILL.md', description: 'Agent-facing Super Spec usage, output contract, and guardrails.' },
+      { label: 'Runner', path: 'https://superada.ai/skills/super-spec/scripts/run-super-spec.sh', description: 'Shell runner that builds prompts, routes to Pro/Oracle when configured, writes specs and route receipts, and fails closed on unexpected fallback.' },
+      { label: 'Pro preflight', path: 'https://superada.ai/skills/super-spec/scripts/gpt54pro-oracle-preflight.sh', description: 'Preflight helper for checking the configured Pro route before a long spec run.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/super-spec', description: 'Installer for local agent runtimes.' },
+    ],
+    configExamples: [
+      {
+        label: 'Intentional non-Pro local run',
+        code: `super-spec --title "Release gate" --input context.md --no-pro`,
+      },
+      {
+        label: 'Long Pro run with background Responses mode',
+        code: `export SUPER_SPEC_ORACLE_BACKGROUND_MODE=on
+export SUPER_SPEC_PRO_TIMEOUT=3600
+export SUPER_SPEC_PRO_HTTP_TIMEOUT=60m
+export SUPER_SPEC_ORACLE_WALL_TIMEOUT=3700s
+super-spec --title "Enterprise Local Model Orchestrator" --input context.md`,
+      },
+    ],
+  },
+  {
     slug: '3pass',
     title: '3pass',
     description: '3-pass recursive prompting (critique → refine → final answer). Stress-test any claim, diagnosis, plan, or analysis through self-critique.',

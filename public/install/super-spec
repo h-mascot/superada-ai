@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+set -eu
+
+BASE_URL="${SUPERADA_BASE_URL:-https://superada.ai}"
+SKILL_DIR="${SUPERADA_SKILL_DIR:-$HOME/.agents/skills/super-spec}"
+BIN_DIR="${SUPERADA_BIN_DIR:-$HOME/.local/bin}"
+
+mkdir -p "$SKILL_DIR/scripts" "$BIN_DIR"
+fetch() {
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$1" -o "$2"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -qO "$2" "$1"
+  else
+    echo "curl or wget is required" >&2
+    exit 1
+  fi
+}
+fetch "$BASE_URL/skills/super-spec/SKILL.md" "$SKILL_DIR/SKILL.md"
+fetch "$BASE_URL/skills/super-spec/scripts/run-super-spec.sh" "$SKILL_DIR/scripts/run-super-spec.sh"
+fetch "$BASE_URL/skills/super-spec/scripts/gpt54pro-oracle-preflight.sh" "$SKILL_DIR/scripts/gpt54pro-oracle-preflight.sh"
+chmod +x "$SKILL_DIR/scripts/"*.sh
+cat > "$BIN_DIR/super-spec" <<EOF
+#!/usr/bin/env sh
+exec "$SKILL_DIR/scripts/run-super-spec.sh" "\$@"
+EOF
+chmod +x "$BIN_DIR/super-spec"
+echo "Installed Super Spec skill to $SKILL_DIR"
+echo "Run: $BIN_DIR/super-spec --title 'Example' --input context.md"
