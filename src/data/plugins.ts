@@ -110,7 +110,7 @@ export const publishedPlugins: PluginRecord[] = [
         detail:
           'Fetch the canonical Enterprise Crew skill source and copy the action-gate plugin into a stable plugins/ directory on the host that runs the protected agent.',
         command:
-          'git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p plugins && cp -R /tmp/enterprise-crew-skills/action-gate plugins/action-gate',
+          'git clone https://github.com/h-mascot/Enterprise-Crew-skills.git /tmp/enterprise-crew-skills && mkdir -p plugins && cp -R /tmp/enterprise-crew-skills/plugins/action-gate plugins/action-gate',
       },
       {
         title: 'Run the auto installer',
