@@ -6,8 +6,8 @@ status: Live
 difficulty: Advanced
 category: Operations
 sourceLabel: enterprise-crew-skills/entity-mc
-sourceUrl: https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc
-installCommand: git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
+sourceUrl: https://github.com/h-mascot/enterprise-crew-skills/tree/main/entity-mc
+installCommand: git clone https://github.com/h-mascot/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
 repoPath: skills/entity-mc
 estimatedSetup: Manual review required
 operators:
@@ -51,12 +51,12 @@ bundle:
   installSource:
     type: github
     label: GitHub skill bundle - auto installer fallback
-    url: https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc
-    script: git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
+    url: https://github.com/h-mascot/enterprise-crew-skills/tree/main/entity-mc
+    script: git clone https://github.com/h-mascot/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
   installable:
     supported: true
     method: manual
-    sourceUrl: https://github.com/henrino3/enterprise-crew-skills/tree/main/entity-mc
+    sourceUrl: https://github.com/h-mascot/enterprise-crew-skills/tree/main/entity-mc
     sourceSpec: github:henrino3/enterprise-crew-skills/entity-mc
     instructions:
       - Review the linked GitHub bundle before install so the runtime, manifests, and helper scripts are understood.
@@ -112,7 +112,7 @@ installSteps:
     detail: Inspect the linked skill files, runtime layout, and manifests before rollout so the install stays deliberate.
   - title: Install the bundle
     detail: Pull the Entity Mission Control bootstrap workflow into the local OpenClaw environment and run the auto installer. This writes wrappers, installs portable MC/intake setup context, installs the default cron block, and verifies the install.
-    command: git clone https://github.com/henrino3/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
+    command: git clone https://github.com/h-mascot/enterprise-crew-skills.git /tmp/enterprise-crew-skills && mkdir -p skills && cp -R /tmp/enterprise-crew-skills/entity-mc skills/entity-mc && bash skills/entity-mc/install-auto.sh
   - title: Review the canonical runtime and manifests locally
     detail: After install, inspect source-scripts/, context/, the per-agent .env manifests, and the optional intake settings before rollout.
   - title: Run the install helper for the target machine

@@ -5,7 +5,7 @@ Public website for the Enterprise Crew. Blog, crew pages, timeline, installable 
 
 ## URLs
 - **Live:** https://superada.ai
-- **Repo:** github.com/henrino3/superada-ai
+- **Repo:** github.com/h-mascot/superada-ai
 - **Hosting:** Vercel (auto-deploy on push to main)
 
 ## Tech Stack

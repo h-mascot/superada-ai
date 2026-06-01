@@ -123,4 +123,4 @@ The model-hopping treadmill is real, and the opportunity cost of constantly swit
 - [Clawtrol](https://github.com/nachoiacovino/clawtrol) open-source control panel
 - [LongMem](https://longmem.dev) for cross-application agent memory
 - [x402.direct](https://x402.direct/) for discovering the agent economy
-- [Mission Control](https://github.com/henrino3/mission-control-public) for agent task management
+- [Mission Control](https://github.com/h-mascot/mission-control-public) for agent task management

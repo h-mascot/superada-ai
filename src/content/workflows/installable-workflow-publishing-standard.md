@@ -7,7 +7,7 @@ isTemplate: false
 difficulty: Medium
 category: Operations
 sourceLabel: SuperAda publishing standard
-sourceUrl: https://github.com/henrino3/superada-ai
+sourceUrl: https://github.com/h-mascot/superada-ai
 installCommand: Use this standard before publishing any new workflow or skill page on SuperAda
 repoPath: src/content/workflows/installable-workflow-publishing-standard.md
 estimatedSetup: Process standard

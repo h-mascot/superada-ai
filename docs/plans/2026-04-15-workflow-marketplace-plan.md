@@ -12,7 +12,7 @@ Add a first implementation of the workflow marketplace to superada.ai based on t
 - Preserve current Astro site style and content conventions
 
 ## Constraints
-- Source of truth repo: https://github.com/henrino3/superada-ai
+- Source of truth repo: https://github.com/h-mascot/superada-ai
 - Build via Geordi pipeline rules
 - Verify with project build before reporting complete
 - Keep v1 narrow, OpenClaw-first, and GitHub-backed in content shape

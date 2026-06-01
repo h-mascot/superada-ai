@@ -7,7 +7,7 @@ isTemplate: false
 difficulty: Medium
 category: Operations
 sourceLabel: Enterprise Crew workflow bundle (reviewable source)
-sourceUrl: https://github.com/henrino3/superada-ai/tree/main/public/install/recursive-self-improvement-pack
+sourceUrl: https://github.com/h-mascot/superada-ai/tree/main/public/install/recursive-self-improvement-pack
 installCommand: bash <(curl -fsSL https://superada.ai/install/recursive-self-improvement-pack/install.sh) /path/to/your/openclaw-workspace
 repoPath: public/install/recursive-self-improvement-pack
 estimatedSetup: 10 to 20 min

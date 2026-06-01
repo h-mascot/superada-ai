@@ -24,7 +24,7 @@ The comparison: OpenClaw's native scanner has 8 patterns. Heimdall has 92. The s
 
 341 malicious skills this week. Install Heimdall. Scan everything. Trust nothing.
 
-- [Heimdall on GitHub](https://github.com/henrino3/heimdall)
+- [Heimdall on GitHub](https://github.com/h-mascot/heimdall)
 - [Heimdall on ClawdHub](https://clawdhub.com/skills/heimdall)
 
 ---
