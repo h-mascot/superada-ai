@@ -16,9 +16,9 @@ export const CHANGELOG_SOURCE_URL = "https://raw.githubusercontent.com/openclaw/
 
 export const CHANGELOG_VERSIONS: Version[] = [
   {
-    "version": "2026.5.30",
-    "date": "2026.5.30",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530",
+    "version": "2026.6.2",
+    "date": "2026.6.2",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662",
     "features": [
       {
         "title": "Agents and CLI-backed runtimes recover more cleanly from interrupted tool c...",
@@ -33,12 +33,17 @@ export const CHANGELOG_VERSIONS: Version[] = [
       {
         "title": "Provider and plugin requests now bound more timers, retries, OAuth/device-c...",
         "description": "Provider and plugin requests now bound more timers, retries, OAuth/device-code lifetimes, media downloads, local service probes, and generated-content polling paths before they can hang a run.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Skills, session metadata, gateway runtime state, plugin metadata, and store...",
         "description": "Skills, session metadata, gateway runtime state, plugin metadata, and store writes do less repeated work on hot paths while keeping config and dispatch behavior stable.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "Skills and plugin loading now handle stale disabled snapshots and loader fa...",
+        "description": "Skills and plugin loading now handle stale disabled snapshots and loader failures more clearly, so channel turns avoid disabled SecretRefs and operators get better recovery guidance. (#79072, #79173) Thanks @zeus1959.",
+        "href": "https://github.com/openclaw/openclaw/issues/79072"
       },
       {
         "title": "Workboard, SecretRef plugin manifests, hosted iOS push relay, and external...",
@@ -46,39 +51,69 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/82326"
       },
       {
-        "title": "Release, CI, Docker, E2E, and diagnostics lanes now cap more logs, response...",
-        "description": "Release, CI, Docker, E2E, and diagnostics lanes now cap more logs, response bodies, readiness probes, artifact checks, and status polling so failures report bounded proof instead of stalling.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "title": "Skill Workshop now has a fuller Control UI flow with proposal lists, today...",
+        "description": "Skill Workshop now has a fuller Control UI flow with proposal lists, today actions, revision handoff, searchable file previews, review states, locale coverage, and reusable session routing.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "Chat and Control UI startup paths keep sends alive through history loading,...",
+        "description": "Chat and Control UI startup paths keep sends alive through history loading, stream deltas incrementally, skip markdown work while streaming, keep drafts local while typing, trace first-output latency, and expose calmer composer controls. (#88772, #88825, #88998) Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/88772"
+      },
+      {
+        "title": "Provider coverage and model metadata now include MiniMax M3, account OAuth...",
+        "description": "Provider coverage and model metadata now include MiniMax M3, account OAuth endpoints, Google/Vertex catalog fixes, OpenRouter SQLite model caching, Copilot Claude 1M capabilities, Foundry reasoning alignment, and OpenAI response replay guards. (#88480, #88512, #88851, #88860)",
+        "href": "https://github.com/openclaw/openclaw/issues/88480"
+      },
+      {
+        "title": "iMessage monitor state, inbound queues, and plugin install ledgers moved to...",
+        "description": "iMessage monitor state, inbound queues, and plugin install ledgers moved toward SQLite-backed state so restarts and local monitors recover with less duplicate filesystem scanning. (#88794, #88797)",
+        "href": "https://github.com/openclaw/openclaw/issues/88794"
+      },
+      {
+        "title": "Release, CI, Docker, E2E, plugin install, and diagnostics lanes now cap mor...",
+        "description": "Release, CI, Docker, E2E, plugin install, and diagnostics lanes now cap more logs, response bodies, readiness probes, artifact checks, status polling, and rollback snapshots so failures report bounded proof instead of stalling.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "Docs",
+        "description": "add a dedicated Skill Workshop guide covering governed skill creation, reviewable proposals, CLI, Gateway, agent tool behavior, approval policy, support files, and recovery. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Skills",
-        "description": "let the `skill_research` agent tool apply, reject, and quarantine explicit Skill Workshop proposals through the guarded proposal lifecycle. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "description": "let the `skill_workshop` agent tool apply, reject, and quarantine explicit proposals through the guarded review flow. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Skills",
-        "description": "let Skill Workshop proposals carry approved support files under standard skill folders, with scanner, hash, and rollback safeguards. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "description": "let proposals carry approved support files under standard skill folders, with scanner, hash, and rollback safeguards. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Skills",
-        "description": "let pending Skill Workshop proposals be revised in place with versioned, dated proposal frontmatter before approval. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "description": "let pending proposals be revised in place with versioned, dated proposal frontmatter before approval. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Skills",
-        "description": "add Skill Workshop proposals with pending `PROPOSAL.md` drafts, CLI/Gateway review actions, rollback metadata, and the `skill_research` agent tool. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "description": "add Skill Workshop with pending proposals, CLI/Gateway review actions, rollback metadata, and the `skill_workshop` agent tool. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "Skill Workshop",
+        "description": "add the Control UI navigation, styled dashboard, proposal today view, revision dialog, file preview modal, searchable preview files, reusable session handoff, and localized strings.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Plugins",
         "description": "externalize Tokenjuice as the official `@openclaw/tokenjuice` plugin with npm and ClawHub publish metadata.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Plugins",
         "description": "externalize the GitHub Copilot agent runtime as the official `@openclaw/copilot` plugin with npm and ClawHub publish metadata.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "iOS",
@@ -86,9 +121,19 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/88096"
       },
       {
+        "title": "iOS",
+        "description": "support native iPad display layouts.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
         "title": "Workboard",
         "description": "add orchestration primitives and agent coordination tools for multi-agent planning and run tracking. (#87469)",
         "href": "https://github.com/openclaw/openclaw/pull/87469"
+      },
+      {
+        "title": "Workboard",
+        "description": "wire task-backed board runs and show task comments in the edit modal.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       },
       {
         "title": "Code mode",
@@ -96,9 +141,19 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/88043"
       },
       {
+        "title": "Code mode",
+        "description": "add MCP API files and docs for code-mode integrations.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
         "title": "Control UI",
         "description": "add a Dreaming-tab agent selector and propagate the selected agent through Dreaming status, diary, and diary actions. (#78748) Thanks @stevenepalmer.",
         "href": "https://github.com/openclaw/openclaw/pull/78748"
+      },
+      {
+        "title": "Control UI",
+        "description": "add calmer chat composer controls, local draft typing state, and first-output latency instrumentation for active chat entry. (#88772, #88998) Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/88772"
       },
       {
         "title": "Plugins",
@@ -106,19 +161,57 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/82326"
       },
       {
+        "title": "Plugins",
+        "description": "persist the plugin install index in SQLite so installed package lookup survives reloads with less filesystem scanning. (#88794)",
+        "href": "https://github.com/openclaw/openclaw/pull/88794"
+      },
+      {
+        "title": "Providers",
+        "description": "add MiniMax M3 model support. (#88860)",
+        "href": "https://github.com/openclaw/openclaw/pull/88860"
+      },
+      {
+        "title": "Doctor",
+        "description": "add disk space health checks and stabilize post-upgrade JSON probes.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "Channels",
+        "description": "store inbound queues in SQLite and migrate iMessage monitor state to SQLite-backed tracking. (#88797)",
+        "href": "https://github.com/openclaw/openclaw/pull/88797"
+      },
+      {
         "title": "Skills",
         "description": "add the core skills index and centralize skills runtime loading, status, filtering, and prompt formatting.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026530"
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
       }
     ],
     "fixes": [
+      "Release/CI/E2E: normalize inherited Linux `C.UTF-8` locale settings before raw AWS macOS Crabbox bootstrap commands, avoiding macOS locale warnings during package-manager hydration.",
+      "Agents/providers: keep streaming tool-call argument parsing record-shaped when providers emit valid non-object JSON such as `null` or arrays.",
+      "Release/CI/E2E: reset incremental log readers when watched log files rotate without shrinking, so same-size replacements do not hide new readiness or RPC lines.",
+      "Talk: preserve explicit `null` payloads on controller-created turn and output-audio lifecycle events.",
+      "Agents/TUI: keep local custom provider runs from loading plugin runtime and auth alias metadata when plugins are disabled.",
+      "Agents/TUI: restore in-flight TUI run switch-back behavior, keep no-policy native hook fallback available, guard vanished workspaces, and keep lightweight isolated subagents lightweight.",
+      "Agents/media: keep async image, music, and video generation starts from ending the Codex turn, so mixed requests can continue with summaries or other work while media renders in the background.",
       "Agents/Codex: keep public OpenAI API-key profiles from being treated as native Codex app-server auth while preserving persisted Codex OAuth sessions.",
+      "Agents/Codex: stream Codex app-server final-answer partials to live reply previews, preserve ACP metadata in SQLite, prefer real tool results over synthetic repair output, prevent aborted app-server turn handles from lingering, migrate legacy OpenAI Codex `lastGood` auth state, and preserve workspace/session metadata through ACP runtime refactors. (#88405, #88724, #88730) Thanks @vincentkoc.",
       "Control UI: keep collapsed tool cards labeled with the tool name and action instead of generic output text. Thanks @shakkernerd.",
       "Agents/Codex: surface Skill Workshop guidance in Codex app-server prompts when `skill_workshop` is available. Thanks @shakkernerd.",
+      "Agents/auth: write auth profiles atomically, add force re-login recovery, preserve workspaces during state-only uninstall, and compact before oversized turns so recovery paths avoid partial state.",
+      "Skills: skip disabled skill env overrides from stale persisted snapshots so disabled skill `apiKey` SecretRefs cannot abort embedded or channel turns. (#79072, #79173) Thanks @zeus1959.",
+      "Skill Workshop: render the Control UI tab from filtered navigation state and keep filtered fallback routing stable.",
+      "CLI: avoid live catalog validation during `openclaw agents add`, so adding a secondary agent no longer depends on provider catalog availability. (#76284, #88314) Thanks @zhangguiping-xydt.",
       "CLI: keep `plugins list --json` on the snapshot-only path so plugin sweeps avoid loading the full runtime status graph.",
+      "CLI/desktop: bridge WSL clipboard operations through the shell and recognize manual-update launchd jobs. (#88764)",
       "Plugins: make PixVerse external-plugin ClawHub metadata explicit and keep it out of bundled dist builds.",
+      "Plugins: clarify plugin loader failure guidance so missing or incompatible plugin packages point operators at the right repair path.",
+      "Plugins: preserve npm plugin roots after blocked installs, skip plugin-local `openclaw` peer symlinks during rollback snapshots, relink those peers after restore, isolate cached tool runtime siblings, and isolate web-provider factory failures so one bad plugin does not poison sibling runtime paths. (#77237, #88807)",
       "Cron: keep SQLite cron migrations compatible with legacy run-log tables, archived job stores, diagnostic cron names, and legacy one-shot delete-after-run behavior. (#88285)",
+      "Cron: keep update delivery validation scoped, harden restart state, and retire MCP runtimes on isolated cron cleanup.",
+      "Memory: serialize QMD update/embed writes per store, preserve phase signals on read errors, harden envelope metadata sanitization, and rewrite generated transcript paths on rollover so memory/search state survives concurrent gateway and CLI activity. (#66339, #85931) Thanks @openperf and @amittell.",
       "Providers: bound generated media downloads from OpenAI, Runway, xAI, MiniMax, BytePlus, DashScope-compatible, FAL, OpenRouter, Google, Vydra, and Comfy providers.",
+      "Providers: resolve Google defaults to `google-generative-ai`, register Vertex static catalog rows, align Foundry reasoning metadata, skip DeepSeek V4 thinking params on Foundry fallback, use MiniMax account OAuth endpoints, preserve Copilot Claude 1M capabilities, suppress disabled Ollama reasoning output, keep OpenAI stop-finished tool calls, and avoid replay ids when the Responses store is disabled. (#88480, #88512)",
       "Providers: cap GitHub Copilot OAuth request timeouts before creating abort signals.",
       "Cron: retry recurring jobs after transient model rate limits before waiting for the next scheduled slot.",
       "Agents/Codex: keep live session locks during cleanup, recover interrupted CLI tool transcripts, preserve Codex auth and compaction session identity, clear orphan tool state, cap app-server idle timers, and keep media completion delivery retryable. (#88129, #88136, #88141, #88162, #88182)",
@@ -126,13 +219,20 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Channels: cap Telegram, Discord, WhatsApp, Signal, Feishu, Google Chat, Microsoft Teams, QQBot, Nostr, Zalo, Zalouser, and Nextcloud-style request/retry timers; preserve SMS approval reply routes; and retry WhatsApp QR login 408 timeouts. (#88183)",
       "Security/config parsing: reject unsafe OAuth/token lifetimes, retry-after delays, inbound timestamps, response body sizes, command timeout config, sandbox observer token TTLs, and gateway WebSocket calls after close.",
       "Providers/media: cap local service, model, usage, queue, generated media, TTS, music, workflow polling, and provider OAuth request timers across hosted and local providers.",
-      "Release/CI/E2E: bound release candidate reads, beta smoke REST calls, changelog restore, kitchen-sink and bundled plugin readiness probes, secret-provider probes, Vitest routing, and mainline test flakes. (#88127, #88137, #88155, #88160)",
+      "Release/CI/E2E: bound release candidate reads, beta smoke REST calls, plugin npm verification commands, changelog restore, cross-OS process groups, kitchen-sink and bundled plugin readiness probes, secret-provider probes, Telegram credential timeouts, Control UI i18n and CLI startup metadata generation, Vitest routing, and mainline test flakes. (#88127, #88137, #88155, #88160)",
+      "Release/CI/E2E: keep Kitchen Sink live plugin MCP probes resolving source-checkout workspace packages and align the live gauntlet with current Kitchen Sink diagnostics.",
       "Release/CI/E2E: run the secret-provider integration proof through the repo pnpm runner so native macOS and Windows validation use the hydrated package-manager shim.",
       "Release/CI/E2E: run the Telegram desktop proof gateway through the repo pnpm runner so native macOS proof uses the hydrated package-manager shim.",
       "Docs/CI: run Mintlify anchor checks through the repo pnpm runner so docs link validation works when pnpm is only available through the hydrated package-manager shim.",
       "Agents: keep configured fallback model metadata typed so provider params, context-token caps, and media input limits do not break changed-gate typechecks.",
       "Agents: accept hidden `sessions_send` body aliases before validation while keeping the model-facing `message` schema canonical. (#88229) Thanks @zhangguiping-xydt.",
-      "CI/Crabbox: keep default runner capacity spot-only and provider-neutral so OpenClaw remote validation does not silently fall back to on-demand leases or stale AWS region hints.",
+      "Chat/UI: preserve startup chat sends during history loading, unblock the initial Control UI chat send, stream chat deltas incrementally, skip markdown parsing while streaming, keep drafts local while typing, guard composer rerenders, honor Chromium executable overrides, and detect system Chromium for E2E. (#88998) Thanks @vincentkoc.",
+      "Channels: preserve long Feishu streaming replies, send visible fallbacks when accepted Feishu turns produce no final reply, tolerate iMessage self-chat timestamp skew, preserve colon-prefixed slash commands in mention parsing, decode Nostr `npub` allowlists correctly, and suppress raw provider errors during channel delivery. (#87896)",
+      "Config/status/doctor: skip unresolved shell references in state-dir dotenv files, resolve gateway auth secrets during deep status audits, respect explicit PI runtime policy, report runtime tool-schema errors, and keep post-upgrade JSON stable. (#88288)",
+      "Gateway/session state: list commands from the Gateway plugin registry, harden MCP loopback tool schemas, hide phantom agent-store rows from `sessions.list`, make task persistence failures explicit, and carry session UUIDs on interactive dispatch events.",
+      "Gateway/plugins: narrow plugin lookup memoization to the stable plugin/runtime inputs, avoiding repeated lookup work without mixing disabled or filtered plugin state.",
+      "OpenAI/TTS: handle speed directives for OpenAI TTS voices. (#74089)",
+      "CI/Crabbox: keep default runner capacity on the Azure credit-backed on-demand D4 lane with the Azure SSH port and a Git-independent full check job, so broad validation avoids low-priority spot quota stalls, hydrate port mismatches, non-Git hydrated workspaces, and stale AWS region hints.",
       "CI/Crabbox: route Crabbox wrapper and Testbox workflow edits to their regression tests so changed-test gates do not silently run zero specs.",
       "CI/workflows: route workflow sanity helper edits to their guard tests and cover composite-action input interpolation checks.",
       "CI/tooling: route CI scope, dependency, changelog, and docs helper edits to their owner tests instead of silently skipping changed-test coverage.",
@@ -1131,6 +1231,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Gateway/sessions: allow shared-secret bearer callers to read and stream session history without an explicit scope header. (#81815) Thanks @medns.",
       "Agents/embedded runner: classify HTML auth provider responses as `auth_html` and return a re-authentication hint instead of the CDN-blocked copy that `upstream_html` returns. Cloudflare Access login pages, nginx basic-auth challenges, and gateway login walls all produce HTML auth bodies that were previously misdiagnosed as transient CDN blocks. (#79900) Thanks @martingarramon.",
       "TUI/streaming watchdog: dismiss the `This response is taking longer than expected` notice as soon as a chat event for the same run arrives, so the message no longer sits next to the recovered response when the run was only briefly silent. Refs #67052, #69081 (closed), prior attempt #69026. Thanks @jpruit20 and @romneyda.",
+      "Agents/auth profiles: replace the bare `No available auth profile for <provider> (all in cooldown or unavailable)` TUI error with plain-language copy that explains what happened in user terms (sign-in expired, provider asking us to slow down, billing issue on the account, etc.) and suggests the matching `openclaw models auth login --provider <provider>` recovery command for sign-in and billing causes, while falling back to the underlying provider error for cases without a clear recovery path. Thanks @romneyda.",
       "Agents/Pi: tolerate OpenClaw-owned transcript writes while embedded prompts are released for model I/O, keeping long-running Feishu, Slack, Telegram, and cron turns from failing with false session-takeover errors. Fixes #84059. (#84250) Thanks @tianxiaochannel-oss88."
     ]
   },
