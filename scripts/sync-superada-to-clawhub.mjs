@@ -204,7 +204,7 @@ ${plugin.verifyCommand || 'Follow the verification steps on the SuperAda page.'}
     writeFileSync(sourceSkillFile, generated);
   }
 
-  return { slug: clawhubSlug, name: plugin.title, path: sourcePath, type: 'plugin', version: '0.1.0' };
+  return { slug: clawhubSlug, name: plugin.title, path: sourcePath, type: 'plugin', version: '0.1.0', _superadaSlug: plugin.slug };
 }
 
 function extractWorkflowReferences(filePath, fm) {
@@ -263,8 +263,20 @@ ${refs.limitations.length ? refs.limitations.map((note) => `- ${note}`).join('\n
 `;
 
   writeFileSync(path.join(outDir, 'SKILL.md'), body);
-  return { slug: clawhubSlug, name: fm.title, path: outDir, type: 'workflow', version: fm.bundle?.version || '1.0.0' };
+  return { slug: clawhubSlug, name: fm.title, path: outDir, type: 'workflow', version: fm.bundle?.version || '1.0.0', _superadaSlug: pageSlug };
 }
+
+// ClawHub caps slugs at 48 chars and disallows consecutive hyphens. If our
+// generated slug is too long, trim it back to a recognisable prefix and
+// append the last 6 chars of the original, then collapse any double hyphen
+// the join introduces.
+function trimSlugToClawdhub(slug) {
+  if (slug.length <= 48) return slug;
+  const tail = slug.slice(-6);
+  const head = slug.slice(0, 48 - tail.length - 1);
+  return `${head}-${tail}`.replace(/-{2,}/g, '-');
+}
+
 
 function extractWorkflows() {
   const files = execFileSync('find', [workflowsDir, '-maxdepth', '1', '-type', 'f', '-name', '*.md'], {
@@ -299,20 +311,71 @@ function publishItem(item) {
     skill: 'superada,skill,enterprise-crew,latest',
   };
   const tags = tagsByType[item.type] || 'superada,latest';
-  run('clawdhub', [
+  const dateTag = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  // Track a date-based micro version so re-runs always succeed even after
+  // collisions force us onto a new slug with a known existing version.
+  // All values must be valid semver (no leading zeros).
+  const [yyyy, mm, dd] = dateTag.split('-');
+  const yShort = parseInt(yyyy.slice(2), 10);
+  const m = parseInt(mm, 10);
+  const d = parseInt(dd, 10);
+  const baseVersion = item.version || '1.0.0';
+  const [baseMajor, baseMinor] = baseVersion.split('.').map((n) => parseInt(n, 10));
+  const versionCandidates = [
+    baseVersion,
+    `${baseMajor}.${baseMinor}.${d * 10}`,          // 1.0.30
+    `${baseMajor}.${baseMinor}.${m * 100 + d}`,     // 1.0.603
+    `${baseMajor}.${baseMinor}.${yShort * 10000 + m * 100 + d}`, // 1.0.260603
+  ];
+  const baseArgs = (slug, version) => ([
     'publish',
     item.path,
     '--slug',
-    item.slug,
+    slug,
     '--name',
     item.name,
     '--version',
-    item.version || '1.0.0',
+    version,
     '--tags',
     tags,
     '--changelog',
     'Synced from SuperAda.ai resources',
   ]);
+
+  const tryPublish = (slug, versionIndex, slugRetried, lengthRetried) => {
+    const r = spawnSync('clawdhub', baseArgs(slug, versionCandidates[versionIndex]), { encoding: 'utf8', stdio: 'pipe' });
+    if (r.status === 0) return { ok: true, slug, version: versionCandidates[versionIndex] };
+    const combined = `${r.stdout || ''}\n${r.stderr || ''}`;
+    if (/slug must be at most 48 characters/i.test(combined) && !lengthRetried) {
+      const trimmed = trimSlugToClawdhub(slug);
+      console.warn(`  ! slug "${slug}" too long; retrying as "${trimmed}"`);
+      return tryPublish(trimmed, versionIndex, slugRetried, true);
+    }
+    if (/already taken/i.test(combined) && !slugRetried) {
+      const namespaced = `superada-${item.type}-${item.slug}`;
+      console.warn(`  ! slug "${slug}" taken by another publisher; retrying as "${namespaced}"`);
+      return tryPublish(namespaced, 0, true, lengthRetried);
+    }
+    if (/protected .* slug namespace/i.test(combined) && !slugRetried) {
+      const namespaced = `superada-${item.type}-${item.slug}`;
+      console.warn(`  ! slug "${slug}" is in a protected namespace; retrying as "${namespaced}"`);
+      return tryPublish(namespaced, 0, true, lengthRetried);
+    }
+    if (/version already exists/i.test(combined) && versionIndex < versionCandidates.length - 1) {
+      console.warn(`  ! version ${versionCandidates[versionIndex]} exists; bumping to ${versionCandidates[versionIndex + 1]}`);
+      return tryPublish(slug, versionIndex + 1, slugRetried, lengthRetried);
+    }
+    return { ok: false, slug, version: versionCandidates[versionIndex], output: combined };
+  };
+
+  const result = tryPublish(item.slug, 0, false, false);
+  if (result.ok) {
+    item._publishedSlug = result.slug;
+    item._publishedVersion = result.version;
+    return;
+  }
+  process.stderr.write(result.output || '');
+  throw new Error(`clawdhub publish failed for ${item.type} ${item.slug}`);
 }
 
 function main() {
@@ -326,7 +389,7 @@ function main() {
       const skillFile = path.join(sourcePath, 'SKILL.md');
       if (!existsSync(skillFile)) return null;
       const clawhubSlug = skill.clawhubSlug || `superada-skill-${skill.slug}`;
-      return { slug: clawhubSlug, name: skill.title, path: sourcePath, type: 'skill', version: '1.0.0' };
+      return { slug: clawhubSlug, name: skill.title, path: sourcePath, type: 'skill', version: '1.0.0', _superadaSlug: skill.slug };
     })
     .filter(Boolean);
 
@@ -341,11 +404,20 @@ function main() {
   const workflows = extractWorkflows();
   const items = [...skills, ...plugins, ...workflows];
 
+  // Optional: only publish items in this comma-separated allowlist of
+  // superada-ai slugs. Used to top up after hitting the per-hour new-skill
+  // rate limit.
+  const onlyArg = process.argv.find((arg) => arg.startsWith('--only='));
+  const onlyFilter = onlyArg
+    ? new Set(onlyArg.slice('--only='.length).split(',').map((s) => s.trim()).filter(Boolean))
+    : null;
+  const filtered = onlyFilter ? items.filter((item) => onlyFilter.has(item._superadaSlug)) : items;
+
   console.log(`SuperAda -> ClawHub ${dryRun ? 'plan' : 'publish'}`);
   console.log(`Skills: ${skills.length}`);
   console.log(`Plugins: ${plugins.length}`);
   console.log(`Workflows: ${workflows.length}`);
-  for (const item of items) {
+  for (const item of filtered) {
     console.log(`- ${item.type}: ${item.slug} (${item.path})`);
   }
 
@@ -355,7 +427,11 @@ function main() {
   }
 
   assertClawHubAuth();
-  for (const item of items) publishItem(item);
+  for (const item of filtered) {
+    publishItem(item);
+    const v = item._publishedVersion && item._publishedVersion !== item.version ? ` @ ${item._publishedVersion}` : '';
+    console.log(`  ✔ published ${item.type} ${item._publishedSlug || item.slug}${v}`);
+  }
 }
 
 try {
