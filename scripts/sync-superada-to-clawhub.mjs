@@ -343,6 +343,7 @@ function publishItem(item) {
     `${baseMajor}.${baseMinor}.${d * 10}`,          // 1.0.30
     `${baseMajor}.${baseMinor}.${m * 100 + d}`,     // 1.0.603
     `${baseMajor}.${baseMinor}.${yShort * 10000 + m * 100 + d}`, // 1.0.260603
+    `${baseMajor}.${baseMinor}.${Math.floor(Date.now() / 1000)}`, // always unique for CI reruns
   ];
   const baseArgs = (slug, version) => ([
     'publish',
