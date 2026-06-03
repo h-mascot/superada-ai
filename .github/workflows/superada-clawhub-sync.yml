@@ -29,6 +29,9 @@ jobs:
       - name: Install ClawHub CLI
         run: npm install -g clawdhub@0.3.0 undici@^7.22.0
 
+      - name: Patch ClawHub CLI license acceptance
+        run: npm run clawhub:patch-cli
+
       - name: Plan SuperAda resources
         run: npm run clawhub:plan
 
