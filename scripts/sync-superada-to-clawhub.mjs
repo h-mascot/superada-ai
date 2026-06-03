@@ -11,6 +11,7 @@ const dryRun = args.has('--dry-run') || !publish;
 const generatedRoot = path.join(root, '.generated', 'clawhub');
 
 const skillRegistryPath = path.join(root, 'src', 'data', 'skills.ts');
+const pluginRegistryPath = path.join(root, 'src', 'data', 'plugins.ts');
 const workflowsDir = path.join(root, 'src', 'content', 'workflows');
 
 function run(command, commandArgs, options = {}) {
@@ -84,6 +85,13 @@ function extractString(block, key) {
   return quoted ? quoted[2] : undefined;
 }
 
+function pageUrl(kind, slug) {
+  if (kind === 'skill') return `https://superada.ai/skills/${slug}/`;
+  if (kind === 'plugin') return `https://superada.ai/plugins/${slug}/`;
+  if (kind === 'workflow') return `https://superada.ai/workflows/${slug}/`;
+  return 'https://superada.ai/resources/';
+}
+
 function extractSkills() {
   if (!existsSync(skillRegistryPath)) return [];
   const raw = readFileSync(skillRegistryPath, 'utf8');
@@ -95,8 +103,30 @@ function extractSkills() {
       title: extractString(chunk, 'title'),
       availability: extractString(chunk, 'availability'),
       sourceUrl: extractString(chunk, 'sourceUrl'),
+      clawhubSlug: extractString(chunk, 'clawhubSlug'),
     }))
     .filter((entry) => entry.slug && entry.title && entry.availability === 'agent-installable' && entry.sourceUrl?.includes('github.com/'));
+}
+
+function extractPlugins() {
+  if (!existsSync(pluginRegistryPath)) return [];
+  const raw = readFileSync(pluginRegistryPath, 'utf8');
+  const chunks = raw.split(/\n\s*\{\s*\n\s*slug:/).slice(1).map((chunk) => `{\n  slug:${chunk}`);
+
+  return chunks
+    .map((chunk) => ({
+      slug: extractString(chunk, 'slug'),
+      title: extractString(chunk, 'title'),
+      status: extractString(chunk, 'status'),
+      sourceUrl: extractString(chunk, 'sourceUrl'),
+      clawhubSlug: extractString(chunk, 'clawhubSlug'),
+      installCommand: extractString(chunk, 'installCommand'),
+      verifyCommand: extractString(chunk, 'verifyCommand'),
+      tagline: extractString(chunk, 'tagline'),
+      summary: extractString(chunk, 'summary'),
+      category: extractString(chunk, 'category'),
+    }))
+    .filter((entry) => entry.slug && entry.title && entry.sourceUrl?.includes('github.com/') && (entry.clawhubSlug || entry.status !== 'Draft'));
 }
 
 function githubSourcePath(sourceUrl) {
@@ -110,16 +140,71 @@ function ensureGitSource(sourceUrl) {
   const source = githubSourcePath(sourceUrl);
   if (!source) return null;
   const cloneDir = path.join(generatedRoot, 'sources', `${source.owner}__${source.repo}`);
-  if (!existsSync(cloneDir)) {
+  if (!existsSync(path.join(cloneDir, '.git'))) {
     mkdirSync(path.dirname(cloneDir), { recursive: true });
-    run('git', ['clone', '--depth=1', '--branch', source.branch, `https://github.com/${source.owner}/${source.repo}.git`, cloneDir]);
+    if (existsSync(cloneDir)) run('rm', ['-rf', cloneDir]);
+    // Shallow + blobless + sparse-checkout so we never materialise the
+    // public/ assets and other heavy paths that ship with the SuperAda repo.
+    run('git', [
+      'clone',
+      '--depth=1',
+      '--filter=blob:none',
+      '--no-checkout',
+      '--branch',
+      source.branch,
+      `https://github.com/${source.owner}/${source.repo}.git`,
+      cloneDir,
+    ]);
+    run('git', ['-C', cloneDir, 'sparse-checkout', 'init', '--cone']);
+    run('git', ['-C', cloneDir, 'sparse-checkout', 'set', source.subpath]);
+    run('git', ['-C', cloneDir, 'checkout', source.branch]);
   }
   return path.join(cloneDir, source.subpath);
 }
 
-function workflowPageUrl(filePath) {
-  const slug = path.basename(filePath).replace(/\.md$/, '');
-  return `https://superada.ai/workflows/${slug}/`;
+function writePluginPackage(plugin, sourcePath) {
+  const clawhubSlug = plugin.clawhubSlug || `superada-plugin-${plugin.slug}`;
+  const sourceSkillFile = path.join(sourcePath, 'SKILL.md');
+  mkdirSync(sourcePath, { recursive: true });
+
+  if (!existsSync(sourceSkillFile)) {
+    // Plugins don't always ship a SKILL.md. Synthesize one from the SuperAda
+    // plugin record so the ClawHub package still satisfies the SKILL.md
+    // requirement without rewriting the upstream source.
+    const generated = `---
+name: ${clawhubSlug}
+description: ${plugin.summary || plugin.tagline || plugin.title}
+---
+
+# ${plugin.title}
+
+Plugin bundle exported from SuperAda.ai for ClawHub discovery.
+
+## Source
+- SuperAda page: ${pageUrl('plugin', plugin.slug)}
+- Source URL: ${plugin.sourceUrl}
+- Category: ${plugin.category || 'Operations'}
+- Status: ${plugin.status || 'Live'}
+
+## Install
+
+\`\`\`bash
+${plugin.installCommand || 'See the SuperAda page for install instructions.'}
+\`\`\`
+
+## What It Does
+
+${plugin.summary || plugin.tagline || 'See the SuperAda page for plugin details.'}
+
+## Verification
+\`\`\`bash
+${plugin.verifyCommand || 'Follow the verification steps on the SuperAda page.'}
+\`\`\`
+`;
+    writeFileSync(sourceSkillFile, generated);
+  }
+
+  return { slug: clawhubSlug, name: plugin.title, path: sourcePath, type: 'plugin', version: '0.1.0' };
 }
 
 function extractWorkflowReferences(filePath, fm) {
@@ -154,7 +239,7 @@ description: ${fm.summary || fm.title}
 Workflow bundle exported from SuperAda.ai for ClawHub discovery.
 
 ## Source
-- SuperAda page: ${workflowPageUrl(filePath)}
+- SuperAda page: ${pageUrl('workflow', pageSlug)}
 - Source URL: ${refs.sourceUrl || fm.sourceUrl || 'See SuperAda page'}
 - Category: ${fm.category || 'Operations'}
 - Difficulty: ${fm.difficulty || 'Medium'}
@@ -208,7 +293,12 @@ function assertClawHubAuth() {
 }
 
 function publishItem(item) {
-  const tags = item.type === 'workflow' ? 'superada,workflow,latest' : 'superada,skill,enterprise-crew,latest';
+  const tagsByType = {
+    workflow: 'superada,workflow,latest',
+    plugin: 'superada,plugin,enterprise-crew,latest',
+    skill: 'superada,skill,enterprise-crew,latest',
+  };
+  const tags = tagsByType[item.type] || 'superada,latest';
   run('clawdhub', [
     'publish',
     item.path,
@@ -230,20 +320,30 @@ function main() {
   mkdirSync(generatedRoot, { recursive: true });
 
   const skills = extractSkills()
-    .map((skill) => ({
-      slug: skill.slug,
-      name: skill.title,
-      path: ensureGitSource(skill.sourceUrl),
-      type: 'skill',
-      version: '1.0.0',
-    }))
-    .filter((skill) => skill.path && existsSync(path.join(skill.path, 'SKILL.md')));
+    .map((skill) => {
+      const sourcePath = ensureGitSource(skill.sourceUrl);
+      if (!sourcePath) return null;
+      const skillFile = path.join(sourcePath, 'SKILL.md');
+      if (!existsSync(skillFile)) return null;
+      const clawhubSlug = skill.clawhubSlug || `superada-skill-${skill.slug}`;
+      return { slug: clawhubSlug, name: skill.title, path: sourcePath, type: 'skill', version: '1.0.0' };
+    })
+    .filter(Boolean);
+
+  const plugins = extractPlugins()
+    .map((plugin) => {
+      const sourcePath = ensureGitSource(plugin.sourceUrl);
+      if (!sourcePath) return null;
+      return writePluginPackage(plugin, sourcePath);
+    })
+    .filter(Boolean);
 
   const workflows = extractWorkflows();
-  const items = [...skills, ...workflows];
+  const items = [...skills, ...plugins, ...workflows];
 
   console.log(`SuperAda -> ClawHub ${dryRun ? 'plan' : 'publish'}`);
   console.log(`Skills: ${skills.length}`);
+  console.log(`Plugins: ${plugins.length}`);
   console.log(`Workflows: ${workflows.length}`);
   for (const item of items) {
     console.log(`- ${item.type}: ${item.slug} (${item.path})`);

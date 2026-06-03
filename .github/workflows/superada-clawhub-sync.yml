@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/data/skills.ts'
+      - 'src/data/plugins.ts'
       - 'src/content/workflows/**'
       - 'public/install/**'
       - 'public/skills/**'
@@ -26,7 +27,7 @@ jobs:
           node-version: 22
 
       - name: Install ClawHub CLI
-        run: npm install -g clawdhub@0.3.0
+        run: npm install -g clawdhub@0.3.0 undici@^7.22.0
 
       - name: Plan SuperAda resources
         run: npm run clawhub:plan
