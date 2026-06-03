@@ -83,8 +83,8 @@ export const publishedPlugins: PluginRecord[] = [
     difficulty: 'Medium',
     sourceLabel: 'h-mascot/agent-action-gate (canonical Action Gate repo)',
     sourceUrl: 'https://github.com/h-mascot/agent-action-gate/tree/main',
-    clawhubSlug: 'openclaw-action-gate',
-    clawhubUrl: 'https://clawdhub.com/skill/openclaw-action-gate',
+    clawhubSlug: 'superada-plugin-openclaw-action-gate',
+    clawhubUrl: 'https://clawdhub.com/skill/superada-plugin-openclaw-action-gate',
     installCommand:
       'git clone --depth=1 https://github.com/h-mascot/agent-action-gate.git /tmp/agent-action-gate && mkdir -p plugins && cp -R /tmp/agent-action-gate/plugins/openclaw-action-gate plugins/openclaw-action-gate && (cd plugins/openclaw-action-gate && pnpm install --prod && pnpm run build) && openclaw plugins enable openclaw-action-gate',
     uninstallCommand:
@@ -259,8 +259,8 @@ export const publishedPlugins: PluginRecord[] = [
     difficulty: 'Medium',
     sourceLabel: 'h-mascot/agent-action-gate (plugins/openclaw-action-gate)',
     sourceUrl: 'https://github.com/h-mascot/agent-action-gate/tree/main/plugins/openclaw-action-gate',
-    clawhubSlug: 'openclaw-action-gate',
-    clawhubUrl: 'https://clawdhub.com/skill/openclaw-action-gate',
+    clawhubSlug: 'superada-plugin-openclaw-action-gate',
+    clawhubUrl: 'https://clawdhub.com/skill/superada-plugin-openclaw-action-gate',
     installCommand:
       'git clone --depth=1 https://github.com/h-mascot/agent-action-gate.git /tmp/agent-action-gate && mkdir -p plugins && cp -R /tmp/agent-action-gate/plugins/openclaw-action-gate plugins/openclaw-action-gate && (cd plugins/openclaw-action-gate && pnpm install --prod && pnpm run build) && openclaw plugins enable openclaw-action-gate',
     uninstallCommand:
