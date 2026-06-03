@@ -384,17 +384,15 @@ function publishItem(item) {
       return tryPublish(slug, versionIndex + 1, slugRetried, lengthRetried, rateRetried, embeddingRetries);
     }
     if (/rate limit/i.test(combined) && !rateRetried) {
-      const waitMatch = combined.match(/(\d+)\s*(?:seconds?|s|secs?|minutes?|m|hours?|h)/i);
-      let waitSec = 60;
-      if (waitMatch) {
-        const n = parseInt(waitMatch[1], 10);
-        const unit = waitMatch[0].toLowerCase();
-        if (/m|minute|hour/.test(unit)) waitSec = n * (/hour/.test(unit) ? 3600 : 60);
-        else waitSec = n;
-      }
-      waitSec = Math.min(waitSec, 30);
-      console.warn(`  ! rate limited; sleeping ${waitSec}s and retrying once`);
-      spawnSync('sleep', [String(waitSec)]);
+      // ClawHub enforces a per-hour rate limit on new resources (e.g. 5
+      // new skills per hour). If we hit it mid-batch we must wait out
+      // the full window before continuing, otherwise every subsequent
+      // publish in this run will fail the same way. Cap at 65 minutes
+      // to clear a one-hour window plus a small buffer, and stay
+      // within GitHub Actions' default 360 minute job timeout.
+      const hourWaitSec = 65 * 60;
+      console.warn(`  ! rate limited; sleeping ${hourWaitSec}s (~65 min) to clear the ClawHub per-hour window, then retrying once`);
+      spawnSync('sleep', [String(hourWaitSec)]);
       return tryPublish(slug, versionIndex, slugRetried, lengthRetried, true, embeddingRetries);
     }
     if (/embedding failed/i.test(combined) && embeddingRetries < 2) {
