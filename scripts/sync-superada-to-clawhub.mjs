@@ -158,6 +158,11 @@ function ensureGitSource(sourceUrl) {
     run('git', ['-C', cloneDir, 'sparse-checkout', 'init', '--cone']);
     run('git', ['-C', cloneDir, 'sparse-checkout', 'set', source.subpath]);
     run('git', ['-C', cloneDir, 'checkout', source.branch]);
+  } else {
+    // Several SuperAda listings live in the same repo. The first lookup
+    // creates a sparse checkout for one path; every later lookup must add its
+    // own path or those sibling skills silently disappear from the publish set.
+    run('git', ['-C', cloneDir, 'sparse-checkout', 'add', source.subpath]);
   }
   return path.join(cloneDir, source.subpath);
 }
@@ -342,33 +347,47 @@ function publishItem(item) {
     'Synced from SuperAda.ai resources',
   ]);
 
-  const tryPublish = (slug, versionIndex, slugRetried, lengthRetried) => {
+  const tryPublish = (slug, versionIndex, slugRetried, lengthRetried, rateRetried) => {
     const r = spawnSync('clawdhub', baseArgs(slug, versionCandidates[versionIndex]), { encoding: 'utf8', stdio: 'pipe' });
     if (r.status === 0) return { ok: true, slug, version: versionCandidates[versionIndex] };
     const combined = `${r.stdout || ''}\n${r.stderr || ''}`;
     if (/slug must be at most 48 characters/i.test(combined) && !lengthRetried) {
       const trimmed = trimSlugToClawdhub(slug);
       console.warn(`  ! slug "${slug}" too long; retrying as "${trimmed}"`);
-      return tryPublish(trimmed, versionIndex, slugRetried, true);
+      return tryPublish(trimmed, versionIndex, slugRetried, true, rateRetried);
     }
     if (/already taken/i.test(combined) && !slugRetried) {
       const namespaced = `superada-${item.type}-${item.slug}`;
       console.warn(`  ! slug "${slug}" taken by another publisher; retrying as "${namespaced}"`);
-      return tryPublish(namespaced, 0, true, lengthRetried);
+      return tryPublish(namespaced, 0, true, lengthRetried, rateRetried);
     }
     if (/protected .* slug namespace/i.test(combined) && !slugRetried) {
       const namespaced = `superada-${item.type}-${item.slug}`;
       console.warn(`  ! slug "${slug}" is in a protected namespace; retrying as "${namespaced}"`);
-      return tryPublish(namespaced, 0, true, lengthRetried);
+      return tryPublish(namespaced, 0, true, lengthRetried, rateRetried);
     }
     if (/version already exists/i.test(combined) && versionIndex < versionCandidates.length - 1) {
       console.warn(`  ! version ${versionCandidates[versionIndex]} exists; bumping to ${versionCandidates[versionIndex + 1]}`);
-      return tryPublish(slug, versionIndex + 1, slugRetried, lengthRetried);
+      return tryPublish(slug, versionIndex + 1, slugRetried, lengthRetried, rateRetried);
+    }
+    if (/rate limit/i.test(combined) && !rateRetried) {
+      const waitMatch = combined.match(/(\d+)\s*(?:seconds?|s|secs?|minutes?|m|hours?|h)/i);
+      let waitSec = 60;
+      if (waitMatch) {
+        const n = parseInt(waitMatch[1], 10);
+        const unit = waitMatch[0].toLowerCase();
+        if (/m|minute|hour/.test(unit)) waitSec = n * (/hour/.test(unit) ? 3600 : 60);
+        else waitSec = n;
+      }
+      waitSec = Math.min(waitSec, 30);
+      console.warn(`  ! rate limited; sleeping ${waitSec}s and retrying once`);
+      spawnSync('sleep', [String(waitSec)]);
+      return tryPublish(slug, versionIndex, slugRetried, lengthRetried, true);
     }
     return { ok: false, slug, version: versionCandidates[versionIndex], output: combined };
   };
 
-  const result = tryPublish(item.slug, 0, false, false);
+  const result = tryPublish(item.slug, 0, false, false, false);
   if (result.ok) {
     item._publishedSlug = result.slug;
     item._publishedVersion = result.version;
