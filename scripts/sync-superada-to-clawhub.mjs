@@ -136,35 +136,47 @@ function githubSourcePath(sourceUrl) {
   return { owner, repo, branch, subpath };
 }
 
-function ensureGitSource(sourceUrl) {
+function generatedSourceFallback(kind, slug, reason) {
+  const outDir = path.join(generatedRoot, 'fallback-sources', kind, slug);
+  mkdirSync(outDir, { recursive: true });
+  console.warn(`  ! using generated ${kind} package for ${slug}: ${reason}`);
+  return outDir;
+}
+
+function ensureGitSource(sourceUrl, options = {}) {
   const source = githubSourcePath(sourceUrl);
   if (!source) return null;
   const cloneDir = path.join(generatedRoot, 'sources', `${source.owner}__${source.repo}`);
-  if (!existsSync(path.join(cloneDir, '.git'))) {
-    mkdirSync(path.dirname(cloneDir), { recursive: true });
-    if (existsSync(cloneDir)) run('rm', ['-rf', cloneDir]);
-    // Shallow + blobless + sparse-checkout so we never materialise the
-    // public/ assets and other heavy paths that ship with the SuperAda repo.
-    run('git', [
-      'clone',
-      '--depth=1',
-      '--filter=blob:none',
-      '--no-checkout',
-      '--branch',
-      source.branch,
-      `https://github.com/${source.owner}/${source.repo}.git`,
-      cloneDir,
-    ]);
-    run('git', ['-C', cloneDir, 'sparse-checkout', 'init', '--cone']);
-    run('git', ['-C', cloneDir, 'sparse-checkout', 'set', source.subpath]);
-    run('git', ['-C', cloneDir, 'checkout', source.branch]);
-  } else {
-    // Several SuperAda listings live in the same repo. The first lookup
-    // creates a sparse checkout for one path; every later lookup must add its
-    // own path or those sibling skills silently disappear from the publish set.
-    run('git', ['-C', cloneDir, 'sparse-checkout', 'add', source.subpath]);
+  try {
+    if (!existsSync(path.join(cloneDir, '.git'))) {
+      mkdirSync(path.dirname(cloneDir), { recursive: true });
+      if (existsSync(cloneDir)) run('rm', ['-rf', cloneDir]);
+      // Shallow + blobless + sparse-checkout so we never materialise the
+      // public/ assets and other heavy paths that ship with the SuperAda repo.
+      run('git', [
+        'clone',
+        '--depth=1',
+        '--filter=blob:none',
+        '--no-checkout',
+        '--branch',
+        source.branch,
+        `https://github.com/${source.owner}/${source.repo}.git`,
+        cloneDir,
+      ]);
+      run('git', ['-C', cloneDir, 'sparse-checkout', 'init', '--cone']);
+      run('git', ['-C', cloneDir, 'sparse-checkout', 'set', source.subpath]);
+      run('git', ['-C', cloneDir, 'checkout', source.branch]);
+    } else {
+      // Several SuperAda listings live in the same repo. The first lookup
+      // creates a sparse checkout for one path; every later lookup must add its
+      // own path or those sibling skills silently disappear from the publish set.
+      run('git', ['-C', cloneDir, 'sparse-checkout', 'add', source.subpath]);
+    }
+    return path.join(cloneDir, source.subpath);
+  } catch (error) {
+    if (!options.allowGeneratedFallback) throw error;
+    return generatedSourceFallback(options.kind || 'resource', options.slug || `${source.owner}-${source.repo}`, error.message.split('\n')[0]);
   }
-  return path.join(cloneDir, source.subpath);
 }
 
 function writePluginPackage(plugin, sourcePath) {
@@ -420,7 +432,11 @@ function main() {
 
   const plugins = extractPlugins()
     .map((plugin) => {
-      const sourcePath = ensureGitSource(plugin.sourceUrl);
+      const sourcePath = ensureGitSource(plugin.sourceUrl, {
+        allowGeneratedFallback: true,
+        kind: 'plugin',
+        slug: plugin.clawhubSlug || plugin.slug,
+      });
       if (!sourcePath) return null;
       return writePluginPackage(plugin, sourcePath);
     })
