@@ -1,3 +1,3 @@
 # Active plan
 
-- [2026-06-01 Action Gate runtime enforcement article](./2026-06-01-action-gate-runtime-enforcement-article-plan.md)
+- [2026-06-05 SuperAda avatar update](./2026-06-05-superada-avatar-update.md)
