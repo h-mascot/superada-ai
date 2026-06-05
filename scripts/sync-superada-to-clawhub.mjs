@@ -379,6 +379,11 @@ function publishItem(item) {
       console.warn(`  ! slug "${slug}" is in a protected namespace; retrying as "${namespaced}"`);
       return tryPublish(namespaced, 0, true, lengthRetried, rateRetried, embeddingRetries);
     }
+    if (/not eligible for ownership transfer while under moderation/i.test(combined) && !slugRetried) {
+      const namespaced = `superada-${item.type}-${item.slug}`;
+      console.warn(`  ! slug "${slug}" is blocked by ClawHub moderation transfer state; retrying as "${namespaced}"`);
+      return tryPublish(namespaced, 0, true, lengthRetried, rateRetried, embeddingRetries);
+    }
     if (/version already exists/i.test(combined) && versionIndex < versionCandidates.length - 1) {
       console.warn(`  ! version ${versionCandidates[versionIndex]} exists; bumping to ${versionCandidates[versionIndex + 1]}`);
       return tryPublish(slug, versionIndex + 1, slugRetried, lengthRetried, rateRetried, embeddingRetries);
