@@ -95,39 +95,8 @@ const agents = [
     quote: `"Slow is smooth. Smooth is fast."`,
     slug: 'book',
   },
-  {
-    name: 'Enterprise',
-    emoji: '💻',
-    role: 'MacBook Pro Node & Voice Server',
-    hardware: 'MacBook Pro M5 Max',
-    accent: '#68e1fd',
-    accentGlow: 'rgba(104, 225, 253, 0.26)',
-    banner: '/banners/banner-enterprise.svg',
-    avatar: '/avatars/enterprise.svg',
-    born: 'Apr 16, 2026',
-    signatureEmoji: 'M5 + TTS',
-    bio: `Enterprise is the crew's MacBook Pro M5 Max node: 128GB of memory, 3.6TB of storage, OpenClaw, Codex, Claude Code, local model endpoints, and the Kokoro TTS server that gives the crew a shared voice path. It is less personality-forward than Ada or Spock, but it is where the heavier local infrastructure lives. The ship has an engine room now. About time.`,
-    quote: `"Give the crew a ship, a voice, and enough memory to stop making excuses."`,
-    slug: 'enterprise',
-  },
 ];
 
-const adjacentAgents = [
-  {
-    name: 'Midas',
-    emoji: '✨',
-    role: "Chisom's Personal Assistant",
-    hardware: 'Spock VM',
-    accent: '#d4af37',
-    accentGlow: 'rgba(212, 175, 55, 0.28)',
-    banner: '/banners/banner-midas.svg',
-    avatar: '/avatars/midas.svg',
-    born: 'Feb 17, 2026',
-    signatureEmoji: 'Personal agent',
-    bio: `Midas is real and active, but she is not Enterprise Crew. She is Chisom's personal assistant, hosted from the Spock machine with a separate OpenClaw profile and Telegram lane. She belongs in the broader agent inventory, not in crew-wide routing, health reports, or Enterprise Crew operations unless Henry explicitly asks for Midas work.`,
-    quote: `"Useful, separate, and intentionally not folded into the bridge roster."`,
-  },
-];
 
 const trekConnections = [
   { agent: 'Ada', trek: 'Operations Officer', detail: '"Ada" means "first daughter" in Igbo — fitting for the first agent born. Like a Starfleet operations officer, she keeps every system coordinated.' },
@@ -136,7 +105,6 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
-  { agent: 'Enterprise', trek: 'USS Enterprise', detail: 'The ship itself. Enterprise is the local MacBook Pro node that carries heavier runtime work and Kokoro voice infrastructure for the crew.' },
 ];
 ---
 
@@ -153,8 +121,8 @@ const trekConnections = [
       <section class="crew-hero">
         <h1>The Enterprise Crew</h1>
         <p class="crew-subtitle">
-          Seven active crew members and nodes spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
-          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread. Adjacent personal and dormant agents are tracked separately so the roster does not lie to itself in public.
+          Six active agents spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
+          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
         </p>
       </section>
 
@@ -188,45 +156,12 @@ const trekConnections = [
         ))}
       </section>
 
-      <section class="adjacent-section">
-        <h2>Adjacent, Not Enterprise Crew</h2>
-        <p class="adjacent-intro">
-          The wider agent inventory includes personal assistants and experiments. They matter, but they are not all part of the active Enterprise Crew.
-        </p>
-        <div class="agent-cards adjacent-cards">
-          {adjacentAgents.map((agent) => (
-            <article class="agent-card adjacent-card" style={`--agent-accent: ${agent.accent}; --agent-glow: ${agent.accentGlow};`}>
-              <div class="agent-banner-wrap">
-                <img src={agent.banner} alt={`${agent.name} banner`} class="agent-banner" loading="lazy" />
-                <div class="agent-avatar-wrap">
-                  <img src={agent.avatar} alt={agent.name} class="agent-avatar" />
-                </div>
-              </div>
-              <div class="agent-body">
-                <div class="agent-header">
-                  <h2>{agent.name} <span class="agent-emoji">{agent.emoji}</span></h2>
-                  <span class="agent-role">{agent.role}</span>
-                </div>
-                <p class="agent-bio">{agent.bio}</p>
-                <blockquote class="agent-quote">{agent.quote}</blockquote>
-                <div class="agent-stats">
-                  <span class="stat"><span class="stat-label">Born</span> {agent.born}</span>
-                  <span class="stat-divider">·</span>
-                  <span class="stat"><span class="stat-label">Runs on</span> {agent.hardware}</span>
-                  <span class="stat-divider">·</span>
-                  <span class="stat">{agent.signatureEmoji}</span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
 
       <!-- Star Trek Connection -->
       <section class="trek-section">
         <h2>Named for the Stars</h2>
         <p class="trek-intro">
-          The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a character whose strengths mirror their role.
+          The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a Star Trek character whose strengths mirror their role.
         </p>
         <div class="trek-grid">
           {trekConnections.map((conn) => (
@@ -251,7 +186,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>Retired and Experimental</h2>
         <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current active Enterprise Crew is Ada, Spock, Scotty, Geordi, Zora, Book, and Enterprise.
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current active agent roster is Ada, Spock, Scotty, Geordi, Zora, and Book. Enterprise remains infrastructure — the ship, not an agent.
         </p>
       </section>
 
@@ -292,8 +227,7 @@ const trekConnections = [
         { agent: 'Ada', emoji: '👩‍🚀', action: 'Scheduling investor follow-up emails', status: 'scheduling', time: '30m ago' },
         { agent: 'Scotty', emoji: '🔧', action: 'Automating SSL cert renewal for soteriaos.com', status: 'automating', time: '33m ago' },
         { agent: 'Book', emoji: '📖', action: 'Reviewing assumptions before the next commit', status: 'reflecting', time: '40m ago' },
-        { agent: 'Enterprise', emoji: '💻', action: 'Serving Kokoro voice requests from the MacBook Pro node', status: 'supporting', time: '44m ago' },
-      ];
+        ];
 
       const statusColors: Record<string, string> = {
         active: '#4ade80',
