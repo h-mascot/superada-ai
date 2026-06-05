@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Claw - June 5, 2026 - Ep. 17</title>
+<link rel="preconnect" href="https://api.fontshare.com"><link rel="preconnect" href="https://cdn.fontshare.com" crossorigin><link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg-deep:#050810;
+  --bg-surface:#0a0f1a;
+  --bg-elevated:#111827;
+  --coral-bright:#ff4d4d;
+  --coral-mid:#e63946;
+  --coral-dark:#991b1b;
+  --cyan-bright:#00e5cc;
+  --cyan-mid:#14b8a6;
+  --cyan-glow:rgba(0,229,204,.4);
+  --text-primary:#f0f4ff;
+  --text-secondary:#aab4d0;
+  --text-muted:#69748f;
+  --border-subtle:rgba(136,146,176,.18);
+  --border-accent:rgba(255,77,77,.34);
+  --surface-card:rgba(10,15,26,.72);
+  --surface-card-strong:rgba(10,15,26,.88);
+  --surface-overlay:rgba(0,0,0,.28);
+  --surface-cyan-soft:rgba(0,229,204,.13);
+  --surface-coral-soft:rgba(255,77,77,.13);
+  --shadow-coral-soft:rgba(255,77,77,.16);
+  --shadow-cyan-soft:rgba(0,229,204,.14);
+  --hero-title-start:#f0f4ff;
+  --hero-title-end:#00e5cc;
+  --logo-gradient-start:#ff4d4d;
+  --logo-gradient-end:#991b1b;
+  --logo-glow:rgba(255,77,77,.42);
+  --font-display:"Clash Display",system-ui,sans-serif;
+  --font-body:"Satoshi",system-ui,sans-serif;
+  --font-mono:"SF Mono","JetBrains Mono","Fira Code",monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg-deep);color:var(--text-primary);font-family:var(--font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(2px 2px at 20px 30px,rgba(255,255,255,.7),transparent),radial-gradient(2px 2px at 200px 60px,rgba(0,229,204,.5),transparent),radial-gradient(1px 1px at 90px 40px,rgba(255,255,255,.5),transparent),radial-gradient(2px 2px at 300px 40px,rgba(255,77,77,.35),transparent);background-size:350px 200px;opacity:.42;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 18% 18%,rgba(255,77,77,.13),transparent 50%),radial-gradient(ellipse 60% 60% at 84% 26%,rgba(0,229,204,.09),transparent 52%),radial-gradient(ellipse 90% 70% at 48% 92%,rgba(255,77,77,.06),transparent 56%);pointer-events:none}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;min-height:100vh;padding:44px 72px 42px;overflow:hidden;background:linear-gradient(135deg,rgba(5,8,16,.98),rgba(10,15,26,.98) 58%,rgba(5,8,16,.98));opacity:0;pointer-events:none}
+.slide.active{display:flex!important;opacity:1;pointer-events:auto}
+.slide::before{content:"";position:absolute;inset:24px;border:1px solid var(--border-subtle);border-radius:22px;box-shadow:0 0 80px rgba(0,229,204,.045),inset 0 1px 0 rgba(255,255,255,.04);pointer-events:none}
+.slide::after{content:"";position:absolute;right:-10vw;top:-18vh;width:58vw;height:58vw;border-radius:50%;background:radial-gradient(circle,rgba(0,229,204,.10),transparent 60%);pointer-events:none}
+.slide>*{position:relative;z-index:2}
+
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;margin-bottom:34px}
+.claw-wordmark{display:flex;flex-direction:column;line-height:1;margin-bottom:22px}
+.topbar .claw-wordmark{margin-bottom:0}
+.claw-weekly{font:700 12px/1 var(--font-mono);letter-spacing:.28em;color:var(--text-muted);text-transform:uppercase}
+.claw-claw{font:700 42px/.9 var(--font-display);letter-spacing:0;background:linear-gradient(135deg,var(--hero-title-start),var(--coral-bright) 52%,var(--hero-title-end));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-transform:none}
+.claw-ep{margin-top:8px;font:700 11px/1 var(--font-mono);letter-spacing:.18em;color:var(--coral-bright);text-transform:uppercase}
+.ep-num{font-style:normal;color:var(--cyan-bright)}
+.meta{font:500 12px/1.45 var(--font-mono);color:var(--text-muted);text-align:right;text-transform:uppercase;letter-spacing:.08em}
+.ep-label,.eyebrow{font:700 12px/1 var(--font-mono);letter-spacing:.18em;color:var(--cyan-bright);text-transform:uppercase;margin-bottom:16px}
+
+.layout-title{justify-content:flex-start}
+.layout-outro{justify-content:center}
+.hero{margin:auto 0;max-width:1000px}
+.title-hero,h1,h2,.slide-title{font-family:var(--font-display);font-weight:700;letter-spacing:0;text-transform:none;color:var(--text-primary)}
+.title-hero{font-size:clamp(42px,5.6vw,66px);line-height:.96;max-width:1060px;margin:0 0 18px}
+.title-hero em,.slide-title .accent{font-style:normal;background:linear-gradient(135deg,var(--coral-bright),var(--cyan-bright));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.title-hero em{display:block;font-size:.68em;line-height:1.02;margin-top:.08em}
+h1{font-size:clamp(48px,6.2vw,76px);line-height:.98;max-width:1060px}
+h2,.slide-title{font-size:clamp(38px,5.2vw,60px);line-height:1;max-width:1080px;margin:0 0 16px}
+.slide-title .accent{display:block}
+.gold-rule{width:72px;height:3px;border-radius:999px;background:linear-gradient(90deg,var(--coral-bright),var(--cyan-bright));margin:0 0 24px}
+.lead{font-size:clamp(17px,1.75vw,21px);line-height:1.42;color:var(--text-secondary);max-width:1080px;margin:0 0 18px}
+
+.card,.quote,.code,.stat{border:1px solid var(--border-subtle);background:linear-gradient(180deg,rgba(17,24,39,.86),rgba(10,15,26,.76));border-radius:14px;box-shadow:0 22px 70px rgba(0,0,0,.28)}
+.card{padding:18px 24px;max-width:1120px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:auto 0}
+.two-col{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center;margin:auto 0}
+.card strong{display:block;font:700 22px/1.15 var(--font-display);color:var(--text-primary);margin-bottom:10px}
+ul,.agenda-list,.bullet-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:10px 0 0;padding:0;max-width:1080px}
+li,.bullet-list li{display:flex;gap:12px;align-items:flex-start;font-size:clamp(15px,1.42vw,18px);line-height:1.3;color:var(--text-secondary);margin:0}
+li::before,.bullet-list li::before{content:"›";font:700 25px/.86 var(--font-display);color:var(--coral-bright);min-width:15px}
+.bullet-list li strong, li strong{color:var(--text-primary);font-weight:700}
+.grid li{font-size:18px;line-height:1.28}
+.quote{padding:24px 28px;border-left:5px solid var(--coral-bright);font-size:clamp(24px,3vw,34px);line-height:1.17;color:var(--text-primary)}
+.code{padding:22px 24px;font:500 17px/1.5 var(--font-mono);color:var(--cyan-bright)}
+
+.agenda-style{padding-top:42px}
+.agenda-style .topbar{margin-bottom:0}
+.agenda-style .claw-claw{font-size:46px}
+.agenda-style .signal-kicker{margin-top:44px;font:700 13px/1 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--cyan-bright)}
+.agenda-style .grid{margin:auto 0 44px;gap:22px}
+.agenda-style .card{min-height:150px;padding:24px 28px;border-radius:14px}
+.agenda-style .card strong{font-size:25px;margin-bottom:14px}
+.agenda-style .agenda-number{display:inline-block;margin-right:8px;color:var(--coral-bright)}
+.agenda-style li{font-size:19px;line-height:1.32}
+.agenda-style .lobster-icon{width:118px;height:118px;right:52px;bottom:44px;opacity:.58}
+
+.stat-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;margin:0 0 22px;width:min(100%,1080px)}
+.stat{padding:18px 20px;min-width:0}
+.stat .num,.big-number{display:block;font:700 58px/.92 var(--font-display);letter-spacing:0;color:var(--text-primary)}
+.big-number{font-size:86px;background:linear-gradient(135deg,var(--coral-bright),var(--cyan-bright));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{display:block;margin-top:9px;font:700 11px/1.2 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
+.pill,.meta-pill,.kbd{display:inline-flex;align-items:center;border:1px solid var(--border-accent);border-radius:999px;padding:7px 11px;margin:5px 7px 5px 0;background:var(--surface-coral-soft);color:var(--text-primary);font:600 12px/1 var(--font-mono)}
+.meta-pill{align-self:flex-start;margin-top:2px;color:var(--cyan-bright);border-color:rgba(0,229,204,.34);background:var(--surface-cyan-soft)}
+.caption{display:none}
+.footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--text-muted);font:500 12px/1.3 var(--font-mono);letter-spacing:.04em}
+.footer span:last-child{display:none}
+
+.claw-mark-bg,.claw-mark{display:none!important}
+.lobster-icon{position:absolute;right:70px;bottom:54px;width:148px;height:148px;opacity:.86;filter:drop-shadow(0 0 24px var(--logo-glow));z-index:1;pointer-events:none}
+.layout-title .lobster-icon{width:150px;height:150px;right:46px;bottom:34px;opacity:.58}
+.slide:not(.layout-title) .lobster-icon{opacity:.72}
+.lobster-icon svg{width:100%;height:100%}
+
+.slide-counter,.nav-hint{position:fixed;z-index:30;bottom:20px;color:var(--text-muted);font:600 11px/1 var(--font-mono);letter-spacing:.08em}
+.slide-counter{right:32px}.nav-hint{left:32px}
+.nav-hint{display:none}
+.progress-bar{position:fixed;z-index:30;bottom:0;left:0;height:3px;background:linear-gradient(90deg,var(--coral-bright),var(--cyan-bright));transition:width .25s ease}
+
+@media(max-width:900px){
+  .slide{padding:42px 34px 40px}
+  .slide::before{inset:12px;border-radius:16px}
+  .topbar,.grid,.two-col{grid-template-columns:1fr;display:grid}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  h1{font-size:52px}h2,.slide-title{font-size:44px}.title-hero{font-size:52px}
+  .lead,li,.bullet-list li{font-size:17px}
+  .lobster-icon{right:26px;bottom:42px;width:110px;height:110px}
+  .nav-hint{display:none}
+}
+@media print{
+  html,body{overflow:visible}
+  .deck{height:auto}
+  .slide,.slide:not(.active){position:relative;display:flex!important;opacity:1;min-height:100vh;page-break-after:always}
+  .progress-bar,.slide-counter,.nav-hint{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck" role="main" aria-label="Weekly Claw Ep. 17 slides">
+<section class="slide active layout-title" id="s1"><div class="claw-wordmark"><span class="claw-weekly">Weekly</span><span class="claw-claw">CLAW</span><span class="claw-ep">Ep. <em class="ep-num">17</em></span></div><div class="ep-label">OpenClaw Community · June 5, 2026</div><h1 class="title-hero">OpenClaw Change log &amp; Dev Experience<br><em>Bounded proof. Safer installs.</em></h1><div class="gold-rule"></div><p class="lead">Two stable releases landed while the next train made the platform direction obvious: govern install paths, bound failure modes, make mobile and channel delivery steadier, and keep operator proof close to the work.</p><div class="card"><ul class="bullet-list"><li>Release window: 2026.5.28 and 2026.6.1 stable releases; 2026.6.2 appeared in the main changelog as the next-train signal.</li><li>Main story: OpenClaw kept moving from “agent runs” toward “agent operations” — governed skills, bounded providers, cleaner channel delivery, and more inspectable orchestration.</li></ul></div><span class="meta-pill">2026-06-05.html</span><p class="caption">OpenClaw Weekly Dev Experience · slide 1 / 14</p></section>
+<section class="slide layout-topic" id="s2"><div class="ep-label">Community pulse</div><h2 class="slide-title">The numbers<br><span class="accent">Velocity stayed high, but proof got tighter</span></h2><div class="gold-rule"></div><p class="lead">The weekly window produced enough raw activity to be noisy. The useful signal is where that work clustered: release proof, channel reliability, skill governance, provider bounds, and mobile state.</p><div class="stat-row"><div class="stat"><span class="num">3,000+</span><span class="label">commits sampled</span></div><div class="stat"><span class="num">168</span><span class="label">authors</span></div><div class="stat"><span class="num">185</span><span class="label">release bullets</span></div><div class="stat"><span class="num">206</span><span class="label">issue refs</span></div></div><div class="card"><strong>Who carried the week</strong><ul class="bullet-list"><li>Top authors: Peter Steinberger 1,559; Vincent Koc 759; Shakker 195; github-actions[bot] 72; Ayaan Zaidi 41; Dallin Romney 20; Andy Ye 15; Arnab Saha 13; Ted Li 11; joshavant 9.</li><li>Commit mix in the sampled window: 1,192 fixes, 907 docs, 261 tests, 261 refactors, 116 chores, 99 perf commits, and 79 features.</li><li>Stable release notes included 125 bullets for 2026.6.1 and 60 bullets for 2026.5.28.</li></ul></div><p class="caption">OpenClaw Weekly Dev Experience · slide 2 / 14</p></section>
+<section class="slide layout-topic" id="s3"><div class="ep-label">Release map</div><h2 class="slide-title">Two stable releases<br><span class="accent">plus one visible next train</span></h2><div class="gold-rule"></div><p class="lead">The clean framing for the room: 5.28 and 6.1 are the stable release story; 6.2 is the visible direction of travel on main, not a published stable release in the sampled GitHub release list.</p><div class="grid"><div class="card"><strong>Stable releases</strong><ul class="bullet-list"><li>2026.5.28: agent/Codex runtime recovery, safer channel identity, iOS Pro UI refresh, stricter browser/channel/automation inputs, provider/media expansion, and faster-fail CLI/auth paths.</li><li>2026.6.1: cleaner interrupted tool recovery, steadier mobile/channel delivery, bounded provider/plugin requests, Skill Workshop, Workboard, and more Control UI startup resilience.</li></ul></div><div class="card"><strong>Next-train signal</strong><ul class="bullet-list"><li>2026.6.2 appeared in the local main changelog data, but was not listed as a published GitHub stable release at collection time.</li><li>The important direction: operator install policy, safer Telegram/Feishu/Discord/WhatsApp delivery, Workboard keyboard movement, data-handling checks, and tighter release/CI/Docker/E2E bounds.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 3 / 14</p></section>
+<section class="slide layout-topic" id="s4"><div class="ep-label">Theme 1</div><h2 class="slide-title">Governed skills became real<br><span class="accent">Proposal review beats vibe checks</span></h2><div class="gold-rule"></div><p class="lead">The strongest platform move this week was making skill creation and review a managed workflow instead of an informal file-writing habit.</p><div class="grid"><div class="card"><strong>Why Skill Workshop matters</strong><ul class="bullet-list"><li>Skills can now move through pending proposals, guarded review, apply/reject/quarantine decisions, rollback metadata, and support-file approval paths.</li><li>The Control UI flow adds proposal lists, today actions, revision handoff, searchable previews, review states, locale coverage, and reusable session routing.</li></ul></div><div class="card"><strong>What it changes</strong><ul class="bullet-list"><li>Skill creation stops being “drop a markdown file and pray the lobster is friendly.”</li><li>The system can show what changed, who reviewed it, which support files are allowed, and how to reverse the install if it goes sideways.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 4 / 14</p></section>
+<section class="slide layout-topic" id="s5"><div class="ep-label">Theme 2</div><h2 class="slide-title">Channels and mobile stopped being edge cases<br><span class="accent">Delivery reliability is product reliability</span></h2><div class="gold-rule"></div><p class="lead">For agent products, channel bugs are not “integration polish.” They are the user experience. This week kept pulling those failures into durable, inspectable paths.</p><div class="grid"><div class="card"><strong>Delivery got steadier</strong><ul class="bullet-list"><li>Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk all showed up in the stable notes.</li><li>The common shape: preserve context, avoid duplicate previews or approvals, keep final replies durable, and stop late cleanup from making successful sends look failed.</li></ul></div><div class="card"><strong>Mobile got more serious</strong><ul class="bullet-list"><li>iOS Pro UI, hosted push relay defaults, realtime Talk playback, Android helpers, and mobile session diagnostics all moved forward.</li><li>The product story is no longer desktop-only. Mobile is becoming a first-class command surface for sessions, agents, settings, diagnostics, and voice.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 5 / 14</p></section>
+<section class="slide layout-topic" id="s6"><div class="ep-label">Theme 3</div><h2 class="slide-title">Providers got wider<br><span class="accent">and less likely to hang</span></h2><div class="gold-rule"></div><p class="lead">OpenClaw kept adding model/media surface area, but the operator win is bounded behavior: fewer infinite waits, clearer timeouts, and more predictable recovery.</p><div class="grid"><div class="card"><strong>Bounded providers</strong><ul class="bullet-list"><li>Provider and plugin requests bound more timers, retries, OAuth/device-code lifetimes, media downloads, local probes, generated-content polling, provider catalogs, and reasoning output.</li><li>That turns mysterious hangs into bounded failures with enough shape to debug.</li></ul></div><div class="card"><strong>Coverage expanded</strong><ul class="bullet-list"><li>Claude Opus 4.8, Fal Krea schemas, NVIDIA featured models, MiniMax streaming music, provider-backed voice catalogs, encrypted PDF extraction, and structured tool content widened the surface.</li><li>The useful bit is not “more providers.” It is broader coverage with clearer failure envelopes.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 6 / 14</p></section>
+<section class="slide layout-topic" id="s7"><div class="ep-label">Theme 4</div><h2 class="slide-title">Agent and Codex recovery tightened<br><span class="accent">less drama around long runs</span></h2><div class="gold-rule"></div><p class="lead">The runtime work continues to pay down the class of failures where the agent half-completes work, loses its handle, and leaves the operator cleaning soup off the ceiling.</p><div class="grid"><div class="card"><strong>Runtime recovery</strong><ul class="bullet-list"><li>Subagents keep cwd/workspace separation; hook context stays prompt-local; session locks release on timeout abort while live locks survive cleanup; stale restart continuations are avoided.</li><li>Interrupted tool calls, stale session bindings, compaction handoffs, auth-profile failover, reasoning cleanup, and media delivery retries all recovered more cleanly.</li></ul></div><div class="card"><strong>Codex path</strong><ul class="bullet-list"><li>Codex app-server/helper failures no longer tear down shared runtime state, and long-running delegated workflows have a clearer plugin/supervisor path.</li><li>The outcome is boring in the best way: fewer zombie sessions, fewer false live switches, fewer “works until it restarts” traps.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 7 / 14</p></section>
+<section class="slide layout-topic" id="s8"><div class="ep-label">Theme 5</div><h2 class="slide-title">Orchestration surfaces matured<br><span class="accent">Workboard, Chat, Control UI</span></h2><div class="gold-rule"></div><p class="lead">The visible UI work was mostly about continuity: keep the send alive, show state incrementally, and make agent coordination less invisible.</p><div class="grid"><div class="card"><strong>Control UI and Chat</strong><ul class="bullet-list"><li>Startup paths keep sends alive through history loading, stream deltas incrementally, skip markdown work while streaming, keep drafts local while typing, and trace first-output latency.</li><li>The composer and session picker are calmer, and completed sends reconcile instead of making the user wonder whether the agent heard them.</li></ul></div><div class="card"><strong>Workboard</strong><ul class="bullet-list"><li>Workboard gained orchestration primitives, task-backed board runs, task comments in the edit modal, keyboard movement controls, and tighter card operations.</li><li>This is the planning surface growing from static board toward actual multi-agent run coordination.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 8 / 14</p></section>
+<section class="slide layout-topic" id="s9"><div class="ep-label">Theme 6</div><h2 class="slide-title">Plugin installs need policy<br><span class="accent">not superstition</span></h2><div class="gold-rule"></div><p class="lead">The plugin story got more public and more governed: packaging, display metadata, trust signals, install policy, and clearer operator recovery.</p><div class="grid"><div class="card"><strong>Plugin packaging</strong><ul class="bullet-list"><li>GitHub Copilot and Tokenjuice moved toward official external plugin packaging with npm and ClawHub metadata.</li><li>ClawHub gained plugin display names plus skill verification and trust surfaces, making install decisions easier to inspect.</li></ul></div><div class="card"><strong>Install policy direction</strong><ul class="bullet-list"><li>The next-train changelog points toward operator install policy replacing the old dangerous-code scanner path.</li><li>That is a better framing: installs need explicit policy, lifecycle, doctor checks, metadata, and rollback — not just a scanner-shaped guilt ritual.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 9 / 14</p></section>
+<section class="slide layout-topic" id="s10"><div class="ep-label">Theme 7</div><h2 class="slide-title">Safety got more operational<br><span class="accent">fail closed, then leave receipts</span></h2><div class="gold-rule"></div><p class="lead">The release train kept pushing safety out of policy text and into runtime behavior: reject malformed inputs, bound external calls, and make failed proof explicit.</p><div class="grid"><div class="card"><strong>Reject bad input earlier</strong><ul class="bullet-list"><li>Browser timeouts, viewport/tab indices, Gateway ports, cron retry handling, Discord component ids, schema array refs, Telegram callback pages, and channel progress callbacks reject malformed values earlier.</li><li>The next-train data-handling checks and unsupported-policy-key rejection point in the same direction.</li></ul></div><div class="card"><strong>Proof lanes over vibes</strong><ul class="bullet-list"><li>Release, CI, Docker, E2E, plugin install, update, doctor, diagnostics, and security lanes cap logs, response bodies, readiness probes, child workflow waits, and artifact checks.</li><li>The goal is not prettier CI. It is failures that report bounded proof instead of hanging or false-greening.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 10 / 14</p></section>
+<section class="slide layout-topic" id="s11"><div class="ep-label">DX review</div><h2 class="slide-title">The platform is easier to trust<br><span class="accent">when state is visible</span></h2><div class="gold-rule"></div><p class="lead">Developer experience moved in the right direction, but the next leverage point is state coherence across UI, channel, provider, plugin, and delegated-runtime surfaces.</p><div class="grid"><div class="card"><strong>What improved</strong><ul class="bullet-list"><li>Users should feel fewer silent stalls: providers time out more cleanly, channels preserve final replies better, mobile sessions keep more state, and Skill Workshop gives skill changes a visible review path.</li><li>OpenClaw is increasingly exposing the state operators need: active subagents, proposal state, plugin install records, chat startup behavior, and channel delivery health.</li></ul></div><div class="card"><strong>What still hurts</strong><ul class="bullet-list"><li>The pressure is now cross-surface consistency: the same run can touch a mobile client, channel plugin, provider auth profile, skill install, Workboard task, and Codex helper.</li><li>When one surface drifts, operators need one canonical explanation of selected model, auth route, context budget, channel target, and current proof status.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 11 / 14</p></section>
+<section class="slide layout-topic" id="s12"><div class="ep-label">Community signal</div><h2 class="slide-title">The ask is less magic<br><span class="accent">more operational clarity</span></h2><div class="gold-rule"></div><p class="lead">The best community signal this week is not one showcase moment. It is the volume of reliability, docs, packaging, and recovery work needed for agents to feel boring enough to rely on.</p><div class="grid"><div class="card"><strong>Community energy</strong><ul class="bullet-list"><li>High contributor throughput continued: Peter, Vincent, Shakker, Ayaan, Dallin, Andy, Arnab, Ted, joshavant, and others kept the release train moving across fixes, docs, tests, refactors, performance work, and feature work.</li><li>Docs made up a huge share of the sampled activity, which is a good sign when the product surface keeps expanding.</li></ul></div><div class="card"><strong>What the signal says</strong><ul class="bullet-list"><li>People are not only asking for features; they are pushing for reliable installs, trustworthy plugin/skill packaging, repeatable mobile/channel behavior, and clearer recovery when providers or local services wobble.</li><li>The community is effectively stress-testing OpenClaw as operations infrastructure, not just a clever chat client.</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 12 / 14</p></section>
+<section class="slide layout-topic" id="s13"><div class="ep-label">Signal map</div><h2 class="slide-title">Three live questions<br><span class="accent">for builders and maintainers</span></h2><div class="gold-rule"></div><p class="lead">The weekly conversation should aim at operating discipline: safer installs, visible state, and proof packets that survive the chaos goblin phase of agent work.</p><div class="grid"><div class="card"><strong>Discuss live</strong><ul class="bullet-list"><li>Where should install policy be strict by default, and where should expert operators get escape hatches?</li><li>Which state should always be visible before a run starts: model, provider, auth profile, context budget, channel target, workspace, tools, or policy scope?</li><li>What is the smallest proof packet every agent task should leave behind: artifact, command log, screenshot, commit, build, live check, or reviewer receipt?</li></ul></div><div class="card"><strong>Watch next</strong><ul class="bullet-list"><li>Skill Workshop adoption: do people actually use proposals, review states, support-file approvals, and rollback metadata?</li><li>Mobile and channel durability: are final replies and approvals surviving real Telegram, WhatsApp, iMessage, Discord, and Talk usage?</li><li>Provider bounds: do timeout and catalog failures become understandable enough for non-maintainers to fix?</li></ul></div></div><p class="caption">OpenClaw Weekly Dev Experience · slide 13 / 14</p></section>
+<section class="slide layout-topic" id="s14"><div class="ep-label">Summary</div><h2 class="slide-title">OpenClaw is moving from runs to operations<br><span class="accent">make state and proof impossible to miss</span></h2><div class="gold-rule"></div><p class="lead">Week 17 is a governance-and-reliability week: not flashy in a demo, but exactly the kind of work that makes agents survivable in the wild.</p><div class="card"><strong>Close</strong><ul class="bullet-list"><li>The release story: two stable releases pushed the product toward cleaner recovery, steadier channels, broader provider/media coverage, governed skill creation, and bounded proof lanes.</li><li>The platform story: OpenClaw is becoming more useful when it behaves like operations infrastructure — visible state, explicit policy, durable delivery, and verifiable artifacts.</li><li>The next bar: make every agent run explain what it used, why it chose it, what changed, and which evidence proves it worked.</li></ul></div><p class="caption">OpenClaw Weekly Dev Experience · slide 14 / 14</p></section>
+</div>
+<div class="progress-bar" id="progressBar"></div><div class="slide-counter" id="slideCounter"></div><div class="nav-hint">← → or click to navigate</div>
+<script>
+const lobsterMarkup = (gradientId) => '<div class="lobster-icon" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60 10 C30 10 15 35 15 55 C15 75 30 95 45 100 L45 110 L55 110 L55 100 C55 100 60 102 65 100 L65 110 L75 110 L75 100 C90 95 105 75 105 55 C105 35 90 10 60 10Z" fill="url(#' + gradientId + ')"></path><path d="M20 45 C5 40 0 50 5 60 C10 70 20 65 25 55 C28 48 25 45 20 45Z" fill="url(#' + gradientId + ')"></path><path d="M100 45 C115 40 120 50 115 60 C110 70 100 65 95 55 C92 48 95 45 100 45Z" fill="url(#' + gradientId + ')"></path><path d="M45 15 Q35 5 30 8" stroke="var(--coral-bright)" stroke-width="2" stroke-linecap="round"></path><path d="M75 15 Q85 5 90 8" stroke="var(--coral-bright)" stroke-width="2" stroke-linecap="round"></path><circle cx="45" cy="35" r="6" fill="#050810"></circle><circle cx="75" cy="35" r="6" fill="#050810"></circle><circle cx="46" cy="34" r="2" fill="#00e5cc"></circle><circle cx="76" cy="34" r="2" fill="#00e5cc"></circle><defs><linearGradient id="' + gradientId + '" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--logo-gradient-start)"></stop><stop offset="100%" stop-color="var(--logo-gradient-end)"></stop></linearGradient></defs></svg></div>';
+document.querySelectorAll('.slide').forEach((slide, index) => { if (!slide.querySelector('.lobster-icon')) slide.insertAdjacentHTML('beforeend', lobsterMarkup('lobster-gradient-' + (index + 1))); });
+const slides=Array.from(document.querySelectorAll('.slide'));let current=0;
+function go(n){slides[current]?.classList.remove('active');current=(n+slides.length)%slides.length;slides[current].classList.add('active');document.getElementById('slideCounter').textContent=`${current+1} / ${slides.length}`;document.getElementById('progressBar').style.width=`${((current+1)/slides.length)*100}%`;}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(current+1)}if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();go(current-1)}if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}});
+document.addEventListener('click',e=>{if(e.target.closest('a'))return;if(e.clientX>window.innerWidth/2)go(current+1);else go(current-1);});
+go(0);
+</script>
+</body></html>
