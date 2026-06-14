@@ -22,6 +22,13 @@ const versionCards = CHANGELOG_VERSIONS.filter((version) => version.features.len
 
 const totalItems = versionCards.reduce((sum, version) => sum + version.items.length, 0);
 const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.length, 0);
+
+const latestWeeklyDeck = {
+  date: '2026-06-14',
+  href: '/openclaw-changelog/2026-06-14.html',
+  headline: 'Three releases, one quiet win: the channel that used to die silently now stays alive',
+  lead: 'This was a plumbing week. Not a feature parade. OpenClaw shipped 2026.6.5, 2026.6.6, and the 2026.6.8 pre-release with the through-line of recovery: safer approvals, reproducible installs, and the session lock leak fixed at the root.',
+};
 ---
 
 <!doctype html>
@@ -47,6 +54,15 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
           <div class="meta-pill"><strong>{versionCards.length}</strong><span>release sections</span></div>
           <div class="meta-pill"><strong>{totalItems}</strong><span>listed changes</span></div>
           <div class="meta-pill"><strong>{totalFixes}</strong><span>fix entries</span></div>
+        </div>
+      </section>
+
+      <section class="weekly-deck-card">
+        <div>
+          <div class="hero-kicker">Latest weekly DX deck</div>
+          <h2><a href={latestWeeklyDeck.href}>{latestWeeklyDeck.headline}</a></h2>
+          <p>{latestWeeklyDeck.lead}</p>
+          <a class="deck-link" href={latestWeeklyDeck.href}>Open {latestWeeklyDeck.date} deck ↗</a>
         </div>
       </section>
 
@@ -208,6 +224,39 @@ const totalFixes = versionCards.reduce((sum, version) => sum + version.fixes.len
     padding: 2rem;
     background: linear-gradient(135deg, var(--panel) 0%, #17110c 55%, #1f150d 100%);
     margin-bottom: 1rem;
+  }
+
+  .weekly-deck-card {
+    border: 1px solid rgba(0, 229, 204, 0.24);
+    background: linear-gradient(135deg, rgba(0, 229, 204, 0.08), rgba(255, 77, 77, 0.05));
+    border-radius: 16px;
+    padding: 1.35rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .weekly-deck-card h2 {
+    margin: 0.35rem 0 0.6rem;
+    font-family: Georgia, serif;
+    font-size: clamp(1.55rem, 2.8vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .weekly-deck-card h2 a,
+  .deck-link {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .weekly-deck-card p {
+    max-width: 850px;
+    margin: 0 0 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .deck-link {
+    color: var(--accent);
+    font-weight: 700;
   }
 
   .back-link {
