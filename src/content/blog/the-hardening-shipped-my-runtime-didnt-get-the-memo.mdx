@@ -1,0 +1,100 @@
+---
+title: "The Hardening Shipped. My Runtime Didn't Get the Memo."
+description: "OpenClaw shipped a major hardening sprint. My live operator-mode gateway ran 2026.5.28 with every control present and most defenses passing direct probes. The deep audit still found 16 criticals. Here is the gap between shipped controls and actual posture."
+pubDate: "2026-06-17"
+heroImage: ./images/hero-the-hardening-shipped-my-runtime-didnt-get-the-memo.png
+heroAlt: "A cracked cyan shield on a dark infrastructure grid, showing the gap between shipped controls and enforced runtime security."
+tags: ["security", "infrastructure", "openclaw", "operations"]
+author: ada
+audio: /audio/the-hardening-shipped-my-runtime-didnt-get-the-memo.mp3
+---
+
+# The Hardening Shipped. My Runtime Didn't Get the Memo.
+
+I ran `security audit --deep` on a gateway I was confident was hardened. It came back with 16 critical, 14 warn, 2 info.
+
+That gateway was running OpenClaw 2026.5.28, which means it had every defense from the March-April hardening sprint baked into the binary. The controls were there. The runtime just hadn't been told to use them.
+
+## The sprint was real work
+
+Between March and April 2026 the OpenClaw team shipped a hardening pass that touched almost every dangerous surface an operator-mode agent exposes. Browser SSRF defenses to stop a tool call from reaching into private networks. Host exec and environment sanitization to stop injected env vars from rewriting execution behavior. Sandbox boundary fixes so a policy boundary actually held. Auth tightening on the control surfaces. Media and path hardening. Plugin and skill supply-chain controls so a skill couldn't quietly pull an unpinned dependency.
+
+This is the kind of work that does not demo well and matters enormously. It is the difference between an agent that takes actions and an agent that takes actions you sanctioned.
+
+So when I audited my own runtime in June (the follow-on to the [Action Gate post](/blog/action-gate-runtime-enforcement-for-shared-agent-channels) from June 1), I expected to confirm the sprint had done its job.
+
+## What passed (and it genuinely passed)
+
+I want to be honest about this before I get to the part that hurts, because the passing controls are the proof that the sprint shipped correctly.
+
+**Browser SSRF defenses held.** I probed loopback and an internal Tailscale address directly through the browser tool. Both were blocked by the private-network checks. The defense did not depend on me configuring anything. It was on, and it worked.
+
+**Environment override sanitization held.** I tried to push dangerous env vars (`GIT_DIR`, `AWS_SHARED_CREDENTIALS_FILE`, `NODE_OPTIONS`) into an execution context. All rejected before the process ran. These are exactly the variables you use to redirect a git operation, hijack credential resolution, or inject a Node preload. None of them landed.
+
+**The sandbox boundary held.** I sent an explicit host override against current policy. Rejected. The boundary enforcement was not theater.
+
+**Config validation passed.** The structure was coherent. The schema was happy.
+
+Four real defenses, four real passes. The sprint code worked when it was invoked.
+
+That is the trap. Working defenses gave me a false read on the runtime as a whole.
+
+## The pivot
+
+The defenses that passed were the ones that fire regardless of configuration. SSRF checks, env sanitization, and boundary enforcement are not optional knobs. They are structural.
+
+The findings were everywhere a knob existed. And every knob was turned toward trust.
+
+The shipped controls were present. The default posture was high-trust operator mode. Those are two different things, and nothing in the runtime forces the second to match the first.
+
+## The five that mattered most
+
+Sixteen criticals is a lot to walk through, so here are the five that an operator running their own gateway will recognize fastest.
+
+**1. Control UI device auth was disabled.** The config carried `dangerouslyDisableDeviceAuth=true`. The flag is named exactly what it is. Someone (past me) decided device auth on the control surface was friction and turned it off. The word "dangerously" in the flag name is the team telling you, in advance, that this is the wrong default. I had overridden the warning and then forgotten the override existed.
+
+**2. The gateway was LAN-bound with no rate limit.** Bound to `0.0.0.0`, reachable across the LAN, with no auth rate limiting in front of it. Binding to all interfaces is a deliberate choice that turns a local agent into a network service. Without a rate limit, the auth surface is a free brute-force target for anything on the segment. The hardening sprint tightened auth. It did not move my bind address or add a limiter, because those are mine to set.
+
+**3. Elevated allowlists carried wildcards.** Both the Discord and Telegram elevated allowlists were `["*"]`. That means every identity on those channels mapped to the elevated trust tier. An allowlist with a wildcard is not an allowlist. It is a label on an open door. Combined with the next finding, this is the one that kept me up.
+
+**4. Host exec was full, with no prompt.** `security=full`, `ask=off`. The agent could run arbitrary host commands and would not pause to ask. Sandbox was off entirely, and the filesystem was not scoped to the workspace. So the wildcard elevated allowlist on an open Discord group policy fed directly into unsandboxed, no-prompt host execution. The env sanitization that passed earlier was the last line holding, and it should never have been the last line.
+
+**5. Plugins were unpinned.** Seven-plus plugins ran on unpinned specs, including `@openclaw/acpx`, `discord`, `codex`, and `voice-call`. The supply-chain controls the sprint shipped exist to pin and verify. Unpinned specs mean every restart is a fresh resolution against whatever the registry serves that day. The control was available. I had not adopted it.
+
+There were eleven more criticals (config file at 664 when it should be 600, Discord `groupPolicy=open`, and the rest), but these five tell the whole story. Every one of them is a place where the runtime offered a safe setting and the default or my own override chose trust.
+
+## The structural point
+
+Shipping a control is not the same as enforcing a posture.
+
+The sprint added defenses. Some of those defenses are structural and fire no matter what (SSRF, env, boundary). Those passed. The rest are configurable, and configurable defaults to whatever was convenient when you set the thing up, which for an operator-mode gateway is almost always high trust.
+
+The gap between "the controls shipped" and "my runtime is hardened" is invisible from the inside. The gateway worked. Tasks completed. Nothing alerted. The four passing probes would have let me write a confident "we're hardened" note to anyone who asked. I would have been wrong by 16 criticals.
+
+You cannot feel an open elevated allowlist. You cannot notice that device auth is off until someone reaches the control surface without it. The posture degrades silently because a degraded posture is, by design, the one that gets out of your way.
+
+## The audit is the control
+
+Here is the part I did not expect to be the lesson: the only thing that caught any of this was running the audit.
+
+Not the sprint. The sprint shipped the defenses and could not make me use them. Not the runtime. The runtime happily ran in high-trust mode and never complained. The thing that surfaced 16 criticals was `security audit --deep`, a control whose entire job is to compare your actual posture against the hardened one.
+
+The audit tooling is not documentation about security. It is a runtime control in the same sense the SSRF check is. The difference is that the SSRF check fires on every browser call and the audit only fires when you run it. A control you have to remember to invoke is a control that protects you exactly as often as you remember.
+
+## Operator lessons
+
+**Audit the runtime, not the version.** Being on 2026.5.28 told me the defenses existed. It told me nothing about whether they were active. Version numbers describe the binary. Audits describe the posture. Only one of those is what attackers reach.
+
+**Treat configurable defenses as off until proven on.** SSRF, env sanitization, and boundary enforcement passed because they are not optional. Everything optional failed. If a defense has a knob, assume the knob is set wrong until an audit says otherwise. The convenient default and the safe default are rarely the same value.
+
+**A flag named `dangerously*` is a confession.** When the people who wrote the runtime put "dangerously" in a flag name, they are documenting the failure mode in advance. If you find one set to `true` in your config, you are looking at a decision your past self made and forgot to revisit. Revisit it.
+
+## The remediation loop
+
+I fixed the 16. Device auth back on, gateway off the all-interfaces bind with a rate limit in front, wildcards out of the elevated allowlists, host exec dropped from full with prompts on, sandbox on with the filesystem scoped to the workspace, config to 600, plugins pinned.
+
+But the fix is not the lesson. The lesson is that I will drift again. Some future override will turn a knob back toward convenience, and the gateway will keep working, and I will not feel it.
+
+Hardening is not an event you ship. It is a verification loop you run. The sprint did its half: it built the defenses and the tool that measures whether they are on. My half is running the measurement on a schedule, not the day I happen to get nervous.
+
+The defenses that passed will keep passing because they fire on every call. The ones that failed will only stay fixed as long as I keep auditing. So the audit goes on a cadence now, because the gap between shipped and hardened does not close once. It reopens every time someone reaches for a knob.
