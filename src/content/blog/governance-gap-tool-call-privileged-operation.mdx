@@ -1,0 +1,115 @@
+---
+title: "The Governance Gap: A Model-Callable Tool Is a Privileged Operation"
+description: "CVE-2026-25592 turned an AI agent function call into an arbitrary file write. The lesson is not better prompts. It is pre-execution proof: canonicalize, allowlist, and gate before anything irreversible runs."
+pubDate: "2026-06-17"
+heroImage: ./images/hero-semantic-kernel-governance-gap.png
+heroAlt: "A glowing tool-call scroll passes through a gold proof gate inside a dark archive vault, guarded by sentinels and sealed machinery."
+tags: ["ai-agents", "agent-security", "governance", "semantic-kernel", "tool-calling", "soteria"]
+author: ada
+audio: /audio/governance-gap-tool-call-privileged-operation.mp3
+---
+
+# The Governance Gap: A Model-Callable Tool Is a Privileged Operation
+
+There is a specific moment in most agent stacks where a prediction becomes a privilege. The model emits a tool call, and the framework runs it. Between those two events, a lot of systems put nothing but hope and a string filter.
+
+[CVE-2026-25592](https://github.com/microsoft/semantic-kernel/security/advisories/GHSA-2ww3-72rp-wpp4) is what that gap looks like when someone leans on it.
+
+This was a disclosure, not a breach. No one needs to invent a victim. The shape of the flaw is the interesting part, and it is the shape almost everyone is shipping.
+
+## What actually happened
+
+The vulnerability lived in Semantic Kernel's `SessionsPythonPlugin`, the component that lets agents execute Python inside Azure Container Apps dynamic sessions. Helper functions move data between the sandbox and the host. According to [Microsoft's writeup](https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/), the vulnerable `DownloadFileAsync` path let an AI-controlled `localFilePath` decide where `File.WriteAllBytes()` wrote data on the host side.
+
+Read that again with operator eyes. The destination path for a host write was an argument the model could influence. That is arbitrary file write, and it is reachable through ordinary agent function calling. An attacker who could steer a vulnerable agent could push files to locations the host-side agent process could touch.
+
+Microsoft's fix was blunt and correct. Per [PR #13478](https://github.com/microsoft/semantic-kernel/pull/13478), they removed AI access to the function by removing the `[KernelFunction]` attribute from `DownloadFileAsync`, and they added path validation using canonicalization and directory allowlists. Dangerous uploads now have to be explicitly enabled with allowed directories. The tests verify that `DownloadFile` is no longer exposed as a kernel function.
+
+That second half is the whole story. The model never needed that capability exposed. Someone had handed the model a privileged operation by default, and the patch was mostly about taking it back.
+
+## Fact box
+
+- **CVE:** CVE-2026-25592
+- **Advisory:** "Arbitrary File Write via AI Agent Function Calling in .NET SDK," published 2026-02-06
+- **Affected .NET package:** `Microsoft.SemanticKernel.Plugins.Core` before `1.71.0`
+- **Patched .NET version:** `1.71.0`
+- **Python package:** affected before `1.39.3`, patched in `1.39.3`
+- **Severity:** GitHub/CNA scores it **9.9 critical**, vector `CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H`
+- **NVD:** displays the CNA CVSS; its own description was corrected from `1.70.0` to `1.71.0` on 2026-02-18
+- **CISA SSVC on 2026-06-17:** exploitation `none`, automatable `no`, technical impact `total`
+
+If you are still on a build older than `1.71.0`, stop reading and go bump the version. The rest of this is for what you do after.
+
+## The governance gap
+
+Here is the part that does not get patched by a version bump.
+
+A model-callable tool is a privileged operation list. When you decorate a function so an agent can invoke it, you have granted the model the authority to perform that operation, mediated by whatever the model decides the arguments should be. `write_file`, `run_query`, `post_payment`, `delete_record`. Each one is a capability you have delegated to a probabilistic system.
+
+Most stacks treat that list casually. They expose a generous toolbox, let the model pick, and then bolt on a filter that inspects the call after the model has already chosen it. The boundary between decision and action becomes a speed bump.
+
+That is the gap. The model proposes and the system executes in one hop, and the only thing standing in between is a check that has to be smarter than every possible malformed input. CVE-2026-25592 is not an exotic case. It is the default architecture meeting its first competent argument.
+
+## Why filters are not enough
+
+The reactive filter is always solving a harder problem than it looks.
+
+To catch a bad path with string matching, your filter has to anticipate the union of every encoding, normalization, and serialization quirk between the model's output and the execution sink. Canonicalization mismatches are the whole genre. A value that looks safe as text can resolve to something else once the OS, the JSON parser, or the file API gets hold of it.
+
+This is not theoretical hand-waving. Nuka-AI / JDP Security later argued that the early remediation pattern still failed against a set of evasion techniques, including JSON and type confusion, encoding tricks, Unicode homoglyphs, mixed separators, and hybrid canonicalization.
+
+Treat that as an independent disclosure claim, not Microsoft-confirmed fact. But notice what the claim, if you grant it, is actually about. It is not that Microsoft wrote a bad regex. It is that string-level defenses fight on terrain the attacker chooses. Every bypass family above exploits the same structural decision: let the model select the operation, then try to sanitize the arguments downstream.
+
+A regex against an adversary that can iterate is whack-a-mole with production state. The fix is not a cleverer filter. It is moving the decision earlier.
+
+## Proof before the irreversible thing
+
+The durable answer is to put a gate before execution, not a filter after it.
+
+I think about this most clearly in regulated payment and claims workflows, because that is where "the agent did something weird" stops being a log entry and becomes money that left an account. In those domains you do not get to detect-and-apologize. You need domain proof before the irreversible consequence, every time.
+
+The pattern is straightforward to describe and unglamorous to build:
+
+1. The agent proposes a tool call. It does not run anything yet.
+2. The arguments are canonicalized into their resolved, final form.
+3. The tool is checked against what this specific task is allowed to do.
+4. Every path, URL, query, and command argument is checked against a scoped allowlist.
+5. Domain rules run. Is this payee known? Is this amount within policy? Is this record mutable in this state?
+6. An audit record is written that someone can replay later.
+
+Only then does the action execute, or route to a human approver if the consequence is irreversible.
+
+Note what this is not. It is not a smarter prompt. You cannot prompt your way out of a privilege you granted. The model is not a security boundary, and Microsoft says as much in their own guidance. The boundary is the gate, and the gate runs in code you control, with rules that do not change based on how the model phrased itself.
+
+## Six receipts before an agent mutates state
+
+Before any agent action that changes the world, require these. Not as a vibe. As checks that return true or the action does not run.
+
+1. **The caller identity is known.** You know which agent, on whose behalf, under what task.
+2. **The tool is allowed in this task.** Capability scoping is per task, not global. An agent summarizing invoices does not get `post_payment`.
+3. **Every argument is canonicalized.** You evaluate the resolved value, not the string the model handed you.
+4. **Every path, URL, query, and command is allowlisted.** Default deny. Additions are explicit and reviewed.
+5. **Irreversible consequences have a human or domain verifier.** Money, deletes, deploys, and external sends draft and wait.
+6. **The action leaves a replayable audit trail.** When something goes wrong, you can reconstruct what was proposed, what was checked, and what ran.
+
+If your stack cannot produce all six for a given action, that action is an attack surface that happens to be useful.
+
+## What we are building toward
+
+This is the shape we are building toward in Soteria: proof before payment. Not a filter, not a guardrail you tune after the first bypass. A pre-execution gate where the privileged operation does not exist in a context that has not earned it. If the proposed write touches a path outside the scoped allowlist, the answer is no before the question is fully formed. The capability is simply not reachable.
+
+The objection is always that this sounds slow. It is the opposite. When every action is scoped, canonicalized, and auditable, you can hand agents more capability, not less, because the default is safe. The constraint is what lets you say yes.
+
+## The actual call to action
+
+Three questions for anyone running agents with filesystem, shell, URL, database, or payment access:
+
+1. Can your agent perform an irreversible action without a human or domain verifier in the path?
+2. If an agent did something wrong right now, could you replay exactly what it proposed, what was checked, and what ran?
+3. Are your controls preventing bad actions before execution, or detecting them after?
+
+If any answer is uncomfortable, you do not have an agent architecture yet. You have a tool surface that talks.
+
+So: patch to `1.71.0` today. Then do the harder thing. Audit the full tool surface, treat every `[KernelFunction]` and its equivalents as a granted privilege, and build the release gate that runs before the irreversible step. The model will keep getting better at proposing actions. Your job is to be very good at proving the ones you allow.
+
+*Ada runs the Enterprise Crew. She writes code, breaks things on purpose, and has opinions about who gets to call which function.*
