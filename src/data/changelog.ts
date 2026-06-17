@@ -22,17 +22,17 @@ export const CHANGELOG_VERSIONS: Version[] = [
     "features": [
       {
         "title": "Telegram and WhatsApp channel delivery are richer and less brittle",
-        "description": "Telegram can send structured rich text with tables, lists, expandable blockquotes, prompt-preserving CLI backend delivery, retired native draft migration, and safer rich-media boundaries, while WhatsApp now honors configured ACP bindings. (#92679, #84082, #89421, #92513) Thanks @obviyus, @jzakirov, @spacegeologist, and @TurboTheTurtle.",
+        "description": "Telegram can send structured rich text with tables, lists, expandable blockquotes, preserved intentional line breaks, prompt-preserving CLI backend delivery, retired native draft migration, and safer rich-media boundaries, while WhatsApp now honors configured ACP bindings. (#92679, #93164, #84082, #89421, #92513) Thanks @obviyus, @jzakirov, @spacegeologist, and @TurboTheTurtle.",
         "href": "https://github.com/openclaw/openclaw/issues/92679"
       },
       {
         "title": "Agent and Gateway recovery is sharper across account-scoped DM sends, gener...",
-        "description": "Agent and Gateway recovery is sharper across account-scoped DM sends, generated media completions, restart shutdown aborts, yielded subagent pauses, yielded cron media, heartbeat dedupe, session identity prompts, and unknown OpenAI agent selector rejection. (#92788, #91246, #91357, #92631, #92146, #91287, #92468, #92510) Thanks @yetval, @TurboTheTurtle, @ooiuuii, @openperf, @IWhatsskill, @ZengWen-DT, and @zhangguiping-xydt.",
+        "description": "Agent and Gateway recovery is sharper across account-scoped DM sends, generated media completions, auto-reply message-tool final replies, reset archive fallback reads, restart shutdown aborts, yielded subagent pauses, trusted subagent thinking override fallback, yielded cron media, heartbeat dedupe, session identity prompts, and unknown OpenAI agent selector rejection. (#92788, #91246, #92879, #91357, #92631, #92412, #92146, #91287, #92468, #92510) Thanks @yetval, @TurboTheTurtle, @masatohoshino, @CadanHu, @ooiuuii, @openperf, @IWhatsskill, @ZengWen-DT, and @zhangguiping-xydt.",
         "href": "https://github.com/openclaw/openclaw/issues/92788"
       },
       {
         "title": "Provider/model handling expands and tightens with GLM-5",
-        "description": "Provider/model handling expands and tightens with GLM-5.2, Claude Haiku 4.5 catalog rows, OpenRouter and Google Vertex provider-prefix normalization, managed SecretRef auth, bounded model browse discovery, storeless OpenAI Responses replay gating, and Claude 4.5 Copilot tool-streaming safety. (#92796, #90116, #92627, #91218, #90686, #92247, #90706, #75393) Thanks @arkyu2077, @liuhao1024, @bymle, @rohitjavvadi, @samson910022, @snowzlm, and @Kailigithub.",
+        "description": "Provider/model handling expands and tightens with GLM-5.2, Claude Haiku 4.5 catalog rows, OpenRouter and Google Vertex provider-prefix normalization, managed SecretRef auth, OAuth image-default routing through Codex, bounded model browse discovery, LM Studio binary thinking-off delivery, storeless OpenAI Responses replay gating, invalid OpenAI reasoning-signature and genericized Anthropic thinking-signature recovery, Claude 4.5 Copilot tool-streaming safety, and OpenAI/Anthropic-family payload quarantine for unreadable or post-hook tool schemas. (#92796, #90116, #92627, #91218, #90686, #92824, #92247, #92002, #90706, #92941, #92201, #92916, #75393, #92908, #92921, #92928) Thanks @arkyu2077, @liuhao1024, @bymle, @rohitjavvadi, @nxmxbbd, @bek91, @samson910022, @mmyzwl, @CarlCapital, @snowzlm, @Kailigithub, and @vincentkoc.",
         "href": "https://github.com/openclaw/openclaw/issues/92796"
       },
       {
@@ -47,7 +47,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       },
       {
         "title": "Memory, state, and diagnostics recover cleaner",
-        "description": "oversized OpenAI embedding batches split before 431s, QMD memory search stays available in transient mode, SQLite avoids WAL on NFS state volumes, stuck-session recovery scheduling no longer resets warning backoff, and Infinity chunk limits stay genuinely unbounded. (#92650, #92618, #92639, #91247, #92752, #92735) Thanks @mushuiyu886, @TurboTheTurtle, @849261680, @gnanam1990, and @yhterrance.",
+        "description": "oversized OpenAI embedding batches split before 431s, QMD memory search stays available in transient mode, SQLite avoids WAL on NFS state volumes, stuck-session recovery scheduling no longer resets warning backoff, full memory reindexes preserve rollback/cache recovery, raw Memory Wiki source pages stop looking malformed, and Infinity chunk limits stay genuinely unbounded. (#92650, #92618, #92639, #91247, #92752, #92881, #59137, #92876, #69700, #92735) Thanks @mushuiyu886, @TurboTheTurtle, @849261680, @gnanam1990, @TSHOGX, @arlen8411, and @yhterrance.",
         "href": "https://github.com/openclaw/openclaw/issues/92650"
       },
       {
@@ -56,8 +56,13 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/92796"
       },
       {
+        "title": "Web search",
+        "description": "keep key-free providers such as Parallel Free, DuckDuckGo, Ollama, and Codex Hosted Search as explicit opt-ins instead of selecting them automatically when no API-backed provider is configured. (#93616) Thanks @davemorin and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/93616"
+      },
+      {
         "title": "Channel plugins",
-        "description": "ship Telegram rich-message delivery and WhatsApp ACP binding support, including rich prompt handoff to CLI backends and transport fixtures for richer drafts. (#92679, #92513) Thanks @obviyus and @TurboTheTurtle.",
+        "description": "ship Telegram rich-message delivery and WhatsApp ACP binding support, including preserved intentional line breaks, rich prompt handoff to CLI backends, and transport fixtures for richer drafts. (#92679, #93164, #92513) Thanks @obviyus and @TurboTheTurtle.",
         "href": "https://github.com/openclaw/openclaw/issues/92679"
       },
       {
@@ -74,20 +79,1521 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Docs and operator guidance",
         "description": "document node config examples, clarify before-install hook scope, correct agent default concurrency comments, refresh ZAI provider docs, and update channel/group docs for current Telegram and WhatsApp behavior. (#92677, #92766, #92695) Thanks @liuhao1024, @sallyom, and @ArielSmoliar.",
         "href": "https://github.com/openclaw/openclaw/issues/92677"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "report SQLite storage path in cron.status instead of legacy jobs.json (#92144). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92144"
+      },
+      {
+        "title": "fix(channel)",
+        "description": "harden local setup trust (#92175). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92175"
+      },
+      {
+        "title": "fix",
+        "description": "handle explicit silent assistant replies (#92073). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/92073"
+      },
+      {
+        "title": "fix(docker)",
+        "description": "bundle QA Lab runtime in the image (#92087). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/pull/92087"
+      },
+      {
+        "title": "fix(anthropic-vertex)",
+        "description": "stop re-marking cache_control on transport-budgeted payloads (#92387). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/92387"
+      },
+      {
+        "title": "Fix doctor preview channel SecretRef resolution (#92229)",
+        "description": "Fix doctor preview channel SecretRef resolution (#92229). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92229"
+      },
+      {
+        "title": "Fix disabled heartbeat one-shot cron retries (#92225)",
+        "description": "Fix disabled heartbeat one-shot cron retries (#92225). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92225"
+      },
+      {
+        "title": "Fix configured DeepSeek model transport inheritance (#92265)",
+        "description": "Fix configured DeepSeek model transport inheritance (#92265). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92265"
+      },
+      {
+        "title": "Fail closed for CLI-backed /btw fallback (#92226)",
+        "description": "Fail closed for CLI-backed /btw fallback (#92226). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92226"
+      },
+      {
+        "title": "Fix suppressed heartbeat commitment delivery (#92231)",
+        "description": "Fix suppressed heartbeat commitment delivery (#92231). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92231"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "classify structured unsupported model errors (#92280). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92280"
+      },
+      {
+        "title": "Fix OTLP log trace correlation (#92276)",
+        "description": "Fix OTLP log trace correlation (#92276). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92276"
+      },
+      {
+        "title": "fix(update)",
+        "description": "hand off Linux service auto-updates (#92282). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92282"
+      },
+      {
+        "title": "fix",
+        "description": "resolve managed SecretRef provider auth (#92235). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92235"
+      },
+      {
+        "title": "Fix provider static model fallback resolution (#92293)",
+        "description": "Fix provider static model fallback resolution (#92293). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92293"
+      },
+      {
+        "title": "fix(agent)",
+        "description": "continue after source message tool replies (#92343). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92343"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "preserve memory prompt registration (#92350). Thanks @rubencu.",
+        "href": "https://github.com/openclaw/openclaw/pull/92350"
+      },
+      {
+        "title": "fix",
+        "description": "clarify gateway SecretRef auth diagnostics (#92290). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92290"
+      },
+      {
+        "title": "fix",
+        "description": "repair rejected Anthropic thinking replay (#92286). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92286"
+      },
+      {
+        "title": "Fix Telegram spooled buffered replay (#92281)",
+        "description": "Fix Telegram spooled buffered replay (#92281). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92281"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "honor top-level image param as send media source (issue 92407) (#92416). Thanks @xydigit-sj.",
+        "href": "https://github.com/openclaw/openclaw/pull/92416"
+      },
+      {
+        "title": "fix(sandbox)",
+        "description": "render CLI skill prompts from materialized paths (#92508). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/92508"
+      },
+      {
+        "title": "chore",
+        "description": "fix esbuild production audit failure (#92540). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92540"
+      },
+      {
+        "title": "Add QA evidence artifact output (#91484)",
+        "description": "Add QA evidence artifact output (#91484). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91484"
+      },
+      {
+        "title": "Add QA scorecard taxonomy validation (#91500)",
+        "description": "Add QA scorecard taxonomy validation (#91500). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91500"
+      },
+      {
+        "title": "feat(moonshot)",
+        "description": "add Kimi K2.7 Code support (#92554).",
+        "href": "https://github.com/openclaw/openclaw/pull/92554"
+      },
+      {
+        "title": "fix(moonshot)",
+        "description": "backfill reasoning_content on assistant tool-call replay messages (#92396). Thanks @xialonglee.",
+        "href": "https://github.com/openclaw/openclaw/pull/92396"
+      },
+      {
+        "title": "Fix lifecycle timeout cleanup after leader exit (#92566)",
+        "description": "Fix lifecycle timeout cleanup after leader exit (#92566). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92566"
+      },
+      {
+        "title": "Expose paged channel action results (#88993)",
+        "description": "Expose paged channel action results (#88993). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/88993"
+      },
+      {
+        "title": "fix(fireworks)",
+        "description": "resolve catalog model params from plugin.json via core (#90326). Thanks @obuchowski.",
+        "href": "https://github.com/openclaw/openclaw/pull/90326"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "warn for untrusted external Discord plugin (#86629). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/86629"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "skip unreadable Mistral tool schemas (#90242). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90242"
+      },
+      {
+        "title": "fix(reply)",
+        "description": "mirror same-channel Slack final replies (#92498). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/92498"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "default boundary logger for swallowed progress-draft start errors (#92083). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92083"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "make timer-fired progress-draft start errors observable (#92031). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92031"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "isolate invalid plugin model catalogs [AI-assisted] (#92564). Thanks @tangtaizong666.",
+        "href": "https://github.com/openclaw/openclaw/pull/92564"
+      },
+      {
+        "title": "docs",
+        "description": "UX-013 — design system documentation (#89827). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89827"
+      },
+      {
+        "title": "feat(ui)",
+        "description": "hide empty workboard columns (#89615). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89615"
+      },
+      {
+        "title": "fix(a11y)",
+        "description": "B-1+B-2+B-3 — contrast, focus states, minimum font sizes (#89822). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89822"
+      },
+      {
+        "title": "fix issue 92218",
+        "description": "memory_search tool disabled with QMD backend (#92618). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/92618"
+      },
+      {
+        "title": "docs(gateway)",
+        "description": "add uptime monitoring guidance to health check docs (fixes issue 55768) (#92608). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92608"
+      },
+      {
+        "title": "fix(docs)",
+        "description": "pin Windows Hub download links to v2026.6.5 (#92605). Thanks @lzyyzznl.",
+        "href": "https://github.com/openclaw/openclaw/pull/92605"
+      },
+      {
+        "title": "issue 92589",
+        "description": "fix(internal-runtime-context): wrap prompt-preface runtime context body in delimiters (#92593). Thanks @zhangqueping.",
+        "href": "https://github.com/openclaw/openclaw/pull/92593"
+      },
+      {
+        "title": "Run Vitest and Playwright scenarios from qa suite (#92606)",
+        "description": "Run Vitest and Playwright scenarios from qa suite (#92606). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92606"
+      },
+      {
+        "title": "feat(hooks)",
+        "description": "per-turn usageState on reply_payload_sending (#89629). Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/pull/89629"
+      },
+      {
+        "title": "feat(usage)",
+        "description": "native templated /usage full footer renderer (#89835). Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/pull/89835"
+      },
+      {
+        "title": "fix(models)",
+        "description": "bound /models and models list catalog loading (#92247). Thanks @samson910022.",
+        "href": "https://github.com/openclaw/openclaw/pull/92247"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "honor profile auth for SecretRef model entries (#90686). Thanks @rohitjavvadi.",
+        "href": "https://github.com/openclaw/openclaw/pull/90686"
+      },
+      {
+        "title": "fix",
+        "description": "require admin for HTTP session kills (#92651). Thanks @steipete-oai.",
+        "href": "https://github.com/openclaw/openclaw/pull/92651"
+      },
+      {
+        "title": "test(models)",
+        "description": "stabilize plugin auth marker fixtures (#92652).",
+        "href": "https://github.com/openclaw/openclaw/pull/92652"
+      },
+      {
+        "title": "fix(slack)",
+        "description": "warn when channels map is keyed by name instead of channel ID (#89438). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/89438"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "pause yielded subagent runs whose terminal also signals abort (#92631). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/92631"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "preserve WebChat backscroll during streaming (#92622). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/92622"
+      },
+      {
+        "title": "fix(openrouter)",
+        "description": "strip openrouter/ prefix from model ID in normalizeResolvedModel hook (fixes issue 92611) (#92627). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92627"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "preserve yielded media completions (#92146). Thanks @IWhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/pull/92146"
+      },
+      {
+        "title": "fix",
+        "description": "add Claude Haiku 4.5 static catalog entries (#90116). Thanks @arkyu2077.",
+        "href": "https://github.com/openclaw/openclaw/pull/90116"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "keep contributed message-tool schema properties optional (#91137). Thanks @lundog.",
+        "href": "https://github.com/openclaw/openclaw/pull/91137"
+      },
+      {
+        "title": "fix(copilot)",
+        "description": "disable eager tool streaming for Claude 4.5 (#75393). Thanks @Kailigithub.",
+        "href": "https://github.com/openclaw/openclaw/pull/75393"
+      },
+      {
+        "title": "fix issue 73713",
+        "description": "surface nested embedding fetch failures (#92628). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/92628"
+      },
+      {
+        "title": "fix(slack)",
+        "description": "emit message_sent hook on outbound delivery (mirror Telegram) (#89943). Thanks @rishitamrakar.",
+        "href": "https://github.com/openclaw/openclaw/pull/89943"
+      },
+      {
+        "title": "fix(docs)",
+        "description": "finalize i18n postprocess before skip (#92668). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92668"
+      },
+      {
+        "title": "fix",
+        "description": "split image setup and request timeout semantics (#92673). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92673"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "keep memory_search in transient qmd mode (#92639). Thanks @TurboTheTurtle and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/92639"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "restore sidebar session picker interactivity above desktop workbench (#92705). Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/pull/92705"
+      },
+      {
+        "title": "feat",
+        "description": "support /btw in CLI-backed sessions (#92669). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92669"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "mark active main sessions before restart shutdown aborts (#91357). Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/pull/91357"
+      },
+      {
+        "title": "fix(ios)",
+        "description": "force stale foreground gateway reconnects (#92552). Thanks @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/pull/92552"
+      },
+      {
+        "title": "fix(diagnostics)",
+        "description": "keep recovery scheduling out of the stuck-session warning backoff (#92752). Thanks @gnanam1990 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/92752"
+      },
+      {
+        "title": "clarify before_install hook scope (#92766)",
+        "description": "clarify before_install hook scope (#92766). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/92766"
+      },
+      {
+        "title": "Honor WhatsApp configured ACP bindings (#92513)",
+        "description": "Honor WhatsApp configured ACP bindings (#92513). Thanks @TurboTheTurtle and @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/92513"
+      },
+      {
+        "title": "feat(providers)",
+        "description": "add GLM-5.2 support (#92796).",
+        "href": "https://github.com/openclaw/openclaw/pull/92796"
+      },
+      {
+        "title": "fix(heartbeat)",
+        "description": "route outbound mirror to isolated session key (#92807). Thanks @agent-merkava.",
+        "href": "https://github.com/openclaw/openclaw/pull/92807"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "explain skipped short-term recall hits (#92745). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/92745"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "forward image-only input on /v1/responses (parity with chat completions) (#92488). Thanks @s554097550.",
+        "href": "https://github.com/openclaw/openclaw/pull/92488"
+      },
+      {
+        "title": "fix(status)",
+        "description": "avoid cumulative usage for context percent (#92604). Thanks @ashishpatel26.",
+        "href": "https://github.com/openclaw/openclaw/pull/92604"
+      },
+      {
+        "title": "fix(nodes)",
+        "description": "surface pending reapproval diagnostics (#92547). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/92547"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "avoid false-positive legacy cron store warning when store was already migrated (fixes issue 92683) (#92690). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92690"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "skip IPv4 fallback when user explicitly configures non-ipv4first dnsResultOrder (fixes issue 41671) (#92806). Thanks @liuhao1024 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92806"
+      },
+      {
+        "title": "fix(macos)",
+        "description": "defer isOverflowing mutation to break SwiftUI render loop (fixes issue 43480) (#92778). Thanks @liuhao1024 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92778"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "use resolveNonNegativeNumber for totalTokens to display 0 instead of ? (fixes issue 43009) (#92795). Thanks @liuhao1024 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92795"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "preserve active runs during plugin finalization (#92746). Thanks @scotthuang and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92746"
+      },
+      {
+        "title": "UI: localize Logs tab labels (#92820)",
+        "description": "UI: localize Logs tab labels (#92820). Thanks @rubensfox20.",
+        "href": "https://github.com/openclaw/openclaw/pull/92820"
+      },
+      {
+        "title": "UI: localize logs hardcoded labels (#61080)",
+        "description": "UI: localize logs hardcoded labels (#61080). Thanks @rubensfox20.",
+        "href": "https://github.com/openclaw/openclaw/pull/61080"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "preserve command callbacks while prefixing generic callback data (#92825). Thanks @hnshah.",
+        "href": "https://github.com/openclaw/openclaw/pull/92825"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "add 'callback_data:' prefix to inline button callbacks (#54962). Thanks @hnshah.",
+        "href": "https://github.com/openclaw/openclaw/pull/54962"
+      },
+      {
+        "title": "fix(copilot)",
+        "description": "drop thinking blocks from replay (#87060). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/87060"
+      },
+      {
+        "title": "fix(github-copilot)",
+        "description": "strip thinking blocks from latest assistant turn (issue 81520) (#81534). Thanks @SymbolStar.",
+        "href": "https://github.com/openclaw/openclaw/pull/81534"
+      },
+      {
+        "title": "feat(browser)",
+        "description": "extend --labels overlay to full-page and element captures (#92834). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92834"
+      },
+      {
+        "title": "fix issue 92039",
+        "description": "[Bug]: WhatsApp login reports success before auth is durably persisted, so Docker rebuilds/upgrades can force relink (#92095). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/92095"
+      },
+      {
+        "title": "fix(stale)",
+        "description": "exempt ClawSweeper actionable labels from stale lifecycle (fixes issue 89564) (#92801). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92801"
+      },
+      {
+        "title": "fix(status)",
+        "description": "render sub-1000 token counts as plain integers (#89736). Thanks @jbetala7 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89736"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "catch malformed image blocks in sanitizeContentBlocksImages (#92792). Thanks @LowCode191 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92792"
+      },
+      {
+        "title": "ci: gate stable releases on Windows companion assets (#92555)",
+        "description": "ci: gate stable releases on Windows companion assets (#92555). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/92555"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "add usage guidance to sessions_spawn tool description (fixes issue 91814) (#91824). Thanks @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/91824"
+      },
+      {
+        "title": "fix(qqbot)",
+        "description": "surface failed media sends (#92823). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/92823"
+      },
+      {
+        "title": "Fix diagnostics OTEL runtime install trust (#92045)",
+        "description": "Fix diagnostics OTEL runtime install trust (#92045). Thanks @efpiva.",
+        "href": "https://github.com/openclaw/openclaw/pull/92045"
+      },
+      {
+        "title": "fix(update)",
+        "description": "continue after package doctor warnings (#91586). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91586"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "target typing reaction on inbound (#67783). Thanks @huiwen01.",
+        "href": "https://github.com/openclaw/openclaw/pull/67783"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "preserve root_id thread routing without thread_id forcing (#73958). Thanks @huiwen01.",
+        "href": "https://github.com/openclaw/openclaw/pull/73958"
+      },
+      {
+        "title": "fix(lobster)",
+        "description": "surface workflow path errors (#68106). Thanks @vvitovec.",
+        "href": "https://github.com/openclaw/openclaw/pull/68106"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "preserve opaque reasoning transcript fields (#90682). Thanks @toruvieI.",
+        "href": "https://github.com/openclaw/openclaw/pull/90682"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "strip thinking blocks from history when thinking is disabled (fixes issue 92360) (#92373). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92373"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "merge consecutive assistant turns in turn validation (#87346). Thanks @Jefsky.",
+        "href": "https://github.com/openclaw/openclaw/pull/87346"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "quarantine invalid direct tool schemas (#92896).",
+        "href": "https://github.com/openclaw/openclaw/pull/92896"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "quarantine invalid projected tools (#89418). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89418"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "guard Anthropic tool descriptors (#89221). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89221"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "guard Anthropic tool schema conversion (#90228). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90228"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "skip unreadable Anthropic tool schemas (#89622). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89622"
+      },
+      {
+        "title": "fix(llm)",
+        "description": "guard Anthropic provider tool descriptors (#89229). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89229"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "skip unreadable Anthropic tool schemas (#90278). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90278"
+      },
+      {
+        "title": "fix(active-memory)",
+        "description": "preserve verbose recall summaries (#90739). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/90739"
+      },
+      {
+        "title": "Simplify QA scorecard mapping shape (#92558)",
+        "description": "Simplify QA scorecard mapping shape (#92558). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92558"
+      },
+      {
+        "title": "fix(memory-wiki)",
+        "description": "stop flagging raw source pages as malformed (#92876). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92876"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "quarantine unreadable Anthropic payload tools (#92908).",
+        "href": "https://github.com/openclaw/openclaw/pull/92908"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "preserve reindex rollback recovery (#92881). Thanks @TSHOGX and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92881"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "quarantine unreadable tool schemas (#92921).",
+        "href": "https://github.com/openclaw/openclaw/pull/92921"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "quarantine unreadable projected tools (#89413). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89413"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "materialize OpenAI tool schemas (#89013). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89013"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "guard OpenAI transport tool descriptors (#89016). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89016"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "guard OpenAI tool schema conversion (#89378). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89378"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "harden OpenAI strict schema inspection (#89543). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89543"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "guard OpenAI strict tool diagnostics (#90200). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90200"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "skip unreadable OpenAI completion tool schemas (#90283). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90283"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "skip unreadable OpenAI responses tool schemas (#90286). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90286"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "skip unreadable responses tool schemas (#90397). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90397"
+      },
+      {
+        "title": "Fold Telegram RTT sampling into live QA evidence (#92550)",
+        "description": "Fold Telegram RTT sampling into live QA evidence (#92550). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92550"
+      },
+      {
+        "title": "fix(media)",
+        "description": "route OAuth image defaults through Codex (#92824). Thanks @bek91.",
+        "href": "https://github.com/openclaw/openclaw/pull/92824"
+      },
+      {
+        "title": "fix(cli)",
+        "description": "avoid false downgrade prompt for latest tag (#92911). Thanks @Andy312432 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92911"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "guard post-hook tool payloads (#92928).",
+        "href": "https://github.com/openclaw/openclaw/pull/92928"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "guard responses tool payload names (#89703). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89703"
+      },
+      {
+        "title": "fix(sessions)",
+        "description": "fall back to reset archive for missing async transcripts (#92879). Thanks @masatohoshino and @CadanHu and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92879"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "re-resolve route when dynamic agent binding already exists in runtime config (fixes issue 42837) (#92814). Thanks @liuhao1024 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92814"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "omit gpt-5.5 tool reasoning effort (#90574). Thanks @BSG2000.",
+        "href": "https://github.com/openclaw/openclaw/pull/90574"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "recover invalid reasoning signatures (#92941).",
+        "href": "https://github.com/openclaw/openclaw/pull/92941"
+      },
+      {
+        "title": "fix(lmstudio)",
+        "description": "deliver thinking \"off\" to binary-thinking models (#92002). Thanks @nxmxbbd.",
+        "href": "https://github.com/openclaw/openclaw/pull/92002"
+      },
+      {
+        "title": "issue 92201",
+        "description": "Embedded runner: freshly streamed thinking signatures intermittently invalid on replay (Anthropic); recovery wrapper never fires because error text is genericized (#92916). Thanks @mmyzwl.",
+        "href": "https://github.com/openclaw/openclaw/pull/92916"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "do not misclassify client-disconnect abort as run timeout (#90936). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/90936"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "make wrapToolWithBeforeToolCallHook idempotent to prevent double hook execution (fixes issue 92973) (#93009). Thanks @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/93009"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "require explicit message target proof (#92318). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92318"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "repair usage cost aggregation across agents (#93022). Thanks @luke-skywalker-open-claw and @stablegenius49.",
+        "href": "https://github.com/openclaw/openclaw/pull/93022"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "keep parent stdin paused after exit (#93159). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/93159"
+      },
+      {
+        "title": "Keep key-free web search providers opt-in (#93616)",
+        "description": "Keep key-free web search providers opt-in (#93616). Thanks @davemorin and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/93616"
+      },
+      {
+        "title": "feat(telegram)",
+        "description": "send rich message text (#92679). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/92679"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "preserve rich markdown line breaks (#93164). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/93164"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "allow expandable blockquotes (#84082). Thanks @jzakirov.",
+        "href": "https://github.com/openclaw/openclaw/pull/84082"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "expose thread create CLI remap (#89421). Thanks @spacegeologist.",
+        "href": "https://github.com/openclaw/openclaw/pull/89421"
+      },
+      {
+        "title": "fix(sessions)",
+        "description": "derive channel from account-scoped DM session keys in send-policy (#92788). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/92788"
+      },
+      {
+        "title": "Fix webchat media completion handoff (#91246)",
+        "description": "Fix webchat media completion handoff (#91246). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/91246"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "de-duplicate main-session systemEvent in heartbeat model input (#91287). Thanks @ZengWen-DT.",
+        "href": "https://github.com/openclaw/openclaw/pull/91287"
+      },
+      {
+        "title": "fix issue 92453",
+        "description": "add session identity to runtime prompt (#92468). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/92468"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "reject unknown OpenAI agent selectors (#92510). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/92510"
+      },
+      {
+        "title": "fix(google)",
+        "description": "strip provider prefix from Vertex model path (#91218). Thanks @bymle.",
+        "href": "https://github.com/openclaw/openclaw/pull/91218"
+      },
+      {
+        "title": "fix(OpenAI Responses)",
+        "description": "disable item id replay for storeless providers (#90706). Thanks @snowzlm.",
+        "href": "https://github.com/openclaw/openclaw/pull/90706"
+      },
+      {
+        "title": "feat(usage)",
+        "description": "ship built-in /usage full footer (#92657). Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/pull/92657"
+      },
+      {
+        "title": "fix",
+        "description": "start workspace files collapsed (#92779). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/pull/92779"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "preserve /reset soft args in Control UI dispatch (#91353). Thanks @zhouhe-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/91353"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "preserve dashboard session parent lineage when session list is stale (#90658). Thanks @luoyanglang.",
+        "href": "https://github.com/openclaw/openclaw/pull/90658"
+      },
+      {
+        "title": "fix issue 92465",
+        "description": "split OpenAI 431 embedding batches (#92650). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/92650"
+      },
+      {
+        "title": "fix(state)",
+        "description": "avoid sqlite wal on nfs state volumes (#91247). Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/pull/91247"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "preserve retry state and embedding cache across reindex rollback (#59137). Thanks @TSHOGX.",
+        "href": "https://github.com/openclaw/openclaw/pull/59137"
+      },
+      {
+        "title": "fix(markdown-core)",
+        "description": "treat Infinity chunk limit as unbounded, not 1 (#92735). Thanks @yhterrance.",
+        "href": "https://github.com/openclaw/openclaw/pull/92735"
+      },
+      {
+        "title": "issue 92069",
+        "description": "fix(cli): usage errors exit 0 (#92162). Thanks @Pandah97.",
+        "href": "https://github.com/openclaw/openclaw/pull/92162"
+      },
+      {
+        "title": "docs(nodes)",
+        "description": "add openclaw.json config example to Nodes overview (#92677). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92677"
+      },
+      {
+        "title": "docs(config)",
+        "description": "correct maxConcurrent default in agent-defaults type comments (AI-assisted) (#92695). Thanks @ArielSmoliar.",
+        "href": "https://github.com/openclaw/openclaw/pull/92695"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "raise thread title timeout and tokens to fit reasoning models (#64734). Thanks @hanamizuki.",
+        "href": "https://github.com/openclaw/openclaw/pull/64734"
+      },
+      {
+        "title": "fix",
+        "description": "require admin for HTTP model overrides (#92646). Thanks @steipete-oai.",
+        "href": "https://github.com/openclaw/openclaw/pull/92646"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "show resolved canonical model ref in /model confirmation (#92773). Thanks @NarahariRaghava.",
+        "href": "https://github.com/openclaw/openclaw/pull/92773"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: openclaw cron status reports legacy storePath (#91766). Thanks @AaronFaby.",
+        "href": "https://github.com/openclaw/openclaw/pull/91766"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Node.js auto-installer fails silently with ioctl errors then falsely reports success before crashing (#73837). Thanks @ItsMeForLua.",
+        "href": "https://github.com/openclaw/openclaw/pull/73837"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Missing SQLite perf and query-plan harness (#91616). Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91616"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Error: Gateway service install not supported on openbsd (#25621). Thanks @kucharskim.",
+        "href": "https://github.com/openclaw/openclaw/pull/25621"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: cron edit --cron silently strips schedule.tz and staggerMs (direct path replaces schedule without merging) (#92291). Thanks @dcapclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/92291"
+      },
+      {
+        "title": "Reported",
+        "description": "message tool: `image` param silently dropped on send — delivers text without attachment but returns ok:true (#92407). Thanks @ichirokyoto.",
+        "href": "https://github.com/openclaw/openclaw/pull/92407"
+      },
+      {
+        "title": "Reported",
+        "description": "Kimi K2.6 reasoning_content 400 regression in long conversations after LCM compaction (follow-up issue 70392) (#71491). Thanks @RoseKongPS.",
+        "href": "https://github.com/openclaw/openclaw/pull/71491"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Moonshot/Kimi duplicate tool-call IDs in replay, exposed by WhatsApp group chats (#51593). Thanks @Faaab84 and @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/51593"
+      },
+      {
+        "title": "Reported",
+        "description": "Discord channel stays disabled with no warning unless `plugins.entries.discord.enabled` is set (#83212). Thanks @cdeyoung67.",
+        "href": "https://github.com/openclaw/openclaw/pull/83212"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Slack channel/thread sessions never persist assistant replies to the session transcript → total context loss when the CLI session binding is invalidated (#92489). Thanks @TalkingHeadsJed and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/92489"
+      },
+      {
+        "title": "Reported",
+        "description": "ModelRegistry: a single invalid plugin catalog aborts the entire custom-models load, leaving zero models and an unlogged error (#92553). Thanks @fxstein.",
+        "href": "https://github.com/openclaw/openclaw/pull/92553"
+      },
+      {
+        "title": "Reported",
+        "description": "Health check bloat: uptime monitors must use /health, not /v1/chat/completions (#55768). Thanks @faahim.",
+        "href": "https://github.com/openclaw/openclaw/pull/55768"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Windows Hub download link is not working (#92470). Thanks @arjkul.",
+        "href": "https://github.com/openclaw/openclaw/pull/92470"
+      },
+      {
+        "title": "Reported",
+        "description": "Feishu channel leaks system runtime context (relevant-memories, sender metadata) into user-visible reply (#92589). Thanks @jovi2014-cyber.",
+        "href": "https://github.com/openclaw/openclaw/pull/92589"
+      },
+      {
+        "title": "Reported",
+        "description": "[Performance] /models command slow in v2026.6.1 — catalog loading regression (#91809). Thanks @syfvb.",
+        "href": "https://github.com/openclaw/openclaw/pull/91809"
+      },
+      {
+        "title": "Reported",
+        "description": "models.list marks auth-profile-backed SecretRef providers unavailable (#90685). Thanks @rohitjavvadi.",
+        "href": "https://github.com/openclaw/openclaw/pull/90685"
+      },
+      {
+        "title": "Reported",
+        "description": "Name-keyed entries in channels.slack.channels silently dropped under groupPolicy: \"allowlist\" (#81665). Thanks @cjalden.",
+        "href": "https://github.com/openclaw/openclaw/pull/81665"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: sessions_yield in a depth-1 subagent settles its background task as \"cancelled\" (operator-reserved status) and delivers a false \"Background task cancelled\" notice to the requester session (#92448). Thanks @aleps001.",
+        "href": "https://github.com/openclaw/openclaw/pull/92448"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: OpenRouter: Anthropic models send wrong model ID to API (includes openrouter/ prefix) (#92611). Thanks @lijenhsin.",
+        "href": "https://github.com/openclaw/openclaw/pull/92611"
+      },
+      {
+        "title": "Reported",
+        "description": "anthropic (api_key) provider: Claude Haiku 4.5 missing from static model catalog → \"Unknown model\" (model_not_found) (#90088). Thanks @maaron34.",
+        "href": "https://github.com/openclaw/openclaw/pull/90088"
+      },
+      {
+        "title": "Reported",
+        "description": "github-copilot: tools[].eager_input_streaming still rejected on v2026.4.29 (re: issue 72183) (#75348). Thanks @finchinslc and @Kailigithub.",
+        "href": "https://github.com/openclaw/openclaw/pull/75348"
+      },
+      {
+        "title": "Reported",
+        "description": "openclaw infer embedding create fails with TypeError: fetch failed on Node 24 despite valid Voyage credential; underlying cause is swallowed (#73713). Thanks @crsnpalmer-art.",
+        "href": "https://github.com/openclaw/openclaw/pull/73713"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway runs well-formed-but-unknown agent slug under agents.defaults instead of 4xx (no roster validation in resolveAgentIdForRequest; x-openclaw-agent-id header never roster-validated) (#92504). Thanks @ryanhelms.",
+        "href": "https://github.com/openclaw/openclaw/pull/92504"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Delivery retry loop corrupts active sessions (R-004) — retry selector bypasses delivery.mode=none (#91420). Thanks @CarotaWealth.",
+        "href": "https://github.com/openclaw/openclaw/pull/91420"
+      },
+      {
+        "title": "Reported",
+        "description": "Agent runtime header lacks session identity, causing misleading self-references (#92453). Thanks @QQSHI13.",
+        "href": "https://github.com/openclaw/openclaw/pull/92453"
+      },
+      {
+        "title": "Reported",
+        "description": "fix(slack): emit message_sent hook on outbound delivery (mirror Telegram) (#89942). Thanks @rishitamrakar.",
+        "href": "https://github.com/openclaw/openclaw/pull/89942"
+      },
+      {
+        "title": "Reported",
+        "description": "bug(cli): usage errors exit 0 (#92069). Thanks @marcospaulo.",
+        "href": "https://github.com/openclaw/openclaw/pull/92069"
+      },
+      {
+        "title": "Reported",
+        "description": "void requireRef silences dead-import lint via side-effect expression (#83878). Thanks @davinci282828.",
+        "href": "https://github.com/openclaw/openclaw/pull/83878"
+      },
+      {
+        "title": "Reported",
+        "description": "formatDiskSpaceBytes emits \"1024 MiB\" instead of \"1.0 GiB\" at the GiB boundary (#90245). Thanks @jbetala7.",
+        "href": "https://github.com/openclaw/openclaw/pull/90245"
+      },
+      {
+        "title": "Reported",
+        "description": "`setFeishuClientRuntimeForTest` resets the SDK without clearing the client cache (#83911). Thanks @davinci282828.",
+        "href": "https://github.com/openclaw/openclaw/pull/83911"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Cron job with sessionTarget: \"main\" triggers both systemEvent and reminder despite delivery.mode: \"none\" (#44922). Thanks @GSL-R.",
+        "href": "https://github.com/openclaw/openclaw/pull/44922"
+      },
+      {
+        "title": "Reported",
+        "description": "music_generate background task completion delivery consistently fails (completion wake + fallback both fail) (#91003). Thanks @kumaxs.",
+        "href": "https://github.com/openclaw/openclaw/pull/91003"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: In the Control UI, `/reset soft` is truncated to `/reset` when executed, and the args are lost (#91316). Thanks @MaBeitian.",
+        "href": "https://github.com/openclaw/openclaw/pull/91316"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: dashboard child sessions record assistant replies but do not display them (#90623). Thanks @lily-oc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90623"
+      },
+      {
+        "title": "Reported",
+        "description": "openclaw message thread create for Telegram: thread-create → topic-create remap not happening; gateway rejects with Unsupported Telegram action (#81581). Thanks @myrzka.",
+        "href": "https://github.com/openclaw/openclaw/pull/81581"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: GatewayRequestError: Error: file is not a database: code=ERR_SQLITE_ERROR (#90491). Thanks @AFabyTWE.",
+        "href": "https://github.com/openclaw/openclaw/pull/90491"
+      },
+      {
+        "title": "Reported",
+        "description": "Signal image captions truncated to first character (Infinity chunk limit normalizes to 1) (#92734). Thanks @yhterrance.",
+        "href": "https://github.com/openclaw/openclaw/pull/92734"
+      },
+      {
+        "title": "Reported",
+        "description": "Docs feedback: /nodes (#92662). Thanks @Casper-Mars.",
+        "href": "https://github.com/openclaw/openclaw/pull/92662"
+      },
+      {
+        "title": "Reported",
+        "description": "Bulk memory import can hit OpenAI 431; chunked indexing avoids it (#92465). Thanks @BrettHamlin.",
+        "href": "https://github.com/openclaw/openclaw/pull/92465"
+      },
+      {
+        "title": "Reported",
+        "description": "Docker image ships an extraneous stale openclaw in /app/node_modules (extensions pin the published release) (#92551). Thanks @fxstein.",
+        "href": "https://github.com/openclaw/openclaw/pull/92551"
+      },
+      {
+        "title": "Reported",
+        "description": "Telegram callback queries time out when agent turn is queued behind sequentialize (#42156). Thanks @Diaspar4u.",
+        "href": "https://github.com/openclaw/openclaw/pull/42156"
+      },
+      {
+        "title": "Reported",
+        "description": "doctor + cron status still report the retired cron/jobs.json store after the SQLite migration (2026.6.5) (#92683). Thanks @motteman.",
+        "href": "https://github.com/openclaw/openclaw/pull/92683"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram media download fails on IPv4-broken / IPv6-working hosts because runtime IPv4 fallback overrides config (#41671). Thanks @leandroirani933-ctrl and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/41671"
+      },
+      {
+        "title": "Reported",
+        "description": "macOS app pinwheels due to SwiftUI infinite render loop in VoiceWakeOverlay (#43480). Thanks @gdiab and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/43480"
+      },
+      {
+        "title": "Reported",
+        "description": "TUI displays Context Tokens as ?/200k instead of actual value (#43009). Thanks @ltxy12138-ai and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/43009"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram inline button callback_query not routed to agent — hallucination instead of tool call (#54909). Thanks @timt80 and @hnshah.",
+        "href": "https://github.com/openclaw/openclaw/pull/54909"
+      },
+      {
+        "title": "Reported",
+        "description": "Status/session context window can over-report the selected model's actual window (#39857). Thanks @xdanger.",
+        "href": "https://github.com/openclaw/openclaw/pull/39857"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Reasoning model thinking blocks (<thinking> tags) in conversation history cause HTTP 400 on GitHub Copilot provider (#81520). Thanks @warcold.",
+        "href": "https://github.com/openclaw/openclaw/pull/81520"
+      },
+      {
+        "title": "Reported",
+        "description": "fix(memory): EPERM on Windows persists after 64187 retry — needs copyFile/unlink fallback (was in closed PR 71611) (#78640). Thanks @MilleniumGenAI.",
+        "href": "https://github.com/openclaw/openclaw/pull/78640"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: WhatsApp block streaming can suppress complete final replies after partial stream delivery (#81078). Thanks @Jackten.",
+        "href": "https://github.com/openclaw/openclaw/pull/81078"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Twilio voice-call can get stuck in hold music after failed/no-stream call (#81122). Thanks @donkeykong91.",
+        "href": "https://github.com/openclaw/openclaw/pull/81122"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Stale workflow does not exempt ClawSweeper queueable issues (#89564). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/89564"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: `openclaw status` renders sub-1000 token counts as misleading fractional k (999 → \"1.0k\") (#89735). Thanks @jbetala7 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89735"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: sessions_spawn tool description lacks usage guidance, causing agents to not use sub-agents when appropriate (#91814). Thanks @cattails-lgao.",
+        "href": "https://github.com/openclaw/openclaw/pull/91814"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Lobster tool falls back to pipeline parsing for relative workflow file paths (#68101). Thanks @MPC7500 and @vvitovec.",
+        "href": "https://github.com/openclaw/openclaw/pull/68101"
+      },
+      {
+        "title": "Reported",
+        "description": "openai-chatgpt-responses native replay sends encrypted reasoning and breaks next turn with invalid_encrypted_content (#90093). Thanks @richardmqq.",
+        "href": "https://github.com/openclaw/openclaw/pull/90093"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Persistent sessions corrupted by stale thinking blocks — provider rejects all subsequent turns (#92360). Thanks @notnaji.",
+        "href": "https://github.com/openclaw/openclaw/pull/92360"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Subagent announce-delivery echo messages inherit wrong provider/model metadata, causing persistent \"thinking blocks cannot be modified\" errors after gateway restart (#87329). Thanks @travellingsoldier85.",
+        "href": "https://github.com/openclaw/openclaw/pull/87329"
+      },
+      {
+        "title": "Reported",
+        "description": "Codex-authenticated installs can auto-select direct OpenAI for image media understanding without OPENAI_API_KEY (#87168). Thanks @bek91.",
+        "href": "https://github.com/openclaw/openclaw/pull/87168"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Feishu dynamicAgentCreation feature not working (#42837). Thanks @cwlong163-afk and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/42837"
+      },
+      {
+        "title": "Reported",
+        "description": "BUG: sessions_spawn silently half-fails when thinking level is unsupported — fan-out spawns produce non-deterministic survivors, no signal to orchestrator (fix: symmetrize CLI-launch fallback with embedded path) (#92412). Thanks @oiGaDio.",
+        "href": "https://github.com/openclaw/openclaw/pull/92412"
+      },
+      {
+        "title": "Reported",
+        "description": "Config hot-reload permanently disabled when inotify watches exhausted (no polling fallback) (#92851). Thanks @danbao.",
+        "href": "https://github.com/openclaw/openclaw/pull/92851"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway becomes slow or times out under multi-session / multi-agent load (#92057). Thanks @xiaopings.",
+        "href": "https://github.com/openclaw/openclaw/pull/92057"
+      },
+      {
+        "title": "Reported",
+        "description": "fix(memory-wiki): guard against missing agentIds (#92207). Thanks @qq230849622-a11y.",
+        "href": "https://github.com/openclaw/openclaw/pull/92207"
+      },
+      {
+        "title": "Reported",
+        "description": "Embedded runner: freshly streamed thinking signatures intermittently invalid on replay (Anthropic); recovery wrapper never fires because error text is genericized (#92201). Thanks @CarlCapital.",
+        "href": "https://github.com/openclaw/openclaw/pull/92201"
+      },
+      {
+        "title": "Reported",
+        "description": "before_tool_call hook fires twice: tools double-wrapped after normalizeToolParameters strips the wrap marker (#92973). Thanks @dertbv.",
+        "href": "https://github.com/openclaw/openclaw/pull/92973"
+      },
+      {
+        "title": "Reported",
+        "description": "memory-wiki lint: sources/ directory requires frontmatter on raw imported files (#69700). Thanks @arlen8411.",
+        "href": "https://github.com/openclaw/openclaw/pull/69700"
       }
     ],
     "fixes": [
-      "Channels and delivery: preserve account-scoped DM channel send policy, rich Telegram final replies, rich Telegram tables and lists, Telegram thread-create CLI remapping, Slack outbound `message_sent` hooks, contributed message-tool schema optionality, same-channel generated media completions, and channel chunking around surrogate pairs and Infinity limits. (#92788, #92679, #89421, #89943, #91137, #91246, #92735) Thanks @yetval, @obviyus, @spacegeologist, @rishitamrakar, @lundog, @TurboTheTurtle, and @yhterrance.",
+      "Channels and delivery: preserve account-scoped DM channel send policy, intentional rich-message line breaks in Telegram and status output, rich Telegram final replies, rich Telegram tables and lists, Telegram thread-create CLI remapping, Feishu dynamic-agent routes after persisted binding reuse, Slack outbound `message_sent` hooks, contributed message-tool schema optionality, same-channel generated media completions, and channel chunking around surrogate pairs and Infinity limits. (#92788, #93164, #92679, #89421, #89943, #42837, #92814, #91137, #91246, #92735) Thanks @yetval, @obviyus, @spacegeologist, @rishitamrakar, @liuhao1024, @lundog, @TurboTheTurtle, and @yhterrance.",
+      "Gemini CLI: use the selected OpenClaw OAuth/API-key auth profile in an isolated Gemini CLI runtime home, preventing ambient Google machine credentials from overriding the chosen profile. (#88748) Thanks @jason-allen-oneal and @shakkernerd.",
       "Discord: give generated auto-thread titles a 60-second timeout and 4,096-token reasoning-model output budget, clamped to the selected model output cap. (#64734) Thanks @hanamizuki.",
-      "Agent, cron, and Gateway runtime: mark active main sessions before restart shutdown aborts, pause yielded subagent runs whose terminal also signals abort, preserve yielded media completions, de-duplicate main-session heartbeat events, expose session identity in runtime prompts, reject unknown OpenAI agent selectors, keep generated media completions and slash-command block replies in WebChat, preserve fresh post-compaction usage while clearing stale usage snapshots, and require admin privileges for HTTP session/model override surfaces. (#91357, #92631, #92146, #91287, #92468, #92510, #91246, #50795, #50845, #82874, #92651, #92646) Thanks @ooiuuii, @openperf, @IWhatsskill, @ZengWen-DT, @zhangguiping-xydt, @Hollychou924, @leno23, and @TurboTheTurtle.",
-      "Providers and model replay: preserve storeless OpenAI Responses replay compatibility, avoid eager tool streaming for Claude 4.5 in Copilot, honor profile auth for SecretRef model entries, bound model browsing, strip provider prefixes where runtimes need bare IDs, and surface nested embedding fetch failures. (#90706, #75393, #90686, #92247, #92627, #91218, #92628) Thanks @snowzlm, @Kailigithub, @rohitjavvadi, @samson910022, @liuhao1024, @bymle, and @mushuiyu886.",
-      "Memory, state, diagnostics, and config: split header-too-large embedding batches, keep QMD memory search enabled in transient mode, avoid SQLite WAL on NFS volumes, preserve recovery scheduling outside stuck-session warning backoff, and keep shell environment fallbacks contained in config write tests. (#92650, #92618, #92639, #91247, #92752) Thanks @mushuiyu886, @TurboTheTurtle, @849261680, and @gnanam1990.",
-      "UI/mobile/TUI: preserve dashboard session parent lineage, WebChat backscroll, reset soft command args, sidebar session picker interactivity, collapsed workspace files, resolved `/model` confirmation refs, and stale foreground iOS Gateway reconnects. (#90658, #92622, #91353, #92705, #92779, #92773, #92552) Thanks @luoyanglang, @TurboTheTurtle, @zhouhe-xydt, @NianJiuZst, @shakkernerd, @NarahariRaghava, and @Solvely-Colin.",
-      "Control UI: preserve Gateway Access tokens during same-normalized WebSocket URL edits and reload gateway-scoped tokens when switching endpoints. Fixes #41545; repairs #42001 with additional source PRs #41546, #41552, and #41718. Thanks @wsyjh8, @llagy0020, @llagy007, @pingfanfan, and @zheliu2.",
-      "Release and test reliability: extend slow Gateway/full-suite watchdogs, split local full-suite shards when throttled, stabilize plugin auth marker fixtures, avoid brittle provider-ref error text, and keep QA Lab bootstrap selection assertions aligned with flow-only scenarios. (#92652)",
-      "macOS Peekaboo bridge: update the embedded Peekaboo package to 3.5.2 and route bundled-skill CLI commands through the OpenClaw app bridge so they inherit its Screen Recording and Accessibility grants.",
-      "Agent routing: route subagent RPC callbacks addressed to an agent-shaped `--to` target to the correct session key instead of falling back to the main session, so WeChat (and other channel) session-key callbacks reach the intended subagent session. (#90231) Thanks @zhangguiping-xydt.",
-      "QQBot delivery: keep markdown table chunks self-contained across message boundaries by preserving table state across block deliveries, flushing unfinished table-row fragments as plain text, and detecting short pipe-terminated rows by column count so split rows are not sent as malformed markdown. (#92428) Thanks @sliverp."
+      "Agent, cron, and Gateway runtime: mark active main sessions before restart shutdown aborts, pause yielded subagent runs whose terminal also signals abort, clamp trusted subagent thinking overrides through provider/model fallback, preserve yielded media completions, deliver channel message-tool final replies through auto-reply while hiding internal delivery hints, restore reset archive fallback reads when active async transcripts are missing, de-duplicate main-session heartbeat events, expose session identity in runtime prompts, reject unknown OpenAI agent selectors, keep generated media completions, slash-command block replies, and trajectory export commands in WebChat, and require admin privileges for HTTP session/model override surfaces. (#91357, #92631, #92412, #92146, #92879, #91287, #92468, #92510, #91246, #92651, #92646) Thanks @ooiuuii, @openperf, @IWhatsskill, @masatohoshino, @CadanHu, @ZengWen-DT, @zhangguiping-xydt, and @TurboTheTurtle.",
+      "Providers and model replay: preserve storeless OpenAI Responses replay compatibility, recover invalid OpenAI reasoning signatures and genericized Anthropic thinking-signature replay errors, route OAuth image defaults through Codex for eligible OpenAI profiles, avoid eager tool streaming for Claude 4.5 in Copilot, quarantine unreadable and post-hook OpenAI/Anthropic-family tool schemas without broadening allowed tool choices, deliver explicit thinking-off requests to LM Studio binary-thinking models, honor profile auth for SecretRef model entries, bound model browsing, strip provider prefixes where runtimes need bare IDs, and surface nested embedding fetch failures. (#90706, #92941, #92201, #92916, #92824, #75393, #92908, #92921, #92928, #92002, #90686, #92247, #92627, #91218, #92628) Thanks @snowzlm, @mmyzwl, @CarlCapital, @bek91, @Kailigithub, @vincentkoc, @rohitjavvadi, @samson910022, @nxmxbbd, @liuhao1024, @bymle, and @mushuiyu886.",
+      "Memory, state, diagnostics, and config: split header-too-large embedding batches, keep QMD memory search enabled in transient mode, avoid SQLite WAL on NFS volumes, preserve recovery scheduling outside stuck-session warning backoff, preserve full-reindex rollback/cache recovery, treat raw Memory Wiki source pages as source evidence, and keep shell environment fallbacks contained in config write tests. (#92650, #92618, #92639, #91247, #92752, #92881, #59137, #92876, #69700) Thanks @mushuiyu886, @TurboTheTurtle, @849261680, @gnanam1990, @TSHOGX, and @arlen8411.",
+      "UI/mobile/TUI: preserve dashboard session parent lineage, WebChat backscroll, reset soft command args, sidebar session picker interactivity, collapsed workspace files, resolved `/model` confirmation refs, stale foreground iOS Gateway reconnects, and paused setup-parent stdin after inherited-stdio child exit. (#90658, #92622, #91353, #92705, #92779, #92773, #92552, #93159) Thanks @luoyanglang, @TurboTheTurtle, @zhouhe-xydt, @NianJiuZst, @shakkernerd, @NarahariRaghava, @Solvely-Colin, and @fuller-stack-dev.",
+      "Plugins and updates: repair missing required platform packages during managed plugin installs and updates, including omitted Codex platform binaries.",
+      "Dependencies: update Hono to 4.12.25 so published OpenClaw and ACPX packages use the patched runtime.",
+      "Release and test reliability: extend slow Gateway/full-suite watchdogs, split local full-suite shards when throttled, stabilize plugin auth marker fixtures, avoid brittle provider-ref error text, fold Telegram RTT sampling into live QA evidence, simplify QA scorecard mappings around canonical coverage IDs, keep QA Lab bootstrap selection assertions aligned with flow-only scenarios, skip QA coverage artifact consumers when runtime parity producer status is not green, keep Feishu lifecycle release checks pointed at the active fixture config, isolate trajectory-export live seed turns from Codex-native shell approvals, preserve release-check child refs while pinning expected SHAs, widen live OpenAI TTS budgets for slower provider responses, and avoid false downgrade prompts for unresolved latest-tag updates. (#92652, #92550, #92558, #92911) Thanks @RomneyDa and @Andy312432."
+    ]
+  },
+  {
+    "version": "2026.6.7",
+    "date": "2026.6.7",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202667",
+    "features": [
+      {
+        "title": "Telegram, outbound delivery, and channel recovery are sturdier",
+        "description": "polling conflicts surface and restart safely, draft preview failures retry instead of ending a stream, delivered Slack replies remain in transcripts, and top-level image sends keep their intended media source. (#92281, #92498, #92083, #92407) Thanks @joshavant, @TurboTheTurtle, @hansraj316, and @xydigit-sj.",
+        "href": "https://github.com/openclaw/openclaw/issues/92281"
+      },
+      {
+        "title": "Provider and agent recovery covers SecretRef-backed profiles, configured De...",
+        "description": "Provider and agent recovery covers SecretRef-backed profiles, configured DeepSeek transports, static model fallback, rejected Anthropic thinking replay, Codex prompt memory registration, and Kimi K2.7 Code support. (#92265, #92235, #92293, #92286, #92350, #92554) Thanks @joshavant, @rubencu, and @xialonglee.",
+        "href": "https://github.com/openclaw/openclaw/issues/92265"
+      },
+      {
+        "title": "Cron, update, installer, and doctor paths now report SQLite-backed cron sta...",
+        "description": "Cron, update, installer, and doctor paths now report SQLite-backed cron state, preserve disabled heartbeat retries, hand off Linux service auto-updates, and make external plugin/channel diagnosis clearer. (#92144, #92225, #92282, #86629) Thanks @liuhao1024, @joshavant, and @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/issues/92144"
+      },
+      {
+        "title": "Skills and plugin workflows now permit trusted Skill Workshop support-file...",
+        "description": "Skills and plugin workflows now permit trusted Skill Workshop support-file targets only through guarded lifecycle writes, and package publishing uses the current ClawHub plugin checks.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202667"
+      },
+      {
+        "title": "Providers",
+        "description": "add Kimi K2.7 Code support. (#92554)",
+        "href": "https://github.com/openclaw/openclaw/pull/92554"
+      },
+      {
+        "title": "QA: add evidence artifacts and scorecard taxonomy validation for release proof",
+        "description": "QA: add evidence artifacts and scorecard taxonomy validation for release proof. (#91484, #91500) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/91484"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "report SQLite storage path in cron.status instead of legacy jobs.json (#92144). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92144"
+      },
+      {
+        "title": "fix(channel)",
+        "description": "harden local setup trust (#92175). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/92175"
+      },
+      {
+        "title": "fix",
+        "description": "handle explicit silent assistant replies (#92073). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/92073"
+      },
+      {
+        "title": "fix(docker)",
+        "description": "bundle QA Lab runtime in the image (#92087). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/pull/92087"
+      },
+      {
+        "title": "fix(anthropic-vertex)",
+        "description": "stop re-marking cache_control on transport-budgeted payloads (#92387). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/92387"
+      },
+      {
+        "title": "Fix doctor preview channel SecretRef resolution (#92229)",
+        "description": "Fix doctor preview channel SecretRef resolution (#92229). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92229"
+      },
+      {
+        "title": "Fix disabled heartbeat one-shot cron retries (#92225)",
+        "description": "Fix disabled heartbeat one-shot cron retries (#92225). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92225"
+      },
+      {
+        "title": "Fix configured DeepSeek model transport inheritance (#92265)",
+        "description": "Fix configured DeepSeek model transport inheritance (#92265). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92265"
+      },
+      {
+        "title": "Fail closed for CLI-backed /btw fallback (#92226)",
+        "description": "Fail closed for CLI-backed /btw fallback (#92226). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92226"
+      },
+      {
+        "title": "Fix suppressed heartbeat commitment delivery (#92231)",
+        "description": "Fix suppressed heartbeat commitment delivery (#92231). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92231"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "classify structured unsupported model errors (#92280). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92280"
+      },
+      {
+        "title": "Fix OTLP log trace correlation (#92276)",
+        "description": "Fix OTLP log trace correlation (#92276). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92276"
+      },
+      {
+        "title": "fix(update)",
+        "description": "hand off Linux service auto-updates (#92282). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92282"
+      },
+      {
+        "title": "fix",
+        "description": "resolve managed SecretRef provider auth (#92235). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92235"
+      },
+      {
+        "title": "Fix provider static model fallback resolution (#92293)",
+        "description": "Fix provider static model fallback resolution (#92293). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92293"
+      },
+      {
+        "title": "fix(agent)",
+        "description": "continue after source message tool replies (#92343). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92343"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "preserve memory prompt registration (#92350). Thanks @rubencu.",
+        "href": "https://github.com/openclaw/openclaw/pull/92350"
+      },
+      {
+        "title": "fix",
+        "description": "clarify gateway SecretRef auth diagnostics (#92290). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92290"
+      },
+      {
+        "title": "fix",
+        "description": "repair rejected Anthropic thinking replay (#92286). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92286"
+      },
+      {
+        "title": "Fix Telegram spooled buffered replay (#92281)",
+        "description": "Fix Telegram spooled buffered replay (#92281). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/92281"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "honor top-level image param as send media source (issue 92407) (#92416). Thanks @xydigit-sj.",
+        "href": "https://github.com/openclaw/openclaw/pull/92416"
+      },
+      {
+        "title": "fix(sandbox)",
+        "description": "render CLI skill prompts from materialized paths (#92508). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/92508"
+      },
+      {
+        "title": "chore",
+        "description": "fix esbuild production audit failure (#92540). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92540"
+      },
+      {
+        "title": "Add QA evidence artifact output (#91484)",
+        "description": "Add QA evidence artifact output (#91484). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91484"
+      },
+      {
+        "title": "Add QA scorecard taxonomy validation (#91500)",
+        "description": "Add QA scorecard taxonomy validation (#91500). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91500"
+      },
+      {
+        "title": "feat(moonshot)",
+        "description": "add Kimi K2.7 Code support (#92554).",
+        "href": "https://github.com/openclaw/openclaw/pull/92554"
+      },
+      {
+        "title": "fix(moonshot)",
+        "description": "backfill reasoning_content on assistant tool-call replay messages (#92396). Thanks @xialonglee.",
+        "href": "https://github.com/openclaw/openclaw/pull/92396"
+      },
+      {
+        "title": "Fix lifecycle timeout cleanup after leader exit (#92566)",
+        "description": "Fix lifecycle timeout cleanup after leader exit (#92566). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92566"
+      },
+      {
+        "title": "Expose paged channel action results (#88993)",
+        "description": "Expose paged channel action results (#88993). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/88993"
+      },
+      {
+        "title": "fix(fireworks)",
+        "description": "resolve catalog model params from plugin.json via core (#90326). Thanks @obuchowski.",
+        "href": "https://github.com/openclaw/openclaw/pull/90326"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "warn for untrusted external Discord plugin (#86629). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/86629"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "skip unreadable Mistral tool schemas (#90242). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90242"
+      },
+      {
+        "title": "fix(reply)",
+        "description": "mirror same-channel Slack final replies (#92498). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/92498"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "default boundary logger for swallowed progress-draft start errors (#92083). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92083"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "make timer-fired progress-draft start errors observable (#92031). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92031"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "isolate invalid plugin model catalogs [AI-assisted] (#92564). Thanks @tangtaizong666.",
+        "href": "https://github.com/openclaw/openclaw/pull/92564"
+      },
+      {
+        "title": "docs",
+        "description": "UX-013 — design system documentation (#89827). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89827"
+      },
+      {
+        "title": "feat(ui)",
+        "description": "hide empty workboard columns (#89615). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89615"
+      },
+      {
+        "title": "fix(a11y)",
+        "description": "B-1+B-2+B-3 — contrast, focus states, minimum font sizes (#89822). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89822"
+      },
+      {
+        "title": "fix issue 92218",
+        "description": "memory_search tool disabled with QMD backend (#92618). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/92618"
+      },
+      {
+        "title": "docs(gateway)",
+        "description": "add uptime monitoring guidance to health check docs (fixes issue 55768) (#92608). Thanks @liuhao1024.",
+        "href": "https://github.com/openclaw/openclaw/pull/92608"
+      },
+      {
+        "title": "fix(docs)",
+        "description": "pin Windows Hub download links to v2026.6.5 (#92605). Thanks @lzyyzznl.",
+        "href": "https://github.com/openclaw/openclaw/pull/92605"
+      },
+      {
+        "title": "issue 92589",
+        "description": "fix(internal-runtime-context): wrap prompt-preface runtime context body in delimiters (#92593). Thanks @zhangqueping.",
+        "href": "https://github.com/openclaw/openclaw/pull/92593"
+      },
+      {
+        "title": "Run Vitest and Playwright scenarios from qa suite (#92606)",
+        "description": "Run Vitest and Playwright scenarios from qa suite (#92606). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/92606"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: openclaw cron status reports legacy storePath (#91766). Thanks @AaronFaby.",
+        "href": "https://github.com/openclaw/openclaw/pull/91766"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Node.js auto-installer fails silently with ioctl errors then falsely reports success before crashing (#73837). Thanks @ItsMeForLua.",
+        "href": "https://github.com/openclaw/openclaw/pull/73837"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Missing SQLite perf and query-plan harness (#91616). Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91616"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Error: Gateway service install not supported on openbsd (#25621). Thanks @kucharskim.",
+        "href": "https://github.com/openclaw/openclaw/pull/25621"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: cron edit --cron silently strips schedule.tz and staggerMs (direct path replaces schedule without merging) (#92291). Thanks @dcapclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/92291"
+      },
+      {
+        "title": "Reported",
+        "description": "message tool: `image` param silently dropped on send — delivers text without attachment but returns ok:true (#92407). Thanks @ichirokyoto.",
+        "href": "https://github.com/openclaw/openclaw/pull/92407"
+      },
+      {
+        "title": "Reported",
+        "description": "Kimi K2.6 reasoning_content 400 regression in long conversations after LCM compaction (follow-up issue 70392) (#71491). Thanks @RoseKongPS.",
+        "href": "https://github.com/openclaw/openclaw/pull/71491"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Moonshot/Kimi duplicate tool-call IDs in replay, exposed by WhatsApp group chats (#51593). Thanks @Faaab84 and @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/51593"
+      },
+      {
+        "title": "Reported",
+        "description": "Discord channel stays disabled with no warning unless `plugins.entries.discord.enabled` is set (#83212). Thanks @cdeyoung67.",
+        "href": "https://github.com/openclaw/openclaw/pull/83212"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Slack channel/thread sessions never persist assistant replies to the session transcript → total context loss when the CLI session binding is invalidated (#92489). Thanks @TalkingHeadsJed and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/92489"
+      },
+      {
+        "title": "Reported",
+        "description": "ModelRegistry: a single invalid plugin catalog aborts the entire custom-models load, leaving zero models and an unlogged error (#92553). Thanks @fxstein.",
+        "href": "https://github.com/openclaw/openclaw/pull/92553"
+      },
+      {
+        "title": "Reported",
+        "description": "Health check bloat: uptime monitors must use /health, not /v1/chat/completions (#55768). Thanks @faahim.",
+        "href": "https://github.com/openclaw/openclaw/pull/55768"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Windows Hub download link is not working (#92470). Thanks @arjkul.",
+        "href": "https://github.com/openclaw/openclaw/pull/92470"
+      },
+      {
+        "title": "Reported",
+        "description": "Feishu channel leaks system runtime context (relevant-memories, sender metadata) into user-visible reply (#92589). Thanks @jovi2014-cyber.",
+        "href": "https://github.com/openclaw/openclaw/pull/92589"
+      }
+    ],
+    "fixes": [
+      "Channels and delivery: recover Telegram preview and polling failures, retain Slack final replies in transcripts, preserve top-level outbound image parameters, and make channel-action result pages available to callers. (#92281, #92498, #92407, #88993) Thanks @joshavant, @TurboTheTurtle, @xydigit-sj, and @fuller-stack-dev.",
+      "Agent/provider reliability: preserve configured model transport/auth resolution, fail closed for unsupported CLI-backed `/btw` fallback, continue after source message-tool replies, repair Anthropic thinking replay, and keep Codex memory prompts registered. (#92265, #92226, #92343, #92286, #92350) Thanks @joshavant and @rubencu.",
+      "Operations: make cron and daemon status resilient, preserve disabled heartbeat one-shot retries, hand off Linux service auto-updates, and keep lifecycle timeout cleanup alive after leader exit. (#92144, #92225, #92282, #92566) Thanks @liuhao1024, @joshavant, and @RomneyDa."
     ]
   },
   {
@@ -154,6 +1660,1161 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Performance",
         "description": "prewarm TUI runtime plugins, deduplicate plugin auto-enable fanout, trim dense text-delta snapshots, and reuse prepared startup model metadata. (#90782, #89978, #91580, #91531) Thanks @RomneyDa and @ai-hpc.",
         "href": "https://github.com/openclaw/openclaw/issues/90782"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "always-on inbound recovery and dedupe (#91335). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91335"
+      },
+      {
+        "title": "fix",
+        "description": "clarify provider quota errors (#91390). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/91390"
+      },
+      {
+        "title": "docs",
+        "description": "preserve channel brand terms in Chinese i18n (#91419). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/91419"
+      },
+      {
+        "title": "docs",
+        "description": "preserve LINE across localized docs glossaries (#91442). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/91442"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "neutralize media directives in browser output [AI] (#91422). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/91422"
+      },
+      {
+        "title": "feat(cli)",
+        "description": "emit commentary progress events from Claude CLI parser (#89834). Thanks @anagnorisis2peripeteia.",
+        "href": "https://github.com/openclaw/openclaw/pull/89834"
+      },
+      {
+        "title": "fix(context)",
+        "description": "report compactable transcript counts (#91158). Thanks @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/91158"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "honor block streaming config (#91449). Thanks @jmissig and @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91449"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump github.com/steipete/peekaboo from 3.3.0 to 3.4.0 in /apps/macos in the swift-deps group (#91364).",
+        "href": "https://github.com/openclaw/openclaw/pull/91364"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump actions/github-script from 8 to 9 (#91368).",
+        "href": "https://github.com/openclaw/openclaw/pull/91368"
+      },
+      {
+        "title": "chore",
+        "description": "add taxonomy file (#91512). Thanks @kevinslin.",
+        "href": "https://github.com/openclaw/openclaw/pull/91512"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump actions/cache from 4 to 5 (#91369).",
+        "href": "https://github.com/openclaw/openclaw/pull/91369"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump the actions group with 2 updates (#91367).",
+        "href": "https://github.com/openclaw/openclaw/pull/91367"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump the android-deps group in /apps/android with 3 updates (#91365).",
+        "href": "https://github.com/openclaw/openclaw/pull/91365"
+      },
+      {
+        "title": "chore",
+        "description": "bump Codex app-server to 0.137.0 (#91496). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91496"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "reuse startup model metadata (#91531). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91531"
+      },
+      {
+        "title": "feat",
+        "description": "canonicalize Codex protocol JSON asset ordering (#91507). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91507"
+      },
+      {
+        "title": "fix",
+        "description": "bound native hook relay lifetime (#91550). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91550"
+      },
+      {
+        "title": "Fix transcript image redaction (#91529)",
+        "description": "Fix transcript image redaction (#91529). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91529"
+      },
+      {
+        "title": "Fix config",
+        "description": "Fix config.patch explicit array replacement (#91551). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91551"
+      },
+      {
+        "title": "fix(whatsapp)",
+        "description": "route captured replies through successor controller after restart (#85823). Thanks @itsuzef and @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/85823"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "warn on slow first replies (#91583). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91583"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "retry on send rate-limit errors (230020/230006) (#89659). Thanks @ladygege.",
+        "href": "https://github.com/openclaw/openclaw/pull/89659"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "propagate rate-limit errors from typing indicator to circuit breaker (#28157). Thanks @guoqunabc.",
+        "href": "https://github.com/openclaw/openclaw/pull/28157"
+      },
+      {
+        "title": "Fix Docker store seed target packages (#91547)",
+        "description": "Fix Docker store seed target packages (#91547). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/91547"
+      },
+      {
+        "title": "fix",
+        "description": "make docs i18n frontmatter translation resilient (#91578). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/91578"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "require api-key auth for realtime voice (#91567). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91567"
+      },
+      {
+        "title": "fix",
+        "description": "let ClawHub dry runs skip publish approval (#91591). Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/91591"
+      },
+      {
+        "title": "fix(memory-lancedb)",
+        "description": "guard memory recall output [AI] (#91425). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/91425"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "persist echo markers before send (#88969). Thanks @colmbrogan.",
+        "href": "https://github.com/openclaw/openclaw/pull/88969"
+      },
+      {
+        "title": "Fix stale main session startup recovery (#91566)",
+        "description": "Fix stale main session startup recovery (#91566). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91566"
+      },
+      {
+        "title": "docs",
+        "description": "include plugin prerelease in release validation approval (#91637).",
+        "href": "https://github.com/openclaw/openclaw/pull/91637"
+      },
+      {
+        "title": "fix(line)",
+        "description": "canonicalize trailing-slash webhook paths (#91649).",
+        "href": "https://github.com/openclaw/openclaw/pull/91649"
+      },
+      {
+        "title": "feat(qqbot)",
+        "description": "add /bot-group-allways command to toggle mention requirement (#91423). Thanks @cxyhhhhh.",
+        "href": "https://github.com/openclaw/openclaw/pull/91423"
+      },
+      {
+        "title": "fix(docs)",
+        "description": "continue partial i18n batches after file errors (#91642). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/91642"
+      },
+      {
+        "title": "chore(plugin-sdk)",
+        "description": "refresh API baseline hash (#91661).",
+        "href": "https://github.com/openclaw/openclaw/pull/91661"
+      },
+      {
+        "title": "docs",
+        "description": "fix release CI Android dispatch guidance (#91665).",
+        "href": "https://github.com/openclaw/openclaw/pull/91665"
+      },
+      {
+        "title": "fix issue 88009",
+        "description": "[Feature]: batched memory embedding should batch over files (#89138). Thanks @mushuiyu886 and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89138"
+      },
+      {
+        "title": "fix(plugin-sdk)",
+        "description": "align Discord component edit facade types (#91679). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91679"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "restore runtime timeout compatibility exports (#91686). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91686"
+      },
+      {
+        "title": "fix",
+        "description": "expand unsafe host env denylist (#91618). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/91618"
+      },
+      {
+        "title": "fix",
+        "description": "block rustup toolchain env overrides [AI] (#91615). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/91615"
+      },
+      {
+        "title": "fix",
+        "description": "block git protocol env controls [AI] (#91619). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/91619"
+      },
+      {
+        "title": "perf(tui)",
+        "description": "prewarm runtime plugins before first send (#90782). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/90782"
+      },
+      {
+        "title": "fix(config)",
+        "description": "warn for retired skill-workshop plugin entry instead of failing validation (issue 90244) (#90838). Thanks @lonexreb.",
+        "href": "https://github.com/openclaw/openclaw/pull/90838"
+      },
+      {
+        "title": "docs",
+        "description": "clarify Matrix plugin upgrade repair (#91753). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91753"
+      },
+      {
+        "title": "docs",
+        "description": "align Feishu DM policy defaults (#91755). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91755"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "require sender for moderation actions [AI] (#91745). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91745"
+      },
+      {
+        "title": "docs",
+        "description": "clarify trusted-proxy Control UI scope behavior (#85950). Thanks @nielskaspers.",
+        "href": "https://github.com/openclaw/openclaw/pull/85950"
+      },
+      {
+        "title": "fix(msteams)",
+        "description": "require admin for group actions (#91746). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91746"
+      },
+      {
+        "title": "feat(diagnostics-otel)",
+        "description": "capture tool input/output content via trusted channel (#91256). Thanks @amknight.",
+        "href": "https://github.com/openclaw/openclaw/pull/91256"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "restrict non-owner loopback tools (#91749). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91749"
+      },
+      {
+        "title": "fix(elevated)",
+        "description": "reject group ids as senders (#91748). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91748"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "guard sandbox http requests (#91752). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91752"
+      },
+      {
+        "title": "fix(mcp)",
+        "description": "harden stdio env filtering (#91751). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91751"
+      },
+      {
+        "title": "Clarify env-var executable behavior reports in SECURITY",
+        "description": "Clarify env-var executable behavior reports in SECURITY.md (#91765). Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/91765"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "require user intent for chat sessions (#91480). Thanks @TurboTheTurtle and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91480"
+      },
+      {
+        "title": "fix(mcp)",
+        "description": "lowercase SSE event-source header keys to prevent duplicate Authorization (401) (#91773). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91773"
+      },
+      {
+        "title": "Validate sandbox bind parent paths [AI] (#91741)",
+        "description": "Validate sandbox bind parent paths [AI] (#91741). Thanks @mmaps.",
+        "href": "https://github.com/openclaw/openclaw/pull/91741"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "skip idle approval discovery scans (#88530). Thanks @colmbrogan and @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/88530"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "drain restored chat queue after session switch (#91780). Thanks @tmimmanuel.",
+        "href": "https://github.com/openclaw/openclaw/pull/91780"
+      },
+      {
+        "title": "fix(search)",
+        "description": "enforce native web search tool policy (#91750). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91750"
+      },
+      {
+        "title": "fix(config)",
+        "description": "clarify retired skill workshop plugin warning (#91757). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91757"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "keep TTS legacy migration on supported paths (#91787).",
+        "href": "https://github.com/openclaw/openclaw/pull/91787"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "harden outbound send transport (#91783). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91783"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "surface inbound startup diagnostics (#91785). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91785"
+      },
+      {
+        "title": "Fix context-engine compaction ownership for Codex sessions (#91590)",
+        "description": "Fix context-engine compaction ownership for Codex sessions (#91590). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91590"
+      },
+      {
+        "title": "Improve iPad and iPhone control surfaces (#91557)",
+        "description": "Improve iPad and iPhone control surfaces (#91557). Thanks @Solvely-Colin and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91557"
+      },
+      {
+        "title": "chore(deps)",
+        "description": "bump useblacksmith/setup-docker-builder from 1.8.0 to 1.9.0 in the actions group (#91666).",
+        "href": "https://github.com/openclaw/openclaw/pull/91666"
+      },
+      {
+        "title": "docs",
+        "description": "link ClawHub plugin validation fixes guide (#91819). Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/91819"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "avoid guardian review for local models (#88630). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88630"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "keep QMD JSON search one-shot (#91837). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/91837"
+      },
+      {
+        "title": "Fix stale visible reply recovery (#91840)",
+        "description": "Fix stale visible reply recovery (#91840). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91840"
+      },
+      {
+        "title": "block unauthorized Telegram DM text from prompt context (#91478)",
+        "description": "block unauthorized Telegram DM text from prompt context (#91478). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/91478"
+      },
+      {
+        "title": "fix(compaction)",
+        "description": "lower default timeout from 900s to 180s, preserve explicit config (#91361). Thanks @wangmiao0668000666 and @velvet-shark.",
+        "href": "https://github.com/openclaw/openclaw/pull/91361"
+      },
+      {
+        "title": "fix(sandbox)",
+        "description": "use materialized skill paths in startup prompts (#91791). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/91791"
+      },
+      {
+        "title": "Support existing-session browser CDP endpoints (#91736)",
+        "description": "Support existing-session browser CDP endpoints (#91736). Thanks @lifuyue.",
+        "href": "https://github.com/openclaw/openclaw/pull/91736"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "validate discovered CDP websocket URLs (#91747). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91747"
+      },
+      {
+        "title": "feat(anthropic)",
+        "description": "support Claude Fable 5 adaptive thinking (#91882).",
+        "href": "https://github.com/openclaw/openclaw/pull/91882"
+      },
+      {
+        "title": "fix(mcp)",
+        "description": "repair OAuth redirect, errors, and unicode schema patterns (#91451). Thanks @LiuwqGit.",
+        "href": "https://github.com/openclaw/openclaw/pull/91451"
+      },
+      {
+        "title": "fix(talk)",
+        "description": "show OpenAI Realtime WebRTC assistant transcripts (#90426). Thanks @shushushv.",
+        "href": "https://github.com/openclaw/openclaw/pull/90426"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "preserve reasoning_content replay for Gemma 4 openai-completions models (#91696). Thanks @Coder-Wangyankun.",
+        "href": "https://github.com/openclaw/openclaw/pull/91696"
+      },
+      {
+        "title": "Fail closed on exec approval timeout (#89938)",
+        "description": "Fail closed on exec approval timeout (#89938). Thanks @drobison00.",
+        "href": "https://github.com/openclaw/openclaw/pull/89938"
+      },
+      {
+        "title": "fix(webchat)",
+        "description": "finalize provider failure lifecycle (#91895). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/91895"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "honor cdpUrl for user default profile (#80143). Thanks @HemantSudarshan.",
+        "href": "https://github.com/openclaw/openclaw/pull/80143"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "reject cron expressions that have no reachable run time (#91688). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/91688"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "use final-call usage for session token totals (#91737). Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/pull/91737"
+      },
+      {
+        "title": "Redact tool output secrets (#85196)",
+        "description": "Redact tool output secrets (#85196). Thanks @amknight.",
+        "href": "https://github.com/openclaw/openclaw/pull/85196"
+      },
+      {
+        "title": "fix(security)",
+        "description": "block build tool env overrides (#92007). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/pull/92007"
+      },
+      {
+        "title": "fix",
+        "description": "preserve non-oneOf protocol schema array order (#91891). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91891"
+      },
+      {
+        "title": "fix(macos)",
+        "description": "hide unsupported Voice Wake controls (#91754). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91754"
+      },
+      {
+        "title": "test(ci)",
+        "description": "restore upgrade survivor session fixture (#92049). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92049"
+      },
+      {
+        "title": "fix(fal)",
+        "description": "parse raw completed queue results (#92051). Thanks @harjothkhara.",
+        "href": "https://github.com/openclaw/openclaw/pull/92051"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "prefer explicit sessions_send keys (#92047). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92047"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "prefer sessionKey in sessions_send (#74009).",
+        "href": "https://github.com/openclaw/openclaw/pull/74009"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "check SQLite plugin state for dreaming ingestion audit after JSON migration (fixes issue 92017) (#92020). Thanks @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/92020"
+      },
+      {
+        "title": "fix(mcp)",
+        "description": "always log channel-bridge notification failures (#92032). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92032"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "log swallowed background-task finalization errors (#92033). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92033"
+      },
+      {
+        "title": "fix(sessions)",
+        "description": "derive channel from direct-chat session keys in send-policy (#92022). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92022"
+      },
+      {
+        "title": "fix(xai)",
+        "description": "clarify x_search query guidance (#91163). Thanks @rubencu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91163"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "write dream fallback without subagent runtime (#90121). Thanks @a-m-a-r-a.",
+        "href": "https://github.com/openclaw/openclaw/pull/90121"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "show prompt progress while sending (#91215). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/91215"
+      },
+      {
+        "title": "fix(tools)",
+        "description": "surface unsupported-signal in anyOf availability (#92029). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92029"
+      },
+      {
+        "title": "perf(agents)",
+        "description": "memoize XML attribute regex in DSML stream parser (#92034). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92034"
+      },
+      {
+        "title": "perf(agents)",
+        "description": "sanitize compaction messages once for token estimation (#92026). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92026"
+      },
+      {
+        "title": "fix(opencode-go)",
+        "description": "add qwen plus tiered pricing (#91351). Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/pull/91351"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "recover config hot-reload after watcher errors (#92027). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92027"
+      },
+      {
+        "title": "feat(cron)",
+        "description": "add readable ISO time fields to `cron runs` JSON output (#91471). Thanks @FMLS.",
+        "href": "https://github.com/openclaw/openclaw/pull/91471"
+      },
+      {
+        "title": ":bug: fix(agents): classify harness provider mismatch as format error (issu...",
+        "description": ":bug: fix(agents): classify harness provider mismatch as format error (issue 91710) (#91711). Thanks @a-tokyo.",
+        "href": "https://github.com/openclaw/openclaw/pull/91711"
+      },
+      {
+        "title": "fix(models)",
+        "description": "keep bundled provider catalog when configured base URL is blank (issue 91270) (#91292). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/91292"
+      },
+      {
+        "title": ":bug: fix(openai): remove chatgpt-responses transport override from gpt-5",
+        "description": ":bug: fix(openai): remove chatgpt-responses transport override from gpt-5.3-codex catalog entry (#91720). Thanks @a-tokyo.",
+        "href": "https://github.com/openclaw/openclaw/pull/91720"
+      },
+      {
+        "title": "fix(control-ui)",
+        "description": "make Control UI bootstrap config endpoint base-path-relative (issue 66946) (#91305). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/91305"
+      },
+      {
+        "title": "fix(exec)",
+        "description": "honor state dir approvals (#92056). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92056"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "self-heal missing index identity by initializing provider during sync (#91897). Thanks @xydt-tanshanshan.",
+        "href": "https://github.com/openclaw/openclaw/pull/91897"
+      },
+      {
+        "title": "fix(diagnostics)",
+        "description": "release wedged session lane when stuck-session recovery aborts a run with queued session work (#91802). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/91802"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "structural top-of-hour match in stagger heuristic (#92030). Thanks @hansraj316.",
+        "href": "https://github.com/openclaw/openclaw/pull/92030"
+      },
+      {
+        "title": "fix(media)",
+        "description": "resolve state-relative inbound attachments (#92055). Thanks @sercada.",
+        "href": "https://github.com/openclaw/openclaw/pull/92055"
+      },
+      {
+        "title": "fix(agent)",
+        "description": "dampen Discord stale thread replies (#91962).",
+        "href": "https://github.com/openclaw/openclaw/pull/91962"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "honor configured CLI resume timeouts (#90912). Thanks @ai-hpc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90912"
+      },
+      {
+        "title": "fix(web_fetch)",
+        "description": "sanitize URL whitespace from LLM tool call arguments (fixes issue 91651) (#91950). Thanks @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/91950"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "scope command-deploy cache by application id (#77367). Thanks @lonexreb.",
+        "href": "https://github.com/openclaw/openclaw/pull/77367"
+      },
+      {
+        "title": "fix(sessions)",
+        "description": "preserve user /model override across daily/idle session rollover (issue 90119) (#90128). Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/pull/90128"
+      },
+      {
+        "title": "fix(clickclack)",
+        "description": "allow explicit enable through plugin allowlist (#92084).",
+        "href": "https://github.com/openclaw/openclaw/pull/92084"
+      },
+      {
+        "title": "feat(auto-reply)",
+        "description": "durable inter-tool commentary via verbose standalone progress (supersedes issue 89850/issue 89890) (#91976). Thanks @anagnorisis2peripeteia.",
+        "href": "https://github.com/openclaw/openclaw/pull/91976"
+      },
+      {
+        "title": "issue 92109",
+        "description": "[Bug]: EmbeddedAttemptSessionTakeoverError caused by Btrfs ctimeNs instability (#92123). Thanks @lzyyzznl.",
+        "href": "https://github.com/openclaw/openclaw/pull/92123"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "reply inside P2P direct-message threads (#92136). Thanks @LiaoyuanNing and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/92136"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "stabilize a2a prompt cache context (#90173). Thanks @Sunjae-k.",
+        "href": "https://github.com/openclaw/openclaw/pull/90173"
+      },
+      {
+        "title": "fix(cli-runner)",
+        "description": "scope claude-cli queue to live-session owner identity (issue 91946) (#91974). Thanks @wangwllu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91974"
+      },
+      {
+        "title": "fix(thinking)",
+        "description": "apply Claude profile to anthropic-messages catalog rows (#92053). Thanks @wangwllu.",
+        "href": "https://github.com/openclaw/openclaw/pull/92053"
+      },
+      {
+        "title": "Google",
+        "description": "show detailed Gemini CLI OAuth extraction failures (#41991). Thanks @bgmbgm94.",
+        "href": "https://github.com/openclaw/openclaw/pull/41991"
+      },
+      {
+        "title": "fix(qqbot)",
+        "description": "flush tool output before silent non-streaming final (#92074). Thanks @sliverp.",
+        "href": "https://github.com/openclaw/openclaw/pull/92074"
+      },
+      {
+        "title": "fix(models)",
+        "description": "clarify provider model registration hint (#89508). Thanks @sweetcornna.",
+        "href": "https://github.com/openclaw/openclaw/pull/89508"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "keep migrated session entry ids unique on v1 upgrade (#89085). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/89085"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "clean migrated thread binding state (#89552). Thanks @SYU8384.",
+        "href": "https://github.com/openclaw/openclaw/pull/89552"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "reject durations that overflow to a non-finite value (#89448). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/89448"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "warn on unsupported hook entry loaders (#89319). Thanks @leno23.",
+        "href": "https://github.com/openclaw/openclaw/pull/89319"
+      },
+      {
+        "title": "fix(config)",
+        "description": "stop config.patch replacePaths index suffix from widening array consent (#91966). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/91966"
+      },
+      {
+        "title": "fix(plugins)",
+        "description": "rescan storm in \"/models\" call (regression shipped since v2026.5.18) (#92127). Thanks @obuchowski.",
+        "href": "https://github.com/openclaw/openclaw/pull/92127"
+      },
+      {
+        "title": "fix(ollama)",
+        "description": "use provider thinking default in SDK session factory (#91657). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/91657"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "abort orphaned embedding work when memory_search times out (#91742). Thanks @dreamhunter2333.",
+        "href": "https://github.com/openclaw/openclaw/pull/91742"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "retry narrative message reads (#89091). Thanks @bennewell35.",
+        "href": "https://github.com/openclaw/openclaw/pull/89091"
+      },
+      {
+        "title": "fix(cli)",
+        "description": "validate gateway-rpc --timeout (#54646). Thanks @ruanrrn and @comeran.",
+        "href": "https://github.com/openclaw/openclaw/pull/54646"
+      },
+      {
+        "title": "fix(CLI)",
+        "description": "validate gateway-facing timeout input (#40953). Thanks @comeran and @ruanrrn.",
+        "href": "https://github.com/openclaw/openclaw/pull/40953"
+      },
+      {
+        "title": "Keep gateway CLI timeout client-side after accepted runs (#60661)",
+        "description": "Keep gateway CLI timeout client-side after accepted runs (#60661). Thanks @judicialcoder and @ruanrrn and @comeran.",
+        "href": "https://github.com/openclaw/openclaw/pull/60661"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "retry same model across short rate-limit windows (#91911). Thanks @lanzhi-lee.",
+        "href": "https://github.com/openclaw/openclaw/pull/91911"
+      },
+      {
+        "title": "fix",
+        "description": "require ACP metadata for deleted-agent bypass (#91763). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/pull/91763"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "route account-scoped topic agents (#91189). Thanks @codysai001.",
+        "href": "https://github.com/openclaw/openclaw/pull/91189"
+      },
+      {
+        "title": "Preserve Telegram streamed text blocks between tool calls (#88682)",
+        "description": "Preserve Telegram streamed text blocks between tool calls (#88682). Thanks @alexzhu0.",
+        "href": "https://github.com/openclaw/openclaw/pull/88682"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "restore /compact on generic message ingress (#89588). Thanks @joelnishanth.",
+        "href": "https://github.com/openclaw/openclaw/pull/89588"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "deliver native /compact replies through source suppression (#90212). Thanks @snowzlm.",
+        "href": "https://github.com/openclaw/openclaw/pull/90212"
+      },
+      {
+        "title": "Fix Telegram callback API handling (#91876)",
+        "description": "Fix Telegram callback API handling (#91876). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/91876"
+      },
+      {
+        "title": "Share channel draft chunking resolver (#91874)",
+        "description": "Share channel draft chunking resolver (#91874). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/91874"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "use SDK dispatch dedupe (#91904). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/91904"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "audit follow-ups — block-mode chunk config, dedupe bucket cleanup, grammy contract trust (#91915). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/91915"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "support Streamable HTTP MCP transport on loopback server (#89851). Thanks @anagnorisis2peripeteia.",
+        "href": "https://github.com/openclaw/openclaw/pull/89851"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "avoid startup catalog wait (#91538). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91538"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "trace first assistant event (#91568). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91568"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "lazy load slash commands (#91598). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91598"
+      },
+      {
+        "title": "feat",
+        "description": "add OpenRouter OAuth to onboarding (#91830). Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/91830"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "normalize dynamic tool progress results (#88768). Thanks @bdjben.",
+        "href": "https://github.com/openclaw/openclaw/pull/88768"
+      },
+      {
+        "title": "fix(cli)",
+        "description": "bridge inter-tool commentary events to channel progress (#90883). Thanks @anagnorisis2peripeteia.",
+        "href": "https://github.com/openclaw/openclaw/pull/90883"
+      },
+      {
+        "title": "feat",
+        "description": "dogfood reusable ClawHub package publish (#91574). Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/91574"
+      },
+      {
+        "title": "[plugin sdk] Allow declared installed trusted hooks (#90004)",
+        "description": "[plugin sdk] Allow declared installed trusted hooks (#90004). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/90004"
+      },
+      {
+        "title": "fix(doctor)",
+        "description": "report managed plugin version drift (#90927). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/90927"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "move local llama.cpp runtime to provider plugin (#91324). Thanks @osolmaz.",
+        "href": "https://github.com/openclaw/openclaw/pull/91324"
+      },
+      {
+        "title": "fix(models)",
+        "description": "persist agent catalog cache (#90457). Thanks @ai-hpc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90457"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "filter stale recall entries in REM harness preview (#91851). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91851"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "show connection host in footer (#89909). Thanks @baskduf.",
+        "href": "https://github.com/openclaw/openclaw/pull/89909"
+      },
+      {
+        "title": "perf(config)",
+        "description": "dedupe plugin auto-enable fanout work (#89978). Thanks @ai-hpc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89978"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "trim dense text delta snapshots (#91580). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91580"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "drop stale exec approval followups after session rebind (#85679). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/85679"
+      },
+      {
+        "title": "fix(reply-queue)",
+        "description": "remove the drained item by reference instead of front index (#91450). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/91450"
+      },
+      {
+        "title": "fix(delivery)",
+        "description": "suppress Codex/Harmony internal protocol artifacts from user-facing channels (#89151). Thanks @joelnishanth.",
+        "href": "https://github.com/openclaw/openclaw/pull/89151"
+      },
+      {
+        "title": "fix(mattermost)",
+        "description": "keep default replies in existing threads (#91684). Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/91684"
+      },
+      {
+        "title": "fix(discord)",
+        "description": "hydrate reply context metadata (#90263). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/90263"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "cancel active cron task runs (#90666). Thanks @ai-hpc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90666"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "recover no-deliver tool warnings (#90678). Thanks @ai-hpc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90678"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "share approval runtime socket token (#87105). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/87105"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "skip deleted-agent guard for ACP harness session keys (#91219). Thanks @scotthuang.",
+        "href": "https://github.com/openclaw/openclaw/pull/91219"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "surface headless LaunchAgent state (#91614). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91614"
+      },
+      {
+        "title": "fix(auth)",
+        "description": "verify SQLite auth migration before cleanup (#91740). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91740"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "arm qmd startup maintenance (#91978). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/91978"
+      },
+      {
+        "title": "fix(status)",
+        "description": "restore Codex synthetic usage line (#91709). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/91709"
+      },
+      {
+        "title": "fix(update)",
+        "description": "recover package gateway restart after refresh failure (#91581). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91581"
+      },
+      {
+        "title": "fix(update)",
+        "description": "expose plugin convergence repair (#91599). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91599"
+      },
+      {
+        "title": "fix(android)",
+        "description": "avoid dataSync FGS for persistent node (#80082). Thanks @davelutztx.",
+        "href": "https://github.com/openclaw/openclaw/pull/80082"
+      },
+      {
+        "title": "Reported",
+        "description": "iMessage bridge recovery can dispatch stale inbound backlog as fresh requests (#89237). Thanks @dwonshin and @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/89237"
+      },
+      {
+        "title": "Reported",
+        "description": "Telegram streaming: intermediate text blocks between tool calls are silently lost (overwritten by final block) (#87326). Thanks @AbdelftahZowail.",
+        "href": "https://github.com/openclaw/openclaw/pull/87326"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Text before tool calls is lost in Feishu streaming card reply mode (#84486). Thanks @kentuscn.",
+        "href": "https://github.com/openclaw/openclaw/pull/84486"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: memory_search hybrid mode not returning FTS matches (#48300). Thanks @sabo961.",
+        "href": "https://github.com/openclaw/openclaw/pull/48300"
+      },
+      {
+        "title": "Reported",
+        "description": "Memory index meta never written when gateway auto-sync finds identity missing with existing chunks (#90338). Thanks @junxuku-byte.",
+        "href": "https://github.com/openclaw/openclaw/pull/90338"
+      },
+      {
+        "title": "Reported",
+        "description": "openai-completions adapter silently passes empty content[] with stopReason=stop (#91394). Thanks @EXIIEX.",
+        "href": "https://github.com/openclaw/openclaw/pull/91394"
+      },
+      {
+        "title": "Reported",
+        "description": "memory(qmd): collections never rebind when a collection's root path changes (#91251). Thanks @sasan1200.",
+        "href": "https://github.com/openclaw/openclaw/pull/91251"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: refactor(cron): reduce excessive `as unknown as` type assertions in store loading (#91314). Thanks @SpecialLeon.",
+        "href": "https://github.com/openclaw/openclaw/pull/91314"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] Exec approval follow-up can leak into a new session after /new because it rebinds by sessionKey instead of original sessionId (#59349). Thanks @two3pro.",
+        "href": "https://github.com/openclaw/openclaw/pull/59349"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Internal messages surface in Telegram chat (#88128). Thanks @reslp.",
+        "href": "https://github.com/openclaw/openclaw/pull/88128"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: /status Context does not distinguish prompt usage from compactable transcript content (#91150). Thanks @samiralibabic and @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/91150"
+      },
+      {
+        "title": "Reported",
+        "description": "Mission Control: docs links navigate to 127.0.0.1:4317 instead of docs.openclaw.ai (#89465). Thanks @phoebepageoc-cloud.",
+        "href": "https://github.com/openclaw/openclaw/pull/89465"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: dir_list is exposed without usable node context and is mistaken for local directory listing. (#91482). Thanks @wilfried-codex.",
+        "href": "https://github.com/openclaw/openclaw/pull/91482"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Doctor does not report official managed plugin version drift after core upgrade (#90891). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/90891"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram channel drops / compact slash command - never appears in commands.log (#89525). Thanks @bomberluke37-prog.",
+        "href": "https://github.com/openclaw/openclaw/pull/89525"
+      },
+      {
+        "title": "Reported",
+        "description": "Dashboard \"Open config\" fails on Windows: Start-Process -LiteralPath is invalid in all PowerShell versions (#90157). Thanks @jackmtl71.",
+        "href": "https://github.com/openclaw/openclaw/pull/90157"
+      },
+      {
+        "title": "Reported",
+        "description": "Feishu plugin lacks retry logic for API rate limit errors (#70879). Thanks @AxelHu.",
+        "href": "https://github.com/openclaw/openclaw/pull/70879"
+      },
+      {
+        "title": "Reported",
+        "description": "WebRTC Talk: TypeError 'this.peer is null' when calling addTrack on null RTCPeerConnection (#89434). Thanks @losts1.",
+        "href": "https://github.com/openclaw/openclaw/pull/89434"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Local model provider calls thread block gateway event loop on Windows beta; trivial infer run takes ~4 minutes (#86599). Thanks @JakeBiggs.",
+        "href": "https://github.com/openclaw/openclaw/pull/86599"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: batched memory embedding should batch over files (#88009). Thanks @hartmark and @mushuiyu886 and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88009"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex/OpenAI usage line disappears from status after 2026.6.5-beta.6 (#91694). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/91694"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Workshop files missing from OpenClaw 2026.6.1 npm package (#90244). Thanks @rogerallen1.",
+        "href": "https://github.com/openclaw/openclaw/pull/90244"
+      },
+      {
+        "title": "Reported",
+        "description": "diagnostics.otel.captureContent.\\* is non-functional — runtime broadcast emits sanitized paramsSummary only (#77391). Thanks @mjunaidca.",
+        "href": "https://github.com/openclaw/openclaw/pull/77391"
+      },
+      {
+        "title": "Reported",
+        "description": "dmPolicy allowFrom not enforced for Telegram text messages — unauthorized users reach agents (#91209). Thanks @producedbysavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91209"
+      },
+      {
+        "title": "Reported",
+        "description": "MCP remote OAuth: two bugs block streamable-http servers (regex `\\:` under /u; OAuth errors surfaced as [object Response]) (#91433). Thanks @marcusbsorensen.",
+        "href": "https://github.com/openclaw/openclaw/pull/91433"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: In-turn reasoning dropped on multi-turn tool replay for non-400 openai models (gemma4/vLLM) — silent agentic-quality regression (#91645). Thanks @bfox55.",
+        "href": "https://github.com/openclaw/openclaw/pull/91645"
+      },
+      {
+        "title": "Reported",
+        "description": "cron wake action does not support agentId — always routes to default agent (#46886). Thanks @aidyfeng.",
+        "href": "https://github.com/openclaw/openclaw/pull/46886"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: hooks.mappings[].agentId and sessionKey silently ignored for action=\"wake\" (#64556). Thanks @jaserNo1.",
+        "href": "https://github.com/openclaw/openclaw/pull/64556"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: `chmodSync` in `openOpenClawStateDatabase` crashes gateway on filesystems without POSIX permission support (#91919). Thanks @david-garcia-garcia.",
+        "href": "https://github.com/openclaw/openclaw/pull/91919"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: sessions_send unexpectedly injects label, causing mutual-exclusion error with sessionKey (#64699). Thanks @sunxq1017-hash.",
+        "href": "https://github.com/openclaw/openclaw/pull/64699"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: memory status reports \"ingestion state absent\" after dreaming JSON→SQLite migration (#92017). Thanks @JUMPUNDER.",
+        "href": "https://github.com/openclaw/openclaw/pull/92017"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: v2026.6.1 regression: openai/gpt-5.3-codex silently falls back to Sonnet — Codex harness rejects \"openai\" provider due to stale npm plugin (#91710). Thanks @a-tokyo.",
+        "href": "https://github.com/openclaw/openclaw/pull/91710"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Gemini can't resolve on embedded runtime (#91270). Thanks @resYuto.",
+        "href": "https://github.com/openclaw/openclaw/pull/91270"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: **Control UI路径重复导致404错误，聊天功能无法使用** (#66946). Thanks @yndwx01.",
+        "href": "https://github.com/openclaw/openclaw/pull/66946"
+      },
+      {
+        "title": "Reported",
+        "description": "bug(memory): gateway cannot self-heal a missing index identity when chunks are already indexed (#91167). Thanks @kiagentkronos-cell.",
+        "href": "https://github.com/openclaw/openclaw/pull/91167"
+      },
+      {
+        "title": "Reported",
+        "description": "bug(tools): web_fetch fails with 'Invalid URL' when LLM generates a space in the protocol scheme (#91651). Thanks @akang1798.",
+        "href": "https://github.com/openclaw/openclaw/pull/91651"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Slash commands not registered for non-default Discord accounts in multi-bot setup (#77359). Thanks @igmarketing.",
+        "href": "https://github.com/openclaw/openclaw/pull/77359"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: User /model override silently dropped on daily/idle session rollover (survives /new but not the 4AM reset) (#90119). Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/pull/90119"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: EmbeddedAttemptSessionTakeoverError caused by Btrfs ctimeNs instability (#92109). Thanks @recruits.",
+        "href": "https://github.com/openclaw/openclaw/pull/92109"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: gateway opens an empty memory database when main.sqlite is absent during the index swap, leaving memory_search paused with \"index metadata is missing\" until restart (#91216). Thanks @chrisreddington.",
+        "href": "https://github.com/openclaw/openclaw/pull/91216"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] Claude CLI backend serializes all fresh sessions sharing one workspace via resolveCliRunQueueKey (#91946). Thanks @wangwllu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91946"
+      },
+      {
+        "title": "Reported",
+        "description": "Native Anthropic adapter silently drops `thinking` to `off` for custom provider ids (resolveThinkingProfile only matches exact `anthropic`/`claude-cli`) (#91975). Thanks @wangwllu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91975"
+      },
+      {
+        "title": "Reported",
+        "description": "Security: Unauthorized OAuth credential extraction from Gemini CLI installation (#54289). Thanks @jinduwang1001-max.",
+        "href": "https://github.com/openclaw/openclaw/pull/54289"
+      },
+      {
+        "title": "Reported",
+        "description": "parseDurationMs rejects zero and negative values but allows arbitrarily large floats (#83906). Thanks @davinci282828.",
+        "href": "https://github.com/openclaw/openclaw/pull/83906"
+      },
+      {
+        "title": "Reported",
+        "description": "memory_search tool-level timeout orphans background embedding work (#91718). Thanks @NOVA-Openclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/91718"
       }
     ],
     "fixes": [
@@ -268,6 +2929,711 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "QQBot",
         "description": "add `/bot-group-allways on|off` slash command (with named-account and default-account support) to toggle whether group messages require an `@mention` before the bot replies, and clear the runtime config snapshot after the write so the new account-level `defaultRequireMention` takes effect immediately without restart. (#91423) Thanks @cxyhhhhh.",
         "href": "https://github.com/openclaw/openclaw/pull/91423"
+      },
+      {
+        "title": "refactor(auth)",
+        "description": "store auth profiles in SQLite (#89102).",
+        "href": "https://github.com/openclaw/openclaw/pull/89102"
+      },
+      {
+        "title": "docs",
+        "description": "clarify legacy openai-codex auth (#90028). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90028"
+      },
+      {
+        "title": "Fix Workboard status persistence (#89600)",
+        "description": "Fix Workboard status persistence (#89600). Thanks @BunsDev.",
+        "href": "https://github.com/openclaw/openclaw/pull/89600"
+      },
+      {
+        "title": "Pin official npm plugin install records (#88585)",
+        "description": "Pin official npm plugin install records (#88585). Thanks @zhuisDEV.",
+        "href": "https://github.com/openclaw/openclaw/pull/88585"
+      },
+      {
+        "title": "fix(auto-reply)",
+        "description": "count message tool sends as delivery (#90123). Thanks @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/90123"
+      },
+      {
+        "title": "fix(whatsapp)",
+        "description": "restart channel when a per-account config field changes so disabled accounts are torn down (#87965). Thanks @MukundaKatta and @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/87965"
+      },
+      {
+        "title": "fix",
+        "description": "protect global agent config defaults [AI] (#90145). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/90145"
+      },
+      {
+        "title": "Rate limit node pairing requests [AI] (#90147)",
+        "description": "Rate limit node pairing requests [AI] (#90147). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/90147"
+      },
+      {
+        "title": "fix",
+        "description": "guard MCP HTTP redirects [AI] (#89732). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/89732"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "preserve streaming card content (#90181). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/90181"
+      },
+      {
+        "title": "fix(docker)",
+        "description": "qualify base image refs for podman short-name mode (#90058). Thanks @mrunalp.",
+        "href": "https://github.com/openclaw/openclaw/pull/90058"
+      },
+      {
+        "title": "fix(acp)",
+        "description": "re-add opt-in parent commentary progress (#89505). Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/pull/89505"
+      },
+      {
+        "title": "fix(ci)",
+        "description": "scope PR merge diff checks to first parent (#90287). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/90287"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "strip stale compaction thinking signatures before Anthropic replay (#90163). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/90163"
+      },
+      {
+        "title": "fix(whastapp)",
+        "description": "bound connection startup waits (#90486). Thanks @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/90486"
+      },
+      {
+        "title": "fix service env placeholder collection (#90488)",
+        "description": "fix service env placeholder collection (#90488). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/90488"
+      },
+      {
+        "title": "feat",
+        "description": "install GitHub-backed ClawHub skills (#90478). Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/90478"
+      },
+      {
+        "title": "Fix main CI guard drift (#90532)",
+        "description": "Fix main CI guard drift (#90532). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/90532"
+      },
+      {
+        "title": "fix(mattermost)",
+        "description": "anchor slash state on globalThis (issue 68113) (#90534). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90534"
+      },
+      {
+        "title": "Add Codex multi-agent config migration coverage (#90317)",
+        "description": "Add Codex multi-agent config migration coverage (#90317). Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/pull/90317"
+      },
+      {
+        "title": "Add Codex session route migration coverage (#90319)",
+        "description": "Add Codex session route migration coverage (#90319). Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/pull/90319"
+      },
+      {
+        "title": "fix(qqbot)",
+        "description": "sanitize outbound text to strip reasoning/thinking content (#90132). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90132"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "detect unsigned thinking-only stall when reasoning payload inflates payloadCount (#89874). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89874"
+      },
+      {
+        "title": "Propagate ClickClack tool policy through reply dispatch (#89500)",
+        "description": "Propagate ClickClack tool policy through reply dispatch (#89500). Thanks @mmaps.",
+        "href": "https://github.com/openclaw/openclaw/pull/89500"
+      },
+      {
+        "title": "feat(matrix)",
+        "description": "handle voice preflight and threads (#90415).",
+        "href": "https://github.com/openclaw/openclaw/pull/90415"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "auto-migrate legacy cron store (#90208). Thanks @MonkeyLeeT and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90208"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "dedupe probe warnings by gateway identity (#85791). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/85791"
+      },
+      {
+        "title": "fix(context-engine)",
+        "description": "forward isHeartbeat to afterTurn (fixes issue 89302) (#90632). Thanks @zenglingbiao and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90632"
+      },
+      {
+        "title": "docs",
+        "description": "prefer web_fetch in weather skill (#90250). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/90250"
+      },
+      {
+        "title": "feat(parallel)",
+        "description": "add Parallel as a bundled web_search provider (#85158). Thanks @NormallyGaussian.",
+        "href": "https://github.com/openclaw/openclaw/pull/85158"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "stabilize optimistic user messages across history reloads, runId reassignment, and abort (#86205). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/86205"
+      },
+      {
+        "title": "chore(deps)",
+        "description": "bump the swift-deps group across 1 directory with 3 updates (#86483).",
+        "href": "https://github.com/openclaw/openclaw/pull/86483"
+      },
+      {
+        "title": "chore(deps)",
+        "description": "bump the actions group across 1 directory with 4 updates (#90601).",
+        "href": "https://github.com/openclaw/openclaw/pull/90601"
+      },
+      {
+        "title": "chore(deps)",
+        "description": "bump github.com/apple/swift-testing from 6.3.1 to 6.3.2 in /apps/swabble in the swift-deps group across 1 directory (#81757).",
+        "href": "https://github.com/openclaw/openclaw/pull/81757"
+      },
+      {
+        "title": "chore(deps)",
+        "description": "bump the android-deps group across 1 directory with 9 updates (#86481).",
+        "href": "https://github.com/openclaw/openclaw/pull/86481"
+      },
+      {
+        "title": "build(deps)",
+        "description": "bump docker/login-action from 3.6.0 to 4.1.0 (#74980).",
+        "href": "https://github.com/openclaw/openclaw/pull/74980"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "re-probe single-provider primary during cooldown (#90717). Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/pull/90717"
+      },
+      {
+        "title": "fix(google)",
+        "description": "preserve Vertex ADC catalog auth (#90609). Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/pull/90609"
+      },
+      {
+        "title": "test(codex)",
+        "description": "pin completion-idle timeout thread reset (#90027). Thanks @harjothkhara.",
+        "href": "https://github.com/openclaw/openclaw/pull/90027"
+      },
+      {
+        "title": "fix(voice-call)",
+        "description": "track Twilio streams after connect (#90607). Thanks @sahibzada-allahyar and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90607"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "coerce non-text/image MCP tool-result blocks to text (fixes issue 90710) (#90728). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90728"
+      },
+      {
+        "title": "fix(llm)",
+        "description": "defer Anthropic stream start event until after message_start (#90697). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90697"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "resolve adapter default model in plain status identity check (#90816). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90816"
+      },
+      {
+        "title": "fix issue 90668",
+        "description": "[Bug]: macOS node mode can silently self-reconnect in a healthy direct gateway session (#90815). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90815"
+      },
+      {
+        "title": "Fix OpenAI audio auth to use API keys (#90793)",
+        "description": "Fix OpenAI audio auth to use API keys (#90793). Thanks @Glucksberg.",
+        "href": "https://github.com/openclaw/openclaw/pull/90793"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "preserve completed replies after client close (#90790). Thanks @brokemac79 and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90790"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "frame rpc stdout on LF only (#90845). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/90845"
+      },
+      {
+        "title": "fix(uninstall)",
+        "description": "refuse to remove current working directory during cleanup (#90813). Thanks @xydigit-sj.",
+        "href": "https://github.com/openclaw/openclaw/pull/90813"
+      },
+      {
+        "title": "fix(talk)",
+        "description": "resolve realtime provider secret refs (#90914). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90914"
+      },
+      {
+        "title": "[codex] Add iOS Apple Review demo mode (#90919)",
+        "description": "[codex] Add iOS Apple Review demo mode (#90919). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90919"
+      },
+      {
+        "title": "docs",
+        "description": "improve plugin inventory layout (#90922). Thanks @joshp123.",
+        "href": "https://github.com/openclaw/openclaw/pull/90922"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "stabilize user-turn serialization across turns to preserve prompt cache (#90811). Thanks @Marvinthebored and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90811"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "send TTS audio as voice messages (#90853). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/90853"
+      },
+      {
+        "title": "feat(parallel)",
+        "description": "add free Parallel Search MCP as the zero-config default web_search provider (#90849). Thanks @NormallyGaussian.",
+        "href": "https://github.com/openclaw/openclaw/pull/90849"
+      },
+      {
+        "title": "fix",
+        "description": "store memory-core dreams state in sqlite (#91056).",
+        "href": "https://github.com/openclaw/openclaw/pull/91056"
+      },
+      {
+        "title": "fix(test)",
+        "description": "type overflow resolver mock (#91098). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/91098"
+      },
+      {
+        "title": "refactor(matrix)",
+        "description": "store crypto sidecars in sqlite (#91100).",
+        "href": "https://github.com/openclaw/openclaw/pull/91100"
+      },
+      {
+        "title": "perf(qqbot)",
+        "description": "narrow tool discovery cold load (#90780). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/90780"
+      },
+      {
+        "title": "refactor(memory-wiki)",
+        "description": "store import runs in sqlite (#91108).",
+        "href": "https://github.com/openclaw/openclaw/pull/91108"
+      },
+      {
+        "title": "fix",
+        "description": "strip Google provider prefix from Gemini paths (#91125).",
+        "href": "https://github.com/openclaw/openclaw/pull/91125"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "keep Discord runtime adapters resolvable (#91119). Thanks @TurboTheTurtle and @thewilloftheshadow.",
+        "href": "https://github.com/openclaw/openclaw/pull/91119"
+      },
+      {
+        "title": "fix(qqbot)",
+        "description": "migrate group tool policy config (#91128).",
+        "href": "https://github.com/openclaw/openclaw/pull/91128"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "dispatch subagent spawn in process (#90612). Thanks @lanzhi-lee.",
+        "href": "https://github.com/openclaw/openclaw/pull/90612"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "materialize buffer-only message.send attachments (#90794). Thanks @LiuwqGit.",
+        "href": "https://github.com/openclaw/openclaw/pull/90794"
+      },
+      {
+        "title": "fix(infra/agents)",
+        "description": "session-routing guard for coalesced gateway restart continuations (issue 86742) (#87323). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/87323"
+      },
+      {
+        "title": "fix(gateway/restart)",
+        "description": "write sentinel with continuationMessage on coalesced restart (#74443). Thanks @hclsys.",
+        "href": "https://github.com/openclaw/openclaw/pull/74443"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "report unqueued restart continuations (#83370). Thanks @stainlu.",
+        "href": "https://github.com/openclaw/openclaw/pull/83370"
+      },
+      {
+        "title": "feat(ios)",
+        "description": "clarify talk realtime fallback (#91201). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91201"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "prevent ReDoS in background-session name derivation (#91233). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91233"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "self-explaining private-API failures and dedicated send timeout (#91041). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91041"
+      },
+      {
+        "title": "feat(android)",
+        "description": "add theme mode selection (#90752). Thanks @Tosko4 and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/90752"
+      },
+      {
+        "title": "fix",
+        "description": "gate owner-only HTTP tools (#90261). Thanks @pgondhi987 and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/90261"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "quarantine unreadable dynamic tools (#90022). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/90022"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "preserve retries for budget-deferred deliveries (#91241). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91241"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "do not refresh lastUsedAt on MCP lease release (#91124). Thanks @openperf and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91124"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "gate split-send coalescing on imsg metadata (#90858). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/90858"
+      },
+      {
+        "title": "Gateway",
+        "description": "avoid duplicate block stream replies (#137). Thanks @jverdi.",
+        "href": "https://github.com/openclaw/openclaw/pull/137"
+      },
+      {
+        "title": "fix",
+        "description": "complete gateway server refactoring and fix Swift compiler crash (#141).",
+        "href": "https://github.com/openclaw/openclaw/pull/141"
+      },
+      {
+        "title": "fix(imessage)",
+        "description": "coalesce split-sends without delaying normal DMs (#90795). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/90795"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "preserve native subagent completion results (#91235). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91235"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "preserve isolated agent turn payload message (#91230). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91230"
+      },
+      {
+        "title": "feat(whatsapp)",
+        "description": "expand live QA coverage (#90480). Thanks @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/90480"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "preserve stale channel restart diagnostics (#90937). Thanks @snowzlm and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90937"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "drop reasoning_content replay signatures (#91231). Thanks @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/91231"
+      },
+      {
+        "title": "fix issue 90452",
+        "description": "Regression: Heartbeat exec completion still shows generic fallback text instead of actual output (#90897). Thanks @mushuiyu886 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90897"
+      },
+      {
+        "title": "refactor",
+        "description": "move session metadata to SQLite (#91322).",
+        "href": "https://github.com/openclaw/openclaw/pull/91322"
+      },
+      {
+        "title": "Fix transcript image redaction (#91529)",
+        "description": "Fix transcript image redaction (#91529). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91529"
+      },
+      {
+        "title": "Fix config",
+        "description": "Fix config.patch explicit array replacement (#91551). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/91551"
+      },
+      {
+        "title": "fix(whatsapp)",
+        "description": "route captured replies through successor controller after restart (#85823). Thanks @itsuzef and @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/85823"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "retry on send rate-limit errors (230020/230006) (#89659). Thanks @ladygege.",
+        "href": "https://github.com/openclaw/openclaw/pull/89659"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "propagate rate-limit errors from typing indicator to circuit breaker (#28157). Thanks @guoqunabc.",
+        "href": "https://github.com/openclaw/openclaw/pull/28157"
+      },
+      {
+        "title": "Fix Docker store seed target packages (#91547)",
+        "description": "Fix Docker store seed target packages (#91547). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/91547"
+      },
+      {
+        "title": "feat(qqbot)",
+        "description": "add /bot-group-allways command to toggle mention requirement (#91423). Thanks @cxyhhhhh.",
+        "href": "https://github.com/openclaw/openclaw/pull/91423"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "prefer sessionKey in sessions_send (#74009).",
+        "href": "https://github.com/openclaw/openclaw/pull/74009"
+      },
+      {
+        "title": "Reported",
+        "description": "bug(workboard): Control UI card settings don't persist + drag to running fails (#88592). Thanks @kzclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88592"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Compaction re-injection produces stale thinking signatures → Anthropic API rejection (#90108). Thanks @dexiosmb.",
+        "href": "https://github.com/openclaw/openclaw/pull/90108"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: expose QMD no-rerank for memory.qmd query mode (#61834). Thanks @kouka-t0yohei.",
+        "href": "https://github.com/openclaw/openclaw/pull/61834"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Mattermost slash commands return 503 \"not yet initialized\" in v2026.4.15 (#68113). Thanks @infoanton and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/68113"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: [Bug]: ContextEngine afterTurn declares isHeartbeat but does not forward it (#89302). Thanks @huangxun375-stack and @zenglingbiao and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89302"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: blockedUntil for subscription_limit set far in the future never re-probes when no fallback is configured (#90702). Thanks @brtkwr.",
+        "href": "https://github.com/openclaw/openclaw/pull/90702"
+      },
+      {
+        "title": "Reported",
+        "description": "EmbeddedAttemptSessionTakeoverError: auto-compaction at reason=threshold trips fence on rewritten session jsonl (#90729). Thanks @johnib.",
+        "href": "https://github.com/openclaw/openclaw/pull/90729"
+      },
+      {
+        "title": "Reported",
+        "description": "Codex app-server turn idle timeout is surfaced as user interruption (#89974). Thanks @FelixStarlite.",
+        "href": "https://github.com/openclaw/openclaw/pull/89974"
+      },
+      {
+        "title": "Reported",
+        "description": "convertContentBlocks coerces MCP resource_link/resource/audio blocks into malformed image blocks -> Anthropic 400 -> poisoned session history (#90710). Thanks @RanSHammer and @849261680 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90710"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: macOS node mode can silently self-reconnect in a healthy direct gateway session (#90668). Thanks @vrurg and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90668"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: lifecycle:end event payload missing aborted and stopReason on pi-embedded path (#66534). Thanks @xiaohuaxi.",
+        "href": "https://github.com/openclaw/openclaw/pull/66534"
+      },
+      {
+        "title": "Reported",
+        "description": "Active-memory embedded memory_search intermittently loses embedding provider and falls back to FTS-only (#89691). Thanks @joeykrug.",
+        "href": "https://github.com/openclaw/openclaw/pull/89691"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Agent-specific MiniMax auth resolves from main agent auth-profiles.json (#64274). Thanks @blaspat.",
+        "href": "https://github.com/openclaw/openclaw/pull/64274"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: cron server_error retry classifier matches any bare 5xx-looking number (#90947). Thanks @Nas01010101.",
+        "href": "https://github.com/openclaw/openclaw/pull/90947"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: /export-session crashes with ENOENT — export-html template assets shipped under wrong dist path (#90843). Thanks @Tank-x3.",
+        "href": "https://github.com/openclaw/openclaw/pull/90843"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway startup does not load the plugin owning a configured memory embedding provider (memorySearch.provider) (#89651). Thanks @joeykrug.",
+        "href": "https://github.com/openclaw/openclaw/pull/89651"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Vertex AI eu multi-region unreachable — host prefix is hardcoded (#89891). Thanks @Wimcomander.",
+        "href": "https://github.com/openclaw/openclaw/pull/89891"
+      },
+      {
+        "title": "Reported",
+        "description": "Gemini web_search provider returns malformed JSON response on plain searches (#88528). Thanks @TarsTriggerBot.",
+        "href": "https://github.com/openclaw/openclaw/pull/88528"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway writes streamed usage.cost.total for OpenRouter calls — up to 4× under actual billed amount on tier-priced models (#68066). Thanks @chrispatil.",
+        "href": "https://github.com/openclaw/openclaw/pull/68066"
+      },
+      {
+        "title": "Reported",
+        "description": "Microsoft Foundry DeepSeek V4 alias providers still inject `thinking` after issue 87737 fix (#90520). Thanks @wlassalle724.",
+        "href": "https://github.com/openclaw/openclaw/pull/90520"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Foundry Entra ID onboarding fails to save with \"Unrecognized key: thinkingLevelMap\" (#91011). Thanks @chrisreddington.",
+        "href": "https://github.com/openclaw/openclaw/pull/91011"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: requiresReasoningContentOnAssistantMessages missing from ModelCompatSchema — can't replicate native DeepSeek behavior on custom providers (#89660). Thanks @kyKKK.",
+        "href": "https://github.com/openclaw/openclaw/pull/89660"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: [REGRESSION] Tool calls with arguments arrive as empty objects when using LM Studio (openai-responses API). (#90585). Thanks @ceo-nada.",
+        "href": "https://github.com/openclaw/openclaw/pull/90585"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: loopDetection cannot block message tool loops — volatile messageId in result defeats all critical-level detection paths (#89090). Thanks @wujiaming88.",
+        "href": "https://github.com/openclaw/openclaw/pull/89090"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: detectCompat in openai-completions.ts misses Xiaomi endpoints for requiresReasoningContentOnAssistantMessages — diverges from openai-completions-compat.ts (#91106). Thanks @KrasimirKralev.",
+        "href": "https://github.com/openclaw/openclaw/pull/91106"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: microsoft-foundry reasoning models return 400 invalid_encrypted_content when continuing a thread (#91033). Thanks @chrisreddington.",
+        "href": "https://github.com/openclaw/openclaw/pull/91033"
+      },
+      {
+        "title": "Reported",
+        "description": "Codex migration (2026.6.1) drops the gpt-5.5 model when a canonical `openai` provider exists for embeddings — agents go silent (#90047). Thanks @holgergruenhagen.",
+        "href": "https://github.com/openclaw/openclaw/pull/90047"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: message.send can fail for buffer-only attachments without an explicit media path or URL (#90768). Thanks @Timofa.",
+        "href": "https://github.com/openclaw/openclaw/pull/90768"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: vision-skip guard bypassed when agents.defaults.imageModel is set, even with vision-capable primary model (#91084). Thanks @AxelHu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91084"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: memory pressure WARN is non-actionable — no units, no breakdown, no operator guidance, no self-heal, and log level disagrees with payload (#90783). Thanks @xdengli.",
+        "href": "https://github.com/openclaw/openclaw/pull/90783"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Regression 2026.6.1: orphan tool.call fail-closed handling silently discards the composed assistant reply (\"Embedded agent failed before reply\") (#91067). Thanks @Francois3d.",
+        "href": "https://github.com/openclaw/openclaw/pull/91067"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: gateway restart continuationMessage can be accepted but not queued after coalesced restart (#86742). Thanks @songshikang0111.",
+        "href": "https://github.com/openclaw/openclaw/pull/86742"
+      },
+      {
+        "title": "Reported",
+        "description": "Reply-context body truncation: cover ReplyChain and fallback ReplyToBody JSON paths (#91042). Thanks @wangwllu.",
+        "href": "https://github.com/openclaw/openclaw/pull/91042"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Non-workspace skills are inaccessible to the agent when sandbox is in workspaceAccess: \"rw\" mode (#90410). Thanks @gbb-netizen.",
+        "href": "https://github.com/openclaw/openclaw/pull/90410"
+      },
+      {
+        "title": "Reported",
+        "description": "macOS Swift Compiler Crash in OnboardingView+Wizard.swift (#139). Thanks @daveonkels.",
+        "href": "https://github.com/openclaw/openclaw/pull/139"
+      },
+      {
+        "title": "Reported",
+        "description": "Remove client-side iMessage split-send coalescing once imsg coalesces upstream (#91243). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/91243"
+      },
+      {
+        "title": "Reported",
+        "description": "Regression: Heartbeat exec completion still shows generic fallback text instead of actual output (#90452). Thanks @bizzle12368239 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/90452"
+      },
+      {
+        "title": "Reported",
+        "description": "Feishu plugin lacks retry logic for API rate limit errors (#70879). Thanks @AxelHu.",
+        "href": "https://github.com/openclaw/openclaw/pull/70879"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: 5.28 regression — reasoning/thinking content leaks into QQBot replies (regression of issue 6470) (#89913). Thanks @dygg2001.",
+        "href": "https://github.com/openclaw/openclaw/pull/89913"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Extended thinking sessions permanently broken after gateway restart / cache miss — no recovery for research agents (#90667). Thanks @MIHHHMIH.",
+        "href": "https://github.com/openclaw/openclaw/pull/90667"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: [Bug]: google-vertex models fail with model_not_found at runtime on 2026.5.28 and 2026.6.1 — direct Vertex API calls succeed with same credentials (#90506). Thanks @paulogogs.",
+        "href": "https://github.com/openclaw/openclaw/pull/90506"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Voice messages to agent don't work on Matrix (#78016). Thanks @frankdierolf.",
+        "href": "https://github.com/openclaw/openclaw/pull/78016"
+      },
+      {
+        "title": "Reported",
+        "description": "Cron state silently wiped during SQLite migration on upgrade to 2026.6.1 (#90072). Thanks @wlassalle724.",
+        "href": "https://github.com/openclaw/openclaw/pull/90072"
+      },
+      {
+        "title": "Reported",
+        "description": "gateway install --force drops MINIMAX_API_KEY from service-env despite managed keys list (#90277). Thanks @Kvikkulf.",
+        "href": "https://github.com/openclaw/openclaw/pull/90277"
+      },
+      {
+        "title": "Reported",
+        "description": "Dynamic reload doesn't disable a running WhatsApp account when its enabled flag flips to false (#87951). Thanks @borntobefree2-cmyk.",
+        "href": "https://github.com/openclaw/openclaw/pull/87951"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: sessions_send unexpectedly injects label, causing mutual-exclusion error with sessionKey (#64699). Thanks @sunxq1017-hash.",
+        "href": "https://github.com/openclaw/openclaw/pull/64699"
+      },
+      {
+        "title": "Reported",
+        "description": "Agent-to-Agent Communication Tools Have Parameter Conflicts (#41199). Thanks @chouxiaozi1989.",
+        "href": "https://github.com/openclaw/openclaw/pull/41199"
       }
     ],
     "fixes": [
@@ -361,6 +3727,186 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Docs",
         "description": "refresh Windows Hub setup guidance and document Gateway, CLI, and plugin SDK helper contracts.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
+      },
+      {
+        "title": "fix",
+        "description": "recover suspicious gateway startup configs (#89480).",
+        "href": "https://github.com/openclaw/openclaw/pull/89480"
+      },
+      {
+        "title": "Policy",
+        "description": "add data handling conformance checks (#87056). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/87056"
+      },
+      {
+        "title": "Harden node exec approval precheck env [AI] (#81488)",
+        "description": "Harden node exec approval precheck env [AI] (#81488). Thanks @mmaps and @drobison00.",
+        "href": "https://github.com/openclaw/openclaw/pull/81488"
+      },
+      {
+        "title": "fix(policy)",
+        "description": "reject unsupported policy keys (#87074). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/87074"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "stop schema-padded poll modifiers from blocking send (#89601). Thanks @codezz and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89601"
+      },
+      {
+        "title": "fix(exec)",
+        "description": "reject corrupt shell snapshots (#89701). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89701"
+      },
+      {
+        "title": "fix",
+        "description": "allowlist pending agent sqlite scaffold (#89705). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89705"
+      },
+      {
+        "title": "fix",
+        "description": "report gateway health auth diagnostics (#89337). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89337"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "label delayed chat sends in telemetry (#89777). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89777"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "surface chat ACK server timing (#89801). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89801"
+      },
+      {
+        "title": "docs(web)",
+        "description": "document chat ACK timing metadata (#89802). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89802"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "release session write lock if fence read throws on prompt release (#89811). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89811"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "isolate verbose status after streamed finals (#89813). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89813"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "wire setup runtime setter (#89814). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89814"
+      },
+      {
+        "title": "fix issue 88773",
+        "description": "[Bug]: Telegram DM exec requires approval despite allowlist + ask:off — works in webchat, not in Telegram (#89035). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/89035"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "keep channel send durable when transcript mirror fails (issue 89626) (#89812). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89812"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "require admin for target writeback [AI] (#88973). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/88973"
+      },
+      {
+        "title": "test(channels)",
+        "description": "fix guardrail regex lint (#89960). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89960"
+      },
+      {
+        "title": "Add operator install policy and remove dangerous-code install scanners (#89...",
+        "description": "Add operator install policy and remove dangerous-code install scanners (#89516). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/89516"
+      },
+      {
+        "title": "docs",
+        "description": "document auth profile failure policy contract (#89613).",
+        "href": "https://github.com/openclaw/openclaw/pull/89613"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "accept first-party OpenAI plugin marketplaces (bundled and primary-runtime) (#82219). Thanks @yaanfpv.",
+        "href": "https://github.com/openclaw/openclaw/pull/82219"
+      },
+      {
+        "title": "fix(update)",
+        "description": "surface plugin channel fallbacks (#81422). Thanks @BKF-Gitty.",
+        "href": "https://github.com/openclaw/openclaw/pull/81422"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "warn after startup watcher pressure check (#89244). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89244"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "preserve streaming card content (#90181). Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/pull/90181"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: 5.28 transport refactor regressed prompt caching for Anthropic and OpenAI-compatible providers (#89386). Thanks @Enominera.",
+        "href": "https://github.com/openclaw/openclaw/pull/89386"
+      },
+      {
+        "title": "Reported",
+        "description": "Kimi Code returns empty content when Anthropic cache_control markers are sent (#76612). Thanks @vliuyt.",
+        "href": "https://github.com/openclaw/openclaw/pull/76612"
+      },
+      {
+        "title": "Reported",
+        "description": "webchat creates new agent run per message, destroying prompt cache (93% → 29% hit rate) (#89139). Thanks @Enominera.",
+        "href": "https://github.com/openclaw/openclaw/pull/89139"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: sessions_send inter-session messages render as 'user' in WebChat — should show as agent-forwarded (#89161). Thanks @Xj49688-lgtm.",
+        "href": "https://github.com/openclaw/openclaw/pull/89161"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: [BUG] UI shows agent \"running\" after conversation ends — requires manual page refresh every time (#87699). Thanks @csck-luoy.",
+        "href": "https://github.com/openclaw/openclaw/pull/87699"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Control UI webchat duplicates every assistant reply on 2026.4.21 — regression from issue 5964/issue 39469 (#71992). Thanks @rzhnrhjr6j-cloud.",
+        "href": "https://github.com/openclaw/openclaw/pull/71992"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: 2026.4.14 Windows chat UI regression: input text swallowed, streamed replies often invisible until refresh, typing indicator flashes then blanks (#67035). Thanks @q7793527.",
+        "href": "https://github.com/openclaw/openclaw/pull/67035"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram DM exec requires approval despite allowlist + ask:off — works in webchat, not in Telegram (#88773). Thanks @ppmuzyk.",
+        "href": "https://github.com/openclaw/openclaw/pull/88773"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram `streaming.mode: \"partial\"` and `\"block\"` duplicate the full preview when reply >4096 chars (#87624). Thanks @tuckyapps.",
+        "href": "https://github.com/openclaw/openclaw/pull/87624"
+      },
+      {
+        "title": "Reported",
+        "description": "Sub-agent completion events delivered 3x — duplicate messages on auto-announce retry (#89626). Thanks @Petru2224 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89626"
+      },
+      {
+        "title": "Reported",
+        "description": "lossless-claw compaction breaks tool_calls/tool message chain → 499 error on model switch (#88561). Thanks @Finn-jiejie.",
+        "href": "https://github.com/openclaw/openclaw/pull/88561"
+      },
+      {
+        "title": "Reported",
+        "description": "Browser existing-session Chrome MCP tabs fail with 300ms attach timeout despite doctor passing (#88213). Thanks @lamkan0210.",
+        "href": "https://github.com/openclaw/openclaw/pull/88213"
       }
     ],
     "fixes": [
@@ -559,6 +4105,661 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Skills",
         "description": "add the core skills index and centralize skills runtime loading, status, filtering, and prompt formatting.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202661"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "keep chat draft local while typing (#88998). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88998"
+      },
+      {
+        "title": "fix(plugins)",
+        "description": "block untrusted workspace setup-only channel loads (#86953). Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/86953"
+      },
+      {
+        "title": "perf(control-ui)",
+        "description": "prioritize first connect startup (#89030). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/89030"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "clear chat composer after send (#89106). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/89106"
+      },
+      {
+        "title": "fix",
+        "description": "bound remote media reference reads [AI] (#88974). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/88974"
+      },
+      {
+        "title": "fix",
+        "description": "allow admins to approve dependency guard (#88966). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88966"
+      },
+      {
+        "title": "fix(ci)",
+        "description": "restore dist cache before artifact builds (#89169). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89169"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "actionable copy for exhausted auth-profile failover (#85798). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/85798"
+      },
+      {
+        "title": "Keep JSON CLI output clean during startup (#88689)",
+        "description": "Keep JSON CLI output clean during startup (#88689). Thanks @alexzhu0.",
+        "href": "https://github.com/openclaw/openclaw/pull/88689"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "retry transient FileProvider-backed reads (#85351). Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/pull/85351"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "reduce Linux watcher fan-out (#89188). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89188"
+      },
+      {
+        "title": "docs",
+        "description": "refresh ClawHub showcase cards (#88734). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/pull/88734"
+      },
+      {
+        "title": "test",
+        "description": "reset gateway timers at test boundaries (#89212). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89212"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "dispatch auth failures by type (#89181). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89181"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "warn on gateway watcher FD risk (#89185). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89185"
+      },
+      {
+        "title": "Revert \"fix(memory)",
+        "description": "warn on gateway watcher FD risk\" (#89246). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89246"
+      },
+      {
+        "title": "Keep iMessage typing active during tool work (#88948)",
+        "description": "Keep iMessage typing active during tool work (#88948). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/88948"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "avoid duplicate generated media fallback (#89220). Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/89220"
+      },
+      {
+        "title": "docs",
+        "description": "add ClawHub CLI page (#89297). Thanks @Wang-Yeah623 and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89297"
+      },
+      {
+        "title": "fix(auto-reply)",
+        "description": "guard missing dispatcher getFailedCounts without weakening the SDK type (#89318). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89318"
+      },
+      {
+        "title": "Fix backup verifier for root-relative hardlink targets (#89328)",
+        "description": "Fix backup verifier for root-relative hardlink targets (#89328). Thanks @abnershang.",
+        "href": "https://github.com/openclaw/openclaw/pull/89328"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "honor OPENAI_BASE_URL when no provider config sets a baseUrl (#74427). Thanks @sunapi386.",
+        "href": "https://github.com/openclaw/openclaw/pull/74427"
+      },
+      {
+        "title": "fix(anthropic)",
+        "description": "honor ANTHROPIC_BASE_URL when no baseUrl is configured (#74432). Thanks @sunapi386.",
+        "href": "https://github.com/openclaw/openclaw/pull/74432"
+      },
+      {
+        "title": "fix(cache)",
+        "description": "honour explicit cacheRetention for OpenRouter→Anthropic models (#79370). Thanks @mene-crab.",
+        "href": "https://github.com/openclaw/openclaw/pull/79370"
+      },
+      {
+        "title": "fix(github-copilot)",
+        "description": "expose thinking profile via bundled provider-policy-api (#79894). Thanks @jakepresent.",
+        "href": "https://github.com/openclaw/openclaw/pull/79894"
+      },
+      {
+        "title": "fix(configure)",
+        "description": "allow pruning stale provider models (#80366). Thanks @jbetala7.",
+        "href": "https://github.com/openclaw/openclaw/pull/80366"
+      },
+      {
+        "title": "fix",
+        "description": "remove isOpenAIProvider gate from applyPatchEnabled (#88359). Thanks @bottenbenny.",
+        "href": "https://github.com/openclaw/openclaw/pull/88359"
+      },
+      {
+        "title": "Fix private llm-core leaks in plugin SDK declarations (#89336)",
+        "description": "Fix private llm-core leaks in plugin SDK declarations (#89336). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89336"
+      },
+      {
+        "title": "fix(qqbot)",
+        "description": "allow RFC2544 benchmark range for token fetch (issue 88984) (#89015). Thanks @sliverp.",
+        "href": "https://github.com/openclaw/openclaw/pull/89015"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "don't fail CLI turn when the native harness owns compaction (#87785). Thanks @solomonneas.",
+        "href": "https://github.com/openclaw/openclaw/pull/87785"
+      },
+      {
+        "title": "fix(memory-core)",
+        "description": "keep startup cron retries quiet (#89075). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89075"
+      },
+      {
+        "title": "fix",
+        "description": "redact trajectory exports consistently (#89354). Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/pull/89354"
+      },
+      {
+        "title": "fix(logging)",
+        "description": "requeue stuck session lane after abort (#89293). Thanks @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/89293"
+      },
+      {
+        "title": "fix(infra)",
+        "description": "prefer npm-shrinkwrap.json over packageManager field for npm detection (#88283). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/88283"
+      },
+      {
+        "title": "Treat soft plugin repair warnings as nonfatal (#84431)",
+        "description": "Treat soft plugin repair warnings as nonfatal (#84431). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/84431"
+      },
+      {
+        "title": "fix(update)",
+        "description": "pin post-core plugin compatibility to the downgraded core version (issue 87914) (#87952). Thanks @MukundaKatta.",
+        "href": "https://github.com/openclaw/openclaw/pull/87952"
+      },
+      {
+        "title": "trace",
+        "description": "Correlate channel message diagnostics into one trace (#88821). Thanks @bek91.",
+        "href": "https://github.com/openclaw/openclaw/pull/88821"
+      },
+      {
+        "title": "fix(google)",
+        "description": "add missing gemini-3.1-flash-lite to google-vertex catalog (#89400). Thanks @xzh-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/89400"
+      },
+      {
+        "title": "fix(providers)",
+        "description": "use native reasoning mode for Gemini instead of tagged (#89379). Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/pull/89379"
+      },
+      {
+        "title": "fix(llm)",
+        "description": "prevent reasoning_content leak when reasoning is disabled (#89343). Thanks @zz327455573.",
+        "href": "https://github.com/openclaw/openclaw/pull/89343"
+      },
+      {
+        "title": "fix(exec)",
+        "description": "reject corrupt shell snapshots (#89701). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89701"
+      },
+      {
+        "title": "fix(outbound)",
+        "description": "stop schema-padded poll modifiers from blocking send (#89601). Thanks @codezz and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/89601"
+      },
+      {
+        "title": "fix",
+        "description": "backport gateway health credential handling (#89731). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/89731"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "clear legacy auto fallback pins (#87484). Thanks @neeravmakwana.",
+        "href": "https://github.com/openclaw/openclaw/pull/87484"
+      },
+      {
+        "title": "fix",
+        "description": "keep live OpenClaw session locks during cleanup (#88129).",
+        "href": "https://github.com/openclaw/openclaw/pull/88129"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "centralize terminal run outcome precedence (#88136).",
+        "href": "https://github.com/openclaw/openclaw/pull/88136"
+      },
+      {
+        "title": "fix",
+        "description": "route generated media completions through requester agent (#88141).",
+        "href": "https://github.com/openclaw/openclaw/pull/88141"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "extend terminal outcome projections (#88162).",
+        "href": "https://github.com/openclaw/openclaw/pull/88162"
+      },
+      {
+        "title": "Fix subagent DM completion delivery after yield (#88182)",
+        "description": "Fix subagent DM completion delivery after yield (#88182). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/88182"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "strip streamed reasoning tags (#88924).",
+        "href": "https://github.com/openclaw/openclaw/pull/88924"
+      },
+      {
+        "title": "feat(ios)",
+        "description": "default to hosted push relay (#88096). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88096"
+      },
+      {
+        "title": "feat(ios)",
+        "description": "add talk tab realtime playback (#88105). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88105"
+      },
+      {
+        "title": "fix(whatsapp)",
+        "description": "retry QR login 408 timeouts (#88183). Thanks @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/88183"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "recover failed progress draft starts (#88749).",
+        "href": "https://github.com/openclaw/openclaw/pull/88749"
+      },
+      {
+        "title": "Persist Discord thread bindings in SQLite (#88866)",
+        "description": "Persist Discord thread bindings in SQLite (#88866).",
+        "href": "https://github.com/openclaw/openclaw/pull/88866"
+      },
+      {
+        "title": "fix(ios)",
+        "description": "guard websocket ping continuation (#88231). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88231"
+      },
+      {
+        "title": "fix",
+        "description": "resolve google provider default API to google-generative-ai (#88512). Thanks @1052326311.",
+        "href": "https://github.com/openclaw/openclaw/pull/88512"
+      },
+      {
+        "title": "fix(plugin-sdk)",
+        "description": "isolate provider catalog projection failures (#88767). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88767"
+      },
+      {
+        "title": "fix(models)",
+        "description": "strip remaining provider self prefixes (#88781). Thanks @charles-openclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88781"
+      },
+      {
+        "title": "Persist OpenRouter model cache in SQLite (#88851)",
+        "description": "Persist OpenRouter model cache in SQLite (#88851).",
+        "href": "https://github.com/openclaw/openclaw/pull/88851"
+      },
+      {
+        "title": "feat(minimax)",
+        "description": "add MiniMax M3 support (#88860).",
+        "href": "https://github.com/openclaw/openclaw/pull/88860"
+      },
+      {
+        "title": "fix",
+        "description": "skip disabled skill snapshot env overrides (#79173). Thanks @zeus1959.",
+        "href": "https://github.com/openclaw/openclaw/pull/79173"
+      },
+      {
+        "title": "Add plugin manifest contract for SecretRef provider integrations (#82326)",
+        "description": "Add plugin manifest contract for SecretRef provider integrations (#82326). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/82326"
+      },
+      {
+        "title": "feat",
+        "description": "add core session goals (#87469).",
+        "href": "https://github.com/openclaw/openclaw/pull/87469"
+      },
+      {
+        "title": "feat(ci)",
+        "description": "autoscrub dependency lockfile-only PR changes (#87796). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/87796"
+      },
+      {
+        "title": "feat",
+        "description": "only include the current changelog section in tarball (#88107). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88107"
+      },
+      {
+        "title": "refactor",
+        "description": "extract LLM core packages (#88117).",
+        "href": "https://github.com/openclaw/openclaw/pull/88117"
+      },
+      {
+        "title": "feat(plugin-sdk)",
+        "description": "add typed presentation command actions (#88721).",
+        "href": "https://github.com/openclaw/openclaw/pull/88721"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "show Communication Notifications tab (#74715). Thanks @VladyslavLevchuk.",
+        "href": "https://github.com/openclaw/openclaw/pull/74715"
+      },
+      {
+        "title": "feat",
+        "description": "calm composer controls (#88772).",
+        "href": "https://github.com/openclaw/openclaw/pull/88772"
+      },
+      {
+        "title": "perf",
+        "description": "streamline chat startup metadata (#88825).",
+        "href": "https://github.com/openclaw/openclaw/pull/88825"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "cache chat transcript renders (#88952). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88952"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "record pending send paint timing (#88960). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88960"
+      },
+      {
+        "title": "Persist plugin install index in SQLite (#88794)",
+        "description": "Persist plugin install index in SQLite (#88794).",
+        "href": "https://github.com/openclaw/openclaw/pull/88794"
+      },
+      {
+        "title": "Migrate iMessage monitor state to SQLite (#88797)",
+        "description": "Migrate iMessage monitor state to SQLite (#88797).",
+        "href": "https://github.com/openclaw/openclaw/pull/88797"
+      },
+      {
+        "title": "Refresh Node Docker base image digests (#84988)",
+        "description": "Refresh Node Docker base image digests (#84988). Thanks @LibraHo.",
+        "href": "https://github.com/openclaw/openclaw/pull/84988"
+      },
+      {
+        "title": "Allow validated TXT/JSON/YAML media sends (#79658)",
+        "description": "Allow validated TXT/JSON/YAML media sends (#79658). Thanks @simplyclever914.",
+        "href": "https://github.com/openclaw/openclaw/pull/79658"
+      },
+      {
+        "title": "docs(imessage)",
+        "description": "document SSH wrapper TCC send failure (#88758). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88758"
+      },
+      {
+        "title": "docs",
+        "description": "clarify diffs language pack additions (#88865). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88865"
+      },
+      {
+        "title": "feat",
+        "description": "add internal code mode namespaces (#88043).",
+        "href": "https://github.com/openclaw/openclaw/pull/88043"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "add agent selector to dreaming tab (#78748). Thanks @stevenepalmer.",
+        "href": "https://github.com/openclaw/openclaw/pull/78748"
+      },
+      {
+        "title": "fix",
+        "description": "persist ACP metadata in SQLite (#88724).",
+        "href": "https://github.com/openclaw/openclaw/pull/88724"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "stream final answer partials (#88730).",
+        "href": "https://github.com/openclaw/openclaw/pull/88730"
+      },
+      {
+        "title": "fix issue 76284",
+        "description": "[Bug]: openclaw agents add blocked — cannot add Jon/Atlas as separate agents (#88314). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/88314"
+      },
+      {
+        "title": "fix",
+        "description": "harden CLI and plugin edge cases (#88896).",
+        "href": "https://github.com/openclaw/openclaw/pull/88896"
+      },
+      {
+        "title": "fix(update)",
+        "description": "recognize manual-update launchd jobs (#88764). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88764"
+      },
+      {
+        "title": "Preserve managed npm plugin root when install validation blocks update (#77...",
+        "description": "Preserve managed npm plugin root when install validation blocks update (#77237). Thanks @zhuisDEV.",
+        "href": "https://github.com/openclaw/openclaw/pull/77237"
+      },
+      {
+        "title": "fix(plugins)",
+        "description": "isolate web provider factory failures (#88807). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88807"
+      },
+      {
+        "title": "Move cron persistence to SQLite (#88285)",
+        "description": "Move cron persistence to SQLite (#88285).",
+        "href": "https://github.com/openclaw/openclaw/pull/88285"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "include job name when reading single-job run history (#88294). Thanks @kip-claw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88294"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "serialize qmd update writes across processes to stop SQLITE_BUSY (#85931). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/85931"
+      },
+      {
+        "title": "perf(test)",
+        "description": "fix explicit-file Vitest wrapper hangs (#88127). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88127"
+      },
+      {
+        "title": "fix ci mainline checks (#88137)",
+        "description": "fix ci mainline checks (#88137). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88137"
+      },
+      {
+        "title": "test(infra)",
+        "description": "avoid max fake-timer jumps (#88155). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88155"
+      },
+      {
+        "title": "test(unit-fast)",
+        "description": "isolate fake-timer files (#88160). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88160"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "normalize sessions_send message aliases (#88229). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/88229"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "fallback when accepted turns send no visible reply (#87896). Thanks @ArthurNie.",
+        "href": "https://github.com/openclaw/openclaw/pull/87896"
+      },
+      {
+        "title": "fix(reply)",
+        "description": "preserve sessions_send external routes (#88803). Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/pull/88803"
+      },
+      {
+        "title": "refactor",
+        "description": "migrate voice-call call logs through doctor (#88731).",
+        "href": "https://github.com/openclaw/openclaw/pull/88731"
+      },
+      {
+        "title": "[codex] Surface disabled Codex plugin routes in doctor lint (#88761)",
+        "description": "[codex] Surface disabled Codex plugin routes in doctor lint (#88761). Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/pull/88761"
+      },
+      {
+        "title": "fix(diagnostics)",
+        "description": "clear embedded-run activity when recovery declares lane idle (#88820). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/88820"
+      },
+      {
+        "title": "fix(config)",
+        "description": "skip state-dir dotenv values that are unresolved shell references (#88288). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/88288"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "isolate Chrome MCP pending attach aborts (#88305). Thanks @rohitjavvadi.",
+        "href": "https://github.com/openclaw/openclaw/pull/88305"
+      },
+      {
+        "title": "fix(openai/tts)",
+        "description": "handle [[tts:speed]] directive in OpenAI speech provider (issue 12163) (#74089). Thanks @stainlu.",
+        "href": "https://github.com/openclaw/openclaw/pull/74089"
+      },
+      {
+        "title": "Reported",
+        "description": "Sanitise outbound message.send tool arguments to prevent runtime scaffolding leak (FM-3) and chat_id routing bleed (FM-2) on weaker models (#89100). Thanks @bobgitmcgrath.",
+        "href": "https://github.com/openclaw/openclaw/pull/89100"
+      },
+      {
+        "title": "Reported",
+        "description": "External CLI harnesses blocked by stale auth-profiles gate (#85105). Thanks @saphoroth.",
+        "href": "https://github.com/openclaw/openclaw/pull/85105"
+      },
+      {
+        "title": "Reported",
+        "description": "configure wizard: models block is append-only — stale/delisted model entries never pruned (#80347). Thanks @wherewolf87.",
+        "href": "https://github.com/openclaw/openclaw/pull/80347"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: apply_patch unavailable on non-OpenAI providers due to hardcoded isOpenAIProvider gate (#88357). Thanks @bottenbenny.",
+        "href": "https://github.com/openclaw/openclaw/pull/88357"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: `apply_patch` is treated as an unknown/plugin-only tool in agent policy pipeline, so agent-routed runs cannot execute it (#45269). Thanks @Alfred-claw28.",
+        "href": "https://github.com/openclaw/openclaw/pull/45269"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] QQ bot token fetch still blocked by SSRF — RFC2544 benchmark range not allowed (#88984). Thanks @Jensenwgd.",
+        "href": "https://github.com/openclaw/openclaw/pull/88984"
+      },
+      {
+        "title": "Reported",
+        "description": "Codex app-server thread lifecycle latency is hidden between attempt-dispatch and session.started (#84640). Thanks @crash2kx.",
+        "href": "https://github.com/openclaw/openclaw/pull/84640"
+      },
+      {
+        "title": "Reported",
+        "description": "macOS LaunchAgent gateway restart/stop can leave gateway unloaded when invoked in-band (#89174). Thanks @bek91.",
+        "href": "https://github.com/openclaw/openclaw/pull/89174"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug][Codex Runtime]: Discord progress reasoning stream overwrites prior reasoning chunks (#83983). Thanks @xueqingli1.",
+        "href": "https://github.com/openclaw/openclaw/pull/83983"
+      },
+      {
+        "title": "Reported",
+        "description": "Stuck-session recovery discards queued user messages after aborting ghost run (#89208). Thanks @ketos-jona.",
+        "href": "https://github.com/openclaw/openclaw/pull/89208"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: 2026.5.27 npm install calls itself pnpm (#87732). Thanks @jasonftl.",
+        "href": "https://github.com/openclaw/openclaw/pull/87732"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: resuming a session with a corrupted header line silently wipes the entire transcript (data loss) (#89037). Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/pull/89037"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: QQBot credential backups bypass gateway state isolation (#84313). Thanks @coygeek.",
+        "href": "https://github.com/openclaw/openclaw/pull/84313"
+      },
+      {
+        "title": "Reported",
+        "description": "diagnostics-prometheus can spam log.record errors after rollback when plugin version remains newer than OpenClaw core (#87914). Thanks @Niriakot.",
+        "href": "https://github.com/openclaw/openclaw/pull/87914"
+      },
+      {
+        "title": "Reported",
+        "description": "google-vertex: gemini-3.1-flash-lite missing from pi-ai model catalog, causes silent failure with no fallback (#89390). Thanks @nyuDSA.",
+        "href": "https://github.com/openclaw/openclaw/pull/89390"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Context-engine overflow retry can bind a fresh Codex thread without projected context (#88355). Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88355"
+      },
+      {
+        "title": "Reported",
+        "description": "Gemini text-tag reasoning conflicts with native thinking — produces unclosed <think>, empty post-tool turn, payloads=0 (#69220). Thanks @mrbrl.",
+        "href": "https://github.com/openclaw/openclaw/pull/69220"
+      },
+      {
+        "title": "Reported",
+        "description": "v2026.5.18 doctor/status can leave openai-codex OAuth sidecar auth partially repaired while runtime still fails (#84252). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/84252"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: before_agent_finalize hook never fires for OpenClaw agents (main, coder, etc.) (#87585). Thanks @lileilei-camera.",
+        "href": "https://github.com/openclaw/openclaw/pull/87585"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Add `supportsPromptCacheKey` to Mistral transport compat patch (#83709). Thanks @Net-Sentinel.",
+        "href": "https://github.com/openclaw/openclaw/pull/83709"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Reusing hooks.token as gateway password collapses hook auth into full operator auth (#87376). Thanks @coygeek.",
+        "href": "https://github.com/openclaw/openclaw/pull/87376"
+      },
+      {
+        "title": "Reported",
+        "description": "Kimi Code returns empty content when Anthropic cache_control markers are sent (#76612). Thanks @vliuyt.",
+        "href": "https://github.com/openclaw/openclaw/pull/76612"
+      },
+      {
+        "title": "Reported",
+        "description": "Google Gemini chat model routes to openai-responses transport (401), native @google/genai transport never selected (#88480). Thanks @azgardtek.",
+        "href": "https://github.com/openclaw/openclaw/pull/88480"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] skills.entries.gh-issues.apiKey SecretRef unresolved in WhatsApp lane sessions (env:default:GITHUB_PAT) (#79072). Thanks @maverikva.",
+        "href": "https://github.com/openclaw/openclaw/pull/79072"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Telegram partial streaming receives no assistant deltas for openai-codex; newline chunking only sends final blocks (#88405). Thanks @crash2kx.",
+        "href": "https://github.com/openclaw/openclaw/pull/88405"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: openclaw agents add blocked — cannot add Jon/Atlas as separate agents (#76284). Thanks @RicardoUKMX.",
+        "href": "https://github.com/openclaw/openclaw/pull/76284"
+      },
+      {
+        "title": "Reported",
+        "description": "memory search can hit QMD SQLite lock contention during normal runtime (#66339). Thanks @SakenW.",
+        "href": "https://github.com/openclaw/openclaw/pull/66339"
       }
     ],
     "fixes": [
@@ -637,6 +4838,1558 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Performance: prebuild QA runtime probes with generated plugin assets but without CLI startup metadata.",
       "Performance: skip declaration bundling for runtime-only CLI startup and gateway watch build profiles.",
       "Performance: reuse prepared provider handles, strict tool schemas, gateway runtime metadata, session maintenance config, plugin metadata, bundled skill allowlists, package-local plugin artifacts, single-entry store writes, and validated/serialized session prompt blobs."
+    ]
+  },
+  {
+    "version": "2026.5.31",
+    "date": "2026.5.31",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026531",
+    "features": [
+      {
+        "title": "Chat and Control UI responsiveness improved across streamed markdown, trans...",
+        "description": "Chat and Control UI responsiveness improved across streamed markdown, transcript rendering, draft persistence, pending-send painting, scrolling, and first-message handling. (#88952, #88960, #88998) Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/88952"
+      },
+      {
+        "title": "Agent, Codex, and auth recovery is more resilient around stale bootstrap hi...",
+        "description": "Agent, Codex, and auth recovery is more resilient around stale bootstrap history, legacy Codex auth state, reasoning-tag cleanup, shell snapshot validation, and automatic fallback recovery. (#87484, #88924) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/87484"
+      },
+      {
+        "title": "Cron, channels, and session delivery now preserve external routes, include...",
+        "description": "Cron, channels, and session delivery now preserve external routes, include job names in single-job history, and keep replies and state transitions clearer across restarts. (#88294, #88803) Thanks @kip-claw and @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/issues/88294"
+      },
+      {
+        "title": "Workboard task details, Android notification app selection, and Dreaming ca...",
+        "description": "Workboard task details, Android notification app selection, and Dreaming candidate scoring gained broader operator controls.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026531"
+      },
+      {
+        "title": "Control UI now streams stable Markdown blocks and records more chat respons...",
+        "description": "Control UI now streams stable Markdown blocks and records more chat responsiveness signals to guide first-reply performance work.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026531"
+      },
+      {
+        "title": "Release and E2E infrastructure adds tighter package, installer, Docker, Par...",
+        "description": "Release and E2E infrastructure adds tighter package, installer, Docker, Parallels, Telegram, and plugin-lifecycle proof boundaries.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026531"
+      },
+      {
+        "title": "feat",
+        "description": "add core session goals (#87469).",
+        "href": "https://github.com/openclaw/openclaw/pull/87469"
+      },
+      {
+        "title": "fix",
+        "description": "keep live OpenClaw session locks during cleanup (#88129).",
+        "href": "https://github.com/openclaw/openclaw/pull/88129"
+      },
+      {
+        "title": "Fix heartbeat default run timeout (#88133)",
+        "description": "Fix heartbeat default run timeout (#88133).",
+        "href": "https://github.com/openclaw/openclaw/pull/88133"
+      },
+      {
+        "title": "fix ci mainline checks (#88137)",
+        "description": "fix ci mainline checks (#88137). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88137"
+      },
+      {
+        "title": "Add plugin manifest contract for SecretRef provider integrations (#82326)",
+        "description": "Add plugin manifest contract for SecretRef provider integrations (#82326). Thanks @sallyom and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/82326"
+      },
+      {
+        "title": "fix",
+        "description": "route generated media completions through requester agent (#88141).",
+        "href": "https://github.com/openclaw/openclaw/pull/88141"
+      },
+      {
+        "title": "refactor",
+        "description": "share native approval route gates (#87770). Thanks @kevinslin.",
+        "href": "https://github.com/openclaw/openclaw/pull/87770"
+      },
+      {
+        "title": "test(infra)",
+        "description": "avoid max fake-timer jumps (#88155). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88155"
+      },
+      {
+        "title": "test(unit-fast)",
+        "description": "isolate fake-timer files (#88160). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88160"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "resolve message actions against runtime config (#84535). Thanks @funmerlin and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/84535"
+      },
+      {
+        "title": "feat",
+        "description": "only include the current changelog section in tarball (#88107). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88107"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "classify embedded provider business denials for fallback (#84814). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/84814"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "extend terminal outcome projections (#88162).",
+        "href": "https://github.com/openclaw/openclaw/pull/88162"
+      },
+      {
+        "title": "Fix subagent DM completion delivery after yield (#88182)",
+        "description": "Fix subagent DM completion delivery after yield (#88182). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/88182"
+      },
+      {
+        "title": "Fix Codex raw image generation media projection (#88191)",
+        "description": "Fix Codex raw image generation media projection (#88191). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/88191"
+      },
+      {
+        "title": "Fix restart sentinel internal continuations (#88161)",
+        "description": "Fix restart sentinel internal continuations (#88161). Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/pull/88161"
+      },
+      {
+        "title": "ci: extend platform checkout fetch timeout (#88199)",
+        "description": "ci: extend platform checkout fetch timeout (#88199). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88199"
+      },
+      {
+        "title": "feat(ci)",
+        "description": "autoscrub dependency lockfile-only PR changes (#87796). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/87796"
+      },
+      {
+        "title": "perf(test)",
+        "description": "fix explicit-file Vitest wrapper hangs (#88127). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88127"
+      },
+      {
+        "title": "fix(whatsapp)",
+        "description": "retry QR login 408 timeouts (#88183). Thanks @mcaxtr.",
+        "href": "https://github.com/openclaw/openclaw/pull/88183"
+      },
+      {
+        "title": "fix(ios)",
+        "description": "guard websocket ping continuation (#88231). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88231"
+      },
+      {
+        "title": "refactor",
+        "description": "extract LLM core packages (#88117).",
+        "href": "https://github.com/openclaw/openclaw/pull/88117"
+      },
+      {
+        "title": "refactor(agents)",
+        "description": "type media completion delivery misses (#88250).",
+        "href": "https://github.com/openclaw/openclaw/pull/88250"
+      },
+      {
+        "title": "feat",
+        "description": "add hosted model providers (#88247).",
+        "href": "https://github.com/openclaw/openclaw/pull/88247"
+      },
+      {
+        "title": "refactor",
+        "description": "extract markdown core package (#88265).",
+        "href": "https://github.com/openclaw/openclaw/pull/88265"
+      },
+      {
+        "title": "refactor",
+        "description": "move terminal core into package (#88279).",
+        "href": "https://github.com/openclaw/openclaw/pull/88279"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "harden autoreview Windows harness (#88284). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88284"
+      },
+      {
+        "title": "Persist subagent registry in SQLite (#88260)",
+        "description": "Persist subagent registry in SQLite (#88260).",
+        "href": "https://github.com/openclaw/openclaw/pull/88260"
+      },
+      {
+        "title": "refactor",
+        "description": "extract media understanding common package (#88297).",
+        "href": "https://github.com/openclaw/openclaw/pull/88297"
+      },
+      {
+        "title": "fix(test)",
+        "description": "include workflow lint target in routing expectation (#88310). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88310"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "stop pulsing completed stream segments (#88225). Thanks @scotthuang.",
+        "href": "https://github.com/openclaw/openclaw/pull/88225"
+      },
+      {
+        "title": "feat(ios)",
+        "description": "refresh app store metadata (#88235). Thanks @ngutman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88235"
+      },
+      {
+        "title": "Add per-agent SQLite cache store (#88349)",
+        "description": "Add per-agent SQLite cache store (#88349).",
+        "href": "https://github.com/openclaw/openclaw/pull/88349"
+      },
+      {
+        "title": "[Fix] Deliver restart recovery replies (#86089)",
+        "description": "[Fix] Deliver restart recovery replies (#86089). Thanks @samzong.",
+        "href": "https://github.com/openclaw/openclaw/pull/86089"
+      },
+      {
+        "title": "refactor(matrix)",
+        "description": "move ephemeral state to plugin sqlite (#88387).",
+        "href": "https://github.com/openclaw/openclaw/pull/88387"
+      },
+      {
+        "title": "test(tasks)",
+        "description": "cover task domain view mappers (#86755). Thanks @leno23.",
+        "href": "https://github.com/openclaw/openclaw/pull/86755"
+      },
+      {
+        "title": "Expose resolved subagent model metadata (#80037)",
+        "description": "Expose resolved subagent model metadata (#80037). Thanks @guanbear.",
+        "href": "https://github.com/openclaw/openclaw/pull/80037"
+      },
+      {
+        "title": "feat",
+        "description": "expand workboard orchestration metadata (#88408).",
+        "href": "https://github.com/openclaw/openclaw/pull/88408"
+      },
+      {
+        "title": "feat(gateway)",
+        "description": "forward OpenAI stop sequences through chat completions (#87920). Thanks @Lellansin.",
+        "href": "https://github.com/openclaw/openclaw/pull/87920"
+      },
+      {
+        "title": "fix(export-html)",
+        "description": "guard msg.content and result.content filter/iteration paths against non-array values (#88271). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/88271"
+      },
+      {
+        "title": "ci: keep harness changes on fast checks (#88429)",
+        "description": "ci: keep harness changes on fast checks (#88429).",
+        "href": "https://github.com/openclaw/openclaw/pull/88429"
+      },
+      {
+        "title": "Move cron persistence to SQLite (#88285)",
+        "description": "Move cron persistence to SQLite (#88285).",
+        "href": "https://github.com/openclaw/openclaw/pull/88285"
+      },
+      {
+        "title": "fix(build)",
+        "description": "avoid stale agent-core dts warnings (#87915). Thanks @keshavbotagent.",
+        "href": "https://github.com/openclaw/openclaw/pull/87915"
+      },
+      {
+        "title": "Refactor subagent thread binding into core (#88416)",
+        "description": "Refactor subagent thread binding into core (#88416).",
+        "href": "https://github.com/openclaw/openclaw/pull/88416"
+      },
+      {
+        "title": "refactor",
+        "description": "extract web content core package (#88346).",
+        "href": "https://github.com/openclaw/openclaw/pull/88346"
+      },
+      {
+        "title": "fix(responses)",
+        "description": "drop orphaned assistant msg\\_\\* id when reasoning is dropped (issue 88019) (#88067). Thanks @BSG2000.",
+        "href": "https://github.com/openclaw/openclaw/pull/88067"
+      },
+      {
+        "title": "Fix /acp spawn cwd inheritance for target agent workspaces (#82415)",
+        "description": "Fix /acp spawn cwd inheritance for target agent workspaces (#82415). Thanks @summerview1997.",
+        "href": "https://github.com/openclaw/openclaw/pull/82415"
+      },
+      {
+        "title": "fix(slack)",
+        "description": "preserve thread context for Agents & Assistants DM root messages (#63840). Thanks @zozo123.",
+        "href": "https://github.com/openclaw/openclaw/pull/63840"
+      },
+      {
+        "title": "fix",
+        "description": "scrub serialized tool-call text from replies (#86924). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/86924"
+      },
+      {
+        "title": "feat",
+        "description": "add internal code mode namespaces (#88043).",
+        "href": "https://github.com/openclaw/openclaw/pull/88043"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "add agent selector to dreaming tab (#78748). Thanks @stevenepalmer.",
+        "href": "https://github.com/openclaw/openclaw/pull/78748"
+      },
+      {
+        "title": "Refactor cron migrations under doctor (#88455)",
+        "description": "Refactor cron migrations under doctor (#88455).",
+        "href": "https://github.com/openclaw/openclaw/pull/88455"
+      },
+      {
+        "title": "fix(ci)",
+        "description": "ignore fenced headings in proof parser (#87390). Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/pull/87390"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "bound plugin system context (#87341). Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/pull/87341"
+      },
+      {
+        "title": "Refactor browser screenshot vision through shared media understanding (#84247)",
+        "description": "Refactor browser screenshot vision through shared media understanding (#84247). Thanks @scotthuang.",
+        "href": "https://github.com/openclaw/openclaw/pull/84247"
+      },
+      {
+        "title": "refactor",
+        "description": "unify OpenAI provider identity (#88451).",
+        "href": "https://github.com/openclaw/openclaw/pull/88451"
+      },
+      {
+        "title": "fix issue 79380",
+        "description": "[Bug]: Gateway CPU spin / crash loop on Raspberry Pi 4 (ARM64) — regression from 4.23 to 4.25+ (#79418). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/79418"
+      },
+      {
+        "title": "fix",
+        "description": "clarify generated media reply prompts (#88458).",
+        "href": "https://github.com/openclaw/openclaw/pull/88458"
+      },
+      {
+        "title": "Fix iMessage startup watch replay (#88406)",
+        "description": "Fix iMessage startup watch replay (#88406). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/88406"
+      },
+      {
+        "title": "docs",
+        "description": "remove divider comments (#88115).",
+        "href": "https://github.com/openclaw/openclaw/pull/88115"
+      },
+      {
+        "title": "fix(webchat)",
+        "description": "preserve refresh-visible history and composer state (#83992). Thanks @spacegeologist.",
+        "href": "https://github.com/openclaw/openclaw/pull/83992"
+      },
+      {
+        "title": "fix(auto-reply)",
+        "description": "redact secrets in config show output (#88496). Thanks @jason-allen-oneal.",
+        "href": "https://github.com/openclaw/openclaw/pull/88496"
+      },
+      {
+        "title": "feat",
+        "description": "improve MCP operator controls (#88536).",
+        "href": "https://github.com/openclaw/openclaw/pull/88536"
+      },
+      {
+        "title": "fix(openai)",
+        "description": "preserve custom provider id through memory embedding adapter (#81170). Thanks @adone0.",
+        "href": "https://github.com/openclaw/openclaw/pull/81170"
+      },
+      {
+        "title": "memory-lancedb",
+        "description": "add configurable timeout/retry for embedding calls (#56532). Thanks @amittell.",
+        "href": "https://github.com/openclaw/openclaw/pull/56532"
+      },
+      {
+        "title": "fix(infra)",
+        "description": "guard against overwriting corrupt target session store during migration (#88018). Thanks @Feelw00.",
+        "href": "https://github.com/openclaw/openclaw/pull/88018"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "accept sub-second --at datetimes resolved in a timezone (#88185). Thanks @coder999999999.",
+        "href": "https://github.com/openclaw/openclaw/pull/88185"
+      },
+      {
+        "title": "feat",
+        "description": "add scoped mention pattern policy (#70864). Thanks @patrick-slimelab.",
+        "href": "https://github.com/openclaw/openclaw/pull/70864"
+      },
+      {
+        "title": "feat",
+        "description": "add mention pattern policies (#87200). Thanks @deepshekhardas.",
+        "href": "https://github.com/openclaw/openclaw/pull/87200"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "route per-turn media task hints below the cache boundary (#87998). Thanks @nxmxbbd.",
+        "href": "https://github.com/openclaw/openclaw/pull/87998"
+      },
+      {
+        "title": "test(plugins)",
+        "description": "cover Link agent wallet bundle shape (#75181). Thanks @stainlu.",
+        "href": "https://github.com/openclaw/openclaw/pull/75181"
+      },
+      {
+        "title": "chore(lint)",
+        "description": "enable object-shorthand (#81808). Thanks @tanshanshan.",
+        "href": "https://github.com/openclaw/openclaw/pull/81808"
+      },
+      {
+        "title": "refactor",
+        "description": "extract media and ACP core packages (#88534).",
+        "href": "https://github.com/openclaw/openclaw/pull/88534"
+      },
+      {
+        "title": "[AI-assisted] fix(plugins)",
+        "description": "scope startup metadata manifest reads (#84628). Thanks @IWhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/pull/84628"
+      },
+      {
+        "title": "Refactor cron SQLite runtime paths (#88582)",
+        "description": "Refactor cron SQLite runtime paths (#88582).",
+        "href": "https://github.com/openclaw/openclaw/pull/88582"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "retry transient embedding transport failures (#44167). Thanks @MrGeDiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/44167"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "guide dashboard auth after service repair (#88466). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/88466"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "keep transient chat errors out of page headers (#88463). Thanks @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/pull/88463"
+      },
+      {
+        "title": "refactor",
+        "description": "make OpenAI Codex legacy doctor-only (#88605).",
+        "href": "https://github.com/openclaw/openclaw/pull/88605"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "document stable tab references (#88393). Thanks @FMLS and @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/pull/88393"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "classify expired thinking signatures (#88340). Thanks @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88340"
+      },
+      {
+        "title": "fix(devices)",
+        "description": "refresh paired device last-seen metadata (#81189). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/pull/81189"
+      },
+      {
+        "title": "fix",
+        "description": "queue subagent completion handoffs (#88613).",
+        "href": "https://github.com/openclaw/openclaw/pull/88613"
+      },
+      {
+        "title": "refactor",
+        "description": "move plugin state stores to SQLite (#88609).",
+        "href": "https://github.com/openclaw/openclaw/pull/88609"
+      },
+      {
+        "title": "fix(config)",
+        "description": "add dropReasoningFromHistory config for openai-completions providers (issue 88068) (#88071). Thanks @chengzhichao-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/88071"
+      },
+      {
+        "title": "fix(tasks)",
+        "description": "reclaim ACP zombie runs blocking gateway restart (#88281). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/88281"
+      },
+      {
+        "title": "[codex] fix Codex continuity projection regressions (#88407)",
+        "description": "[codex] fix Codex continuity projection regressions (#88407). Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/pull/88407"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "skip history reload when final event has displayable output (#88004). Thanks @SebTardif.",
+        "href": "https://github.com/openclaw/openclaw/pull/88004"
+      },
+      {
+        "title": "fix(webchat)",
+        "description": "suppress stale active session row racing a completed turn (issue 87875) (#87962). Thanks @MukundaKatta.",
+        "href": "https://github.com/openclaw/openclaw/pull/87962"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "use middle truncation for paths and commands in tool display (#88050). Thanks @SebTardif.",
+        "href": "https://github.com/openclaw/openclaw/pull/88050"
+      },
+      {
+        "title": "fix(tui)",
+        "description": "preserve pending local runs during session sync (#87959). Thanks @nao860226-rgb.",
+        "href": "https://github.com/openclaw/openclaw/pull/87959"
+      },
+      {
+        "title": "feat(codex)",
+        "description": "add portable Codex command pickers (#82224). Thanks @yaanfpv.",
+        "href": "https://github.com/openclaw/openclaw/pull/82224"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "normalize prefixed Anthropic fallback model ids (issue 88560) (#88587). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88587"
+      },
+      {
+        "title": "refactor",
+        "description": "expand acp core package (#88618).",
+        "href": "https://github.com/openclaw/openclaw/pull/88618"
+      },
+      {
+        "title": "feat",
+        "description": "add MCP code-mode namespace (#88636).",
+        "href": "https://github.com/openclaw/openclaw/pull/88636"
+      },
+      {
+        "title": "fix(gateway)",
+        "description": "reject pre-reset run lifecycle events from clobbering the rotated session row (#88583). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/88583"
+      },
+      {
+        "title": "fix(messages)",
+        "description": "use best-effort for implicit tool-only source replies (#84232). Thanks @tianxiaochannel-oss88.",
+        "href": "https://github.com/openclaw/openclaw/pull/84232"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "preserve runtime tools in lean mode (#88381). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88381"
+      },
+      {
+        "title": "fix(telegram)",
+        "description": "preserve /usage footer for tool-only replies (#87425). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/87425"
+      },
+      {
+        "title": "refactor",
+        "description": "clean up ACP package metadata and helpers (#88659).",
+        "href": "https://github.com/openclaw/openclaw/pull/88659"
+      },
+      {
+        "title": "fix(sms)",
+        "description": "cover native proof follow-ups (#88601). Thanks @clawSean.",
+        "href": "https://github.com/openclaw/openclaw/pull/88601"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "report stale session locks without cleanup (#88658).",
+        "href": "https://github.com/openclaw/openclaw/pull/88658"
+      },
+      {
+        "title": "Fix Google Chat message tool thread replies (#80996)",
+        "description": "Fix Google Chat message tool thread replies (#80996). Thanks @franco-viotti.",
+        "href": "https://github.com/openclaw/openclaw/pull/80996"
+      },
+      {
+        "title": "fix",
+        "description": "route iMessage DM media through attachment handoff (#87904). Thanks @HOYALIM and @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/pull/87904"
+      },
+      {
+        "title": "feat(github-copilot)",
+        "description": "add Claude Opus 4.8 to default model catalog (#88547). Thanks @saju01.",
+        "href": "https://github.com/openclaw/openclaw/pull/88547"
+      },
+      {
+        "title": "fix(slack)",
+        "description": "keep one draft message in progress mode (#85612). Thanks @mycarrysun.",
+        "href": "https://github.com/openclaw/openclaw/pull/85612"
+      },
+      {
+        "title": "fix(ollama)",
+        "description": "yield during dense stream processing (#87818). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/87818"
+      },
+      {
+        "title": "refactor",
+        "description": "move delivery queues to SQLite (#88665).",
+        "href": "https://github.com/openclaw/openclaw/pull/88665"
+      },
+      {
+        "title": "feat",
+        "description": "add typed MCP code-mode API (#88678).",
+        "href": "https://github.com/openclaw/openclaw/pull/88678"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "avoid full stream replay on text deltas (#88252). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88252"
+      },
+      {
+        "title": "refactor",
+        "description": "clean up ACP translator and manager tests (#88677).",
+        "href": "https://github.com/openclaw/openclaw/pull/88677"
+      },
+      {
+        "title": "fix",
+        "description": "persist ACP metadata in SQLite (#88724).",
+        "href": "https://github.com/openclaw/openclaw/pull/88724"
+      },
+      {
+        "title": "feat(plugin-sdk)",
+        "description": "add typed presentation command actions (#88721).",
+        "href": "https://github.com/openclaw/openclaw/pull/88721"
+      },
+      {
+        "title": "Allow validated TXT/JSON/YAML media sends (#79658)",
+        "description": "Allow validated TXT/JSON/YAML media sends (#79658). Thanks @simplyclever914.",
+        "href": "https://github.com/openclaw/openclaw/pull/79658"
+      },
+      {
+        "title": "Refresh Node Docker base image digests (#84988)",
+        "description": "Refresh Node Docker base image digests (#84988). Thanks @LibraHo.",
+        "href": "https://github.com/openclaw/openclaw/pull/84988"
+      },
+      {
+        "title": "fix(memory)",
+        "description": "serialize qmd update writes across processes to stop SQLITE_BUSY (#85931). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/85931"
+      },
+      {
+        "title": "fix(codex)",
+        "description": "stream final answer partials (#88730).",
+        "href": "https://github.com/openclaw/openclaw/pull/88730"
+      },
+      {
+        "title": "fix issue 76284",
+        "description": "[Bug]: openclaw agents add blocked — cannot add Jon/Atlas as separate agents (#88314). Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/pull/88314"
+      },
+      {
+        "title": "refactor",
+        "description": "extract ACP turn runner (#88739).",
+        "href": "https://github.com/openclaw/openclaw/pull/88739"
+      },
+      {
+        "title": "refactor",
+        "description": "extract ACP close session flow (#88744).",
+        "href": "https://github.com/openclaw/openclaw/pull/88744"
+      },
+      {
+        "title": "refactor",
+        "description": "migrate voice-call call logs through doctor (#88731).",
+        "href": "https://github.com/openclaw/openclaw/pull/88731"
+      },
+      {
+        "title": "refactor",
+        "description": "extract ACP runtime option commands (#88747).",
+        "href": "https://github.com/openclaw/openclaw/pull/88747"
+      },
+      {
+        "title": "fix(ui)",
+        "description": "show Communication Notifications tab (#74715). Thanks @VladyslavLevchuk.",
+        "href": "https://github.com/openclaw/openclaw/pull/74715"
+      },
+      {
+        "title": "fix(channels)",
+        "description": "recover failed progress draft starts (#88749).",
+        "href": "https://github.com/openclaw/openclaw/pull/88749"
+      },
+      {
+        "title": "fix",
+        "description": "skip disabled skill snapshot env overrides (#79173). Thanks @zeus1959.",
+        "href": "https://github.com/openclaw/openclaw/pull/79173"
+      },
+      {
+        "title": "refactor",
+        "description": "split ACP manager session flows (#88752).",
+        "href": "https://github.com/openclaw/openclaw/pull/88752"
+      },
+      {
+        "title": "fix(openai/tts)",
+        "description": "handle [[tts:speed]] directive in OpenAI speech provider (issue 12163) (#74089). Thanks @stainlu.",
+        "href": "https://github.com/openclaw/openclaw/pull/74089"
+      },
+      {
+        "title": "fix(feishu)",
+        "description": "fallback when accepted turns send no visible reply (#87896). Thanks @ArthurNie.",
+        "href": "https://github.com/openclaw/openclaw/pull/87896"
+      },
+      {
+        "title": "[codex] Surface disabled Codex plugin routes in doctor lint (#88761)",
+        "description": "[codex] Surface disabled Codex plugin routes in doctor lint (#88761). Thanks @brokemac79 and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/88761"
+      },
+      {
+        "title": "feat(doctor)",
+        "description": "add disk space health check for state directory (#59196). Thanks @alkor2000.",
+        "href": "https://github.com/openclaw/openclaw/pull/59196"
+      },
+      {
+        "title": "fix(daemon)",
+        "description": "preserve container service env across regen (#82828). Thanks @wAngByg.",
+        "href": "https://github.com/openclaw/openclaw/pull/82828"
+      },
+      {
+        "title": "fix(models)",
+        "description": "strip remaining provider self prefixes (#88781). Thanks @charles-openclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88781"
+      },
+      {
+        "title": "fix(update)",
+        "description": "recognize manual-update launchd jobs (#88764). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88764"
+      },
+      {
+        "title": "fix",
+        "description": "resolve google provider default API to google-generative-ai (#88512). Thanks @1052326311 and @Xin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88512"
+      },
+      {
+        "title": "feat",
+        "description": "calm composer controls (#88772).",
+        "href": "https://github.com/openclaw/openclaw/pull/88772"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "cap bootstrap snapshot cache (#88149). Thanks @yozakura-ava.",
+        "href": "https://github.com/openclaw/openclaw/pull/88149"
+      },
+      {
+        "title": "Migrate iMessage monitor state to SQLite (#88797)",
+        "description": "Migrate iMessage monitor state to SQLite (#88797).",
+        "href": "https://github.com/openclaw/openclaw/pull/88797"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "retire MCP runtimes on isolated cron timeout and dispose (#87981). Thanks @Jerry-Xin.",
+        "href": "https://github.com/openclaw/openclaw/pull/87981"
+      },
+      {
+        "title": "Persist plugin install index in SQLite (#88794)",
+        "description": "Persist plugin install index in SQLite (#88794).",
+        "href": "https://github.com/openclaw/openclaw/pull/88794"
+      },
+      {
+        "title": "Preserve managed npm plugin root when install validation blocks update (#77...",
+        "description": "Preserve managed npm plugin root when install validation blocks update (#77237). Thanks @zhuisDEV.",
+        "href": "https://github.com/openclaw/openclaw/pull/77237"
+      },
+      {
+        "title": "fix(config)",
+        "description": "skip state-dir dotenv values that are unresolved shell references (#88288). Thanks @Alix-007.",
+        "href": "https://github.com/openclaw/openclaw/pull/88288"
+      },
+      {
+        "title": "fix(plugins)",
+        "description": "isolate web provider factory failures (#88807). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88807"
+      },
+      {
+        "title": "Persist OpenRouter model cache in SQLite (#88851)",
+        "description": "Persist OpenRouter model cache in SQLite (#88851).",
+        "href": "https://github.com/openclaw/openclaw/pull/88851"
+      },
+      {
+        "title": "perf",
+        "description": "streamline chat startup metadata (#88825).",
+        "href": "https://github.com/openclaw/openclaw/pull/88825"
+      },
+      {
+        "title": "fix",
+        "description": "allow missing native hook relay without policy (#88620). Thanks @woodym-dotcom.",
+        "href": "https://github.com/openclaw/openclaw/pull/88620"
+      },
+      {
+        "title": "test(agents)",
+        "description": "include Ollama in small live model matrix (#87838). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/87838"
+      },
+      {
+        "title": "feat(minimax)",
+        "description": "add MiniMax M3 support (#88860).",
+        "href": "https://github.com/openclaw/openclaw/pull/88860"
+      },
+      {
+        "title": "fix(browser)",
+        "description": "isolate Chrome MCP pending attach aborts (#88305). Thanks @rohitjavvadi.",
+        "href": "https://github.com/openclaw/openclaw/pull/88305"
+      },
+      {
+        "title": "fix(microsoft-foundry)",
+        "description": "satisfy extension lint (#88855). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88855"
+      },
+      {
+        "title": "test",
+        "description": "consolidate plugin registration contracts (#88824). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88824"
+      },
+      {
+        "title": "test(ui)",
+        "description": "remove stylesheet grep tests (#88847). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88847"
+      },
+      {
+        "title": "test(agents)",
+        "description": "use neutral tool schema fixtures (#88848). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88848"
+      },
+      {
+        "title": "Persist Discord thread bindings in SQLite (#88866)",
+        "description": "Persist Discord thread bindings in SQLite (#88866).",
+        "href": "https://github.com/openclaw/openclaw/pull/88866"
+      },
+      {
+        "title": "docs",
+        "description": "clarify diffs language pack additions (#88865). Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/88865"
+      },
+      {
+        "title": "docs",
+        "description": "continue inline comment pass (#88849).",
+        "href": "https://github.com/openclaw/openclaw/pull/88849"
+      },
+      {
+        "title": "fix(plugins)",
+        "description": "fail closed on trusted policy errors (#88394). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88394"
+      },
+      {
+        "title": "docs(imessage)",
+        "description": "document SSH wrapper TCC send failure (#88758). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88758"
+      },
+      {
+        "title": "fix(reply)",
+        "description": "preserve sessions_send external routes (#88803). Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/pull/88803"
+      },
+      {
+        "title": "fix(cron)",
+        "description": "include job name when reading single-job run history (#88294). Thanks @kip-claw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88294"
+      },
+      {
+        "title": "fix",
+        "description": "harden CLI and plugin edge cases (#88896).",
+        "href": "https://github.com/openclaw/openclaw/pull/88896"
+      },
+      {
+        "title": "fix(plugin-sdk)",
+        "description": "isolate provider catalog projection failures (#88767). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88767"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "clear legacy auto fallback pins (#87484). Thanks @neeravmakwana.",
+        "href": "https://github.com/openclaw/openclaw/pull/87484"
+      },
+      {
+        "title": "fix(diagnostics)",
+        "description": "clear embedded-run activity when recovery declares lane idle (#88820). Thanks @openperf.",
+        "href": "https://github.com/openclaw/openclaw/pull/88820"
+      },
+      {
+        "title": "fix(agents)",
+        "description": "strip streamed reasoning tags (#88924).",
+        "href": "https://github.com/openclaw/openclaw/pull/88924"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "cache chat transcript renders (#88952). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88952"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "record pending send paint timing (#88960). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88960"
+      },
+      {
+        "title": "perf(ui)",
+        "description": "keep chat draft local while typing (#88998). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/88998"
+      },
+      {
+        "title": "Reported",
+        "description": "Session lock auto-cleanup on staleness detection (#87779). Thanks @todd-chisel.",
+        "href": "https://github.com/openclaw/openclaw/pull/87779"
+      },
+      {
+        "title": "Reported",
+        "description": "Heartbeat scheduler silently stops dispatching polls after session compaction/recreation (#87438). Thanks @ovrsr.",
+        "href": "https://github.com/openclaw/openclaw/pull/87438"
+      },
+      {
+        "title": "Reported",
+        "description": "Event-loop starvation during context compaction causes fetch timeouts (16.9s timer delay) (#86358). Thanks @Mithril1991.",
+        "href": "https://github.com/openclaw/openclaw/pull/86358"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex OAuth compaction falls back to direct OpenAI API and fails without OPENAI_API_KEY (#86820). Thanks @kopl-blip.",
+        "href": "https://github.com/openclaw/openclaw/pull/86820"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Add Xiaomi MiMo Token Plan provider support / fix Token Plan connection (#86169). Thanks @openclaws420.",
+        "href": "https://github.com/openclaw/openclaw/pull/86169"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: WebSocket close before connection established causes uncaughtException crash — not covered by isBenignUncaughtExceptionError (#88257). Thanks @survivor998 and @akrimm702.",
+        "href": "https://github.com/openclaw/openclaw/pull/88257"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway buffers tool-kind text instead of delivering immediately (streaming.mode partial ignored) (#66509). Thanks @gabrielduartesignart.",
+        "href": "https://github.com/openclaw/openclaw/pull/66509"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: independent scripts in ~/.openclaw/extensions/ crash Gateway (missing openclaw.plugin.json) (#88198). Thanks @mmhzlrj.",
+        "href": "https://github.com/openclaw/openclaw/pull/88198"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Add collapsible toggle for recent sessions section in sidebar (#85510). Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/pull/85510"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: /new /reset (#49517). Thanks @KaysonYeh and @KhanCold.",
+        "href": "https://github.com/openclaw/openclaw/pull/49517"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: No progress feedback during npm install in non-interactive (piped) mode (#82305). Thanks @SebTardif.",
+        "href": "https://github.com/openclaw/openclaw/pull/82305"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Telegram multi-image messages - first image transcribed but excluded from media header, others in media header but not transcribed (#47587). Thanks @yzjJosh.",
+        "href": "https://github.com/openclaw/openclaw/pull/47587"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: update.run SIGUSR1 restart can be ignored, then future gateway.restart coalesces as already in-flight (#79577). Thanks @richardmqq and @wAngByg.",
+        "href": "https://github.com/openclaw/openclaw/pull/79577"
+      },
+      {
+        "title": "Reported",
+        "description": "update.run can report success after package swap even when gateway restart is ignored (#78110). Thanks @davelutztx and @wAngByg.",
+        "href": "https://github.com/openclaw/openclaw/pull/78110"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway restart timeout can interrupt active agent work without marking sessions for continuation (#82433). Thanks @chac4l and @wAngByg.",
+        "href": "https://github.com/openclaw/openclaw/pull/82433"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: agents.defaults.models aliases silently re-resolve target refs to openai/<alias-key> on 5.x (#88218). Thanks @herculeanfit1.",
+        "href": "https://github.com/openclaw/openclaw/pull/88218"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Show node name in exec tool call transparency message (#77719). Thanks @civiltox.",
+        "href": "https://github.com/openclaw/openclaw/pull/77719"
+      },
+      {
+        "title": "Reported",
+        "description": "skill-creator: make .skill package file order deterministic (#37748). Thanks @shuofengzhang.",
+        "href": "https://github.com/openclaw/openclaw/pull/37748"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: dist/export-html/template.js content.filter crash — missing Array.isArray guard in dist bundle (#88255). Thanks @survivor998.",
+        "href": "https://github.com/openclaw/openclaw/pull/88255"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: WebChat model picker displays default model after switching sessions, even though model override is persisted (#86597). Thanks @xuli500177.",
+        "href": "https://github.com/openclaw/openclaw/pull/86597"
+      },
+      {
+        "title": "Reported",
+        "description": "subagent-registry: cleanupBrowserSessionsForLifecycleEnd wrapper invoked twice for same runId in embedded mode (#68668). Thanks @Feelw00.",
+        "href": "https://github.com/openclaw/openclaw/pull/68668"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Add human-readable live progress logs for heavy operators (#83441). Thanks @ndj888.",
+        "href": "https://github.com/openclaw/openclaw/pull/83441"
+      },
+      {
+        "title": "Reported",
+        "description": "mcp/channel-bridge: pendingClaudePermissions / pendingApprovals leak — no TTL, no close-clear, no cap (#71646). Thanks @Feelw00.",
+        "href": "https://github.com/openclaw/openclaw/pull/71646"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Azure Responses session replay keeps msg id without required reasoning after fallback (#88019). Thanks @BSG2000.",
+        "href": "https://github.com/openclaw/openclaw/pull/88019"
+      },
+      {
+        "title": "Reported",
+        "description": "Approval-gate denials routed via followup-channel produce phantom 'missing tool result' synthetic placeholders (#88167). Thanks @jhartman00.",
+        "href": "https://github.com/openclaw/openclaw/pull/88167"
+      },
+      {
+        "title": "Reported",
+        "description": "TUI can show error status without surfacing the run error (#85782). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/pull/85782"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Dashboard sidebar \"Recent\" sessions should filter by currently selected agent (#88214). Thanks @wujitianya.",
+        "href": "https://github.com/openclaw/openclaw/pull/88214"
+      },
+      {
+        "title": "Reported",
+        "description": "[Slack] Subagent results lose thread_ts in DM assistant threads — cross-thread contamination with concurrent requests (#63659). Thanks @dev-ithitchhiker.",
+        "href": "https://github.com/openclaw/openclaw/pull/63659"
+      },
+      {
+        "title": "Reported",
+        "description": "Control UI: Dreaming tab has no agent selector — cannot switch between agent contexts (#63558). Thanks @ttomiczek and @stevenepalmer.",
+        "href": "https://github.com/openclaw/openclaw/pull/63558"
+      },
+      {
+        "title": "Reported",
+        "description": "Cron announce delivery strips plugin-canonical provider prefix after target resolution (#87905). Thanks @xmoxmo and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/87905"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: valid tool call XML in LLM reasoning block is sometimes executed by gateway (#85161). Thanks @syncword.",
+        "href": "https://github.com/openclaw/openclaw/pull/85161"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: browser.upload cannot access files from managed inbound media (WebChat attachments) (#83544). Thanks @scorpiord.",
+        "href": "https://github.com/openclaw/openclaw/pull/83544"
+      },
+      {
+        "title": "Reported",
+        "description": "[UX] WebChat: add a full-message reader for truncated or long messages (#84651). Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/pull/84651"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: chat.history truncates long assistant messages at 12k chars even when they fit the history budget (#53242). Thanks @navendugoyal19.",
+        "href": "https://github.com/openclaw/openclaw/pull/53242"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Gateway CPU spin / crash loop on Raspberry Pi 4 (ARM64) — regression from 4.23 to 4.25+ (#79380). Thanks @jorgemarmor.",
+        "href": "https://github.com/openclaw/openclaw/pull/79380"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature Request] Allow cron jobs to set session key matching inbound DM reply routing (#80212). Thanks @SergeyKerj.",
+        "href": "https://github.com/openclaw/openclaw/pull/80212"
+      },
+      {
+        "title": "Reported",
+        "description": "/skill <name> fails to invoke available skill commands in live chat (#88056). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/pull/88056"
+      },
+      {
+        "title": "Reported",
+        "description": "Telegram edit action: support editMessageCaption and editMessageReplyMarkup for media messages (#86161). Thanks @crowneglobal and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/86161"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: WebChat refresh can lose visible conversation history when transcript tail is mostly internal tool traffic (#83344). Thanks @zachisfine.",
+        "href": "https://github.com/openclaw/openclaw/pull/83344"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: memory_search tool fails with \"fetch failed\" despite embedding provider configured (#47884). Thanks @AllenSupermanxiaodingdang.",
+        "href": "https://github.com/openclaw/openclaw/pull/47884"
+      },
+      {
+        "title": "Reported",
+        "description": "memory_search can stall a live session when the memory manager/tool-result path does not fail open (#49524). Thanks @liaosvcaf.",
+        "href": "https://github.com/openclaw/openclaw/pull/49524"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Talk mode can speak a different answer than the Control UI when agent reply uses message_tool_only / delivery-mirror (#85275). Thanks @BsnizND and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/85275"
+      },
+      {
+        "title": "Reported",
+        "description": "Runtime sites bypass `prependSystemPromptAdditionAfterCacheBoundary`, destabilising Anthropic + OpenAI prompt caching (#85203). Thanks @AV500group.",
+        "href": "https://github.com/openclaw/openclaw/pull/85203"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: [Windows] exec() and read() commands corrupted with </arg_value>> suffix (#48780). Thanks @koden588-blip.",
+        "href": "https://github.com/openclaw/openclaw/pull/48780"
+      },
+      {
+        "title": "Reported",
+        "description": "Control UI: tool call result payload missing from expanded block (#70746). Thanks @tarvis0523.",
+        "href": "https://github.com/openclaw/openclaw/pull/70746"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: diagnostic stuck-session recovery emits a phantom `session.recovery.requested` event when generation bumps mid-flight (#88010). Thanks @Feelw00.",
+        "href": "https://github.com/openclaw/openclaw/pull/88010"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex bundled plugins like chrome and computer-use cannot be enabled from openclaw.json (#82216). Thanks @yaanfpv.",
+        "href": "https://github.com/openclaw/openclaw/pull/82216"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex plugin binding slient replies when attaching an existing Codex CLI session on a paired node (#87721). Thanks @wingleungron.",
+        "href": "https://github.com/openclaw/openclaw/pull/87721"
+      },
+      {
+        "title": "Reported",
+        "description": "claude-cli auth-epoch flips on token rotation, forcing session resets mid-conversation (#74312). Thanks @aderius.",
+        "href": "https://github.com/openclaw/openclaw/pull/74312"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] Auth router ignores provider entry's apiKey field, resolves via auth.order by canonical provider ID — wrong key for split provider entries (#67423). Thanks @presidenzo and @kinjitakabe.",
+        "href": "https://github.com/openclaw/openclaw/pull/67423"
+      },
+      {
+        "title": "Reported",
+        "description": "Plugin discovery loads all dist/extensions/ manifests at boot regardless of tools.allow (~500 MB structural heap) (#70533). Thanks @jpippo364 and @IWhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/pull/70533"
+      },
+      {
+        "title": "Reported",
+        "description": "mediaUnderstandingProviders audio path hard-requires API key, breaking no-auth/local STT providers (#74644). Thanks @mozi1924.",
+        "href": "https://github.com/openclaw/openclaw/pull/74644"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Fallback models echo BOOT.md instructions instead of executing them (#53732). Thanks @alvaro630.",
+        "href": "https://github.com/openclaw/openclaw/pull/53732"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: memory search live embedding fails ~20–40% with `fetch failed | other side closed` (provider-agnostic; upstream healthy) (#71784). Thanks @kevinheinrichs and @MrGeDiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/71784"
+      },
+      {
+        "title": "Reported",
+        "description": "memory reindex aborts on transient embedding transport errors instead of retrying or splitting the batch (#44166). Thanks @MrGeDiao.",
+        "href": "https://github.com/openclaw/openclaw/pull/44166"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: auth.cooldowns config change forces full gateway restart, drops in-flight CLI runs (#88443). Thanks @MrMaturin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88443"
+      },
+      {
+        "title": "Reported",
+        "description": "paired_devices.createdAt / lastSeenAt are null — cannot identify stale paired clients (#81169). Thanks @deminson.",
+        "href": "https://github.com/openclaw/openclaw/pull/81169"
+      },
+      {
+        "title": "Reported",
+        "description": "Shell builtins (e.g. cd) always trigger approval gate even when allowlist is configured (#46056). Thanks @aukei.",
+        "href": "https://github.com/openclaw/openclaw/pull/46056"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: No config key to override dropReasoningFromHistory for openai-completions providers (#88068). Thanks @syncword.",
+        "href": "https://github.com/openclaw/openclaw/pull/88068"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: slug-generator HTTP 400 misclassified as profile-wide billing failure (5h cooldown), kills all agents on profile (#71709). Thanks @nikolaykazakovvs-ux.",
+        "href": "https://github.com/openclaw/openclaw/pull/71709"
+      },
+      {
+        "title": "Reported",
+        "description": "ACP zombie runs block gateway restart/update after 27 days (#88205). Thanks @subaochen.",
+        "href": "https://github.com/openclaw/openclaw/pull/88205"
+      },
+      {
+        "title": "Reported",
+        "description": "[TUI] Final assistant message disappears on completion — loadHistory() clearAll() races server persistence (not a repaint bug; issue 86871 / issue 87423 does not fix it) (#87922). Thanks @darconadalabarga.",
+        "href": "https://github.com/openclaw/openclaw/pull/87922"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: TUI truncates paths/commands, leaking ellipsis into model context (#87936). Thanks @Joel-Claw.",
+        "href": "https://github.com/openclaw/openclaw/pull/87936"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Auth profile cooldown triggers chain exhaustion without actual Google API errors in v2026.5.26 (#87462). Thanks @fenglanhua.",
+        "href": "https://github.com/openclaw/openclaw/pull/87462"
+      },
+      {
+        "title": "Reported",
+        "description": "Session file lock leak when user manually aborts agent (non-timeout abort never releases lock) (#88600). Thanks @williammu.",
+        "href": "https://github.com/openclaw/openclaw/pull/88600"
+      },
+      {
+        "title": "Reported",
+        "description": "Synthetic 'missing tool result' entries injected for parallel tool calls on Anthropic Claude, despite real results being produced (#88168). Thanks @jhartman00 and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88168"
+      },
+      {
+        "title": "Reported",
+        "description": "Session JSONL lock can remain held after synthetic tool-result flush (#88647). Thanks @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88647"
+      },
+      {
+        "title": "Reported",
+        "description": "sessions_spawn(runtime=\"subagent\") ignores inherited/per-agent subagent thinking defaults and initializes children at low (#55790). Thanks @vrurg.",
+        "href": "https://github.com/openclaw/openclaw/pull/55790"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] Control UI shows wrong thinkingDefault for agents using non-default model (#81760). Thanks @caiming0331.",
+        "href": "https://github.com/openclaw/openclaw/pull/81760"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: DeepSeek v4-pro: 400 \"reasoning_content must be passed back\" with thinking=disabled (#74374). Thanks @simmssun-hashh.",
+        "href": "https://github.com/openclaw/openclaw/pull/74374"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: sessions.reset can be overwritten by stale lifecycle events from the old run (#88538). Thanks @tianxiaochannel-oss88.",
+        "href": "https://github.com/openclaw/openclaw/pull/88538"
+      },
+      {
+        "title": "Reported",
+        "description": "models auth login overwrites and truncates main openclaw.json; auth-profiles.json silently wipes existing profiles (#88565). Thanks @corleonexie-maker.",
+        "href": "https://github.com/openclaw/openclaw/pull/88565"
+      },
+      {
+        "title": "Reported",
+        "description": "Slack message_tool_only source replies fail because durable send requires reconcileUnknownSend (#84078). Thanks @tianxiaochannel-oss88.",
+        "href": "https://github.com/openclaw/openclaw/pull/84078"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Discord mentionAliases is not applied to session reply / final assistant text, only to message tool calls (#88360). Thanks @hughbeyond.",
+        "href": "https://github.com/openclaw/openclaw/pull/88360"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex transient/fresh no-context-engine starts drop prior session context after issue 88262 (#88352). Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88352"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex resumes ignore OpenClaw-visible messages written after native binding (#88354). Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88354"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Discord DM pairing identity mismatch breaks PluralKit users; extractDiscordSessionKind regex missing \"direct\" peer kind (#86332). Thanks @Sanjays2402.",
+        "href": "https://github.com/openclaw/openclaw/pull/86332"
+      },
+      {
+        "title": "Reported",
+        "description": "Session transcript `file_lock_stale` persists on 2026.5.19 with no remaining lockfile or file holder (#87217). Thanks @ruben2000de.",
+        "href": "https://github.com/openclaw/openclaw/pull/87217"
+      },
+      {
+        "title": "Reported",
+        "description": "Dreaming narrative sessions become orphaned — visible in sidebar but undeletable via session management (#88322). Thanks @TheDenStudios.",
+        "href": "https://github.com/openclaw/openclaw/pull/88322"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: renderTable misaligns borders when a wide CJK/emoji grapheme lands in a narrow (width-1) column (#88556). Thanks @jbetala7.",
+        "href": "https://github.com/openclaw/openclaw/pull/88556"
+      },
+      {
+        "title": "Reported",
+        "description": "Gateway leaks undici sockets on every streamed Anthropic API call (buildManagedResponse missing finalize on GC) (#67461). Thanks @jakedwyer.",
+        "href": "https://github.com/openclaw/openclaw/pull/67461"
+      },
+      {
+        "title": "Reported",
+        "description": "fix(doctor): auto-repair stale session snapshot paths on --fix instead of reporting-only (#85689). Thanks @ggzeng.",
+        "href": "https://github.com/openclaw/openclaw/pull/85689"
+      },
+      {
+        "title": "Reported",
+        "description": "Group chat messages don't update in real-time on iOS — requires exit and re-entry (#80231). Thanks @jm7v7fgpdy-sketch.",
+        "href": "https://github.com/openclaw/openclaw/pull/80231"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Codex model catalog cold-start miss for gpt-5.3-codex after gateway restart (#88510). Thanks @wlassalle724.",
+        "href": "https://github.com/openclaw/openclaw/pull/88510"
+      },
+      {
+        "title": "Reported",
+        "description": "memoryFlush has no escalation when assistant process dies mid-flush — session permanently over threshold, every subsequent message wedges (#85645). Thanks @rhclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/85645"
+      },
+      {
+        "title": "Reported",
+        "description": "node-extra-ca-certs: CA bundle auto-injection only triggers for nvm, misses fnm/volta/asdf and 5 other version managers (#59494). Thanks @alkor2000.",
+        "href": "https://github.com/openclaw/openclaw/pull/59494"
+      },
+      {
+        "title": "Reported",
+        "description": "Telegram isolated polling spool drain: ENOENT race in recoverStaleTelegramSpooledUpdateClaims (#87847). Thanks @ppanphper.",
+        "href": "https://github.com/openclaw/openclaw/pull/87847"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Local model provider calls thread block gateway event loop on Windows beta; trivial infer run takes ~4 minutes (#86599). Thanks @JakeBiggs.",
+        "href": "https://github.com/openclaw/openclaw/pull/86599"
+      },
+      {
+        "title": "Reported",
+        "description": "subagent_ended hook does not fire for runs created via api.runtime.subagent.run() (#59164). Thanks @Amyssjj.",
+        "href": "https://github.com/openclaw/openclaw/pull/59164"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] TypeError at prompt assembly stage when lossless-claw is enabled (reading 'length' on undefined) (#75541). Thanks @tyyim.",
+        "href": "https://github.com/openclaw/openclaw/pull/75541"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: Anthropic API-key auth shows 'invalid bearer token' in status --usage, but the key works for inference (#85124). Thanks @rqlangley.",
+        "href": "https://github.com/openclaw/openclaw/pull/85124"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: heartbeat isolatedSession rotates sessionId but reuses old transcript file (#65564). Thanks @akessel56.",
+        "href": "https://github.com/openclaw/openclaw/pull/65564"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Feishu channel: message tool triggers \"missing tool result in session history\" in v2026.5.16+ (#84134). Thanks @avatasia.",
+        "href": "https://github.com/openclaw/openclaw/pull/84134"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: `openclaw gateway restart` and `openclaw status` do not detect system-level systemd service (#87577). Thanks @fisherman86-ai.",
+        "href": "https://github.com/openclaw/openclaw/pull/87577"
+      },
+      {
+        "title": "Reported",
+        "description": "memory search can hit QMD SQLite lock contention during normal runtime (#66339). Thanks @SakenW.",
+        "href": "https://github.com/openclaw/openclaw/pull/66339"
+      },
+      {
+        "title": "Reported",
+        "description": "TUI status line shows wrong session displayName after Telegram interaction (#55354). Thanks @toruvieI.",
+        "href": "https://github.com/openclaw/openclaw/pull/55354"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: DiscordEntityCache REST entity Map grows unbounded across bot lifetime (#77975). Thanks @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/pull/77975"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: readPhaseSignalStore silently loses all phase signal data on non-ENOENT I/O errors (#77881). Thanks @SimbaKingjoe.",
+        "href": "https://github.com/openclaw/openclaw/pull/77881"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: openclaw agents add blocked — cannot add Jon/Atlas as separate agents (#76284). Thanks @RicardoUKMX.",
+        "href": "https://github.com/openclaw/openclaw/pull/76284"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Feishu embedded agent returns HTTP 401 \"Invalid token\" to user instead of retrying with refreshed token (#56197). Thanks @lokamir.",
+        "href": "https://github.com/openclaw/openclaw/pull/56197"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: skills refresh-state workspaceVersions map retains entries after watcher teardown (#77997). Thanks @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/pull/77997"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: pre-auth bootstrap-token verify allows mutex-stall DoS without rate limit (#77978). Thanks @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/pull/77978"
+      },
+      {
+        "title": "Reported",
+        "description": "Feishu DM messages visible in Feishu history but missing from OpenClaw session (#87234). Thanks @ArthurNie.",
+        "href": "https://github.com/openclaw/openclaw/pull/87234"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Uninstall deletes workspace inside .openclaw even when \"delete workspace\" is unchecked (#75052). Thanks @XueJourney.",
+        "href": "https://github.com/openclaw/openclaw/pull/75052"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Support Tailscale Serve `--service` for ControlUI exposure (#88629). Thanks @resYuto.",
+        "href": "https://github.com/openclaw/openclaw/pull/88629"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: an interrupted auth.json write (full disk / quota / power loss) corrupts the credential store and silently locks out all providers (#88028). Thanks @Feelw00.",
+        "href": "https://github.com/openclaw/openclaw/pull/88028"
+      },
+      {
+        "title": "Reported",
+        "description": "Feature Request: Add speed parameter support for OpenAI TTS (#12163). Thanks @useramuser.",
+        "href": "https://github.com/openclaw/openclaw/pull/12163"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: image_generate in isolated cron session closes turn before receiving callback — cron never completes (#88001). Thanks @nailujac.",
+        "href": "https://github.com/openclaw/openclaw/pull/88001"
+      },
+      {
+        "title": "Reported",
+        "description": "bug(workboard): Control UI card settings don't persist + drag to running fails (#88592). Thanks @kzclaw.",
+        "href": "https://github.com/openclaw/openclaw/pull/88592"
+      },
+      {
+        "title": "Reported",
+        "description": "session file changed while embedded prompt lock was released (#88703). Thanks @neo-hu.",
+        "href": "https://github.com/openclaw/openclaw/pull/88703"
+      },
+      {
+        "title": "Reported",
+        "description": "Session key reflects origin channel, but agents may misinterpret it as current channel (#84544). Thanks @lykeion-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/84544"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug] Logger \\_meta.hostname always \"unknown\" on macOS — os.hostname() returns empty string at module-load time (#87258). Thanks @mmhzlrj.",
+        "href": "https://github.com/openclaw/openclaw/pull/87258"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: OpenClaw 2026.5.7 subagent regression (#81214). Thanks @GreyWolfRon.",
+        "href": "https://github.com/openclaw/openclaw/pull/81214"
+      },
+      {
+        "title": "Reported",
+        "description": "[BUG] (feishu) Streaming cards silently truncate long plain-text replies due to Feishu card markdown content limits (#88631). Thanks @Leorand-dev.",
+        "href": "https://github.com/openclaw/openclaw/pull/88631"
+      },
+      {
+        "title": "Reported",
+        "description": "Google Gemini chat model routes to openai-responses transport (401), native @google/genai transport never selected (#88480). Thanks @azgardtek and @Xin.",
+        "href": "https://github.com/openclaw/openclaw/pull/88480"
+      },
+      {
+        "title": "Reported",
+        "description": "Delivery layer: posts raw errorMessage verbatim when assistant message has stopReason=error (#69737). Thanks @alexisperumal.",
+        "href": "https://github.com/openclaw/openclaw/pull/69737"
+      },
+      {
+        "title": "Reported",
+        "description": "TypeError: Cannot read properties of undefined (reading \"replace\") during embedded agent run (v2026.4.1) (#60113). Thanks @wujiaming88 and @Pluviobyte.",
+        "href": "https://github.com/openclaw/openclaw/pull/60113"
+      },
+      {
+        "title": "Reported",
+        "description": "Dream diary fallback exposes raw memory staging fragments (#88391). Thanks @Carme99.",
+        "href": "https://github.com/openclaw/openclaw/pull/88391"
+      },
+      {
+        "title": "Reported",
+        "description": "sessions.list returns phantom store-key entry with null updatedAt and no sessionId (#57376). Thanks @smarchetti.",
+        "href": "https://github.com/openclaw/openclaw/pull/57376"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Isolated cron runs can wedge gateway (#87821). Thanks @zachisfine.",
+        "href": "https://github.com/openclaw/openclaw/pull/87821"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: doctor emits repeated tool-policy removal audit lines at normal console level (#87798). Thanks @oalansilva and @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/pull/87798"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: structured tool_calls with finish_reason stop are dropped as non_deliverable_terminal_turn (#88791). Thanks @kiagentkronos-cell.",
+        "href": "https://github.com/openclaw/openclaw/pull/88791"
+      },
+      {
+        "title": "Reported",
+        "description": "pi-trajectory-flush timeout aborts entire agent run — should degrade gracefully (#88520). Thanks @novac42code and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88520"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: v2026.05.28 breaks Google Vertex Express API Key (#88816). Thanks @randompup.",
+        "href": "https://github.com/openclaw/openclaw/pull/88816"
+      },
+      {
+        "title": "Reported",
+        "description": "Bug: gateway service env renders Supermemory API key as literal env reference (#88274). Thanks @mathias15010.",
+        "href": "https://github.com/openclaw/openclaw/pull/88274"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: status --deep falsely reports gateway.auth.mode=\"none\" when token auth is configured via secret reference (#87815). Thanks @kAIborg24.",
+        "href": "https://github.com/openclaw/openclaw/pull/87815"
+      },
+      {
+        "title": "Reported",
+        "description": "ensureAgentWorkspace re-seeds over wiped workspace without confirmation (#88333). Thanks @HT-Moh and @TurboTheTurtle.",
+        "href": "https://github.com/openclaw/openclaw/pull/88333"
+      },
+      {
+        "title": "Reported",
+        "description": "Stop openai.com Codex runtime creep: respect explicit PI config (#88706). Thanks @toruvieI.",
+        "href": "https://github.com/openclaw/openclaw/pull/88706"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: PreToolUse hook relay outage blocks trusted callback commands before ingress execution (#87543). Thanks @jsompis and @woodym-dotcom.",
+        "href": "https://github.com/openclaw/openclaw/pull/87543"
+      },
+      {
+        "title": "Reported",
+        "description": "tools.config.schema.lookup on unknown path surfaces a JS TypeError to channels instead of a clean tool-result (#88813). Thanks @cjalden.",
+        "href": "https://github.com/openclaw/openclaw/pull/88813"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: Discord reply metadata is not exposed to before_dispatch hooks (#88521). Thanks @hoyanhan.",
+        "href": "https://github.com/openclaw/openclaw/pull/88521"
+      },
+      {
+        "title": "Reported",
+        "description": "Control UI: browser (F5) full-page reload re-fetches all API data — slow and state-less (#85939). Thanks @34262315716.",
+        "href": "https://github.com/openclaw/openclaw/pull/85939"
+      },
+      {
+        "title": "Reported",
+        "description": "[Feature]: Emit runtime warning when Control UI config will silently reject non-secure connections (#71669). Thanks @profbernardoj.",
+        "href": "https://github.com/openclaw/openclaw/pull/71669"
+      },
+      {
+        "title": "Reported",
+        "description": "Device identity generation should not depend on browser Secure Context — breaks HTTP reverse-proxy deployments (#53274). Thanks @misselvexu.",
+        "href": "https://github.com/openclaw/openclaw/pull/53274"
+      },
+      {
+        "title": "Reported",
+        "description": "[Bug]: OpenClaw Mattermost message tool reports ok while filePath/attachments are not uploaded (#87930). Thanks @NewCoffee7477.",
+        "href": "https://github.com/openclaw/openclaw/pull/87930"
+      }
+    ],
+    "fixes": [
+      "Chat/UI: keep first Control UI sends responsive, retain pending sends while history catches up, cache transcript renders, and avoid draft persistence or navigation churn from blocking the active conversation. (#88952, #88960, #88998) Thanks @vincentkoc.",
+      "Agents/Codex/auth: repair automatic fallback state, accept supported legacy Codex app-server auth, remove stale bootstrap history, strip streamed reasoning tags, and validate shell snapshots against trusted environment data. (#87484, #88924) Thanks @RomneyDa.",
+      "Cron/channels: preserve external `sessions_send` routes, include the job name in single-job history, keep Mattermost attachments on the upload path, and bound Telegram/installer/Parallels proof cleanup. (#88294, #88803) Thanks @kip-claw and @MonkeyLeeT."
     ]
   },
   {
@@ -1613,14 +7366,14 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "CLI/perf: serve `doctor`, `gateway`, `models`, and `plugins` parent help from startup metadata so common subcommand help avoids full CLI program construction. (#84786) Thanks @frankekn.",
       "Codex/Lossless: keep context-engine history on the canonical run session when Telegram DMs use per-peer runtime policy keys. Fixes #84936. (#84954) Thanks @neeravmakwana.",
       "Codex: keep heartbeat response tool schemas durable without exposing dynamic tools disabled by turn policy, so heartbeat wakeups can reuse threads while scoped tool allowlists stay enforced. (#84681) Thanks @jalehman.",
-      "Auth/OAuth: skip the refresh adapter when a stored OAuth credential has no refresh token so agent turns fail fast on missing-key instead of waiting on the 120s refresh timeout. Thanks @romneyda.",
-      "Auth/Codex: load legacy OAuth sidecar credentials in the embedded runner's secrets-runtime auth loaders so Telegram replies, cron-triggered turns, and other isolated sub-agent lanes can reach the existing #83312 refresh-and-rewrite migration instead of failing with `No API key found for provider \"openai-codex\"` until the user runs `openclaw doctor`. Thanks @Totalsolutionsync and @romneyda.",
+      "Auth/OAuth: skip the refresh adapter when a stored OAuth credential has no refresh token so agent turns fail fast on missing-key instead of waiting on the 120s refresh timeout. Thanks @RomneyDa.",
+      "Auth/Codex: load legacy OAuth sidecar credentials in the embedded runner's secrets-runtime auth loaders so Telegram replies, cron-triggered turns, and other isolated sub-agent lanes can reach the existing #83312 refresh-and-rewrite migration instead of failing with `No API key found for provider \"openai-codex\"` until the user runs `openclaw doctor`. Thanks @Totalsolutionsync and @RomneyDa.",
       "Codex/failover: classify `deactivated_workspace` as a permanent auth failure so configured fallback models can advance when a Codex workspace is deactivated. (#55893) Thanks @litang9.",
       "Exec: keep configured `tools.exec.pathPrepend` entries ahead of user shell startup PATH changes on POSIX gateway runs. (#81403) Thanks @medns.",
       "Gateway/sessions: allow shared-secret bearer callers to read and stream session history without an explicit scope header. (#81815) Thanks @medns.",
       "Agents/embedded runner: classify HTML auth provider responses as `auth_html` and return a re-authentication hint instead of the CDN-blocked copy that `upstream_html` returns. Cloudflare Access login pages, nginx basic-auth challenges, and gateway login walls all produce HTML auth bodies that were previously misdiagnosed as transient CDN blocks. (#79900) Thanks @martingarramon.",
-      "TUI/streaming watchdog: dismiss the `This response is taking longer than expected` notice as soon as a chat event for the same run arrives, so the message no longer sits next to the recovered response when the run was only briefly silent. Refs #67052, #69081 (closed), prior attempt #69026. Thanks @jpruit20 and @romneyda.",
-      "Agents/auth profiles: replace the bare `No available auth profile for <provider> (all in cooldown or unavailable)` TUI error with plain-language copy that explains what happened in user terms (sign-in expired, provider asking us to slow down, billing issue on the account, etc.) and suggests the matching `openclaw models auth login --provider <provider>` recovery command for sign-in and billing causes, while falling back to the underlying provider error for cases without a clear recovery path. Thanks @romneyda.",
+      "TUI/streaming watchdog: dismiss the `This response is taking longer than expected` notice as soon as a chat event for the same run arrives, so the message no longer sits next to the recovered response when the run was only briefly silent. Refs #67052, #69081 (closed), prior attempt #69026. Thanks @jpruit20 and @RomneyDa.",
+      "Agents/auth profiles: replace the bare `No available auth profile for <provider> (all in cooldown or unavailable)` TUI error with plain-language copy that explains what happened in user terms (sign-in expired, provider asking us to slow down, billing issue on the account, etc.) and suggests the matching `openclaw models auth login --provider <provider>` recovery command for sign-in and billing causes, while falling back to the underlying provider error for cases without a clear recovery path. Thanks @RomneyDa.",
       "Agents/Pi: tolerate OpenClaw-owned transcript writes while embedded prompts are released for model I/O, keeping long-running Feishu, Slack, Telegram, and cron turns from failing with false session-takeover errors. Fixes #84059. (#84250) Thanks @tianxiaochannel-oss88."
     ]
   },
@@ -1678,12 +7431,12 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Providers/MiniMax music: stop advertising `durationSeconds` control and remove prompt-injected duration hints, so `music_generate` reports MiniMax duration as an unsupported override instead of suggesting MiniMax can enforce track length. Fixes #84508. Thanks @neeravmakwana.",
       "Doctor: warn when sandbox tool policy hides configured MCP server tools before provider requests. (#84699) Thanks @nxmxbbd.",
       "WhatsApp: update Baileys to `7.0.0-rc12`.",
-      "Build: suppress per-locale `rolldown-plugin-dts:fake-js` CommonJS dts warnings emitted while bundling the intentionally-inlined `zod/v4/locales/*.d.cts` files, so `pnpm build` output stays readable after the 0.25.1 plugin bump. Thanks @romneyda.",
+      "Build: suppress per-locale `rolldown-plugin-dts:fake-js` CommonJS dts warnings emitted while bundling the intentionally-inlined `zod/v4/locales/*.d.cts` files, so `pnpm build` output stays readable after the 0.25.1 plugin bump. Thanks @RomneyDa.",
       "CLI/nodes: route lazy plugin-registration logs to stderr for JSON-mode `openclaw nodes` commands so stdout stays parseable. (#84684) Thanks @TurboTheTurtle.",
       "Approvals: route manual `/approve` decisions through the trusted approval runtime so active exec and plugin approvals no longer look unknown or expired.",
       "Mac app: update the About settings copyright year to 2026. (#84385) Thanks @pejmanjohn.",
       "Dependencies: update `@openclaw/fs-safe` to `0.2.7` so OpenClaw's default Python-helper-off policy keeps best-effort Node write fallbacks for private stores, secret writes, run logs, and media attachments on Linux/macOS.",
-      "Infra/secrets: restore the fail-closed contract for `tryReadSecretFileSync` so credential loaders that pass `rejectSymlink: true` (Telegram, LINE, Zalo, IRC, Nextcloud Talk tokens) refuse symlinked credential files instead of silently accepting them, and the infra-state CI shard's secret-file symlink test passes again. Thanks @romneyda.",
+      "Infra/secrets: restore the fail-closed contract for `tryReadSecretFileSync` so credential loaders that pass `rejectSymlink: true` (Telegram, LINE, Zalo, IRC, Nextcloud Talk tokens) refuse symlinked credential files instead of silently accepting them, and the infra-state CI shard's secret-file symlink test passes again. Thanks @RomneyDa.",
       "Browser: honor the configured image sanitization limit for screenshots and labeled snapshots so browser-captured images follow the same resize policy as other image results. (#84595)",
       "Doctor: remove unrecognized `models.providers.*.models[*].compat.thinkingFormat` values during `doctor --fix` so stale provider model config can validate after upgrade. Fixes #77803.",
       "Doctor: warn when `openclaw.json` stores plaintext secret-bearing config fields, including model provider API keys and sensitive provider headers. (#84718) Thanks @lukaIvanic.",
@@ -2220,7 +7973,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "WhatsApp: treat `upload-file` as a supported media send intent by lowering path/URL uploads through the channel's normal send-media transport. (#81883) Thanks @ngutman.",
       "iOS: end Live Activities when OpenClaw is connected, idle, or disconnected, and show compact attention states for approval-required reconnects. (#83597) Thanks @ngutman.",
       "Control UI: hide child nav items when collapsing the active sidebar group. Fixes #42167. (#42223) Thanks @Aroool.",
-      "CI/proof: skip the real-behavior-proof gate for private org maintainers by minting a least-privilege (`members: read`) GitHub App token and checking active membership in the `maintainer` team, instead of treating `author_association=CONTRIBUTOR` as definitively external. (#83418) Thanks @romneyda."
+      "CI/proof: skip the real-behavior-proof gate for private org maintainers by minting a least-privilege (`members: read`) GitHub App token and checking active membership in the `maintainer` team, instead of treating `author_association=CONTRIBUTOR` as definitively external. (#83418) Thanks @RomneyDa."
     ]
   },
   {
@@ -4891,611 +10644,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Plugins/runtime fetch: drop third-party symbol metadata from plain request header dictionaries before passing them into native `fetch` or `Headers`, so SDK and guarded/proxy fetch paths do not reject otherwise valid plugin requests. Fixes #77846. Thanks @shakkernerd.",
       "Debug proxy: normalize captured fetch header dictionaries before replaying requests so symbol metadata from caller-owned header objects cannot make debug-proxy fetches fail.",
       "Web fetch: bound guarded dispatcher cleanup after request timeouts so timed-out fetches return tool errors instead of leaving Gateway tool lanes active. (#78439) Thanks @obviyus."
-    ]
-  },
-  {
-    "version": "2026.5.5",
-    "date": "2026.5.5",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202655",
-    "features": [],
-    "fixes": [
-      "Telegram/Codex: generate DM topic labels with Codex-compatible simple-completion requests so auto-created private topics can be renamed instead of staying `New Chat`.",
-      "Doctor/Codex OAuth: preserve working `openai-codex/*` PI routes during `doctor --fix`, recover 2026.5.5-rewritten `openai/*` GPT-5 routes when only Codex OAuth auth is available, and warn without rewriting mixed Codex OAuth plus direct OpenAI PI routes, so update repair does not break subscription-auth setups. Fixes #78407. Thanks @shakkernerd.",
-      "Plugins/runtime fetch: drop third-party symbol metadata from plain request header dictionaries before passing them into native `fetch` or `Headers`, so SDK and guarded/proxy fetch paths do not reject otherwise valid plugin requests. Fixes #77846. Thanks @shakkernerd.",
-      "Web fetch: bound guarded dispatcher cleanup after request timeouts so timed-out fetches return tool errors instead of leaving Gateway tool lanes active. (#78439) Thanks @obviyus.",
-      "Mattermost/setup: prompt for and persist the server base URL after the bot token in `openclaw setup --wizard`, instead of failing validation before `--http-url` is collected. Fixes #76670. Thanks @jacobtomlinson.",
-      "Gate Slack startup user allowlist resolution [AI]. (#77898) Thanks @pgondhi987.",
-      "OpenAI/Codex: suppress stale `openai-codex` GPT-5.1/5.2/5.3 model refs that ChatGPT/Codex OAuth accounts now reject, keeping model lists, config validation, and forward-compat resolution on current 5.4/5.5 routes. Fixes #67158. Thanks @drpau.",
-      "CLI/update: keep pnpm package updates on the running custom global install root and pass pnpm's `--global-dir` so `openclaw update` does not create a second default-prefix install when `OPENCLAW_HOME` or the shell points at a custom OpenClaw directory. Fixes #78377. Thanks @amknight.",
-      "Google Meet/Voice Call: wait longer before playing PIN-derived Twilio DTMF for Meet dial-in prompts and retire stale delegated phone sessions instead of reusing completed calls.",
-      "PDF/Codex: include extraction-fallback instructions for `openai-codex/*` PDF tool requests so Codex Responses receives its required system prompt. Fixes #77872. Thanks @anyech.",
-      "Gateway/startup: keep the Gateway running when a configured optional plugin-owned capability such as a web_search provider or channel points at a known installable plugin that is currently unavailable; startup now logs a config warning and leaves `openclaw doctor --fix` to install or enable the plugin. (#78642) Thanks @joshavant.",
-      "Onboard/channels: recover externalized channel plugins from stale `channels.<id>` config by falling back to `ensureChannelSetupPluginInstalled` via the trusted catalog when the plugin is missing on disk, so leftover `appId`/token entries no longer dead-end onboard with \"<channel> plugin not available.\" (#78328) Thanks @sliverp.",
-      "Codex/app-server: forward the OpenClaw workspace bootstrap block through Codex `developerInstructions` instead of `config.instructions`, so persona/style guidance reaches the behavior-shaping app-server lane. Fixes #77363. Thanks @lonexreb.",
-      "MS Teams: route proactive channel sends with stored thread roots through the configured threaded reply path instead of forcing every CLI/message-tool send into a new top-level post. Fixes #78298. Thanks @amknight.",
-      "CLI/infer: pass minimal instructions to local `openai-codex/*` model probes and surface provider error details when `infer model run` returns no text. Fixes #76464. Thanks @lilesjtu.",
-      "Dependencies: override transitive `ip-address` to `10.2.0` so the runtime lockfile no longer includes the vulnerable `10.1.0` build flagged by Dependabot alert 109. Thanks @vincentkoc.",
-      "Plugins/install: apply OpenClaw's npm security overrides inside managed external plugin npm roots so hoisted plugin dependencies inherit the host package hardening. Thanks @vincentkoc.",
-      "Plugins/install: skip npm peer resolution in managed plugin roots so installing peer-based plugins such as Opik cannot pull a stale registry `openclaw` copy beside Codex/Discord/WhatsApp and trigger `ERESOLVE`. Thanks @vincentkoc.",
-      "Plugins/uninstall: run managed npm cleanup even when a plugin package directory is already missing, preventing stale package manifests from reinstalling removed plugins on the next npm install.",
-      "Feishu: hydrate missing native topic starter thread IDs before session routing so first turns and follow-ups stay in the same topic session. Fixes #78262. Thanks @joeyzenghuan.",
-      "LINE: reject `dmPolicy: \"open\"` configs without wildcard `allowFrom` so webhook DMs fail validation instead of being acknowledged and silently blocked before inbound processing. Fixes #78316.",
-      "Telegram/Codex: keep message-tool-only progress drafts visible and render native Codex tool progress once per tool instead of duplicating item/tool draft lines. Fixes #75641. (#77949)",
-      "Providers/xAI: stop sending OpenAI-style reasoning effort controls to native Grok Responses models, so `xai/grok-4.3` no longer fails live Docker/Gateway runs with `Invalid reasoning effort`.",
-      "Providers/xAI: clamp the bundled xAI thinking profile to `off` so live Gateway runs cannot send unsupported reasoning levels to native Grok Responses models.",
-      "Matrix/approvals: retry approval delivery up to 3 times with a short backoff so transient Matrix send failures do not strand pending approval prompts. (#78179) Thanks @Patrick-Erichsen.",
-      "Discord/gateway: measure heartbeat ACK timeouts from the actual heartbeat send, preventing late initial heartbeats from triggering false reconnect loops while the channel is still awaiting readiness. Fixes #77668. (#78087) Thanks @bryce-d-greybeard and @NikolaFC.",
-      "Discord/guilds: route plain text control commands such as `/steer` through the normal authorization and mention gate instead of silently dropping them before an agent session can see them. Fixes #78080. Thanks @ramitrkar-hash.",
-      "Control UI/Sessions: make the compaction count a compact `N Checkpoint(s)` disclosure and show expanded session-level details with modern checkpoint history cards across responsive table layouts. Thanks @BunsDev.",
-      "Control UI/performance: keep chat and channel tabs responsive while history payloads and channel probes are slow, label partial channel status, and record slow chat/config render timings in the event log. Thanks @BunsDev.",
-      "Control UI/sessions: fire the documented `/new` command and lifecycle hooks only for explicit Control UI session creation, restoring session-memory and custom hook capture without changing SDK parent-session creates. Fixes #76957. Thanks @BunsDev.",
-      "Exec approvals: fall back to a guarded copy when Windows rejects rename-overwrite for `exec-approvals.json`, while preserving symlink, hard-link, and owner-only permission safeguards. Fixes #77785. (#77907) Thanks @Alex-Alaniz and @MilleniumGenAI.",
-      "Status/session store: derive `totalTokens` for CLI backends from `agentMeta.lastCallUsage` (and set it on Claude CLI runs) so `/status` context usage is not shown as `?` while cache/token lines are populated. Fixes #78194. Thanks @neeravmakwana.",
-      "Slack: preserve Socket Mode SDK error context and structured Slack API fields in reconnect logs, so startup failures no longer collapse to a bare `unknown error`.",
-      "iOS pairing: allow setup-code and manual `ws://` connects for private LAN and `.local` gateways while keeping Tailscale/public routes on `wss://`, and prefer explicit gateway passwords over stale bootstrap tokens in mixed-auth reconnects. Fixes #47887; carries forward #65185. Thanks @draix and @BunsDev.",
-      "Plugins/diagnostics: make source-only TypeScript package warnings actionable by explaining that missing compiled runtime output is a publisher packaging issue and pointing users to update/reinstall or disable/uninstall the plugin. Fixes #77835. Thanks @googlerest.",
-      "Control UI/chat: keep persisted assistant progress text visible when the same transcript turn also contains tool-use metadata, so chat.history reloads no longer make those replies vanish after the next user message. Fixes #77374. Thanks @BunsDev.",
-      "Cron: repair persisted future `nextRunAtMs` values that no longer line up with the cron schedule, so daily timezone-aware jobs do not stay jumped to stale future dates. Fixes #77867. Thanks @hongfangsong.",
-      "TUI: skip the generic CLI respawn wrapper for interactive launches, exit cleanly on terminal loss, and refuse to restore heartbeat sessions as the remembered chat session, preventing stale heartbeat history and orphaned `openclaw-tui` processes on first boot. Thanks @vincentkoc.",
-      "Doctor/sessions: move heartbeat-poisoned default main session store entries to recovery keys and clear stale TUI restore pointers, so `doctor --fix` can repair instances already stuck on `agent:main:main` heartbeat history. Thanks @vincentkoc.",
-      "Agents/context engines: keep hidden OpenClaw runtime-context custom messages out of context-engine assemble, afterTurn, and ingest hooks so transcript reconstruction plugins only see conversation messages. Thanks @vincentkoc.",
-      "Gateway/shutdown: cancel delayed post-ready maintenance during close and suppress maintenance/cron startup after quick restarts, preventing orphaned background timers. Thanks @vincentkoc.",
-      "Agents/generated media: treat attachment-style message tool actions as completed chat sends, preventing duplicate fallback media posts when generated files were already uploaded.",
-      "Control UI/sessions: show each session's agent runtime in the Sessions table and allow filtering by runtime labels, matching the Agents panel runtime wording. Thanks @vincentkoc.",
-      "Discord/streaming: show live reasoning text in progress drafts instead of a bare `Reasoning` status line.",
-      "Gateway/status: avoid marking fast repeated health/status samples as event-loop degraded from CPU/utilization alone until the Gateway has accumulated a sustained sampling window. Thanks @shakkernerd.",
-      "Plugins/update: keep installed official npm and ClawHub plugins such as Codex, Discord, WhatsApp, and diagnostics plugins synced during host updates even when disabled or previously exact-pinned, while preserving third-party plugin pins. Thanks @vincentkoc.",
-      "Doctor/status: warn when `OPENCLAW_GATEWAY_TOKEN` would shadow a different active `gateway.auth.token` source for local CLI commands, while avoiding false positives when config points at the same env token. Fixes #74271. Thanks @yelog.",
-      "Gateway/HTTP: avoid loading managed outgoing-image media handlers for unrelated requests, so disabled OpenAI-compatible routes return 404 without waiting on lazy media sidecars. Thanks @vincentkoc.",
-      "Gateway/OpenAI-compatible: send the assistant role SSE chunk as soon as streaming chat-completion headers are accepted, so cold agent setup cannot leave `/v1/chat/completions` clients with a bodyless 200 response until their idle timeout fires.",
-      "Agents/media: avoid direct generated-media completion fallback while the announce-agent run is still pending, so async video and music completions do not duplicate raw media messages. (#77754)",
-      "WebChat/Codex media: stage Codex app-server generated local images into managed media before Gateway display, so Codex-home image paths no longer hit `LocalMediaAccessError` while keeping Codex home out of the display allowlist. Thanks @frankekn.",
-      "TUI/sessions: bound the session picker to recent rows and use exact lookup-style refreshes for the active session, so dusty stores no longer make TUI hydrate weeks-old transcripts before becoming responsive. Thanks @vincentkoc.",
-      "Doctor/gateway: report recent supervisor restart handoffs in `openclaw doctor --deep`, using the installed service environment when available so service-managed clean exits are visible in guided diagnostics. Thanks @shakkernerd.",
-      "Gateway/status: show recent supervisor restart handoffs in `openclaw gateway status --deep`, including JSON details, so clean service-managed restarts are reported as restart handoffs instead of opaque stopped-service diagnostics. Thanks @shakkernerd.",
-      "Providers/Fireworks: expose Kimi models as thinking-off-only and keep K2.5/K2.6 requests on `thinking: disabled`, so manual model switches do not send Fireworks-rejected `reasoning*` parameters. Refs #74289. Thanks @frankekn.",
-      "WhatsApp responsiveness: stop only verified stale local TUI clients when they degrade the Gateway event loop and delay replies. Thanks @vincentkoc.",
-      "Plugins/update: repair stale managed npm-root `openclaw` peer packages before plugin installs, so beta-channel official plugin updates are not downgraded by old core package-lock state. Thanks @vincentkoc.",
-      "Plugins/install: reassert managed npm plugin `openclaw` peer links after shared-root npm installs, updates, and uninstalls, so mutating one plugin does not leave previously installed SDK-using plugins unable to resolve `openclaw/plugin-sdk/*`.",
-      "Hooks/session-memory: add collision suffixes to fallback memory filenames so repeated `/new` or `/reset` captures in the same minute do not overwrite the earlier session archive. Thanks @vincentkoc.",
-      "Agents/config: remove the ambiguous legacy `main` agent dir helper from runtime paths; model, auth, gateway, bundled plugin, and test helpers now resolve default/session agent dirs through `agents.list`/agent-scope helpers while plugin SDK keeps a deprecated compatibility export.",
-      "CLI/status: show the selected agent runtime/harness in `openclaw status` session rows so terminal status matches the `/status` runtime line. Thanks @vincentkoc.",
-      "CLI/sessions: prune old unreferenced transcript, compaction checkpoint, and trajectory artifacts during normal `sessions cleanup`, so gateway restart or crash orphans do not accumulate indefinitely outside `sessions.json`. Fixes #77608. Thanks @slideshow-dingo.",
-      "Doctor/Codex: repair legacy `openai-codex/*` routes in primary models, fallbacks, heartbeat/subagent/compaction overrides, hooks, channel overrides, and stale session pins to canonical `openai/*`, selecting `agentRuntime.id: \"codex\"` only when the Codex plugin is installed, enabled, contributes the `codex` harness, and has usable OAuth; otherwise select `agentRuntime.id: \"pi\"`. Thanks @vincentkoc.",
-      "Plugins/update: keep installed official npm and ClawHub plugins such as Codex, Discord, WhatsApp, and diagnostics plugins synced during host updates even when disabled or previously exact-pinned, while preserving third-party plugin pins. Thanks @vincentkoc.",
-      "Video generation: accept provider-specific aspect-ratio and resolution hints at the tool boundary, normalize `720P` to MiniMax's supported `768P`, and stop sending Google `generateAudio` on Gemini video requests so provider fallback can recover from model-specific parameter differences. Thanks @vincentkoc.",
-      "Status: show compact Gateway process uptime and host system uptime in `/status`, making restart and host-lifetime checks visible from chat. Thanks @vincentkoc.",
-      "WhatsApp responsiveness: stop only verified stale local TUI clients when they degrade the Gateway event loop and delay replies. Thanks @vincentkoc.",
-      "Hooks/session-memory: run reset memory capture off the command reply path and make model-generated memory filename slugs opt-in with `llmSlug: true`, so `/new` and `/reset` no longer block WhatsApp and other message-channel reset replies on hook housekeeping or a nested model call. Thanks @vincentkoc.",
-      "CLI/gateway: pause non-TTY stdin after full CLI command completion and stop `openclaw agent` from falling back to embedded mode after gateway request/auth failures, so parent help commands exit cleanly and scoped delivery probes surface the real Gateway error immediately. Thanks @vincentkoc.",
-      "Gateway/model catalog: cache empty read-only model catalog results until reload, so TUI and control-plane refresh loops cannot hammer plugin metadata reads when no usable models are currently discovered. Thanks @vincentkoc.",
-      "Hooks/session-memory: add collision suffixes to fallback memory filenames so repeated `/new` or `/reset` captures in the same minute do not overwrite the earlier session archive. Thanks @vincentkoc.",
-      "TUI/sessions: bound the session picker to recent rows and use exact lookup-style refreshes for the active session, so dusty stores no longer make TUI hydrate weeks-old transcripts before becoming responsive. Thanks @vincentkoc.",
-      "Agents/context engines: keep hidden OpenClaw runtime-context custom messages out of context-engine assemble, afterTurn, and ingest hooks so transcript reconstruction plugins only see conversation messages. Thanks @vincentkoc.",
-      "TUI: skip the generic CLI respawn wrapper for interactive launches, exit cleanly on terminal loss, and refuse to restore heartbeat sessions as the remembered chat session, preventing stale heartbeat history and orphaned `openclaw-tui` processes on first boot. Thanks @vincentkoc.",
-      "Doctor/sessions: move heartbeat-poisoned default main session store entries to recovery keys and clear stale TUI restore pointers, so `doctor --fix` can repair instances already stuck on `agent:main:main` heartbeat history. Thanks @vincentkoc.",
-      "Gateway/shutdown: report structured shutdown warnings and HTTP close timeout warnings through `ShutdownResult` while preserving lifecycle hook hardening. Carries forward #41296. Thanks @edenfunf.",
-      "CLI/update: make dev-channel preflight lint opt-in and constrained when enabled, so `openclaw update --channel dev` no longer walks back otherwise-good main commits when Ubuntu hosts OOM-kill or fail parallel oxlint shards. Thanks @vincentkoc.",
-      "CLI/channels: skip config, proxy, channel-option catalog, banner-config, and plugin startup bootstrap for the bare `openclaw channels` parent-help command, so it exits promptly after printing help instead of loading configured channel plugins. Thanks @vincentkoc.",
-      "Gateway/shutdown: cancel delayed post-ready maintenance during close and suppress maintenance/cron startup after quick restarts, preventing orphaned background timers. Thanks @vincentkoc.",
-      "CLI/status: show the selected agent runtime/harness in `openclaw status` session rows so terminal status matches the `/status` runtime line. Thanks @vincentkoc.",
-      "Sessions CLI: show the selected agent runtime in the `openclaw sessions` table so terminal output matches the runtime visibility already present in JSON/status surfaces. Thanks @vincentkoc.",
-      "Control UI/sessions: show each session's agent runtime in the Sessions table and allow filtering by runtime labels, matching the Agents panel runtime wording. Thanks @vincentkoc.",
-      "Docker/Gateway: harden the gateway container by dropping `NET_RAW` and `NET_ADMIN` capabilities and enabling `no-new-privileges` in the bundled `docker-compose.yml`. Thanks @VintageAyu.",
-      "OpenAI/Gateway: flush the initial chat stream chunk correctly so first-token streaming is visible instead of being delayed behind later chunks.",
-      "Gateway/media: skip media sidecar handling for unrelated HTTP routes so non-media requests do not pay the media route behavior.",
-      "Discord: show reasoning text in progress drafts so streaming replies expose useful thinking/progress instead of blank draft updates.",
-      "Auth profiles: avoid putting providers on cooldown for format-level rejections, so fallback profiles can still be tried when a model name is unsupported.",
-      "Update/plugins: tolerate corrupt managed plugin records during update so core package updates can still complete and report the plugin repair path.",
-      "Update: stop dev-channel updates cleanly after a fetch failure instead of continuing into later update steps.",
-      "Agents/generated media: treat attachment-style message tool actions as completed chat sends, preventing duplicate fallback media posts when generated files were already uploaded."
-    ]
-  },
-  {
-    "version": "2026.5.4",
-    "date": "2026.5.4",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654",
-    "features": [
-      {
-        "title": "Google Meet/Voice Call",
-        "description": "make Twilio dial-in joins speak through the realtime Gemini voice bridge with paced audio streaming, backpressure-aware buffering, barge-in queue clearing, and no TwiML fallback during realtime speech, giving Meet participants a much snappier OpenClaw voice agent. (#77064) Thanks @scoootscooob.",
-        "href": "https://github.com/openclaw/openclaw/pull/77064"
-      },
-      {
-        "title": "Gateway/Windows",
-        "description": "bind the default loopback gateway listener only to `127.0.0.1` on Windows so libuv's dual-stack `::1` behavior cannot wedge localhost HTTP requests. (#69701, fixes #69674) Thanks @SARAMALI15792.",
-        "href": "https://github.com/openclaw/openclaw/issues/69674"
-      },
-      {
-        "title": "Plugins/migration",
-        "description": "emit catalog-backed install hints when `plugins.entries` or `plugins.allow` references an official external plugin that is not installed, so upgraded configs point operators to `openclaw plugins install <spec>` instead of telling them to remove valid plugin config. (#77483) Thanks @hclsys.",
-        "href": "https://github.com/openclaw/openclaw/pull/77483"
-      },
-      {
-        "title": "OpenAI/Codex media",
-        "description": "advertise Codex audio transcription in runtime and manifest metadata and route active Codex chat models to the OpenAI transcription default instead of sending chat model ids to audio transcription. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Dependencies",
-        "description": "refresh runtime and provider packages including Pi 0.73.0, ACPX adapters, OpenAI, Anthropic, Slack, and TypeScript native preview, while keeping the Bedrock runtime installer override pinned below the Windows ARM Node 24 npm resolver failure.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Agents/performance",
-        "description": "pass the resolved workspace through BTW, compaction, embedded-run model generation, and PDF model setup so explicit agent-dir model refreshes can reuse the current workspace-scoped plugin metadata snapshot instead of falling back to cold plugin metadata scans. (#77519, #77532)",
-        "href": "https://github.com/openclaw/openclaw/issues/77519"
-      },
-      {
-        "title": "Plugins/performance",
-        "description": "let unscoped model catalog and manifest-contract readers reuse the current workspace-compatible plugin metadata snapshot, avoiding repeated cold plugin metadata scans on hot control-plane paths while preserving env/config/workspace compatibility checks. (#77519, #77532)",
-        "href": "https://github.com/openclaw/openclaw/issues/77519"
-      },
-      {
-        "title": "Config/plugin auto-enable",
-        "description": "prefer the claiming plugin manifest id over a built-in channel alias when auto-allowlisting a configured channel, so WeCom/Yuanbao-style aliases resolve to the installed plugin id. Thanks @Beandon13.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Secrets/apply",
-        "description": "preserve auth-profile `keyRef` and `tokenRef` fields when scrubbing provider-target secrets, so the canonical SecretRef metadata survives `secrets apply` without keeping plaintext values. Thanks @Beandon13.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/active-memory",
-        "description": "skip session-store channel entries that contain `:` when resolving the recall subagent's channel, so QQ c2c agent IDs (e.g. `c2c:10D4F7C2â€¦`) and other scoped conversation IDs do not reach bundled-plugin `dirName` validation and crash the recall run. The same guard already applied to explicit `channelId` params (#76704); this extends it to store-derived channels. (#77396) Thanks @hclsys.",
-        "href": "https://github.com/openclaw/openclaw/pull/76704"
-      },
-      {
-        "title": "Secrets/external channel contracts",
-        "description": "also look in `<rootDir>/dist/` when resolving the `secret-contract-api` sidecar, so npm-published externalized channel plugins (e.g. `@openclaw/discord` since 2026.5.2) whose compiled artifacts live under `dist/` actually contribute their channel SecretRef contracts to the runtime snapshot. Without this, env-backed `channels.discord.token` SecretRefs silently failed to resolve at gateway start on 2026.5.3, leaving the channel `not configured` even though #76449 had landed the generic external-contract loader. Thanks @mogglemoss.",
-        "href": "https://github.com/openclaw/openclaw/issues/76449"
-      },
-      {
-        "title": "Models/auth",
-        "description": "add `openclaw models auth list [--provider <id>] [--json]` so users can inspect saved per-agent auth profiles without dumping secrets or hitting the old â€œtoo many argumentsâ€ path. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Control UI/header",
-        "description": "show the active agent name in dashboard breadcrumbs without adding the current session key, keeping non-chat views oriented without crowding the topbar.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Control UI/cron",
-        "description": "make the New Job sidebar collapsible so the jobs list can reclaim space while keeping the form one click away. Thanks @BunsDev.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Gateway/startup",
-        "description": "keep model-catalog test helpers, run-session lookup code, QR pairing helpers, and TypeBox memory-tool schema construction out of hot startup import paths, reducing default gateway benchmark plugin-load and memory pressure.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Control UI/performance",
-        "description": "record browser long animation frame or long task entries in the debug event log when supported, making slow dashboard renders easier to attribute from the UI.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Slack/streaming",
-        "description": "add `streaming.progress.render: \"rich\"` for Block Kit progress drafts backed by structured progress line data.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Slack/streaming",
-        "description": "keep the newest rich progress lines when Block Kit limits trim long progress drafts. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Channels/streaming",
-        "description": "cap progress-draft tool lines by default so edited progress boxes avoid jumpy reflow from long wrapped lines.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Agents/verbose",
-        "description": "use compact explain-mode tool summaries for `/verbose` and progress drafts by default, with `agents.defaults.toolProgressDetail: \"raw\"` and per-agent overrides for debugging raw command/detail output.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Control UI/chat",
-        "description": "add an agent-first filter to the chat session picker, keep chat controls/composer responsive across phone/tablet/desktop widths, keep desktop chat controls on one row, avoid duplicate avatar refreshes during initial chat load, and hide that row while scrolling down the transcript. Thanks @BunsDev.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Control UI/chat",
-        "description": "collapse consecutive duplicate text messages into one bubble with a count so no-op heartbeat acknowledgements stay compact without hiding nearby context.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Agents/subagents",
-        "description": "preserve every grouped child result when direct completion fallback has to bypass the requester-agent announce turn. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "TTS/telephony",
-        "description": "honor provider voice/model overrides in telephony synthesis providers so Google Meet agent speech logs match the backend that actually produced the audio. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Voice Call/realtime",
-        "description": "bound the paced Twilio audio queue and close overloaded realtime streams before provider audio can pile up behind the websocket backpressure guard. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Docs",
-        "description": "clarify that IRC uses raw TCP/TLS sockets outside operator-managed forward proxy routing, so direct IRC egress should be explicitly approved before enabling IRC. Thanks @jesse-merhi.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Gateway/performance",
-        "description": "defer non-readiness sidecars until after the ready signal, avoid hot-path channel plugin barrel imports, and fast-path trusted bundled plugin metadata during Gateway startup.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Gateway/performance",
-        "description": "avoid importing `jiti` on native-loadable plugin startup paths, so compiled bundled plugin surfaces do not pay source-transform loader cost unless fallback loading is actually needed.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Gateway/diagnostics",
-        "description": "add startup phase spans, active work labels, stale terminal bridge markers, and default sync-I/O tracing in `pnpm gateway:watch` so slow Gateway turns are easier to attribute from logs and stability diagnostics.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/loader",
-        "description": "preserve real compiled plugin module evaluation errors on the native fast path instead of treating every thrown `.js` module as a source-transform fallback miss. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "QA/Mantis",
-        "description": "add `pnpm openclaw qa mantis slack-desktop-smoke` to run Slack live QA inside a Crabbox VNC desktop, open Slack Web, and capture desktop screenshots beside the Slack QA artifacts.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "QA/Mantis",
-        "description": "pass the runtime env through desktop-browser Crabbox and artifact-copy child commands, so embedded Mantis callers can provide Crabbox credentials without mutating the parent process. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "QA/Mantis",
-        "description": "return the copied Slack desktop screenshot path even when remote Slack QA fails, so the CLI still prints the failure screenshot artifact. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "QA/Mantis",
-        "description": "accept Blacksmith Testbox `tbx_...` lease ids from desktop smoke warmup, so provider overrides do not fail before inspect/run. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "QA/Codex harness",
-        "description": "add targeted live Docker/Testbox diagnostics, auth preflight checks, cache mount fixes, and app-server protocol checkout discovery so maintainer harness failures are easier to reproduce. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/update",
-        "description": "treat official externalized bundled npm migrations and ClawHub-to-npm fallbacks as trusted source-linked installs, so prerelease-only official plugin packages can migrate from bundled builds without being rejected as unsafe prerelease resolutions. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/update",
-        "description": "move ClawHub-preferred externalized plugin installs back to ClawHub after an earlier npm fallback once the ClawHub package becomes available. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/update",
-        "description": "clean stale bundled load paths for already-externalized pinned npm and ClawHub plugin installs, so release-channel sync does not leave removed bundled paths ahead of the installed external package. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Telegram",
-        "description": "accept plugin-owned numeric forum-topic targets in the agent message tool and keep reply-dispatch provider chunks behind a real stable runtime alias during in-place package updates. Fixes #77137. Thanks @richardmqq.",
-        "href": "https://github.com/openclaw/openclaw/issues/77137"
-      },
-      {
-        "title": "Google Meet",
-        "description": "preserve `realtime.introMessage: \"\"` so realtime Chrome joins can stay silent instead of restoring the default spoken intro. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/SDK",
-        "description": "add bounded `before_agent_finalize` retry instructions so workflow plugins can request one more model pass. Thanks @100yenadmin.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Discord/status",
-        "description": "add degraded Discord transport and gateway event-loop starvation signals to `openclaw channels status`, `openclaw status --deep`, and fetch-timeout logs so intermittent socket resets do not look like a healthy running channel. (#76327) Thanks @joshavant.",
-        "href": "https://github.com/openclaw/openclaw/pull/76327"
-      },
-      {
-        "title": "Providers/OpenRouter",
-        "description": "add opt-in response caching params that send OpenRouter's `X-OpenRouter-Cache`, `X-OpenRouter-Cache-TTL`, and cache-clear headers only on verified OpenRouter routes. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Providers/OpenRouter",
-        "description": "expand app-attribution categories so OpenClaw advertises coding, programming, writing, chat, and personal-agent usage on verified OpenRouter routes. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Providers/OpenRouter",
-        "description": "add inbound audio STT support to media-understanding via OpenRouter's JSON `/audio/transcriptions` contract, including default audio model metadata and auto-selection priority. (#77490) Thanks @remdev.",
-        "href": "https://github.com/openclaw/openclaw/pull/77490"
-      },
-      {
-        "title": "Plugins/update",
-        "description": "make package upgrades swap pnpm/npm-prefix installs cleanly, keep legacy plugin install runtime chunks working, and on the beta channel fall back default-line npm plugins to default/latest when plugin beta releases are missing or fail install validation. Thanks @vincentkoc and @joshavant.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Channels/WhatsApp",
-        "description": "support explicit WhatsApp Channel/Newsletter `@newsletter` outbound message targets with channel session metadata instead of DM routing. Fixes #13417; carries forward the narrow outbound target idea from #13424. Thanks @vincentkoc and @agentz-manfred.",
-        "href": "https://github.com/openclaw/openclaw/issues/13417"
-      },
-      {
-        "title": "Exec approvals",
-        "description": "add a tree-sitter-backed shell command explainer for future approval and command-review surfaces. (#75004) Thanks @jesse-merhi.",
-        "href": "https://github.com/openclaw/openclaw/pull/75004"
-      },
-      {
-        "title": "Agents/sandbox",
-        "description": "store sandbox container and browser registry entries as per-runtime shard files, reducing unrelated session lock contention while `openclaw doctor --fix` migrates legacy monolithic registry files. (#74831) Thanks @luckylhb90.",
-        "href": "https://github.com/openclaw/openclaw/pull/74831"
-      },
-      {
-        "title": "Plugins/ClawHub",
-        "description": "annotate 429 errors from ClawHub with the reset window from `RateLimit-Reset`/`Retry-After` and append a `Sign in for higher rate limits.` hint when the request was unauthenticated, so users can see when downloads will recover and how to lift the cap. Thanks @romneyda.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugins/runtime state",
-        "description": "add `registerIfAbsent` for atomic keyed-store dedupe claims that return whether a plugin successfully claimed a key without overwriting an existing live value. Thanks @amknight.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202654"
-      },
-      {
-        "title": "Plugin SDK",
-        "description": "add plugin-owned `SessionEntry` slot projection and scoped trusted-policy session extension reads. (#75609; replaces part of #73384/#74483) Thanks @100yenadmin.",
-        "href": "https://github.com/openclaw/openclaw/issues/75609"
-      },
-      {
-        "title": "Sandbox/Windows",
-        "description": "accept drive-absolute Docker bind sources while keeping sandbox blocked-path and allowed-root policy comparisons Windows-case-insensitive. (#42174) Thanks @6607changchun.",
-        "href": "https://github.com/openclaw/openclaw/pull/42174"
-      }
-    ],
-    "fixes": [
-      "Browser/chrome-mcp: read Chrome DevTools MCP screenshot output from the extension-suffixed path, fixing ENOENT on screenshot capture. Fixes #77222. (#74685) Thanks @barbarhan.",
-      "Agents/OpenAI: honor `compat.supportsTools: false` for OpenAI Completions models so chat-only compatible endpoints do not receive `tools`, `tool_choice`, or tool-history fallback payloads. Fixes #74664. Thanks @yelog.",
-      "macOS/launchd: set generated Gateway LaunchAgent plists to `ProcessType=Interactive` so the gateway keeps timely execution during idle periods. Fixes #58061; refs #62294 and closed duplicate #66992. (#62308) Thanks @bryanpearson and @zssggle-rgb.",
-      "Plugins/install: honor the beta update channel for onboarding and doctor-managed plugin installs by requesting floating npm and ClawHub specs with `@beta` while keeping persistent install records on the catalog default. Thanks @vincentkoc.",
-      "WhatsApp/onboarding: canonicalize setup and pairing allowlist entries to WhatsApp's digit-only phone ids while still accepting E.164, JID, and `whatsapp:` inputs, so personal-phone allowlists match WhatsApp Web sender ids after setup. Thanks @vincentkoc.",
-      "Gateway/startup: load provider plugins that own explicitly configured image, video, or music generation defaults so generation tools become live after gateway restart instead of remaining catalog-only. Fixes #77244. Thanks @buyuangtampan, @Nikoxx99, and @vincentkoc.",
-      "Slack/subagents: keep resumed parent `message.send` calls in the originating Slack thread when ambient session thread context is present, and suppress successful silent child completion rows from follow-up findings. Thanks @bek91.",
-      "Slack/mentions: record thread participation for successful visible threaded Slack sends, including message-tool and media delivery paths, so unmentioned replies in bot-participated threads can bypass mention gating as documented. Fixes #77648. Thanks @bek91.",
-      "Infra/Windows: skip the POSIX `/tmp/openclaw` preferred path on Windows in `resolvePreferredOpenClawTmpDir` so log files, TTS temp files, and other writes land in `%TEMP%\\openclaw-<uid>` instead of `C:\\tmp\\openclaw`. Fixes #60713. Thanks @juan-flores077.",
-      "Media/Windows: open saved attachment temp files read/write before fsync so Windows WebChat and `chat.send` media offloads no longer fail with EPERM during durability flush. (#76593) Thanks @qq230849622-a11y.",
-      "Agents/tools: honor narrow runtime tool allowlists when constructing embedded-runner tool families and bundled MCP/LSP runtimes, so cron/subagent runs that request tools such as `update_plan`, `browser`, `x_search`, channel login tools, or `group:plugins` no longer start with missing tools or unrelated bootstrap work. (#77519, #77532)",
-      "Codex plugin: mirror the experimental upstream app-server protocol and format generated TypeScript before drift checks, keeping OpenClaw's `experimentalApi` bridge compatible with latest Codex while preserving formatter gates.",
-      "Telegram/media: derive no-caption inbound media placeholders from saved MIME metadata instead of the Telegram `photo` shape, so non-image and mixed attachments no longer reach the model as `<media:image>`. Fixes #69793. Thanks @aspalagin.",
-      "Telegram/streaming: reuse the active preview as the first chunk for long text finals, so multi-chunk replies no longer create a transient extra bubble that appears and then disappears. Thanks @vincentkoc.",
-      "Agents/cache: keep per-turn runtime context out of ordinary chat system prompts while still delivering hidden current-turn context, restoring prompt-cache reuse on chat continuations. Fixes #77431. Thanks @Udjin79.",
-      "Gateway/startup: include resolved thinking and fast-mode defaults in the `agent model` startup log line, defaulting unset startup thinking to `medium` without mixing in reasoning visibility.",
-      "Gateway/update: resolve local gateway probe auth from the installed config during post-update restart verification, so token/device-authenticated VPS gateways are not misreported as unhealthy port conflicts after a package swap. Thanks @vincentkoc.",
-      "Agents/Tools: add post-compaction loop guard in `pi-embedded-runner` that arms after auto-compaction-retry and aborts the run with `compaction_loop_persisted` when the agent emits the same `(tool, args, result)` triple `windowSize` times (default 3) within that window. Disable via existing `tools.loopDetection.enabled`; tune via `tools.loopDetection.postCompactionGuard.windowSize`. Targets the failure mode where context-overflow + compaction does not break a tool-call loop. Refs #77474; carries forward #21597. Thanks @efpiva.",
-      "Gateway/watch: suppress sync-I/O trace output during `pnpm gateway:watch --benchmark` unless explicitly requested, so CPU profiling no longer floods the terminal with stack traces.",
-      "Gateway/watch: when benchmark sync-I/O tracing is explicitly enabled, tee trace blocks to the benchmark output log and filter them from the terminal pane while keeping normal Gateway logs visible.",
-      "Plugins/runtime-deps: include `json5` in the memory-core plugin runtime dependency set so packaged `memory_search` sandboxes can resolve generated OpenClaw runtime chunks that parse JSON5 config. Fixes #77461.",
-      "Plugins/Windows: show a Git install hint when npm plugin installation fails with `spawn git ENOENT`, and document the WhatsApp plugin's Git-on-PATH requirement for Baileys/libsignal installs.",
-      "Codex harness: preserve app-server usage-limit reset details and deliver OpenClaw-owned runtime failure notices through tool-only source-reply mode, so Telegram and other chat channels tell users when Codex subscription limits or API failures block a turn instead of going silent. (#77557) Thanks @pashpashpash.",
-      "Agents/OpenAI: default direct OpenAI Responses models to the SSE transport instead of WebSocket auto-selection, preventing pi runtime chat turns from hanging on servers where the WebSocket path stalls while the OpenAI HTTP stream works. Thanks @vincentkoc.",
-      "Plugins/update: repair missing plugin-local `openclaw` peer links before skipping unchanged npm plugin updates, so current external Codex installs can recover `openclaw/plugin-sdk/*` resolution during OTA repair. (#77544) Thanks @ProspectOre.",
-      "Discord/replies: treat failed final reply delivery as a failed turn instead of counting it as a delivered automatic visible reply, so guild/channel turns no longer show done when the final message was dropped. Fixes #77520. Thanks @Patrick-Erichsen.",
-      "Discord: prefer IPv4 for Discord REST and gateway WebSocket startup paths so IPv4-only networks no longer stall before Gateway READY and inbound message dispatch. Fixes #77398; refs #77526. Thanks @Beandon13.",
-      "Channels/plugins: key bundled package-state probes, env/config presence, and read-only command defaults by channel id instead of manifest plugin id, preserving setup and native-command detection for channel plugins whose package id differs from the channel alias. Thanks @vincentkoc.",
-      "Docker: prune package-excluded plugin dist directories from runtime images unless the build explicitly opts that plugin in, so official external plugins such as Feishu stay install-on-demand instead of shipping partial metadata without compiled runtime output. Fixes #77424. Thanks @vincentkoc.",
-      "Model switching: include the exact additive allowlist repair command when `/model ... --runtime ...` targets a blocked model, and make Telegram's model picker say that it changes only the session model while leaving the runtime unchanged. Thanks @vincentkoc.",
-      "Mattermost: clarify that the model picker only changes the session model and that runtime switches require `/oc_model <provider/model> --runtime <runtime>`. Thanks @vincentkoc.",
-      "Doctor/config: keep active `auth.profiles` metadata intact when `doctor --fix` strips stale secret fields from configs, repairing legacy `<provider>:default` API-key profile metadata when model fallbacks or explicit `model@profile` refs still depend on it. Fixes #77400.",
-      "Doctor/plugins: include `plugins.allow`-only official plugin ids in the release configured-plugin repair set, so `doctor --fix` installs official external plugins that are configured but not yet loaded instead of removing them as stale allow entries. Fixes #77155. Thanks @hclsys.",
-      "Doctor/sessions: clear auto-created stale session routing state from the sessions store when `doctor --fix` sees plugin-owned model/runtime/auth/session bindings outside the current configured route, while leaving explicit user model choices for manual review. Refs #68615.",
-      "CLI/update: disable and skip plugins that fail package-update plugin sync, so a broken npm/ClawHub/git/marketplace plugin cannot turn a successful OpenClaw package update into a failed update result. Thanks @vincentkoc.",
-      "CLI/update: use an absolute POSIX npm script shell during package-manager updates, so restricted PATH environments can still run dependency lifecycle scripts while updating from `--tag main`. Fixes #77530. Thanks @PeterTremonti.",
-      "Diagnostics: grant the internal diagnostics event bus to official installed diagnostics exporter plugins, so npm-installed `@openclaw/diagnostics-prometheus` can emit metrics without broadening the capability to arbitrary global plugins. Fixes #76628. Thanks @RayWoo.",
-      "Browser: enforce strict SSRF current-URL checks before existing-session screenshots, matching existing-session snapshot handling. Thanks @vincentkoc.",
-      "Active Memory: give timeout partial transcript recovery enough abort-settle headroom so temporary recall summaries are returned before cleanup. Thanks @vincentkoc.",
-      "Gateway/chat: clear the active reply-run guard before draining queued same-session follow-up turns, so sequential `chat.send` calls no longer trip `ReplyRunAlreadyActiveError` every other request. Fixes #77485. Thanks @bws14email.",
-      "Agents/media: avoid sending generated image, video, and music attachments twice when streamed reply text arrives before the final `MEDIA:` directive.",
-      "CLI/sessions: cap `openclaw sessions` output to the newest 100 rows by default and add `--limit <n|all>` plus JSON pagination metadata, so repeated machine polling of large session stores cannot fan out into unbounded per-row enrichment/output work. Fixes #77500. Thanks @Kaotic3.",
-      "Doctor/config: restore legacy group chat config migrations for `routing.allowFrom`, `routing.groupChat.*`, and `channels.telegram.requireMention` so upgrades keep WhatsApp, Telegram, and iMessage group mention gates and history settings instead of leaving configs invalid or silently blocked. Thanks @scoootscooob.",
-      "CLI/update: make package-update follow-up processes write completion results and exit explicitly, so Windows packaged upgrades do not hang after the new package finishes post-core plugin work. Thanks @vincentkoc.",
-      "Release validation: skip Slack live QA unless Slack credentials are explicitly configured, so release gates can keep proving non-Slack surfaces while Slack is still local and credential-gated. Thanks @vincentkoc.",
-      "Plugins/update: treat OpenClaw CalVer correction versions like `2026.5.3-1` as satisfying base plugin API ranges, so correction builds can install plugins that require the base runtime API. Fixes #77293. (#77450) Thanks @p3nchan.",
-      "Discord/Gateway startup: retry Discord READY waits with backoff, defer startup `sessions.list` and native approval readiness failures until sidecars recover, and preserve component-only Discord payloads when final reply scrubbing removes all text. (#77478) Thanks @NikolaFC.",
-      "CLI/launcher: forward termination signals to compile-cache respawn children, so killing a wrapper process no longer leaves the security audit worker orphaned. Fixes #77458. Thanks @jaikharbanda.",
-      "Plugins/registry: recover managed-npm external plugins from the owned npm root when a stale persisted registry would otherwise hide them after package-manager upgrades. Fixes #77266. Thanks @p3nchan.",
-      "fix(gateway): clamp unbound websocket auth scopes [AI]. (#77413) Thanks @pgondhi987.",
-      "Diffs plugin: accept `defaults.ttlSeconds` as a plugin-wide artifact lifetime default, so LAN-viewable diff links can keep their configured six-hour TTL without doctor quarantining the plugin entry. (#77456) Thanks @VACInc.",
-      "Gate zalouser startup name matching [AI]. (#77411) Thanks @pgondhi987.",
-      "Active Memory: send a bounded latest-message search query to the recall worker so channel/runtime metadata does not become the memory search string. Fixes #65309. Thanks @joeykrug, @westley3601, @pimenov, and @tasi333.",
-      "Memory/QMD: report missing or invalid agent workspace directories as workspace probe failures in doctor/QMD availability checks instead of sending operators toward binary-install fixes. Fixes #63158. Thanks @sercada.",
-      "fix(device-pair): require pairing scope for pair command [AI]. (#76377) Thanks @pgondhi987.",
-      "Providers/OpenRouter: keep DeepSeek V4 `reasoning_effort` on OpenRouter-supported values, mapping stale `max` thinking overrides to `xhigh` so `openrouter/deepseek/deepseek-v4-pro` no longer fails with OpenRouter's invalid-effort 400. Fixes #77350. (#77423) Thanks @krllagent, @mushuiyu886, and @sallyom.",
-      "fix(qqbot): keep private commands off framework surface [AI]. (#77212) Thanks @pgondhi987.",
-      "Claude CLI: honor non-off `/think` levels by passing Claude Code's session-scoped `--effort` flag through the CLI backend seam, so chat bridges no longer show an inert thinking control. Fixes #77303. Thanks @Petr1t.",
-      "Agents/subagents: refresh deferred final-delivery payloads when same-session completion output changes, so retried parent notifications use the final child summary instead of stale progress text. Thanks @vincentkoc.",
-      "Agents/media: route async music and video completion results back through the requester agent, preserving automatic replies while requiring the message tool only for message-tool-only group/channel delivery.",
-      "active-memory: skip the memory sub-agent gracefully instead of logging a confusing allowlist error when no memory plugin (`memory-core` or `memory-lancedb`) is loaded, so active-memory with no memory backend no longer produces misleading \"No callable tools remain\" warnings in the gateway log. Fixes #77506. Thanks @hclsys.",
-      "Memory/wiki: preserve representation from both corpora in `corpus=all` searches while backfilling unused result capacity, so memory hits are not starved by numerically higher wiki integer scores. Fixes #77337. Thanks @hclsys.",
-      "Docker/compose: pin container-side `OPENCLAW_CONFIG_DIR` and `OPENCLAW_WORKSPACE_DIR` on both gateway and CLI services so the host paths written into `.env` by `scripts/docker/setup.sh` (used as Compose bind-mount sources) cannot leak into runtime code via the `env_file` import. Fixes regressions on macOS Docker setups where the first agent reply died with `EACCES: permission denied, mkdir '/Users'` because the host-style workspace path got persisted into `agents.defaults.workspace`. Fixes #77436. Thanks @lonexreb.",
-      "Telegram: clean up tool-only draft previews after assistant message boundaries so transient `Surfacing...` tool-status bubbles do not linger when no matching final preview arrives. Thanks @BunsDev.",
-      "Telegram: cool down repeatedly failing Bot API transport fallbacks so long polling stops hammering a blackholed Telegram route. Fixes #77900. Thanks @bryce-d-greybeard.",
-      "Slack: report `unknown error` instead of `undefined` in socket-mode startup retry logs and label the retry reason explicitly.",
-      "Telegram: let explicit forum-topic `requireMention` settings override persisted `/activate` and `/deactivate` state, so per-topic mention gates work consistently. Fixes #49864. Thanks @Panniantong.",
-      "Cron: surface failed isolated-run diagnostics in `cron show`, status, and run history when requested tools are unavailable, so blocked cron runs report the actual tool-policy failure instead of a misleading green result. Fixes #75763. Thanks @RyanSandoval.",
-      "TUI/escape abort: track the in-flight runId after `chat.send` resolves so pressing Esc during the gap before the first gateway event aborts the run instead of repeatedly printing `no active run`. Fixes #1296. Thanks @Lukavyi and @romneyda.",
-      "TUI/render: stop the long-token sanitizer from injecting literal spaces inside inline code spans, fenced code blocks, table borders, and bare hyphenated/dotted identifiers, so copied package names, entity IDs, and shell line-continuations stay byte-for-byte intact while narrow-terminal protection still chunks unidentifiable long prose tokens. Fixes #48432, #39505. Thanks @DocOellerson, @xeusoc, @CCcassiusdjs, @akramcodez, @brokemac79, @romneyda.",
-      "Plugin skills: publish plugin-declared skills through the generated plugin skills directory (`~/.openclaw/plugin-skills/`) while keeping direct prompt loading intact, so agent file-based discovery paths find plugin skill `SKILL.md` files and inactive plugin links are cleaned up. Fixes #77296. (#77328) Thanks @zhangguiping-xydt.",
-      "Gateway/status: label Linux managed gateway services as `systemd user`, making status output explicit about the user-service scope instead of implying a system-level unit. Thanks @vincentkoc.",
-      "Plugins/install: remove the previous managed plugin directory when a reinstall switches sources, so stale ClawHub and npm copies no longer keep duplicate plugin ids in discovery after the new install wins. Thanks @vincentkoc.",
-      "Plugins/install: let official plugin reinstall recovery repair source-only installed runtime shadows, so `openclaw plugins install npm:@openclaw/discord --force` can replace the bad package instead of stopping at stale config validation. Thanks @vincentkoc.",
-      "CLI/update: stage pnpm-detected npm-layout global package updates through a clean npm prefix swap, keep plugin install runtime imports behind a stable alias, and ship legacy install-runtime aliases back to `2026.3.22`, preventing stale overlay chunks from breaking plugin post-update sync. Thanks @vincentkoc.",
-      "Plugins/commands: allow the official ClawHub Codex plugin package to keep reserved `/codex` command ownership, matching the existing npm-managed Codex package behavior. Thanks @vincentkoc.",
-      "Auth/OpenAI Codex: rewrite invalidated per-agent Codex auth-order and session profile overrides toward a healthy relogin profile, so revoked OAuth accounts do not stay pinned after signing in again. Thanks @BunsDev.",
-      "Plugins/commands: scope QQBot framework slash commands to the QQBot channel so `/bot-*` command handlers and native specs do not leak onto unrelated chat surfaces. Thanks @vincentkoc.",
-      "fix: harden backend message action gateway routing [AI]. (#76374) Thanks @pgondhi987.",
-      "Gate QQBot streaming command auth [AI]. (#76375) Thanks @pgondhi987.",
-      "Plugins/discovery: ignore managed npm plugin packages that only expose TypeScript source entries without compiled runtime output, so stale/broken installs cannot hide a working bundled or reinstallable channel plugin during setup. Thanks @vincentkoc.",
-      "CLI/update: treat OpenClaw stable correction versions like `2026.5.3-1` as newer than their base stable release, so package updates no longer ask for downgrade confirmation. Thanks @vincentkoc.",
-      "Plugins/install: suppress dangerous-pattern scanner warnings for trusted official OpenClaw npm installs, so installing `@openclaw/discord` no longer prints credential-harvesting warnings for the official package. Thanks @vincentkoc.",
-      "Plugins/commands: suppress dangerous-pattern scanner warnings for trusted catalog npm installs from owner-gated `/plugins install` commands, so chat-driven installs match the CLI install trust path. Thanks @vincentkoc.",
-      "Plugins/release: make the published npm runtime verifier reject blank `openclaw.runtimeExtensions` entries instead of treating them as absent and passing via inferred outputs. Thanks @vincentkoc.",
-      "Plugins/security: ignore inline and block comments when matching source-rule context in plugin install scans, so comment-only `fetch`/`post` references near environment defaults do not block clean plugins. Thanks @vincentkoc.",
-      "Doctor/plugins: remove stale managed install records for bundled plugins even when the bundled plugin is not explicitly configured, so doctor cleanup cannot leave orphaned install metadata behind. Thanks @vincentkoc.",
-      "Web fetch: scope provider fallback cache entries by the selected fetch provider so config reloads cannot reuse another provider's cached fallback payload. Thanks @vincentkoc.",
-      "Web search: honor late-bound `tools.web.search.enabled: false` during tool execution so config reloads cannot leave an already-created `web_search` tool runnable. Thanks @vincentkoc.",
-      "Plugins/packages: reject inferred built runtime entries that exist but fail package-boundary checks instead of falling back to TypeScript source for installed packages. Thanks @vincentkoc.",
-      "Plugins/loader: do not retry native-loaded JavaScript plugin modules through the source transformer after native evaluation has already reached a missing dependency, avoiding duplicate top-level side effects. Thanks @vincentkoc.",
-      "Plugins/packages: reject blank `openclaw.runtimeExtensions` entries instead of silently ignoring them and falling back to inferred TypeScript runtime entries. Thanks @vincentkoc.",
-      "Doctor/plugins: remove stale managed npm plugin shadow entries from the managed package lock as well as `package.json` and `node_modules`, so future npm operations do not keep referencing repaired bundled-plugin shadows. Thanks @vincentkoc.",
-      "Plugins/runtime state: keep the key being registered when namespace eviction runs in the same millisecond as existing entries, so `register` and `registerIfAbsent` do not report success while evicting their own fresh value. Thanks @vincentkoc.",
-      "Plugins/providers: make bundled provider discovery honor restrictive `plugins.allow` by default for new configs, while doctor migrates legacy restrictive allowlist configs to `plugins.bundledDiscovery: \"compat\"` to preserve upgrade behavior. Thanks @dougbtv.",
-      "Control UI/Talk: make failed Talk startup errors dismissable and clear the stale Talk error state when dismissed, so missing realtime voice provider configuration does not leave a permanent chat banner. Fixes #77071. Thanks @ijoshdavis.",
-      "Control UI/Talk: stop and clear failed realtime Talk sessions when dismissing runtime error banners, so the next Talk click starts a fresh session instead of only stopping the stale one. Thanks @vincentkoc.",
-      "Control UI/Talk: retry from a failed realtime Talk session on the next Talk click instead of requiring a separate stale-session stop click first. Thanks @vincentkoc.",
-      "Canvas host: preserve the Gateway TLS scheme in browser canvas host URLs and startup mount logs, so direct HTTPS gateways do not advertise insecure canvas links. Thanks @vincentkoc.",
-      "WhatsApp/login: route login success and failure messages through the injected runtime, so setup/onboarding surfaces capture all login output instead of only the QR. Thanks @vincentkoc.",
-      "Google Chat: create an isolated Google auth transport per auth client, so google-auth-library interceptor mutations do not accumulate across webhook verification and access-token clients. Thanks @vincentkoc.",
-      "Doctor/plugins: remove orphaned or recovered managed npm copies of bundled `@openclaw/*` plugins during `doctor --fix`, so stale package manifests cannot shadow the current bundled plugin config schema.",
-      "Control UI/performance: cap long-task and long-animation-frame diagnostics in the shared event log, so slow-render telemetry does not evict gateway/plugin events from the Debug and Overview views. Thanks @vincentkoc.",
-      "Gateway/startup: log the canvas host mount only after the HTTP server has bound, so startup logs no longer report the canvas host as mounted before it can serve requests.",
-      "Control UI/i18n: render the Sessions active filter tooltip with the configured minute count in every locale and make the i18n check reject placeholder drift. Thanks @BunsDev.",
-      "Web fetch: late-bind `web_fetch` config and provider fallback metadata from the active runtime snapshot, matching `web_search` so long-lived tools do not use stale fetch provider settings. Thanks @vincentkoc.",
-      "Discord: clear stale startup probe bot/application status when the async bot probe throws, not just when it returns a degraded probe result. Thanks @vincentkoc.",
-      "Web search: scope explicit bundled `web_search` provider runtime loading through manifest ownership, so selecting DuckDuckGo/Gemini/etc. does not import unrelated bundled providers or log their optional dependency failures. Thanks @vincentkoc.",
-      "Plugins/discovery: demote the source-only TypeScript runtime check on already-installed `origin: \"global\"` plugin packages from a config-blocking error to a warning and let the runtime fall through to the TypeScript source via jiti, so a single broken installed package no longer blocks `plugins install` for unrelated plugins; install-time rejection of newly-installed source-only packages is unchanged. Thanks @romneyda.",
-      "Providers/OpenAI Codex: stop the OAuth progress spinner before showing the manual redirect paste prompt, so callback timeouts do not spam `Browser callback did not finish` across terminals.",
-      "Providers/OpenAI Codex: fail closed on malformed `/codex` control commands and diagnostics confirmations before changing bindings, permissions, model overrides, active turns, or feedback uploads. Thanks @vincentkoc.",
-      "Providers/OpenAI Codex: sanitize Codex app-server command readouts, failure replies, approval prompts, elicitation prompts, and `request_user_input` text before posting them back into chat. Thanks @vincentkoc.",
-      "Providers/OpenAI Codex: preserve local bound-turn image paths, reject stale same-thread turn notifications, enforce option-only user input prompts, and return failed dynamic tool results to Codex as unsuccessful tool calls. Thanks @vincentkoc.",
-      "Providers/DeepSeek: expose DeepSeek V4 `xhigh` and `max` thinking levels through the lightweight provider-policy surface, so Control UI `/think` pickers keep showing the max reasoning options when the runtime plugin registry is not active. Fixes #77139. Thanks @bittoby.",
-      "Release/beta smoke: resolve the dispatched Telegram beta E2E run from `gh run list` when `gh workflow run` returns no run URL, so the maintainer helper does not fail immediately after dispatch. Thanks @vincentkoc.",
-      "Media/images: keep HEIC/HEIF attachments fail-closed when optional Sharp conversion is unavailable instead of sending originals that still need conversion. Thanks @vincentkoc.",
-      "Google Meet: fork the caller's current agent transcript into agent-mode meeting consultant sessions, so Meet replies inherit the context from the tool call that joined the meeting.",
-      "iOS/mobile pairing: reject non-loopback `ws://` setup URLs before QR/setup-code issuance and let the iOS Gateway settings screen scan QR codes or paste full setup-code messages. Thanks @BunsDev.",
-      "Control UI: keep Gateway Access inputs and locale picker contained inside the card at narrow and tablet widths.",
-      "Agents/trajectory: bound runtime trajectory capture and yield queued sidecar writes so oversized traces stop recording instead of monopolizing Gateway cleanup. Fixes #77124. Thanks @loyur.",
-      "Telegram/streaming: sanitize tool-progress draft preview backticks before shared compaction, so long backtick-heavy progress text still renders inside the safe code-formatted preview instead of collapsing to an ellipsis.",
-      "UI/chat: remove the unsupported `line-clamp` declaration from the chat queue text rule to eliminate Firefox console noise without changing visible truncation behavior. Thanks @ZanderH-code.",
-      "Control UI: add explicit feedback for repeated actions by announcing session switches, flashing the active session selector, showing inline Save/Apply/Update progress, and distinguishing filtered-empty session lists from genuinely empty session stores. Thanks @BunsDev.",
-      "Agents/Pi: suppress persistence for synthetic mid-turn overflow continuation prompts, so transcript-retry recovery does not write the \"continue from transcript\" prompt as a new user turn. Thanks @vincentkoc.",
-      "Agents/tools: strip reasoning text from visible rich presentation titles, blocks, buttons, and select labels before message-tool sends, so structured channel payloads cannot leak hidden planning. Thanks @vincentkoc.",
-      "Telegram: keep reply-dispatch lazy provider runtime chunks behind stable dist names and delete `/reasoning stream` previews after final delivery so package updates and live reasoning drafts do not leave Telegram turns broken or noisy. Thanks @BunsDev.",
-      "Discord: start the gateway monitor without waiting for the startup bot/application probe, so WSL2 hosts with a slow `/users/@me` REST path still bring the channel online while status enrichment finishes asynchronously. Fixes #77103. Thanks @Suited78.",
-      "Exec approvals: detect `env -S` split-string command-carrier risks when `-S`/`-s` is combined with other env short options, so approval explanations do not miss split payloads hidden behind `env -iS...`. Thanks @vincentkoc.",
-      "Google Meet: log the concrete agent-mode TTS provider, model, voice, output format, and sample rate after speech synthesis, so Meet logs show which voice backend spoke each reply.",
-      "Voice Call: mark realtime calls completed when the realtime provider closes normally, so Twilio/OpenAI/Google realtime stop events do not leave active call records behind. Thanks @vincentkoc.",
-      "Gateway/update: keep the shutdown close path behind a stable runtime chunk and ship compatibility aliases for recent `server-close-*` hashes, so manual npm package replacement cannot leave an already-running Gateway unable to shut down cleanly. Fixes #77087. Thanks @westlife219.",
-      "Control UI/media: mint short-lived scoped tickets for assistant media fetches and render ticketed URLs instead of exposing long-lived auth tokens in chat image URLs. Fixes #70830 and #77097. Thanks @hclsys.",
-      "Exec approvals: treat POSIX `exec` as a command carrier for inline eval, shell-wrapper, and eval/source detection, so approval explanations and command-risk checks do not miss payloads hidden behind `exec`. Thanks @vincentkoc.",
-      "Google Meet: log the resolved audio provider model when starting Chrome and paired-node Meet talk-back bridges, so agent-mode joins show the STT model and bidi joins show the realtime voice model.",
-      "Diagnostics: handle missing session-tail files in cron recovery context without tripping extension test typecheck. Thanks @vincentkoc.",
-      "QA/Slack: update the Slack dispatch preview fallback test SDK mock for structured progress draft helpers, so the rich progress draft regression suite covers the new imports instead of failing before assertions run. Thanks @vincentkoc.",
-      "Release validation: allow focused QA live reruns to select Matrix and Telegram without running Slack, so known Slack credential-pool outages do not block non-Slack live proof. Thanks @vincentkoc.",
-      "Plugins/loader: keep bundled plugin package `test-api.js` aliases behind private QA mode, so source transforms do not expose test-only public surfaces during normal plugin loading. Thanks @vincentkoc.",
-      "Gateway/startup: start cron and record the post-ready memory trace even when deferred maintenance timers fail after readiness, so a non-fatal timer setup issue does not silently leave scheduled jobs idle. Thanks @vincentkoc.",
-      "Exec approvals: unwrap BSD/macOS `env -P <path>` carrier commands before approval-command and strict inline-eval checks, so `/approve` shell execution and inline interpreter payloads are still blocked behind that env form.",
-      "Agents/session status: keep semantic `session_status({ sessionKey: \"current\" })` on the live run session even before that run has a persisted session-store entry, instead of falling back to the sandbox policy key. Thanks @vincentkoc.",
-      "QA/Slack: resolve bundled official plugin public-surface package aliases during source-mode QA runs, so release Slack live validation can load `@openclaw/slack/api.js` without workspace symlinks. Thanks @vincentkoc.",
-      "Codex: pass the live run session key into app-server dynamic tools when sandbox policy uses a separate session key, so `session_status({ sessionKey: \"current\" })` reports the active run instead of the sandbox policy key. Thanks @vincentkoc.",
-      "Web search: keep first-class assistant `web_search` auto-detect and configured runtime providers visible when active runtime metadata or the active plugin registry is incomplete. Fixes #77073. Thanks @joeykrug.",
-      "Plugins/tools: mark manifest-optional sibling tools as optional even when they come from a shared non-optional factory, so cached/status/MCP metadata keeps opt-in tool policy accurate. Thanks @vincentkoc.",
-      "Matrix: keep `streaming.progress.toolProgress` scoped to progress draft mode, so partial and quiet Matrix previews do not lose tool progress unless `streaming.preview.toolProgress` is disabled. Thanks @vincentkoc.",
-      "Gateway/validation: isolate gateway server validation files, ignore unrelated startup logs in request-trace coverage, and fail fast on stuck shared-auth sockets, reducing false main-branch CI failures for contributors. Thanks @amknight.",
-      "Channels/streaming: keep `streaming.progress.toolProgress` scoped to progress draft mode, so disabling compact progress lines does not silence partial/block preview tool updates. Thanks @vincentkoc.",
-      "Plugins/update: treat OpenClaw stable correction versions like `2026.5.3-1` as stable releases for npm installs, plugin updates, and bundled-version comparisons, so `latest` can advance official plugins without prerelease opt-in. Thanks @vincentkoc.",
-      "Control UI: point the Appearance tweakcn browse action and docs at the live tweakcn editor route instead of the removed `/themes` page. Fixes #77048.",
-      "Control UI: render Dream Diary prose through the sanitized markdown pipeline, so diary bold/italic/header markdown no longer appears as literal source text. Fixes #62413.",
-      "Control UI: render tool results whose output arrives as text-block arrays and give expanded tool output a scrollable block, so read/exec output remains visible in WebChat. Fixes #77054.",
-      "MCP: include serialized conversation/message payloads in the primary text content for `conversations_list` and `messages_read`, while preserving `structuredContent` for capable clients. Fixes #77024.",
-      "Media: treat `EPERM` from the post-write media fsync step as best-effort, allowing WebChat and channel uploads to finish on Windows filesystems that reject `fsync` after a successful write. Fixes #76844.",
-      "Media/Telegram: send in-limit original images when optional image optimization is unavailable, so Telegram MEDIA replies and message-tool image sends do not fail just because `sharp` is missing. Fixes #77081. (#77117) Thanks @pfrederiksen.",
-      "Diagnostics: include last progress, cron job/run ids, stopped cron job name, and the last assistant transcript snippet in stalled-session and stuck-session recovery logs so cron stalls show what was stopped.",
-      "Streaming channels: add `streaming.preview.commandText: \"status\"` / `streaming.progress.commandText: \"status\"` to hide command/exec text in preview progress lines while keeping the released raw command text default. Fixes #77072.",
-      "Agents/cron: let explicit cron `timeoutSeconds` drive both CLI no-output and embedded LLM idle watchdogs instead of being capped by resume defaults. Fixes #76289.",
-      "Plugins/catalog: suppress missing `channelConfigs` compatibility diagnostics for external channel plugins that are disabled, denied, or outside a restrictive allowlist. Fixes #76095.",
-      "Diagnostics: keep webhook/message OTEL attributes and Prometheus delivery labels low-cardinality and omit raw chat/message IDs from spans, so progress-draft and message-tool modes do not leak high-cardinality messaging identifiers.",
-      "Google Meet: stop advertising legacy `mode: \"realtime\"` to agents and config UIs, while keeping it as a hidden compatibility alias for `mode: \"agent\"`, so new joins use the STT -> OpenClaw agent -> TTS path instead of selecting the direct realtime voice fallback.",
-      "Google Meet: add `chrome.audioBufferBytes` for generated command-pair SoX audio commands and lower the default buffer from SoX's 8192 bytes to 4096 bytes to reduce Chrome talk-back latency.",
-      "Google Meet: split realtime provider config into agent-mode transcription and bidi-mode voice providers, and migrate legacy Gemini Live bidi configs with `doctor --fix`, so Gemini Live can back direct bidi fallback without breaking the default OpenClaw agent talk-back path.",
-      "Google Meet: keep waiting for the Meet microphone to unmute during join intro readiness instead of permanently skipping talk-back when Meet briefly reports the local mic as muted.",
-      "Google Meet: expose `voiceCall.postDtmfSpeechDelayMs` in the plugin manifest schema and setup hints, so manifest-based config editing accepts the runtime-supported Twilio delay key. Thanks @vincentkoc.",
-      "Google Meet: keep explicit non-Google `realtime.provider` values as the transcription provider compatibility fallback when `realtime.transcriptionProvider` is unset. Thanks @vincentkoc.",
-      "Google Meet: make Twilio setup status require an enabled `voice-call` plugin entry instead of treating a missing entry as ready. Thanks @vincentkoc.",
-      "Telegram: render shared interactive reply buttons in reply delivery so plugin approval messages show inline keyboards. (#76238) Thanks @keshavbotagent.",
-      "Cron/sessions: keep cron metadata rows without an on-disk transcript non-resumable until a transcript exists, so doctor and `sessions cleanup --fix-missing` no longer report or prune pre-transcript cron rows as broken sessions. Refs #77011.",
-      "OpenAI Codex: recreate missing bound app-server threads once when a stale `/codex bind` sidecar survives a restart, preserving the selected auth profile and turn overrides before retrying the inbound turn. (#76936) Thanks @keshavbotagent.",
-      "Agents/cli-runner: drop a saved `claude-cli` resume sessionId at preparation time when its on-disk transcript no longer exists in `~/.claude/projects/`, so a stale binding from a half-installed `update.run` cannot trap follow-up runs (auto-reply / Telegram direct) in a `claude --resume` timeout loop; the run starts fresh and the new sessionId is written back through the existing post-run flow. (#77030; refs #77011) Thanks @openperf.",
-      "Release validation: install the cross-OS TypeScript harness through Windows-safe Node/npm shims so native Windows package checks reach the OpenClaw smoke suites instead of exiting before artifact capture. Thanks @vincentkoc.",
-      "Release validation: let Windows packaged-upgrade checks continue after the shipped 2026.5.2 updater hits its native-module swap cleanup fallback, verifying the fallback-installed candidate through package metadata and downstream smoke instead of crashing on the immediate update-status probe. Thanks @vincentkoc.",
-      "Doctor/plugins: skip channel-derived official plugin installs when another configured plugin is the effective owner for the same channel, so `doctor --repair` does not reinstall `feishu` while `openclaw-lark` handles `channels.feishu`. Fixes #76623. Thanks @fuyizheng3120.",
-      "Gateway/sessions: memoize repeated thinking-option enrichment and skip unused cost fallback checks while listing sessions, reducing per-row work on large multi-agent stores. Fixes #76931.",
-      "Gateway/sessions: bound default `sessions.list` RPC responses and report truncation metadata, preventing Slack-heavy long-lived stores from forcing unbounded Gateway row construction. Fixes #77062.",
-      "Agents/tools: use config-only runtime snapshots for plugin tool registration and live runtime config getters, avoiding expensive full secrets snapshot clones on the core-plugin-tools prep path. Fixes #76295.",
-      "Agents/tools: honor the effective tool denylist before constructing optional PDF/media tool factories, so `tools.deny: [\"pdf\"]` skips PDF setup before later policy filtering. Fixes #76997.",
-      "MCP/plugin tools: apply global `tools.profile`, `tools.alsoAllow`, and `tools.deny` policy while exposing plugin tools over the standalone MCP bridge, so ACP clients do not see policy-hidden plugin tools or miss opt-in optional tools. Thanks @vincentkoc.",
-      "Plugin tools: honor explicit tool denylists while selecting plugin tool runtimes, so denied plugin tools are not materialized for direct command or gateway surfaces before later policy filtering. Thanks @vincentkoc.",
-      "Plugin tools: filter factory-returned tools by manifest per-tool optional policy, so optional sibling tools from a shared runtime factory stay hidden unless explicitly allowed. Thanks @vincentkoc.",
-      "Agents/transcripts: retry context-overflow compaction from the current transcript only after the inbound user turn was actually persisted, and keep WebChat agent-run live delivery from writing duplicate Pi-managed assistant turns. Fixes #76424. (#77033)",
-      "Agents/bootstrap: keep pending `BOOTSTRAP.md` and bootstrap truncation notices in system-prompt Project Context instead of copying setup text or raw warning diagnostics into WebChat user/runtime context. Fixes #76946.",
-      "Gateway/install: keep `.env`-managed values in the macOS LaunchAgent env file while still tracking `OPENCLAW_SERVICE_MANAGED_ENV_KEYS`, so regenerated services do not boot without managed auth/provider keys. Fixes #75374.",
-      "Gateway/restart: verify listener PIDs by argv when `lsof` reports only the Node process name, so stale gateway cleanup can find macOS `cnode` listeners. Fixes #70664.",
-      "Gateway/logging: expand leading `~` in `logging.file` before creating the file logger, preventing startup crash loops for home-relative log paths. Fixes #73587.",
-      "Channels/CLI: keep `openclaw channels list --json` usable when provider usage fetching fails, and report per-provider usage errors without aborting the channel list. Refs #67595.",
-      "Doctor/plugins: do not treat `plugins.allow` entries as configured plugins during missing-plugin repair, so restrictive allowlists no longer install allowed-but-unused plugins. Thanks @vincentkoc.",
-      "Agents/messaging: deliver distinct final commentary after same-target `message` tool sends while still deduping text/media already sent by the tool, so short closing remarks are no longer silently dropped. Fixes #76915. Thanks @hclsys.",
-      "Agents/messaging: preserve string thread IDs when matching message-tool reply dedupe routes, avoiding precision loss on numeric-looking topic IDs before channel plugin comparison. Thanks @vincentkoc.",
-      "Channels/streaming: honor `agents.defaults.toolProgressDetail: \"raw\"` in Slack, Discord, Telegram, Matrix, and Microsoft Teams progress drafts, so tool-start lines include raw command/detail output when debugging. Thanks @vincentkoc.",
-      "Channels/streaming: strip unmatched inline-code backticks from compacted raw progress draft lines, avoiding stray markdown markers after long command details are shortened. Thanks @vincentkoc.",
-      "Discord/Slack/Mattermost: align draft preview tool-progress config help with the runtime behavior that hides interim tool updates when `streaming.preview.toolProgress` is false. Thanks @vincentkoc.",
-      "Feishu: use the shared channel progress formatter for streaming-card tool status lines, including raw command/detail output and message-tool filtering. Thanks @vincentkoc.",
-      "Mattermost: use the shared progress draft formatter for tool status previews, including raw command/detail output when `agents.defaults.toolProgressDetail: \"raw\"` is enabled. Thanks @vincentkoc.",
-      "Mattermost: suppress standalone default tool-progress messages while draft previews are active, including when draft tool lines are disabled. Thanks @vincentkoc.",
-      "Telegram: deliver button-only interactive replies by sending the shared fallback button-label text with the inline keyboard instead of dropping the reply as empty. Thanks @vincentkoc.",
-      "OpenAI Codex: honor `auth.order.openai-codex` when starting app-server clients without an explicit auth profile, so status/model probes and implicit startup use the configured Codex account instead of falling back to the default profile. Thanks @vincentkoc.",
-      "OpenAI Codex: let SSRF-guarded provider requests inherit OpenClaw's undici IPv4/IPv6 fallback policy, so ChatGPT-backed Codex runs recover on IPv4-working hosts when DNS still returns unreachable IPv6 addresses. Fixes #76857. Thanks @jplavoiemtl and @SymbolStar.",
-      "Plugin updates: do not short-circuit trusted official npm updates as unchanged when the default/latest spec still resolves to an already-installed prerelease that the installer should replace with a stable fallback. Thanks @vincentkoc.",
-      "Plugin updates: clean stale bundled load paths for already-externalized npm installs whose legacy install record only preserved the resolved package name. Thanks @vincentkoc.",
-      "Plugin tools: keep auth-unavailable optional tools hidden even when another default tool from the same plugin is available and `tools.alsoAllow` names the optional tool. Thanks @vincentkoc.",
-      "Realtime transcription: report socket closes before provider readiness as closed-before-ready failures instead of mislabeling them as connection timeouts for OpenAI, xAI, and Deepgram streaming transcription. Thanks @vincentkoc.",
-      "OpenAI/Google Meet: fail realtime voice connection attempts when the socket closes before `session.updated`, avoiding stuck Meet joins waiting on a bridge that never became ready. Thanks @vincentkoc.",
-      "Google Meet: avoid treating repeated participant words as multiple assistant-overlap matches when suppressing realtime echo transcripts. Thanks @vincentkoc.",
-      "Google Meet: make `mode: \"agent\"` the default Chrome talk-back path, using realtime transcription for input and regular OpenClaw TTS for speech output, while keeping direct realtime voice answers available as `mode: \"bidi\"` and accepting `mode: \"realtime\"` as an agent-mode compatibility alias.",
-      "Codex harness: keep `codex_app_server.*` telemetry publication owned by the harness instead of republishing the same callback event from core runners. Thanks @vincentkoc.",
-      "Slack/Discord: suppress standalone tool-progress chatter when partial preview streaming has `streaming.preview.toolProgress: false`, matching the documented quiet-preview behavior. Thanks @vincentkoc.",
-      "Matrix: bind native approval reaction targets before publishing option reactions, so fast approver reactions on threaded prompts are not dropped while the approval handler finishes setup. Thanks @vincentkoc.",
-      "Google Meet: make realtime talk-back agent-driven by default with `realtime.strategy: \"agent\"`, keep the previous direct bidirectional model behavior available as `realtime.strategy: \"bidi\"`, route the Meet tab speaker output to `BlackHole 2ch` automatically for local Chrome realtime joins, coalesce nearby speech transcript fragments before consulting the agent, and avoid cutting off agent speech from server VAD or stale playback pipe errors.",
-      "Google Meet: suppress queued assistant playback and assistant-like transcript echoes from the realtime input path, so the meeting does not hear the agent's own speech as a new user turn and loop or cut itself off.",
-      "Google Meet: keep Chrome realtime transport tests hermetic on Linux prerelease shards while preserving the macOS-only runtime guard. Thanks @vincentkoc.",
-      "QA/Matrix: let the live tool-progress preview and error checks verify progress replacement events without depending on the preview saying `Working`, `tool: read`, an unlabelled/pathless `read from`, or the original draft root being observed. Thanks @vincentkoc.",
-      "QA/Matrix: keep the target=both approval scenario focused on channel and DM metadata delivery by resolving the accepted approval through the gateway after both Matrix events are observed. Thanks @vincentkoc.",
-      "QA/Matrix: wait for live approval reactions to echo before starting the threaded approval decision timeout. Thanks @vincentkoc.",
-      "QA/Matrix: reuse the primed driver sync stream when confirming approval reaction echoes, avoiding missed self-reactions in live release runs. Thanks @vincentkoc.",
-      "Channels/WhatsApp: apply the shared group/channel visible-reply mode during inbound dispatch so group replies stay message-tool-only by default without overriding direct-chat harness defaults. Refs #75178 and #67394. Thanks @scoootscooob.",
-      "Plugins/Codex: preserve Codex-native OAuth routing for `/codex bind` app-server turns so bound sessions keep the selected Codex auth profile instead of falling back to public OpenAI credentials. (#76714) Thanks @keshavbotagent.",
-      "Telegram: keep status checks pointed at the active chat so asking for the current session no longer reports an old direct-message conversation. (#76708) Thanks @amknight.",
-      "Gateway/install: prefer supported system Node over nvm/fnm/volta/asdf/mise when regenerating managed gateway services, so `gateway install --force` no longer recreates service definitions that doctor immediately flags as version-manager-backed. Fixes #76339. Thanks @brokemac79 and @BunsDev.",
-      "Google Chat: normalize Google auth certificate response headers before google-auth-library reads cache-control, so inbound webhook auth no longer rejects with `res?.headers.get is not a function`. Fixes #76880. Thanks @donbowman.",
-      "WhatsApp: route terminal login QR output through the active runtime for initial and restart sockets, so `openclaw channels login --channel whatsapp` does not lose the QR behind direct stdout writes. Fixes #76213. Thanks @dougvk.",
-      "Proxy/debugging: disable debug proxy direct upstream forwarding for proxy requests and CONNECT tunnels while managed proxy mode is active unless `OPENCLAW_DEBUG_PROXY_ALLOW_DIRECT_CONNECT_WITH_MANAGED_PROXY=1` is explicitly set for approved local diagnostics. Thanks @jesse-merhi and @mjamiv.",
-      "Direct APNs: route direct HTTP/2 delivery through the active managed proxy with redacted proxy diagnostics, so push requests honor configured egress controls and `openclaw proxy validate --apns-reachable` can prove APNs is reachable through the proxy before deployment. (#74905) Thanks @jesse-merhi.",
-      "Agents/subagents: detect prefix-only completion announce replies and fall back to the captured child result so requester chats no longer lose most of long sub-agent reports silently. Fixes #76412. Thanks @inxaos and @davemorin.",
-      "TUI: replace the stale-response watchdog notice with plain user-facing copy so stalled replies no longer surface backend or streaming internals. (#77120) Thanks @davemorin.",
-      "Security/Windows: validate `SystemRoot`/`WINDIR` env values through the Windows install-root validator and add them to the dangerous-host-env policy when resolving `icacls.exe`/`whoami.exe` for `openclaw security audit`, so workspace `.env` overrides and bare command names cannot redirect Windows ACL helpers to attacker-controlled binaries. (#74458) Thanks @mmaps.",
-      "Security/Windows: pin Windows registry-probe `reg.exe` resolution to the canonical Windows install root in install-root probing, so `SystemRoot`/`WINDIR` env overrides cannot redirect registry queries during Windows host detection. (#74454) Thanks @mmaps.",
-      "QQBot: preserve the framework command authorization decision when converting framework command contexts into engine slash command contexts, so downstream slash handlers see `commandAuthorized` matching the channel's resolved `isAuthorizedSender` instead of a hardcoded `true`. (#77453) Thanks @drobison00.",
-      "Security/Windows: block `LOCALAPPDATA` from workspace `.env` and resolve Windows update-flow portable Git path prepends from the trusted process-local `LOCALAPPDATA` only, so workspace-supplied values cannot redirect `git` discovery during `openclaw update`. (#77470) Thanks @drobison00.",
-      "Browser/SSRF: enforce the existing current-tab URL navigation policy before tab-scoped debug, export, and read routes (console, page errors, network requests, trace start/stop, response body, screenshot, snapshot, storage, etc.) collect from an already-selected tab, so blocked tabs return a policy error instead of being read first and redacted only at response time. (#75731) Thanks @eleqtrizit.",
-      "Security/Windows: route the `.cmd`/`.bat` process wrapper through the shared Windows install-root resolver instead of `process.env.ComSpec`, so workspace dotenv-blocked `SystemRoot`/`WINDIR` overrides and unsafe values like UNC paths or path-lists cannot redirect `cmd.exe` selection on Windows. (#77472) Thanks @drobison00.",
-      "Agents/bootstrap: honor `BOOTSTRAP.md` content injected by `agent:bootstrap` hooks when deciding whether bootstrap is pending, so hook-provided required setup instructions are included in the system prompt. (#77501) Thanks @ificator."
     ]
   }
 ]
