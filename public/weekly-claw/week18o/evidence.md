@@ -62,6 +62,9 @@
 - Schedule remains Fridays `06:20 UTC` (`20 6 * * 5`).
 - Manual cron run on 2026-06-19 used `citadel-all/citadel/opus48` and delivered to Discord, but stopped after a narrated pre-tool message; no deck artifact was created by the cron itself.
 - This evidence file records the manual route-around artifact generation.
+## Variant preservation — 2026-06-19
+- Preserved as `week18o` by Book after Henry requested keeping GLM and Opus variants separate.
+- Variant label: Opus route copy.
 ## Template correction — 2026-06-19
 - Rebuilt deck HTML on the accepted Week 17 Weekly Claw template system after Henry flagged the reduced Week 18 template as wrong.
 - Mechanical markers now match the Week 17 family: recurring `claw-wordmark`, `ep-label`, `gold-rule`, `layout-topic`, `layout-title`, `layout-outro`, Clash Display, Satoshi, and lobster motif.

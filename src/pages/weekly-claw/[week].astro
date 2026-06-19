@@ -7,7 +7,7 @@ const allSlides = import.meta.glob('/public/weekly-claw/week*/slide-*.jpg', { ea
 const editionMap = new Map<string, string[]>();
 
 for (const path of Object.keys(allSlides)) {
-  const match = path.match(/\/public\/weekly-claw\/(week\d+)\/slide-(\d+)\.jpg$/);
+  const match = path.match(/\/public\/weekly-claw\/(week\d+[a-z]?)\/slide-(\d+)\.jpg$/);
   if (match) {
     const week = match[1];
     if (!editionMap.has(week)) editionMap.set(week, []);
@@ -19,7 +19,7 @@ export function getStaticPaths() {
   const allSlides = import.meta.glob('/public/weekly-claw/week*/slide-*.jpg', { eager: false });
   const weeks = new Set<string>();
   for (const path of Object.keys(allSlides)) {
-    const match = path.match(/\/public\/weekly-claw\/(week\d+)\/slide-(\d+)\.jpg$/);
+    const match = path.match(/\/public\/weekly-claw\/(week\d+[a-z]?)\/slide-(\d+)\.jpg$/);
     if (match) weeks.add(match[1]);
   }
   return Array.from(weeks).map((week) => ({ params: { week } }));
