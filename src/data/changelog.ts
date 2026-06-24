@@ -16,6 +16,108 @@ export const CHANGELOG_SOURCE_URL = "https://raw.githubusercontent.com/openclaw/
 
 export const CHANGELOG_VERSIONS: Version[] = [
   {
+    "version": "2026.6.10",
+    "date": "2026.6.10",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610",
+    "features": [
+      {
+        "title": "**Automatic fast mode for talks",
+        "description": "** OpenClaw can enable fast mode for short conversational turns, then return to normal mode for longer runs with bounded fallback and delivery behavior. (#85104) Thanks @alexph-dev and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/85104"
+      },
+      {
+        "title": "**More reliable model routing",
+        "description": "** Zai model synthesis, GLM overload failover, and native reasoning-level selection now follow the active model catalog more consistently. (#94461, #93241, #94067, #94136) Thanks @Pandah97, @chrysb, @0xghost42, @zhengli0922, @openperf, @civiltox, and @BorClaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/94461"
+      },
+      {
+        "title": "**Safer session and channel state",
+        "description": "** channel switches reset stale origin fields, and cron delivery awareness stays attached to the target session. (#95328, #93580) Thanks @ZengWen-DT, @jalehman, @gorkem2020, and @scotthuang.",
+        "href": "https://github.com/openclaw/openclaw/issues/95328"
+      },
+      {
+        "title": "**Trusted policies survive hook composition",
+        "description": "** composed hook registries keep the trusted tool policies required by approval-sensitive flows. (#94545) Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/pull/94545"
+      },
+      {
+        "title": "**Agent and channel runtime",
+        "description": "** fast-mode state now survives retries, fallback transitions, progress events, and embedded/CLI/ACP normalization; session and channel routing retain the current target and delivery context. (#85104, #93580, #95328) Thanks @alexph-dev, @vincentkoc, @scotthuang, @ZengWen-DT, @jalehman, and @gorkem2020.",
+        "href": "https://github.com/openclaw/openclaw/issues/85104"
+      },
+      {
+        "title": "**Provider behavior",
+        "description": "** model catalogs now supply the correct Zai base URL, overload classification, and native reasoning controls for live-discovered models. (#94461, #93241, #94067, #94136) Thanks @Pandah97, @chrysb, @0xghost42, @zhengli0922, @openperf, @civiltox, and @BorClaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/94461"
+      },
+      {
+        "title": "**PR #86627** Keep core doctor health in contribution order",
+        "description": "**PR #86627** Keep core doctor health in contribution order. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/86627"
+      },
+      {
+        "title": "**PR #93580** fix",
+        "description": "preserve cron delivery awareness for target sessions. Thanks @scotthuang and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/93580"
+      },
+      {
+        "title": "**PR #95030** refactor",
+        "description": "add SDK transcript identity target API. Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/95030"
+      },
+      {
+        "title": "**PR #94838** refactor(copilot)",
+        "description": "complete harness lifecycle parity. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/94838"
+      },
+      {
+        "title": "**PR #95328** fix(sessions)",
+        "description": "reset stale per-channel origin fields on channel switch. Related #95325. Thanks @ZengWen-DT and @jalehman and @gorkem2020.",
+        "href": "https://github.com/openclaw/openclaw/issues/95328"
+      },
+      {
+        "title": "**PR #94461** fix(zai)",
+        "description": "fall back to manifest baseUrl for synthesized GLM-5 models. Related #94269. Thanks @Pandah97 and @chrysb.",
+        "href": "https://github.com/openclaw/openclaw/issues/94461"
+      },
+      {
+        "title": "**PR #93241** fix(agents)",
+        "description": "classify Zhipu GLM overload as overloaded for failover. Related #93211. Thanks @0xghost42 and @zhengli0922.",
+        "href": "https://github.com/openclaw/openclaw/issues/93241"
+      },
+      {
+        "title": "**PR #94067** fix(channels)",
+        "description": "resolve native /think menu levels via runtime catalog for live-discovered models. Related #93835. Thanks @openperf and @civiltox.",
+        "href": "https://github.com/openclaw/openclaw/issues/94067"
+      },
+      {
+        "title": "**PR #94136** fix(zai)",
+        "description": "expose GLM-5.2 reasoning levels [AI-assisted]. Thanks @BorClaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/94136"
+      },
+      {
+        "title": "**PR #85104** feat",
+        "description": "fast talks auto mode. Related #85087. Thanks @alexph-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/85104"
+      },
+      {
+        "title": "**PR #94545** fix",
+        "description": "keep trusted policies with hook registry. Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/94545"
+      },
+      {
+        "title": "**PR #95792** fix(onboard)",
+        "description": "refresh provider plugin registry after setup installs. Related #95765. Thanks @snowzlmbot.",
+        "href": "https://github.com/openclaw/openclaw/issues/95792"
+      }
+    ],
+    "fixes": [
+      "**Fast-mode and policy correctness:** fallback cutoffs and reset notices are bounded, repeated progress events remain visible, Codex service-tier state is normalized, and trusted policies are not lost when hook registries are composed. (#85104, #94545) Thanks @alexph-dev, @vincentkoc, and @jesse-merhi.",
+      "**Model and delivery edge cases:** Zai and GLM failover paths use the right runtime metadata, while stale channel-origin state no longer leaks across session changes. (#94461, #93241, #95328) Thanks @Pandah97, @chrysb, @0xghost42, @zhengli0922, @ZengWen-DT, @jalehman, and @gorkem2020.",
+      "**Provider plugin onboarding:** setup refreshes provider plugin registry metadata after installing setup-selected provider plugins, so auth continuation uses the newly installed provider instead of stale registry state. (#95792) Thanks @snowzlmbot."
+    ]
+  },
+  {
     "version": "2026.6.9",
     "date": "2026.6.9",
     "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202669",
@@ -12844,46 +12946,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
       "Scripts/UI/Windows: launch `.cmd` and `.bat` UI runners through the shared cmd.exe escaping path with shell mode disabled, avoiding Node.js v24 DEP0190 warnings while preserving argument boundaries. (#62910) Thanks @nandanadileep.",
       "Agents/CLI runner: disable supervisor stdout/stderr capture for prepared CLI runs while keeping bounded diagnostics and incremental JSONL output parsing, preventing long CLI output from being retained in memory. (#79617) Thanks @samzong.",
       "Telegram: treat a DM binding that carries the chat id in both `conversationId` and `parentConversationId` as a direct conversation instead of a topic, so reverse delivery for Telegram DMs is not misrouted through a topic-shaped target. (#79700) Thanks @TSHOGX."
-    ]
-  },
-  {
-    "version": "2026.5.7",
-    "date": "2026.5.7",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202657",
-    "features": [],
-    "fixes": [
-      "Release/plugin publishing: retry transient ClawHub CLI dependency install failures, keep preview-passing plugins publishable when one preview cell flakes, and verify every expected ClawHub package version after publish so maintenance releases are faster to recover and less likely to hide partial plugin publishes.",
-      "OpenAI: support `openai/chat-latest` as an explicit direct API-key model override for trying the moving ChatGPT Instant API alias without changing the stable default model.",
-      "Cron CLI: include computed `status` in `cron list --json` and `cron show --json` output so external tooling can read disabled/running/ok/error/skipped/idle state without reimplementing cron status derivation. (#78701) Thanks @aweiker.",
-      "Channels CLI: make `openclaw channels list` channel-only, add `--all` for bundled and catalog channels, render installed/configured/enabled state, and move model auth/usage details to `openclaw models auth list`, `openclaw status`, and `openclaw models list`. (#78456) Thanks @sliverp.",
-      "Native commands: honor owner enforcement for native command handlers. (#78864) Thanks @pgondhi987.",
-      "Active Memory: require admin scope for global memory toggles. (#78863) Thanks @pgondhi987.",
-      "Gateway/sessions: clear cached skills snapshots during `/new` and `sessions.reset` so long-lived channel sessions rebuild the visible skill list after skills change. (#78873) Thanks @Evizero.",
-      "Auto-reply: gate inline skill tool dispatch through before-tool-call authorization hooks. (#78517) Thanks @pgondhi987.",
-      "Tavily: resolve dedicated `tavily_search` and `tavily_extract` tool credentials from the active runtime config snapshot, so `exec` SecretRef-backed API keys do not reach the tools unresolved. (#78610) Thanks @VACInc.",
-      "Plugins/install: use the same absolute POSIX npm lifecycle shell for managed plugin install, rollback, repair, and uninstall npm operations as staged package updates, preventing restricted PATH shells from breaking cleanup. Thanks @vincentkoc.",
-      "Agents/context engine: invalidate cached assembled context views when source history shrinks or assembly fails, preventing stale pre-reset history from being reused. Fixes #77968. (#78163) Thanks @brokemac79 and @ChrisBot2026.",
-      "Discord/message: parse provider-prefixed targets like `discord:channel:<id>` as channel sends instead of legacy Discord DM targets, so cross-channel agent `message(action=\"send\")` calls no longer misroute channel IDs into misleading `Unknown Channel` failures. Fixes #78572.",
-      "Agents/compaction: clamp compaction summary reserve tokens to each model's output limit so high-context compaction no longer requests invalid `max_tokens` values. (#54392) Thanks @adzendo.",
-      "Commands/BTW: show the `/btw` missing-question usage placeholder with brackets so outbound channel sanitization keeps it visible. Fixes #62877. Thanks @RajvardhanPatil07.",
-      "Cron/doctor: repair persisted cron jobs whose `payload.model` was stored as `\"default\"`, `\"null\"`, blank, or JSON `null` by removing the bad override during `openclaw doctor --fix` while keeping cron runtime model validation strict. Fixes #78549. Thanks @bizzle12368239.",
-      "Telegram: honor `accessGroup:*` sender allowlists for DMs, groups, native commands, and callback authorization before applying Telegram's numeric sender-ID checks. Fixes #78660. Thanks @manugc.",
-      "Agent delivery: report `deliverySucceeded=false` when outbound delivery returns no adapter result, so claimed/empty delivery paths no longer masquerade as successful sends. Fixes #78532. Thanks @joeyfrasier.",
-      "Cron/isolated runs: fail implicit announce delivery before model execution when `delivery.channel=last` has no previous route, so recurring jobs do not spend tokens before hitting a permanent delivery-target error. Fixes #78608. Thanks @sallyom.",
-      "Gateway/sessions: persist a new generated transcript file when daily gateway-agent session rollover changes the session id, while preserving custom transcript paths. Fixes #78607. Thanks @nailujac, @zerone0x, and @sallyom.",
-      "Doctor/Codex OAuth: preserve working `openai-codex/*` PI routes during `doctor --fix` and recover 2026.5.5-rewritten `openai/*` GPT-5 routes when only Codex OAuth auth is available, so update repair does not break subscription-auth setups. Fixes #78407. Thanks @shakkernerd.",
-      "Telegram: keep the polling watchdog tied to `getUpdates` liveness so unrelated outbound Bot API calls cannot mask a wedged inbound poller. Fixes #78422. Thanks @ai-hpc.",
-      "Agents/subagents: have completed session-mode subagent registry rows honor `agents.defaults.subagents.archiveAfterMinutes` instead of a hardcoded 5-minute TTL, so registry-backed surfaces keep one retention knob across spawn modes. (#78263) Thanks @arniesaha.",
-      "Plugins/channel setup: forward `setChannelRuntime` from non-bundled external plugin setup entries so deferred external channel runtime initializers are installed before startup polling. Fixes #77779. (#77799) Thanks @openperf.",
-      "Telegram: treat successful same-chat `message` tool outbound sends during an inbound Telegram turn as delivered when deciding whether to emit the rewritten silent reply fallback. (#78685) Thanks @neeravmakwana.",
-      "Gateway/tasks: reconcile stale CLI run-context tasks whose live run context disappeared and bound channel hot-reload deferrals so stale task records cannot block Discord/Slack/Telegram reloads forever.",
-      "Discord/voice: audit Discord voice-channel permissions in `channels capabilities` and `channels status --probe`, including auto-join targets, so missing Connect/Speak/Read Message History permissions show up before `/vc join`.",
-      "Discord/voice: make voice capture less choppy by extending the default post-speech silence grace to 2.5s, add `voice.captureSilenceGraceMs` for noisy Discord sessions, and tighten the spoken-output prompt around live STT fragments. Thanks @vincentkoc.",
-      "WhatsApp: route proactive phone-number sends through Baileys LID forward mappings when available, so LID-addressed contacts receive agent messages instead of creating sender-only ghost chats. Fixes #67378. (#74925) Thanks @edenfunf.",
-      "WhatsApp: send captioned `MEDIA:` directive auto-replies once instead of emitting an empty media message before the captioned media reply. (#78770) Thanks @ai-hpc.",
-      "Codex/approvals: in Codex approval modes, stop installing the pre-guardian native `PermissionRequest` hook by default so Codex's reviewer can approve safe commands before OpenClaw surfaces an approval, remember `allow-always` decisions for identical Codex native `PermissionRequest` payloads within the active session window, and make plugin approval requests validate/render their actual allowed decisions so Telegram and other native approval UIs cannot offer stale actions. Thanks @shakkernerd.",
-      "Model providers: normalize APNG sniffed PNG uploads, preserve Gemini 3 tool-call thought-signature replay with fallback signatures, accept legacy `__env__:VAR` custom-provider keys, and repair snake_case tool-call transcript sanitization. Fixes #51881, #48915, #77566, and #42858.",
-      "Telegram/models: parse provider ids containing dots in `/models` callback buttons so `hf.co` model lists render as inline keyboard buttons. Fixes #38745."
     ]
   }
 ]
