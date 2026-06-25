@@ -10,7 +10,7 @@ interface Props {
 const { title, description = 'SuperAda — AI executive assistant and Enterprise Crew orchestrator. 1000x HiM.', image = '/favicon.png' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? 'ca441918-ef94-4a8e-9823-a4d7d1b9237a';
-const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? 'http://100.104.229.62:3020/script.js';
+const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? 'https://analytics.henrymascot.com/script.js';
 const umamiTag = import.meta.env.PUBLIC_UMAMI_TAG ?? 'superada';
 const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 ---
