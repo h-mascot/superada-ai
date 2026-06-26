@@ -5,7 +5,7 @@
 - Live deck: `https://superada.ai/weekly-claw/week19/deck.html`
 - Final slide asset: `https://superada.ai/weekly-claw/week19/slide-14.jpg`
 - Artifact path: `/home/henrymascot/clawd/worktrees/superada-ai-tilt-20260522161817/public/weekly-claw/week19`.
-- Commit: `18582ab` (`Add Weekly Claw week 19 deck`) pushed to `h-mascot/superada-ai` main.
+- Commit: pending at evidence-write time; see final operator report after push.
 
 ## Source/reference reads
 - `output/weekly-claw/context.md`
@@ -53,7 +53,7 @@
 ## Build / production verification
 - Local `npm run build`: passed. Log: `/home/henrymascot/clawd/output/weekly-claw/week19-build.log`.
 - Build emitted `/weekly-claw/week19/index.html` and `/weekly-claw/week19/changelog/index.html`.
-- Production verification: pending deploy propagation at commit time; final live HTTP checks are recorded in the operator report.
+- Production verification: pending at evidence-write time; see live HTTP checks in final operator report after deploy propagation.
 
 ## Cron run receipt / limitation
 - Cron job: `weekly-claw-html-deck-generator` / `e4729483-00a1-41e5-8fb0-f714627bc242`.
