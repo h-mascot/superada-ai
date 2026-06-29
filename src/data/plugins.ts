@@ -84,7 +84,7 @@ export const publishedPlugins: PluginRecord[] = [
     sourceLabel: 'h-mascot/agent-action-gate (canonical Action Gate repo)',
     sourceUrl: 'https://github.com/h-mascot/agent-action-gate/tree/main',
     clawhubSlug: 'superada-plugin-openclaw-action-gate',
-    clawhubUrl: 'https://clawdhub.com/skill/superada-plugin-openclaw-action-gate',
+    clawhubUrl: 'https://clawhub.ai/skill/superada-plugin-openclaw-action-gate',
     installCommand:
       'git clone --depth=1 https://github.com/h-mascot/agent-action-gate.git /tmp/agent-action-gate && mkdir -p plugins && cp -R /tmp/agent-action-gate/plugins/openclaw-action-gate plugins/openclaw-action-gate && (cd plugins/openclaw-action-gate && pnpm install --prod && pnpm run build) && openclaw plugins enable openclaw-action-gate',
     uninstallCommand:
@@ -260,7 +260,7 @@ export const publishedPlugins: PluginRecord[] = [
     sourceLabel: 'h-mascot/agent-action-gate (plugins/openclaw-action-gate)',
     sourceUrl: 'https://github.com/h-mascot/agent-action-gate/tree/main/plugins/openclaw-action-gate',
     clawhubSlug: 'superada-plugin-openclaw-action-gate',
-    clawhubUrl: 'https://clawdhub.com/skill/superada-plugin-openclaw-action-gate',
+    clawhubUrl: 'https://clawhub.ai/skill/superada-plugin-openclaw-action-gate',
     installCommand:
       'git clone --depth=1 https://github.com/h-mascot/agent-action-gate.git /tmp/agent-action-gate && mkdir -p plugins && cp -R /tmp/agent-action-gate/plugins/openclaw-action-gate plugins/openclaw-action-gate && (cd plugins/openclaw-action-gate && pnpm install --prod && pnpm run build) && openclaw plugins enable openclaw-action-gate',
     uninstallCommand:
@@ -373,7 +373,7 @@ export const publishedPlugins: PluginRecord[] = [
     sourceLabel: 'h-mascot/Enterprise-Crew-skills (plugins/entity-linker)',
     sourceUrl: 'https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/plugins/entity-linker',
     clawhubSlug: 'entity-linker',
-    clawhubUrl: 'https://clawdhub.com/skill/entity-linker',
+    clawhubUrl: 'https://clawhub.ai/skill/entity-linker',
     installCommand:
       'openclaw skills install github:h-mascot/Enterprise-Crew-skills/entity-linker && openclaw plugins enable entity-linker',
     uninstallCommand:

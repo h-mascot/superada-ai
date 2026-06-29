@@ -47,7 +47,7 @@ export const publishedSkills: SkillRecord[] = [
     sourceUrl: 'https://github.com/henrino3/superada-ai/tree/main/public/skills/super-spec',
     sourceSpec: 'https://superada.ai/skills/super-spec/SKILL.md',
     clawhubSlug: 'superada-skill-super-spec',
-    clawhubUrl: 'https://clawdhub.com/skill/superada-skill-super-spec',
+    clawhubUrl: 'https://clawhub.ai/skill/superada-skill-super-spec',
     entrypoint: 'SKILL.md',
     installCommand: 'curl -sSf https://superada.ai/install/super-spec | sh',
     reviewMode: 'source-review',

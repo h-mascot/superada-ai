@@ -31,7 +31,7 @@ const agentPrompt = skill.installCommand
   ? `Install the skill described on this page from ${skill.sourceSpec}. Review the source first, then run: ${skill.installCommand}`
   : `Review the skill page, then follow the manual setup instructions from ${skill.sourceUrl}. This one is not currently a first-class openclaw skills install bundle.`;
 
-const clawhubLink = skill.clawhubUrl ?? (skill.clawhubSlug ? `https://clawdhub.com/skill/${skill.clawhubSlug}` : null);
+const clawhubLink = skill.clawhubUrl ?? (skill.clawhubSlug ? `https://clawhub.ai/skill/${skill.clawhubSlug}` : null);
 ---
 
 <!doctype html>
