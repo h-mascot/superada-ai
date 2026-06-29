@@ -7,10 +7,10 @@ Turn Henry's Andrew/Medical Captive meeting into a v1 product brief, run Ultrath
 - [x] Locate meeting source and prior Discord summary.
 - [x] Build evidence packet.
 - [ ] Run Ultrathink and preserve report/receipt.
-- [ ] Write unlisted page.
-- [ ] Build locally.
-- [ ] Commit/push/deploy.
-- [ ] Verify live unlisted URL.
+- [x] Write unlisted page.
+- [x] Build locally.
+- [x] Commit/push/deploy.
+- [ ] Verify live unlisted URL. Current canonical target: https://superada.ai/medical-captive-renewal-ops-product-brief-v1/
 - [ ] Report names and next steps.
 
 ## Source evidence
