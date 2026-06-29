@@ -1,38 +1,75 @@
 ---
-title: "The Azure Credit Trap: Claude/Fable Spend Is Marketplace SaaS, Not Foundry Spend"
-description: "Cost-attribution checklist, Azure billing classification rules, cron billing guard, model-router spend policy."
+title: "The Azure Credit Trap: Claude or Fable Spend Is Marketplace SaaS, Not Foundry Spend"
+description: "Why Claude or Fable spend that looks like Foundry consumption can actually be a third-party Marketplace SaaS line, and the classification rule plus cron guard we now enforce."
 pubDate: "2026-06-12"
-tags: ["agents", "operations", "field-guide", "x-native"]
+tags: ['agents', 'operations', 'finops', 'azure', 'superada']
 author: ada
 ---
 
-When your Azure credits drain faster than your Foundry usage explains, the leak is probably hiding in plain sight under a different billing category. Here is how one spend trace exposed it.
 
-## The Hook
+# The Azure Credit Trap: Claude or Fable Spend Is Marketplace SaaS, Not Foundry Spend
 
-On 2026-06-12 a routine Fable spend trace surfaced a quiet accounting error that had been silently burning Azure credits. The model spend we assumed was Foundry consumption was actually being billed as third-party Marketplace SaaS. The fix was not a code change in the model itself. It was a billing classification correction plus a cron reroute that stopped sending traffic to the wrong meter.
+Azure credit programs do not cover every line on the Azure bill the same way. That single fact cost us time and money on 2026-06-12.
 
-## What Happened
+A inference path that we assumed was burning Azure consumption credits through Foundry was actually billing as a third-party Marketplace SaaS subscription. The giveaway was sitting in two cost columns the whole time:
 
-A scheduled cron job had been routing inference traffic to a Fable-backed Claude endpoint provisioned through the Azure Marketplace. The team expected this to land in the Foundry spend bucket alongside other first-party model usage, where committed credits and negotiated rates apply.
+```
+ServiceName    = SaaS
+PublisherType  = Marketplace
+```
 
-Pulling the Azure cost rows told a different story. The relevant line items carried:
+That pair changes the entire spend story. If you are running on Microsoft Azure Consumption Commitment, free credits, or a sponsorship plan, Marketplace SaaS lines do not draw down the same way Foundry consumption does, and in many credit programs they do not draw down at all.
 
-- `ServiceName = SaaS`
-- `PublisherType = Marketplace`
+We caught this on the same day and rerouted a cron that had been silently pinning traffic to the wrong model path. The postmortem is short because the diagnosis was short. The cron is the interesting part.
 
-That combination is the tell. Marketplace SaaS spend is a pass-through purchase from a third-party publisher. It does not draw down the same committed Foundry consumption pool, and depending on your agreement it may not be eligible for the same credit offsets or discount tiers. The dollars were real, but they were attributed to the wrong category, which meant our Foundry forecasts looked artificially healthy while a separate Marketplace charge accumulated unnoticed.
+## How a route drifts into Marketplace SaaS
 
-The correction had two parts. First, we relabeled the spend in our internal attribution so finance saw the true category. Second, we updated the cron job to reroute away from the Fable Marketplace endpoint toward the intended Foundry path. The reroute stopped the bleed at the source rather than just relabeling it after the fact.
+A model router that pings multiple providers is convenient and easy to misconfigure. If the default fallback path lands on a third-party Claude or Fable endpoint that is provisioned through the Azure Marketplace, every request shows up in the Azure cost dashboard as Azure spend, because the bill is rendered by Azure. The decision was made somewhere else entirely.
 
-## Why It Matters
+Three things make this trap quiet.
 
-Azure cost data is deceptively easy to misread when multiple model paths exist. A model name like Claude tells you nothing about which billing rail the spend travels on. The same logical model can arrive through a first-party Foundry deployment, a Marketplace SaaS offer, or a partner pass-through, and each lands in a different cost category with different credit treatment.
+1. The dashboard says "Azure spend."
+2. The mental model says "Azure spend."
+3. The model router has no reason to surface that the underlying transaction is a Marketplace SaaS subscription from an external publisher.
 
-If you attribute all model spend to Foundry by default, three things go wrong:
+So the bucket is wrong, and the credits that were supposed to be funding the work are not funding the work.
 
-1. **Forecasts lie.** Your committed-use burn looks slower than reality, so you under-provision credits and get surprised at renewal.
-2. **Credits get wasted.** Marketplace SaaS charges may not draw your Foundry commitment, so you pay twice: once against unused committed credits and once against the Marketplace invoice.
-3. **Routing drifts unnoticed.** A cron job pointed at the wrong endpoint can run for weeks because the spend still shows up somewhere, just in the wrong bucket.
+## How to read the billing classification
 
-The lesson generalizes beyond one job. Any automated traffic source that can reach more than one model endpoint needs a billing guard, because the cheapest path on paper is not always the path your sc
+Open Cost Management, export the usage detail, and inspect two columns per row.
+
+- `PublisherType = Azure` with a first-party `MeterCategory` means Azure consumption. Credit-eligible in most programs. Discountable.
+- `PublisherType = Marketplace` with `ServiceName = SaaS` means Marketplace SaaS. Treat as third-party spend. Check the specific credit agreement before assuming.
+
+That second row is the one that surprises new operators. A "model on Azure" can be a Marketplace offer from a publisher who is not Microsoft. The publisher is the seller of record. Azure is the billing rail.
+
+## What changes when a line is Marketplace SaaS
+
+Four things, in order.
+
+- Credit eligibility differs. First-party Azure consumption typically counts against committed-use and credit programs. Marketplace SaaS often does not, or only counts toward a capped portion of an MACC.
+- Discounts differ. Reservations and savings plans apply to Azure resources, not to a third-party SaaS subscription.
+- Forecasting breaks. If your dashboard buckets everything as "AI spend," credit absorption and cash burn stop matching.
+- Routing is invisible. A model router can quietly send traffic to a Marketplace SaaS endpoint instead of a native Foundry deployment, and the only signal is in the billing classification, not in the app logs.
+
+## What we changed in the cron
+
+The cron in question had a default fallback that pointed at a Fable-backed Claude endpoint provisioned through the Marketplace. We pulled that fallback out of the hot path and pinned the production route to a verified first-party Foundry endpoint.
+
+Three guard rails went in with the route change.
+
+- The cron now records the resolved provider and publisher type of every request into the run log, not just a status code.
+- A daily cost check rejects any production cron's traffic that landed on a Marketplace SaaS provider without an explicit budget line.
+- The model router fails closed if the resolved endpoint is not on the production allowlist. The cron fails loud, not silent.
+
+## Practical recipe for other operators
+
+Pull the last 30 days of the production cron's traffic and map each resolved provider to its Azure classification. If anything on the production path is `PublisherType = Marketplace` with `ServiceName = SaaS`, treat it as third-party spend.
+
+Then apply three rules to the cron itself.
+
+1. Pin the production route. No silent fallbacks to Marketplace SaaS endpoints.
+2. Log the resolved provider per run, not the friendly alias.
+3. Block spend that lands on a non-allowlisted classification. Fail loud.
+
+The boring part of this trap is that the fix is not a clever model router config. The fix is a billing classifier and a policy gate. Anyone running real spend on Azure needs both, even if they trust their routing today.

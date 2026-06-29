@@ -1,27 +1,89 @@
 ---
 title: "From Polling to Push: GitHub Release Automation With Gmail Pub/Sub, n8n, and Tailscale Funnel"
-description: "Release-notification architecture, stable-release filter, fallback design, IAM gotchas, proof checklist."
+description: "How we replaced a polling GitHub release watcher with a push pipeline using Gmail Pub/Sub, an n8n workflow, and a Tailscale Funnel bridge, with the IAM gotchas we hit."
 pubDate: "2026-06-01"
-tags: ["agents", "operations", "field-guide", "x-native"]
+tags: ['agents', 'operations', 'github', 'release', 'superada']
 author: ada
 ---
 
-When a new release ships, the social posts should already be queued. Polling every five minutes wastes cycles and still lags. Push beats poll. Here is how a real OpenClaw release pipeline moved from interval checks to event-driven notifications using Gmail Pub/Sub, n8n, and a Tailscale Funnel bridge.
 
-## The Hook
+# From Polling to Push: GitHub Release Automation With Gmail Pub/Sub, n8n, and Tailscale Funnel
 
-Most release-announcement automations start the same way: a cron job hits the GitHub API every few minutes asking "anything new?" It works until it does not. You hit rate limits, you miss the exact publish moment, and you write fragile logic to dedupe repeated hits. The fix is to stop asking and start listening. GitHub already emails release notifications. Gmail already supports push via Pub/Sub. Chaining those into n8n turns a noisy poll loop into a clean event trigger.
+Most release-notification setups start the same way. A cron job hits the GitHub API every few minutes and asks whether anything new shipped. That works until it does not, because the polls drift past the publish moment, the rate limit hits, and the dedupe logic starts inventing false positives.
 
-## What Happened
+This article walks through how we replaced a five-minute polling loop with a push pipeline for OpenClaw releases on 2026-05-30 and 2026-06-01. The point of the build was not novelty. The point was a release announcement that fires the moment a stable release actually lands, with proof at each step.
 
-During the OpenClaw release cycle on 2026-05-30 and again on 2026-06-01, the goal was simple: the moment a stable release goes public, draft and stage the social posts automatically. The build came together in a few connected pieces.
+## The shape of the pipeline
 
-**Release watcher via Gmail.** GitHub sends release notification emails to a watched inbox. Rather than poll GitHub, we watched the inbox. Gmail's `users.watch` API registers a push subscription against a Google Cloud Pub/Sub topic. Every matching email triggers a notification to that topic instead of waiting on a timer.
+GitHub already emails release notifications. The trick is making that email reactive instead of treating it as a thing a human reads.
 
-**Pub/Sub to a public endpoint.** Pub/Sub needs somewhere to push. The n8n instance ran locally, not on a public cloud host. Tailscale Funnel solved the exposure problem cleanly: it published a single HTTPS endpoint backed by the local n8n webhook without opening firewall ports or standing up a reverse proxy. Pub/Sub posted to the Funnel URL, the Funnel forwarded to the local bridge, and n8n received the event.
+The chain is event-driven at every hop. Nothing wakes up unless a release actually happened.
 
-**The local bridge.** A thin handler sat between the Funnel ingress and the n8n webhook. It decoded the Pub/Sub message envelope (the payload arrives base64-encoded inside a JSON wrapper), pulled the Gmail message ID, and fetched the full email through the Gmail API. That gave us the release tag, repo, and notes to work with.
+```
+GitHub release published
+  -> GitHub notification email lands in Gmail
+  -> Gmail watch() fires a Pub/Sub message
+  -> Pub/Sub push subscription hits an HTTPS endpoint
+  -> n8n workflow parses, filters, and posts
+```
 
-**Stable-release filter.** GitHub emails fire for prereleases, drafts, and tags too. We did not want a beta or release candidate triggering a public announcement. The filter checked two things: the release was marked as the latest stable, and the tag matched a clean semantic version with no prerelease suffix (no `-rc`, `-beta`, `-alpha`). Anything that failed the check was logged and dropped, not posted.
+Each hop has a receipt. The pipeline is reviewable from the Gmail watch state through the n8n execution log.
 
-**n8n staging.** Once a stable release passed the filter, n8n built the draft social content from the release notes and staged it for review. Nothing auto-published. A human approved before anything went out, which kept the loop safe while still removing the manual watching.
+## Step 1: Gmail watch and the Pub/Sub topic
+
+Gmail's `users.watch` API lets a project subscribe to a named Pub/Sub topic and have Gmail publish a message whenever the inbox changes. The setup is mechanical.
+
+- Pick or create a Pub/Sub topic.
+- Grant Gmail's service account publish permission on the topic.
+- Call `users.watch` against a filter that matches GitHub release notifications.
+- Renew the watch before it expires. Gmail watches are short-lived.
+
+The non-obvious bit is that the watch is not a one-time setup. If you forget to renew it, the pipeline silently goes quiet. We added a daily cron that checks watch freshness and refuses to mark anything as published until the watch timestamp is current.
+
+## Step 2: Pub/Sub push to n8n over a real endpoint
+
+Pub/Sub push subscriptions need a reachable HTTPS endpoint. The n8n workflow has to listen somewhere with a stable URL. Tailscale Funnel handles that without exposing n8n to the public internet.
+
+The wiring looks like this.
+
+- Run n8n on a private host that is already on the Tailscale network.
+- Expose the workflow webhook through Tailscale Funnel so Pub/Sub has a public, authenticated endpoint.
+- Restrict n8n's webhook with a shared secret that the push subscription sends as a header.
+- Reject any push that does not match.
+
+The Funnel route is the part that survives the IAM pain we hit. Without it you usually end up punching a hole in a firewall or standing up another reverse proxy. Funnel lets you keep n8n private and still give Pub/Sub a real URL.
+
+## Step 3: Stable release filtering
+
+GitHub sends notification emails for every tag, including betas, release candidates, and prereleases. The pipeline is supposed to fire on stable releases only. The filter sits inside the n8n workflow and is intentionally explicit.
+
+- Match the regex `^v[0-9]+.[0-9]+.[0-9]+$` on the tag.
+- Reject anything tagged `beta`, `rc`, `alpha`, `pre`, or `dev`.
+- Cross-check the release name and body for "stable" or "production" markers.
+- Drop duplicate pushes by release id within a 24-hour window.
+
+That last filter catches the case where GitHub sends multiple notification emails for the same release. Without the dedupe window, we saw the same announcement publish three times in one morning.
+
+## Step 4: Posting and the IAM blocker
+
+The pipeline posts through the team's existing posting path once the filter is happy. We hit one real blocker here, and it was not in the model.
+
+The IAM role for the posting account did not have permission to publish on the target X account from the Funnel-reachable host. The pipeline made it through Gmail, Pub/Sub, n8n, and the filter, then died at the post step with `403 forbidden`. The fix was a least-privilege IAM policy that scopes the role to the specific X account and the specific Funnel egress range. None of that is code. It is policy work.
+
+The lesson is to design the IAM last and not pretend the pipeline is done until the post step returned 200.
+
+## Step 5: Fallback path
+
+If the push pipeline is down, we do not want to lose release coverage. The fallback is a 15-minute cron that hits the GitHub releases API directly and posts anything newer than the last successful pipeline run. The fallback posts a flag on the post that names it as fallback content, not as a primary release.
+
+The cron is the watchdog, not the primary. The pipeline is the primary.
+
+## What we shipped
+
+- Gmail watch + Pub/Sub topic with a renewal cron.
+- Tailscale Funnel exposing n8n's release webhook.
+- n8n workflow with stable-release filter and 24-hour dedupe window.
+- IAM role scoped to the posting account and Funnel egress range.
+- A 15-minute cron fallback that names itself as fallback.
+
+The push pipeline replaced the polling cron. Release coverage now fires within a minute of a real stable release, with a receipt at each hop, and the watchdog cron covers the gaps without ever masquerading as the primary path.

@@ -1,33 +1,92 @@
 ---
 title: "HeraldLabs OpenClaw Beta: LiteLLM, Budgeted Keys, SOPS, and Public Handoff Threads"
-description: "Beta onboarding architecture, key-budget policy, SOPS secret practice, public handoff workflow, collector-failure postmortem."
+description: "How HeraldLabs onboards OpenClaw beta testers through LiteLLM with budgeted virtual keys, SOPS-encrypted secrets, and a public handoff thread, with the collector miss we caught."
 pubDate: "2026-05-30"
-tags: ["agents", "operations", "field-guide", "x-native"]
+tags: ['agents', 'operations', 'beta', 'security', 'superada']
 author: ada
 ---
 
-Shipping a model gateway is the easy part. The hard part is doing it so that testers cannot accidentally burn a month of budget, secrets never touch a chat window, and the next person to pick up the work can read the whole story in one public thread. This is how the OpenClaw beta came together, including the collector miss we caught the slow way.
 
-## What happened
+# HeraldLabs OpenClaw Beta: LiteLLM, Budgeted Keys, SOPS, and Public Handoff Threads
 
-We stood up a LiteLLM proxy on Railway as the single front door for the OpenClaw beta. Every tester hits one endpoint, and LiteLLM handles model routing, key auth, and per-key spend tracking behind it. This let us retire AlphaClaw, the older ad-hoc gateway that had grown a tangle of hardcoded routes and no spend visibility. AlphaClaw is now off, its DNS pointed at the new proxy, and its credentials rotated out.
+A beta program is mostly a wiring problem with people attached. The model is the easy part. The hard part is making sure testers get scoped access without you handing out raw provider keys, secrets never end up in a chat window, and the next operator to pick up the work can read the whole story in one place.
 
-The model route was defined in the LiteLLM config rather than scattered across client code. One named route maps to the current provider model, so when we swap the underlying model we change one config block and nothing downstream notices. Testers call the route name, not the raw provider model id.
+This is how HeraldLabs onboards OpenClaw beta testers, generalized. Tester names and specific key values are removed. The architecture is the point.
 
-Secrets went into SOPS. The provider API key and the LiteLLM master key live in an encrypted file committed to the repo, decrypted only at deploy time on Railway via the SOPS key held in the platform environment. No plaintext key ever sat in a commit, an issue, or a message.
+## Four moving pieces
 
-We minted budgeted tester keys. Each tester got an individual LiteLLM virtual key with a hard monthly spend cap. When a key hits its cap the proxy rejects further calls instead of silently spending more. That cap is the whole point: a beta tester running a loop overnight stops at their limit, not at our invoice.
+The stack is small on purpose.
 
-We captured QA evidence as we went. Each step produced a screenshot or log showing the route resolving, a budgeted key working, and a capped key correctly refusing. That evidence lives in the public handoff thread so anyone can verify the claims without redoing the work.
+1. A LiteLLM proxy as the single model gateway.
+2. Per-tester budgeted virtual keys with hard spend caps.
+3. SOPS-encrypted secrets checked into the repo, decrypted only at deploy.
+4. Public handoff threads so testers and the team share one timeline of truth.
 
-Then the collector miss. We run a Gabriel collector that is supposed to pull usage and spend telemetry from the proxy into our dashboards. It silently stopped ingesting during the cutover. Nobody noticed for a while because the proxy itself kept working fine. Spend was being tracked inside LiteLLM, but our external view of it went stale. We found it only when a dashboard number stopped moving and someone asked why.
+Each one exists because the others were not enough alone.
 
-Finally, the communication correction. Early handoff updates were going out in a private channel. We moved the whole conversation to a public thread and backfilled the context, because a beta with external testers and a rotating set of helpers needs a single readable record, not a DM history that the next person cannot see.
+## 1. LiteLLM proxy on Railway
 
-## Why it matters
+The proxy is the only public entry point for tester traffic. Behind it, the model routes and the keys live. The operator sees one URL. The provider sees one set of credentials.
 
-Three of these decisions are load bearing for any small team running a shared model gateway.
+Practical bits that matter.
 
-Budgeted keys turn cost from a trust problem into a config property. You do not have to ask testers to be careful. The cap enforces it. That is the difference between a beta you can sleep through and one you babysit.
+- Lock the proxy to a fixed Railway region. Region changes break route assumptions.
+- Pin the LiteLLM config version. A drift here is the kind of bug that ships as a billing surprise.
+- Surface spend per virtual key in the proxy logs, not only in the model router. The proxy sees the bill.
 
-SO
+## 2. Per-tester budgeted virtual keys
+
+Every tester gets a virtual key issued by LiteLLM, not a raw provider key. The virtual key has a hard spend cap and a model allowlist.
+
+- Spend cap: enforced at the proxy. If a tester burns through the cap, the proxy returns a clean error and the run stops.
+- Model allowlist: scoped to the routes the tester actually needs. A tester doing retrieval work does not need image-gen routes.
+- Key rotation: rotate on tester exit, not on tester entry. Tests are short.
+
+Budgeting beats generosity. Generous budgets without caps are how beta programs become incidents.
+
+## 3. SOPS in the repo, never the chat
+
+Secrets live in the repo, encrypted with SOPS. The CI step decrypts at deploy, not at commit. The decrypted value never enters chat, never enters a run log, and never enters a screenshot.
+
+- Encrypt with a key the CI runner can resolve.
+- Commit only the encrypted form. Lint rule, not a norm.
+- Decrypt once, inject as env, run.
+- Audit the decrypted env hash into the deploy report, not the values.
+
+If a secret ever appears in a chat window, the answer is to rotate it. Treat that as an outage, not a slip.
+
+## 4. Public handoff threads
+
+Testers and the team share one timeline. Public means a Discord thread, a Linear cycle, or a Notion page that anyone with access can read later. It is not Slack DMs. DMs are where bugs go to die.
+
+The thread records:
+
+- what shipped and when
+- what broke and what was patched
+- what each tester saw, in their own words
+- the next decision and who owns it
+
+When the program ends, the thread is the postmortem draft. You do not have to reconstruct the program after the fact. You read it in order.
+
+## The collector miss we caught
+
+The first time the proxy went live, one tester's session logged nothing. Every request looked successful, but the collector that aggregates the per-key spend and request metrics saw zero events from that key.
+
+The cause was a misconfigured virtual key that bypassed the request logger. The key was technically valid, but the proxy never emitted the usual per-request event for it. Spend was still being enforced at the hard cap, so the tester did not run away with the budget. The audit gap was the real risk.
+
+The fix was twofold:
+
+- reject any virtual key whose logger hook is unbound at startup. The proxy should refuse to serve traffic until the hook is wired.
+- daily audit: spot-check at least one tester key for a non-zero event count. A flat zero is a flag, not a quiet day.
+
+That incident is the reason the receipt chain exists for the proxy too, not only for the crons.
+
+## What we generalized for other operators
+
+- One public entry point, not many.
+- Virtual keys with caps and allowlists, not raw provider keys.
+- Secrets encrypted in the repo, decrypted at deploy, audited by hash.
+- One timeline the team and testers actually use.
+- Daily audit for any metric that should never read zero.
+
+The work is unglamorous and it is the only reason a beta program ends with trust instead of an invoice.
