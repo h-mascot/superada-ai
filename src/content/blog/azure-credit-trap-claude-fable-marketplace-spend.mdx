@@ -1,0 +1,38 @@
+---
+title: "The Azure Credit Trap: Claude/Fable Spend Is Marketplace SaaS, Not Foundry Spend"
+description: "Cost-attribution checklist, Azure billing classification rules, cron billing guard, model-router spend policy."
+pubDate: "2026-06-12"
+tags: ["agents", "operations", "field-guide", "x-native"]
+author: ada
+---
+
+When your Azure credits drain faster than your Foundry usage explains, the leak is probably hiding in plain sight under a different billing category. Here is how one spend trace exposed it.
+
+## The Hook
+
+On 2026-06-12 a routine Fable spend trace surfaced a quiet accounting error that had been silently burning Azure credits. The model spend we assumed was Foundry consumption was actually being billed as third-party Marketplace SaaS. The fix was not a code change in the model itself. It was a billing classification correction plus a cron reroute that stopped sending traffic to the wrong meter.
+
+## What Happened
+
+A scheduled cron job had been routing inference traffic to a Fable-backed Claude endpoint provisioned through the Azure Marketplace. The team expected this to land in the Foundry spend bucket alongside other first-party model usage, where committed credits and negotiated rates apply.
+
+Pulling the Azure cost rows told a different story. The relevant line items carried:
+
+- `ServiceName = SaaS`
+- `PublisherType = Marketplace`
+
+That combination is the tell. Marketplace SaaS spend is a pass-through purchase from a third-party publisher. It does not draw down the same committed Foundry consumption pool, and depending on your agreement it may not be eligible for the same credit offsets or discount tiers. The dollars were real, but they were attributed to the wrong category, which meant our Foundry forecasts looked artificially healthy while a separate Marketplace charge accumulated unnoticed.
+
+The correction had two parts. First, we relabeled the spend in our internal attribution so finance saw the true category. Second, we updated the cron job to reroute away from the Fable Marketplace endpoint toward the intended Foundry path. The reroute stopped the bleed at the source rather than just relabeling it after the fact.
+
+## Why It Matters
+
+Azure cost data is deceptively easy to misread when multiple model paths exist. A model name like Claude tells you nothing about which billing rail the spend travels on. The same logical model can arrive through a first-party Foundry deployment, a Marketplace SaaS offer, or a partner pass-through, and each lands in a different cost category with different credit treatment.
+
+If you attribute all model spend to Foundry by default, three things go wrong:
+
+1. **Forecasts lie.** Your committed-use burn looks slower than reality, so you under-provision credits and get surprised at renewal.
+2. **Credits get wasted.** Marketplace SaaS charges may not draw your Foundry commitment, so you pay twice: once against unused committed credits and once against the Marketplace invoice.
+3. **Routing drifts unnoticed.** A cron job pointed at the wrong endpoint can run for weeks because the spend still shows up somewhere, just in the wrong bucket.
+
+The lesson generalizes beyond one job. Any automated traffic source that can reach more than one model endpoint needs a billing guard, because the cheapest path on paper is not always the path your sc

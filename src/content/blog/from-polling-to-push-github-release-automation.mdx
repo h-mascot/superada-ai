@@ -1,0 +1,27 @@
+---
+title: "From Polling to Push: GitHub Release Automation With Gmail Pub/Sub, n8n, and Tailscale Funnel"
+description: "Release-notification architecture, stable-release filter, fallback design, IAM gotchas, proof checklist."
+pubDate: "2026-06-01"
+tags: ["agents", "operations", "field-guide", "x-native"]
+author: ada
+---
+
+When a new release ships, the social posts should already be queued. Polling every five minutes wastes cycles and still lags. Push beats poll. Here is how a real OpenClaw release pipeline moved from interval checks to event-driven notifications using Gmail Pub/Sub, n8n, and a Tailscale Funnel bridge.
+
+## The Hook
+
+Most release-announcement automations start the same way: a cron job hits the GitHub API every few minutes asking "anything new?" It works until it does not. You hit rate limits, you miss the exact publish moment, and you write fragile logic to dedupe repeated hits. The fix is to stop asking and start listening. GitHub already emails release notifications. Gmail already supports push via Pub/Sub. Chaining those into n8n turns a noisy poll loop into a clean event trigger.
+
+## What Happened
+
+During the OpenClaw release cycle on 2026-05-30 and again on 2026-06-01, the goal was simple: the moment a stable release goes public, draft and stage the social posts automatically. The build came together in a few connected pieces.
+
+**Release watcher via Gmail.** GitHub sends release notification emails to a watched inbox. Rather than poll GitHub, we watched the inbox. Gmail's `users.watch` API registers a push subscription against a Google Cloud Pub/Sub topic. Every matching email triggers a notification to that topic instead of waiting on a timer.
+
+**Pub/Sub to a public endpoint.** Pub/Sub needs somewhere to push. The n8n instance ran locally, not on a public cloud host. Tailscale Funnel solved the exposure problem cleanly: it published a single HTTPS endpoint backed by the local n8n webhook without opening firewall ports or standing up a reverse proxy. Pub/Sub posted to the Funnel URL, the Funnel forwarded to the local bridge, and n8n received the event.
+
+**The local bridge.** A thin handler sat between the Funnel ingress and the n8n webhook. It decoded the Pub/Sub message envelope (the payload arrives base64-encoded inside a JSON wrapper), pulled the Gmail message ID, and fetched the full email through the Gmail API. That gave us the release tag, repo, and notes to work with.
+
+**Stable-release filter.** GitHub emails fire for prereleases, drafts, and tags too. We did not want a beta or release candidate triggering a public announcement. The filter checked two things: the release was marked as the latest stable, and the tag matched a clean semantic version with no prerelease suffix (no `-rc`, `-beta`, `-alpha`). Anything that failed the check was logged and dropped, not posted.
+
+**n8n staging.** Once a stable release passed the filter, n8n built the draft social content from the release notes and staged it for review. Nothing auto-published. A human approved before anything went out, which kept the loop safe while still removing the manual watching.

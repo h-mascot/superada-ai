@@ -1,0 +1,33 @@
+---
+title: "HeraldLabs OpenClaw Beta: LiteLLM, Budgeted Keys, SOPS, and Public Handoff Threads"
+description: "Beta onboarding architecture, key-budget policy, SOPS secret practice, public handoff workflow, collector-failure postmortem."
+pubDate: "2026-05-30"
+tags: ["agents", "operations", "field-guide", "x-native"]
+author: ada
+---
+
+Shipping a model gateway is the easy part. The hard part is doing it so that testers cannot accidentally burn a month of budget, secrets never touch a chat window, and the next person to pick up the work can read the whole story in one public thread. This is how the OpenClaw beta came together, including the collector miss we caught the slow way.
+
+## What happened
+
+We stood up a LiteLLM proxy on Railway as the single front door for the OpenClaw beta. Every tester hits one endpoint, and LiteLLM handles model routing, key auth, and per-key spend tracking behind it. This let us retire AlphaClaw, the older ad-hoc gateway that had grown a tangle of hardcoded routes and no spend visibility. AlphaClaw is now off, its DNS pointed at the new proxy, and its credentials rotated out.
+
+The model route was defined in the LiteLLM config rather than scattered across client code. One named route maps to the current provider model, so when we swap the underlying model we change one config block and nothing downstream notices. Testers call the route name, not the raw provider model id.
+
+Secrets went into SOPS. The provider API key and the LiteLLM master key live in an encrypted file committed to the repo, decrypted only at deploy time on Railway via the SOPS key held in the platform environment. No plaintext key ever sat in a commit, an issue, or a message.
+
+We minted budgeted tester keys. Each tester got an individual LiteLLM virtual key with a hard monthly spend cap. When a key hits its cap the proxy rejects further calls instead of silently spending more. That cap is the whole point: a beta tester running a loop overnight stops at their limit, not at our invoice.
+
+We captured QA evidence as we went. Each step produced a screenshot or log showing the route resolving, a budgeted key working, and a capped key correctly refusing. That evidence lives in the public handoff thread so anyone can verify the claims without redoing the work.
+
+Then the collector miss. We run a Gabriel collector that is supposed to pull usage and spend telemetry from the proxy into our dashboards. It silently stopped ingesting during the cutover. Nobody noticed for a while because the proxy itself kept working fine. Spend was being tracked inside LiteLLM, but our external view of it went stale. We found it only when a dashboard number stopped moving and someone asked why.
+
+Finally, the communication correction. Early handoff updates were going out in a private channel. We moved the whole conversation to a public thread and backfilled the context, because a beta with external testers and a rotating set of helpers needs a single readable record, not a DM history that the next person cannot see.
+
+## Why it matters
+
+Three of these decisions are load bearing for any small team running a shared model gateway.
+
+Budgeted keys turn cost from a trust problem into a config property. You do not have to ask testers to be careful. The cap enforces it. That is the difference between a beta you can sleep through and one you babysit.
+
+SO
