@@ -44,6 +44,7 @@ export type PluginRecord = {
   sourceLabel: string;
   sourceUrl: string;
   clawhubSlug?: string;
+  clawhubOwner?: string;
   clawhubUrl?: string;
   installCommand: string;
   uninstallCommand: string;

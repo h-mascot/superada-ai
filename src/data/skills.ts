@@ -21,6 +21,7 @@ export type SkillRecord = {
   sourceUrl: string;
   sourceSpec?: string;
   clawhubSlug?: string;
+  clawhubOwner?: string;
   clawhubUrl?: string;
   entrypoint: string;
   installCommand?: string;
@@ -536,6 +537,8 @@ EOF`,
     sourceUrl: 'https://github.com/h-mascot/openclawadmin/tree/main/openclawadmin',
     sourceSpec: 'github:h-mascot/openclawadmin/openclawadmin',
     clawhubSlug: 'openclawadmin',
+    clawhubOwner: 'h-mascot',
+    clawhubUrl: 'https://clawhub.ai/h-mascot/skills/openclawadmin',
     entrypoint: 'SKILL.md',
     installCommand: 'openclaw skills install github:h-mascot/openclawadmin/openclawadmin',
     reviewMode: 'source-review',

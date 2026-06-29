@@ -16,7 +16,12 @@ if (!plugin) throw new Error(`Plugin not found: ${slug}`);
 
 const relatedPlugins = publishedPlugins.filter((entry) => entry.slug !== plugin.slug).slice(0, 2);
 
-const clawhubLink = plugin.clawhubUrl ?? (plugin.clawhubSlug ? `https://clawhub.ai/skill/${plugin.clawhubSlug}` : null);
+const clawhubLink = plugin.clawhubUrl
+  ?? (plugin.clawhubSlug
+    ? (plugin.clawhubOwner
+      ? `https://clawhub.ai/${plugin.clawhubOwner}/skills/${plugin.clawhubSlug}`
+      : `https://clawhub.ai/skill/${plugin.clawhubSlug}`)
+    : null);
 
 const statusColors = {
   Live: '#059669',
