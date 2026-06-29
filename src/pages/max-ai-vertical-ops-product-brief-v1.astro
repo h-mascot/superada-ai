@@ -43,7 +43,7 @@ const nextSteps = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <link rel="canonical" href={canonicalUrl} />
-    <title>Max AI Vertical Ops Assistant | Product Brief v1</title>
+    <title>Max AI Vertical Ops Assistant | Product Brief v2</title>
     <style is:inline>
       :root {
         color-scheme: dark;
@@ -56,13 +56,14 @@ const nextSteps = [
         --muted: oklch(0.78 0.035 255);
         --faint: oklch(0.62 0.045 255);
         --line: oklch(0.38 0.065 255 / 0.72);
-        --primary: oklch(0.82 0.142 83);
-        --accent: oklch(0.72 0.15 205);
+        --primary: oklch(0.82 0.105 82);
+        --accent: oklch(0.72 0.105 198);
         --green: oklch(0.78 0.15 152);
         --rose: oklch(0.73 0.16 12);
         --shadow: 0 28px 80px oklch(0.02 0.02 265 / 0.46);
         --radius: 1.35rem;
         --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-display: Georgia, "Times New Roman", ui-serif, serif;
       }
 
       * { box-sizing: border-box; }
@@ -110,7 +111,7 @@ const nextSteps = [
         background: radial-gradient(circle, oklch(0.82 0.142 83 / 0.18), transparent 68%);
       }
       .eyebrow { color: var(--primary); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; }
-      h1 { max-width: 860px; margin: 0.8rem 0 1rem; font-size: clamp(2.8rem, 7.8vw, 6.4rem); line-height: 0.9; letter-spacing: -0.075em; }
+      h1 { max-width: 860px; margin: 0.8rem 0 1rem; font-family: var(--font-display); font-size: clamp(3rem, 7.8vw, 6.6rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.075em; }
       .thesis { max-width: 760px; color: oklch(0.91 0.027 250); font-size: clamp(1.08rem, 2vw, 1.45rem); }
       .pillrow { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.35rem; }
       .pill { border: 1px solid var(--line); border-radius: 999px; padding: 0.52rem 0.72rem; background: oklch(0.24 0.045 263 / 0.74); color: oklch(0.88 0.03 250); font-size: 0.83rem; font-weight: 800; }
@@ -134,7 +135,7 @@ const nextSteps = [
       .section { position: relative; margin-top: 1rem; padding: clamp(1.15rem, 3vw, 1.7rem); overflow: hidden; }
       .section:before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--green)); }
       .kicker { color: var(--primary); font-size: 0.72rem; font-weight: 950; letter-spacing: 0.18em; text-transform: uppercase; }
-      h2 { margin: 0.35rem 0 0.8rem; font-size: clamp(1.65rem, 3vw, 2.45rem); line-height: 1; letter-spacing: -0.045em; }
+      h2 { margin: 0.35rem 0 0.8rem; font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.55rem); font-weight: 700; line-height: 1; letter-spacing: -0.045em; }
       h3 { margin: 1rem 0 0.35rem; font-size: 1.12rem; }
       p { margin: 0 0 0.8rem; color: oklch(0.82 0.032 250); }
       ul, ol { margin: 0.7rem 0 0; padding-left: 1.25rem; color: oklch(0.82 0.032 250); }
@@ -149,9 +150,27 @@ const nextSteps = [
       .criteria li { margin: 0; border: 1px solid var(--line); border-radius: 0.85rem; padding: 0.7rem 0.75rem; background: oklch(0.14 0.035 263 / 0.65); color: oklch(0.86 0.028 250); }
       .names { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; padding: 0; list-style: none; }
       .names li { margin: 0; border: 1px solid var(--line); border-radius: 0.95rem; padding: 0.85rem 0.9rem; background: oklch(0.14 0.035 263 / 0.72); color: white; font-weight: 850; }
+      .structured-list { display: grid; gap: 0.7rem; margin-top: 0.9rem; padding: 0; list-style: none; }
+      .structured-list li { margin: 0; border: 1px solid var(--line); border-radius: 1rem; padding: 0.86rem 0.95rem; background: oklch(0.145 0.038 263 / 0.72); }
+      .structured-list strong { display: block; margin-bottom: 0.18rem; }
+      .numbered-list { counter-reset: step; display: grid; gap: 0.7rem; margin-top: 0.9rem; padding: 0; list-style: none; }
+      .numbered-list li { counter-increment: step; position: relative; margin: 0; min-height: 3.25rem; border: 1px solid var(--line); border-radius: 1rem; padding: 0.84rem 0.95rem 0.84rem 3.3rem; background: oklch(0.145 0.038 263 / 0.72); }
+      .numbered-list li:before { content: counter(step, decimal-leading-zero); position: absolute; left: 0.85rem; top: 0.85rem; color: var(--primary); font-size: 0.76rem; font-weight: 950; letter-spacing: 0.08em; }
+      .question-list { columns: 2; column-gap: 2rem; margin-top: 0.8rem; }
+      .question-list li { break-inside: avoid; }
+      .subgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+      .subcard { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: oklch(0.14 0.035 263 / 0.68); }
+      .subcard h3 { margin-top: 0; }
+      .handoff-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; margin-top: 1rem; padding: 0; list-style: none; }
+      .handoff-strip li { position: relative; min-height: 6.2rem; margin: 0; border: 1px solid var(--line); border-radius: 1rem; padding: 0.92rem; background: oklch(0.14 0.035 263 / 0.7); }
+      .handoff-strip li:after { content: ""; position: absolute; top: 50%; right: -0.7rem; width: 0.7rem; border-top: 1px dashed oklch(0.72 0.105 198 / 0.68); }
+      .handoff-strip li:last-child { border-color: oklch(0.82 0.105 82 / 0.8); background: oklch(0.22 0.055 83 / 0.42); }
+      .handoff-strip li:last-child:after { display: none; }
+      .handoff-strip b { display: block; color: var(--accent); margin-bottom: 0.2rem; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; }
+      .handoff-strip li:last-child b { color: var(--primary); }
       .footer { margin-top: 1.2rem; padding: 1rem 0 0; color: var(--faint); font-size: 0.84rem; }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .signal, .vertical-card { transition: none; } .signal:hover, .vertical-card:hover { transform: none; } }
-      @media (max-width: 920px) { .hero, .callouts, .vertical-grid, .criteria { grid-template-columns: 1fr; } .signal-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 920px) { .hero, .callouts, .vertical-grid, .criteria, .subgrid, .handoff-strip { grid-template-columns: 1fr; } .handoff-strip li:after { display: none; } .signal-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } .question-list { columns: 1; } }
       @media (max-width: 620px) { .wrap, .nav-inner { width: min(100% - 24px, 1180px); } .signal-stack, .names { grid-template-columns: 1fr; } .hero { padding-top: 1rem; } h1 { font-size: 3rem; } }
       @media print { body { background: white; color: #111; } body:before, .nav, .copybar { display: none; } .panel, .vertical-card, .criteria li, .names li { box-shadow: none; background: white; color: #111; } p, li, .signal span { color: #111; } }
     </style>
@@ -159,7 +178,7 @@ const nextSteps = [
   <body>
     <header class="wrap hero">
       <section class="hero-main panel" aria-labelledby="page-title">
-        <div class="eyebrow">Unlisted SuperAda product brief · v1.1</div>
+        <div class="eyebrow">Unlisted SuperAda product brief · v2</div>
         <h1 id="page-title">Max AI Vertical Ops Assistant</h1>
         <p class="thesis">Max AI should not start as “AI for everyone.” The practical wedge is an internal AI ops assistant for vertical service businesses: help the owner, dispatcher, or technician move faster first, then turn the same trusted context into the customer-facing agent later.</p>
         <div class="pillrow" aria-label="Positioning tags">
@@ -214,9 +233,22 @@ const nextSteps = [
       <section id="problem" class="panel section">
         <div class="kicker">01 · Problem</div>
         <h2>The network product is the destination, not the starting point.</h2>
-        <p>Max AI has three plausible business models: B2C, B2B, and B2B2C. The best long-term shape is B2B2C, where businesses pay but customers also learn to use Max AI across many merchants or service providers.</p>
-        <p>The mistake would be building the consumer network first. That path needs trust, integrations, consumer habit, and capital before there is proof that one segment wants the product.</p>
-        <p>The better starting problem is smaller and more operational. Vertical service businesses already live inside messy scheduling systems, job notes, calls, texts, parts questions, and follow-up reminders. Owners and technicians need quick answers: what is my next appointment, what happened with this customer, what parts should we order, who needs a follow-up, and what should I tell the customer now?</p>
+        <p>The voice memo produced three credible business-model paths. V2 makes the distinction explicit so the page reads like a product brief instead of a long memo.</p>
+        <ol class="numbered-list">
+          <li><strong>B2C:</strong> sell Max AI directly to consumers. Highest long-term surface area, but the hardest path for trust, integrations, and distribution.</li>
+          <li><strong>B2B:</strong> sell workflow software to businesses first. Best starting motion because it can prove value with a small pilot.</li>
+          <li><strong>B2B2C:</strong> businesses pay, customers eventually recognize and reuse Max AI across many providers. This is the Shopify plus Shop destination.</li>
+        </ol>
+        <h3>The first operational pain</h3>
+        <p>Vertical service businesses already live inside messy scheduling systems, job notes, calls, texts, parts questions, and follow-up reminders. Owners and technicians need quick answers:</p>
+        <ul class="question-list">
+          <li>What is my next appointment?</li>
+          <li>What happened with this customer?</li>
+          <li>What parts should we order?</li>
+          <li>Who needs a follow-up?</li>
+          <li>What should I tell the customer now?</li>
+          <li>Which jobs need attention today?</li>
+        </ul>
       </section>
 
       <section id="andy-screen" class="panel section">
@@ -247,17 +279,49 @@ const nextSteps = [
       <section id="recommendation" class="panel section">
         <div class="kicker">03 · Recommendation</div>
         <h2>Start B2B in one vertical. Design for B2B2C later.</h2>
-        <p>Default priority: HVAC, plumbing, electrical, in-home appliance repair if the warm distribution path from the voice memo is real, and insurance agencies as the contrarian high-margin test.</p>
-        <p>The product sequence should stay disciplined: internal AI ops assistant first, customer-facing agent second, cross-business Max AI identity only after the product is trusted inside the business.</p>
-        <p>This preserves the big idea without overbuilding it. Max AI can become the customer layer across many businesses, but it earns that right by first becoming useful to the business.</p>
+        <h3>Default priority order</h3>
+        <ol class="numbered-list">
+          <li><strong>HVAC:</strong> top home-service wedge from Andy’s post.</li>
+          <li><strong>Plumbing:</strong> same appointment, dispatch, follow-up, and customer-context pattern.</li>
+          <li><strong>Electrical:</strong> field workflow and job-context pain map cleanly to an internal assistant.</li>
+          <li><strong>In-home appliance repair:</strong> keep alive if the warm distribution path from the voice memo is real.</li>
+          <li><strong>Insurance agencies:</strong> contrarian high-margin test with repetitive communication and modernizing stacks.</li>
+        </ol>
+        <h3>Product sequence</h3>
+        <ol class="numbered-list">
+          <li>Internal AI ops assistant first.</li>
+          <li>Customer-facing agent second.</li>
+          <li>Cross-business Max AI identity only after the product is trusted inside the business.</li>
+        </ol>
       </section>
 
       <section id="concept" class="panel section">
         <div class="kicker">04 · Product concept</div>
         <h2>Max AI is the operating brain for a vertical service business.</h2>
-        <p>The first product is an internal assistant for the owner, dispatcher, or technician. It connects to the systems the business already uses, such as scheduling, customer records, job notes, parts information, calls, texts, and follow-up history.</p>
-        <p>The assistant answers operator-grade questions: what is my next appointment, what do I need to know before this job, what parts should we order, what did this customer ask last time, who needs a reminder, and what status update should we send?</p>
-        <p>The customer-facing layer comes later. Once the internal assistant is trusted, the same context can power inbound customer responses for booking, status, reminders, availability, and basic job questions.</p>
+        <ol class="handoff-strip" aria-label="Internal assistant to customer handoff">
+          <li><b>Capture</b>Connect schedule, job notes, parts, calls, texts, and customer records.</li>
+          <li><b>Assist</b>Help the owner, dispatcher, or technician answer daily operational questions.</li>
+          <li><b>Trust</b>Measure repeat usage before exposing the assistant to customers.</li>
+          <li><b>Handoff</b>Use the same context for booking, status, reminders, availability, and basic job questions.</li>
+        </ol>
+        <div class="subgrid">
+          <article class="subcard">
+            <h3>Internal assistant first</h3>
+            <ul>
+              <li>Connects to existing operational systems.</li>
+              <li>Serves the owner, dispatcher, or technician during the workday.</li>
+              <li>Answers questions before, during, and after a job.</li>
+            </ul>
+          </article>
+          <article class="subcard">
+            <h3>Customer layer second</h3>
+            <ul>
+              <li>Uses the same trusted business context.</li>
+              <li>Handles booking, status, reminders, and availability.</li>
+              <li>Creates the path toward the long-term B2B2C Max AI surface.</li>
+            </ul>
+          </article>
+        </div>
       </section>
 
       <section id="mvp" class="panel section">
@@ -291,14 +355,14 @@ const nextSteps = [
       <section id="gtm" class="panel section">
         <div class="kicker">06 · GTM</div>
         <h2>The first proof is not a deck. It is a business using the assistant during the workday.</h2>
-        <ol>
-          <li>Pick the vertical with the strongest warm path, not the most elegant market map.</li>
-          <li>Get 3 to 5 pilot businesses live.</li>
-          <li>Sell the business outcome: fewer dropped follow-ups, faster job context, clearer parts planning, better customer communication.</li>
-          <li>Keep the pilot free for 60 to 90 days so usage can form before price pressure.</li>
-          <li>Convert to a simple paid plan after repeated use, possibly around $100 per month to start.</li>
-          <li>Expand inside the same vertical before jumping categories.</li>
-          <li>Run a separate insurance-agency test if a warm path appears, because the communication volume and margins may justify a different wedge.</li>
+        <ol class="numbered-list">
+          <li><strong>Pick by warm access:</strong> choose the vertical with the strongest distribution path, not the prettiest market map.</li>
+          <li><strong>Get 3 to 5 pilots live:</strong> keep the first cohort small enough to support manually.</li>
+          <li><strong>Sell the business outcome:</strong> fewer dropped follow-ups, faster job context, clearer parts planning, better customer communication.</li>
+          <li><strong>Run 60 to 90 days free:</strong> let usage form before price pressure.</li>
+          <li><strong>Convert after repeated use:</strong> test a simple paid plan around $100 per month only after value is visible.</li>
+          <li><strong>Expand inside one vertical:</strong> do not jump categories until one wedge shows repeatable usage.</li>
+          <li><strong>Keep insurance as a parallel test:</strong> use it if a warm intro appears because communication volume and margins may justify a different wedge.</li>
         </ol>
       </section>
 
@@ -327,7 +391,7 @@ const nextSteps = [
         <ol>{nextSteps.map((step) => <li>{step}</li>)}</ol>
       </section>
 
-      <footer class="footer">Source: 2026-06-20 Andy / Henry voice memo transcribed with Parakeet, plus Andy’s vertical-prioritization post. Writing route used for copy update: citadel-frontier/pioneer/claude-opus-4-8. Frontend-design workflow applied to layout, theme, interaction, and accessibility. This page is intentionally unlisted and noindex.</footer>
+      <footer class="footer">Source: 2026-06-20 Andy / Henry voice memo transcribed with Parakeet, plus Andy’s vertical-prioritization post. Writing route used for copy update: citadel-frontier/pioneer/claude-opus-4-8. Frontend-design workflow and imagegen-taste frontend guidance applied to layout, hierarchy, spacing, and scanability. This page is intentionally unlisted and noindex.</footer>
     </main>
   </body>
 </html>
