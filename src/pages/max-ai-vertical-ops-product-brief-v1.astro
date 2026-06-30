@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 const canonicalUrl = 'https://superada.ai/max-ai-vertical-ops-product-brief-v1/';
+const heroImage = '/images/unlisted/max-ai/max-ai-brief-v2-ui-reference.png';
 
 const verticals = [
   { rank: '01', name: 'HVAC', note: 'Top home-service wedge. High inbound volume, existing software spend, clear automation ROI.' },
@@ -55,6 +56,10 @@ const nextSteps = [
       .brief-strip { padding-top: clamp(1.25rem, 3vw, 2rem); }
       .brief-strip-card { padding: 1rem 1.15rem; display: grid; gap: 0.35rem; }
       .brief-strip-card p { margin: 0; max-width: 980px; color: var(--text-soft); }
+      .hero-art { margin-top: 1rem; }
+      .hero-art-frame { margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); background: color-mix(in srgb, var(--panel) 92%, transparent); box-shadow: var(--shadow); }
+      .hero-art-frame img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: var(--panel); }
+      .hero-art-caption { margin: 0.55rem 0 0; color: var(--faint); font-size: 0.82rem; text-align: right; }
       .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 1rem; padding: 1rem 0 1rem; }
       .panel {
         border: 1px solid var(--border);
@@ -146,6 +151,13 @@ const nextSteps = [
         <span class="eyebrow">Max AI brief · v2</span>
         <p><strong>Operator-first wedge:</strong> pick one service vertical, prove the internal assistant, then expose the customer layer only after the business trusts it.</p>
       </div>
+    </section>
+
+    <section class="wrap hero-art" aria-label="V2 UI reference image">
+      <figure class="hero-art-frame">
+        <img src={heroImage} alt="Max AI Vertical Ops Assistant V2 UI reference showing the premium operator dashboard direction and vertical prioritization cards" loading="eager" decoding="async" />
+      </figure>
+      <p class="hero-art-caption">Image taste reference used for the v2 page direction.</p>
     </section>
 
     <header class="wrap hero">
