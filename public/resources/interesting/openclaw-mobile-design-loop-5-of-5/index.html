@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-accent="red">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+<title>OpenCLAW — ChatGPT-style exploration</title>
+<style>
+/* ===== OpenCLAW reimagined in ChatGPT's design language ===== */
+:root{
+  --bg:#ffffff; --panel:#f9f9f9; --bubble:#ececec; --chip:#f4f4f4;
+  --fg:#0d0d0d; --muted:#565656; --faint:#767676; --border:#e6e6e6;
+  --send:#0d0d0d; --sendfg:#ffffff;
+  --green:#1f9d57; --amber:#c98a00; --red:#d23b3b;
+  --sans:"Söhne","SF Pro Text",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,monospace;
+}
+html[data-theme="dark"]{
+  --bg:#212121; --panel:#171717; --bubble:#323232; --chip:#2a2a2a;
+  --fg:#ececec; --muted:#bcbcbc; --faint:#a8a8a8; --border:#ffffff1f;
+  --send:#ffffff; --sendfg:#0d0d0d;
+  --green:#3ecf7f; --amber:#e3b341; --red:#ef5a5a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:var(--sans);color:var(--fg);background:radial-gradient(1200px 800px at 50% -10%, #2a2a32, #15151a 60%);
+  min-height:100vh;display:grid;place-items:center;padding:28px 12px;-webkit-font-smoothing:antialiased}
+.stage-label{position:fixed;top:16px;left:18px;font:600 12px/1 var(--mono);letter-spacing:.12em;color:#7a7a86;text-transform:uppercase}
+
+.device{position:relative;width:390px;height:844px;flex:none;background:var(--bg);border-radius:54px;
+  box-shadow:0 0 0 12px #0c0c0e,0 0 0 13px rgba(255,255,255,.06),0 60px 120px -30px rgba(0,0,0,.85);overflow:hidden}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:122px;height:35px;background:#000;border-radius:20px;z-index:61}
+.statusbar{position:absolute;top:0;left:0;right:0;height:54px;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px 34px 0;font:600 15px/1 var(--sans);pointer-events:none;color:var(--fg)}
+.statusbar .ico{display:flex;gap:6px;align-items:center}
+html[data-theme="dark"] .statusbar svg [fill]{fill:#ececec}
+html[data-theme="dark"] .statusbar svg [stroke]{stroke:#ececec}
+.home-ind{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:color-mix(in oklab,var(--fg) 55%,transparent);z-index:62}
+.app{position:absolute;inset:0;overflow:hidden;background:var(--bg)}
+
+/* top bar */
+.topbar{position:absolute;top:54px;left:0;right:0;height:52px;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:var(--bg)}
+.tb-btn{width:40px;height:40px;border-radius:50%;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:var(--fg)}
+.tb-btn:active{background:var(--chip)}
+.tb-btn svg{width:24px;height:24px}
+.switcher{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:none;border:0;cursor:pointer;font:600 17px/1 var(--sans);color:var(--fg)}
+.switcher:active{background:var(--chip)}
+.switcher .sub{font-weight:400;color:var(--faint)}
+.switcher svg{width:16px;height:16px;color:var(--faint)}
+
+/* thread */
+.thread{position:absolute;top:106px;bottom:96px;left:0;right:0;overflow-y:auto;padding:14px 16px 28px}
+.thread::-webkit-scrollbar{display:none}
+.turn{margin-bottom:22px}
+.user{display:flex;justify-content:flex-end}
+.user .bubble{max-width:78%;background:var(--bubble);border-radius:22px;padding:11px 16px;font:400 16px/1.45 var(--sans)}
+.assist{display:flex;gap:11px;align-items:flex-start}
+.claw{width:30px;height:30px;border-radius:50%;flex:none;border:1px solid var(--border);display:grid;place-items:center;margin-top:1px;color:var(--fg)}
+.claw svg{width:18px;height:18px}
+.assist .body{flex:1;min-width:0;font:400 16px/1.55 var(--sans);color:var(--fg);padding-top:3px}
+.assist .body p{margin:0 0 12px}
+.assist .body code{font-family:var(--mono);font-size:13.5px;background:var(--chip);padding:2px 6px;border-radius:6px}
+.tool{display:inline-flex;align-items:center;gap:9px;margin:2px 0 13px;padding:8px 13px;border-radius:999px;background:var(--chip);font:500 13.5px/1 var(--sans);color:var(--muted)}
+.tool svg{width:15px;height:15px;color:var(--faint)}
+.codecard{background:#0d0d0d;border-radius:14px;padding:13px 15px;margin:2px 0 13px;overflow:auto}
+.codecard pre{margin:0;font:450 13px/1.6 var(--mono);color:#e6e6e6;white-space:pre}
+.codecard .ct{color:#7fd1b9}.codecard .cc{color:#9a9a9a}
+.actions{display:flex;gap:16px;color:var(--faint);margin-top:2px}
+.actions svg{width:18px;height:18px;cursor:pointer}
+
+/* composer */
+.composer{position:absolute;left:12px;right:12px;bottom:30px;z-index:30;background:var(--bg);border:1px solid var(--border);border-radius:28px;
+  box-shadow:0 8px 30px -12px rgba(0,0,0,.18);padding:7px;display:flex;align-items:flex-end;gap:6px}
+.c-plus{width:38px;height:38px;flex:none;border-radius:50%;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:var(--fg)}
+.c-plus:active{background:var(--chip)}
+.c-plus svg{width:24px;height:24px}
+.c-input{flex:1;min-height:38px;display:flex;align-items:center}
+.c-input textarea{width:100%;border:0;outline:none;resize:none;background:none;font:400 16px/1.4 var(--sans);color:var(--fg);padding:9px 4px;max-height:110px}
+.c-input textarea::placeholder{color:var(--faint)}
+.c-right{display:flex;align-items:center;gap:4px;flex:none}
+.c-mic{width:38px;height:38px;border-radius:50%;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:var(--fg)}
+.c-mic:active{background:var(--chip)}
+.c-mic svg{width:22px;height:22px}
+.c-go{width:38px;height:38px;border-radius:50%;border:0;flex:none;display:grid;place-items:center;cursor:pointer;background:var(--send);color:var(--sendfg);transition:transform .12s}
+.c-go:active{transform:scale(.92)}
+.c-go svg{width:21px;height:21px}
+.c-go svg [stroke]{stroke:var(--sendfg)}
+
+/* scrim + sidebar */
+.scrim{position:absolute;inset:0;z-index:40;background:rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .26s}
+.scrim.show{opacity:1;pointer-events:auto}
+.sidebar{position:absolute;top:0;bottom:0;left:0;width:320px;z-index:41;background:var(--panel);transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding-top:54px}
+.sidebar.show{transform:translateX(0)}
+.sb-search{margin:10px 14px 4px;display:flex;align-items:center;gap:9px;background:var(--chip);border-radius:12px;padding:10px 13px;font:400 15px/1 var(--sans);color:var(--faint)}
+.sb-search svg{width:18px;height:18px}
+.sb-scroll{flex:1;overflow-y:auto;padding:6px 8px}
+.sb-scroll::-webkit-scrollbar{display:none}
+.sb-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;cursor:pointer;font:400 15px/1.2 var(--sans);color:var(--fg)}
+.sb-item:active{background:var(--bubble)}
+.sb-item svg{width:19px;height:19px;flex:none;color:var(--fg)}
+.sb-item .gt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-item.head .gt{font-weight:600}
+.sb-item .rt{font:500 11px/1 var(--mono);color:var(--faint)}
+.sb-group{font:600 12px/1 var(--sans);color:var(--faint);padding:15px 14px 7px}
+.dotg{width:8px;height:8px;border-radius:50%;flex:none}
+.is-green{background:var(--green)}.is-amber{background:var(--amber)}.is-red{background:var(--red)}.is-faint{background:var(--faint)}
+.badge{font:600 10.5px/1 var(--mono);padding:3px 7px;border-radius:999px;background:color-mix(in oklab,var(--green) 16%,transparent);color:var(--green)}
+.sb-account{display:flex;align-items:center;gap:11px;padding:13px 16px;border-top:1px solid var(--border);cursor:pointer}
+.sb-account:active{background:var(--bubble)}
+.sb-account .ava{width:32px;height:32px;border-radius:50%;background:linear-gradient(150deg,#ff7a59,#e0492f);display:grid;place-items:center;color:#fff;font:700 14px/1 var(--sans)}
+.sb-account .nm{font:600 15px/1.1 var(--sans)}
+.sb-account .pl{font:400 12.5px/1.1 var(--sans);color:var(--faint);margin-top:2px}
+.acct-gear{width:36px;height:36px;border-radius:50%;background:var(--chip);color:var(--fg);display:grid;place-items:center;flex:none}
+.acct-gear svg{width:19px;height:19px}
+.sb-account:active .acct-gear{transform:scale(.94)}
+.sb-toggle{color:var(--muted)}
+.sb-toggle .gt{font-weight:600}
+.wsChev{width:16px;height:16px;margin-left:auto;transition:transform .2s}
+.sb-toggle.open .wsChev{transform:rotate(180deg)}
+#wsExtra[hidden]{display:none}
+.themebar{justify-content:flex-start}
+
+/* Claude-style appearance preview cards */
+.appcards{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:2px 0}
+.appcard{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:9px}
+.appcard-prev{position:relative;display:block;width:100%;aspect-ratio:1/0.86;border-radius:14px;border:1px solid var(--border);overflow:hidden;outline:2px solid transparent;outline-offset:2px;transition:outline-color .15s,transform .12s}
+.appcard.on .appcard-prev{outline-color:var(--accent);border-color:transparent}
+.appcard:active .appcard-prev{transform:scale(.96)}
+.appcard .mini{position:absolute;left:15%;right:15%;top:20%;bottom:14%;border-radius:8px;padding:10px;box-shadow:0 3px 10px rgba(0,0,0,.22)}
+.appcard .ln{display:block;height:5px;width:64%;border-radius:3px;margin-bottom:6px}
+.appcard .ln.short{width:42%;margin-bottom:0}
+.appcard .pdot{position:absolute;right:10px;bottom:10px;width:14px;height:14px;border-radius:50%;background:var(--accent)}
+.appcard-lbl{font:600 13px/1 var(--sans);color:var(--muted)}
+.appcard.on .appcard-lbl{color:var(--accent)}
+
+/* drawer brand header */
+.sb-brand{display:flex;align-items:center;gap:10px;padding:4px 16px 8px}
+.sb-brand .sb-logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent);color:var(--accent-fg);flex:none}
+.sb-brand .sb-logo svg{width:19px;height:19px}
+.sb-brandname{font:800 18px/1 var(--sans);letter-spacing:-.015em}
+/* toast — feedback so no control is a dead end */
+.oc-toast{position:absolute;left:50%;bottom:108px;transform:translateX(-50%) translateY(8px);background:var(--fg);color:var(--bg);font:600 13.5px/1 var(--sans);padding:11px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:70;white-space:nowrap;box-shadow:0 10px 26px -8px rgba(0,0,0,.45)}
+.oc-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.vbtn.muted{background:var(--accent);color:var(--accent-fg)}
+/* lift small secondary text off the AA floor */
+.row .t span,.appcard-lbl,.switcher .sub,.sb-item .rt,.voice .small,.li .body p{color:var(--muted)}
+/* typing indicator */
+.typing{display:inline-flex;gap:5px;padding:5px 2px}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--faint);animation:td 1.1s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes td{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
+
+/* Agents roster page */
+.agfilters{display:flex;gap:8px;margin:2px 0 14px}
+.agchip{font:600 13px/1 var(--sans);padding:9px 15px;border-radius:999px;background:var(--chip);color:var(--muted);border:0;cursor:pointer}
+.agchip.on{background:var(--fg);color:var(--bg)}
+.agrow{display:flex;align-items:flex-start;gap:13px;padding:15px;cursor:pointer}
+.agrow+.agrow{border-top:1px solid var(--border)}
+.agrow:active{background:var(--chip)}
+.agav{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font:700 15px/1 var(--sans);position:relative}
+.agav .pres{position:absolute;right:-1px;bottom:-1px;width:13px;height:13px;border-radius:50%;border:2.5px solid var(--bg)}
+.agbody{flex:1;min-width:0}
+.agname{font:650 16px/1 var(--sans);display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
+.agstatus{font:600 12px/1 var(--sans)}
+.agmodel{font:400 12.5px/1.2 var(--mono);color:var(--muted);margin:5px 0 10px}
+.agstats{display:flex;gap:24px}
+.agstat .k{font:500 10.5px/1 var(--sans);color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.agstat .v{font:600 14px/1 var(--sans);margin-top:5px;font-variant-numeric:tabular-nums}
+.agpick{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:none;display:grid;place-items:center;flex:none;color:var(--muted);cursor:pointer}
+.agpick.sel{border-color:var(--accent);color:var(--accent)}
+.agpick svg{width:17px;height:17px}
+/* real search input */
+.sb-search{cursor:text}
+.sb-search input{flex:1;min-width:0;border:0;background:none;outline:none;font:400 15px/1 var(--sans);color:var(--fg)}
+.sb-search input::placeholder{color:var(--faint)}
+/* inert background can't receive pointer either */
+[inert]{pointer-events:none}
+/* fix undefined --blue (Agents roster presence/Ready) + amber text contrast */
+:root{--blue:#2f5fd0;--amber:#8a6400}
+html[data-theme="dark"]{--blue:#5aa9ff}
+/* chat action icons: keyboard-reachable 44px hit targets */
+.actions{display:flex;gap:2px;margin-top:0}
+.actions svg{width:18px;height:18px;box-sizing:content-box;padding:13px;cursor:pointer;border-radius:50%}
+.actions svg:hover,.actions svg:focus-visible{background:var(--chip)}
+
+/* bottom sheet (agent switcher) */
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:43;background:var(--bg);border-radius:24px 24px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);padding:8px 10px 30px;box-shadow:0 -10px 40px -10px rgba(0,0,0,.25)}
+.sheet.show{transform:translateY(0)}
+.sheet .grab{width:38px;height:5px;border-radius:3px;background:var(--border);margin:8px auto 12px}
+.sheet h3{margin:0 8px 6px;font:600 13px/1 var(--sans);color:var(--faint)}
+.m-item{display:flex;align-items:center;gap:13px;padding:13px 12px;border-radius:14px;cursor:pointer}
+.m-item:active{background:var(--chip)}
+.m-item .mi{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;color:#fff;font:700 14px/1 var(--sans)}
+.m-item .mt{flex:1}
+.m-item .mt b{font:600 15.5px/1.1 var(--sans);display:block}
+.m-item .mt span{font:400 13px/1.2 var(--sans);color:var(--faint)}
+.m-item .ck{width:20px;height:20px;color:var(--fg);opacity:0}
+.m-item.on .ck{opacity:1}
+
+/* full-screen panel + settings (right slide) */
+.screen{position:absolute;inset:0;z-index:45;background:var(--bg);transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding-top:54px}
+.screen.show{transform:translateX(0)}
+#panel{z-index:46}/* detail pages must sit ABOVE the Settings screen so rows opened from Settings are visible */
+.sc-head{display:flex;align-items:center;gap:6px;height:50px;padding:0 8px;border-bottom:1px solid var(--border);flex:none}
+.sc-head .ttl{flex:1;font:600 17px/1 var(--sans);text-align:center;margin-right:40px}
+.sc-body{flex:1;overflow-y:auto;padding:16px 16px 36px}
+.sc-body::-webkit-scrollbar{display:none}
+.pv-sub{color:var(--muted);font:400 14.5px/1.5 var(--sans);margin:-2px 2px 16px}
+.grp-label{font:600 12.5px/1 var(--sans);color:var(--faint);margin:18px 4px 8px}
+.grp-label:first-child{margin-top:0}
+.card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;gap:13px;padding:14px 15px;cursor:pointer}
+.row+.row{border-top:1px solid var(--border)}
+.row:active{background:var(--chip)}
+.row .ic{width:30px;height:30px;border-radius:8px;flex:none;display:grid;place-items:center;background:var(--chip);color:var(--fg)}
+.row .ic svg{width:18px;height:18px}
+.row .t{flex:1;min-width:0}
+.row .t b{font:500 15.5px/1.15 var(--sans);display:block}
+.row .t span{font:400 12.5px/1.3 var(--sans);color:var(--faint)}
+.row .v{font:500 13px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.row .chev{width:16px;height:16px;color:var(--faint)}
+.row .st{display:inline-flex;align-items:center;gap:6px;font:600 12.5px/1 var(--sans)}
+.btn-sm{border:0;border-radius:999px;background:var(--send);color:var(--sendfg);font:600 12.5px/1 var(--sans);padding:8px 14px;cursor:pointer}
+.kpi{font:600 34px/1 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi small{font-size:14px;color:var(--muted);font-weight:500}
+.bars{display:flex;align-items:flex-end;gap:8px;height:74px;margin-top:14px}
+.bars i{flex:1;background:var(--fg);border-radius:4px 4px 0 0;opacity:.85}
+.brk{display:flex;justify-content:space-between;font:500 13px/1 var(--sans);padding:11px 2px;color:var(--muted)}
+.brk+.brk{border-top:1px solid var(--border)}
+.brk b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+.seg{display:flex;background:var(--chip);border-radius:12px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:none;color:var(--muted);font:600 14px/1 var(--sans);padding:9px;border-radius:9px;cursor:pointer}
+.seg button.on{background:var(--bg);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+
+/* voice overlay */
+.voice{position:absolute;inset:0;z-index:50;background:radial-gradient(120% 90% at 50% 18%, #f4f7ff, #ffffff 55%);display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .3s}
+html[data-theme="dark"] .voice{background:radial-gradient(120% 90% at 50% 18%, #1b2330, #0e0e10 60%)}
+.voice.show{opacity:1;pointer-events:auto}
+.voice .blobwrap{margin-top:188px;display:grid;place-items:center}
+.blob{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 36% 30%, #cfe0ff 0%, #7aa8ff 38%, #5b7cf0 60%, #8f6ad6 90%);
+  box-shadow:0 30px 80px -20px rgba(91,124,240,.6);animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.voice .cap{margin-top:54px;font:500 19px/1.45 var(--sans);color:var(--fg);text-align:center;max-width:280px}
+.voice .small{margin-top:10px;font:500 14px/1 var(--sans);color:var(--faint)}
+.voice .vctl{position:absolute;bottom:54px;display:flex;gap:22px}
+.vbtn{width:62px;height:62px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;background:var(--chip);color:var(--fg)}
+.vbtn svg{width:26px;height:26px}
+.vbtn.x{background:var(--fg);color:var(--bg)}
+
+/* ============================================================
+   POLISH PASS — 2026 a11y / ergonomics / motion / depth
+   ============================================================ */
+
+/* Pass 1 · accessibility + ≥44px touch ergonomics */
+:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.c-go:focus-visible,.tb-btn:focus-visible,.vbtn:focus-visible{outline-offset:3px}
+.c-input textarea:focus-visible{outline:none}
+.c-input textarea{caret-color:var(--fg)}
+
+/* ===== Theme switcher + OpenCLAW red accent ===== */
+:root{--accent:#0d0d0d;--accent-fg:#ffffff}
+html[data-theme="dark"]{--accent:#ececec;--accent-fg:#0d0d0d}
+html[data-accent="red"]{--accent:#cf3a2e;--accent-fg:#ffffff;--send:#cf3a2e;--sendfg:#ffffff}
+html[data-theme="dark"][data-accent="red"]{--accent:#f0604f;--send:#f0604f;--sendfg:#ffffff}
+.themebar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--border)}
+.tgroup{display:flex;gap:4px;background:var(--chip);border-radius:999px;padding:4px}
+.tgroup .tg{width:38px;height:34px;border:0;background:none;border-radius:999px;display:grid;place-items:center;cursor:pointer;color:var(--muted)}
+.tgroup .tg.on{background:var(--bg);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.tgroup .tg svg{width:18px;height:18px}
+.swgroup{display:flex;gap:9px;padding-right:4px}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);cursor:pointer;padding:0}
+.sw.mono{background:linear-gradient(135deg,#0d0d0d 50%,#f2f2f2 50%)}
+.sw.red{background:#cf3a2e}
+.sw.on{border-color:transparent;box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+
+/* settings sub-page components */
+.tgl{width:46px;height:28px;border-radius:999px;background:var(--chip);border:1px solid var(--border);position:relative;cursor:pointer;flex:none;transition:background .18s}
+.tgl i{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.tgl.on{background:var(--accent);border-color:transparent}
+.tgl.on i{left:20px}
+.lk{color:var(--accent);font-weight:600;cursor:pointer}
+.tonal{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:14px;border:1px solid var(--border);background:var(--chip);color:var(--accent);font:600 15px/1 var(--sans);cursor:pointer;margin:2px 0 14px}
+.tonal:active{transform:scale(.98)}
+.duo{display:flex;gap:10px;margin:2px 0 14px}.duo .tonal{margin:0}
+.field{display:block;width:100%;border:1px solid var(--border);border-radius:12px;padding:13px 14px;font:500 13.5px/1 var(--mono);color:var(--fg);background:var(--bg);margin-bottom:10px;outline:none}
+.field:focus{border-color:color-mix(in oklab,var(--accent) 50%,var(--border))}
+.pill-off{font:600 11px/1 var(--mono);padding:5px 9px;border-radius:999px;background:var(--chip);color:var(--faint)}
+.seg3{display:flex;background:var(--chip);border-radius:10px;padding:3px;gap:3px;margin:6px 0 2px}
+.seg3 button{flex:1;border:0;background:none;color:var(--muted);font:600 13px/1 var(--sans);padding:9px;border-radius:8px;cursor:pointer}
+.seg3 button.on{background:var(--bg);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+/* accent on brand moments */
+html[data-accent="red"] .claw{color:var(--accent);border-color:color-mix(in oklab,var(--accent) 38%,var(--border))}
+html[data-accent="red"] .blob{background:radial-gradient(circle at 36% 30%,#ffe2dc 0%,#ff8a76 38%,#e0492f 62%,#b5302a 90%);box-shadow:0 30px 80px -20px rgba(207,58,46,.55)}
+html[data-accent="red"] .voice{background:radial-gradient(120% 90% at 50% 18%,#fff3f1,#ffffff 55%)}
+html[data-theme="dark"][data-accent="red"] .voice{background:radial-gradient(120% 90% at 50% 18%,#2a1714,#0e0e10 60%)}
+.tb-btn{width:44px;height:44px}
+.c-plus,.c-mic,.c-go{width:44px;height:44px}
+.c-go svg{width:22px;height:22px}
+.sb-item{min-height:44px}
+.thread{scroll-behavior:smooth;-webkit-mask:linear-gradient(to bottom,transparent 0,#000 16px);mask:linear-gradient(to bottom,transparent 0,#000 16px)}
+.sc-body{scroll-behavior:smooth}
+
+/* Pass 2 · purposeful micro-motion */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.turn{animation:rise .34s cubic-bezier(.22,.61,.36,1) both}
+.sc-body>*{animation:rise .3s cubic-bezier(.22,.61,.36,1) both}
+.sc-body>*:nth-child(2){animation-delay:.03s}
+.sc-body>*:nth-child(3){animation-delay:.05s}
+.sc-body>*:nth-child(4){animation-delay:.07s}
+.c-go:active{transform:scale(.9)}
+.tb-btn:active,.sb-item:active,.row:active,.m-item:active{transform:scale(.985)}
+.btn-sm:active{transform:scale(.94)}
+.blob{position:relative;overflow:hidden}
+.blob::before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.55),transparent 42%);mix-blend-mode:overlay;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Pass 3 · type + depth refinement */
+.switcher,.sc-head .ttl,.kpi,.m-item .mt b,.row .t b{letter-spacing:-.012em}
+.assist .body p,.pv-sub{text-wrap:pretty}
+.card{box-shadow:0 1px 2px rgba(0,0,0,.04)}
+html[data-theme="dark"] .card{box-shadow:none}
+.composer{box-shadow:0 12px 36px -16px rgba(0,0,0,.24),0 1px 2px rgba(0,0,0,.03)}
+.composer:focus-within{border-color:color-mix(in oklab,var(--fg) 30%,transparent)}
+.sc-head{backdrop-filter:saturate(1.2)}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="stage-label">OPENCLAW · “IF IT WERE CHATGPT” · iOS</div>
+
+<div class="device" data-od-id="iphone-frame">
+  <div class="island"></div>
+  <div class="statusbar">
+    <span>9:41</span>
+    <span class="ico">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><rect x="0" y="7" width="3" height="5" rx="1" fill="#0d0d0d"/><rect x="4" y="4" width="3" height="8" rx="1" fill="#0d0d0d"/><rect x="8" y="2" width="3" height="10" rx="1" fill="#0d0d0d"/><rect x="12" y="0" width="3" height="12" rx="1" fill="#0d0d0d"/></svg>
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="#0d0d0d"><path d="M8.5 2.5c2.3 0 4.4.9 6 2.4l1.2-1.3A11 11 0 0 0 8.5.5 11 11 0 0 0 1.3 3.6L2.5 4.9A8.6 8.6 0 0 1 8.5 2.5Z"/><circle cx="8.5" cy="10" r="1.6"/></svg>
+      <svg width="26" height="12" viewBox="0 0 26 12"><rect x="1" y="1" width="21" height="10" rx="3" fill="none" stroke="#0d0d0d" stroke-opacity=".35"/><rect x="3" y="3" width="16" height="6" rx="1.5" fill="#0d0d0d"/><rect x="23" y="4" width="2" height="4" rx="1" fill="#0d0d0d" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+
+  <div class="app">
+    <!-- top bar -->
+    <div class="topbar" data-od-id="topbar">
+      <button class="tb-btn" aria-label="Menu" onclick="openSide()"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h13M3 12h18M3 18h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <button class="switcher" data-od-id="agent-switcher" onclick="openSheet()">OpenCLAW <span class="sub" id="agentSub">Main</span><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="tb-btn" aria-label="New chat" onclick="newChat()"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4l4 4-10 10-4 1 1-4L16 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    </div>
+
+    <!-- thread -->
+    <div class="thread" id="thread" data-od-id="thread" role="log" aria-live="polite" aria-atomic="false">
+      <div class="turn"><div class="user"><div class="bubble">Gateway just came back online — what's on the workboard?</div></div></div>
+      <div class="turn"><div class="assist">
+        <div class="claw">{{CLAW}}</div>
+        <div class="body"><p>Three items are queued. The most urgent is a failing CI run on <code>web-prototype</code> — red for 11 minutes. Want me to look?</p></div>
+      </div></div>
+      <div class="turn"><div class="user"><div class="bubble">Yes, pull the logs and fix it.</div></div></div>
+      <div class="turn"><div class="assist">
+        <div class="claw">{{CLAW}}</div>
+        <div class="body">
+          <div class="tool"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Read CI logs · gh run view</div>
+          <p>Found it — a missing <code>await</code> at <code>sync.ts:84</code> leaves the type as <code>Promise&lt;Session&gt;</code>.</p>
+          <div class="codecard"><pre><span class="cc">// sync.ts:84</span>
+<span class="ct">-</span> const s = loadSession(id)
+<span class="ct">+</span> const s = <span class="ct">await</span> loadSession(id)</pre></div>
+          <p>Pushed to <code>fix/sync-await</code>, opened a PR, CI is green now. ✅</p>
+          <div class="actions">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8" stroke="currentColor" stroke-width="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 11v9H4v-9h3Zm4 9h6a2 2 0 0 0 2-1.5l1.5-6A1.5 1.5 0 0 0 19 9h-5l.8-4a2 2 0 0 0-3.6-1.4L7 11v9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4v6h6M20 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 9A7.5 7.5 0 0 0 6 6.5L4 8M5 15a7.5 7.5 0 0 0 13 2.5l2-1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- composer -->
+    <div class="composer" data-od-id="composer">
+      <button class="c-plus" aria-label="Add"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      <div class="c-input"><textarea id="ta" rows="1" placeholder="Message OpenCLAW" oninput="onType(this)"></textarea></div>
+      <div class="c-right">
+        <button class="c-mic" id="micBtn" aria-label="Dictate"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3ZM6 11a6 6 0 0 0 12 0M12 19v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <button class="c-go" id="goBtn" aria-label="Voice" onclick="goAction()"><svg id="goIcon" viewBox="0 0 24 24" fill="none"><path d="M9 5.5v13M15 5.5v13M5 9v6M19 9v6M12 3v18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+
+    <!-- scrim -->
+    <div class="scrim" id="scrim" onclick="closeOverlays()"></div>
+
+    <!-- sidebar : full navigation -->
+    <aside class="sidebar" id="sidebar" data-od-id="sidebar">
+      <div class="sb-brand"><span class="sb-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M7 13a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.3" fill="currentColor"/><circle cx="15" cy="10" r="1.3" fill="currentColor"/><path d="M6 16c1.4 1.7 3.6 2.6 6 2.6s4.6-.9 6-2.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="sb-brandname">OpenCLAW</span></div>
+      <div class="sb-search"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input type="search" placeholder="Search" aria-label="Search OpenCLAW" oninput="filterNav(this.value)" /></div>
+      <div class="sb-scroll">
+        <div class="sb-item head" onclick="newChat()"><svg viewBox="0 0 24 24" fill="none"><path d="M16 4l4 4-10 10-4 1 1-4L16 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="gt">New chat</span></div>
+        <div class="sb-item head" onclick="closeOverlays();openVoice()"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M7 7v10M17 7v10M3 10v4M21 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Talk · voice</span></div>
+        <div class="sb-item head" onclick="openPanel('agents')"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="9" r="2.3" stroke="currentColor" stroke-width="2"/><path d="M3 19a6 6 0 0 1 12 0M15 17a5 5 0 0 1 6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Agents</span><span class="badge">3 total</span></div>
+
+        <div class="sb-group">Workspace</div>
+        <div class="sb-item" onclick="openPanel('control')"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/><rect x="13" y="13" width="7" height="7" rx="2" stroke="currentColor" stroke-width="2"/><path d="M14 6h6M6 14v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Control room</span><span class="dotg is-green"></span></div>
+        <div class="sb-item" onclick="openPanel('overview')"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V9M12 19V5M19 19v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Overview</span></div>
+        <div class="sb-item" onclick="openPanel('activity')"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-7 4 14 2-7h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="gt">Activity</span></div>
+        <div class="sb-item" onclick="openPanel('workboard')"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="gt">Workboard</span><span class="rt">12</span></div>
+        <div id="wsExtra" hidden>
+        <div class="sb-item" onclick="openPanel('skills')"><svg viewBox="0 0 24 24" fill="none"><path d="M14 3l7 7-4 4-7-7 4-4ZM10 7l-7 7v4h4l7-7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="gt">Skill Workshop</span><span class="dotg is-amber"></span></div>
+        <div class="sb-item" onclick="openPanel('instances')"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12a3 3 0 1 0 0-.01M5 5a10 10 0 0 1 14 0M8 8a6 6 0 0 1 8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Instances</span><span class="rt">4</span></div>
+        <div class="sb-item" onclick="openPanel('sessions')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Sessions</span><span class="rt">7</span></div>
+        <div class="sb-item" onclick="openPanel('dreaming')"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 1 1-8.5-8 6 6 0 0 0 8.5 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="gt">Dreaming</span><span class="dotg is-green"></span></div>
+        <div class="sb-item" onclick="openPanel('usage')"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V11M12 19V5M19 19v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Usage</span><span class="rt">$14.20</span></div>
+        <div class="sb-item" onclick="openPanel('cron')"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Cron Jobs</span><span class="rt">3</span></div>
+        </div>
+        <div class="sb-item sb-toggle" id="wsToggle" onclick="toggleWs()"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="19" cy="12" r="1.7" fill="currentColor"/></svg><span class="gt" id="wsToggleLabel">More</span><svg class="wsChev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="sb-group">Reference</div>
+        <div class="sb-item" onclick="openPanel('docs')"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4h9l4 4v12H6V4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="gt">Docs</span></div>
+
+        <div class="sb-group">Today</div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Fix failing CI on web-prototype</span></div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Summarize overnight cron runs</span></div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Draft release notes v2026.6.10</span></div>
+        <div class="sb-group">Yesterday</div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Triage gateway latency spike</span></div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Review Scout's research digest</span></div>
+        <div class="sb-group">Previous 7 days</div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Approve Skill Workshop proposals</span></div>
+        <div class="sb-item" onclick="closeOverlays()"><span class="gt">Rotate gateway API keys</span></div>
+      </div>
+      <div class="themebar" data-od-id="theme-switcher">
+        <div class="tgroup">
+          <button class="tg" data-appear="light" onclick="setAppearance('light')" aria-label="Light mode"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <button class="tg" data-appear="dark" onclick="setAppearance('dark')" aria-label="Dark mode"><svg viewBox="0 0 24 24" fill="none"><path d="M20 13a8 8 0 1 1-8.5-8 6 6 0 0 0 8.5 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <div class="sb-account" data-od-id="account-settings" onclick="openSettings()"><div class="ava">H</div><div style="flex:1"><div class="nm">Henry</div><div class="pl">OpenCLAW Pro · sf-01</div></div>
+        <span class="acct-gear" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      </div>
+    </aside>
+
+    <!-- agent sheet -->
+    <div class="sheet" id="sheet" data-od-id="agent-sheet">
+      <div class="grab"></div>
+      <h3>Talk to</h3>
+      <div class="m-item on" onclick="pickAgent(this,'Main')"><div class="mi" style="background:linear-gradient(150deg,#ff7a59,#e0492f)">M</div><div class="mt"><b>Main</b><span>opus-4.8 · orchestrator · online</span></div><svg class="ck" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="m-item" onclick="pickAgent(this,'Scout')"><div class="mi" style="background:linear-gradient(150deg,#5aa9ff,#3f72e0)">S</div><div class="mt"><b>Scout</b><span>haiku-4.5 · research · online</span></div><svg class="ck" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="m-item" onclick="pickAgent(this,'Forge')"><div class="mi" style="background:linear-gradient(150deg,#43c79a,#2a9d76)">F</div><div class="mt"><b>Forge</b><span>sonnet-4.6 · build &amp; deploy · online</span></div><svg class="ck" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="m-item" onclick="pickAgent(this,'Echo')"><div class="mi" style="background:linear-gradient(150deg,#b388ff,#8a5cf0)">E</div><div class="mt"><b>Echo</b><span>haiku-4.5 · notifications · idle</span></div><svg class="ck" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+
+    <!-- generic view panel -->
+    <section class="screen" id="panel" data-od-id="panel">
+      <div class="sc-head"><button class="tb-btn" onclick="closePanel()" aria-label="Back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ttl" id="panelTitle">—</div></div>
+      <div class="sc-body" id="panelBody"></div>
+    </section>
+
+    <!-- settings -->
+    <section class="screen" id="settings" data-od-id="settings">
+      <div class="sc-head"><button class="tb-btn" onclick="closeSettings()" aria-label="Back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ttl">Settings</div></div>
+      <div class="sc-body">
+        <div class="grp-label">Account</div>
+        <div class="card">
+          <div class="row" onclick="toast('Account · Henry · OpenCLAW Pro')"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="t"><b>Henry</b><span>OpenCLAW Pro</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+
+        <div class="grp-label">Gateway</div>
+        <div class="card">
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a10 10 0 0 1 14 0M8 15a6 6 0 0 1 8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="18" r="1.4" fill="currentColor"/></svg></div><div class="t"><b>Connection</b><span>sf-01.openclaw.ai</span></div><span class="st" style="color:var(--green)"><span class="dotg is-green"></span>Online</span></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t"><b>Approvals</b><span>Push notifications on</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/><path d="M4 19a5 5 0 0 1 10 0M16 11h5M18.5 8.5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="t"><b>Permissions</b><span>2 enabled</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="2.3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="2.3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="2.3" stroke="currentColor" stroke-width="2"/><path d="M8 11l8-4M8 13l8 4" stroke="currentColor" stroke-width="2"/></svg></div><div class="t"><b>Channels / Integrations</b><span>Message routing</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M7 7v10M17 7v10M3 10v4M21 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="t"><b>Voice &amp; Talk</b><span>Cove · en-US</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+
+        <div class="grp-label">Preferences</div>
+        <div class="card">
+          <div class="row" onclick="openPanel('appearance')"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg></div><div class="t"><b>Appearance</b><span>Theme &amp; accent color</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="grp-label">Device</div>
+        <div class="card">
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 20a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="t"><b>Notifications</b><span>Enabled</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="t"><b>Diagnostics</b><span>System checks</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 11V8a7 7 0 0 1 14 0v3" stroke="currentColor" stroke-width="2"/><rect x="4" y="11" width="16" height="9" rx="2" stroke="currentColor" stroke-width="2"/></svg></div><div class="t"><b>Privacy</b><span>Location off</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 11v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="1.2" fill="currentColor"/></svg></div><div class="t"><b>About</b><span>v2026.6.10 (1)</span></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div style="height:18px"></div>
+      </div>
+    </section>
+
+    <!-- voice overlay -->
+    <div class="voice" id="voice" data-od-id="voice">
+      <div class="blobwrap"><div class="blob"></div></div>
+      <div class="cap">“Summarize the overnight cron runs and flag anything that failed.”</div>
+      <div class="small">Listening…</div>
+      <div class="vctl">
+        <button class="vbtn" aria-label="Mute"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3ZM6 11a6 6 0 0 0 12 0M12 19v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <button class="vbtn x" aria-label="End" onclick="closeVoice()"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-ind"></div>
+</div>
+
+<script>
+  const CLAW='<svg viewBox="0 0 24 24" fill="none"><path d="M7 13a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.3" fill="currentColor"/><circle cx="15" cy="10" r="1.3" fill="currentColor"/><path d="M6 16c1.4 1.7 3.6 2.6 6 2.6s4.6-.9 6-2.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  const scrim=document.getElementById('scrim'), sidebar=document.getElementById('sidebar'),
+        sheet=document.getElementById('sheet'), voice=document.getElementById('voice'),
+        panel=document.getElementById('panel'), settings=document.getElementById('settings'),
+        thread=document.getElementById('thread'), ta=document.getElementById('ta'),
+        goBtn=document.getElementById('goBtn'), goIcon=document.getElementById('goIcon'),
+        micBtn=document.getElementById('micBtn');
+  document.querySelectorAll('.claw').forEach(c=>{ if(c.textContent.trim()==='{{CLAW}}') c.innerHTML=CLAW; });
+
+  const VOICE_SVG='<path d="M9 5.5v13M15 5.5v13M5 9v6M19 9v6M12 3v18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>';
+  const SEND_SVG='<path d="M12 19V5M6 11l6-6 6 6" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>';
+  let typing=false;
+
+  function openSide(){ sidebar.classList.add('show'); scrim.classList.add('show'); }
+  function openSheet(){ sheet.classList.add('show'); scrim.classList.add('show'); }
+  function closeOverlays(){ sidebar.classList.remove('show'); sheet.classList.remove('show'); scrim.classList.remove('show'); }
+  function openVoice(){ voice.classList.add('show'); }
+  function closeVoice(){ voice.classList.remove('show'); }
+  function openSettings(){ closeOverlays(); settings.classList.add('show'); }
+  function closeSettings(){ settings.classList.remove('show'); }
+  function toggleWs(){ const ex=document.getElementById('wsExtra'), t=document.getElementById('wsToggle'), l=document.getElementById('wsToggleLabel'); const opening=ex.hasAttribute('hidden'); if(opening){ ex.removeAttribute('hidden'); } else { ex.setAttribute('hidden',''); } t.classList.toggle('open',opening); l.textContent=opening?'Show less':'More'; }
+  function closePanel(){ panel.classList.remove('show'); }
+
+  /* ---- panel content : every workspace destination ---- */
+  const dot=c=>'<span class="dotg is-'+c+'"></span>';
+  const PANELS={
+    about:{t:'About',html:
+      '<div style="text-align:center;padding:16px 0 4px"><div style="width:64px;height:64px;border-radius:18px;margin:0 auto 14px;display:grid;place-items:center;background:var(--accent);color:var(--accent-fg)"><svg viewBox="0 0 24 24" width="34" height="34" fill="none"><path d="M7 13a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M6 16c1.5 2 4 3 6 3s4.5-1 6-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div style="font:800 22px/1 var(--sans);letter-spacing:-.02em">OpenCLAW</div><div class="pv-sub" style="text-align:center;margin:8px 0 0">Mission control for your AI agents</div></div>'+
+      '<div class="grp-label">Build</div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Version</b></div><span class="v">v2026.6.10 (1)</span></div>'+
+      '<div class="row"><div class="t"><b>App</b></div><span class="v">2026.6.10 (1)</span></div>'+
+      '<div class="row"><div class="t"><b>Platform</b></div><span class="v">iOS 26.5.1</span></div>'+
+      '<div class="row"><div class="t"><b>Model</b></div><span class="v">iPhone18,3</span></div></div>'+
+      '<div class="grp-label">More</div>'+
+      '<div class="card"><div class="row" onclick="openPanel(\'docs\')"><div class="t"><b>Documentation</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="row" onclick="toast(\'Opens in browser\')"><div class="t"><b>Privacy Policy</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="row" onclick="toast(\'Opens in browser\')"><div class="t"><b>Terms of Service</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="row" onclick="toast(\'Acknowledgements\')"><div class="t"><b>Acknowledgements</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>'+
+      '<div class="pv-sub" style="text-align:center;margin:18px 0 0">© 2026 OpenCLAW · Made for operators</div>'},
+    appearance:{t:'Appearance',html:
+      '<p class="pv-sub">Choose how OpenCLAW looks on this device.</p>'+
+      '<div class="grp-label">Theme</div>'+
+      '<div class="appcards" data-od-id="appearance-seg">'+
+      '<button class="appcard" data-appear="light" onclick="setAppearance(\'light\')"><span class="appcard-prev" style="background:#e9e9ec"><span class="mini" style="background:#fff"><span class="ln" style="background:#cfcfd5"></span><span class="ln short" style="background:#dadae0"></span><span class="pdot"></span></span></span><span class="appcard-lbl">Light</span></button>'+
+      '<button class="appcard" data-appear="dark" onclick="setAppearance(\'dark\')"><span class="appcard-prev" style="background:#161618"><span class="mini" style="background:#2c2c2e"><span class="ln" style="background:#57575c"></span><span class="ln short" style="background:#434348"></span><span class="pdot"></span></span></span><span class="appcard-lbl">Dark</span></button>'+
+      '<button class="appcard" data-appear="system" onclick="setAppearance(\'system\')"><span class="appcard-prev" style="background:linear-gradient(135deg,#e9e9ec 0 50%,#161618 50% 100%)"><span class="mini" style="background:linear-gradient(135deg,#fff 0 50%,#2c2c2e 50% 100%)"><span class="ln" style="background:#9a9aa0"></span><span class="ln short" style="background:#85858b"></span><span class="pdot"></span></span></span><span class="appcard-lbl">System</span></button>'+
+      '</div>'+
+      '<div class="grp-label">Accent · OpenCLAW theme</div>'+
+      '<div class="seg" data-od-id="accent-seg"><button data-accent-opt="mono" onclick="setAccent(\'mono\')">Mono</button><button data-accent-opt="red" onclick="setAccent(\'red\')">OpenCLAW Red</button></div>'},
+    gateway:{t:'Gateway',html:
+      '<p class="pv-sub">Connected · OpenCLAW Gateway · 42ms</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Status</b><span>sf-01.openclaw.ai</span></div><span class="st" style="color:var(--green)">'+dot('green')+'Online</span></div>'+
+      '<div class="row"><div class="t"><b>Server</b></div><span class="v">OpenCLAW Gateway</span></div>'+
+      '<div class="row"><div class="t"><b>Discovered</b></div><span class="v">1</span></div>'+
+      '<div class="row"><div class="t"><b>Default agent</b></div><span class="v">Main</span></div>'+
+      '<div class="row"><div class="t"><b>Agents</b></div><span class="v">4</span></div></div>'+
+      '<div class="duo"><button class="tonal">Reconnect</button><button class="tonal">Diagnose</button></div>'+
+      '<div class="grp-label">Manual gateway</div>'+
+      '<div class="card" style="padding:14px 15px"><div class="row" style="padding:0 0 12px"><div class="t"><b>Use manual gateway</b></div><span class="tgl on" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<input class="field" value="ada-gateway.tail032b4d.ts.net" aria-label="Gateway address"><input class="field" value="18789" aria-label="Port">'+
+      '<div class="row" style="padding:2px 0 12px"><div class="t"><b>Use TLS</b></div><span class="tgl on" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<button class="tonal" style="margin:0">Connect manual</button></div>'+
+      '<div class="grp-label">Pair a device</div>'+
+      '<div class="card" style="padding:15px"><div class="pv-sub" style="margin:0 0 12px">In your OpenCLAW chat, run <code style="font-family:var(--mono);background:var(--chip);padding:2px 6px;border-radius:6px">/pair qr</code>, then scan here.</div><div class="duo"><button class="tonal" style="margin:0">Scan QR</button><button class="tonal" style="margin:0">Setup code</button></div></div>'+
+      '<div class="grp-label">Discovered gateways</div>'+
+      '<div class="card"><div class="row"><div class="t"><b>MascotM3</b><span>_openclaw-gw._tcp.local</span></div><button class="btn-sm">Connect</button></div>'+
+      '<div class="row"><div class="t"><b>Auto-connect on launch</b></div><span class="tgl" onclick="this.classList.toggle(\'on\')"><i></i></span></div></div>'},
+    approvals:{t:'Approvals',html:
+      '<p class="pv-sub">Out-of-app approval alerts need notification permission.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Approval alerts</b><span>Notification permission required</span></div><span class="pill-off">Alerts off</span></div></div>'+
+      '<div class="grp-label">Notifications</div>'+
+      '<div class="card" style="padding:15px"><div style="font:600 15.5px/1.2 var(--sans)">Notifications are off</div><div class="pv-sub" style="margin:8px 0 12px">Enable notifications to receive approval alerts while OpenCLAW is not open.</div><button class="tonal" style="margin:0">Open Notifications</button></div>'+
+      '<div class="card"><div class="row"><div class="ic" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="t"><b>No approvals waiting</b><span>Foreground approvals still appear while connected</span></div></div></div>'},
+    permissions:{t:'Permissions',html:
+      '<p class="pv-sub">What the gateway may access on this device.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Camera</b><span>Photos or video while foregrounded</span></div><span class="tgl on" onclick="this.classList.toggle(\'on\')"><i></i></span></div></div>'+
+      '<div class="card" style="padding:13px 15px"><div class="t" style="margin-bottom:2px"><b>Location</b><span>Share location with gateway tools</span></div><div class="seg3"><button class="on" onclick="seg3(this)">Off</button><button onclick="seg3(this)">While using</button><button onclick="seg3(this)">Always</button></div></div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Keep awake</b><span>Keep the screen awake while open</span></div><span class="tgl on" onclick="this.classList.toggle(\'on\')"><i></i></span></div></div>'+
+      '<div class="grp-label">Privacy &amp; access</div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Contacts</b><span>Search &amp; add from the assistant</span></div><button class="btn-sm">Request</button></div>'+
+      '<div class="row"><div class="t"><b>Calendar · add events</b><span>Least privilege</span></div><button class="btn-sm">Request</button></div>'+
+      '<div class="row"><div class="t"><b>Calendar · view events</b><span>Read calendar</span></div><button class="btn-sm">Request</button></div>'+
+      '<div class="row"><div class="t"><b>Reminders</b><span>List, add &amp; complete</span></div><button class="btn-sm">Request</button></div></div>'},
+    channels:{t:'Channels',html:
+      '<p class="pv-sub">Message routing and external channel clients.</p>'+
+      '<div class="card"><div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="2.3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="6" r="2.3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="18" r="2.3" stroke="currentColor" stroke-width="2"/><path d="M8 11l8-4M8 13l8 4" stroke="currentColor" stroke-width="2"/></svg></div><div class="t"><b>Channels / Integrations</b><span>Connect to load integrations</span></div><span class="pill-off">Offline</span></div></div>'+
+      '<div class="grp-label">Message routing</div>'+
+      '<div class="card"><div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><div class="t"><b>Gateway offline</b><span>Connect to load channels, accounts &amp; routes</span></div><span class="pill-off">Offline</span></div></div>'},
+    voicetalk:{t:'Voice & Talk',html:
+      '<p class="pv-sub">Realtime voice configuration.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Voice &amp; Talk</b><span>Not loaded</span></div><span class="pill-off">Off</span></div></div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Voice wake</b></div><span class="tgl" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<div class="row"><div class="t"><b>Talk mode</b><span>Automatic</span></div><span class="tgl" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<div class="row"><div class="t"><b>Background listening</b></div><span class="tgl" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<div class="row"><div class="t"><b>Speakerphone</b></div><span class="tgl on" onclick="this.classList.toggle(\'on\')"><i></i></span></div>'+
+      '<div class="row"><div class="t"><b>Wake words</b></div><span class="lk">openclaw, claude ›</span></div></div>'+
+      '<div class="grp-label">Gateway default</div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Voice mode</b></div><span class="v">Not loaded</span></div>'+
+      '<div class="row"><div class="t"><b>Active voice</b></div><span class="v">Not active</span></div>'+
+      '<div class="row"><div class="t"><b>Transport</b></div><span class="v">Not loaded</span></div>'+
+      '<div class="row"><div class="t"><b>API key</b></div><span class="v">Not loaded</span></div></div>'},
+    diagnostics:{t:'Diagnostics',html:
+      '<p class="pv-sub">Run app, permission and gateway-adjacent checks.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Health check</b><span>App, permission &amp; gateway checks</span></div><span class="pill-off" style="color:var(--amber)">Partial</span></div></div>'+
+      '<button class="tonal">Run diagnostics</button>'+
+      '<div class="card"><div class="row"><div class="t"><b>Last run</b></div><span class="v">Not run</span></div>'+
+      '<div class="row"><div class="t"><b>Gateway link</b><span>Reconnecting…</span></div><span class="st" style="color:var(--amber)">'+dot('amber')+'Offline</span></div>'+
+      '<div class="row"><div class="t"><b>Discovery</b><span>Searching…</span></div><span class="v">1</span></div>'+
+      '<div class="row"><div class="t"><b>Talk config</b><span>Not loaded</span></div><span class="pill-off">Missing</span></div>'+
+      '<div class="row"><div class="t"><b>Notifications</b><span>Approval &amp; event alerts</span></div><span class="pill-off">Not enabled</span></div>'+
+      '<div class="row"><div class="t"><b>Screen capture</b><span>Foreground capture</span></div><span class="v">Idle</span></div></div>'+
+      '<div class="card"><div class="row"><div class="t"><b>Device</b></div><span class="v">iPhone</span></div>'+
+      '<div class="row"><div class="t"><b>Platform</b></div><span class="v">iOS 26.5.1</span></div></div>'},
+    agents:{t:'Agents',html:
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin:-2px 0 12px"><span class="pv-sub" style="margin:0">3 agents · 1 online</span><span style="display:flex;gap:8px"><button class="agpick" onclick="toast(\'Search agents\')" aria-label="Search agents"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><button class="agpick" onclick="toast(\'Refreshing…\')" aria-label="Refresh"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4v6h6M20 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 9A7.5 7.5 0 0 0 6 6.5L4 8M5 15a7.5 7.5 0 0 0 13 2.5l2-1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></span></div>'+
+      '<div class="agfilters"><button class="agchip on" onclick="seg3(this)">All</button><button class="agchip" onclick="seg3(this)">Online</button><button class="agchip" onclick="seg3(this)">Ready</button></div>'+
+      '<div class="card">'+
+      '<div class="agrow" onclick="toast(\'Molty is the active agent\')"><div class="agav" style="background:linear-gradient(150deg,#b5544a,#7a3d36)">M<span class="pres" style="background:var(--green)"></span></div><div class="agbody"><div class="agname">Molty <span class="agstatus" style="color:var(--green)">● Online</span></div><div class="agmodel">OpenCLAW · gpt-5.5 · default</div><div class="agstats"><div class="agstat"><div class="k">Sessions</div><div class="v">1 running</div></div><div class="agstat"><div class="k">Runtime</div><div class="v">5.5</div></div></div></div><span class="agpick sel" aria-label="Active agent"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>'+
+      '<div class="agrow" onclick="toast(\'Switched to Automation\')"><div class="agav" style="background:linear-gradient(150deg,#6b8ec9,#3f72e0)">AU<span class="pres" style="background:var(--blue)"></span></div><div class="agbody"><div class="agname">Automation <span class="agstatus" style="color:var(--blue)">● Ready</span></div><div class="agmodel">OpenCLAW · gpt-5.5</div><div class="agstats"><div class="agstat"><div class="k">Sessions</div><div class="v">0</div></div><div class="agstat"><div class="k">Runtime</div><div class="v">5.5</div></div></div></div><span class="agpick" aria-label="Open agent"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>'+
+      '<div class="agrow" onclick="toast(\'Switched to Research\')"><div class="agav" style="background:linear-gradient(150deg,#6b8ec9,#3f72e0)">RS<span class="pres" style="background:var(--blue)"></span></div><div class="agbody"><div class="agname">Research <span class="agstatus" style="color:var(--blue)">● Ready</span></div><div class="agmodel">OpenCLAW · gpt-5.5</div><div class="agstats"><div class="agstat"><div class="k">Sessions</div><div class="v">0</div></div><div class="agstat"><div class="k">Runtime</div><div class="v">5.5</div></div></div></div><span class="agpick" aria-label="Open agent"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>'+
+      '</div>'},
+    control:{t:'Control room',html:
+      '<p class="pv-sub">Live system status across your gateway and agents.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Gateway</b><span>sf-01 · 42ms</span></div><span class="st" style="color:var(--green)">'+dot('green')+'Online</span></div>'+
+      '<div class="row"><div class="t"><b>Agents</b><span>4 online · 1 idle</span></div><span class="v">4</span></div>'+
+      '<div class="row"><div class="t"><b>Sessions</b><span>active now</span></div><span class="v">7</span></div>'+
+      '<div class="row"><div class="t"><b>Uptime</b><span>last 30 days</span></div><span class="v">99.9%</span></div></div>'},
+    overview:{t:'Overview',html:
+      '<p class="pv-sub">Status, entry points and health checks.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>All systems healthy</b><span>6 checks passing</span></div><span class="st" style="color:var(--green)">'+dot('green')+'OK</span></div>'+
+      '<div class="row"><div class="t"><b>Entry points</b><span>chat · voice · webhook</span></div><span class="v">3</span></div>'+
+      '<div class="row"><div class="t"><b>Last incident</b><span>none in 14 days</span></div></div></div>'},
+    activity:{t:'Activity',html:
+      '<p class="pv-sub">Gateway, session and device activity.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>CI fix pushed</b><span>fix/sync-await · Forge</span></div><span class="v">2m</span></div>'+
+      '<div class="row"><div class="t"><b>Session resumed</b><span>main · gateway-sf-01</span></div><span class="v">8m</span></div>'+
+      '<div class="row"><div class="t"><b>Cron run completed</b><span>nightly-digest</span></div><span class="v">3h</span></div>'+
+      '<div class="row"><div class="t"><b>Skill proposed</b><span>pdf-extract · pending</span></div><span class="v">5h</span></div></div>'},
+    workboard:{t:'Workboard',html:
+      '<p class="pv-sub">Agent work queue and session handoff.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Fix failing CI</b><span>web-prototype</span></div><span class="st" style="color:var(--green)">'+dot('green')+'Done</span></div>'+
+      '<div class="row"><div class="t"><b>Release notes v2026.6.10</b><span>assigned · Scout</span></div><span class="st" style="color:var(--amber)">'+dot('amber')+'In&nbsp;progress</span></div>'+
+      '<div class="row"><div class="t"><b>Rotate API keys</b><span>queued</span></div><span class="st" style="color:var(--faint)">'+dot('faint')+'Queued</span></div></div>'},
+    skills:{t:'Skill Workshop',html:
+      '<p class="pv-sub">Review and apply proposed skills.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>pdf-extract</b><span>proposed by Scout</span></div><button class="btn-sm" onclick="this.textContent=\'Applied\';this.disabled=true">Approve</button></div>'+
+      '<div class="row"><div class="t"><b>slack-digest</b><span>proposed by Echo</span></div><button class="btn-sm" onclick="this.textContent=\'Applied\';this.disabled=true">Approve</button></div></div>'},
+    instances:{t:'Instances',html:
+      '<p class="pv-sub">Latest presence from OpenCLAW nodes.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>sf-01</b><span>primary · us-west</span></div><span class="st" style="color:var(--green)">'+dot('green')+'Live</span></div>'+
+      '<div class="row"><div class="t"><b>sf-02</b><span>replica · us-west</span></div><span class="st" style="color:var(--green)">'+dot('green')+'Live</span></div>'+
+      '<div class="row"><div class="t"><b>eu-01</b><span>replica · eu-central</span></div><span class="st" style="color:var(--amber)">'+dot('amber')+'Lagging</span></div></div>'},
+    sessions:{t:'Sessions',html:
+      '<p class="pv-sub">Active sessions and defaults.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>main</b><span>Main · default</span></div><span class="v">live</span></div>'+
+      '<div class="row"><div class="t"><b>research-42</b><span>Scout</span></div><span class="v">12m</span></div>'+
+      '<div class="row"><div class="t"><b>build-7</b><span>Forge</span></div><span class="v">active</span></div></div>'},
+    dreaming:{t:'Dreaming',html:
+      '<p class="pv-sub">Memory signals and background synthesis.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>Nightly synthesis</b><span>runs at 03:00</span></div><span class="st" style="color:var(--green)">'+dot('green')+'On</span></div>'+
+      '<div class="row"><div class="t"><b>Memory signals</b><span>last 24h</span></div><span class="v">128</span></div>'+
+      '<div class="row"><div class="t"><b>Last digest</b><span>6 themes surfaced</span></div><span class="v">3h</span></div></div>'},
+    usage:{t:'Usage',html:
+      '<p class="pv-sub">API usage and costs · this month.</p>'+
+      '<div class="card" style="padding:16px 15px"><div class="kpi">$14.20 <small>today</small></div>'+
+      '<div class="bars"><i style="height:38%"></i><i style="height:55%"></i><i style="height:30%"></i><i style="height:72%"></i><i style="height:48%"></i><i style="height:90%"></i><i style="height:64%"></i></div></div>'+
+      '<div class="card" style="padding:4px 15px"><div class="brk"><span>opus-4.8</span><b>$8.40</b></div><div class="brk"><span>sonnet-4.6</span><b>$3.90</b></div><div class="brk"><span>haiku-4.5</span><b>$1.90</b></div></div>'},
+    cron:{t:'Cron Jobs',html:
+      '<p class="pv-sub">Wakeups and recurring runs.</p>'+
+      '<div class="card"><div class="row"><div class="t"><b>nightly-digest</b><span>every day · 03:00</span></div><span class="v">in 4h</span></div>'+
+      '<div class="row"><div class="t"><b>key-rotation</b><span>weekly · Sun</span></div><span class="v">in 2d</span></div>'+
+      '<div class="row"><div class="t"><b>latency-probe</b><span>every 15 min</span></div><span class="v">in 6m</span></div></div>'},
+    docs:{t:'Docs',html:
+      '<p class="pv-sub">Reference docs and setup guides.</p>'+
+      '<div class="card"><div class="row" onclick="toast(\'Opening: Getting started\')"><div class="t"><b>Getting started</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="row" onclick="toast(\'Opening: Pairing a gateway\')"><div class="t"><b>Pairing a gateway</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'+
+      '<div class="row" onclick="toast(\'Opening: Skills &amp; permissions\')"><div class="t"><b>Skills &amp; permissions</b></div><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>'}
+  };
+  function openPanel(key){ const p=PANELS[key]; if(!p) return;
+    document.getElementById('panelTitle').textContent=p.t;
+    document.getElementById('panelBody').innerHTML=p.html;
+    if(typeof applyTheme==='function') applyTheme();
+    if(typeof a11yUpgrade==='function') a11yUpgrade(document.getElementById('panelBody'));
+    if(typeof labelDots==='function') labelDots(document.getElementById('panelBody'));
+    if(typeof semanticsUpgrade==='function') semanticsUpgrade(document.getElementById('panelBody'));
+    closeOverlays(); panel.classList.add('show');
+  }
+
+  /* ---- composer ---- */
+  function onType(el){
+    el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,110)+'px';
+    const has=el.value.trim().length>0;
+    if(has!==typing){ typing=has;
+      goIcon.innerHTML=has?SEND_SVG:VOICE_SVG; goBtn.setAttribute('aria-label',has?'Send':'Voice');
+      micBtn.style.display=has?'none':'grid';
+    }
+  }
+  function goAction(){ typing?sendMsg():openVoice(); }
+  function sendMsg(){
+    const v=ta.value.trim(); if(!v) return;
+    const t=document.createElement('div'); t.className='turn';
+    t.innerHTML='<div class="user"><div class="bubble"></div></div>';
+    t.querySelector('.bubble').textContent=v; thread.appendChild(t);
+    ta.value=''; onType(ta); thread.scrollTop=thread.scrollHeight;
+    const ty=document.createElement('div'); ty.className='turn'; ty.setAttribute('aria-label','OpenCLAW is typing');
+    ty.innerHTML='<div class="assist"><div class="claw">'+CLAW+'</div><div class="body"><div class="typing"><span></span><span></span><span></span></div></div></div>';
+    thread.appendChild(ty); thread.scrollTop=thread.scrollHeight;
+    setTimeout(()=>{ ty.remove(); const r=document.createElement('div'); r.className='turn';
+      r.innerHTML='<div class="assist"><div class="claw">'+CLAW+'</div><div class="body"><p>On it — routing that to the gateway and I’ll report back here.</p></div></div>';
+      thread.appendChild(r); thread.scrollTop=thread.scrollHeight; },820);
+  }
+  function newChat(){ closeOverlays(); closePanel(); }
+  function pickAgent(el,name){ document.querySelectorAll('.m-item').forEach(m=>m.classList.remove('on')); el.classList.add('on');
+    document.getElementById('agentSub').textContent=name; setTimeout(closeOverlays,160); }
+  ta.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); if(typing) sendMsg(); } });
+
+  /* ---- feedback for any control without its own action — guarantees no dead items ---- */
+  function toast(msg){ const d=document.querySelector('.device'); let t=document.getElementById('oc-toast'); if(!t){ t=document.createElement('div'); t.id='oc-toast'; t.className='oc-toast'; d.appendChild(t); } t.textContent=msg; t.classList.add('show'); clearTimeout(window.__ocTT); window.__ocTT=setTimeout(()=>t.classList.remove('show'),1500); }
+  document.addEventListener('click',function(e){
+    const el=e.target.closest('.tonal,.btn-sm,.c-plus,.c-mic,.vbtn,.actions svg,.lk');
+    if(!el || el.hasAttribute('onclick')) return;
+    if(el.classList.contains('c-mic')) return toast('Listening…');
+    if(el.classList.contains('c-plus')) return toast('Add attachment');
+    const vb=el.closest('.vbtn'); if(vb){ if(vb.classList.contains('x')) return; const m=!vb.classList.contains('muted'); vb.classList.toggle('muted'); vb.setAttribute('aria-pressed',m?'true':'false'); vb.innerHTML = m ? '<svg viewBox="0 0 24 24" fill="none"><path d="M15 9.4V6a3 3 0 0 0-5.1-2.1M9 9.2V12a3 3 0 0 0 4.6 2.6M6 11a6 6 0 0 0 9.6 4.8M18.4 11a6 6 0 0 1-.5 2.4M12 19v3M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' : '<svg viewBox="0 0 24 24" fill="none"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3ZM6 11a6 6 0 0 0 12 0M12 19v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'; return toast(m?'Microphone muted':'Microphone on'); }
+    if(el.closest('.actions')){ const a=el.getAttribute('aria-label')||'Done'; return toast(a==='Copy'?'Copied':a==='Regenerate'?'Regenerating…':'Feedback noted'); }
+    const lbl=(el.textContent||el.getAttribute('aria-label')||'Done').trim();
+    toast(lbl.length>28?'Done':lbl);
+  });
+
+  /* ---- keyboard operability for div-based controls + Escape to close ---- */
+  const A11Y_SEL='[onclick], .sb-item, .m-item, .tab, .appcard, .sb-search, .acct-gear, .vbtn, .c-plus, .c-mic, .tgl, .seg3 button, .seg button';
+  function a11yUpgrade(root){ (root||document).querySelectorAll(A11Y_SEL).forEach(el=>{ if(['BUTTON','A','INPUT','TEXTAREA'].indexOf(el.tagName)>-1) return; if(!el.hasAttribute('tabindex')) el.tabIndex=0; if(!el.getAttribute('role')) el.setAttribute('role','button'); }); }
+  a11yUpgrade();
+  document.addEventListener('keydown',function(e){
+    const t=e.target;
+    if((e.key==='Enter'||e.key===' ') && t.getAttribute && t.getAttribute('role')==='button' && t.tagName!=='TEXTAREA' && t.tagName!=='INPUT'){ e.preventDefault(); t.click(); return; }
+    if(e.key==='Escape'){ const v=document.getElementById('voice'),p=document.getElementById('panel'),s=document.getElementById('settings'),sb=document.getElementById('sidebar'),sh=document.getElementById('sheet');
+      if(v.classList.contains('show')) closeVoice();
+      else if(p.classList.contains('show')) closePanel();
+      else if(s.classList.contains('show')) closeSettings();
+      else if(sb.classList.contains('show')||sh.classList.contains('show')) closeOverlays(); }
+  });
+
+  /* ---- screen-reader labels for color-only status dots ---- */
+  function labelDots(root){ (root||document).querySelectorAll('.dotg').forEach(d=>{ if(d.nextSibling && d.nextSibling.className==='sr-only') return; const m=d.classList.contains('is-green')?'online':d.classList.contains('is-amber')?'attention':d.classList.contains('is-red')?'offline':''; if(m){ const s=document.createElement('span'); s.className='sr-only'; s.textContent=m+' '; d.parentNode.insertBefore(s,d.nextSibling); } }); }
+  labelDots();
+
+  /* ---- modal semantics: dialog roles + focus trap + inert background + focus restore ---- */
+  (function(){
+    const els=['sidebar','sheet','panel','settings','voice'].map(i=>document.getElementById(i)).filter(Boolean);
+    const bg=[document.querySelector('.topbar'),document.getElementById('thread'),document.querySelector('.composer')].filter(Boolean);
+    let lastFocus=null;
+    els.forEach(el=>{ el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true'); });
+    const topOpen=()=>{ for(let i=els.length-1;i>=0;i--){ if(els[i].classList.contains('show')) return els[i]; } return null; };
+    const focusables=c=>Array.prototype.slice.call(c.querySelectorAll('button,input,a,[tabindex]')).filter(e=>e.offsetParent!==null && !e.disabled);
+    function sync(){ const open=topOpen(); bg.forEach(el=>{ if(open) el.setAttribute('inert',''); else el.removeAttribute('inert'); }); if(!open && lastFocus){ try{lastFocus.focus();}catch(e){} lastFocus=null; } }
+    els.forEach(el=>{ new MutationObserver(()=>{ if(el.classList.contains('show')){ if(!lastFocus) lastFocus=document.activeElement; const f=focusables(el); if(f[0]){ try{f[0].focus();}catch(e){} } } sync(); }).observe(el,{attributes:true,attributeFilter:['class']}); });
+    document.addEventListener('keydown',function(e){ if(e.key!=='Tab') return; const o=topOpen(); if(!o) return; const f=focusables(o); if(!f.length) return; const first=f[0],last=f[f.length-1]; if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); } else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); } else if(!o.contains(document.activeElement)){ e.preventDefault(); first.focus(); } });
+    sync();
+  })();
+
+  /* ---- ARIA semantics for stateful controls (switch/radio) + voice live region + search filter ---- */
+  function semanticsUpgrade(root){ const r=root||document;
+    r.querySelectorAll('.tgl').forEach(t=>{ t.setAttribute('role','switch'); if(!t.hasAttribute('tabindex'))t.tabIndex=0; t.setAttribute('aria-checked',t.classList.contains('on')?'true':'false'); });
+    r.querySelectorAll('.seg,.seg3,.agfilters,.tgroup').forEach(g=>{ g.setAttribute('role','radiogroup'); g.querySelectorAll('button').forEach(b=>{ b.setAttribute('role','radio'); b.setAttribute('aria-checked',b.classList.contains('on')?'true':'false'); }); });
+    r.querySelectorAll('.appcard').forEach(c=>{ c.setAttribute('role','radio'); c.setAttribute('aria-checked',c.classList.contains('on')?'true':'false'); });
+    r.querySelectorAll('.pres').forEach(p=>p.setAttribute('aria-hidden','true'));
+    const _sh=document.getElementById('sheet'); if(_sh) _sh.setAttribute('role','radiogroup'); document.querySelectorAll('.m-item').forEach(m=>{ m.setAttribute('role','radio'); m.setAttribute('aria-checked',m.classList.contains('on')?'true':'false'); });
+    r.querySelectorAll('.actions svg').forEach((s,i)=>{ s.setAttribute('role','button'); if(!s.hasAttribute('tabindex'))s.tabIndex=0; if(!s.getAttribute('aria-label')) s.setAttribute('aria-label',['Copy','Good response','Bad response','Regenerate'][i]||'Action'); });
+  }
+  function filterNav(q){ q=(q||'').toLowerCase().trim(); document.querySelectorAll('#sidebar .sb-scroll .sb-item').forEach(it=>{ const t=(it.textContent||'').toLowerCase(); it.style.display=(!q||t.indexOf(q)>-1)?'':'none'; }); }
+  document.addEventListener('click',function(e){
+    const tg=e.target.closest('.tgl'); if(tg) tg.setAttribute('aria-checked',tg.classList.contains('on')?'true':'false');
+    const sb=e.target.closest('.seg button,.seg3 button,.agfilters button,.tgroup button'); if(sb){ const g=sb.closest('.seg,.seg3,.agfilters,.tgroup'); if(g) g.querySelectorAll('button').forEach(b=>b.setAttribute('aria-checked',b.classList.contains('on')?'true':'false')); }
+    if(e.target.closest('.appcard')) document.querySelectorAll('.appcard').forEach(c=>c.setAttribute('aria-checked',c.classList.contains('on')?'true':'false'));
+    if(e.target.closest('.m-item')) document.querySelectorAll('.m-item').forEach(m=>m.setAttribute('aria-checked',m.classList.contains('on')?'true':'false'));
+  });
+  (function(){ const vo=document.getElementById('voice'); if(!vo) return; vo.setAttribute('aria-label','Voice session'); const cap=vo.querySelector('.cap'); if(cap){ cap.setAttribute('aria-live','polite'); cap.setAttribute('role','status'); } const bw=vo.querySelector('.blobwrap'); if(bw) bw.setAttribute('aria-hidden','true'); const mute=vo.querySelector('.vbtn:not(.x)'); if(mute) mute.setAttribute('aria-pressed','false'); })();
+  semanticsUpgrade();
+
+  /* ---- theme + accent switcher ---- */
+  const AKEY='od-appearance', CKEY='od-accent';
+  const mq=window.matchMedia('(prefers-color-scheme: dark)');
+  const appearResolved=p=> p==='system' ? (mq.matches?'dark':'light') : p;
+  function applyTheme(){
+    let ap='light',ac='red';
+    try{ ap=localStorage.getItem(AKEY)||'light'; ac=localStorage.getItem(CKEY)||'red'; }catch(e){}
+    document.documentElement.setAttribute('data-theme',appearResolved(ap));
+    document.documentElement.setAttribute('data-accent',ac);
+    document.querySelectorAll('[data-appear]').forEach(b=>b.classList.toggle('on',b.dataset.appear===ap));
+    document.querySelectorAll('[data-accent-opt]').forEach(b=>b.classList.toggle('on',b.dataset.accentOpt===ac));
+    document.querySelectorAll('.tgroup .tg,.appcard,[data-accent-opt],[data-appear]').forEach(b=>{ if(b.getAttribute('role')==='radio') b.setAttribute('aria-checked',b.classList.contains('on')?'true':'false'); });
+  }
+  function setAppearance(p){ try{localStorage.setItem(AKEY,p);}catch(e){} applyTheme(); }
+  function setAccent(c){ try{localStorage.setItem(CKEY,c);}catch(e){} applyTheme(); }
+  function seg3(b){ b.parentNode.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); }
+  if(mq.addEventListener) mq.addEventListener('change',()=>{ let p='light'; try{p=localStorage.getItem(AKEY)||'light';}catch(e){} if(p==='system') applyTheme(); });
+  window.addEventListener('storage',e=>{ if(e.key===AKEY||e.key===CKEY) applyTheme(); });
+  const SETMAP={'Connection':'gateway','Approvals':'approvals','Permissions':'permissions','Channels / Integrations':'channels','Voice & Talk':'voicetalk','Notifications':'approvals','Diagnostics':'diagnostics','Privacy':'permissions','About':'about'};
+  document.querySelectorAll('#settings .row').forEach(r=>{ const b=r.querySelector('.t b'); if(b&&SETMAP[b.textContent.trim()]){ r.style.cursor='pointer'; r.setAttribute('role','button'); r.tabIndex=0; r.addEventListener('click',()=>openPanel(SETMAP[b.textContent.trim()])); } });
+  applyTheme();
+</script>
+</body>
+</html>

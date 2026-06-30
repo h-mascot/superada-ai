@@ -1,0 +1,12 @@
+{
+  "title": "OpenCLAW Mobile Design Loop 5/5",
+  "sourceProject": "Open Design Web Prototype",
+  "projectId": "63554fbe-0203-489b-a351-aabbe7beecb9",
+  "runId": "c3914a65-9787-4ab1-b748-2cce17570910",
+  "artifact": "mobile-chatgpt-style.html",
+  "finalScore": "5.0 / 5",
+  "deadItemCount": 0,
+  "viewsAudited": ["Chat home", "Drawer", "Agent sheet", "Voice overlay", "Settings", "Appearance", "Agents roster", "Detail panels"],
+  "scorePath": ["4.1", "4.9", "5.0"],
+  "scopeNote": "Final 5/5 applies to mobile-chatgpt-style.html, not the separate mobile-ios.html/mobile-android.html builds."
+}

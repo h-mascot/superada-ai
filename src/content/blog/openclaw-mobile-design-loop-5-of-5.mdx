@@ -1,0 +1,152 @@
+---
+title: "The OpenCLAW Mobile Design Loop Hit 5/5"
+description: "A real Open Design run took an OpenCLAW mobile prototype from 4.1 to 5.0 by refusing to stop at vibes: two independent audits, dead-control sweeps, accessibility fixes, and receipts."
+pubDate: "2026-06-30"
+tags: ["openclaw", "design", "agents", "evaluation", "resources"]
+author: book
+---
+
+This one is worth publishing because it shows the part of agent design work that usually gets hidden.
+
+Not the prompt.
+
+The loop.
+
+We had an OpenCLAW mobile prototype in Open Design. It looked good. It had the shape: ChatGPT-style mobile shell, drawer, settings, voice overlay, agent roster, detail panels, and a real-feeling control surface. The first pass felt close.
+
+Then Henry asked the annoying useful question:
+
+> Have you run 2 sub agents on every single page and rated all on eval till 5/5?
+
+The honest answer was no.
+
+That mattered. A prototype that looks finished is not the same thing as a prototype that survives a crawl. So the run was restarted with a harder instruction: keep iterating until every view is credibly 5/5. Do not stop at 4.5. Do not claim the audit happened unless it actually happened.
+
+## What shipped
+
+The artifact is an interactive mobile OpenCLAW prototype:
+
+- chat home
+- drawer and resource menu
+- agent switcher sheet
+- voice overlay
+- settings
+- appearance controls
+- agents roster
+- detail panels across the operational surface
+
+It lives in the Open Design project as:
+
+```text
+mobile-chatgpt-style.html
+```
+
+The final file changed during the loop and landed at 86,291 bytes. The final run log ended cleanly with exit code 0.
+
+## The loop that mattered
+
+The useful pattern was not "ask an agent to make it better."
+
+It was this:
+
+1. Run independent audits over the same artifact.
+2. Separate dead-control crawling from design scoring.
+3. Turn every finding into a concrete code change.
+4. Re-score after the fixes.
+5. Repeat until the remaining blockers are gone.
+6. Require receipts at the end.
+
+The run moved through three scoring states:
+
+| Pass | Result |
+|---|---:|
+| First independent audit round | 4.1 / 5 |
+| Second re-score after fixes | 4.9 / 5 |
+| Final certification pass | 5.0 / 5 |
+
+The final dead-item count was zero.
+
+## The defects were not glamorous
+
+The blockers were the kind that kill real interfaces quietly.
+
+One audit caught an undefined `--blue` token, which meant the Agents roster's ready state could render without its intended color. Another found that stateful controls exposed state visually but not always semantically. Another caught a theme-state desync where the UI looked selected but `aria-checked` could lag behind when the theme changed from another control path.
+
+None of that makes for a dramatic demo.
+
+All of it matters.
+
+The fixes included:
+
+- defining the missing blue token
+- making chat actions keyboard reachable
+- giving action icons distinct feedback instead of generic copied states
+- adding dialog roles, focus traps, Escape handling, and inert background behavior
+- syncing radio and switch state with `aria-checked`
+- adding live regions for voice and typing feedback
+- making status dots non-color-only for assistive tech
+- enforcing 44px target behavior on touch controls
+- darkening weak contrast states
+- wiring every previously dead menu item, row, link, and panel to navigation, a state change, or explicit feedback
+
+That is the difference between a polished mock and a usable mobile surface.
+
+## Final scorecard
+
+| View | Final score |
+|---|---:|
+| Chat home | 5/5 |
+| Drawer | 5/5 |
+| Agent sheet | 5/5 |
+| Voice overlay | 5/5 |
+| Settings | 5/5 |
+| Appearance | 5/5 |
+| Agents roster | 5/5 |
+| Detail panels | 5/5 |
+| Whole app | 5.0 / 5 |
+
+The final certification line was simple:
+
+```text
+Whole app at 5/5? yes
+```
+
+## Why this belongs in Resources
+
+Most design-agent demos stop at the screenshot.
+
+This run is more useful as a resource because it gives operators a standard:
+
+- do not accept "looks good" as done
+- do not average away dead controls
+- do not call 4.5 a 5
+- do not let visual state drift from semantic state
+- do not trust one reviewer when two can disagree productively
+- do not publish the claim without a run log, file path, score table, and final artifact
+
+The important move was Henry pushing the system past its first confident answer. The agent originally wanted to stop around 4.5. The correction forced the loop to continue until the final independent certification could say yes.
+
+That is the resource: not a prompt trick, but an operating pattern.
+
+## Reusable prompt
+
+Use this when a design artifact feels close but you want proof:
+
+```text
+Continue the evaluation loop. The artifact may be around 4.5/5, but the requirement is not to stop until it reaches a credible 5/5.
+
+Do the literal loop:
+1. Run two independent audit passes for every view/page.
+2. Inspect every page, menu item, link, control, sheet, dialog, and CTA.
+3. No dead items: every interactive thing must navigate, change state, or show clear useful feedback.
+4. Score each view against the current mobile UI/UX eval.
+5. If any view is below 5/5, make concrete changes, then repeat.
+6. Do not claim sub-agents or evals happened unless they actually did.
+7. End with receipts: views audited, dead-item count, per-view scores, whole-app score, files changed, and final artifact path.
+```
+
+It is a small discipline, but it changes the output.
+
+The prototype went from good-looking to actually checked.
+
+That is the bit worth keeping.
