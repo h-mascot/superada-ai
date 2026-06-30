@@ -6,7 +6,23 @@
   "artifact": "mobile-chatgpt-style.html",
   "finalScore": "5.0 / 5",
   "deadItemCount": 0,
-  "viewsAudited": ["Chat home", "Drawer", "Agent sheet", "Voice overlay", "Settings", "Appearance", "Agents roster", "Detail panels"],
-  "scorePath": ["4.1", "4.9", "5.0"],
-  "scopeNote": "Final 5/5 applies to mobile-chatgpt-style.html, not the separate mobile-ios.html/mobile-android.html builds."
+  "viewsAudited": [
+    "Chat home",
+    "Drawer",
+    "Agent sheet",
+    "Voice overlay",
+    "Settings",
+    "Appearance",
+    "Agents roster",
+    "Detail panels"
+  ],
+  "scorePath": [
+    "4.1",
+    "4.9",
+    "5.0"
+  ],
+  "scopeNote": "Final 5/5 applies to mobile-chatgpt-style.html, not the separate mobile-ios.html/mobile-android.html builds.",
+  "replacementSource": "https://63554fbe-0203-489b-a351-aabbe7beecb.vercel.app/mobile-chatgpt-style.html",
+  "replacementReason": "Henry selected the Vercel-published OpenCLAW mobile design as the better artifact.",
+  "replacedAt": "2026-06-30T15:45:00+01:00"
 }
