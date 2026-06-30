@@ -338,12 +338,17 @@ function publishItem(item) {
   const d = parseInt(dd, 10);
   const baseVersion = item.version || '1.0.0';
   const [baseMajor, baseMinor] = baseVersion.split('.').map((n) => parseInt(n, 10));
+  const now = Math.floor(Date.now() / 1000);
   const versionCandidates = [
     baseVersion,
-    `${baseMajor}.${baseMinor}.${d * 10}`,          // 1.0.30
-    `${baseMajor}.${baseMinor}.${m * 100 + d}`,     // 1.0.603
-    `${baseMajor}.${baseMinor}.${yShort * 10000 + m * 100 + d}`, // 1.0.260603
-    `${baseMajor}.${baseMinor}.${Math.floor(Date.now() / 1000)}`, // always unique for CI reruns
+    `${baseMajor}.${baseMinor}.${d * 10}`,          // 1.0.300 on the 30th
+    `${baseMajor}.${baseMinor}.${m * 100 + d}`,     // 1.0.630 for June 30
+    `${baseMajor}.${baseMinor}.${yShort * 10000 + m * 100 + d}`, // 1.0.260630
+    `${baseMajor}.${baseMinor}.${now}`,             // unique for CI reruns
+    `${baseMajor}.${baseMinor}.${now + 1}`,
+    `${baseMajor}.${baseMinor}.${now + 2}`,
+    `${baseMajor}.${baseMinor}.${now + 3}`,
+    `${baseMajor}.${baseMinor}.${now + 4}`,
   ];
   const baseArgs = (slug, version) => ([
     'publish',
