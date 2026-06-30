@@ -1,6 +1,8 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 const canonicalUrl = 'https://superada.ai/max-ai-vertical-ops-product-brief-v1/';
-const heroImage = '/images/unlisted/max-ai/max-ai-brief-v2-ui-reference.png';
 
 const verticals = [
   { rank: '01', name: 'HVAC', note: 'Top home-service wedge. High inbound volume, existing software spend, clear automation ROI.' },
@@ -40,72 +42,22 @@ const nextSteps = [
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <BaseHead title="Max AI Vertical Ops Assistant | Product Brief v2" description="Unlisted product brief for Max AI vertical ops assistant strategy." image="/images/unlisted/max-ai/max-ai-brief-v2-ui-reference.png" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <link rel="canonical" href={canonicalUrl} />
-    <title>Max AI Vertical Ops Assistant | Product Brief v2</title>
     <style is:inline>
-      :root {
-        color-scheme: dark;
-        --bg: #050403;
-        --panel: #0d0a07;
-        --panel-soft: #15100b;
-        --panel-strong: #20170f;
-        --border: #2d2118;
-        --border-strong: #49321f;
-        --text: #efe3ce;
-        --text-soft: #d8c7ad;
-        --muted: #a09280;
-        --faint: #665747;
-        --accent: #e58a1f;
-        --accent-2: #f0a23c;
-        --accent-3: #b96b1a;
-        --accent-soft: #3a230d;
-        --success: #93c96b;
-        --glow: rgba(229, 138, 31, .22);
-        --shadow: 0 30px 100px rgba(0,0,0,.42);
-        --radius: 1.35rem;
-        --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        --font-display: Georgia, "Times New Roman", ui-serif, serif;
-        --bg-2: var(--bg);
-        --surface: color-mix(in srgb, var(--panel) 92%, transparent);
-        --surface-strong: color-mix(in srgb, var(--panel-strong) 92%, transparent);
-        --surface-soft: color-mix(in srgb, var(--panel-soft) 72%, transparent);
-        --ink: var(--text);
-        --line: var(--border);
-        --primary: var(--accent);
-        --green: var(--success);
-        --rose: var(--accent-3);
-      }
+      :root { --radius: 26px; --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; --font-display: Georgia, "Times New Roman", serif; }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        color: var(--ink);
-        font-family: var(--font-sans);
-        line-height: 1.58;
-        background: var(--bg);
-      }
-      body:before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background: radial-gradient(circle at 10% -4%, var(--glow), transparent 30rem), radial-gradient(circle at 92% 0%, color-mix(in srgb, var(--accent-2) 11%, transparent), transparent 25rem), linear-gradient(180deg, color-mix(in srgb, var(--panel-soft) 38%, transparent), transparent 42rem);
-      }
+      body { font-family: var(--font-sans); }
       a { color: var(--accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
       .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
-      .hero-art { padding-top: 2rem; }
-      .hero-art-frame { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: calc(var(--radius) + 0.2rem); background: color-mix(in srgb, var(--panel) 92%, transparent); box-shadow: var(--shadow); }
-      .hero-art-frame:before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 34%, transparent), transparent 22%, transparent 78%, rgba(0,0,0,.18)); z-index: 1; }
-      .hero-art-frame img { display: block; width: 100%; height: auto; }
-      .hero-art-caption { margin: 0.6rem 0 0; color: var(--faint); font-size: 0.82rem; text-align: right; }
+      .brief-strip { padding-top: clamp(1.25rem, 3vw, 2rem); }
+      .brief-strip-card { padding: 1rem 1.15rem; display: grid; gap: 0.35rem; }
+      .brief-strip-card p { margin: 0; max-width: 980px; color: var(--text-soft); }
       .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); gap: 1rem; padding: 1rem 0 1rem; }
       .panel {
-        border: 1px solid var(--line);
+        border: 1px solid var(--border);
         border-radius: var(--radius);
         background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 96%, transparent), color-mix(in srgb, var(--panel-soft) 72%, transparent));
         box-shadow: var(--shadow);
@@ -122,22 +74,22 @@ const nextSteps = [
         top: -9rem;
         background: radial-gradient(circle, var(--glow), transparent 68%);
       }
-      .eyebrow { color: var(--primary); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; }
-      h1 { max-width: 860px; margin: 0.8rem 0 1rem; font-family: var(--font-display); font-size: clamp(3rem, 7.8vw, 6.6rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.075em; }
+      .eyebrow { color: var(--accent); font-size: 0.78rem; font-weight: 850; letter-spacing: 0.18em; text-transform: uppercase; }
+      h1 { max-width: 920px; margin: 0.8rem 0 1rem; font-family: var(--font-display); font-size: clamp(3rem, 6.2vw, 5.9rem); font-weight: 500; line-height: 0.98; letter-spacing: -0.035em; word-spacing: 0.04em; text-wrap: balance; overflow-wrap: normal; }
       .thesis { max-width: 760px; color: var(--text-soft); font-size: clamp(1.08rem, 2vw, 1.45rem); }
       .pillrow { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.35rem; }
-      .pill { border: 1px solid var(--line); border-radius: 999px; padding: 0.52rem 0.72rem; background: var(--accent-soft); color: var(--text); font-size: 0.83rem; font-weight: 800; }
+      .pill { border: 1px solid var(--border); border-radius: 999px; padding: 0.52rem 0.72rem; background: var(--accent-soft); color: var(--text); font-size: 0.83rem; font-weight: 800; }
       .copybar { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.45rem; }
-      button, .button { min-height: 44px; border: 0; border-radius: 999px; padding: 0.74rem 1rem; cursor: pointer; background: var(--primary); color: #160e07; font-weight: 900; }
-      button.secondary { border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 84%, transparent); color: var(--text); }
+      button, .button { min-height: 44px; border: 0; border-radius: 999px; padding: 0.74rem 1rem; cursor: pointer; background: var(--accent); color: #160e07; font-weight: 900; }
+      button.secondary { border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 84%, transparent); color: var(--text); }
       .signal-stack { display: grid; gap: 0.75rem; padding: 1rem; }
-      .signal { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: color-mix(in srgb, var(--panel) 78%, transparent); transition: transform 180ms ease, border-color 180ms ease; }
+      .signal { border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; background: color-mix(in srgb, var(--panel) 78%, transparent); transition: transform 180ms ease, border-color 180ms ease; }
       .signal:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 52%, var(--border)); }
-      .signal b { display: block; color: var(--primary); font-size: 1.7rem; line-height: 1; letter-spacing: -0.035em; }
+      .signal b { display: block; color: var(--accent); font-size: 1.7rem; line-height: 1; letter-spacing: -0.035em; }
       .signal span { display: block; margin-top: 0.45rem; color: var(--muted); font-size: 0.92rem; }
-      .nav { position: sticky; top: 0; z-index: 20; margin-top: 0.5rem; border-block: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(16px); }
+      .nav { position: sticky; top: 0; z-index: 20; margin-top: 0.5rem; border-block: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(16px); }
       .nav-inner { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 0.65rem 0; display: flex; gap: 0.55rem; overflow-x: auto; }
-      .nav a { white-space: nowrap; border: 1px solid var(--line); border-radius: 999px; padding: 0.5rem 0.75rem; color: var(--text-soft); background: color-mix(in srgb, var(--panel) 84%, transparent); font-size: 0.82rem; font-weight: 850; }
+      .nav a { white-space: nowrap; border: 1px solid var(--border); border-radius: 999px; padding: 0.5rem 0.75rem; color: var(--text-soft); background: color-mix(in srgb, var(--panel) 84%, transparent); font-size: 0.82rem; font-weight: 850; }
       main { padding: 1.4rem 0 3.5rem; }
       .callouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
       .callout { padding: 1.15rem; }
@@ -146,40 +98,40 @@ const nextSteps = [
       .tag.warn { color: var(--accent-2); background: var(--accent-soft); }
       .section { position: relative; margin-top: 1rem; padding: clamp(1.15rem, 3vw, 1.7rem); overflow: hidden; }
       .section:before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3)); }
-      .kicker { color: var(--primary); font-size: 0.72rem; font-weight: 950; letter-spacing: 0.18em; text-transform: uppercase; }
-      h2 { margin: 0.35rem 0 0.8rem; font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.55rem); font-weight: 700; line-height: 1; letter-spacing: -0.045em; }
+      .kicker { color: var(--accent); font-size: 0.72rem; font-weight: 950; letter-spacing: 0.18em; text-transform: uppercase; }
+      h2 { margin: 0.35rem 0 0.8rem; font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.55rem); font-weight: 500; line-height: 1.06; letter-spacing: -0.035em; text-wrap: balance; }
       h3 { margin: 1rem 0 0.35rem; font-size: 1.12rem; }
       p { margin: 0 0 0.8rem; color: var(--text-soft); }
       ul, ol { margin: 0.7rem 0 0; padding-left: 1.25rem; color: var(--text-soft); }
       li { margin: 0.45rem 0; }
       strong { color: var(--text); }
       .vertical-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1rem; }
-      .vertical-card { min-height: 10.5rem; border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 96%, transparent), color-mix(in srgb, var(--panel-soft) 72%, transparent)); transition: transform 180ms ease, border-color 180ms ease; }
+      .vertical-card { min-height: 10.5rem; border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 96%, transparent), color-mix(in srgb, var(--panel-soft) 72%, transparent)); transition: transform 180ms ease, border-color 180ms ease; }
       .vertical-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 52%, var(--border)); }
-      .vertical-card .rank { color: var(--primary); font-size: 0.75rem; font-weight: 950; letter-spacing: 0.12em; }
+      .vertical-card .rank { color: var(--accent); font-size: 0.75rem; font-weight: 950; letter-spacing: 0.12em; }
       .vertical-card h3 { margin-top: 0.35rem; font-size: 1.22rem; }
       .criteria { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; margin-top: 0.9rem; padding: 0; list-style: none; }
-      .criteria li { margin: 0; border: 1px solid var(--line); border-radius: 0.85rem; padding: 0.7rem 0.75rem; background: color-mix(in srgb, var(--panel) 82%, transparent); color: var(--text-soft); }
+      .criteria li { margin: 0; border: 1px solid var(--border); border-radius: 0.85rem; padding: 0.7rem 0.75rem; background: color-mix(in srgb, var(--panel) 82%, transparent); color: var(--text-soft); }
       .names { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; padding: 0; list-style: none; }
-      .names li { margin: 0; border: 1px solid var(--line); border-radius: 0.95rem; padding: 0.85rem 0.9rem; background: color-mix(in srgb, var(--panel) 82%, transparent); color: var(--text); font-weight: 850; }
+      .names li { margin: 0; border: 1px solid var(--border); border-radius: 0.95rem; padding: 0.85rem 0.9rem; background: color-mix(in srgb, var(--panel) 82%, transparent); color: var(--text); font-weight: 850; }
       .structured-list { display: grid; gap: 0.7rem; margin-top: 0.9rem; padding: 0; list-style: none; }
-      .structured-list li { margin: 0; border: 1px solid var(--line); border-radius: 1rem; padding: 0.86rem 0.95rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
+      .structured-list li { margin: 0; border: 1px solid var(--border); border-radius: 1rem; padding: 0.86rem 0.95rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
       .structured-list strong { display: block; margin-bottom: 0.18rem; }
       .numbered-list { counter-reset: step; display: grid; gap: 0.7rem; margin-top: 0.9rem; padding: 0; list-style: none; }
-      .numbered-list li { counter-increment: step; position: relative; margin: 0; min-height: 3.25rem; border: 1px solid var(--line); border-radius: 1rem; padding: 0.84rem 0.95rem 0.84rem 3.3rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
-      .numbered-list li:before { content: counter(step, decimal-leading-zero); position: absolute; left: 0.85rem; top: 0.85rem; color: var(--primary); font-size: 0.76rem; font-weight: 950; letter-spacing: 0.08em; }
+      .numbered-list li { counter-increment: step; position: relative; margin: 0; min-height: 3.25rem; border: 1px solid var(--border); border-radius: 1rem; padding: 0.84rem 0.95rem 0.84rem 3.3rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
+      .numbered-list li:before { content: counter(step, decimal-leading-zero); position: absolute; left: 0.85rem; top: 0.85rem; color: var(--accent); font-size: 0.76rem; font-weight: 950; letter-spacing: 0.08em; }
       .question-list { columns: 2; column-gap: 2rem; margin-top: 0.8rem; }
       .question-list li { break-inside: avoid; }
       .subgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1rem; }
-      .subcard { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: oklch(0.14 0.035 263 / 0.68); }
+      .subcard { border: 1px solid var(--border); border-radius: 1rem; padding: 1rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
       .subcard h3 { margin-top: 0; }
       .handoff-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; margin-top: 1rem; padding: 0; list-style: none; }
-      .handoff-strip li { position: relative; min-height: 6.2rem; margin: 0; border: 1px solid var(--line); border-radius: 1rem; padding: 0.92rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
+      .handoff-strip li { position: relative; min-height: 6.2rem; margin: 0; border: 1px solid var(--border); border-radius: 1rem; padding: 0.92rem; background: color-mix(in srgb, var(--panel) 82%, transparent); }
       .handoff-strip li:after { content: ""; position: absolute; top: 50%; right: -0.7rem; width: 0.7rem; border-top: 1px dashed color-mix(in srgb, var(--accent-2) 62%, transparent); }
       .handoff-strip li:last-child { border-color: color-mix(in srgb, var(--accent) 70%, var(--border)); background: var(--accent-soft); }
       .handoff-strip li:last-child:after { display: none; }
       .handoff-strip b { display: block; color: var(--accent); margin-bottom: 0.2rem; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; }
-      .handoff-strip li:last-child b { color: var(--primary); }
+      .handoff-strip li:last-child b { color: var(--accent); }
       .footer { margin-top: 1.2rem; padding: 1rem 0 0; color: var(--faint); font-size: 0.84rem; }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .signal, .vertical-card { transition: none; } .signal:hover, .vertical-card:hover { transform: none; } }
       @media (max-width: 920px) { .hero, .callouts, .vertical-grid, .criteria, .subgrid, .handoff-strip { grid-template-columns: 1fr; } .handoff-strip li:after { display: none; } .signal-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } .question-list { columns: 1; } }
@@ -188,11 +140,12 @@ const nextSteps = [
     </style>
   </head>
   <body>
-    <section class="wrap hero-art" aria-label="V2 UI reference image">
-      <figure class="hero-art-frame">
-        <img src={heroImage} alt="Max AI Vertical Ops Assistant V2 UI reference showing the premium operator dashboard direction and vertical prioritization cards" loading="eager" decoding="async" />
-      </figure>
-      <p class="hero-art-caption">Image taste reference used for the v2 page direction.</p>
+    <Header />
+    <section class="wrap brief-strip" aria-label="Product brief summary">
+      <div class="brief-strip-card panel">
+        <span class="eyebrow">Max AI brief · v2</span>
+        <p><strong>Operator-first wedge:</strong> pick one service vertical, prove the internal assistant, then expose the customer layer only after the business trusts it.</p>
+      </div>
     </section>
 
     <header class="wrap hero">
@@ -412,5 +365,6 @@ const nextSteps = [
 
       <footer class="footer">Source: 2026-06-20 Andy / Henry voice memo transcribed with Parakeet, plus Andy’s vertical-prioritization post. Writing route used for copy update: citadel-frontier/pioneer/claude-opus-4-8. Frontend-design workflow and imagegen-taste frontend guidance applied to layout, hierarchy, spacing, and scanability. This page is intentionally unlisted and noindex.</footer>
     </main>
+    <Footer />
   </body>
 </html>
