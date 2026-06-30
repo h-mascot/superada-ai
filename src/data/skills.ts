@@ -102,8 +102,8 @@ export const publishedSkills: SkillRecord[] = [
     ],
   },
   {
-    slug: "publish-skill",
-    title: "Publish Skill",
+    slug: "ec-publish-skill",
+    title: "EC Publish Skill",
     description:
       "Sanitize and publish agent skills to GitHub, SuperAda, and ClawHub with receipts, install assets, production checks, and exact auth blockers when registry publishing is unavailable.",
     tagline: "Sanitize first. Publish everywhere. Keep receipts.",
@@ -114,8 +114,8 @@ export const publishedSkills: SkillRecord[] = [
     sourceUrl:
       "https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/publish-skill",
     sourceSpec: "https://superada.ai/skills/publish-skill/SKILL.md",
-    clawhubSlug: "publish-skill",
-    clawhubUrl: "https://clawhub.ai/publish-skill",
+    clawhubSlug: "ec-publish-skill",
+    clawhubUrl: "https://clawhub.ai/ec-publish-skill",
     entrypoint: "SKILL.md",
     installCommand: "curl -sSf https://superada.ai/install/publish-skill | sh",
     reviewMode: "source-review",
