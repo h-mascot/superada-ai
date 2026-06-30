@@ -49,3 +49,11 @@ Check recent SuperAda articles, find published posts without generated audio, ma
 ## Resume Instructions
 
 Task completed for the June 2026 recent-article sweep. If reopened, inspect `git status --short`, rerun the recent article/audio audit, and run `npm run build` on a host with enough memory to complete final image optimization if full artifact proof is required.
+
+
+## Final pass 07:54
+- Resolved duplicate audio frontmatter by keeping MP3 paths.
+- Generated and wired latest remaining published posts with no audio: `looper-is-not-a-replacement-for-our-agent-workflow`, `looper-is-the-daemon-superada-is-the-operating-system`, `two-skill-workflow-autonomous-coding-agents`, `two-skills-autonomous-coding-agent-workflow`.
+- `npm run build` succeeded; log: `output/mc-953/build-final-20260630T0750.log`; Astro built 246 pages.
+- Recent published missing-audio audit returned `missing_count= 0`.
+- Commits: `4eab28c`, `8d42fb0`, `7635de2`.
