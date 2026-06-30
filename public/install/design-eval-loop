@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/design-eval-loop"
+mkdir -p "$TARGET_DIR"
+base="https://superada.ai/skills/design-eval-loop"
+for path in SKILL.md README.md references/rubric.md references/sub-agent-prompts.md; do
+  mkdir -p "$TARGET_DIR/$(dirname "$path")"
+  curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"
+done
+printf 'Installed design-eval-loop to %s\n' "$TARGET_DIR"

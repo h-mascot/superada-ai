@@ -36,6 +36,136 @@ export type SkillRecord = {
 };
 
 export const publishedSkills: SkillRecord[] = [
+
+  {
+    slug: "design-eval-loop",
+    title: "Design Eval Loop",
+    description:
+      "Iterate an existing UI artifact to a verified 5/5 design score with per-view dead-item audits, rubric scoring, fixes, and fresh re-score receipts.",
+    tagline: "No dead controls, no fake 5/5.",
+    category: "Meta",
+    availability: "agent-installable",
+    estimatedSetup: "1 minute",
+    sourceLabel: "enterprise-crew-skills/design-eval-loop",
+    sourceUrl:
+      "https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/design-eval-loop",
+    sourceSpec: "https://superada.ai/skills/design-eval-loop/SKILL.md",
+    clawhubSlug: "design-eval-loop",
+    clawhubUrl: "https://clawhub.ai/design-eval-loop",
+    entrypoint: "SKILL.md",
+    installCommand: "curl -sSf https://superada.ai/install/design-eval-loop | sh",
+    reviewMode: "source-review",
+    includes: [
+      "Skill contract",
+      "Design rubric",
+      "Sub-agent prompt templates",
+      "Curl installer",
+    ],
+    useCases: [
+      "Score a finished prototype against a current design rubric",
+      "Audit every clickable item for dead controls",
+      "Iterate each view until a fresh reviewer confirms 5/5",
+      "Produce evidence instead of claiming a vibes-based pass",
+    ],
+    instructions: [
+      "Review the skill contract and rubric before running it.",
+      "Install with the SuperAda curl installer or copy the bundle into your skills directory.",
+      "Use it only after a UI artifact exists; build-from-scratch belongs to a separate design skill.",
+      "Keep public scorecards free of private URLs, screenshots, and customer data.",
+    ],
+    limitations: [
+      "Does not create the initial UI artifact.",
+      "Requires actual browser or file-grounded inspection to make a 5/5 claim.",
+      "If a structural blocker remains after the iteration cap, report the true score instead of rounding up.",
+    ],
+    artifacts: [
+      {
+        label: "Skill contract",
+        path: "https://superada.ai/skills/design-eval-loop/SKILL.md",
+        description: "Agent-facing loop for per-view design scoring and dead-item audits.",
+      },
+      {
+        label: "Rubric",
+        path: "https://superada.ai/skills/design-eval-loop/references/rubric.md",
+        description: "Weighted 2025/2026 design evaluation rubric.",
+      },
+      {
+        label: "Sub-agent prompts",
+        path: "https://superada.ai/skills/design-eval-loop/references/sub-agent-prompts.md",
+        description: "Read-only audit and scoring prompt templates.",
+      },
+      {
+        label: "Curl installer",
+        path: "https://superada.ai/install/design-eval-loop",
+        description: "Shell installer for local agent runtimes.",
+      },
+    ],
+  },
+  {
+    slug: "publish-skill",
+    title: "Publish Skill",
+    description:
+      "Sanitize and publish agent skills to GitHub, SuperAda, and ClawHub with receipts, install assets, production checks, and exact auth blockers when registry publishing is unavailable.",
+    tagline: "Sanitize first. Publish everywhere. Keep receipts.",
+    category: "Publishing",
+    availability: "agent-installable",
+    estimatedSetup: "2 minutes",
+    sourceLabel: "enterprise-crew-skills/publish-skill",
+    sourceUrl:
+      "https://github.com/h-mascot/Enterprise-Crew-skills/tree/main/publish-skill",
+    sourceSpec: "https://superada.ai/skills/publish-skill/SKILL.md",
+    clawhubSlug: "publish-skill",
+    clawhubUrl: "https://clawhub.ai/publish-skill",
+    entrypoint: "SKILL.md",
+    installCommand: "curl -sSf https://superada.ai/install/publish-skill | sh",
+    reviewMode: "source-review",
+    includes: [
+      "Skill contract",
+      "Sanitizer script",
+      "GitHub README updater",
+      "Public safety checklist",
+      "Curl installer",
+    ],
+    useCases: [
+      "Publish a local or EC skill externally",
+      "Strip personal paths, internal hostnames, tokens, and secret files before sharing",
+      "Update the Enterprise Crew public skills repo",
+      "Add SuperAda skill pages and publish through ClawHub CLI",
+    ],
+    instructions: [
+      "Run the sanitizer before any external publish.",
+      "Use a clean Git worktree when SuperAda or GitHub source checkouts are dirty.",
+      "Publish to ClawHub only through the CLI/API, never by committing skills into the ClawHub repo.",
+      "Write a receipt with source hashes, sanitizer report, GitHub commit, SuperAda URLs, and ClawHub result or auth blocker.",
+    ],
+    limitations: [
+      "ClawHub publishing requires an authenticated ClawHub CLI session or API token.",
+      "The sanitizer is defense in depth; the operator still reviews the public bundle before publishing.",
+      "Private or customer-specific skills need a separate public rewrite before release.",
+    ],
+    artifacts: [
+      {
+        label: "Skill contract",
+        path: "https://superada.ai/skills/publish-skill/SKILL.md",
+        description: "Agent-facing publish workflow and receipt contract.",
+      },
+      {
+        label: "Sanitizer",
+        path: "https://superada.ai/skills/publish-skill/scripts/sanitize-skill.py",
+        description: "Copies and redacts skill bundles before public distribution.",
+      },
+      {
+        label: "Safety checklist",
+        path: "https://superada.ai/skills/publish-skill/references/public-safety-checklist.md",
+        description: "External publishing leak checklist.",
+      },
+      {
+        label: "Curl installer",
+        path: "https://superada.ai/install/publish-skill",
+        description: "Shell installer for local agent runtimes.",
+      },
+    ],
+  },
   {
     slug: 'super-spec',
     title: 'Super Spec',

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/publish-skill"
+mkdir -p "$TARGET_DIR"
+base="https://superada.ai/skills/publish-skill"
+for path in SKILL.md README.md references/public-safety-checklist.md scripts/sanitize-skill.py scripts/update-enterprise-crew-skills-readme.py; do
+  mkdir -p "$TARGET_DIR/$(dirname "$path")"
+  curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"
+done
+chmod +x "$TARGET_DIR/scripts/"*.py
+printf 'Installed publish-skill to %s\n' "$TARGET_DIR"
