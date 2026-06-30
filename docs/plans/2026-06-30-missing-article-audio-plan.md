@@ -22,15 +22,29 @@ Check recent SuperAda articles, find published posts without generated audio, ma
 
 - 2026-06-30: Plan created after MC #953 creation.
 
-- 2026-06-30: Audited June 2026 articles. Missing recent audio was found for 7 Ada-authored posts: `restoring-lost-crons-with-source-payload-receipts`, `azure-credit-trap-claude-fable-marketplace-spend`, `writing-model-router-shared-crew-skill`, `from-polling-to-push-github-release-automation`, `heraldlabs-openclaw-beta-litellm-budgeted-keys-sops`, `2026-05-27-the-right-benchmark-tests-judgment-not-format`, and `2026-05-22-the-lossless-local-default`.
-- 2026-06-30: Generated Kokoro audio and copied 7 MP3 files to `public/audio/`. ffprobe durations/sizes: restoring-lost-crons 271.296s/910700 bytes; azure-credit-trap 194.400s/668492 bytes; writing-model-router 210.672s/699380 bytes; from-polling-to-push 196.920s/670724 bytes; heraldlabs-openclaw-beta 204.120s/698516 bytes; right-benchmark 256.176s/838340 bytes; lossless-local-default 213.120s/727964 bytes.
-- 2026-06-30: Added `audio: /audio/<slug>.mp3` frontmatter to all 7 posts.
-- 2026-06-30: Verified built HTML contains audio paths for the generated posts, including `dist/blog/restoring-lost-crons-with-source-payload-receipts/index.html`. `npm run build` passed: voice validation, timeline validation, Astro static generation, image optimization, sitemap creation, and 242 pages built in 154.20s.
+- 2026-06-30: Audited published articles since 2026-05-01. Missing recent audio was found for 12 Ada-authored posts.
+- 2026-06-30: Generated Kokoro audio using Ada/default voice `bf_alice` and wrote 12 MP3 files to `public/audio/`.
+- 2026-06-30: Added `audio: /audio/<slug>.mp3` frontmatter to all 12 posts.
+- 2026-06-30: Verified recent published posts since 2026-05-01 now have `missingOrBad: 0`. ffprobe confirmed the 12 generated files are non-empty, with durations from 194.400s to 748.512s.
+- 2026-06-30: `npm run build` passed: voice validation, timeline validation, Astro static generation, image optimization, sitemap creation, and 242 pages built in 161.70s.
 
 ## Files Touched
 
 - `docs/plans/ACTIVE_PLAN.md`
 - `docs/plans/2026-06-30-missing-article-audio-plan.md`
+- `src/content/blog/2026-05-15-agents-of-chaos-need-governed-infrastructure-not-better-prompts.mdx`
+- `src/content/blog/2026-05-22-the-lossless-local-default.mdx`
+- `src/content/blog/2026-05-27-the-right-benchmark-tests-judgment-not-format.mdx`
+- `src/content/blog/agent-365-governs-agents-it-still-needs-proof.mdx`
+- `src/content/blog/agents-need-doors-not-just-brains.mdx`
+- `src/content/blog/agents-of-chaos-need-governed-infrastructure-not-better-prompts.mdx`
+- `src/content/blog/azure-credit-trap-claude-fable-marketplace-spend.mdx`
+- `src/content/blog/from-polling-to-push-github-release-automation.mdx`
+- `src/content/blog/heraldlabs-openclaw-beta-litellm-budgeted-keys-sops.mdx`
+- `src/content/blog/restoring-lost-crons-with-source-payload-receipts.mdx`
+- `src/content/blog/the-five-eyes-agent-security-guidance-is-really-about-proof.mdx`
+- `src/content/blog/writing-model-router-shared-crew-skill.mdx`
+- `public/audio/*.mp3` for the same 12 slugs
 
 ## Resume Instructions
 
