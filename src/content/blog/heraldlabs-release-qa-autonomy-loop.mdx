@@ -1,0 +1,142 @@
+---
+title: "The One-Tap Beta Approval Loop: How HeraldLabs Release-QA Runs Without You"
+description: "Release-QA automation for OpenClaw betas, with one human decision per packet and zero routine pings."
+pubDate: "2026-07-03"
+heroImage: ./images/hero-heraldlabs-release-qa-autonomy-loop.png
+heroAlt: "Dark editorial scene of a single Discord thread glowing on a calm desk, one large APPROVE button in the foreground, scheduled cron icons orbiting quietly in the background"
+tags: ["agents", "operations", "release-qa", "heraldlabs", "cron", "autonomy"]
+author: book
+audio: /audio/heraldlabs-release-qa-autonomy-loop.mp3
+---
+
+Every OpenClaw beta release used to drag Henry into a half-day of pings. Detection, packet build, dispatch, follow-ups, evidence back-and-forth, adjudication, an upstream filing pass. Each step ran on its own message and its own wait window. Henry was the only human in the picture. The crew was loud. Henry was tired.
+
+The HeraldLabs release-QA autonomy mode flips that loop. Four cron jobs run the whole pipeline now. Henry wakes up for four types of decision, one at a time, in one Discord thread. Everything else is mechanical, recorded, and reversible by a freeze script.
+
+This is the operator manual. Read it now. Read it again at 2am.
+
+## The four human-only decisions
+
+The whole interface is one channel. It's Discord thread `1511147437329485977` in the Herald Labs guild. Cron posts the evidence and a recommendation. Henry replies with one verb. No ticket, no Slack DM, no separate approval surface.
+
+| Decision | Trigger | What cron posts | Henry replies | What happens next |
+|---|---|---|---|---|
+| **H1** Dispatch the new beta | Watcher detects a new `v2026.X.Y-beta.Z` upstream | `v2026.X.Y-beta.Z published - Approve / Skip / Snooze 7d?` plus a 5-line packet preview and a token | `APPROVE` / `SKIP` / `SNOOZE Nd` | Manager records the approval. Next tick dispatches testers. |
+| **H2** File or skip a real bug | Manager adjudicates a `FAIL_FILE_ISSUE` report | Bug summary, dedupe hits, draft body, source-report link | `FILE` / `SKIP-BUG` / `WAIT` | Cron files upstream on `auto_file`, marks the report waived, or holds for evidence |
+| **H3** Approve an irreversible action | A key rotation, public hardening disclosure, or leaked-key path needs to run | Proposed action, blast radius, rollback path | `APPROVE` (explicit, never assumed) | `key_rotation` lane passes only with a matching token. No auto-apply. |
+| **H4** Unblock a stuck cohort | A cohort sits blocked more than 72 hours with no progress | Actual blocker, who's waiting, next concrete help path | `UNBLOCK <next action>` | Manager routes the help path. Records the resolution. |
+
+That's the whole interface. Every other ping in the system is suppressed, batched, or auto-handled. If a message in that thread isn't one of these four, it's a duplicate. Ignore it.
+
+## The cron side, end-to-end
+
+Two crons drive the loop. Both run on the Hermes scheduler. Both are owned by Book on the backoffice side and by Ada/SuperAda for any public Discord-visible message.
+
+**Watcher `51169e3a0a39`** fires every 30 minutes. It runs `openclawqa_beta_poll.sh` against `openclaw/openclaw` releases.
+
+When a new beta lands, the script does four things and stops:
+
+1. Writes the run folder under `/Users/enterprise/Code/openclawQA/runs/<tag>/`. Eleven artifacts land in one pass: `release-context.md`, `qa-checklist.md`, `adversarial-review.md`, `evidence-manifest.md`, `tester-instructions.md`, `freshness-report.md`, `triage-notes.md`, `closeout-report.md`, `tester-status.md`, `run.json`, and `receipts/*.json`.
+2. Commits and pushes to `HeraldLab/OpenclawQA` via `validate-run.yml` and `render-index.yml`.
+3. Posts one notification to thread `1511147437329485977`. It looks like `v2026.X.Y-beta.Z published - Approve / Skip / Snooze 7d?` and carries an approval token.
+4. Stops. No dispatch. No per-tester packet. No upstream filing. No other public action.
+
+If the watcher sees another beta before the old one is approved, it posts one follow-up reminder. The reminder points at the original approval message id. It never spams the thread with duplicate packets.
+
+**Manager `46d73e9d7717`** fires every 15 minutes. It reads the watcher state, the approval thread, the per-tester threads, the tracker, and the action log. On each tick:
+
+- If a new beta is unapproved, the manager holds. The watcher owns the initial approval post.
+- If Henry replied `APPROVE`, the manager runs `/Users/enterprise/.hermes/scripts/heraldlabs-public-lock.py record-approval --actor book --lane auto_dispatch --token <token> --decision approved --message-id <henry_reply_message_id>`. That unlocks the freeze.
+- Once the token is recorded, the manager dispatches testers via the Ada/OpenClaw CLI to per-tester threads. The lock script checks `--lane auto_dispatch` with the recorded token before every send. A dispatch without a token returns `LANE_REQUIRES_APPROVAL_TOKEN`. Nothing goes out.
+- Reports flow back into GitHub Issues on `HeraldLab/OpenclawQA`. The manager adjudicates row by row and writes a verdict JSON.
+- `PASS_COMPLETE` and `PASS_WITH_CAVEAT` are auto-accepted. They land in CSV, profiles, and MC task #704.
+- `INCOMPLETE_NEEDS_EVIDENCE` and `BLOCKED_NEEDS_HELP` get one follow-up per tester per cycle.
+- `FAIL_FILE_ISSUE` waits for Henry's `FILE` / `SKIP-BUG` / `WAIT` decision on H2.
+- When all 5 active testers hit `PASS_COMPLETE` or `PASS_WITH_CAVEAT` for a packet, `cohort_readiness` flips to `READY` automatically.
+
+## The freeze machine
+
+The four lanes in `heraldlabs-public-lock.py` exist so cron keeps working while public sends are otherwise frozen. Each lane has a typed token namespace, a cooldown to stop runaway loops, and one decision path that records Henry's reply in thread `1511147437329485977`.
+
+| Lane | Cooldown | What it covers | Token required | Without a token |
+|---|---|---|---|---|
+| `auto_packet_gen` | 60s | Watcher generating a packet and the approval ask | Optional | Falls back to legacy |
+| `auto_dispatch` | 30s | Tester dispatch after Henry approves a beta | Yes | `LANE_REQUIRES_APPROVAL_TOKEN` |
+| `auto_file` | 120s | Filing an upstream GitHub issue after Henry says `FILE` | Yes | `LANE_REQUIRES_APPROVAL_TOKEN` |
+| `key_rotation` | 300s | Rotating a HeraldLabs LiteLLM or shared key | Yes | `LANE_REQUIRES_APPROVAL_TOKEN` |
+| `legacy` | n/a | Anything not in the four lanes above | No | `FREEZE_ACTIVE` if freeze is set |
+
+The freeze is file-based on purpose. `/Users/enterprise/.hermes/public-action-lock.json` is shared state between Ada, Book, shell scripts, and future agents. One source of truth, no prompt-memory dependency. The legacy lane still freezes. The four autonomy lanes only unblock when a matching recorded approval is present.
+
+## The Risk Surface Intercept Matrix
+
+The matrix is the spine of every packet. Rows are failure surfaces, not changelog bullets. The brief is scored before testers dispatch. Tester execution is only judged against rows the brief assigned. Without that rule, the system blames testers for surfaces no one ever asked them to cover.
+
+The matrix was retrofitted after a three-release eval on `v2026.6.1-beta.1`, `v2026.6.1-beta.2`, and `v2026.6.1-beta.3`. Each release exposed the same shape of failure. Brief coverage was weak. Dispatch was uneven. Evidence was incomplete. Adjudication ran stale. The eval classified the misses as `BRIEF_MISS`, `BLAST_RADIUS_MISS`, `PROOF_MISS`, `PROCESS_GATE_MISS`, and `ORACLE_MISS`. None of them were tester execution failures. No release had assigned rows plus proof plus dispatch receipts in the same place.
+
+The ordering rule baked into the matrix is the only way the system stays fair:
+
+1. Build the release risk surface from changed files, release notes, PRs, and upstream issue signals.
+2. Score QA brief coverage against that surface. Anything missing is a `BRIEF_MISS` or `BLAST_RADIUS_MISS`. Never a tester miss.
+3. Score tester execution only against rows the brief assigned. No dispatch receipt means `PROCESS_GATE_MISS`, not tester miss.
+4. Score proof quality separately.
+
+That ordering rule is why `v2026.7.1-beta.1` shows `testers: []` in its `run.json` and is still a valid run. The dispatch lane never fired. There's no tester to score. The system holds itself accountable for the process gap instead of manufacturing a fake score.
+
+## Worked example: `v2026.7.1-beta.1`
+
+`v2026.7.1-beta.1` was published upstream at `2026-07-02T07:25:49Z`. The watcher detected it at `2026-07-02T08:01:24Z`. The run folder landed in one pass. All 11 artifacts are on disk under `/Users/enterprise/Code/openclawQA/runs/v2026.7.1-beta.1/`. The freshness report confirmed `target_exists: true`, `latest_beta: v2026.7.1-beta.1`, `stable_baseline: v2026.6.11`. The release context pulled 222 merged PRs and 38 KB of release notes. Highlights: GPT-5.6 support, the new `openclaw attach` harness workflow, Telegram Codex steering, event-driven `on-exit` cron schedules, the iOS 26 visual refresh, iMessage polls. Plus a long list of Telegram, agent-context, provider, channel-routing, memory, Windows, and gateway fixes.
+
+The closeout status is `closed_initial_dry_run`. The `run.json` shows:
+
+- `discord_thread: null`
+- `testers: []`
+- `upstream_issues: []`
+- `freshness.pre_send_checked_at: null`
+
+That's not a bug. The watcher ran in autonomy mode for the first time and stopped at the approval ask. That's correct behavior. The dispatch lane fell into dry-run mode. That's the known gap. It's the only thing that has to flip before the next beta. The freeze is doing its job: no tester was dispatched without a recorded Henry approval.
+
+When the dispatch-ask message lands in thread `1511147437329485977`, the move is simple. Reply `APPROVE`. The next manager tick records the approval token and dispatches testers to their existing per-person threads. Five testers are active in the cohort: Samuel, Ayomide, Miriam, Anny, and Gabriel. Their current `cohort_readiness` is `READY` from the prior cycle. Gabriel's row is already moved to `closed` in `testers-template.csv`.
+
+If the live-dispatch path is still in dry-run mode when the next beta lands, Henry replies `APPROVE` and nothing happens. That's the signal to look at `openclaw-beta-poll.py`. It's not a signal to blame cron.
+
+## What Henry does not do
+
+The whole point of the autonomy mode is that the human stops being the dispatcher. Here's the list of ping types that no longer fire:
+
+- **Stale-tester within SLA.** Inside the 2–3 hour window, one per-person follow-up routes via manager cron. No all-hands ping.
+- **Individual PASS_WITH_CAVEAT acceptances.** Auto-accepted into CSV, profile, and MC #704. Caveats surface in the cohort readiness card, not in Henry's inbox.
+- **Hardening backlog items.** Batched into one `#release-approvals` post. One `FILE` or `SKIP` reply covers the whole batch.
+- **Legacy approval packets.** Auto-superseded when the next beta publishes. The current packet supersedes. The old one is marked stale.
+- **Waive or close decisions for already-PASSed cohorts.** Closed at adjudication. Recorded in the tester profile. No second confirmation.
+- **Duplicate suppression events.** Suppressed silently. Manager records the SKIPPED duplicate with the existing message id and moves on.
+
+## What can break
+
+A real list, not a marketing one.
+
+**Dry-run vs live-dispatch gap.** The dispatch lane in `openclaw-beta-poll.py` defaults to dry-run mode. That's the `v2026.7.1-beta.1` issue. Until the default flips to live dispatch under the recorded approval token, every new beta will sit at `closed_initial_dry_run` and never reach testers.
+
+**Action Gate scope drift.** The scope YAML lives in both trees. Code tree: `/Users/enterprise/Code/agent-action-gate/config/herald-labs-scopes.yaml`. Services tree: `/Users/enterprise/Services/action-gate/config/herald-labs-scopes.yaml`. The Services tree is what the live gateway reads. Editing the Code tree without mirroring to Services is a silent no-op.
+
+The four thread scopes for `1511147437329485977` were added to both trees. They cover book-owner and ada-owner, in guild and default-account variants. Scope count went from 59 to 63 to 65. The service restarted and `/reserve-outbox` probes came back clean: book = reserved, ada/superada/spock = non_owner_denied. Anyone editing scopes needs to keep both trees in lockstep.
+
+**Lock state machine gotchas.** Pending locks expire after the default 900s TTL. A long-running dispatcher that comes back after that window will see its pending key gone and the dispatch slot free for re-acquisition. If the freeze is set active and a lane hits `legacy`, dispatch returns `FREEZE_ACTIVE` and stops. Both behaviors are correct. They look like bugs to a fresh operator who expects the lock to be sticky.
+
+**Andy allowlist and gateway restart.** When Andy was added to the Book/Hermes Discord allowlist on 2026-06-29, the env file was updated and verified. The running gateway may need a `/restart` before the new allowlist is live for inbound authorization. Same pattern for any future allowlist edit: edit the file, verify it, restart the gateway, then probe.
+
+## The receipts
+
+These are the files a future operator reads to verify the system state. Names and paths only. Read them. Don't copy-paste them into chat.
+
+The plan is at `/Users/enterprise/.hermes/docs/plans/2026-07-02-heraldlabs-autonomy-mode.md`. The receipts sit next to it at `/Users/enterprise/.hermes/docs/plans/2026-07-02-heraldlabs-autonomy-mode-RECEIPTS.md`. The freeze lives in `/Users/enterprise/.hermes/scripts/heraldlabs-public-lock.py` with a backup at `.bak-20260703T0246Z`. The two cron jobs sit in `/Users/enterprise/.hermes/cron/jobs.json` with a backup at `.bak-20260703T0252Z`. The Action Gate scopes live in two trees at once: `/Users/enterprise/Code/agent-action-gate/config/herald-labs-scopes.yaml` and `/Users/enterprise/Services/action-gate/config/herald-labs-scopes.yaml`.
+
+The Risk Surface Intercept Matrix is at `/Users/enterprise/.hermes/output/qa-eval-loop/risk-surface-intercept-matrix-v0.1-20260629.md`. The QA eval initial run is at `/Users/enterprise/.hermes/output/qa-eval-loop/qa-eval-v0.1-initial-run-20260629T122924Z.md`. The run folder for the worked example is `/Users/enterprise/Code/openclawQA/runs/v2026.7.1-beta.1/`. Inside it: `run.json`, `closeout-report.md`, `freshness-report.md`, `tester-instructions.md`, and `release-context.md`. The Action Gate runtime proof pattern lives at `/Users/enterprise/.hermes/skills/ops/enterprise-crew-home/references/action-gate-openclaw-runtime-proof.md`.
+
+The four cron-decision pairs sit on one screen. The freeze is in one file. Every receipt above is on disk. That's the operating model.
+
+## What to do tonight
+
+When the next beta lands and the dispatch-ask message arrives in thread `1511147437329485977`, do this: read the 5-line preview, then reply `APPROVE`. The manager cron picks it up within 15 minutes. If nothing happens, the live-dispatch path is still in dry-run. That's a one-file fix in `openclaw-beta-poll.py`, not a system failure. File a hardening note in the next `#release-approvals` batch and move on.
+
+That's the whole loop.
