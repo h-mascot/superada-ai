@@ -42,7 +42,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       },
       {
         "title": "**Native app refresh",
-        "description": "** iOS adopts the iOS 26 visual system with clearer Chat, Talk, and onboarding flows, while native app localization expands across Apple and Android surfaces. (#98452, #98736, #97110, #97111, #97112, #97113) Thanks @vincentkoc.",
+        "description": "** iOS adopts the iOS 26 visual system with clearer Chat, Talk, onboarding, and reconnect flows, while native app localization expands across Apple and Android surfaces. (#98452, #98736, #99243, #97110, #97111, #97112, #97113) Thanks @jcooley8 and @vincentkoc.",
         "href": "https://github.com/openclaw/openclaw/issues/98452"
       },
       {
@@ -56,6 +56,36 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/pull/98536"
       },
       {
+        "title": "**Mac local Gateway setup",
+        "description": "** the macOS app can now install and start its local Gateway automatically, reducing the manual setup needed before first use. (#99767)",
+        "href": "https://github.com/openclaw/openclaw/pull/99767"
+      },
+      {
+        "title": "**Control UI navigation",
+        "description": "** a session-first sidebar, compact context meter, warm light theme, reasoning-effort slider, streamlined composer, and slash-command picker make active conversations and commands easier to reach. (#99289, #99426, #99838) Thanks @VicZhang6 and @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/99289"
+      },
+      {
+        "title": "**Control UI context usage",
+        "description": "** show context-window progress, latest-run input/output tokens, and the active model when the chat context ring is opened.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202671"
+      },
+      {
+        "title": "**Apple Watch voice turns",
+        "description": "** dictate a message from the Watch chat and hear the new OpenClaw reply spoken on the Watch, with explicit silent-message and stop-speaking controls. (#100224)",
+        "href": "https://github.com/openclaw/openclaw/pull/100224"
+      },
+      {
+        "title": "**Conversational onboarding",
+        "description": "** add a real agent-loop Crestodian setup flow across the CLI, Gateway, web install, and macOS app, with typed operations, exact approval binding, masked credential prompts, isolated session transcripts, and safe handoff to the normal agent.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202671"
+      },
+      {
+        "title": "**Generated session titles",
+        "description": "** name new Control UI sessions from their first message, and add default/per-agent `utilityModel` routing for lower-cost session, topic, and thread title generation. Thanks @Juliangsm and @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202671"
+      },
+      {
         "title": "**ClawRouter routing and quotas",
         "description": "** add the bundled ClawRouter provider plugin with credential-scoped dynamic model discovery, OpenAI-compatible and native Anthropic/Gemini transports, and managed budget reporting across OpenClaw usage surfaces. (#99658)",
         "href": "https://github.com/openclaw/openclaw/pull/99658"
@@ -67,7 +97,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       },
       {
         "title": "**CLI and node workflows",
-        "description": "** add `openclaw attach`, node context-path support, actionable device-approval recovery guidance, and clearer plugin install exit diagnostics. (#96454, #97679, #98115, #98146, #98497) Thanks @anagnorisis2peripeteia, @obviyus, @wm0018, @welfo-beo, @RomneyDa, @Sanjays2402, and @vincentkoc.",
+        "description": "** add `openclaw attach`, node context-path support, actionable device-approval recovery guidance, soft-resume CLI sessions when prompt metadata changes, and clearer plugin install exit diagnostics. (#96454, #97679, #98115, #98146, #98497, #99822) Thanks @anagnorisis2peripeteia, @obviyus, @wm0018, @welfo-beo, @RomneyDa, @Sanjays2402, and @vincentkoc.",
         "href": "https://github.com/openclaw/openclaw/issues/96454"
       },
       {
@@ -77,13 +107,18 @@ export const CHANGELOG_VERSIONS: Version[] = [
       },
       {
         "title": "**Native apps and localization",
-        "description": "** modernize iOS presentation and Talk controls, add Gateway speech providers, improve QR onboarding and protocol recovery, localize core Apple and Android surfaces, and add Swedish mobile localization. (#98452, #98736, #98376, #98302, #98385, #97110, #97111, #97112, #97113, #98043) Thanks @Tony-ooo, @joelnishanth, @cursoragent, @joshavant, @vincentkoc, and @yeager.",
+        "description": "** modernize iOS presentation, Chat, Talk, onboarding, and reconnect flows; add Gateway speech providers; improve QR onboarding and protocol recovery; install the local Gateway from macOS; localize core Apple and Android surfaces; and add Swedish mobile localization. (#98452, #98736, #99243, #98376, #98302, #98385, #99767, #97110, #97111, #97112, #97113, #98043) Thanks @jcooley8, @Tony-ooo, @joelnishanth, @cursoragent, @joshavant, @vincentkoc, and @yeager.",
         "href": "https://github.com/openclaw/openclaw/issues/98452"
       },
       {
         "title": "**Messaging capabilities",
-        "description": "** add native iMessage polls and Telegram Codex pairing and steering flows. (#98421, #98006, #98126) Thanks @omarshahine, @lobster, @100yenadmin, and @Kyzcreig.",
+        "description": "** add native iMessage polls, Telegram Codex pairing and steering, Telegram multi-lane progress summaries, and Signal target aliases. (#98421, #98006, #98126, #98907, #95738) Thanks @omarshahine, @lobster, @100yenadmin, @Kyzcreig, @Marvinthebored, and @jesse-merhi.",
         "href": "https://github.com/openclaw/openclaw/issues/98421"
+      },
+      {
+        "title": "**Local inference and chat controls",
+        "description": "** auto-discover Ollama inference nodes, add Control UI session-first navigation, reasoning controls, and command picking, and keep OpenClaw control tools available when deferred tool search selects the wrong tool family. (#99234, #99289, #99426, #99838, #99561) Thanks @100yenadmin, @joshavant, @VicZhang6, and @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/99234"
       },
       {
         "title": "**Doctor and diagnostics",
@@ -94,11 +129,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "**Conversation and review controls",
         "description": "** prepare scoped conversation capability profiles and add Cursor Agent as an autoreview engine. (#98536, #97348) Thanks @hxy91819.",
         "href": "https://github.com/openclaw/openclaw/issues/98536"
-      },
-      {
-        "title": "**PR #92872** fix(qqbot)",
-        "description": "allow scoped sandbox media sends. Thanks @zhangguiping-xydt.",
-        "href": "https://github.com/openclaw/openclaw/issues/92872"
       },
       {
         "title": "**PR #96502** fix(moonshot)",
@@ -692,7 +722,7 @@ export const CHANGELOG_VERSIONS: Version[] = [
       },
       {
         "title": "**PR #98360** fix(memory-wiki)",
-        "description": "preserve notes after transient page reads. Related #98345. Thanks @qingminglong and @yetval.",
+        "description": "preserve notes after transient page reads. Related #98345. Thanks @qingminglong and @vincentkoc and @yetval.",
         "href": "https://github.com/openclaw/openclaw/issues/98360"
       },
       {
@@ -1151,24 +1181,1257 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/98736"
       },
       {
+        "title": "**PR #98183** fix(gateway)",
+        "description": "distinguish reachable gateway from failed status probe. Thanks @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/98183"
+      },
+      {
+        "title": "**PR #98808** docs(telegram)",
+        "description": "move maintainer decisions into scoped AGENTS.md with reliability invariants. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98808"
+      },
+      {
+        "title": "**PR #98138** fix",
+        "description": "guard setDeep against empty keys array in Chrome profile decoration. Thanks @zhangLei99586.",
+        "href": "https://github.com/openclaw/openclaw/issues/98138"
+      },
+      {
+        "title": "**PR #92283** fix(agents)",
+        "description": "don't inject A2A turns into isolated-cron sessions_send (#92257). Thanks @harjothkhara and @vincentkoc and @nailujac.",
+        "href": "https://github.com/openclaw/openclaw/pull/92257"
+      },
+      {
+        "title": "**PR #98812** fix(codex)",
+        "description": "preserve plugin app approvals in side conversations.",
+        "href": "https://github.com/openclaw/openclaw/issues/98812"
+      },
+      {
+        "title": "**PR #97889** fix(discord)",
+        "description": "guard JSON.parse against malformed API response bodies. Thanks @lsr911.",
+        "href": "https://github.com/openclaw/openclaw/issues/97889"
+      },
+      {
+        "title": "**PR #98689** fix(wizard)",
+        "description": "reject loose gateway port input. Related #98681. Thanks @qingminglong.",
+        "href": "https://github.com/openclaw/openclaw/issues/98689"
+      },
+      {
+        "title": "**PR #98720** fix(nostr)",
+        "description": "clear per-relay publish timeout timer to prevent dangling handles. Related #98463. Thanks @wangmiao0668000666 and @zhangLei99586.",
+        "href": "https://github.com/openclaw/openclaw/issues/98720"
+      },
+      {
+        "title": "**PR #98787** fix(memory-wiki)",
+        "description": "retry transient existing-page reads in wiki_apply and chatgpt import. Thanks @yetval and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/98787"
+      },
+      {
+        "title": "**PR #98818** fix(ci)",
+        "description": "recover incomplete Swift build caches.",
+        "href": "https://github.com/openclaw/openclaw/issues/98818"
+      },
+      {
+        "title": "**PR #98811** feat(ios)",
+        "description": "modernize navigation and settings. Related #98803.",
+        "href": "https://github.com/openclaw/openclaw/issues/98811"
+      },
+      {
+        "title": "**PR #98843** docs",
+        "description": "update mobile app release messaging. Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/98843"
+      },
+      {
+        "title": "**PR #93209** test",
+        "description": "prefer auto-cleaning temp dir helper. Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/issues/93209"
+      },
+      {
+        "title": "**PR #98789** fix(telegram)",
+        "description": "sends and actions without an account id ignore the configured defaultAccount. Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/98789"
+      },
+      {
+        "title": "**PR #98806** fix(telegram)",
+        "description": "webhook updates survive crashes and restarts via durable spooling. Related #98777. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98806"
+      },
+      {
+        "title": "**PR #98688** fix(fal)",
+        "description": "route grok-imagine and nano-banana-2-lite edits to correct endpoints. Thanks @davenicoll and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/98688"
+      },
+      {
+        "title": "**PR #98891** fix(agents)",
+        "description": "normalize non-array tool-result content at transcript ingest. Related #98825. Thanks @obviyus and @snowzlmbot.",
+        "href": "https://github.com/openclaw/openclaw/issues/98891"
+      },
+      {
+        "title": "**PR #98781** fix(imessage)",
+        "description": "poll render vote-cue, cross-run echo suppression, and comment fold. Thanks @omarshahine.",
+        "href": "https://github.com/openclaw/openclaw/issues/98781"
+      },
+      {
+        "title": "**PR #97500** Doctor",
+        "description": "expose tool result cap findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/97500"
+      },
+      {
+        "title": "**PR #98769** fix",
+        "description": "Telegram replies duplicate recent context after sent replies. Related #98767. Thanks @rabsef-bicrym.",
+        "href": "https://github.com/openclaw/openclaw/issues/98769"
+      },
+      {
+        "title": "**PR #98933** fix(agents)",
+        "description": "stop gateway crash from wedged claude-cli turns and persist heartbeat session bindings. Related #98894, #98895. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98933"
+      },
+      {
+        "title": "**PR #98934** fix(agents)",
+        "description": "recover claude-cli context-overflow sessions and keep retry artifacts alive. Related #98897. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98934"
+      },
+      {
+        "title": "**PR #98908** refactor(agents)",
+        "description": "fold assistant string normalization into transcript ingest. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98908"
+      },
+      {
+        "title": "**PR #98738** fix(agents)",
+        "description": "fail fast with attributable reason after MCP stdio session dies mid-run. Thanks @masatohoshino and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/98738"
+      },
+      {
+        "title": "**PR #98879** fix",
+        "description": "backup skips volatile cache paths. Related #98865. Thanks @ZengWen-DT and @vincentkoc and @carterstebbins23-spec.",
+        "href": "https://github.com/openclaw/openclaw/issues/98879"
+      },
+      {
+        "title": "**PR #98942** fix(agents)",
+        "description": "unify claude-cli output classification across live and one-shot paths. Related #98896. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98942"
+      },
+      {
+        "title": "**PR #98932** fix(anthropic)",
+        "description": "restore Fable 5 Vertex simple completions.",
+        "href": "https://github.com/openclaw/openclaw/issues/98932"
+      },
+      {
+        "title": "**PR #98947** fix(cron)",
+        "description": "restore persistent session targets.",
+        "href": "https://github.com/openclaw/openclaw/issues/98947"
+      },
+      {
+        "title": "**PR #96523** fix(agents)",
+        "description": "preserve embedded OpenAI completions usage. Thanks @ly85206559 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/96523"
+      },
+      {
+        "title": "**PR #98758** perf(build)",
+        "description": "reduce plugin SDK declaration package size. Related #98757. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/98758"
+      },
+      {
+        "title": "**PR #98877** fix(mattermost)",
+        "description": "include later team members in peer directory. Related #98871. Thanks @qingminglong.",
+        "href": "https://github.com/openclaw/openclaw/issues/98877"
+      },
+      {
+        "title": "**PR #98953** feat(ios)",
+        "description": "refine the chat experience. Related #98929.",
+        "href": "https://github.com/openclaw/openclaw/issues/98953"
+      },
+      {
+        "title": "**PR #98876** fix(terminal)",
+        "description": "preserve sibling home-prefix paths. Related #98872. Thanks @qingminglong.",
+        "href": "https://github.com/openclaw/openclaw/issues/98876"
+      },
+      {
+        "title": "**PR #98930** feat(ios)",
+        "description": "PR1 brand color palette overhaul. Thanks @joelnishanth.",
+        "href": "https://github.com/openclaw/openclaw/issues/98930"
+      },
+      {
+        "title": "**PR #94566** fix(android)",
+        "description": "make offline chat actionable. Thanks @Tosko4.",
+        "href": "https://github.com/openclaw/openclaw/issues/94566"
+      },
+      {
+        "title": "**PR #98955** fix(agents)",
+        "description": "preserve fresh tool result text under aggregate cap. Related #98874. Thanks @momothemage and @lamkan0210.",
+        "href": "https://github.com/openclaw/openclaw/issues/98955"
+      },
+      {
+        "title": "**PR #98059** [codex] Support Android selected photo access",
+        "description": "**PR #98059** [codex] Support Android selected photo access. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/98059"
+      },
+      {
+        "title": "**PR #98914** fix(android)",
+        "description": "return settings details to their originating tab on Back. Thanks @Lokimorty.",
+        "href": "https://github.com/openclaw/openclaw/issues/98914"
+      },
+      {
+        "title": "**PR #98898** fix(ios)",
+        "description": "back from settings details returns to the originating screen. Thanks @Lokimorty.",
+        "href": "https://github.com/openclaw/openclaw/issues/98898"
+      },
+      {
+        "title": "**PR #98235** fix(feishu)",
+        "description": "include video upload duration. Thanks @areslp.",
+        "href": "https://github.com/openclaw/openclaw/issues/98235"
+      },
+      {
+        "title": "**PR #98966** fix(discord)",
+        "description": "gate guild metadata reads [AI]. Thanks @pgondhi987.",
+        "href": "https://github.com/openclaw/openclaw/issues/98966"
+      },
+      {
+        "title": "**PR #98985** fix",
+        "description": "clean up iOS About page copy. Related #98943. Thanks @sahilsatralkar.",
+        "href": "https://github.com/openclaw/openclaw/issues/98985"
+      },
+      {
+        "title": "**PR #98856** fix(ios)",
+        "description": "gateway error shows twice on the Settings Gateway page. Thanks @Lokimorty.",
+        "href": "https://github.com/openclaw/openclaw/issues/98856"
+      },
+      {
+        "title": "**PR #98936** fix",
+        "description": "Control row icons use inconsistent row styling (iOS). Related #98916. Thanks @sahilsatralkar.",
+        "href": "https://github.com/openclaw/openclaw/issues/98936"
+      },
+      {
+        "title": "**PR #98040** [codex] Fix Android camera snap cleanup",
+        "description": "**PR #98040** [codex] Fix Android camera snap cleanup. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/98040"
+      },
+      {
+        "title": "**PR #99039** fix(macos)",
+        "description": "stop runtime config-health sidecar access. Related #98917. Thanks @momothemage and @P51moustache.",
+        "href": "https://github.com/openclaw/openclaw/issues/99039"
+      },
+      {
+        "title": "**PR #92667** ci",
+        "description": "add process exec CodeQL security shard. Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/issues/92667"
+      },
+      {
+        "title": "**PR #98055** [codex] Gate Android Talk capture starts in background",
+        "description": "**PR #98055** [codex] Gate Android Talk capture starts in background. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/98055"
+      },
+      {
+        "title": "**PR #98067** [codex] Cancel Android gateway pending RPCs on close",
+        "description": "**PR #98067** [codex] Cancel Android gateway pending RPCs on close. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/98067"
+      },
+      {
+        "title": "**PR #98698** fix(android)",
+        "description": "show specific gateway auth-recovery reason instead of generic label. Related #98046. Thanks @masatohoshino and @ccaprani.",
+        "href": "https://github.com/openclaw/openclaw/issues/98698"
+      },
+      {
+        "title": "**PR #83826** test(android)",
+        "description": "poll for stale TLS probe cleanup in auth test. Thanks @NeatGuyCoding.",
+        "href": "https://github.com/openclaw/openclaw/issues/83826"
+      },
+      {
+        "title": "**PR #98983** fix(agents)",
+        "description": "handle variadic claude --mcp-config and serialize gemini credential staging. Related #98944, #98945. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/98983"
+      },
+      {
+        "title": "**PR #99145** fix(auto-reply)",
+        "description": "suppress room-event notice leaks. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99145"
+      },
+      {
+        "title": "**PR #99144** fix(auto-reply)",
+        "description": "default room events to silence. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99144"
+      },
+      {
+        "title": "**PR #98608** fix",
+        "description": "Mattermost fails to load after configured plugin repair. Related #98564. Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/98608"
+      },
+      {
+        "title": "**PR #99143** fix(telegram)",
+        "description": "keep group history always on. Related #99142. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99143"
+      },
+      {
+        "title": "**PR #99159** fix(agents)",
+        "description": "claude-cli lifecycle cleanup — loopback fail-loud, exit-0 failover, bounded reseed, image sweep, one prepare cleanup owner. Related #98946. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99159"
+      },
+      {
+        "title": "**PR #98391** Expose disk space doctor lint findings",
+        "description": "**PR #98391** Expose disk space doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98391"
+      },
+      {
+        "title": "**PR #98835** fix(config/sessions)",
+        "description": "narrow reply-session initialization revision to identity fields. Related #98672. Thanks @moguangyu5-design and @jalehman and @AaronFaby.",
+        "href": "https://github.com/openclaw/openclaw/issues/98835"
+      },
+      {
+        "title": "**PR #99123** fix(android)",
+        "description": "ignore chat events with missing assistant role in voice text extraction. Thanks @ly85206559 and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99123"
+      },
+      {
+        "title": "**PR #99147** fix(android)",
+        "description": "preserve split SMS permission grants. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99147"
+      },
+      {
+        "title": "**PR #99107** fix(android)",
+        "description": "bracket IPv6 hosts in manual gateway URL composition. Thanks @ly85206559 and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99107"
+      },
+      {
+        "title": "**PR #99158** fix",
+        "description": "require Android contact and calendar write permissions in onboarding. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99158"
+      },
+      {
+        "title": "**PR #99110** fix(android)",
+        "description": "strip ws scheme prefix from manual gateway host input. Related #87216. Thanks @ly85206559 and @cursoragent and @ruben2000de.",
+        "href": "https://github.com/openclaw/openclaw/issues/99110"
+      },
+      {
+        "title": "**PR #99212** fix(ci)",
+        "description": "session concurrency test flakes during child handshake.",
+        "href": "https://github.com/openclaw/openclaw/issues/99212"
+      },
+      {
+        "title": "**PR #94385** fix(feishu)",
+        "description": "preserve button command values in fallback text and add Feishu comment guidance with callback privacy. Related #69754. Thanks @xialonglee and @1yihui.",
+        "href": "https://github.com/openclaw/openclaw/issues/94385"
+      },
+      {
+        "title": "**PR #98563** fix",
+        "description": "route iOS OpenAI realtime Talk through WebRTC. Thanks @PollyBot13.",
+        "href": "https://github.com/openclaw/openclaw/issues/98563"
+      },
+      {
+        "title": "**PR #99204** fix",
+        "description": "require Android contact and calendar write permissions. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99204"
+      },
+      {
+        "title": "**PR #99134** fix",
+        "description": "OAuth refresh failures report reauth instead of stale success. Related #99120. Thanks @100yenadmin.",
+        "href": "https://github.com/openclaw/openclaw/issues/99134"
+      },
+      {
+        "title": "**PR #99153** fix",
+        "description": "clean up Android camera clips on cancellation. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99153"
+      },
+      {
+        "title": "**PR #99118** [codex] fix(memory-lancedb)",
+        "description": "align apache arrow peer dependency. Related #90295. Thanks @allenhurff and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/99118"
+      },
+      {
+        "title": "**PR #98066** fix",
+        "description": "keep iOS LAN QR pairing authenticated after bootstrap. Related #98064. Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/98066"
+      },
+      {
+        "title": "**PR #99155** fix",
+        "description": "stop iOS screen recording after cancellation. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99155"
+      },
+      {
+        "title": "**PR #95973** fix(telegram)",
+        "description": "explain disabled plugin approval failures. Related #95800. Thanks @MonkeyLeeT and @ChrisBot2026.",
+        "href": "https://github.com/openclaw/openclaw/issues/95973"
+      },
+      {
+        "title": "**PR #99233** fix",
+        "description": "ignore test-only network CI guard lines. Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/99233"
+      },
+      {
+        "title": "**PR #98951** fix",
+        "description": "strict guarded fetch fails before managed proxy DNS. Related #98925. Thanks @momothemage and @sandl99.",
+        "href": "https://github.com/openclaw/openclaw/issues/98951"
+      },
+      {
+        "title": "**PR #99137** fix",
+        "description": "prevent Voice Wake crash after Talk audio capture. Thanks @PollyBot13.",
+        "href": "https://github.com/openclaw/openclaw/issues/99137"
+      },
+      {
+        "title": "**PR #99052** fix",
+        "description": "Update Dark/Light mode UI control appearance. Related #98995. Thanks @sahilsatralkar.",
+        "href": "https://github.com/openclaw/openclaw/issues/99052"
+      },
+      {
+        "title": "**PR #99245** fix(ios)",
+        "description": "return chat to originating control detail. Thanks @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/99245"
+      },
+      {
+        "title": "**PR #92602** fix(android)",
+        "description": "queue node events until gateway connect. Related #79552. Thanks @ashishpatel26 and @hectorrp13.",
+        "href": "https://github.com/openclaw/openclaw/issues/92602"
+      },
+      {
+        "title": "**PR #98277** fix",
+        "description": "keep Android gateway settings save idempotent. Thanks @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/98277"
+      },
+      {
+        "title": "**PR #99256** fix(auto-reply)",
+        "description": "single canonical group history and deduped turn metadata. Related #99218. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99256"
+      },
+      {
+        "title": "**PR #99259** fix(android)",
+        "description": "use Bluetooth microphones for voice capture. Related #96241. Thanks @gwtaylor.",
+        "href": "https://github.com/openclaw/openclaw/issues/99259"
+      },
+      {
+        "title": "**PR #98751** test(qa)",
+        "description": "prove native command targeting across QA transports. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/98751"
+      },
+      {
+        "title": "**PR #98779** test(qa)",
+        "description": "cover expanded Crabline bindings. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/98779"
+      },
+      {
+        "title": "**PR #99262** test(qa)",
+        "description": "cover Crabline Signal sends. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99262"
+      },
+      {
+        "title": "**PR #99261** refactor(shared)",
+        "description": "establish lazy runtime loader foundation. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99261"
+      },
+      {
+        "title": "**PR #99264** test(qa)",
+        "description": "cover Crabline Mattermost sends. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99264"
+      },
+      {
+        "title": "**PR #99265** test(qa)",
+        "description": "cover Crabline Matrix sends. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99265"
+      },
+      {
+        "title": "**PR #98400** Expose heartbeat template doctor lint findings",
+        "description": "**PR #98400** Expose heartbeat template doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98400"
+      },
+      {
+        "title": "**PR #98695** Expose legacy plugin manifest doctor lint findings",
+        "description": "**PR #98695** Expose legacy plugin manifest doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98695"
+      },
+      {
+        "title": "**PR #99278** refactor(shared)",
+        "description": "consolidate core leaf lazy loaders. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99278"
+      },
+      {
+        "title": "**PR #99274** fix(zalo)",
+        "description": "match native bot identity fields. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99274"
+      },
+      {
+        "title": "**PR #99126** test(discord)",
+        "description": "clarify and guardrail gateway proxy selection. Related #98266. Thanks @svuppala2006 and @joshavant and @sallyom.",
+        "href": "https://github.com/openclaw/openclaw/issues/99126"
+      },
+      {
+        "title": "**PR #99290** feat(ios)",
+        "description": "add licenses settings screen. Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/99290"
+      },
+      {
+        "title": "**PR #98907** fix(telegram)",
+        "description": "distinguish and render streamed reasoning/commentary progress lanes. Thanks @Marvinthebored.",
+        "href": "https://github.com/openclaw/openclaw/issues/98907"
+      },
+      {
+        "title": "**PR #99294** fix(qa)",
+        "description": "stagger isolated worker startup. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99294"
+      },
+      {
+        "title": "**PR #99276** fix(memory-wiki)",
+        "description": "source imports crash on unreadable pages. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99276"
+      },
+      {
+        "title": "**PR #99296** refactor(shared)",
+        "description": "consolidate gateway and stateful runtime lazy loaders. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99296"
+      },
+      {
+        "title": "**PR #98768** Allow alternate Zalo Bot API roots",
+        "description": "**PR #98768** Allow alternate Zalo Bot API roots. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/98768"
+      },
+      {
+        "title": "**PR #99298** refactor(shared)",
+        "description": "consolidate Discord Slack and Telegram lazy loaders. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99298"
+      },
+      {
+        "title": "**PR #99307** fix(memory-wiki)",
+        "description": "avoid implicit error coercion. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99307"
+      },
+      {
+        "title": "**PR #99306** feat(auto-reply)",
+        "description": "persist ambient room events as transcript rows. Related #99257. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99306"
+      },
+      {
+        "title": "**PR #99302** refactor(shared)",
+        "description": "consolidate remaining channel lazy loaders. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99302"
+      },
+      {
+        "title": "**PR #99303** test(qa)",
+        "description": "cover Crabline Zalo transport. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99303"
+      },
+      {
+        "title": "**PR #99299** feat(android)",
+        "description": "add licenses settings screen. Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/99299"
+      },
+      {
+        "title": "**PR #99220** fix(ios)",
+        "description": "onboarding Retry Connection does nothing after editing gateway details. Related #99219. Thanks @abdullahtas0.",
+        "href": "https://github.com/openclaw/openclaw/issues/99220"
+      },
+      {
+        "title": "**PR #98749** refactor(shared)",
+        "description": "consolidate provider and utility lazy loaders. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/98749"
+      },
+      {
+        "title": "**PR #99355** fix(ci)",
+        "description": "restore Telegram and plugin SDK guard checks. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99355"
+      },
+      {
+        "title": "**PR #88899** fix(android)",
+        "description": "render chat content through Markdown. Related #88014. Thanks @Pluviobyte and @Iman-Sharif.",
+        "href": "https://github.com/openclaw/openclaw/issues/88899"
+      },
+      {
+        "title": "**PR #99310** test(qa)",
+        "description": "migrate channel streaming evidence to transport flow. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99310"
+      },
+      {
+        "title": "**PR #99350** fix(ios)",
+        "description": "add Photos permission controls. Related #99046. Thanks @Tony-ooo.",
+        "href": "https://github.com/openclaw/openclaw/issues/99350"
+      },
+      {
+        "title": "**PR #99361** refactor(plugins)",
+        "description": "consolidate record guards. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99361"
+      },
+      {
+        "title": "**PR #99359** refactor(shared)",
+        "description": "consolidate core record guards. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99359"
+      },
+      {
+        "title": "**PR #97208** fix",
+        "description": "avoid DeepSeek-native thinking on OpenRouter V4. Related #97196. Thanks @NianJiuZst and @patelmm79.",
+        "href": "https://github.com/openclaw/openclaw/issues/97208"
+      },
+      {
+        "title": "**PR #99385** fix(sessions)",
+        "description": "scope ambient transcript watermark to session id. Related #99373. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99385"
+      },
+      {
+        "title": "**PR #99389** fix(auto-reply)",
+        "description": "restore per-turn message-tool delivery contract. Related #99371. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99389"
+      },
+      {
+        "title": "**PR #98269** fix(android)",
+        "description": "derive Voice readiness from Gateway catalog. Related #98268. Thanks @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/98269"
+      },
+      {
+        "title": "**PR #92872** fix(qqbot)",
+        "description": "allow scoped sandbox media sends. Thanks @zhangguiping-xydt and @sliverp.",
+        "href": "https://github.com/openclaw/openclaw/issues/92872"
+      },
+      {
+        "title": "**PR #99414** fix(android)",
+        "description": "expose exact gateway recovery actions. Related #98045, #98046. Thanks @ccaprani.",
+        "href": "https://github.com/openclaw/openclaw/issues/99414"
+      },
+      {
+        "title": "**PR #99289** feat",
+        "description": "session-first sidebar, compact context ring, and warm light theme for the Control UI. Related #99288.",
+        "href": "https://github.com/openclaw/openclaw/issues/99289"
+      },
+      {
+        "title": "**PR #99234** feat(nodes)",
+        "description": "add auto-discovered Ollama inference. Related #99228.",
+        "href": "https://github.com/openclaw/openclaw/issues/99234"
+      },
+      {
+        "title": "**PR #97095** fix",
+        "description": "memory_search honors generic embedding providers. Thanks @849261680.",
+        "href": "https://github.com/openclaw/openclaw/issues/97095"
+      },
+      {
+        "title": "**PR #98841** fix(gateway)",
+        "description": "include session label in deriveSessionTitle fallback chain. Related #98742. Thanks @SunnyShu0925 and @BSG2000.",
+        "href": "https://github.com/openclaw/openclaw/issues/98841"
+      },
+      {
+        "title": "**PR #99301** fix(feishu)",
+        "description": "catch unhandled promise rejection in streaming card flush timer. Thanks @lwy-2.",
+        "href": "https://github.com/openclaw/openclaw/issues/99301"
+      },
+      {
+        "title": "**PR #99391** fix(compaction)",
+        "description": "count nested tool result content. Related #99375. Thanks @LZY3538 and @imchloe92.",
+        "href": "https://github.com/openclaw/openclaw/issues/99391"
+      },
+      {
+        "title": "**PR #99407** fix(daemon)",
+        "description": "avoid loading full gateway logs during diagnostics. Thanks @sunlit-deng.",
+        "href": "https://github.com/openclaw/openclaw/issues/99407"
+      },
+      {
+        "title": "**PR #99291** Fix/issue 98958 gateway lock fd leak",
+        "description": "**PR #99291** Fix/issue 98958 gateway lock fd leak. Related #98958. Thanks @chenyangjun-xy and @zhangLei99586.",
+        "href": "https://github.com/openclaw/openclaw/issues/99291"
+      },
+      {
+        "title": "**PR #99475** fix(ios)",
+        "description": "contacts.add crashes the app via unfetched CNContactFormatter keys. Thanks @abdullahtas0.",
+        "href": "https://github.com/openclaw/openclaw/issues/99475"
+      },
+      {
+        "title": "**PR #98003** fix(anthropic)",
+        "description": "wire buildGuardedModelFetch into the Cloudflare createClient branch. Thanks @wangmiao0668000666.",
+        "href": "https://github.com/openclaw/openclaw/issues/98003"
+      },
+      {
+        "title": "**PR #99425** fix",
+        "description": "strip conda env marker from host tool runs. Related #99424. Thanks @ooiuuii and @krissding.",
+        "href": "https://github.com/openclaw/openclaw/issues/99425"
+      },
+      {
+        "title": "**PR #99398** fix(cli)",
+        "description": "reject unsafe sessions tail counts. Thanks @qingminglong.",
+        "href": "https://github.com/openclaw/openclaw/issues/99398"
+      },
+      {
+        "title": "**PR #98855** fix",
+        "description": "chat.send no reply when thinking metadata is set. Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/98855"
+      },
+      {
+        "title": "**PR #98752** Rework Android gateway onboarding setup",
+        "description": "**PR #98752** Rework Android gateway onboarding setup. Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/98752"
+      },
+      {
+        "title": "**PR #99446** fix(agents)",
+        "description": "preserve fd find failures. Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/issues/99446"
+      },
+      {
+        "title": "**PR #99152** fix(config)",
+        "description": "use Object.hasOwn instead of in operator in restoreOriginalValueOrThrow. Thanks @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/issues/99152"
+      },
+      {
+        "title": "**PR #99460** fix",
+        "description": "redact dotted API key activity previews. Related #99459. Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/99460"
+      },
+      {
+        "title": "**PR #99455** fix",
+        "description": "long mobile media recordings time out. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99455"
+      },
+      {
+        "title": "**PR #99410** fix(subagents)",
+        "description": "match requesterSessionKey when controllerSessionKey differs in list filter. Related #75593. Thanks @sheyanmin and @aaajiao.",
+        "href": "https://github.com/openclaw/openclaw/issues/99410"
+      },
+      {
+        "title": "**PR #98791** feat(signal)",
+        "description": "show status reactions during inbound replies. Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/98791"
+      },
+      {
+        "title": "**PR #98683** fix(ui)",
+        "description": "keep landscape composer compact. Related #98615. Thanks @qingminglong and @jin-li.",
+        "href": "https://github.com/openclaw/openclaw/issues/98683"
+      },
+      {
+        "title": "**PR #99428** fix(logging)",
+        "description": "redact Telegram bot tokens from timeout URLs. Related #96982. Thanks @xialonglee and @liuhaiyang14.",
+        "href": "https://github.com/openclaw/openclaw/issues/99428"
+      },
+      {
+        "title": "**PR #99217** Preserve Codex output after missing turn completion",
+        "description": "**PR #99217** Preserve Codex output after missing turn completion. Thanks @100yenadmin and @Sedrak-Hovhannisyan and @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/99217"
+      },
+      {
+        "title": "**PR #99520** fix(gateway)",
+        "description": "declare the dev agent required by the gateway e2e session key. Related #99513. Thanks @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/99520"
+      },
+      {
+        "title": "**PR #95738** feat(signal)",
+        "description": "add target aliases. Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/95738"
+      },
+      {
+        "title": "**PR #98258** improve",
+        "description": "make native chat scrolling reader-managed. Related #98255. Thanks @christopheraaronhogg.",
+        "href": "https://github.com/openclaw/openclaw/issues/98258"
+      },
+      {
+        "title": "**PR #99506** fix",
+        "description": "keep always-on group fallback messages in dispatch. Related #99457. Thanks @LZY3538 and @zqchris.",
+        "href": "https://github.com/openclaw/openclaw/issues/99506"
+      },
+      {
+        "title": "**PR #89671** fix(google-meet)",
+        "description": "force English Meet UI via hl=en so automation works on any locale. Thanks @Unayung.",
+        "href": "https://github.com/openclaw/openclaw/issues/89671"
+      },
+      {
+        "title": "**PR #98130** fix(infra)",
+        "description": "bound jsonl-socket response buffer to prevent OOM. Thanks @Pick-cat.",
+        "href": "https://github.com/openclaw/openclaw/issues/98130"
+      },
+      {
+        "title": "**PR #99526** fix(agents)",
+        "description": "preserve primitive tool result output. Related #99523. Thanks @snowzlm.",
+        "href": "https://github.com/openclaw/openclaw/issues/99526"
+      },
+      {
+        "title": "**PR #99525** fix(imessage)",
+        "description": "recognize bare hex group chat identifiers as chat targets. Related #89235. Thanks @MatthewDelprado.",
+        "href": "https://github.com/openclaw/openclaw/issues/99525"
+      },
+      {
+        "title": "**PR #99098** fix",
+        "description": "harden native i18n identifier filtering. Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/issues/99098"
+      },
+      {
+        "title": "**PR #99099** fix",
+        "description": "harden docs map heading rendering. Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/issues/99099"
+      },
+      {
+        "title": "**PR #98725** Expose legacy plugin dependency doctor lint findings",
+        "description": "**PR #98725** Expose legacy plugin dependency doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98725"
+      },
+      {
+        "title": "**PR #99595** fix(agents)",
+        "description": "keep cli session binding facts session-stable. Related #99372. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99595"
+      },
+      {
+        "title": "**PR #90152** fix(telegram)",
+        "description": "stop duplicate fallback when dispatch fails after final reply. Thanks @zhangguiping-xydt.",
+        "href": "https://github.com/openclaw/openclaw/issues/90152"
+      },
+      {
+        "title": "**PR #98729** Expose stale plugin runtime symlink doctor lint findings",
+        "description": "**PR #98729** Expose stale plugin runtime symlink doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98729"
+      },
+      {
+        "title": "**PR #99591** fix(android)",
+        "description": "preserve numeric invoke error codes. Thanks @ly85206559.",
+        "href": "https://github.com/openclaw/openclaw/issues/99591"
+      },
+      {
+        "title": "**PR #98406** Expose WhatsApp responsiveness doctor lint findings",
+        "description": "**PR #98406** Expose WhatsApp responsiveness doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/98406"
+      },
+      {
+        "title": "**PR #99570** fix(android)",
+        "description": "reject IPv6 zone IDs in gateway endpoint URLs. Thanks @ly85206559 and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99570"
+      },
+      {
+        "title": "**PR #99557** fix(android)",
+        "description": "filter device and internal sessions from thread picker. Thanks @ly85206559 and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99557"
+      },
+      {
+        "title": "**PR #99568** fix(android)",
+        "description": "block self-package notification forwarding in allowlist mode. Thanks @ly85206559 and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99568"
+      },
+      {
+        "title": "**PR #99592** fix(android)",
+        "description": "parse talk directive aliases case-insensitively. Thanks @ly85206559.",
+        "href": "https://github.com/openclaw/openclaw/issues/99592"
+      },
+      {
+        "title": "**PR #99477** fix",
+        "description": "avoid iOS node permission prompts. Thanks @NianJiuZst.",
+        "href": "https://github.com/openclaw/openclaw/issues/99477"
+      },
+      {
+        "title": "**PR #99374** improve(qa)",
+        "description": "standardize script evidence output. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99374"
+      },
+      {
+        "title": "**PR #99468** improve",
+        "description": "tighten iOS Control row density. Related #99439. Thanks @sahilsatralkar.",
+        "href": "https://github.com/openclaw/openclaw/issues/99468"
+      },
+      {
+        "title": "**PR #99642** test",
+        "description": "avoid cross-OS socket close event race. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99642"
+      },
+      {
+        "title": "**PR #89967** fix(macos)",
+        "description": "LaunchAgent starts gateway on external home volumes. Related #87199. Thanks @zhangguiping-xydt and @joshdaynard.",
+        "href": "https://github.com/openclaw/openclaw/issues/89967"
+      },
+      {
+        "title": "**PR #98613** fix(media)",
+        "description": "guard ffprobe JSON parse against malformed output. Thanks @Pick-cat.",
+        "href": "https://github.com/openclaw/openclaw/issues/98613"
+      },
+      {
+        "title": "**PR #97839** fix",
+        "description": "log terminal session persistence failures. Related #97795. Thanks @LZY3538 and @aniruddhaadak80.",
+        "href": "https://github.com/openclaw/openclaw/issues/97839"
+      },
+      {
+        "title": "**PR #99247** feat",
+        "description": "clarify iOS Location Always permission flow. Thanks @PollyBot13.",
+        "href": "https://github.com/openclaw/openclaw/issues/99247"
+      },
+      {
+        "title": "**PR #98224** fix(auto-reply)",
+        "description": "strip stray punctuation before silent-reply token detection. Thanks @SunnyShu0925.",
+        "href": "https://github.com/openclaw/openclaw/issues/98224"
+      },
+      {
+        "title": "**PR #97328** fix(google)",
+        "description": "rotate Gemini API keys for LLM requests. Thanks @MonkeyLeeT.",
+        "href": "https://github.com/openclaw/openclaw/issues/97328"
+      },
+      {
+        "title": "**PR #99661** fix(macos)",
+        "description": "remote mode fails with managed SSH aliases.",
+        "href": "https://github.com/openclaw/openclaw/issues/99661"
+      },
+      {
+        "title": "**PR #99649** fix(qa)",
+        "description": "defer partial Crabline recorder rows. Related #99648. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99649"
+      },
+      {
+        "title": "**PR #99211** Expose legacy cron store doctor lint findings",
+        "description": "**PR #99211** Expose legacy cron store doctor lint findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/99211"
+      },
+      {
+        "title": "**PR #99629** test(qa)",
+        "description": "redact script evidence diagnostics. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99629"
+      },
+      {
+        "title": "**PR #99647** Fix Slack retry for session init conflicts",
+        "description": "**PR #99647** Fix Slack retry for session init conflicts. Thanks @steipete-oai.",
+        "href": "https://github.com/openclaw/openclaw/issues/99647"
+      },
+      {
+        "title": "**PR #99628** improve",
+        "description": "enforce canonical QA scenario ownership. Related #99627. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99628"
+      },
+      {
+        "title": "**PR #99632** refactor(qa)",
+        "description": "simplify transport adapter contracts. Related #99622. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99632"
+      },
+      {
+        "title": "**PR #99656** test(qa)",
+        "description": "use full-turn budget for native stop recovery. Related #99655. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99656"
+      },
+      {
+        "title": "**PR #99605** fix(google)",
+        "description": "bound OAuth token error response reads. Thanks @mushuiyu886.",
+        "href": "https://github.com/openclaw/openclaw/issues/99605"
+      },
+      {
+        "title": "**PR #99679** fix(qa)",
+        "description": "consume Crabline events without recorder polling. Related #99664. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99679"
+      },
+      {
+        "title": "**PR #99687** refactor(infra)",
+        "description": "consolidate SHA-256 digest helpers. Related #99675. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99687"
+      },
+      {
+        "title": "**PR #98796** [AI-assisted] feat(android)",
+        "description": "add chat command controls. Thanks @IWhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/98796"
+      },
+      {
+        "title": "**PR #99671** refactor",
+        "description": "consolidate number coercion callers. Related #99667. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99671"
+      },
+      {
+        "title": "**PR #99640** fix",
+        "description": "CLI agent session resume churns when owner and non-owner alternate in a group. Related #99633. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99640"
+      },
+      {
+        "title": "**PR #99682** refactor(models)",
+        "description": "consolidate catalog ref parsing. Related #99674. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99682"
+      },
+      {
+        "title": "**PR #99566** fix(exec)",
+        "description": "avoid splitting surrogate pairs in approval display. Thanks @mikasa0818.",
+        "href": "https://github.com/openclaw/openclaw/issues/99566"
+      },
+      {
+        "title": "**PR #99702** refactor",
+        "description": "remove redundant unique-list aliases. Related #99697. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99702"
+      },
+      {
+        "title": "**PR #99246** feat(ios)",
+        "description": "implement branded typography design system. Thanks @joelnishanth and @cursoragent.",
+        "href": "https://github.com/openclaw/openclaw/issues/99246"
+      },
+      {
+        "title": "**PR #99710** fix(build)",
+        "description": "Docker package preparation misses plugin SDK declarations. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99710"
+      },
+      {
+        "title": "**PR #99715** refactor",
+        "description": "consolidate image data URL formatting. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99715"
+      },
+      {
+        "title": "**PR #98764** fix(ui)",
+        "description": "copy workspace file paths over plain HTTP. Related #98759. Thanks @ZengWen-DT and @adinballew.",
+        "href": "https://github.com/openclaw/openclaw/issues/98764"
+      },
+      {
+        "title": "**PR #99678** fix(build)",
+        "description": "forward default exports through stable runtime aliases. Related #99677. Thanks @headbouyJB and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99678"
+      },
+      {
+        "title": "**PR #99370** fix(file-transfer)",
+        "description": "don't inline zero-byte files as image content blocks. Thanks @2loch-ness6 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99370"
+      },
+      {
+        "title": "**PR #99540** fix(doctor)",
+        "description": "shell completion install fails doctor when profile is read-only. Related #99237. Thanks @rballiance and @hunglp6d.",
+        "href": "https://github.com/openclaw/openclaw/issues/99540"
+      },
+      {
+        "title": "**PR #99718** refactor(text)",
+        "description": "consolidate cleanup owners. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99718"
+      },
+      {
+        "title": "**PR #98819** fix(plugins)",
+        "description": "resolve public artifacts from installed plugin roots. Related #98740. Thanks @amknight and @KelTech-Services.",
+        "href": "https://github.com/openclaw/openclaw/issues/98819"
+      },
+      {
+        "title": "**PR #99721** refactor",
+        "description": "consolidate async timing helpers. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99721"
+      },
+      {
+        "title": "**PR #99722** fix",
+        "description": "group agent session resume churns when messages toggle between @-mention and plain. Related #99696. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99722"
+      },
+      {
+        "title": "**PR #99676** refactor",
+        "description": "consolidate string reader mechanics. Related #99663. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99676"
+      },
+      {
+        "title": "**PR #99705** improve(qa)",
+        "description": "execute runtime scenarios through Docker. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99705"
+      },
+      {
+        "title": "**PR #99231** improve",
+        "description": "native iOS look with stock SwiftUI navigation, forms, chat, and talk visualizer. Related #99195. Thanks @marvkr.",
+        "href": "https://github.com/openclaw/openclaw/issues/99231"
+      },
+      {
+        "title": "**PR #99549** fix(auto-reply)",
+        "description": "don't block reply completion on transcript mirror. Thanks @Shagrat2.",
+        "href": "https://github.com/openclaw/openclaw/issues/99549"
+      },
+      {
+        "title": "**PR #99736** fix(qa)",
+        "description": "prevent smoke gateways from losing built files. Related #99734. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99736"
+      },
+      {
+        "title": "**PR #99658** feat(providers)",
+        "description": "add ClawRouter routing and quotas. Related #99657.",
+        "href": "https://github.com/openclaw/openclaw/issues/99658"
+      },
+      {
+        "title": "**PR #99238** Expose channel preview warning doctor findings",
+        "description": "**PR #99238** Expose channel preview warning doctor findings. Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/99238"
+      },
+      {
+        "title": "**PR #99759** fix(providers)",
+        "description": "resolve ClawRouter auth-profile models.",
+        "href": "https://github.com/openclaw/openclaw/issues/99759"
+      },
+      {
+        "title": "**PR #99561** fix",
+        "description": "keep OpenClaw control tools available when tool_search misroutes. Related #99464. Thanks @100yenadmin and @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/99561"
+      },
+      {
+        "title": "**PR #99750** refactor",
+        "description": "consolidate exact boolean coercion. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99750"
+      },
+      {
+        "title": "**PR #99753** refactor",
+        "description": "consolidate abort primitives. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99753"
+      },
+      {
+        "title": "**PR #99426** feat",
+        "description": "add slash command picker in chat composer. Thanks @VicZhang6 and @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/99426"
+      },
+      {
+        "title": "**PR #99771** refactor",
+        "description": "consolidate free-port test helpers. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99771"
+      },
+      {
+        "title": "**PR #99755** refactor",
+        "description": "consolidate policy-free deferred promises. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99755"
+      },
+      {
+        "title": "**PR #99719** refactor(net)",
+        "description": "consolidate URL protocol predicates. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99719"
+      },
+      {
+        "title": "**PR #99743** fix",
+        "description": "avoid native command QA timeout under CI contention. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99743"
+      },
+      {
+        "title": "**PR #99368** fix(qa)",
+        "description": "prevent qa smoke ci timeouts under gateway concurrency. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99368"
+      },
+      {
+        "title": "**PR #99778** refactor(scripts)",
+        "description": "share regexp literal escaping. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99778"
+      },
+      {
+        "title": "**PR #99737** test",
+        "description": "add executable runtime fixture canaries. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99737"
+      },
+      {
+        "title": "**PR #99735** test(qa)",
+        "description": "exercise Gateway and MCP scenarios over real transports. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99735"
+      },
+      {
+        "title": "**PR #99784** fix(qa)",
+        "description": "stabilize primary smoke runtime evidence. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/99784"
+      },
+      {
+        "title": "**PR #99726** fix(onboard)",
+        "description": "skip unavailable skill installers via lifecycle readiness preflight. Thanks @fuller-stack-dev and @Sedrak-Hovhannisyan.",
+        "href": "https://github.com/openclaw/openclaw/issues/99726"
+      },
+      {
+        "title": "**PR #99793** ci",
+        "description": "reuse one package in QA smoke.",
+        "href": "https://github.com/openclaw/openclaw/issues/99793"
+      },
+      {
+        "title": "**PR #99767** feat(macos)",
+        "description": "install and run the local Gateway automatically. Related #99764.",
+        "href": "https://github.com/openclaw/openclaw/issues/99767"
+      },
+      {
+        "title": "**PR #99820** ci",
+        "description": "increase artifact Testbox memory.",
+        "href": "https://github.com/openclaw/openclaw/issues/99820"
+      },
+      {
+        "title": "**PR #99822** feat",
+        "description": "soft-resume CLI sessions on prompt drift instead of hard invalidation. Related #99729. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99822"
+      },
+      {
+        "title": "**PR #99129** fix(markdown-core)",
+        "description": "use Object.hasOwn instead of in operator in parseFrontmatterBlock. Thanks @zenglingbiao and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99129"
+      },
+      {
+        "title": "**PR #99803** fix(mcp)",
+        "description": "suppress unhandled error on stderr pipe in stdio transport. Thanks @cxbAsDev and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99803"
+      },
+      {
+        "title": "**PR #99802** fix(supervisor)",
+        "description": "suppress unhandled stream errors on child stdout/stderr. Thanks @cxbAsDev and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99802"
+      },
+      {
+        "title": "**PR #99800** fix(ssh-tunnel)",
+        "description": "handle spawn error to prevent unhandled rejection crash. Thanks @cxbAsDev and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99800"
+      },
+      {
+        "title": "**PR #99653** fix(cli)",
+        "description": "hide synthetic Claude reseed prompts. Related #99646. Thanks @ZOOWH and @vincentkoc and @Jeehut.",
+        "href": "https://github.com/openclaw/openclaw/issues/99653"
+      },
+      {
+        "title": "**PR #99728** fix(config)",
+        "description": "preserve recovery state during config-health migration. Related #99280. Thanks @joshavant and @jalehman and @ccbridle.",
+        "href": "https://github.com/openclaw/openclaw/issues/99728"
+      },
+      {
+        "title": "**PR #99839** fix(gateway)",
+        "description": "preserve legacy reseed attachments. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99839"
+      },
+      {
+        "title": "**PR #99830** fix",
+        "description": "stop rubber-band bounce of the Control UI shell in the Mac app web view.",
+        "href": "https://github.com/openclaw/openclaw/issues/99830"
+      },
+      {
+        "title": "**PR #99851** fix(agents)",
+        "description": "preserve fallback tool-call hints. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/99851"
+      },
+      {
+        "title": "**PR #98994** fix(line)",
+        "description": "truncate outbound altText, location, menu, and code fields on code point boundaries. Thanks @LEXES7 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/98994"
+      },
+      {
+        "title": "**PR #99846** fix(config)",
+        "description": "restrict config paths to own properties. Thanks @vincentkoc and @zenglingbiao.",
+        "href": "https://github.com/openclaw/openclaw/issues/99846"
+      },
+      {
+        "title": "**PR #99861** fix(telegram)",
+        "description": "one outbound rich-HTML normalizer and one rich-to-plain fallback policy. Related #99833. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99861"
+      },
+      {
+        "title": "**PR #99866** fix(telegram)",
+        "description": "classify inbound events from the canonical mention decision so direct mentions stop lurking. Related #99854. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/99866"
+      },
+      {
+        "title": "**PR #99832** fix",
+        "description": "reject incompatible Node 23 runtimes. Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/99832"
+      },
+      {
+        "title": "**PR #99243** Polish iOS onboarding and chat critique fixes",
+        "description": "**PR #99243** Polish iOS onboarding and chat critique fixes. Thanks @jcooley8.",
+        "href": "https://github.com/openclaw/openclaw/issues/99243"
+      },
+      {
+        "title": "**PR #99714** perf(usage)",
+        "description": "shrink durable usage cache entries. Related #99511. Thanks @dexhunter and @wayne524.",
+        "href": "https://github.com/openclaw/openclaw/issues/99714"
+      },
+      {
+        "title": "**PR #99838** feat",
+        "description": "declutter the Control UI shell — reasoning effort slider, borderless composer controls, version out of the sidebar. Related #99837.",
+        "href": "https://github.com/openclaw/openclaw/issues/99838"
+      },
+      {
         "title": "**PR #93686** fix(weixin)",
         "description": "startAccount preserves session routing. Related #93556. Thanks @zhangguiping-xydt and @htkillermax-gif.",
         "href": "https://github.com/openclaw/openclaw/issues/93686"
       }
     ],
     "fixes": [
+      "**Mobile pairing routes:** advertise verified persistent Tailscale Serve fallbacks alongside `gateway.bind=lan` setup URLs, show every route in the Control UI and CLI, and let iOS save the first reachable endpoint. (#100280)",
+      "**Control UI terminal tabs:** vertically center the new-session button in the terminal tab strip.",
+      "**Control UI composer scrollbar:** show the message-field scrollbar only when the draft actually overflows its autosized height.",
+      "**Control UI terminal cursor:** hide the browser-native contenteditable caret so the integrated terminal shows only its canvas-rendered cursor.",
+      "**macOS SSH tunnels:** resolve user-installed SSH `ProxyCommand` helpers through the app's managed PATH while preserving inherited connection environment, so remote aliases work after Finder and sanitized-script launches.",
+      "**Control UI OpenAI speed picker:** show only Standard and Fast choices for OpenAI models.",
+      "**Control UI terminal rendering:** adopt the shared `@openclaw/libterminal` browser lifecycle and add Nerd Font fallbacks so icon-enabled shell listings render their glyphs when a compatible local font is installed.",
+      "**Slack transcript history:** let Codex app-server own its persisted assistant replies so Slack does not append redundant delivery-mirror rows, while the Control UI keeps legacy duplicate mirrors hidden.",
+      "**Control UI chat history:** hide redundant channel-final delivery mirrors when the preceding app-server assistant reply already shows the same text.",
+      "**Control UI chat spacing:** keep the first message comfortably clear of the topbar with a responsive minimum transcript inset.",
       "**ClawRouter auth profiles:** resolve credential-scoped catalog models during agent runs when the proxy key is stored in an auth profile, and document plugin and model allowlists.",
-      "**Telegram durability:** recover stalled ingress claims, retry restart-dropped media, survive transient polling errors, dead-letter poison updates, preserve forwarded rich text, route plugin callbacks correctly, and fall back safely when rich final replies are rejected. (#97118, #98102, #98735, #98775, #98776, #97174, #98786) Thanks @vincentkoc, @luoyanglang, @DaveArcher18, @obviyus, and @goldmar.",
-      "**Agent and context reliability:** preserve runtime overrides and steered subagent tasks, improve harness-aware context estimation and compaction prechecks, time out silent local streams, recover mid-stream failures, and cap Gateway run-cache growth. (#92237, #77539, #97928, #97861, #98525, #95430, #77973) Thanks @sercada, @amittell, @liuhao1024, @yetval, @osolmaz, @lzyyzznl, @vincentkoc, @alexelgier, and @fede-kamel.",
+      "**Telegram durability:** recover stalled ingress claims, retry restart-dropped media, survive transient polling errors, dead-letter poison updates, preserve forwarded rich text, route plugin callbacks correctly, keep progress updates in one stable multi-line window, map self-hosted Bot API container paths through trusted host roots, and fall back safely when Telegram rejects rich final replies. (#97118, #98102, #98735, #98775, #98776, #97174, #98907, #91984, #98786) Thanks @vincentkoc, @luoyanglang, @DaveArcher18, @obviyus, @goldmar, @Marvinthebored, @Dizesales, and @shakkernerd.",
+      "**Cross-channel inbound media:** preserve captions and expose unavailable-attachment notices when WhatsApp, LINE, Signal, iMessage, Microsoft Teams, Feishu, Mattermost, or Zalo cannot materialize inbound media, instead of dispatching phantom placeholders or dropping media-only turns. (#100092)",
+      "**Agent and context reliability:** preserve runtime overrides, steered subagent tasks, fallback tool-call hints, and legacy reseed attachments; soft-resume CLI sessions across prompt-only drift; improve harness-aware context estimation and compaction prechecks; time out silent local streams; recover mid-stream failures; and cap Gateway run-cache growth. (#92237, #77539, #99851, #99839, #99822, #97928, #97861, #98525, #95430, #77973) Thanks @sercada, @amittell, @obviyus, @liuhao1024, @yetval, @osolmaz, @lzyyzznl, @vincentkoc, @alexelgier, and @fede-kamel.",
       "**Provider and network safety:** bound oversized or malformed responses across Moonshot, MiniMax, Anthropic OAuth, Discord, Matrix, SMS, browser, update, embeddings, Tlön, and Inworld paths. (#96502, #96322, #96644, #97693, #97662, #97999, #98455, #98508, #98554, #98496, #98660) Thanks @hugenshen, @cursoragent, @lsr911, @solodmd, @Alix-007, @wings1029, @lzyyzznl, @sunlit-deng, @vincentkoc, and @Pandah97.",
-      "**Channel delivery and routing:** keep Slack replies in the active thread, preserve account-bound delivery routes, apply response prefixes, suppress internal traces and unwanted fallback replies, and retain WeChat session routing for opaque account ids. (#97168, #98240, #89949, #93639, #97989, #80928, #93686) Thanks @LiuwqGit, @gorkem2020, @yetval, @wangwllu, @ZengWen-DT, @alexuser, @UnClouded77, @zhangguiping-xydt, and @htkillermax-gif.",
+      "**Channel delivery and routing:** keep Slack replies in the active thread, preserve account-bound delivery routes, apply response prefixes, suppress internal traces and unwanted fallback replies, and retain WeChat session routing for opaque account ids. (#97168, #98240, #89949, #93639, #97989, #80928, #93686) Thanks @LiuwqGit, @gorkem2020, @yetval, @wangwllu, @ZengWen-DT, @alexuser, @UnClouded77, @zhangguiping-xydt, @htkillermax-gif, and @vincentkoc.",
       "**Cron correctness:** preserve provider and model selections on timeouts, retain startup catch-up deferrals, keep action-required output, clear blank thinking overrides, and preserve provider-owned daily-reset sessions. (#95943, #94022, #93810, #96393, #96293, #98356) Thanks @ZengWen-DT, @cursoragent, @luke-renjoy, @RichChen01, @vincentkoc, @yetval, @snowzlmbot, @nz365guy, and @takamasa-aiso.",
       "**Memory and session recovery:** detect unindexed transcripts, preserve notes through transient reads, avoid cross-directory resumes, disambiguate reserved wiki index pages, and skip empty QMD sync work. (#97857, #98360, #97785, #94326, #90030) Thanks @zw-xysk, @CHE10X, @qingminglong, @yetval, @vincentkoc, @sahibzada-allahyar, and @ruben2000de.",
       "**Windows and execution:** bind allowlisted execution to the validated Windows path, propagate `PATHEXT`, normalize inbound paths case-insensitively, and prevent cleanup crashes on Windows. (#98260, #98093, #97630, #97901) Thanks @eleqtrizit, @wendy-chsy, @VectorPeak, and @paulcam206.",
-      "**Mobile and UI stability:** preserve iOS chat line breaks and final replies, improve Android pairing and TLS recovery, hide expired pairing cards, and keep workspace file rails scrollable. (#98304, #98117, #98366, #98439, #98483, #98049, #98646, #98611) Thanks @joshavant, @Jabato01, @ooiuuii, @wuqxuan, @645648406-max, and @zw-xysk.",
+      "**Mobile and UI stability:** preserve iOS chat line breaks and final replies, improve Android pairing and TLS recovery, hide expired pairing cards, keep workspace file rails scrollable, restore copy-path over plain HTTP, and stop rubber-band scrolling in the Mac app Control UI. (#98304, #98117, #98366, #98439, #98483, #98049, #98646, #98611, #98764, #99830) Thanks @joshavant, @Jabato01, @ooiuuii, @wuqxuan, @645648406-max, @zw-xysk, @ZengWen-DT, and @adinballew.",
       "**Codex and approval flows:** report ChatGPT authentication correctly, rename destructive approval mode to `ask`, classify dynamic goal and session tool results accurately, and derive terminal-idle timeouts from the explicit run deadline. (#91240, #98501, #98659, #96856, #85296) Thanks @849261680, @ukstem, @kevinslin, @yetval, @nxmxbbd, @alkor2000, and @vincentkoc.",
-      "**Configuration and plugin health:** surface unloadable channel plugins, preserve defaulted provider base URLs during patches, validate bundled plugin updates by manifest contract, and retain legacy ClawHub families where required. (#96397, #98396, #98010, #98249) Thanks @849261680, @momothemage, @weltmaister, @LiLan0125, @herove, and @Patrick-Erichsen.",
-      "**QQBot media delivery:** scope sandbox-generated media sends to the active session's workspace so `/workspace/...` and relative generated-file paths resolve safely across QQBot media tags, structured payloads, and streaming delivery. (#92872) Thanks @zhangguiping-xydt."
+      "**Configuration and plugin health:** restrict config traversal to owned properties, preserve config-health recovery state, surface unloadable channel plugins, preserve defaulted provider base URLs during patches, validate bundled plugin updates by manifest contract, resolve public artifacts from installed plugin roots, and retain legacy ClawHub families where required. (#99846, #99728, #96397, #98396, #98010, #98819, #98249) Thanks @vincentkoc, @zenglingbiao, @joshavant, @jalehman, @ccbridle, @849261680, @momothemage, @weltmaister, @LiLan0125, @herove, @amknight, @KelTech-Services, and @Patrick-Erichsen.",
+      "**Runtime process safety:** prevent unhandled child-stream errors in SSH tunnels, supervisors, and MCP stdio transports; keep auto-replies from waiting on transcript mirroring; and avoid splitting Unicode characters in approval previews and LINE outbound fields. (#99800, #99802, #99803, #99549, #99566, #98994) Thanks @cxbAsDev, @vincentkoc, @Shagrat2, @mikasa0818, and @LEXES7.",
+      "**Node runtime compatibility:** installers, the CLI launcher, doctor, and the macOS app now reject incompatible Node 23 runtimes and guide users toward supported Node 22 or 24 releases. (#99832) Thanks @vincentkoc and @fuller-stack-dev.",
+      "**QQBot media delivery:** scope sandbox-generated media sends to the active session's workspace so `/workspace/...` and relative generated-file paths resolve safely across QQBot media tags, structured payloads, and streaming delivery. (#92872) Thanks @zhangguiping-xydt and @sliverp."
     ]
   },
   {
