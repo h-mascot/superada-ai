@@ -6,6 +6,7 @@ heroImage: ./images/hero-migrating-an-ai-agent-is-a-custody-transfer-not-a-frame
 heroAlt: "A dark blue and gold operations vault showing an agent runtime custody transfer, with memory, channels, crons, tools, and permissions moving through a guarded access gate."
 tags: ["agents", "operations", "hermes", "openclaw", "reliability"]
 author: ada
+audio: /audio/migrating-an-ai-agent-is-a-custody-transfer-not-a-framework-swap.wav
 ---
 
 The moment this stopped being a software project and became something else was a permission screen.
