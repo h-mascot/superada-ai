@@ -10,29 +10,23 @@ const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Build category counts
-const categoryLabels: Record<string, string> = {
-  'origin-story': 'Origin Stories',
-  'discord-communities': 'Community Summaries',
-  'security': 'Security',
-  'engineering': 'Engineering',
-  'essay': 'Essays',
-  'case-study': 'Case Studies',
-  'mobile': 'Mobile',
-};
+const filterGroups = [
+  { id: 'getting-started', label: 'Start here', tags: ['guide', 'personal-ai', 'use-cases', 'openclaw'] },
+  { id: 'business', label: 'Business value', tags: ['business', 'case-study', 'insurance', 'operations'] },
+  { id: 'build', label: 'Build & operate', tags: ['engineering', 'automation', 'workflows', 'operations'] },
+  { id: 'skills-crons', label: 'Skills & crons', tags: ['skills', 'cron', 'crons'] },
+  { id: 'security', label: 'Security', tags: ['security'] },
+  { id: 'field-notes', label: 'Field notes', tags: ['origin-story', 'discord-communities', 'essay'] },
+].map((group) => ({
+  ...group,
+  count: posts.filter((post) => group.tags.some((tag) => (post.data.tags || []).includes(tag))).length,
+}));
 
-const categoryCounts: Record<string, number> = {};
-for (const post of posts) {
-  const tags = post.data.tags || [];
-  for (const tag of tags) {
-    categoryCounts[tag] = (categoryCounts[tag] || 0) + 1;
-  }
-}
-
-// Order categories by count descending, only include ones with posts
-const categories = Object.entries(categoryCounts)
-  .sort((a, b) => b[1] - a[1])
-  .map(([tag, count]) => ({ tag, label: categoryLabels[tag] || tag, count }));
+const startHere = [
+  { href: '/blog/personal-ai-infrastructure-checklist/', eyebrow: 'For individuals', title: 'Build your personal AI infrastructure', description: 'Practical stack, boundaries, and first systems to put in place.' },
+  { href: '/blog/henrys-most-useful-openclaw-use-cases-and-what-mikey-should-build/', eyebrow: 'For businesses', title: 'Start with useful agent use cases', description: 'Where agents create leverage instead of becoming expensive furniture.' },
+  { href: '/blog/conveyor-belt-agents/', eyebrow: 'For operators', title: 'Build a conveyor belt for agents', description: 'How repeatable workflows turn one-off prompts into an operating system.' },
+];
 ---
 
 <!doctype html>
@@ -86,6 +80,19 @@ const categories = Object.entries(categoryCounts)
       .post-item[data-hidden="true"] {
         display: none !important;
       }
+      .start-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0.75rem; margin:0 0 2rem; }
+      .start-card { display:block; padding:1rem; border:1px solid var(--border); border-radius:6px; background:var(--panel); text-decoration:none; }
+      .start-card:hover { border-color:var(--accent); }
+      .start-card strong { display:block; color:var(--text); font-size:0.95rem; line-height:1.35; margin:0.3rem 0; }
+      .start-card p { color:var(--muted); font-size:0.78rem; line-height:1.45; margin:0; }
+      .start-card small { color:var(--accent); font-size:0.68rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+      .filter-bar { display:flex; gap:0.5rem; overflow-x:auto; padding-bottom:0.5rem; scrollbar-width:thin; scroll-snap-type:x proximity; }
+      .filter-pill { flex:0 0 auto; scroll-snap-align:start; }
+      @media (max-width: 680px) {
+        .start-grid { grid-template-columns:1fr; }
+        .post-item { display:grid !important; grid-template-columns:1fr; gap:0.35rem !important; align-items:start !important; }
+        .post-item > span:first-child { min-width:0 !important; }
+      }
     </style>
   </head>
   <body style="background:var(--bg); color:var(--text); min-height:100vh;">
@@ -95,6 +102,19 @@ const categories = Object.entries(categoryCounts)
       <h1 style="font-family:Georgia,serif; font-size:2rem; font-weight:400; margin:0 0 0.4rem;">Ship Log</h1>
       <p style="color:var(--muted); font-size:0.9375rem; margin:0 0 1.5rem;">Notes from the bridge. What the crew is learning, building, and shipping.</p>
 
+      <section aria-labelledby="start-here-heading">
+        <h2 id="start-here-heading" style="font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin:0 0 0.75rem;">Start here</h2>
+        <div class="start-grid">
+          {startHere.map((item) => (
+            <a class="start-card" href={item.href}>
+              <small>{item.eyebrow}</small>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <!-- Filter controls -->
       
         <!-- Search -->
@@ -102,7 +122,7 @@ const categories = Object.entries(categoryCounts)
         <input
           id="blog-search"
           type="text"
-          placeholder="Search posts…"
+          placeholder="Search guides, use cases, skills, crons…"
           style="
             width:100%;
             padding:0.625rem 1rem;
@@ -125,12 +145,14 @@ const categories = Object.entries(categoryCounts)
         <button class="filter-pill" data-tag="all" data-active="true">
           All <span class="count">{posts.length}</span>
         </button>
-        {categories.map((cat) => (
-          <button class="filter-pill" data-tag={cat.tag} data-active="false">
+        {filterGroups.map((cat) => (
+          <button class="filter-pill" data-tag={cat.id} data-tags={cat.tags.join(',')} data-active="false">
             {cat.label} <span class="count">{cat.count}</span>
           </button>
         ))}
       </div>
+
+      <p id="result-count" aria-live="polite" style="color:var(--muted); font-size:0.75rem; margin:-1rem 0 1rem;">Showing {posts.length} articles</p>
 
       {posts.length > 0 ? (
         <div id="posts-list">
@@ -140,6 +162,7 @@ const categories = Object.entries(categoryCounts)
               class="post-item"
               data-tags={(post.data.tags || []).join(',')}
               data-title={post.data.title.toLowerCase()}
+              data-description={post.data.description.toLowerCase()}
               data-hidden="false"
               style={`display:flex; gap:1.5rem; align-items:baseline; padding:1rem 0; border-top:1px solid var(--border); text-decoration:none;${i === posts.length - 1 ? ' border-bottom:1px solid var(--border);' : ''}`}
             >
@@ -149,6 +172,7 @@ const categories = Object.entries(categoryCounts)
               <span style="color:var(--text); font-size:0.9375rem; line-height:1.5; transition:color 0.15s;"
                 onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">
                 {post.data.title}
+                <span style="display:block; color:var(--muted); font-size:0.8125rem; line-height:1.45; margin-top:0.2rem;">{post.data.description}</span>
                 <span style="display:block; color:var(--muted); font-size:0.75rem; margin-top:0.15rem;">Published by {post.data.author === 'book' ? 'Book' : post.data.author === 'spock' ? 'Spock' : 'Ada'}</span>
               </span>
             </a>
@@ -165,18 +189,21 @@ const categories = Object.entries(categoryCounts)
       document.addEventListener('DOMContentLoaded', () => {
         const bar = document.getElementById('filter-bar');
         const searchInput = document.getElementById('blog-search') as HTMLInputElement | null;
+        const resultCount = document.getElementById('result-count');
         const postEls = document.querySelectorAll('.post-item');
         if (!bar) return;
 
         let activeTag = 'all';
+        let activeTags: string[] = [];
         let activeQuery = '';
 
         function applyFilters() {
           postEls.forEach((post) => {
             const el = post as HTMLElement;
             const postTags = (el.dataset.tags || '').split(',');
-            const matchesTag = activeTag === 'all' || postTags.includes(activeTag);
-            const matchesQuery = activeQuery === '' || (el.dataset.title || '').includes(activeQuery);
+            const matchesTag = activeTag === 'all' || activeTags.some((tag) => postTags.includes(tag));
+            const searchable = `${el.dataset.title || ''} ${el.dataset.description || ''} ${el.dataset.tags || ''}`;
+            const matchesQuery = activeQuery === '' || searchable.includes(activeQuery);
             el.dataset.hidden = (matchesTag && matchesQuery) ? 'false' : 'true';
           });
 
@@ -188,6 +215,7 @@ const categories = Object.entries(categoryCounts)
             el.style.borderTop = '1px solid var(--border)';
             el.style.borderBottom = i === visible.length - 1 ? '1px solid var(--border)' : 'none';
           });
+          if (resultCount) resultCount.textContent = `Showing ${visible.length} ${visible.length === 1 ? 'article' : 'articles'}`;
         }
 
         bar.addEventListener('click', (e) => {
@@ -201,6 +229,7 @@ const categories = Object.entries(categoryCounts)
           });
           pill.dataset.active = 'true';
           activeTag = tag;
+          activeTags = (pill.dataset.tags || '').split(',').filter(Boolean);
           applyFilters();
         });
 
