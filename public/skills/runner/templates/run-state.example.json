@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "project": "{{PROJECT_SLUG}}",
+  "planLink": "{{ENTITY_PLAN_LINK}}",
+  "approvedQueue": [
+    "{{ISSUE_ID}}"
+  ],
+  "current": {
+    "issueId": null,
+    "branch": null,
+    "status": "IDLE",
+    "lastUpdated": "{{GENERATED_AT}}"
+  },
+  "completed": [],
+  "blocked": [],
+  "failed": [],
+  "skipped": [],
+  "receipts": [],
+  "history": [
+    {
+      "status": "QUEUE_SEEDED",
+      "time": "{{GENERATED_AT}}",
+      "notes": "Runtime state; do not commit. Cursor must only process approvedQueue."
+    }
+  ]
+}

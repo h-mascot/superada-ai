@@ -1,0 +1,24 @@
+{
+  "attempt": 1,
+  "route": "oracle-browser gpt-5.5-pro",
+  "remote_chrome": "127.0.0.1:<port>",
+  "browser_attachments": "never",
+  "forced": false,
+  "timeout_s": 3600,
+  "elapsed_text": "<e.g. 6m17s>",
+  "tokens": {
+    "up": "<int or k>",
+    "down": "<int>",
+    "retries": "<int>",
+    "delta_<unit>": "<num>"
+  },
+  "output_path": "<absolute path to the bad .md>",
+  "output_bytes": "<int>",
+  "output_sha256": "<hex>",
+  "verdict": "unusable",
+  "reason": "<one paragraph: prompt shape used, reply received, why rejected. Cross-reference the relevant umbrella-skill reference (e.g. 'see loom/references/helm-oracle-prd-retry-2026-06-21.md').>",
+  "oracle_log_excerpt": [
+    "<3-5 lines from /tmp/super-spec-oracle.log>"
+  ],
+  "next_action": "<retry with X / STOP / report blocker / open fresh tab>"
+}

@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/loom"
+mkdir -p "$TARGET_DIR/references" "$TARGET_DIR/scripts" "$TARGET_DIR/templates"
+base="https://superada.ai/skills/loom"
+# Fetch SKILL.md
+curl -fsSL "$base/SKILL.md" -o "$TARGET_DIR/SKILL.md"
+# Fetch references
+for ref in \
+  helm-action-gate-external-service-2026-06-21 \
+  helm-grill-linear-2026-06 \
+  helm-oracle-prd-retry-2026-06-21 \
+  helm-prd-phase2-recovery-2026-06-21 \
+  hoshi-superspec-oracle-3x-i-blocker-2026-06-21 \
+  linear-active-issue-preflight \
+  linear-loader-recipe-2026-06-22 \
+  non-oracle-route-failclosed-2026-06-21 \
+  opencore-full-run-completion-2026-06-22 \
+  opencore-grill-to-linear-2026-06-22 \
+  oracle-browser-route-recovery \
+  oracle-cdp-extract-fallback-2026-06-21 \
+  oracle-cdp-extraction-recipe-2026-06-21 \
+  oracle-share-url-recovery-2026-06-21 \
+  reasoning-budget-burn-sibling-lane-recovery-2026-06-22 \
+  showclaw-context-pack-no-write-2026-06-22 \
+  showclaw-grill-handoff-2026-06-21 \
+  showclaw-grill-to-linear-route-failclosed-2026-06-21 \
+  superspec-oracle55-browser-default-2026-06-21; do
+  curl -fsSL "$base/references/$ref.md" -o "$TARGET_DIR/references/$ref.md"
+done
+# Fetch scripts
+curl -fsSL "$base/scripts/helm-parent-merge.py" -o "$TARGET_DIR/scripts/helm-parent-merge.py"
+curl -fsSL "$base/scripts/source-packet-sanitize.py" -o "$TARGET_DIR/scripts/source-packet-sanitize.py"
+# Fetch templates
+curl -fsSL "$base/templates/oracle-route-failure-receipt.json" -o "$TARGET_DIR/templates/oracle-route-failure-receipt.json"
+printf 'Installed loom to %s\n' "$TARGET_DIR"

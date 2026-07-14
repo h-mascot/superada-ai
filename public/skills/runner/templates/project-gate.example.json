@@ -1,0 +1,56 @@
+{
+  "project": "{{PROJECT_SLUG}}",
+  "linearProject": "{{LINEAR_PROJECT_NAME}}",
+  "receiptDir": "output/{{PROJECT_SLUG}}/test-gate",
+  "proofCommands": [
+    "{{TEST_COMMAND}}",
+    "{{BUILD_COMMAND}}"
+  ],
+  "optionalCommands": [
+    "{{OPTIONAL_SMOKE_COMMAND}}"
+  ],
+  "bannedTerms": [
+    "{{BANNED_TERM_EXAMPLE}}"
+  ],
+  "privateDefaultPatterns": [
+    "AKIA[0-9A-Z]{16}",
+    "sk-[A-Za-z0-9_-]{20,}",
+    "BEGIN (RSA|OPENSSH|EC) PRIVATE KEY",
+    "api[_-]?key",
+    "secret",
+    "token"
+  ],
+  "scanExcludePaths": [],
+  "bookReview": {
+    "required": true,
+    "mode": "packet",
+    "receiptDir": "output/{{PROJECT_SLUG}}/book-review",
+    "sessionIdPrefix": "{{PROJECT_SLUG}}-book-review",
+    "timeoutMs": 600000,
+    "retryAttempts": 3,
+    "retryDelayMs": 1000,
+    "sourceSessionQueries": [
+      "{{PROJECT_NAME}} Cursor execution pack",
+      "{{PROJECT_NAME}} CLI Tester Book review gate",
+      "{{PROJECT_NAME}} approved queue"
+    ],
+    "contextLinks": [
+      "{{REPO_ROOT}}/AGENTS.md",
+      "{{CURSOR_RULES_PATH}}",
+      "{{BUILD_CONTEXT_PATH}}",
+      "{{PACK_DIR}}/plan.md"
+    ]
+  },
+  "highRiskScopes": [
+    "auth",
+    "permissions",
+    "secrets",
+    "dangerous actions",
+    "live delivery",
+    "release proof",
+    "migration/backfill",
+    "review gates"
+  ],
+  "handoff": "linear-comment",
+  "failStop": true
+}
