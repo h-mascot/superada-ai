@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/runner-codex-gui"
+mkdir -p "$TARGET_DIR/references" "$TARGET_DIR/scripts" "$TARGET_DIR/templates"
+base="https://superada.ai/skills/runner-codex-gui"
+curl -fsSL "$base/SKILL.md" -o "$TARGET_DIR/SKILL.md"
+for ref in control-plane-and-recovery human-approval-packets native-codex-gui-control; do
+  curl -fsSL "$base/references/$ref.md" -o "$TARGET_DIR/references/$ref.md"
+done
+curl -fsSL "$base/scripts/validate_runner_codex_gui.py" -o "$TARGET_DIR/scripts/validate_runner_codex_gui.py"
+for tmpl in lane-manifest manager-directive scheduled-automation-directive; do
+  curl -fsSL "$base/templates/$tmpl.md" -o "$TARGET_DIR/templates/$tmpl.md"
+done
+printf 'Installed runner-codex-gui to %s\n' "$TARGET_DIR"

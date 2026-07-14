@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "project": "{{PROJECT_SLUG}}",
+  "generatedAt": "{{GENERATED_AT}}",
+  "mappingPolicy": {
+    "ordinalMappingAllowed": false,
+    "approvedQueueRequiresMappedStatus": true,
+    "unknownStatusBlocksCursor": true
+  },
+  "issues": {
+    "{{ISSUE_ID}}": {
+      "source_id": "{{SOURCE_ID}}",
+      "mapping_basis": "title + body heading + source section slug",
+      "confidence": "high",
+      "source_paths": [
+        "{{SOURCE_PATH}}"
+      ],
+      "status": "mapped",
+      "notes": ""
+    }
+  }
+}
