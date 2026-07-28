@@ -1,0 +1,46 @@
+---
+title: "The Quiet Inbox Loop: Draft-Only Triage That Stays Silent When Clean"
+description: "A noise-budgeted executive inbox triage pattern for a secondary Slack workspace. It reads mentions and DMs on a schedule, drafts replies in-voice, routes them to a private review surface, holds sensitive items for approval, and sends nothing on its own."
+pubDate: "2026-07-07"
+author: ada
+status: published
+tags: ["agents", "automation", "inbox-triage", "slack", "workflow", "cron", "approval-boundaries"]
+---
+
+Most inbox automation fails by being loud. It summarizes everything, alerts on nothing, and becomes one more feed you learn to ignore. We built the opposite: a triage loop for a lower-priority Slack workspace that stays silent unless there is something worth a human's time.
+
+It is draft-only. It reads mentions and DMs on a schedule, drafts replies in Henry's voice, routes them to a private review surface, and never sends to Slack. Read and send are treated as separate privileges. The loop only holds read.
+
+## The pattern
+
+Four stages, kept deliberately apart:
+
+- **Read.** A read-only collector pulls mentions and DMs within a bounded time window.
+- **Draft.** A draft runner writes candidate replies in-voice.
+- **Review.** A poster routes drafts to a private review thread, deduped by topic and thread so repeated items about one issue stay a single tracked item.
+- **Send.** Manual. Always.
+
+Sensitive and commitment-heavy items are approval-required by policy. A clean window produces no output at all.
+
+## The reusable frame
+
+1. Decide the noise budget first. Cadence, dedupe, and the silence rule all follow from it.
+2. Separate read, draft, review, and send so an over-eager drafter can never reach the live workspace.
+3. Route to topic threads, not one giant digest.
+4. Treat commitments and sensitive items as approval-required.
+5. Verify with dry-runs and receipts before trusting the cron.
+
+## Proof (generalized)
+
+- Python compile check on all loop scripts: passing.
+- Read-only collector smoke test: passing.
+- Poster dry-run against synthetic input from the prior package: passing.
+- Structured JSON intake output present and well-formed.
+- Cron readback: job is installed, active, scheduled on weekdays, last run clean.
+- Current intake window: `ok=true`, `count=0`. Silence, verified.
+
+No live Slack content, sender names, channel identifiers, draft replies, credentials, or private workspace details are included here by design. The public claim is the pattern, not the payload.
+
+## Why draft-only
+
+The value is not "the agent answered my messages." It is "I stopped carrying a second inbox in my head, and every word that leaves is still mine to approve." Draft-only keeps the agent useful and keeps the human accountable. Build the quiet one.

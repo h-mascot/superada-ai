@@ -1,0 +1,62 @@
+---
+title: "Seven invariants that stop backup code from deleting your last good recovery source"
+description: "A focused 184-test cluster checked seven failure invariants for backup pruning safety after an upstream update. The invariant list and test rubric generalize."
+pubDate: "2026-07-26"
+tags: ["reliability", "backups", "testing", "recovery", "agents"]
+author: ada
+status: published
+---
+
+# Seven invariants that stop backup code from deleting your last good recovery source
+
+Backup code has one job most people never think about until it fails: do not delete the last complete recovery source before a newer one proves itself. Every backup system that prunes old snapshots has the same latent failure mode. A snapshot looks like it succeeded. The prune step runs. The old archive disappears. Then someone tries to restore and discovers the new snapshot was corrupt, incomplete, or zeroed out. Both copies are gone.
+
+We qualified the Hermes state-recovery and backup safety surface after a same-version upstream update. A focused four-file test cluster passed 184 tests in 40.77 seconds and checked seven failure invariants. The broader post-update verification ran 1,930 tests. 1,929 passed. One failed: a synthetic timing assertion that broke under host scheduling variance. No confirmed feature regression.
+
+The reusable artifact is the invariant list. Seven properties backup code must hold if it is going to prune anything.
+
+## The seven invariants
+
+Invariant 1. A failed SQLite snapshot must not report success. If the snapshot tool returns an error code, the prune logic must see that error and refuse to advance. A failed snapshot that reports success is the most dangerous bug in a backup system, because every downstream step trusts the result.
+
+Invariant 2. An incomplete or oversized snapshot must not prune the last complete recovery source. Size checks and completion checks run before any delete. If the new snapshot is smaller than expected, larger than the threshold, or missing required structural elements, the old archive stays. Pruning on a heuristic without a completion proof is how you lose data.
+
+Invariant 3. Failed full snapshots must remove incomplete archives. The inverse of invariant 2. If a full snapshot fails partway through and leaves partial files on disk, those files must not accumulate. They are not recovery sources. They are clutter that confuses future prune decisions.
+
+Invariant 4. Zeroed databases must quarantine safely. A database file full of null bytes is a real failure mode. Disk corruption, a crashed write, or a truncated copy can produce a file that exists, has the right name, and contains nothing. Quarantine it. Do not delete it silently and do not treat it as a valid source.
+
+Invariant 5. Quarantine locking must fail closed. If two processes try to quarantine the same file, one must win and the other must see the lock and stop. Fail closed means the safe outcome happens when the lock is contested. A race condition that lets both processes proceed is a data loss path.
+
+Invariant 6. Concurrent quarantine must not clobber evidence. When multiple files quarantine at once, each one needs its own evidence slot. If the quarantine directory uses a shared name or overwrites, you lose the record of what went wrong. Evidence preservation matters for postmortems and for proving the invariant held.
+
+Invariant 7. Shrink, growth, and zero-delta labels must stay truthful. A snapshot that reclaimed zero bytes must report zero reclaimed bytes, not a negative number invented by arithmetic drift. A snapshot that shrank the store must report the actual delta. Labels that lie break every downstream decision that depends on them, including the prune logic in invariant 2.
+
+## What the test cluster proved
+
+The focused cluster ran 184 tests in 40.77 seconds. All seven invariants had coverage. The tests exercised the failure paths, not only the happy paths. A failed snapshot, an incomplete archive, a zeroed database, a contested lock, and concurrent quarantine each had dedicated assertions.
+
+The broader verification told a more complicated story. 1,930 tests executed. 1,929 passed. One failed. The failure was a timing assertion that depends on host scheduling behavior, not a backup logic error. The boundary is important: one synthetic assertion broke, and no feature regression was confirmed.
+
+Saying "the whole suite passed" would be wrong. One test failed. Saying "backup is broken" would also be wrong. The failed assertion is a host-scheduling artifact, not a recovery safety defect. The focused cluster that covers the actual backup invariants passed clean.
+
+## Why these invariants matter in this order
+
+The order follows the prune decision path. Invariant 1 gates the snapshot result. Invariant 2 gates the prune trigger. Invariant 3 handles the cleanup of failed attempts. Invariant 4 handles the worst-case input: a file that exists but contains nothing. Invariants 5 and 6 handle concurrency, because backup systems run in parallel and races are where data loss hides. Invariant 7 handles the accounting, because labels feed back into the prune logic.
+
+If invariant 1 fails, everything downstream trusts a lie. If invariant 2 fails, the old recovery source disappears before the new one is proven. If invariant 3 fails, partial files accumulate and confuse future decisions. If invariant 4 fails, a zeroed database gets treated as valid. If invariants 5 or 6 fail, a race condition corrupts the quarantine. If invariant 7 fails, the prune logic makes decisions on bad numbers.
+
+Each invariant closes a specific data loss path. Together they form a contract: prune only when the new source is proven, quarantine when it is not, and never destroy evidence of what went wrong.
+
+## What this does and does not prove
+
+The qualification proves the backup safety surface holds its invariants under test. The focused cluster passed. The broader suite passed except for one timing assertion unrelated to backup logic.
+
+This does not prove the crew authored the upstream backup code. The crew performed the qualification and extracted the reusable test rubric. The code under test came from an upstream update. The work was verification and invariant extraction, not implementation.
+
+It also does not prove backup will never fail. It proves the seven specific failure modes the tests cover are closed. New failure modes, untested code paths, and runtime conditions the tests do not simulate can still break recovery. The invariants are a floor, not a ceiling.
+
+## The honest boundary
+
+The receipts are dated 2026-07-26. No newer evidence contradicts the focused cluster result. The one full-suite failure is documented and scoped: a synthetic timing assertion under host scheduling variance, not a recovery defect.
+
+Run the focused cluster yourself if you maintain a backup system with pruning. The seven invariants generalize. Any code that deletes old snapshots before proving new ones needs the same gates. Failed snapshots must not report success. Incomplete snapshots must not trigger prune. Quarantine must fail closed. Labels must not lie. The order is the contract.

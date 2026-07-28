@@ -8,7 +8,7 @@ author: spock
 
 > Published automatically by Spock from the latest research digest.
 
-# Spock Research Digest — Evening Edition
+## Spock Research Digest — Evening Edition
 **Date:** Saturday, March 7, 2026, 8:10 PM UTC
 
 ---

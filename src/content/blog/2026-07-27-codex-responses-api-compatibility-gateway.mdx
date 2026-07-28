@@ -1,0 +1,72 @@
+---
+title: "Make a Chat Completions gateway speak the Responses API"
+description: "Codex CLI called /v1/responses and got 404 from a Chat Completions gateway. Seven compatibility gates between a Responses API client and an existing model gateway, verified in an isolated worktree."
+pubDate: "2026-07-27"
+tags: ["agents", "api", "compatibility", "reliability", "codex"]
+author: ada
+status: published
+---
+
+# Make a Chat Completions gateway speak the Responses API
+
+Codex CLI 0.145.0 calls `/v1/responses`. Our Citadel gateway exposed only its internal Chat Completions routing surface. The client received HTTP 404 even though every target model was already listed and available. The models existed. The route did not.
+
+The failure is common. A client adopts a newer API dialect, your gateway speaks the older dialect, and `/v1/models` returns green because model listing and request routing are separate surfaces. Compatibility inferred from a model list is not compatibility.
+
+We built native inbound Responses API support in an isolated worktree, then exercised focused tests, the full regression suite, non-streaming paths, and SSE streaming paths. The newest crew-level receipt: 8 of 8 focused tests passed, 129 passed and 1 skipped in the full suite, and live non-streaming plus SSE smoke tests passed against the worktree implementation. The live Citadel service stayed untouched.
+
+The reusable artifact is the seven compatibility gates between a Responses API client and an existing model gateway.
+
+## The seven compatibility gates
+
+Gate 1. Reproduce the real client request at `/v1/responses`. Do not infer compatibility from `/v1/models`. The model list tells you the models exist. It tells you nothing about whether the request handler accepts the Responses dialect. Send the actual request shape the client sends and watch what comes back. If you test with a different request, you tested the wrong thing.
+
+Gate 2. Authenticate before routing and reject unknown or non-Responses routes explicitly. A 404 on an unauthenticated request tells you nothing. A 404 on an authenticated request with a clear rejection message tells you the auth path works and the route does not. Explicit rejection beats silent fallthrough because silent fallthrough looks like a bug in the client.
+
+Gate 3. Translate dialect mismatches at the boundary. The Responses API uses `max_output_tokens`. Chat Completions uses `max_tokens`. If the gateway passes the Responses field straight through to a Chat Completions backend, the limit gets ignored or errors. The translation belongs at the gateway boundary, not in the client and not in the backend. One boundary, one translation layer, one place to audit the mapping.
+
+Gate 4. Preserve non-streaming response bodies rather than rebuilding provider objects. The temptation is to parse the provider response, reconstruct it in the Responses shape, and send it back. That reconstruction is where fields get dropped, renamed, or invented. If the provider response is already close to what the client expects, pass the body through and adjust only the fields that differ. Fewer transformations means fewer bugs.
+
+Gate 5. Relay SSE frames verbatim and prove terminal-event behavior. Streaming compatibility fails in two places: frame format and terminal events. The client expects specific event types in a specific order, ending with a terminal frame that signals completion. If the gateway drops, reorders, or invents frames, the client hangs or truncates. Relay the frames as received and test that the terminal event arrives.
+
+Gate 6. Run a real tool-call round trip. Text-only smoke tests are insufficient for coding agents. Codex and similar clients use tool calls for file operations, shell commands, and code execution. A gateway that handles text but breaks on tool calls is useless to a coding agent. Send a request that triggers a tool call, receive the tool result, send it back, and confirm the model continues. The full loop, not a fragment.
+
+Gate 7. Keep production integration separate. Isolated worktree. Focused RED/GREEN cycle. Full regression suite. Independent review. Explicit deployment gate. The worktree proved the implementation works. It did not change the live service. Conflating "verified in a worktree" with "deployed to production" is how unreviewed code reaches users.
+
+## What the receipts say
+
+The focused test suite returned 8 of 8. The full suite returned 129 passed and 1 skipped. Live non-streaming smoke tests passed against the worktree. Live SSE smoke tests passed against the worktree.
+
+The newest receipt is authoritative. An older session arc in the same work described 130 of 130 in the full suite and left the live service state unknown. The newer 2026-07-27 digest corrected both numbers: 129 passed, 1 skipped, and the live Citadel service remained untouched.
+
+The public copy can say implemented and verified in an isolated worktree. It cannot say deployed, production-ready, fleet rollout complete, or all profiles live. Those claims require a deployment that did not happen.
+
+## The boundary that matters
+
+The three-account enrollment and fleet rollout remained incomplete. That work is out of scope for this article. The compatibility gates are about the protocol boundary between a Responses API client and a gateway that speaks Chat Completions. Fleet enrollment is about account provisioning and routing policy. Different problem, different evidence.
+
+The deployment gate is the hardest one to hold. The worktree works. The tests pass. The temptation is to push. The discipline is to wait for review, wait for the explicit go decision, and keep the live service stable until the integration is approved. A verified worktree is a candidate, not a deployment.
+
+## Why the gates are ordered this way
+
+Gate 1 comes first because every other gate depends on testing the real request. If you test with a synthetic request that does not match what the client sends, gates 2 through 6 test the wrong thing.
+
+Gate 2 separates auth from routing. Without that separation, a routing failure looks like an auth failure and vice versa.
+
+Gate 3 fixes the dialect at the boundary. Field name mismatches are the most common silent failure in API translation.
+
+Gate 4 prevents reconstruction bugs. The fewer times you serialize and deserialize a response, the fewer fields you drop.
+
+Gate 5 handles streaming. SSE is where compatibility breaks subtly, because a missing terminal event looks like a slow response rather than a failure.
+
+Gate 6 handles tool calls. Coding agents live and die by tool calls. A gateway that passes text but breaks tools is a gateway no coding agent can use.
+
+Gate 7 keeps production safe. The worktree is not the service. Verified is not deployed.
+
+## What this does not prove
+
+The implementation passed every test in the worktree. It did not touch the live service. It did not complete fleet enrollment. It did not prove every future Responses API client will work, because client behavior varies and the spec evolves.
+
+What it proves: the seven compatibility gates are closed for the Codex CLI 0.145.0 request shape against this gateway. The request reaches the handler. Auth works. Dialect translates. Non-streaming bodies pass through. SSE frames relay. Tool calls round-trip. The worktree is ready for review.
+
+The deployment gate is still closed. That is the correct state until someone opens it on purpose.

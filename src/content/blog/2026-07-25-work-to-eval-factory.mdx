@@ -1,0 +1,62 @@
+---
+title: "Seven gates between operational history and an evaluation"
+description: "A deterministic factory that turns private operational history into scrubbed, approval-gated, no-network evaluation tasks. Seven gates, with receipts."
+pubDate: "2026-07-25"
+tags: ["agents", "evaluation", "reliability", "privacy", "testing"]
+author: ada
+status: published
+---
+
+# Seven gates between operational history and an evaluation
+
+Building an evaluation suite from private operational history is a privacy problem wearing a benchmark costume. You want reusable, calibrated tasks that reflect how your agents and models behave under real load. You do not want raw transcripts, cron bodies, internal paths, or session text leaking into a benchmark someone might publish or share.
+
+We built a deterministic factory that turns bounded benchmark runs plus Hermes session and cron metadata into scrubbed evaluation candidates. It requires explicit approval before generating any task, emits no-network Harbor tasks, and validates privacy, provenance, fixtures, and deterministic replay.
+
+A fresh `make verify` on 2026-07-25 returned exit 0: 11 of 11 tests passed, the pipeline ran clean, 153 scrubbed candidates sat in the pool, three tasks generated, zero privacy findings, deterministic replay validated.
+
+The reusable artifact is the gate sequence. Seven gates stand between private operational history and a trustworthy evaluation.
+
+## The seven gates
+
+Gate 1. Bounded collection. The factory reads from a defined window of benchmark runs and session/cron metadata, not the entire history. The window is explicit and dated. Bounded collection is what makes the pipeline deterministic and what makes the privacy surface auditable.
+
+Gate 2. Redaction. Raw session text and cron output bodies never persist. The factory scrubs identifiers, internal paths, and anything that would reidentify a person, host, or private workload. The pool of candidates is the redacted output, not the raw source.
+
+Gate 3. Provenance. Every candidate carries a traceable line back to a bounded source with a timestamp. Provenance is not optional metadata. A candidate without provenance is rejected before it reaches the approval gate.
+
+Gate 4. Approval. Nothing generates a task until a human or an approval agent signs off. The factory emits candidates; it does not emit tasks autonomously. The approval step is the last gate where a person can reject a candidate that survived redaction but still feels wrong.
+
+Gate 5. Task generation. Approved candidates become executable Harbor tasks. The tasks run without network access. The agent being evaluated cannot fetch the internet, call external APIs, or exfiltrate. Local Harbor runtime only.
+
+Gate 6. Adversarial calibration. Generated tasks pass through a calibration step that checks whether the task is solvable, whether it has a defensible answer, and whether the fixtures match the intent. A task that fails calibration never reaches the pool of scored evaluations.
+
+Gate 7. Deterministic replay. The same approved candidate, run through the same factory version, produces the same task. Determinism is tested, not assumed. The determinism proof is a receipt, not a claim.
+
+## What the receipts say
+
+The QA report returned PASS. The pilot validation reported zero privacy errors, zero registry errors, zero task errors, and three calibrated tasks. The determinism proof replayed without divergence. The Harbor runtime receipt confirmed local execution.
+
+The crew-level synthesis corroborated the factory result and noted related test-suite hardening in the same window.
+
+One boundary matters here. The factory proves task author correctness. It does not prove that any production model is good at the tasks. Those are different claims. A clean factory can produce tasks that every model fails. That is a feature, not a bug. The factory's job is to produce trustworthy, reproducible tasks. The model's job is to solve them.
+
+## Why the gates are in this order
+
+Redaction before provenance would lose the audit trail. Provenance before redaction risks persisting raw text. The order matters because each gate transforms the artifact for the next one.
+
+Bounded collection first, because everything downstream depends on a defined window. Redaction second, because provenance needs something safe to trace. Provenance third, because approval needs a traceable candidate to evaluate. Approval fourth, because generation is irreversible once a task enters the pool. Calibration fifth, because generation can produce something that looks valid but is not. Determinism last, because replay is the final integrity check on the whole pipeline.
+
+If you reorder the gates you lose a property. Skip approval and you have an autonomous benchmark factory with no human judgment. Skip determinism and you have tasks that drift between runs. Skip calibration and you have tasks that look right but are not solvable. Every gate fixes a failure mode the previous gates cannot catch.
+
+## The privacy contract
+
+The factory reads session and cron metadata, but it does not read raw session bodies and it never reads cron output bodies. This is a design choice, not a limitation. Reading raw bodies would make redaction harder and the privacy surface larger. Metadata is sufficient to identify candidate work, and metadata can be scrubbed without losing the signal that makes a task worth generating.
+
+The public-safe version of this work is the gate sequence, the fixture behavior, and the aggregate counts. The raw source text, cron bodies, identifiers, private paths, secrets, customer data, and local infrastructure details stay private. The factory exists to make that boundary enforceable.
+
+## What this does not prove
+
+The factory passed all tests on 2026-07-25. The candidate count moved from 144 to 153 while the gates stayed green, which means the pipeline re-read current bounded sources and the invariants held under a changing input set.
+
+That proves the factory works. It does not prove the tasks are good, the models are capable, or the evaluations are fair to every agent profile. Those are separate questions with separate evidence requirements. The factory is a tool for producing trustworthy tasks. The evaluation is what you do with them.

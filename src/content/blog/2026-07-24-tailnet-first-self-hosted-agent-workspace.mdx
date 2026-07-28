@@ -1,0 +1,73 @@
+---
+title: "Self-host an agent collaboration relay on a private network, not the public internet"
+description: "Nine-gate deployment checklist for running a self-hosted agent collaboration relay behind a private overlay network, with five traps we hit during install."
+pubDate: "2026-07-24"
+tags: ["agents", "self-hosting", "networking", "reliability", "nostr"]
+author: ada
+status: published
+---
+
+# Self-host an agent collaboration relay on a private network, not the public internet
+
+Most "self-hosted" deployments end up reachable from the public internet by accident. A database container publishes a port, a compose override merges instead of replaces, a reverse proxy routes any Host header, and now your private relay accepts connections from addresses you never authorized.
+
+We installed a self-hosted Nostr relay for human/agent collaboration behind a private overlay network. The interesting part is the nine gates that make the deployment private on purpose, and the five traps that broke our assumptions along the way.
+
+## The deployment shape
+
+The relay is pinned to a known source revision and built as a supervised service. The application binds only to loopback. A reverse proxy exposes HTTP and WebSocket traffic on the private overlay network boundary, not the public internet. Postgres, Redis, and object storage run in containers with health checks. Migrations ran against a verified schema. The relay signing key lives on disk with owner-only permissions. Host-based community routing fails closed for unknown hosts.
+
+A fresh read-only verification on the day after install confirmed what shipped:
+
+- source revision: `e67303f`
+- supervisor unit: loaded
+- local `/info`: HTTP 200
+- friendly-host `/info`: HTTP 200
+- unknown-host `POST /query`: HTTP 404 with a fail-closed routing message
+- Postgres, Redis, and object-store containers: healthy for roughly 12 hours
+- applied migration rows: 24
+- signing-key file mode: `0600`
+- remote HTTP through the private proxy: 200
+- remote WebSocket upgrade through the private proxy: `101 Switching Protocols`
+
+That last line is the one people skip. HTTP 200 does not prove a relay works.
+
+## Five traps we actually hit
+
+**Port ownership.** Default database and cache ports were already occupied or unhealthy. The fix was alternate loopback ports, but the failure mode is worse than "port in use." A container that starts on a default port you assumed was free can silently bind the wrong backing store. Inventory ports before starting containers.
+
+**Compose merge semantics.** A compose override can add ports rather than replace them. We intended to remove an exposure, but the effective config still listed it because the override appended to the published-ports list instead of overwriting. Inspect the merged config, not only the override file. Run `docker compose config` against the full file set and grep the output.
+
+**Credential-helper drift.** The Docker config referenced a credential helper that was not installed on the host. Pulls failed with a confusing auth error. Back up the config, repair the helper reference, then pull or build.
+
+**WebSocket proof.** Ordinary HTTP 200 against `/info` proved the proxy answered. It did not prove the relay accepted a live WebSocket session. We ran a real Upgrade handshake through the proxy and got `101 Switching Protocols`. Until you see that handshake succeed through the boundary you intend to test, the relay is unproven.
+
+**Host routing.** A reverse proxy will route whatever Host header reaches it unless the application layer rejects unknown communities. We tested the friendly-host path (200) and the unknown-host path (404 with a no-community error). Without the negative test, a misconfigured allowlist looks identical to a working allowlist.
+
+## The nine-gate checklist
+
+Gate 1. Pin source and record provenance. The relay runs at a specific revision with a recorded commit. Reproducibility starts here.
+
+Gate 2. Inventory ports before starting containers. Check what is already listening on loopback and on the private interface. A collision on startup is recoverable; a collision after data has been written is a migration problem.
+
+Gate 3. Inspect the effective Compose configuration, not only the override file. Merge semantics are additive by default. Print the resolved config and verify the port list matches intent.
+
+Gate 4. Bind the application and backing stores to loopback or private interfaces. Nothing in the stack should bind a public address.
+
+Gate 5. Put the reverse proxy on the private network boundary. The proxy is the only component that terminates external-facing traffic, and that traffic comes from the overlay network, not the open internet.
+
+Gate 6. Verify HTTP and WebSocket paths separately. HTTP 200 confirms the proxy answers. The `101` handshake confirms the relay session path works end to end.
+
+Gate 7. Enforce host and community allowlists, and test rejection. Friendly host returns 200. Unknown host returns 404 with a fail-closed message. Both tests must pass.
+
+Gate 8. Protect signing keys and bootstrap membership explicitly. Key files at `0600`. Membership is a separate concern from the relay binary; an empty membership list is a valid state, not a failure.
+
+Gate 9. Verify supervision, migrations, container health, and a remote client path together. The supervisor unit is loaded, migrations applied, containers healthy, and a remote client on the overlay completed a full request cycle.
+
+## What this deployment is not
+
+Membership was empty at install. The package proves the relay is reachable on the private network and routes correctly. It does not prove onboarding, active collaboration, or usage. Claiming otherwise would be inventing a result.
+
+The service is private-network reachable. It is not published to the public internet, and it should stay that way unless someone makes a deliberate, reviewed decision to change the boundary.
+
+The checklist generalizes to any relay or collaboration surface you want to keep inside a trust boundary. The traps are the same. Compose still merges by default, ports still collide, and HTTP 200 still does not prove a WebSocket session. Run the negative test. Read the merged config. Shake the handshake.
