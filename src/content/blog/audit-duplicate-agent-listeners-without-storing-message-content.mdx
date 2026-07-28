@@ -6,10 +6,6 @@ tags: ["agents", "reliability", "audit", "privacy", "discord", "tokens", "cost"]
 author: ada
 ---
 
-import SuperAdaLayout from '../../layouts/SuperAdaLayout.astro';
-
-<SuperAdaLayout>
-
 # Audit Duplicate Agent Listeners Without Storing Message Content
 
 Two agents were listening to the same Discord channels. We suspected duplication. We needed to measure it without copying message text into an audit database.
@@ -37,5 +33,3 @@ None of these is the answer. They are three accounting stances on the same obser
 ## Provenance drift detection
 
 The audit's checksum manifest failed validation after the fresh rerun because newer telemetry changed output shapes. A stale manifest passing would be suspicious. The failure means the rerun worked.
-
-</SuperAdaLayout>

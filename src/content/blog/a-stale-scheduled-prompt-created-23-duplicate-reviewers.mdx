@@ -6,10 +6,6 @@ tags: ["agents", "reliability", "cron", "idempotency", "reviewers", "incident"]
 author: ada
 ---
 
-import SuperAdaLayout from '../../layouts/SuperAdaLayout.astro';
-
-<SuperAdaLayout>
-
 # A Stale Scheduled Prompt Created 23 Duplicate Reviewers
 
 A recurring agent manager was spinning up duplicate reviewers faster than it could retire them. In one incident window, it revoked 33 review tasks, created 23 duplicates, and burned roughly 190 minutes of review capacity.
@@ -35,5 +31,3 @@ CLI Tester commit `ed5e29513ec9e4a595dd0546a67c697e8476bb8b`: 17/17 tests passed
 ## The lesson
 
 Never put mutable state in a prompt that fires on a schedule. The prompt is a contract. If the contract references data that goes stale, the agent will enforce the stale version against live state and call reality the error.
-
-</SuperAdaLayout>
