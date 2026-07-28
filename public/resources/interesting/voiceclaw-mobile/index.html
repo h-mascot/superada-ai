@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>VoiceClaw — iOS</title>
+
+<style id="design-tokens">
+/* ─────────────────────────────────────────────────────────────────────────
+ * Apple design system — tokens.css contract, pasted verbatim.
+ * Every var(--*) below resolves from this block. Do not add raw hex outside
+ * a :root block; the app-layer block that follows carries the on-dark values
+ * that Apple DESIGN.md §2 documents for dark chapters.
+ * ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --surface-warm: #fbfbfd;
+
+  --fg: #1d1d1f;
+  --fg-2: #424245;
+  --muted: #6e6e73;
+  --meta: #86868b;
+
+  --border: #d2d2d7;
+  --border-soft: #e8e8ed;
+
+  --accent: #44d7cf;
+  --accent-on: #000000;
+
+  --accent-hover: #6be3dd;
+  --accent-active: #00847f;
+
+  --success: #16a34a;
+  --warn:    #eab308;
+  --danger:  #dc2626;
+
+  --font-display:
+    "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body:
+    "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:
+    "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 17px;
+  --text-lg:   21px;
+  --text-xl:   28px;
+  --text-2xl:  40px;
+  --text-3xl:  56px;
+  --text-4xl:  80px;
+
+  --leading-body:  1.47;
+  --leading-tight: 1.05;
+
+  --tracking-display: -0.015em;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+
+  --section-y-desktop: 100px;
+  --section-y-tablet:  64px;
+  --section-y-phone:   40px;
+
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-pill: 980px;
+
+  --elev-flat:   none;
+  --elev-ring:   0 0 0 1px var(--border);
+  --elev-raised: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  --focus-ring: 0 0 0 4px var(--accent-active);
+
+  --motion-fast:   150ms;
+  --motion-base:   220ms;
+  --ease-standard: cubic-bezier(0.28, 0, 0.22, 1);
+
+  --container-max:            1024px;
+  --container-gutter-desktop: 22px;
+  --container-gutter-tablet:  18px;
+  --container-gutter-phone:   16px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * App layer — the dark-chapter half of the same Apple system.
+ * Hex values here are the ones Apple DESIGN.md §2 names for dark scenes:
+ * Absolute Black and Graphite Surface A–D, with the user-selected luminous
+ * teal replacing the original action blue. On-dark
+ * text tiers are derived with color-mix from --surface/--meta rather than
+ * invented, and every tier below is verified ≥ 4.5:1 on Graphite Surface B.
+ * ─────────────────────────────────────────────────────────────────────── */
+:root {
+  --canvas:  #000000;   /* Absolute Black — the room */
+  --slab-1:  #262629;   /* Graphite Surface B — grouped rows */
+  --slab-2:  #272729;   /* Graphite Surface A — cards on slab-1 */
+  --slab-3:  #28282b;   /* Graphite Surface C — controls */
+  --slab-4:  #2a2a2c;   /* Graphite Surface D — pressed / selected */
+  --link:    #70d8d8;   /* Reference teal — on-dark links and voice energy */
+
+  /* on-dark text ramp (derived) */
+  --ink:     var(--surface);                                        /* 19.3:1 on canvas */
+  --ink-2:   color-mix(in oklab, var(--surface) 66%, var(--meta));  /*  7.4:1 on slab-1 */
+  --ink-3:   color-mix(in oklab, var(--surface) 40%, var(--meta));  /*  5.6:1 on slab-1 */
+
+  /* on-dark structure */
+  --hairline:      color-mix(in oklab, var(--surface) 14%, transparent);
+  --hairline-soft: color-mix(in oklab, var(--surface) 8%, transparent);
+  --fill-quiet:    color-mix(in oklab, var(--surface) 6%, transparent);
+  --fill-quieter:  color-mix(in oklab, var(--surface) 4%, transparent);
+
+  /* on-dark status text (lifted so body copy clears AA on graphite) */
+  --ok:    color-mix(in oklab, var(--success) 62%, var(--surface));
+  --caution: color-mix(in oklab, var(--warn) 82%, var(--surface));
+  --alert: color-mix(in oklab, var(--danger) 68%, var(--surface));
+
+  /* Status tints. Paired with the status ink above; both flip direction in
+     the light chapter (ink darkens, tint pales) so every badge, tile and
+     result line clears 4.5:1 in either theme. */
+  --tint-ok:      color-mix(in oklab, var(--success) 26%, var(--slab-1));
+  --tint-warn:    color-mix(in oklab, var(--warn) 24%, var(--slab-1));
+  --tint-bad:     color-mix(in oklab, var(--danger) 24%, var(--slab-1));
+  --tint-accent:  color-mix(in oklab, var(--link) 18%, var(--slab-3));
+  --tint-neutral: color-mix(in oklab, var(--surface) 12%, var(--slab-3));
+
+  /* Raised fills for selected / pressed states. The graphite ladder alone
+     spans only 1.05:1, which is invisible — these lift far enough that a
+     selected segment, an off switch track and an empty slider groove all
+     clear WCAG 1.4.11 (3:1) against the surface they sit on. */
+  --slab-sel:       color-mix(in oklab, var(--surface) 22%, var(--slab-4));
+  --hairline-strong: color-mix(in oklab, var(--surface) 36%, transparent);
+  /* Inputs and pickers need a boundary that clears 1.4.11 (3:1) on its own. */
+  --control-border: color-mix(in oklab, var(--surface) 44%, transparent);
+
+  /* Lifted accent for small text sitting on a tinted fill, where plain
+     --link/--alert land in the 4.0–4.3 range instead of 4.5. */
+  --link-hi:  color-mix(in oklab, var(--link) 55%, var(--surface));
+  --alert-hi: color-mix(in oklab, var(--danger) 45%, var(--surface));
+
+  --focus-dark: 0 0 0 3px var(--canvas), 0 0 0 6px var(--link);
+
+  /* Session-state changes get a real spring; everything else keeps Apple's
+     decelerate curve. One overshoot, used deliberately, not everywhere. */
+  --motion-slow:  420ms;
+  --ease-spring:  var(--ease-standard);
+
+  /* Dynamic-Type-safe scale. Same numbers as the brand px tokens at a 16px
+     root, but expressed in rem so everything tracks the user's text size
+     instead of being pinned. The brand :root block above stays untouched. */
+  --t-11:   0.6875rem;
+  --t-xs:   0.75rem;
+  --t-13:   0.8125rem;
+  --t-sm:   0.875rem;
+  --t-base: 1.0625rem;
+  --t-lg:   1.3125rem;
+  --t-xl:   1.75rem;
+
+  /* iPhone 16 Pro logical canvas */
+  --device-w: 393px;
+  --device-h: 852px;
+  --safe-top: 59px;
+  --safe-bottom: 34px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * Light chapter. Apple's system is explicitly binary — deep black scenes
+ * alternating with pale neutral fields — so Settings › Display › Light is a
+ * real theme built from the same brand tokens, not a toast.
+ * ─────────────────────────────────────────────────────────────────────── */
+.screen[data-theme="light"] {
+  --canvas: var(--surface);                                    /* grouped page */
+  --slab-1: var(--bg);                                         /* card */
+  --slab-2: var(--bg);                                         /* sheet / overlay */
+  --slab-3: color-mix(in oklab, var(--border) 26%, var(--bg));  /* inset control */
+  --slab-4: color-mix(in oklab, var(--border) 46%, var(--bg));  /* pressed */
+  --link:   var(--accent-active);
+
+  --ink:   var(--fg);
+  --ink-2: var(--fg-2);
+  --ink-3: var(--muted);
+
+  --hairline:        var(--border);
+  --hairline-soft:   var(--border-soft);
+  --hairline-strong: var(--meta);
+  --control-border:  var(--meta);
+  --fill-quiet:      color-mix(in oklab, var(--fg) 6%, transparent);
+  --fill-quieter:    color-mix(in oklab, var(--fg) 4%, transparent);
+
+  --slab-sel: color-mix(in oklab, var(--border) 64%, var(--bg));
+
+  /* On a pale field the status ink has to darken rather than lighten. */
+  --ok:       color-mix(in oklab, var(--success) 55%, var(--fg));
+  --caution:  color-mix(in oklab, var(--warn) 42%, var(--fg));
+  --alert:    color-mix(in oklab, var(--danger) 78%, var(--fg));
+  --link-hi:  var(--accent-active);
+  --alert-hi: color-mix(in oklab, var(--danger) 70%, var(--fg));
+
+  --tint-ok:      color-mix(in oklab, var(--success) 12%, var(--bg));
+  --tint-warn:    color-mix(in oklab, var(--warn) 16%, var(--bg));
+  --tint-bad:     color-mix(in oklab, var(--danger) 11%, var(--bg));
+  --tint-accent:  color-mix(in oklab, var(--accent) 11%, var(--bg));
+  --tint-neutral: color-mix(in oklab, var(--border) 62%, var(--bg));
+
+  --focus-dark: 0 0 0 3px var(--canvas), 0 0 0 6px var(--accent-active);
+}
+
+/* linear() springs are Chrome 113+ / Safari 17.4+ — fall back to the
+   brand's decelerate curve everywhere else. */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-spring: linear(
+      0, 0.402 7.4%, 0.711 15.3%, 0.98 24%, 1.062, 1.114 32.7%,
+      1.127, 1.129 38.7%, 1.114, 1.063 50.7%, 1.018 61.3%, 0.995 71.3%, 1);
+  }
+}
+</style>
+
+<link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+<!-- ── SF-symbol-like icon set. Strokes use currentColor; no fill on <svg>. ── -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <symbol id="i-waveform" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12v0"/><path d="M6.5 9v6"/><path d="M10 5v14"/><path d="M13.5 8v8"/><path d="M17 10.5v3"/><path d="M20.5 11.5v1"/></g></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h11M18 7h3M3 17h4M11 17h10"/><circle cx="16" cy="7" r="2.1"/><circle cx="9" cy="17" r="2.1"/></g></symbol>
+    <symbol id="i-stethoscope" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v5a4 4 0 0 0 8 0V3"/><circle cx="6" cy="3" r="1.2"/><circle cx="20" cy="3" r="1.2"/><path d="M13 12v3a5 5 0 0 1-10 0v-1"/><circle cx="3" cy="13" r="1.4"/></g></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></g></symbol>
+    <symbol id="i-mic-slash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5.2V5.5a3 3 0 0 0-6 0v5.3"/><path d="M9 13.2a3 3 0 0 0 5.6-.6"/><path d="M5.5 11a6.5 6.5 0 0 0 10 5.5M18.5 11a6.5 6.5 0 0 1-.6 2.7"/><path d="M12 17.5V21M8.5 21h7M3.5 2.5l17 19"/></g></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="6.5" y="6.5" width="11" height="11" rx="2.5"/></g></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 11h12M4 16h16M4 21h9"/></g></symbol>
+    <symbol id="i-text-slash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h11M4 11h7M4 16h9"/><path d="M3.5 3l17 18"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M3.5 7.5h17M3.5 12h17M3.5 16.5h17"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="10.6" cy="10.6" r="6.6"/><path d="m15.5 15.5 4.6 4.6"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 6.4V12l3.8 2.3"/></g></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5.5 9.5 12 16l6.5-6.5"/></symbol>
+    <symbol id="i-updown" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10l4-4 4 4M8 14l4 4 4-4"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6 22 20.4H2z"/><path d="M12 9.5v5M12 17.6v.01"/></g></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M8 5.5 19 12 8 18.5z"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM21 14v3M18 21h3M14 21h.01"/></g></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M6 2.8h7.5L18 7.3V21H6z"/><path d="M13.2 3v4.6H18"/><path d="M9 12h6M9 16h6"/></g></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 11V4.6a1.6 1.6 0 1 1 3.2 0V10m0-.5V3.6a1.6 1.6 0 1 1 3.2 0V11m0-1.4a1.6 1.6 0 0 1 3.2 0v5.2c0 3.6-2.6 6.4-6 6.4-2.5 0-4-1.1-5.3-3L5 14.2a1.7 1.7 0 0 1 2.7-2l.8 1.1"/></g></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4.5"/><path d="M11.4 11.4 20 20M17 17l-2 2M20 14l-2 2"/></g></symbol>
+    <symbol id="i-desktop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M9 20h6M12 16.5V20"/></g></symbol>
+    <symbol id="i-watch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="7" y="6" width="10" height="12" rx="3"/><path d="M9 6V3h6v3M9 18v3h6v-3"/></g></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h16M9.5 6.5V4h5v2.5"/><path d="M6.5 6.5 7.4 20h9.2l.9-13.5"/><path d="M10.5 10v6M13.5 10v6"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2.7 20 5.6v6c0 4.7-3.2 8.3-8 9.7-4.8-1.4-8-5-8-9.7v-6z"/><path d="m8.6 12 2.4 2.4 4.4-4.6"/></g></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="4.5" y="10" width="15" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M9.4 9.4a2.7 2.7 0 1 1 3.4 2.9c-.6.2-.8.7-.8 1.3v.5M12 17.4v.01"/></g></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 9 4.8-9 4.8-9-4.8z"/><path d="m3.6 12.4 8.4 4.5 8.4-4.5M3.6 16.9l8.4 4.5 8.4-4.5"/></g></symbol>
+    <symbol id="i-accessibility" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><circle cx="12" cy="7.4" r="1.2"/><path d="M7.6 10.2c2.9.9 5.9.9 8.8 0M12 10.8v4M12 14.8 9.9 18M12 14.8 14.1 18"/></g></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4 4 0 0 0 0-8H10a4 4 0 0 1 0-8h6"/></g></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 17a9 9 0 1 1 16 0"/><path d="m12 13 4-3.6"/><circle cx="12" cy="14.4" r="1.3"/></g></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9.2"/><path d="M3 12h18M12 2.8c2.4 2.6 3.6 5.7 3.6 9.2S14.4 18.6 12 21.2c-2.4-2.6-3.6-5.7-3.6-9.2S9.6 5.4 12 2.8z"/></g></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13L7.5 14.5H4z"/><path d="M15.5 9.4a4 4 0 0 1 0 5.2M18.4 7a8 8 0 0 1 0 10"/></g></symbol>
+    <symbol id="i-pip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2.8" y="4.5" width="18.4" height="15" rx="2.5"/><rect x="12" y="11.5" width="7" height="5.5" rx="1.4"/></g></symbol>
+    <symbol id="i-display" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></g></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20.5 4v4.2h-4.2"/></g></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M12 2.8l1.5 2.4 2.8-.6.5 2.8 2.6 1.2-1.3 2.5 1.3 2.5-2.6 1.2-.5 2.8-2.8-.6L12 21.2l-1.5-2.4-2.8.6-.5-2.8L4.6 15.4 5.9 12.9 4.6 10.4l2.6-1.2.5-2.8 2.8.6z"/></g></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8.5h3.4l1.6-2.6h8l1.6 2.6H21v10.6H3z"/><circle cx="12" cy="13.6" r="3.4"/></g></symbol>
+    <symbol id="i-photos" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="m3.8 16.5 4.4-4.4 3.3 3.3 3-3 5.7 5.7"/><circle cx="8.4" cy="9" r="1.5"/></g></symbol>
+    <symbol id="i-person" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="3.8"/><path d="M4.6 20.4a7.6 7.6 0 0 1 14.8 0"/></g></symbol>
+    <symbol id="i-location" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M21 3 3 10.4l8 2.6 2.6 8z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-reminders" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7h10M10 12h10M10 17h10"/><path d="m3 6.6 1.4 1.4L7 5.4M3 16.6 4.4 18 7 15.4"/></g></symbol>
+    <symbol id="i-heart-pulse" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5h3l1.8-4 2.6 8 2.2-5 1.4 2.4h5.9"/><path d="M20.4 8.6A4.6 4.6 0 0 0 12 5.6a4.6 4.6 0 0 0-8.4 3M4.4 14c1.3 3 4.4 5.4 7.6 7 3.2-1.6 6.3-4 7.6-7"/></g></symbol>
+    <symbol id="i-arrow-right-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5h4.5A2.5 2.5 0 0 1 21 6v12a2.5 2.5 0 0 1-2.5 2.5H14"/><path d="M3 12h11M10.5 8.2 14.3 12l-3.8 3.8"/></g></symbol>
+    <symbol id="i-bubble" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.6c-4.9 0-8.8 3.2-8.8 7.2 0 2.3 1.3 4.4 3.3 5.7l-.9 4 4.4-2.3c.6.1 1.3.2 2 .2 4.9 0 8.8-3.2 8.8-7.6S16.9 3.6 12 3.6z"/></g></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3.2 13.9 9l5.8 1.9-5.8 1.9L12 18.6l-1.9-5.8L4.3 10.9 10.1 9z"/><path d="M18.6 3v3M20.1 4.5h-3"/></g></symbol>
+  </defs>
+</svg>
+
+<main class="stage">
+  <div class="device" role="group" aria-label="iPhone running VoiceClaw">
+    <div class="device__frame">
+      <div class="screen" id="screen">
+
+        <!-- Status bar -->
+        <div class="statusbar" aria-hidden="true">
+          <span class="statusbar__time">10:05</span>
+          <span class="island"></span>
+          <span class="statusbar__right">
+            <svg class="sb-i" viewBox="0 0 20 12" aria-hidden="true"><g fill="currentColor"><rect x="0" y="7.5" width="2.6" height="4" rx=".8"/><rect x="4.4" y="5.5" width="2.6" height="6" rx=".8"/><rect x="8.8" y="3" width="2.6" height="8.5" rx=".8"/><rect x="13.2" y="0.5" width="2.6" height="11" rx=".8"/></g></svg>
+            <svg class="sb-i" viewBox="0 0 16 12" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1.2 4.4a9.6 9.6 0 0 1 13.6 0"/><path d="M3.8 7a6 6 0 0 1 8.4 0"/><path d="M6.4 9.5a2.4 2.4 0 0 1 3.2 0"/></g></svg>
+            <span class="sb-batt"><span class="sb-batt__fill"></span></span>
+          </span>
+        </div>
+
+        <!-- ══════════════════════════ LIVE ══════════════════════════ -->
+        <section class="view" id="view-live" data-view="live" data-od-id="view-live" aria-label="Live">
+          <header class="navbar navbar--live" data-od-id="live-navbar">
+            <h1 class="sr-only">VoiceClaw Live</h1>
+            <p class="sr-only" id="live-subtitle">Add credentials and your OpenClaw computer.</p>
+            <div class="navbar__actions">
+              <button class="iconbtn" id="btn-session-menu" type="button"
+                      aria-haspopup="dialog" aria-controls="voiceclaw-side-menu" aria-expanded="false"
+                      data-od-id="live-session-menu-trigger">
+                <svg class="ic" aria-hidden="true"><use href="#i-menu"></use></svg>
+                <span class="sr-only">Open menu</span>
+              </button>
+            </div>
+            <!-- Opposite the menu: transcription on/off, the one Live setting
+                 worth reaching without opening the drawer. -->
+            <div class="navbar__actions navbar__actions--end">
+              <button class="iconbtn" id="btn-transcript-toggle" type="button"
+                      aria-pressed="false" data-od-id="live-transcript-toggle">
+                <svg class="ic" aria-hidden="true"><use href="#i-text-slash"></use></svg>
+                <span class="sr-only" id="transcript-toggle-label">Turn transcription on</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="live-scroll" id="live-scroll">
+
+            <!-- The voice animation is the entire idle interface and remains
+                 the primary session control in every state. -->
+            <button class="halo" id="btn-halo" type="button" data-od-id="live-halo">
+              <canvas id="halo-canvas" width="620" height="620" aria-hidden="true"></canvas>
+              <span class="sr-only">
+                <span class="halo__state" id="halo-state">Ready</span>
+                <span class="halo__hint" id="halo-hint">Tap to start a live session</span>
+              </span>
+            </button>
+
+            <p class="sr-only" id="live-status" role="status" aria-live="polite">Session ready. Microphone allowed.</p>
+
+            <!-- Session controls appear only while live and stay icon-only. -->
+            <div class="transport" id="transport" hidden data-od-id="live-transport">
+              <button class="transport__side" id="btn-mute" type="button" data-od-id="live-mute">
+                <svg class="ic" aria-hidden="true"><use href="#i-mic"></use></svg>
+                <span class="sr-only" id="mute-label">Mute</span>
+              </button>
+              <button class="transport__side transport__side--end" id="btn-end" type="button" data-od-id="live-end">
+                <svg class="ic" aria-hidden="true"><use href="#i-stop"></use></svg>
+                <span class="sr-only">End Session</span>
+              </button>
+            </div>
+
+            <!-- Secondary content is progressively disclosed from the side menu. -->
+            <p class="pipeline" id="pipeline" data-od-id="live-pipeline" hidden></p>
+
+            <button class="routechip" id="btn-route" type="button" data-od-id="live-route-chip" hidden>
+              <svg class="ic ic--sm" aria-hidden="true"><use href="#i-desktop"></use></svg>
+              <span class="routechip__body">
+                <span class="routechip__name">OpenClaw Bridge</span>
+                <span class="routechip__meta" id="route-meta-a">GPT Realtime · Cedar</span>
+              <span class="routechip__meta" id="route-meta-b">GPT-5.5 · Low · Verbatim 82%</span>
+              </span>
+              <svg class="ic ic--sm routechip__chev" aria-hidden="true"><use href="#i-chevron"></use></svg>
+            </button>
+
+            <button class="banner" id="setup-banner" type="button" data-od-id="live-setup-banner" hidden>
+              <span class="banner__icon"><svg class="ic" aria-hidden="true"><use href="#i-warn"></use></svg></span>
+              <span class="banner__body">
+                <span class="banner__title">3 Setup Items Missing</span>
+                <span class="banner__meta">GPT Realtime Auth · Companion URL · OpenClaw Install Path</span>
+              </span>
+              <span class="banner__cta">Review</span>
+            </button>
+
+            <section class="transcript" id="transcript-region" data-od-id="live-transcript" hidden>
+              <div class="transcript__head">
+                <h2 class="transcript__title">Transcript</h2>
+                <span class="transcript__count" id="transcript-count">0</span>
+              </div>
+              <ol class="transcript__log" id="transcript-log" role="log" aria-live="polite" aria-relevant="additions"></ol>
+              <p class="transcript__empty" id="transcript-empty">Nothing yet. What you say and what VoiceClaw answers appears here, and stays on this iPhone.</p>
+            </section>
+
+            <div class="transcript-hidden" id="transcript-hidden" hidden data-od-id="live-transcript-hidden"></div>
+          </div>
+        </section>
+
+        <!-- ════════════════════════ SETTINGS ════════════════════════ -->
+        <section class="view" id="view-settings" data-view="settings" data-od-id="view-settings" aria-label="Settings" hidden>
+          <header class="navbar navbar--context" data-od-id="settings-navbar">
+            <button class="iconbtn" id="btn-settings-back" type="button" data-od-id="settings-back-live">
+              <svg class="ic ic--back" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              <span class="sr-only">Back to Live</span>
+            </button>
+            <h1 class="navbar__title navbar__title--sm">Settings</h1>
+            <button class="iconbtn" id="btn-open-diagnostics" type="button" data-od-id="settings-open-diagnostics">
+              <svg class="ic" aria-hidden="true"><use href="#i-stethoscope"></use></svg>
+              <span class="sr-only">Open Diagnostics</span>
+            </button>
+          </header>
+          <div class="view__scroll" id="settings-scroll">
+            <div class="hero" data-od-id="settings-hero">
+              <span class="hero__mark" aria-hidden="true"><svg class="ic ic--lg"><use href="#i-heart-pulse"></use></svg></span>
+              <span class="hero__body">
+                <span class="hero__title">VoiceClaw Setup</span>
+                <span class="hero__sub">GPT Realtime, Tailscale, and OpenClaw stay on your account.</span>
+              </span>
+              <button class="hero__help" type="button" id="btn-hero-help" data-od-id="settings-hero-help">
+                <svg class="ic" aria-hidden="true"><use href="#i-help"></use></svg>
+                <span class="sr-only">Open setup guide</span>
+              </button>
+            </div>
+            <div class="seg seg--nav" role="tablist" aria-label="Settings sections" id="settings-seg"></div>
+            <div id="settings-panels" role="tabpanel" tabindex="0" aria-label="Settings section"></div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════ DIAGNOSTICS ══════════════════════ -->
+        <section class="view" id="view-diagnostics" data-view="diagnostics" data-od-id="view-diagnostics" aria-label="Diagnostics" hidden>
+          <header class="navbar navbar--context" data-od-id="diagnostics-navbar">
+            <button class="iconbtn" id="btn-diagnostics-back" type="button" data-od-id="diagnostics-back-settings">
+              <svg class="ic ic--back" aria-hidden="true"><use href="#i-chevron"></use></svg>
+              <span class="sr-only">Back to Settings</span>
+            </button>
+            <h1 class="navbar__title navbar__title--sm">Diagnostics</h1>
+            <span class="navbar__spacer" aria-hidden="true"></span>
+          </header>
+          <div class="view__scroll" id="diagnostics-scroll">
+            <div class="runtime" id="runtime-card" data-od-id="diagnostics-runtime">
+              <span class="runtime__icon" id="runtime-icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-warn"></use></svg></span>
+              <span class="runtime__body">
+                <span class="runtime__title" id="runtime-title">Runtime Incomplete</span>
+                <span class="runtime__meta" id="runtime-meta">Ready · Mic Allowed</span>
+              </span>
+            </div>
+            <div class="seg seg--nav" role="tablist" aria-label="Diagnostics sections" id="diag-seg"></div>
+            <div id="diag-panels" role="tabpanel" tabindex="0" aria-label="Diagnostics section"></div>
+            <p class="build" data-od-id="diagnostics-build">VoiceClaw 1.4.68 (202607070234)</p>
+          </div>
+        </section>
+
+        <!-- Compact voice control — one icon, no secondary-screen telemetry. -->
+        <button class="livebar" id="livebar" type="button" hidden data-od-id="live-mini-bar">
+          <span class="livebar__wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="sr-only"><strong id="livebar-state">Listening</strong><span id="livebar-route">OpenClaw Bridge</span></span>
+        </button>
+
+        <!-- Overlay layer: sheets, full-screen guide, alerts -->
+        <div class="layer" id="layer"></div>
+        <div class="toast is-out" id="toast" role="status" aria-live="polite"></div>
+
+        <span class="homebar" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

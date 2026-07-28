@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VoiceClaw Realtime — One voice. Every route.</title>
+<meta name="description" content="One live GPT Realtime conversation can hand work to Codex, OpenClaw, or Hermes without ending the session.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — sampled from the reference render (see brand-spec.md)
+   ============================================================ */
+:root{
+  --bg:            oklch(6.7% 0 90);          /* #010101 */
+  --bg-deep:       oklch(12.1% 0.004 245);    /* #050607 */
+  --surface:       oklch(15.4% 0.008 211);    /* #080d0e */
+  --surface-nav:   oklch(14.5% 0 90);         /* #0a0a0a */
+  --fg:            oklch(100% 0 90);
+  --fg-dim:        oklch(88% 0.004 200);
+  --muted:         oklch(75.2% 0.008 197);    /* #a9b0b0 */
+  --border:        oklch(100% 0 90 / .09);
+  --border-strong: oklch(100% 0 90 / .16);
+  --accent:        oklch(73% 0.125 192);      /* #00c0bc */
+  --cream:         oklch(94% 0.011 72);       /* #f0eae3 */
+  --ink:           oklch(20% 0.004 200);
+
+  /* derived, kept as their own tokens so the accent budget stays honest */
+  --glow:          oklch(73% 0.125 192 / .085);
+  --glow-soft:     oklch(73% 0.125 192 / .035);
+
+  --font-display: 'Playfair Display', 'Iowan Old Style', 'Times New Roman', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+
+  --nav-h: 90px;
+  --pad: 80px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:400 16px/1.6 var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.wrap-nav{max-width:1440px;margin-inline:auto;padding-inline:var(--pad)}
+.wrap-wide{max-width:1300px;margin-inline:auto;padding-inline:var(--pad)}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:var(--pad)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:60;
+  height:var(--nav-h);
+  background:var(--surface-nav);
+  border-bottom:1px solid transparent;
+  transition:background .3s var(--ease),border-color .3s var(--ease);
+}
+.nav.is-scrolled{
+  background:color-mix(in oklab, var(--surface-nav) 82%, transparent);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom-color:var(--border);
+}
+.nav__inner{height:100%;display:flex;align-items:center;gap:64px}
+
+.brand{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.brand__mark{width:36px;height:36px;flex:0 0 auto}
+.brand__text{display:flex;flex-direction:column;line-height:1}
+.brand__name{font-size:25px;font-weight:700;letter-spacing:-.015em}
+.brand__sub{
+  margin-top:5px;font-size:12.5px;font-weight:600;
+  letter-spacing:.01em;color:var(--accent);
+}
+
+.nav__links{display:flex;align-items:center;gap:40px;margin-right:auto}
+.nav__links a{
+  font-size:15px;color:var(--muted);
+  transition:color .2s var(--ease);
+  position:relative;padding-block:6px;
+}
+.nav__links a::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .28s var(--ease);
+}
+.nav__links a:hover{color:var(--fg)}
+.nav__links a:hover::after{transform:scaleX(1)}
+
+.nav__actions{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+
+/* App Store badge — dark pill with the Apple glyph */
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  height:48px;padding:0 18px 0 16px;
+  border:1px solid var(--border-strong);border-radius:9px;
+  background:#000;
+  transition:border-color .2s var(--ease),transform .12s var(--ease);
+}
+.badge:hover{border-color:oklch(100% 0 90 / .34)}
+.badge:active{transform:translateY(1px)}
+.badge svg{width:22px;height:26px;flex:0 0 auto}
+.badge__copy{display:flex;flex-direction:column;line-height:1.05;text-align:left}
+.badge__copy .sm{font-size:10px;letter-spacing:.02em;color:var(--fg)}
+.badge__copy .lg{font-size:19px;font-weight:500;letter-spacing:-.01em;margin-top:2px}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;height:48px;padding:0 20px;
+  border:1px solid var(--border-strong);border-radius:9px;
+  font-size:15px;color:var(--fg);
+  transition:border-color .2s var(--ease),background .2s var(--ease),transform .12s var(--ease);
+}
+.btn-ghost:hover{border-color:oklch(100% 0 90 / .34);background:oklch(100% 0 90 / .04)}
+.btn-ghost:active{transform:translateY(1px)}
+
+.nav__toggle{
+  display:none;width:44px;height:44px;place-items:center;
+  border:1px solid var(--border-strong);border-radius:9px;
+}
+.nav__toggle span{display:block;width:17px;height:1.5px;background:var(--fg);border-radius:2px;transition:transform .3s var(--ease),opacity .2s var(--ease)}
+.nav__toggle span+span{margin-top:5px}
+.nav__toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav__toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav__toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+.menu{
+  position:fixed;inset:var(--nav-h) 0 auto 0;z-index:55;
+  background:var(--surface-nav);border-bottom:1px solid var(--border);
+  padding:8px var(--pad) 28px;
+  display:none;
+}
+.menu.is-open{display:block;animation:drop .3s var(--ease)}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.menu a{display:block;padding:15px 0;font-size:17px;color:var(--fg-dim);border-bottom:1px solid var(--border)}
+.menu .menu__cta{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.menu .menu__cta .badge,.menu .menu__cta .btn-ghost{width:100%;justify-content:center}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:74px 0 96px;
+  text-align:center;
+  background:
+    radial-gradient(58% 46% at 50% 63%, var(--glow), transparent 72%),
+    radial-gradient(90% 70% at 50% 74%, var(--glow-soft), transparent 78%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg) 34%, var(--bg-deep) 82%, var(--bg) 100%);
+  overflow:hidden;
+}
+.hero h1{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(44px, 6.9vw, 96px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.hero p.lead{
+  margin:30px auto 0;
+  max-width:36ch;
+  font-size:clamp(16px,1.4vw,18.5px);
+  line-height:1.58;
+  color:var(--muted);
+  text-wrap:pretty;
+}
+.hero__art{
+  margin:34px auto 0;
+  width:78%;max-width:1020px;
+  filter:drop-shadow(0 0 60px oklch(73% 0.125 192 / .10));
+}
+.hero__cta{margin-top:8px;display:flex;flex-direction:column;align-items:center;gap:26px}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:30px;
+  height:50px;padding:0 22px 0 26px;
+  min-width:312px;justify-content:center;
+  border-radius:8px;
+  background:var(--cream);color:var(--ink);
+  font-size:16px;font-weight:600;letter-spacing:-.005em;
+  transition:transform .14s var(--ease),box-shadow .24s var(--ease),background .2s var(--ease);
+}
+.btn-primary svg{width:17px;height:14px;transition:transform .26s var(--ease)}
+.btn-primary:hover{background:#fff;box-shadow:0 0 0 6px oklch(94% 0.011 72 / .07)}
+.btn-primary:hover svg{transform:translateX(4px)}
+.btn-primary:active{transform:translateY(2px)}
+
+.link-quiet{
+  font-size:15px;color:var(--fg-dim);
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:border-color .22s var(--ease),color .22s var(--ease);
+}
+.link-quiet:hover{color:var(--fg);border-bottom-color:var(--border-strong)}
+
+/* ============================================================
+   SECTION — Switch the route
+   ============================================================ */
+.route{padding:96px 0 0;background:linear-gradient(180deg,var(--bg) 0%,#030303 26%);overflow:hidden}
+.route__grid{
+  display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr);
+  gap:48px;align-items:center;
+}
+.route__copy{padding-bottom:44px}
+h2{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(30px,3vw,39px);
+  line-height:1.16;
+  letter-spacing:-.015em;
+}
+.route__copy p{
+  margin:26px 0 0;max-width:36ch;
+  font-size:16px;line-height:1.6;color:var(--muted);
+  text-wrap:pretty;
+}
+.route__art{align-self:end;justify-self:end;width:100%}
+
+/* ============================================================
+   SECTION — Durable work continues on Mac
+   ============================================================ */
+.durable{background:#030303;padding-bottom:0}
+.card{
+  position:relative;
+  border-radius:26px;
+  background:linear-gradient(180deg,var(--surface) 0%,#060a0b 100%);
+  border:1px solid var(--border);
+  border-bottom:0;
+  border-radius:26px 26px 0 0;
+  padding:74px 56px 0;
+  overflow:hidden;
+}
+.card h2{max-width:14ch}
+.card__art{margin:62px auto -2px;width:59%;max-width:700px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{
+  background:#030303;
+  border-top:1px solid var(--border);
+  padding:34px 0 40px;
+  margin-top:0;
+}
+.foot__inner{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.foot__links{display:flex;gap:28px;flex-wrap:wrap}
+.foot__links a{font-size:14px;color:var(--muted);transition:color .2s var(--ease)}
+.foot__links a:hover{color:var(--fg)}
+.foot__note{font-size:13px;letter-spacing:.01em;color:oklch(62% 0.006 200)}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1180px){
+  :root{--pad:48px}
+  .nav__inner{gap:36px}
+  .nav__links{gap:28px}
+}
+@media (max-width:1024px){
+  .nav__links,.nav__actions{display:none}
+  .nav__toggle{display:grid;margin-left:auto}
+  .hero__art{width:92%}
+}
+@media (max-width:820px){
+  :root{--pad:28px;--nav-h:76px}
+  .hero{padding:52px 0 68px}
+  .route{padding-top:72px}
+  .route__grid{grid-template-columns:1fr;gap:36px}
+  .route__copy{padding-bottom:0}
+  .route__art{justify-self:center;width:112%;max-width:none}
+  .card{padding:52px 30px 0;border-radius:20px 20px 0 0}
+  .card__art{width:88%;margin-top:44px}
+  .hero__art{width:104%;max-width:none;margin-inline:-2%}
+}
+@media (max-width:520px){
+  :root{--pad:20px}
+  .brand__name{font-size:22px}
+  .brand__mark{width:32px;height:32px}
+  .hero p.lead{max-width:30ch}
+  .btn-primary{min-width:0;width:100%;padding-inline:20px}
+  .hero__cta{gap:20px}
+  .card h2{max-width:none}
+  .foot__inner{flex-direction:column;align-items:flex-start;gap:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav" data-od-id="site-nav">
+  <div class="wrap-nav nav__inner">
+
+    <a class="brand" href="#top" data-od-id="brand-lockup" aria-label="VoiceClaw Realtime, home">
+      <svg class="brand__mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <circle cx="18" cy="18" r="16" stroke="var(--accent)" stroke-width="2.6"/>
+        <circle cx="18" cy="18" r="9.5" stroke="var(--accent)" stroke-width="1.6" opacity=".55"/>
+        <circle cx="18" cy="18" r="4.4" fill="var(--accent)"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">VoiceClaw</span>
+        <span class="brand__sub">Realtime</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary" data-od-id="nav-links">
+      <a href="#route" data-od-id="nav-product">Product</a>
+      <a href="#route" data-od-id="nav-integrations">Integrations</a>
+      <a href="#durable" data-od-id="nav-security">Security</a>
+      <a href="#durable" data-od-id="nav-resources">Resources</a>
+      <a href="#durable" data-od-id="nav-pricing">Pricing</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="badge" href="#top" data-od-id="nav-appstore">
+        <svg viewBox="0 0 20 24" fill="#fff" aria-hidden="true"><path d="M16.5 12.7c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.8-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5.6-.9 1-1.8 1.2-2.4-2.6-1-2.4-4.4-2.4-4.5zM14 4.5c.7-.9 1.2-2.1 1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.1-1.5z"/></svg>
+        <span class="badge__copy">
+          <span class="sm">Download on the</span>
+          <span class="lg">App&nbsp;Store</span>
+        </span>
+      </a>
+      <a class="btn-ghost" href="#durable" data-od-id="nav-mac-companion">Get the Mac Companion</a>
+    </div>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu" data-od-id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menu" id="mobileMenu" data-od-id="mobile-menu">
+  <a href="#route">Product</a>
+  <a href="#route">Integrations</a>
+  <a href="#durable">Security</a>
+  <a href="#durable">Resources</a>
+  <a href="#durable">Pricing</a>
+  <div class="menu__cta">
+    <a class="badge" href="#top">
+      <svg viewBox="0 0 20 24" fill="#fff" aria-hidden="true"><path d="M16.5 12.7c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.8-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5.6-.9 1-1.8 1.2-2.4-2.6-1-2.4-4.4-2.4-4.5zM14 4.5c.7-.9 1.2-2.1 1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.1-1.5z"/></svg>
+      <span class="badge__copy"><span class="sm">Download on the</span><span class="lg">App&nbsp;Store</span></span>
+    </a>
+    <a class="btn-ghost" href="#durable">Get the Mac Companion</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" data-od-id="hero">
+    <div class="wrap">
+      <h1 data-od-id="hero-headline">One voice.<br>Every route.</h1>
+      <p class="lead" data-od-id="hero-lead">
+        One live GPT Realtime conversation can hand work to Codex,
+        OpenClaw, or Hermes without ending the session.
+      </p>
+
+      <img class="hero__art" src="assets/hero-devices.png" width="1270" height="677"
+           alt="iPhone, desktop display and Apple Watch running VoiceClaw, joined by a cyan waveform whose routing lines branch to Direct, Codex, Hermes and OpenClaw."
+           data-od-id="hero-devices">
+
+      <div class="hero__cta">
+        <a class="btn-primary" href="#top" data-od-id="hero-cta-appstore">
+          Download on the App Store
+          <svg viewBox="0 0 17 14" fill="none" aria-hidden="true">
+            <path d="M1 7h14M10 1.6 15.4 7 10 12.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a class="link-quiet" href="#durable" data-od-id="hero-cta-mac">Get the Mac Companion</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SWITCH THE ROUTE ==================== -->
+  <section class="route" id="route" data-od-id="section-route">
+    <div class="wrap route__grid">
+      <div class="route__copy reveal">
+        <h2 data-od-id="route-headline">Switch the route.<br>Keep the conversation.</h2>
+        <p data-od-id="route-body">
+          Route live work to Codex, OpenClaw, or Hermes
+          without dropping the session.
+        </p>
+      </div>
+      <img class="route__art reveal" src="assets/mac-route.png" width="730" height="388"
+           alt="VoiceClaw on a MacBook: a live routing view with layered cyan and indigo waveforms above two panels of session detail."
+           data-od-id="route-mac">
+    </div>
+  </section>
+
+  <!-- ==================== DURABLE WORK ON MAC ==================== -->
+  <section class="durable" id="durable" data-od-id="section-durable">
+    <div class="wrap-wide">
+      <div class="card reveal" data-od-id="durable-card">
+        <h2 data-od-id="durable-headline">Durable work<br>continues on Mac</h2>
+        <img class="card__art" src="assets/mac-durable.png" width="860" height="304"
+             alt="The VoiceClaw Mac companion showing a long captured waveform above a two-column list of ongoing work."
+             data-od-id="durable-mac">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" data-od-id="site-footer">
+  <div class="wrap-wide foot__inner">
+    <nav class="foot__links" aria-label="Footer" data-od-id="footer-links">
+      <a href="#route">Product</a>
+      <a href="#route">Integrations</a>
+      <a href="#durable">Security</a>
+      <a href="#durable">Resources</a>
+      <a href="#durable">Pricing</a>
+    </nav>
+    <p class="foot__note" data-od-id="footer-note">VoiceClaw Realtime</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- nav: condense on scroll ------------------------------------- */
+  var nav = document.getElementById('nav');
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      nav.classList.toggle('is-scrolled', window.scrollY > 12);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* --- mobile menu -------------------------------------------------- */
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  function setMenu(open) {
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  toggle.addEventListener('click', function () {
+    setMenu(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1024) setMenu(false);
+  });
+
+  /* --- in-page anchors (scrollIntoView is avoided on purpose) ------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var el = id ? document.getElementById(id) : document.body;
+    if (!el) return;
+    e.preventDefault();
+    var top = id ? el.getBoundingClientRect().top + window.scrollY - 90 : 0;
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* --- reveal on enter ---------------------------------------------- */
+  var targets = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    targets.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = (i % 2) * 90 + 'ms';
+      io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>
