@@ -18,7 +18,7 @@ import re
 from pathlib import Path
 from datetime import datetime
 
-ROOT = os.environ.get('ROOT', '/home/henrymascot/clawd')
+ROOT = os.environ.get('ROOT', os.path.expanduser('~/clawd'))
 REFLECTIONS = Path(os.environ.get('REFLECTIONS', f'{ROOT}/memory/reflections.md'))
 CANDIDATES_DIR = Path(os.environ.get('CANDIDATES_DIR', f'{ROOT}/memory/improvement-candidates'))
 

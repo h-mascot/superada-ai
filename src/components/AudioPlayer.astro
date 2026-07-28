@@ -223,14 +223,28 @@ const { audioSrc, articleText, author = 'ada' } = Astro.props;
   };
 
   if (hasAudio && audio && playBtn) {
-    // Pre-generated audio mode
+    let audioAvailable = true;
+
+    audio.addEventListener('error', () => {
+      audioAvailable = false;
+      setPlaying(false);
+      if (currentTimeEl) currentTimeEl.textContent = '00:00';
+    });
+
     audio.addEventListener('timeupdate', () => {
       if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
     });
 
     playBtn.addEventListener('click', () => {
+      if (!audioAvailable) {
+        startTtsPlayback();
+        return;
+      }
       if (audio.paused) {
-        audio.play();
+        audio.play().catch(() => {
+          audioAvailable = false;
+          startTtsPlayback();
+        });
         setPlaying(true);
       } else {
         audio.pause();
@@ -246,13 +260,37 @@ const { audioSrc, articleText, author = 'ada' } = Astro.props;
     speedButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
-        audio.playbackRate = speed;
+        if (audioAvailable) {
+          audio.playbackRate = speed;
+        } else {
+          ttsRate = speed;
+          if (ttsPlaying && ttsUtterance) {
+            window.speechSynthesis.cancel();
+            ttsUtterance.rate = ttsRate;
+            window.speechSynthesis.speak(ttsUtterance);
+          }
+        }
         setActiveSpeed(btn);
       });
     });
   } else if (!hasAudio && playBtn) {
-    // Browser TTS fallback
-    playBtn.addEventListener('click', () => {
+    playBtn.addEventListener('click', () => startTtsPlayback());
+
+    speedButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
+        ttsRate = speed;
+        if (ttsPlaying && ttsUtterance) {
+          window.speechSynthesis.cancel();
+          ttsUtterance.rate = ttsRate;
+          window.speechSynthesis.speak(ttsUtterance);
+        }
+        setActiveSpeed(btn);
+      });
+    });
+  }
+
+  function startTtsPlayback() {
       if (!('speechSynthesis' in window)) {
         alert('Your browser does not support text-to-speech.');
         return;
@@ -299,19 +337,5 @@ const { audioSrc, articleText, author = 'ada' } = Astro.props;
 
         window.speechSynthesis.speak(ttsUtterance);
       }
-    });
-
-    speedButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const speed = parseFloat((btn as HTMLElement).dataset.speed || '1');
-        ttsRate = speed;
-        if (ttsPlaying && ttsUtterance) {
-          window.speechSynthesis.cancel();
-          ttsUtterance.rate = ttsRate;
-          window.speechSynthesis.speak(ttsUtterance);
-        }
-        setActiveSpeed(btn);
-      });
-    });
   }
 </script>

@@ -44,7 +44,7 @@ cat > "$REPORT" <<REPORT
 Generated: ${NOW}
 
 ## Purpose
-Explicit daily introspection loop for Ada. This restores the missing dedicated soul-review ritual instead of relying only on scattered weekly/self-learning passes.
+Explicit daily introspection loop for the agent. This restores the missing dedicated soul-review ritual instead of relying only on scattered weekly/self-learning passes.
 
 ## Files to review
 - ${YDAY_FILE}
@@ -53,7 +53,7 @@ Explicit daily introspection loop for Ada. This restores the missing dedicated s
 - ${REFLECTIONS}
 
 ## Prompt checklist
-1. Did I surprise Henry with value today?
+1. Did I create useful value for the operator today?
 2. Did I come back with solutions instead of questions?
 3. Was I sharp, funny, and competent?
 4. What did I build or ship today?

@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -176,7 +177,15 @@ const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
         <!-- Hero image -->
         {heroImage && (
           <div style="margin-bottom:2.5rem;">
-            <img src={heroImage.src} alt={heroAlt} style="width:100%; border-radius:6px; border:1px solid var(--border);" />
+            <Image
+              src={heroImage}
+              alt={heroAlt || `Illustration for ${title}`}
+              format="webp"
+              widths={[800, 1200]}
+              sizes="(max-width: 800px) 100vw, 800px"
+              fetchpriority="high"
+              style="width:100%; height:auto; border-radius:6px; border:1px solid var(--border);"
+            />
           </div>
         )}
 

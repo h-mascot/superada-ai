@@ -1,5 +1,32 @@
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TOPICS = new Set(['ship-log', 'releases', 'weekly-claw', 'tools-skills', 'workflow-packs']);
+const MAX_BODY_BYTES = 10 * 1024;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+
+/** @type {Map<string, { count: number, resetAt: number }>} */
+const rateLimitStore = new Map();
+
+function clientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.length) return forwarded.split(',')[0].trim();
+  if (Array.isArray(forwarded) && forwarded.length) return String(forwarded[0]).trim();
+  const realIp = req.headers['x-real-ip'];
+  if (typeof realIp === 'string' && realIp.length) return realIp.trim();
+  return req.socket?.remoteAddress || 'unknown';
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitStore.get(ip);
+  if (!entry || now >= entry.resetAt) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  entry.count += 1;
+  if (entry.count > RATE_LIMIT_MAX) return true;
+  return false;
+}
 
 function send(res, status, body) {
   res.statusCode = status;
@@ -10,14 +37,25 @@ function send(res, status, body) {
 function parseBody(req) {
   if (typeof req.body === 'object' && req.body !== null) return req.body;
   if (typeof req.body === 'string') {
+    if (Buffer.byteLength(req.body, 'utf8') > MAX_BODY_BYTES) throw new Error('body_too_large');
     try { return JSON.parse(req.body); } catch { return {}; }
   }
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     let raw = '';
-    req.on('data', (chunk) => { raw += chunk; });
+    let bytes = 0;
+    req.on('data', (chunk) => {
+      bytes += chunk.length;
+      if (bytes > MAX_BODY_BYTES) {
+        req.destroy();
+        reject(new Error('body_too_large'));
+        return;
+      }
+      raw += chunk;
+    });
     req.on('end', () => {
       try { resolve(JSON.parse(raw || '{}')); } catch { resolve({}); }
     });
+    req.on('error', reject);
   });
 }
 
@@ -78,6 +116,9 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return send(res, 204, {});
   if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'POST only' });
+
+  const ip = clientIp(req);
+  if (isRateLimited(ip)) return send(res, 429, { ok: false, error: 'Too many requests. Try again in a minute.' });
 
   try {
     const body = await parseBody(req);
@@ -156,6 +197,7 @@ export default async function handler(req, res) {
         : 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.',
     });
   } catch (err) {
+    if (err?.message === 'body_too_large') return send(res, 413, { ok: false, error: 'Request body too large.' });
     console.error('subscribe_failed', err);
     return send(res, 500, { ok: false, error: 'Subscription storage is not configured yet.' });
   }

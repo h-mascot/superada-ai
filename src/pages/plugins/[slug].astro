@@ -3,6 +3,7 @@ import { publishedPlugins, pluginMap, pluginPlatforms } from '../../data/plugins
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CopyButton from '../../components/CopyButton.astro';
 
 export async function getStaticPaths() {
   return publishedPlugins.map((plugin) => ({ params: { slug: plugin.slug } }));
@@ -117,7 +118,10 @@ const requirementTypeLabel: Record<string, string> = {
           </section>
 
           <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Install</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:0.45rem;">
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em;">Install</div>
+              <CopyButton text={plugin.installCommand} label="Copy install" />
+            </div>
             <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.85rem;">One-shot install into a host plugins/ directory, then the auto installer registers the plugin with the running runtime.</p>
             <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.85rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{plugin.installCommand}</code>
             <div style="display:grid; gap:0.8rem;">
@@ -133,7 +137,10 @@ const requirementTypeLabel: Record<string, string> = {
           </section>
 
           <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Verification</div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:0.45rem;">
+              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em;">Verification</div>
+              <CopyButton text={plugin.verifyCommand} label="Copy verify" />
+            </div>
             <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.85rem;">Configuration is what you wanted. Enforcement is what happened. The verify script is the receipt.</p>
             <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.85rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{plugin.verifyCommand}</code>
             <div style="display:grid; gap:0.8rem;">

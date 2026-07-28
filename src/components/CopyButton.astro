@@ -1,0 +1,73 @@
+---
+interface Props {
+  text: string;
+  label?: string;
+}
+
+const { text, label = 'Copy' } = Astro.props;
+---
+
+<button
+  type="button"
+  class="copy-btn"
+  data-copy-text={text}
+  aria-label={label}
+>
+  <span class="copy-btn-label">{label}</span>
+</button>
+
+<style>
+  .copy-btn {
+    font-size: 0.72rem;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+    border-radius: 6px;
+    padding: 0.35rem 0.55rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .copy-btn:hover {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+
+  .copy-btn.is-copied {
+    color: var(--success);
+    border-color: color-mix(in srgb, var(--success) 40%, transparent);
+    background: color-mix(in srgb, var(--success) 10%, transparent);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.copy-btn[data-copy-text]').forEach((button) => {
+    if (button.dataset.copyBound === 'true') return;
+    button.dataset.copyBound = 'true';
+
+    button.addEventListener('click', async () => {
+      const text = button.getAttribute('data-copy-text') || '';
+      const label = button.querySelector('.copy-btn-label');
+      if (!text || !label) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = label.textContent || 'Copy';
+        label.textContent = 'Copied';
+        button.classList.add('is-copied');
+        window.setTimeout(() => {
+          label.textContent = original;
+          button.classList.remove('is-copied');
+        }, 1600);
+      } catch {
+        label.textContent = 'Copy failed';
+        window.setTimeout(() => {
+          label.textContent = 'Copy';
+        }, 1600);
+      }
+    });
+  });
+</script>

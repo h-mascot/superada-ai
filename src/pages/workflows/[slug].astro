@@ -16,7 +16,7 @@ const workflow = await getEntry('workflows', slug);
 if (!workflow) throw new Error(`Workflow not found: ${slug}`);
 
 const relatedWorkflows = (await getCollection('workflows'))
-  .filter((entry) => entry.id !== workflow.id && entry.data.category === workflow.data.category)
+  .filter((entry) => !entry.data.isTemplate && entry.id !== workflow.id && entry.data.category === workflow.data.category)
   .slice(0, 2);
 
 const statusColors = {

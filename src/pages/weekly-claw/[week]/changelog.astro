@@ -36,6 +36,7 @@ const slides = Object.keys(import.meta.glob('/public/weekly-claw/week*/slide-*.j
       html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; color: #fff; }
       body { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
       #html-deck { position: fixed; inset: 0; width: 100vw; height: 100vh; border: 0; background: #050505; z-index: 1; }
+      #page-title { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); color: #333; font-size: 12px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; z-index: 100; user-select: none; }
       #back { position: fixed; top: 20px; left: 28px; z-index: 100; }
       #back a { font-size: 11px; color: #444; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.2s; border: 1px solid #222; border-radius: 4px; padding: 4px 10px; }
       #back a:hover { color: #F65454; border-color: #F65454; }
@@ -44,6 +45,7 @@ const slides = Object.keys(import.meta.glob('/public/weekly-claw/week*/slide-*.j
     </style>
   </head>
   <body>
+    <h1 id="page-title">The Weekly Claw {weekNumber} Changelog</h1>
     <div id="back"><a href="/weekly-claw">← All editions</a></div>
     {hasHtmlDeck ? (
       <iframe id="html-deck" src={htmlDeckPath} title={`The Weekly Claw ${weekNumber} Changelog`} allowfullscreen></iframe>

@@ -1,4 +1,6 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import BaseHead from '../../../components/BaseHead.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
@@ -12,6 +14,34 @@ export async function getStaticPaths() {
 }
 
 const { model } = Astro.props;
+
+type ArtifactLink = { label: string; href?: string; internal?: boolean };
+
+function resolveArtifactPath(artifactPath: string): ArtifactLink {
+  if (artifactPath.startsWith('http://') || artifactPath.startsWith('https://')) {
+    return { label: artifactPath, href: artifactPath };
+  }
+
+  if (artifactPath.startsWith('/home/') || artifactPath.startsWith('memory/')) {
+    return { label: artifactPath, internal: true };
+  }
+
+  let publicPath = artifactPath;
+  if (artifactPath.startsWith('output/benchmarks/')) {
+    publicPath = artifactPath.replace(/^output\/benchmarks\//, '/benchmarks/reports/');
+  } else if (!artifactPath.startsWith('/')) {
+    publicPath = `/${artifactPath}`;
+  }
+
+  const diskPath = path.join(process.cwd(), 'public', publicPath.replace(/^\//, ''));
+  if (fs.existsSync(diskPath)) {
+    return { label: artifactPath, href: publicPath };
+  }
+
+  return { label: artifactPath, internal: true };
+}
+
+const artifactLinks = model.detail.reportPaths.map(resolveArtifactPath);
 ---
 
 <!doctype html>
@@ -125,11 +155,18 @@ const { model } = Astro.props;
         <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); margin-bottom:0.5rem;">Source artifacts</div>
         <p style="margin:0 0 1rem; color:var(--muted); line-height:1.75; font-size:0.88rem;">Raw machine-readable files for anyone who wants to dig deeper or run their own analysis.</p>
         <ul style="margin:0; padding-left:1.2rem; color:var(--text-soft); line-height:1.9;">
-          {model.detail.reportPaths.map((p, i) => (
+          {artifactLinks.map((artifact, i) => (
             <li>
-              <a href={p} target={p.startsWith('http') ? '_blank' : '_self'} rel={p.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:var(--text); text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
-                {i === 0 && !model.reportData ? 'Open readable benchmark report' : p}
-              </a>
+              {artifact.href ? (
+                <a href={artifact.href} target={artifact.href.startsWith('http') ? '_blank' : '_self'} rel={artifact.href.startsWith('http') ? 'noopener noreferrer' : undefined} style="color:var(--text); text-decoration:underline; text-underline-offset:3px; word-break:break-all;">
+                  {i === 0 && !model.reportData ? 'Open readable benchmark report' : artifact.label}
+                </a>
+              ) : (
+                <span style="color:var(--muted); word-break:break-all;">
+                  <span style="font-size:0.72rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-right:0.45rem;">internal artifact</span>
+                  {artifact.label}
+                </span>
+              )}
             </li>
           ))}
         </ul>

@@ -1,4 +1,3 @@
-```mdx
 ---
 title: "Low-Noise Inbox Triage: A Draft-Only Loop for Executive Slack Overflow"
 description: "A reusable pattern for checking a noisy channel on a schedule, drafting replies, and routing them to human review without ever auto-sending."
@@ -38,4 +37,3 @@ Nothing in this pipeline can send to the source channel. Sending is a separate, 
 ## Why this generalizes
 
 None of this is Slack-specific. The pattern: bounded read window, drafting step with a voice constraint, human review gate, explicit approval path for anything sensitive, and a verification pass before you trust the schedule. Same shape works for email triage, support ticket intake, or any channel where an accidental auto-send is expensive and a delayed draft is not.
-```

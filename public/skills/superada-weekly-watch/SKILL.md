@@ -1,6 +1,6 @@
 ---
 name: superada-weekly-watch
-description: Watch SuperAda for new posts, OpenClaw releases, Weekly Claw dispatches, tools, skills, and workflow packs. Use when an agent is asked to subscribe to SuperAda, check SuperAda updates, monitor Henry/SuperAda releases, or produce a weekly digest of what changed on superada.ai.
+description: Watch SuperAda for new posts, OpenClaw releases, Weekly Claw dispatches, tools, skills, and workflow packs. Use when an agent is asked to subscribe to SuperAda, check SuperAda updates, monitor SuperAda releases, or produce a weekly digest of what changed on superada.ai.
 ---
 
 # SuperAda Weekly Watch
@@ -36,12 +36,15 @@ Use this shape:
 ## SuperAda weekly watch
 
 ### New since last check
+
 - [Title](url) - short reason it matters.
 
 ### Release signal
+
 - OpenClaw latest: version/link if changed.
 
 ### Noisy/unchanged
+
 - One sentence max.
 ```
 

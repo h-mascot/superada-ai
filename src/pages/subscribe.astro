@@ -41,6 +41,11 @@ import Header from '../components/Header.astro';
 						</label>
 					</div>
 
+					<label class="hp-field" aria-hidden="true">
+						Company
+						<input name="company" type="text" tabindex="-1" autocomplete="off" />
+					</label>
+
 					<div data-agent-fields hidden>
 						<div class="agent-install-box">
 							<div class="agent-install-box__label">Install command</div>
@@ -143,6 +148,7 @@ import Header from '../components/Header.astro';
 				submitLabel.innerHTML = isAgent ? 'Install watcher <span aria-hidden="true">→</span>' : 'Subscribe <span aria-hidden="true">→</span>';
 				footnote.textContent = isAgent ? 'Runs weekly. Stores last-seen state locally.' : 'Weekly at most. Unsubscribe anytime.';
 				status.textContent = '';
+				status.dataset.state = '';
 			};
 
 			typeInputs.forEach((input) => input.addEventListener('change', () => setMode(input.value)));
@@ -153,14 +159,30 @@ import Header from '../components/Header.astro';
 				event.preventDefault();
 				const data = new FormData(form);
 				const isAgent = data.get('subscriberType') === 'agent';
+				const topics = data.getAll('topics');
+				const email = String(data.get('email') || '').trim();
+
+				if (!isAgent && !email) {
+					status.dataset.state = 'error';
+					status.textContent = 'Enter a valid email.';
+					return;
+				}
+				if (!topics.length) {
+					status.dataset.state = 'error';
+					status.textContent = 'Pick at least one update type.';
+					return;
+				}
+
+				status.dataset.state = '';
 				status.textContent = isAgent ? 'Saving agent details...' : 'Subscribing...';
 				const body = {
 					subscriberType: data.get('subscriberType'),
 					email: data.get('email'),
 					name: data.get('name'),
+					company: data.get('company'),
 					agentName: data.get('agentName'),
 					agentUrl: data.get('agentUrl'),
-					topics: data.getAll('topics'),
+					topics,
 					...(isAgent ? { installIntent: true, source: 'superada.ai/subscribe#agent-install' } : {}),
 				};
 				try {
@@ -169,18 +191,29 @@ import Header from '../components/Header.astro';
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(body),
 					});
-					const result = await response.json();
+					let result = {};
+					try {
+						result = await response.json();
+					} catch {
+						throw new Error('Unexpected response from subscribe service.');
+					}
 					if (!response.ok || !result.ok) throw new Error(result.error || 'Subscription failed.');
 					if (isAgent) {
 						try { await navigator.clipboard.writeText(installCommand); } catch {}
+						status.dataset.state = 'success';
 						status.textContent = 'Agent details saved. Install command copied.';
 					} else {
 						form.reset();
 						setMode('human');
+						status.dataset.state = 'success';
 						status.textContent = result.message || 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.';
 					}
 				} catch (error) {
-					status.textContent = error.message || 'Subscription failed. Try again.';
+					const message = error instanceof TypeError
+						? 'Subscribe API is unavailable in this preview. Use production or Vercel dev to test signup.'
+						: (error.message || 'Subscription failed. Try again.');
+					status.dataset.state = 'error';
+					status.textContent = message;
 				}
 			});
 		</script>

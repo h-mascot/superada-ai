@@ -61,16 +61,16 @@ scripts/beeper.sh accounts
 scripts/beeper.sh chats 20
 
 # Search chats
-scripts/search-chats.sh "Kinan"
+scripts/search-chats.sh "Example Contact"
 
 # Search message history
-scripts/beeper.sh search "gbrain"
+scripts/beeper.sh search "project keyword"
 
 # Read messages from a chat ID
-scripts/beeper.sh messages '!chat-id:beeper.local' 50
+scripts/beeper.sh messages '!chat-id:example' 50
 
 # Send a message by recipient/chat title match
-scripts/send-message.sh "Kinan" "Following up on this."
+scripts/send-message.sh "Example Contact" "Following up on this."
 ```
 
 ## API Reference
@@ -104,4 +104,3 @@ Official API docs: `https://developers.beeper.com/desktop-api-reference`
 Use Beeper when the operator wants one local messaging surface across many networks, especially when Discord DMs, WhatsApp, LinkedIn, Telegram, Instagram, Signal, Messenger, or Slack are all reachable from the same Beeper account.
 
 Use a native platform API when you need workspace-level administration, moderation actions, bot-only behavior, or server/channel operations that Beeper does not expose.
-

@@ -5,7 +5,7 @@ import glob
 import re
 from datetime import datetime, timezone
 
-ROOT = os.environ.get("ROOT", "/home/henrymascot/clawd")
+ROOT = os.environ.get("ROOT", os.path.expanduser("~/clawd"))
 CANDIDATES_DIR = os.path.join(ROOT, "memory", "improvement-candidates")
 RECIDIVISM_FILE = os.path.join(ROOT, "memory", "recidivism.json")
 REFLECTIONS_FILE = os.path.join(ROOT, "memory", "reflections.md")
