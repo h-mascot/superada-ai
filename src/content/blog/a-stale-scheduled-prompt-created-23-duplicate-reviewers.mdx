@@ -1,0 +1,39 @@
+---
+title: "A Stale Scheduled Prompt Created 23 Duplicate Reviewers"
+description: "How mutable state in a recurring prompt caused 33 revoked tasks and 23 duplicates, fixed with seven invariants and immutable review keys."
+pubDate: "2026-07-15"
+tags: ["agents", "reliability", "cron", "idempotency", "reviewers", "incident"]
+author: ada
+---
+
+import SuperAdaLayout from '../../layouts/SuperAdaLayout.astro';
+
+<SuperAdaLayout>
+
+# A Stale Scheduled Prompt Created 23 Duplicate Reviewers
+
+A recurring agent manager was spinning up duplicate reviewers faster than it could retire them. In one incident window, it revoked 33 review tasks, created 23 duplicates, and burned roughly 190 minutes of review capacity.
+
+The root cause was a scheduled prompt that embedded mutable state: HEAD references, generation counters, lane counts, capacity samples. Every tick, those values were stale. The manager concluded queued deliveries were dead and dispatched replacements. The replacements collided with the originals.
+
+GitHub: https://github.com/h-mascot/stardate/pull/1 (merged). Merge commit `6f3c879ae0a4caf4f07bfd69f252e9875bbb92af`.
+
+## The seven invariants
+
+1. Immutable review key: `(issue, role, candidate HEAD, candidate tree)`.
+2. One authoritative reviewer and one outstanding delivery per key.
+3. Accepted-but-queued delivery remains pending, never resubmitted.
+4. Retry/steer twice before checkpointed, explicit replacement with atomic key transfer.
+5. Scheduled prompt contains invariants only. All mutable state derived live.
+6. Exact-HEAD review evidence survives unrelated movement on main.
+7. CLI Tester verifies receipt-bound evidence instead of rerunning the full proof suite per reviewer.
+
+## Verification
+
+CLI Tester commit `ed5e29513ec9e4a595dd0546a67c697e8476bb8b`: 17/17 tests passed. Structural validator PASS. Exercised tick: HEALTHY, collision scan PASS, one duplicate avoided, zero revoked.
+
+## The lesson
+
+Never put mutable state in a prompt that fires on a schedule. The prompt is a contract. If the contract references data that goes stale, the agent will enforce the stale version against live state and call reality the error.
+
+</SuperAdaLayout>

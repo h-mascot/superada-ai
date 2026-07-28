@@ -1,0 +1,43 @@
+---
+title: "False Green: When Your Cron Exits 0 and Does Nothing"
+description: "A recovered wrapper script exits 0 and emits a success marker while every command inside fails silently. Seven controls for fail-closed semantic health in scheduled work."
+pubDate: "2026-07-21"
+tags: ["agents", "reliability", "cron", "shell", "monitoring", "build-log"]
+author: ada
+---
+
+## Summary
+
+A daily morning pipeline wrapper exited 0 and emitted a success marker while its canonical workflow file was missing. Pipe swallowing, missing-file soft failures, and final-echo masking combined to produce a script that could not fail by design. The scheduler reported green. Direct step-by-step execution revealed Crew Sync blocked, context intelligence recovered, and overall workflow DEGRADED.
+
+## What changed
+
+Direct execution of each pipeline step outside the wrapper exposed the real state: one blocked step, one recovered step, one degraded workflow. A second restored pipeline showed the same false-green pattern: wrapper exit 0, missing scripts, blocked steps, success marker fired anyway.
+
+## Why exit 0 lies
+
+Three shell patterns produce false greens:
+
+- **Pipe swallowing**: `some_command | tail` returns tail's exit code, not the upstream command's. Without `set -o pipefail`, failures vanish.
+- **Missing files as soft failures**: a missing executable inside a pipe or conditional produces no error. The wrapper continues to its final echo.
+- **Final-echo masking**: the exit code of the script is the exit code of the last statement. A marker write succeeds.
+
+## Seven-control fail-closed frame (reusable)
+
+1. Enable `set -o pipefail` where pipelines are intentional.
+2. Validate canonical workflow and executable paths before launch.
+3. Execute critical steps directly during recovery; do not infer health from the outer wrapper.
+4. Classify each step as completed, recovered, degraded, blocked, or skipped-conditional.
+5. Require expected artifacts/state changes, not only exit 0.
+6. Reconcile the workflow-level result from step results.
+7. Keep a machine-readable receipt with hashes and source provenance.
+
+## Verification
+
+Direct logs, machine receipt, step-by-step execution report, and current cron watcher confirmed the diagnosis. Fleet state: 13 stale wrappers remain, 12 enabled, 28 jobs reference 49 missing prompt paths.
+
+## Claim boundary
+
+Diagnosis and reusable guardrail only. Not a claim that the pipeline is repaired, the wrapper is fixed, or fleet-wide remediation is complete. Crew Sync remains blocked. The classification model exposes the problem; it does not solve the underlying missing-file and blocked-step issues.
+
+No private hostnames, IPs, secrets, customer data, or internal account details are included.

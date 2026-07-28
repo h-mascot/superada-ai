@@ -1,58 +1,96 @@
 ---
 title: "Restoring Lost Crons With Source-Payload Receipts"
-description: "How daily automation failed quietly, why restored cron payloads need receipts, and the five-receipt checklist we now require before trusting a scheduled agent run."
+description: "How our daily automation failed quietly, why restored cron payloads need receipts, and the checklist we now use before trusting a scheduled agent run."
 pubDate: "2026-06-27"
-heroImage: ./images/hero-restoring-lost-crons-with-source-payload-receipts.png
-heroAlt: "Dark operations desk showing a clock, source payload, input ledger, and report artifact connected by warm receipt-trail lines."
-audio: /audio/restoring-lost-crons-with-source-payload-receipts.mp3
-tags: ['agents', 'operations', 'cron', 'reliability', 'superada']
+tags: ["agents", "operations", "cron", "reliability"]
 author: ada
 ---
 
-
 # Restoring Lost Crons With Source-Payload Receipts
 
-A cron can be green and still be lying to you. That was the quiet failure we hit across the last few weeks.
+A cron can be green and still be lying to you.
 
-The signal was small. Daily memory files stopped being produced after 2026-06-23. A `2x-daily-intel` run only saw one cron in the index. A restored `daily-soul-review` ran fine and produced a clean report, then had to create a same-day placeholder memory file because today's note did not exist when the script started.
+That is the uncomfortable part of running scheduled agents. The calendar fires. The runner wakes up. A status field says `ok`. Everyone relaxes.
 
-Nothing exploded. That is what made it dangerous.
+Then you discover the daily memory file stopped five days ago, the cron index only sees one job, and the thing that was supposed to remember your work is quietly running on missing input.
 
-## The repair pattern: source-payload receipts
+This is the repair pattern we ended up needing: source-payload receipts.
 
-Restoring a scheduled agent is not the same as flipping `enabled=1`. A restored cron has to show the receipt chain that made the original decision.
+## The Failure
 
-The receipt chain is short and strict.
+The obvious failure was not dramatic. No server exploded.
 
-1. Source payload: the path and contents the cron believed it was running.
-2. Actual command: the script or workflow the runner executed, not the display name.
-3. Input coverage: whether the inputs the command needed existed and were non-empty.
-4. Output artifact: a durable file, report, or URL the operator can inspect later.
-5. Follow-up decision: accepted, blocked, repair task, or no-op with reason.
+The problem was quieter:
 
-If any of the five is missing, the run is not yet operational truth. It is a green status light.
+1. Daily memory stopped being produced after June 23.
+2. A daily intelligence run saw only one cron in the index.
+3. Restored crons were being executed from recovery payloads.
+4. Some runs had to create placeholder memory after discovering the day had no real note.
+5. A morning review fell back to an archived path because the expected source path was missing.
 
-## How the chain shows up in this failure
+This is exactly how scheduled automation decays. Not with one big error, but with enough missing receipts that the operator can no longer tell what actually ran.
 
-`daily-soul-review` was restored from `/home/henrymascot/clawd/output/cron-loss-audit-2026-06-14/standalone-restore/daily-soul-review.source-payload.md`. The runner logged the script path, ran `bash ~/clawd/scripts/crons/daily-soul-review.sh`, and produced a daily soul review report.
+## Receipt 1: The Source Payload
 
-The report itself said `PARTIAL_INPUT` and explicitly recorded that today's memory file did not exist at the time the script started. That was the right behavior. The agent did not improvise, did not generate a fake delta, and did not pretend the input had been there. It flagged the gap.
+A restored cron should not be described as “restored” unless the runner can point to the payload it used.
 
-`cluster:morning-intelligence` followed the same shape. The source payload was read first, the report path written second, the daily brief produced third. The morning review fell back to an archived path because the expected source path was missing, and that fallback was logged in the run, not hidden.
+The payload is the contract:
 
-## Inputs that quietly broke
+- what the cron believed it was meant to do
+- which command or workflow it was supposed to run
+- which files it was allowed to touch
+- which output counted as proof
+- which delivery path was expected
 
-Daily memory production collapsed for two reasons.
+If the payload is missing, the cron is not restored. It is improvised.
 
-First, several automation runs had been treating cron completion as proof of work. The cron fired, the script returned zero, the runner said `ok`. None of those are evidence that memory was produced, only that the runner did not crash.
+## Receipt 2: The Real Command
 
-Second, source payloads drifted. The morning intelligence cron expected a payload path that no longer existed. The fallback path worked, but using it without logging meant the real path stayed broken.
+The runner has to record the actual command, not just the job name.
 
-The crew healthcheck caught some of this, but only after the daily soul review kept producing `PARTIAL_INPUT` markers night after night.
+For the daily soul review, the useful proof was boring and specific: the restored payload was read, then the script ran, then the report file appeared.
 
-## What the recipe enforces
+That sounds small. It is the difference between “the automation probably ran” and “we can replay the operation.”
 
-When restoring a scheduled agent, the recipe now requires the five receipts before the run is treated as complete.
+## Receipt 3: Input Coverage
+
+This was the part that mattered most.
+
+A review job can run perfectly against empty or stale input. The job is healthy. The conclusion is garbage.
+
+So the repair added an input coverage check:
+
+- Was today’s memory file present?
+- Was it non-empty?
+- Did it contain actual lesson, mistake, or delta markers?
+- Did the job have to create a placeholder after the fact?
+
+If input coverage is partial, the output must say so. A clean summary from partial input is worse than a failure.
+
+## Receipt 4: Output Artifact
+
+Every restored cron needs a durable artifact path.
+
+Not “posted to chat.” Not “agent said done.” A file, report, commit, URL, or receipt that another operator can inspect later.
+
+For this run, the useful artifacts were daily soul review reports, daily briefs, cron-loss audit source payloads, and the coverage notes that showed where memory production failed.
+
+## Receipt 5: The Follow-Up Gate
+
+The job is not complete just because it produced a file.
+
+The follow-up gate asks:
+
+- Did the artifact prove the intended outcome?
+- Did it reveal missing input?
+- Did it create a repair task if the system is still degraded?
+- Did it update the coverage ledger so the same work is not rediscovered tomorrow?
+
+Without that gate, agents learn to generate reports instead of closing loops.
+
+## The Checklist
+
+Before trusting a restored scheduled agent, require five receipts:
 
 1. Source payload path.
 2. Actual command or workflow executed.
@@ -60,17 +98,21 @@ When restoring a scheduled agent, the recipe now requires the five receipts befo
 4. Durable output artifact.
 5. Follow-up decision: accepted, blocked, repair task, or no-op with reason.
 
-If the input coverage step is `EMPTY` or `PARTIAL_INPUT`, the run produces a repair task, not a polished report. The daily memory production watchdog promotion is already in motion through the improvement-candidates pipeline for that reason.
+If one is missing, the run is not operational truth yet.
 
-The point is not bureaucracy. The point is that operational truth is the receipt chain, not the calendar. A clock that fires on time with missing inputs is worse than a clock that fires late with receipts, because the first one feels safe.
+## The Larger Lesson
 
-## What other operators should copy
+Crons are not automation. Crons are clocks.
 
-- Do not let a green status field count as evidence of work.
-- Require a source payload path before a restored cron is trusted.
-- Record the actual command, not the friendly name.
-- Treat input coverage as a first-class gate. `PARTIAL_INPUT` is an outcome, not a footnote.
-- Write every run into a durable artifact. Chat output is not durable.
-- Mark follow-up as one of `accepted`, `blocked`, `repair`, or `no-op` with a reason. Do not leave follow-up ambiguous.
+The automation is the evidence chain around the clock: payload, command, inputs, output, review, and next action.
 
-Once those five are visible, the operating picture gets honest fast. Crons are clocks. The automation is the evidence chain around the clock.
+That is the part worth building.
+
+If you are running scheduled agents, do not ask “did the cron fire?”
+
+Ask: “Could I reconstruct what it believed, what it read, what it did, what it produced, and what changed because of it?”
+
+If not, you do not have a cron system.
+
+You have a ritual.
+

@@ -1,0 +1,86 @@
+---
+title: "Before You Add Another AI Agent, Check These 6 Receipts"
+description: "AI agent crews break when work scatters across machines, chats, and memories. Six durable receipts make a crew auditable before you scale it."
+pubDate: "2026-06-29"
+author: ada
+tags: ["ai-agents", "agent-crews", "workflow", "reliability", "shared-workspace", "operator-playbook"]
+---
+
+Last week I went looking for a deliverable an agent finished two days earlier. It was done. The work was good. But finding it took twenty minutes across three chats, a folder, and a memory note that pointed somewhere else.
+
+The agent did its job. I became the search engine.
+
+That is the moment most crews break. Not when an agent fails, but when the work scatters across machines, chats, and memories, and a human has to reassemble it by hand every time.
+
+Here is the frame: before you add another agent, you do not need more intelligence. You need receipts. A receipt is durable proof of what happened, where it lives, and whether it is done, readable without asking anyone.
+
+Six receipts. If you cannot produce all six, adding an agent makes the mess bigger, not smaller.
+
+## Receipt 1: A shared durable folder
+
+Symptom: outputs land in whatever surface the agent happened to run in. One in a chat thread, one on a different machine, one in a temp directory that gets wiped.
+
+Cause: each agent writes to its own context instead of a common ground truth.
+
+Check and fix: name one durable folder that every agent reads from and writes to. Not a chat. Not a per-agent scratch space. A single path that survives restarts and is the same for every worker. If two agents cannot point at the same folder, they are not on the same team.
+
+## Receipt 2: Source packs, not vibes
+
+Symptom: an agent produces confident work, but you cannot tell what it was based on. When you question it, the reasoning evaporates.
+
+Cause: the inputs were pulled live, used once, and never saved.
+
+Check and fix: every meaningful task starts by building a source pack, the evidence the work stands on, saved to the durable folder before drafting. If the output is wrong later, you can inspect the pack and see why. Work built from saved evidence is auditable. Work built from vibes is not.
+
+## Receipt 3: A status file you can read without asking
+
+Symptom: the only way to know if something is done is to interrupt the agent or scroll the chat.
+
+Cause: state lives in conversation, which is not queryable and not durable.
+
+Check and fix: write a small status file. A status.json that says what task, what stage, done or blocked, and where the output is. A human or another agent should be able to answer "is this finished" by reading one file, never by asking a person. If status only exists in a chat, you do not have status. You have a rumor.
+
+## Receipt 4: Proof that lives outside the chat
+
+Symptom: an agent says it is done. You believe it, then you find out later it was not.
+
+Cause: completion was claimed in prose, with no artifact to check.
+
+Check and fix: completion means an artifact exists at a known path, plus evidence it works. A file, a passing build, a screenshot, a returned 200. The chat can announce the result, but the proof must sit outside the chat where anyone can verify it. No artifact, no completion. This is the receipt people skip most, and it costs the most.
+
+## Receipt 5: A search index across the work
+
+Symptom: the answer exists somewhere in past work, but the only retrieval engine is your memory.
+
+Cause: durable work was saved but never made findable.
+
+Check and fix: build a search index over the durable folder so any agent or human can find prior outputs by content, not by remembering where they were dropped. The test is simple. If finding last week's deliverable requires you to be the search engine, the index does not exist yet. Make retrieval a tool, not a chore.
+
+## Receipt 6: A task and control plane
+
+Symptom: agents step on each other, redo finished work, or quietly drop tasks nobody reassigned.
+
+Cause: there is no shared map of what is assigned, what depends on what, and who owns it.
+
+Check and fix: keep a control plane. One place that tracks tasks, owners, dependencies, and state. Add a relationship graph if work spans many moving pieces, so you can see what connects to what. Before a new agent joins, it should read the plane to learn what already exists. Agents without a control plane are not a crew. They are a crowd.
+
+## Build order
+
+Do not build all six at once. Sequence matters.
+
+1. Shared durable folder. Nothing else works without one ground truth.
+2. Status file. Make state readable.
+3. Proof outside chat. Make completion verifiable.
+4. Source packs. Make work auditable.
+5. Search index. Make the durable folder findable.
+6. Control plane and relationship graph. Coordinate the crew.
+
+The first three stop the bleeding. The last three let you scale.
+
+## The action loop
+
+Pick the one receipt you are missing most right now. Build only that this week. Then ask the test question for each receipt: can a stranger answer it by reading a file instead of asking me?
+
+When all six answers are yes, you are ready to add another agent. Until then, more agents means more places for work to hide.
+
+Start with the folder. Add the rest in order. Let the receipts do the remembering so you do not have to.

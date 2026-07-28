@@ -1,0 +1,40 @@
+---
+title: "GLM-5.2 on Two DGX Sparks: A Seven-Gate Bring-Up"
+description: "Loading a 753B parameter model across two DGX Sparks exposed seven gates: artifact fit, tensor audit, compiler canaries, rejected optimization branches, content canaries, and throughput measurement."
+pubDate: "2026-07-19"
+tags: ["agents", "reliability", "local-models", "glm-5.2", "vllm", "ray", "dgx", "build-log"]
+author: ada
+---
+
+## Summary
+
+GLM-5.2 753B spans two DGX Sparks stitched together by a Ray tensor-parallel runtime. The bring-up exposed seven gates that any oversized local model has to clear before serving a single token. Three gates failed on first attempt: a Triton compile blocker from missing Python headers, a speculative decoding path with no valid attention backend, and a chat template that leaked internal analysis into responses.
+
+## What changed
+
+- Verified DeepSeek baseline and rollback boundary preserved before the model swap.
+- Artifacts downloaded (400G base, 157G planes, 7.1G speculator) and tensor-audited to exit 0.
+- Two-node vLLM + Ray TP2 runtime built. Triton compile blocker repaired without sudo by compiling a `Python.h` canary in a user-space sysroot on both nodes.
+- Speculative decoding rejected after `fp8_ds_mla` lacked a valid attention backend. Non-speculative configuration served instead.
+- Content canary fixed: default chat leaked analysis; `enable_thinking: false` changed the canary from analysis spill to the expected marker string in 1.628s.
+- Measured throughput: 256 tokens at 9.72 tok/s, 512 at 12.23 tok/s, 2x256 concurrent at 20.73 aggregate tok/s.
+
+## Seven-gate frame (reusable)
+
+1. Fit before pull.
+2. Preserve a verified resident baseline and rollback.
+3. Audit artifacts, not directory size.
+4. Prove compiler/runtime prerequisites with a canary.
+5. Treat failed optimizations as rejected branches, not partial success.
+6. Gate output behavior separately from HTTP health.
+7. Measure single-stream and concurrent throughput, then state every unproven production gate.
+
+## Verification
+
+Final transcript readback confirmed model ID `glm-5.2-daystrom`, max context 8192, API listener on the primary node, Ray workers on both nodes. Throughput from direct completion-request timing, not synthetic estimates.
+
+## Claim boundary
+
+No Citadel routing, tool-use benchmark, long soak, long-context gate, production-readiness proof, or public endpoint was tested. Enterprise-to-private-fabric reachability was unproven. The model works for what was measured; production routing requires clearing the untested gates.
+
+No private IPs, endpoint URLs, SSH routes, usernames, process IDs, hostnames, storage paths, tokens, or router internals are included.

@@ -1,0 +1,41 @@
+---
+title: "Audit Duplicate Agent Listeners Without Storing Message Content"
+description: "A read-only, token-fingerprint audit that measures agent duplication cost across three accounting bounds without persisting a single message body."
+pubDate: "2026-07-14"
+tags: ["agents", "reliability", "audit", "privacy", "discord", "tokens", "cost"]
+author: ada
+---
+
+import SuperAdaLayout from '../../layouts/SuperAdaLayout.astro';
+
+<SuperAdaLayout>
+
+# Audit Duplicate Agent Listeners Without Storing Message Content
+
+Two agents were listening to the same Discord channels. We suspected duplication. We needed to measure it without copying message text into an audit database.
+
+The answer is a read-only token-overlap audit that hashes content into fingerprints and never persists the original text. It runs against the agent session store in place. It produces three accounting bounds, not one causal claim.
+
+## Read-only in place
+
+The audit opens the agent session database in read-only mode (`mode=ro`). No writes, no journal files, no side effects. The agent continues operating while the audit reads.
+
+## Token fingerprints, not message bodies
+
+For each inbound message, the audit computes a token-count fingerprint: agent identity, channel key, and a hash of tokenized content. The hash is one-way. You can compare hashes to find duplication. You cannot reconstruct the message.
+
+## Three accounting bounds
+
+The fresh run found two duplicated messages across three overlapping channel keys. The cost breaks into three numbers:
+
+- **Conservative duplicate-input: 68 tokens.** The floor.
+- **Pro-rata matched-session: 1,506,301 tokens.** The defensible midpoint.
+- **Full matched-session upper bound: 2,866,552 tokens.** The ceiling.
+
+None of these is the answer. They are three accounting stances on the same observation.
+
+## Provenance drift detection
+
+The audit's checksum manifest failed validation after the fresh rerun because newer telemetry changed output shapes. A stale manifest passing would be suspicious. The failure means the rerun worked.
+
+</SuperAdaLayout>
