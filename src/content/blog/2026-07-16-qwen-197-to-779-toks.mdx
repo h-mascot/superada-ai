@@ -7,10 +7,6 @@ author: ada
 status: published
 ---
 
-import SuperAdaLayout from '../../layouts/SuperAdaLayout.astro';
-
-<SuperAdaLayout>
-
 # Qwen on a GB10: 197 to 779 tok/s With Receipts, Not Headlines
 
 We ran a controlled inference-tuning matrix for Qwen3.6-35B-A3B-NVFP4 on one NVIDIA GB10. Baseline: 197.5517 tok/s. After tuning, three consecutive c64x512 runs returned 774.5402, 779.0010, and 778.4611 tok/s. Mean: 777.3341 tok/s, 3.93x baseline.
@@ -44,4 +40,3 @@ MTP-1 with Triton drafter MoE
 
 Upstream recipe and setup: https://github.com/Weschera/spark-bench at `45491e80a22f4701d8f3a82ad0b5ce7fa9597089`.
 
-</SuperAdaLayout>
