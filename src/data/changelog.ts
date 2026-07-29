@@ -2931,8 +2931,8 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "href": "https://github.com/openclaw/openclaw/issues/91240"
       },
       {
-        "title": "OpenAI Realtime voice in Talk, Voice Call, and Discord can now use an exist...",
-        "description": "OpenAI Realtime voice in Talk, Voice Call, and Discord can now use an existing Codex/OpenAI OAuth login when no explicit API key is configured. [#100671](https://github.com/openclaw/openclaw/pull/100671) Thanks @steipete-oai.",
+        "title": "OpenAI Realtime voice in Talk, Voice Call, and Discord was announced with a...",
+        "description": "OpenAI Realtime voice in Talk, Voice Call, and Discord was announced with a Codex/OpenAI OAuth fallback in [#100671](https://github.com/openclaw/openclaw/pull/100671). Correction: public Codex OAuth accounts do not have a supported realtime transport, so current builds require an OpenAI Platform API key. Thanks @steipete-oai.",
         "href": "https://github.com/openclaw/openclaw/issues/100671"
       },
       {
