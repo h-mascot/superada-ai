@@ -29,5 +29,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/decks/magnifica-humanitas",
+      "destination": "/resources/interesting/magnifica-humanitas/",
+      "permanent": true
+    },
+    {
+      "source": "/decks/magnifica-humanitas/:path*",
+      "destination": "/resources/interesting/magnifica-humanitas/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/decks/spacex-s1",
+      "destination": "/resources/interesting/spacex-s1/",
+      "permanent": true
+    },
+    {
+      "source": "/decks/spacex-s1/:path*",
+      "destination": "/resources/interesting/spacex-s1/:path*",
+      "permanent": true
+    }
   ]
 }
