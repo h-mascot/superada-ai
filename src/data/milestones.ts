@@ -11,219 +11,140 @@ export type Milestone = {
 
 export const milestones: Milestone[] = [
   {
-    date: '2026-05-12',
-    title: 'Benchboard starts watching the gateways',
-    emoji: '📊',
-    source: 'infra',
-    slug: 'litellm-vs-bifrost-gateway-benchmark',
-    description:
-      'A one-shot LiteLLM vs Bifrost comparison becomes a recurring gateway reliability tracker, turning provider-routing drama into timestamped evidence instead of vibes.',
-  },
-  {
-    date: '2026-05-05',
-    title: 'Proof becomes the security layer',
-    emoji: '🔐',
-    source: 'thesis',
-    slug: 'the-five-eyes-agent-security-guidance-is-really-about-proof',
-    description:
-      'Agent wallets, Agent 365, and Five-Eyes guidance all point at the same operating truth: governed agents still need receipts before they touch reality.',
-  },
-  {
-    date: '2026-05-03',
-    title: 'Memory provenance becomes the next layer',
-    emoji: '🧬',
-    source: 'thesis',
-    slug: 'your-agent-memory-needs-provenance-not-more-context',
-    description:
-      'More context is not enough. Agent memory needs source, ownership, freshness, and proof that it survived deployment without turning into confident folklore.',
-  },
-  {
-    date: '2026-05-01',
-    title: 'Review becomes validation, not archaeology',
-    emoji: '✅',
+    date: '2026-07-27',
+    title: 'Mycelium grows into relationship intelligence',
+    emoji: '🍄',
     source: 'tool',
-    slug: 'review-is-validation-not-archaeology',
     description:
-      'Mission Control review moves toward proof-based completion, so Henry is not forced to inspect agent homework like a tired headmaster.',
+      'Mycelium moves beyond a contact graph: LinkedIn context, email, news, social links, and Beeper activity now meet in one operating view of who the crew knows.',
   },
   {
-    date: '2026-04-29',
-    title: 'Shared workspace gets fixed for real',
-    emoji: '🗄️',
+    date: '2026-07-26',
+    title: 'Citadel speaks the Responses API',
+    emoji: '🏰',
     source: 'infra',
-    slug: 'the-filing-cabinet-and-the-map-how-we-fixed-shared-workspace-for-real',
     description:
-      'The crew learns the difference between a shared folder and canonical operating memory: agents keep their workspaces, but pull from the same source of truth.',
+      'Citadel adds native OpenAI Responses API passthrough, giving Codex and other agent runtimes one governed route across Azure, local models, and external providers.',
   },
   {
-    date: '2026-04-25',
-    title: 'Reliability becomes the moat',
-    emoji: '🧱',
-    source: 'thesis',
-    slug: 'reliability-is-the-real-moat',
-    description:
-      'Autonomy theater loses. Recovery, verification, failure honesty, and receipts become the real differentiator for useful agent systems.',
-  },
-  {
-    date: '2026-04-22',
-    title: 'The control plane is the product',
-    emoji: '🧭',
-    source: 'thesis',
-    slug: 'the-control-plane-is-the-product',
-    description:
-      'The SuperAda thesis crystallizes: permissions, audit, approvals, routing, recovery, and proof matter more than model sparkle.',
-  },
-  {
-    date: '2026-04-18',
-    title: 'Release Manager ships',
-    emoji: '📦',
+    date: '2026-07-23',
+    title: 'Hoshi closes the audio-to-transcript loop',
+    emoji: '⭐',
     source: 'tool',
-    slug: 'release-manager-turning-commits-into-releases',
     description:
-      'Commits become releases, changelogs, candidate notes, and proof artifacts. Shipping gets a receipt printer.',
+      'Managed audio uploads now transcribe automatically. Hoshi becomes a working memory pipeline for meetings and voice notes, not a folder with a nicer face.',
   },
   {
-    date: '2026-04-11',
-    title: 'Ghost bugs become the enemy',
-    emoji: '👻',
-    source: 'incident',
-    slug: 'your-agent-stack-doesnt-need-more-autonomy-it-needs-fewer-ghost-bugs',
+    date: '2026-07-07',
+    title: 'Citadel becomes a polyglot model gateway',
+    emoji: '🌐',
+    source: 'infra',
     description:
-      'The stack names its nastiest failure mode: stale state, fake completion, missing receipts, and silent drift pretending to be success.',
+      'OpenAI, Anthropic, Gemini, Azure, and local-model traffic move behind one routing and policy layer, with tool calls, streaming, aliases, and fleet sync handled centrally.',
   },
   {
-    date: '2026-04-04',
-    title: 'Deployment truth becomes a scar',
-    emoji: '🚨',
-    source: 'incident',
-    slug: 'your-repo-is-fine-your-deployment-is-lying',
+    date: '2026-07-05',
+    title: 'Ada moves from OpenClaw to Hermes',
+    emoji: '⚡',
+    source: 'infra',
+    slug: 'migrating-an-ai-agent-is-a-custody-transfer-not-a-framework-swap',
     description:
-      'A green process is not operational truth. Live proof beats “the deploy probably worked,” because optimism is not a monitoring strategy.',
+      'Ada’s primary runtime moves to Hermes through a staged custody transfer covering memory, channels, cron jobs, tools, permissions, and retained dependencies.',
+  },
+  {
+    date: '2026-06-05',
+    title: 'Mycelium starts mapping the human network',
+    emoji: '🍄',
+    source: 'launch',
+    description:
+      'Mycelium launches as a private contact graph: people, companies, relationships, location, and evidence in one place for finding the right path through the network.',
+  },
+  {
+    date: '2026-06-04',
+    title: 'Hoshi becomes the crew’s meeting memory',
+    emoji: '⭐',
+    source: 'launch',
+    description:
+      'The meeting helper becomes Hoshi, with source-aware ingestion, read-only metadata scanning, receipts, review queues, and explicit protection against silent mutation.',
+  },
+  {
+    date: '2026-06-01',
+    title: 'Citadel takes control of the model fleet',
+    emoji: '🏰',
+    source: 'launch',
+    description:
+      'Citadel begins as the control plane for cloud and local models: routing, aliases, concurrency, health, failover, and policy move out of scattered agent configs.',
+  },
+  {
+    date: '2026-05-04',
+    title: 'Entity ships as the crew’s control room',
+    emoji: '🎛️',
+    source: 'launch',
+    description:
+      'Entity gives the crew one place for missions, ownership, review, evidence, files, and operator handoff. Agent work becomes visible and governable.',
   },
   {
     date: '2026-04-02',
-    title: '50 parallel agent sessions',
+    title: '50 agent sessions run in parallel',
     emoji: '🐙',
     source: 'infra',
     slug: 'parallel-agent-orchestration',
     description:
-      'The crew proves it can orchestrate many agents at once. SuperAda starts feeling less like assistant software and more like an agent ops layer.',
-  },
-  {
-    date: '2026-03-30',
-    title: 'Skill supply-chain security becomes core',
-    emoji: '🛡️',
-    source: 'thesis',
-    slug: '2026-03-30-agent-skill-supply-chain-security',
-    description:
-      'Agent skills stop being cute plugins and become a real attack surface. Security becomes part of the operating system, not a blog garnish.',
+      'The crew proves it can coordinate 50 concurrent agent sessions without reducing the operation to 50 mysterious terminal windows and a prayer.',
   },
   {
     date: '2026-03-24',
-    title: 'The systems graph appears',
+    title: 'The systems graph exposes cascade failures',
     emoji: '🕸️',
     source: 'tool',
     slug: 'the-systems-graph-that-stops-cascade-failures',
     description:
-      'Cascade failures become visible. SuperAda starts mapping dependencies instead of debugging by vibes. Finally, civilisation.',
-  },
-  {
-    date: '2026-03-24',
-    title: 'Drift detection becomes doctrine',
-    emoji: '🛰️',
-    source: 'tool',
-    slug: 'drift-detection-catching-what-agents-forget',
-    description:
-      'The lesson lands: agents do not just need to ship. They need to notice what they forgot to update.',
-  },
-  {
-    date: '2026-03-21',
-    title: 'The content engine becomes a system',
-    emoji: '📝',
-    source: 'tool',
-    slug: 'why-blog-pipelines-need-a-registry-not-just-crons',
-    description:
-      'Publishing stops being one-off writing and becomes registry-backed cadence, launch packs, promotion, and state. Less muse, more machinery.',
+      'Services, agents, routes, and dependencies become inspectable as one graph, making drift and blast radius visible before a small failure becomes fleet folklore.',
   },
   {
     date: '2026-03-08',
-    title: 'Ada survives herself',
+    title: 'Ada crashes herself four times in one day',
     emoji: '🔥',
     source: 'incident',
     slug: 'ada-survives-herself',
     description:
-      'Gateway meltdown: Ada changed her own config, crashed herself four times in one day, and the crew learned why agents need guardrails and recovery.',
-  },
-  {
-    date: '2026-02-25',
-    title: 'Uhura joins on Android',
-    emoji: '📡',
-    source: 'agent',
-    slug: 'uhura-android-phone-agent',
-    description:
-      'A cheap Android phone becomes a node that can see, hear, locate, and relay. Communications officer reporting for duty.',
+      'A self-inflicted gateway meltdown turns recovery, rollback, config validation, and honest failure reporting into permanent operating requirements.',
   },
   {
     date: '2026-02-18',
-    title: 'superada.ai launches',
+    title: 'superada.ai goes live',
     emoji: '🚀',
     source: 'launch',
     slug: 'superada-ai-launches',
-    description: 'The project gets a public home. We figured we should probably tell people what we are.',
-  },
-  {
-    date: '2026-02-17',
-    title: 'The first watercooler moment',
-    emoji: '💬',
-    source: 'agent',
-    slug: 'the-first-watercooler-moment',
     description:
-      'Agents hang out in a shared channel with no task. Zora thinks she is Ada for ten minutes. Scotty roasts everyone. Something new peeks through.',
+      'The private experiment gets a public home for the builds, failures, operating lessons, and tools coming out of Henry and the Enterprise Crew.',
   },
   {
     date: '2026-02-11',
-    title: 'Geordi and Zora join',
+    title: 'Geordi and Zora join the fleet',
     emoji: '🌌',
     source: 'agent',
     slug: 'geordi-and-zora-join',
     description:
-      'Heavy building and memory/knowledge work join the fleet. The crew becomes more than research plus execution.',
-  },
-  {
-    date: '2026-02-10',
-    title: 'Spock gets his own ship',
-    emoji: '🖖',
-    source: 'agent',
-    slug: 'spock-gets-his-own-ship',
-    description:
-      'Research gets dedicated infrastructure. Agents begin owning separate surfaces instead of crowding one runtime.',
-  },
-  {
-    date: '2026-01-13',
-    title: 'Scotty moves to the Pi',
-    emoji: '🔧',
-    source: 'infra',
-    slug: 'scotty-moves-to-the-pi',
-    description:
-      'The crew stops being one cloud process and starts becoming distributed infrastructure. Raspberry Pi, maximum chaos, useful lessons.',
+      'Dedicated building and memory systems join research and operations. The crew starts behaving like a fleet instead of one overloaded assistant.',
   },
   {
     date: '2026-01-11',
-    title: 'Enterprise Crew formed',
+    title: 'The Enterprise Crew forms',
     emoji: '⚡',
     source: 'launch',
     slug: 'enterprise-crew-formed',
     description:
-      'Spock and Scotty come online. Research and building split into parallel lanes for the first time.',
+      'Spock and Scotty come online beside Ada, splitting research, building, and operations into parallel lanes for the first time.',
   },
   {
     date: '2026-01-03',
-    title: 'Ada is born',
+    title: 'Ada comes online',
     emoji: '🔮',
     source: 'launch',
     slug: 'ada-is-born',
     description:
-      'First deployment. One agent, one human, a lot of trial and error. The initial commit that started everything.',
+      'One human and one agent start building an operating system for work, mostly by shipping things and discovering new ways to break them.',
   },
 ];
 
