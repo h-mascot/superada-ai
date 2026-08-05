@@ -1,0 +1,45 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ScrollWorld from '../components/ScrollWorld.astro';
+import { softwareFactoryWorld } from '../data/scrollWorlds';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="The Software Factory | SuperAda" description="Follow a customer brief through planning, specialist agent build stations, test loops, security gates, deployment and production monitoring." />
+  </head>
+  <body class="factory-page">
+    <Header />
+    <main>
+      <ScrollWorld world={softwareFactoryWorld} />
+      <section class="factory-afterword">
+        <span>THE OPERATING CONTRACT</span>
+        <h1>Software should move through a system, not a séance.</h1>
+        <p>Every station has an input, owner, output and proof boundary. The factory is a product story and an execution model: what enters, who acts, what fails, what ships and how production reports back.</p>
+        <div class="factory-links">
+          <a href="/workflows">Browse workflows</a>
+          <a href="/resources/tools">Inspect the tools</a>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  :global(body.factory-page) { overflow-x:hidden; background:#050403; }
+  :global(.factory-page .site-header) { position:fixed; inset:0 0 auto; z-index:200; border:0; background:linear-gradient(180deg,rgba(5,4,3,.92),rgba(5,4,3,.35) 72%,transparent); backdrop-filter:none; }
+  :global(.factory-page .site-logo),:global(.factory-page .nav-link){color:#f5e9d4}
+  .factory-afterword { max-width:850px; margin:0 auto; padding:110px 24px 120px; text-align:center; }
+  .factory-afterword>span { color:var(--accent); font:800 10px ui-monospace,monospace; letter-spacing:.18em; }
+  .factory-afterword h1 { margin:18px auto; color:#f6ead7; font:500 clamp(40px,6vw,74px)/.98 Georgia,serif; letter-spacing:-.05em; }
+  .factory-afterword p { max-width:670px; margin:0 auto; color:#b7aa97; font-size:17px; line-height:1.7; }
+  .factory-links { margin-top:30px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .factory-links a { padding:13px 18px; border:1px solid #4b3826; border-radius:999px; color:#f1bb70; text-decoration:none; }
+  .factory-links a:hover { border-color:var(--accent); }
+  :global(.factory-page .site-footer) { background:#080604; border-color:#2d2118; }
+  :global(.factory-page .site-footer p),:global(.factory-page .site-footer a) { color:#b7aa97; }
+</style>

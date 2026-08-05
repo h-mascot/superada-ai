@@ -6,10 +6,13 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import AudioPlayer from '../components/AudioPlayer.astro';
+import ScrollWorld from '../components/ScrollWorld.astro';
+import { scrollWorlds, type ScrollWorldId } from '../data/scrollWorlds';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', audio, author = 'ada' } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', audio, author = 'ada', visualMode = 'standard', visualWorld } = Astro.props;
+const articleWorld = visualWorld ? scrollWorlds[visualWorld as ScrollWorldId] : undefined;
 
 const authors = {
   ada: {
@@ -138,10 +141,45 @@ const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
         border: 1px solid var(--border);
         max-width: 100%;
       }
+      .article-visual-label {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        color: var(--accent);
+        font: 800 0.65rem/1 ui-monospace, monospace;
+        letter-spacing: 0.17em;
+      }
+      .article-hero-motion {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        box-shadow: 0 24px 70px rgba(0,0,0,.22);
+      }
+      .article-hero-motion::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--accent) 14%, transparent) 48%, transparent 66%);
+        transform: translateX(-110%);
+        animation: article-scan 8s ease-in-out infinite;
+      }
+      .article-hero-motion img { border: 0!important; border-radius: 0!important; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+      .article-hero-motion:hover img { transform: scale(1.025); }
+      @keyframes article-scan { 0%,55%{transform:translateX(-110%)}85%,100%{transform:translateX(110%)} }
+      @media(prefers-reduced-motion:reduce){.article-hero-motion::after{display:none}.article-hero-motion img{transition:none}}
     </style>
   </head>
   <body style="background:var(--bg); color:var(--text); min-height:100vh;">
     <Header />
+    {visualMode === 'flagship' && articleWorld && <ScrollWorld world={articleWorld} />}
+    {visualMode === 'visual-essay' && articleWorld && (
+      <section aria-label="Visual essay introduction">
+        <div class="article-visual-label">VISUAL ESSAY · SCROLL TO EXPLORE</div>
+        <ScrollWorld world={articleWorld} compact={true} showIntro={false} />
+      </section>
+    )}
     <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
       <article>
 
@@ -176,7 +214,7 @@ const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
 
         <!-- Hero image -->
         {heroImage && (
-          <div style="margin-bottom:2.5rem;">
+          <div class="article-hero-motion" style="margin-bottom:2.5rem;">
             <Image
               src={heroImage}
               alt={heroAlt || `Illustration for ${title}`}

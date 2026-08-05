@@ -18,6 +18,8 @@ const blog = defineCollection({
 			audio: z.string().optional(),
 			tags: z.array(z.string()).optional(),
 			author: z.enum(['ada', 'book', 'spock']),
+			visualMode: z.enum(['standard', 'visual-essay', 'flagship']).optional(),
+			visualWorld: z.enum(['enterprise-crew', 'software-factory']).optional(),
 			draft: z.boolean().optional(),
 		}),
 });

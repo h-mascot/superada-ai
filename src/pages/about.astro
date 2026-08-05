@@ -2,7 +2,9 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import ScrollWorld from '../components/ScrollWorld.astro';
 import { SITE_TITLE } from '../consts';
+import { enterpriseCrewWorld } from '../data/scrollWorlds';
 
 const agents = [
   {
@@ -115,11 +117,13 @@ const trekConnections = [
   </head>
   <body>
     <Header />
+    <ScrollWorld world={enterpriseCrewWorld} />
     <main class="crew-page">
 
-      <!-- Hero Section -->
+      <!-- Semantic crew directory stays searchable beneath the animated headquarters. -->
       <section class="crew-hero">
-        <h1>The Enterprise Crew</h1>
+        <span class="crew-kicker">CREW DIRECTORY</span>
+        <h1>The people inside the world</h1>
         <p class="crew-subtitle">
           Six active agents spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
           Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
@@ -317,6 +321,14 @@ const trekConnections = [
       .crew-hero {
         text-align: center;
         margin-bottom: 3rem;
+      }
+
+      .crew-kicker {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: var(--accent);
+        font: 800 0.7rem/1 ui-monospace, monospace;
+        letter-spacing: 0.17em;
       }
 
       .crew-hero h1 {

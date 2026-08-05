@@ -1,0 +1,26 @@
+---
+type Props = {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  image?: string;
+  accent?: string;
+};
+const { eyebrow = 'VISUAL CHAPTER', title, body, image, accent = '#e58a1f' } = Astro.props;
+---
+
+<aside class="inline-scroll-chapter" style={`--chapter-accent:${accent};--chapter-image:${image ? `url('${image}')` : 'none'}`} aria-label={title}>
+  <div class="inline-chapter-art" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+  <div class="inline-chapter-copy"><small>{eyebrow}</small><h2>{title}</h2>{body && <p>{body}</p>}<slot /></div>
+</aside>
+
+<style>
+  .inline-scroll-chapter { position:relative; min-height:62vh; margin:4rem calc(50% - 50vw); padding:clamp(32px,7vw,90px) max(24px,calc((100vw - 800px)/2)); display:grid; grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr); align-items:center; gap:clamp(30px,6vw,90px); overflow:hidden; background:radial-gradient(circle at 25% 50%,color-mix(in srgb,var(--chapter-accent) 24%,#080604),#080604 62%); color:#f7ead7; }
+  .inline-chapter-art { position:relative; min-height:390px; background:linear-gradient(90deg,rgba(8,6,4,.2),transparent),var(--chapter-image) center/cover no-repeat; transform:perspective(800px) rotateY(calc((.5 - var(--chapter-progress, .5))*8deg)); }
+  .inline-chapter-art i { position:absolute; inset:12%; border:1px solid color-mix(in srgb,var(--chapter-accent) 42%,transparent); border-radius:50%; }
+  .inline-chapter-art i:nth-child(2){inset:24%;border-style:dashed}.inline-chapter-art i:nth-child(3){inset:36%}
+  .inline-chapter-art span{position:absolute;left:50%;top:50%;width:88px;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:28px;background:var(--chapter-accent);box-shadow:0 0 80px color-mix(in srgb,var(--chapter-accent) 38%,transparent)}
+  .inline-chapter-copy small{color:var(--chapter-accent);font:800 9px ui-monospace,monospace;letter-spacing:.17em}.inline-chapter-copy h2{margin:14px 0;color:#f7ead7;font:500 clamp(36px,5vw,64px)/.98 Georgia,serif;letter-spacing:-.05em}.inline-chapter-copy p{color:#b7aa97;line-height:1.7}
+  @media(max-width:700px){.inline-scroll-chapter{grid-template-columns:1fr;margin:3rem -1.5rem;padding:55px 24px}.inline-chapter-art{min-height:270px;order:2}}
+  @media(prefers-reduced-motion:reduce){.inline-chapter-art{transform:none}}
+</style>

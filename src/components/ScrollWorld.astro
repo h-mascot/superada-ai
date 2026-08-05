@@ -1,0 +1,286 @@
+---
+import type { ScrollWorldManifest } from '../data/scrollWorlds';
+
+type Props = {
+  world: ScrollWorldManifest;
+  compact?: boolean;
+  showIntro?: boolean;
+};
+
+const { world, compact = false, showIntro = true } = Astro.props;
+const sceneCount = world.scenes.length;
+---
+
+<section class:list={["scroll-world-engine", { "is-compact": compact }]} data-scroll-world={world.id} style={`--scene-count:${sceneCount}`} aria-label={world.ariaLabel}>
+  <div class="scroll-world-stage">
+    <div class="scroll-world-grain" aria-hidden="true"></div>
+    <div class="scroll-world-progress" aria-hidden="true"><span></span></div>
+
+    {showIntro && (
+      <div class="scroll-world-title" aria-hidden="true">
+        <span>SCROLL WORLD</span>
+        <b>{world.title}</b>
+      </div>
+    )}
+
+    <div class="scroll-world-scenes" aria-hidden="true">
+      {world.scenes.map((scene, sceneIndex) => (
+        <div
+          class:list={["scroll-world-scene", `scene-${scene.id}`, { "is-active": sceneIndex === 0 }]}
+          data-world-scene={sceneIndex}
+          style={`--scene-accent:${scene.accent};--scene-accent-soft:${scene.accentSoft}`}
+        >
+          {scene.desktopVideo ? (
+            <video class="scene-video scene-video-desktop" muted playsinline preload={sceneIndex < 2 ? 'metadata' : 'none'} poster={scene.poster} data-scrub-video>
+              <source src={scene.desktopVideo} type="video/mp4" />
+            </video>
+          ) : null}
+          {scene.mobileVideo ? (
+            <video class="scene-video scene-video-mobile" muted playsinline preload={sceneIndex < 2 ? 'metadata' : 'none'} poster={scene.poster} data-scrub-video>
+              <source src={scene.mobileVideo} type="video/mp4" />
+            </video>
+          ) : null}
+          <div class="scene-backdrop" style={scene.poster ? `--scene-poster:url('${scene.poster}')` : undefined}></div>
+          <div class="scene-grid"></div>
+          <div class="scene-halo halo-one"></div>
+          <div class="scene-halo halo-two"></div>
+          <div class="scene-rail rail-one"></div>
+          <div class="scene-rail rail-two"></div>
+          <div class="scene-diorama">
+            {scene.nodes.map((node, nodeIndex) => (
+              <div class="scene-node" style={`--node-index:${nodeIndex};--node-count:${scene.nodes.length}`}>
+                <div class="scene-node-face">
+                  {node.image ? <img src={node.image} alt="" loading={sceneIndex === 0 ? 'eager' : 'lazy'} /> : <i>{String(nodeIndex + 1).padStart(2, '0')}</i>}
+                  <b>{node.label}</b>
+                  {node.meta && <span>{node.meta}</span>}
+                </div>
+              </div>
+            ))}
+            <div class="scene-core"><span>{scene.number}</span><i></i></div>
+          </div>
+          <div class="scene-vignette"></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="scroll-world-copy">
+      {world.scenes.map((scene, sceneIndex) => (
+        <article class:list={["scroll-world-chapter", { "is-active": sceneIndex === 0 }]} data-world-copy={sceneIndex} aria-hidden={sceneIndex === 0 ? 'false' : 'true'}>
+          <div class="chapter-eyebrow"><span>{scene.number}</span>{scene.eyebrow}</div>
+          <p class="chapter-title">{scene.title}</p>
+          <p>{scene.body}</p>
+          {scene.cta && <a href={scene.cta.href} tabindex={sceneIndex === 0 ? 0 : -1}>{scene.cta.label}<span aria-hidden="true">↗</span></a>}
+        </article>
+      ))}
+    </div>
+
+    <nav class="scroll-world-nav" aria-label={`${world.title} chapters`}>
+      {world.scenes.map((scene, sceneIndex) => (
+        <button type="button" data-world-jump={sceneIndex} aria-label={`Go to ${scene.eyebrow}`} class:list={{ "is-active": sceneIndex === 0 }}>
+          <span>{scene.number}</span><b>{scene.eyebrow}</b>
+        </button>
+      ))}
+    </nav>
+
+    <div class="scroll-world-counter" aria-live="polite"><b>01</b><span>/ {String(sceneCount).padStart(2, '0')}</span></div>
+    <div class="scroll-world-hint" aria-hidden="true"><span>SCROLL TO FLY</span><i></i></div>
+  </div>
+
+</section>
+
+<script is:inline>
+  (() => {
+    const roots = [...document.querySelectorAll('[data-scroll-world]')];
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+
+    roots.forEach((root) => {
+      if (root.dataset.worldReady === 'true') return;
+      root.dataset.worldReady = 'true';
+      const scenes = [...root.querySelectorAll('[data-world-scene]')];
+      const copies = [...root.querySelectorAll('[data-world-copy]')];
+      const jumps = [...root.querySelectorAll('[data-world-jump]')];
+      const progress = root.querySelector('.scroll-world-progress span');
+      const counter = root.querySelector('.scroll-world-counter b');
+      const count = scenes.length;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let ticking = false;
+      let active = -1;
+
+      const seekVideos = (scene, local, opacity) => {
+        scene.querySelectorAll('[data-scrub-video]').forEach((video) => {
+          if (opacity < 0.03) return;
+          if (video.readyState === 0) {
+            video.preload = 'metadata';
+            video.load();
+            return;
+          }
+          if (!Number.isFinite(video.duration)) return;
+          const nextTime = clamp(local) * Math.max(0, video.duration - 0.04);
+          if (Math.abs(video.currentTime - nextTime) > 0.035) {
+            try { video.currentTime = nextTime; } catch (_) {}
+          }
+        });
+      };
+
+      const update = () => {
+        const rect = root.getBoundingClientRect();
+        const range = Math.max(1, root.offsetHeight - window.innerHeight);
+        const p = clamp(-rect.top / range);
+        const scaled = p * Math.max(1, count - 1);
+        const nextActive = Math.min(count - 1, Math.round(scaled));
+        root.dataset.viewportWidth = String(document.documentElement.clientWidth);
+        root.dataset.documentWidth = String(document.documentElement.scrollWidth);
+        progress?.style.setProperty('transform', `scaleX(${p})`);
+
+        scenes.forEach((scene, index) => {
+          const distance = Math.abs(scaled - index);
+          const opacity = clamp(1 - distance * 1.6);
+          const local = clamp(scaled - index + 0.5);
+          scene.style.setProperty('--world-local', local.toFixed(4));
+          scene.style.setProperty('--world-opacity', opacity.toFixed(4));
+          scene.style.zIndex = String(30 - Math.round(distance * 3));
+          scene.classList.toggle('is-active', index === nextActive);
+          seekVideos(scene, local, opacity);
+        });
+
+        copies.forEach((copy, index) => {
+          const delta = scaled - index;
+          const opacity = clamp(1 - Math.abs(delta) * 2.8);
+          copy.style.setProperty('--copy-opacity', opacity.toFixed(4));
+          copy.style.setProperty('--copy-shift', `${clamp(delta, -1, 1) * -28}px`);
+          copy.classList.toggle('is-active', index === nextActive);
+          const isAvailable = reduceMotion || index === nextActive;
+          copy.setAttribute('aria-hidden', String(!isAvailable));
+          copy.querySelectorAll('a,button').forEach((control) => control.setAttribute('tabindex', isAvailable ? '0' : '-1'));
+        });
+
+        if (active !== nextActive) {
+          active = nextActive;
+          jumps.forEach((jump, index) => jump.classList.toggle('is-active', index === active));
+          if (counter) counter.textContent = String(active + 1).padStart(2, '0');
+        }
+        ticking = false;
+      };
+
+      const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      };
+
+      jumps.forEach((jump, index) => jump.addEventListener('click', () => {
+        const top = root.getBoundingClientRect().top + window.scrollY;
+        const range = root.offsetHeight - window.innerHeight;
+        window.scrollTo({ top: top + range * (index / Math.max(1, count - 1)), behavior: 'smooth' });
+      }));
+
+      root.querySelectorAll('video').forEach((video) => video.addEventListener('loadedmetadata', requestUpdate));
+      addEventListener('scroll', requestUpdate, { passive: true });
+      addEventListener('resize', requestUpdate, { passive: true });
+      update();
+
+      const requestedScene = Number(new URL(window.location.href).searchParams.get('scene'));
+      if (Number.isInteger(requestedScene) && requestedScene >= 1 && requestedScene <= count) {
+        requestAnimationFrame(() => {
+          const top = root.getBoundingClientRect().top + window.scrollY;
+          const range = root.offsetHeight - window.innerHeight;
+          window.scrollTo({ top: top + range * ((requestedScene - 1) / Math.max(1, count - 1)), behavior: 'auto' });
+          requestUpdate();
+        });
+      }
+    });
+  })();
+</script>
+
+<style>
+  .scroll-world-engine { --sw-cream:#f6ead7; --sw-muted:#b7aa97; position:relative; height:calc(var(--scene-count) * 105vh); min-height:420vh; background:#050403; color:var(--sw-cream); }
+  .scroll-world-engine.is-compact { height:calc(var(--scene-count) * 82vh); }
+  .scroll-world-stage { position:sticky; top:0; height:100svh; overflow:hidden; isolation:isolate; background:#070504; }
+  .scroll-world-grain { position:absolute; inset:-45%; z-index:80; opacity:.055; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E"); animation:sw-grain .24s steps(2) infinite; }
+  @keyframes sw-grain { 25%{transform:translate(1.5%,-1%)}50%{transform:translate(-1%,1.7%)}75%{transform:translate(.7%,.5%)} }
+  .scroll-world-progress { position:absolute; z-index:100; inset:0 0 auto; height:2px; background:rgba(255,255,255,.08); }
+  .scroll-world-progress span { display:block; width:100%; height:100%; transform:scaleX(0); transform-origin:left; background:linear-gradient(90deg,#c86c14,#f5bd70,#f6ead7); box-shadow:0 0 18px #e58a1f; }
+  .scroll-world-title { position:absolute; z-index:65; top:108px; left:clamp(20px,4vw,68px); display:grid; gap:5px; pointer-events:none; }
+  .scroll-world-title span { color:#d38432; font:800 8px/1 ui-monospace,monospace; letter-spacing:.2em; }
+  .scroll-world-title b { color:rgba(246,234,215,.7); font:500 12px/1.2 Georgia,serif; }
+  .scroll-world-scenes,.scroll-world-scene { position:absolute; inset:0; }
+  .scroll-world-scene { opacity:var(--world-opacity,0); overflow:hidden; background:radial-gradient(circle at 69% 45%,var(--scene-accent-soft),#070504 66%); pointer-events:none; will-change:opacity; }
+  .scene-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.88; }
+  .scene-video-mobile { display:none; }
+  .scene-backdrop { position:absolute; inset:-6%; background:linear-gradient(110deg,rgba(6,4,3,.98) 4%,rgba(6,4,3,.5) 42%,transparent 73%),linear-gradient(0deg,#070504 0%,transparent 48%),var(--scene-poster,none) center/cover no-repeat; opacity:.36; transform:scale(calc(1.02 + var(--world-local)*.08)) translate(calc(var(--world-local)*-1.8vw),calc(var(--world-local)*1vh)); filter:saturate(.7) contrast(1.1); }
+  .scene-grid { position:absolute; left:33%; right:-12%; top:34%; bottom:-42%; transform-origin:50% 0; transform:perspective(760px) rotateX(64deg) rotateZ(calc(-8deg + var(--world-local)*7deg)) translateY(calc(var(--world-local)*-7vh)) scale(calc(.83 + var(--world-local)*.34)); background-image:linear-gradient(color-mix(in srgb,var(--scene-accent) 16%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--scene-accent) 16%,transparent) 1px,transparent 1px); background-size:52px 52px; mask-image:linear-gradient(#000,transparent 88%); }
+  .scene-halo { position:absolute; left:70%; top:45%; width:min(61vw,880px); aspect-ratio:1; border:1px solid color-mix(in srgb,var(--scene-accent) 28%,transparent); border-radius:50%; transform:translate(-50%,-50%) rotate(calc(var(--world-local)*72deg)) scale(calc(.66 + var(--world-local)*.5)); box-shadow:0 0 110px color-mix(in srgb,var(--scene-accent) 11%,transparent); }
+  .halo-two { width:min(42vw,620px); border-style:dashed; transform:translate(-50%,-50%) rotate(calc(var(--world-local)*-105deg)) scale(calc(.72 + var(--world-local)*.58)); }
+  .scene-rail { position:absolute; left:43%; top:47%; width:51%; height:2px; background:linear-gradient(90deg,transparent,var(--scene-accent),transparent); box-shadow:0 0 18px var(--scene-accent); transform:rotate(calc(-22deg + var(--world-local)*38deg)) scaleX(calc(.6 + var(--world-local)*.5)); opacity:.55; }
+  .rail-two { transform:rotate(calc(38deg - var(--world-local)*52deg)) scaleX(calc(.5 + var(--world-local)*.6)); }
+  .scene-diorama { position:absolute; left:70%; top:47%; width:min(63vw,900px); height:min(56vw,660px); transform:translate(-50%,-50%) translate(calc(var(--world-local)*-4vw),calc(var(--world-local)*-2vh)) scale(calc(.72 + var(--world-local)*.46)); }
+  .scene-node { --angle:calc((360deg / var(--node-count)) * var(--node-index) - 86deg); position:absolute; left:50%; top:50%; width:clamp(112px,12vw,172px); transform:translate(-50%,-50%) rotate(var(--angle)) translateX(clamp(150px,22vw,315px)) rotate(calc(var(--angle)*-1)); }
+  .scene-node-face { min-height:118px; padding:14px; display:grid; place-items:center; text-align:center; border:1px solid color-mix(in srgb,var(--scene-accent) 30%,transparent); border-radius:20px; background:linear-gradient(145deg,color-mix(in srgb,var(--scene-accent-soft) 88%,#0b0806),rgba(7,5,4,.94)); box-shadow:0 26px 60px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.08); }
+  .scene-node img { width:54px; height:54px; border-radius:16px; object-fit:cover; border:2px solid color-mix(in srgb,var(--scene-accent) 72%,white); }
+  .scene-node i { display:grid; place-items:center; width:43px; height:43px; border:1px solid var(--scene-accent); border-radius:13px; color:var(--scene-accent); font:700 12px ui-monospace,monospace; box-shadow:inset 0 0 22px color-mix(in srgb,var(--scene-accent) 12%,transparent); }
+  .scene-node b { margin-top:8px; color:#fff5e6; font:800 11px/1.1 system-ui,sans-serif; letter-spacing:.08em; }
+  .scene-node span { color:color-mix(in srgb,var(--scene-accent) 78%,white); font:750 7px/1 ui-monospace,monospace; letter-spacing:.14em; }
+  .scene-core { position:absolute; left:50%; top:50%; width:125px; aspect-ratio:1; display:grid; place-items:center; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle,color-mix(in srgb,var(--scene-accent) 82%,white) 0 6%,var(--scene-accent-soft) 30%,#080604 70%); border:1px solid color-mix(in srgb,var(--scene-accent) 54%,transparent); box-shadow:0 0 90px color-mix(in srgb,var(--scene-accent) 28%,transparent); }
+  .scene-core span { color:#fff4df; font:500 34px Georgia,serif; }
+  .scene-core i { position:absolute; inset:-18%; border:1px dashed color-mix(in srgb,var(--scene-accent) 40%,transparent); border-radius:50%; animation:sw-spin 16s linear infinite; }
+  @keyframes sw-spin { to{transform:rotate(360deg)} }
+  .scene-vignette { position:absolute; inset:0; z-index:40; background:linear-gradient(90deg,rgba(5,4,3,.95) 0%,rgba(5,4,3,.6) 27%,rgba(5,4,3,.08) 57%,rgba(5,4,3,.28) 100%),linear-gradient(0deg,rgba(5,4,3,.58),transparent 44%); }
+  .scroll-world-copy { position:absolute; z-index:60; left:clamp(20px,5vw,76px); bottom:clamp(58px,9vh,105px); width:min(43vw,610px); min-height:330px; pointer-events:none; }
+  .scroll-world-copy::before { content:''; position:absolute; z-index:-1; inset:-70px -110px -50px -75px; background:radial-gradient(ellipse at 25% 55%,rgba(5,4,3,.93),rgba(5,4,3,.56) 48%,transparent 72%); }
+  .scroll-world-chapter { position:absolute; inset:auto 0 0; opacity:var(--copy-opacity,0); transform:translateY(var(--copy-shift,24px)); filter:blur(calc((1 - var(--copy-opacity,0))*5px)); pointer-events:none; }
+  .scroll-world-chapter.is-active { pointer-events:auto; }
+  .chapter-eyebrow { display:flex; align-items:center; gap:12px; margin-bottom:17px; color:#e9a450; font:850 9px/1 ui-monospace,monospace; letter-spacing:.18em; text-transform:uppercase; }
+  .chapter-eyebrow span { display:grid; place-items:center; width:32px; height:32px; border:1px solid currentColor; border-radius:50%; background:rgba(229,138,31,.08); }
+  .scroll-world-chapter .chapter-title { margin:0; max-width:660px; color:#f8ecda; font:500 clamp(37px,4.4vw,69px)/.95 Georgia,serif; letter-spacing:-.058em; }
+  .scroll-world-chapter p { margin:18px 0 0; max-width:500px; color:var(--sw-muted); font:400 clamp(14px,1.2vw,17px)/1.58 system-ui,sans-serif; }
+  .scroll-world-chapter a { display:inline-flex; align-items:center; gap:16px; margin-top:22px; min-height:46px; padding:0 18px; border:1px solid rgba(238,177,91,.38); border-radius:999px; background:rgba(16,10,5,.55); color:#f1bb70; font:800 10px/1 system-ui,sans-serif; letter-spacing:.11em; text-transform:uppercase; text-decoration:none; }
+  .scroll-world-chapter a span { transition:transform .2s; }
+  .scroll-world-chapter a:hover span { transform:translate(2px,-2px); }
+  .scroll-world-nav { position:absolute; z-index:90; right:clamp(15px,2.6vw,42px); top:50%; transform:translateY(-50%); display:grid; gap:7px; }
+  .scroll-world-nav button { position:relative; width:132px; height:32px; padding:0 0 0 8px; border:0; background:transparent; color:rgba(235,222,202,.66); display:grid; grid-template-columns:26px 1fr; align-items:center; text-align:left; cursor:pointer; font:750 8px ui-monospace,monospace; letter-spacing:.08em; text-transform:uppercase; }
+  .scroll-world-nav button::after { content:''; position:absolute; right:0; width:18px; height:1px; background:currentColor; transition:width .2s; }
+  .scroll-world-nav button span { color:#c47625; }
+  .scroll-world-nav button b { font:inherit; opacity:0; transform:translateX(5px); transition:.2s; }
+  .scroll-world-nav button:hover b,.scroll-world-nav button:focus-visible b,.scroll-world-nav button.is-active b { opacity:1; transform:none; }
+  .scroll-world-nav button:focus-visible { outline:2px solid #f0b45f; outline-offset:2px; border-radius:4px; }
+  .scroll-world-nav button.is-active { color:#f0b45f; }
+  .scroll-world-nav button.is-active::after { width:36px; box-shadow:0 0 12px #e58a1f; }
+  .scroll-world-counter { position:absolute; z-index:90; right:clamp(18px,3vw,45px); bottom:24px; display:flex; align-items:baseline; gap:5px; font-family:ui-monospace,monospace; }
+  .scroll-world-counter b { color:#e58a1f; font-size:24px; }.scroll-world-counter span{color:#b7aa97;font-size:9px}
+  .scroll-world-hint { position:absolute; z-index:90; left:50%; bottom:23px; transform:translateX(-50%); display:flex; gap:12px; align-items:center; color:rgba(238,224,203,.68); font:750 8px ui-monospace,monospace; letter-spacing:.18em; }
+  .scroll-world-hint i { width:35px; height:1px; background:linear-gradient(90deg,#d77b21,transparent); animation:sw-hint 1.5s ease-in-out infinite; }
+  @keyframes sw-hint { 50%{transform:scaleX(.55);transform-origin:left;opacity:.45} }
+
+  @media(max-width:900px) {
+    .scroll-world-copy { width:min(62vw,560px); }
+    .scroll-world-nav { display:none; }
+    .scene-diorama,.scene-halo { left:73%; }
+    .scene-vignette { background:linear-gradient(90deg,rgba(5,4,3,.94),rgba(5,4,3,.42) 50%,rgba(5,4,3,.1)),linear-gradient(0deg,rgba(5,4,3,.74),transparent 58%); }
+  }
+  @media(max-width:640px) {
+    .scroll-world-engine { min-height:390vh; height:calc(var(--scene-count) * 92vh); }
+    .scroll-world-engine.is-compact { height:calc(var(--scene-count) * 76vh); }
+    .scroll-world-title { top:92px; left:18px; }
+    .scene-video-desktop { display:none; }.scene-video-mobile{display:block}
+    .scene-backdrop { background:linear-gradient(0deg,rgba(5,4,3,.96) 0%,rgba(5,4,3,.36) 58%,transparent 84%),var(--scene-poster,none) center/cover no-repeat; opacity:.3; }
+    .scene-diorama { left:61%; top:33%; width:105vw; height:82vw; transform:translate(-50%,-50%) translate(calc(var(--world-local)*-3vw),calc(var(--world-local)*-1vh)) scale(calc(.68 + var(--world-local)*.38)); }
+    .scene-halo { left:61%; top:33%; width:94vw; }.halo-two{width:68vw}
+    .scene-grid{left:4%;right:-35%;top:21%;bottom:25%}
+    .scene-node { width:92px; transform:translate(-50%,-50%) rotate(var(--angle)) translateX(34vw) rotate(calc(var(--angle)*-1)); }
+    .scene-node-face { min-height:86px; padding:8px; border-radius:14px; }.scene-node img{width:42px;height:42px;border-radius:12px}.scene-node i{width:34px;height:34px}.scene-node b{font-size:8px}.scene-node span{font-size:6px}.scene-core{width:92px}
+    .scene-vignette { background:linear-gradient(0deg,rgba(5,4,3,.98) 0%,rgba(5,4,3,.77) 47%,rgba(5,4,3,.04) 79%); }
+    .scroll-world-copy { left:18px; right:18px; bottom:42px; width:auto; min-height:310px; }
+    .scroll-world-copy::before { inset:-48px -25px -30px; background:linear-gradient(0deg,rgba(5,4,3,.96),rgba(5,4,3,.65) 70%,transparent); }
+    .scroll-world-chapter .chapter-title { font-size:clamp(31px,9vw,43px); max-width:96%; }.scroll-world-chapter p{font-size:14px;max-width:94%}.chapter-eyebrow{margin-bottom:12px}.scroll-world-chapter a{margin-top:17px}
+    .scroll-world-hint{display:none}.scroll-world-counter{bottom:13px}
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .scroll-world-engine,.scroll-world-engine.is-compact { height:auto; min-height:0; }
+    .scroll-world-stage { position:relative; height:auto; overflow:visible; padding:100px 20px 40px; }
+    .scroll-world-scenes,.scroll-world-progress,.scroll-world-nav,.scroll-world-counter,.scroll-world-hint,.scroll-world-grain,.scroll-world-title { display:none; }
+    .scroll-world-copy { position:relative; left:auto; bottom:auto; width:auto; min-height:0; display:grid; gap:0; }
+    .scroll-world-copy::before { display:none; }
+    .scroll-world-chapter { position:relative; inset:auto; opacity:1!important; transform:none!important; filter:none!important; padding:28px 0; border-bottom:1px solid #322419; pointer-events:auto; }
+    .scroll-world-chapter .chapter-title{font-size:clamp(31px,7vw,52px)}
+  }
+</style>
