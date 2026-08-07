@@ -32,6 +32,16 @@
   ],
   "redirects": [
     {
+      "source": "/software-factory",
+      "destination": "/resources/software-factory/",
+      "permanent": true
+    },
+    {
+      "source": "/software-factory/:path*",
+      "destination": "/resources/software-factory/:path*",
+      "permanent": true
+    },
+    {
       "source": "/decks/magnifica-humanitas",
       "destination": "/resources/interesting/magnifica-humanitas/",
       "permanent": true

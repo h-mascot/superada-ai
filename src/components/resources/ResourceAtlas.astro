@@ -137,6 +137,7 @@ const operationalCount = resourceCount('plugins') + resourceCount('skills') + re
 
 const nav = [
 	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
+	{ icon: 'workflow', label: 'Software Factory', href: '/resources/software-factory', count: '', key: 'software-factory' },
 	{ icon: 'pet', label: resourceSections.mascots.label, href: '/resources/agent-mascots', count: resourceCountText('mascots'), key: 'mascots' },
 	{ icon: 'grid', label: resourceSections.tools.label, href: '/resources/tools', count: resourceCountText('tools'), key: 'tools' },
 	{ icon: 'stack', label: resourceSections['workflow-packs'].label, href: '/resources/workflow-packs', count: resourceCountText('workflow-packs'), key: 'workflow-packs' },
@@ -158,6 +159,7 @@ const stats = [
 ];
 
 const overviewCards: ResourceItem[] = [
+	{ title: 'Software Factory', icon: 'workflow', meta: 'Interactive scroll world', status: 'LIVE', href: '/resources/software-factory', copy: 'Follow a brief through planning, specialist build stations, test loops, security gates, deployment, and production proof.' },
 	{ title: 'Playground', icon: 'grid', meta: 'Model artifact gallery', status: 'NEW', href: '/resources/playground/', copy: 'Artifacts built by different AI models. Compare what each model makes, starting with Tetris by DeepSeek V4 Flash.' },
 	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
