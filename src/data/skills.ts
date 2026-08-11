@@ -38,6 +38,68 @@ export type SkillRecord = {
 export const publishedSkills: SkillRecord[] = [
 
   {
+    slug: "360-performance-review-operator",
+    title: "360 Performance Review Operator",
+    description:
+      "Prepare, submit, and verify manager ratings across a complete review cohort. Keeps spreadsheet coverage separate from write scope, discovers authenticated browser write routes, and reconciles accepted updates against read-only API data.",
+    tagline: "Complete cohort, controlled writes, exact readback receipts.",
+    category: "Operations",
+    availability: "agent-installable",
+    estimatedSetup: "2 minutes",
+    sourceLabel: "superada.ai/skills/360-performance-review-operator",
+    sourceUrl:
+      "https://superada.ai/skills/360-performance-review-operator/",
+    sourceSpec:
+      "https://superada.ai/skills/360-performance-review-operator/SKILL.md",
+    entrypoint: "SKILL.md",
+    installCommand:
+      "curl -sSf https://superada.ai/install/360-performance-review-operator | sh",
+    reviewMode: "source-review",
+    includes: [
+      "Full-cohort review ledger",
+      "Evidence and source verification workflow",
+      "Authenticated browser submission controls",
+      "Write and readback reconciliation receipts",
+      "Google Sheet completion contract",
+    ],
+    useCases: [
+      "Prepare manager ratings from OKRs and supporting evidence",
+      "Submit ratings when the reporting API is read-only",
+      "Prove accepted writes against a separate readback surface",
+      "Publish a complete review sheet without hiding blocked or pre-existing rows",
+    ],
+    instructions: [
+      "Install the skill from the SuperAda installer.",
+      "Freeze the full review cohort before drafting ratings or building the write payload.",
+      "Collect canonical OKRs, existing ratings, evidence, and explicit manager directives.",
+      "Discover the current authenticated browser write route instead of guessing from a read-only API.",
+      "Reconcile every submitted rating and publish the workbook only when mismatches equal zero.",
+    ],
+    limitations: [
+      "Requires legitimate access to the review platform and its authenticated browser session.",
+      "Does not choose ratings for the manager or bypass closed review windows.",
+      "Missing canonical personal OKRs remain blocked rather than being replaced with team-level rows.",
+    ],
+    artifacts: [
+      {
+        label: "Skill contract",
+        path: "https://superada.ai/skills/360-performance-review-operator/SKILL.md",
+        description: "Workflow from cohort inventory through verified submission and final workbook delivery.",
+      },
+      {
+        label: "Receipt contract",
+        path: "https://superada.ai/skills/360-performance-review-operator/references/receipt-contract.md",
+        description: "Minimum fields and invariants for payload, write, readback, and workbook receipts.",
+      },
+      {
+        label: "Curl installer",
+        path: "https://superada.ai/install/360-performance-review-operator",
+        description: "Installs the public skill bundle into an agent skills directory.",
+      },
+    ],
+  },
+
+  {
     slug: "design-eval-loop",
     title: "Design Eval Loop",
     description:

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/360-performance-review-operator"
+mkdir -p "$TARGET_DIR/references"
+base="https://superada.ai/skills/360-performance-review-operator"
+for path in SKILL.md README.md references/receipt-contract.md; do
+  curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"
+done
+printf 'Installed 360-performance-review-operator to %s\n' "$TARGET_DIR"
