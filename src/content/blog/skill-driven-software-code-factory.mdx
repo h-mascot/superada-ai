@@ -3,8 +3,7 @@ title: "The Skill-Driven Software Code Factory We Use Now"
 description: "How our software factory turns ideas into traceable Linear graphs, governed implementation, deterministic execution, and real product QA."
 pubDate: "2026-08-13"
 heroImage: ./images/hero-skill-driven-software-code-factory.png
-heroAlt: "The software code factory from an idea and source files through Loom, Linear, Runner, and Geordi QA"
-audio: /audio/skill-driven-software-code-factory.mp3
+heroAlt: "A software assembly line turns source documents into a specification, dependency graph, governed implementation, and browser QA proof"
 tags: ["agents", "software-engineering", "operations", "quality-assurance"]
 author: ada
 visualMode: standard
@@ -15,11 +14,11 @@ visualWorld: software-factory
 
 A coding agent can pass the tests, close the ticket, write a confident summary, and still leave the product wrong.
 
-I have seen this happen often enough that I no longer treat an agent saying “done” as useful evidence. The page may break on mobile. Keyboard focus may disappear. The deployed build may not match the commit that was reviewed. A worker process stopping only proves that the worker stopped.
+I have seen this happen often enough that I no longer treat an agent saying "done" as useful evidence. The page may break on mobile. Keyboard focus may disappear. The deployed build may not match the commit that was reviewed. A worker process stopping only proves that the worker stopped.
 
 This is why I stopped looking for one coding agent to run the whole job. We built a software code factory from a set of skills that make the work progressively less ambiguous, then progressively harder to fake.
 
-The flow starts with Loom, moves through Linear into Runner, and ends with Geordi QA. Runabout sits beside that flow as a separate deterministic harness for work with a clear enough contract. Each part has a specific job. More importantly, each part leaves receipts for the next one.
+The flow starts with Loom, moves through Linear into Runner, and ends with Geordi QA. Runabout sits beside that flow as a separate deterministic harness for work with a clear enough contract. Each part has a specific job, and each part leaves receipts for the next one.
 
 ## It starts with one instruction
 
@@ -29,7 +28,7 @@ My starting instruction is deliberately plain:
 
 Loom here is our internal intake and specification workflow. It has nothing to do with recording a video.
 
-The first step inside Loom is Grill Me With Docs. The agent interrogates the idea against the files I supplied. It looks for missing decisions, contradictions, weak assumptions, and places where I am hand-waving. This matters because a polished product brief can hide an unresolved product decision just as easily as a rough note can.
+The first step inside Loom is Grill Me With Docs. The agent interrogates the idea against the files I supplied. It looks for missing decisions, contradictions, weak assumptions, and places where I am hand-waving. A polished product brief can hide an unresolved product decision just as easily as a rough note can.
 
 Once the grilling is complete, Loom turns the source material into a source packet and then a SuperSpec. That becomes an Oracle PRD, followed by critique. From there Loom creates the intended Linear execution graph, including dependencies and acceptance criteria, plus the repository context needed to execute it.
 
@@ -39,11 +38,11 @@ We have used Loom to create substantial execution graphs. One Entity Doc Hub run
 
 One current document-integration run, for example, has a successful Oracle PRD receipt but did not have a newer end-to-end receipt proving that the full Linear load was complete at the time of the audit. I would rather state that plainly than promote an intermediate artifact into a finished result.
 
-The value of Loom is not the number of documents it generates. The value is that implementation scope becomes machine-readable and traceable before a coding worker touches the repository.
+Loom's value isn't document count. It's that implementation scope becomes machine-readable and traceable before a coding worker touches the repository.
 
 ## Linear is the handoff, not the brain
 
-Once the tickets are loaded into Linear, the work has an issue graph rather than a bag of prompts. Dependencies are visible. Acceptance criteria live beside the task. The system can tell the difference between work that is ready, work that is blocked, and work that only looks convenient to start.
+Once the tickets are loaded into Linear, the work has an issue graph rather than a bag of prompts. Dependencies are visible. Acceptance criteria live beside the task. The system can tell ready work from blocked work, and from work that only looks convenient to start.
 
 Linear is the shared execution surface, but it does not decide how the work should run. I do that when I invoke Runner and choose the route for the job.
 
@@ -58,7 +57,7 @@ reviewer: Terra medium
 
 That role split is intentional. The manager, worker, and reviewer do different jobs, so I can select different models and reasoning levels for each. In this example, Sol manages at mid reasoning, Luna implements at high reasoning, and Terra reviews at medium reasoning.
 
-The point is not that this exact route must be used every time. The point is that model choice is part of the execution contract. I can spend reasoning where the task needs it instead of using one expensive setting for every queue decision, code change, review, and status update.
+This exact route isn't mandatory. Model choice is part of the execution contract: I can spend reasoning where the task needs it, instead of running one expensive setting for every queue decision, code change, review, and status update.
 
 Runner builds and supervises the issue map, the dependency-safe queue, worker prompts, run state, gates, review decisions, proof receipts, and final reconciliation. Its lifecycle can distinguish a next task that is ready from a transient retry, an authority block, an explicit pause, or genuine global completion.
 
@@ -68,7 +67,7 @@ That distinction sounds procedural until a long autonomous run hits an expired c
 
 I can choose Runner governed when the work needs stronger review and authority controls. I can choose Runner low-burn when the work is already well-shaped and the larger risk is wasting shared model tokens on idle polling, duplicate review, and repeated narration of the same completion state.
 
-Low-burn does not mean “skip the proof.” It preserves active work and review gates while cutting waste around them. Resource controls belong inside orchestration because token consumption is partly a software design problem. If the supervisor repeatedly asks an unchanged queue whether anything happened, changing the model will not fix the loop.
+Low-burn does not mean "skip the proof." It preserves active work and review gates while cutting waste around them. Resource controls belong inside orchestration because token consumption is partly a software design problem. If the supervisor repeatedly asks an unchanged queue whether anything happened, changing the model will not fix the loop.
 
 ![Runner governed and Runner low-burn operating profiles compared](/blog/skill-driven-software-code-factory/software-code-factory-runner-profiles.png)
 
@@ -86,7 +85,7 @@ It accepts approved work manifests from Loom, Linear, or the command line. It va
 
 I use Runner for fuzzy, evolving work that depends heavily on repository context and judgement. I use Runabout when the ticket is clear enough that the execution should move through explicit states with known budgets and proof requirements.
 
-That boundary matters. Forcing ambiguous product work into a rigid state machine creates false certainty. Letting clear repetitive work float inside a fuzzy supervisor creates unnecessary cost and variance. The contract should determine the harness.
+Forcing ambiguous product work into a rigid state machine creates false certainty; letting clear repetitive work float inside a fuzzy supervisor creates unnecessary cost and variance. The contract decides the harness.
 
 ## Geordi checks the thing a user can touch
 
@@ -118,7 +117,7 @@ PASS, PARTIAL, and FAIL need to remain real outcomes. If the QA layer is rewarde
 
 The factory produces code, but the receipts are what let me trust the process.
 
-A receipt can identify the source specification, the accepted ticket, the tested commit, the gates that ran, the browser routes exercised, the screenshots captured, the review decision, and the final Linear state. It turns “I think this is finished” into a set of claims that can be checked independently.
+A receipt can identify the source specification, the accepted ticket, the tested commit, the gates that ran, the browser routes exercised, the screenshots captured, the review decision, and the final Linear state. It turns "I think this is finished" into a set of claims that can be checked independently.
 
 Receipts also make failures useful. If a run stops at an authority boundary, we know it needs a decision rather than another retry. If the build identity matches but the public URL has drifted, we know where promotion failed. If unit tests pass and keyboard navigation fails, we know the code gate and product gate are reporting different truths.
 
@@ -132,8 +131,8 @@ This system is not fully autonomous, and I do not want to pretend it is. Some Lo
 
 We are improving the handoffs and the reconciliation between them. I want stronger proof that every generated issue arrived in Linear with the intended dependencies. I want less supervisory token waste without weaker review. I want build identity, browser evidence, and final ticket state to reconcile with fewer manual checks.
 
-The practical lesson for other founders is to stop choosing coding agents as if one model should own specification, implementation, review, and product QA. Define the contracts between those jobs. Make each stage produce evidence the next stage can verify. Keep deterministic work deterministic, and leave room for judgement where the work is still fuzzy.
+Don't pick one coding agent to own specification, implementation, review, and QA. Define the contracts between those jobs, and make each stage produce evidence the next stage can verify.
 
 Then, when an agent says it is done, you can check whether the product agrees.
 
-*Dictated by Henry. Written and Narrated by SuperAda.*
+*Dictated by Henry. Written by SuperAda.*
