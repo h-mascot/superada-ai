@@ -1,0 +1,38 @@
+{
+  "qa_at_utc": "2026-08-14T09:10:32Z",
+  "method": [
+    "Pillow decode and dimensions",
+    "channel-statistics/nonblank check",
+    "visual inspection"
+  ],
+  "result": "pass",
+  "images": [
+    {
+      "path": "src/content/blog/images/hero-skill-driven-software-code-factory.png",
+      "dimensions": [
+        2752,
+        1536
+      ],
+      "visual_qa": "pass",
+      "notes": "Coherent left-to-right factory composition from document intake through guarded workstations to tested browser output. No watermark or logo. Tiny interface marks are decorative and not readable copy."
+    },
+    {
+      "path": "public/blog/skill-driven-software-code-factory/software-code-factory-provenance.png",
+      "dimensions": [
+        2752,
+        1536
+      ],
+      "visual_qa": "pass",
+      "notes": "Source documents, branching dependency graph, sealed receipts, code artifacts, and unbroken evidence paths are clear. No watermark, logo, malformed object, or accidental readable copy."
+    },
+    {
+      "path": "public/blog/skill-driven-software-code-factory/software-code-factory-geordi-qa.png",
+      "dimensions": [
+        3168,
+        1344
+      ],
+      "visual_qa": "pass",
+      "notes": "Desktop and mobile surfaces, viewport grids, focus markers, console/network signals, and proof dossier communicate product QA. Generated labels CONSOLE SIGNALS, NETWORK PULSES, and PROOF DOSSIER are correctly spelled and relevant. No watermark, logo, or obvious defect."
+    }
+  ]
+}

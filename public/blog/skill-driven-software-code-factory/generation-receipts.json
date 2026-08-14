@@ -1,0 +1,48 @@
+{
+  "generated_at_utc": "2026-08-14T09:05:37Z",
+  "elapsed_seconds": 30.76,
+  "images": [
+    {
+      "requested_model": "gemini-3-pro-image-preview",
+      "actual_model": "gemini-3-pro-image-preview",
+      "generator": "/Users/enterprise/Enterprise/Crew Home/Skills/nano-banana-pro/scripts/generate_image.py",
+      "generator_sha256": "8ecca97db200cab923716173fed18e48ce7e291b1726c4e6ed79fa88302023e8",
+      "resolution_requested": "2K",
+      "prompt": "Editorial cinematic hero, widescreen 16:9. A precise software factory seen as a luminous physical assembly line: raw notes and source documents enter at left, transform into a structured dependency graph, pass through guarded code workstations, and emerge at right as a tested browser product with proof receipts. Dark navy and warm amber palette, sophisticated technical magazine art, layered depth, crisp details, human-scale but no people, no logos, no legible words, no random text, no watermark.",
+      "output": "src/content/blog/images/hero-skill-driven-software-code-factory.png",
+      "exit_code": 0,
+      "stdout": "Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.\nGenerating image with resolution 2K...\n\nImage saved: /Users/enterprise/Code/superada-ai/src/content/blog/images/hero-skill-driven-software-code-factory.png\n",
+      "exists": true,
+      "bytes": 4896996,
+      "sha256": "fb6f6207ed4406e2f9c4230e144e89851815c462b397855c5edc99470d1f047e"
+    },
+    {
+      "requested_model": "gemini-3-pro-image-preview",
+      "actual_model": "gemini-3-pro-image-preview",
+      "generator": "/Users/enterprise/Enterprise/Crew Home/Skills/nano-banana-pro/scripts/generate_image.py",
+      "generator_sha256": "8ecca97db200cab923716173fed18e48ce7e291b1726c4e6ed79fa88302023e8",
+      "resolution_requested": "2K",
+      "prompt": "Widescreen editorial technical illustration showing provenance in an AI software workflow. On the left, paper source files and evidence cards; center, a clean branching dependency graph with checkpoints and sealed receipts; right, code artifacts tied to a verified commit. Visual metaphor: an unbroken glowing thread connects every object. Dark navy background, bronze and electric blue highlights, premium magazine infographic style, no labels, no logos, no legible text, no watermark.",
+      "output": "public/blog/skill-driven-software-code-factory/software-code-factory-provenance.png",
+      "exit_code": 0,
+      "stdout": "Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.\nGenerating image with resolution 2K...\n\nImage saved: /Users/enterprise/Code/superada-ai/public/blog/skill-driven-software-code-factory/software-code-factory-provenance.png\n",
+      "exists": true,
+      "bytes": 4521803,
+      "sha256": "0e63fac0bcc2150789d8293922a76cc13999ea95564cbcb740738b384f0ccb2d"
+    },
+    {
+      "requested_model": "gemini-3-pro-image-preview",
+      "actual_model": "gemini-3-pro-image-preview",
+      "generator": "/Users/enterprise/Enterprise/Crew Home/Skills/nano-banana-pro/scripts/generate_image.py",
+      "generator_sha256": "8ecca97db200cab923716173fed18e48ce7e291b1726c4e6ed79fa88302023e8",
+      "resolution_requested": "2K",
+      "prompt": "Widescreen editorial technical illustration of real product QA after autonomous coding. A desktop monitor and mobile phone show the same interface under inspection; visible focus rings, viewport grids, console signals, network pulses, screenshot frames, and a commit fingerprint converge into a proof dossier. Precise, credible engineering aesthetic, dark navy with amber and cyan, high detail, no people, no logos, no legible text, no watermark.",
+      "output": "public/blog/skill-driven-software-code-factory/software-code-factory-geordi-qa.png",
+      "exit_code": 0,
+      "stdout": "Downloading pillow (4.6MiB)\nDownloading pydantic-core (1.9MiB)\nDownloading google-genai (1.0MiB)\n Downloaded google-genai\n Downloaded pydantic-core\n Downloaded pillow\nInstalled 26 packages in 50ms\nDirect use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.\nGenerating image with resolution 2K...\n\nImage saved: /Users/enterprise/Code/superada-ai/public/blog/skill-driven-software-code-factory/software-code-factory-geordi-qa.png\n",
+      "exists": true,
+      "bytes": 4708284,
+      "sha256": "6e9fbd927b501a62f218229ac4cda9b50b692a94e27c65ea8dcce1bcc2a2b145"
+    }
+  ]
+}

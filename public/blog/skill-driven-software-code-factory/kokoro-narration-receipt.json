@@ -1,0 +1,66 @@
+{
+  "rendered_at_utc": "2026-08-14T09:10:14Z",
+  "engine": "Kokoro Streaming TTS Server",
+  "endpoint": "http://127.0.0.1:8000/v1/audio/speech",
+  "model": "tts-1",
+  "voice": "bf_alice",
+  "health": {
+    "status": "ok",
+    "provider": "kokoro",
+    "ready": true,
+    "detail": null,
+    "default_voice": "bf_alice",
+    "output_sample_rate_hz": 8000,
+    "active_twilio_streams": 0
+  },
+  "source": "src/content/blog/skill-driven-software-code-factory.mdx",
+  "chunks": [
+    {
+      "chunk": 1,
+      "characters": 3584,
+      "file": "/tmp/factory-kokoro/chunk-01.wav",
+      "bytes": 3929244,
+      "sha256": "33089c6be946311b5d20e502e23ce01513501f8cdcd99b87250189dd90b71ac4",
+      "content_type": "audio/wav"
+    },
+    {
+      "chunk": 2,
+      "characters": 3649,
+      "file": "/tmp/factory-kokoro/chunk-02.wav",
+      "bytes": 3910844,
+      "sha256": "d60188e3f85d0c82f85ef7e11afc1ca7e154c7ae0973fa3606f5e0003993264d",
+      "content_type": "audio/wav"
+    },
+    {
+      "chunk": 3,
+      "characters": 1484,
+      "file": "/tmp/factory-kokoro/chunk-03.wav",
+      "bytes": 1610844,
+      "sha256": "4f0c6edaa9f05afd10554044ecf7c9cf8ddae6c35fe620bf0c1a70e40ccec0c7",
+      "content_type": "audio/wav"
+    }
+  ],
+  "final": {
+    "path": "public/audio/skill-driven-software-code-factory.mp3",
+    "bytes": 9452204,
+    "sha256": "ff6d5d6417bec1073dd7d5fd2211c402885c83371d5a0217c12e1972c9c4170d",
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1,
+          "duration": "590.675000"
+        }
+      ],
+      "format": {
+        "duration": "590.675000",
+        "size": "9452204",
+        "bit_rate": "128019"
+      }
+    },
+    "full_decode": "pass"
+  }
+}
