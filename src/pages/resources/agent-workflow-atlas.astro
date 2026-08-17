@@ -1,0 +1,1660 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const atlas = {
+  "generatedAt": "2026-08-09T10:55:18Z",
+  "agents": [
+    "Ada",
+    "Assistant",
+    "Book",
+    "Geordi",
+    "Midas",
+    "Scotty",
+    "Spock",
+    "Uhura",
+    "Zora"
+  ],
+  "categories": [
+    {
+      "id": "C01",
+      "name": "Executive command center",
+      "promise": "Turn goals, meetings, tasks, and commitments into an owned operating view.",
+      "visual_primitive": "A mission-control orbit with work moving from signal to owner to receipt."
+    },
+    {
+      "id": "C02",
+      "name": "Research and evidence",
+      "promise": "Find, verify, synthesize, and preserve source-backed answers.",
+      "visual_primitive": "An evidence river that carries sources into claims and receipts."
+    },
+    {
+      "id": "C03",
+      "name": "Communication and inboxes",
+      "promise": "Triage, draft, route, and audit messages without skipping approval.",
+      "visual_primitive": "A switchboard with visible review gates before every external send."
+    },
+    {
+      "id": "C04",
+      "name": "Sales, partnerships, and revenue",
+      "promise": "Research accounts, prepare commercial moves, and track follow-through.",
+      "visual_primitive": "A qualified-opportunity funnel with a human gate before commitment."
+    },
+    {
+      "id": "C05",
+      "name": "Content and distribution",
+      "promise": "Turn evidence and ideas into channel-ready content and launch packs.",
+      "visual_primitive": "An editorial production line from source to draft to verified route."
+    },
+    {
+      "id": "C06",
+      "name": "Software and product delivery",
+      "promise": "Specify, build, test, review, and prepare releases with receipts.",
+      "visual_primitive": "A tracer-bullet rail through spec, code, test, review, and release."
+    },
+    {
+      "id": "C07",
+      "name": "Fleet and infrastructure operations",
+      "promise": "Inspect, repair, route, and monitor agent and service runtimes.",
+      "visual_primitive": "A fleet topology whose nodes expose health, route, owner, and rollback."
+    },
+    {
+      "id": "C08",
+      "name": "Knowledge and memory",
+      "promise": "Capture decisions, retrieve context, and keep operational memory fresh.",
+      "visual_primitive": "A knowledge graph with freshness rings and provenance on every edge."
+    },
+    {
+      "id": "C09",
+      "name": "Finance and business intelligence",
+      "promise": "Attribute cost, review spend, and frame decisions around measurable value.",
+      "visual_primitive": "A value ledger balancing cost, capacity, evidence, and outcome."
+    },
+    {
+      "id": "C10",
+      "name": "Creative and media production",
+      "promise": "Produce diagrams, images, speech, and continuity-safe video artifacts.",
+      "visual_primitive": "A script-to-pixels timeline with fidelity and continuity checkpoints."
+    },
+    {
+      "id": "C11",
+      "name": "Personal and lifestyle operations",
+      "promise": "Support scheduling, contacts, travel, and private workflows safely.",
+      "visual_primitive": "A private concierge route map with privacy zones and confirmation points."
+    },
+    {
+      "id": "C12",
+      "name": "Governance, QA, and safety",
+      "promise": "Make claims, approvals, tests, and publication readiness inspectable.",
+      "visual_primitive": "A quality-gate stack where evidence must pass before state changes."
+    }
+  ],
+  "summary": {
+    "generated_at": "2026-08-09T10:55:18Z",
+    "total": 100,
+    "by_category": {
+      "C01": 9,
+      "C02": 9,
+      "C03": 9,
+      "C04": 9,
+      "C05": 8,
+      "C06": 8,
+      "C07": 8,
+      "C08": 8,
+      "C09": 8,
+      "C10": 8,
+      "C11": 8,
+      "C12": 8
+    },
+    "by_agent": {
+      "Ada": 46,
+      "Assistant": 3,
+      "Book": 15,
+      "Geordi": 4,
+      "Midas": 3,
+      "Scotty": 5,
+      "Spock": 13,
+      "Uhura": 3,
+      "Zora": 8
+    },
+    "by_evidence": {
+      "verified": 85,
+      "inferred": 15
+    },
+    "by_risk": {
+      "R0_read_only": 26,
+      "R1_local_reversible": 41,
+      "R3_external_or_commitment": 29,
+      "R2_internal_write": 4
+    },
+    "direct_evidence_share": 0.85,
+    "publication_state": "not_approved"
+  },
+  "rows": [
+    {
+      "id": "UC-001",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-002",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-003",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-004",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-005",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-006",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-007",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-008",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Midas"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-009",
+      "categoryId": "C01",
+      "category": "Executive command center",
+      "agents": [
+        "Assistant"
+      ],
+      "evidence": "Inferred",
+      "risk": "R2 internal write",
+      "inputs": "goals, meetings, Mission Control tasks",
+      "toolPath": "Mission Control → calendar/meeting/task sources → prioritizer → owner/receipt",
+      "approval": "Execute only under an established standing workflow; otherwise stage the change for approval."
+    },
+    {
+      "id": "UC-010",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-011",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-012",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-013",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-014",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-015",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-016",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-017",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-018",
+      "categoryId": "C02",
+      "category": "Research and evidence",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Inferred",
+      "risk": "R0 read only",
+      "inputs": "primary sources, live systems, research corpus",
+      "toolPath": "source search → primary-source extraction → claim ledger → synthesis → citation check",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-019",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-020",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-021",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-022",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-023",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-024",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-025",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-026",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Uhura"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-027",
+      "categoryId": "C03",
+      "category": "Communication and inboxes",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "email, chat channels, contact context",
+      "toolPath": "inbox/channel API → triage rules → draft → approval gate → send/audit receipt",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-028",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-029",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-030",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-031",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-032",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-033",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-034",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-035",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Midas"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-036",
+      "categoryId": "C04",
+      "category": "Sales, partnerships, and revenue",
+      "agents": [
+        "Uhura"
+      ],
+      "evidence": "Inferred",
+      "risk": "R3 external or commitment",
+      "inputs": "CRM, account research, live correspondence",
+      "toolPath": "CRM/account sources → qualification → research → offer/draft → human approval → follow-up log",
+      "approval": "Research and draft autonomously; require Henry's approval before external send, new-person contact, or commitment."
+    },
+    {
+      "id": "UC-037",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-038",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-039",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-040",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-041",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-042",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-043",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-044",
+      "categoryId": "C05",
+      "category": "Content and distribution",
+      "agents": [
+        "Uhura"
+      ],
+      "evidence": "Inferred",
+      "risk": "R1 local reversible",
+      "inputs": "source evidence, voice references, channel rules",
+      "toolPath": "source packet → outline → draft → voice/edit gate → asset build → route verification",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-045",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-046",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-047",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Geordi"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-048",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Geordi"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-049",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R2 internal write",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Execute only under an established standing workflow; otherwise stage the change for approval."
+    },
+    {
+      "id": "UC-050",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Geordi"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-051",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Scotty"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-052",
+      "categoryId": "C06",
+      "category": "Software and product delivery",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Inferred",
+      "risk": "R1 local reversible",
+      "inputs": "issue or spec, repository, test suite",
+      "toolPath": "issue/spec → coding agent → tests/lint/build → independent review → release gate",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-053",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-054",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Scotty"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-055",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-056",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-057",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-058",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Scotty"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-059",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Scotty"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-060",
+      "categoryId": "C07",
+      "category": "Fleet and infrastructure operations",
+      "agents": [
+        "Geordi"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "service health, configuration, logs",
+      "toolPath": "live health/config/logs → diagnosis → scoped repair → restart/readback → rollback receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-061",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-062",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-063",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-064",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-065",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-066",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-067",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-068",
+      "categoryId": "C08",
+      "category": "Knowledge and memory",
+      "agents": [
+        "Assistant"
+      ],
+      "evidence": "Inferred",
+      "risk": "R0 read only",
+      "inputs": "sessions, documents, memory stores",
+      "toolPath": "conversation/document sources → normalize → index/graph → retrieval test → freshness receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-069",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-070",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-071",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-072",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-073",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-074",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Spock"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-075",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Inferred",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-076",
+      "categoryId": "C09",
+      "category": "Finance and business intelligence",
+      "agents": [
+        "Midas"
+      ],
+      "evidence": "Inferred",
+      "risk": "R1 local reversible",
+      "inputs": "usage records, provider limits, spend data",
+      "toolPath": "provider/finance/business sources → normalize → attribute → model → decision packet",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-077",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-078",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-079",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-080",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-081",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-082",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-083",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-084",
+      "categoryId": "C10",
+      "category": "Creative and media production",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "script, brand references, source images",
+      "toolPath": "script/spec → image/audio/video tool → continuity/text QA → export receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-085",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R2 internal write",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Execute only under an established standing workflow; otherwise stage the change for approval."
+    },
+    {
+      "id": "UC-086",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-087",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-088",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-089",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-090",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Book"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-091",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R1 local reversible",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Create scoped reversible artifacts and run non-destructive validation autonomously; stop before external or production change."
+    },
+    {
+      "id": "UC-092",
+      "categoryId": "C11",
+      "category": "Personal and lifestyle operations",
+      "agents": [
+        "Assistant"
+      ],
+      "evidence": "Inferred",
+      "risk": "R2 internal write",
+      "inputs": "calendar, contacts, travel or household context",
+      "toolPath": "private personal source → minimal-data transform → draft/action → confirmation → private receipt",
+      "approval": "Execute only under an established standing workflow; otherwise stage the change for approval."
+    },
+    {
+      "id": "UC-093",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-094",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-095",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-096",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-097",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R3 external or commitment",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Draft and validate autonomously; show Henry the exact external send, publication, production deploy, or commercial commitment before execution."
+    },
+    {
+      "id": "UC-098",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Scotty"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-099",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Ada"
+      ],
+      "evidence": "Verified",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    },
+    {
+      "id": "UC-100",
+      "categoryId": "C12",
+      "category": "Governance, QA, and safety",
+      "agents": [
+        "Zora"
+      ],
+      "evidence": "Inferred",
+      "risk": "R0 read only",
+      "inputs": "requirements, artifact, test receipts",
+      "toolPath": "artifact/runtime → deterministic checks → independent review → decision gate → audit receipt",
+      "approval": "Inspect, test, and draft autonomously; obtain approval if remediation would cross into an external, destructive, or customer-facing action."
+    }
+  ],
+  "visuals": [
+    {
+      "src": "/resources/agent-workflow-atlas/01-all-agent-map.svg",
+      "title": "All-agent operating map"
+    },
+    {
+      "src": "/resources/agent-workflow-atlas/02-use-case-funnel.svg",
+      "title": "Use-case funnel"
+    },
+    {
+      "src": "/resources/agent-workflow-atlas/03-risk-approval-heatmap.svg",
+      "title": "Risk and approval heatmap"
+    },
+    {
+      "src": "/resources/agent-workflow-atlas/04-source-agent-artifact-pipeline.svg",
+      "title": "Source to artifact pipeline"
+    },
+    {
+      "src": "/resources/agent-workflow-atlas/05-category-coverage-grid.svg",
+      "title": "Category coverage grid"
+    }
+  ],
+  "videoTreatments": [
+    {
+      "title": "The agent use-case atlas",
+      "duration": "48s",
+      "cta": "Explore 100 real workflows. Start with the proof."
+    },
+    {
+      "title": "From message to shipped artifact",
+      "duration": "45s",
+      "cta": "Automate the loop. Do not automate away the gate."
+    },
+    {
+      "title": "What SuperAda can do for an executive",
+      "duration": "50s",
+      "cta": "Give the crew the outcome. Keep the final commitment human."
+    }
+  ]
+};
+const stats = [
+  { label: 'Workflows', value: atlas.summary.total },
+  { label: 'Categories', value: atlas.categories.length },
+  { label: 'Agents', value: atlas.agents.length },
+  { label: 'Verified', value: atlas.summary.by_evidence.verified },
+  { label: 'Inferred', value: atlas.summary.by_evidence.inferred },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Agent Workflow Atlas - SuperAda" description="A public-safe atlas of 100 receipt-backed Enterprise Crew workflows across nine agents and twelve operating categories." />
+  </head>
+  <body>
+    <Header />
+    <main class="workflow-atlas">
+      <section class="atlas-hero">
+        <p class="eyebrow">SuperAda Field Guide</p>
+        <h1>What an AI crew can do when every action leaves a receipt.</h1>
+        <p class="lede">Browse the public-safe version of our v1 operating atlas: 100 workflow loops across research, communication, software, fleet work, content, business intelligence, media, governance, and personal support. The private proof ledger stays private; the reusable pattern and approval boundary are published.</p>
+        <div class="hero-actions">
+          <a href="#catalog">Browse the catalog</a>
+          <a href="#recipes" class="secondary">Copy a recipe</a>
+        </div>
+      </section>
+
+      <section class="stat-grid" aria-label="Atlas summary">
+        {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
+      </section>
+
+      <section class="notice">
+        <strong>Public edition.</strong> Internal proof links, private task URLs, customer/contact names, and raw source excerpts are not exposed here. Verified means the private ledger has a receipt. Inferred means the row is useful but still needs a direct public-safe receipt before it should be treated as proven.
+      </section>
+
+      <section class="visuals" aria-labelledby="visuals-title">
+        <div class="section-head">
+          <p class="eyebrow">Rich media map</p>
+          <h2 id="visuals-title">Five visual primitives for the operating system</h2>
+          <p>The diagrams show how the catalog works without leaking the underlying private receipts.</p>
+        </div>
+        <div class="visual-grid">
+          {atlas.visuals.map((visual) => (
+            <figure>
+              <img src={visual.src} alt={visual.title} loading="lazy" />
+              <figcaption>{visual.title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section id="categories" class="categories" aria-labelledby="categories-title">
+        <div class="section-head">
+          <p class="eyebrow">Twelve lanes</p>
+          <h2 id="categories-title">Start with the operating lane</h2>
+        </div>
+        <div class="category-grid">
+          {atlas.categories.map((category) => (
+            <article>
+              <span>{category.id}</span>
+              <h3>{category.name}</h3>
+              <p>{category.promise}</p>
+              <small>{category.visual_primitive}</small>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="recipes" class="recipes" aria-labelledby="recipes-title">
+        <div class="section-head">
+          <p class="eyebrow">Copyable loops</p>
+          <h2 id="recipes-title">Recipes, not magic prompts</h2>
+          <p>Replace the inputs. Keep the proof step. Do not remove the gate. Stunningly annoying how often that last bit saves everyone. 💀</p>
+        </div>
+        <div class="recipe-grid">
+          <article><h3>Call transcript → tracked commitments</h3><p>Extract only explicit commitments. Return owner, due date, source quote or location, duplicate check, and whether it needs human approval. Do not send messages.</p><small>Gate: external follow-up requires approval.</small></article>
+          <article><h3>Question → cited evidence dossier</h3><p>Answer from sources. Keep observations, inferences, and recommendations separate. Cite every material claim and name missing proof.</p><small>Gate: research and local drafting are autonomous.</small></article>
+          <article><h3>Evidence bundle → public draft</h3><p>Turn evidence into a channel-ready draft. Preserve citations. Return a claim sheet and stop before publishing.</p><small>Gate: public delivery requires approval.</small></article>
+          <article><h3>Validated task → bounded coding candidate</h3><p>Implement in an isolated worktree. Stay in scope. Run exact gates and return receipts, not vibes wearing a lab coat.</p><small>Gate: merge, push, deploy, and release are separate.</small></article>
+          <article><h3>Health signal → reversible fleet repair</h3><p>Diagnose the live route first. Snapshot before change. Apply the smallest safe repair, then smoke-test and record before/after evidence.</p><small>Gate: destructive or critical-access actions need approval.</small></article>
+          <article><h3>Daily metrics → decision pack</h3><p>Show period, denominator, revenue, cost, profit, risk, and recommended action in one view.</p><small>Gate: budget or commercial changes need approval.</small></article>
+        </div>
+      </section>
+
+      <section id="catalog" class="catalog" aria-labelledby="catalog-title">
+        <div class="section-head">
+          <p class="eyebrow">100 public-safe workflow rows</p>
+          <h2 id="catalog-title">Filter by agent, risk, proof, or lane</h2>
+        </div>
+        <div class="filters" aria-label="Catalog filters">
+          <input id="atlas-search" type="search" placeholder="Search category, agent, risk, input, or tool path" />
+          <select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select>
+          <select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select>
+        </div>
+        <p id="catalog-count" class="count">100 workflows shown</p>
+        <div class="workflow-grid" id="workflow-grid">
+          {atlas.rows.map((row) => (
+            <article class="workflow-card" data-search={`${row.id} ${row.category} ${row.agents.join(' ')} ${row.evidence} ${row.risk} ${row.inputs} ${row.toolPath}`.toLowerCase()} data-agents={row.agents.join('|')} data-proof={row.evidence}>
+              <div class="card-top"><span>{row.id}</span><strong>{row.evidence}</strong></div>
+              <h3>{row.category}</h3>
+              <p>{row.toolPath}</p>
+              <dl>
+                <div><dt>Agents</dt><dd>{row.agents.join(', ')}</dd></div>
+                <div><dt>Inputs</dt><dd>{row.inputs || 'Declared sources'}</dd></div>
+                <div><dt>Risk</dt><dd>{row.risk}</dd></div>
+              </dl>
+              <small>{row.approval}</small>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="video" aria-labelledby="video-title">
+        <div class="section-head">
+          <p class="eyebrow">Script-to-video runway</p>
+          <h2 id="video-title">Three production treatments ready for rendering</h2>
+          <p>The v1 release includes storyboards and motion contracts. Final generated video is a separate production pass so exact labels and continuity can be verified frame by frame.</p>
+        </div>
+        <div class="video-grid">
+          {atlas.videoTreatments.map((treatment) => <article><span>{treatment.duration}</span><h3>{treatment.title}</h3><p>{treatment.cta}</p></article>)}
+        </div>
+      </section>
+    </main>
+    <Footer />
+    <script>
+      const search = document.getElementById('atlas-search') as HTMLInputElement | null;
+      const agent = document.getElementById('agent-filter') as HTMLSelectElement | null;
+      const proof = document.getElementById('proof-filter') as HTMLSelectElement | null;
+      const cards = Array.from(document.querySelectorAll<HTMLElement>('.workflow-card'));
+      const count = document.getElementById('catalog-count');
+      function applyFilters() {
+        const q = (search?.value || '').trim().toLowerCase();
+        const selectedAgent = agent?.value || '';
+        const selectedProof = proof?.value || '';
+        let visible = 0;
+        cards.forEach((card) => {
+          const haystack = card.dataset.search || '';
+          const agents = card.dataset.agents || '';
+          const proofState = card.dataset.proof || '';
+          const show = (!q || haystack.includes(q)) && (!selectedAgent || agents.split('|').includes(selectedAgent)) && (!selectedProof || proofState === selectedProof);
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        if (count) count.textContent = `${visible} workflows shown`;
+      }
+      [search, agent, proof].forEach((el) => el?.addEventListener('input', applyFilters));
+    </script>
+    <style>
+      .workflow-atlas { width:min(1180px, calc(100% - 32px)); margin:0 auto; padding:56px 0 80px; }
+      .atlas-hero { border:1px solid var(--border); border-radius:36px; padding:clamp(28px, 6vw, 72px); background:radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 22%, transparent), transparent 36%), linear-gradient(135deg, color-mix(in srgb, var(--panel) 92%, transparent), color-mix(in srgb, var(--bg) 95%, transparent)); box-shadow:0 30px 90px color-mix(in srgb, var(--glow) 18%, transparent); }
+      .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.18em; font-size:12px; font-weight:900; margin:0 0 14px; }
+      h1 { max-width:980px; font-family:Georgia,'Times New Roman',serif; font-size:clamp(46px, 8vw, 96px); line-height:.93; letter-spacing:-.055em; margin:0; }
+      .lede { max-width:820px; color:var(--muted); font-size:clamp(18px, 2.2vw, 23px); line-height:1.55; margin:28px 0 0; }
+      .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+      .hero-actions a { display:inline-flex; align-items:center; min-height:48px; padding:0 18px; border-radius:999px; background:var(--accent); color:#120b04; font-weight:900; text-decoration:none; text-transform:uppercase; letter-spacing:.08em; font-size:12px; }
+      .hero-actions a.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
+      .stat-grid, .category-grid, .recipe-grid, .video-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-top:18px; }
+      .stat-grid article, .category-grid article, .recipe-grid article, .video-grid article, .workflow-card, .notice { border:1px solid var(--border); border-radius:24px; background:color-mix(in srgb, var(--panel) 84%, transparent); padding:20px; }
+      .stat-grid article span, .category-grid article span, .video-grid article span { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+      .stat-grid article strong { display:block; font-family:Georgia,'Times New Roman',serif; font-size:44px; margin-top:8px; }
+      .notice { margin:18px 0 52px; color:var(--muted); line-height:1.7; }
+      .notice strong { color:var(--text); }
+      section { margin-top:64px; }
+      .section-head { max-width:780px; margin-bottom:22px; }
+      .section-head h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(34px,5vw,58px); line-height:1; letter-spacing:-.04em; margin:0; }
+      .section-head p:not(.eyebrow) { color:var(--muted); line-height:1.65; }
+      .visual-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+      figure { margin:0; border:1px solid var(--border); border-radius:24px; padding:12px; background:color-mix(in srgb, var(--panel) 70%, transparent); }
+      figure img { display:block; width:100%; height:auto; border-radius:16px; background:#071018; }
+      figcaption { margin:10px 4px 2px; color:var(--muted); font-weight:800; }
+      .category-grid h3, .recipe-grid h3, .video-grid h3, .workflow-card h3 { margin:10px 0; font-size:20px; }
+      .category-grid p, .recipe-grid p, .video-grid p, .workflow-card p, .workflow-card small, .category-grid small, .recipe-grid small { color:var(--muted); line-height:1.55; }
+      .filters { display:grid; grid-template-columns:minmax(0,1fr) 170px 170px; gap:12px; margin:18px 0 10px; }
+      .filters input, .filters select { min-height:48px; border:1px solid var(--border); border-radius:14px; background:color-mix(in srgb, var(--bg) 78%, transparent); color:var(--text); padding:0 14px; }
+      .count { color:var(--muted); font-weight:800; }
+      .workflow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; }
+      .card-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+      .card-top span, .card-top strong { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+      .workflow-card dl { display:grid; gap:8px; margin:16px 0; }
+      .workflow-card div { min-width:0; }
+      .workflow-card dt { color:var(--accent); font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
+      .workflow-card dd { margin:2px 0 0; color:var(--text); overflow-wrap:anywhere; }
+      @media (max-width:720px) { .workflow-atlas { width:min(100% - 24px, 1180px); padding-top:28px; } .filters { grid-template-columns:1fr; } h1 { font-size:48px; } .atlas-hero { border-radius:26px; } }
+    </style>
+  </body>
+</html>
