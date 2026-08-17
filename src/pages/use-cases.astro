@@ -1,0 +1,466 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Use Cases - SuperAda';
+const description = 'Readable, public-safe examples of how an AI crew turns recurring work into governed operating loops.';
+
+const useCases = [
+  {
+    label: 'Executive ops',
+    title: 'Hourly heartbeat for what is happening',
+    short: 'An agent checks the operating surface every hour, finds what changed, and sends a short receipt-backed briefing instead of waiting for someone to ask.',
+    input: 'Mission Control tasks, agent run receipts, commits, calendar signals, open blockers, and recent alerts.',
+    process: ['Collect fresh signals from the last window.', 'Separate done, blocked, risky, and needs-Henry items.', 'Deduplicate noise so the briefing is not a panic sprinkler.', 'Post a compact update with links back to the source receipts.'],
+    output: 'A short recurring heartbeat: what changed, what is blocked, who owns it, and what needs a decision.',
+    gate: 'Read-only monitoring and internal notes can run automatically. Anything that sends externally, deploys, deletes, purchases, or commits Henry needs approval.',
+    template: 'Every hour: inspect live work surfaces, summarize only material changes, link receipts, call out blockers, and stay silent if nothing useful changed.'
+  },
+  {
+    label: 'Research',
+    title: 'Daily AI news brief from Spock',
+    short: 'A research agent reads trusted sources, filters the junk, and turns fresh AI developments into a daily operator brief.',
+    input: 'News feeds, X discussions, release notes, papers, company blogs, benchmark reports, and prior research memory.',
+    process: ['Scan sources with recency and credibility checks.', 'Cluster duplicate stories.', 'Mark evidence versus speculation.', 'Translate the news into why it matters for operators, builders, or Curacel.'],
+    output: 'A daily AI news brief with ranked items, source links, why it matters, and suggested follow-up.',
+    gate: 'Research and drafting can run automatically. Public posts, claims about customers, or market-facing commentary need review.',
+    template: 'Every morning: find important AI changes, verify primary sources, remove hype, rank by operator relevance, and return a briefing with links.'
+  },
+  {
+    label: 'Meetings',
+    title: 'Calendar-aware meeting prep and follow-up',
+    short: 'Before a meeting, the agent prepares context from calendar, notes, CRM-style memory, prior conversations, and public sources. Afterward, it turns the transcript into commitments.',
+    input: 'Calendar event, attendee names, company context, prior notes, relationship memory, documents, and transcript after the call.',
+    process: ['Before the meeting, build a prep sheet with attendee context, likely agenda, open questions, and useful prior history.', 'During or after, capture decisions and commitments from the transcript only when source-backed.', 'Create follow-up drafts and tasks with owner, due date, and evidence.', 'Avoid sending anything without approval.'],
+    output: 'A prep brief before the call, then a post-call action pack with tasks, follow-up draft, and source quotes.',
+    gate: 'Preparing, summarizing, and drafting are safe. Sending follow-ups, changing calendars, or making commitments requires approval unless a standing workflow already authorizes it.',
+    template: 'For each meeting: prepare from calendar plus memory, identify the goal, produce questions, then after the call extract only explicit commitments and route them.'
+  },
+  {
+    label: 'Inbox',
+    title: 'Urgent email and message triage',
+    short: 'An agent watches inboxes and channels for things that are urgent, high-leverage, or easy to miss, then stages the response path.',
+    input: 'Email inboxes, Slack or Discord mentions, WhatsApp/Beeper queues, sender history, thread context, and current priorities.',
+    process: ['Classify messages by urgency, relationship importance, and required action.', 'Draft replies in the right voice when useful.', 'Escalate only the messages that deserve human attention.', 'Keep a receipt so missed-message audits are possible.'],
+    output: 'A prioritized inbox digest, drafted replies, and escalation notes for anything time-sensitive.',
+    gate: 'Reading and drafting can be automatic. Sending as Henry, making promises, or contacting a new person needs approval.',
+    template: 'Continuously: detect urgent messages, explain why they matter, draft the next move, and stop before external send.'
+  },
+  {
+    label: 'Product',
+    title: 'Runner turns a validated task into shipped code',
+    short: 'A coding runner takes a bounded task, builds in isolation, runs tests, and returns receipts instead of vibes wearing a hoodie.',
+    input: 'A validated ticket, repo path, acceptance criteria, relevant docs, test command, and risk boundary.',
+    process: ['Create an isolated working branch or worktree.', 'Implement the narrow change.', 'Run the exact validation gates.', 'Return diff, test output, blockers, and next action.'],
+    output: 'A reviewed code change with build/test receipts and a clear merge or follow-up path.',
+    gate: 'Local reversible code changes and tests can run. Merge, production deploy, customer-facing release, or destructive migrations need approval.',
+    template: 'Given a ticket: build only that scope, run the gate, report exact evidence, and do not expand the blast radius because the agent got inspired.'
+  },
+  {
+    label: 'Publishing',
+    title: 'Evidence-backed resource publishing',
+    short: 'An agent turns a body of private operating evidence into a public-safe resource page by removing private proof while preserving the reusable pattern.',
+    input: 'Evidence ledger, private receipts, source notes, diagrams, scripts, screenshots, and publication policy.',
+    process: ['Audit what is safe to publish.', 'Convert internal examples into reusable public patterns.', 'Generate approved visuals and media assets.', 'Build the page, run QA, and verify production.'],
+    output: 'A resource page that a reader can understand, copy, and adapt without seeing private data.',
+    gate: 'Drafting and local build can be automatic. Public release needs privacy checks and approval for anything sensitive.',
+    template: 'Start from receipts, publish the reusable workflow, hide private proof, and include the approval boundary so readers know where automation stops.'
+  }
+];
+
+const stages = [
+  ['1', 'Spot the loop', 'Find work that repeats: briefings, prep, triage, coding, research, publishing, follow-up.'],
+  ['2', 'Give it context', 'Connect safe sources: calendar, tasks, notes, repo, memory, inboxes, and source documents.'],
+  ['3', 'Make the agent produce a receipt', 'Every output should say what it checked, what changed, what is missing, and where the evidence lives.'],
+  ['4', 'Add the gate', 'The system must know what it can do alone and where Henry or a human must approve.'],
+  ['5', 'Promote only validated loops', 'A rough catalog can hold 100 candidates. The public use-case page should show only the ones that are clear, useful, and audited.']
+];
+
+const mediaBriefs = [
+  'Heartbeat control room: a quiet mission-control wall with hourly signals flowing into one compact executive brief, no readable private text.',
+  'Meeting prep loop: calendar card, memory graph, attendee context, transcript, and follow-up tasks moving through visible approval gates.',
+  'Agent workbench: research, coding, inbox, and publishing agents passing receipts into a human decision gate.'
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="use-cases-page">
+    <Header />
+    <main>
+      <section class="hero shell">
+        <p class="eyebrow">SUPERADA USE CASES</p>
+        <h1>How an AI crew turns repeated work into operating loops.</h1>
+        <p class="lede">This page is not a list of magic prompts. It is a readable field guide for how the crew is used in practice: what the human gives it, what the agent does, what comes back, and where the approval gate sits.</p>
+        <div class="hero-actions">
+          <a href="#examples" class="button primary">Read the examples</a>
+          <a href="/resources/agent-workflow-atlas/" class="button secondary">View the raw v1 atlas</a>
+        </div>
+      </section>
+
+      <section class="shell framing" aria-label="What this page is for">
+        <article>
+          <span>Reader promise</span>
+          <h2>Understand the workflow, not just the agent name.</h2>
+          <p>A useful use case explains the job-to-be-done. “Spock sends AI news” is a label. The useful version says: every morning, Spock scans sources, deduplicates hype, separates evidence from inference, and sends a ranked operator brief with source links and follow-up ideas.</p>
+        </article>
+        <article>
+          <span>Publication rule</span>
+          <h2>The 100-row catalog stays as the audit backlog.</h2>
+          <p>The raw resource page can keep the broad inventory. This page promotes only validated examples into clear public use cases. Each promoted case has to be readable by a stranger and safe to publish.</p>
+        </article>
+      </section>
+
+      <section class="shell method" aria-labelledby="method-title">
+        <p class="eyebrow">HOW TO READ THESE</p>
+        <h2 id="method-title">Every use case has the same spine.</h2>
+        <div class="stage-grid">
+          {stages.map(([n, name, copy]) => (
+            <article>
+              <strong>{n}</strong>
+              <h3>{name}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="examples" class="shell examples" aria-labelledby="examples-title">
+        <p class="eyebrow">VALIDATED STARTER SET</p>
+        <h2 id="examples-title">Six examples people can grok quickly.</h2>
+        <p class="section-intro">These are the first promoted examples. The rest of the 100-candidate atlas should be audited into this format before it earns a place here.</p>
+        <div class="case-list">
+          {useCases.map((item) => (
+            <article class="case-card">
+              <div class="case-head">
+                <span>{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.short}</p>
+              </div>
+              <div class="case-body">
+                <div>
+                  <h4>Human gives it</h4>
+                  <p>{item.input}</p>
+                </div>
+                <div>
+                  <h4>Agent does</h4>
+                  <ol>
+                    {item.process.map((step) => <li>{step}</li>)}
+                  </ol>
+                </div>
+                <div>
+                  <h4>Human gets back</h4>
+                  <p>{item.output}</p>
+                </div>
+                <div>
+                  <h4>Approval boundary</h4>
+                  <p>{item.gate}</p>
+                </div>
+              </div>
+              <div class="template">
+                <strong>Copyable recipe</strong>
+                <p>{item.template}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="shell media-plan" aria-labelledby="media-title">
+        <p class="eyebrow">RICH MEDIA DIRECTION</p>
+        <h2 id="media-title">The next visual pass should be generated, not hand-coded.</h2>
+        <p>The previous SVG pack was useful as a structural audit, but it is not the polished media layer. The image-model pass should produce editorial hero visuals from these briefs, then the accepted images can become video anchors.</p>
+        <div class="brief-grid">
+          {mediaBriefs.map((brief) => (
+            <article>
+              <h3>GPT Image brief</h3>
+              <p>{brief}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  :global(body.use-cases-page) {
+    background: radial-gradient(circle at top left, rgba(248, 96, 42, 0.18), transparent 28rem), #080706;
+    color: #f7efe7;
+  }
+
+  .shell {
+    width: min(1120px, calc(100vw - 32px));
+    margin: 0 auto;
+  }
+
+  .hero {
+    padding: 7rem 0 4rem;
+  }
+
+  .eyebrow,
+  .framing span,
+  .case-head span {
+    display: inline-flex;
+    width: fit-content;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: #ffb088;
+    font-weight: 800;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+
+  h1 {
+    max-width: 880px;
+    margin-top: 1rem;
+    font-size: clamp(3.2rem, 8vw, 7.4rem);
+    line-height: 0.9;
+    letter-spacing: -0.08em;
+  }
+
+  .lede {
+    max-width: 820px;
+    margin-top: 1.5rem;
+    color: #d8c6b9;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.85rem 1.1rem;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.76rem;
+    text-decoration: none;
+  }
+
+  .button.primary {
+    background: #ff6a2a;
+    color: #180b05;
+  }
+
+  .button.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f7efe7;
+  }
+
+  .framing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1rem 0 3.5rem;
+  }
+
+  .framing article,
+  .stage-grid article,
+  .case-card,
+  .brief-grid article {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  }
+
+  .framing article {
+    border-radius: 28px;
+    padding: 1.4rem;
+  }
+
+  .framing h2,
+  .method h2,
+  .examples h2,
+  .media-plan h2 {
+    margin-top: 0.55rem;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+  }
+
+  .framing p,
+  .section-intro,
+  .media-plan > p {
+    margin-top: 1rem;
+    color: #d8c6b9;
+    line-height: 1.65;
+  }
+
+  .method,
+  .examples,
+  .media-plan {
+    padding: 3rem 0;
+  }
+
+  .stage-grid,
+  .brief-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .stage-grid article,
+  .brief-grid article {
+    border-radius: 22px;
+    padding: 1rem;
+  }
+
+  .stage-grid strong {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: rgba(255, 106, 42, 0.18);
+    color: #ffb088;
+  }
+
+  .stage-grid h3,
+  .brief-grid h3 {
+    margin-top: 0.8rem;
+    font-size: 1.02rem;
+  }
+
+  .stage-grid p,
+  .brief-grid p {
+    margin-top: 0.55rem;
+    color: #cfb8aa;
+    line-height: 1.5;
+    font-size: 0.94rem;
+  }
+
+  .case-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+
+  .case-card {
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .case-head {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03));
+  }
+
+  .case-head h3 {
+    margin-top: 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    letter-spacing: -0.045em;
+  }
+
+  .case-head p {
+    max-width: 850px;
+    margin-top: 0.7rem;
+    color: #e4d2c5;
+    line-height: 1.55;
+  }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .case-body > div {
+    padding: 1.1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .case-body > div:last-child {
+    border-right: 0;
+  }
+
+  h4 {
+    color: #ffb088;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .case-body p,
+  .case-body li,
+  .template p {
+    color: #d8c6b9;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  ol {
+    margin: 0.65rem 0 0;
+    padding-left: 1.1rem;
+  }
+
+  .template {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem;
+    padding: 1rem 1.2rem 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  .template strong {
+    color: #f7efe7;
+  }
+
+  .brief-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 900px) {
+    .framing,
+    .case-body,
+    .brief-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stage-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case-body > div {
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .template {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .stage-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      padding-top: 5rem;
+    }
+  }
+</style>
