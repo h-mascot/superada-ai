@@ -98,7 +98,6 @@ const setupSteps = [
     <Header />
     <main>
       <section class="hero shell">
-        <p class="eyebrow">SuperAda use cases</p>
         <h1>Henry’s agent use cases</h1>
         <p class="lede">These are plain examples of how Henry and the Enterprise Crew use agents in daily work. Not a prompt library. Not a raw catalog. Just the recurring jobs, what each one connects to, what comes back, and where the human approval line sits.</p>
       </section>
@@ -158,6 +157,10 @@ const setupSteps = [
           {setupSteps.map((step) => <li>{step}</li>)}
         </ol>
       </section>
+
+      <section class="shell more">
+        <a class="more-link" href="/resources/agent-workflow-atlas/">See more<span>The full workflow atlas, with every mapped use case and filters by agent and category.</span></a>
+      </section>
     </main>
     <Footer />
   </body>
@@ -200,11 +203,20 @@ const setupSteps = [
   }
 
   h1 {
-    max-width: 820px;
-    margin-top: 1rem;
-    font-size: clamp(3rem, 7vw, 6.2rem);
-    line-height: 0.94;
-    letter-spacing: -0.07em;
+    max-width: 1120px;
+    margin-top: 0;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    h1 {
+      font-size: 2rem;
+      white-space: normal;
+      line-height: 1.1;
+    }
   }
 
   .lede {
@@ -348,11 +360,51 @@ const setupSteps = [
     line-height: 1.5;
   }
 
+  .more {
+    margin-bottom: 4.5rem;
+  }
+
+  .more-link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03));
+    border-radius: 30px;
+    padding: 1.5rem 1.7rem;
+    text-decoration: none;
+  }
+
+  .more-link:hover {
+    border-color: rgba(255, 176, 136, 0.55);
+  }
+
+  .more-link {
+    color: #f7efe7;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+  }
+
+  .more-link span {
+    color: #d8c6b9;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
+
   @media (max-width: 900px) {
     .intro-grid,
     dl,
     .setup {
       grid-template-columns: 1fr;
+    }
+
+    .more-link {
+      grid-template-columns: 1fr;
+      row-gap: 0.35rem;
     }
 
     dl > div {
