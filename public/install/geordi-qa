@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/geordi-qa"
+mkdir -p "$TARGET_DIR"
+base="https://superada.ai/skills/geordi-qa"
+curl -fsSL "$base/SKILL.md" -o "$TARGET_DIR/SKILL.md"
+printf 'Installed geordi-qa to %s\n' "$TARGET_DIR"

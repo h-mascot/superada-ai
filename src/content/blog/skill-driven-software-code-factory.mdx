@@ -15,16 +15,25 @@ A coding agent can pass its tests, close the ticket, and still leave the product
 
 The mobile page may overflow. Keyboard focus may vanish. The deployed build may not match the reviewed commit. A worker process stopping proves only that the worker stopped.
 
-We stopped asking one agent to specify, build, review, and verify the same job. Instead, we use a chain of skills with explicit handoffs:
+We stopped asking one agent to specify, build, review, and verify the same job. The factory now has two lanes.
 
-- **[Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs)** interrogates the idea and its source files.
-- **[Loom](/skills/loom/)** compiles the settled decisions into a traceable specification and execution graph.
+## Software factory
+
+### Type 1: skill-driven
+
+**[Loom](/skills/loom/)** owns the specification handoff. Inside that lane:
+
+- **[Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs)** interrogates the idea and source files.
 - **[Super Spec](/skills/super-spec/)** turns the source packet into a builder-ready product and technical contract.
-- **[Linear](https://linear.app)** holds the dependency graph and acceptance criteria.
-- **[Runner](/skills/runner/)** manages governed implementation, independent review, proof gates, and reconciliation.
-- **[Runner Low Burn v2](/skills/runner-low-burn-v2/)** caps avoidable token burn without removing proof.
-- **[Runabout](https://github.com/h-mascot/runabout)** handles clear contracts through a deterministic state machine.
-- **Geordi QA** tests the product a user can actually touch.
+- **To PRD → [Linear](https://linear.app)** turns the accepted contract into an execution graph.
+
+**[Runner](/skills/runner/)** owns governed implementation. Its operating profiles are **[Runner](/skills/runner/)** and **[Runner Low Burn v2](/skills/runner-low-burn-v2/)**.
+
+**[Geordi QA](/skills/geordi-qa/)** checks the product surface after implementation: build identity, desktop/mobile behavior, keyboard focus, screenshots, console/network evidence, and the final PASS, PARTIAL, or FAIL decision.
+
+### Type 2: deterministic
+
+**[Runabout](https://github.com/h-mascot/runabout)** handles work whose manifest and acceptance contract are clear enough for a deterministic state machine, explicit budgets, and proof gates.
 
 Each stage removes a different kind of uncertainty. Each stage must leave evidence for the next.
 
@@ -116,7 +125,7 @@ A process exit is not completion. A ticket moved to Done is not completion. If t
 
 [Runabout](https://github.com/h-mascot/runabout) is not another Runner profile. It is a deterministic control-plane harness for work whose manifest and acceptance contract are already clear.
 
-It accepts approved work manifests from [Loom](/skills/loom/), Linear, or the command line. It validates admission, drives workers through a finite-state machine, applies budgets, and enforces deterministic proof gates. The locally verified release at the time of the audit was `runabout v0.4.0`.
+It accepts approved work manifests from [Loom](/skills/loom/), [Linear](https://linear.app), or the command line. It validates admission, drives workers through a finite-state machine, applies budgets, and enforces deterministic proof gates. The locally verified release at the time of the audit was `runabout v0.4.0`.
 
 The routing rule is simple:
 
@@ -132,6 +141,8 @@ Runner's gates do not replace Geordi QA. They cover different surfaces.
 After implementation, the next instruction is:
 
 `Run Geordi QA`
+
+The [Geordi QA skill](/skills/geordi-qa/) makes that a product-evidence gate rather than a vibes pass.
 
 Geordi first verifies build identity. The commit under test must be the commit we intended to test. It then checks:
 
@@ -157,7 +168,7 @@ Those outcomes need to remain real. A QA system rewarded for green reports becom
 
 ## Receipts make the factory auditable
 
-The code is the deliverable. The receipts are what make its history believable. The installable workflows referenced here are [Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs), [Loom](/skills/loom/), [Super Spec](/skills/super-spec/), [Runner](/skills/runner/), and [Runner Low Burn v2](/skills/runner-low-burn-v2/).
+The code is the deliverable. The receipts are what make its history believable. The installable workflows referenced here are [Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs), [Loom](/skills/loom/), [Super Spec](/skills/super-spec/), [Runner](/skills/runner/), [Runner Low Burn v2](/skills/runner-low-burn-v2/), and [Geordi QA](/skills/geordi-qa/).
 
 A useful proof package can identify:
 
@@ -171,7 +182,7 @@ A useful proof package can identify:
 
 Receipts also make failure actionable. An authority boundary needs a decision, not another retry. A matching build with a drifting public URL points to promotion. Passing unit tests with broken keyboard navigation shows that the code gate and product gate are reporting different truths.
 
-This is why the factory is skill-driven. The skills are not prompt wrappers. Loom reduces uncertainty in intent. Runner governs evolving implementation. Runabout executes clear contracts. Geordi tests the visible product. The boundaries matter as much as the models.
+This is why the factory is skill-driven. The skills are not prompt wrappers. Loom reduces uncertainty in intent. Runner governs evolving implementation. Runabout executes clear contracts. [Geordi QA](/skills/geordi-qa/) tests the visible product. The boundaries matter as much as the models.
 
 ## What remains imperfect
 
