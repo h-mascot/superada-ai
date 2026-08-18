@@ -19,9 +19,12 @@ The mobile page may overflow. Keyboard focus may vanish. The deployed build may 
 
 We stopped asking one agent to specify, build, review, and verify the same job. Instead, we use a chain of skills with explicit handoffs:
 
-- **Loom** turns an idea and its source files into a traceable specification.
+- **[Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs)** interrogates the idea and its source files.
+- **[Loom](/skills/loom/)** compiles the settled decisions into a traceable specification and execution graph.
+- **[Super Spec](/skills/super-spec/)** turns the source packet into a builder-ready product and technical contract.
 - **Linear** holds the dependency graph and acceptance criteria.
-- **Runner** manages implementation, review, gates, and reconciliation.
+- **[Runner](/skills/runner/)** manages governed implementation, independent review, proof gates, and reconciliation.
+- **[Runner Low Burn v2](/skills/runner-low-burn-v2/)** caps avoidable token burn without removing proof.
 - **Runabout** handles clear contracts through a deterministic state machine.
 - **Geordi QA** tests the product a user can actually touch.
 
@@ -35,9 +38,9 @@ My input can be as simple as:
 
 `Run Loom on this idea using these files.`
 
-Loom is our internal intake and specification workflow. It is not the video-recording product.
+[Loom](/skills/loom/) is our internal intake and specification workflow. It is not the video-recording product.
 
-Its first step, Grill Me With Docs, interrogates the idea against the supplied material. It looks for:
+Its first step, [Matt Pocock's Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs), interrogates the idea against the supplied material. It looks for:
 
 - product decisions that have not actually been made
 - contradictions between the brief and the evidence
@@ -47,7 +50,7 @@ Its first step, Grill Me With Docs, interrogates the idea against the supplied m
 
 That grilling matters because a polished brief can conceal an unresolved decision as easily as a rough note can.
 
-Loom then builds a source packet and a SuperSpec. That feeds an Oracle PRD and critique pass. Finally, Loom prepares the Linear execution graph, its dependencies and acceptance criteria, and the repository context required to do the work.
+Loom then builds a source packet and calls [Super Spec](/skills/super-spec/) as an explicit stage. Super Spec compiles the evidence, accepted decisions, boundaries, proof gates, rollout, and rollback into a builder-ready contract. That contract feeds an Oracle PRD and critique pass. Finally, Loom prepares the Linear execution graph, its dependencies and acceptance criteria, and the repository context required to do the work.
 
 The useful output is not a stack of documents. It is provenance. A ticket should trace to a product decision, and that decision should trace to supplied evidence. When implementation drifts, we can determine whether the code departed from the specification or the specification was wrong.
 
@@ -64,7 +67,7 @@ Those numbers show the scale Loom can prepare. They are not a claim that every r
 
 Once loaded into Linear, the work is an issue graph rather than a bag of prompts. Dependencies are visible. Acceptance criteria sit beside the task. Ready work can be separated from blocked work.
 
-Linear is the shared execution surface. It does not choose how the job should run. That choice happens when I invoke Runner.
+Linear is the shared execution surface. It does not choose how the job should run. That choice happens when I invoke [Runner](/skills/runner/).
 
 A real route can look like this:
 
@@ -95,7 +98,7 @@ It also distinguishes ready work from a transient retry, an authority block, an 
 
 ## Governed and low-burn are operating choices
 
-Runner governed is for work that needs stronger review and authority controls. Runner low-burn is for well-shaped work where the main avoidable risk is waste from idle polling, duplicate review, and repeated summaries of an unchanged state.
+[Runner governed](/skills/runner/) is for work that needs stronger review and authority controls. [Runner Low Burn v2](/skills/runner-low-burn-v2/) is for well-shaped work where the main avoidable risk is waste from idle polling, duplicate review, full-context replay, and repeated summaries of an unchanged state.
 
 Low-burn does not remove proof. It keeps active work and review gates while reducing waste around them. If a supervisor repeatedly asks an unchanged queue whether anything happened, swapping in a cheaper model does not fix the loop.
 
@@ -115,7 +118,7 @@ A process exit is not completion. A ticket moved to Done is not completion. If t
 
 Runabout is not another Runner profile. It is a deterministic control-plane harness for work whose manifest and acceptance contract are already clear.
 
-It accepts approved work manifests from Loom, Linear, or the command line. It validates admission, drives workers through a finite-state machine, applies budgets, and enforces deterministic proof gates. The locally verified release at the time of the audit was `runabout v0.4.0`.
+It accepts approved work manifests from [Loom](/skills/loom/), Linear, or the command line. It validates admission, drives workers through a finite-state machine, applies budgets, and enforces deterministic proof gates. The locally verified release at the time of the audit was `runabout v0.4.0`.
 
 The routing rule is simple:
 
@@ -156,7 +159,7 @@ Those outcomes need to remain real. A QA system rewarded for green reports becom
 
 ## Receipts make the factory auditable
 
-The code is the deliverable. The receipts are what make its history believable.
+The code is the deliverable. The receipts are what make its history believable. The installable workflows referenced here are [Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs), [Loom](/skills/loom/), [Super Spec](/skills/super-spec/), [Runner](/skills/runner/), and [Runner Low Burn v2](/skills/runner-low-burn-v2/).
 
 A useful proof package can identify:
 

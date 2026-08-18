@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/runner-low-burn-v2"
+mkdir -p "$TARGET_DIR/references"
+base="https://superada.ai/skills/runner-low-burn-v2"
+curl -fsSL "$base/SKILL.md" -o "$TARGET_DIR/SKILL.md"
+for ref in \
+  context-exhaustion-recovery \
+  credential-blocker-closeout \
+  native-goal-low-burn-launch; do
+  curl -fsSL "$base/references/$ref.md" -o "$TARGET_DIR/references/$ref.md"
+done
+echo "Installed runner-low-burn-v2 to $TARGET_DIR"
