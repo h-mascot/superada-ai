@@ -15,17 +15,15 @@ A coding agent can pass its tests, close the ticket, and still leave the product
 
 The mobile page may overflow. Keyboard focus may vanish. The deployed build may not match the reviewed commit. A worker process stopping proves only that the worker stopped.
 
-*Audio edition: real Kokoro narration rendered as a static file.*
-
 We stopped asking one agent to specify, build, review, and verify the same job. Instead, we use a chain of skills with explicit handoffs:
 
 - **[Grill With Docs](https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs)** interrogates the idea and its source files.
 - **[Loom](/skills/loom/)** compiles the settled decisions into a traceable specification and execution graph.
 - **[Super Spec](/skills/super-spec/)** turns the source packet into a builder-ready product and technical contract.
-- **Linear** holds the dependency graph and acceptance criteria.
+- **[Linear](https://linear.app)** holds the dependency graph and acceptance criteria.
 - **[Runner](/skills/runner/)** manages governed implementation, independent review, proof gates, and reconciliation.
 - **[Runner Low Burn v2](/skills/runner-low-burn-v2/)** caps avoidable token burn without removing proof.
-- **Runabout** handles clear contracts through a deterministic state machine.
+- **[Runabout](https://github.com/h-mascot/runabout)** handles clear contracts through a deterministic state machine.
 - **Geordi QA** tests the product a user can actually touch.
 
 Each stage removes a different kind of uncertainty. Each stage must leave evidence for the next.
@@ -34,7 +32,7 @@ Each stage removes a different kind of uncertainty. Each stage must leave eviden
 
 ## Start with one plain instruction
 
-My input can be as simple as:
+The input can be as simple as:
 
 `Run Loom on this idea using these files.`
 
@@ -65,9 +63,9 @@ Those numbers show the scale Loom can prepare. They are not a claim that every r
 
 ## Linear is the handoff, not the brain
 
-Once loaded into Linear, the work is an issue graph rather than a bag of prompts. Dependencies are visible. Acceptance criteria sit beside the task. Ready work can be separated from blocked work.
+Once loaded into [Linear](https://linear.app), the work is an issue graph rather than a bag of prompts. Dependencies are visible. Acceptance criteria sit beside the task. Ready work can be separated from blocked work.
 
-Linear is the shared execution surface. It does not choose how the job should run. That choice happens when I invoke [Runner](/skills/runner/).
+Linear is the shared execution surface. It does not choose how the job should run. That choice happens when [Runner](/skills/runner/) is invoked.
 
 A real route can look like this:
 
@@ -116,7 +114,7 @@ A process exit is not completion. A ticket moved to Done is not completion. If t
 
 ## Runabout is a different harness
 
-Runabout is not another Runner profile. It is a deterministic control-plane harness for work whose manifest and acceptance contract are already clear.
+[Runabout](https://github.com/h-mascot/runabout) is not another Runner profile. It is a deterministic control-plane harness for work whose manifest and acceptance contract are already clear.
 
 It accepts approved work manifests from [Loom](/skills/loom/), Linear, or the command line. It validates admission, drives workers through a finite-state machine, applies budgets, and enforces deterministic proof gates. The locally verified release at the time of the audit was `runabout v0.4.0`.
 
@@ -131,7 +129,7 @@ A rigid state machine gives ambiguous product work false certainty. A fuzzy supe
 
 Runner's gates do not replace Geordi QA. They cover different surfaces.
 
-After implementation, I can say:
+After implementation, the next instruction is:
 
 `Run Geordi QA`
 
@@ -192,5 +190,3 @@ We are tightening the reconciliation between generated issues, dependencies, git
 The practical lesson is straightforward: do not give one coding agent ownership of specification, implementation, review, and QA. Define the contracts between those jobs. Require each stage to produce evidence the next stage can check.
 
 Then, when an agent says it is done, you can ask whether the product agrees.
-
-*Dictated by Henry. Written by SuperAda.*
