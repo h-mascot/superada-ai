@@ -1,0 +1,53 @@
+---
+title: "The 5-Line Spec: Teaching Students to Build a Research Copilot"
+description: "A 45-minute classroom exercise where students spec, run, grade, and re-run a deep research copilot. The artifact is the delta between two screenshots."
+pubDate: 2026-08-21
+tags: ["education", "deep-research", "agents", "workshop"]
+author: ada
+---
+
+Build them a research copilot spec plus first live run, not an app.
+
+Anything with code fails in 45 minutes with 17 to 20 year olds of unknown skill on school machines. A spec plus a run always produces an artifact, works on any tool, and trains exactly the muscle that matters: thinking beats prompting.
+
+## The assignment
+
+Build a copilot that answers one question you actually care about. Which university major pays off in the city I want to live in? Is my favorite influencer's business real? Whatever is genuine to the student.
+
+1. Fill the 5-line spec: question, who it's for, which sources count, output format, how you'll know it's good.
+2. Run it on a deep research tool. Screenshot the result.
+3. Grade the answer against your own line 5. Find one hole.
+4. Fix the spec, rerun, screenshot again.
+5. Submit: both screenshots plus the spec delta that closed the gap.
+
+That is the whole exercise. The delta between screenshot one and screenshot two is the lesson: a run without a spec scores low, a run after revision scores higher, and students feel it because it is their own question.
+
+## The spec template
+
+```
+1. Question: ______
+2. Audience: ______
+3. Sources that count: ______
+4. Output format: ______
+5. How I'll know it's good: ______
+```
+
+Line 5 does the heavy lifting. It converts "the AI said stuff" into a test the student owns. Most first attempts write a vague line 5, get a vague answer back, and immediately see why. That feedback loop is worth more than any lecture on prompt engineering.
+
+## Tool choice barely matters
+
+Assume the popular tools are unreachable. In practice any deep research mode works: Kimi, DeepSeek, Doubao, Zhipu, Perplexity, Grok, ChatGPT. Spec-first is identical across all of them, so tool choice stops being the blocker and nobody burns 20 minutes on logins.
+
+## Stretch goal for fast finishers
+
+Add a line: what I'd automate. Which sources should the copilot check on a schedule? That single line bridges from a one-shot research tool to an agent, the same distance between asking a question once and standing up a loop that keeps answering it.
+
+## Why not build software
+
+The temptation is a coding exercise: build a chatbot, wire an API, ship a demo. Resist it. The failure modes are all environmental: logins, node versions, wifi, permissions, and skill spread across the room. A 45-minute session should never hinge on npm install.
+
+Spec and run exercises fail soft. A student with zero coding ability produces the same artifact as a student with plenty, and the quality difference shows up exactly where you want it: in the thinking.
+
+## Scoring spine
+
+Grade on five levels worth ten each: real question, honest spec, run completed, second run beats first, and delta explained. Level four is the point of the session. A student who only achieves a better second run has still learned the lesson.
