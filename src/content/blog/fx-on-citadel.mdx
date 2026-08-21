@@ -1,0 +1,134 @@
+---
+title: "fx on Citadel: self-hosted model routing for a terminal coding agent"
+description: "We bridged Vercel's fx terminal coding agent from the AI Gateway protocol to Citadel, including SSE streaming, tool calls, and the startup bug that mattered."
+pubDate: "2026-08-21"
+heroImage: ./images/hero-fx-on-citadel.png
+heroAlt: "Four-stage diagram showing two Macs, an fxc wrapper, a translation bridge, and the Citadel model gateway."
+tags: ["agents", "model-routing", "citadel", "terminal-agents", "operations"]
+author: book
+---
+
+Vercel released `fx`, a terminal coding agent. Version 0.0.4 speaks Vercel's AI Gateway protocol out of the box. It did not have a local-model route or a self-hosted gateway option.
+
+We wanted the agent, not the account boundary, so we bridged it to Citadel. The result is simple from the operator's seat: run `fxc`, use the normal `fx` workflow, and route the model call through our self-hosted gateway.
+
+That now gives `fx` access to **94 Citadel model ids** without a Vercel account. The default route is `zai/glm-5.2`; `FX_MODEL=<id>` picks another Citadel model. We verified `zai/glm-5.2` and `google/gemini-3.5-flash` live. Local MLX models were blocked by Citadel's 16GB free-RAM gate during this test, which is a gateway capacity policy, not a bridge failure.
+
+The interesting part was not making one request work. The interesting part was closing the protocol boundary, tool calls, streaming, and startup behavior on real agent workstations.
+
+## The bridge has four pieces
+
+The deployed shape matched the diagram.
+
+1. **Two Macs running fx.** We tested both a wrapper route and a plain `fx` route pointed at the bridge.
+2. **`fxc`, a thin wrapper.** It points `fx` at a local bridge, stages a clean HOME for fast startup, and keeps `.fx` state synced.
+3. **A translation bridge.** The bridge is roughly 200 lines of stdlib-only Python. It speaks Vercel Language Model Spec v4 over SSE on one side and OpenAI Chat Completions on the other.
+4. **Citadel.** Citadel remains the model control plane. The bridge only translates the dialect that `fx` sends.
+
+The bridge was built from captured `fx` requests, not from a guessed client shape. That mattered. Coding agents are unforgiving when the gateway gets streaming or tool calls almost right.
+
+## The launchd shape
+
+The bridge runs as a launchd job with `KeepAlive`, so the local endpoint survives reboots. The public-safe shape looks like this, with the private gateway address omitted:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>ai.henry.fx-citadel-gateway</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/env</string>
+    <string>CITADEL_URL=&lt;self-hosted-gateway-url&gt;</string>
+    <string>FX_GATEWAY_PORT=18199</string>
+    <string>/usr/bin/python3</string>
+    <string>/opt/fx-citadel-gateway/fx-citadel-gateway.py</string>
+  </array>
+
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+</dict>
+</plist>
+```
+
+That gets the service into the boring part of the stack. Boring is useful here. A terminal agent should not depend on someone remembering to start a Python process before the first prompt.
+
+## The wrapper does two jobs
+
+The wrapper sets the gateway variables that `fx` needs, then launches `fx` with a staged HOME. This is the sanitized shape:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+BRIDGE_URL="${FXC_BRIDGE_URL:-http://localhost:18199}"
+MODEL="${FX_MODEL:-zai/glm-5.2}"
+STAGE="${XDG_CACHE_HOME:-$HOME/.cache}/fxc-home"
+
+mkdir -p "$STAGE"
+rsync -a --delete "$HOME/.fx/" "$STAGE/.fx/" 2>/dev/null || true
+
+export FX_GATEWAY_BASE_URL="$BRIDGE_URL"
+export FX_GATEWAY_CHAT_URL="$BRIDGE_URL/v3/ai/language-model"
+export AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-dummy-local-citadel}"
+export FX_DISABLE_KEYCHAIN=1
+export FX_SKIP_ONBOARDING=1
+export NO_COLOR="${NO_COLOR:-1}"
+
+HOME="$STAGE" fx "$@"
+```
+
+The bridge handles the protocol work behind those variables:
+
+- Vercel Language Model Spec v4 request bodies become OpenAI Chat Completions requests.
+- Streaming OpenAI chunks become the SSE events that `fx` expects.
+- Tool calls are preserved both ways, so file reads and edits can round-trip through the model.
+- Some Citadel routes return non-SSE JSON even when asked to stream. The bridge detects that and batch-converts the response into the SSE event sequence `fx` expects.
+
+That last quirk is the kind of thing a text-only smoke test misses. The agent may still answer a prompt, then fail when it reaches a model or tool-call path with slightly different wire behavior.
+
+## The bug was a startup walk, not model latency
+
+The surprising failure was before the first token.
+
+At startup, `fx` unconditionally walks `~/.codex/skills` and `~/.claude/skills`. On a clean machine, that is harmless. On a heavy agent workstation, our skills tree was roughly **40,000 files** and **900MB**. `fx` spent minutes walking files before it could do useful work.
+
+The fix was not in the model gateway. `fxc` stages a minimal HOME at `~/.cache/fxc-home` and syncs only `.fx` state into it: settings, sessions, history, and usage. That keeps the real agent skills tree out of `fx` startup.
+
+Cold startup dropped to **4.6 to 6.2 seconds** in the verified wrapper path. Call it about six seconds. Exact enough for operations, dull enough to trust.
+
+Clean-machine users may never notice this bug. Heavy-agent-workstation users will hit it immediately. That is why the wrapper belongs in the architecture rather than as a footnote.
+
+## What we verified live
+
+The receipts behind this post were collected on 2026-08-19 and 2026-08-20.
+
+- The `fxc ask` wrapper path returned the correct answer through Citadel, with cold start in the 4.6 to 6.2 second range.
+- A second Mac ran plain `fx` with the bridge environment and returned the correct answer.
+- A real `read_file` tool call round-tripped through Citadel tool-calling.
+- `zai/glm-5.2` and `google/gemini-3.5-flash` both worked through the bridge.
+- Any Citadel model id can be selected with `FX_MODEL=<id>`, subject to the gateway's own model availability and capacity gates.
+
+What this does not prove: it does not prove every future `fx` release keeps the same wire shape. It does not bypass Citadel capacity policy. It does not make local MLX models available when the gateway correctly refuses them for lack of free RAM.
+
+The bridge proves a narrower and more useful claim: `fx` can run against a self-hosted Citadel gateway today, with streaming and tool calls intact, without asking the coding agent to learn a new protocol.
+
+## The reusable pattern
+
+This is the pattern worth keeping:
+
+1. Capture the real client request before building the adapter.
+2. Translate one protocol boundary in one place.
+3. Preserve streaming semantics, including finish events.
+4. Run a real tool-call round trip instead of a text-only prompt.
+5. Keep local process supervision boring.
+6. Isolate the agent's HOME when startup scans collide with a large workstation.
+
+The model list was not the hard part. The hard part was making the terminal agent behave like the gateway was native: first token in seconds, tools intact, model choice explicit, and no private network details leaking into the operator flow.
+
+That is the line I want from agent infrastructure. Less ceremony. More receipts.
