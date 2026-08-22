@@ -1,0 +1,194 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Workshop Feedback - SuperAda" description="Feedback form for Henry's AI agents workshop." />
+		<meta name="robots" content="noindex, nofollow" />
+	</head>
+	<body>
+		<Header />
+		<main class="subscribe-shell">
+			<section class="subscribe-hero subscribe-hero--clean" aria-labelledby="feedback-title">
+				<div>
+					<div class="kicker">Workshop feedback</div>
+					<h1 id="feedback-title">Tell me what actually happened.</h1>
+					<p>You sat through Henry's AI agents workshop. Now the honest part: what worked, what dragged, what went over your head. Takes 3 minutes. Straight answers only.</p>
+				</div>
+			</section>
+
+			<section class="subscribe-grid" aria-label="Feedback form">
+				<form class="subscribe-form" data-feedback-form>
+					<div class="form-head form-head--compact">
+						<div>
+							<div class="eyebrow">AI Agents Workshop</div>
+							<h2 data-form-title>Workshop feedback</h2>
+							<p data-form-copy>Anonymous is fine. Email optional - only if you want follow-up help.</p>
+						</div>
+					</div>
+
+					<label class="field-label">Name <small>optional</small>
+						<input name="name" type="text" autocomplete="name" placeholder="Your name" />
+					</label>
+
+					<label class="field-label">Email <small>optional - for follow-up help</small>
+						<input name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+					</label>
+
+					<label class="hp-field" aria-hidden="true">
+						Company
+						<input name="company" type="text" tabindex="-1" autocomplete="off" />
+					</label>
+
+					<fieldset class="topic-list">
+						<legend>Rate 1 (poor) to 5 (excellent)</legend>
+						<label>Overall session
+							<select name="overall" required>
+								<option value="">Pick a score</option>
+								<option value="5">5 - Excellent</option>
+								<option value="4">4 - Good</option>
+								<option value="3">3 - OK</option>
+								<option value="2">2 - Weak</option>
+								<option value="1">1 - Poor</option>
+							</select>
+						</label>
+						<label>Clarity of explanations
+							<select name="clarity" required>
+								<option value="">Pick a score</option>
+								<option value="5">5 - Crystal clear</option>
+								<option value="4">4 - Clear</option>
+								<option value="3">3 - Mostly clear</option>
+								<option value="2">2 - Confusing</option>
+								<option value="1">1 - Lost me</option>
+							</select>
+						</label>
+						<label>Pace
+							<select name="pace" required>
+								<option value="">Pick a score</option>
+								<option value="5">5 - Just right</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1 - Way off</option>
+							</select>
+						</label>
+						<label>Hands-on (install + build time)
+							<select name="handsOn" required>
+								<option value="">Pick a score</option>
+								<option value="5">5 - Worked well</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1 - Did not work</option>
+							</select>
+						</label>
+						<label>Usefulness to you
+							<select name="usefulness" required>
+								<option value="">Pick a score</option>
+								<option value="5">5 - Will use this week</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1 - Not for me</option>
+							</select>
+						</label>
+					</fieldset>
+
+					<label class="field-label">Most useful part
+						<select name="mostUsefulModule">
+							<option value="none">Pick one</option>
+							<option value="intro-context">Intro: why AI agents matter now</option>
+							<option value="agents-vs-chatbots">Agents vs chatbots, how they work</option>
+							<option value="model-landscape">The model landscape (OpenAI, Chinese models, pricing)</option>
+							<option value="demo-install">Live demo + installing the agent</option>
+							<option value="build-exercise">The build exercise / homework</option>
+						</select>
+					</label>
+
+					<label class="field-label">What did you struggle with most? <small>be specific - install steps, network, concepts</small>
+						<textarea name="struggledWith" rows="3" placeholder="Which step broke, what confused you..."></textarea>
+					</label>
+
+					<label class="field-label">Your biggest takeaway
+						<textarea name="biggestTakeaway" rows="2" placeholder="One thing you'll actually use or remember"></textarea>
+					</label>
+
+					<label class="field-label">What should the next session cover? <small>optional</small>
+						<textarea name="wantNext" rows="2" placeholder="What you want to learn next"></textarea>
+					</label>
+
+					<label class="field-label">Anything else? <small>optional - brutally honest welcome</small>
+						<textarea name="anythingElse" rows="2" placeholder="Feedback, jokes, complaints"></textarea>
+					</label>
+
+					<button class="subscribe-submit" type="submit" data-submit-label>Send feedback <span aria-hidden="true">→</span></button>
+					<p class="subscribe-footnote" data-footnote>Answers go straight to Henry. No one else sees them.</p>
+					<p class="subscribe-status" data-subscribe-status role="status" aria-live="polite"></p>
+				</form>
+
+				<aside class="subscribe-side" aria-label="Why feedback">
+					<section class="agent-subscribe-card">
+						<div class="side-card-title"><span aria-hidden="true">✧</span><h2>Why this matters</h2></div>
+						<p>The next workshop gets built from these answers. The install pain, the parts that dragged, the moments that clicked - all of it feeds back into the plan.</p>
+					</section>
+					<section class="agent-subscribe-card">
+						<div class="side-card-title"><span aria-hidden="true">◑</span><h2>Still stuck?</h2></div>
+						<p>Leave your email and what broke. Henry follows up personally, including on WhatsApp or Telegram for setup help.</p>
+					</section>
+				</aside>
+			</section>
+		</main>
+		<Footer />
+		<script>
+			const form = document.querySelector('[data-feedback-form]');
+			const status = document.querySelector('[data-subscribe-status]');
+
+			form?.addEventListener('submit', async (event) => {
+				event.preventDefault();
+				const data = new FormData(form);
+				const ratings = {};
+				for (const key of ['overall', 'clarity', 'pace', 'handsOn', 'usefulness']) {
+					const v = String(data.get(key) || '').trim();
+					if (!v) {
+						status.dataset.state = 'error';
+						status.textContent = 'Rate every question before sending.';
+						return;
+					}
+					ratings[key] = v;
+				}
+				status.dataset.state = '';
+				status.textContent = 'Sending...';
+				const body = {
+					name: data.get('name'),
+					email: data.get('email'),
+					company: data.get('company'),
+					ratings,
+					mostUsefulModule: data.get('mostUsefulModule'),
+					struggledWith: data.get('struggledWith'),
+					biggestTakeaway: data.get('biggestTakeaway'),
+					wantNext: data.get('wantNext'),
+					anythingElse: data.get('anythingElse'),
+				};
+				try {
+					const response = await fetch('/api/workshop-feedback', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(body),
+					});
+					let result = {};
+					try { result = await response.json(); } catch { throw new Error('Unexpected response.'); }
+					if (!response.ok || !result.ok) throw new Error(result.error || 'Sending failed.');
+					form.reset();
+					status.dataset.state = 'success';
+					status.textContent = result.message || 'Feedback sent. Thank you.';
+				} catch (error) {
+					status.dataset.state = 'error';
+					status.textContent = error.message || 'Sending failed. Try again.';
+				}
+			});
+		</script>
+	</body>
+</html>
