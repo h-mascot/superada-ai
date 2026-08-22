@@ -10,10 +10,10 @@ const useCases = [
   {
     category: 'Operations',
     title: 'Heartbeat',
-    summary: 'Ada checks the agent fleet every hour and posts a short status card when something changed or needs attention.',
+    summary: 'Ada checks the agent fleet every hour and sends a short status card only when something changed or needs attention.',
     runs: 'Hourly, into the private #heartbeat channel.',
     connects: 'Hermes cron state, gateway health, storage headroom, dropped-session watchdogs, error clusters, Entity docs, and recent agent receipts.',
-    givesBack: 'A compact readiness score, the main blocker, any safe recovery Ada already performed, and a deep-dive link with the evidence.',
+    givesBack: 'A compact readiness score, the main blocker, safe recovery already performed, and a deep-dive link with the evidence.',
     humanGate: 'Ada can inspect, recover dropped internal threads, update receipts, and perform safe local fixes. Anything destructive, customer-facing, credential-related, or broader than the approved maintenance window stops for Henry.'
   },
   {
@@ -36,11 +36,11 @@ const useCases = [
   },
   {
     category: 'Meetings',
-    title: 'Meeting prep',
+    title: 'Meeting prep and follow-up',
     summary: 'Before a call, Ada builds the context Henry would otherwise hunt through manually. After the call, it turns the transcript into next steps.',
     runs: 'On demand or as part of a meeting-actions workflow.',
-    connects: 'Calendar events, attendee names, company context, prior notes, CRM-style relationship memory, docs, email threads, and meeting transcripts from tools like Fireflies or Google Meet captions when available.',
-    givesBack: 'A prep note with who is joining, what has happened before, likely agenda, useful questions, open risks, and after the call, owner-backed action items plus follow-up drafts.',
+    connects: 'Calendar events, attendee names, company context, prior notes, CRM-style relationship memory, docs, email threads, and meeting transcripts from Fireflies or Google Meet captions when available.',
+    givesBack: 'A prep note with who is joining, what happened before, likely agenda, useful questions, open risks, and after the call, owner-backed action items plus follow-up drafts.',
     humanGate: 'Prep, summaries, and draft follow-ups are safe. Sending messages, changing calendar invites, or making commercial promises requires approval unless a standing workflow already covers that exact action.'
   },
   {
@@ -78,9 +78,161 @@ const useCases = [
     connects: 'Private receipts, source notes, repo content, screenshots, diagrams, QA scripts, build output, deployment status, and production route checks.',
     givesBack: 'A readable page, a privacy-safe version of the useful pattern, build receipts, route checks, and a clear list of anything blocked by approval or missing credentials.',
     humanGate: 'Drafting, local build, and QA can run. Public release needs privacy review and approval for sensitive claims, private evidence, customer references, or external announcements.'
+  },
+  {
+    category: 'Sales',
+    title: 'Account brief before a customer call',
+    summary: 'Ada pulls the account story together before Henry walks into a sales or partnership conversation.',
+    runs: 'On demand before a call, event, or outreach push.',
+    connects: 'Company site, LinkedIn-style public signals, prior emails, meeting notes, CRM records, insurance-market context, and open asks from the team.',
+    givesBack: 'A short account brief: what they do, why they might care, previous touchpoints, likely objections, useful angles, and the next best ask.',
+    humanGate: 'Research and draft talking points can run alone. Sending outreach, quoting terms, making promises, or updating a customer-facing record needs approval.'
+  },
+  {
+    category: 'Sales',
+    title: 'Conference follow-up',
+    summary: 'After an event, Ada turns messy notes, badge scans, and “remind me later” chaos into a real follow-up queue.',
+    runs: 'After conferences, dinners, demos, and investor or partner events.',
+    connects: 'Calendar history, attendee lists, notes, photos or scans Henry provides, email threads, contact records, and priority tags.',
+    givesBack: 'A ranked follow-up list, suggested messages, owner tags, stale leads, and contacts that should be saved or merged.',
+    humanGate: 'Ada can organize and draft. It cannot send first-time outreach, add people to campaigns, or commit Henry to meetings without confirmation.'
+  },
+  {
+    category: 'Operations',
+    title: 'Action tracker cleanup',
+    summary: 'Ada turns scattered commitments from chats, calls, and docs into owned work instead of letting them rot in the swamp.',
+    runs: 'On demand, after meetings, or during weekly reviews.',
+    connects: 'Slack or Discord threads, meeting notes, task boards, docs, calendar context, and prior action-item history.',
+    givesBack: 'Deduplicated actions with owners, deadlines, source links, unclear items, and a clean handoff for the person responsible.',
+    humanGate: 'Creating internal draft tasks and summaries is fine. Reassigning people, changing official plans, or messaging stakeholders requires review unless Henry already approved that workflow.'
+  },
+  {
+    category: 'Memory',
+    title: 'Cross-session context recovery',
+    summary: 'When a conversation gets long or an agent restarts, Ada rebuilds the thread from receipts instead of asking Henry to repeat himself like a haunted printer.',
+    runs: 'After compaction, restarts, handoffs, or “what happened with this?” questions.',
+    connects: 'LCM summaries, raw message excerpts, project plans, task receipts, git history, deployment logs, and memory files.',
+    givesBack: 'A compact reconstruction of decisions, current state, evidence, blockers, and the next safe action.',
+    humanGate: 'Reading and summarizing are safe. Editing durable memory, changing tasks, or acting on recovered context follows the same approval boundary as the original work.'
+  },
+  {
+    category: 'Research',
+    title: 'Public claim verification',
+    summary: 'Spock checks whether a claim is true enough to use before it becomes content, strategy, or expensive confidence.',
+    runs: 'On demand for articles, decks, market maps, investor notes, and social posts.',
+    connects: 'Primary sources, company docs, public filings, credible media, archived pages, prior research notes, and source-quality rules.',
+    givesBack: 'A source-backed answer, confidence level, contradictions, direct citations, and wording that does not overclaim.',
+    humanGate: 'Research can run alone. Publishing, legal-sensitive statements, customer references, or strong claims from weak evidence wait for Henry.'
+  },
+  {
+    category: 'Finance',
+    title: 'Gateway cost watch',
+    summary: 'Ada and Midas look for model spend, token waste, quota risk, and runaway agent loops before the bill gets funny in a bad way.',
+    runs: 'Recurring checks and on-demand audits.',
+    connects: 'Provider usage APIs, gateway logs, cron inventory, model routing config, token ledgers, and agent-run receipts.',
+    givesBack: 'Burn-rate summaries, waste suspects, quota warnings, route recommendations, and exact evidence for anything that needs fixing.',
+    humanGate: 'Read-only audit and recommendations are safe. Changing production routing, cutting off agents, or rotating paid provider credentials needs approval unless a standing incident rule applies.'
+  },
+  {
+    category: 'Fleet',
+    title: 'Agent runtime repair',
+    summary: 'When one crew member stalls, Ada checks the host, process, gateway, logs, and route before declaring the bot dead and buying flowers.',
+    runs: 'When a heartbeat, user report, or monitor flags an agent as unhealthy.',
+    connects: 'Host process lists, gateway logs, journalctl, cron state, agent workspaces, deployment receipts, and known host routing rules.',
+    givesBack: 'A diagnosis, the smallest safe repair already attempted, remaining blocker, and proof that the agent is healthy or still down.',
+    humanGate: 'Safe restarts and local reversible fixes can run under maintenance rules. Credential changes, production data deletion, or broad fleet config changes need approval.'
+  },
+  {
+    category: 'Docs',
+    title: 'Evidence-backed Google Doc or deck',
+    summary: 'Ada turns raw notes into a document Henry can share, with claims grounded in sources instead of “trust me bro” vapor.',
+    runs: 'When Henry asks for a brief, deck, memo, investor update, or customer-facing artifact.',
+    connects: 'Source docs, spreadsheets, meeting notes, transcripts, web research, prior drafts, brand rules, and Google Workspace publication tools.',
+    givesBack: 'A structured doc or deck draft, cited claims, unresolved questions, and a shareable link when publication is approved.',
+    humanGate: 'Drafting and internal docs are safe. Sending, sharing externally, or publishing sensitive business claims requires review.'
+  },
+  {
+    category: 'Content',
+    title: 'X/Twitter draft from research',
+    summary: 'Ada turns verified research into posts that sound like Henry, not like a B2B webinar had a nervous breakdown.',
+    runs: 'On demand or as part of a news/content pipeline.',
+    connects: 'Source links, prior posts, Henry voice examples, publication queue, topical context, and claim-verification results.',
+    givesBack: 'Draft posts, thread options, source receipts, risk notes, and alternates tuned for punch or clarity.',
+    humanGate: 'Drafting and staging are safe. Posting, replying from Henry’s account, or making public claims needs approval.'
+  },
+  {
+    category: 'Media',
+    title: 'Script-to-video proof pack',
+    summary: 'Ada turns a story or workflow into a media plan with prompts, shots, narration, and verification instead of vibes in a trench coat.',
+    runs: 'When a launch, article, or resource needs visual proof or social video.',
+    connects: 'Script notes, brand references, generated images, TTS output, timelines, asset checks, and final-render QA.',
+    givesBack: 'Storyboard, image prompts, narration script, render plan, artifact paths, and verification notes for what passed or drifted.',
+    humanGate: 'Drafting, rendering tests, and local QA can run. Publishing, using real people/customer names, or final external distribution waits for approval.'
+  },
+  {
+    category: 'Hiring',
+    title: 'Candidate review pack',
+    summary: 'Ada gathers the evidence around a hire or contractor decision so Henry can decide faster without pretending vibes are data.',
+    runs: 'When a candidate, trial hire, or compensation decision needs review.',
+    connects: 'Submitted work, interview notes, trial-task receipts, GitHub or portfolio links, scorecards, compensation bands, and role requirements.',
+    givesBack: 'A decision pack with strengths, risks, missing evidence, compensation framing, and a clear recommendation.',
+    humanGate: 'Analysis and drafting are safe. Offers, compensation commitments, rejections, or access changes require Henry or the hiring owner.'
+  },
+  {
+    category: 'Product',
+    title: 'Bug diagnosis before fixing',
+    summary: 'Ada investigates the actual failure path before touching code, because random patches are how software becomes archaeology.',
+    runs: 'When Henry reports a broken feature, stale deploy, bad UI, or agent loop.',
+    connects: 'Repo history, logs, browser console, network traces, tests, deployment status, and screenshots.',
+    givesBack: 'Root cause, reproduction steps, smallest fix, validation output, and remaining risk.',
+    humanGate: 'Local reversible code fixes and tests can run. Production deploys, destructive migrations, or scope expansion need approval.'
+  },
+  {
+    category: 'Governance',
+    title: 'Cron noise control',
+    summary: 'Ada audits scheduled jobs so useful alerts survive and noisy little goblins stop yelling into Henry’s DMs.',
+    runs: 'When a cron is added, repaired, or starts sending useless output.',
+    connects: 'Cron registry, delivery targets, recent outputs, channel rules, error logs, and job prompts.',
+    givesBack: 'Which jobs should stay, pause, merge, silence on success, or get stronger failure contracts.',
+    humanGate: 'Read-only audit and safe prompt fixes are fine. Removing important jobs, changing external delivery, or disabling production monitors needs confirmation.'
+  },
+  {
+    category: 'Knowledge',
+    title: 'Skill improvement loop',
+    summary: 'When an agent repeats a mistake, Ada patches the workflow itself instead of adding another sticky note to the bonfire.',
+    runs: 'After repeated misses, hard recoveries, or Henry corrections that should persist.',
+    connects: 'Skill files, execution receipts, user corrections, failed tool outputs, docs, and regression checks.',
+    givesBack: 'A tighter reusable procedure, removed stale steps, verification rules, and a smaller chance the same nonsense happens next week.',
+    humanGate: 'Editing local skills and docs is safe in scope. Publishing shared skills, changing another profile, or exposing private process requires approval.'
+  },
+  {
+    category: 'Customer ops',
+    title: 'Claims or support triage',
+    summary: 'Ada turns incoming operational cases into approve, investigate, or request-info lanes with evidence attached.',
+    runs: 'When a queue of claims, support requests, or customer build tasks needs first-pass sorting.',
+    connects: 'Case records, policy or product rules, previous correspondence, attachments, customer context, and escalation criteria.',
+    givesBack: 'A triaged list, reason for each decision, missing information, draft responses, and escalation flags.',
+    humanGate: 'Classification and drafts can run. Customer-facing decisions, payments, production data changes, or policy exceptions require approval.'
+  },
+  {
+    category: 'Personal ops',
+    title: 'Contact saving and cleanup',
+    summary: 'When Henry says “save this contact,” Ada treats Apple/iCloud Contacts as the source of truth and avoids inventing a second address book.',
+    runs: 'On demand when Henry sends a person, number, email, or follow-up instruction.',
+    connects: 'Apple/iCloud Contacts, provided details, conversation context, duplicate checks, and relationship notes when allowed.',
+    givesBack: 'A saved or updated contact, duplicate warning, and the exact fields changed.',
+    humanGate: 'Creating or updating the intended local contact is safe when requested. Messaging the person, enriching externally, or changing unrelated records needs approval.'
+  },
+  {
+    category: 'Strategy',
+    title: 'Plan grill',
+    summary: 'Ada pressure-tests a plan before the team spends a week executing something that sounded smart in Slack.',
+    runs: 'When Henry asks whether a plan, feature, business idea, or workflow makes sense.',
+    connects: 'The proposal, market or customer context, constraints, prior decisions, evidence sources, and relevant operator skills.',
+    givesBack: 'What is strong, what is vague, what will break, what to test first, and the smallest next move.',
+    humanGate: 'Critique and planning are safe. Starting external work, assigning people, spending money, or making commitments requires confirmation.'
   }
 ];
-
 const setupSteps = [
   'Pick one repeated job Henry already has to do.',
   'Connect the safe sources the agent is allowed to read.',
