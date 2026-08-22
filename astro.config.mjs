@@ -8,7 +8,9 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://superada.ai",
-  integrations: [mdx(), tailwind(), sitemap()],
+  integrations: [mdx(), tailwind(), sitemap({
+    filter: (page) => !page.includes('/workshop-feedback'),
+  })],
   redirects: {
     "/week18/changelog/": "/weekly-claw/week18/changelog/",
     "/week18g/changelog/": "/weekly-claw/week18g/changelog/",
