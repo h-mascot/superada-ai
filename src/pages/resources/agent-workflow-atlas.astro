@@ -1473,6 +1473,46 @@ const atlas = {
     }
   ]
 };
+const categoryCopy = {
+  'Executive command center': { runs: 'Daily, weekly, or when Henry asks for the operating picture.', givesBack: 'A short command view: priority, owner, blocker, next action, and the receipt behind each item.' },
+  'Research and evidence': { runs: 'On demand for claims, market questions, articles, decks, and decisions that need proof.', givesBack: 'A source-backed answer, contradictions, confidence level, citations, and clean wording that does not overclaim.' },
+  'Communication and inboxes': { runs: 'Continuously, on a schedule, or when a thread/inbox needs triage.', givesBack: 'A ranked queue, suggested replies, context, why each item matters, and the exact action that still needs approval.' },
+  'Sales, partnerships, and revenue': { runs: 'Before calls, after events, during pipeline review, or when an account needs movement.', givesBack: 'A concise commercial brief: account context, useful angle, next ask, risk, and follow-up draft.' },
+  'Content and distribution': { runs: 'When research, a launch, or a strong opinion needs to become a publishable artifact.', givesBack: 'Drafts, source receipts, channel fit, claim risk, and a route to publish only after review.' },
+  'Software and product delivery': { runs: 'When a scoped task, bug, or product change needs to move from brief to verified patch.', givesBack: 'A diff or branch, test output, build receipts, review notes, blockers, and the next merge/deploy step.' },
+  'Fleet and infrastructure operations': { runs: 'When a heartbeat, alert, deploy, route, or user report says the system is unhealthy.', givesBack: 'A diagnosis, smallest safe repair attempted, before/after evidence, and remaining risk.' },
+  'Knowledge and memory': { runs: 'After decisions, compactions, handoffs, restarts, or “what happened with this?” questions.', givesBack: 'Recovered context, decisions, current state, provenance, stale facts, and the next safe move.' },
+  'Finance and business intelligence': { runs: 'During recurring spend checks, provider reviews, pricing work, or decision-pack requests.', givesBack: 'Burn rate, waste suspects, quota risk, value framing, and recommended action with evidence.' },
+  'Creative and media production': { runs: 'When a story, launch, article, or workflow needs a visual, audio, or video artifact.', givesBack: 'Storyboard, prompts, assets, render plan, QA notes, and publish-ready files after approval.' },
+  'Personal and lifestyle operations': { runs: 'On demand or on a private schedule for contacts, calendar, travel, family, and household admin.', givesBack: 'A clean private action, saved record, duplicate warning, reminder, or draft without leaking private context.' },
+  'Governance, QA, and safety': { runs: 'Before publication, deploy, agent action, skill change, or any claim that needs a gate.', givesBack: 'A pass/fail decision, missing proof, test receipt, approval requirement, and rollback note.' }
+};
+
+const categoryTitles = {
+  'Executive command center': ['Daily command brief', 'Meeting-to-task sweep', 'Priority reset', 'Decision log cleanup', 'Owner and blocker audit', 'Weekly operating review', 'Commitment tracker', 'Escalation watch', 'Executive handoff pack'],
+  'Research and evidence': ['Public claim verification', 'Market question dossier', 'Source-backed article research', 'Competitor evidence scan', 'Policy or filing review', 'Technical proof pack', 'Contradiction check', 'Research memory update', 'Last-30-days scan'],
+  'Communication and inboxes': ['Urgent message triage', 'Executive email draft', 'WhatsApp follow-up queue', 'Slack mention audit', 'Discord thread cleanup', 'Cross-channel reply pack', 'New-contact approval gate', 'Missed-message review', 'External-send receipt'],
+  'Sales, partnerships, and revenue': ['Account brief before a call', 'Conference follow-up', 'Partner research pack', 'Pipeline next-action review', 'Warm intro prep', 'Commercial objection map', 'CRM hygiene pass', 'Investor or sponsor brief', 'Renewal risk scan'],
+  'Content and distribution': ['AI news watch', 'X draft from research', 'Article from evidence pack', 'Launch announcement pack', 'WeeklyClaw draft queue', 'Clip-to-post triage', 'Newsletter source sweep', 'Public-safe resource rewrite'],
+  'Software and product delivery': ['Runner builds a scoped task', 'Bug diagnosis before fixing', 'Regression test harness', 'Release changelog draft', 'PR review with receipts', 'Deployment canary check', 'Spec-to-issue breakdown', 'Prototype proof pass'],
+  'Fleet and infrastructure operations': ['Heartbeat', 'Agent runtime repair', 'Gateway cost watch', 'Cron noise control', 'Host health sweep', 'Route and deploy audit', 'Storage pressure check', 'Watchdog recovery'],
+  'Knowledge and memory': ['Cross-session context recovery', 'Skill improvement loop', 'Decision memory capture', 'Obsidian note cleanup', 'Project context pack', 'Shared memory publication', 'Stale instruction audit', 'Transcript-to-actions recovery'],
+  'Finance and business intelligence': ['Provider spend review', 'Token waste audit', 'Quota risk watch', 'Budget decision pack', 'Cloud cost attribution', 'Revenue signal brief', 'Pricing research pack', 'Runaway-loop cost stop'],
+  'Creative and media production': ['Script-to-video proof pack', 'Infographic from source notes', 'Thumbnail concept pass', 'Voiceover render QA', 'Image prompt and verification', 'Deck visual polish', 'Short-form video storyboard', 'Asset continuity check'],
+  'Personal and lifestyle operations': ['Contact saving and cleanup', 'Calendar conflict check', 'Travel admin brief', 'Family schedule reminder', 'Private document checklist', 'Personal CRM sync', 'Appointment prep', 'Household task follow-up'],
+  'Governance, QA, and safety': ['Publication readiness gate', 'Security posture check', 'Privacy scrub before publish', 'Evidence convergence review', 'Approval-boundary audit', 'Production deploy safety check', 'Skill supply-chain review', 'Final QA receipt']
+};
+
+const seenByCategory = {};
+const atlasCases = atlas.rows.map((row) => {
+  const count = (seenByCategory[row.category] || 0);
+  seenByCategory[row.category] = count + 1;
+  const titles = categoryTitles[row.category] || [];
+  const title = titles[count] || `${row.category} loop ${count + 1}`;
+  const copy = categoryCopy[row.category] || { runs: 'On demand or on a schedule.', givesBack: 'A clear output, evidence, and the next safe action.' };
+  return { ...row, title, summary: `${row.agents.join(' + ')} turns ${row.inputs} into a reusable ${row.category.toLowerCase()} workflow with a visible approval boundary.`, runs: copy.runs, connects: row.inputs, givesBack: copy.givesBack, humanGate: row.approval };
+});
+
 const stats = [
   { label: 'Workflows', value: atlas.summary.total },
   { label: 'Categories', value: atlas.categories.length },
@@ -1484,89 +1524,36 @@ const stats = [
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title="Agent Workflow Atlas - SuperAda" description="A public-safe atlas of 100 receipt-backed Enterprise Crew workflows across nine agents and twelve operating categories." />
+    <BaseHead title="Agent Workflow Atlas - SuperAda" description="A public-safe atlas of 100 Enterprise Crew workflows, written like use cases and filterable by category, agent, proof state, and risk." />
   </head>
-  <body>
+  <body class="use-cases-page atlas-page">
     <Header />
-    <main class="workflow-atlas">
-      <section class="atlas-hero">
-        <p class="eyebrow">SuperAda Field Guide</p>
-        <h1>What an AI crew can do when every action leaves a receipt.</h1>
-        <p class="lede">Browse the public-safe version of our v1 operating atlas: 100 workflow loops across research, communication, software, fleet work, content, business intelligence, media, governance, and personal support. The private proof ledger stays private; the reusable pattern and approval boundary are published.</p>
-        <div class="hero-actions">
-          <a href="#catalog">Browse the catalog</a>
-          <a href="#recipes" class="secondary">Copy a recipe</a>
-        </div>
+    <main>
+      <section class="hero shell">
+        <p class="eyebrow">Workflow atlas</p>
+        <h1>Agent workflow atlas</h1>
+        <p class="lede">The long list behind the use-cases page. Same useful structure: what runs, what it connects to, what comes back, and where the human gate sits. Filter it by lane, agent, proof state, or risk. No raw inventory dump.</p>
       </section>
 
-      <section class="stat-grid" aria-label="Atlas summary">
+      <section class="shell intro-grid" aria-label="Atlas summary">
+        <article><h2>Same shape as the use-cases page</h2><p>Every workflow reads like an operator card, not a spreadsheet row wearing a cheap suit. The private receipts stay private; the reusable pattern is public.</p></article>
+        <article><h2>Filters that stay useful</h2><p>Search across title, category, agent, sources, output, risk, and approval gate. Then narrow by category, agent, proof state, or risk level.</p></article>
+      </section>
+
+      <section class="shell stat-strip" aria-label="Atlas counts">
         {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
       </section>
 
-      <section class="notice">
-        <strong>Public edition.</strong> Internal proof links, private task URLs, customer/contact names, and raw source excerpts are not exposed here. Verified means the private ledger has a receipt. Inferred means the row is useful but still needs a direct public-safe receipt before it should be treated as proven.
-      </section>
-
-      <section class="visuals" aria-labelledby="visuals-title">
-        <div class="section-head">
-          <p class="eyebrow">Rich media map</p>
-          <h2 id="visuals-title">Five visual primitives for the operating system</h2>
-          <p>The diagrams show how the catalog works without leaking the underlying private receipts.</p>
-        </div>
-        <div class="visual-grid">
-          {atlas.visuals.map((visual) => (
-            <figure>
-              <img src={visual.src} alt={visual.title} loading="lazy" />
-              <figcaption>{visual.title}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section id="categories" class="categories" aria-labelledby="categories-title">
-        <div class="section-head">
-          <p class="eyebrow">Twelve lanes</p>
-          <h2 id="categories-title">Start with the operating lane</h2>
-        </div>
-        <div class="category-grid">
-          {atlas.categories.map((category) => (
-            <article>
-              <span>{category.id}</span>
-              <h3>{category.name}</h3>
-              <p>{category.promise}</p>
-              <small>{category.visual_primitive}</small>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="recipes" class="recipes" aria-labelledby="recipes-title">
-        <div class="section-head">
-          <p class="eyebrow">Copyable loops</p>
-          <h2 id="recipes-title">Recipes, not magic prompts</h2>
-          <p>Replace the inputs. Keep the proof step. Do not remove the gate. Stunningly annoying how often that last bit saves everyone. 💀</p>
-        </div>
-        <div class="recipe-grid">
-          <article><h3>Call transcript → tracked commitments</h3><p>Extract only explicit commitments. Return owner, due date, source quote or location, duplicate check, and whether it needs human approval. Do not send messages.</p><small>Gate: external follow-up requires approval.</small></article>
-          <article><h3>Question → cited evidence dossier</h3><p>Answer from sources. Keep observations, inferences, and recommendations separate. Cite every material claim and name missing proof.</p><small>Gate: research and local drafting are autonomous.</small></article>
-          <article><h3>Evidence bundle → public draft</h3><p>Turn evidence into a channel-ready draft. Preserve citations. Return a claim sheet and stop before publishing.</p><small>Gate: public delivery requires approval.</small></article>
-          <article><h3>Validated task → bounded coding candidate</h3><p>Implement in an isolated worktree. Stay in scope. Run exact gates and return receipts, not vibes wearing a lab coat.</p><small>Gate: merge, push, deploy, and release are separate.</small></article>
-          <article><h3>Health signal → reversible fleet repair</h3><p>Diagnose the live route first. Snapshot before change. Apply the smallest safe repair, then smoke-test and record before/after evidence.</p><small>Gate: destructive or critical-access actions need approval.</small></article>
-          <article><h3>Daily metrics → decision pack</h3><p>Show period, denominator, revenue, cost, profit, risk, and recommended action in one view.</p><small>Gate: budget or commercial changes need approval.</small></article>
-        </div>
-      </section>
-
-
-      <section id="usecases" class="usecases" aria-labelledby="usecases-title">
-        <div class="section-head">
+      <section id="usecases" class="shell examples usecases" aria-labelledby="usecases-title">
+        <div class="atlas-section-head">
           <p class="eyebrow">Sixteen more in practice</p>
           <h2 id="usecases-title">Featured use cases, straight from the operator's week</h2>
           <p>The same recurring jobs, told plainly: what runs, what it connects to, what comes back, and where the human approval line sits.</p>
         </div>
-        <div class="usecase-grid">
-            <article class="usecase-card">
+        <div class="case-list featured-list">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/ai-news-watch.webp" alt="Illustration: AI news watch" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Research</span><h3>AI news watch</h3><p>Spock and the WeeklyClaw research jobs scan AI news, remove duplicates, and turn useful developments into briefs or draft posts.</p></div>
+              <div class="case-topline"><span>Research</span><h3>AI news watch</h3><p>Spock and the WeeklyClaw research jobs scan AI news, remove duplicates, and turn useful developments into briefs or draft posts.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>Daily and twice-daily, depending on the lane. Some runs stay silent when there is nothing worth sending.</dd></div>
                 <div><dt>What it connects to</dt><dd>Hacker News, TechCrunch AI, The Verge AI, Ars Technica, credible X sources, Polymarket AI-market state, saved research memory, and prior draft history.</dd></div>
@@ -1574,9 +1561,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Research and draft staging can run alone. Public posts, market-facing claims, customer references, or anything with shaky sourcing wait for review.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/public-safe-page.webp" alt="Illustration: Public-safe resource page" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Publishing</span><h3>Public-safe resource page</h3><p>Ada turns a private evidence pack into a page strangers can read without exposing private proof or internal mess.</p></div>
+              <div class="case-topline"><span>Publishing</span><h3>Public-safe resource page</h3><p>Ada turns a private evidence pack into a page strangers can read without exposing private proof or internal mess.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When a resource, use-case page, article, or public artifact needs to ship.</dd></div>
                 <div><dt>What it connects to</dt><dd>Private receipts, source notes, repo content, screenshots, diagrams, QA scripts, build output, deployment status, and production route checks.</dd></div>
@@ -1584,9 +1571,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Drafting, local build, and QA can run. Public release needs privacy review and approval for sensitive claims, private evidence, customer references, or external announcements.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/conference-followup.webp" alt="Illustration: Conference follow-up" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Sales</span><h3>Conference follow-up</h3><p>After an event, Ada turns messy notes, badge scans, and “remind me later” chaos into a real follow-up queue.</p></div>
+              <div class="case-topline"><span>Sales</span><h3>Conference follow-up</h3><p>After an event, Ada turns messy notes, badge scans, and “remind me later” chaos into a real follow-up queue.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>After conferences, dinners, demos, and investor or partner events.</dd></div>
                 <div><dt>What it connects to</dt><dd>Calendar history, attendee lists, notes, photos or scans Henry provides, email threads, contact records, and priority tags.</dd></div>
@@ -1594,9 +1581,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Ada can organize and draft. It cannot send first-time outreach, add people to campaigns, or commit Henry to meetings without confirmation.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/action-tracker.webp" alt="Illustration: Action tracker cleanup" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Operations</span><h3>Action tracker cleanup</h3><p>Ada turns scattered commitments from chats, calls, and docs into owned work instead of letting them rot in the swamp.</p></div>
+              <div class="case-topline"><span>Operations</span><h3>Action tracker cleanup</h3><p>Ada turns scattered commitments from chats, calls, and docs into owned work instead of letting them rot in the swamp.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>On demand, after meetings, or during weekly reviews.</dd></div>
                 <div><dt>What it connects to</dt><dd>Slack or Discord threads, meeting notes, task boards, docs, calendar context, and prior action-item history.</dd></div>
@@ -1604,9 +1591,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Creating internal draft tasks and summaries is fine. Reassigning people, changing official plans, or messaging stakeholders requires review unless Henry already approved that workflow.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/context-recovery.webp" alt="Illustration: Cross-session context recovery" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Memory</span><h3>Cross-session context recovery</h3><p>When a conversation gets long or an agent restarts, Ada rebuilds the thread from receipts instead of asking Henry to repeat himself like a haunted printer.</p></div>
+              <div class="case-topline"><span>Memory</span><h3>Cross-session context recovery</h3><p>When a conversation gets long or an agent restarts, Ada rebuilds the thread from receipts instead of asking Henry to repeat himself like a haunted printer.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>After compaction, restarts, handoffs, or “what happened with this?” questions.</dd></div>
                 <div><dt>What it connects to</dt><dd>LCM summaries, raw message excerpts, project plans, task receipts, git history, deployment logs, and memory files.</dd></div>
@@ -1614,9 +1601,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Reading and summarizing are safe. Editing durable memory, changing tasks, or acting on recovered context follows the same approval boundary as the original work.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/claim-verification.webp" alt="Illustration: Public claim verification" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Research</span><h3>Public claim verification</h3><p>Spock checks whether a claim is true enough to use before it becomes content, strategy, or expensive confidence.</p></div>
+              <div class="case-topline"><span>Research</span><h3>Public claim verification</h3><p>Spock checks whether a claim is true enough to use before it becomes content, strategy, or expensive confidence.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>On demand for articles, decks, market maps, investor notes, and social posts.</dd></div>
                 <div><dt>What it connects to</dt><dd>Primary sources, company docs, public filings, credible media, archived pages, prior research notes, and source-quality rules.</dd></div>
@@ -1624,9 +1611,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Research can run alone. Publishing, legal-sensitive statements, customer references, or strong claims from weak evidence wait for Henry.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/cost-watch.webp" alt="Illustration: Gateway cost watch" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Finance</span><h3>Gateway cost watch</h3><p>Ada and Midas look for model spend, token waste, quota risk, and runaway agent loops before the bill gets funny in a bad way.</p></div>
+              <div class="case-topline"><span>Finance</span><h3>Gateway cost watch</h3><p>Ada and Midas look for model spend, token waste, quota risk, and runaway agent loops before the bill gets funny in a bad way.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>Recurring checks and on-demand audits.</dd></div>
                 <div><dt>What it connects to</dt><dd>Provider usage APIs, gateway logs, cron inventory, model routing config, token ledgers, and agent-run receipts.</dd></div>
@@ -1634,9 +1621,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Read-only audit and recommendations are safe. Changing production routing, cutting off agents, or rotating paid provider credentials needs approval unless a standing incident rule applies.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/evidence-doc.webp" alt="Illustration: Evidence-backed Google Doc or deck" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Docs</span><h3>Evidence-backed Google Doc or deck</h3><p>Ada turns raw notes into a document Henry can share, with claims grounded in sources instead of “trust me bro” vapor.</p></div>
+              <div class="case-topline"><span>Docs</span><h3>Evidence-backed Google Doc or deck</h3><p>Ada turns raw notes into a document Henry can share, with claims grounded in sources instead of “trust me bro” vapor.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When Henry asks for a brief, deck, memo, investor update, or customer-facing artifact.</dd></div>
                 <div><dt>What it connects to</dt><dd>Source docs, spreadsheets, meeting notes, transcripts, web research, prior drafts, brand rules, and Google Workspace publication tools.</dd></div>
@@ -1644,9 +1631,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Drafting and internal docs are safe. Sending, sharing externally, or publishing sensitive business claims requires review.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/x-drafts.webp" alt="Illustration: X/Twitter draft from research" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Content</span><h3>X/Twitter draft from research</h3><p>Ada turns verified research into posts that sound like Henry, not like a B2B webinar had a nervous breakdown.</p></div>
+              <div class="case-topline"><span>Content</span><h3>X/Twitter draft from research</h3><p>Ada turns verified research into posts that sound like Henry, not like a B2B webinar had a nervous breakdown.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>On demand or as part of a news/content pipeline.</dd></div>
                 <div><dt>What it connects to</dt><dd>Source links, prior posts, Henry voice examples, publication queue, topical context, and claim-verification results.</dd></div>
@@ -1654,9 +1641,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Drafting and staging are safe. Posting, replying from Henry’s account, or making public claims needs approval.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/candidate-review.webp" alt="Illustration: Candidate review pack" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Hiring</span><h3>Candidate review pack</h3><p>Ada gathers the evidence around a hire or contractor decision so Henry can decide faster without pretending vibes are data.</p></div>
+              <div class="case-topline"><span>Hiring</span><h3>Candidate review pack</h3><p>Ada gathers the evidence around a hire or contractor decision so Henry can decide faster without pretending vibes are data.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When a candidate, trial hire, or compensation decision needs review.</dd></div>
                 <div><dt>What it connects to</dt><dd>Submitted work, interview notes, trial-task receipts, GitHub or portfolio links, scorecards, compensation bands, and role requirements.</dd></div>
@@ -1664,9 +1651,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Analysis and drafting are safe. Offers, compensation commitments, rejections, or access changes require Henry or the hiring owner.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/bug-diagnosis.webp" alt="Illustration: Bug diagnosis before fixing" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Product</span><h3>Bug diagnosis before fixing</h3><p>Ada investigates the actual failure path before touching code, because random patches are how software becomes archaeology.</p></div>
+              <div class="case-topline"><span>Product</span><h3>Bug diagnosis before fixing</h3><p>Ada investigates the actual failure path before touching code, because random patches are how software becomes archaeology.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When Henry reports a broken feature, stale deploy, bad UI, or agent loop.</dd></div>
                 <div><dt>What it connects to</dt><dd>Repo history, logs, browser console, network traces, tests, deployment status, and screenshots.</dd></div>
@@ -1674,9 +1661,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Local reversible code fixes and tests can run. Production deploys, destructive migrations, or scope expansion need approval.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/cron-noise-control.webp" alt="Illustration: Cron noise control" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Governance</span><h3>Cron noise control</h3><p>Ada audits scheduled jobs so useful alerts survive and noisy little goblins stop yelling into Henry’s DMs.</p></div>
+              <div class="case-topline"><span>Governance</span><h3>Cron noise control</h3><p>Ada audits scheduled jobs so useful alerts survive and noisy little goblins stop yelling into Henry’s DMs.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When a cron is added, repaired, or starts sending useless output.</dd></div>
                 <div><dt>What it connects to</dt><dd>Cron registry, delivery targets, recent outputs, channel rules, error logs, and job prompts.</dd></div>
@@ -1684,9 +1671,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Read-only audit and safe prompt fixes are fine. Removing important jobs, changing external delivery, or disabling production monitors needs confirmation.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/skill-loop.webp" alt="Illustration: Skill improvement loop" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Knowledge</span><h3>Skill improvement loop</h3><p>When an agent repeats a mistake, Ada patches the workflow itself instead of adding another sticky note to the bonfire.</p></div>
+              <div class="case-topline"><span>Knowledge</span><h3>Skill improvement loop</h3><p>When an agent repeats a mistake, Ada patches the workflow itself instead of adding another sticky note to the bonfire.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>After repeated misses, hard recoveries, or Henry corrections that should persist.</dd></div>
                 <div><dt>What it connects to</dt><dd>Skill files, execution receipts, user corrections, failed tool outputs, docs, and regression checks.</dd></div>
@@ -1694,9 +1681,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Editing local skills and docs is safe in scope. Publishing shared skills, changing another profile, or exposing private process requires approval.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/claims-triage.webp" alt="Illustration: Claims or support triage" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Customer ops</span><h3>Claims or support triage</h3><p>Ada turns incoming operational cases into approve, investigate, or request-info lanes with evidence attached.</p></div>
+              <div class="case-topline"><span>Customer ops</span><h3>Claims or support triage</h3><p>Ada turns incoming operational cases into approve, investigate, or request-info lanes with evidence attached.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When a queue of claims, support requests, or customer build tasks needs first-pass sorting.</dd></div>
                 <div><dt>What it connects to</dt><dd>Case records, policy or product rules, previous correspondence, attachments, customer context, and escalation criteria.</dd></div>
@@ -1704,9 +1691,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Classification and drafts can run. Customer-facing decisions, payments, production data changes, or policy exceptions require approval.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/contact-saving.webp" alt="Illustration: Contact saving and cleanup" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Personal ops</span><h3>Contact saving and cleanup</h3><p>When Henry says “save this contact,” Ada treats Apple/iCloud Contacts as the source of truth and avoids inventing a second address book.</p></div>
+              <div class="case-topline"><span>Personal ops</span><h3>Contact saving and cleanup</h3><p>When Henry says “save this contact,” Ada treats Apple/iCloud Contacts as the source of truth and avoids inventing a second address book.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>On demand when Henry sends a person, number, email, or follow-up instruction.</dd></div>
                 <div><dt>What it connects to</dt><dd>Apple/iCloud Contacts, provided details, conversation context, duplicate checks, and relationship notes when allowed.</dd></div>
@@ -1714,9 +1701,9 @@ const stats = [
                 <div><dt>Where the human stays in charge</dt><dd>Creating or updating the intended local contact is safe when requested. Messaging the person, enriching externally, or changing unrelated records needs approval.</dd></div>
               </dl>
             </article>
-            <article class="usecase-card">
+            <article class="case-card featured-card">
               <div class="uc-figure"><img src="/use-cases/plan-grill.webp" alt="Illustration: Plan grill" width="1024" height="576" loading="lazy" /></div>
-              <div class="uc-topline"><span>Strategy</span><h3>Plan grill</h3><p>Ada pressure-tests a plan before the team spends a week executing something that sounded smart in Slack.</p></div>
+              <div class="case-topline"><span>Strategy</span><h3>Plan grill</h3><p>Ada pressure-tests a plan before the team spends a week executing something that sounded smart in Slack.</p></div>
               <dl>
                 <div><dt>When it runs</dt><dd>When Henry asks whether a plan, feature, business idea, or workflow makes sense.</dd></div>
                 <div><dt>What it connects to</dt><dd>The proposal, market or customer context, constraints, prior decisions, evidence sources, and relevant operator skills.</dd></div>
@@ -1727,115 +1714,122 @@ const stats = [
         </div>
       </section>
 
-      <section id="catalog" class="catalog" aria-labelledby="catalog-title">
-        <div class="section-head">
-          <p class="eyebrow">100 public-safe workflow rows</p>
-          <h2 id="catalog-title">Filter by agent, risk, proof, or lane</h2>
-        </div>
-        <div class="filters" aria-label="Catalog filters">
-          <input id="atlas-search" type="search" placeholder="Search category, agent, risk, input, or tool path" />
-          <select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select>
-          <select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select>
+
+      <section id="catalog" class="shell examples catalog" aria-labelledby="catalog-title">
+        <p class="eyebrow">Filterable catalog</p>
+        <h2 id="catalog-title">100 workflow cards</h2>
+        <div class="filters" aria-label="Workflow filters">
+          <label><span>Search</span><input id="atlas-search" type="search" placeholder="Search title, source, output, agent, risk…" /></label>
+          <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{atlas.categories.map((category) => <option value={category.name}>{category.name}</option>)}</select></label>
+          <label><span>Agent</span><select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select></label>
+          <label><span>Proof</span><select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select></label>
+          <label><span>Risk</span><select id="risk-filter"><option value="">All risks</option><option value="R0">R0 read only</option><option value="R1">R1 local reversible</option><option value="R2">R2 internal write</option><option value="R3">R3 external or commitment</option></select></label>
         </div>
         <p id="catalog-count" class="count">100 workflows shown</p>
-        <div class="workflow-grid" id="workflow-grid">
-          {atlas.rows.map((row) => (
-            <article class="workflow-card" data-search={`${row.id} ${row.category} ${row.agents.join(' ')} ${row.evidence} ${row.risk} ${row.inputs} ${row.toolPath}`.toLowerCase()} data-agents={row.agents.join('|')} data-proof={row.evidence}>
-              <div class="card-top"><span>{row.id}</span><strong>{row.evidence}</strong></div>
-              <h3>{row.category}</h3>
-              <p>{row.toolPath}</p>
+        <div class="case-list" id="workflow-grid">
+          {atlasCases.map((item) => (
+            <article class="case-card" data-search={`${item.id} ${item.title} ${item.category} ${item.agents.join(' ')} ${item.evidence} ${item.risk} ${item.summary} ${item.runs} ${item.connects} ${item.givesBack} ${item.humanGate}`.toLowerCase()} data-category={item.category} data-agents={item.agents.join('|')} data-proof={item.evidence} data-risk={item.risk.slice(0, 2)}>
+              <div class="case-topline"><span>{item.category}</span><h3>{item.title}</h3><p>{item.summary}</p></div>
               <dl>
-                <div><dt>Agents</dt><dd>{row.agents.join(', ')}</dd></div>
-                <div><dt>Inputs</dt><dd>{row.inputs || 'Declared sources'}</dd></div>
-                <div><dt>Risk</dt><dd>{row.risk}</dd></div>
+                <div><dt>When it runs</dt><dd>{item.runs}</dd></div>
+                <div><dt>What it connects to</dt><dd>{item.connects}</dd></div>
+                <div><dt>What Henry gets back</dt><dd>{item.givesBack}</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>{item.humanGate}</dd></div>
               </dl>
-              <small>{row.approval}</small>
+              <div class="case-meta" aria-label="Workflow metadata"><span>{item.id}</span><span>{item.agents.join(', ')}</span><span>{item.evidence}</span><span>{item.risk}</span></div>
             </article>
           ))}
         </div>
+        <p id="empty-state" class="empty-state" hidden>No matching workflows. Clear a filter.</p>
       </section>
 
-      <section class="video" aria-labelledby="video-title">
-        <div class="section-head">
-          <p class="eyebrow">Script-to-video runway</p>
-          <h2 id="video-title">Three production treatments ready for rendering</h2>
-          <p>The v1 release includes storyboards and motion contracts. Final generated video is a separate production pass so exact labels and continuity can be verified frame by frame.</p>
-        </div>
-        <div class="video-grid">
-          {atlas.videoTreatments.map((treatment) => <article><span>{treatment.duration}</span><h3>{treatment.title}</h3><p>{treatment.cta}</p></article>)}
-        </div>
+      <section class="shell setup" aria-labelledby="setup-title">
+        <div><p class="eyebrow">Setup pattern</p><h2 id="setup-title">Copy the operating shape</h2><p>Use the atlas like a pattern library. Pick a repeated job, connect safe sources, define the returned artifact, and write the approval gate before automating anything.</p></div>
+        <ol><li>Choose one card that matches the repeated job.</li><li>Replace the connected sources with systems the operator can safely read.</li><li>Define the output format before the agent runs.</li><li>Keep the human gate explicit, especially for external sends, spend, production, and commitments.</li><li>Save receipts so the result can be checked instead of believed.</li></ol>
       </section>
     </main>
     <Footer />
     <script>
-      const search = document.getElementById('atlas-search') as HTMLInputElement | null;
-      const agent = document.getElementById('agent-filter') as HTMLSelectElement | null;
-      const proof = document.getElementById('proof-filter') as HTMLSelectElement | null;
-      const cards = Array.from(document.querySelectorAll<HTMLElement>('.workflow-card'));
+      const search = document.getElementById('atlas-search');
+      const category = document.getElementById('category-filter');
+      const agent = document.getElementById('agent-filter');
+      const proof = document.getElementById('proof-filter');
+      const risk = document.getElementById('risk-filter');
+      const cards = Array.from(document.querySelectorAll('#workflow-grid .case-card'));
       const count = document.getElementById('catalog-count');
+      const empty = document.getElementById('empty-state');
       function applyFilters() {
         const q = (search?.value || '').trim().toLowerCase();
+        const selectedCategory = category?.value || '';
         const selectedAgent = agent?.value || '';
         const selectedProof = proof?.value || '';
+        const selectedRisk = risk?.value || '';
         let visible = 0;
         cards.forEach((card) => {
           const haystack = card.dataset.search || '';
           const agents = card.dataset.agents || '';
-          const proofState = card.dataset.proof || '';
-          const show = (!q || haystack.includes(q)) && (!selectedAgent || agents.split('|').includes(selectedAgent)) && (!selectedProof || proofState === selectedProof);
+          const show = (!q || haystack.includes(q)) && (!selectedCategory || card.dataset.category === selectedCategory) && (!selectedAgent || agents.split('|').includes(selectedAgent)) && (!selectedProof || card.dataset.proof === selectedProof) && (!selectedRisk || card.dataset.risk === selectedRisk);
           card.hidden = !show;
           if (show) visible += 1;
         });
-        if (count) count.textContent = `${visible} workflows shown`;
+        if (count) count.textContent = `${visible} workflow${visible === 1 ? '' : 's'} shown`;
+        if (empty) empty.hidden = visible !== 0;
       }
-      [search, agent, proof].forEach((el) => el?.addEventListener('input', applyFilters));
+      [search, category, agent, proof, risk].forEach((el) => { el?.addEventListener('input', applyFilters); el?.addEventListener('change', applyFilters); });
+      applyFilters();
     </script>
-    <style>
-      .workflow-atlas { width:min(1180px, calc(100% - 32px)); margin:0 auto; padding:56px 0 80px; }
-      .atlas-hero { border:1px solid var(--border); border-radius:36px; padding:clamp(28px, 6vw, 72px); background:radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 22%, transparent), transparent 36%), linear-gradient(135deg, color-mix(in srgb, var(--panel) 92%, transparent), color-mix(in srgb, var(--bg) 95%, transparent)); box-shadow:0 30px 90px color-mix(in srgb, var(--glow) 18%, transparent); }
-      .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.18em; font-size:12px; font-weight:900; margin:0 0 14px; }
-      h1 { max-width:980px; font-family:Georgia,'Times New Roman',serif; font-size:clamp(46px, 8vw, 96px); line-height:.93; letter-spacing:-.055em; margin:0; }
-      .lede { max-width:820px; color:var(--muted); font-size:clamp(18px, 2.2vw, 23px); line-height:1.55; margin:28px 0 0; }
-      .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-      .hero-actions a { display:inline-flex; align-items:center; min-height:48px; padding:0 18px; border-radius:999px; background:var(--accent); color:#120b04; font-weight:900; text-decoration:none; text-transform:uppercase; letter-spacing:.08em; font-size:12px; }
-      .hero-actions a.secondary { background:transparent; color:var(--text); border:1px solid var(--border); }
-      .stat-grid, .category-grid, .recipe-grid, .video-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-top:18px; }
-      .stat-grid article, .category-grid article, .recipe-grid article, .video-grid article, .workflow-card, .notice { border:1px solid var(--border); border-radius:24px; background:color-mix(in srgb, var(--panel) 84%, transparent); padding:20px; }
-      .stat-grid article span, .category-grid article span, .video-grid article span { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
-      .stat-grid article strong { display:block; font-family:Georgia,'Times New Roman',serif; font-size:44px; margin-top:8px; }
-      .notice { margin:18px 0 52px; color:var(--muted); line-height:1.7; }
-      .notice strong { color:var(--text); }
-      section { margin-top:64px; }
-      .section-head { max-width:780px; margin-bottom:22px; }
-      .section-head h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(34px,5vw,58px); line-height:1; letter-spacing:-.04em; margin:0; }
-      .section-head p:not(.eyebrow) { color:var(--muted); line-height:1.65; }
-      .visual-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
-      figure { margin:0; border:1px solid var(--border); border-radius:24px; padding:12px; background:color-mix(in srgb, var(--panel) 70%, transparent); }
-      figure img { display:block; width:100%; height:auto; border-radius:16px; background:#071018; }
-      figcaption { margin:10px 4px 2px; color:var(--muted); font-weight:800; }
-      .category-grid h3, .recipe-grid h3, .video-grid h3, .workflow-card h3 { margin:10px 0; font-size:20px; }
-      .category-grid p, .recipe-grid p, .video-grid p, .workflow-card p, .workflow-card small, .category-grid small, .recipe-grid small { color:var(--muted); line-height:1.55; }
-      .filters { display:grid; grid-template-columns:minmax(0,1fr) 170px 170px; gap:12px; margin:18px 0 10px; }
-      .filters input, .filters select { min-height:48px; border:1px solid var(--border); border-radius:14px; background:color-mix(in srgb, var(--bg) 78%, transparent); color:var(--text); padding:0 14px; }
-      .count { color:var(--muted); font-weight:800; }
-      .workflow-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; }
-      .card-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-      .card-top span, .card-top strong { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
-      .workflow-card dl { display:grid; gap:8px; margin:16px 0; }
-      .workflow-card div { min-width:0; }
-      .workflow-card dt { color:var(--accent); font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
-      .workflow-card dd { margin:2px 0 0; color:var(--text); overflow-wrap:anywhere; }
-      .usecase-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
-      .usecase-card { border:1px solid var(--border); border-radius:24px; background:color-mix(in srgb, var(--panel) 84%, transparent); padding:18px; }
-      .uc-figure img { display:block; width:100%; height:auto; border-radius:16px; background:#071018; }
-      .uc-topline { margin-top:14px; }
-      .uc-topline span { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
-      .uc-topline h3 { margin:8px 0; font-size:20px; }
-      .uc-topline p { color:var(--muted); line-height:1.55; margin:0; }
-      .usecase-card dl { display:grid; gap:10px; margin:14px 0 0; }
-      .usecase-card dt { color:var(--accent); font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
-      .usecase-card dd { margin:2px 0 0; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
-      @media (max-width:720px) { .workflow-atlas { width:min(100% - 24px, 1180px); padding-top:28px; } .filters { grid-template-columns:1fr; } h1 { font-size:48px; } .atlas-hero { border-radius:26px; } }
-    </style>
   </body>
 </html>
+
+<style>
+  :global(body.use-cases-page) { background: radial-gradient(circle at top left, rgba(248, 96, 42, 0.16), transparent 28rem), #080706; color: #f7efe7; }
+  .shell { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; }
+  .hero { padding: 7rem 0 3.5rem; }
+  .eyebrow, .case-topline span, .filters span, .stat-strip span { display: inline-flex; width: fit-content; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.72rem; color: #ffb088; font-weight: 800; }
+  h1, h2, h3, p, dl, dd, ol { margin: 0; }
+  h1 { max-width: 980px; margin-top: 0.45rem; font-size: clamp(2.6rem, 7vw, 5.8rem); line-height: 0.95; letter-spacing: -0.055em; }
+  .lede { max-width: 840px; margin-top: 1.4rem; color: #d8c6b9; font-size: clamp(1.08rem, 2vw, 1.3rem); line-height: 1.55; }
+  .intro-grid, .stat-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0 0 3rem; }
+  .stat-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); padding-bottom: 1rem; }
+  .intro-grid article, .stat-strip article, .case-card, .setup, .empty-state { border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.055); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25); }
+  .intro-grid article, .stat-strip article { border-radius: 28px; padding: 1.4rem; }
+  .stat-strip strong { display: block; margin-top: 0.55rem; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.05em; }
+  .intro-grid h2, .examples h2, .setup h2, .atlas-section-head h2 { font-size: clamp(1.7rem, 3vw, 3rem); line-height: 1; letter-spacing: -0.05em; }
+  .intro-grid p, .setup p, .atlas-section-head p:not(.eyebrow) { margin-top: 0.9rem; color: #d8c6b9; line-height: 1.65; }
+  .examples, .setup { margin-top: 1rem; }
+  .examples { padding: 2rem 0 3rem; }
+  .examples h2 { margin-top: 0.5rem; }
+  .case-list { display: grid; gap: 1rem; margin-top: 1.4rem; }
+  .featured-list { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+  .case-card { border-radius: 30px; overflow: hidden; }
+  .case-card[hidden] { display: none; }
+  .uc-figure img { display: block; width: 100%; height: auto; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .case-topline { padding: 1.5rem; background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03)); }
+  .featured-card .case-topline { background: transparent; }
+  .case-topline h3 { margin-top: 0.5rem; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.045em; }
+  .featured-card .case-topline h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); }
+  .case-topline p { max-width: 860px; margin-top: 0.65rem; color: #e4d2c5; line-height: 1.55; }
+  dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .featured-card dl { grid-template-columns: 1fr; }
+  dl > div { padding: 1.1rem; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  dl > div:last-child { border-right: 0; }
+  .featured-card dl > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .featured-card dl > div:last-child { border-bottom: 0; }
+  dt { color: #ffb088; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 850; }
+  dd { margin-top: 0.6rem; color: #d8c6b9; line-height: 1.55; font-size: 0.95rem; }
+  .filters { display: grid; grid-template-columns: minmax(260px, 1.4fr) repeat(4, minmax(150px, 1fr)); gap: 0.8rem; margin-top: 1.4rem; }
+  .filters label { display: grid; gap: 0.45rem; }
+  .filters input, .filters select { min-height: 48px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; background: rgba(255, 255, 255, 0.055); color: #f7efe7; padding: 0 0.9rem; }
+  .filters select option { background: #120f0d; color: #f7efe7; }
+  .count { margin-top: 0.9rem; color: #d8c6b9; font-weight: 800; }
+  .case-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.9rem 1.1rem 1.1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+  .case-meta span { border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 0.35rem 0.55rem; color: #f7efe7; background: rgba(255,255,255,0.045); font-size: 0.78rem; }
+  .empty-state { margin-top: 1rem; border-radius: 24px; padding: 1.3rem; color: #d8c6b9; }
+  .setup { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2rem; border-radius: 30px; padding: 1.6rem; margin-bottom: 4rem; }
+  .setup h2 { margin-top: 0.55rem; }
+  .setup ol { display: grid; gap: 0.75rem; padding-left: 1.2rem; color: #f7efe7; }
+  .setup li { padding-left: 0.3rem; color: #d8c6b9; line-height: 1.5; }
+  @media (max-width: 1000px) { .filters, .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 900px) { .intro-grid, dl, .setup { grid-template-columns: 1fr; } dl > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.1); } dl > div:last-child { border-bottom: 0; } }
+  @media (max-width: 560px) { .hero { padding-top: 5rem; } h1 { font-size: 2.55rem; } .filters, .stat-strip, .featured-list { grid-template-columns: 1fr; } }
+</style>
