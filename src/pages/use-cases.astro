@@ -27,9 +27,9 @@ const useCases = [
   },
   {
     category: 'Daily briefing',
-    title: 'The 20:00 voice debrief',
+    title: 'The 8pm voice debrief',
     summary: 'Every evening a scheduled job opens a voice session, hands it a fresh context pack, and interviews Henry about his day while writing notes in real time. The debrief interviews him so the notes write themselves.',
-    runs: 'Daily at 20:00 UK. If a voice session is already live, it stays out of the way.',
+    runs: 'Daily at 8pm. If a voice session is already live, it stays out of the way.',
     connects: 'The day’s plan and task notes, yesterday’s debrief as carry-forward, a project folder with interview instructions, and the desktop voice client on the crew Mac.',
     givesBack: 'A live voice conversation that asks one question at a time, and a notes file that fills in as he speaks — seconds behind his words, so nothing is lost even if the call drops.',
     humanGate: 'The scheduler is deterministic and script-only: zero agent tokens. It can start sessions and write notes. It cannot send external messages, publish, or touch anything outside the debrief folder.'
@@ -262,8 +262,8 @@ const setupSteps = [
         <h1>Henry’s agent use cases</h1>
         <p class="lede">These are plain examples of how Henry and the Enterprise Crew use agents in daily work. Not a prompt library. Not a raw catalog. Just the recurring jobs, what each one connects to, what comes back, and where the human approval line sits.</p>
         <figure class="hero-figure">
-          <img src="/use-cases/recapper-voice-debrief.webp" alt="Infographic: the 20:00 voice debrief pipeline — cron fires at 20:00 UK, context pack assembles, voice session starts, notes write in real time." width="1376" height="768" loading="eager" />
-          <figcaption>The 20:00 voice debrief — a scheduled job opens the call, the notes file writes itself in real time.</figcaption>
+          <img src="/use-cases/recapper-voice-debrief.webp" alt="Infographic: the 8pm voice debrief pipeline — cron fires at 8pm, context pack assembles, voice session starts, notes write in real time." width="1376" height="768" loading="eager" />
+          <figcaption>The 8pm voice debrief — a scheduled job opens the call, the notes file writes itself in real time.</figcaption>
         </figure>
       </section>
 
