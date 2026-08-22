@@ -1556,6 +1556,177 @@ const stats = [
         </div>
       </section>
 
+
+      <section id="usecases" class="usecases" aria-labelledby="usecases-title">
+        <div class="section-head">
+          <p class="eyebrow">Sixteen more in practice</p>
+          <h2 id="usecases-title">Featured use cases, straight from the operator's week</h2>
+          <p>The same recurring jobs, told plainly: what runs, what it connects to, what comes back, and where the human approval line sits.</p>
+        </div>
+        <div class="usecase-grid">
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/ai-news-watch.webp" alt="Illustration: AI news watch" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Research</span><h3>AI news watch</h3><p>Spock and the WeeklyClaw research jobs scan AI news, remove duplicates, and turn useful developments into briefs or draft posts.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>Daily and twice-daily, depending on the lane. Some runs stay silent when there is nothing worth sending.</dd></div>
+                <div><dt>What it connects to</dt><dd>Hacker News, TechCrunch AI, The Verge AI, Ars Technica, credible X sources, Polymarket AI-market state, saved research memory, and prior draft history.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Ranked AI items with source links, why they matter, draft social posts when useful, and a clear marker when the evidence is weak or already covered.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Research and draft staging can run alone. Public posts, market-facing claims, customer references, or anything with shaky sourcing wait for review.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/public-safe-page.webp" alt="Illustration: Public-safe resource page" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Publishing</span><h3>Public-safe resource page</h3><p>Ada turns a private evidence pack into a page strangers can read without exposing private proof or internal mess.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When a resource, use-case page, article, or public artifact needs to ship.</dd></div>
+                <div><dt>What it connects to</dt><dd>Private receipts, source notes, repo content, screenshots, diagrams, QA scripts, build output, deployment status, and production route checks.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A readable page, a privacy-safe version of the useful pattern, build receipts, route checks, and a clear list of anything blocked by approval or missing credentials.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Drafting, local build, and QA can run. Public release needs privacy review and approval for sensitive claims, private evidence, customer references, or external announcements.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/conference-followup.webp" alt="Illustration: Conference follow-up" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Sales</span><h3>Conference follow-up</h3><p>After an event, Ada turns messy notes, badge scans, and “remind me later” chaos into a real follow-up queue.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>After conferences, dinners, demos, and investor or partner events.</dd></div>
+                <div><dt>What it connects to</dt><dd>Calendar history, attendee lists, notes, photos or scans Henry provides, email threads, contact records, and priority tags.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A ranked follow-up list, suggested messages, owner tags, stale leads, and contacts that should be saved or merged.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Ada can organize and draft. It cannot send first-time outreach, add people to campaigns, or commit Henry to meetings without confirmation.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/action-tracker.webp" alt="Illustration: Action tracker cleanup" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Operations</span><h3>Action tracker cleanup</h3><p>Ada turns scattered commitments from chats, calls, and docs into owned work instead of letting them rot in the swamp.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>On demand, after meetings, or during weekly reviews.</dd></div>
+                <div><dt>What it connects to</dt><dd>Slack or Discord threads, meeting notes, task boards, docs, calendar context, and prior action-item history.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Deduplicated actions with owners, deadlines, source links, unclear items, and a clean handoff for the person responsible.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Creating internal draft tasks and summaries is fine. Reassigning people, changing official plans, or messaging stakeholders requires review unless Henry already approved that workflow.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/context-recovery.webp" alt="Illustration: Cross-session context recovery" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Memory</span><h3>Cross-session context recovery</h3><p>When a conversation gets long or an agent restarts, Ada rebuilds the thread from receipts instead of asking Henry to repeat himself like a haunted printer.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>After compaction, restarts, handoffs, or “what happened with this?” questions.</dd></div>
+                <div><dt>What it connects to</dt><dd>LCM summaries, raw message excerpts, project plans, task receipts, git history, deployment logs, and memory files.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A compact reconstruction of decisions, current state, evidence, blockers, and the next safe action.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Reading and summarizing are safe. Editing durable memory, changing tasks, or acting on recovered context follows the same approval boundary as the original work.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/claim-verification.webp" alt="Illustration: Public claim verification" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Research</span><h3>Public claim verification</h3><p>Spock checks whether a claim is true enough to use before it becomes content, strategy, or expensive confidence.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>On demand for articles, decks, market maps, investor notes, and social posts.</dd></div>
+                <div><dt>What it connects to</dt><dd>Primary sources, company docs, public filings, credible media, archived pages, prior research notes, and source-quality rules.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A source-backed answer, confidence level, contradictions, direct citations, and wording that does not overclaim.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Research can run alone. Publishing, legal-sensitive statements, customer references, or strong claims from weak evidence wait for Henry.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/cost-watch.webp" alt="Illustration: Gateway cost watch" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Finance</span><h3>Gateway cost watch</h3><p>Ada and Midas look for model spend, token waste, quota risk, and runaway agent loops before the bill gets funny in a bad way.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>Recurring checks and on-demand audits.</dd></div>
+                <div><dt>What it connects to</dt><dd>Provider usage APIs, gateway logs, cron inventory, model routing config, token ledgers, and agent-run receipts.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Burn-rate summaries, waste suspects, quota warnings, route recommendations, and exact evidence for anything that needs fixing.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Read-only audit and recommendations are safe. Changing production routing, cutting off agents, or rotating paid provider credentials needs approval unless a standing incident rule applies.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/evidence-doc.webp" alt="Illustration: Evidence-backed Google Doc or deck" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Docs</span><h3>Evidence-backed Google Doc or deck</h3><p>Ada turns raw notes into a document Henry can share, with claims grounded in sources instead of “trust me bro” vapor.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When Henry asks for a brief, deck, memo, investor update, or customer-facing artifact.</dd></div>
+                <div><dt>What it connects to</dt><dd>Source docs, spreadsheets, meeting notes, transcripts, web research, prior drafts, brand rules, and Google Workspace publication tools.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A structured doc or deck draft, cited claims, unresolved questions, and a shareable link when publication is approved.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Drafting and internal docs are safe. Sending, sharing externally, or publishing sensitive business claims requires review.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/x-drafts.webp" alt="Illustration: X/Twitter draft from research" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Content</span><h3>X/Twitter draft from research</h3><p>Ada turns verified research into posts that sound like Henry, not like a B2B webinar had a nervous breakdown.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>On demand or as part of a news/content pipeline.</dd></div>
+                <div><dt>What it connects to</dt><dd>Source links, prior posts, Henry voice examples, publication queue, topical context, and claim-verification results.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Draft posts, thread options, source receipts, risk notes, and alternates tuned for punch or clarity.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Drafting and staging are safe. Posting, replying from Henry’s account, or making public claims needs approval.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/candidate-review.webp" alt="Illustration: Candidate review pack" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Hiring</span><h3>Candidate review pack</h3><p>Ada gathers the evidence around a hire or contractor decision so Henry can decide faster without pretending vibes are data.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When a candidate, trial hire, or compensation decision needs review.</dd></div>
+                <div><dt>What it connects to</dt><dd>Submitted work, interview notes, trial-task receipts, GitHub or portfolio links, scorecards, compensation bands, and role requirements.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A decision pack with strengths, risks, missing evidence, compensation framing, and a clear recommendation.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Analysis and drafting are safe. Offers, compensation commitments, rejections, or access changes require Henry or the hiring owner.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/bug-diagnosis.webp" alt="Illustration: Bug diagnosis before fixing" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Product</span><h3>Bug diagnosis before fixing</h3><p>Ada investigates the actual failure path before touching code, because random patches are how software becomes archaeology.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When Henry reports a broken feature, stale deploy, bad UI, or agent loop.</dd></div>
+                <div><dt>What it connects to</dt><dd>Repo history, logs, browser console, network traces, tests, deployment status, and screenshots.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Root cause, reproduction steps, smallest fix, validation output, and remaining risk.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Local reversible code fixes and tests can run. Production deploys, destructive migrations, or scope expansion need approval.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/cron-noise-control.webp" alt="Illustration: Cron noise control" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Governance</span><h3>Cron noise control</h3><p>Ada audits scheduled jobs so useful alerts survive and noisy little goblins stop yelling into Henry’s DMs.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When a cron is added, repaired, or starts sending useless output.</dd></div>
+                <div><dt>What it connects to</dt><dd>Cron registry, delivery targets, recent outputs, channel rules, error logs, and job prompts.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>Which jobs should stay, pause, merge, silence on success, or get stronger failure contracts.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Read-only audit and safe prompt fixes are fine. Removing important jobs, changing external delivery, or disabling production monitors needs confirmation.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/skill-loop.webp" alt="Illustration: Skill improvement loop" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Knowledge</span><h3>Skill improvement loop</h3><p>When an agent repeats a mistake, Ada patches the workflow itself instead of adding another sticky note to the bonfire.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>After repeated misses, hard recoveries, or Henry corrections that should persist.</dd></div>
+                <div><dt>What it connects to</dt><dd>Skill files, execution receipts, user corrections, failed tool outputs, docs, and regression checks.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A tighter reusable procedure, removed stale steps, verification rules, and a smaller chance the same nonsense happens next week.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Editing local skills and docs is safe in scope. Publishing shared skills, changing another profile, or exposing private process requires approval.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/claims-triage.webp" alt="Illustration: Claims or support triage" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Customer ops</span><h3>Claims or support triage</h3><p>Ada turns incoming operational cases into approve, investigate, or request-info lanes with evidence attached.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When a queue of claims, support requests, or customer build tasks needs first-pass sorting.</dd></div>
+                <div><dt>What it connects to</dt><dd>Case records, policy or product rules, previous correspondence, attachments, customer context, and escalation criteria.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A triaged list, reason for each decision, missing information, draft responses, and escalation flags.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Classification and drafts can run. Customer-facing decisions, payments, production data changes, or policy exceptions require approval.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/contact-saving.webp" alt="Illustration: Contact saving and cleanup" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Personal ops</span><h3>Contact saving and cleanup</h3><p>When Henry says “save this contact,” Ada treats Apple/iCloud Contacts as the source of truth and avoids inventing a second address book.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>On demand when Henry sends a person, number, email, or follow-up instruction.</dd></div>
+                <div><dt>What it connects to</dt><dd>Apple/iCloud Contacts, provided details, conversation context, duplicate checks, and relationship notes when allowed.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>A saved or updated contact, duplicate warning, and the exact fields changed.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Creating or updating the intended local contact is safe when requested. Messaging the person, enriching externally, or changing unrelated records needs approval.</dd></div>
+              </dl>
+            </article>
+            <article class="usecase-card">
+              <div class="uc-figure"><img src="/use-cases/plan-grill.webp" alt="Illustration: Plan grill" width="1024" height="576" loading="lazy" /></div>
+              <div class="uc-topline"><span>Strategy</span><h3>Plan grill</h3><p>Ada pressure-tests a plan before the team spends a week executing something that sounded smart in Slack.</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>When Henry asks whether a plan, feature, business idea, or workflow makes sense.</dd></div>
+                <div><dt>What it connects to</dt><dd>The proposal, market or customer context, constraints, prior decisions, evidence sources, and relevant operator skills.</dd></div>
+                <div><dt>What Henry gets back</dt><dd>What is strong, what is vague, what will break, what to test first, and the smallest next move.</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>Critique and planning are safe. Starting external work, assigning people, spending money, or making commitments requires confirmation.</dd></div>
+              </dl>
+            </article>
+        </div>
+      </section>
+
       <section id="catalog" class="catalog" aria-labelledby="catalog-title">
         <div class="section-head">
           <p class="eyebrow">100 public-safe workflow rows</p>
@@ -1654,6 +1825,16 @@ const stats = [
       .workflow-card div { min-width:0; }
       .workflow-card dt { color:var(--accent); font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
       .workflow-card dd { margin:2px 0 0; color:var(--text); overflow-wrap:anywhere; }
+      .usecase-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
+      .usecase-card { border:1px solid var(--border); border-radius:24px; background:color-mix(in srgb, var(--panel) 84%, transparent); padding:18px; }
+      .uc-figure img { display:block; width:100%; height:auto; border-radius:16px; background:#071018; }
+      .uc-topline { margin-top:14px; }
+      .uc-topline span { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; }
+      .uc-topline h3 { margin:8px 0; font-size:20px; }
+      .uc-topline p { color:var(--muted); line-height:1.55; margin:0; }
+      .usecase-card dl { display:grid; gap:10px; margin:14px 0 0; }
+      .usecase-card dt { color:var(--accent); font-size:11px; font-weight:900; text-transform:uppercase; letter-spacing:.12em; }
+      .usecase-card dd { margin:2px 0 0; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
       @media (max-width:720px) { .workflow-atlas { width:min(100% - 24px, 1180px); padding-top:28px; } .filters { grid-template-columns:1fr; } h1 { font-size:48px; } .atlas-hero { border-radius:26px; } }
     </style>
   </body>
