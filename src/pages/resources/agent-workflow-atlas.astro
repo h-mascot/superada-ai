@@ -1724,6 +1724,7 @@ const stats = [
           <label><span>Agent</span><select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select></label>
           <label><span>Proof</span><select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select></label>
           <label><span>Risk</span><select id="risk-filter"><option value="">All risks</option><option value="R0">R0 read only</option><option value="R1">R1 local reversible</option><option value="R2">R2 internal write</option><option value="R3">R3 external or commitment</option></select></label>
+          <label><span>Sort</span><select id="sort-control"><option value="original">Original atlas order</option><option value="title">Title A-Z</option><option value="category">Category A-Z</option><option value="agent">Primary agent A-Z</option><option value="proof">Verified first</option><option value="risk">Lowest risk first</option></select></label>
         </div>
         <p id="catalog-count" class="count">100 workflows shown</p>
         <div class="case-list" id="workflow-grid">
@@ -1755,9 +1756,26 @@ const stats = [
       const agent = document.getElementById('agent-filter');
       const proof = document.getElementById('proof-filter');
       const risk = document.getElementById('risk-filter');
+      const sort = document.getElementById('sort-control');
+      const grid = document.getElementById('workflow-grid');
       const cards = Array.from(document.querySelectorAll('#workflow-grid .case-card'));
       const count = document.getElementById('catalog-count');
       const empty = document.getElementById('empty-state');
+      cards.forEach((card, index) => { card.dataset.index = String(index); });
+      function sortCards() {
+        if (!grid) return;
+        const mode = sort?.value || 'original';
+        const proofRank = { Verified: 0, Inferred: 1 };
+        const sorted = [...cards].sort((a, b) => {
+          if (mode === 'title') return (a.querySelector('h3')?.textContent || '').localeCompare(b.querySelector('h3')?.textContent || '');
+          if (mode === 'category') return (a.dataset.category || '').localeCompare(b.dataset.category || '') || Number(a.dataset.index) - Number(b.dataset.index);
+          if (mode === 'agent') return ((a.dataset.agents || '').split('|')[0] || '').localeCompare(((b.dataset.agents || '').split('|')[0] || '')) || Number(a.dataset.index) - Number(b.dataset.index);
+          if (mode === 'proof') return (proofRank[a.dataset.proof] ?? 9) - (proofRank[b.dataset.proof] ?? 9) || Number(a.dataset.index) - Number(b.dataset.index);
+          if (mode === 'risk') return (a.dataset.risk || '').localeCompare(b.dataset.risk || '') || Number(a.dataset.index) - Number(b.dataset.index);
+          return Number(a.dataset.index) - Number(b.dataset.index);
+        });
+        sorted.forEach((card) => grid.appendChild(card));
+      }
       function applyFilters() {
         const q = (search?.value || '').trim().toLowerCase();
         const selectedCategory = category?.value || '';
@@ -1776,6 +1794,8 @@ const stats = [
         if (empty) empty.hidden = visible !== 0;
       }
       [search, category, agent, proof, risk].forEach((el) => { el?.addEventListener('input', applyFilters); el?.addEventListener('change', applyFilters); });
+      sort?.addEventListener('change', () => { sortCards(); applyFilters(); });
+      sortCards();
       applyFilters();
     </script>
   </body>
