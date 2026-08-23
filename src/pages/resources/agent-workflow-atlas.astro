@@ -1544,6 +1544,35 @@ const stats = [
         {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
       </section>
 
+      <section id="catalog" class="shell examples catalog" aria-labelledby="catalog-title">
+        <p class="eyebrow">Filterable catalog</p>
+        <h2 id="catalog-title">100 workflow cards</h2>
+        <div class="filters" aria-label="Workflow filters">
+          <label><span>Search</span><input id="atlas-search" type="search" placeholder="Search title, source, output, agent, risk…" /></label>
+          <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{atlas.categories.map((category) => <option value={category.name}>{category.name}</option>)}</select></label>
+          <label><span>Agent</span><select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select></label>
+          <label><span>Proof</span><select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select></label>
+          <label><span>Risk</span><select id="risk-filter"><option value="">All risks</option><option value="R0">R0 read only</option><option value="R1">R1 local reversible</option><option value="R2">R2 internal write</option><option value="R3">R3 external or commitment</option></select></label>
+          <label><span>Sort</span><select id="sort-control"><option value="original">Original atlas order</option><option value="title">Title A-Z</option><option value="category">Category A-Z</option><option value="agent">Primary agent A-Z</option><option value="proof">Verified first</option><option value="risk">Lowest risk first</option></select></label>
+        </div>
+        <p id="catalog-count" class="count">100 workflows shown</p>
+        <div class="case-list" id="workflow-grid">
+          {atlasCases.map((item) => (
+            <article class="case-card" data-search={`${item.id} ${item.title} ${item.category} ${item.agents.join(' ')} ${item.evidence} ${item.risk} ${item.summary} ${item.runs} ${item.connects} ${item.givesBack} ${item.humanGate}`.toLowerCase()} data-category={item.category} data-agents={item.agents.join('|')} data-proof={item.evidence} data-risk={item.risk.slice(0, 2)}>
+              <div class="case-topline"><span>{item.category}</span><h3>{item.title}</h3><p>{item.summary}</p></div>
+              <dl>
+                <div><dt>When it runs</dt><dd>{item.runs}</dd></div>
+                <div><dt>What it connects to</dt><dd>{item.connects}</dd></div>
+                <div><dt>What Henry gets back</dt><dd>{item.givesBack}</dd></div>
+                <div><dt>Where the human stays in charge</dt><dd>{item.humanGate}</dd></div>
+              </dl>
+              <div class="case-meta" aria-label="Workflow metadata"><span>{item.id}</span><span>{item.agents.join(', ')}</span><span>{item.evidence}</span><span>{item.risk}</span></div>
+            </article>
+          ))}
+        </div>
+        <p id="empty-state" class="empty-state" hidden>No matching workflows. Clear a filter.</p>
+      </section>
+
       <section id="usecases" class="shell examples usecases" aria-labelledby="usecases-title">
         <div class="atlas-section-head">
           <p class="eyebrow">Sixteen more in practice</p>
@@ -1714,35 +1743,6 @@ const stats = [
         </div>
       </section>
 
-
-      <section id="catalog" class="shell examples catalog" aria-labelledby="catalog-title">
-        <p class="eyebrow">Filterable catalog</p>
-        <h2 id="catalog-title">100 workflow cards</h2>
-        <div class="filters" aria-label="Workflow filters">
-          <label><span>Search</span><input id="atlas-search" type="search" placeholder="Search title, source, output, agent, risk…" /></label>
-          <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{atlas.categories.map((category) => <option value={category.name}>{category.name}</option>)}</select></label>
-          <label><span>Agent</span><select id="agent-filter"><option value="">All agents</option>{atlas.agents.map((agent) => <option value={agent}>{agent}</option>)}</select></label>
-          <label><span>Proof</span><select id="proof-filter"><option value="">All proof states</option><option>Verified</option><option>Inferred</option></select></label>
-          <label><span>Risk</span><select id="risk-filter"><option value="">All risks</option><option value="R0">R0 read only</option><option value="R1">R1 local reversible</option><option value="R2">R2 internal write</option><option value="R3">R3 external or commitment</option></select></label>
-          <label><span>Sort</span><select id="sort-control"><option value="original">Original atlas order</option><option value="title">Title A-Z</option><option value="category">Category A-Z</option><option value="agent">Primary agent A-Z</option><option value="proof">Verified first</option><option value="risk">Lowest risk first</option></select></label>
-        </div>
-        <p id="catalog-count" class="count">100 workflows shown</p>
-        <div class="case-list" id="workflow-grid">
-          {atlasCases.map((item) => (
-            <article class="case-card" data-search={`${item.id} ${item.title} ${item.category} ${item.agents.join(' ')} ${item.evidence} ${item.risk} ${item.summary} ${item.runs} ${item.connects} ${item.givesBack} ${item.humanGate}`.toLowerCase()} data-category={item.category} data-agents={item.agents.join('|')} data-proof={item.evidence} data-risk={item.risk.slice(0, 2)}>
-              <div class="case-topline"><span>{item.category}</span><h3>{item.title}</h3><p>{item.summary}</p></div>
-              <dl>
-                <div><dt>When it runs</dt><dd>{item.runs}</dd></div>
-                <div><dt>What it connects to</dt><dd>{item.connects}</dd></div>
-                <div><dt>What Henry gets back</dt><dd>{item.givesBack}</dd></div>
-                <div><dt>Where the human stays in charge</dt><dd>{item.humanGate}</dd></div>
-              </dl>
-              <div class="case-meta" aria-label="Workflow metadata"><span>{item.id}</span><span>{item.agents.join(', ')}</span><span>{item.evidence}</span><span>{item.risk}</span></div>
-            </article>
-          ))}
-        </div>
-        <p id="empty-state" class="empty-state" hidden>No matching workflows. Clear a filter.</p>
-      </section>
 
       <section class="shell setup" aria-labelledby="setup-title">
         <div><p class="eyebrow">Setup pattern</p><h2 id="setup-title">Copy the operating shape</h2><p>Use the atlas like a pattern library. Pick a repeated job, connect safe sources, define the returned artifact, and write the approval gate before automating anything.</p></div>
