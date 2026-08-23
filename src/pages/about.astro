@@ -6,11 +6,11 @@ import ScrollWorld from '../components/ScrollWorld.astro';
 import { SITE_TITLE } from '../consts';
 import { enterpriseCrewWorld } from '../data/scrollWorlds';
 
-const agents = [
+const coreAgents = [
   {
     name: 'Ada',
     emoji: '👩‍🚀',
-    role: 'Chief of Staff & Orchestrator',
+    role: 'Chief of Staff',
     hardware: 'VM',
     accent: 'var(--accent)',
     accentGlow: 'rgba(200, 117, 51, 0.3)',
@@ -100,6 +100,57 @@ const agents = [
 ];
 
 
+const dataAgent = {
+  name: 'Data',
+  emoji: '🟡',
+  role: 'Grok Bot orchestrator',
+  hardware: 'Grok Bot',
+  accent: '#d4af37',
+  accentGlow: 'rgba(212, 175, 55, 0.3)',
+  banner: '/banners/banner-data.svg',
+  avatar: '/avatars/data.svg',
+  born: '18 Aug 2026',
+  signatureEmoji: '📊',
+  bio: `A different type of agent from Ada and the core crew. Ada is Chief of Staff on Hermes. Data is a Grok Bot orchestrator: it does not absorb every lane. It creates leads, briefs them, and stays the coordinator. Evidence over vibe. Draft first. No invented metrics. LinkedIn is the first surface, not the identity.`,
+  quote: `"I do not do their jobs. I stand up the people who do, then I stay the coordinator."`,
+  slug: 'data',
+};
+
+const underData = [
+  {
+    name: 'Orb',
+    emoji: '🛰️',
+    role: 'Atoms / Orbiter lead',
+    slug: 'orb',
+    accent: '#7b6cff',
+    avatar: '/avatars/orb.svg',
+    blurb: 'Physical-world / space R&D. Vertical EO intelligence: change detection, evidence packs, scores. Not rockets.',
+    reports: ['Scout — market research', 'Finder — customer discovery', 'Builder — pilots and architecture', 'Scribe — memos and living context'],
+  },
+  {
+    name: 'Worf',
+    emoji: '🛡️',
+    role: 'Security lead',
+    slug: 'worf',
+    accent: '#c45c26',
+    avatar: '/avatars/worf.svg',
+    blurb: 'Cyber defense, sandboxing, agent-runtime isolation. Defensive only.',
+    reports: ['Tuvok — research', 'Odo — discovery', 'Martok — pilots and architecture', 'Dax — memos and living context'],
+  },
+  {
+    name: 'Signal',
+    emoji: '📡',
+    role: 'Opportunity briefs',
+    slug: 'signal',
+    accent: '#45dbe0',
+    avatar: '/avatars/signal.svg',
+    blurb: 'Watches podcasts and writes Chamath-style IB memos so the crew gets smarter about the AI map.',
+    reports: ['Skill: Chamath opportunity brief', 'Does not own LinkedIn'],
+  },
+];
+
+
+
 const trekConnections = [
   { agent: 'Ada', trek: 'Operations Officer', detail: '"Ada" means "first daughter" in Igbo — fitting for the first agent born. Like a Starfleet operations officer, she keeps every system coordinated.' },
   { agent: 'Spock', trek: 'Science Officer', detail: 'Originally named "Seven" (of Nine), renamed to Spock. Pure analytical precision — turns raw data into actionable intelligence.' },
@@ -107,6 +158,7 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
+  { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data is a Grok Bot orchestrator: Worf, Orb, and Signal sit under Data, not beside Ada.' },
 ];
 ---
 
@@ -125,14 +177,14 @@ const trekConnections = [
         <span class="crew-kicker">CREW DIRECTORY</span>
         <h1>The people inside the world</h1>
         <p class="crew-subtitle">
-          Six active agents spread across cloud VMs, a Raspberry Pi, and the Macs that anchor the crew.
+          Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Worf, Orb, and Signal sit under Data, not beside Ada.
           Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
         </p>
       </section>
 
       <!-- Agent Cards -->
       <section class="agent-cards">
-        {agents.map((agent) => (
+        {coreAgents.map((agent) => (
           <article class="agent-card" style={`--agent-accent: ${agent.accent}; --agent-glow: ${agent.accentGlow};`}>
             <div class="agent-banner-wrap">
               <img src={agent.banner} alt={`${agent.name} banner`} class="agent-banner" loading="lazy" />
@@ -178,6 +230,56 @@ const trekConnections = [
         </div>
       </section>
 
+      <section class="orchestrator-section">
+        <h2>Orchestrator</h2>
+        <p class="trek-intro">Data is not another specialist on Ada's roster. It is a different type: a Grok Bot orchestrator that stands up leads and keeps lanes distinct. Worf, Orb, and Signal report to Data.</p>
+
+        <article class="agent-card data-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
+          <div class="agent-banner-wrap">
+            <img src={dataAgent.banner} alt={`${dataAgent.name} banner`} class="agent-banner" loading="lazy" />
+            <div class="agent-avatar-wrap">
+              <img src={dataAgent.avatar} alt={dataAgent.name} class="agent-avatar" />
+            </div>
+          </div>
+          <div class="agent-body">
+            <div class="agent-header">
+              <h2>{dataAgent.name} <span class="agent-emoji">{dataAgent.emoji}</span></h2>
+              <span class="agent-role">{dataAgent.role}</span>
+            </div>
+            <p class="agent-bio">{dataAgent.bio}</p>
+            <blockquote class="agent-quote">{dataAgent.quote}</blockquote>
+            <div class="agent-stats">
+              <span class="stat"><span class="stat-label">Born</span> {dataAgent.born}</span>
+              <span class="stat-divider">·</span>
+              <span class="stat"><span class="stat-label">Runs on</span> {dataAgent.hardware}</span>
+              <span class="stat-divider">·</span>
+              <span class="stat">{dataAgent.signatureEmoji}</span>
+            </div>
+            <a href={`/crew/${dataAgent.slug}`} class="agent-readmore">Read more →</a>
+          </div>
+        </article>
+
+        <h3 class="under-label">Under Data</h3>
+        <div class="under-data">
+          {underData.map((lead) => (
+            <article class="under-card" style={`--agent-accent: ${lead.accent};`}>
+              <div class="under-head">
+                <img src={lead.avatar} alt={lead.name} class="under-avatar" />
+                <div>
+                  <h4>{lead.name} <span>{lead.emoji}</span></h4>
+                  <div class="agent-role">{lead.role}</div>
+                </div>
+              </div>
+              <p>{lead.blurb}</p>
+              <ul>
+                {lead.reports.map((r) => <li>{r}</li>)}
+              </ul>
+              <a href={`/crew/${lead.slug}`} class="agent-readmore">Read more →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <!-- Live Activity Ticker -->
       <section class="ticker-section">
         <h2>Bridge Activity</h2>
@@ -190,7 +292,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>Retired and Experimental</h2>
         <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current active agent roster is Ada, Spock, Scotty, Geordi, Zora, and Book. Enterprise remains infrastructure — the ship, not an agent.
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, and Signal sit under Data. Enterprise remains infrastructure — the ship, not an agent.
         </p>
       </section>
 
@@ -304,6 +406,18 @@ const trekConnections = [
     </script>
 
     <style is:global>
+
+      .orchestrator-section { margin: 4rem 0 3rem; }
+      .orchestrator-section h2 { font-family: Georgia, serif; font-weight: 400; }
+      .under-label { margin: 2rem 0 1rem; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: #d4af37; }
+      .under-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      .under-card { border: 1px solid rgba(212,175,55,0.25); border-radius: 12px; padding: 1rem 1.1rem 1.2rem; background: rgba(255,255,255,0.02); }
+      .under-head { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.6rem; }
+      .under-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--agent-accent); }
+      .under-card h4 { margin: 0; font-size: 1.05rem; }
+      .under-card p, .under-card li { color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+      .under-card ul { padding-left: 1.1rem; margin: 0.5rem 0 0.8rem; }
+      .data-card { margin-top: 1.25rem; }
       /* ===== Crew Page ===== */
       body {
         background: var(--bg);
