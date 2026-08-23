@@ -1535,15 +1535,6 @@ const stats = [
         <p class="lede">The long list behind the use-cases page. Same useful structure: what runs, what it connects to, what comes back, and where the human gate sits. Filter it by lane, agent, proof state, or risk. No raw inventory dump.</p>
       </section>
 
-      <section class="shell intro-grid" aria-label="Atlas summary">
-        <article><h2>Same shape as the use-cases page</h2><p>Every workflow reads like an operator card, not a spreadsheet row wearing a cheap suit. The private receipts stay private; the reusable pattern is public.</p></article>
-        <article><h2>Filters that stay useful</h2><p>Search across title, category, agent, sources, output, risk, and approval gate. Then narrow by category, agent, proof state, or risk level.</p></article>
-      </section>
-
-      <section class="shell stat-strip" aria-label="Atlas counts">
-        {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
-      </section>
-
       <section id="catalog" class="shell examples catalog" aria-labelledby="catalog-title">
         <p class="eyebrow">Filterable catalog</p>
         <h2 id="catalog-title">100 workflow cards</h2>
@@ -1556,6 +1547,18 @@ const stats = [
           <label><span>Sort</span><select id="sort-control"><option value="original">Original atlas order</option><option value="title">Title A-Z</option><option value="category">Category A-Z</option><option value="agent">Primary agent A-Z</option><option value="proof">Verified first</option><option value="risk">Lowest risk first</option></select></label>
         </div>
         <p id="catalog-count" class="count">100 workflows shown</p>
+      </section>
+
+      <section class="shell intro-grid" aria-label="Atlas summary">
+        <article><h2>Same shape as the use-cases page</h2><p>Every workflow reads like an operator card, not a spreadsheet row wearing a cheap suit. The private receipts stay private; the reusable pattern is public.</p></article>
+        <article><h2>Filters that stay useful</h2><p>Search across title, category, agent, sources, output, risk, and approval gate. Then narrow by category, agent, proof state, or risk level.</p></article>
+      </section>
+
+      <section class="shell stat-strip" aria-label="Atlas counts">
+        {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
+      </section>
+
+      <section class="shell examples catalog catalog-results" aria-label="Workflow cards">
         <div class="case-list" id="workflow-grid">
           {atlasCases.map((item) => (
             <article class="case-card" data-search={`${item.id} ${item.title} ${item.category} ${item.agents.join(' ')} ${item.evidence} ${item.risk} ${item.summary} ${item.runs} ${item.connects} ${item.givesBack} ${item.humanGate}`.toLowerCase()} data-category={item.category} data-agents={item.agents.join('|')} data-proof={item.evidence} data-risk={item.risk.slice(0, 2)}>
