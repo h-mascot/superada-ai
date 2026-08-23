@@ -37,8 +37,8 @@ export const enterpriseCrewWorld: ScrollWorldManifest = {
       desktopVideo: '/videos/scroll-world/enterprise-crew/arrival-desktop.mp4',
       mobileVideo: '/videos/scroll-world/enterprise-crew/arrival-portrait.mp4',
       poster: '/images/scroll-world/enterprise-crew/arrival.webp',
-      title: 'One headquarters. Six specialist agents.',
-      body: 'Intent arrives at the Enterprise Crew bridge. Ada turns it into owned work before ambiguity gets ideas.',
+      title: 'One headquarters. Six specialists, plus Data.',
+      body: 'Ada runs the Hermes crew. Data is the Grok Bot orchestrator. Worf, Orb, and Signal sit under Data.',
       nodes: [{ label: 'INTENT', meta: 'INBOUND' }, { label: 'ADA', meta: 'OPERATOR', image: '/avatars/ada.jpg' }, { label: 'ROUTE', meta: 'OWNED' }],
       cta: { label: 'Meet Ada', href: '/crew/ada' },
       assetPrompt: 'Cinematic isometric AI operations headquarters at sunrise, a command beacon receiving a glowing work packet, warm copper and black palette, continuous camera dive toward the bridge.'

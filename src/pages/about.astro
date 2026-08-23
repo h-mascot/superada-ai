@@ -210,31 +210,7 @@ const trekConnections = [
             </div>
           </article>
         ))}
-      </section>
-
-
-      <!-- Star Trek Connection -->
-      <section class="trek-section">
-        <h2>Named for the Stars</h2>
-        <p class="trek-intro">
-          The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a Star Trek character whose strengths mirror their role.
-        </p>
-        <div class="trek-grid">
-          {trekConnections.map((conn) => (
-            <div class="trek-item">
-              <span class="trek-agent">{conn.agent}</span>
-              <span class="trek-role">{conn.trek}</span>
-              <p class="trek-detail">{conn.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section class="orchestrator-section">
-        <h2>Orchestrator</h2>
-        <p class="trek-intro">Data is not another specialist on Ada's roster. It is a different type: a Grok Bot orchestrator that stands up leads and keeps lanes distinct. Worf, Orb, and Signal report to Data.</p>
-
-        <article class="agent-card data-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
+        <article class="agent-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
           <div class="agent-banner-wrap">
             <img src={dataAgent.banner} alt={`${dataAgent.name} banner`} class="agent-banner" loading="lazy" />
             <div class="agent-avatar-wrap">
@@ -258,7 +234,10 @@ const trekConnections = [
             <a href={`/crew/${dataAgent.slug}`} class="agent-readmore">Read more →</a>
           </div>
         </article>
+      </section>
 
+
+      <section class="orchestrator-section">
         <h3 class="under-label">Under Data</h3>
         <div class="under-data">
           {underData.map((lead) => (
@@ -276,6 +255,23 @@ const trekConnections = [
               </ul>
               <a href={`/crew/${lead.slug}`} class="agent-readmore">Read more →</a>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Star Trek Connection -->
+      <section class="trek-section">
+        <h2>Named for the Stars</h2>
+        <p class="trek-intro">
+          The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a Star Trek character whose strengths mirror their role.
+        </p>
+        <div class="trek-grid">
+          {trekConnections.map((conn) => (
+            <div class="trek-item">
+              <span class="trek-agent">{conn.agent}</span>
+              <span class="trek-role">{conn.trek}</span>
+              <p class="trek-detail">{conn.detail}</p>
+            </div>
           ))}
         </div>
       </section>
