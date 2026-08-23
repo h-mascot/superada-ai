@@ -10,11 +10,11 @@ const useCases = [
   {
     category: 'Operations',
     title: 'Heartbeat',
-    summary: 'Ada checks the agent fleet every hour and sends a short status card only when something changed or needs attention.',
-    runs: 'Hourly, into the private #heartbeat channel.',
-    connects: 'Hermes cron state, gateway health, storage headroom, dropped-session watchdogs, error clusters, Entity docs, and recent agent receipts.',
-    givesBack: 'A compact readiness score, the main blocker, safe recovery already performed, and a deep-dive link with the evidence.',
-    humanGate: 'Ada can inspect, recover dropped internal threads, update receipts, and perform safe local fixes. Anything destructive, customer-facing, credential-related, or broader than the approved maintenance window stops for Henry.',
+    summary: 'Ada posts a fleet status card every 6 hours, and underneath the card runs a control loop that keeps roughly 132 cron jobs honest in between.',
+    runs: 'Card every 6 hours into the private #heartbeat channel. Underneath it, a contract validator and a fleet sweep run every 30 minutes.',
+    connects: 'Hermes cron state, machine-checkable contracts for 9 core jobs (freshness SLAs, output markers, side-effect artifact freshness), a sweep across all ~132 cron jobs for unregistered fails, circuit breakers, and a waiting-gate tracker.',
+    givesBack: 'A max-12-line card with readiness score, contract pass count, breaker trips, and open gates. Scheduler ok counts for nothing; only receipts do. The sweep surfaces failing jobs nobody registered, with a readiness penalty.',
+    humanGate: 'Report-only by default: 3 consecutive failed receipts trip the breaker and it flags loudly, but auto-pause stays behind explicit approval from Henry. Anything destructive, credential-related, or customer-facing stops for him.',
     image: '/use-cases/heartbeat.webp'
   },
   {
