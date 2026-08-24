@@ -1,0 +1,96 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'My agents grade my YouTube - Use Case - SuperAda';
+const description = 'Every night, agents track what Henry watches on YouTube, keep him honest against his 10-hour learning target, and turn the best videos into insights and todos.';
+const heroImage = '/use-cases/youtube-learning.webp';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={heroImage} />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="use-cases-page">
+    <Header />
+    <main>
+      <section class="hero shell">
+        <p class="eyebrow"><a href="/use-cases">Use Cases</a> · Learning</p>
+        <h1>My agents grade my YouTube</h1>
+        <p class="lede">I watch a lot of YouTube. Lectures, deep dives, conference talks. Some of it is learning. Some of it is lo-fi viking chants at 2am. Without a system, the ratio drifts and the good stuff evaporates.</p>
+        <p class="lede">So I gave it to my agents. Every night they grade what I watched, keep me honest against my learning target, and turn the best videos into takeaways I can act on.</p>
+        <div class="case-figure"><img src={heroImage} alt="Infographic: My agents grade my YouTube. A film ribbon of watched video flows through three stations: Watch, Measure, Learn, ending in insight cards. 10 hr/day target, 267 hrs queued, 484 videos." width="928" height="1152" /></div>
+      </section>
+
+      <section class="shell intro-grid" aria-label="How it works">
+        <article>
+          <h2>When it runs</h2>
+          <p>Every night, automatically. A report lands in a private channel before I wake up: what I watched, how many hours, how that stacks against my 10-hour-a-day learning target, and which videos earned a second pass.</p>
+        </article>
+        <article>
+          <h2>What it connects to</h2>
+          <p>My own YouTube accounts, read through an authenticated browser session on my own machine. Nothing and no one else's data. My learning target and the running queue backlog make up the rest.</p>
+        </article>
+      </section>
+
+      <section id="workflow" class="shell examples" aria-labelledby="workflow-title">
+        <p class="eyebrow">The workflow</p>
+        <h2 id="workflow-title">Watch. Measure. Learn.</h2>
+        <div class="case-list">
+          <article class="case-card">
+            <div class="case-topline">
+              <span>Step 1</span>
+              <h3>Watch</h3>
+              <p>An agent reads what I actually watched, both of my accounts, the trailing month. It verifies which account it's looking at before it reads a single row.</p>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="case-topline">
+              <span>Step 2</span>
+              <h3>Measure</h3>
+              <p>Music gets filtered out, repeats deduped, and the rest becomes a learning queue: currently 484 videos, 267 hours of content, scored daily against my target.</p>
+            </div>
+          </article>
+          <article class="case-card">
+            <div class="case-topline">
+              <span>Step 3</span>
+              <h3>Learn</h3>
+              <p>The best videos come back as proposed insights and todos. I approve them one by one. Nothing becomes a task until I say so.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell intro-grid" aria-label="Results and control">
+        <article>
+          <h2>What I get back</h2>
+          <p>A daily scorecard that keeps my watching on target instead of drifting. A prioritized backlog so a great talk I saw on a Tuesday doesn't vanish. And takeaways that turn watching into doing, which is the entire point.</p>
+          <p>The report shows aggregates: hours, counts, queue depth. Not a view-by-view log of my life.</p>
+        </article>
+        <article>
+          <h2>Where I stay in charge</h2>
+          <p>The agents read and analyze. I decide. Every insight lands as a proposal with my name on the approval, and a todo only exists once I've accepted it. If the system can't verify what happened on a given night, the report says zero and says why, rather than inventing a plausible number. I've been bitten by confident fiction before. Zeros I can work with.</p>
+        </article>
+      </section>
+
+      <section class="shell examples" aria-label="Failure story">
+        <p class="eyebrow">Honest zeros</p>
+        <h2>The night it reported nothing</h2>
+        <p>One night the report showed 0.0 hours, zero receipts. Looked broken. It wasn't: the capture had happened but the proof file failed to write, sandbox permissions, and the report refused to guess. The fix took a shared write path and a schedule that fires while the authenticated browser is actually up. Two small bugs, both caught because the system would rather show me an honest zero than a comfortable lie.</p>
+        <p>That's the whole design philosophy: watch what I watch, measure it honestly, and turn it into work I approve. The rest is plumbing, and the plumbing knows its place.</p>
+      </section>
+
+      <section class="shell" style="padding-top: 2rem;">
+        <p><a class="cta-link" href="/use-cases">Back to all use cases</a></p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
