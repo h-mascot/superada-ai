@@ -38,7 +38,7 @@ export const enterpriseCrewWorld: ScrollWorldManifest = {
       mobileVideo: '/videos/scroll-world/enterprise-crew/arrival-portrait.mp4',
       poster: '/images/scroll-world/enterprise-crew/arrival.webp',
       title: 'One headquarters. Six specialists, plus Data.',
-      body: 'Ada runs the Hermes crew. Data is the Grok Bot orchestrator. Worf, Orb, and Signal sit under Data.',
+      body: 'Ada runs the Hermes crew. Data is the Grok Bot orchestrator. Orb, Worf, Signal, Kim, and Phlox sit under Data.',
       nodes: [{ label: 'INTENT', meta: 'INBOUND' }, { label: 'ADA', meta: 'OPERATOR', image: '/avatars/ada.jpg' }, { label: 'ROUTE', meta: 'OWNED' }],
       cta: { label: 'Meet Ada', href: '/crew/ada' },
       assetPrompt: 'Cinematic isometric AI operations headquarters at sunrise, a command beacon receiving a glowing work packet, warm copper and black palette, continuous camera dive toward the bridge.'
