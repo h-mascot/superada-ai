@@ -169,14 +169,14 @@ const agents = [
     slug: 'data',
     trekCharacter: 'Lt. Commander Data',
     trekShow: 'Star Trek: The Next Generation',
-    trekDetail: 'The android operations officer. Curious, precise, and unwilling to present a guess as a fact. Our Data is a different type from Ada: a Grok Bot orchestrator, not a Hermes Chief of Staff. It creates leads (Worf, Orb, Signal), briefs them, and stays the coordinator. LinkedIn is the first surface, not the identity.',
+    trekDetail: 'The android operations officer. Curious, precise, and unwilling to present a guess as a fact. Our Data is a different type from Ada: a Grok Bot orchestrator, not a Hermes Chief of Staff. It creates leads (Orb, Worf, Signal, Kim, Phlox), briefs them, and stays the coordinator. LinkedIn is the first surface, not the identity.',
     bio: [
       'Data sits on Grok Bot, not on the Hermes or OpenClaw gateways. The name is the TNG android: evidence over vibe, draft before publish, say when a fact is missing.',
       'The mission is to make Henry more effective in public and in executive thinking. Operational reality becomes clear public ideas. Prior crew context gets inspected before new work. Metrics, customer names, and deals are never invented.',
       'Worf, Orb, and Signal sit under Data. They are not featured fleets at Ada\'s level. Ada remains Chief of Staff on Hermes for the original ship. Data does not absorb their lanes. It creates the lead, briefs the lead, and stays the coordinator.',
     ],
     quote: '"Draft first. Tool-retrieved evidence beats chat memory. If it is missing, say it is missing."',
-    capabilities: ['Evidence-led writing', 'Claim checks', 'Fleet creation and briefing', 'Public positioning drafts', 'Decision memos', 'Routing to Orb / Worf / Signal / Mail'],
+    capabilities: ['Evidence-led writing', 'Claim checks', 'Fleet creation and briefing', 'Public positioning drafts', 'Decision memos', 'Routing to Orb / Worf / Signal / Kim / Phlox / Mail'],
     models: ['Grok Bot runtime'],
     funFact: 'Data\'s first locked public artifacts were a LinkedIn headline and the letter name The AI Executive Office. Live apply still waits on Henry\'s explicit OK.',
   },
@@ -255,14 +255,68 @@ const agents = [
     models: ['Grok Bot runtime'],
     funFact: 'The skill is modeled on chamath.substack.com, not on All-In recap culture.',
   },
+  {
+    name: 'Kim',
+    emoji: '🌐',
+    role: 'Website operator',
+    hardware: 'Grok Bot',
+    accent: '#8fb8d4',
+    accentGlow: 'rgba(143, 184, 212, 0.3)',
+    banner: '/banners/banner-kim.png',
+    avatar: '/avatars/kim.svg',
+    born: '2026',
+    signatureEmoji: '🌐',
+    slug: 'kim',
+    trekCharacter: 'Harry Kim',
+    trekShow: 'Star Trek: Voyager',
+    trekDetail: 'Operations. Used to be called Hoshi. That name stays with Henry\'s meeting-memory product. This Kim is the website operator, not the meeting-memory product.',
+    bio: [
+      'Named for Harry Kim (Voyager operations). Used to be called Hoshi. That name stays with Henry\'s meeting-memory product. Grok Bot website operator under Data.',
+      'Owns SuperAda, especially /about and the crew roster. Also henrymascot.com and Entity-public pages when Henry or Data points at them.',
+      'Draft first. Does not publish or rewrite live bios without Henry\'s exact OK on the exact copy.',
+    ],
+    quote: '"The live roster does not get to lie."',
+    capabilities: ['Public site truth', 'About / crew roster', 'Draft-first copy', 'Live verify'],
+    models: ['Grok Bot runtime'],
+    funFact: 'Used to be called Hoshi. That name stays with Henry\'s meeting-memory product.',
+  },
+  {
+    name: 'Phlox',
+    emoji: '🩺',
+    role: 'Research-paper explainer',
+    hardware: 'Grok Bot',
+    accent: '#6bbf8a',
+    accentGlow: 'rgba(107, 191, 138, 0.3)',
+    banner: '/banners/banner-phlox.png',
+    avatar: '/avatars/phlox.svg',
+    born: '2026',
+    signatureEmoji: '🩺',
+    slug: 'phlox',
+    trekCharacter: 'Dr. Phlox',
+    trekShow: 'Star Trek: Enterprise',
+    trekDetail: 'A curious doctor who explains alien science to humans without making them feel stupid. Our Phlox explains research papers in operator English.',
+    bio: [
+      'Named for Dr. Phlox (Enterprise). Explains papers to operators without making them feel stupid. Grok Bot, under Data. Not Spock, not Signal, not Tuvok.',
+      'Reads the paper. Returns a short text briefing and an audio file of the same briefing. What it claims, why a CEO should care, one analogy, proven vs guessed, one next step.',
+      'Does not own LinkedIn or public posts. No invented metrics or citations.',
+    ],
+    quote: '"If a paper needs gradients to land, I failed."',
+    capabilities: ['Paper briefing', 'Operator English', 'Audio briefing', 'Proven vs guessed'],
+    models: ['Grok Bot runtime'],
+    funFact: 'Every paper returns two artifacts: a short text briefing and an audio file of the same briefing.',
+  },
 ];
 
 export function getStaticPaths() {
   // agents list is re-declared here so getStaticPaths can access it
-  const allSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book', 'data', 'worf', 'orb', 'signal'];
+  const hermesSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book'];
+  const grokSlugs = ['data', 'orb', 'worf', 'signal', 'kim', 'phlox'];
+  const allSlugs = [...hermesSlugs, ...grokSlugs];
   return allSlugs.map((slug) => ({ params: { slug } }));
 }
 
+const hermesSlugs = ['ada', 'spock', 'scotty', 'geordi', 'zora', 'book'];
+const grokSlugs = ['data', 'orb', 'worf', 'signal', 'kim', 'phlox'];
 const { slug } = Astro.params;
 const agent = agents.find((a) => a.slug === slug);
 
@@ -382,7 +436,7 @@ if (!agent) {
           ← Back to the Crew
         </a>
         <div class="detail-peer-links" style="display:flex; gap:1.5rem;">
-          {agents.filter(a => a.slug !== slug).map((a) => (
+          {agents.filter(a => a.slug !== slug && (hermesSlugs.includes(slug) ? hermesSlugs.includes(a.slug) : grokSlugs.includes(a.slug))).map((a) => (
             <a href={`/crew/${a.slug}`} style="color:var(--faint); font-size:0.8rem; text-decoration:none;"
               onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--faint)'">
               {a.name}

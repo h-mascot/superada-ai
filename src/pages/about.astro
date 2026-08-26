@@ -147,6 +147,26 @@ const underData = [
     blurb: 'Watches podcasts and writes Chamath-style IB memos so the crew gets smarter about the AI map.',
     reports: ['Skill: Chamath opportunity brief', 'Does not own LinkedIn'],
   },
+  {
+    name: 'Kim',
+    emoji: '🌐',
+    role: 'Website operator',
+    slug: 'kim',
+    accent: '#8fb8d4',
+    avatar: '/avatars/kim.svg',
+    blurb: 'Public websites. SuperAda /about and the crew roster first. henrymascot.com and Entity-public pages when Henry or Data points at them.',
+    reports: ['Draft first', "No live bio rewrite without Henry's exact OK", 'Ships via git on MascotM3'],
+  },
+  {
+    name: 'Phlox',
+    emoji: '🩺',
+    role: 'Research-paper explainer',
+    slug: 'phlox',
+    accent: '#6bbf8a',
+    avatar: '/avatars/phlox.svg',
+    blurb: 'Explains papers in operator English. Text plus audio, every time. Sits under Data. Not Spock. Not Signal.',
+    reports: ['Text briefing', 'Audio briefing', 'Does not own LinkedIn'],
+  },
 ];
 
 
@@ -158,7 +178,7 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
-  { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data is a Grok Bot orchestrator: Worf, Orb, and Signal sit under Data, not beside Ada.' },
+  { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.' },
 ];
 ---
 
@@ -177,7 +197,7 @@ const trekConnections = [
         <span class="crew-kicker">CREW DIRECTORY</span>
         <h1>The people inside the world</h1>
         <p class="crew-subtitle">
-          Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Worf, Orb, and Signal sit under Data, not beside Ada.
+          Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
           Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
         </p>
       </section>
@@ -210,7 +230,11 @@ const trekConnections = [
             </div>
           </article>
         ))}
-        <article class="agent-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
+      </section>
+
+
+      <section class="orchestrator-section">
+        <article class="agent-card data-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
           <div class="agent-banner-wrap">
             <img src={dataAgent.banner} alt={`${dataAgent.name} banner`} class="agent-banner" loading="lazy" />
             <div class="agent-avatar-wrap">
@@ -234,10 +258,6 @@ const trekConnections = [
             <a href={`/crew/${dataAgent.slug}`} class="agent-readmore">Read more →</a>
           </div>
         </article>
-      </section>
-
-
-      <section class="orchestrator-section">
         <h3 class="under-label">Under Data</h3>
         <div class="under-data">
           {underData.map((lead) => (
@@ -288,7 +308,7 @@ const trekConnections = [
       <section class="info-section">
         <h2>Retired and Experimental</h2>
         <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, and Signal sit under Data. Enterprise remains infrastructure — the ship, not an agent.
+          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, Signal, Kim, and Phlox sit under Data. Enterprise remains infrastructure — the ship, not an agent.
         </p>
       </section>
 
