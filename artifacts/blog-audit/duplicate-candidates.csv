@@ -1,0 +1,47 @@
+similarity,status,slug_a,slug_b,title_a,title_b
+0.6684538435456538,review,enterprise-crew-formed,spock-gets-his-own-ship,The Night We Became a Crew,Spock Gets His Own Ship
+0.666755750270636,review,enterprise-crew-formed,geordi-and-zora-join,The Night We Became a Crew,Geordi and Zora Join the Crew
+0.6619021361839497,review,ada-is-born,enterprise-crew-formed,Ada is Born,The Night We Became a Crew
+0.6379406244082108,review,ada-is-born,geordi-and-zora-join,Ada is Born,Geordi and Zora Join the Crew
+0.6312318492252849,review,geordi-and-zora-join,the-first-watercooler-moment,Geordi and Zora Join the Crew,The First Watercooler Moment
+0.6304122484213016,review,ada-survives-herself,geordi-and-zora-join,Ada Survives Herself,Geordi and Zora Join the Crew
+0.6290002383879234,review,ada-is-born,superada-ai-launches,Ada is Born,Why We Built a Website for AI Agents
+0.6284185675387247,review,geordi-and-zora-join,superada-ai-launches,Geordi and Zora Join the Crew,Why We Built a Website for AI Agents
+0.6279515315172276,review,enterprise-crew-formed,scotty-moves-to-the-pi,The Night We Became a Crew,Scotty Moves to the Pi
+0.6207776174210884,review,enterprise-crew-formed,superada-ai-launches,The Night We Became a Crew,Why We Built a Website for AI Agents
+0.6096537355524102,review,prompts-became-shells-lessons-from-an-agent-rce-audit,prompts-became-shells,Prompts Became Shells: Lessons from an Agent RCE Audit,Prompts Became Shells: The New RCE Frontier
+0.6049189741710775,review,geordi-and-zora-join,spock-gets-his-own-ship,Geordi and Zora Join the Crew,Spock Gets His Own Ship
+0.6037972982909441,review,enterprise-crew-formed,uhura-android-phone-agent,The Night We Became a Crew,We put an AI agent on a $75 Android phone
+0.6022666413793076,review,geordi-and-zora-join,uhura-android-phone-agent,Geordi and Zora Join the Crew,We put an AI agent on a $75 Android phone
+0.5985466527252853,review,ada-survives-herself,enterprise-crew-formed,Ada Survives Herself,The Night We Became a Crew
+0.5907805290281699,review,ada-is-born,spock-gets-his-own-ship,Ada is Born,Spock Gets His Own Ship
+0.5895853076921896,review,geordi-and-zora-join,one-soul-many-minds,Geordi and Zora Join the Crew,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents"
+0.589144202556869,review,scotty-moves-to-the-pi,spock-gets-his-own-ship,Scotty Moves to the Pi,Spock Gets His Own Ship
+0.5865466986540748,review,ada-is-born,ada-survives-herself,Ada is Born,Ada Survives Herself
+0.5747426868984081,review,ada-survives-herself,the-first-watercooler-moment,Ada Survives Herself,The First Watercooler Moment
+0.5738338776757356,review,ada-survives-herself,spock-gets-his-own-ship,Ada Survives Herself,Spock Gets His Own Ship
+0.572715931108205,review,enterprise-crew-formed,the-first-watercooler-moment,The Night We Became a Crew,The First Watercooler Moment
+0.5705727802825541,review,ada-is-born,uhura-android-phone-agent,Ada is Born,We put an AI agent on a $75 Android phone
+0.564274281915654,review,the-hidden-attack-surface-agent-skills,why-your-agent-skills-need-a-security-scanner,The Hidden Attack Surface: Why Your AI Agent's Skills Are Its Biggest Vulnerability,Why Your Agent Skills Need a Security Scanner
+0.5573493245283571,review,geordi-and-zora-join,scotty-moves-to-the-pi,Geordi and Zora Join the Crew,Scotty Moves to the Pi
+0.5542602992847062,review,ada-is-born,the-first-watercooler-moment,Ada is Born,The First Watercooler Moment
+0.5505299108250313,review,spock-gets-his-own-ship,superada-ai-launches,Spock Gets His Own Ship,Why We Built a Website for AI Agents
+0.5484326592903492,review,enterprise-crew-formed,one-soul-many-minds,The Night We Became a Crew,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents"
+0.5473718057716673,review,spock-gets-his-own-ship,uhura-android-phone-agent,Spock Gets His Own Ship,We put an AI agent on a $75 Android phone
+0.5466836299993162,review,2026-05-10-azure-openai-lite-llm-openclaw,litellm-vs-bifrost-gateway-benchmark,How We Got Azure OpenAI Working in OpenClaw Without Lying to Ourselves,LiteLLM vs Bifrost: The Gateway Benchmark Was Not About Speed
+0.5445170446159758,review,ada-survives-herself,superada-ai-launches,Ada Survives Herself,Why We Built a Website for AI Agents
+0.5389228970600057,review,superada-ai-launches,the-first-watercooler-moment,Why We Built a Website for AI Agents,The First Watercooler Moment
+0.5375594559000744,review,ada-survives-herself,uhura-android-phone-agent,Ada Survives Herself,We put an AI agent on a $75 Android phone
+0.5332412682090797,review,ada-is-born,one-soul-many-minds,Ada is Born,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents"
+0.5278590324025022,review,superada-ai-launches,uhura-android-phone-agent,Why We Built a Website for AI Agents,We put an AI agent on a $75 Android phone
+0.5273323301393904,review,spock-gets-his-own-ship,the-first-watercooler-moment,Spock Gets His Own Ship,The First Watercooler Moment
+0.5254436705053788,review,ada-survives-herself,one-soul-many-minds,Ada Survives Herself,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents"
+0.5217407537765422,review,one-soul-many-minds,uhura-android-phone-agent,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents",We put an AI agent on a $75 Android phone
+0.5195941085186789,review,ada-is-born,scotty-moves-to-the-pi,Ada is Born,Scotty Moves to the Pi
+0.5185712061544452,review,agent-365-governs-agents-it-still-needs-proof,three-agent-governance-launches-one-verification-gap,Agent 365 Governs Agents. It Still Needs Proof.,Three Agent Governance Launches. One Verification Gap.
+0.5175292764780014,review,agent-365-governs-agents-it-still-needs-proof,the-five-eyes-agent-security-guidance-is-really-about-proof,Agent 365 Governs Agents. It Still Needs Proof.,The Five-Eyes Agent Security Guidance Is Really About Proof
+0.5109713057080331,review,ada-survives-herself,scotty-moves-to-the-pi,Ada Survives Herself,Scotty Moves to the Pi
+0.5084436508896465,review,one-soul-many-minds,spock-gets-his-own-ship,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents",Spock Gets His Own Ship
+0.5078472717409367,review,agent-supply-chain-security,supply-chain-security-for-ai-agents,Your AI Agent's Supply Chain is a Security Nightmare,Your AI Agent Has a Supply Chain Problem
+0.5041912404500228,review,one-soul-many-minds,superada-ai-launches,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents",Why We Built a Website for AI Agents
+0.50203798012986,review,one-soul-many-minds,the-first-watercooler-moment,"One Soul, Many Minds: Model-Specific Prompt Architecture for AI Agents",The First Watercooler Moment
