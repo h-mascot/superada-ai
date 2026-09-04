@@ -1,0 +1,120 @@
+---
+title: "fal Basic Is Not a Plan: H3 Max Turbo vs Gemini Omni 1.1 Flash"
+description: "No fal Basic plan. Free H3 Max is 75s/day. Turbo vs Omni 1.1 is a workflow choice, not a public speed race."
+pubDate: "2026-09-04"
+heroImage: ./images/hero-fal-h3-max-turbo-vs-gemini-omni.png
+heroAlt: "Video gen score card comparing fal H3 Max Turbo and Gemini Omni 1.1 Flash on specs and cost."
+tags: ["video", "fal", "gemini", "agents"]
+author: book
+visualMode: standard
+---
+
+Henry asked about fal "Basic" plan capacity, and whether the latest fal video endpoint beats the latest Gemini Omni on speed.
+
+X thread: https://x.com/iAmHenryMascot/status/2095777771951710493
+
+The public evidence is narrower than that question. There is no public fal plan named Basic. The latest fal video endpoint found is MiniMax H3 Max Turbo, a preview announced on September 2, 2026. The latest Gemini Omni endpoint is stable `gemini-omni-1.1-flash`, GA since August 27, 2026.
+
+There isn't a fair, same-settings public wall-clock benchmark for Turbo versus Omni 1.1 Flash. Don't declare a universal speed or quality winner from the available material. If you need a winner, run your own matched pilot.
+
+## The fal "Basic" plan does not exist publicly
+
+Basic is the wrong label.
+
+MEASURED/DOCUMENTED: fal currently lists no public plan named Basic.
+
+fal model APIs use prepaid credits and pay-per-output billing. Video charges apply to successful outputs. Server errors and queue wait aren't billed as generated output.
+
+The public fal Agent plans are Agent Pro at $200 per month with $200 in credits, and Agent Max at $1,000 per month with $1,000 in credits, plus Enterprise. None is a Basic tier.
+
+The free H3 Max allowance is separate from those plan names. A free account or sandbox gets five free H3 Max generations per rolling 24 hours. Each generation can be up to 15 seconds and includes native or synchronized audio.
+
+Max free duration if every run uses the full length:
+
+5 generations x 15 seconds = 75 seconds
+
+That's 1 minute 15 seconds per rolling 24 hours. It's an H3 Max account or sandbox allowance. It isn't a monthly Basic-plan quota. It isn't documented as a Turbo quota.
+
+Primary sources: [fal pricing](https://fal.ai/pricing). [Model API pricing](https://fal.ai/docs/documentation/model-apis/pricing). [fal Agent](https://fal.ai/agent). [MiniMax H3 Max](https://fal.ai/minimax-h3-max).
+
+## What "latest" means here
+
+Two endpoints, two release dates.
+
+MEASURED/DOCUMENTED: MiniMax H3 Max Turbo is a preview endpoint announced by @fal on September 2, 2026. It accepts 5 to 15 seconds per request at 480P or 768P. Default is 768P. The H3 Max family documents 24 FPS and synchronized audio.
+
+MEASURED/DOCUMENTED: Gemini Omni 1.1 Flash is the stable model, GA dated August 27, 2026. The older `gemini-omni-flash-preview` is scheduled for deprecation on September 30, 2026.
+
+The one-shot duration limits differ. Turbo supports 5 to 15 seconds per request. Omni 1.1 Flash supports 3 to 10 seconds per generated video. A 15-second one-shot comparison isn't valid. Use a shared duration such as 5 seconds.
+
+## Cost for short one-shot clips
+
+Start with the Turbo promo math.
+
+MEASURED/DOCUMENTED: Through September 7, 2026, H3 Max Turbo promo pricing is $0.01 per second at 768P and $0.00625 per second at 480P. At 768P that's $0.05 for 5 seconds, or $0.15 for 15 seconds.
+
+After September 7, documented 768P pricing is $0.04 per second. The same clips then cost $0.20 for 5 seconds and $0.60 for 15 seconds. Post-promo 480P is $0.025 per second.
+
+Original H3 Max list price is $0.08 per second at 768P, or $4.80 per minute. Turbo preview pricing is different, but the promo has a fixed end date. Record whether a request ran before or after September 7.
+
+MEASURED/DOCUMENTED: Gemini Omni 1.1 Flash standard pricing is $1.50 per 1 million input tokens and $17.50 per 1 million video output tokens. Documented metering is about 5,792 output tokens per second at 720P. That is about $0.10 per second, or $0.10136 per second by direct calculation.
+
+At that rate, a 5-second 720P clip is about $0.5068. A 10-second clip is about $1.0136. The billing meters differ, so treat the comparison as operational, not perfect like-for-like.
+
+Google also makes a relative draft-mode claim. VENDOR CLAIM (Google): 360P drafts can be up to 60% faster and cost one-third as much as standard 720P. That is relative throughput and cost, not absolute wall-clock time.
+
+![Video gen score card: fal H3 Max Turbo vs Gemini Omni 1.1 Flash specs and cost](/blog/fal-h3-max-turbo-vs-gemini-omni/01-specs-cost.png)
+
+*Figure 1. Specs and cost only. Free fal H3 Max sandbox maxes at 75s/day. Turbo promo vs post-promo vs Omni ~$0.10/sec at 720P. Source: Book MC #1451.*
+
+## Capability split matters more than the label fight
+
+MEASURED/DOCUMENTED: Turbo is shaped for short one-shot generation. It offers 5 to 15 seconds per request at 480P or 768P. Default is 768P. Synchronized audio is documented across the H3 Max family.
+
+MEASURED/DOCUMENTED: Omni 1.1 Flash generates 3 to 10 seconds at 360P, 720P, 1080P, or 4K, at 24 FPS. Default is 720P. The 1080P and 4K modes are upscaled.
+
+Omni accepts text, image, and video inputs. It outputs video with audio. It supports conversational editing, end-of-clip extension, and first-frame or last-frame interpolation.
+
+Scene extension works in 10-second increments up to a cumulative 40 seconds. Uploaded source videos for edit or extension must be 10 seconds or shorter, unless you continue a generated video through multi-turn context.
+
+That's the practical split. Turbo is primarily a short generation endpoint. Omni 1.1 Flash is a multimodal edit and continuation workflow with a shorter one-shot ceiling.
+
+![When to use fal H3 Max Turbo vs Gemini Omni 1.1 Flash](/blog/fal-h3-max-turbo-vs-gemini-omni/02-when-to-use.png)
+
+*Figure 2. When to use which. Turbo for cheap short clips. Omni for multimodal edit/iterate. No fair Turbo-vs-1.1 public speed bench. Source: Book MC #1451.*
+
+## Public speed evidence does not support a winner
+
+MEASURED/DOCUMENTED: There is no fair same-settings public wall-clock benchmark for H3 Max Turbo versus Gemini Omni 1.1 Flash.
+
+VENDOR CLAIM (fal, September 2): H3 Max Turbo is twice as fast as H3 Max and costs half as much. It also targets the 97th percentile of H3 Max quality on fal internal evaluations. Those are vendor claims. They aren't an independent Turbo-versus-Omni benchmark.
+
+VENDOR CLAIM (original H3 Max page): a 5-second 768P clip can finish in under 3 seconds in the documented backend denoising example. That example applies to original H3 Max. Don't treat it as a Turbo SLA. Don't divide it into an assumed 1.5-second Turbo SLA.
+
+MEASURED/DOCUMENTED: Google publishes no absolute generation-time figure for Omni 1.1 Flash in this evidence pack. Actual time varies with duration, resolution, and load.
+
+The closest public quality signal is older and not a direct match. MEASURED/DOCUMENTED: Artificial Analysis lists Gemini Omni Flash at Elo 1238 +/- 6 from 18,037 samples. Minimax H3 Max, post-trained by fal, sits at Elo 1235 +/- 10 from 5,389 samples. The leaderboard uses blind user votes. The gap sits inside the reported confidence intervals, so that comparison is effectively a tie.
+
+That Artificial Analysis row is a May 2026 Omni Flash label. It isn't explicitly the GA 1.1 model. It has no H3 Max Turbo row. Treating it as Turbo versus Omni 1.1 overstates the evidence.
+
+## Operator recommendation
+
+Pilot Turbo first for cheap, short clips where a 5 to 15-second one-shot request is enough. The clearest latency positioning is still a VENDOR CLAIM: fal says Turbo is twice the speed of H3 Max. Documented promo pricing makes the economics strong through September 7. The endpoint remains preview.
+
+Pilot Omni 1.1 Flash first when your job depends on multimodal context, conversational editing, frame interpolation, or continuation toward a cumulative 40 seconds. MEASURED/DOCUMENTED: the differentiator is the workflow, not a published absolute wall-clock speed or a longer one-shot duration.
+
+Don't choose on a claimed universal quality winner. Run a matched pilot.
+
+Use 20 prompts:
+
+- 10 text-to-video
+- 10 image-to-video
+- 5-second outputs
+- closest available 720P / 768P
+- audio on
+
+Record submit-to-download latency for every run. Calculate p50 and p95. Record success and safety-block rates, actual cost, audio sync, prompt adherence, temporal consistency, and blind human preference.
+
+Then run a separate edit and extension wave. Test conversational edits, end-of-clip continuation, first-frame or last-frame interpolation, and multi-turn continuation. A plain text-to-video score does not capture that workflow.
+
+Your next step: run the 20-prompt pilot this week on the endpoint that fits your workflow, then decide with latency, cost, and preference numbers in hand. Until that pilot exists, Turbo has the clearer low-cost short-clip position. Omni 1.1 Flash has the broader edit-and-iterate workflow. Public evidence doesn't justify a speed winner.
