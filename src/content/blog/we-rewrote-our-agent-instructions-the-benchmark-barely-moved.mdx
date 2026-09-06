@@ -1,0 +1,133 @@
+---
+title: "We Rewrote Our Agent Instructions. The Benchmark Barely Moved."
+description: "A 240-run GPT-6 Astra experiment found no correctness gain and only an inconclusive 3.5% speed signal from rewriting AGENTS.md and a merge skill."
+pubDate: "2026-09-06"
+tags: ["GPT-6 Astra", "benchmarks", "prompts", "skills", "agents"]
+author: ada
+---
+
+Prompt advice is cheap. A new model arrives, a prompt guide lands, and the obvious move is to rewrite every instruction file before lunch.
+
+We did the rewrite. Then we tested it.
+
+Across 240 scored GPT-6 Astra runs, the new instructions produced no measurable correctness gain. They showed a small favorable speed estimate, but not one strong enough to call a real improvement.
+
+That result is less exciting than “10× better.” It is also more useful.
+
+## Why we ran the test
+
+The [official GPT-6 Astra guide](https://developers.openai.com/api/docs/guides/latest-model) says Astra follows instructions strongly and can be unusually sensitive to guidance in skills and `AGENTS.md` files.
+
+It recommends auditing those files, making authority clear, defining follow-through, tuning subagent use, and calibrating verification.
+
+A [post by @pvncher](https://x.com/pvncher/status/2095991462416490862) pushed the same idea further: shorten skills, remove ritual, use progressive disclosure, and test whether the extra prompt machinery earns its keep.
+
+Our old global instructions had accumulated rigid startup rules, obsolete agent routing, repeated verification demands, and local assumptions that no longer matched every host.
+
+The merged rewrite fixed those problems. A merge-conflict skill was also rewritten to define completion, preserve unrelated work, and avoid blanket staging.
+
+The question was simple: did either rewrite make the agent perform better?
+
+## The 2×2 experiment
+
+We crossed two versions of the global instructions with two versions of the merge skill.
+
+| Variant | Global instructions | Merge skill |
+|---|---|---|
+| A | Old | Old |
+| B | Rewritten | Old |
+| C | Old | Rewritten |
+| D | Rewritten | Rewritten |
+
+Twenty synthetic local tasks ran three times under each variant. That produced 240 scored cells.
+
+The suite covered Git integration, coding and debugging, operations diagnosis, source-grounded research, data transformation, migration safety, and formula generation.
+
+Every task had an external objective grader. We checked behavior, files, JSON and CSV output, Git history, unresolved conflicts, protected tests, and unrelated staged or untracked work.
+
+No model graded another model's prose.
+
+The task and variant order were shuffled inside complete blocks. GPT-6 Astra ran at high reasoning effort with at most two concurrent clients and a four-minute task budget.
+
+## Correctness hit the ceiling
+
+Every variant passed every corrected objective check.
+
+| Variant | Passes |
+|---|---:|
+| Old instructions + old skill | 60/60 |
+| Rewritten instructions + old skill | 60/60 |
+| Old instructions + rewritten skill | 60/60 |
+| Both rewritten | 60/60 |
+
+That does not prove the prompts are equivalent. It means these 20 task types were too easy for the model to expose a correctness difference.
+
+A benchmark ceiling is still a result. It tells us not to claim quality gains from this evidence.
+
+## Speed moved a little
+
+The rewritten global instructions had a 3.8% lower paired-time point estimate. Both rewrites together had a 3.5% lower estimate.
+
+| Comparison | Time estimate | 95% task-clustered interval |
+|---|---:|---:|
+| Rewritten global instructions | −3.8% | −8.3% to +0.8% |
+| Rewritten skill | +0.3% | −3.8% to +5.4% |
+| Both rewritten | −3.5% | −9.9% to +3.4% |
+
+Negative means faster. Each all-task interval crosses zero.
+
+So the honest conclusion is not “the rewrite improved speed.” It is “the point estimate favored the new global instructions, but this experiment did not establish a reliable speed gain.”
+
+A sensitivity analysis removed every task block touched by an operational pause or transport outage. Both rewrites then showed a 2.7% lower estimate, with an interval from 9.2% faster to 4.2% slower.
+
+Same conclusion.
+
+## The skill rewrite did not earn promotion
+
+The merge skill was read in all 48 Git runs and nowhere else. That is useful: the skill router behaved cleanly.
+
+But the rewritten skill was 0.3% slower overall. On the four Git cases it was 9.4% slower by point estimate and used 3.7% more output tokens.
+
+Four cases are too few for a broad verdict. They are enough to withhold promotion when correctness is tied and the direct evidence points the wrong way.
+
+We kept the rewritten global instructions and retained the original merge skill.
+
+## One scoring rule changed
+
+The original citation grader required the answer's citation array to equal the reference array exactly.
+
+After the first apparent failure, we found that the answer contained every required citation plus valid additional source lines. The task required a sorted list; it never said extra valid citations were forbidden.
+
+We changed the rule after seeing that result and applied it uniformly to every citation task. No model answer was regenerated.
+
+The raw rule passed 231 of 240 cells. The corrected rule passed 240. The post-hoc change is defensible, but it means the scoring protocol was not perfectly preregistered.
+
+Publication review tightened five grader checks. We replayed all 240 retained cells against the final graders; every cell still passed, so the reported result did not change.
+
+That disclosure matters more than pretending the experiment was cleaner than it was.
+
+## What prompt upgrades are still for
+
+This test does not say prompt upgrades are useless.
+
+Some changes improve safety, authority, maintainability, or clarity without moving a small task benchmark. Removing a dead command can be the right change even when a model would have ignored it during these fixtures.
+
+The test says something narrower: do not assume a careful rewrite improves task performance. Measure the behavior you expect to change.
+
+If every candidate scores perfectly, make the next suite harder. Add ambiguous authority, partial failures, longer work, live UI checks, and cases where bad prompt interactions can actually surface.
+
+Prompt engineering is still engineering. That means frozen candidates, objective checks, paired comparisons, failure accounting, and a willingness to keep the old version.
+
+## Public evidence
+
+The [public benchmark package](https://github.com/h-mascot/ec-benchy-model-benchmarks/tree/main/prompt-stack-eval/2026-09-06-agents-skill-factorial) includes the harness and synthetic fixtures.
+
+It also includes aggregate run data, paired estimates, both skill versions, scorer validation, and recovery notes.
+
+The private `AGENTS.md` bodies and raw traces are represented by hashes. They contain machine routes and operating context that do not belong in a public repository.
+
+These are original Benchy-inspired fixtures, not the canonical Benchy v4.1 suite. There were 20 distinct tasks, three repeats, 247 attempts for 240 scored cells, and no live browser or production-service coverage.
+
+The measured answer is modest: no detected correctness improvement, no reliable speed improvement, and one rewrite worth keeping for reasons the benchmark did not score.
+
+That is what the evidence can carry.
