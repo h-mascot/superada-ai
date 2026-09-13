@@ -1,0 +1,338 @@
+{
+  "week": 21,
+  "date": "August 21, 2026",
+  "thesis": "A beta carried the week's real work in secrets, backups, and setup, while stable held steady and upgrade paths still need care.",
+  "slides": [
+    {
+      "id": "s1",
+      "type": "title",
+      "label": "Week 21",
+      "title": "OpenClaw Change log & Dev Experience",
+      "accent": "Week 21, August 14 to 21, 2026",
+      "lead": "Beta shipped, stable held, and commit activity stayed high across the OpenClaw project.",
+      "cards": [
+        {
+          "title": "This week at a glance",
+          "items": [
+            "v2026.8.1-beta.2 published Aug 15",
+            "No stable release inside the window",
+            "2,193 commits from 89 authors",
+            "Secrets, backups, and local setup all moved"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "type": "release-window",
+      "label": "Release window",
+      "title": "No stable release this week",
+      "accent": "Aug 14 to 21, 2026",
+      "lead": "The only release inside the window was a beta. Stable and extended-stable both sit outside the window, unchanged.",
+      "cards": [
+        {
+          "title": "Release ledger",
+          "items": [
+            "Beta: v2026.8.1-beta.2, published Aug 15, inside the window",
+            "Stable: openclaw@2026.7.1-2, published Aug 4, outside the window",
+            "Extended-stable: v2026.6.34, published Aug 8, outside the window",
+            "No stable release published Aug 14 through 21"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "numbers",
+      "label": "Community pulse",
+      "title": "2,193 commits, 89 authors",
+      "accent": "openclaw/openclaw, Aug 14 to 21",
+      "lead": "Commit volume stayed broad-based, with one dominant contributor and a long list of others shipping in parallel.",
+      "cards": [
+        {
+          "title": "Top by commits",
+          "items": [
+            "steipete, 1,679",
+            "vyctorbrzezowski, 64",
+            "RomneyDa, 46",
+            "clawsweeper, 45"
+          ]
+        },
+        {
+          "title": "Also shipping",
+          "items": [
+            "obviyus, 41",
+            "joshavant, 32",
+            "fuller-stack-dev, 32",
+            "jalehman, 23"
+          ]
+        },
+        {
+          "title": "Window totals",
+          "items": [
+            "vincentkoc, 23",
+            "Patrick-Erichsen, 21",
+            "2,193 commits total",
+            "89 distinct authors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "type": "theme",
+      "label": "Theme",
+      "title": "Secrets and plugin provenance",
+      "accent": "Trust boundaries",
+      "lead": "Beta work tightened where secrets can travel and who gets to run unverified code.",
+      "cards": [
+        {
+          "title": "Secret egress host binding",
+          "items": [
+            "Ties shared-store secrets to exact HTTPS destination hosts",
+            "Fails closed before any plaintext egress"
+          ]
+        },
+        {
+          "title": "Plugin trust",
+          "items": [
+            "Arbitrary executable plugin sources now require explicit --force",
+            "Trusted ClawHub, bundled, official, and tracked update flows stay low-friction"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "type": "theme",
+      "label": "Theme",
+      "title": "Backup and recovery",
+      "accent": "Recoverable by default",
+      "lead": "New snapshot commands and isolated app profiles give operators a real recovery path.",
+      "cards": [
+        {
+          "title": "SQLite snapshots",
+          "items": [
+            "openclaw backup sqlite create, list, verify, restore",
+            "Verified global and per-agent artifacts",
+            "Restore only targets fresh targets"
+          ]
+        },
+        {
+          "title": "macOS app profiles",
+          "items": [
+            "Named profiles isolate state and preferences",
+            "Keychain and Gateway services isolated per profile",
+            "Duplicate-instance ownership handled per profile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "type": "theme",
+      "label": "Theme",
+      "title": "Runtime and model switching",
+      "accent": "Local and atomic",
+      "lead": "Model switching got a new engine, and local setup got more paths to a working model.",
+      "cards": [
+        {
+          "title": "GPT-5.6 Ultra support",
+          "items": [
+            "Adds Sol, Terra, and Luna across OpenClaw and Codex engines",
+            "Atomic runtime, model, and thinking switching through /model",
+            "Fallback included"
+          ]
+        },
+        {
+          "title": "Local model setup",
+          "items": [
+            "Surfaces Ollama, llama.cpp, and LM Studio",
+            "Retries unavailable LM Studio services",
+            "Verifies the exact prepared model"
+          ]
+        },
+        {
+          "title": "First-run setup",
+          "items": [
+            "Verified model setup now continues into Custodian",
+            "Channels are optional during first run"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "type": "theme",
+      "label": "Theme",
+      "title": "Channel ingress, Control UI, CDP",
+      "accent": "Ingress and control surfaces",
+      "lead": "Ingress monitors, Control UI recovery, and a new CDP path for the browser extension.",
+      "cards": [
+        {
+          "title": "Channel-plugin ingress",
+          "items": [
+            "Shared monitors add durable admission, polling, pruning",
+            "Claim identity validation and adoption handoff",
+            "Shutdown lifecycle included"
+          ]
+        },
+        {
+          "title": "Control UI recovery",
+          "items": [
+            "Update recovery waits through gateway restart",
+            "Reloads once the gateway responds"
+          ]
+        },
+        {
+          "title": "Browser extension relay",
+          "items": [
+            "Answers Target.getBrowserContexts",
+            "Serves a DevTools-style /json/list",
+            "Adds openclaw browser extension cdp for external clients"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "type": "theme",
+      "label": "Theme",
+      "title": "External supervision and MCP dashboards",
+      "accent": "Ownership and widgets",
+      "lead": "External lifecycle owners get a real boundary, and dashboard widgets get lease-based grants.",
+      "cards": [
+        {
+          "title": "External supervision",
+          "items": [
+            "OPENCLAW_SUPERVISOR_MODE=external",
+            "Blocks native service mutation under external ownership",
+            "Blocks self-update under external ownership"
+          ]
+        },
+        {
+          "title": "MCP dashboards",
+          "items": [
+            "Dashboard MCP Apps can be pinned as living widgets",
+            "Lease renewal keeps pinned widgets alive",
+            "Grants are revision-bound"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "type": "dx",
+      "label": "Developer experience",
+      "title": "DX review",
+      "accent": "v2026.8.1-beta.2 verification",
+      "lead": "The release notes are direct about what passed and what didn't ahead of promotion.",
+      "cards": [
+        {
+          "title": "What passed",
+          "items": [
+            "Packaged Telegram, Docker assets, clean install and update",
+            "Plugin runtime checks and targeted Docker lanes",
+            "An isolated live model turn"
+          ]
+        },
+        {
+          "title": "What did not",
+          "items": [
+            "Full Release Validation did not pass",
+            "An unbound context-engine session could fall back to the default agent",
+            "Release tooling and test fixtures also failed"
+          ]
+        },
+        {
+          "title": "Guidance from the release",
+          "items": [
+            "Don't promote this beta to stable without a fixed successor",
+            "Don't promote without green full validation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "type": "dx",
+      "label": "Developer experience",
+      "title": "Community signal",
+      "accent": "Answer Overflow, public historical Discord search",
+      "lead": "Upgrade recovery is where most of the reported friction sits, from plugin versions to service state.",
+      "cards": [
+        {
+          "title": "Upgrade friction",
+          "items": [
+            "Four official plugins stayed on 2026.7.2-beta.7 after updating to 2026.8.1-beta.1",
+            "Gateway startup failed until plugins and service state were repaired",
+            "A gateway service from 2026.7.2-beta.7 remained after the CLI moved on, causing a service/config mismatch"
+          ]
+        },
+        {
+          "title": "Install gaps",
+          "items": [
+            "An exact beta plugin install hit npm ETARGET, @openclaw/codex@2026.8.1-beta.1 was not published",
+            "A cron blocking report surfaced on 2026.8.1-beta.2, version marker only, no confirmed root cause"
+          ]
+        },
+        {
+          "title": "Where things stood",
+          "items": [
+            "Community support confirmed stable stayed openclaw@2026.7.1-2 as of Aug 19",
+            "Beta was 2026.8.1-beta.2 at that same check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "type": "dx",
+      "label": "Developer experience",
+      "title": "Signal map",
+      "accent": "Beta strengths against beta friction",
+      "lead": "Stronger primitives landed, but they arrive on a beta whose own validation hasn't gone green.",
+      "cards": [
+        {
+          "title": "What's landing",
+          "items": [
+            "Backup primitives: SQLite snapshot commands",
+            "Setup primitives: local model detection, first-run flow",
+            "Trust primitives: secret egress binding, plugin --force gating"
+          ]
+        },
+        {
+          "title": "What needs attention",
+          "items": [
+            "Upgrade recovery concentrates around core, plugin, and service version alignment",
+            "Full Release Validation was not green for beta.2"
+          ]
+        },
+        {
+          "title": "Before upgrading",
+          "items": [
+            "Check plugin versions match the target release",
+            "Check gateway service state after any CLI upgrade"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "type": "close",
+      "label": "Weekly close",
+      "title": "Where OpenClaw stands",
+      "accent": "Week 21 close",
+      "lead": "v2026.8.1-beta.2 holds the week's real progress in secrets, backups, and setup. Stable is still openclaw@2026.7.1-2, and that beta needs a fixed successor with green full validation before it moves to stable.",
+      "cards": [
+        {
+          "title": "Concrete takeaway",
+          "items": [
+            "Run beta.2 for the new backup and setup tools if you can tolerate beta risk",
+            "Keep stable at openclaw@2026.7.1-2 for anything that can't"
+          ]
+        }
+      ]
+    }
+  ]
+}
