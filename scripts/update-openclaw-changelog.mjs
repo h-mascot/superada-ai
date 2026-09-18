@@ -15,6 +15,15 @@ if (!response.ok) {
 
 const markdown = await response.text();
 
+async function fetchRelease(version) {
+  const releaseUrl = `https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/${version}.md`;
+  const releaseResponse = await fetch(releaseUrl, {
+    headers: { 'user-agent': 'superada-changelog-updater/1.0' },
+  });
+  if (!releaseResponse.ok) throw new Error(`failed to fetch OpenClaw release ${version}: ${releaseResponse.status}`);
+  return releaseResponse.text();
+}
+
 function slugForVersion(version) {
   return version.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
 }
@@ -60,53 +69,31 @@ function descForLine(line) {
   return body || cleaned;
 }
 
-function parseSections(md) {
-  const lines = md.split(/\r?\n/);
-  const versions = [];
-  let current = null;
-  let mode = 'features';
-
-  for (const line of lines) {
-    const heading = line.match(/^##\s+(.+?)\s*$/);
-    if (heading) {
-      if (current) versions.push(current);
-      const version = heading[1].trim();
-      current = { version, date: version, href: upstreamHref(version), features: [], fixes: [] };
-      mode = 'features';
-      continue;
-    }
-
-    if (!current) continue;
-
-    const subheading = line.match(/^###\s+(.+?)\s*$/);
-    if (subheading) {
-      const label = subheading[1].toLowerCase();
-      mode = label.includes('fix') ? 'fixes' : 'features';
-      continue;
-    }
-
-    if (!/^[-*]\s+/.test(line)) continue;
-    const cleaned = cleanText(line);
-    if (!cleaned) continue;
-
-    if (mode === 'fixes') {
-      current.fixes.push(cleaned);
-    } else {
-      current.features.push({
-        title: titleForLine(line),
-        description: descForLine(line),
-        href: linkForLine(line, current.version),
-      });
-    }
-  }
-
-  if (current) versions.push(current);
-  return versions
-    .filter((version) => /^\d/.test(version.version) && (version.features.length || version.fixes.length))
+async function parseSections(md) {
+  const indexVersions = [...md.matchAll(/^- \[([^\]]+)\]\(CHANGELOG\/([^)]+)\)/gm)]
+    .map((match) => match[1])
+    .filter((version) => version !== 'Unreleased')
     .slice(0, maxVersions);
+  const versions = [];
+  for (const version of indexVersions) {
+    const release = await fetchRelease(version);
+    const lines = release.split(/\r?\n/);
+    const current = { version, date: version, href: upstreamHref(version), features: [], fixes: [] };
+    let mode = 'features';
+    for (const line of lines) {
+      if (/^\*\*(Bug fixes|Bug Fixes)\*\*/i.test(line)) { mode = 'fixes'; continue; }
+      if (/^\*\*(Improvements|Changes|Highlights|Documentation|Features|Breaking|Limits|Security|Performance|Messaging|Web)\*\*/i.test(line)) mode = 'features';
+      if (!/^[-*]\s+/.test(line)) continue;
+      const cleaned = cleanText(line);
+      if (!cleaned) continue;
+      if (mode === 'fixes') current.fixes.push(cleaned);
+      else current.features.push({ title: titleForLine(line), description: descForLine(line), href: linkForLine(line, version) });
+    }
+    if (current.features.length || current.fixes.length) versions.push(current);
+  }
+  return versions;
 }
-
-const versions = parseSections(markdown);
+const versions = await parseSections(markdown);
 if (!versions.length) throw new Error('no changelog versions parsed');
 
 const body = `export interface ChangelogItem {\n  title: string\n  description: string\n  href: string\n}\n\nexport interface Version {\n  version: string\n  date: string\n  href: string\n  features: ChangelogItem[]\n  fixes: string[]\n}\n\nexport const CHANGELOG_SOURCE_URL = ${JSON.stringify(sourceUrl)}\n\nexport const CHANGELOG_VERSIONS: Version[] = ${JSON.stringify(versions, null, 2)}\n`;
