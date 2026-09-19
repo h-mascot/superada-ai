@@ -16,6 +16,12830 @@ export const CHANGELOG_SOURCE_URL = "https://raw.githubusercontent.com/openclaw/
 
 export const CHANGELOG_VERSIONS: Version[] = [
   {
+    "version": "2026.9.5",
+    "date": "2026.9.5",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695",
+    "features": [
+      {
+        "title": "Choose agent roles and teams in the Control UI [#141453](https",
+        "description": "//github.com/openclaw/openclaw/pull/141453).",
+        "href": "https://github.com/openclaw/openclaw/issues/141453"
+      },
+      {
+        "title": "Create agents from roles or a team preset [#145712](https",
+        "description": "//github.com/openclaw/openclaw/pull/145712).",
+        "href": "https://github.com/openclaw/openclaw/issues/145712"
+      },
+      {
+        "title": "Choose a generated avatar during new-agent setup [#146669](https",
+        "description": "//github.com/openclaw/openclaw/pull/146669).",
+        "href": "https://github.com/openclaw/openclaw/issues/146669"
+      },
+      {
+        "title": "Simplify official plugin setup and default OpenAI to Astra [#145646](https:...",
+        "description": "Simplify official plugin setup and default OpenAI to Astra [#145646](https://github.com/openclaw/openclaw/pull/145646). Related image and Workboard defaults also use Astra while honoring configured model policies.",
+        "href": "https://github.com/openclaw/openclaw/issues/145646"
+      },
+      {
+        "title": "Default local onboarding to Full tools and clarify permissions [#150596](ht...",
+        "description": "Default local onboarding to Full tools and clarify permissions [#150596](https://github.com/openclaw/openclaw/pull/150596). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/150596"
+      },
+      {
+        "title": "Explain container redeployment after update permission errors [#95887](http...",
+        "description": "Explain container redeployment after update permission errors [#95887](https://github.com/openclaw/openclaw/pull/95887). Thanks @fuller-stack-dev and @dioubernardo.",
+        "href": "https://github.com/openclaw/openclaw/issues/95887"
+      },
+      {
+        "title": "Explain Control UI browser setup for Docker [#141527](https",
+        "description": "//github.com/openclaw/openclaw/pull/141527). Thanks @pollybot13 and @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/141527"
+      },
+      {
+        "title": "Skip unnecessary LAN route probes [#145812](https",
+        "description": "//github.com/openclaw/openclaw/pull/145812).",
+        "href": "https://github.com/openclaw/openclaw/issues/145812"
+      },
+      {
+        "title": "Clarify mobile setup codes and node join URLs [#149237](https",
+        "description": "//github.com/openclaw/openclaw/pull/149237). Use **Pair device** or `openclaw qr` for mobile setup; node join URLs belong to `openclaw connect`. Thanks @kvnloo, @tomdailey55 and @iwhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/149237"
+      },
+      {
+        "title": "Install the FreeBSD CLI using system Node and npm [#147204](https",
+        "description": "//github.com/openclaw/openclaw/pull/147204). Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/147204"
+      },
+      {
+        "title": "Explain Gateway and node startup options on FreeBSD [#147200](https",
+        "description": "//github.com/openclaw/openclaw/pull/147200). Node hosts use `openclaw node run`. Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/147200"
+      },
+      {
+        "title": "Clarify FreeBSD npm installation guidance [#150014](https",
+        "description": "//github.com/openclaw/openclaw/pull/150014). Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/150014"
+      },
+      {
+        "title": "Recognize FreeBSD boot identities for triage leases [#147243](https",
+        "description": "//github.com/openclaw/openclaw/pull/147243). Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/147243"
+      },
+      {
+        "title": "Preserve FreeBSD native dependencies during update handoff [#147324](https:...",
+        "description": "Preserve FreeBSD native dependencies during update handoff [#147324](https://github.com/openclaw/openclaw/pull/147324). Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/147324"
+      },
+      {
+        "title": "Browse agents with activity and conversation previews [#141097](https",
+        "description": "//github.com/openclaw/openclaw/pull/141097).",
+        "href": "https://github.com/openclaw/openclaw/issues/141097"
+      },
+      {
+        "title": "Browse every agent's conversations in one sidebar [#141476](https",
+        "description": "//github.com/openclaw/openclaw/pull/141476). Thanks @hannesrudolph, @madkow1001.",
+        "href": "https://github.com/openclaw/openclaw/issues/141476"
+      },
+      {
+        "title": "Match activity indicators to shared-session avatars [#144696](https",
+        "description": "//github.com/openclaw/openclaw/pull/144696).",
+        "href": "https://github.com/openclaw/openclaw/issues/144696"
+      },
+      {
+        "title": "Keep agent creation in Settings [#145062](https",
+        "description": "//github.com/openclaw/openclaw/pull/145062). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/145062"
+      },
+      {
+        "title": "Use a gear icon for Agent settings [#145297](https",
+        "description": "//github.com/openclaw/openclaw/pull/145297). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/145297"
+      },
+      {
+        "title": "Keep internal worker conversations out of the sidebar [#145346](https",
+        "description": "//github.com/openclaw/openclaw/pull/145346).",
+        "href": "https://github.com/openclaw/openclaw/issues/145346"
+      },
+      {
+        "title": "Filter sessions from person headers [#145514](https",
+        "description": "//github.com/openclaw/openclaw/pull/145514).",
+        "href": "https://github.com/openclaw/openclaw/issues/145514"
+      },
+      {
+        "title": "Clarify Online activity device labels [#145518](https",
+        "description": "//github.com/openclaw/openclaw/pull/145518).",
+        "href": "https://github.com/openclaw/openclaw/issues/145518"
+      },
+      {
+        "title": "Reduce sorting work for larger session lists [#145682](https",
+        "description": "//github.com/openclaw/openclaw/pull/145682).",
+        "href": "https://github.com/openclaw/openclaw/issues/145682"
+      },
+      {
+        "title": "Resolve short session links with less work in large stores [#146803](https:...",
+        "description": "Resolve short session links with less work in large stores [#146803](https://github.com/openclaw/openclaw/pull/146803).",
+        "href": "https://github.com/openclaw/openclaw/issues/146803"
+      },
+      {
+        "title": "Remove the duplicate Ask OpenClaw toolbar button [#147189](https",
+        "description": "//github.com/openclaw/openclaw/pull/147189).",
+        "href": "https://github.com/openclaw/openclaw/issues/147189"
+      },
+      {
+        "title": "Choose when empty session groups stay visible [#147392](https",
+        "description": "//github.com/openclaw/openclaw/pull/147392). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147392"
+      },
+      {
+        "title": "Translate empty session-group controls [#147465](https",
+        "description": "//github.com/openclaw/openclaw/pull/147465).",
+        "href": "https://github.com/openclaw/openclaw/issues/147465"
+      },
+      {
+        "title": "Hide repeated self avatars in filtered lists [#147610](https",
+        "description": "//github.com/openclaw/openclaw/pull/147610).",
+        "href": "https://github.com/openclaw/openclaw/issues/147610"
+      },
+      {
+        "title": "Hide repeated single-user sidebar attribution [#147654](https",
+        "description": "//github.com/openclaw/openclaw/pull/147654). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147654"
+      },
+      {
+        "title": "Use compact metadata for group discovery [#147909](https",
+        "description": "//github.com/openclaw/openclaw/pull/147909). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147909"
+      },
+      {
+        "title": "Use one downward chevron in the agent selector [#148605](https",
+        "description": "//github.com/openclaw/openclaw/pull/148605). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148605"
+      },
+      {
+        "title": "Remove the sidebar account-name tooltip [#148624](https",
+        "description": "//github.com/openclaw/openclaw/pull/148624). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148624"
+      },
+      {
+        "title": "Slow sidebar session-title scrolling on hover [#148640](https",
+        "description": "//github.com/openclaw/openclaw/pull/148640). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148640"
+      },
+      {
+        "title": "Show pending request details in sidebar tooltips [#149318](https",
+        "description": "//github.com/openclaw/openclaw/pull/149318).",
+        "href": "https://github.com/openclaw/openclaw/issues/149318"
+      },
+      {
+        "title": "Load selected agent sessions without waiting for chat startup [#150092](htt...",
+        "description": "Load selected agent sessions without waiting for chat startup [#150092](https://github.com/openclaw/openclaw/pull/150092). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/150092"
+      },
+      {
+        "title": "Reveal long sidebar titles on hover and focus [#150586](https",
+        "description": "//github.com/openclaw/openclaw/pull/150586). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150586"
+      },
+      {
+        "title": "Move agent creation-history reads off the main thread [#150747](https",
+        "description": "//github.com/openclaw/openclaw/pull/150747).",
+        "href": "https://github.com/openclaw/openclaw/issues/150747"
+      },
+      {
+        "title": "Share agent and appearance controls across browser plugins [#144748](https:...",
+        "description": "Share agent and appearance controls across browser plugins [#144748](https://github.com/openclaw/openclaw/pull/144748). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144748"
+      },
+      {
+        "title": "Give fallback agent avatars fuller faces and varied expressions [#146734](h...",
+        "description": "Give fallback agent avatars fuller faces and varied expressions [#146734](https://github.com/openclaw/openclaw/pull/146734).",
+        "href": "https://github.com/openclaw/openclaw/issues/146734"
+      },
+      {
+        "title": "Use custom SVG artwork for session icons [#147442](https",
+        "description": "//github.com/openclaw/openclaw/pull/147442).",
+        "href": "https://github.com/openclaw/openclaw/issues/147442"
+      },
+      {
+        "title": "Enlarge session assignment avatars [#147567](https",
+        "description": "//github.com/openclaw/openclaw/pull/147567).",
+        "href": "https://github.com/openclaw/openclaw/issues/147567"
+      },
+      {
+        "title": "Reorder plugin pages in the sidebar [#147569](https",
+        "description": "//github.com/openclaw/openclaw/pull/147569).",
+        "href": "https://github.com/openclaw/openclaw/issues/147569"
+      },
+      {
+        "title": "Show agent activity in the browser tab [#147388](https",
+        "description": "//github.com/openclaw/openclaw/pull/147388). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147388"
+      },
+      {
+        "title": "Search destinations and switch automatic selection separately [#144453](htt...",
+        "description": "Search destinations and switch automatic selection separately [#144453](https://github.com/openclaw/openclaw/pull/144453). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144453"
+      },
+      {
+        "title": "Remove redundant New Session picker tooltips [#144651](https",
+        "description": "//github.com/openclaw/openclaw/pull/144651). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144651"
+      },
+      {
+        "title": "Choose where to start a suggested task [#145019](https",
+        "description": "//github.com/openclaw/openclaw/pull/145019).",
+        "href": "https://github.com/openclaw/openclaw/issues/145019"
+      },
+      {
+        "title": "Compact environment choices and simplify Auto selection [#145061](https://g...",
+        "description": "Compact environment choices and simplify Auto selection [#145061](https://github.com/openclaw/openclaw/pull/145061).",
+        "href": "https://github.com/openclaw/openclaw/issues/145061"
+      },
+      {
+        "title": "Simplify device selection and cloud options [#145183](https",
+        "description": "//github.com/openclaw/openclaw/pull/145183). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/145183"
+      },
+      {
+        "title": "Show loading placeholders for session environments [#146059](https",
+        "description": "//github.com/openclaw/openclaw/pull/146059). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/146059"
+      },
+      {
+        "title": "Reduce project catalog work for large agent fleets [#147124](https",
+        "description": "//github.com/openclaw/openclaw/pull/147124).",
+        "href": "https://github.com/openclaw/openclaw/issues/147124"
+      },
+      {
+        "title": "Reduce workspace lookup work for large agent fleets [#147144](https",
+        "description": "//github.com/openclaw/openclaw/pull/147144).",
+        "href": "https://github.com/openclaw/openclaw/issues/147144"
+      },
+      {
+        "title": "Preview new chats while their sessions are created [#114032](https",
+        "description": "//github.com/openclaw/openclaw/pull/114032). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/114032"
+      },
+      {
+        "title": "Draft messages while chat history loads [#143625](https",
+        "description": "//github.com/openclaw/openclaw/pull/143625). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/143625"
+      },
+      {
+        "title": "Queue messages while chat history loads [#145531](https",
+        "description": "//github.com/openclaw/openclaw/pull/145531).",
+        "href": "https://github.com/openclaw/openclaw/issues/145531"
+      },
+      {
+        "title": "Remove the redundant queued-message notice [#146194](https",
+        "description": "//github.com/openclaw/openclaw/pull/146194).",
+        "href": "https://github.com/openclaw/openclaw/issues/146194"
+      },
+      {
+        "title": "Avoid repeated chat draft recovery snapshots [#146884](https",
+        "description": "//github.com/openclaw/openclaw/pull/146884). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146884"
+      },
+      {
+        "title": "Show attachment preparation and name removal controls [#146941](https",
+        "description": "//github.com/openclaw/openclaw/pull/146941). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146941"
+      },
+      {
+        "title": "Close suggested-task cards immediately [#148021](https",
+        "description": "//github.com/openclaw/openclaw/pull/148021).",
+        "href": "https://github.com/openclaw/openclaw/issues/148021"
+      },
+      {
+        "title": "Show live drafts as unsent chat bubbles [#147669](https",
+        "description": "//github.com/openclaw/openclaw/pull/147669).",
+        "href": "https://github.com/openclaw/openclaw/issues/147669"
+      },
+      {
+        "title": "Suggest and convert emoji shortcodes in Chat and New Session [#146737](http...",
+        "description": "Suggest and convert emoji shortcodes in Chat and New Session [#146737](https://github.com/openclaw/openclaw/pull/146737). Thanks @vacinc, @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146737"
+      },
+      {
+        "title": "Move occasional visitors into the composer [#147338](https",
+        "description": "//github.com/openclaw/openclaw/pull/147338).",
+        "href": "https://github.com/openclaw/openclaw/issues/147338"
+      },
+      {
+        "title": "Save selected chat passages as editable comments [#148649](https",
+        "description": "//github.com/openclaw/openclaw/pull/148649). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148649"
+      },
+      {
+        "title": "Make inline comment editors and previews compact and readable [#149351](htt...",
+        "description": "Make inline comment editors and previews compact and readable [#149351](https://github.com/openclaw/openclaw/pull/149351). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/149351"
+      },
+      {
+        "title": "Reuse saved message text during streaming replies [#146831](https",
+        "description": "//github.com/openclaw/openclaw/pull/146831). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146831"
+      },
+      {
+        "title": "Reduce navigation work during streamed replies [#146883](https",
+        "description": "//github.com/openclaw/openclaw/pull/146883). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146883"
+      },
+      {
+        "title": "Clarify expansion controls for long chat messages [#147232](https",
+        "description": "//github.com/openclaw/openclaw/pull/147232).",
+        "href": "https://github.com/openclaw/openclaw/issues/147232"
+      },
+      {
+        "title": "Compact expandable chat notes [#147482](https",
+        "description": "//github.com/openclaw/openclaw/pull/147482).",
+        "href": "https://github.com/openclaw/openclaw/issues/147482"
+      },
+      {
+        "title": "Keep activity summaries close to replies [#147612](https",
+        "description": "//github.com/openclaw/openclaw/pull/147612).",
+        "href": "https://github.com/openclaw/openclaw/issues/147612"
+      },
+      {
+        "title": "Load setup text with New Session [#147973](https",
+        "description": "//github.com/openclaw/openclaw/pull/147973).",
+        "href": "https://github.com/openclaw/openclaw/issues/147973"
+      },
+      {
+        "title": "Reduce redundant chat sender labels [#148456](https",
+        "description": "//github.com/openclaw/openclaw/pull/148456).",
+        "href": "https://github.com/openclaw/openclaw/issues/148456"
+      },
+      {
+        "title": "Soften collapsed chat prompts and center expansion controls [#150037](https...",
+        "description": "Soften collapsed chat prompts and center expansion controls [#150037](https://github.com/openclaw/openclaw/pull/150037). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150037"
+      },
+      {
+        "title": "Collapse long forwarded messages into expandable previews [#150440](https:/...",
+        "description": "Collapse long forwarded messages into expandable previews [#150440](https://github.com/openclaw/openclaw/pull/150440). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150440"
+      },
+      {
+        "title": "Add breathing room above chat headings [#150589](https",
+        "description": "//github.com/openclaw/openclaw/pull/150589). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150589"
+      },
+      {
+        "title": "Group chat navigation markers by assistant run [d534c315](https",
+        "description": "//github.com/openclaw/openclaw/commit/d534c3153d3460ebb1d7e2f2d7876617643db7de). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Show when conversation memory is being saved [#140380](https",
+        "description": "//github.com/openclaw/openclaw/pull/140380). Thanks @pollybot13, @noelillinger, @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/140380"
+      },
+      {
+        "title": "Show plugin icons on chat tool calls [#143711](https",
+        "description": "//github.com/openclaw/openclaw/pull/143711). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/143711"
+      },
+      {
+        "title": "Make background-task activity readable in the detail panel [#144413](https:...",
+        "description": "Make background-task activity readable in the detail panel [#144413](https://github.com/openclaw/openclaw/pull/144413).",
+        "href": "https://github.com/openclaw/openclaw/issues/144413"
+      },
+      {
+        "title": "Reduce processing for live tool updates [#145581](https",
+        "description": "//github.com/openclaw/openclaw/pull/145581).",
+        "href": "https://github.com/openclaw/openclaw/issues/145581"
+      },
+      {
+        "title": "Reduce allocation during agent event delivery [#146077](https",
+        "description": "//github.com/openclaw/openclaw/pull/146077).",
+        "href": "https://github.com/openclaw/openclaw/issues/146077"
+      },
+      {
+        "title": "Speed up large streamed tool-argument previews [#146236](https",
+        "description": "//github.com/openclaw/openclaw/pull/146236).",
+        "href": "https://github.com/openclaw/openclaw/issues/146236"
+      },
+      {
+        "title": "Reduce repeated processing of long streamed replies [#146304](https",
+        "description": "//github.com/openclaw/openclaw/pull/146304).",
+        "href": "https://github.com/openclaw/openclaw/issues/146304"
+      },
+      {
+        "title": "Reduce temporary allocation when tracking tool progress [#146453](https://g...",
+        "description": "Reduce temporary allocation when tracking tool progress [#146453](https://github.com/openclaw/openclaw/pull/146453).",
+        "href": "https://github.com/openclaw/openclaw/issues/146453"
+      },
+      {
+        "title": "Keep tool error details inside expandable activity [#146478](https",
+        "description": "//github.com/openclaw/openclaw/pull/146478).",
+        "href": "https://github.com/openclaw/openclaw/issues/146478"
+      },
+      {
+        "title": "Build long tool-argument previews with less work [#146587](https",
+        "description": "//github.com/openclaw/openclaw/pull/146587).",
+        "href": "https://github.com/openclaw/openclaw/issues/146587"
+      },
+      {
+        "title": "Reduce line-counting overhead for large file edits [#146690](https",
+        "description": "//github.com/openclaw/openclaw/pull/146690).",
+        "href": "https://github.com/openclaw/openclaw/issues/146690"
+      },
+      {
+        "title": "Reduce repeated work in live session subtitles [#146790](https",
+        "description": "//github.com/openclaw/openclaw/pull/146790).",
+        "href": "https://github.com/openclaw/openclaw/issues/146790"
+      },
+      {
+        "title": "Give memory activity a distinct icon [#147173](https",
+        "description": "//github.com/openclaw/openclaw/pull/147173).",
+        "href": "https://github.com/openclaw/openclaw/issues/147173"
+      },
+      {
+        "title": "Give common tool activity distinct icons [#147207](https",
+        "description": "//github.com/openclaw/openclaw/pull/147207).",
+        "href": "https://github.com/openclaw/openclaw/issues/147207"
+      },
+      {
+        "title": "Fold task progress while reading older messages [#147295](https",
+        "description": "//github.com/openclaw/openclaw/pull/147295). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147295"
+      },
+      {
+        "title": "Use plugin-owned icons for chat tool activity [#147333](https",
+        "description": "//github.com/openclaw/openclaw/pull/147333).",
+        "href": "https://github.com/openclaw/openclaw/issues/147333"
+      },
+      {
+        "title": "Reduce repeated work while retaining tool progress [#147438](https",
+        "description": "//github.com/openclaw/openclaw/pull/147438).",
+        "href": "https://github.com/openclaw/openclaw/issues/147438"
+      },
+      {
+        "title": "Show task names in subagent activity [#147458](https",
+        "description": "//github.com/openclaw/openclaw/pull/147458).",
+        "href": "https://github.com/openclaw/openclaw/issues/147458"
+      },
+      {
+        "title": "Skip preparation of unused session updates [#147538](https",
+        "description": "//github.com/openclaw/openclaw/pull/147538).",
+        "href": "https://github.com/openclaw/openclaw/issues/147538"
+      },
+      {
+        "title": "Reduce redundant command activity updates [#147550](https",
+        "description": "//github.com/openclaw/openclaw/pull/147550).",
+        "href": "https://github.com/openclaw/openclaw/issues/147550"
+      },
+      {
+        "title": "Show task progress with accessible claw status [#147753](https",
+        "description": "//github.com/openclaw/openclaw/pull/147753).",
+        "href": "https://github.com/openclaw/openclaw/issues/147753"
+      },
+      {
+        "title": "Identify background tasks by command [#147758](https",
+        "description": "//github.com/openclaw/openclaw/pull/147758).",
+        "href": "https://github.com/openclaw/openclaw/issues/147758"
+      },
+      {
+        "title": "Remove duplicate running status from task cards [#147832](https",
+        "description": "//github.com/openclaw/openclaw/pull/147832).",
+        "href": "https://github.com/openclaw/openclaw/issues/147832"
+      },
+      {
+        "title": "Reduce temporary allocation during tool-progress capture [#148832](https://...",
+        "description": "Reduce temporary allocation during tool-progress capture [#148832](https://github.com/openclaw/openclaw/pull/148832).",
+        "href": "https://github.com/openclaw/openclaw/issues/148832"
+      },
+      {
+        "title": "Display background task status as inline text [#149264](https",
+        "description": "//github.com/openclaw/openclaw/pull/149264).",
+        "href": "https://github.com/openclaw/openclaw/issues/149264"
+      },
+      {
+        "title": "Reduce sizing work for long worker live previews [#149798](https",
+        "description": "//github.com/openclaw/openclaw/pull/149798).",
+        "href": "https://github.com/openclaw/openclaw/issues/149798"
+      },
+      {
+        "title": "Adjust task progress with drag and scroll gestures [#150218](https",
+        "description": "//github.com/openclaw/openclaw/pull/150218). Thanks @vyctorbrzezowski, @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150218"
+      },
+      {
+        "title": "Show nested tool work and visible failure details [0d857eb9](https",
+        "description": "//github.com/openclaw/openclaw/commit/0d857eb9b588061cf636e1de0dd4b2f50a5bd5a2).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Match Side chat text and code presentation to main chat [#144435](https://g...",
+        "description": "Match Side chat text and code presentation to main chat [#144435](https://github.com/openclaw/openclaw/pull/144435). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144435"
+      },
+      {
+        "title": "Include current-message images in /btw side questions [#150020](https",
+        "description": "//github.com/openclaw/openclaw/pull/150020). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/150020"
+      },
+      {
+        "title": "Simplify model and account selection in chat [#145112](https",
+        "description": "//github.com/openclaw/openclaw/pull/145112).",
+        "href": "https://github.com/openclaw/openclaw/issues/145112"
+      },
+      {
+        "title": "Show provider sign-in details in the chat model picker [#145316](https://gi...",
+        "description": "Show provider sign-in details in the chat model picker [#145316](https://github.com/openclaw/openclaw/pull/145316).",
+        "href": "https://github.com/openclaw/openclaw/issues/145316"
+      },
+      {
+        "title": "Shorter ClawRouter model labels [#145332](https",
+        "description": "//github.com/openclaw/openclaw/pull/145332).",
+        "href": "https://github.com/openclaw/openclaw/issues/145332"
+      },
+      {
+        "title": "Reopen model choices without repeated loading waits [#145384](https",
+        "description": "//github.com/openclaw/openclaw/pull/145384).",
+        "href": "https://github.com/openclaw/openclaw/issues/145384"
+      },
+      {
+        "title": "Clarify model sign-ins and Auto choices [#145525](https",
+        "description": "//github.com/openclaw/openclaw/pull/145525).",
+        "href": "https://github.com/openclaw/openclaw/issues/145525"
+      },
+      {
+        "title": "Show web model choices sooner without stale account selection [#145927](htt...",
+        "description": "Show web model choices sooner without stale account selection [#145927](https://github.com/openclaw/openclaw/pull/145927). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/145927"
+      },
+      {
+        "title": "Keep model dropdown choices visible while hovering [#148651](https",
+        "description": "//github.com/openclaw/openclaw/pull/148651). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148651"
+      },
+      {
+        "title": "Add word wrapping to Review file views [#143972](https",
+        "description": "//github.com/openclaw/openclaw/pull/143972). Thanks @marvinthebored, @peetiegonzalez, @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/143972"
+      },
+      {
+        "title": "Speed up inline edit preview comparisons [#145319](https",
+        "description": "//github.com/openclaw/openclaw/pull/145319).",
+        "href": "https://github.com/openclaw/openclaw/issues/145319"
+      },
+      {
+        "title": "Git changes and PR previews in Activity [#145530](https",
+        "description": "//github.com/openclaw/openclaw/pull/145530).",
+        "href": "https://github.com/openclaw/openclaw/issues/145530"
+      },
+      {
+        "title": "Speed up large-file edits and previews [#146082](https",
+        "description": "//github.com/openclaw/openclaw/pull/146082).",
+        "href": "https://github.com/openclaw/openclaw/issues/146082"
+      },
+      {
+        "title": "Prepare edit previews faster after unchanged leading lines [#146500](https:...",
+        "description": "Prepare edit previews faster after unchanged leading lines [#146500](https://github.com/openclaw/openclaw/pull/146500).",
+        "href": "https://github.com/openclaw/openclaw/issues/146500"
+      },
+      {
+        "title": "Compact branch and pull-request rows above chat [#147147](https",
+        "description": "//github.com/openclaw/openclaw/pull/147147).",
+        "href": "https://github.com/openclaw/openclaw/issues/147147"
+      },
+      {
+        "title": "Make pull request check details easier to discover [#147279](https",
+        "description": "//github.com/openclaw/openclaw/pull/147279).",
+        "href": "https://github.com/openclaw/openclaw/issues/147279"
+      },
+      {
+        "title": "Reuse unchanged session pull-request references [#147373](https",
+        "description": "//github.com/openclaw/openclaw/pull/147373).",
+        "href": "https://github.com/openclaw/openclaw/issues/147373"
+      },
+      {
+        "title": "Read session pull-request references together [#147443](https",
+        "description": "//github.com/openclaw/openclaw/pull/147443).",
+        "href": "https://github.com/openclaw/openclaw/issues/147443"
+      },
+      {
+        "title": "Reduce the gap above the composer [#147474](https",
+        "description": "//github.com/openclaw/openclaw/pull/147474).",
+        "href": "https://github.com/openclaw/openclaw/issues/147474"
+      },
+      {
+        "title": "Skip redundant session-branch commit counts [#147508](https",
+        "description": "//github.com/openclaw/openclaw/pull/147508).",
+        "href": "https://github.com/openclaw/openclaw/issues/147508"
+      },
+      {
+        "title": "Inspect pull-request CI jobs and steps in chat [#148070](https",
+        "description": "//github.com/openclaw/openclaw/pull/148070).",
+        "href": "https://github.com/openclaw/openclaw/issues/148070"
+      },
+      {
+        "title": "Reuse native GitHub lookups for reads and account options [#149372](https:/...",
+        "description": "Reuse native GitHub lookups for reads and account options [#149372](https://github.com/openclaw/openclaw/pull/149372).",
+        "href": "https://github.com/openclaw/openclaw/issues/149372"
+      },
+      {
+        "title": "Reduce Git work for session diffs before the first commit [#149711](https:/...",
+        "description": "Reduce Git work for session diffs before the first commit [#149711](https://github.com/openclaw/openclaw/pull/149711).",
+        "href": "https://github.com/openclaw/openclaw/issues/149711"
+      },
+      {
+        "title": "Reduce Git work when loading session diffs [#150018](https",
+        "description": "//github.com/openclaw/openclaw/pull/150018).",
+        "href": "https://github.com/openclaw/openclaw/issues/150018"
+      },
+      {
+        "title": "Expand and collapse chat pull request stacks [#150576](https",
+        "description": "//github.com/openclaw/openclaw/pull/150576). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150576"
+      },
+      {
+        "title": "Load visible GitHub previews before hovering [#145123](https",
+        "description": "//github.com/openclaw/openclaw/pull/145123).",
+        "href": "https://github.com/openclaw/openclaw/issues/145123"
+      },
+      {
+        "title": "Read Markdown attachments as formatted documents [#145555](https",
+        "description": "//github.com/openclaw/openclaw/pull/145555).",
+        "href": "https://github.com/openclaw/openclaw/issues/145555"
+      },
+      {
+        "title": "Copy chat messages, code, tables and attachment references [#146679](https:...",
+        "description": "Copy chat messages, code, tables and attachment references [#146679](https://github.com/openclaw/openclaw/pull/146679). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/146679"
+      },
+      {
+        "title": "Reuse image downloads and load Files lists together [#146709](https",
+        "description": "//github.com/openclaw/openclaw/pull/146709).",
+        "href": "https://github.com/openclaw/openclaw/issues/146709"
+      },
+      {
+        "title": "Tighten spacing between chat images and prompts [#147448](https",
+        "description": "//github.com/openclaw/openclaw/pull/147448). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147448"
+      },
+      {
+        "title": "Preview cited research sources directly in chat [#148431](https",
+        "description": "//github.com/openclaw/openclaw/pull/148431).",
+        "href": "https://github.com/openclaw/openclaw/issues/148431"
+      },
+      {
+        "title": "Make chat widget controls more compact [#143541](https",
+        "description": "//github.com/openclaw/openclaw/pull/143541). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/143541"
+      },
+      {
+        "title": "Remove framing from focused single-widget dashboards [#145542](https",
+        "description": "//github.com/openclaw/openclaw/pull/145542).",
+        "href": "https://github.com/openclaw/openclaw/issues/145542"
+      },
+      {
+        "title": "Remember layouts and tabs for 500 sessions [#146014](https",
+        "description": "//github.com/openclaw/openclaw/pull/146014).",
+        "href": "https://github.com/openclaw/openclaw/issues/146014"
+      },
+      {
+        "title": "Batch board tab saves and removals [#146300](https",
+        "description": "//github.com/openclaw/openclaw/pull/146300).",
+        "href": "https://github.com/openclaw/openclaw/issues/146300"
+      },
+      {
+        "title": "Show hosted websites in fullscreen session dashboards [#146312](https",
+        "description": "//github.com/openclaw/openclaw/pull/146312).",
+        "href": "https://github.com/openclaw/openclaw/issues/146312"
+      },
+      {
+        "title": "Save shared dashboard fullscreen and split defaults [#146475](https",
+        "description": "//github.com/openclaw/openclaw/pull/146475).",
+        "href": "https://github.com/openclaw/openclaw/issues/146475"
+      },
+      {
+        "title": "Speed up repeat loads for visualizations and widgets [#146602](https",
+        "description": "//github.com/openclaw/openclaw/pull/146602).",
+        "href": "https://github.com/openclaw/openclaw/issues/146602"
+      },
+      {
+        "title": "Translate dashboard default-view feedback [#147428](https",
+        "description": "//github.com/openclaw/openclaw/pull/147428).",
+        "href": "https://github.com/openclaw/openclaw/issues/147428"
+      },
+      {
+        "title": "Show shimmer while chat widgets load [#147843](https",
+        "description": "//github.com/openclaw/openclaw/pull/147843).",
+        "href": "https://github.com/openclaw/openclaw/issues/147843"
+      },
+      {
+        "title": "Preview dashboard gallery layout while loading [#148652](https",
+        "description": "//github.com/openclaw/openclaw/pull/148652). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148652"
+      },
+      {
+        "title": "Restore the complete Show widget reference [#144393](https",
+        "description": "//github.com/openclaw/openclaw/pull/144393). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144393"
+      },
+      {
+        "title": "Remove repeated MCP Apps introduction [#144408](https",
+        "description": "//github.com/openclaw/openclaw/pull/144408). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144408"
+      },
+      {
+        "title": "Clarify supported dashboard link destinations [#149525](https",
+        "description": "//github.com/openclaw/openclaw/pull/149525).",
+        "href": "https://github.com/openclaw/openclaw/issues/149525"
+      },
+      {
+        "title": "Align desktop page headers in a shared toolbar [#148362](https",
+        "description": "//github.com/openclaw/openclaw/pull/148362).",
+        "href": "https://github.com/openclaw/openclaw/issues/148362"
+      },
+      {
+        "title": "Browse machines and desktops in Systems [#147519](https",
+        "description": "//github.com/openclaw/openclaw/pull/147519). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147519"
+      },
+      {
+        "title": "Open native CLI sessions in the main terminal page [#145065](https",
+        "description": "//github.com/openclaw/openclaw/pull/145065).",
+        "href": "https://github.com/openclaw/openclaw/issues/145065"
+      },
+      {
+        "title": "Terminal sessions in the Chat panel header [#145640](https",
+        "description": "//github.com/openclaw/openclaw/pull/145640).",
+        "href": "https://github.com/openclaw/openclaw/issues/145640"
+      },
+      {
+        "title": "Reduce terminal scrollback overhead [#145687](https",
+        "description": "//github.com/openclaw/openclaw/pull/145687).",
+        "href": "https://github.com/openclaw/openclaw/issues/145687"
+      },
+      {
+        "title": "Load Home and System busyness in place [#147574](https",
+        "description": "//github.com/openclaw/openclaw/pull/147574).",
+        "href": "https://github.com/openclaw/openclaw/issues/147574"
+      },
+      {
+        "title": "Reduce System busyness startup code [#147954](https",
+        "description": "//github.com/openclaw/openclaw/pull/147954). Thanks @romneyda, @fuller-stack-dev, @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147954"
+      },
+      {
+        "title": "Defer Skills and file-preview text until needed [#150420](https",
+        "description": "//github.com/openclaw/openclaw/pull/150420).",
+        "href": "https://github.com/openclaw/openclaw/issues/150420"
+      },
+      {
+        "title": "Load Usage-page text on demand [#150455](https",
+        "description": "//github.com/openclaw/openclaw/pull/150455).",
+        "href": "https://github.com/openclaw/openclaw/issues/150455"
+      },
+      {
+        "title": "Defer skill-preview messages from initial UI load [#150491](https",
+        "description": "//github.com/openclaw/openclaw/pull/150491).",
+        "href": "https://github.com/openclaw/openclaw/issues/150491"
+      },
+      {
+        "title": "Load Portals text with its page [#150512](https",
+        "description": "//github.com/openclaw/openclaw/pull/150512).",
+        "href": "https://github.com/openclaw/openclaw/issues/150512"
+      },
+      {
+        "title": "Load System busyness only when opened [8618ee31](https",
+        "description": "//github.com/openclaw/openclaw/commit/8618ee31b8b8f0ce9642d53136b0161f16a57827). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Make more room in Mentions and expose shared settings [#144412](https",
+        "description": "//github.com/openclaw/openclaw/pull/144412). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144412"
+      },
+      {
+        "title": "Reduce browser notification preparation overhead [#146284](https",
+        "description": "//github.com/openclaw/openclaw/pull/146284).",
+        "href": "https://github.com/openclaw/openclaw/issues/146284"
+      },
+      {
+        "title": "Load less data for Web Push test notifications [#146573](https",
+        "description": "//github.com/openclaw/openclaw/pull/146573).",
+        "href": "https://github.com/openclaw/openclaw/issues/146573"
+      },
+      {
+        "title": "Batch expired Inbox mention cleanup [#147334](https",
+        "description": "//github.com/openclaw/openclaw/pull/147334).",
+        "href": "https://github.com/openclaw/openclaw/issues/147334"
+      },
+      {
+        "title": "Move Web Push storage work off the Gateway thread [#150823](https",
+        "description": "//github.com/openclaw/openclaw/pull/150823).",
+        "href": "https://github.com/openclaw/openclaw/issues/150823"
+      },
+      {
+        "title": "Speed up People sorting in large sidebars [#146063](https",
+        "description": "//github.com/openclaw/openclaw/pull/146063).",
+        "href": "https://github.com/openclaw/openclaw/issues/146063"
+      },
+      {
+        "title": "Save session preferences without reconnecting [#145337](https",
+        "description": "//github.com/openclaw/openclaw/pull/145337).",
+        "href": "https://github.com/openclaw/openclaw/issues/145337"
+      },
+      {
+        "title": "Match Settings placeholders to navigation [#145418](https",
+        "description": "//github.com/openclaw/openclaw/pull/145418). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/145418"
+      },
+      {
+        "title": "Move Labs into System settings [#145446](https",
+        "description": "//github.com/openclaw/openclaw/pull/145446).",
+        "href": "https://github.com/openclaw/openclaw/issues/145446"
+      },
+      {
+        "title": "Move established Labs controls into settings [#145460](https",
+        "description": "//github.com/openclaw/openclaw/pull/145460).",
+        "href": "https://github.com/openclaw/openclaw/issues/145460"
+      },
+      {
+        "title": "Avoid redundant config copies during form edits [#145846](https",
+        "description": "//github.com/openclaw/openclaw/pull/145846).",
+        "href": "https://github.com/openclaw/openclaw/issues/145846"
+      },
+      {
+        "title": "Remove redundant JSON default summaries from Settings [#146218](https",
+        "description": "//github.com/openclaw/openclaw/pull/146218).",
+        "href": "https://github.com/openclaw/openclaw/issues/146218"
+      },
+      {
+        "title": "Move profile preference access off the main thread [#146405](https",
+        "description": "//github.com/openclaw/openclaw/pull/146405).",
+        "href": "https://github.com/openclaw/openclaw/issues/146405"
+      },
+      {
+        "title": "Use consistent disclosure arrows in Settings and Skills [#146564](https://g...",
+        "description": "Use consistent disclosure arrows in Settings and Skills [#146564](https://github.com/openclaw/openclaw/pull/146564). Thanks @vyctorbrzezowski, digitalnav.",
+        "href": "https://github.com/openclaw/openclaw/issues/146564"
+      },
+      {
+        "title": "Save profile preferences together [#147534](https",
+        "description": "//github.com/openclaw/openclaw/pull/147534).",
+        "href": "https://github.com/openclaw/openclaw/issues/147534"
+      },
+      {
+        "title": "Save global model defaults without a success banner [#148627](https",
+        "description": "//github.com/openclaw/openclaw/pull/148627). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/148627"
+      },
+      {
+        "title": "Remove Settings badges and retain authored tag search [#149162](https",
+        "description": "//github.com/openclaw/openclaw/pull/149162). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149162"
+      },
+      {
+        "title": "Mark session links with a claw and align titles [#144251](https",
+        "description": "//github.com/openclaw/openclaw/pull/144251). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/144251"
+      },
+      {
+        "title": "Reduce work for large transcript usage summaries [#145680](https",
+        "description": "//github.com/openclaw/openclaw/pull/145680).",
+        "href": "https://github.com/openclaw/openclaw/issues/145680"
+      },
+      {
+        "title": "Reduce Usage page filter and chart preparation work [#146510](https",
+        "description": "//github.com/openclaw/openclaw/pull/146510).",
+        "href": "https://github.com/openclaw/openclaw/issues/146510"
+      },
+      {
+        "title": "Reduce database reads for transcript statistics [#146640](https",
+        "description": "//github.com/openclaw/openclaw/pull/146640).",
+        "href": "https://github.com/openclaw/openclaw/issues/146640"
+      },
+      {
+        "title": "Reduce timestamp formatting work in populated lists [#146789](https",
+        "description": "//github.com/openclaw/openclaw/pull/146789).",
+        "href": "https://github.com/openclaw/openclaw/issues/146789"
+      },
+      {
+        "title": "Reduce rendering work for populated Usage timelines [#146947](https",
+        "description": "//github.com/openclaw/openclaw/pull/146947).",
+        "href": "https://github.com/openclaw/openclaw/issues/146947"
+      },
+      {
+        "title": "Avoid duplicate date-boundary work in usage reports [#146995](https",
+        "description": "//github.com/openclaw/openclaw/pull/146995).",
+        "href": "https://github.com/openclaw/openclaw/issues/146995"
+      },
+      {
+        "title": "Reuse timezone formatters for repeated calendar calculations [#147003](http...",
+        "description": "Reuse timezone formatters for repeated calendar calculations [#147003](https://github.com/openclaw/openclaw/pull/147003).",
+        "href": "https://github.com/openclaw/openclaw/issues/147003"
+      },
+      {
+        "title": "Shorten the prompt-budget heading [#147924](https",
+        "description": "//github.com/openclaw/openclaw/pull/147924).",
+        "href": "https://github.com/openclaw/openclaw/issues/147924"
+      },
+      {
+        "title": "Move usage-pricing reads off the Gateway thread [#148709](https",
+        "description": "//github.com/openclaw/openclaw/pull/148709).",
+        "href": "https://github.com/openclaw/openclaw/issues/148709"
+      },
+      {
+        "title": "Reduce repeated lookups when listing sessions [#137745](https",
+        "description": "//github.com/openclaw/openclaw/pull/137745). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/137745"
+      },
+      {
+        "title": "Reduce work when loading chats with large tool results [#137766](https://gi...",
+        "description": "Reduce work when loading chats with large tool results [#137766](https://github.com/openclaw/openclaw/pull/137766).",
+        "href": "https://github.com/openclaw/openclaw/issues/137766"
+      },
+      {
+        "title": "Reduce memory growth during session lookups [#140499](https",
+        "description": "//github.com/openclaw/openclaw/pull/140499). Thanks @dakshk-02, @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/140499"
+      },
+      {
+        "title": "Avoid repeated decoding during session updates [#142866](https",
+        "description": "//github.com/openclaw/openclaw/pull/142866). Thanks @finn763, @obviyus, @quangtran88, @ayaangazali.",
+        "href": "https://github.com/openclaw/openclaw/issues/142866"
+      },
+      {
+        "title": "Avoid redundant reads after queued session refreshes [#144239](https",
+        "description": "//github.com/openclaw/openclaw/pull/144239).",
+        "href": "https://github.com/openclaw/openclaw/issues/144239"
+      },
+      {
+        "title": "Avoid rebuilding unchanged chats during worker setup [#144385](https",
+        "description": "//github.com/openclaw/openclaw/pull/144385).",
+        "href": "https://github.com/openclaw/openclaw/issues/144385"
+      },
+      {
+        "title": "Reduce Control UI startup JavaScript [#145430](https",
+        "description": "//github.com/openclaw/openclaw/pull/145430). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/145430"
+      },
+      {
+        "title": "Defer GitHub publication code at UI startup [#145476](https",
+        "description": "//github.com/openclaw/openclaw/pull/145476).",
+        "href": "https://github.com/openclaw/openclaw/issues/145476"
+      },
+      {
+        "title": "Reduce repeated model selection in session lists [#145580](https",
+        "description": "//github.com/openclaw/openclaw/pull/145580).",
+        "href": "https://github.com/openclaw/openclaw/issues/145580"
+      },
+      {
+        "title": "Reduce temporary allocations in session lists [#145671](https",
+        "description": "//github.com/openclaw/openclaw/pull/145671).",
+        "href": "https://github.com/openclaw/openclaw/issues/145671"
+      },
+      {
+        "title": "Reduce allocations in full progress histories [#145672](https",
+        "description": "//github.com/openclaw/openclaw/pull/145672).",
+        "href": "https://github.com/openclaw/openclaw/issues/145672"
+      },
+      {
+        "title": "Reduce file checks across history streams [#145696](https",
+        "description": "//github.com/openclaw/openclaw/pull/145696).",
+        "href": "https://github.com/openclaw/openclaw/issues/145696"
+      },
+      {
+        "title": "Open pre-reset messages with less waiting [#145709](https",
+        "description": "//github.com/openclaw/openclaw/pull/145709).",
+        "href": "https://github.com/openclaw/openclaw/issues/145709"
+      },
+      {
+        "title": "Reduce work reopening chats near history limits [#145737](https",
+        "description": "//github.com/openclaw/openclaw/pull/145737).",
+        "href": "https://github.com/openclaw/openclaw/issues/145737"
+      },
+      {
+        "title": "Reduce repeated store checks when loading Sessions [#145748](https",
+        "description": "//github.com/openclaw/openclaw/pull/145748).",
+        "href": "https://github.com/openclaw/openclaw/issues/145748"
+      },
+      {
+        "title": "Improve Sessions and Tasks under parallel work [#145795](https",
+        "description": "//github.com/openclaw/openclaw/pull/145795).",
+        "href": "https://github.com/openclaw/openclaw/issues/145795"
+      },
+      {
+        "title": "Avoid rebuilding unchanged saved conversations [#145863](https",
+        "description": "//github.com/openclaw/openclaw/pull/145863).",
+        "href": "https://github.com/openclaw/openclaw/issues/145863"
+      },
+      {
+        "title": "Avoid duplicate history message preparation [#145885](https",
+        "description": "//github.com/openclaw/openclaw/pull/145885).",
+        "href": "https://github.com/openclaw/openclaw/issues/145885"
+      },
+      {
+        "title": "Reduce temporary allocation during session lookups [#145997](https",
+        "description": "//github.com/openclaw/openclaw/pull/145997).",
+        "href": "https://github.com/openclaw/openclaw/issues/145997"
+      },
+      {
+        "title": "Load child-session participants together [#146000](https",
+        "description": "//github.com/openclaw/openclaw/pull/146000).",
+        "href": "https://github.com/openclaw/openclaw/issues/146000"
+      },
+      {
+        "title": "Reduce temporary copying when serving the Control UI [#146003](https",
+        "description": "//github.com/openclaw/openclaw/pull/146003).",
+        "href": "https://github.com/openclaw/openclaw/issues/146003"
+      },
+      {
+        "title": "Reduce temporary metadata during catalog refreshes [#146020](https",
+        "description": "//github.com/openclaw/openclaw/pull/146020).",
+        "href": "https://github.com/openclaw/openclaw/issues/146020"
+      },
+      {
+        "title": "Reduce allocation when reading session participants [#146036](https",
+        "description": "//github.com/openclaw/openclaw/pull/146036).",
+        "href": "https://github.com/openclaw/openclaw/issues/146036"
+      },
+      {
+        "title": "Reduce allocation during session creation [#146068](https",
+        "description": "//github.com/openclaw/openclaw/pull/146068).",
+        "href": "https://github.com/openclaw/openclaw/issues/146068"
+      },
+      {
+        "title": "Reduce temporary allocation in large session lists [#146108](https",
+        "description": "//github.com/openclaw/openclaw/pull/146108).",
+        "href": "https://github.com/openclaw/openclaw/issues/146108"
+      },
+      {
+        "title": "Reduce individual session lookup work in large Gateways [#146145](https://g...",
+        "description": "Reduce individual session lookup work in large Gateways [#146145](https://github.com/openclaw/openclaw/pull/146145).",
+        "href": "https://github.com/openclaw/openclaw/issues/146145"
+      },
+      {
+        "title": "Reduce temporary allocation when counting sessions [#146158](https",
+        "description": "//github.com/openclaw/openclaw/pull/146158).",
+        "href": "https://github.com/openclaw/openclaw/issues/146158"
+      },
+      {
+        "title": "Reduce repeated session-key parsing [#146164](https",
+        "description": "//github.com/openclaw/openclaw/pull/146164).",
+        "href": "https://github.com/openclaw/openclaw/issues/146164"
+      },
+      {
+        "title": "Reduce temporary allocation when reading saved sessions [#146184](https://g...",
+        "description": "Reduce temporary allocation when reading saved sessions [#146184](https://github.com/openclaw/openclaw/pull/146184).",
+        "href": "https://github.com/openclaw/openclaw/issues/146184"
+      },
+      {
+        "title": "Reduce temporary allocation during session-key parsing [#146193](https://gi...",
+        "description": "Reduce temporary allocation during session-key parsing [#146193](https://github.com/openclaw/openclaw/pull/146193).",
+        "href": "https://github.com/openclaw/openclaw/issues/146193"
+      },
+      {
+        "title": "Load long conversations with less database work [#146286](https",
+        "description": "//github.com/openclaw/openclaw/pull/146286). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/146286"
+      },
+      {
+        "title": "Reduce temporary allocation when creating and listing sessions [#146310](ht...",
+        "description": "Reduce temporary allocation when creating and listing sessions [#146310](https://github.com/openclaw/openclaw/pull/146310).",
+        "href": "https://github.com/openclaw/openclaw/issues/146310"
+      },
+      {
+        "title": "Reduce repeated transcript lookup work [#146318](https",
+        "description": "//github.com/openclaw/openclaw/pull/146318).",
+        "href": "https://github.com/openclaw/openclaw/issues/146318"
+      },
+      {
+        "title": "Prepare large session pages with less sorting work [#146378](https",
+        "description": "//github.com/openclaw/openclaw/pull/146378).",
+        "href": "https://github.com/openclaw/openclaw/issues/146378"
+      },
+      {
+        "title": "Count transcript history without unused display metadata [#146382](https://...",
+        "description": "Count transcript history without unused display metadata [#146382](https://github.com/openclaw/openclaw/pull/146382).",
+        "href": "https://github.com/openclaw/openclaw/issues/146382"
+      },
+      {
+        "title": "Reduce database work when loading session history [#146390](https",
+        "description": "//github.com/openclaw/openclaw/pull/146390).",
+        "href": "https://github.com/openclaw/openclaw/issues/146390"
+      },
+      {
+        "title": "Reduce temporary allocation during session lookups [#146450](https",
+        "description": "//github.com/openclaw/openclaw/pull/146450).",
+        "href": "https://github.com/openclaw/openclaw/issues/146450"
+      },
+      {
+        "title": "Reduce temporary allocations in session reads [#146456](https",
+        "description": "//github.com/openclaw/openclaw/pull/146456).",
+        "href": "https://github.com/openclaw/openclaw/issues/146456"
+      },
+      {
+        "title": "Avoid repeated history sizing during active conversations [#146574](https:/...",
+        "description": "Avoid repeated history sizing during active conversations [#146574](https://github.com/openclaw/openclaw/pull/146574).",
+        "href": "https://github.com/openclaw/openclaw/issues/146574"
+      },
+      {
+        "title": "Speed up catch-up in marker-heavy histories [#146578](https",
+        "description": "//github.com/openclaw/openclaw/pull/146578).",
+        "href": "https://github.com/openclaw/openclaw/issues/146578"
+      },
+      {
+        "title": "Reduce repeated work when loading session history [#146607](https",
+        "description": "//github.com/openclaw/openclaw/pull/146607).",
+        "href": "https://github.com/openclaw/openclaw/issues/146607"
+      },
+      {
+        "title": "Read multiple sessions with fewer database queries [#146668](https",
+        "description": "//github.com/openclaw/openclaw/pull/146668).",
+        "href": "https://github.com/openclaw/openclaw/issues/146668"
+      },
+      {
+        "title": "Reduce loading work for heavily compacted sessions [#146717](https",
+        "description": "//github.com/openclaw/openclaw/pull/146717).",
+        "href": "https://github.com/openclaw/openclaw/issues/146717"
+      },
+      {
+        "title": "Reduce broadcast work for unrelated session clients [#146746](https",
+        "description": "//github.com/openclaw/openclaw/pull/146746). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146746"
+      },
+      {
+        "title": "Reduce repeated streaming work for slow clients [#146788](https",
+        "description": "//github.com/openclaw/openclaw/pull/146788).",
+        "href": "https://github.com/openclaw/openclaw/issues/146788"
+      },
+      {
+        "title": "Skip unused prompt decoding for presence updates [#146817](https",
+        "description": "//github.com/openclaw/openclaw/pull/146817). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146817"
+      },
+      {
+        "title": "Reduce database work for heavily watched sessions [#147107](https",
+        "description": "//github.com/openclaw/openclaw/pull/147107).",
+        "href": "https://github.com/openclaw/openclaw/issues/147107"
+      },
+      {
+        "title": "Reduce repeated agent lookups during chat metadata refresh [#147137](https:...",
+        "description": "Reduce repeated agent lookups during chat metadata refresh [#147137](https://github.com/openclaw/openclaw/pull/147137).",
+        "href": "https://github.com/openclaw/openclaw/issues/147137"
+      },
+      {
+        "title": "Defer Apps text until the Control UI needs it [#147164](https",
+        "description": "//github.com/openclaw/openclaw/pull/147164).",
+        "href": "https://github.com/openclaw/openclaw/issues/147164"
+      },
+      {
+        "title": "Reduce session-list work with large model catalogs [#147350](https",
+        "description": "//github.com/openclaw/openclaw/pull/147350).",
+        "href": "https://github.com/openclaw/openclaw/issues/147350"
+      },
+      {
+        "title": "Reduce first-read history startup work [#147491](https",
+        "description": "//github.com/openclaw/openclaw/pull/147491).",
+        "href": "https://github.com/openclaw/openclaw/issues/147491"
+      },
+      {
+        "title": "Reduce repeated history-marker lookups [#147532](https",
+        "description": "//github.com/openclaw/openclaw/pull/147532).",
+        "href": "https://github.com/openclaw/openclaw/issues/147532"
+      },
+      {
+        "title": "Reduce recovered-history lookahead rendering [#147605](https",
+        "description": "//github.com/openclaw/openclaw/pull/147605).",
+        "href": "https://github.com/openclaw/openclaw/issues/147605"
+      },
+      {
+        "title": "Reduce history query-builder loading [#147648](https",
+        "description": "//github.com/openclaw/openclaw/pull/147648).",
+        "href": "https://github.com/openclaw/openclaw/issues/147648"
+      },
+      {
+        "title": "Reuse participant table-check statements [#147663](https",
+        "description": "//github.com/openclaw/openclaw/pull/147663).",
+        "href": "https://github.com/openclaw/openclaw/issues/147663"
+      },
+      {
+        "title": "Read branch headlines only when needed [#147666](https",
+        "description": "//github.com/openclaw/openclaw/pull/147666).",
+        "href": "https://github.com/openclaw/openclaw/issues/147666"
+      },
+      {
+        "title": "Reduce history identity-validation overhead [#147727](https",
+        "description": "//github.com/openclaw/openclaw/pull/147727).",
+        "href": "https://github.com/openclaw/openclaw/issues/147727"
+      },
+      {
+        "title": "Load older pages with less repeated recovery work [#147842](https",
+        "description": "//github.com/openclaw/openclaw/pull/147842).",
+        "href": "https://github.com/openclaw/openclaw/issues/147842"
+      },
+      {
+        "title": "Speed session renames and plaintext replies [#147869](https",
+        "description": "//github.com/openclaw/openclaw/pull/147869).",
+        "href": "https://github.com/openclaw/openclaw/issues/147869"
+      },
+      {
+        "title": "Reduce repeated work in large session inventories [#147911](https",
+        "description": "//github.com/openclaw/openclaw/pull/147911).",
+        "href": "https://github.com/openclaw/openclaw/issues/147911"
+      },
+      {
+        "title": "Reduce repeated metadata query preparation [#147916](https",
+        "description": "//github.com/openclaw/openclaw/pull/147916).",
+        "href": "https://github.com/openclaw/openclaw/issues/147916"
+      },
+      {
+        "title": "Reduce session-list work for large subagent histories [#148437](https",
+        "description": "//github.com/openclaw/openclaw/pull/148437).",
+        "href": "https://github.com/openclaw/openclaw/issues/148437"
+      },
+      {
+        "title": "Reduce repeated agent lookups when building session lists [#148549](https:/...",
+        "description": "Reduce repeated agent lookups when building session lists [#148549](https://github.com/openclaw/openclaw/pull/148549).",
+        "href": "https://github.com/openclaw/openclaw/issues/148549"
+      },
+      {
+        "title": "Reduce CPU spent assembling session listings [#148712](https",
+        "description": "//github.com/openclaw/openclaw/pull/148712).",
+        "href": "https://github.com/openclaw/openclaw/issues/148712"
+      },
+      {
+        "title": "Reduce repeated metadata work in session lists and searches [#148713](https...",
+        "description": "Reduce repeated metadata work in session lists and searches [#148713](https://github.com/openclaw/openclaw/pull/148713).",
+        "href": "https://github.com/openclaw/openclaw/issues/148713"
+      },
+      {
+        "title": "Reduce repeated sender lookups in queued history [#148812](https",
+        "description": "//github.com/openclaw/openclaw/pull/148812).",
+        "href": "https://github.com/openclaw/openclaw/issues/148812"
+      },
+      {
+        "title": "Reduce search delays for restricted operators [#148826](https",
+        "description": "//github.com/openclaw/openclaw/pull/148826). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148826"
+      },
+      {
+        "title": "Limit conversation metadata work to related subagent runs [#148836](https:/...",
+        "description": "Limit conversation metadata work to related subagent runs [#148836](https://github.com/openclaw/openclaw/pull/148836).",
+        "href": "https://github.com/openclaw/openclaw/issues/148836"
+      },
+      {
+        "title": "Avoid repeated tab-status updates during streaming [#148865](https",
+        "description": "//github.com/openclaw/openclaw/pull/148865).",
+        "href": "https://github.com/openclaw/openclaw/issues/148865"
+      },
+      {
+        "title": "Reduce repeated work in multi-agent session lists [#149057](https",
+        "description": "//github.com/openclaw/openclaw/pull/149057).",
+        "href": "https://github.com/openclaw/openclaw/issues/149057"
+      },
+      {
+        "title": "Make short chat links ready for drafting sooner [#149070](https",
+        "description": "//github.com/openclaw/openclaw/pull/149070).",
+        "href": "https://github.com/openclaw/openclaw/issues/149070"
+      },
+      {
+        "title": "Avoid repeated saved-prompt reads when listing sessions [#149118](https://g...",
+        "description": "Avoid repeated saved-prompt reads when listing sessions [#149118](https://github.com/openclaw/openclaw/pull/149118).",
+        "href": "https://github.com/openclaw/openclaw/issues/149118"
+      },
+      {
+        "title": "Reduce repeated runtime-owner lookups across agents [#149170](https",
+        "description": "//github.com/openclaw/openclaw/pull/149170). Thanks @kvnloo.",
+        "href": "https://github.com/openclaw/openclaw/issues/149170"
+      },
+      {
+        "title": "Reduce sidebar processing for unchanged sessions [#149212](https",
+        "description": "//github.com/openclaw/openclaw/pull/149212).",
+        "href": "https://github.com/openclaw/openclaw/issues/149212"
+      },
+      {
+        "title": "Reduce repeated model-parameter lookup work [#149231](https",
+        "description": "//github.com/openclaw/openclaw/pull/149231).",
+        "href": "https://github.com/openclaw/openclaw/issues/149231"
+      },
+      {
+        "title": "Reduce temporary allocation when loading stored sessions [#149327](https://...",
+        "description": "Reduce temporary allocation when loading stored sessions [#149327](https://github.com/openclaw/openclaw/pull/149327).",
+        "href": "https://github.com/openclaw/openclaw/issues/149327"
+      },
+      {
+        "title": "Reuse live session lists and isolate operator results [#149387](https",
+        "description": "//github.com/openclaw/openclaw/pull/149387).",
+        "href": "https://github.com/openclaw/openclaw/issues/149387"
+      },
+      {
+        "title": "Reduce repeated database opening in cold session search [#149404](https://g...",
+        "description": "Reduce repeated database opening in cold session search [#149404](https://github.com/openclaw/openclaw/pull/149404).",
+        "href": "https://github.com/openclaw/openclaw/issues/149404"
+      },
+      {
+        "title": "Reuse complete subagent session-list reads [#149601](https",
+        "description": "//github.com/openclaw/openclaw/pull/149601).",
+        "href": "https://github.com/openclaw/openclaw/issues/149601"
+      },
+      {
+        "title": "Avoid repeated ownership reads for cold session stores [#149639](https://gi...",
+        "description": "Avoid repeated ownership reads for cold session stores [#149639](https://github.com/openclaw/openclaw/pull/149639).",
+        "href": "https://github.com/openclaw/openclaw/issues/149639"
+      },
+      {
+        "title": "Reduce temporary allocations when ordering large session pages [#149677](ht...",
+        "description": "Reduce temporary allocations when ordering large session pages [#149677](https://github.com/openclaw/openclaw/pull/149677).",
+        "href": "https://github.com/openclaw/openclaw/issues/149677"
+      },
+      {
+        "title": "Skip unused transcript preparation for session lists [#149709](https",
+        "description": "//github.com/openclaw/openclaw/pull/149709).",
+        "href": "https://github.com/openclaw/openclaw/issues/149709"
+      },
+      {
+        "title": "Reduce redundant database opens for custom session stores [#149724](https:/...",
+        "description": "Reduce redundant database opens for custom session stores [#149724](https://github.com/openclaw/openclaw/pull/149724).",
+        "href": "https://github.com/openclaw/openclaw/issues/149724"
+      },
+      {
+        "title": "Speed up configured-agent session membership checks [#149839](https",
+        "description": "//github.com/openclaw/openclaw/pull/149839).",
+        "href": "https://github.com/openclaw/openclaw/issues/149839"
+      },
+      {
+        "title": "Offload cold session-detail metadata reads [#149858](https",
+        "description": "//github.com/openclaw/openclaw/pull/149858).",
+        "href": "https://github.com/openclaw/openclaw/issues/149858"
+      },
+      {
+        "title": "Reduce repeated work when updating session views [#150023](https",
+        "description": "//github.com/openclaw/openclaw/pull/150023).",
+        "href": "https://github.com/openclaw/openclaw/issues/150023"
+      },
+      {
+        "title": "Avoid repeated session-field reconciliation in the Control UI [#150194](htt...",
+        "description": "Avoid repeated session-field reconciliation in the Control UI [#150194](https://github.com/openclaw/openclaw/pull/150194).",
+        "href": "https://github.com/openclaw/openclaw/issues/150194"
+      },
+      {
+        "title": "Keep session lists and live updates current in memory [#150196](https",
+        "description": "//github.com/openclaw/openclaw/pull/150196).",
+        "href": "https://github.com/openclaw/openclaw/issues/150196"
+      },
+      {
+        "title": "Reduce session-update work in large subagent registries [#150429](https://g...",
+        "description": "Reduce session-update work in large subagent registries [#150429](https://github.com/openclaw/openclaw/pull/150429). Thanks @aniruddhaadak80.",
+        "href": "https://github.com/openclaw/openclaw/issues/150429"
+      },
+      {
+        "title": "Reduce work when listing keyed agent rosters [#150533](https",
+        "description": "//github.com/openclaw/openclaw/pull/150533).",
+        "href": "https://github.com/openclaw/openclaw/issues/150533"
+      },
+      {
+        "title": "Reduce repeated UI catalog and metadata requests [#150566](https",
+        "description": "//github.com/openclaw/openclaw/pull/150566).",
+        "href": "https://github.com/openclaw/openclaw/issues/150566"
+      },
+      {
+        "title": "Reuse session titles and preserve child order [#151182](https",
+        "description": "//github.com/openclaw/openclaw/pull/151182).",
+        "href": "https://github.com/openclaw/openclaw/issues/151182"
+      },
+      {
+        "title": "Speed up exact session links and large session list pages [#151204](https:/...",
+        "description": "Speed up exact session links and large session list pages [#151204](https://github.com/openclaw/openclaw/pull/151204). Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/151204"
+      },
+      {
+        "title": "Refresh Inbox expiry wording across 20 locales [#144426](https",
+        "description": "//github.com/openclaw/openclaw/pull/144426).",
+        "href": "https://github.com/openclaw/openclaw/issues/144426"
+      },
+      {
+        "title": "Translate outdated usage-context guidance [#144444](https",
+        "description": "//github.com/openclaw/openclaw/pull/144444).",
+        "href": "https://github.com/openclaw/openclaw/issues/144444"
+      },
+      {
+        "title": "Translate background-task timing and call counts [#144456](https",
+        "description": "//github.com/openclaw/openclaw/pull/144456).",
+        "href": "https://github.com/openclaw/openclaw/issues/144456"
+      },
+      {
+        "title": "Localized provider sign-in guidance [#144478](https",
+        "description": "//github.com/openclaw/openclaw/pull/144478).",
+        "href": "https://github.com/openclaw/openclaw/issues/144478"
+      },
+      {
+        "title": "Localized saved API-key removal confirmation [#144512](https",
+        "description": "//github.com/openclaw/openclaw/pull/144512).",
+        "href": "https://github.com/openclaw/openclaw/issues/144512"
+      },
+      {
+        "title": "Localized device, download, and plugin-list controls [#144523](https",
+        "description": "//github.com/openclaw/openclaw/pull/144523).",
+        "href": "https://github.com/openclaw/openclaw/issues/144523"
+      },
+      {
+        "title": "Refresh translated conversation navigation hints [#144777](https",
+        "description": "//github.com/openclaw/openclaw/pull/144777).",
+        "href": "https://github.com/openclaw/openclaw/issues/144777"
+      },
+      {
+        "title": "Translate Skill Workshop action-status warnings [#144864](https",
+        "description": "//github.com/openclaw/openclaw/pull/144864).",
+        "href": "https://github.com/openclaw/openclaw/issues/144864"
+      },
+      {
+        "title": "Refresh Control UI translations across 20 locales [#145059](https",
+        "description": "//github.com/openclaw/openclaw/pull/145059).",
+        "href": "https://github.com/openclaw/openclaw/issues/145059"
+      },
+      {
+        "title": "Translate the queued-agent notice [#145187](https",
+        "description": "//github.com/openclaw/openclaw/pull/145187).",
+        "href": "https://github.com/openclaw/openclaw/issues/145187"
+      },
+      {
+        "title": "Translated chat account heading [#145323](https",
+        "description": "//github.com/openclaw/openclaw/pull/145323).",
+        "href": "https://github.com/openclaw/openclaw/issues/145323"
+      },
+      {
+        "title": "Refresh Control UI translations across 20 languages [#145408](https",
+        "description": "//github.com/openclaw/openclaw/pull/145408).",
+        "href": "https://github.com/openclaw/openclaw/issues/145408"
+      },
+      {
+        "title": "Translate the App tab label [#145610](https",
+        "description": "//github.com/openclaw/openclaw/pull/145610).",
+        "href": "https://github.com/openclaw/openclaw/issues/145610"
+      },
+      {
+        "title": "Refresh agent and plugin UI translations [#145742](https",
+        "description": "//github.com/openclaw/openclaw/pull/145742).",
+        "href": "https://github.com/openclaw/openclaw/issues/145742"
+      },
+      {
+        "title": "Translate agent navigation controls [#145799](https",
+        "description": "//github.com/openclaw/openclaw/pull/145799).",
+        "href": "https://github.com/openclaw/openclaw/issues/145799"
+      },
+      {
+        "title": "Localize chat error sender labels [#145821](https",
+        "description": "//github.com/openclaw/openclaw/pull/145821).",
+        "href": "https://github.com/openclaw/openclaw/issues/145821"
+      },
+      {
+        "title": "Refresh chat and settings translations [#147498](https",
+        "description": "//github.com/openclaw/openclaw/pull/147498).",
+        "href": "https://github.com/openclaw/openclaw/issues/147498"
+      },
+      {
+        "title": "Translate recap and archive status labels [#147578](https",
+        "description": "//github.com/openclaw/openclaw/pull/147578).",
+        "href": "https://github.com/openclaw/openclaw/issues/147578"
+      },
+      {
+        "title": "Translate chat status and diagnostics text [#147850](https",
+        "description": "//github.com/openclaw/openclaw/pull/147850).",
+        "href": "https://github.com/openclaw/openclaw/issues/147850"
+      },
+      {
+        "title": "Refresh translations across twenty locales [#147936](https",
+        "description": "//github.com/openclaw/openclaw/pull/147936). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147936"
+      },
+      {
+        "title": "Translate Control UI chat comment controls [#148752](https",
+        "description": "//github.com/openclaw/openclaw/pull/148752).",
+        "href": "https://github.com/openclaw/openclaw/issues/148752"
+      },
+      {
+        "title": "Translate the model-pending status in existing locales [#148799](https://gi...",
+        "description": "Translate the model-pending status in existing locales [#148799](https://github.com/openclaw/openclaw/pull/148799).",
+        "href": "https://github.com/openclaw/openclaw/issues/148799"
+      },
+      {
+        "title": "Refresh translations and clarify pending-request counters [#148846](https:/...",
+        "description": "Refresh translations and clarify pending-request counters [#148846](https://github.com/openclaw/openclaw/pull/148846). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148846"
+      },
+      {
+        "title": "Refresh Control UI translations [#149924](https",
+        "description": "//github.com/openclaw/openclaw/pull/149924).",
+        "href": "https://github.com/openclaw/openclaw/issues/149924"
+      },
+      {
+        "title": "Translate the task progress gesture hint [#150258](https",
+        "description": "//github.com/openclaw/openclaw/pull/150258).",
+        "href": "https://github.com/openclaw/openclaw/issues/150258"
+      },
+      {
+        "title": "Translate plugin details and refresh reload guidance [#150285](https",
+        "description": "//github.com/openclaw/openclaw/pull/150285).",
+        "href": "https://github.com/openclaw/openclaw/issues/150285"
+      },
+      {
+        "title": "Translate plugin settings labels across20 Control UI locales [#150303](http...",
+        "description": "Translate plugin settings labels across20 Control UI locales [#150303](https://github.com/openclaw/openclaw/pull/150303).",
+        "href": "https://github.com/openclaw/openclaw/issues/150303"
+      },
+      {
+        "title": "Translate credential controls and save warnings in 20 languages [#150384](h...",
+        "description": "Translate credential controls and save warnings in 20 languages [#150384](https://github.com/openclaw/openclaw/pull/150384).",
+        "href": "https://github.com/openclaw/openclaw/issues/150384"
+      },
+      {
+        "title": "Refresh translated setup and permission guidance [#150408](https",
+        "description": "//github.com/openclaw/openclaw/pull/150408).",
+        "href": "https://github.com/openclaw/openclaw/issues/150408"
+      },
+      {
+        "title": "Translate pull-request list collapse controls [#150913](https",
+        "description": "//github.com/openclaw/openclaw/pull/150913).",
+        "href": "https://github.com/openclaw/openclaw/issues/150913"
+      },
+      {
+        "title": "Clarify translated custom-redaction help [#145935](https",
+        "description": "//github.com/openclaw/openclaw/pull/145935).",
+        "href": "https://github.com/openclaw/openclaw/issues/145935"
+      },
+      {
+        "title": "Translate desktop viewing and configuration warnings [#146176](https",
+        "description": "//github.com/openclaw/openclaw/pull/146176).",
+        "href": "https://github.com/openclaw/openclaw/issues/146176"
+      },
+      {
+        "title": "Translate the Worktree Acceleration setting [#146295](https",
+        "description": "//github.com/openclaw/openclaw/pull/146295).",
+        "href": "https://github.com/openclaw/openclaw/issues/146295"
+      },
+      {
+        "title": "Refresh Control UI translations across 20 languages [#146400](https",
+        "description": "//github.com/openclaw/openclaw/pull/146400).",
+        "href": "https://github.com/openclaw/openclaw/issues/146400"
+      },
+      {
+        "title": "Translate Gateway ping and activity labels [#146781](https",
+        "description": "//github.com/openclaw/openclaw/pull/146781).",
+        "href": "https://github.com/openclaw/openclaw/issues/146781"
+      },
+      {
+        "title": "Translate browser controls and chat actions [#146813](https",
+        "description": "//github.com/openclaw/openclaw/pull/146813).",
+        "href": "https://github.com/openclaw/openclaw/issues/146813"
+      },
+      {
+        "title": "Refresh settings-recovery and usage translations [#147074](https",
+        "description": "//github.com/openclaw/openclaw/pull/147074).",
+        "href": "https://github.com/openclaw/openclaw/issues/147074"
+      },
+      {
+        "title": "Refresh chat and search status translations [#147100](https",
+        "description": "//github.com/openclaw/openclaw/pull/147100).",
+        "href": "https://github.com/openclaw/openclaw/issues/147100"
+      },
+      {
+        "title": "Keep chat files in tabs and preview HTML [#146672](https",
+        "description": "//github.com/openclaw/openclaw/pull/146672).",
+        "href": "https://github.com/openclaw/openclaw/issues/146672"
+      },
+      {
+        "title": "Reduce empty space above sidebar file previews [#147116](https",
+        "description": "//github.com/openclaw/openclaw/pull/147116).",
+        "href": "https://github.com/openclaw/openclaw/issues/147116"
+      },
+      {
+        "title": "Hide Linux EFI mounts from Gateway disk cards [#146739](https",
+        "description": "//github.com/openclaw/openclaw/pull/146739).",
+        "href": "https://github.com/openclaw/openclaw/issues/146739"
+      },
+      {
+        "title": "Keep Gateway host readings visible during refresh [#146740](https",
+        "description": "//github.com/openclaw/openclaw/pull/146740).",
+        "href": "https://github.com/openclaw/openclaw/issues/146740"
+      },
+      {
+        "title": "View Gateway ping statistics and activity graphs in settings [#146755](http...",
+        "description": "View Gateway ping statistics and activity graphs in settings [#146755](https://github.com/openclaw/openclaw/pull/146755).",
+        "href": "https://github.com/openclaw/openclaw/issues/146755"
+      },
+      {
+        "title": "Minimize System busyness into a live widget [#147760](https",
+        "description": "//github.com/openclaw/openclaw/pull/147760).",
+        "href": "https://github.com/openclaw/openclaw/issues/147760"
+      },
+      {
+        "title": "Show three trends in a smaller busyness widget [#147840](https",
+        "description": "//github.com/openclaw/openclaw/pull/147840).",
+        "href": "https://github.com/openclaw/openclaw/issues/147840"
+      },
+      {
+        "title": "Stop hidden diagnostic requests in minimized System busyness [#149151](http...",
+        "description": "Stop hidden diagnostic requests in minimized System busyness [#149151](https://github.com/openclaw/openclaw/pull/149151).",
+        "href": "https://github.com/openclaw/openclaw/issues/149151"
+      },
+      {
+        "title": "Remove utility launches from covered disk and executable discovery [#149792...",
+        "description": "Remove utility launches from covered disk and executable discovery [#149792](https://github.com/openclaw/openclaw/pull/149792).",
+        "href": "https://github.com/openclaw/openclaw/issues/149792"
+      },
+      {
+        "title": "Skip unused measurements when dismissing notifications [#147196](https://gi...",
+        "description": "Skip unused measurements when dismissing notifications [#147196](https://github.com/openclaw/openclaw/pull/147196).",
+        "href": "https://github.com/openclaw/openclaw/issues/147196"
+      },
+      {
+        "title": "Show lasting session recaps in Activity [#147441](https",
+        "description": "//github.com/openclaw/openclaw/pull/147441).",
+        "href": "https://github.com/openclaw/openclaw/issues/147441"
+      },
+      {
+        "title": "Improve Activity recaps, ordering and previews [#147901](https",
+        "description": "//github.com/openclaw/openclaw/pull/147901). Thanks @onlyysaurabh.",
+        "href": "https://github.com/openclaw/openclaw/issues/147901"
+      },
+      {
+        "title": "Reduce transcript reconciliation startup dependencies [#148459](https",
+        "description": "//github.com/openclaw/openclaw/pull/148459). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/148459"
+      },
+      {
+        "title": "Archive older transcripts and inspect session storage [#145172](https",
+        "description": "//github.com/openclaw/openclaw/pull/145172).",
+        "href": "https://github.com/openclaw/openclaw/issues/145172"
+      },
+      {
+        "title": "Reduce metadata processing during history archival [#148950](https",
+        "description": "//github.com/openclaw/openclaw/pull/148950). Thanks @todddickerson.",
+        "href": "https://github.com/openclaw/openclaw/issues/148950"
+      },
+      {
+        "title": "Prefer Codex for triage handoffs [#149447](https",
+        "description": "//github.com/openclaw/openclaw/pull/149447).",
+        "href": "https://github.com/openclaw/openclaw/issues/149447"
+      },
+      {
+        "title": "Clarify owner-requested updates and recovery guidance [#146476](https",
+        "description": "//github.com/openclaw/openclaw/pull/146476). Thanks @potterdigital.",
+        "href": "https://github.com/openclaw/openclaw/issues/146476"
+      },
+      {
+        "title": "Optional first-owner enrollment during channel setup [#145527](https",
+        "description": "//github.com/openclaw/openclaw/pull/145527).",
+        "href": "https://github.com/openclaw/openclaw/issues/145527"
+      },
+      {
+        "title": "Add Muse, Grok and Cursor triage handoffs [#149703](https",
+        "description": "//github.com/openclaw/openclaw/pull/149703). Thanks @as76.",
+        "href": "https://github.com/openclaw/openclaw/issues/149703"
+      },
+      {
+        "title": "Add Kimi Code and Qwen Code triage handoffs [#149877](https",
+        "description": "//github.com/openclaw/openclaw/pull/149877).",
+        "href": "https://github.com/openclaw/openclaw/issues/149877"
+      },
+      {
+        "title": "Preserve external symbolic links in backups [#141925](https",
+        "description": "//github.com/openclaw/openclaw/pull/141925). Thanks @adele-with-a-b, @obviyus, @vsumner, @clawputerlabs, @rayseling.",
+        "href": "https://github.com/openclaw/openclaw/issues/141925"
+      },
+      {
+        "title": "Clarify pending plugin-consent update warnings [#145970](https",
+        "description": "//github.com/openclaw/openclaw/pull/145970).",
+        "href": "https://github.com/openclaw/openclaw/issues/145970"
+      },
+      {
+        "title": "Document safe cleanup of leftover partial-clone markers [#150798](https://g...",
+        "description": "Document safe cleanup of leftover partial-clone markers [#150798](https://github.com/openclaw/openclaw/pull/150798). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150798"
+      },
+      {
+        "title": "Pin services to an exact runtime executable [9843b937e354](https",
+        "description": "//github.com/openclaw/openclaw/commit/9843b937e3547feb30544d384b14ad201000ae74). Thanks @darkamenosa, @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reduce unnecessary loading for configuration backups [#147439](https",
+        "description": "//github.com/openclaw/openclaw/pull/147439).",
+        "href": "https://github.com/openclaw/openclaw/issues/147439"
+      },
+      {
+        "title": "Load automatic-update execution only when needed [#150582](https",
+        "description": "//github.com/openclaw/openclaw/pull/150582). Thanks @dgmoon1994, @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/issues/150582"
+      },
+      {
+        "title": "Defer automatic update discovery until Gateway readiness [#150629](https://...",
+        "description": "Defer automatic update discovery until Gateway readiness [#150629](https://github.com/openclaw/openclaw/pull/150629).",
+        "href": "https://github.com/openclaw/openclaw/issues/150629"
+      },
+      {
+        "title": "Explain update checks in plain language [#147588](https",
+        "description": "//github.com/openclaw/openclaw/pull/147588). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147588"
+      },
+      {
+        "title": "Check snapshot space before staging updates [#147908](https",
+        "description": "//github.com/openclaw/openclaw/pull/147908). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147908"
+      },
+      {
+        "title": "Warn when update validation cleanup is unconfirmed [#150121](https",
+        "description": "//github.com/openclaw/openclaw/pull/150121).",
+        "href": "https://github.com/openclaw/openclaw/issues/150121"
+      },
+      {
+        "title": "Explain recovery from repeated global-install failures [#149540](https://gi...",
+        "description": "Explain recovery from repeated global-install failures [#149540](https://github.com/openclaw/openclaw/pull/149540). Thanks @dembe-agent, @arnehorn, @rshields-tfd, @cheddaran, @martinic.",
+        "href": "https://github.com/openclaw/openclaw/issues/149540"
+      },
+      {
+        "title": "Clarify limits on detached hosting-Gateway repairs [eeab80daf6a3](https://g...",
+        "description": "Clarify limits on detached hosting-Gateway repairs [eeab80daf6a3](https://github.com/openclaw/openclaw/commit/eeab80daf6a360b13b4062543c50ad2f5a997864). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Replace unusable update coordination files with unresolved custody risk [#1...",
+        "description": "Replace unusable update coordination files with unresolved custody risk [#145320](https://github.com/openclaw/openclaw/pull/145320).",
+        "href": "https://github.com/openclaw/openclaw/issues/145320"
+      },
+      {
+        "title": "Return exit 75 while background updates are still in progress [#150799](htt...",
+        "description": "Return exit 75 while background updates are still in progress [#150799](https://github.com/openclaw/openclaw/pull/150799). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150799"
+      },
+      {
+        "title": "Load migration code only when Doctor needs it [#145334](https",
+        "description": "//github.com/openclaw/openclaw/pull/145334).",
+        "href": "https://github.com/openclaw/openclaw/issues/145334"
+      },
+      {
+        "title": "Avoid repeated shared-state copies in Doctor [#145577](https",
+        "description": "//github.com/openclaw/openclaw/pull/145577). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/145577"
+      },
+      {
+        "title": "Load legacy memory migration helpers only when needed [#146815](https",
+        "description": "//github.com/openclaw/openclaw/pull/146815).",
+        "href": "https://github.com/openclaw/openclaw/issues/146815"
+      },
+      {
+        "title": "Reduce unnecessary loading during Doctor checks [#146926](https",
+        "description": "//github.com/openclaw/openclaw/pull/146926).",
+        "href": "https://github.com/openclaw/openclaw/issues/146926"
+      },
+      {
+        "title": "Reduce redundant Gateway startup work [#147165](https",
+        "description": "//github.com/openclaw/openclaw/pull/147165).",
+        "href": "https://github.com/openclaw/openclaw/issues/147165"
+      },
+      {
+        "title": "Reduce repeated Gateway startup checks [#147285](https",
+        "description": "//github.com/openclaw/openclaw/pull/147285).",
+        "href": "https://github.com/openclaw/openclaw/issues/147285"
+      },
+      {
+        "title": "Reduce repeated Gateway startup preparation [#147405](https",
+        "description": "//github.com/openclaw/openclaw/pull/147405).",
+        "href": "https://github.com/openclaw/openclaw/issues/147405"
+      },
+      {
+        "title": "Reuse database inspection processes during startup [#147554](https",
+        "description": "//github.com/openclaw/openclaw/pull/147554).",
+        "href": "https://github.com/openclaw/openclaw/issues/147554"
+      },
+      {
+        "title": "Avoid unnecessary migration scans on fresh installations [#148851](https://...",
+        "description": "Avoid unnecessary migration scans on fresh installations [#148851](https://github.com/openclaw/openclaw/pull/148851).",
+        "href": "https://github.com/openclaw/openclaw/issues/148851"
+      },
+      {
+        "title": "Inspect native FreeBSD service selection [#148875](https",
+        "description": "//github.com/openclaw/openclaw/pull/148875). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148875"
+      },
+      {
+        "title": "Reduce startup scans for session sandbox workspaces [#149063](https",
+        "description": "//github.com/openclaw/openclaw/pull/149063). Thanks @obviyus, @amtls-bbq.",
+        "href": "https://github.com/openclaw/openclaw/issues/149063"
+      },
+      {
+        "title": "Defer idle tool loading during Gateway startup [#149226](https",
+        "description": "//github.com/openclaw/openclaw/pull/149226).",
+        "href": "https://github.com/openclaw/openclaw/issues/149226"
+      },
+      {
+        "title": "Avoid unnecessary Windows startup subprocesses [#149257](https",
+        "description": "//github.com/openclaw/openclaw/pull/149257). Thanks @dgmoon1994, @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/issues/149257"
+      },
+      {
+        "title": "Skip unused Doctor runtime imports with plugins disabled [#149300](https://...",
+        "description": "Skip unused Doctor runtime imports with plugins disabled [#149300](https://github.com/openclaw/openclaw/pull/149300).",
+        "href": "https://github.com/openclaw/openclaw/issues/149300"
+      },
+      {
+        "title": "Reduce Gateway startup work and defer background maintenance [#149314](http...",
+        "description": "Reduce Gateway startup work and defer background maintenance [#149314](https://github.com/openclaw/openclaw/pull/149314).",
+        "href": "https://github.com/openclaw/openclaw/issues/149314"
+      },
+      {
+        "title": "Identify unfinished service cleanup steps in timeout diagnostics [#150195](...",
+        "description": "Identify unfinished service cleanup steps in timeout diagnostics [#150195](https://github.com/openclaw/openclaw/pull/150195).",
+        "href": "https://github.com/openclaw/openclaw/issues/150195"
+      },
+      {
+        "title": "Load Doctor update-history diagnostics only when needed [#150561](https://g...",
+        "description": "Load Doctor update-history diagnostics only when needed [#150561](https://github.com/openclaw/openclaw/pull/150561).",
+        "href": "https://github.com/openclaw/openclaw/issues/150561"
+      },
+      {
+        "title": "Reduce unnecessary configuration-migration loading [#151028](https",
+        "description": "//github.com/openclaw/openclaw/pull/151028).",
+        "href": "https://github.com/openclaw/openclaw/issues/151028"
+      },
+      {
+        "title": "Defer shell-command parser loading until first use [#149802](https",
+        "description": "//github.com/openclaw/openclaw/pull/149802). Thanks @dgmoon1994, @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/issues/149802"
+      },
+      {
+        "title": "Defer Codex session discovery to reduce fleet startup work [#150004](https:...",
+        "description": "Defer Codex session discovery to reduce fleet startup work [#150004](https://github.com/openclaw/openclaw/pull/150004). Thanks @609nft.",
+        "href": "https://github.com/openclaw/openclaw/issues/150004"
+      },
+      {
+        "title": "Keep Gateway traffic moving during multi-agent health and status scans [#15...",
+        "description": "Keep Gateway traffic moving during multi-agent health and status scans [#150079](https://github.com/openclaw/openclaw/pull/150079). Thanks @nianjiuzst, @obviyus, @baeut.",
+        "href": "https://github.com/openclaw/openclaw/issues/150079"
+      },
+      {
+        "title": "Reduce startup maintenance waits for large agent fleets [#150188](https://g...",
+        "description": "Reduce startup maintenance waits for large agent fleets [#150188](https://github.com/openclaw/openclaw/pull/150188). Thanks @609nft.",
+        "href": "https://github.com/openclaw/openclaw/issues/150188"
+      },
+      {
+        "title": "Reduce Gateway stalls during large-fleet model preparation [#150223](https:...",
+        "description": "Reduce Gateway stalls during large-fleet model preparation [#150223](https://github.com/openclaw/openclaw/pull/150223). Thanks @609nft.",
+        "href": "https://github.com/openclaw/openclaw/issues/150223"
+      },
+      {
+        "title": "Reduce repeated auth database opens across agents [#150524](https",
+        "description": "//github.com/openclaw/openclaw/pull/150524).",
+        "href": "https://github.com/openclaw/openclaw/issues/150524"
+      },
+      {
+        "title": "Reduce repeated Doctor inspection setup [#148028](https",
+        "description": "//github.com/openclaw/openclaw/pull/148028).",
+        "href": "https://github.com/openclaw/openclaw/issues/148028"
+      },
+      {
+        "title": "Reduce temporary memory during session cleanup [#145616](https",
+        "description": "//github.com/openclaw/openclaw/pull/145616).",
+        "href": "https://github.com/openclaw/openclaw/issues/145616"
+      },
+      {
+        "title": "Reduce duplicate session cleanup reads [#145647](https",
+        "description": "//github.com/openclaw/openclaw/pull/145647). Thanks @hermanzeng.",
+        "href": "https://github.com/openclaw/openclaw/issues/145647"
+      },
+      {
+        "title": "Reduce indexing work during transcript rewrites [#145744](https",
+        "description": "//github.com/openclaw/openclaw/pull/145744).",
+        "href": "https://github.com/openclaw/openclaw/issues/145744"
+      },
+      {
+        "title": "Reduce metadata transfer during attachment cleanup [#147177](https",
+        "description": "//github.com/openclaw/openclaw/pull/147177).",
+        "href": "https://github.com/openclaw/openclaw/issues/147177"
+      },
+      {
+        "title": "Skip unrelated session reads during cleanup [#147625](https",
+        "description": "//github.com/openclaw/openclaw/pull/147625).",
+        "href": "https://github.com/openclaw/openclaw/issues/147625"
+      },
+      {
+        "title": "Skip unnecessary session-maintenance protection scans [#148351](https",
+        "description": "//github.com/openclaw/openclaw/pull/148351).",
+        "href": "https://github.com/openclaw/openclaw/issues/148351"
+      },
+      {
+        "title": "Reduce session inventory counting work [#148445](https",
+        "description": "//github.com/openclaw/openclaw/pull/148445).",
+        "href": "https://github.com/openclaw/openclaw/issues/148445"
+      },
+      {
+        "title": "Fetch less session data during history cleanup [#148553](https",
+        "description": "//github.com/openclaw/openclaw/pull/148553).",
+        "href": "https://github.com/openclaw/openclaw/issues/148553"
+      },
+      {
+        "title": "Reduce maintenance pauses from retained subagent history [#148823](https://...",
+        "description": "Reduce maintenance pauses from retained subagent history [#148823](https://github.com/openclaw/openclaw/pull/148823).",
+        "href": "https://github.com/openclaw/openclaw/issues/148823"
+      },
+      {
+        "title": "Reduce task maintenance overhead on large stores [#149526](https",
+        "description": "//github.com/openclaw/openclaw/pull/149526).",
+        "href": "https://github.com/openclaw/openclaw/issues/149526"
+      },
+      {
+        "title": "Reduce repeated session retention checks and schedule idle cleanup [#149754...",
+        "description": "Reduce repeated session retention checks and schedule idle cleanup [#149754](https://github.com/openclaw/openclaw/pull/149754).",
+        "href": "https://github.com/openclaw/openclaw/issues/149754"
+      },
+      {
+        "title": "Reduce repeated maintenance scans during concurrent session writes [#150371...",
+        "description": "Reduce repeated maintenance scans during concurrent session writes [#150371](https://github.com/openclaw/openclaw/pull/150371).",
+        "href": "https://github.com/openclaw/openclaw/issues/150371"
+      },
+      {
+        "title": "Reduce session cleanup overhead and startup pauses [7ab507770f3d](https://g...",
+        "description": "Reduce session cleanup overhead and startup pauses [7ab507770f3d](https://github.com/openclaw/openclaw/commit/7ab507770f3da4b0aa940e79c624ba15fa1329fc).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Check agent databases two at a time during startup [#139878](https",
+        "description": "//github.com/openclaw/openclaw/pull/139878). Thanks @xuzhi1982.",
+        "href": "https://github.com/openclaw/openclaw/issues/139878"
+      },
+      {
+        "title": "Reduce read-only SQLite snapshot startup overhead [#144448](https",
+        "description": "//github.com/openclaw/openclaw/pull/144448).",
+        "href": "https://github.com/openclaw/openclaw/issues/144448"
+      },
+      {
+        "title": "Avoid full database copies for startup version checks [#145541](https",
+        "description": "//github.com/openclaw/openclaw/pull/145541).",
+        "href": "https://github.com/openclaw/openclaw/issues/145541"
+      },
+      {
+        "title": "Keep Gateway responsive during recovery snapshots [#145965](https",
+        "description": "//github.com/openclaw/openclaw/pull/145965).",
+        "href": "https://github.com/openclaw/openclaw/issues/145965"
+      },
+      {
+        "title": "Keep Doctor responsive during scheduled-job inspection [#146026](https://gi...",
+        "description": "Keep Doctor responsive during scheduled-job inspection [#146026](https://github.com/openclaw/openclaw/pull/146026).",
+        "href": "https://github.com/openclaw/openclaw/issues/146026"
+      },
+      {
+        "title": "Avoid redundant database cleanup after session imports [#146597](https://gi...",
+        "description": "Avoid redundant database cleanup after session imports [#146597](https://github.com/openclaw/openclaw/pull/146597). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146597"
+      },
+      {
+        "title": "Reduce repeated reads during database integrity checks [#146650](https://gi...",
+        "description": "Reduce repeated reads during database integrity checks [#146650](https://github.com/openclaw/openclaw/pull/146650). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146650"
+      },
+      {
+        "title": "Reduce pauses during startup database inspection [#146754](https",
+        "description": "//github.com/openclaw/openclaw/pull/146754).",
+        "href": "https://github.com/openclaw/openclaw/issues/146754"
+      },
+      {
+        "title": "Reuse compiled modules during SQLite inspections [#147376](https",
+        "description": "//github.com/openclaw/openclaw/pull/147376).",
+        "href": "https://github.com/openclaw/openclaw/issues/147376"
+      },
+      {
+        "title": "Start SQLite snapshot workers with fewer imports [#147522](https",
+        "description": "//github.com/openclaw/openclaw/pull/147522).",
+        "href": "https://github.com/openclaw/openclaw/issues/147522"
+      },
+      {
+        "title": "Reduce integrity-check startup imports [#147607](https",
+        "description": "//github.com/openclaw/openclaw/pull/147607).",
+        "href": "https://github.com/openclaw/openclaw/issues/147607"
+      },
+      {
+        "title": "Avoid full database copies during startup checks [#147635](https",
+        "description": "//github.com/openclaw/openclaw/pull/147635). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147635"
+      },
+      {
+        "title": "Batch reference-schema reads during SQLite validation [#149316](https",
+        "description": "//github.com/openclaw/openclaw/pull/149316).",
+        "href": "https://github.com/openclaw/openclaw/issues/149316"
+      },
+      {
+        "title": "Reduce repeated query work during legacy audit imports [#149590](https://gi...",
+        "description": "Reduce repeated query work during legacy audit imports [#149590](https://github.com/openclaw/openclaw/pull/149590).",
+        "href": "https://github.com/openclaw/openclaw/issues/149590"
+      },
+      {
+        "title": "Keep Doctor responsive during database-size checks [#149951](https",
+        "description": "//github.com/openclaw/openclaw/pull/149951).",
+        "href": "https://github.com/openclaw/openclaw/issues/149951"
+      },
+      {
+        "title": "Reduce repeated database inspection setup during fleet startup [#150444](ht...",
+        "description": "Reduce repeated database inspection setup during fleet startup [#150444](https://github.com/openclaw/openclaw/pull/150444). Thanks @609nft.",
+        "href": "https://github.com/openclaw/openclaw/issues/150444"
+      },
+      {
+        "title": "Reduce repeated filesystem work in Gateway writes [#145582](https",
+        "description": "//github.com/openclaw/openclaw/pull/145582).",
+        "href": "https://github.com/openclaw/openclaw/issues/145582"
+      },
+      {
+        "title": "Reuse idle coordinators for frequent state writes [#145634](https",
+        "description": "//github.com/openclaw/openclaw/pull/145634).",
+        "href": "https://github.com/openclaw/openclaw/issues/145634"
+      },
+      {
+        "title": "Stop first-result database reads after one row [#145678](https",
+        "description": "//github.com/openclaw/openclaw/pull/145678).",
+        "href": "https://github.com/openclaw/openclaw/issues/145678"
+      },
+      {
+        "title": "Reduce repeated work in agent database checks [#146181](https",
+        "description": "//github.com/openclaw/openclaw/pull/146181).",
+        "href": "https://github.com/openclaw/openclaw/issues/146181"
+      },
+      {
+        "title": "Reduce large-event overhead in trajectory capture [#146244](https",
+        "description": "//github.com/openclaw/openclaw/pull/146244).",
+        "href": "https://github.com/openclaw/openclaw/issues/146244"
+      },
+      {
+        "title": "Batch transcript position lookups for multi-message turns [#146292](https:/...",
+        "description": "Batch transcript position lookups for multi-message turns [#146292](https://github.com/openclaw/openclaw/pull/146292).",
+        "href": "https://github.com/openclaw/openclaw/issues/146292"
+      },
+      {
+        "title": "Skip redundant database permission updates [#146492](https",
+        "description": "//github.com/openclaw/openclaw/pull/146492).",
+        "href": "https://github.com/openclaw/openclaw/issues/146492"
+      },
+      {
+        "title": "Reduce SQLite read CPU on newer Node [#147862](https",
+        "description": "//github.com/openclaw/openclaw/pull/147862).",
+        "href": "https://github.com/openclaw/openclaw/issues/147862"
+      },
+      {
+        "title": "Reduce repeated SQLite work in session operations [#148366](https",
+        "description": "//github.com/openclaw/openclaw/pull/148366). Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/148366"
+      },
+      {
+        "title": "Avoid full transcript scans during session checks [#148725](https",
+        "description": "//github.com/openclaw/openclaw/pull/148725). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148725"
+      },
+      {
+        "title": "Skip unnecessary database reads during session updates [#148748](https://gi...",
+        "description": "Skip unnecessary database reads during session updates [#148748](https://github.com/openclaw/openclaw/pull/148748). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148748"
+      },
+      {
+        "title": "Reuse compiled transcript presence and freshness queries [#148773](https://...",
+        "description": "Reuse compiled transcript presence and freshness queries [#148773](https://github.com/openclaw/openclaw/pull/148773). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148773"
+      },
+      {
+        "title": "Avoid full-roster reads for repeat participants [#148841](https",
+        "description": "//github.com/openclaw/openclaw/pull/148841).",
+        "href": "https://github.com/openclaw/openclaw/issues/148841"
+      },
+      {
+        "title": "Reduce repeated session-check stalls during message admission [#148868](htt...",
+        "description": "Reduce repeated session-check stalls during message admission [#148868](https://github.com/openclaw/openclaw/pull/148868).",
+        "href": "https://github.com/openclaw/openclaw/issues/148868"
+      },
+      {
+        "title": "Reduce session-list and transcript-diagnostic read work [#148918](https://g...",
+        "description": "Reduce session-list and transcript-diagnostic read work [#148918](https://github.com/openclaw/openclaw/pull/148918). Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/148918"
+      },
+      {
+        "title": "Reuse transcript-count query compilation [#149238](https",
+        "description": "//github.com/openclaw/openclaw/pull/149238).",
+        "href": "https://github.com/openclaw/openclaw/issues/149238"
+      },
+      {
+        "title": "Reduce duplicate data binding during session saves [#149478](https",
+        "description": "//github.com/openclaw/openclaw/pull/149478).",
+        "href": "https://github.com/openclaw/openclaw/issues/149478"
+      },
+      {
+        "title": "Reduce SQLite result-read overhead on Node 24.20 [#149769](https",
+        "description": "//github.com/openclaw/openclaw/pull/149769).",
+        "href": "https://github.com/openclaw/openclaw/issues/149769"
+      },
+      {
+        "title": "Reduce repeated validation work when saving sessions [#149821](https",
+        "description": "//github.com/openclaw/openclaw/pull/149821).",
+        "href": "https://github.com/openclaw/openclaw/issues/149821"
+      },
+      {
+        "title": "Reduce repeated session-write query construction [#150683](https",
+        "description": "//github.com/openclaw/openclaw/pull/150683).",
+        "href": "https://github.com/openclaw/openclaw/issues/150683"
+      },
+      {
+        "title": "Skip unchanged configuration branches [#145883](https",
+        "description": "//github.com/openclaw/openclaw/pull/145883).",
+        "href": "https://github.com/openclaw/openclaw/issues/145883"
+      },
+      {
+        "title": "Speed up configuration section lookups [#146482](https",
+        "description": "//github.com/openclaw/openclaw/pull/146482).",
+        "href": "https://github.com/openclaw/openclaw/issues/146482"
+      },
+      {
+        "title": "Reduce startup work for configuration reads [#146784](https",
+        "description": "//github.com/openclaw/openclaw/pull/146784).",
+        "href": "https://github.com/openclaw/openclaw/issues/146784"
+      },
+      {
+        "title": "Skip preparation of ineligible configuration backups [#149334](https",
+        "description": "//github.com/openclaw/openclaw/pull/149334).",
+        "href": "https://github.com/openclaw/openclaw/issues/149334"
+      },
+      {
+        "title": "Prepare native Gateway configuration snapshots asynchronously [#150812](htt...",
+        "description": "Prepare native Gateway configuration snapshots asynchronously [#150812](https://github.com/openclaw/openclaw/pull/150812).",
+        "href": "https://github.com/openclaw/openclaw/issues/150812"
+      },
+      {
+        "title": "Report external and ArrayBuffer memory [#141902](https",
+        "description": "//github.com/openclaw/openclaw/pull/141902). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/141902"
+      },
+      {
+        "title": "Show which archive-cleanup stages are slow [#144224](https",
+        "description": "//github.com/openclaw/openclaw/pull/144224).",
+        "href": "https://github.com/openclaw/openclaw/issues/144224"
+      },
+      {
+        "title": "Explain time spent in slow session-list requests [#144531](https",
+        "description": "//github.com/openclaw/openclaw/pull/144531).",
+        "href": "https://github.com/openclaw/openclaw/issues/144531"
+      },
+      {
+        "title": "Reuse compiled plugin Doctor checks in built checkouts [#144676](https://gi...",
+        "description": "Reuse compiled plugin Doctor checks in built checkouts [#144676](https://github.com/openclaw/openclaw/pull/144676).",
+        "href": "https://github.com/openclaw/openclaw/issues/144676"
+      },
+      {
+        "title": "Explain time spent in slow task cleanup [#144697](https",
+        "description": "//github.com/openclaw/openclaw/pull/144697).",
+        "href": "https://github.com/openclaw/openclaw/issues/144697"
+      },
+      {
+        "title": "Separate database-check time from surrounding delays [#144746](https",
+        "description": "//github.com/openclaw/openclaw/pull/144746).",
+        "href": "https://github.com/openclaw/openclaw/issues/144746"
+      },
+      {
+        "title": "Reduce unused logging work with Prometheus [#145576](https",
+        "description": "//github.com/openclaw/openclaw/pull/145576).",
+        "href": "https://github.com/openclaw/openclaw/issues/145576"
+      },
+      {
+        "title": "Speed recovery checks for large inventories [#145711](https",
+        "description": "//github.com/openclaw/openclaw/pull/145711).",
+        "href": "https://github.com/openclaw/openclaw/issues/145711"
+      },
+      {
+        "title": "Batch session reads for shared-store health summaries [#146177](https",
+        "description": "//github.com/openclaw/openclaw/pull/146177).",
+        "href": "https://github.com/openclaw/openclaw/issues/146177"
+      },
+      {
+        "title": "Avoid duplicate status reads and expose collection timings [#146228](https:...",
+        "description": "Avoid duplicate status reads and expose collection timings [#146228](https://github.com/openclaw/openclaw/pull/146228).",
+        "href": "https://github.com/openclaw/openclaw/issues/146228"
+      },
+      {
+        "title": "Identify slow transcript reads and maintenance in logs [#146231](https://gi...",
+        "description": "Identify slow transcript reads and maintenance in logs [#146231](https://github.com/openclaw/openclaw/pull/146231).",
+        "href": "https://github.com/openclaw/openclaw/issues/146231"
+      },
+      {
+        "title": "Reuse database queries for transcript statistics [#146281](https",
+        "description": "//github.com/openclaw/openclaw/pull/146281).",
+        "href": "https://github.com/openclaw/openclaw/issues/146281"
+      },
+      {
+        "title": "Speed recent proxy capture session lists in large histories [#146752](https...",
+        "description": "Speed recent proxy capture session lists in large histories [#146752](https://github.com/openclaw/openclaw/pull/146752).",
+        "href": "https://github.com/openclaw/openclaw/issues/146752"
+      },
+      {
+        "title": "Reduce prompt-recording CPU overhead [#147876](https",
+        "description": "//github.com/openclaw/openclaw/pull/147876).",
+        "href": "https://github.com/openclaw/openclaw/issues/147876"
+      },
+      {
+        "title": "Batch trajectory event writes [#147896](https",
+        "description": "//github.com/openclaw/openclaw/pull/147896).",
+        "href": "https://github.com/openclaw/openclaw/issues/147896"
+      },
+      {
+        "title": "Explain time spent in asynchronous database integrity checks [#148372](http...",
+        "description": "Explain time spent in asynchronous database integrity checks [#148372](https://github.com/openclaw/openclaw/pull/148372).",
+        "href": "https://github.com/openclaw/openclaw/issues/148372"
+      },
+      {
+        "title": "Read failed-delivery health counts in the shared worker [#148636](https://g...",
+        "description": "Read failed-delivery health counts in the shared worker [#148636](https://github.com/openclaw/openclaw/pull/148636).",
+        "href": "https://github.com/openclaw/openclaw/issues/148636"
+      },
+      {
+        "title": "Version Doctor lint JSON output [#150847](https",
+        "description": "//github.com/openclaw/openclaw/pull/150847). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150847"
+      },
+      {
+        "title": "Avoid full database copies for ordinary schema checks [0f748036332e](https:...",
+        "description": "Avoid full database copies for ordinary schema checks [0f748036332e](https://github.com/openclaw/openclaw/commit/0f748036332e3c9cac62c8e14fd73931cdfba4a4). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Capture CPU profiles from a running Gateway [#148004](https",
+        "description": "//github.com/openclaw/openclaw/pull/148004). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148004"
+      },
+      {
+        "title": "Report session-list CPU time in diagnostics [#149291](https",
+        "description": "//github.com/openclaw/openclaw/pull/149291).",
+        "href": "https://github.com/openclaw/openclaw/issues/149291"
+      },
+      {
+        "title": "Sample Gateway heap allocations for troubleshooting [#150594](https",
+        "description": "//github.com/openclaw/openclaw/pull/150594).",
+        "href": "https://github.com/openclaw/openclaw/issues/150594"
+      },
+      {
+        "title": "Doctor warns about source and build mismatches [#144499](https",
+        "description": "//github.com/openclaw/openclaw/pull/144499). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/144499"
+      },
+      {
+        "title": "Show installed Gateway version when the probe returns none [97527632cd2b](h...",
+        "description": "Show installed Gateway version when the probe returns none [97527632cd2b](https://github.com/openclaw/openclaw/commit/97527632cd2be77c3bfa3faeeb2b3bb2e643abe3). Thanks @holny.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Per-version release notes and preserved contribution records [#145464](http...",
+        "description": "Per-version release notes and preserved contribution records [#145464](https://github.com/openclaw/openclaw/pull/145464). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/145464"
+      },
+      {
+        "title": "Expand maturity guidance for shared and fleet deployments [#143528](https:/...",
+        "description": "Expand maturity guidance for shared and fleet deployments [#143528](https://github.com/openclaw/openclaw/pull/143528). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143528"
+      },
+      {
+        "title": "Correct documentation links and pruning reference [#144133](https",
+        "description": "//github.com/openclaw/openclaw/pull/144133). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144133"
+      },
+      {
+        "title": "Simplify Why OpenClaw while preserving links [#144344](https",
+        "description": "//github.com/openclaw/openclaw/pull/144344).",
+        "href": "https://github.com/openclaw/openclaw/issues/144344"
+      },
+      {
+        "title": "Correct repeated wording in personal-account guidance [#144405](https",
+        "description": "//github.com/openclaw/openclaw/pull/144405). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144405"
+      },
+      {
+        "title": "Remove duplicate message-prefix migration entry [#144409](https",
+        "description": "//github.com/openclaw/openclaw/pull/144409). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144409"
+      },
+      {
+        "title": "Correct token-rate example units [#144410](https",
+        "description": "//github.com/openclaw/openclaw/pull/144410). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144410"
+      },
+      {
+        "title": "Mirror v2026.9.4 release notes in plain Markdown [#146386](https",
+        "description": "//github.com/openclaw/openclaw/pull/146386). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/146386"
+      },
+      {
+        "title": "Preserve context behind maturity ratings [#147219](https",
+        "description": "//github.com/openclaw/openclaw/pull/147219). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147219"
+      },
+      {
+        "title": "Give slow updates time based on required work [290613f538dd](https",
+        "description": "//github.com/openclaw/openclaw/commit/290613f538dddfae9a90720c4ad559a2a5b330cf). Thanks @rlosito.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Configure bounded multi-agent conversations in messaging rooms [#141411](ht...",
+        "description": "Configure bounded multi-agent conversations in messaging rooms [#141411](https://github.com/openclaw/openclaw/pull/141411).",
+        "href": "https://github.com/openclaw/openclaw/issues/141411"
+      },
+      {
+        "title": "Explain cross-provider messaging defaults and upgrade impact [#150157](http...",
+        "description": "Explain cross-provider messaging defaults and upgrade impact [#150157](https://github.com/openclaw/openclaw/pull/150157).",
+        "href": "https://github.com/openclaw/openclaw/issues/150157"
+      },
+      {
+        "title": "Allow messaging across configured chat services by default [#149875](https:...",
+        "description": "Allow messaging across configured chat services by default [#149875](https://github.com/openclaw/openclaw/pull/149875).",
+        "href": "https://github.com/openclaw/openclaw/issues/149875"
+      },
+      {
+        "title": "Support a custom Discord API endpoint [#118067](https",
+        "description": "//github.com/openclaw/openclaw/pull/118067). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/118067"
+      },
+      {
+        "title": "Remove redundant Discord audio copies [#145893](https",
+        "description": "//github.com/openclaw/openclaw/pull/145893).",
+        "href": "https://github.com/openclaw/openclaw/issues/145893"
+      },
+      {
+        "title": "Split long Discord replies with many code blocks faster [#146074](https://g...",
+        "description": "Split long Discord replies with many code blocks faster [#146074](https://github.com/openclaw/openclaw/pull/146074).",
+        "href": "https://github.com/openclaw/openclaw/issues/146074"
+      },
+      {
+        "title": "Avoid an extra audio copy in Discord recordings [#148302](https",
+        "description": "//github.com/openclaw/openclaw/pull/148302).",
+        "href": "https://github.com/openclaw/openclaw/issues/148302"
+      },
+      {
+        "title": "Answer agent questions with a tap in LINE direct chats [#133421](https://gi...",
+        "description": "Answer agent questions with a tap in LINE direct chats [#133421](https://github.com/openclaw/openclaw/pull/133421). Thanks @edenfunf and @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/133421"
+      },
+      {
+        "title": "Add native quote replies for LINE [#142092](https",
+        "description": "//github.com/openclaw/openclaw/pull/142092). Thanks @edenfunf and @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/142092"
+      },
+      {
+        "title": "Reduce formatting work for long Slack replies [#144633](https",
+        "description": "//github.com/openclaw/openclaw/pull/144633).",
+        "href": "https://github.com/openclaw/openclaw/issues/144633"
+      },
+      {
+        "title": "Apply Slack access and reply settings without reconnecting [#146202](https:...",
+        "description": "Apply Slack access and reply settings without reconnecting [#146202](https://github.com/openclaw/openclaw/pull/146202).",
+        "href": "https://github.com/openclaw/openclaw/issues/146202"
+      },
+      {
+        "title": "Skip unnecessary Slack text entity checks [#146629](https",
+        "description": "//github.com/openclaw/openclaw/pull/146629).",
+        "href": "https://github.com/openclaw/openclaw/issues/146629"
+      },
+      {
+        "title": "Reduce long Slack message conversion work [#147678](https",
+        "description": "//github.com/openclaw/openclaw/pull/147678).",
+        "href": "https://github.com/openclaw/openclaw/issues/147678"
+      },
+      {
+        "title": "Update Telegram access and replies without reconnecting [#146129](https://g...",
+        "description": "Update Telegram access and replies without reconnecting [#146129](https://github.com/openclaw/openclaw/pull/146129).",
+        "href": "https://github.com/openclaw/openclaw/issues/146129"
+      },
+      {
+        "title": "Reduce long Telegram message preparation [#147786](https",
+        "description": "//github.com/openclaw/openclaw/pull/147786).",
+        "href": "https://github.com/openclaw/openclaw/issues/147786"
+      },
+      {
+        "title": "Move Telegram message bookkeeping and poll routing off the event loop [#149...",
+        "description": "Move Telegram message bookkeeping and poll routing off the event loop [#149588](https://github.com/openclaw/openclaw/pull/149588).",
+        "href": "https://github.com/openclaw/openclaw/issues/149588"
+      },
+      {
+        "title": "Explain Telegram message storage and replay guarantees [#147222](https://gi...",
+        "description": "Explain Telegram message storage and replay guarantees [#147222](https://github.com/openclaw/openclaw/pull/147222). Thanks @navras98, @vincentkoc, and @mehmetulutug.",
+        "href": "https://github.com/openclaw/openclaw/issues/147222"
+      },
+      {
+        "title": "Clarify Telegram button sends and action permissions [#147229](https",
+        "description": "//github.com/openclaw/openclaw/pull/147229). Thanks @navras98 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147229"
+      },
+      {
+        "title": "Reduce Teams image and mention formatting work [#146362](https",
+        "description": "//github.com/openclaw/openclaw/pull/146362).",
+        "href": "https://github.com/openclaw/openclaw/issues/146362"
+      },
+      {
+        "title": "Reduce repeated work when formatting Matrix spoilers [#145261](https",
+        "description": "//github.com/openclaw/openclaw/pull/145261).",
+        "href": "https://github.com/openclaw/openclaw/issues/145261"
+      },
+      {
+        "title": "Speed up Matrix formatted message preparation [#146604](https",
+        "description": "//github.com/openclaw/openclaw/pull/146604).",
+        "href": "https://github.com/openclaw/openclaw/issues/146604"
+      },
+      {
+        "title": "Prepare long plain Matrix messages faster [#146652](https",
+        "description": "//github.com/openclaw/openclaw/pull/146652).",
+        "href": "https://github.com/openclaw/openclaw/issues/146652"
+      },
+      {
+        "title": "Reuse table parsing for Matrix spoilers [#147418](https",
+        "description": "//github.com/openclaw/openclaw/pull/147418).",
+        "href": "https://github.com/openclaw/openclaw/issues/147418"
+      },
+      {
+        "title": "Move Matrix credential and crypto snapshots off Gateway thread [#149548](ht...",
+        "description": "Move Matrix credential and crypto snapshots off Gateway thread [#149548](https://github.com/openclaw/openclaw/pull/149548).",
+        "href": "https://github.com/openclaw/openclaw/issues/149548"
+      },
+      {
+        "title": "Move Matrix recovery-key persistence to background storage [#149695](https:...",
+        "description": "Move Matrix recovery-key persistence to background storage [#149695](https://github.com/openclaw/openclaw/pull/149695).",
+        "href": "https://github.com/openclaw/openclaw/issues/149695"
+      },
+      {
+        "title": "Reduce unnecessary module loading for iMessage delivery [#146294](https://g...",
+        "description": "Reduce unnecessary module loading for iMessage delivery [#146294](https://github.com/openclaw/openclaw/pull/146294).",
+        "href": "https://github.com/openclaw/openclaw/issues/146294"
+      },
+      {
+        "title": "Move iMessage receipt recovery reads off the Gateway thread [#148392](https...",
+        "description": "Move iMessage receipt recovery reads off the Gateway thread [#148392](https://github.com/openclaw/openclaw/pull/148392).",
+        "href": "https://github.com/openclaw/openclaw/issues/148392"
+      },
+      {
+        "title": "Move iMessage echo and replay bookkeeping off the Gateway thread [#149605](...",
+        "description": "Move iMessage echo and replay bookkeeping off the Gateway thread [#149605](https://github.com/openclaw/openclaw/pull/149605).",
+        "href": "https://github.com/openclaw/openclaw/issues/149605"
+      },
+      {
+        "title": "Move iMessage reply-cache storage off the Gateway thread [#149808](https://...",
+        "description": "Move iMessage reply-cache storage off the Gateway thread [#149808](https://github.com/openclaw/openclaw/pull/149808).",
+        "href": "https://github.com/openclaw/openclaw/issues/149808"
+      },
+      {
+        "title": "Format long Signal list replies faster [#146340](https",
+        "description": "//github.com/openclaw/openclaw/pull/146340).",
+        "href": "https://github.com/openclaw/openclaw/issues/146340"
+      },
+      {
+        "title": "Answer Mattermost questions with option buttons [#135350](https",
+        "description": "//github.com/openclaw/openclaw/pull/135350). Thanks @edenfunf and @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/135350"
+      },
+      {
+        "title": "Reduce Buzz room recovery work on startup and reconnect [#146463](https://g...",
+        "description": "Reduce Buzz room recovery work on startup and reconnect [#146463](https://github.com/openclaw/openclaw/pull/146463).",
+        "href": "https://github.com/openclaw/openclaw/issues/146463"
+      },
+      {
+        "title": "Add channel names and verified help paths to JSON listings [#93265](https:/...",
+        "description": "Add channel names and verified help paths to JSON listings [#93265](https://github.com/openclaw/openclaw/pull/93265). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/93265"
+      },
+      {
+        "title": "Reduce repeated conversation search work [#145952](https",
+        "description": "//github.com/openclaw/openclaw/pull/145952).",
+        "href": "https://github.com/openclaw/openclaw/issues/145952"
+      },
+      {
+        "title": "Reduce device-pair notification status read cost [#146889](https",
+        "description": "//github.com/openclaw/openclaw/pull/146889).",
+        "href": "https://github.com/openclaw/openclaw/issues/146889"
+      },
+      {
+        "title": "Reduce cached Discord role processing [#147573](https",
+        "description": "//github.com/openclaw/openclaw/pull/147573).",
+        "href": "https://github.com/openclaw/openclaw/issues/147573"
+      },
+      {
+        "title": "Move queued session-delivery persistence off Gateway thread [#147887](https...",
+        "description": "Move queued session-delivery persistence off Gateway thread [#147887](https://github.com/openclaw/openclaw/pull/147887).",
+        "href": "https://github.com/openclaw/openclaw/issues/147887"
+      },
+      {
+        "title": "Avoid repeated missing-plugin checks [#147977](https",
+        "description": "//github.com/openclaw/openclaw/pull/147977).",
+        "href": "https://github.com/openclaw/openclaw/issues/147977"
+      },
+      {
+        "title": "Clarify channel membership in maturity references [#148120](https",
+        "description": "//github.com/openclaw/openclaw/pull/148120). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148120"
+      },
+      {
+        "title": "Clarify agent bindings and reload guidance [#148848](https",
+        "description": "//github.com/openclaw/openclaw/pull/148848).",
+        "href": "https://github.com/openclaw/openclaw/issues/148848"
+      },
+      {
+        "title": "Reject blank message channel arguments [#144802](https",
+        "description": "//github.com/openclaw/openclaw/pull/144802). Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144802"
+      },
+      {
+        "title": "Avoid Gateway blocking during Zalo credential refresh [#149527](https",
+        "description": "//github.com/openclaw/openclaw/pull/149527).",
+        "href": "https://github.com/openclaw/openclaw/issues/149527"
+      },
+      {
+        "title": "Reduce repeated code-block searches when splitting replies [#145254](https:...",
+        "description": "Reduce repeated code-block searches when splitting replies [#145254](https://github.com/openclaw/openclaw/pull/145254).",
+        "href": "https://github.com/openclaw/openclaw/issues/145254"
+      },
+      {
+        "title": "Reduce formatting work for list-heavy reports [#145665](https",
+        "description": "//github.com/openclaw/openclaw/pull/145665).",
+        "href": "https://github.com/openclaw/openclaw/issues/145665"
+      },
+      {
+        "title": "Prepare long newline-chunked replies faster [#146242](https",
+        "description": "//github.com/openclaw/openclaw/pull/146242).",
+        "href": "https://github.com/openclaw/openclaw/issues/146242"
+      },
+      {
+        "title": "Reduce processing of code-containing progress updates [#146628](https",
+        "description": "//github.com/openclaw/openclaw/pull/146628).",
+        "href": "https://github.com/openclaw/openclaw/issues/146628"
+      },
+      {
+        "title": "Reduce processing of streamed reasoning progress [#146751](https",
+        "description": "//github.com/openclaw/openclaw/pull/146751).",
+        "href": "https://github.com/openclaw/openclaw/issues/146751"
+      },
+      {
+        "title": "Reduce repeated work in Matrix, Feishu and Beam [#146772](https",
+        "description": "//github.com/openclaw/openclaw/pull/146772).",
+        "href": "https://github.com/openclaw/openclaw/issues/146772"
+      },
+      {
+        "title": "Reduce processing for long reasoning progress updates [#146776](https",
+        "description": "//github.com/openclaw/openclaw/pull/146776).",
+        "href": "https://github.com/openclaw/openclaw/issues/146776"
+      },
+      {
+        "title": "Avoid duplicate Zalo Personal Markdown parsing [#147488](https",
+        "description": "//github.com/openclaw/openclaw/pull/147488).",
+        "href": "https://github.com/openclaw/openclaw/issues/147488"
+      },
+      {
+        "title": "Skip unused attachment decoding [#147879](https",
+        "description": "//github.com/openclaw/openclaw/pull/147879).",
+        "href": "https://github.com/openclaw/openclaw/issues/147879"
+      },
+      {
+        "title": "Reduce repeated parsing of long Telegram replies [#148285](https",
+        "description": "//github.com/openclaw/openclaw/pull/148285).",
+        "href": "https://github.com/openclaw/openclaw/issues/148285"
+      },
+      {
+        "title": "Skip unnecessary transcript-header scans in code-heavy replies [#148345](ht...",
+        "description": "Skip unnecessary transcript-header scans in code-heavy replies [#148345](https://github.com/openclaw/openclaw/pull/148345).",
+        "href": "https://github.com/openclaw/openclaw/issues/148345"
+      },
+      {
+        "title": "Reduce duplicate-checking work as message caches fill [#148700](https",
+        "description": "//github.com/openclaw/openclaw/pull/148700).",
+        "href": "https://github.com/openclaw/openclaw/issues/148700"
+      },
+      {
+        "title": "Avoid repeated rich-post parsing in Feishu reads [#149136](https",
+        "description": "//github.com/openclaw/openclaw/pull/149136).",
+        "href": "https://github.com/openclaw/openclaw/issues/149136"
+      },
+      {
+        "title": "Speed up formatting long Telegram replies [#150213](https",
+        "description": "//github.com/openclaw/openclaw/pull/150213).",
+        "href": "https://github.com/openclaw/openclaw/issues/150213"
+      },
+      {
+        "title": "Reduce Telegram reply formatting work [#150222](https",
+        "description": "//github.com/openclaw/openclaw/pull/150222).",
+        "href": "https://github.com/openclaw/openclaw/issues/150222"
+      },
+      {
+        "title": "Clarify WeChat 2.4.8 access-control limits [#144262](https",
+        "description": "//github.com/openclaw/openclaw/pull/144262). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144262"
+      },
+      {
+        "title": "Reduce progress-note formatting work [#147602](https",
+        "description": "//github.com/openclaw/openclaw/pull/147602).",
+        "href": "https://github.com/openclaw/openclaw/issues/147602"
+      },
+      {
+        "title": "Reduce overlapping memory chunk preparation [#145733](https",
+        "description": "//github.com/openclaw/openclaw/pull/145733).",
+        "href": "https://github.com/openclaw/openclaw/issues/145733"
+      },
+      {
+        "title": "Reduce archive-notification work in memory indexing [#146140](https",
+        "description": "//github.com/openclaw/openclaw/pull/146140).",
+        "href": "https://github.com/openclaw/openclaw/issues/146140"
+      },
+      {
+        "title": "Skip unnecessary setup for empty memory replacements [#146150](https",
+        "description": "//github.com/openclaw/openclaw/pull/146150).",
+        "href": "https://github.com/openclaw/openclaw/issues/146150"
+      },
+      {
+        "title": "Reduce repeated memory index checks [#146494](https",
+        "description": "//github.com/openclaw/openclaw/pull/146494).",
+        "href": "https://github.com/openclaw/openclaw/issues/146494"
+      },
+      {
+        "title": "Reuse memory-origin queries [#147630](https",
+        "description": "//github.com/openclaw/openclaw/pull/147630).",
+        "href": "https://github.com/openclaw/openclaw/issues/147630"
+      },
+      {
+        "title": "Move memory event storage off Gateway thread [#147948](https",
+        "description": "//github.com/openclaw/openclaw/pull/147948).",
+        "href": "https://github.com/openclaw/openclaw/issues/147948"
+      },
+      {
+        "title": "Bound vector cleanup for small memory sources [#148854](https",
+        "description": "//github.com/openclaw/openclaw/pull/148854).",
+        "href": "https://github.com/openclaw/openclaw/issues/148854"
+      },
+      {
+        "title": "Report missing memory command arguments sooner [#149946](https",
+        "description": "//github.com/openclaw/openclaw/pull/149946).",
+        "href": "https://github.com/openclaw/openclaw/issues/149946"
+      },
+      {
+        "title": "Reduce memory-forget counting overhead [#146215](https",
+        "description": "//github.com/openclaw/openclaw/pull/146215).",
+        "href": "https://github.com/openclaw/openclaw/issues/146215"
+      },
+      {
+        "title": "Reduce work when deleting memory source records [#146283](https",
+        "description": "//github.com/openclaw/openclaw/pull/146283).",
+        "href": "https://github.com/openclaw/openclaw/issues/146283"
+      },
+      {
+        "title": "Reduce data loaded when previewing and forgetting memory [#147315](https://...",
+        "description": "Reduce data loaded when previewing and forgetting memory [#147315](https://github.com/openclaw/openclaw/pull/147315).",
+        "href": "https://github.com/openclaw/openclaw/issues/147315"
+      },
+      {
+        "title": "Batch deletion of forgotten memory sources [#147451](https",
+        "description": "//github.com/openclaw/openclaw/pull/147451).",
+        "href": "https://github.com/openclaw/openclaw/issues/147451"
+      },
+      {
+        "title": "Batch records when forgetting many sessions [#147504](https",
+        "description": "//github.com/openclaw/openclaw/pull/147504).",
+        "href": "https://github.com/openclaw/openclaw/issues/147504"
+      },
+      {
+        "title": "Reduce text loading in fallback memory search [#145693](https",
+        "description": "//github.com/openclaw/openclaw/pull/145693).",
+        "href": "https://github.com/openclaw/openclaw/issues/145693"
+      },
+      {
+        "title": "Speed keyword searches in large memory indexes [#145739](https",
+        "description": "//github.com/openclaw/openclaw/pull/145739).",
+        "href": "https://github.com/openclaw/openclaw/issues/145739"
+      },
+      {
+        "title": "Reduce repeated snippet work in memory diversity ranking [#146120](https://...",
+        "description": "Reduce repeated snippet work in memory diversity ranking [#146120](https://github.com/openclaw/openclaw/pull/146120).",
+        "href": "https://github.com/openclaw/openclaw/issues/146120"
+      },
+      {
+        "title": "Speed up memory searches for filenames and paths [#146153](https",
+        "description": "//github.com/openclaw/openclaw/pull/146153).",
+        "href": "https://github.com/openclaw/openclaw/issues/146153"
+      },
+      {
+        "title": "Keep the Gateway responsive during large memory searches [#146168](https://...",
+        "description": "Keep the Gateway responsive during large memory searches [#146168](https://github.com/openclaw/openclaw/pull/146168). Thanks @jackten.",
+        "href": "https://github.com/openclaw/openclaw/issues/146168"
+      },
+      {
+        "title": "Rank multilingual memory results with less work [#146256](https",
+        "description": "//github.com/openclaw/openclaw/pull/146256).",
+        "href": "https://github.com/openclaw/openclaw/issues/146256"
+      },
+      {
+        "title": "Reduce unrelated project reads during memory recall [#146301](https",
+        "description": "//github.com/openclaw/openclaw/pull/146301).",
+        "href": "https://github.com/openclaw/openclaw/issues/146301"
+      },
+      {
+        "title": "Load less text for vector memory search snippets [#146380](https",
+        "description": "//github.com/openclaw/openclaw/pull/146380).",
+        "href": "https://github.com/openclaw/openclaw/issues/146380"
+      },
+      {
+        "title": "Fetch less note text during fallback memory search [#146507](https",
+        "description": "//github.com/openclaw/openclaw/pull/146507).",
+        "href": "https://github.com/openclaw/openclaw/issues/146507"
+      },
+      {
+        "title": "Reduce hashing work in memory and Slack [#146686](https",
+        "description": "//github.com/openclaw/openclaw/pull/146686).",
+        "href": "https://github.com/openclaw/openclaw/issues/146686"
+      },
+      {
+        "title": "Copy less note text during memory filename searches [#146891](https",
+        "description": "//github.com/openclaw/openclaw/pull/146891).",
+        "href": "https://github.com/openclaw/openclaw/issues/146891"
+      },
+      {
+        "title": "Reduce temporary memory while hashing exports [#147481](https",
+        "description": "//github.com/openclaw/openclaw/pull/147481).",
+        "href": "https://github.com/openclaw/openclaw/issues/147481"
+      },
+      {
+        "title": "Bound vector-search decision counts [#147900](https",
+        "description": "//github.com/openclaw/openclaw/pull/147900).",
+        "href": "https://github.com/openclaw/openclaw/issues/147900"
+      },
+      {
+        "title": "Reuse SQL statements during memory vector replacement [#148201](https",
+        "description": "//github.com/openclaw/openclaw/pull/148201). Thanks @vincentkoc, @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/148201"
+      },
+      {
+        "title": "Avoid duplicate memory startup transcript reads [#148202](https",
+        "description": "//github.com/openclaw/openclaw/pull/148202).",
+        "href": "https://github.com/openclaw/openclaw/issues/148202"
+      },
+      {
+        "title": "Avoid unnecessary leases during captured-text preparation [#148278](https:/...",
+        "description": "Avoid unnecessary leases during captured-text preparation [#148278](https://github.com/openclaw/openclaw/pull/148278).",
+        "href": "https://github.com/openclaw/openclaw/issues/148278"
+      },
+      {
+        "title": "Avoid decoding saved prompts during transcript discovery [#148484](https://...",
+        "description": "Avoid decoding saved prompts during transcript discovery [#148484](https://github.com/openclaw/openclaw/pull/148484).",
+        "href": "https://github.com/openclaw/openclaw/issues/148484"
+      },
+      {
+        "title": "Skip unused transcript revision reads during memory sync [#148615](https://...",
+        "description": "Skip unused transcript revision reads during memory sync [#148615](https://github.com/openclaw/openclaw/pull/148615).",
+        "href": "https://github.com/openclaw/openclaw/issues/148615"
+      },
+      {
+        "title": "Skip unrelated project reads in global recall [#149452](https",
+        "description": "//github.com/openclaw/openclaw/pull/149452).",
+        "href": "https://github.com/openclaw/openclaw/issues/149452"
+      },
+      {
+        "title": "Skip unused recall-tracking loading when dreaming is disabled [#149503](htt...",
+        "description": "Skip unused recall-tracking loading when dreaming is disabled [#149503](https://github.com/openclaw/openclaw/pull/149503).",
+        "href": "https://github.com/openclaw/openclaw/issues/149503"
+      },
+      {
+        "title": "Reduce memory-index worker startup time [#150314](https",
+        "description": "//github.com/openclaw/openclaw/pull/150314).",
+        "href": "https://github.com/openclaw/openclaw/issues/150314"
+      },
+      {
+        "title": "Reduce memory-index worker initialization overhead [#150602](https",
+        "description": "//github.com/openclaw/openclaw/pull/150602).",
+        "href": "https://github.com/openclaw/openclaw/issues/150602"
+      },
+      {
+        "title": "Move memory-presence checks off the CLI thread [#150988](https",
+        "description": "//github.com/openclaw/openclaw/pull/150988).",
+        "href": "https://github.com/openclaw/openclaw/issues/150988"
+      },
+      {
+        "title": "Reduce repeated parsing in Memory Wiki [#146364](https",
+        "description": "//github.com/openclaw/openclaw/pull/146364).",
+        "href": "https://github.com/openclaw/openclaw/issues/146364"
+      },
+      {
+        "title": "Reduce work selecting Memory Wiki search snippets [#148361](https",
+        "description": "//github.com/openclaw/openclaw/pull/148361).",
+        "href": "https://github.com/openclaw/openclaw/issues/148361"
+      },
+      {
+        "title": "Expose public asynchronous embedding-batch types [#129625](https",
+        "description": "//github.com/openclaw/openclaw/pull/129625). Thanks @ekinnee, @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/129625"
+      },
+      {
+        "title": "Reuse timezone formatters in memory scans [#148461](https",
+        "description": "//github.com/openclaw/openclaw/pull/148461).",
+        "href": "https://github.com/openclaw/openclaw/issues/148461"
+      },
+      {
+        "title": "Reuse the current day when calculating memory status [#148593](https",
+        "description": "//github.com/openclaw/openclaw/pull/148593).",
+        "href": "https://github.com/openclaw/openclaw/issues/148593"
+      },
+      {
+        "title": "Reduce text transfer during reminder maintenance [#148996](https",
+        "description": "//github.com/openclaw/openclaw/pull/148996).",
+        "href": "https://github.com/openclaw/openclaw/issues/148996"
+      },
+      {
+        "title": "Batch pinned skill revision lookups [#146235](https",
+        "description": "//github.com/openclaw/openclaw/pull/146235).",
+        "href": "https://github.com/openclaw/openclaw/issues/146235"
+      },
+      {
+        "title": "Restore readable skill-creation tutorial steps [#144388](https",
+        "description": "//github.com/openclaw/openclaw/pull/144388). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144388"
+      },
+      {
+        "title": "Browse plugin skill folders in the Control UI [#149287](https",
+        "description": "//github.com/openclaw/openclaw/pull/149287). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149287"
+      },
+      {
+        "title": "Avoid redundant Workshop text copies [#147593](https",
+        "description": "//github.com/openclaw/openclaw/pull/147593).",
+        "href": "https://github.com/openclaw/openclaw/issues/147593"
+      },
+      {
+        "title": "Skip unused indexing in single-workspace skill loading [#145151](https://gi...",
+        "description": "Skip unused indexing in single-workspace skill loading [#145151](https://github.com/openclaw/openclaw/pull/145151).",
+        "href": "https://github.com/openclaw/openclaw/issues/145151"
+      },
+      {
+        "title": "Reduce missing-command lookup overhead on Unix [#145175](https",
+        "description": "//github.com/openclaw/openclaw/pull/145175).",
+        "href": "https://github.com/openclaw/openclaw/issues/145175"
+      },
+      {
+        "title": "Avoid repeated dependency checks in skill status [#146274](https",
+        "description": "//github.com/openclaw/openclaw/pull/146274).",
+        "href": "https://github.com/openclaw/openclaw/issues/146274"
+      },
+      {
+        "title": "Reduce skills-watcher work during unrelated file activity [#146309](https:/...",
+        "description": "Reduce skills-watcher work during unrelated file activity [#146309](https://github.com/openclaw/openclaw/pull/146309).",
+        "href": "https://github.com/openclaw/openclaw/issues/146309"
+      },
+      {
+        "title": "Keep Gateway requests responsive during skill preparation [#146373](https:/...",
+        "description": "Keep Gateway requests responsive during skill preparation [#146373](https://github.com/openclaw/openclaw/pull/146373).",
+        "href": "https://github.com/openclaw/openclaw/issues/146373"
+      },
+      {
+        "title": "Skip unnecessary skill scans for URL messages [#146467](https",
+        "description": "//github.com/openclaw/openclaw/pull/146467).",
+        "href": "https://github.com/openclaw/openclaw/issues/146467"
+      },
+      {
+        "title": "Skip program searches for unavailable skills and hooks [#146470](https://gi...",
+        "description": "Skip program searches for unavailable skills and hooks [#146470](https://github.com/openclaw/openclaw/pull/146470).",
+        "href": "https://github.com/openclaw/openclaw/issues/146470"
+      },
+      {
+        "title": "Prepare skills faster when plugins are disabled [#146615](https",
+        "description": "//github.com/openclaw/openclaw/pull/146615).",
+        "href": "https://github.com/openclaw/openclaw/issues/146615"
+      },
+      {
+        "title": "Prepare Gateway skill commands asynchronously [#146812](https",
+        "description": "//github.com/openclaw/openclaw/pull/146812).",
+        "href": "https://github.com/openclaw/openclaw/issues/146812"
+      },
+      {
+        "title": "Skip unnecessary tool checks for excluded skills [#147359](https",
+        "description": "//github.com/openclaw/openclaw/pull/147359).",
+        "href": "https://github.com/openclaw/openclaw/issues/147359"
+      },
+      {
+        "title": "Reduce repeated polling during skill edits [#148273](https",
+        "description": "//github.com/openclaw/openclaw/pull/148273).",
+        "href": "https://github.com/openclaw/openclaw/issues/148273"
+      },
+      {
+        "title": "Speed up concurrent skill preparation [#149791](https",
+        "description": "//github.com/openclaw/openclaw/pull/149791).",
+        "href": "https://github.com/openclaw/openclaw/issues/149791"
+      },
+      {
+        "title": "Clarify remote Google Workspace authorization [#145945](https",
+        "description": "//github.com/openclaw/openclaw/pull/145945). Thanks @donniefi, @vincentkoc, and @abhishek17n.",
+        "href": "https://github.com/openclaw/openclaw/issues/145945"
+      },
+      {
+        "title": "Load chart libraries and fonts in widgets [#147265](https",
+        "description": "//github.com/openclaw/openclaw/pull/147265).",
+        "href": "https://github.com/openclaw/openclaw/issues/147265"
+      },
+      {
+        "title": "Make Web the Mac default with an experimental Native option [#149763](https...",
+        "description": "Make Web the Mac default with an experimental Native option [#149763](https://github.com/openclaw/openclaw/pull/149763).",
+        "href": "https://github.com/openclaw/openclaw/issues/149763"
+      },
+      {
+        "title": "Translate the Mac native-experience setting across 20 locales [#149872](htt...",
+        "description": "Translate the Mac native-experience setting across 20 locales [#149872](https://github.com/openclaw/openclaw/pull/149872).",
+        "href": "https://github.com/openclaw/openclaw/issues/149872"
+      },
+      {
+        "title": "Localized Mac Gateway setup and recovery messages [#144613](https",
+        "description": "//github.com/openclaw/openclaw/pull/144613).",
+        "href": "https://github.com/openclaw/openclaw/issues/144613"
+      },
+      {
+        "title": "Run a local Gateway alongside a remote primary on Mac [#145038](https",
+        "description": "//github.com/openclaw/openclaw/pull/145038).",
+        "href": "https://github.com/openclaw/openclaw/issues/145038"
+      },
+      {
+        "title": "Translate local Gateway controls and port notices [#145311](https",
+        "description": "//github.com/openclaw/openclaw/pull/145311).",
+        "href": "https://github.com/openclaw/openclaw/issues/145311"
+      },
+      {
+        "title": "Translate macOS browser sign-in recovery [#145110](https",
+        "description": "//github.com/openclaw/openclaw/pull/145110).",
+        "href": "https://github.com/openclaw/openclaw/issues/145110"
+      },
+      {
+        "title": "Gateway switching in the Mac sidebar [#145341](https",
+        "description": "//github.com/openclaw/openclaw/pull/145341).",
+        "href": "https://github.com/openclaw/openclaw/issues/145341"
+      },
+      {
+        "title": "Show Mac Gateway shortcut hints [#145416](https",
+        "description": "//github.com/openclaw/openclaw/pull/145416).",
+        "href": "https://github.com/openclaw/openclaw/issues/145416"
+      },
+      {
+        "title": "Refresh Mac connection-diagnostic translations [#145856](https",
+        "description": "//github.com/openclaw/openclaw/pull/145856).",
+        "href": "https://github.com/openclaw/openclaw/issues/145856"
+      },
+      {
+        "title": "Hide the selected Gateway's redundant shortcut hint [#146753](https",
+        "description": "//github.com/openclaw/openclaw/pull/146753).",
+        "href": "https://github.com/openclaw/openclaw/issues/146753"
+      },
+      {
+        "title": "Translate macOS browser sign-in recovery messages [#147025](https",
+        "description": "//github.com/openclaw/openclaw/pull/147025). Includes Open browser and inactive sign-in recovery guidance.",
+        "href": "https://github.com/openclaw/openclaw/issues/147025"
+      },
+      {
+        "title": "Show page icons on Mac browser tabs [#145714](https",
+        "description": "//github.com/openclaw/openclaw/pull/145714).",
+        "href": "https://github.com/openclaw/openclaw/issues/145714"
+      },
+      {
+        "title": "Keep Mac Computer sessions available and open desktops directly [#144226](h...",
+        "description": "Keep Mac Computer sessions available and open desktops directly [#144226](https://github.com/openclaw/openclaw/pull/144226). Keep authorized Mac desktops awake, open session desktops directly, launch discovered Mac apps, restore node hosting after reapproval, and complete prepared-worker refill and cleanup.",
+        "href": "https://github.com/openclaw/openclaw/issues/144226"
+      },
+      {
+        "title": "Translate macOS unattended-desktop consent [#145055](https",
+        "description": "//github.com/openclaw/openclaw/pull/145055).",
+        "href": "https://github.com/openclaw/openclaw/issues/145055"
+      },
+      {
+        "title": "Match Apple model controls to Gateway capabilities [#144762](https",
+        "description": "//github.com/openclaw/openclaw/pull/144762). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144762"
+      },
+      {
+        "title": "Keep Quick Chat model and speed choices current [#144804](https",
+        "description": "//github.com/openclaw/openclaw/pull/144804). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144804"
+      },
+      {
+        "title": "Refresh Apple model-settings and sign-in translations [#144856](https",
+        "description": "//github.com/openclaw/openclaw/pull/144856).",
+        "href": "https://github.com/openclaw/openclaw/issues/144856"
+      },
+      {
+        "title": "Update embedded macOS Peekaboo automation to 4.4.0 [#148485](https",
+        "description": "//github.com/openclaw/openclaw/pull/148485).",
+        "href": "https://github.com/openclaw/openclaw/issues/148485"
+      },
+      {
+        "title": "Reduce macOS app size by removing unused dashboard copies [#150729](https:/...",
+        "description": "Reduce macOS app size by removing unused dashboard copies [#150729](https://github.com/openclaw/openclaw/pull/150729). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150729"
+      },
+      {
+        "title": "Review uncommitted code changes in Android chats [#144101](https",
+        "description": "//github.com/openclaw/openclaw/pull/144101). Thanks @ansxor and @iwhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/144101"
+      },
+      {
+        "title": "Localized Android change-review and selection controls [#144501](https://gi...",
+        "description": "Localized Android change-review and selection controls [#144501](https://github.com/openclaw/openclaw/pull/144501).",
+        "href": "https://github.com/openclaw/openclaw/issues/144501"
+      },
+      {
+        "title": "Localized Android model-refresh retry guidance [#144698](https",
+        "description": "//github.com/openclaw/openclaw/pull/144698).",
+        "href": "https://github.com/openclaw/openclaw/issues/144698"
+      },
+      {
+        "title": "Match Android model controls and sign-in to Gateway capabilities [#144711](...",
+        "description": "Match Android model controls and sign-in to Gateway capabilities [#144711](https://github.com/openclaw/openclaw/pull/144711). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144711"
+      },
+      {
+        "title": "Refresh Android and Wear OS translations [#144759](https",
+        "description": "//github.com/openclaw/openclaw/pull/144759). Covers sign-in and model guidance.",
+        "href": "https://github.com/openclaw/openclaw/issues/144759"
+      },
+      {
+        "title": "Refresh native sign-in and connection translations [#145410](https",
+        "description": "//github.com/openclaw/openclaw/pull/145410). Covers Android sign-in and Mac Gateway connections.",
+        "href": "https://github.com/openclaw/openclaw/issues/145410"
+      },
+      {
+        "title": "Reuse Android history preparation while streaming [#147940](https",
+        "description": "//github.com/openclaw/openclaw/pull/147940). Retains message replacements and expanded work within the current conversation. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147940"
+      },
+      {
+        "title": "Switch and add Android Gateways from the sidebar [#148209](https",
+        "description": "//github.com/openclaw/openclaw/pull/148209). Thanks @iwhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/148209"
+      },
+      {
+        "title": "Translate the Wear OS call-ending status [#146745](https",
+        "description": "//github.com/openclaw/openclaw/pull/146745). Includes 21 locales.",
+        "href": "https://github.com/openclaw/openclaw/issues/146745"
+      },
+      {
+        "title": "Translate Wear OS microphone-permission recovery labels [#146778](https://g...",
+        "description": "Translate Wear OS microphone-permission recovery labels [#146778](https://github.com/openclaw/openclaw/pull/146778).",
+        "href": "https://github.com/openclaw/openclaw/issues/146778"
+      },
+      {
+        "title": "In-app browser tabs for the Tauri companion [#145572](https",
+        "description": "//github.com/openclaw/openclaw/pull/145572).",
+        "href": "https://github.com/openclaw/openclaw/issues/145572"
+      },
+      {
+        "title": "Save and switch desktop Gateways [#147684](https",
+        "description": "//github.com/openclaw/openclaw/pull/147684).",
+        "href": "https://github.com/openclaw/openclaw/issues/147684"
+      },
+      {
+        "title": "Simplify the desktop Gateway manager [#148526](https",
+        "description": "//github.com/openclaw/openclaw/pull/148526).",
+        "href": "https://github.com/openclaw/openclaw/issues/148526"
+      },
+      {
+        "title": "Match desktop setup and Quick Chat to system appearance [#148808](https://g...",
+        "description": "Match desktop setup and Quick Chat to system appearance [#148808](https://github.com/openclaw/openclaw/pull/148808).",
+        "href": "https://github.com/openclaw/openclaw/issues/148808"
+      },
+      {
+        "title": "Omarchy agents and conversations panel [#145593](https",
+        "description": "//github.com/openclaw/openclaw/pull/145593).",
+        "href": "https://github.com/openclaw/openclaw/issues/145593"
+      },
+      {
+        "title": "Add agent navigation and improve native Mac chat layout [#146531](https://g...",
+        "description": "Add agent navigation and improve native Mac chat layout [#146531](https://github.com/openclaw/openclaw/pull/146531).",
+        "href": "https://github.com/openclaw/openclaw/issues/146531"
+      },
+      {
+        "title": "Show agent activity and thread previews in native Mac chat [#147197](https:...",
+        "description": "Show agent activity and thread previews in native Mac chat [#147197](https://github.com/openclaw/openclaw/pull/147197). Places sign-in by the composer and distinguishes finished, failed, empty and missing tool results.",
+        "href": "https://github.com/openclaw/openclaw/issues/147197"
+      },
+      {
+        "title": "Translate native chat activity and unread labels [#147384](https",
+        "description": "//github.com/openclaw/openclaw/pull/147384). Covers iOS and Mac activity, unread counts and personal message-preview labels in 21 existing non-English locales.",
+        "href": "https://github.com/openclaw/openclaw/issues/147384"
+      },
+      {
+        "title": "Translate native task-status descriptions [#147899](https",
+        "description": "//github.com/openclaw/openclaw/pull/147899). Covers iOS and Mac tooltips and accessibility descriptions in 21 non-English locales. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147899"
+      },
+      {
+        "title": "Refresh conversation and worktree translations in native apps [#146924](htt...",
+        "description": "Refresh conversation and worktree translations in native apps [#146924](https://github.com/openclaw/openclaw/pull/146924).",
+        "href": "https://github.com/openclaw/openclaw/issues/146924"
+      },
+      {
+        "title": "Combine desktop window controls with the dashboard header [#147097](https:/...",
+        "description": "Combine desktop window controls with the dashboard header [#147097](https://github.com/openclaw/openclaw/pull/147097).",
+        "href": "https://github.com/openclaw/openclaw/issues/147097"
+      },
+      {
+        "title": "Preserve Linux update delivery across core releases [#146052](https",
+        "description": "//github.com/openclaw/openclaw/pull/146052). Preserve signed Linux update feeds and core-release mirrors, retry metadata delivery without rebuilding verified bundles, and protect existing public release bodies. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146052"
+      },
+      {
+        "title": "Publish Linux apps with stable releases and preserve updater continuity [#1...",
+        "description": "Publish Linux apps with stable releases and preserve updater continuity [#147113](https://github.com/openclaw/openclaw/pull/147113).",
+        "href": "https://github.com/openclaw/openclaw/issues/147113"
+      },
+      {
+        "title": "Clarify Linux desktop packages, shortcuts and microphone access [#146051](h...",
+        "description": "Clarify Linux desktop packages, shortcuts and microphone access [#146051](https://github.com/openclaw/openclaw/pull/146051). Includes explicit Model Setup actions. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146051"
+      },
+      {
+        "title": "Fold completed work above macOS replies [#147540](https",
+        "description": "//github.com/openclaw/openclaw/pull/147540). Preserves separate progress messages through history refreshes. Thanks @cbruney.",
+        "href": "https://github.com/openclaw/openclaw/issues/147540"
+      },
+      {
+        "title": "Translate native completed-work labels [#147650](https",
+        "description": "//github.com/openclaw/openclaw/pull/147650). Covers existing completed-work and elapsed-time labels in iOS and Mac catalogs across 21 non-English locales.",
+        "href": "https://github.com/openclaw/openclaw/issues/147650"
+      },
+      {
+        "title": "Switch saved iOS Gateways from the sidebar [#146641](https",
+        "description": "//github.com/openclaw/openclaw/pull/146641). Thanks @solvely-colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/146641"
+      },
+      {
+        "title": "Translate iOS Gateway menus and switching alerts [#148377](https",
+        "description": "//github.com/openclaw/openclaw/pull/148377). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148377"
+      },
+      {
+        "title": "Collapse completed chat work on iPhone and iPad [#148002](https",
+        "description": "//github.com/openclaw/openclaw/pull/148002).",
+        "href": "https://github.com/openclaw/openclaw/issues/148002"
+      },
+      {
+        "title": "Collapse finished work in Android conversations [#148050](https",
+        "description": "//github.com/openclaw/openclaw/pull/148050). Uses run IDs for strict matching when available.",
+        "href": "https://github.com/openclaw/openclaw/issues/148050"
+      },
+      {
+        "title": "Show Android dictation and attachment progress [#150994](https",
+        "description": "//github.com/openclaw/openclaw/pull/150994).",
+        "href": "https://github.com/openclaw/openclaw/issues/150994"
+      },
+      {
+        "title": "Show iOS dictation and attachment progress [#151004](https",
+        "description": "//github.com/openclaw/openclaw/pull/151004).",
+        "href": "https://github.com/openclaw/openclaw/issues/151004"
+      },
+      {
+        "title": "Reduce Android queued-message database reads [#148577](https",
+        "description": "//github.com/openclaw/openclaw/pull/148577).",
+        "href": "https://github.com/openclaw/openclaw/issues/148577"
+      },
+      {
+        "title": "Batch attachment reads when restoring the Apple chat outbox [#148609](https...",
+        "description": "Batch attachment reads when restoring the Apple chat outbox [#148609](https://github.com/openclaw/openclaw/pull/148609).",
+        "href": "https://github.com/openclaw/openclaw/issues/148609"
+      },
+      {
+        "title": "Reduce Android queued-message send overhead [#148899](https",
+        "description": "//github.com/openclaw/openclaw/pull/148899).",
+        "href": "https://github.com/openclaw/openclaw/issues/148899"
+      },
+      {
+        "title": "Translate native source-preview controls [#148897](https",
+        "description": "//github.com/openclaw/openclaw/pull/148897).",
+        "href": "https://github.com/openclaw/openclaw/issues/148897"
+      },
+      {
+        "title": "Inspect cited sources directly in Android chat [#148904](https",
+        "description": "//github.com/openclaw/openclaw/pull/148904).",
+        "href": "https://github.com/openclaw/openclaw/issues/148904"
+      },
+      {
+        "title": "Inspect research sources in macOS and iOS chat [#148906](https",
+        "description": "//github.com/openclaw/openclaw/pull/148906).",
+        "href": "https://github.com/openclaw/openclaw/issues/148906"
+      },
+      {
+        "title": "Preview pending requests in native app sidebars [#149811](https",
+        "description": "//github.com/openclaw/openclaw/pull/149811).",
+        "href": "https://github.com/openclaw/openclaw/issues/149811"
+      },
+      {
+        "title": "Move Apple push registration reads off the Gateway thread [#150570](https:/...",
+        "description": "Move Apple push registration reads off the Gateway thread [#150570](https://github.com/openclaw/openclaw/pull/150570).",
+        "href": "https://github.com/openclaw/openclaw/issues/150570"
+      },
+      {
+        "title": "Translate Android gateway and QR-scanning messages [#149633](https",
+        "description": "//github.com/openclaw/openclaw/pull/149633).",
+        "href": "https://github.com/openclaw/openclaw/issues/149633"
+      },
+      {
+        "title": "Translate Android Talk voice-change errors [#149679](https",
+        "description": "//github.com/openclaw/openclaw/pull/149679).",
+        "href": "https://github.com/openclaw/openclaw/issues/149679"
+      },
+      {
+        "title": "Refresh native translations for pending requests [#149891](https",
+        "description": "//github.com/openclaw/openclaw/pull/149891).",
+        "href": "https://github.com/openclaw/openclaw/issues/149891"
+      },
+      {
+        "title": "Translate macOS setup and utility labels [#150619](https",
+        "description": "//github.com/openclaw/openclaw/pull/150619).",
+        "href": "https://github.com/openclaw/openclaw/issues/150619"
+      },
+      {
+        "title": "Translate native dictation and attachment feedback [#151041](https",
+        "description": "//github.com/openclaw/openclaw/pull/151041).",
+        "href": "https://github.com/openclaw/openclaw/issues/151041"
+      },
+      {
+        "title": "Add shared Rust Gateway and node-host libraries [#116050](https",
+        "description": "//github.com/openclaw/openclaw/pull/116050). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/116050"
+      },
+      {
+        "title": "Support embedded Rust node lifecycles and streaming commands [#116450](http...",
+        "description": "Support embedded Rust node lifecycles and streaming commands [#116450](https://github.com/openclaw/openclaw/pull/116450). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/116450"
+      },
+      {
+        "title": "Add an authenticated bridge for separate Rust node runtimes [#116863](https...",
+        "description": "Add an authenticated bridge for separate Rust node runtimes [#116863](https://github.com/openclaw/openclaw/pull/116863). Thanks @giodl73-repo.",
+        "href": "https://github.com/openclaw/openclaw/issues/116863"
+      },
+      {
+        "title": "Public GPT-Live and account-aware Talk defaults [#145382](https",
+        "description": "//github.com/openclaw/openclaw/pull/145382).",
+        "href": "https://github.com/openclaw/openclaw/issues/145382"
+      },
+      {
+        "title": "Reduce CPU work during voice audio conversion [#146469](https",
+        "description": "//github.com/openclaw/openclaw/pull/146469).",
+        "href": "https://github.com/openclaw/openclaw/issues/146469"
+      },
+      {
+        "title": "Extend GPT-Live to meetings and phone calls [#146546](https",
+        "description": "//github.com/openclaw/openclaw/pull/146546).",
+        "href": "https://github.com/openclaw/openclaw/issues/146546"
+      },
+      {
+        "title": "Switch voices during supported Talk and Discord calls [#146676](https",
+        "description": "//github.com/openclaw/openclaw/pull/146676).",
+        "href": "https://github.com/openclaw/openclaw/issues/146676"
+      },
+      {
+        "title": "Change Google Live voices during Talk and Discord calls [#149748](https://g...",
+        "description": "Change Google Live voices during Talk and Discord calls [#149748](https://github.com/openclaw/openclaw/pull/149748).",
+        "href": "https://github.com/openclaw/openclaw/issues/149748"
+      },
+      {
+        "title": "Use Apple on-device models for setup and utility tasks [#150376](https://gi...",
+        "description": "Use Apple on-device models for setup and utility tasks [#150376](https://github.com/openclaw/openclaw/pull/150376).",
+        "href": "https://github.com/openclaw/openclaw/issues/150376"
+      },
+      {
+        "title": "Connect providers without changing the selected model [#144329](https",
+        "description": "//github.com/openclaw/openclaw/pull/144329). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144329"
+      },
+      {
+        "title": "Unify API-key editing and removal [#144420](https",
+        "description": "//github.com/openclaw/openclaw/pull/144420). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144420"
+      },
+      {
+        "title": "Choose model access after provider sign-in [#144468](https",
+        "description": "//github.com/openclaw/openclaw/pull/144468). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144468"
+      },
+      {
+        "title": "Sign in to OpenRouter from private chat [#144491](https",
+        "description": "//github.com/openclaw/openclaw/pull/144491). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144491"
+      },
+      {
+        "title": "Use activated accounts in automatic chats [#144975](https",
+        "description": "//github.com/openclaw/openclaw/pull/144975). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144975"
+      },
+      {
+        "title": "Reuse plugin metadata when checking provider usage [#146488](https",
+        "description": "//github.com/openclaw/openclaw/pull/146488).",
+        "href": "https://github.com/openclaw/openclaw/issues/146488"
+      },
+      {
+        "title": "Reduce GitHub OAuth maintenance work with many agents [#147021](https",
+        "description": "//github.com/openclaw/openclaw/pull/147021).",
+        "href": "https://github.com/openclaw/openclaw/issues/147021"
+      },
+      {
+        "title": "Avoid avatar loading during model-account ownership checks [#147032](https:...",
+        "description": "Avoid avatar loading during model-account ownership checks [#147032](https://github.com/openclaw/openclaw/pull/147032).",
+        "href": "https://github.com/openclaw/openclaw/issues/147032"
+      },
+      {
+        "title": "Connect provider accounts separately from testing a model [#148864](https:/...",
+        "description": "Connect provider accounts separately from testing a model [#148864](https://github.com/openclaw/openclaw/pull/148864). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/148864"
+      },
+      {
+        "title": "Read usage for a selected saved Codex login [1f3672e4](https",
+        "description": "//github.com/openclaw/openclaw/commit/1f3672e44baf77b1bf617897793f6040f5af75bb). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Show Codex usage beside each login [95f3ed90](https",
+        "description": "//github.com/openclaw/openclaw/commit/95f3ed90285b73d50764ab6b670976fb7ca5d638). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Clarify model catalogs, login, and saved credentials [#144591](https",
+        "description": "//github.com/openclaw/openclaw/pull/144591). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144591"
+      },
+      {
+        "title": "Updated provider libraries and Copilot runtime guidance [#145381](https://g...",
+        "description": "Updated provider libraries and Copilot runtime guidance [#145381](https://github.com/openclaw/openclaw/pull/145381).",
+        "href": "https://github.com/openclaw/openclaw/issues/145381"
+      },
+      {
+        "title": "Correct Anthropic shared-credential guidance [#145622](https",
+        "description": "//github.com/openclaw/openclaw/pull/145622).",
+        "href": "https://github.com/openclaw/openclaw/issues/145622"
+      },
+      {
+        "title": "Require explicit GitHub Copilot activation [#144749](https",
+        "description": "//github.com/openclaw/openclaw/pull/144749). Thanks @obviyus, @conan-scott.",
+        "href": "https://github.com/openclaw/openclaw/issues/144749"
+      },
+      {
+        "title": "GitHub Copilot requires a saved Copilot login, `COPILOT_GITHUB_TOKEN` or ex...",
+        "description": "GitHub Copilot requires a saved Copilot login, `COPILOT_GITHUB_TOKEN` or explicit provider credentials. Generic `GH_TOKEN` and `GITHUB_TOKEN` no longer activate the provider, and the retired `discovery.enabled=false` setting no longer disables discovery for configured Copilot.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Replacement activation needs a running Gateway capable of immediate reload",
+        "description": "Replacement activation needs a running Gateway capable of immediate reload. Complete requested plugin updates or restarts before retrying; recovery does not cover a process exit between saving settings and preparing activation.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reduce Moonshot policy loading overhead [#137768](https",
+        "description": "//github.com/openclaw/openclaw/pull/137768).",
+        "href": "https://github.com/openclaw/openclaw/issues/137768"
+      },
+      {
+        "title": "Reduce session-list work with large model catalogs [#137901](https",
+        "description": "//github.com/openclaw/openclaw/pull/137901).",
+        "href": "https://github.com/openclaw/openclaw/issues/137901"
+      },
+      {
+        "title": "Reduce processing during large model searches [#145139](https",
+        "description": "//github.com/openclaw/openclaw/pull/145139).",
+        "href": "https://github.com/openclaw/openclaw/issues/145139"
+      },
+      {
+        "title": "Skip unused provider defaults when reading configuration [#145204](https://...",
+        "description": "Skip unused provider defaults when reading configuration [#145204](https://github.com/openclaw/openclaw/pull/145204).",
+        "href": "https://github.com/openclaw/openclaw/issues/145204"
+      },
+      {
+        "title": "Reduce model-provider discovery loading overhead [#145212](https",
+        "description": "//github.com/openclaw/openclaw/pull/145212).",
+        "href": "https://github.com/openclaw/openclaw/issues/145212"
+      },
+      {
+        "title": "Reduce preparation work for configured model lists [#145433](https",
+        "description": "//github.com/openclaw/openclaw/pull/145433).",
+        "href": "https://github.com/openclaw/openclaw/issues/145433"
+      },
+      {
+        "title": "Reduce thinking-option lookup work [#145439](https",
+        "description": "//github.com/openclaw/openclaw/pull/145439).",
+        "href": "https://github.com/openclaw/openclaw/issues/145439"
+      },
+      {
+        "title": "Reduce temporary allocations in provider policy lookups [#146123](https://g...",
+        "description": "Reduce temporary allocations in provider policy lookups [#146123](https://github.com/openclaw/openclaw/pull/146123).",
+        "href": "https://github.com/openclaw/openclaw/issues/146123"
+      },
+      {
+        "title": "Reduce allocation in CLI model metadata lookups [#146180](https",
+        "description": "//github.com/openclaw/openclaw/pull/146180).",
+        "href": "https://github.com/openclaw/openclaw/issues/146180"
+      },
+      {
+        "title": "Skip policy-free model entries during runtime lookup [#146199](https",
+        "description": "//github.com/openclaw/openclaw/pull/146199).",
+        "href": "https://github.com/openclaw/openclaw/issues/146199"
+      },
+      {
+        "title": "Prepare model lists with less repeated policy work [#146657](https",
+        "description": "//github.com/openclaw/openclaw/pull/146657).",
+        "href": "https://github.com/openclaw/openclaw/issues/146657"
+      },
+      {
+        "title": "Reduce repeated authentication path work in model refreshes [#146728](https...",
+        "description": "Reduce repeated authentication path work in model refreshes [#146728](https://github.com/openclaw/openclaw/pull/146728).",
+        "href": "https://github.com/openclaw/openclaw/issues/146728"
+      },
+      {
+        "title": "Reduce model refresh setup work for large agent fleets [#147081](https://gi...",
+        "description": "Reduce model refresh setup work for large agent fleets [#147081](https://github.com/openclaw/openclaw/pull/147081).",
+        "href": "https://github.com/openclaw/openclaw/issues/147081"
+      },
+      {
+        "title": "Reuse provider installation choices [#147712](https",
+        "description": "//github.com/openclaw/openclaw/pull/147712).",
+        "href": "https://github.com/openclaw/openclaw/issues/147712"
+      },
+      {
+        "title": "Reduce repeated work preparing model catalogs [#148081](https",
+        "description": "//github.com/openclaw/openclaw/pull/148081). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148081"
+      },
+      {
+        "title": "Reduce repeated model-validation work [#148428](https",
+        "description": "//github.com/openclaw/openclaw/pull/148428).",
+        "href": "https://github.com/openclaw/openclaw/issues/148428"
+      },
+      {
+        "title": "Reduce repeated plugin setup during model catalog preparation [#148496](htt...",
+        "description": "Reduce repeated plugin setup during model catalog preparation [#148496](https://github.com/openclaw/openclaw/pull/148496).",
+        "href": "https://github.com/openclaw/openclaw/issues/148496"
+      },
+      {
+        "title": "Reduce repeated model lookup work in chat metadata [#149389](https",
+        "description": "//github.com/openclaw/openclaw/pull/149389).",
+        "href": "https://github.com/openclaw/openclaw/issues/149389"
+      },
+      {
+        "title": "Reduce catalog lookup work for provider aliases [#149528](https",
+        "description": "//github.com/openclaw/openclaw/pull/149528).",
+        "href": "https://github.com/openclaw/openclaw/issues/149528"
+      },
+      {
+        "title": "Reduce repeated model catalog policy lookups [#149764](https",
+        "description": "//github.com/openclaw/openclaw/pull/149764).",
+        "href": "https://github.com/openclaw/openclaw/issues/149764"
+      },
+      {
+        "title": "Reuse provider policies when resolving model references [#149799](https://g...",
+        "description": "Reuse provider policies when resolving model references [#149799](https://github.com/openclaw/openclaw/pull/149799).",
+        "href": "https://github.com/openclaw/openclaw/issues/149799"
+      },
+      {
+        "title": "Avoid unnecessary scans of frozen provider inputs [#150600](https",
+        "description": "//github.com/openclaw/openclaw/pull/150600).",
+        "href": "https://github.com/openclaw/openclaw/issues/150600"
+      },
+      {
+        "title": "Reuse prepared providers for utility calls [#150706](https",
+        "description": "//github.com/openclaw/openclaw/pull/150706).",
+        "href": "https://github.com/openclaw/openclaw/issues/150706"
+      },
+      {
+        "title": "Avoid unnecessary catalog preparation for configured child runs [#149438](h...",
+        "description": "Avoid unnecessary catalog preparation for configured child runs [#149438](https://github.com/openclaw/openclaw/pull/149438).",
+        "href": "https://github.com/openclaw/openclaw/issues/149438"
+      },
+      {
+        "title": "Align model choices and status with native Codex sign-in [#143588](https://...",
+        "description": "Align model choices and status with native Codex sign-in [#143588](https://github.com/openclaw/openclaw/pull/143588). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/143588"
+      },
+      {
+        "title": "Answer Codex questions while the agent keeps working [#144664](https",
+        "description": "//github.com/openclaw/openclaw/pull/144664).",
+        "href": "https://github.com/openclaw/openclaw/issues/144664"
+      },
+      {
+        "title": "Identify OpenClaw tasks in Codex usage metadata [#145455](https",
+        "description": "//github.com/openclaw/openclaw/pull/145455). Thanks @pash-openai.",
+        "href": "https://github.com/openclaw/openclaw/issues/145455"
+      },
+      {
+        "title": "Move Copilot session storage off the host event loop [#149577](https",
+        "description": "//github.com/openclaw/openclaw/pull/149577).",
+        "href": "https://github.com/openclaw/openclaw/issues/149577"
+      },
+      {
+        "title": "Explain per-model thinking defaults and override order [#146040](https://gi...",
+        "description": "Explain per-model thinking defaults and override order [#146040](https://github.com/openclaw/openclaw/pull/146040). Thanks @smartnewb, @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/146040"
+      },
+      {
+        "title": "Default Fable and Astra to Medium reasoning [#145554](https",
+        "description": "//github.com/openclaw/openclaw/pull/145554).",
+        "href": "https://github.com/openclaw/openclaw/issues/145554"
+      },
+      {
+        "title": "Reduce CPU work when loading large session contexts [#146302](https",
+        "description": "//github.com/openclaw/openclaw/pull/146302).",
+        "href": "https://github.com/openclaw/openclaw/issues/146302"
+      },
+      {
+        "title": "Skip unused structured tool-result processing [#146328](https",
+        "description": "//github.com/openclaw/openclaw/pull/146328).",
+        "href": "https://github.com/openclaw/openclaw/issues/146328"
+      },
+      {
+        "title": "Reduce reads when validating long transcript chains [#146458](https",
+        "description": "//github.com/openclaw/openclaw/pull/146458).",
+        "href": "https://github.com/openclaw/openclaw/issues/146458"
+      },
+      {
+        "title": "Prepare tool-heavy conversation context with less work [#146632](https://gi...",
+        "description": "Prepare tool-heavy conversation context with less work [#146632](https://github.com/openclaw/openclaw/pull/146632).",
+        "href": "https://github.com/openclaw/openclaw/issues/146632"
+      },
+      {
+        "title": "Avoid duplicate context estimation during compaction [#146961](https",
+        "description": "//github.com/openclaw/openclaw/pull/146961).",
+        "href": "https://github.com/openclaw/openclaw/issues/146961"
+      },
+      {
+        "title": "Reduce repeated token-budget work before model requests [#148448](https://g...",
+        "description": "Reduce repeated token-budget work before model requests [#148448](https://github.com/openclaw/openclaw/pull/148448).",
+        "href": "https://github.com/openclaw/openclaw/issues/148448"
+      },
+      {
+        "title": "Reduce CPU work for multilingual context estimates [#148663](https",
+        "description": "//github.com/openclaw/openclaw/pull/148663).",
+        "href": "https://github.com/openclaw/openclaw/issues/148663"
+      },
+      {
+        "title": "Reduce CPU work when trimming large tool results [#148718](https",
+        "description": "//github.com/openclaw/openclaw/pull/148718). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148718"
+      },
+      {
+        "title": "Reduce copying while preparing Anthropic tools [#145287](https",
+        "description": "//github.com/openclaw/openclaw/pull/145287).",
+        "href": "https://github.com/openclaw/openclaw/issues/145287"
+      },
+      {
+        "title": "Reduce repeated streamed-reply processing [#145683](https",
+        "description": "//github.com/openclaw/openclaw/pull/145683).",
+        "href": "https://github.com/openclaw/openclaw/issues/145683"
+      },
+      {
+        "title": "Parse ordinary tool arguments with less work [#146241](https",
+        "description": "//github.com/openclaw/openclaw/pull/146241).",
+        "href": "https://github.com/openclaw/openclaw/issues/146241"
+      },
+      {
+        "title": "Reduce CPU work for long streamed code replies [#146254](https",
+        "description": "//github.com/openclaw/openclaw/pull/146254).",
+        "href": "https://github.com/openclaw/openclaw/issues/146254"
+      },
+      {
+        "title": "Reduce JSON processing overhead for streamed responses [#147101](https://gi...",
+        "description": "Reduce JSON processing overhead for streamed responses [#147101](https://github.com/openclaw/openclaw/pull/147101).",
+        "href": "https://github.com/openclaw/openclaw/issues/147101"
+      },
+      {
+        "title": "Reuse OpenAI tool-schema preparation [#147543](https",
+        "description": "//github.com/openclaw/openclaw/pull/147543).",
+        "href": "https://github.com/openclaw/openclaw/issues/147543"
+      },
+      {
+        "title": "Enable stored continuation for compatible Responses endpoints [#128633](htt...",
+        "description": "Enable stored continuation for compatible Responses endpoints [#128633](https://github.com/openclaw/openclaw/pull/128633). Thanks @hartmark, @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/128633"
+      },
+      {
+        "title": "Decode fewer bytes when checking Anthropic image formats [#145277](https://...",
+        "description": "Decode fewer bytes when checking Anthropic image formats [#145277](https://github.com/openclaw/openclaw/pull/145277).",
+        "href": "https://github.com/openclaw/openclaw/issues/145277"
+      },
+      {
+        "title": "Keep image and PDF processing responsive and cancellable [#146094](https://...",
+        "description": "Keep image and PDF processing responsive and cancellable [#146094](https://github.com/openclaw/openclaw/pull/146094).",
+        "href": "https://github.com/openclaw/openclaw/issues/146094"
+      },
+      {
+        "title": "Reduce size-estimation work for large image results [#146506](https",
+        "description": "//github.com/openclaw/openclaw/pull/146506).",
+        "href": "https://github.com/openclaw/openclaw/issues/146506"
+      },
+      {
+        "title": "Connect Radius models with browser sign-in or API keys [#145377](https://gi...",
+        "description": "Connect Radius models with browser sign-in or API keys [#145377](https://github.com/openclaw/openclaw/pull/145377).",
+        "href": "https://github.com/openclaw/openclaw/issues/145377"
+      },
+      {
+        "title": "Add Daybreak retries and cyber-policy notices [#143761](https",
+        "description": "//github.com/openclaw/openclaw/pull/143761).",
+        "href": "https://github.com/openclaw/openclaw/issues/143761"
+      },
+      {
+        "title": "Retry eligible embedded OpenAI cyber refusals on Daybreak [#145291](https:/...",
+        "description": "Retry eligible embedded OpenAI cyber refusals on Daybreak [#145291](https://github.com/openclaw/openclaw/pull/145291). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/145291"
+      },
+      {
+        "title": "Show which model completed a policy retry [#147146](https",
+        "description": "//github.com/openclaw/openclaw/pull/147146). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147146"
+      },
+      {
+        "title": "Choose the same model through different runtimes [#147994](https",
+        "description": "//github.com/openclaw/openclaw/pull/147994).",
+        "href": "https://github.com/openclaw/openclaw/issues/147994"
+      },
+      {
+        "title": "Reduce repeated scans in cron delivery previews [#144145](https",
+        "description": "//github.com/openclaw/openclaw/pull/144145).",
+        "href": "https://github.com/openclaw/openclaw/issues/144145"
+      },
+      {
+        "title": "Reduce startup work for heartbeat and reply checks [#145033](https",
+        "description": "//github.com/openclaw/openclaw/pull/145033).",
+        "href": "https://github.com/openclaw/openclaw/issues/145033"
+      },
+      {
+        "title": "Fetch only excess cron receipts during cleanup [#146384](https",
+        "description": "//github.com/openclaw/openclaw/pull/146384).",
+        "href": "https://github.com/openclaw/openclaw/issues/146384"
+      },
+      {
+        "title": "Reduce copying when filtering heartbeat alert history [#146589](https",
+        "description": "//github.com/openclaw/openclaw/pull/146589).",
+        "href": "https://github.com/openclaw/openclaw/issues/146589"
+      },
+      {
+        "title": "Reduce scheduling work during session-notice bursts [#146818](https",
+        "description": "//github.com/openclaw/openclaw/pull/146818).",
+        "href": "https://github.com/openclaw/openclaw/issues/146818"
+      },
+      {
+        "title": "Reduce heartbeat setup work for large agent fleets [#147055](https",
+        "description": "//github.com/openclaw/openclaw/pull/147055).",
+        "href": "https://github.com/openclaw/openclaw/issues/147055"
+      },
+      {
+        "title": "Reduce database reads when matching standing reminders [#147099](https://gi...",
+        "description": "Reduce database reads when matching standing reminders [#147099](https://github.com/openclaw/openclaw/pull/147099).",
+        "href": "https://github.com/openclaw/openclaw/issues/147099"
+      },
+      {
+        "title": "Batch reminder rearming after cooldown [#147180](https",
+        "description": "//github.com/openclaw/openclaw/pull/147180).",
+        "href": "https://github.com/openclaw/openclaw/issues/147180"
+      },
+      {
+        "title": "Reduce repeated scoped automation-list work [#147558](https",
+        "description": "//github.com/openclaw/openclaw/pull/147558).",
+        "href": "https://github.com/openclaw/openclaw/issues/147558"
+      },
+      {
+        "title": "Skip old job payloads during cron saves [#147743](https",
+        "description": "//github.com/openclaw/openclaw/pull/147743).",
+        "href": "https://github.com/openclaw/openclaw/issues/147743"
+      },
+      {
+        "title": "Open automations from session hovercards [#147749](https",
+        "description": "//github.com/openclaw/openclaw/pull/147749).",
+        "href": "https://github.com/openclaw/openclaw/issues/147749"
+      },
+      {
+        "title": "Move scheduled-job loading into the database worker [#148335](https",
+        "description": "//github.com/openclaw/openclaw/pull/148335).",
+        "href": "https://github.com/openclaw/openclaw/issues/148335"
+      },
+      {
+        "title": "Move unguarded scheduled-job saves off the caller thread [#148594](https://...",
+        "description": "Move unguarded scheduled-job saves off the caller thread [#148594](https://github.com/openclaw/openclaw/pull/148594).",
+        "href": "https://github.com/openclaw/openclaw/issues/148594"
+      },
+      {
+        "title": "Show matching jobs for ambiguous automation names [#150082](https",
+        "description": "//github.com/openclaw/openclaw/pull/150082). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/150082"
+      },
+      {
+        "title": "Avoid unused descriptions during managed job cleanup [#150709](https",
+        "description": "//github.com/openclaw/openclaw/pull/150709).",
+        "href": "https://github.com/openclaw/openclaw/issues/150709"
+      },
+      {
+        "title": "Reject ambiguous automation names when showing a job [#149958](https",
+        "description": "//github.com/openclaw/openclaw/pull/149958). Thanks @alix-007.",
+        "href": "https://github.com/openclaw/openclaw/issues/149958"
+      },
+      {
+        "title": "Offline status and failed Gateway status calls retain the local readiness f...",
+        "description": "Offline status and failed Gateway status calls retain the local readiness fallback. [Heartbeat setup](https://docs.openclaw.ai/gateway/heartbeat) uses an array for `commands.ownerAllowFrom`; preserve existing owners when replacing it. For Telegram, set `heartbeat.target` to `\"telegram\"` and `heartbeat.to` separately to a quoted recipient string.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Zero scheduler timeouts still leave provider, startup and command-runner li...",
+        "description": "Zero scheduler timeouts still leave provider, startup and command-runner limits in place.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Search and page automation run history from the CLI [#141777](https",
+        "description": "//github.com/openclaw/openclaw/pull/141777). Thanks @alix-007 and @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/141777"
+      },
+      {
+        "title": "Add readable next-wake times to cron debug logs [#141742](https",
+        "description": "//github.com/openclaw/openclaw/pull/141742). Thanks @alix-007 and @celthi.",
+        "href": "https://github.com/openclaw/openclaw/issues/141742"
+      },
+      {
+        "title": "Flag captured automation lists missing native tools [#147969](https",
+        "description": "//github.com/openclaw/openclaw/pull/147969). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/147969"
+      },
+      {
+        "title": "Manage existing automations from owner chat [#148790](https",
+        "description": "//github.com/openclaw/openclaw/pull/148790). Thanks @lnxg33k and @emmyallears.",
+        "href": "https://github.com/openclaw/openclaw/issues/148790"
+      },
+      {
+        "title": "Allow trusted scheduled jobs to edit Discord channels [#150182](https",
+        "description": "//github.com/openclaw/openclaw/pull/150182). Thanks @shakkernerd and @nissl24.",
+        "href": "https://github.com/openclaw/openclaw/issues/150182"
+      },
+      {
+        "title": "Preserve Discord requester permissions for scheduled channel edits [#150308...",
+        "description": "Preserve Discord requester permissions for scheduled channel edits [#150308](https://github.com/openclaw/openclaw/pull/150308). Thanks @shakkernerd and @nissl24.",
+        "href": "https://github.com/openclaw/openclaw/issues/150308"
+      },
+      {
+        "title": "Move native-hook relay lookup off the CLI thread [b51a3ad](https",
+        "description": "//github.com/openclaw/openclaw/commit/b51a3adb51a081e0ec11df7775f9d8f124083d17).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Return subagent results privately for parent review [#147206](https",
+        "description": "//github.com/openclaw/openclaw/pull/147206). Thanks @vincentkoc, @nicknmorty, @good-warning and @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/147206"
+      },
+      {
+        "title": "Select managed projects for visible child sessions [#147459](https",
+        "description": "//github.com/openclaw/openclaw/pull/147459). Thanks @vacinc and @yasuhito.",
+        "href": "https://github.com/openclaw/openclaw/issues/147459"
+      },
+      {
+        "title": "With `worktree",
+        "description": "true` and no project or directory selector, same-agent children continue to inherit the parent repository.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "See why subagents wait and whether results arrived [#147571](https",
+        "description": "//github.com/openclaw/openclaw/pull/147571).",
+        "href": "https://github.com/openclaw/openclaw/issues/147571"
+      },
+      {
+        "title": "Preserve the original task when resuming paused work [#149283](https",
+        "description": "//github.com/openclaw/openclaw/pull/149283). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/149283"
+      },
+      {
+        "title": "Reduce temporary memory use when listing subagents [#149761](https",
+        "description": "//github.com/openclaw/openclaw/pull/149761).",
+        "href": "https://github.com/openclaw/openclaw/issues/149761"
+      },
+      {
+        "title": "Stop repeated idle subagent scans [#149810](https",
+        "description": "//github.com/openclaw/openclaw/pull/149810).",
+        "href": "https://github.com/openclaw/openclaw/issues/149810"
+      },
+      {
+        "title": "Load ACP cleanup only when task maintenance needs it [#150632](https",
+        "description": "//github.com/openclaw/openclaw/pull/150632).",
+        "href": "https://github.com/openclaw/openclaw/issues/150632"
+      },
+      {
+        "title": "Reduce repeated flow reads during task operations [#150692](https",
+        "description": "//github.com/openclaw/openclaw/pull/150692).",
+        "href": "https://github.com/openclaw/openclaw/issues/150692"
+      },
+      {
+        "title": "Selected-task waits accept 1–32 task IDs for 0–60 seconds and distinguish c...",
+        "description": "Selected-task waits accept 1–32 task IDs for 0–60 seconds and distinguish completion, attention, unavailability and timeout. `steer` requires a supported active run; `followup` starts or queues another turn.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Yielding without children requires explicit `waitFor",
+        "description": "\"message\"` and a real future sender. A waiting status does not schedule an external timer or guarantee a future wakeup.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Post-yield `state_changes` progress is opt-in, bounded and best effort",
+        "description": "Post-yield `state_changes` progress is opt-in, bounded and best effort. It is process-local and excludes private child text, tool arguments and results.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Workboard claims coordinate cooperating writers but do not protect files or...",
+        "description": "Workboard claims coordinate cooperating writers but do not protect files or shell processes from other writers. Use separate worktrees for isolation.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Filter and page agent session inventories [#148051](https",
+        "description": "//github.com/openclaw/openclaw/pull/148051).",
+        "href": "https://github.com/openclaw/openclaw/issues/148051"
+      },
+      {
+        "title": "Explain how to disable automatic completion turns [#150540](https",
+        "description": "//github.com/openclaw/openclaw/pull/150540). Thanks P-Dawg.",
+        "href": "https://github.com/openclaw/openclaw/issues/150540"
+      },
+      {
+        "title": "A CI watcher that exits with `PROXY-AUTH-FAILED` and code 2 needs a new wat...",
+        "description": "A CI watcher that exits with `PROXY-AUTH-FAILED` and code 2 needs a new watcher from an active authenticated run or repaired proxy access.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Long node invocations and location requests receive forwarding and response...",
+        "description": "Long node invocations and location requests receive forwarding and response grace based on their operation timeout unless a shorter override is supplied. Approval follow-up observation remains bounded even when execution continues, and scheduled heartbeat monitors keep their own timeout policy.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reuse prepared cloud workers for private repositories [#144237](https",
+        "description": "//github.com/openclaw/openclaw/pull/144237).",
+        "href": "https://github.com/openclaw/openclaw/issues/144237"
+      },
+      {
+        "title": "Reduce startup delay for prepared worker repositories [#145302](https",
+        "description": "//github.com/openclaw/openclaw/pull/145302). Avoid extra remote calls when starting prepared worker repositories.",
+        "href": "https://github.com/openclaw/openclaw/issues/145302"
+      },
+      {
+        "title": "Less repeated Git housekeeping at worker startup [#145331](https",
+        "description": "//github.com/openclaw/openclaw/pull/145331). Avoid repeated checkpoint cleanup during worker startup.",
+        "href": "https://github.com/openclaw/openclaw/issues/145331"
+      },
+      {
+        "title": "Reduce GitHub checks during prepared worker startup [#145480](https",
+        "description": "//github.com/openclaw/openclaw/pull/145480).",
+        "href": "https://github.com/openclaw/openclaw/issues/145480"
+      },
+      {
+        "title": "Avoid loading inactive cloud-worker conversation branches [#145591](https:/...",
+        "description": "Avoid loading inactive cloud-worker conversation branches [#145591](https://github.com/openclaw/openclaw/pull/145591).",
+        "href": "https://github.com/openclaw/openclaw/issues/145591"
+      },
+      {
+        "title": "Defer syntax highlighting during worker startup [#145685](https",
+        "description": "//github.com/openclaw/openclaw/pull/145685).",
+        "href": "https://github.com/openclaw/openclaw/issues/145685"
+      },
+      {
+        "title": "Overlap worker loading with connection approval [#145793](https",
+        "description": "//github.com/openclaw/openclaw/pull/145793).",
+        "href": "https://github.com/openclaw/openclaw/issues/145793"
+      },
+      {
+        "title": "Skip redundant Git author lookups during workspace sync [#146833](https://g...",
+        "description": "Skip redundant Git author lookups during workspace sync [#146833](https://github.com/openclaw/openclaw/pull/146833). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146833"
+      },
+      {
+        "title": "Reduce cold cloud-session preparation work [#147787](https",
+        "description": "//github.com/openclaw/openclaw/pull/147787). Prepare missing worker bundles during remote installation and skip unused archive parsing on cold cloud starts.",
+        "href": "https://github.com/openclaw/openclaw/issues/147787"
+      },
+      {
+        "title": "Reduce fresh-worker plugin activation work [#147945](https",
+        "description": "//github.com/openclaw/openclaw/pull/147945). Skip unnecessary legacy-state work when activating plugins on fresh cloud workers.",
+        "href": "https://github.com/openclaw/openclaw/issues/147945"
+      },
+      {
+        "title": "Combine cloud desktop setup with node enrollment [#148691](https",
+        "description": "//github.com/openclaw/openclaw/pull/148691).",
+        "href": "https://github.com/openclaw/openclaw/issues/148691"
+      },
+      {
+        "title": "Prepare fresh cloud project runtimes with less waiting [#148952](https://gi...",
+        "description": "Prepare fresh cloud project runtimes with less waiting [#148952](https://github.com/openclaw/openclaw/pull/148952).",
+        "href": "https://github.com/openclaw/openclaw/issues/148952"
+      },
+      {
+        "title": "Move Crabbox warm-image storage off the Gateway thread [#149680](https://gi...",
+        "description": "Move Crabbox warm-image storage off the Gateway thread [#149680](https://github.com/openclaw/openclaw/pull/149680).",
+        "href": "https://github.com/openclaw/openclaw/issues/149680"
+      },
+      {
+        "title": "Reuse verified cloud-node archives after Gateway restart [#150199](https://...",
+        "description": "Reuse verified cloud-node archives after Gateway restart [#150199](https://github.com/openclaw/openclaw/pull/150199). Thanks @patrick-erichsen and @erulkey.",
+        "href": "https://github.com/openclaw/openclaw/issues/150199"
+      },
+      {
+        "title": "Require Crabbox 0.56.0 for prepared workers [#145109](https",
+        "description": "//github.com/openclaw/openclaw/pull/145109).",
+        "href": "https://github.com/openclaw/openclaw/issues/145109"
+      },
+      {
+        "title": "Preserve useful workspace-transfer error details [#144272](https",
+        "description": "//github.com/openclaw/openclaw/pull/144272). Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/144272"
+      },
+      {
+        "title": "Keep healthy Crabbox desktop renderers running on resume [#146816](https://...",
+        "description": "Keep healthy Crabbox desktop renderers running on resume [#146816](https://github.com/openclaw/openclaw/pull/146816). Thanks @vincentkoc. Keep a healthy Crabbox desktop renderer running on resume when its wallpaper is unchanged.",
+        "href": "https://github.com/openclaw/openclaw/issues/146816"
+      },
+      {
+        "title": "Reduce database work in worker result checks [#149211](https",
+        "description": "//github.com/openclaw/openclaw/pull/149211).",
+        "href": "https://github.com/openclaw/openclaw/issues/149211"
+      },
+      {
+        "title": "Reduce cloud-session checkpoint overhead [#145571](https",
+        "description": "//github.com/openclaw/openclaw/pull/145571).",
+        "href": "https://github.com/openclaw/openclaw/issues/145571"
+      },
+      {
+        "title": "Skip unnecessary scans when archiving worktrees [#146097](https",
+        "description": "//github.com/openclaw/openclaw/pull/146097).",
+        "href": "https://github.com/openclaw/openclaw/issues/146097"
+      },
+      {
+        "title": "Reuse unchanged cloud workspace file hashes [#146327](https",
+        "description": "//github.com/openclaw/openclaw/pull/146327).",
+        "href": "https://github.com/openclaw/openclaw/issues/146327"
+      },
+      {
+        "title": "Reduce temporary allocations during large workspace scans [#146680](https:/...",
+        "description": "Reduce temporary allocations during large workspace scans [#146680](https://github.com/openclaw/openclaw/pull/146680).",
+        "href": "https://github.com/openclaw/openclaw/issues/146680"
+      },
+      {
+        "title": "Keep large workspace transfers responsive [#147626](https",
+        "description": "//github.com/openclaw/openclaw/pull/147626). Run workspace-transfer and result computations in a pool of up to two background workers while keeping writes and cleanup under host control.",
+        "href": "https://github.com/openclaw/openclaw/issues/147626"
+      },
+      {
+        "title": "Reduce Git process starts when restoring worker results [#150057](https://g...",
+        "description": "Reduce Git process starts when restoring worker results [#150057](https://github.com/openclaw/openclaw/pull/150057).",
+        "href": "https://github.com/openclaw/openclaw/issues/150057"
+      },
+      {
+        "title": "Dismiss failed cloud worker snapshot builds [#144671](https",
+        "description": "//github.com/openclaw/openclaw/pull/144671).",
+        "href": "https://github.com/openclaw/openclaw/issues/144671"
+      },
+      {
+        "title": "Run sandboxed tools on Crabbox cloud machines [#144454](https",
+        "description": "//github.com/openclaw/openclaw/pull/144454). Run sandboxed tools on compatible Crabbox cloud machines, preserve remote edits across reuse, and publish initial SSH workspace uploads without replacing existing work.",
+        "href": "https://github.com/openclaw/openclaw/issues/144454"
+      },
+      {
+        "title": "Watch live desktops in Picture-in-Picture [#143836](https",
+        "description": "//github.com/openclaw/openclaw/pull/143836). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143836"
+      },
+      {
+        "title": "Match virtual desktop resolution to the viewer [#143938](https",
+        "description": "//github.com/openclaw/openclaw/pull/143938). Thanks @vincentkoc. Match compatible virtual desktop resolution to its viewer and clear modifier keys released while native menus were open.",
+        "href": "https://github.com/openclaw/openclaw/issues/143938"
+      },
+      {
+        "title": "Reduce host selection and desktop overhead [#146162](https",
+        "description": "//github.com/openclaw/openclaw/pull/146162).",
+        "href": "https://github.com/openclaw/openclaw/issues/146162"
+      },
+      {
+        "title": "Reduce repeated screenshot encoding in worker requests [#146907](https://gi...",
+        "description": "Reduce repeated screenshot encoding in worker requests [#146907](https://github.com/openclaw/openclaw/pull/146907). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146907"
+      },
+      {
+        "title": "Control the Gateway desktop without pairing a node [#147275](https",
+        "description": "//github.com/openclaw/openclaw/pull/147275).",
+        "href": "https://github.com/openclaw/openclaw/issues/147275"
+      },
+      {
+        "title": "Reduce cloud session and desktop readiness delays [#150162](https",
+        "description": "//github.com/openclaw/openclaw/pull/150162).",
+        "href": "https://github.com/openclaw/openclaw/issues/150162"
+      },
+      {
+        "title": "Clarify window accessibility filtering for agents [#146388](https",
+        "description": "//github.com/openclaw/openclaw/pull/146388).",
+        "href": "https://github.com/openclaw/openclaw/issues/146388"
+      },
+      {
+        "title": "Expose native Chrome tab IDs for extension integrations [#138338](https://g...",
+        "description": "Expose native Chrome tab IDs for extension integrations [#138338](https://github.com/openclaw/openclaw/pull/138338). Thanks @patryk-roguszewski and @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/138338"
+      },
+      {
+        "title": "Browser pages and favicons in the Chat panel header [#145517](https",
+        "description": "//github.com/openclaw/openclaw/pull/145517).",
+        "href": "https://github.com/openclaw/openclaw/issues/145517"
+      },
+      {
+        "title": "Change browser control policy without restarting the Gateway [#146100](http...",
+        "description": "Change browser control policy without restarting the Gateway [#146100](https://github.com/openclaw/openclaw/pull/146100).",
+        "href": "https://github.com/openclaw/openclaw/issues/146100"
+      },
+      {
+        "title": "Skip unnecessary HTML visibility checks [#146152](https",
+        "description": "//github.com/openclaw/openclaw/pull/146152).",
+        "href": "https://github.com/openclaw/openclaw/issues/146152"
+      },
+      {
+        "title": "Format large browser debug logs with less work [#146375](https",
+        "description": "//github.com/openclaw/openclaw/pull/146375).",
+        "href": "https://github.com/openclaw/openclaw/issues/146375"
+      },
+      {
+        "title": "Download sidebar assets with native Mac saving [#144480](https",
+        "description": "//github.com/openclaw/openclaw/pull/144480). Thanks @patrick-erichsen. Download the displayed Browser sidebar file while keeping its preview open, preserve existing files if a native save fails, and restore missing WebKit toolbar icons.",
+        "href": "https://github.com/openclaw/openclaw/issues/144480"
+      },
+      {
+        "title": "Share browser dashboard pages with your agent [#146702](https",
+        "description": "//github.com/openclaw/openclaw/pull/146702).",
+        "href": "https://github.com/openclaw/openclaw/issues/146702"
+      },
+      {
+        "title": "Reduce repeated dashboard tab reads [#147892](https",
+        "description": "//github.com/openclaw/openclaw/pull/147892). Recheck only selected browser dashboard tabs during cleanup, so unrelated damaged records do not block those checks.",
+        "href": "https://github.com/openclaw/openclaw/issues/147892"
+      },
+      {
+        "title": "Start remote sessions in a new empty workspace [#147773](https",
+        "description": "//github.com/openclaw/openclaw/pull/147773). Thanks @danhayman.",
+        "href": "https://github.com/openclaw/openclaw/issues/147773"
+      },
+      {
+        "title": "Retain plugin dependencies through active work and cleanup [#144252](https:...",
+        "description": "Retain plugin dependencies through active work and cleanup [#144252](https://github.com/openclaw/openclaw/pull/144252).",
+        "href": "https://github.com/openclaw/openclaw/issues/144252"
+      },
+      {
+        "title": "Manage and reload plugins without restarting the Gateway [#145484](https://...",
+        "description": "Manage and reload plugins without restarting the Gateway [#145484](https://github.com/openclaw/openclaw/pull/145484).",
+        "href": "https://github.com/openclaw/openclaw/issues/145484"
+      },
+      {
+        "title": "Manage plugins within an active conversation [#145648](https",
+        "description": "//github.com/openclaw/openclaw/pull/145648).",
+        "href": "https://github.com/openclaw/openclaw/issues/145648"
+      },
+      {
+        "title": "Install supported plugins without Gateway restart [#145710](https",
+        "description": "//github.com/openclaw/openclaw/pull/145710).",
+        "href": "https://github.com/openclaw/openclaw/issues/145710"
+      },
+      {
+        "title": "Refresh plugin tools within managed Codex conversations [#145917](https://g...",
+        "description": "Refresh plugin tools within managed Codex conversations [#145917](https://github.com/openclaw/openclaw/pull/145917).",
+        "href": "https://github.com/openclaw/openclaw/issues/145917"
+      },
+      {
+        "title": "Reduce repeated discovery during standalone plugin activation [#148168](htt...",
+        "description": "Reduce repeated discovery during standalone plugin activation [#148168](https://github.com/openclaw/openclaw/pull/148168).",
+        "href": "https://github.com/openclaw/openclaw/issues/148168"
+      },
+      {
+        "title": "Reduce offline plugin activation startup work [#148368](https",
+        "description": "//github.com/openclaw/openclaw/pull/148368).",
+        "href": "https://github.com/openclaw/openclaw/issues/148368"
+      },
+      {
+        "title": "Enable multiple plugins in one command [#149824](https",
+        "description": "//github.com/openclaw/openclaw/pull/149824).",
+        "href": "https://github.com/openclaw/openclaw/issues/149824"
+      },
+      {
+        "title": "Manage multiple plugins in one CLI command [#149910](https",
+        "description": "//github.com/openclaw/openclaw/pull/149910).",
+        "href": "https://github.com/openclaw/openclaw/issues/149910"
+      },
+      {
+        "title": "Avoid unnecessary plugin alias preparation [#150622](https",
+        "description": "//github.com/openclaw/openclaw/pull/150622).",
+        "href": "https://github.com/openclaw/openclaw/issues/150622"
+      },
+      {
+        "title": "Revoke stale plugin host access [#145888](https",
+        "description": "//github.com/openclaw/openclaw/pull/145888).",
+        "href": "https://github.com/openclaw/openclaw/issues/145888"
+      },
+      {
+        "title": "Correct plugin setup and restart guidance [#146516](https",
+        "description": "//github.com/openclaw/openclaw/pull/146516).",
+        "href": "https://github.com/openclaw/openclaw/issues/146516"
+      },
+      {
+        "title": "Reuse bundled plugin setup code across reloads [#149646](https",
+        "description": "//github.com/openclaw/openclaw/pull/149646). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149646"
+      },
+      {
+        "title": "Allow source-validated installed-plugin reloads under Bun [#150088](https:/...",
+        "description": "Allow source-validated installed-plugin reloads under Bun [#150088](https://github.com/openclaw/openclaw/pull/150088).",
+        "href": "https://github.com/openclaw/openclaw/issues/150088"
+      },
+      {
+        "title": "Include deliberate plugin searches in ClawHub analytics [#142664](https://g...",
+        "description": "Include deliberate plugin searches in ClawHub analytics [#142664](https://github.com/openclaw/openclaw/pull/142664). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/142664"
+      },
+      {
+        "title": "Group bundled plugins by their main purpose [#142760](https",
+        "description": "//github.com/openclaw/openclaw/pull/142760). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/142760"
+      },
+      {
+        "title": "Keep integration card descriptions compact [#144442](https",
+        "description": "//github.com/openclaw/openclaw/pull/144442). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144442"
+      },
+      {
+        "title": "Load the plugin marketplace from one overview [#144569](https",
+        "description": "//github.com/openclaw/openclaw/pull/144569). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144569"
+      },
+      {
+        "title": "Add space around Plugins workspace navigation [#144652](https",
+        "description": "//github.com/openclaw/openclaw/pull/144652). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/144652"
+      },
+      {
+        "title": "Reduce allocation when finding loaded plugin APIs [#146101](https",
+        "description": "//github.com/openclaw/openclaw/pull/146101).",
+        "href": "https://github.com/openclaw/openclaw/issues/146101"
+      },
+      {
+        "title": "Avoid plugin dependency scans for unrelated imports [#146486](https",
+        "description": "//github.com/openclaw/openclaw/pull/146486).",
+        "href": "https://github.com/openclaw/openclaw/issues/146486"
+      },
+      {
+        "title": "Skip channel discovery when plugins are disabled [#146689](https",
+        "description": "//github.com/openclaw/openclaw/pull/146689).",
+        "href": "https://github.com/openclaw/openclaw/issues/146689"
+      },
+      {
+        "title": "Reduce plugin metadata lookup work [#146763](https",
+        "description": "//github.com/openclaw/openclaw/pull/146763).",
+        "href": "https://github.com/openclaw/openclaw/issues/146763"
+      },
+      {
+        "title": "Reduce JavaScript plugin dependency capture work [#146993](https",
+        "description": "//github.com/openclaw/openclaw/pull/146993).",
+        "href": "https://github.com/openclaw/openclaw/issues/146993"
+      },
+      {
+        "title": "Reduce repeated plugin cache preparation [#147345](https",
+        "description": "//github.com/openclaw/openclaw/pull/147345).",
+        "href": "https://github.com/openclaw/openclaw/issues/147345"
+      },
+      {
+        "title": "Reuse checked package paths when loading plugins [#147411](https",
+        "description": "//github.com/openclaw/openclaw/pull/147411).",
+        "href": "https://github.com/openclaw/openclaw/issues/147411"
+      },
+      {
+        "title": "Reduce filesystem checks when reusing plugins [#147467](https",
+        "description": "//github.com/openclaw/openclaw/pull/147467).",
+        "href": "https://github.com/openclaw/openclaw/issues/147467"
+      },
+      {
+        "title": "Reuse shared plugin discovery across workspaces [#147535](https",
+        "description": "//github.com/openclaw/openclaw/pull/147535).",
+        "href": "https://github.com/openclaw/openclaw/issues/147535"
+      },
+      {
+        "title": "Reuse cached plugin schema validation [#147594](https",
+        "description": "//github.com/openclaw/openclaw/pull/147594).",
+        "href": "https://github.com/openclaw/openclaw/issues/147594"
+      },
+      {
+        "title": "Reduce plugin argument preparation work [#147664](https",
+        "description": "//github.com/openclaw/openclaw/pull/147664).",
+        "href": "https://github.com/openclaw/openclaw/issues/147664"
+      },
+      {
+        "title": "Reduce isolated settings-helper startup work [#147858](https",
+        "description": "//github.com/openclaw/openclaw/pull/147858). Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/147858"
+      },
+      {
+        "title": "Reduce repeated scans when inspecting all plugins [#148303](https",
+        "description": "//github.com/openclaw/openclaw/pull/148303).",
+        "href": "https://github.com/openclaw/openclaw/issues/148303"
+      },
+      {
+        "title": "Unify installed and catalog plugin overviews [#149216](https",
+        "description": "//github.com/openclaw/openclaw/pull/149216). Thanks @patrick-erichsen, @kvnloo.",
+        "href": "https://github.com/openclaw/openclaw/issues/149216"
+      },
+      {
+        "title": "Load plugin details with one ClawHub request [#149475](https",
+        "description": "//github.com/openclaw/openclaw/pull/149475). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149475"
+      },
+      {
+        "title": "Reduce plugin lookup overhead for unrelated imports [#149485](https",
+        "description": "//github.com/openclaw/openclaw/pull/149485).",
+        "href": "https://github.com/openclaw/openclaw/issues/149485"
+      },
+      {
+        "title": "Correct bundled plugin logos and the OpenClaw fallback [#149610](https://gi...",
+        "description": "Correct bundled plugin logos and the OpenClaw fallback [#149610](https://github.com/openclaw/openclaw/pull/149610). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149610"
+      },
+      {
+        "title": "Move hosted plugin-catalog snapshot work off the caller thread [#150067](ht...",
+        "description": "Move hosted plugin-catalog snapshot work off the caller thread [#150067](https://github.com/openclaw/openclaw/pull/150067).",
+        "href": "https://github.com/openclaw/openclaw/issues/150067"
+      },
+      {
+        "title": "Prepare Logbook, Memory Wiki and1Password for catalog publication [#150291]...",
+        "description": "Prepare Logbook, Memory Wiki and1Password for catalog publication [#150291](https://github.com/openclaw/openclaw/pull/150291). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/150291"
+      },
+      {
+        "title": "Add Logbook, Memory Wiki and 1Password catalog metadata [#150318](https://g...",
+        "description": "Add Logbook, Memory Wiki and 1Password catalog metadata [#150318](https://github.com/openclaw/openclaw/pull/150318).",
+        "href": "https://github.com/openclaw/openclaw/issues/150318"
+      },
+      {
+        "title": "Expand plugin categories and matching icons [d26a3ad1](https",
+        "description": "//github.com/openclaw/openclaw/commit/d26a3ad1dcd4f25a10bb8e2ba03cbad5468c9260). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Find and edit plugin settings in searchable sections [#149246](https",
+        "description": "//github.com/openclaw/openclaw/pull/149246). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149246"
+      },
+      {
+        "title": "Organize bundled plugin settings into named sections [#149331](https",
+        "description": "//github.com/openclaw/openclaw/pull/149331). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149331"
+      },
+      {
+        "title": "Inspect and edit plugin credentials in Settings [#149286](https",
+        "description": "//github.com/openclaw/openclaw/pull/149286). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149286"
+      },
+      {
+        "title": "Ask OpenClaw about plugins and individual settings [#149330](https",
+        "description": "//github.com/openclaw/openclaw/pull/149330). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/149330"
+      },
+      {
+        "title": "Correct plugin media and QR helper examples [#148422](https",
+        "description": "//github.com/openclaw/openclaw/pull/148422).",
+        "href": "https://github.com/openclaw/openclaw/issues/148422"
+      },
+      {
+        "title": "Reduce temporary memory for large plugin inputs [#145659](https",
+        "description": "//github.com/openclaw/openclaw/pull/145659). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/145659"
+      },
+      {
+        "title": "Preserve model and delegation settings in Claw packages [#141921](https://g...",
+        "description": "Preserve model and delegation settings in Claw packages [#141921](https://github.com/openclaw/openclaw/pull/141921).",
+        "href": "https://github.com/openclaw/openclaw/issues/141921"
+      },
+      {
+        "title": "Apply Claw plugin requirements together [#145713](https",
+        "description": "//github.com/openclaw/openclaw/pull/145713).",
+        "href": "https://github.com/openclaw/openclaw/issues/145713"
+      },
+      {
+        "title": "Disclose added memory sources in Claw update previews [#144415](https",
+        "description": "//github.com/openclaw/openclaw/pull/144415).",
+        "href": "https://github.com/openclaw/openclaw/issues/144415"
+      },
+      {
+        "title": "Reuse sender facts within shared transcript pages [#148672](https",
+        "description": "//github.com/openclaw/openclaw/pull/148672).",
+        "href": "https://github.com/openclaw/openclaw/issues/148672"
+      },
+      {
+        "title": "Reduce repeated work when paging shared sessions [#149285](https",
+        "description": "//github.com/openclaw/openclaw/pull/149285).",
+        "href": "https://github.com/openclaw/openclaw/issues/149285"
+      },
+      {
+        "title": "Read session members through the background worker [#151036](https",
+        "description": "//github.com/openclaw/openclaw/pull/151036).",
+        "href": "https://github.com/openclaw/openclaw/issues/151036"
+      },
+      {
+        "title": "Share selected sessions read-only with a paired Gateway [5278a8f2](https://...",
+        "description": "Share selected sessions read-only with a paired Gateway [5278a8f2](https://github.com/openclaw/openclaw/commit/5278a8f2ed9ef49819d483e298d61f3d2656451b).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Keep Gateway responsive during Claude history discovery [#145684](https://g...",
+        "description": "Keep Gateway responsive during Claude history discovery [#145684](https://github.com/openclaw/openclaw/pull/145684).",
+        "href": "https://github.com/openclaw/openclaw/issues/145684"
+      },
+      {
+        "title": "Reduce work when merging long CLI histories [#146031](https",
+        "description": "//github.com/openclaw/openclaw/pull/146031).",
+        "href": "https://github.com/openclaw/openclaw/issues/146031"
+      },
+      {
+        "title": "Put coding session discovery controls in one panel [#146502](https",
+        "description": "//github.com/openclaw/openclaw/pull/146502).",
+        "href": "https://github.com/openclaw/openclaw/issues/146502"
+      },
+      {
+        "title": "Add app icons to session source settings [#146592](https",
+        "description": "//github.com/openclaw/openclaw/pull/146592).",
+        "href": "https://github.com/openclaw/openclaw/issues/146592"
+      },
+      {
+        "title": "Reduce database reads during transcript-mirror recovery [#146684](https://g...",
+        "description": "Reduce database reads during transcript-mirror recovery [#146684](https://github.com/openclaw/openclaw/pull/146684).",
+        "href": "https://github.com/openclaw/openclaw/issues/146684"
+      },
+      {
+        "title": "Explain where slow session listings spend time [#148047](https",
+        "description": "//github.com/openclaw/openclaw/pull/148047). Thanks @giangthb.",
+        "href": "https://github.com/openclaw/openclaw/issues/148047"
+      },
+      {
+        "title": "Identify where slow Codex session listings wait [#148639](https",
+        "description": "//github.com/openclaw/openclaw/pull/148639).",
+        "href": "https://github.com/openclaw/openclaw/issues/148639"
+      },
+      {
+        "title": "Identify where slow Codex session requests fail [#148735](https",
+        "description": "//github.com/openclaw/openclaw/pull/148735).",
+        "href": "https://github.com/openclaw/openclaw/issues/148735"
+      },
+      {
+        "title": "Avoid reopening Codex session files for known provenance [#148838](https://...",
+        "description": "Avoid reopening Codex session files for known provenance [#148838](https://github.com/openclaw/openclaw/pull/148838).",
+        "href": "https://github.com/openclaw/openclaw/issues/148838"
+      },
+      {
+        "title": "Identify phases of slow Codex catalog calls [#148984](https",
+        "description": "//github.com/openclaw/openclaw/pull/148984).",
+        "href": "https://github.com/openclaw/openclaw/issues/148984"
+      },
+      {
+        "title": "Let waiting session catalogs advance between scan steps [#149030](https://g...",
+        "description": "Let waiting session catalogs advance between scan steps [#149030](https://github.com/openclaw/openclaw/pull/149030).",
+        "href": "https://github.com/openclaw/openclaw/issues/149030"
+      },
+      {
+        "title": "Explain slow Codex catalog waits with correlated request logs [#149616](htt...",
+        "description": "Explain slow Codex catalog waits with correlated request logs [#149616](https://github.com/openclaw/openclaw/pull/149616).",
+        "href": "https://github.com/openclaw/openclaw/issues/149616"
+      },
+      {
+        "title": "Reuse Codex catalog pages across repeated multi-home listings [#149773](htt...",
+        "description": "Reuse Codex catalog pages across repeated multi-home listings [#149773](https://github.com/openclaw/openclaw/pull/149773).",
+        "href": "https://github.com/openclaw/openclaw/issues/149773"
+      },
+      {
+        "title": "Reduce Codex session-list memory bursts and preserve timestamp ties [#15011...",
+        "description": "Reduce Codex session-list memory bursts and preserve timestamp ties [#150112](https://github.com/openclaw/openclaw/pull/150112).",
+        "href": "https://github.com/openclaw/openclaw/issues/150112"
+      },
+      {
+        "title": "Reduce processing of large Codex previews [#150514](https",
+        "description": "//github.com/openclaw/openclaw/pull/150514).",
+        "href": "https://github.com/openclaw/openclaw/issues/150514"
+      },
+      {
+        "title": "Reuse current Codex session indexes and restart snapshots [#150659](https:/...",
+        "description": "Reuse current Codex session indexes and restart snapshots [#150659](https://github.com/openclaw/openclaw/pull/150659).",
+        "href": "https://github.com/openclaw/openclaw/issues/150659"
+      },
+      {
+        "title": "Process large language-server replies with less copying [#145703](https://g...",
+        "description": "Process large language-server replies with less copying [#145703](https://github.com/openclaw/openclaw/pull/145703).",
+        "href": "https://github.com/openclaw/openclaw/issues/145703"
+      },
+      {
+        "title": "Speed up Workboard statistics and occupancy checks [#146237](https",
+        "description": "//github.com/openclaw/openclaw/pull/146237).",
+        "href": "https://github.com/openclaw/openclaw/issues/146237"
+      },
+      {
+        "title": "Reduce Workboard task-claim reads [#146245](https",
+        "description": "//github.com/openclaw/openclaw/pull/146245).",
+        "href": "https://github.com/openclaw/openclaw/issues/146245"
+      },
+      {
+        "title": "Load only the requested board's cards [#146683](https",
+        "description": "//github.com/openclaw/openclaw/pull/146683).",
+        "href": "https://github.com/openclaw/openclaw/issues/146683"
+      },
+      {
+        "title": "Read only the selected card for Workboard notifications [#146748](https://g...",
+        "description": "Read only the selected card for Workboard notifications [#146748](https://github.com/openclaw/openclaw/pull/146748).",
+        "href": "https://github.com/openclaw/openclaw/issues/146748"
+      },
+      {
+        "title": "Run Workboard database operations in a background worker [#146976](https://...",
+        "description": "Run Workboard database operations in a background worker [#146976](https://github.com/openclaw/openclaw/pull/146976).",
+        "href": "https://github.com/openclaw/openclaw/issues/146976"
+      },
+      {
+        "title": "Reduce Workboard dependency-check reads [#147102](https",
+        "description": "//github.com/openclaw/openclaw/pull/147102).",
+        "href": "https://github.com/openclaw/openclaw/issues/147102"
+      },
+      {
+        "title": "Filter Workboard subscriptions before loading [#147780](https",
+        "description": "//github.com/openclaw/openclaw/pull/147780).",
+        "href": "https://github.com/openclaw/openclaw/issues/147780"
+      },
+      {
+        "title": "Reuse board settings within each Workboard dispatch decision [#148523](http...",
+        "description": "Reuse board settings within each Workboard dispatch decision [#148523](https://github.com/openclaw/openclaw/pull/148523).",
+        "href": "https://github.com/openclaw/openclaw/issues/148523"
+      },
+      {
+        "title": "Move Team Reports database work off the Gateway thread [#144871](https://gi...",
+        "description": "Move Team Reports database work off the Gateway thread [#144871](https://github.com/openclaw/openclaw/pull/144871).",
+        "href": "https://github.com/openclaw/openclaw/issues/144871"
+      },
+      {
+        "title": "Save large Team Reports with fewer database writes [#146233](https",
+        "description": "//github.com/openclaw/openclaw/pull/146233).",
+        "href": "https://github.com/openclaw/openclaw/issues/146233"
+      },
+      {
+        "title": "Reduce Team Reports status-read overhead [#147452](https",
+        "description": "//github.com/openclaw/openclaw/pull/147452).",
+        "href": "https://github.com/openclaw/openclaw/issues/147452"
+      },
+      {
+        "title": "Reduce internal data transfer for Team Reports people pages [#148288](https...",
+        "description": "Reduce internal data transfer for Team Reports people pages [#148288](https://github.com/openclaw/openclaw/pull/148288).",
+        "href": "https://github.com/openclaw/openclaw/issues/148288"
+      },
+      {
+        "title": "Keep Logbook database work from stalling the application [#144982](https://...",
+        "description": "Keep Logbook database work from stalling the application [#144982](https://github.com/openclaw/openclaw/pull/144982).",
+        "href": "https://github.com/openclaw/openclaw/issues/144982"
+      },
+      {
+        "title": "Batch expired Logbook screenshot cleanup [#146306](https",
+        "description": "//github.com/openclaw/openclaw/pull/146306).",
+        "href": "https://github.com/openclaw/openclaw/issues/146306"
+      },
+      {
+        "title": "Reduce dense screenshot-batch metadata transfer [#147999](https",
+        "description": "//github.com/openclaw/openclaw/pull/147999).",
+        "href": "https://github.com/openclaw/openclaw/issues/147999"
+      },
+      {
+        "title": "Reduce Logbook pending-activity selection overhead [#149660](https",
+        "description": "//github.com/openclaw/openclaw/pull/149660).",
+        "href": "https://github.com/openclaw/openclaw/issues/149660"
+      },
+      {
+        "title": "Search saved meeting notes and transcripts [#145367](https",
+        "description": "//github.com/openclaw/openclaw/pull/145367).",
+        "href": "https://github.com/openclaw/openclaw/issues/145367"
+      },
+      {
+        "title": "Reduce repeated meeting transcript storage work [#146381](https",
+        "description": "//github.com/openclaw/openclaw/pull/146381).",
+        "href": "https://github.com/openclaw/openclaw/issues/146381"
+      },
+      {
+        "title": "Load populated transcript libraries with less database work [#146623](https...",
+        "description": "Load populated transcript libraries with less database work [#146623](https://github.com/openclaw/openclaw/pull/146623).",
+        "href": "https://github.com/openclaw/openclaw/issues/146623"
+      },
+      {
+        "title": "Reduce database queries for voice call history [#146625](https",
+        "description": "//github.com/openclaw/openclaw/pull/146625).",
+        "href": "https://github.com/openclaw/openclaw/issues/146625"
+      },
+      {
+        "title": "Use an existing OpenAI OAuth login for Reef checks [#134815](https",
+        "description": "//github.com/openclaw/openclaw/pull/134815). Thanks @jason-allen-oneal, @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/134815"
+      },
+      {
+        "title": "Reduce repeated Reef peer reads [#147505](https",
+        "description": "//github.com/openclaw/openclaw/pull/147505).",
+        "href": "https://github.com/openclaw/openclaw/issues/147505"
+      },
+      {
+        "title": "Move Reef registration persistence off the application thread [#149637](htt...",
+        "description": "Move Reef registration persistence off the application thread [#149637](https://github.com/openclaw/openclaw/pull/149637).",
+        "href": "https://github.com/openclaw/openclaw/issues/149637"
+      },
+      {
+        "title": "Move Reef delivery-marker storage off the application thread [#149745](http...",
+        "description": "Move Reef delivery-marker storage off the application thread [#149745](https://github.com/openclaw/openclaw/pull/149745).",
+        "href": "https://github.com/openclaw/openclaw/issues/149745"
+      },
+      {
+        "title": "Move Reef inbox progress storage off the Gateway thread [#149770](https://g...",
+        "description": "Move Reef inbox progress storage off the Gateway thread [#149770](https://github.com/openclaw/openclaw/pull/149770).",
+        "href": "https://github.com/openclaw/openclaw/issues/149770"
+      },
+      {
+        "title": "Move Reef replay persistence to SQLite workers [#149849](https",
+        "description": "//github.com/openclaw/openclaw/pull/149849).",
+        "href": "https://github.com/openclaw/openclaw/issues/149849"
+      },
+      {
+        "title": "Move Reef review reads off the Gateway thread [#149930](https",
+        "description": "//github.com/openclaw/openclaw/pull/149930).",
+        "href": "https://github.com/openclaw/openclaw/issues/149930"
+      },
+      {
+        "title": "Add optional timestamps to Fleet logs [#132554](https",
+        "description": "//github.com/openclaw/openclaw/pull/132554). Thanks @alix-007, @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/132554"
+      },
+      {
+        "title": "Avoid unused JSON conversion for structured MCP results [#148929](https://g...",
+        "description": "Avoid unused JSON conversion for structured MCP results [#148929](https://github.com/openclaw/openclaw/pull/148929).",
+        "href": "https://github.com/openclaw/openclaw/issues/148929"
+      },
+      {
+        "title": "Skip redundant quota scans during plugin-state writes [#144198](https",
+        "description": "//github.com/openclaw/openclaw/pull/144198). Thanks @tedbarnett.",
+        "href": "https://github.com/openclaw/openclaw/issues/144198"
+      },
+      {
+        "title": "Reuse compiled queries for plugin-state imports [#144206](https",
+        "description": "//github.com/openclaw/openclaw/pull/144206).",
+        "href": "https://github.com/openclaw/openclaw/issues/144206"
+      },
+      {
+        "title": "Expose the selected runtime entry to plugins [#144818](https",
+        "description": "//github.com/openclaw/openclaw/pull/144818).",
+        "href": "https://github.com/openclaw/openclaw/issues/144818"
+      },
+      {
+        "title": "Package declared private plugin workers [#144821](https",
+        "description": "//github.com/openclaw/openclaw/pull/144821).",
+        "href": "https://github.com/openclaw/openclaw/issues/144821"
+      },
+      {
+        "title": "Add asynchronous task and flow reads for plugins [#145851](https",
+        "description": "//github.com/openclaw/openclaw/pull/145851).",
+        "href": "https://github.com/openclaw/openclaw/issues/145851"
+      },
+      {
+        "title": "Skip unnecessary plugin state expiry scans [#146114](https",
+        "description": "//github.com/openclaw/openclaw/pull/146114).",
+        "href": "https://github.com/openclaw/openclaw/issues/146114"
+      },
+      {
+        "title": "Avoid loading old plugin values during writes and imports [#146278](https:/...",
+        "description": "Avoid loading old plugin values during writes and imports [#146278](https://github.com/openclaw/openclaw/pull/146278).",
+        "href": "https://github.com/openclaw/openclaw/issues/146278"
+      },
+      {
+        "title": "Use cheaper plugin record counts and capacity checks [#146285](https",
+        "description": "//github.com/openclaw/openclaw/pull/146285).",
+        "href": "https://github.com/openclaw/openclaw/issues/146285"
+      },
+      {
+        "title": "Speed up plugin capacity checks and migration previews [#146377](https://gi...",
+        "description": "Speed up plugin capacity checks and migration previews [#146377](https://github.com/openclaw/openclaw/pull/146377).",
+        "href": "https://github.com/openclaw/openclaw/issues/146377"
+      },
+      {
+        "title": "Move managed workflow writes off the application thread [#146495](https://g...",
+        "description": "Move managed workflow writes off the application thread [#146495](https://github.com/openclaw/openclaw/pull/146495).",
+        "href": "https://github.com/openclaw/openclaw/issues/146495"
+      },
+      {
+        "title": "Await managed child-task linking in plugins and Webhooks [#146678](https://...",
+        "description": "Await managed child-task linking in plugins and Webhooks [#146678](https://github.com/openclaw/openclaw/pull/146678).",
+        "href": "https://github.com/openclaw/openclaw/issues/146678"
+      },
+      {
+        "title": "Count flow tasks without loading full task records [#146682](https",
+        "description": "//github.com/openclaw/openclaw/pull/146682).",
+        "href": "https://github.com/openclaw/openclaw/issues/146682"
+      },
+      {
+        "title": "Reduce reads when plugin caches evict old entries [#146750](https",
+        "description": "//github.com/openclaw/openclaw/pull/146750).",
+        "href": "https://github.com/openclaw/openclaw/issues/146750"
+      },
+      {
+        "title": "Skip unused plugin-state payload reads [#147619](https",
+        "description": "//github.com/openclaw/openclaw/pull/147619).",
+        "href": "https://github.com/openclaw/openclaw/issues/147619"
+      },
+      {
+        "title": "Move conditional plugin updates into database workers [#147891](https",
+        "description": "//github.com/openclaw/openclaw/pull/147891).",
+        "href": "https://github.com/openclaw/openclaw/issues/147891"
+      },
+      {
+        "title": "Save Teams learnings through database workers [#147931](https",
+        "description": "//github.com/openclaw/openclaw/pull/147931).",
+        "href": "https://github.com/openclaw/openclaw/issues/147931"
+      },
+      {
+        "title": "Move SMS delivery-status writes off main thread [#147934](https",
+        "description": "//github.com/openclaw/openclaw/pull/147934).",
+        "href": "https://github.com/openclaw/openclaw/issues/147934"
+      },
+      {
+        "title": "Move awaited plugin metadata reads off main thread [#148017](https",
+        "description": "//github.com/openclaw/openclaw/pull/148017).",
+        "href": "https://github.com/openclaw/openclaw/issues/148017"
+      },
+      {
+        "title": "Avoid an extra copy when reading stored plugin files [#149420](https",
+        "description": "//github.com/openclaw/openclaw/pull/149420).",
+        "href": "https://github.com/openclaw/openclaw/issues/149420"
+      },
+      {
+        "title": "Allow asynchronous scoped session-access checks [#149599](https",
+        "description": "//github.com/openclaw/openclaw/pull/149599).",
+        "href": "https://github.com/openclaw/openclaw/issues/149599"
+      },
+      {
+        "title": "Move data-only plugin storage to the shared-state worker [2ff1f93a](https:/...",
+        "description": "Move data-only plugin storage to the shared-state worker [2ff1f93a](https://github.com/openclaw/openclaw/commit/2ff1f93a6da92559ff40c770d507eea2566b9655).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Move saved-task preparation off the Gateway main thread [#148574](https://g...",
+        "description": "Move saved-task preparation off the Gateway main thread [#148574](https://github.com/openclaw/openclaw/pull/148574).",
+        "href": "https://github.com/openclaw/openclaw/issues/148574"
+      },
+      {
+        "title": "Deprecate synchronous plugin storage with migration guidance [#145158](http...",
+        "description": "Deprecate synchronous plugin storage with migration guidance [#145158](https://github.com/openclaw/openclaw/pull/145158).",
+        "href": "https://github.com/openclaw/openclaw/issues/145158"
+      },
+      {
+        "title": "Correct async task SDK migration guidance [#146568](https",
+        "description": "//github.com/openclaw/openclaw/pull/146568).",
+        "href": "https://github.com/openclaw/openclaw/issues/146568"
+      },
+      {
+        "title": "Organize Workboard filters and mobile controls [#144751](https",
+        "description": "//github.com/openclaw/openclaw/pull/144751). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144751"
+      },
+      {
+        "title": "Add a responsive Workboard list view [#144753](https",
+        "description": "//github.com/openclaw/openclaw/pull/144753). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144753"
+      },
+      {
+        "title": "Compact Workboard’s filtered empty state [#147514](https",
+        "description": "//github.com/openclaw/openclaw/pull/147514). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147514"
+      },
+      {
+        "title": "Clarify Workboard list focus and hover [#147515](https",
+        "description": "//github.com/openclaw/openclaw/pull/147515). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147515"
+      },
+      {
+        "title": "Clarify Workboard filter borders [#147516](https",
+        "description": "//github.com/openclaw/openclaw/pull/147516). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/147516"
+      },
+      {
+        "title": "Simplify Workboard cards and preserve concurrent reordering changes [#14475...",
+        "description": "Simplify Workboard cards and preserve concurrent reordering changes [#144752](https://github.com/openclaw/openclaw/pull/144752). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144752"
+      },
+      {
+        "title": "Edit Workboard cards and board appearance [#144754](https",
+        "description": "//github.com/openclaw/openclaw/pull/144754). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144754"
+      },
+      {
+        "title": "Organize Workboard card details and session context [#144755](https",
+        "description": "//github.com/openclaw/openclaw/pull/144755). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144755"
+      },
+      {
+        "title": "Select and update multiple Workboard cards [#144756](https",
+        "description": "//github.com/openclaw/openclaw/pull/144756). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144756"
+      },
+      {
+        "title": "Reduce ranking work in large tool catalogs [#145725](https",
+        "description": "//github.com/openclaw/openclaw/pull/145725).",
+        "href": "https://github.com/openclaw/openclaw/issues/145725"
+      },
+      {
+        "title": "Speed up Code Mode MCP catalog preparation [#146083](https",
+        "description": "//github.com/openclaw/openclaw/pull/146083).",
+        "href": "https://github.com/openclaw/openclaw/issues/146083"
+      },
+      {
+        "title": "Reduce repeated processing of large Code Mode results [#146584](https",
+        "description": "//github.com/openclaw/openclaw/pull/146584).",
+        "href": "https://github.com/openclaw/openclaw/issues/146584"
+      },
+      {
+        "title": "Find native and MCP tools by task in Code Mode [#147134](https",
+        "description": "//github.com/openclaw/openclaw/pull/147134).",
+        "href": "https://github.com/openclaw/openclaw/issues/147134"
+      },
+      {
+        "title": "Improve Code Mode result types and compiler feedback [#147143](https",
+        "description": "//github.com/openclaw/openclaw/pull/147143).",
+        "href": "https://github.com/openclaw/openclaw/issues/147143"
+      },
+      {
+        "title": "Speed repeated Code Mode type checks [#147252](https",
+        "description": "//github.com/openclaw/openclaw/pull/147252).",
+        "href": "https://github.com/openclaw/openclaw/issues/147252"
+      },
+      {
+        "title": "Infer Code Mode results from the requested action [#147291](https",
+        "description": "//github.com/openclaw/openclaw/pull/147291).",
+        "href": "https://github.com/openclaw/openclaw/issues/147291"
+      },
+      {
+        "title": "Reuse saved data across Code Mode cells [#147154](https",
+        "description": "//github.com/openclaw/openclaw/pull/147154).",
+        "href": "https://github.com/openclaw/openclaw/issues/147154"
+      },
+      {
+        "title": "Keep oversized Code Mode results for later cells [#147278](https",
+        "description": "//github.com/openclaw/openclaw/pull/147278).",
+        "href": "https://github.com/openclaw/openclaw/issues/147278"
+      },
+      {
+        "title": "Reuse byte counts when fitting results [#147718](https",
+        "description": "//github.com/openclaw/openclaw/pull/147718).",
+        "href": "https://github.com/openclaw/openclaw/issues/147718"
+      },
+      {
+        "title": "Reduce database reads when listing 1Password items [#147183](https",
+        "description": "//github.com/openclaw/openclaw/pull/147183).",
+        "href": "https://github.com/openclaw/openclaw/issues/147183"
+      },
+      {
+        "title": "Move UI customization access to Plugins [#147245](https",
+        "description": "//github.com/openclaw/openclaw/pull/147245).",
+        "href": "https://github.com/openclaw/openclaw/issues/147245"
+      },
+      {
+        "title": "Select assistant-delivered files by run [#147682](https",
+        "description": "//github.com/openclaw/openclaw/pull/147682). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147682"
+      },
+      {
+        "title": "Reduce repeated preparation for multi-table Feishu documents [#148997](http...",
+        "description": "Reduce repeated preparation for multi-table Feishu documents [#148997](https://github.com/openclaw/openclaw/pull/148997).",
+        "href": "https://github.com/openclaw/openclaw/issues/148997"
+      },
+      {
+        "title": "Reduce preparation work for long Feishu table cells [#149040](https",
+        "description": "//github.com/openclaw/openclaw/pull/149040).",
+        "href": "https://github.com/openclaw/openclaw/issues/149040"
+      },
+      {
+        "title": "Reduce repeated work when checking saved command approvals [#146773](https:...",
+        "description": "Reduce repeated work when checking saved command approvals [#146773](https://github.com/openclaw/openclaw/pull/146773).",
+        "href": "https://github.com/openclaw/openclaw/issues/146773"
+      },
+      {
+        "title": "Clarify patch-tool workspace limits and permission precedence [#136088](htt...",
+        "description": "Clarify patch-tool workspace limits and permission precedence [#136088](https://github.com/openclaw/openclaw/pull/136088). Thanks @marvinthebored, @peetiegonzalez and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/136088"
+      },
+      {
+        "title": "Prevent symlinks from redirecting sandbox file changes [#143501](https://gi...",
+        "description": "Prevent symlinks from redirecting sandbox file changes [#143501](https://github.com/openclaw/openclaw/pull/143501). Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/issues/143501"
+      },
+      {
+        "title": "Align sandbox file tools with visible container mounts [#148893](https://gi...",
+        "description": "Align sandbox file tools with visible container mounts [#148893](https://github.com/openclaw/openclaw/pull/148893). Thanks @vincentkoc, @aaronwander, @frankekn and @jiesou. Selected changes to tmpfs destinations or read-only modes below binds also require scoped container recreation; unchanged containers remain reusable.",
+        "href": "https://github.com/openclaw/openclaw/issues/148893"
+      },
+      {
+        "title": "Confine sandbox media reads to authorized folders [#144347](https",
+        "description": "//github.com/openclaw/openclaw/pull/144347). Thanks @eleqtrizit and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144347"
+      },
+      {
+        "title": "Isolate subagent attachment storage and cleanup [#146600](https",
+        "description": "//github.com/openclaw/openclaw/pull/146600). Thanks @eleqtrizit, @jacobtomlinson and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146600"
+      },
+      {
+        "title": "Preserve file operations with fs-safe0",
+        "description": "Preserve file operations with fs-safe0.13.1 native helpers [#150263](https://github.com/openclaw/openclaw/pull/150263). Explicit native-mode settings and the sealed-worker native-off policy remain effective.",
+        "href": "https://github.com/openclaw/openclaw/issues/150263"
+      },
+      {
+        "title": "Redact local paths in sidebar failure previews [#143907](https",
+        "description": "//github.com/openclaw/openclaw/pull/143907). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143907"
+      },
+      {
+        "title": "Mask Mattermost credentials in error diagnostics [#144172](https",
+        "description": "//github.com/openclaw/openclaw/pull/144172). Thanks @wangmiao0668000666 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144172"
+      },
+      {
+        "title": "Preserve URLs and credential masking with custom rules [#145810](https://gi...",
+        "description": "Preserve URLs and credential masking with custom rules [#145810](https://github.com/openclaw/openclaw/pull/145810). Thanks @obviyus and @schjonhaug.",
+        "href": "https://github.com/openclaw/openclaw/issues/145810"
+      },
+      {
+        "title": "Mask secrets in tool results before model delivery [#146596](https",
+        "description": "//github.com/openclaw/openclaw/pull/146596). Thanks @nicknmorty.",
+        "href": "https://github.com/openclaw/openclaw/issues/146596"
+      },
+      {
+        "title": "Keep credential-masked Gateway logs valid JSON [#146718](https",
+        "description": "//github.com/openclaw/openclaw/pull/146718). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/146718"
+      },
+      {
+        "title": "Preserve masking and valid JSON across stored log selections [#146850](http...",
+        "description": "Preserve masking and valid JSON across stored log selections [#146850](https://github.com/openclaw/openclaw/pull/146850). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/146850"
+      },
+      {
+        "title": "Keep secret masking consistent across module copies [#147316](https",
+        "description": "//github.com/openclaw/openclaw/pull/147316).",
+        "href": "https://github.com/openclaw/openclaw/issues/147316"
+      },
+      {
+        "title": "Redact Windows diagnostic paths without namespace leftovers [2995f0f](https...",
+        "description": "Redact Windows diagnostic paths without namespace leftovers [2995f0f](https://github.com/openclaw/openclaw/commit/2995f0f2c1d98effb0f9f22c6f95ae61caaf9eba). Thanks @liuwqgit and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reduce allocation when redacting diagnostic snapshots [#146192](https",
+        "description": "//github.com/openclaw/openclaw/pull/146192).",
+        "href": "https://github.com/openclaw/openclaw/issues/146192"
+      },
+      {
+        "title": "Reduce unrelated credential metadata processing during cleanup [#146882](ht...",
+        "description": "Reduce unrelated credential metadata processing during cleanup [#146882](https://github.com/openclaw/openclaw/pull/146882). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146882"
+      },
+      {
+        "title": "Reduce temporary credential-redaction allocations [#147592](https",
+        "description": "//github.com/openclaw/openclaw/pull/147592).",
+        "href": "https://github.com/openclaw/openclaw/issues/147592"
+      },
+      {
+        "title": "Reduce unused redaction allocations [#147672](https",
+        "description": "//github.com/openclaw/openclaw/pull/147672).",
+        "href": "https://github.com/openclaw/openclaw/issues/147672"
+      },
+      {
+        "title": "Reduce repeated redacted-log reconstruction [#148007](https",
+        "description": "//github.com/openclaw/openclaw/pull/148007).",
+        "href": "https://github.com/openclaw/openclaw/issues/148007"
+      },
+      {
+        "title": "Move conversation approval storage to the shared worker [#150052](https://g...",
+        "description": "Move conversation approval storage to the shared worker [#150052](https://github.com/openclaw/openclaw/pull/150052).",
+        "href": "https://github.com/openclaw/openclaw/issues/150052"
+      },
+      {
+        "title": "Stop revoked GitHub Copilot login attempts [#148999](https",
+        "description": "//github.com/openclaw/openclaw/pull/148999). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148999"
+      },
+      {
+        "title": "Stop MiniMax token requests after login permission revocation [#149140](htt...",
+        "description": "Stop MiniMax token requests after login permission revocation [#149140](https://github.com/openclaw/openclaw/pull/149140). Thanks @masatohoshino and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/149140"
+      },
+      {
+        "title": "Renew Gateway TLS certificates without interrupting connections [#146267](h...",
+        "description": "Renew Gateway TLS certificates without interrupting connections [#146267](https://github.com/openclaw/openclaw/pull/146267).",
+        "href": "https://github.com/openclaw/openclaw/issues/146267"
+      },
+      {
+        "title": "Configure approval-review reasoning and Fast mode independently [#147192](h...",
+        "description": "Configure approval-review reasoning and Fast mode independently [#147192](https://github.com/openclaw/openclaw/pull/147192). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147192"
+      },
+      {
+        "title": "Translate approval-review settings in 20 locales [#147213](https",
+        "description": "//github.com/openclaw/openclaw/pull/147213). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147213"
+      },
+      {
+        "title": "Require credential files to belong to the FreeBSD app user [#147212](https:...",
+        "description": "Require credential files to belong to the FreeBSD app user [#147212](https://github.com/openclaw/openclaw/pull/147212). Thanks @vincentkoc and @lucarinaorg.",
+        "href": "https://github.com/openclaw/openclaw/issues/147212"
+      },
+      {
+        "title": "Show image attachments directly in the terminal UI [#146644](https",
+        "description": "//github.com/openclaw/openclaw/pull/146644).",
+        "href": "https://github.com/openclaw/openclaw/issues/146644"
+      },
+      {
+        "title": "Format long Windows CLI tables with less work [#146307](https",
+        "description": "//github.com/openclaw/openclaw/pull/146307).",
+        "href": "https://github.com/openclaw/openclaw/issues/146307"
+      },
+      {
+        "title": "Reduce copying in streamed Windows command output [#147881](https",
+        "description": "//github.com/openclaw/openclaw/pull/147881).",
+        "href": "https://github.com/openclaw/openclaw/issues/147881"
+      },
+      {
+        "title": "Share worktree source storage with Btrfs snapshots [#146251](https",
+        "description": "//github.com/openclaw/openclaw/pull/146251).",
+        "href": "https://github.com/openclaw/openclaw/issues/146251"
+      },
+      {
+        "title": "Share managed-worktree source storage on APFS [#146338](https",
+        "description": "//github.com/openclaw/openclaw/pull/146338).",
+        "href": "https://github.com/openclaw/openclaw/issues/146338"
+      },
+      {
+        "title": "Share Windows worktree storage on ReFS [#146403](https",
+        "description": "//github.com/openclaw/openclaw/pull/146403).",
+        "href": "https://github.com/openclaw/openclaw/issues/146403"
+      },
+      {
+        "title": "Reduce Git queries and redundant APFS worktree waits [#146722](https",
+        "description": "//github.com/openclaw/openclaw/pull/146722).",
+        "href": "https://github.com/openclaw/openclaw/issues/146722"
+      },
+      {
+        "title": "Speed worktree removal and reduce warm-clone space requirements [#146723](h...",
+        "description": "Speed worktree removal and reduce warm-clone space requirements [#146723](https://github.com/openclaw/openclaw/pull/146723).",
+        "href": "https://github.com/openclaw/openclaw/issues/146723"
+      },
+      {
+        "title": "Reduce waiting for managed worktree restore and creation [#146765](https://...",
+        "description": "Reduce waiting for managed worktree restore and creation [#146765](https://github.com/openclaw/openclaw/pull/146765). Saved edits are retained.",
+        "href": "https://github.com/openclaw/openclaw/issues/146765"
+      },
+      {
+        "title": "Reduce worktree inventory read cost [#146890](https",
+        "description": "//github.com/openclaw/openclaw/pull/146890). Listings skip unused provisioning manifests.",
+        "href": "https://github.com/openclaw/openclaw/issues/146890"
+      },
+      {
+        "title": "Reduce worktree filesystem pauses and temporary extraction syncs [#146906](...",
+        "description": "Reduce worktree filesystem pauses and temporary extraction syncs [#146906](https://github.com/openclaw/openclaw/pull/146906). Native Btrfs sharing works without the btrfs command, and temporary installation files skip unnecessary disk syncs.",
+        "href": "https://github.com/openclaw/openclaw/issues/146906"
+      },
+      {
+        "title": "Break down slow worktree cleanup timings [#147379](https",
+        "description": "//github.com/openclaw/openclaw/pull/147379). With diagnostics and info logging enabled, slow-removal logs show stage timings after the operation settles.",
+        "href": "https://github.com/openclaw/openclaw/issues/147379"
+      },
+      {
+        "title": "Move project registry removal to the shared worker [#148623](https",
+        "description": "//github.com/openclaw/openclaw/pull/148623). Removing a registry entry leaves checkout files intact.",
+        "href": "https://github.com/openclaw/openclaw/issues/148623"
+      },
+      {
+        "title": "Move stored project listing to the shared worker [#148637](https",
+        "description": "//github.com/openclaw/openclaw/pull/148637).",
+        "href": "https://github.com/openclaw/openclaw/issues/148637"
+      },
+      {
+        "title": "Avoid duplicate template reads during worktree cleanup [#148840](https://gi...",
+        "description": "Avoid duplicate template reads during worktree cleanup [#148840](https://github.com/openclaw/openclaw/pull/148840).",
+        "href": "https://github.com/openclaw/openclaw/issues/148840"
+      },
+      {
+        "title": "Avoid repeated Git scans during worktree cleanup [#148919](https",
+        "description": "//github.com/openclaw/openclaw/pull/148919).",
+        "href": "https://github.com/openclaw/openclaw/issues/148919"
+      },
+      {
+        "title": "Choose repository-defined source profiles for new worktrees [#149581](https...",
+        "description": "Choose repository-defined source profiles for new worktrees [#149581](https://github.com/openclaw/openclaw/pull/149581). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/149581"
+      },
+      {
+        "title": "Avoid redundant session reads when managing Goals [#149765](https",
+        "description": "//github.com/openclaw/openclaw/pull/149765). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149765"
+      },
+      {
+        "title": "Avoid repeated copying of captured CLI output [#144278](https",
+        "description": "//github.com/openclaw/openclaw/pull/144278).",
+        "href": "https://github.com/openclaw/openclaw/issues/144278"
+      },
+      {
+        "title": "Reduce repeated processing of CLI reasoning updates [#144350](https",
+        "description": "//github.com/openclaw/openclaw/pull/144350).",
+        "href": "https://github.com/openclaw/openclaw/issues/144350"
+      },
+      {
+        "title": "Avoid unrelated secret reads during GitHub maintenance [#144940](https://gi...",
+        "description": "Avoid unrelated secret reads during GitHub maintenance [#144940](https://github.com/openclaw/openclaw/pull/144940).",
+        "href": "https://github.com/openclaw/openclaw/issues/144940"
+      },
+      {
+        "title": "Reduce repeated processing of streaming commentary [#145149](https",
+        "description": "//github.com/openclaw/openclaw/pull/145149).",
+        "href": "https://github.com/openclaw/openclaw/issues/145149"
+      },
+      {
+        "title": "Reduce temporary allocations when preparing long conversations [#145265](ht...",
+        "description": "Reduce temporary allocations when preparing long conversations [#145265](https://github.com/openclaw/openclaw/pull/145265).",
+        "href": "https://github.com/openclaw/openclaw/issues/145265"
+      },
+      {
+        "title": "Reduce temporary allocations during parallel agent work [#145630](https://g...",
+        "description": "Reduce temporary allocations during parallel agent work [#145630](https://github.com/openclaw/openclaw/pull/145630).",
+        "href": "https://github.com/openclaw/openclaw/issues/145630"
+      },
+      {
+        "title": "Reduce temporary allocation in synchronous work [#146035](https",
+        "description": "//github.com/openclaw/openclaw/pull/146035).",
+        "href": "https://github.com/openclaw/openclaw/issues/146035"
+      },
+      {
+        "title": "Reduce temporary allocations during agent turns [#146037](https",
+        "description": "//github.com/openclaw/openclaw/pull/146037).",
+        "href": "https://github.com/openclaw/openclaw/issues/146037"
+      },
+      {
+        "title": "Use less memory for quiet BOOT.md runs [#146041](https",
+        "description": "//github.com/openclaw/openclaw/pull/146041).",
+        "href": "https://github.com/openclaw/openclaw/issues/146041"
+      },
+      {
+        "title": "Reduce temporary allocation during parallel sessions [#146219](https",
+        "description": "//github.com/openclaw/openclaw/pull/146219). The measured workload allocated less temporary data but took longer.",
+        "href": "https://github.com/openclaw/openclaw/issues/146219"
+      },
+      {
+        "title": "Reduce temporary allocation during parallel agent work [#146344](https://gi...",
+        "description": "Reduce temporary allocation during parallel agent work [#146344](https://github.com/openclaw/openclaw/pull/146344). The measured workload allocated less temporary data while peak process memory increased.",
+        "href": "https://github.com/openclaw/openclaw/issues/146344"
+      },
+      {
+        "title": "Use faster hashing for file verification [#146581](https",
+        "description": "//github.com/openclaw/openclaw/pull/146581). Shared hashing helpers use larger file reads. Faster large-file verification uses more memory.",
+        "href": "https://github.com/openclaw/openclaw/issues/146581"
+      },
+      {
+        "title": "Avoid unused parsing when saving assistant replies [#146858](https",
+        "description": "//github.com/openclaw/openclaw/pull/146858). Code-heavy replies skip unnecessary delivery-instruction parsing.",
+        "href": "https://github.com/openclaw/openclaw/issues/146858"
+      },
+      {
+        "title": "Reduce work for small history and usage reads [#147205](https",
+        "description": "//github.com/openclaw/openclaw/pull/147205).",
+        "href": "https://github.com/openclaw/openclaw/issues/147205"
+      },
+      {
+        "title": "Reduce repeated work when matching saved chat messages [#147210](https://gi...",
+        "description": "Reduce repeated work when matching saved chat messages [#147210](https://github.com/openclaw/openclaw/pull/147210).",
+        "href": "https://github.com/openclaw/openclaw/issues/147210"
+      },
+      {
+        "title": "Reduce provider-summary work in agent listings [#147518](https",
+        "description": "//github.com/openclaw/openclaw/pull/147518).",
+        "href": "https://github.com/openclaw/openclaw/issues/147518"
+      },
+      {
+        "title": "Avoid duplicate CLI metadata snapshots [#147861](https",
+        "description": "//github.com/openclaw/openclaw/pull/147861). One CLI plugin-metadata operation avoids duplicate database copies; the next operation sees newer changes. Thanks @pfrederiksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/147861"
+      },
+      {
+        "title": "Batch stale usage-summary cleanup [#147998](https",
+        "description": "//github.com/openclaw/openclaw/pull/147998). Concurrent updates and retention rules are preserved; small cleanups can take longer.",
+        "href": "https://github.com/openclaw/openclaw/issues/147998"
+      },
+      {
+        "title": "Reduce delays after whole-file writes [#148132](https",
+        "description": "//github.com/openclaw/openclaw/pull/148132). Thanks @pollybot13 and @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/148132"
+      },
+      {
+        "title": "Avoid an extra copy for single-frame node messages [#148468](https",
+        "description": "//github.com/openclaw/openclaw/pull/148468).",
+        "href": "https://github.com/openclaw/openclaw/issues/148468"
+      },
+      {
+        "title": "Reuse timezone validation while preparing reply context [#148492](https://g...",
+        "description": "Reuse timezone validation while preparing reply context [#148492](https://github.com/openclaw/openclaw/pull/148492).",
+        "href": "https://github.com/openclaw/openclaw/issues/148492"
+      },
+      {
+        "title": "Reduce repeated UTC history formatting work [#148648](https",
+        "description": "//github.com/openclaw/openclaw/pull/148648).",
+        "href": "https://github.com/openclaw/openclaw/issues/148648"
+      },
+      {
+        "title": "Reduce structured logging CPU overhead [#148813](https",
+        "description": "//github.com/openclaw/openclaw/pull/148813).",
+        "href": "https://github.com/openclaw/openclaw/issues/148813"
+      },
+      {
+        "title": "Reduce repeated timestamp work during logging bursts [#148867](https",
+        "description": "//github.com/openclaw/openclaw/pull/148867).",
+        "href": "https://github.com/openclaw/openclaw/issues/148867"
+      },
+      {
+        "title": "Reduce temporary allocation during log redaction [#149225](https",
+        "description": "//github.com/openclaw/openclaw/pull/149225).",
+        "href": "https://github.com/openclaw/openclaw/issues/149225"
+      },
+      {
+        "title": "Reduce redaction work for ordinary structured logs [#149329](https",
+        "description": "//github.com/openclaw/openclaw/pull/149329).",
+        "href": "https://github.com/openclaw/openclaw/issues/149329"
+      },
+      {
+        "title": "Retain QA attempts and select exact evidence [#147756](https",
+        "description": "//github.com/openclaw/openclaw/pull/147756). Thanks @vincentkoc and @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147756"
+      },
+      {
+        "title": "Allow more simultaneous sessions by default [#147423](https",
+        "description": "//github.com/openclaw/openclaw/pull/147423).",
+        "href": "https://github.com/openclaw/openclaw/issues/147423"
+      },
+      {
+        "title": "Prepare conversation history away from the Gateway main thread [#147363](ht...",
+        "description": "Prepare conversation history away from the Gateway main thread [#147363](https://github.com/openclaw/openclaw/pull/147363). Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/147363"
+      },
+      {
+        "title": "Keep Gateway responsive while listing branches [#147649](https",
+        "description": "//github.com/openclaw/openclaw/pull/147649). Stored-conversation branch order, selection, and contents are preserved.",
+        "href": "https://github.com/openclaw/openclaw/issues/147649"
+      },
+      {
+        "title": "Reduce first-use chat history latency [#148382](https",
+        "description": "//github.com/openclaw/openclaw/pull/148382).",
+        "href": "https://github.com/openclaw/openclaw/issues/148382"
+      },
+      {
+        "title": "Reduce code loaded for cold history and profile reads [#148427](https",
+        "description": "//github.com/openclaw/openclaw/pull/148427).",
+        "href": "https://github.com/openclaw/openclaw/issues/148427"
+      },
+      {
+        "title": "Reduce cold session-history child lookup work [#148775](https",
+        "description": "//github.com/openclaw/openclaw/pull/148775).",
+        "href": "https://github.com/openclaw/openclaw/issues/148775"
+      },
+      {
+        "title": "Reduce temporary allocation when paging marker-heavy history [#148833](http...",
+        "description": "Reduce temporary allocation when paging marker-heavy history [#148833](https://github.com/openclaw/openclaw/pull/148833).",
+        "href": "https://github.com/openclaw/openclaw/issues/148833"
+      },
+      {
+        "title": "Reduce pauses during subagent completion checks [#148914](https",
+        "description": "//github.com/openclaw/openclaw/pull/148914).",
+        "href": "https://github.com/openclaw/openclaw/issues/148914"
+      },
+      {
+        "title": "Reduce repeated chat-history database opening [#148972](https",
+        "description": "//github.com/openclaw/openclaw/pull/148972).",
+        "href": "https://github.com/openclaw/openclaw/issues/148972"
+      },
+      {
+        "title": "Avoid duplicate fixed-store discovery during history loading [#148985](http...",
+        "description": "Avoid duplicate fixed-store discovery during history loading [#148985](https://github.com/openclaw/openclaw/pull/148985).",
+        "href": "https://github.com/openclaw/openclaw/issues/148985"
+      },
+      {
+        "title": "Reduce repeated work when loading session history [#150186](https",
+        "description": "//github.com/openclaw/openclaw/pull/150186).",
+        "href": "https://github.com/openclaw/openclaw/issues/150186"
+      },
+      {
+        "title": "Reduce unnecessary work when loading history and context [#150481](https://...",
+        "description": "Reduce unnecessary work when loading history and context [#150481](https://github.com/openclaw/openclaw/pull/150481). Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/150481"
+      },
+      {
+        "title": "Reuse history readers across agents [#150519](https",
+        "description": "//github.com/openclaw/openclaw/pull/150519). Retained readers use additional open file handles and close when the whole history worker retires after 30 idle minutes.",
+        "href": "https://github.com/openclaw/openclaw/issues/150519"
+      },
+      {
+        "title": "Reduce repeated work during live history updates [#151194](https",
+        "description": "//github.com/openclaw/openclaw/pull/151194). The reported multi-minute Gateway stalls remain unresolved. Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/151194"
+      },
+      {
+        "title": "Move conversation-list reads off the Gateway thread [9ab47386](https",
+        "description": "//github.com/openclaw/openclaw/commit/9ab47386778bb69c227ccc55811c4bce2a2b8aec). Also preserve extension custom TypeBox format validation alongside the built runtime. Bun and incognito list-reading paths remain unchanged.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reduce unnecessary work in byte-limited history and large-message context r...",
+        "description": "Reduce unnecessary work in byte-limited history and large-message context reads [#151240](https://github.com/openclaw/openclaw/pull/151240). Very large message-count context reads showed no consistent gain. Thanks @datrab.",
+        "href": "https://github.com/openclaw/openclaw/issues/151240"
+      },
+      {
+        "title": "Skip archive readers for sessions without archives [#149506](https",
+        "description": "//github.com/openclaw/openclaw/pull/149506).",
+        "href": "https://github.com/openclaw/openclaw/issues/149506"
+      },
+      {
+        "title": "Protect session resets with an expected session identity [#123864](https://...",
+        "description": "Protect session resets with an expected session identity [#123864](https://github.com/openclaw/openclaw/pull/123864). Thanks @pollybot13, @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/123864"
+      },
+      {
+        "title": "Show when interrupted conversations resume after restart [#141797](https://...",
+        "description": "Show when interrupted conversations resume after restart [#141797](https://github.com/openclaw/openclaw/pull/141797). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/141797"
+      },
+      {
+        "title": "Avoid unrelated session reads during recovery [#148032](https",
+        "description": "//github.com/openclaw/openclaw/pull/148032). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148032"
+      },
+      {
+        "title": "Reduce ACP metadata escaping overhead [#146156](https",
+        "description": "//github.com/openclaw/openclaw/pull/146156).",
+        "href": "https://github.com/openclaw/openclaw/issues/146156"
+      },
+      {
+        "title": "Reduce CPU work for verbose command output [#146406](https",
+        "description": "//github.com/openclaw/openclaw/pull/146406).",
+        "href": "https://github.com/openclaw/openclaw/issues/146406"
+      },
+      {
+        "title": "Reduce large-Gateway command-launch pauses on Linux [#150564](https",
+        "description": "//github.com/openclaw/openclaw/pull/150564).",
+        "href": "https://github.com/openclaw/openclaw/issues/150564"
+      },
+      {
+        "title": "Reduce overhead when tracking completed runs [#145988](https",
+        "description": "//github.com/openclaw/openclaw/pull/145988).",
+        "href": "https://github.com/openclaw/openclaw/issues/145988"
+      },
+      {
+        "title": "Avoid repeated HTTP client module resolution [#146133](https",
+        "description": "//github.com/openclaw/openclaw/pull/146133).",
+        "href": "https://github.com/openclaw/openclaw/issues/146133"
+      },
+      {
+        "title": "Reduce CPU work when formatting WebSocket logs [#150042](https",
+        "description": "//github.com/openclaw/openclaw/pull/150042).",
+        "href": "https://github.com/openclaw/openclaw/issues/150042"
+      },
+      {
+        "title": "Reduce audit event persistence overhead [#150243](https",
+        "description": "//github.com/openclaw/openclaw/pull/150243).",
+        "href": "https://github.com/openclaw/openclaw/issues/150243"
+      },
+      {
+        "title": "Clean up expired tool-event recipients while idle [894643f](https",
+        "description": "//github.com/openclaw/openclaw/commit/894643fca608c0539341d683754802e4ac8fb859).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Test caption ordering and tool-only Responses replies [#120789](https",
+        "description": "//github.com/openclaw/openclaw/pull/120789).",
+        "href": "https://github.com/openclaw/openclaw/issues/120789"
+      },
+      {
+        "title": "Compact terminal command-handler test tables [#143933](https",
+        "description": "//github.com/openclaw/openclaw/pull/143933). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143933"
+      },
+      {
+        "title": "Simplify Feishu action test tables [#143934](https",
+        "description": "//github.com/openclaw/openclaw/pull/143934). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143934"
+      },
+      {
+        "title": "Compact terminal session-action tests [#143935](https",
+        "description": "//github.com/openclaw/openclaw/pull/143935). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143935"
+      },
+      {
+        "title": "Compact provider-error regression tables [#143936](https",
+        "description": "//github.com/openclaw/openclaw/pull/143936). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143936"
+      },
+      {
+        "title": "Test committed conversation recovery after forced termination [#143984](htt...",
+        "description": "Test committed conversation recovery after forced termination [#143984](https://github.com/openclaw/openclaw/pull/143984). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143984"
+      },
+      {
+        "title": "Reuse platform test fixtures [#144141](https",
+        "description": "//github.com/openclaw/openclaw/pull/144141).",
+        "href": "https://github.com/openclaw/openclaw/issues/144141"
+      },
+      {
+        "title": "Share browser dictation fixtures [#144157](https",
+        "description": "//github.com/openclaw/openclaw/pull/144157).",
+        "href": "https://github.com/openclaw/openclaw/issues/144157"
+      },
+      {
+        "title": "Remove a duplicate billing-error test [#144170](https",
+        "description": "//github.com/openclaw/openclaw/pull/144170). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144170"
+      },
+      {
+        "title": "Share provider fixtures in plugin validation tests [#144174](https",
+        "description": "//github.com/openclaw/openclaw/pull/144174).",
+        "href": "https://github.com/openclaw/openclaw/issues/144174"
+      },
+      {
+        "title": "Move staged Doctor coverage to package installation tests [#144185](https:/...",
+        "description": "Move staged Doctor coverage to package installation tests [#144185](https://github.com/openclaw/openclaw/pull/144185).",
+        "href": "https://github.com/openclaw/openclaw/issues/144185"
+      },
+      {
+        "title": "Share embedding-batch test inputs [#144188](https",
+        "description": "//github.com/openclaw/openclaw/pull/144188).",
+        "href": "https://github.com/openclaw/openclaw/issues/144188"
+      },
+      {
+        "title": "Remove a duplicate provider-routing test [#144194](https",
+        "description": "//github.com/openclaw/openclaw/pull/144194). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144194"
+      },
+      {
+        "title": "Consolidate QA raw-capture test fixtures [#144201](https",
+        "description": "//github.com/openclaw/openclaw/pull/144201).",
+        "href": "https://github.com/openclaw/openclaw/issues/144201"
+      },
+      {
+        "title": "Reuse Twilio send-test account fixtures [#144211](https",
+        "description": "//github.com/openclaw/openclaw/pull/144211).",
+        "href": "https://github.com/openclaw/openclaw/issues/144211"
+      },
+      {
+        "title": "Remove a duplicate OpenAI attribution test [#144225](https",
+        "description": "//github.com/openclaw/openclaw/pull/144225). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144225"
+      },
+      {
+        "title": "Share MiniMax HTTP test assertions [#144249](https",
+        "description": "//github.com/openclaw/openclaw/pull/144249).",
+        "href": "https://github.com/openclaw/openclaw/issues/144249"
+      },
+      {
+        "title": "Simplify stored-goal command fixtures [#144260](https",
+        "description": "//github.com/openclaw/openclaw/pull/144260).",
+        "href": "https://github.com/openclaw/openclaw/issues/144260"
+      },
+      {
+        "title": "Share New Session agent fixtures [#144261](https",
+        "description": "//github.com/openclaw/openclaw/pull/144261).",
+        "href": "https://github.com/openclaw/openclaw/issues/144261"
+      },
+      {
+        "title": "Remove duplicate Doctor fallback-notice coverage [#144264](https",
+        "description": "//github.com/openclaw/openclaw/pull/144264). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144264"
+      },
+      {
+        "title": "Reuse startup test promise fixtures [#144273](https",
+        "description": "//github.com/openclaw/openclaw/pull/144273).",
+        "href": "https://github.com/openclaw/openclaw/issues/144273"
+      },
+      {
+        "title": "Share supervised-thread request fixtures [#144274](https",
+        "description": "//github.com/openclaw/openclaw/pull/144274).",
+        "href": "https://github.com/openclaw/openclaw/issues/144274"
+      },
+      {
+        "title": "Avoid plugin discovery in a model-override test [#144287](https",
+        "description": "//github.com/openclaw/openclaw/pull/144287).",
+        "href": "https://github.com/openclaw/openclaw/issues/144287"
+      },
+      {
+        "title": "Test Claude replacement refusal after cleanup failure [#144289](https",
+        "description": "//github.com/openclaw/openclaw/pull/144289). Thanks @zeroaltitude, @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/144289"
+      },
+      {
+        "title": "Share Buzz relay test setup [#144297](https",
+        "description": "//github.com/openclaw/openclaw/pull/144297).",
+        "href": "https://github.com/openclaw/openclaw/issues/144297"
+      },
+      {
+        "title": "Share Matrix verification test setup [#144300](https",
+        "description": "//github.com/openclaw/openclaw/pull/144300).",
+        "href": "https://github.com/openclaw/openclaw/issues/144300"
+      },
+      {
+        "title": "Simplify LM Studio JSON test responses [#144301](https",
+        "description": "//github.com/openclaw/openclaw/pull/144301).",
+        "href": "https://github.com/openclaw/openclaw/issues/144301"
+      },
+      {
+        "title": "Remove a duplicate cron delivery test [#144303](https",
+        "description": "//github.com/openclaw/openclaw/pull/144303). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144303"
+      },
+      {
+        "title": "Share OAuth fallback fixtures [#144309](https",
+        "description": "//github.com/openclaw/openclaw/pull/144309).",
+        "href": "https://github.com/openclaw/openclaw/issues/144309"
+      },
+      {
+        "title": "Test UI asset discovery with real files [#144335](https",
+        "description": "//github.com/openclaw/openclaw/pull/144335).",
+        "href": "https://github.com/openclaw/openclaw/issues/144335"
+      },
+      {
+        "title": "Remove duplicate Codex ready-status coverage [#144339](https",
+        "description": "//github.com/openclaw/openclaw/pull/144339). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144339"
+      },
+      {
+        "title": "Remove a duplicate chat silent-reply test [#144382](https",
+        "description": "//github.com/openclaw/openclaw/pull/144382). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144382"
+      },
+      {
+        "title": "Reuse cron history test element helper [#144418](https",
+        "description": "//github.com/openclaw/openclaw/pull/144418). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144418"
+      },
+      {
+        "title": "Remove duplicate Mac wake-word gate tests [#144437](https",
+        "description": "//github.com/openclaw/openclaw/pull/144437). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144437"
+      },
+      {
+        "title": "Consolidate duplicate package-acceptance tests [#144446](https",
+        "description": "//github.com/openclaw/openclaw/pull/144446).",
+        "href": "https://github.com/openclaw/openclaw/issues/144446"
+      },
+      {
+        "title": "Shared worker-abandonment test setup [#144461](https",
+        "description": "//github.com/openclaw/openclaw/pull/144461).",
+        "href": "https://github.com/openclaw/openclaw/issues/144461"
+      },
+      {
+        "title": "Shared pending plugin-claim test fixtures [#144472](https",
+        "description": "//github.com/openclaw/openclaw/pull/144472).",
+        "href": "https://github.com/openclaw/openclaw/issues/144472"
+      },
+      {
+        "title": "Shared Swift chat test messages [#144481](https",
+        "description": "//github.com/openclaw/openclaw/pull/144481). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144481"
+      },
+      {
+        "title": "Reuse Telegram delivery receipt test defaults [#144485](https",
+        "description": "//github.com/openclaw/openclaw/pull/144485).",
+        "href": "https://github.com/openclaw/openclaw/issues/144485"
+      },
+      {
+        "title": "Align provider fixtures in authentication tests [#144492](https",
+        "description": "//github.com/openclaw/openclaw/pull/144492).",
+        "href": "https://github.com/openclaw/openclaw/issues/144492"
+      },
+      {
+        "title": "Shared empty task summaries for status tests [#144505](https",
+        "description": "//github.com/openclaw/openclaw/pull/144505).",
+        "href": "https://github.com/openclaw/openclaw/issues/144505"
+      },
+      {
+        "title": "Simplify embedding batch response fixtures [#144506](https",
+        "description": "//github.com/openclaw/openclaw/pull/144506).",
+        "href": "https://github.com/openclaw/openclaw/issues/144506"
+      },
+      {
+        "title": "Shared Bedrock test configuration fixtures [#144509](https",
+        "description": "//github.com/openclaw/openclaw/pull/144509).",
+        "href": "https://github.com/openclaw/openclaw/issues/144509"
+      },
+      {
+        "title": "Reuse Full Access delegation test setup [#144510](https",
+        "description": "//github.com/openclaw/openclaw/pull/144510).",
+        "href": "https://github.com/openclaw/openclaw/issues/144510"
+      },
+      {
+        "title": "Simplify keyed FIFO test fixtures [#144517](https",
+        "description": "//github.com/openclaw/openclaw/pull/144517).",
+        "href": "https://github.com/openclaw/openclaw/issues/144517"
+      },
+      {
+        "title": "Reuse Android reflection test helpers [#144528](https",
+        "description": "//github.com/openclaw/openclaw/pull/144528). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144528"
+      },
+      {
+        "title": "Simplify Microsoft Teams Graph test fixtures [#144550](https",
+        "description": "//github.com/openclaw/openclaw/pull/144550).",
+        "href": "https://github.com/openclaw/openclaw/issues/144550"
+      },
+      {
+        "title": "Remove a duplicate provider-stream smoke test [#144570](https",
+        "description": "//github.com/openclaw/openclaw/pull/144570).",
+        "href": "https://github.com/openclaw/openclaw/issues/144570"
+      },
+      {
+        "title": "Consolidate model authentication and catalog tests [#144589](https",
+        "description": "//github.com/openclaw/openclaw/pull/144589). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144589"
+      },
+      {
+        "title": "Reduce repeated work in worker artifact tests [#144623](https",
+        "description": "//github.com/openclaw/openclaw/pull/144623).",
+        "href": "https://github.com/openclaw/openclaw/issues/144623"
+      },
+      {
+        "title": "Remove unused temporary-directory test bookkeeping [#144628](https",
+        "description": "//github.com/openclaw/openclaw/pull/144628). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144628"
+      },
+      {
+        "title": "Reuse Feishu bot-menu test fixtures [#144658](https",
+        "description": "//github.com/openclaw/openclaw/pull/144658). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144658"
+      },
+      {
+        "title": "Test terminal picker selection through Enter callbacks [#144716](https://gi...",
+        "description": "Test terminal picker selection through Enter callbacks [#144716](https://github.com/openclaw/openclaw/pull/144716).",
+        "href": "https://github.com/openclaw/openclaw/issues/144716"
+      },
+      {
+        "title": "Reuse shared assertions in skills CLI tests [#144724](https",
+        "description": "//github.com/openclaw/openclaw/pull/144724).",
+        "href": "https://github.com/openclaw/openclaw/issues/144724"
+      },
+      {
+        "title": "Reuse shared response fixtures in Vydra speech tests [#144741](https",
+        "description": "//github.com/openclaw/openclaw/pull/144741).",
+        "href": "https://github.com/openclaw/openclaw/issues/144741"
+      },
+      {
+        "title": "Share checkout-authentication test launchers [#144771](https",
+        "description": "//github.com/openclaw/openclaw/pull/144771).",
+        "href": "https://github.com/openclaw/openclaw/issues/144771"
+      },
+      {
+        "title": "Simplify single-use chat request fixtures [#144775](https",
+        "description": "//github.com/openclaw/openclaw/pull/144775).",
+        "href": "https://github.com/openclaw/openclaw/issues/144775"
+      },
+      {
+        "title": "Simplify Cron submission test fixtures [#144781](https",
+        "description": "//github.com/openclaw/openclaw/pull/144781).",
+        "href": "https://github.com/openclaw/openclaw/issues/144781"
+      },
+      {
+        "title": "Reuse Model Providers test helpers [#144805](https",
+        "description": "//github.com/openclaw/openclaw/pull/144805). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144805"
+      },
+      {
+        "title": "Remove test-only web-fetch cache reset [#144820](https",
+        "description": "//github.com/openclaw/openclaw/pull/144820).",
+        "href": "https://github.com/openclaw/openclaw/issues/144820"
+      },
+      {
+        "title": "Share Docker test container cleanup [#144826](https",
+        "description": "//github.com/openclaw/openclaw/pull/144826). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144826"
+      },
+      {
+        "title": "Test URL normalization through the public web-fetch tool [#144887](https://...",
+        "description": "Test URL normalization through the public web-fetch tool [#144887](https://github.com/openclaw/openclaw/pull/144887).",
+        "href": "https://github.com/openclaw/openclaw/issues/144887"
+      },
+      {
+        "title": "Make macOS Gateway readiness tests deterministic [#144920](https",
+        "description": "//github.com/openclaw/openclaw/pull/144920). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144920"
+      },
+      {
+        "title": "Reuse typed PixVerse authentication fixtures [#144926](https",
+        "description": "//github.com/openclaw/openclaw/pull/144926).",
+        "href": "https://github.com/openclaw/openclaw/issues/144926"
+      },
+      {
+        "title": "Reuse shared field assertions in command tests [#144955](https",
+        "description": "//github.com/openclaw/openclaw/pull/144955).",
+        "href": "https://github.com/openclaw/openclaw/issues/144955"
+      },
+      {
+        "title": "Reuse shared runtime fixtures in model-status tests [#144989](https",
+        "description": "//github.com/openclaw/openclaw/pull/144989).",
+        "href": "https://github.com/openclaw/openclaw/issues/144989"
+      },
+      {
+        "title": "Align Workboard backend tests with SQLite storage [#144999](https",
+        "description": "//github.com/openclaw/openclaw/pull/144999).",
+        "href": "https://github.com/openclaw/openclaw/issues/144999"
+      },
+      {
+        "title": "Share runtime fixtures in provider authentication tests [#145049](https://g...",
+        "description": "Share runtime fixtures in provider authentication tests [#145049](https://github.com/openclaw/openclaw/pull/145049).",
+        "href": "https://github.com/openclaw/openclaw/issues/145049"
+      },
+      {
+        "title": "Check macOS readiness lifecycle instead of test elapsed time [#145056](http...",
+        "description": "Check macOS readiness lifecycle instead of test elapsed time [#145056](https://github.com/openclaw/openclaw/pull/145056). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/145056"
+      },
+      {
+        "title": "Type command-test mocks at construction [#145097](https",
+        "description": "//github.com/openclaw/openclaw/pull/145097).",
+        "href": "https://github.com/openclaw/openclaw/issues/145097"
+      },
+      {
+        "title": "Share Workboard Gateway test registration setup [#145106](https",
+        "description": "//github.com/openclaw/openclaw/pull/145106).",
+        "href": "https://github.com/openclaw/openclaw/issues/145106"
+      },
+      {
+        "title": "Split Gateway installation and reinstallation tests [#145113](https",
+        "description": "//github.com/openclaw/openclaw/pull/145113).",
+        "href": "https://github.com/openclaw/openclaw/issues/145113"
+      },
+      {
+        "title": "Reuse promise helpers in plugin lifecycle tests [#145130](https",
+        "description": "//github.com/openclaw/openclaw/pull/145130).",
+        "href": "https://github.com/openclaw/openclaw/issues/145130"
+      },
+      {
+        "title": "Remove unused ACP startup test defaults [#145135](https",
+        "description": "//github.com/openclaw/openclaw/pull/145135).",
+        "href": "https://github.com/openclaw/openclaw/issues/145135"
+      },
+      {
+        "title": "Remove redundant setup wizard test defaults [#145146](https",
+        "description": "//github.com/openclaw/openclaw/pull/145146).",
+        "href": "https://github.com/openclaw/openclaw/issues/145146"
+      },
+      {
+        "title": "Reuse runtime fixtures in status tests [#145178](https",
+        "description": "//github.com/openclaw/openclaw/pull/145178).",
+        "href": "https://github.com/openclaw/openclaw/issues/145178"
+      },
+      {
+        "title": "Remove unused node approval test setup [#145185](https",
+        "description": "//github.com/openclaw/openclaw/pull/145185).",
+        "href": "https://github.com/openclaw/openclaw/issues/145185"
+      },
+      {
+        "title": "Test model authentication through image selection [#145233](https",
+        "description": "//github.com/openclaw/openclaw/pull/145233).",
+        "href": "https://github.com/openclaw/openclaw/issues/145233"
+      },
+      {
+        "title": "Reduce waiting in Gateway connection tests [#145239](https",
+        "description": "//github.com/openclaw/openclaw/pull/145239).",
+        "href": "https://github.com/openclaw/openclaw/issues/145239"
+      },
+      {
+        "title": "Avoid repeated worker builds in cache tests [#145243](https",
+        "description": "//github.com/openclaw/openclaw/pull/145243).",
+        "href": "https://github.com/openclaw/openclaw/issues/145243"
+      },
+      {
+        "title": "Reuse empty session stores in ACPX tests [#145246](https",
+        "description": "//github.com/openclaw/openclaw/pull/145246).",
+        "href": "https://github.com/openclaw/openclaw/issues/145246"
+      },
+      {
+        "title": "Share setup across compaction safeguard tests [#145247](https",
+        "description": "//github.com/openclaw/openclaw/pull/145247).",
+        "href": "https://github.com/openclaw/openclaw/issues/145247"
+      },
+      {
+        "title": "Reuse compiled modules in native update tests [#145251](https",
+        "description": "//github.com/openclaw/openclaw/pull/145251).",
+        "href": "https://github.com/openclaw/openclaw/issues/145251"
+      },
+      {
+        "title": "Share temporary Git environments across script tests [#145259](https",
+        "description": "//github.com/openclaw/openclaw/pull/145259).",
+        "href": "https://github.com/openclaw/openclaw/issues/145259"
+      },
+      {
+        "title": "Remove test-only media cache resets [#145268](https",
+        "description": "//github.com/openclaw/openclaw/pull/145268).",
+        "href": "https://github.com/openclaw/openclaw/issues/145268"
+      },
+      {
+        "title": "Share UI command test assertions [#145269](https",
+        "description": "//github.com/openclaw/openclaw/pull/145269).",
+        "href": "https://github.com/openclaw/openclaw/issues/145269"
+      },
+      {
+        "title": "Consolidate documentation translation recovery tests [#145273](https",
+        "description": "//github.com/openclaw/openclaw/pull/145273).",
+        "href": "https://github.com/openclaw/openclaw/issues/145273"
+      },
+      {
+        "title": "Reuse shared defaults in agent-turn tests [#145281](https",
+        "description": "//github.com/openclaw/openclaw/pull/145281).",
+        "href": "https://github.com/openclaw/openclaw/issues/145281"
+      },
+      {
+        "title": "Reuse deferred helpers in ACPX lifecycle tests [#145283](https",
+        "description": "//github.com/openclaw/openclaw/pull/145283).",
+        "href": "https://github.com/openclaw/openclaw/issues/145283"
+      },
+      {
+        "title": "Simplify Chrome MCP test synchronization [#145286](https",
+        "description": "//github.com/openclaw/openclaw/pull/145286).",
+        "href": "https://github.com/openclaw/openclaw/issues/145286"
+      },
+      {
+        "title": "Share sidebar narration test setup [#145304](https",
+        "description": "//github.com/openclaw/openclaw/pull/145304).",
+        "href": "https://github.com/openclaw/openclaw/issues/145304"
+      },
+      {
+        "title": "Reuse marketplace archive test manifests [#145310](https",
+        "description": "//github.com/openclaw/openclaw/pull/145310).",
+        "href": "https://github.com/openclaw/openclaw/issues/145310"
+      },
+      {
+        "title": "Reuse storage fixtures in update-report tests [#145315](https",
+        "description": "//github.com/openclaw/openclaw/pull/145315).",
+        "href": "https://github.com/openclaw/openclaw/issues/145315"
+      },
+      {
+        "title": "Shared labeled ACP test sessions [#145324](https",
+        "description": "//github.com/openclaw/openclaw/pull/145324).",
+        "href": "https://github.com/openclaw/openclaw/issues/145324"
+      },
+      {
+        "title": "Shared Mattermost monitor test setup [#145326](https",
+        "description": "//github.com/openclaw/openclaw/pull/145326).",
+        "href": "https://github.com/openclaw/openclaw/issues/145326"
+      },
+      {
+        "title": "Shared runtime fixtures in backup tests [#145350](https",
+        "description": "//github.com/openclaw/openclaw/pull/145350).",
+        "href": "https://github.com/openclaw/openclaw/issues/145350"
+      },
+      {
+        "title": "Shared installer Git reference fixtures [#145368](https",
+        "description": "//github.com/openclaw/openclaw/pull/145368).",
+        "href": "https://github.com/openclaw/openclaw/issues/145368"
+      },
+      {
+        "title": "Simplify Bonjour regression fixtures [#145383](https",
+        "description": "//github.com/openclaw/openclaw/pull/145383). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/145383"
+      },
+      {
+        "title": "Shared Devices CLI field assertions [#145387](https",
+        "description": "//github.com/openclaw/openclaw/pull/145387).",
+        "href": "https://github.com/openclaw/openclaw/issues/145387"
+      },
+      {
+        "title": "Shared Custodian healthy-response fixtures [#145393](https",
+        "description": "//github.com/openclaw/openclaw/pull/145393).",
+        "href": "https://github.com/openclaw/openclaw/issues/145393"
+      },
+      {
+        "title": "Shared Comfy JSON response fixtures [#145399](https",
+        "description": "//github.com/openclaw/openclaw/pull/145399).",
+        "href": "https://github.com/openclaw/openclaw/issues/145399"
+      },
+      {
+        "title": "Reuse outbound channel test imports [#145404](https",
+        "description": "//github.com/openclaw/openclaw/pull/145404).",
+        "href": "https://github.com/openclaw/openclaw/issues/145404"
+      },
+      {
+        "title": "Shared Signal event-stream runtime spies [#145407](https",
+        "description": "//github.com/openclaw/openclaw/pull/145407).",
+        "href": "https://github.com/openclaw/openclaw/issues/145407"
+      },
+      {
+        "title": "Remove obsolete test-helper registrations [#145442](https",
+        "description": "//github.com/openclaw/openclaw/pull/145442).",
+        "href": "https://github.com/openclaw/openclaw/issues/145442"
+      },
+      {
+        "title": "Share Android composer request interception [#145493](https",
+        "description": "//github.com/openclaw/openclaw/pull/145493).",
+        "href": "https://github.com/openclaw/openclaw/issues/145493"
+      },
+      {
+        "title": "Share installer Git recovery fixtures [#145511](https",
+        "description": "//github.com/openclaw/openclaw/pull/145511).",
+        "href": "https://github.com/openclaw/openclaw/issues/145511"
+      },
+      {
+        "title": "Share completions-stream fixtures [#145515](https",
+        "description": "//github.com/openclaw/openclaw/pull/145515).",
+        "href": "https://github.com/openclaw/openclaw/issues/145515"
+      },
+      {
+        "title": "Share workspace media fixtures [#145544](https",
+        "description": "//github.com/openclaw/openclaw/pull/145544).",
+        "href": "https://github.com/openclaw/openclaw/issues/145544"
+      },
+      {
+        "title": "Share WhatsApp heartbeat sender fixtures [#145549](https",
+        "description": "//github.com/openclaw/openclaw/pull/145549).",
+        "href": "https://github.com/openclaw/openclaw/issues/145549"
+      },
+      {
+        "title": "Remove obsolete update-repair test hook [#145556](https",
+        "description": "//github.com/openclaw/openclaw/pull/145556).",
+        "href": "https://github.com/openclaw/openclaw/issues/145556"
+      },
+      {
+        "title": "Consolidate UTF-16 slicing tests [#145570](https",
+        "description": "//github.com/openclaw/openclaw/pull/145570).",
+        "href": "https://github.com/openclaw/openclaw/issues/145570"
+      },
+      {
+        "title": "Share Doctor service repair fixtures [#145584](https",
+        "description": "//github.com/openclaw/openclaw/pull/145584).",
+        "href": "https://github.com/openclaw/openclaw/issues/145584"
+      },
+      {
+        "title": "Reuse updater test runtimes [#145596](https",
+        "description": "//github.com/openclaw/openclaw/pull/145596).",
+        "href": "https://github.com/openclaw/openclaw/issues/145596"
+      },
+      {
+        "title": "Consolidate heartbeat cooldown tests [#145624](https",
+        "description": "//github.com/openclaw/openclaw/pull/145624).",
+        "href": "https://github.com/openclaw/openclaw/issues/145624"
+      },
+      {
+        "title": "Share Buzz runtime spies [#145626](https",
+        "description": "//github.com/openclaw/openclaw/pull/145626).",
+        "href": "https://github.com/openclaw/openclaw/issues/145626"
+      },
+      {
+        "title": "Consolidate Meet admission fixtures [#145631](https",
+        "description": "//github.com/openclaw/openclaw/pull/145631).",
+        "href": "https://github.com/openclaw/openclaw/issues/145631"
+      },
+      {
+        "title": "Separate response-usage tests [#145633](https",
+        "description": "//github.com/openclaw/openclaw/pull/145633). Thanks @romneyda, @ylcn91.",
+        "href": "https://github.com/openclaw/openclaw/issues/145633"
+      },
+      {
+        "title": "Share idle chat-history fixtures [#145645](https",
+        "description": "//github.com/openclaw/openclaw/pull/145645).",
+        "href": "https://github.com/openclaw/openclaw/issues/145645"
+      },
+      {
+        "title": "Share configuration test runtimes [#145654](https",
+        "description": "//github.com/openclaw/openclaw/pull/145654).",
+        "href": "https://github.com/openclaw/openclaw/issues/145654"
+      },
+      {
+        "title": "Share Discord REST runtime mocks [#145662](https",
+        "description": "//github.com/openclaw/openclaw/pull/145662).",
+        "href": "https://github.com/openclaw/openclaw/issues/145662"
+      },
+      {
+        "title": "Simplify Gateway event test tables [#145666](https",
+        "description": "//github.com/openclaw/openclaw/pull/145666). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145666"
+      },
+      {
+        "title": "Compact WhatsApp media test cases [#145667](https",
+        "description": "//github.com/openclaw/openclaw/pull/145667). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145667"
+      },
+      {
+        "title": "Simplify restart-recovery test matrix [#145668](https",
+        "description": "//github.com/openclaw/openclaw/pull/145668). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145668"
+      },
+      {
+        "title": "Compact OpenResponses HTTP test tables [#145669](https",
+        "description": "//github.com/openclaw/openclaw/pull/145669). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145669"
+      },
+      {
+        "title": "Reuse CLI test runtime factory [#145717](https",
+        "description": "//github.com/openclaw/openclaw/pull/145717).",
+        "href": "https://github.com/openclaw/openclaw/issues/145717"
+      },
+      {
+        "title": "Remove duplicate response-usage test [#145728](https",
+        "description": "//github.com/openclaw/openclaw/pull/145728).",
+        "href": "https://github.com/openclaw/openclaw/issues/145728"
+      },
+      {
+        "title": "Use direct database cleanup in tests [#145731](https",
+        "description": "//github.com/openclaw/openclaw/pull/145731).",
+        "href": "https://github.com/openclaw/openclaw/issues/145731"
+      },
+      {
+        "title": "Share CLI preparation configuration fixtures [#145743](https",
+        "description": "//github.com/openclaw/openclaw/pull/145743).",
+        "href": "https://github.com/openclaw/openclaw/issues/145743"
+      },
+      {
+        "title": "Reduce updater signal-test startup work [#145757](https",
+        "description": "//github.com/openclaw/openclaw/pull/145757).",
+        "href": "https://github.com/openclaw/openclaw/issues/145757"
+      },
+      {
+        "title": "Keep wizard test selector private [#145784](https",
+        "description": "//github.com/openclaw/openclaw/pull/145784).",
+        "href": "https://github.com/openclaw/openclaw/issues/145784"
+      },
+      {
+        "title": "Share state database test setup [#145796](https",
+        "description": "//github.com/openclaw/openclaw/pull/145796).",
+        "href": "https://github.com/openclaw/openclaw/issues/145796"
+      },
+      {
+        "title": "Share QA streaming request fixtures [#145806](https",
+        "description": "//github.com/openclaw/openclaw/pull/145806).",
+        "href": "https://github.com/openclaw/openclaw/issues/145806"
+      },
+      {
+        "title": "Compact package acceptance matrices [#145832](https",
+        "description": "//github.com/openclaw/openclaw/pull/145832). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145832"
+      },
+      {
+        "title": "Compact chat-view test matrices [#145833](https",
+        "description": "//github.com/openclaw/openclaw/pull/145833). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145833"
+      },
+      {
+        "title": "Simplify message-tool test matrices [#145834](https",
+        "description": "//github.com/openclaw/openclaw/pull/145834). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145834"
+      },
+      {
+        "title": "Compact Talk relay test matrices [#145835](https",
+        "description": "//github.com/openclaw/openclaw/pull/145835). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145835"
+      },
+      {
+        "title": "Share task command runtime fixtures [#145841](https",
+        "description": "//github.com/openclaw/openclaw/pull/145841).",
+        "href": "https://github.com/openclaw/openclaw/issues/145841"
+      },
+      {
+        "title": "Share tool-call promotion stream fixtures [#145857](https",
+        "description": "//github.com/openclaw/openclaw/pull/145857).",
+        "href": "https://github.com/openclaw/openclaw/issues/145857"
+      },
+      {
+        "title": "Avoid real waits in update notice tests [#145858](https",
+        "description": "//github.com/openclaw/openclaw/pull/145858).",
+        "href": "https://github.com/openclaw/openclaw/issues/145858"
+      },
+      {
+        "title": "Share agent attempt stream fixtures [#145880](https",
+        "description": "//github.com/openclaw/openclaw/pull/145880).",
+        "href": "https://github.com/openclaw/openclaw/issues/145880"
+      },
+      {
+        "title": "Share docs command runtime fixture [#145922](https",
+        "description": "//github.com/openclaw/openclaw/pull/145922).",
+        "href": "https://github.com/openclaw/openclaw/issues/145922"
+      },
+      {
+        "title": "Share Telegram media test fixtures [#145925](https",
+        "description": "//github.com/openclaw/openclaw/pull/145925).",
+        "href": "https://github.com/openclaw/openclaw/issues/145925"
+      },
+      {
+        "title": "Share Dashboard runtime fixtures [#145936](https",
+        "description": "//github.com/openclaw/openclaw/pull/145936).",
+        "href": "https://github.com/openclaw/openclaw/issues/145936"
+      },
+      {
+        "title": "Shorten Meet recovery fixture wait [#145944](https",
+        "description": "//github.com/openclaw/openclaw/pull/145944).",
+        "href": "https://github.com/openclaw/openclaw/issues/145944"
+      },
+      {
+        "title": "Share plugin-include test fixtures [#145960](https",
+        "description": "//github.com/openclaw/openclaw/pull/145960).",
+        "href": "https://github.com/openclaw/openclaw/issues/145960"
+      },
+      {
+        "title": "Remove CLI session-loader test override [#145961](https",
+        "description": "//github.com/openclaw/openclaw/pull/145961).",
+        "href": "https://github.com/openclaw/openclaw/issues/145961"
+      },
+      {
+        "title": "Move media fixture routing into tests [#145964](https",
+        "description": "//github.com/openclaw/openclaw/pull/145964).",
+        "href": "https://github.com/openclaw/openclaw/issues/145964"
+      },
+      {
+        "title": "Remove browser snapshot test wait [#145971](https",
+        "description": "//github.com/openclaw/openclaw/pull/145971).",
+        "href": "https://github.com/openclaw/openclaw/issues/145971"
+      },
+      {
+        "title": "Share trigger-test environment restoration [#145973](https",
+        "description": "//github.com/openclaw/openclaw/pull/145973).",
+        "href": "https://github.com/openclaw/openclaw/issues/145973"
+      },
+      {
+        "title": "Share Nextcloud Talk test fixtures [#145977](https",
+        "description": "//github.com/openclaw/openclaw/pull/145977).",
+        "href": "https://github.com/openclaw/openclaw/issues/145977"
+      },
+      {
+        "title": "Share Doctor diagnostic fixtures [#145982](https",
+        "description": "//github.com/openclaw/openclaw/pull/145982).",
+        "href": "https://github.com/openclaw/openclaw/issues/145982"
+      },
+      {
+        "title": "Share imported-page test fixtures [#146021](https",
+        "description": "//github.com/openclaw/openclaw/pull/146021).",
+        "href": "https://github.com/openclaw/openclaw/issues/146021"
+      },
+      {
+        "title": "Test the CI reopen delay with virtual time [#146024](https",
+        "description": "//github.com/openclaw/openclaw/pull/146024).",
+        "href": "https://github.com/openclaw/openclaw/issues/146024"
+      },
+      {
+        "title": "Share the trajectory export test runtime [#146056](https",
+        "description": "//github.com/openclaw/openclaw/pull/146056).",
+        "href": "https://github.com/openclaw/openclaw/issues/146056"
+      },
+      {
+        "title": "Make provider tests portable across Node and Bun [#146103](https",
+        "description": "//github.com/openclaw/openclaw/pull/146103).",
+        "href": "https://github.com/openclaw/openclaw/issues/146103"
+      },
+      {
+        "title": "Simplify ClickClack setup verification tests [#146105](https",
+        "description": "//github.com/openclaw/openclaw/pull/146105).",
+        "href": "https://github.com/openclaw/openclaw/issues/146105"
+      },
+      {
+        "title": "Speed up long-history yield test setup [#146141](https",
+        "description": "//github.com/openclaw/openclaw/pull/146141).",
+        "href": "https://github.com/openclaw/openclaw/issues/146141"
+      },
+      {
+        "title": "Include child output in update test failures [#146154](https",
+        "description": "//github.com/openclaw/openclaw/pull/146154).",
+        "href": "https://github.com/openclaw/openclaw/issues/146154"
+      },
+      {
+        "title": "Consolidate terminal text-preservation tests [#146208](https",
+        "description": "//github.com/openclaw/openclaw/pull/146208).",
+        "href": "https://github.com/openclaw/openclaw/issues/146208"
+      },
+      {
+        "title": "Reuse token-usage fixtures in agent tests [#146240](https",
+        "description": "//github.com/openclaw/openclaw/pull/146240).",
+        "href": "https://github.com/openclaw/openclaw/issues/146240"
+      },
+      {
+        "title": "Speed up Nextcloud Talk stalled-response tests [#146260](https",
+        "description": "//github.com/openclaw/openclaw/pull/146260).",
+        "href": "https://github.com/openclaw/openclaw/issues/146260"
+      },
+      {
+        "title": "Reuse typed runtimes in channel command tests [#146316](https",
+        "description": "//github.com/openclaw/openclaw/pull/146316).",
+        "href": "https://github.com/openclaw/openclaw/issues/146316"
+      },
+      {
+        "title": "Simplify JSON response fixtures in provider tests [#146334](https",
+        "description": "//github.com/openclaw/openclaw/pull/146334).",
+        "href": "https://github.com/openclaw/openclaw/issues/146334"
+      },
+      {
+        "title": "Consolidate media generation lifecycle tests [#146335](https",
+        "description": "//github.com/openclaw/openclaw/pull/146335).",
+        "href": "https://github.com/openclaw/openclaw/issues/146335"
+      },
+      {
+        "title": "Consolidate bundled-plugin source loading in tests [#146360](https",
+        "description": "//github.com/openclaw/openclaw/pull/146360).",
+        "href": "https://github.com/openclaw/openclaw/issues/146360"
+      },
+      {
+        "title": "Share Teams and Zoom meeting test contracts [#146379](https",
+        "description": "//github.com/openclaw/openclaw/pull/146379).",
+        "href": "https://github.com/openclaw/openclaw/issues/146379"
+      },
+      {
+        "title": "Simplify JSON response fixtures in channel tests [#146398](https",
+        "description": "//github.com/openclaw/openclaw/pull/146398).",
+        "href": "https://github.com/openclaw/openclaw/issues/146398"
+      },
+      {
+        "title": "Share native channel approval test fixtures [#146414](https",
+        "description": "//github.com/openclaw/openclaw/pull/146414).",
+        "href": "https://github.com/openclaw/openclaw/issues/146414"
+      },
+      {
+        "title": "Share plugin-bound reply test fixtures [#146451](https",
+        "description": "//github.com/openclaw/openclaw/pull/146451).",
+        "href": "https://github.com/openclaw/openclaw/issues/146451"
+      },
+      {
+        "title": "Remove redundant plugin host-hook tests [#146452](https",
+        "description": "//github.com/openclaw/openclaw/pull/146452).",
+        "href": "https://github.com/openclaw/openclaw/issues/146452"
+      },
+      {
+        "title": "Share standalone installer test contracts [#146454](https",
+        "description": "//github.com/openclaw/openclaw/pull/146454).",
+        "href": "https://github.com/openclaw/openclaw/issues/146454"
+      },
+      {
+        "title": "Share HTTP assistant streaming test fixtures [#146455](https",
+        "description": "//github.com/openclaw/openclaw/pull/146455).",
+        "href": "https://github.com/openclaw/openclaw/issues/146455"
+      },
+      {
+        "title": "Test TLS renewal cleanup during Gateway shutdown [#146504](https",
+        "description": "//github.com/openclaw/openclaw/pull/146504).",
+        "href": "https://github.com/openclaw/openclaw/issues/146504"
+      },
+      {
+        "title": "Shorten the Tailscale startup-timeout test [#146520](https",
+        "description": "//github.com/openclaw/openclaw/pull/146520).",
+        "href": "https://github.com/openclaw/openclaw/issues/146520"
+      },
+      {
+        "title": "Share outbound message-action test fixtures [#146522](https",
+        "description": "//github.com/openclaw/openclaw/pull/146522).",
+        "href": "https://github.com/openclaw/openclaw/issues/146522"
+      },
+      {
+        "title": "Share allow-always approval test fixtures [#146523](https",
+        "description": "//github.com/openclaw/openclaw/pull/146523).",
+        "href": "https://github.com/openclaw/openclaw/issues/146523"
+      },
+      {
+        "title": "Share Google video provider test fixtures [#146524](https",
+        "description": "//github.com/openclaw/openclaw/pull/146524).",
+        "href": "https://github.com/openclaw/openclaw/issues/146524"
+      },
+      {
+        "title": "Share OpenAI video provider test fixtures [#146525](https",
+        "description": "//github.com/openclaw/openclaw/pull/146525).",
+        "href": "https://github.com/openclaw/openclaw/issues/146525"
+      },
+      {
+        "title": "Share configuration-form browser test fixtures [#146527](https",
+        "description": "//github.com/openclaw/openclaw/pull/146527).",
+        "href": "https://github.com/openclaw/openclaw/issues/146527"
+      },
+      {
+        "title": "Share agents-list test output fixtures [#146558](https",
+        "description": "//github.com/openclaw/openclaw/pull/146558).",
+        "href": "https://github.com/openclaw/openclaw/issues/146558"
+      },
+      {
+        "title": "Reuse typed runtimes in health and readiness tests [#146559](https",
+        "description": "//github.com/openclaw/openclaw/pull/146559).",
+        "href": "https://github.com/openclaw/openclaw/issues/146559"
+      },
+      {
+        "title": "Strengthen compaction provider registration tests [#146576](https",
+        "description": "//github.com/openclaw/openclaw/pull/146576).",
+        "href": "https://github.com/openclaw/openclaw/issues/146576"
+      },
+      {
+        "title": "Share OpenRouter video test fixtures [#146579](https",
+        "description": "//github.com/openclaw/openclaw/pull/146579).",
+        "href": "https://github.com/openclaw/openclaw/issues/146579"
+      },
+      {
+        "title": "Share image and transcription provider test fixtures [#146608](https",
+        "description": "//github.com/openclaw/openclaw/pull/146608).",
+        "href": "https://github.com/openclaw/openclaw/issues/146608"
+      },
+      {
+        "title": "Share transcript test message and storage helpers [#146614](https",
+        "description": "//github.com/openclaw/openclaw/pull/146614).",
+        "href": "https://github.com/openclaw/openclaw/issues/146614"
+      },
+      {
+        "title": "Share local-model test configuration setup [#146621](https",
+        "description": "//github.com/openclaw/openclaw/pull/146621).",
+        "href": "https://github.com/openclaw/openclaw/issues/146621"
+      },
+      {
+        "title": "Consolidate model fallback coordination tests [#146634](https",
+        "description": "//github.com/openclaw/openclaw/pull/146634).",
+        "href": "https://github.com/openclaw/openclaw/issues/146634"
+      },
+      {
+        "title": "Reuse shared runtimes in WhatsApp tests [#146635](https",
+        "description": "//github.com/openclaw/openclaw/pull/146635).",
+        "href": "https://github.com/openclaw/openclaw/issues/146635"
+      },
+      {
+        "title": "Reuse message and model fixtures in tests [#146642](https",
+        "description": "//github.com/openclaw/openclaw/pull/146642).",
+        "href": "https://github.com/openclaw/openclaw/issues/146642"
+      },
+      {
+        "title": "Share plugin loader test fixture wrappers [#146647](https",
+        "description": "//github.com/openclaw/openclaw/pull/146647).",
+        "href": "https://github.com/openclaw/openclaw/issues/146647"
+      },
+      {
+        "title": "Share Telegram test state setup [#146649](https",
+        "description": "//github.com/openclaw/openclaw/pull/146649).",
+        "href": "https://github.com/openclaw/openclaw/issues/146649"
+      },
+      {
+        "title": "Share deferred-promise helpers across UI tests [#146670](https",
+        "description": "//github.com/openclaw/openclaw/pull/146670).",
+        "href": "https://github.com/openclaw/openclaw/issues/146670"
+      },
+      {
+        "title": "Share update smoke-test readiness checks [#146694](https",
+        "description": "//github.com/openclaw/openclaw/pull/146694). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146694"
+      },
+      {
+        "title": "Reuse API-key credential fixtures in tests [#146699](https",
+        "description": "//github.com/openclaw/openclaw/pull/146699).",
+        "href": "https://github.com/openclaw/openclaw/issues/146699"
+      },
+      {
+        "title": "Test quota recovery during model catalog refresh [#146708](https",
+        "description": "//github.com/openclaw/openclaw/pull/146708).",
+        "href": "https://github.com/openclaw/openclaw/issues/146708"
+      },
+      {
+        "title": "Reuse runtime spies in LINE webhook tests [#146710](https",
+        "description": "//github.com/openclaw/openclaw/pull/146710).",
+        "href": "https://github.com/openclaw/openclaw/issues/146710"
+      },
+      {
+        "title": "Reuse temporary-directory cleanup in ClawHub tests [#146731](https",
+        "description": "//github.com/openclaw/openclaw/pull/146731).",
+        "href": "https://github.com/openclaw/openclaw/issues/146731"
+      },
+      {
+        "title": "Simplify JSON response fixtures in tests [#146758](https",
+        "description": "//github.com/openclaw/openclaw/pull/146758).",
+        "href": "https://github.com/openclaw/openclaw/issues/146758"
+      },
+      {
+        "title": "Share context-engine test setup [#146759](https",
+        "description": "//github.com/openclaw/openclaw/pull/146759).",
+        "href": "https://github.com/openclaw/openclaw/issues/146759"
+      },
+      {
+        "title": "Share repeated CI sweeper test setup [#146764](https",
+        "description": "//github.com/openclaw/openclaw/pull/146764).",
+        "href": "https://github.com/openclaw/openclaw/issues/146764"
+      },
+      {
+        "title": "Share the desktop integration-test socket reader [#146766](https",
+        "description": "//github.com/openclaw/openclaw/pull/146766).",
+        "href": "https://github.com/openclaw/openclaw/issues/146766"
+      },
+      {
+        "title": "Share Parallels smoke-test agent scripts [#146768](https",
+        "description": "//github.com/openclaw/openclaw/pull/146768).",
+        "href": "https://github.com/openclaw/openclaw/issues/146768"
+      },
+      {
+        "title": "Simplify duplicate checks in agent tests [#146774](https",
+        "description": "//github.com/openclaw/openclaw/pull/146774).",
+        "href": "https://github.com/openclaw/openclaw/issues/146774"
+      },
+      {
+        "title": "Share browser-page cleanup across UI layout tests [#146805](https",
+        "description": "//github.com/openclaw/openclaw/pull/146805).",
+        "href": "https://github.com/openclaw/openclaw/issues/146805"
+      },
+      {
+        "title": "Share authentication-store setup across tests [#146808](https",
+        "description": "//github.com/openclaw/openclaw/pull/146808).",
+        "href": "https://github.com/openclaw/openclaw/issues/146808"
+      },
+      {
+        "title": "Reuse deferred Promise helpers in Gateway tests [#146809](https",
+        "description": "//github.com/openclaw/openclaw/pull/146809).",
+        "href": "https://github.com/openclaw/openclaw/issues/146809"
+      },
+      {
+        "title": "Remove redundant casts in WhatsApp logout tests [#146826](https",
+        "description": "//github.com/openclaw/openclaw/pull/146826).",
+        "href": "https://github.com/openclaw/openclaw/issues/146826"
+      },
+      {
+        "title": "Share repeated heartbeat test configurations [#146853](https",
+        "description": "//github.com/openclaw/openclaw/pull/146853).",
+        "href": "https://github.com/openclaw/openclaw/issues/146853"
+      },
+      {
+        "title": "Consolidate session-resolution tests [#146895](https",
+        "description": "//github.com/openclaw/openclaw/pull/146895).",
+        "href": "https://github.com/openclaw/openclaw/issues/146895"
+      },
+      {
+        "title": "Reuse the plugin fixture shell runner [#146920](https",
+        "description": "//github.com/openclaw/openclaw/pull/146920).",
+        "href": "https://github.com/openclaw/openclaw/issues/146920"
+      },
+      {
+        "title": "Reuse model-fallback configuration test fixtures [#146948](https",
+        "description": "//github.com/openclaw/openclaw/pull/146948).",
+        "href": "https://github.com/openclaw/openclaw/issues/146948"
+      },
+      {
+        "title": "Reuse shared model fixtures in Responses transport tests [#147015](https://...",
+        "description": "Reuse shared model fixtures in Responses transport tests [#147015](https://github.com/openclaw/openclaw/pull/147015).",
+        "href": "https://github.com/openclaw/openclaw/issues/147015"
+      },
+      {
+        "title": "Remove a duplicate extension test-runner check [#147022](https",
+        "description": "//github.com/openclaw/openclaw/pull/147022). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147022"
+      },
+      {
+        "title": "Share Gateway fixtures in channel controller tests [#147048](https",
+        "description": "//github.com/openclaw/openclaw/pull/147048).",
+        "href": "https://github.com/openclaw/openclaw/issues/147048"
+      },
+      {
+        "title": "Reuse runtime fixtures in session and transport tests [#147056](https",
+        "description": "//github.com/openclaw/openclaw/pull/147056).",
+        "href": "https://github.com/openclaw/openclaw/issues/147056"
+      },
+      {
+        "title": "Reuse Android chat identity test fixtures [#147059](https",
+        "description": "//github.com/openclaw/openclaw/pull/147059).",
+        "href": "https://github.com/openclaw/openclaw/issues/147059"
+      },
+      {
+        "title": "Test status recovery guidance through command output [#147071](https",
+        "description": "//github.com/openclaw/openclaw/pull/147071).",
+        "href": "https://github.com/openclaw/openclaw/issues/147071"
+      },
+      {
+        "title": "Reuse Comfy provider test fixtures [#147086](https",
+        "description": "//github.com/openclaw/openclaw/pull/147086). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147086"
+      },
+      {
+        "title": "Call PDF extraction directly in runtime tests [#147122](https",
+        "description": "//github.com/openclaw/openclaw/pull/147122). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147122"
+      },
+      {
+        "title": "Reuse shared field helpers in Wear OS tests [#147162](https",
+        "description": "//github.com/openclaw/openclaw/pull/147162). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147162"
+      },
+      {
+        "title": "Reuse the CLI plugin test fixture writer [#147186](https",
+        "description": "//github.com/openclaw/openclaw/pull/147186). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147186"
+      },
+      {
+        "title": "Skip unused compiler setup in routing tests [#147194](https",
+        "description": "//github.com/openclaw/openclaw/pull/147194).",
+        "href": "https://github.com/openclaw/openclaw/issues/147194"
+      },
+      {
+        "title": "Remove Doctor sandbox test hooks [#147214](https",
+        "description": "//github.com/openclaw/openclaw/pull/147214).",
+        "href": "https://github.com/openclaw/openclaw/issues/147214"
+      },
+      {
+        "title": "Share plugin cleanup test server setup [#147225](https",
+        "description": "//github.com/openclaw/openclaw/pull/147225). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147225"
+      },
+      {
+        "title": "Reduce idle waiting in account catalog login tests [#147228](https",
+        "description": "//github.com/openclaw/openclaw/pull/147228).",
+        "href": "https://github.com/openclaw/openclaw/issues/147228"
+      },
+      {
+        "title": "Reuse the panel-tab drag test fixture [#147250](https",
+        "description": "//github.com/openclaw/openclaw/pull/147250).",
+        "href": "https://github.com/openclaw/openclaw/issues/147250"
+      },
+      {
+        "title": "Reuse session fixtures in memory-maintenance tests [#147262](https",
+        "description": "//github.com/openclaw/openclaw/pull/147262).",
+        "href": "https://github.com/openclaw/openclaw/issues/147262"
+      },
+      {
+        "title": "Remove a duplicate Teams quoted-table test [#147270](https",
+        "description": "//github.com/openclaw/openclaw/pull/147270). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147270"
+      },
+      {
+        "title": "Reuse the macOS Dashboard test gate [#147310](https",
+        "description": "//github.com/openclaw/openclaw/pull/147310). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147310"
+      },
+      {
+        "title": "Verify restart recovery without recurring heartbeats [#147313](https",
+        "description": "//github.com/openclaw/openclaw/pull/147313). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/147313"
+      },
+      {
+        "title": "Reuse promise fixtures in server preference tests [#147332](https",
+        "description": "//github.com/openclaw/openclaw/pull/147332).",
+        "href": "https://github.com/openclaw/openclaw/issues/147332"
+      },
+      {
+        "title": "Share migration and ACP test fixtures [#147354](https",
+        "description": "//github.com/openclaw/openclaw/pull/147354).",
+        "href": "https://github.com/openclaw/openclaw/issues/147354"
+      },
+      {
+        "title": "Remove redundant Markdown newline checks [#147367](https",
+        "description": "//github.com/openclaw/openclaw/pull/147367). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147367"
+      },
+      {
+        "title": "Test cancellation across Gateway replacement [#147382](https",
+        "description": "//github.com/openclaw/openclaw/pull/147382). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/147382"
+      },
+      {
+        "title": "Share Discord avatar test promise fixtures [#147412](https",
+        "description": "//github.com/openclaw/openclaw/pull/147412).",
+        "href": "https://github.com/openclaw/openclaw/issues/147412"
+      },
+      {
+        "title": "Remove a redundant Android chat-reader test [#147424](https",
+        "description": "//github.com/openclaw/openclaw/pull/147424). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147424"
+      },
+      {
+        "title": "Remove obsolete compatibility test comparisons [#147469](https",
+        "description": "//github.com/openclaw/openclaw/pull/147469). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147469"
+      },
+      {
+        "title": "Narrow channel contract test imports [#147487](https",
+        "description": "//github.com/openclaw/openclaw/pull/147487).",
+        "href": "https://github.com/openclaw/openclaw/issues/147487"
+      },
+      {
+        "title": "Simplify Android recap tests [#147500](https",
+        "description": "//github.com/openclaw/openclaw/pull/147500). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147500"
+      },
+      {
+        "title": "Share plugin registry test setup [#147506](https",
+        "description": "//github.com/openclaw/openclaw/pull/147506).",
+        "href": "https://github.com/openclaw/openclaw/issues/147506"
+      },
+      {
+        "title": "Remove real waits from connection-timeout tests [#147523](https",
+        "description": "//github.com/openclaw/openclaw/pull/147523).",
+        "href": "https://github.com/openclaw/openclaw/issues/147523"
+      },
+      {
+        "title": "Retire obsolete plugin dependency smoke test [#147555](https",
+        "description": "//github.com/openclaw/openclaw/pull/147555). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147555"
+      },
+      {
+        "title": "Share wizard deferred promises [#147564](https",
+        "description": "//github.com/openclaw/openclaw/pull/147564).",
+        "href": "https://github.com/openclaw/openclaw/issues/147564"
+      },
+      {
+        "title": "Reuse reload-policy plugin fixtures [#147577](https",
+        "description": "//github.com/openclaw/openclaw/pull/147577).",
+        "href": "https://github.com/openclaw/openclaw/issues/147577"
+      },
+      {
+        "title": "Reuse inline-action test defaults [#147580](https",
+        "description": "//github.com/openclaw/openclaw/pull/147580).",
+        "href": "https://github.com/openclaw/openclaw/issues/147580"
+      },
+      {
+        "title": "Report icon decoding tests separately [#147613](https",
+        "description": "//github.com/openclaw/openclaw/pull/147613). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147613"
+      },
+      {
+        "title": "Compact subagent policy test tables [#147638](https",
+        "description": "//github.com/openclaw/openclaw/pull/147638). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147638"
+      },
+      {
+        "title": "Compact Gateway test tables [#147639](https",
+        "description": "//github.com/openclaw/openclaw/pull/147639). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147639"
+      },
+      {
+        "title": "Compact QA policy tables [#147640](https",
+        "description": "//github.com/openclaw/openclaw/pull/147640). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147640"
+      },
+      {
+        "title": "Compact reply-command policy tables [#147641](https",
+        "description": "//github.com/openclaw/openclaw/pull/147641). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147641"
+      },
+      {
+        "title": "Reuse session-list promise fixtures [#147643](https",
+        "description": "//github.com/openclaw/openclaw/pull/147643).",
+        "href": "https://github.com/openclaw/openclaw/issues/147643"
+      },
+      {
+        "title": "Simplify tooling tests and failure diagnostics [#147662](https",
+        "description": "//github.com/openclaw/openclaw/pull/147662).",
+        "href": "https://github.com/openclaw/openclaw/issues/147662"
+      },
+      {
+        "title": "Remove duplicate rollback test [#147735](https",
+        "description": "//github.com/openclaw/openclaw/pull/147735). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147735"
+      },
+      {
+        "title": "Test private completion reads after reopening storage [#147788](https",
+        "description": "//github.com/openclaw/openclaw/pull/147788). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147788"
+      },
+      {
+        "title": "Share inline skill-dispatch fixtures [#147813](https",
+        "description": "//github.com/openclaw/openclaw/pull/147813).",
+        "href": "https://github.com/openclaw/openclaw/issues/147813"
+      },
+      {
+        "title": "Simplify FreeBSD recovery tests [#147818](https",
+        "description": "//github.com/openclaw/openclaw/pull/147818). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147818"
+      },
+      {
+        "title": "Compact embedded-agent admission matrices [#147853](https",
+        "description": "//github.com/openclaw/openclaw/pull/147853). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147853"
+      },
+      {
+        "title": "Simplify node and fleet test matrices [#147854](https",
+        "description": "//github.com/openclaw/openclaw/pull/147854). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147854"
+      },
+      {
+        "title": "Simplify Discord lifecycle tables [#147855](https",
+        "description": "//github.com/openclaw/openclaw/pull/147855). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147855"
+      },
+      {
+        "title": "Compact agent lifecycle tables [#147856](https",
+        "description": "//github.com/openclaw/openclaw/pull/147856). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147856"
+      },
+      {
+        "title": "Test onboarding credentials through setup [#147872](https",
+        "description": "//github.com/openclaw/openclaw/pull/147872).",
+        "href": "https://github.com/openclaw/openclaw/issues/147872"
+      },
+      {
+        "title": "Extend declaration-pool regression coverage [#147889](https",
+        "description": "//github.com/openclaw/openclaw/pull/147889). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147889"
+      },
+      {
+        "title": "Share iMessage and Signal installer fixtures [#147894](https",
+        "description": "//github.com/openclaw/openclaw/pull/147894).",
+        "href": "https://github.com/openclaw/openclaw/issues/147894"
+      },
+      {
+        "title": "Reuse approval notification cleanup [#147928](https",
+        "description": "//github.com/openclaw/openclaw/pull/147928). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147928"
+      },
+      {
+        "title": "Avoid repeated npm discovery in tests [#147953](https",
+        "description": "//github.com/openclaw/openclaw/pull/147953).",
+        "href": "https://github.com/openclaw/openclaw/issues/147953"
+      },
+      {
+        "title": "Simplify reply-runtime test tables [#147978](https",
+        "description": "//github.com/openclaw/openclaw/pull/147978). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147978"
+      },
+      {
+        "title": "Simplify OpenAI transport test matrices [#147979](https",
+        "description": "//github.com/openclaw/openclaw/pull/147979). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147979"
+      },
+      {
+        "title": "Simplify update lifecycle matrices [#147980](https",
+        "description": "//github.com/openclaw/openclaw/pull/147980). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147980"
+      },
+      {
+        "title": "Simplify runtime environment tables [#147981](https",
+        "description": "//github.com/openclaw/openclaw/pull/147981). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147981"
+      },
+      {
+        "title": "Test approval prompts through shared parser [#147985](https",
+        "description": "//github.com/openclaw/openclaw/pull/147985). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147985"
+      },
+      {
+        "title": "Split transcript geometry tests [#148030](https",
+        "description": "//github.com/openclaw/openclaw/pull/148030). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148030"
+      },
+      {
+        "title": "Share command-test runtime fixtures [#148113](https",
+        "description": "//github.com/openclaw/openclaw/pull/148113).",
+        "href": "https://github.com/openclaw/openclaw/issues/148113"
+      },
+      {
+        "title": "Reuse compiled ledgers in managed-update tests [#148136](https",
+        "description": "//github.com/openclaw/openclaw/pull/148136).",
+        "href": "https://github.com/openclaw/openclaw/issues/148136"
+      },
+      {
+        "title": "Reuse compiled modules in update custody tests [#148171](https",
+        "description": "//github.com/openclaw/openclaw/pull/148171).",
+        "href": "https://github.com/openclaw/openclaw/issues/148171"
+      },
+      {
+        "title": "Reuse compiled SQLite backends in plugin tests [#148180](https",
+        "description": "//github.com/openclaw/openclaw/pull/148180).",
+        "href": "https://github.com/openclaw/openclaw/issues/148180"
+      },
+      {
+        "title": "Reduce database ownership test setup time [#148223](https",
+        "description": "//github.com/openclaw/openclaw/pull/148223).",
+        "href": "https://github.com/openclaw/openclaw/issues/148223"
+      },
+      {
+        "title": "Share Gateway watch-exit test fixtures [#148237](https",
+        "description": "//github.com/openclaw/openclaw/pull/148237).",
+        "href": "https://github.com/openclaw/openclaw/issues/148237"
+      },
+      {
+        "title": "Reuse skills watcher cleanup directly in tests [#148252](https",
+        "description": "//github.com/openclaw/openclaw/pull/148252).",
+        "href": "https://github.com/openclaw/openclaw/issues/148252"
+      },
+      {
+        "title": "Simplify Android media playback test fixtures [#148258](https",
+        "description": "//github.com/openclaw/openclaw/pull/148258). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148258"
+      },
+      {
+        "title": "Reuse compiled fixtures in update lease tests [#148281](https",
+        "description": "//github.com/openclaw/openclaw/pull/148281).",
+        "href": "https://github.com/openclaw/openclaw/issues/148281"
+      },
+      {
+        "title": "Reuse compiled Doctor preflight in startup tests [#148330](https",
+        "description": "//github.com/openclaw/openclaw/pull/148330).",
+        "href": "https://github.com/openclaw/openclaw/issues/148330"
+      },
+      {
+        "title": "Remove duplicate IRC emoji-chunking coverage [#148380](https",
+        "description": "//github.com/openclaw/openclaw/pull/148380). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148380"
+      },
+      {
+        "title": "Remove redundant Parallels test assertions [#148394](https",
+        "description": "//github.com/openclaw/openclaw/pull/148394).",
+        "href": "https://github.com/openclaw/openclaw/issues/148394"
+      },
+      {
+        "title": "Remove a duplicate Synology Chat TLS-options test [#148439](https",
+        "description": "//github.com/openclaw/openclaw/pull/148439). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148439"
+      },
+      {
+        "title": "Reuse prepared plugins in startup compatibility tests [#148465](https",
+        "description": "//github.com/openclaw/openclaw/pull/148465).",
+        "href": "https://github.com/openclaw/openclaw/issues/148465"
+      },
+      {
+        "title": "Remove duplicate tool-only Responses recovery tests [#148476](https",
+        "description": "//github.com/openclaw/openclaw/pull/148476). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148476"
+      },
+      {
+        "title": "Reuse Telegram deferred test fixtures [#148501](https",
+        "description": "//github.com/openclaw/openclaw/pull/148501).",
+        "href": "https://github.com/openclaw/openclaw/issues/148501"
+      },
+      {
+        "title": "Remove duplicate Firecrawl HTTPS acceptance coverage [#148519](https",
+        "description": "//github.com/openclaw/openclaw/pull/148519). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148519"
+      },
+      {
+        "title": "Remove duplicate compaction HTTP timeout coverage [#148554](https",
+        "description": "//github.com/openclaw/openclaw/pull/148554). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148554"
+      },
+      {
+        "title": "Remove redundant SDK export checks [#148579](https",
+        "description": "//github.com/openclaw/openclaw/pull/148579).",
+        "href": "https://github.com/openclaw/openclaw/issues/148579"
+      },
+      {
+        "title": "Reuse shared runtime fixtures in agent-exec tests [#148598](https",
+        "description": "//github.com/openclaw/openclaw/pull/148598).",
+        "href": "https://github.com/openclaw/openclaw/issues/148598"
+      },
+      {
+        "title": "Reuse shared reply-dispatch test context defaults [#148621](https",
+        "description": "//github.com/openclaw/openclaw/pull/148621).",
+        "href": "https://github.com/openclaw/openclaw/issues/148621"
+      },
+      {
+        "title": "Reuse compiled modules in managed-repair tests [#148626](https",
+        "description": "//github.com/openclaw/openclaw/pull/148626).",
+        "href": "https://github.com/openclaw/openclaw/issues/148626"
+      },
+      {
+        "title": "Remove redundant Parallel response-parsing coverage [#148633](https",
+        "description": "//github.com/openclaw/openclaw/pull/148633). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148633"
+      },
+      {
+        "title": "Share and strengthen SQLite checks in configuration tests [#148662](https:/...",
+        "description": "Share and strengthen SQLite checks in configuration tests [#148662](https://github.com/openclaw/openclaw/pull/148662).",
+        "href": "https://github.com/openclaw/openclaw/issues/148662"
+      },
+      {
+        "title": "Reuse compiled SQLite readers in legacy finalization tests [#148678](https:...",
+        "description": "Reuse compiled SQLite readers in legacy finalization tests [#148678](https://github.com/openclaw/openclaw/pull/148678).",
+        "href": "https://github.com/openclaw/openclaw/issues/148678"
+      },
+      {
+        "title": "Simplify message-action test tables [#148687](https",
+        "description": "//github.com/openclaw/openclaw/pull/148687). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148687"
+      },
+      {
+        "title": "Compact reply usage and credential-dispatch test tables [#148688](https://g...",
+        "description": "Compact reply usage and credential-dispatch test tables [#148688](https://github.com/openclaw/openclaw/pull/148688). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148688"
+      },
+      {
+        "title": "Simplify Matrix mention test fixtures [#148689](https",
+        "description": "//github.com/openclaw/openclaw/pull/148689). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148689"
+      },
+      {
+        "title": "Compact docs mirror freshness test scenarios [#148690](https",
+        "description": "//github.com/openclaw/openclaw/pull/148690). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148690"
+      },
+      {
+        "title": "Remove redundant Hugging Face retired-model coverage [#148698](https",
+        "description": "//github.com/openclaw/openclaw/pull/148698). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148698"
+      },
+      {
+        "title": "Reuse shared runtime fixtures in Google Chat tests [#148699](https",
+        "description": "//github.com/openclaw/openclaw/pull/148699).",
+        "href": "https://github.com/openclaw/openclaw/issues/148699"
+      },
+      {
+        "title": "Test browser sign-in through a real Gateway [#148758](https",
+        "description": "//github.com/openclaw/openclaw/pull/148758). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/148758"
+      },
+      {
+        "title": "Remove duplicate prompt relocation tests [#148761](https",
+        "description": "//github.com/openclaw/openclaw/pull/148761). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148761"
+      },
+      {
+        "title": "Remove duplicate Venice discovery fallback coverage [#148779](https",
+        "description": "//github.com/openclaw/openclaw/pull/148779). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148779"
+      },
+      {
+        "title": "Remove duplicate Xiaomi onboarding test work [#148802](https",
+        "description": "//github.com/openclaw/openclaw/pull/148802). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148802"
+      },
+      {
+        "title": "Reuse macOS onboarding test sessions [#148806](https",
+        "description": "//github.com/openclaw/openclaw/pull/148806).",
+        "href": "https://github.com/openclaw/openclaw/issues/148806"
+      },
+      {
+        "title": "Remove unused transport setup from parameter tests [#148844](https",
+        "description": "//github.com/openclaw/openclaw/pull/148844). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148844"
+      },
+      {
+        "title": "Reuse prepared runtime in pristine Doctor tests [#148858](https",
+        "description": "//github.com/openclaw/openclaw/pull/148858).",
+        "href": "https://github.com/openclaw/openclaw/issues/148858"
+      },
+      {
+        "title": "Consolidate terminal QR regression coverage [#148931](https",
+        "description": "//github.com/openclaw/openclaw/pull/148931). Thanks @krasimirkralev.",
+        "href": "https://github.com/openclaw/openclaw/issues/148931"
+      },
+      {
+        "title": "Consolidate reasoning-mode utility tests [#148932](https",
+        "description": "//github.com/openclaw/openclaw/pull/148932).",
+        "href": "https://github.com/openclaw/openclaw/issues/148932"
+      },
+      {
+        "title": "Remove duplicate streamed tool-call completion tests [#148986](https",
+        "description": "//github.com/openclaw/openclaw/pull/148986). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148986"
+      },
+      {
+        "title": "Compile legacy updater fixtures once per test invocation [#149008](https://...",
+        "description": "Compile legacy updater fixtures once per test invocation [#149008](https://github.com/openclaw/openclaw/pull/149008).",
+        "href": "https://github.com/openclaw/openclaw/issues/149008"
+      },
+      {
+        "title": "Seed overdue job state directly in the cron regression [#149017](https://gi...",
+        "description": "Seed overdue job state directly in the cron regression [#149017](https://github.com/openclaw/openclaw/pull/149017).",
+        "href": "https://github.com/openclaw/openclaw/issues/149017"
+      },
+      {
+        "title": "Cover database cleanup and child cancellation boundaries [#149031](https://...",
+        "description": "Cover database cleanup and child cancellation boundaries [#149031](https://github.com/openclaw/openclaw/pull/149031).",
+        "href": "https://github.com/openclaw/openclaw/issues/149031"
+      },
+      {
+        "title": "Compact Plugin SDK network-safety test tables [#149042](https",
+        "description": "//github.com/openclaw/openclaw/pull/149042). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149042"
+      },
+      {
+        "title": "Simplify config audit redaction test tables [#149043](https",
+        "description": "//github.com/openclaw/openclaw/pull/149043). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149043"
+      },
+      {
+        "title": "Compact QA evidence classification tests [#149044](https",
+        "description": "//github.com/openclaw/openclaw/pull/149044). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149044"
+      },
+      {
+        "title": "Compact xAI provider test matrices [#149045](https",
+        "description": "//github.com/openclaw/openclaw/pull/149045). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149045"
+      },
+      {
+        "title": "Reuse immutable CI planner test fixtures [#149148](https",
+        "description": "//github.com/openclaw/openclaw/pull/149148).",
+        "href": "https://github.com/openclaw/openclaw/issues/149148"
+      },
+      {
+        "title": "Reuse compiled CLI in Doctor workspace tests [#149163](https",
+        "description": "//github.com/openclaw/openclaw/pull/149163).",
+        "href": "https://github.com/openclaw/openclaw/issues/149163"
+      },
+      {
+        "title": "Strengthen compaction instruction and retry tests [#149177](https",
+        "description": "//github.com/openclaw/openclaw/pull/149177). Thanks @kvnloo.",
+        "href": "https://github.com/openclaw/openclaw/issues/149177"
+      },
+      {
+        "title": "Remove duplicate Kimi onboarding assertion [#149190](https",
+        "description": "//github.com/openclaw/openclaw/pull/149190). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149190"
+      },
+      {
+        "title": "Remove duplicate memory CLI success controls [#149227](https",
+        "description": "//github.com/openclaw/openclaw/pull/149227).",
+        "href": "https://github.com/openclaw/openclaw/issues/149227"
+      },
+      {
+        "title": "Remove duplicate streaming usage-parser tests [#149244](https",
+        "description": "//github.com/openclaw/openclaw/pull/149244). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149244"
+      },
+      {
+        "title": "Remove obsolete session-memory file-recovery tests [#149338](https",
+        "description": "//github.com/openclaw/openclaw/pull/149338).",
+        "href": "https://github.com/openclaw/openclaw/issues/149338"
+      },
+      {
+        "title": "Remove duplicate Codex terminal-inventory fixture case [#149349](https://gi...",
+        "description": "Remove duplicate Codex terminal-inventory fixture case [#149349](https://github.com/openclaw/openclaw/pull/149349).",
+        "href": "https://github.com/openclaw/openclaw/issues/149349"
+      },
+      {
+        "title": "Use byte comparisons in updater snapshot assertions [#149350](https",
+        "description": "//github.com/openclaw/openclaw/pull/149350).",
+        "href": "https://github.com/openclaw/openclaw/issues/149350"
+      },
+      {
+        "title": "Remove duplicate LM Studio test assertion [#149356](https",
+        "description": "//github.com/openclaw/openclaw/pull/149356). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149356"
+      },
+      {
+        "title": "Reduce compilation work in stale-worker tests [#149410](https",
+        "description": "//github.com/openclaw/openclaw/pull/149410).",
+        "href": "https://github.com/openclaw/openclaw/issues/149410"
+      },
+      {
+        "title": "Unblock managed-update fixture lint [#149423](https",
+        "description": "//github.com/openclaw/openclaw/pull/149423).",
+        "href": "https://github.com/openclaw/openclaw/issues/149423"
+      },
+      {
+        "title": "Share managed-service handoff test helpers [#149427](https",
+        "description": "//github.com/openclaw/openclaw/pull/149427).",
+        "href": "https://github.com/openclaw/openclaw/issues/149427"
+      },
+      {
+        "title": "Verify cron allowlists with both live runtimes [#149489](https",
+        "description": "//github.com/openclaw/openclaw/pull/149489).",
+        "href": "https://github.com/openclaw/openclaw/issues/149489"
+      },
+      {
+        "title": "Assert Feishu comment links directly through the parser [#149493](https://g...",
+        "description": "Assert Feishu comment links directly through the parser [#149493](https://github.com/openclaw/openclaw/pull/149493).",
+        "href": "https://github.com/openclaw/openclaw/issues/149493"
+      },
+      {
+        "title": "Reuse Gateway fixtures in history query tests [#149504](https",
+        "description": "//github.com/openclaw/openclaw/pull/149504).",
+        "href": "https://github.com/openclaw/openclaw/issues/149504"
+      },
+      {
+        "title": "Simplify context-engine and plugin-tool fixtures [#149515](https",
+        "description": "//github.com/openclaw/openclaw/pull/149515).",
+        "href": "https://github.com/openclaw/openclaw/issues/149515"
+      },
+      {
+        "title": "Remove redundant Z.ai reasoning predicate test [#149544](https",
+        "description": "//github.com/openclaw/openclaw/pull/149544). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149544"
+      },
+      {
+        "title": "Shorten Gateway spawn fallback tests [#149613](https",
+        "description": "//github.com/openclaw/openclaw/pull/149613). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149613"
+      },
+      {
+        "title": "Remove redundant bundled-plugin tests [#149623](https",
+        "description": "//github.com/openclaw/openclaw/pull/149623).",
+        "href": "https://github.com/openclaw/openclaw/issues/149623"
+      },
+      {
+        "title": "Remove redundant agent and Gateway tests [#149624](https",
+        "description": "//github.com/openclaw/openclaw/pull/149624).",
+        "href": "https://github.com/openclaw/openclaw/issues/149624"
+      },
+      {
+        "title": "Remove duplicate DeepSeek model-limit assertions [#149636](https",
+        "description": "//github.com/openclaw/openclaw/pull/149636). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149636"
+      },
+      {
+        "title": "Simplify the OpenAI WebSocket test fixture [#149681](https",
+        "description": "//github.com/openclaw/openclaw/pull/149681). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149681"
+      },
+      {
+        "title": "Retain cached database access regression tests [#149687](https",
+        "description": "//github.com/openclaw/openclaw/pull/149687).",
+        "href": "https://github.com/openclaw/openclaw/issues/149687"
+      },
+      {
+        "title": "Reduce setup and deadline costs in Gateway and agent tests [#149729](https:...",
+        "description": "Reduce setup and deadline costs in Gateway and agent tests [#149729](https://github.com/openclaw/openclaw/pull/149729).",
+        "href": "https://github.com/openclaw/openclaw/issues/149729"
+      },
+      {
+        "title": "Remove duplicate Synthetic onboarding assertions [#149732](https",
+        "description": "//github.com/openclaw/openclaw/pull/149732). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149732"
+      },
+      {
+        "title": "Reduce storage byte-preservation test overhead [#149825](https",
+        "description": "//github.com/openclaw/openclaw/pull/149825).",
+        "href": "https://github.com/openclaw/openclaw/issues/149825"
+      },
+      {
+        "title": "Remove duplicate retry-classification test examples [#149828](https",
+        "description": "//github.com/openclaw/openclaw/pull/149828). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149828"
+      },
+      {
+        "title": "Remove a duplicate Kilo catalog-membership test [#149856](https",
+        "description": "//github.com/openclaw/openclaw/pull/149856). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149856"
+      },
+      {
+        "title": "Avoid unused imports in service-handoff test fixtures [#149860](https",
+        "description": "//github.com/openclaw/openclaw/pull/149860).",
+        "href": "https://github.com/openclaw/openclaw/issues/149860"
+      },
+      {
+        "title": "Remove duplicate Tencent and Cohere test checks [#149888](https",
+        "description": "//github.com/openclaw/openclaw/pull/149888). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149888"
+      },
+      {
+        "title": "Remove a timing-sensitive systemd deadline test [#149898](https",
+        "description": "//github.com/openclaw/openclaw/pull/149898). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149898"
+      },
+      {
+        "title": "Remove redundant home-path test setup [#149938](https",
+        "description": "//github.com/openclaw/openclaw/pull/149938). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149938"
+      },
+      {
+        "title": "Remove a redundant Vercel thinking-profile check [#149969](https",
+        "description": "//github.com/openclaw/openclaw/pull/149969). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149969"
+      },
+      {
+        "title": "Reduce cold setup work in reply-admission tests [#149977](https",
+        "description": "//github.com/openclaw/openclaw/pull/149977).",
+        "href": "https://github.com/openclaw/openclaw/issues/149977"
+      },
+      {
+        "title": "Reuse deferred gates in session accessor tests [#149986](https",
+        "description": "//github.com/openclaw/openclaw/pull/149986).",
+        "href": "https://github.com/openclaw/openclaw/issues/149986"
+      },
+      {
+        "title": "Defer auth-writer loading for empty test fixtures [#149991](https",
+        "description": "//github.com/openclaw/openclaw/pull/149991).",
+        "href": "https://github.com/openclaw/openclaw/issues/149991"
+      },
+      {
+        "title": "Remove redundant time-formatting and Azure test fixtures [#150009](https://...",
+        "description": "Remove redundant time-formatting and Azure test fixtures [#150009](https://github.com/openclaw/openclaw/pull/150009). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150009"
+      },
+      {
+        "title": "Remove a redundant Deepgram audio test assertion [#150050](https",
+        "description": "//github.com/openclaw/openclaw/pull/150050). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150050"
+      },
+      {
+        "title": "Avoid loading the configuration reader in test fixtures [#150058](https://g...",
+        "description": "Avoid loading the configuration reader in test fixtures [#150058](https://github.com/openclaw/openclaw/pull/150058).",
+        "href": "https://github.com/openclaw/openclaw/issues/150058"
+      },
+      {
+        "title": "Remove a duplicate formatter UTF-8 regression test [#150084](https",
+        "description": "//github.com/openclaw/openclaw/pull/150084). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150084"
+      },
+      {
+        "title": "Remove duplicate infrastructure tests [#150100](https",
+        "description": "//github.com/openclaw/openclaw/pull/150100).",
+        "href": "https://github.com/openclaw/openclaw/issues/150100"
+      },
+      {
+        "title": "Remove a duplicate Slack thread-participation test [#150109](https",
+        "description": "//github.com/openclaw/openclaw/pull/150109). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150109"
+      },
+      {
+        "title": "Reuse the shared task-maintenance test runtime [#150116](https",
+        "description": "//github.com/openclaw/openclaw/pull/150116).",
+        "href": "https://github.com/openclaw/openclaw/issues/150116"
+      },
+      {
+        "title": "Remove an unused repeat option from HTTP test support [#150131](https",
+        "description": "//github.com/openclaw/openclaw/pull/150131). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150131"
+      },
+      {
+        "title": "Remove the duplicate OC Path fixture round-trip test [#150155](https",
+        "description": "//github.com/openclaw/openclaw/pull/150155). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150155"
+      },
+      {
+        "title": "Avoid unused plugins in placement recovery tests [#150170](https",
+        "description": "//github.com/openclaw/openclaw/pull/150170).",
+        "href": "https://github.com/openclaw/openclaw/issues/150170"
+      },
+      {
+        "title": "Remove a redundant provider quota assertion [#150176](https",
+        "description": "//github.com/openclaw/openclaw/pull/150176). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150176"
+      },
+      {
+        "title": "Avoid repeated Doctor setup in Workshop backup tests [#150197](https",
+        "description": "//github.com/openclaw/openclaw/pull/150197).",
+        "href": "https://github.com/openclaw/openclaw/issues/150197"
+      },
+      {
+        "title": "Remove unused web-output test fixture modes [#150207](https",
+        "description": "//github.com/openclaw/openclaw/pull/150207). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150207"
+      },
+      {
+        "title": "Remove unnecessary diagnostic reads from setup tests [#150208](https",
+        "description": "//github.com/openclaw/openclaw/pull/150208).",
+        "href": "https://github.com/openclaw/openclaw/issues/150208"
+      },
+      {
+        "title": "Remove a duplicate audio transcript formatting test [#150232](https",
+        "description": "//github.com/openclaw/openclaw/pull/150232). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150232"
+      },
+      {
+        "title": "Remove unused Rust lifecycle fixtures and a duplicate UTF-8 test [#150282](...",
+        "description": "Remove unused Rust lifecycle fixtures and a duplicate UTF-8 test [#150282](https://github.com/openclaw/openclaw/pull/150282). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150282"
+      },
+      {
+        "title": "Stabilize process ownership test names across runs [#150284](https",
+        "description": "//github.com/openclaw/openclaw/pull/150284).",
+        "href": "https://github.com/openclaw/openclaw/issues/150284"
+      },
+      {
+        "title": "Remove unused GitHub query handlers from script fixtures [#150327](https://...",
+        "description": "Remove unused GitHub query handlers from script fixtures [#150327](https://github.com/openclaw/openclaw/pull/150327). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150327"
+      },
+      {
+        "title": "Reduce Doctor memory-test fixture work [#150340](https",
+        "description": "//github.com/openclaw/openclaw/pull/150340).",
+        "href": "https://github.com/openclaw/openclaw/issues/150340"
+      },
+      {
+        "title": "Test warning-only lint across entry points [#150352](https",
+        "description": "//github.com/openclaw/openclaw/pull/150352).",
+        "href": "https://github.com/openclaw/openclaw/issues/150352"
+      },
+      {
+        "title": "Remove unused graceful SDK test cleanup [#150377](https",
+        "description": "//github.com/openclaw/openclaw/pull/150377). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150377"
+      },
+      {
+        "title": "Share configuration-recovery test runtime [#150379](https",
+        "description": "//github.com/openclaw/openclaw/pull/150379).",
+        "href": "https://github.com/openclaw/openclaw/issues/150379"
+      },
+      {
+        "title": "Remove duplicate DeepInfra WebM test [#150409](https",
+        "description": "//github.com/openclaw/openclaw/pull/150409). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150409"
+      },
+      {
+        "title": "Batch Git metadata reads in sparse-isolation tests [#150431](https",
+        "description": "//github.com/openclaw/openclaw/pull/150431).",
+        "href": "https://github.com/openclaw/openclaw/issues/150431"
+      },
+      {
+        "title": "Speed updater preview signal tests with prepared runtime [#150439](https://...",
+        "description": "Speed updater preview signal tests with prepared runtime [#150439](https://github.com/openclaw/openclaw/pull/150439).",
+        "href": "https://github.com/openclaw/openclaw/issues/150439"
+      },
+      {
+        "title": "Test deferred preview text without changing active language [#150465](https...",
+        "description": "Test deferred preview text without changing active language [#150465](https://github.com/openclaw/openclaw/pull/150465).",
+        "href": "https://github.com/openclaw/openclaw/issues/150465"
+      },
+      {
+        "title": "Simplify OpenRouter music test streams [#150495](https",
+        "description": "//github.com/openclaw/openclaw/pull/150495). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150495"
+      },
+      {
+        "title": "Reuse compiled modules in Doctor tests [#150502](https",
+        "description": "//github.com/openclaw/openclaw/pull/150502).",
+        "href": "https://github.com/openclaw/openclaw/issues/150502"
+      },
+      {
+        "title": "Share UI storage-failure test fixtures [#150505](https",
+        "description": "//github.com/openclaw/openclaw/pull/150505).",
+        "href": "https://github.com/openclaw/openclaw/issues/150505"
+      },
+      {
+        "title": "Remove unused worker test fixture modes [#150557](https",
+        "description": "//github.com/openclaw/openclaw/pull/150557). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150557"
+      },
+      {
+        "title": "Remove duplicate Ollama embedding normalization test [#150604](https",
+        "description": "//github.com/openclaw/openclaw/pull/150604). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150604"
+      },
+      {
+        "title": "Reuse shared deferred fixtures in Matrix tests [#150697](https",
+        "description": "//github.com/openclaw/openclaw/pull/150697).",
+        "href": "https://github.com/openclaw/openclaw/issues/150697"
+      },
+      {
+        "title": "Reuse shared browser lifecycle fixtures [#150765](https",
+        "description": "//github.com/openclaw/openclaw/pull/150765).",
+        "href": "https://github.com/openclaw/openclaw/issues/150765"
+      },
+      {
+        "title": "Reuse shared request URL helper in Mattermost tests [#150830](https",
+        "description": "//github.com/openclaw/openclaw/pull/150830).",
+        "href": "https://github.com/openclaw/openclaw/issues/150830"
+      },
+      {
+        "title": "Reduce repeated agent test fixture setup [#150835](https",
+        "description": "//github.com/openclaw/openclaw/pull/150835).",
+        "href": "https://github.com/openclaw/openclaw/issues/150835"
+      },
+      {
+        "title": "Reuse shared JSON responses in provider catalog tests [#150886](https",
+        "description": "//github.com/openclaw/openclaw/pull/150886).",
+        "href": "https://github.com/openclaw/openclaw/issues/150886"
+      },
+      {
+        "title": "Reduce Gateway integration-test setup costs [#150888](https",
+        "description": "//github.com/openclaw/openclaw/pull/150888).",
+        "href": "https://github.com/openclaw/openclaw/issues/150888"
+      },
+      {
+        "title": "Precompile plugin retention test subprocesses [#150951](https",
+        "description": "//github.com/openclaw/openclaw/pull/150951).",
+        "href": "https://github.com/openclaw/openclaw/issues/150951"
+      },
+      {
+        "title": "Build portable-worker fixtures once per test file [#150972](https",
+        "description": "//github.com/openclaw/openclaw/pull/150972).",
+        "href": "https://github.com/openclaw/openclaw/issues/150972"
+      },
+      {
+        "title": "Remove repeated onboarding from local-agent tests [#151031](https",
+        "description": "//github.com/openclaw/openclaw/pull/151031). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/151031"
+      },
+      {
+        "title": "Restore Slack reply-thread integration coverage at core owner [#151086](htt...",
+        "description": "Restore Slack reply-thread integration coverage at core owner [#151086](https://github.com/openclaw/openclaw/pull/151086). Thanks @pash-openai.",
+        "href": "https://github.com/openclaw/openclaw/issues/151086"
+      },
+      {
+        "title": "Restore Slack thread regression coverage in core tests [#151090](https://gi...",
+        "description": "Restore Slack thread regression coverage in core tests [#151090](https://github.com/openclaw/openclaw/pull/151090).",
+        "href": "https://github.com/openclaw/openclaw/issues/151090"
+      },
+      {
+        "title": "Reuse plugin lifecycle timing fixtures [#151115](https",
+        "description": "//github.com/openclaw/openclaw/pull/151115).",
+        "href": "https://github.com/openclaw/openclaw/issues/151115"
+      },
+      {
+        "title": "Remove redundant Bonjour test headers [#146981](https",
+        "description": "//github.com/openclaw/openclaw/pull/146981).",
+        "href": "https://github.com/openclaw/openclaw/issues/146981"
+      },
+      {
+        "title": "Keep session storage independent of agent runtime loading [#140733](https:/...",
+        "description": "Keep session storage independent of agent runtime loading [#140733](https://github.com/openclaw/openclaw/pull/140733). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/140733"
+      },
+      {
+        "title": "Remove an unused runtime-event prompt path [#143314](https",
+        "description": "//github.com/openclaw/openclaw/pull/143314). Thanks @zackmsa777-a11y, @obviyus, @petercheng, @dasx.",
+        "href": "https://github.com/openclaw/openclaw/issues/143314"
+      },
+      {
+        "title": "Separate lightweight transcript-reading helpers [#143494](https",
+        "description": "//github.com/openclaw/openclaw/pull/143494). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143494"
+      },
+      {
+        "title": "Load worker execution code only when needed [#143496](https",
+        "description": "//github.com/openclaw/openclaw/pull/143496). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143496"
+      },
+      {
+        "title": "Defer heartbeat execution loading until a wake [#143499](https",
+        "description": "//github.com/openclaw/openclaw/pull/143499). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143499"
+      },
+      {
+        "title": "Defer cron loading in Gateway reload handlers [#143500](https",
+        "description": "//github.com/openclaw/openclaw/pull/143500). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143500"
+      },
+      {
+        "title": "Reuse manifest planning for model choices [#143502](https",
+        "description": "//github.com/openclaw/openclaw/pull/143502). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/143502"
+      },
+      {
+        "title": "Reuse prepared channel setup options [#143540](https",
+        "description": "//github.com/openclaw/openclaw/pull/143540).",
+        "href": "https://github.com/openclaw/openclaw/issues/143540"
+      },
+      {
+        "title": "Share workspace character-limit resolution [#144102](https",
+        "description": "//github.com/openclaw/openclaw/pull/144102). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144102"
+      },
+      {
+        "title": "Remove redundant audio and reply directive wrappers [#144106](https",
+        "description": "//github.com/openclaw/openclaw/pull/144106).",
+        "href": "https://github.com/openclaw/openclaw/issues/144106"
+      },
+      {
+        "title": "Simplify subagent transcript handling [#144166](https",
+        "description": "//github.com/openclaw/openclaw/pull/144166).",
+        "href": "https://github.com/openclaw/openclaw/issues/144166"
+      },
+      {
+        "title": "Consolidate cloud-worker settings and snapshot helpers [#144167](https://gi...",
+        "description": "Consolidate cloud-worker settings and snapshot helpers [#144167](https://github.com/openclaw/openclaw/pull/144167).",
+        "href": "https://github.com/openclaw/openclaw/issues/144167"
+      },
+      {
+        "title": "Share automation outcome handling [#144196](https",
+        "description": "//github.com/openclaw/openclaw/pull/144196).",
+        "href": "https://github.com/openclaw/openclaw/issues/144196"
+      },
+      {
+        "title": "Share Mac connect credential selection [#144214](https",
+        "description": "//github.com/openclaw/openclaw/pull/144214). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144214"
+      },
+      {
+        "title": "Remove the unused iMessage echo cache mirror [#144215](https",
+        "description": "//github.com/openclaw/openclaw/pull/144215).",
+        "href": "https://github.com/openclaw/openclaw/issues/144215"
+      },
+      {
+        "title": "Share resource cleanup for side questions [#144220](https",
+        "description": "//github.com/openclaw/openclaw/pull/144220).",
+        "href": "https://github.com/openclaw/openclaw/issues/144220"
+      },
+      {
+        "title": "Reuse shared lifecycle control in Memory panel [#144228](https",
+        "description": "//github.com/openclaw/openclaw/pull/144228).",
+        "href": "https://github.com/openclaw/openclaw/issues/144228"
+      },
+      {
+        "title": "Reuse prepared plugin metadata [#144230](https",
+        "description": "//github.com/openclaw/openclaw/pull/144230).",
+        "href": "https://github.com/openclaw/openclaw/issues/144230"
+      },
+      {
+        "title": "Remove unused pending-message subscription state [#144234](https",
+        "description": "//github.com/openclaw/openclaw/pull/144234).",
+        "href": "https://github.com/openclaw/openclaw/issues/144234"
+      },
+      {
+        "title": "Share chat extraction cache logic [#144244](https",
+        "description": "//github.com/openclaw/openclaw/pull/144244). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144244"
+      },
+      {
+        "title": "Remove unused setup mutation inputs [#144267](https",
+        "description": "//github.com/openclaw/openclaw/pull/144267).",
+        "href": "https://github.com/openclaw/openclaw/issues/144267"
+      },
+      {
+        "title": "Share image-provider request construction [#144285](https",
+        "description": "//github.com/openclaw/openclaw/pull/144285).",
+        "href": "https://github.com/openclaw/openclaw/issues/144285"
+      },
+      {
+        "title": "Reduce temporary provider-policy lookup allocations [#144290](https",
+        "description": "//github.com/openclaw/openclaw/pull/144290).",
+        "href": "https://github.com/openclaw/openclaw/issues/144290"
+      },
+      {
+        "title": "Defer Teams inline image decoding [#144296](https",
+        "description": "//github.com/openclaw/openclaw/pull/144296).",
+        "href": "https://github.com/openclaw/openclaw/issues/144296"
+      },
+      {
+        "title": "Reuse the model catalog identity index [#144305](https",
+        "description": "//github.com/openclaw/openclaw/pull/144305).",
+        "href": "https://github.com/openclaw/openclaw/issues/144305"
+      },
+      {
+        "title": "Avoid repeated completion command registration [#144311](https",
+        "description": "//github.com/openclaw/openclaw/pull/144311).",
+        "href": "https://github.com/openclaw/openclaw/issues/144311"
+      },
+      {
+        "title": "Remove unused onboarding catalog validation [#144321](https",
+        "description": "//github.com/openclaw/openclaw/pull/144321).",
+        "href": "https://github.com/openclaw/openclaw/issues/144321"
+      },
+      {
+        "title": "Share Google image-provider metadata [#144323](https",
+        "description": "//github.com/openclaw/openclaw/pull/144323).",
+        "href": "https://github.com/openclaw/openclaw/issues/144323"
+      },
+      {
+        "title": "Remove an obsolete updater stop path [#144328](https",
+        "description": "//github.com/openclaw/openclaw/pull/144328).",
+        "href": "https://github.com/openclaw/openclaw/issues/144328"
+      },
+      {
+        "title": "Remove unused ignore-matcher compatibility [#144340](https",
+        "description": "//github.com/openclaw/openclaw/pull/144340).",
+        "href": "https://github.com/openclaw/openclaw/issues/144340"
+      },
+      {
+        "title": "Remove superseded catalog and onboarding helpers [#144342](https",
+        "description": "//github.com/openclaw/openclaw/pull/144342). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144342"
+      },
+      {
+        "title": "Reuse completed chat transcript indexes [#144343](https",
+        "description": "//github.com/openclaw/openclaw/pull/144343).",
+        "href": "https://github.com/openclaw/openclaw/issues/144343"
+      },
+      {
+        "title": "Skip repeated normalization for cached plugin records [#144362](https",
+        "description": "//github.com/openclaw/openclaw/pull/144362).",
+        "href": "https://github.com/openclaw/openclaw/issues/144362"
+      },
+      {
+        "title": "Limit unnecessary iMessage content collection [#144365](https",
+        "description": "//github.com/openclaw/openclaw/pull/144365).",
+        "href": "https://github.com/openclaw/openclaw/issues/144365"
+      },
+      {
+        "title": "Remove ineffective Tailscale application search [#144376](https",
+        "description": "//github.com/openclaw/openclaw/pull/144376).",
+        "href": "https://github.com/openclaw/openclaw/issues/144376"
+      },
+      {
+        "title": "Reduce source-mode update repair imports [#144379](https",
+        "description": "//github.com/openclaw/openclaw/pull/144379).",
+        "href": "https://github.com/openclaw/openclaw/issues/144379"
+      },
+      {
+        "title": "Keep usage caches private and share implementation [#144433](https",
+        "description": "//github.com/openclaw/openclaw/pull/144433).",
+        "href": "https://github.com/openclaw/openclaw/issues/144433"
+      },
+      {
+        "title": "Remove redundant device-event forwarding [#144434](https",
+        "description": "//github.com/openclaw/openclaw/pull/144434).",
+        "href": "https://github.com/openclaw/openclaw/issues/144434"
+      },
+      {
+        "title": "Simplify Discord action dependencies [#144441](https",
+        "description": "//github.com/openclaw/openclaw/pull/144441).",
+        "href": "https://github.com/openclaw/openclaw/issues/144441"
+      },
+      {
+        "title": "Remove unused follow-up and logging state [#144445](https",
+        "description": "//github.com/openclaw/openclaw/pull/144445).",
+        "href": "https://github.com/openclaw/openclaw/issues/144445"
+      },
+      {
+        "title": "Share HTML export tree layout [#144449](https",
+        "description": "//github.com/openclaw/openclaw/pull/144449).",
+        "href": "https://github.com/openclaw/openclaw/issues/144449"
+      },
+      {
+        "title": "Share Google media-understanding metadata [#144457](https",
+        "description": "//github.com/openclaw/openclaw/pull/144457).",
+        "href": "https://github.com/openclaw/openclaw/issues/144457"
+      },
+      {
+        "title": "Remove unused Discord model-picker layout code [#144496](https",
+        "description": "//github.com/openclaw/openclaw/pull/144496).",
+        "href": "https://github.com/openclaw/openclaw/issues/144496"
+      },
+      {
+        "title": "Prepare progress-card storage for asynchronous operations [#144529](https:/...",
+        "description": "Prepare progress-card storage for asynchronous operations [#144529](https://github.com/openclaw/openclaw/pull/144529).",
+        "href": "https://github.com/openclaw/openclaw/issues/144529"
+      },
+      {
+        "title": "Consolidate login tests and Models helpers [#144533](https",
+        "description": "//github.com/openclaw/openclaw/pull/144533). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144533"
+      },
+      {
+        "title": "Reduce sidebar indexing and restore the UI bundle budget [#144538](https://...",
+        "description": "Reduce sidebar indexing and restore the UI bundle budget [#144538](https://github.com/openclaw/openclaw/pull/144538).",
+        "href": "https://github.com/openclaw/openclaw/issues/144538"
+      },
+      {
+        "title": "Remove unused background authentication caching [#144560](https",
+        "description": "//github.com/openclaw/openclaw/pull/144560).",
+        "href": "https://github.com/openclaw/openclaw/issues/144560"
+      },
+      {
+        "title": "Share model catalog preparation across lists and pickers [#144563](https://...",
+        "description": "Share model catalog preparation across lists and pickers [#144563](https://github.com/openclaw/openclaw/pull/144563). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144563"
+      },
+      {
+        "title": "Remove unused documentation translation test support [#144580](https",
+        "description": "//github.com/openclaw/openclaw/pull/144580). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144580"
+      },
+      {
+        "title": "Reuse prepared authentication facts for model status [#144588](https",
+        "description": "//github.com/openclaw/openclaw/pull/144588). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144588"
+      },
+      {
+        "title": "Share collapsible Markdown parsing rules [#144590](https",
+        "description": "//github.com/openclaw/openclaw/pull/144590).",
+        "href": "https://github.com/openclaw/openclaw/issues/144590"
+      },
+      {
+        "title": "Separate task publication from flow persistence [#144593](https",
+        "description": "//github.com/openclaw/openclaw/pull/144593).",
+        "href": "https://github.com/openclaw/openclaw/issues/144593"
+      },
+      {
+        "title": "Prepare caller-controlled admission for GitHub reads [#144595](https",
+        "description": "//github.com/openclaw/openclaw/pull/144595).",
+        "href": "https://github.com/openclaw/openclaw/issues/144595"
+      },
+      {
+        "title": "Remove duplicate Bedrock model classification [#144634](https",
+        "description": "//github.com/openclaw/openclaw/pull/144634).",
+        "href": "https://github.com/openclaw/openclaw/issues/144634"
+      },
+      {
+        "title": "Await heartbeat storage and context claims [#144635](https",
+        "description": "//github.com/openclaw/openclaw/pull/144635).",
+        "href": "https://github.com/openclaw/openclaw/issues/144635"
+      },
+      {
+        "title": "Simplify sidebar session tree calculations [#144642](https",
+        "description": "//github.com/openclaw/openclaw/pull/144642).",
+        "href": "https://github.com/openclaw/openclaw/issues/144642"
+      },
+      {
+        "title": "Await workspace storage while preserving operation ownership [#144645](http...",
+        "description": "Await workspace storage while preserving operation ownership [#144645](https://github.com/openclaw/openclaw/pull/144645).",
+        "href": "https://github.com/openclaw/openclaw/issues/144645"
+      },
+      {
+        "title": "Finish accepted Team Reports database work before shutdown [#144646](https:...",
+        "description": "Finish accepted Team Reports database work before shutdown [#144646](https://github.com/openclaw/openclaw/pull/144646).",
+        "href": "https://github.com/openclaw/openclaw/issues/144646"
+      },
+      {
+        "title": "Reuse prepared model information in status summaries [#144648](https",
+        "description": "//github.com/openclaw/openclaw/pull/144648).",
+        "href": "https://github.com/openclaw/openclaw/issues/144648"
+      },
+      {
+        "title": "Simplify QA Lab and Memory Core command dispatch [#144650](https",
+        "description": "//github.com/openclaw/openclaw/pull/144650).",
+        "href": "https://github.com/openclaw/openclaw/issues/144650"
+      },
+      {
+        "title": "Await memory provenance storage operations [#144663](https",
+        "description": "//github.com/openclaw/openclaw/pull/144663).",
+        "href": "https://github.com/openclaw/openclaw/issues/144663"
+      },
+      {
+        "title": "Await Logbook storage and drain accepted work [#144666](https",
+        "description": "//github.com/openclaw/openclaw/pull/144666).",
+        "href": "https://github.com/openclaw/openclaw/issues/144666"
+      },
+      {
+        "title": "Share Model Setup and plugin icon loading [#144673](https",
+        "description": "//github.com/openclaw/openclaw/pull/144673).",
+        "href": "https://github.com/openclaw/openclaw/issues/144673"
+      },
+      {
+        "title": "Await task reads before media and prompt preparation [#144674](https",
+        "description": "//github.com/openclaw/openclaw/pull/144674).",
+        "href": "https://github.com/openclaw/openclaw/issues/144674"
+      },
+      {
+        "title": "Simplify Memory Wiki Obsidian command discovery [#144731](https",
+        "description": "//github.com/openclaw/openclaw/pull/144731).",
+        "href": "https://github.com/openclaw/openclaw/issues/144731"
+      },
+      {
+        "title": "Separate Control UI startup styles and Dreaming text [#144737](https",
+        "description": "//github.com/openclaw/openclaw/pull/144737). Thanks @vyctorbrzezowski, @fuller-stack-dev, @onlyysaurabh.",
+        "href": "https://github.com/openclaw/openclaw/issues/144737"
+      },
+      {
+        "title": "Await Copilot token cache operations [#144810](https",
+        "description": "//github.com/openclaw/openclaw/pull/144810).",
+        "href": "https://github.com/openclaw/openclaw/issues/144810"
+      },
+      {
+        "title": "Share Android discovery TLS flag parsing [#144816](https",
+        "description": "//github.com/openclaw/openclaw/pull/144816). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144816"
+      },
+      {
+        "title": "Await Board storage while preserving current permissions [#144817](https://...",
+        "description": "Await Board storage while preserving current permissions [#144817](https://github.com/openclaw/openclaw/pull/144817).",
+        "href": "https://github.com/openclaw/openclaw/issues/144817"
+      },
+      {
+        "title": "Await memory journal operations and preserve event ordering [#144824](https...",
+        "description": "Await memory journal operations and preserve event ordering [#144824](https://github.com/openclaw/openclaw/pull/144824).",
+        "href": "https://github.com/openclaw/openclaw/issues/144824"
+      },
+      {
+        "title": "Wait for Codex hook setup and cleanup [#144828](https",
+        "description": "//github.com/openclaw/openclaw/pull/144828).",
+        "href": "https://github.com/openclaw/openclaw/issues/144828"
+      },
+      {
+        "title": "Await storage work for event-triggered reminders [#144832](https",
+        "description": "//github.com/openclaw/openclaw/pull/144832).",
+        "href": "https://github.com/openclaw/openclaw/issues/144832"
+      },
+      {
+        "title": "Share Matrix reply fallback delivery [#144840](https",
+        "description": "//github.com/openclaw/openclaw/pull/144840). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144840"
+      },
+      {
+        "title": "Share device-pairing list assembly [#144847](https",
+        "description": "//github.com/openclaw/openclaw/pull/144847). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144847"
+      },
+      {
+        "title": "Share the Apple localization catalog reader [#144848](https",
+        "description": "//github.com/openclaw/openclaw/pull/144848). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144848"
+      },
+      {
+        "title": "Await workspace discovery and configuration readiness [#144854](https",
+        "description": "//github.com/openclaw/openclaw/pull/144854).",
+        "href": "https://github.com/openclaw/openclaw/issues/144854"
+      },
+      {
+        "title": "Share Copilot transcript user-text comparison [#144888](https",
+        "description": "//github.com/openclaw/openclaw/pull/144888). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144888"
+      },
+      {
+        "title": "Simplify development CLI child-process listeners [#144929](https",
+        "description": "//github.com/openclaw/openclaw/pull/144929).",
+        "href": "https://github.com/openclaw/openclaw/issues/144929"
+      },
+      {
+        "title": "Avoid unnecessary session reads for wakes and chat parents [#144935](https:...",
+        "description": "Avoid unnecessary session reads for wakes and chat parents [#144935](https://github.com/openclaw/openclaw/pull/144935).",
+        "href": "https://github.com/openclaw/openclaw/issues/144935"
+      },
+      {
+        "title": "Share Matrix context-cache insertion logic [#144939](https",
+        "description": "//github.com/openclaw/openclaw/pull/144939). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144939"
+      },
+      {
+        "title": "Share CLI parse-error rendering [#144948](https",
+        "description": "//github.com/openclaw/openclaw/pull/144948).",
+        "href": "https://github.com/openclaw/openclaw/issues/144948"
+      },
+      {
+        "title": "Centralize WhatsApp plugin wiring [#144957](https",
+        "description": "//github.com/openclaw/openclaw/pull/144957).",
+        "href": "https://github.com/openclaw/openclaw/issues/144957"
+      },
+      {
+        "title": "Simplify Responses endpoint classifications [#144962](https",
+        "description": "//github.com/openclaw/openclaw/pull/144962).",
+        "href": "https://github.com/openclaw/openclaw/issues/144962"
+      },
+      {
+        "title": "Centralize CLI progress cleanup [#144981](https",
+        "description": "//github.com/openclaw/openclaw/pull/144981).",
+        "href": "https://github.com/openclaw/openclaw/issues/144981"
+      },
+      {
+        "title": "Separate task-flow record transformations [#144983](https",
+        "description": "//github.com/openclaw/openclaw/pull/144983).",
+        "href": "https://github.com/openclaw/openclaw/issues/144983"
+      },
+      {
+        "title": "Share provider tool-schema traversal [#144985](https",
+        "description": "//github.com/openclaw/openclaw/pull/144985). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144985"
+      },
+      {
+        "title": "Separate subagent registration records from lifecycle handling [#144988](ht...",
+        "description": "Separate subagent registration records from lifecycle handling [#144988](https://github.com/openclaw/openclaw/pull/144988).",
+        "href": "https://github.com/openclaw/openclaw/issues/144988"
+      },
+      {
+        "title": "Open existing SQLite worker stores without creating databases [#145030](htt...",
+        "description": "Open existing SQLite worker stores without creating databases [#145030](https://github.com/openclaw/openclaw/pull/145030).",
+        "href": "https://github.com/openclaw/openclaw/issues/145030"
+      },
+      {
+        "title": "Prepare Voice Call for asynchronous record storage [#145047](https",
+        "description": "//github.com/openclaw/openclaw/pull/145047).",
+        "href": "https://github.com/openclaw/openclaw/issues/145047"
+      },
+      {
+        "title": "Open repository-workspace storage only when needed [#145048](https",
+        "description": "//github.com/openclaw/openclaw/pull/145048).",
+        "href": "https://github.com/openclaw/openclaw/issues/145048"
+      },
+      {
+        "title": "Simplify chat welcome setup-action ownership [#145077](https",
+        "description": "//github.com/openclaw/openclaw/pull/145077). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/145077"
+      },
+      {
+        "title": "Simplify goal state handling [#145125](https",
+        "description": "//github.com/openclaw/openclaw/pull/145125).",
+        "href": "https://github.com/openclaw/openclaw/issues/145125"
+      },
+      {
+        "title": "Remove obsolete terminal translation records [#145144](https",
+        "description": "//github.com/openclaw/openclaw/pull/145144).",
+        "href": "https://github.com/openclaw/openclaw/issues/145144"
+      },
+      {
+        "title": "Consolidate terminal note wrapping [#145155](https",
+        "description": "//github.com/openclaw/openclaw/pull/145155).",
+        "href": "https://github.com/openclaw/openclaw/issues/145155"
+      },
+      {
+        "title": "Await memory search and index cleanup [#145159](https",
+        "description": "//github.com/openclaw/openclaw/pull/145159).",
+        "href": "https://github.com/openclaw/openclaw/issues/145159"
+      },
+      {
+        "title": "Separate plugin-state queries from database lifecycle [#145163](https",
+        "description": "//github.com/openclaw/openclaw/pull/145163).",
+        "href": "https://github.com/openclaw/openclaw/issues/145163"
+      },
+      {
+        "title": "Keep approval preparation within hook relay lifetime [#145164](https",
+        "description": "//github.com/openclaw/openclaw/pull/145164).",
+        "href": "https://github.com/openclaw/openclaw/issues/145164"
+      },
+      {
+        "title": "Remove unused node-host preparation inputs [#145165](https",
+        "description": "//github.com/openclaw/openclaw/pull/145165).",
+        "href": "https://github.com/openclaw/openclaw/issues/145165"
+      },
+      {
+        "title": "Avoid repeating failed frontmatter parsing [#145177](https",
+        "description": "//github.com/openclaw/openclaw/pull/145177).",
+        "href": "https://github.com/openclaw/openclaw/issues/145177"
+      },
+      {
+        "title": "Reuse shared JSON extraction in setup planning [#145186](https",
+        "description": "//github.com/openclaw/openclaw/pull/145186).",
+        "href": "https://github.com/openclaw/openclaw/issues/145186"
+      },
+      {
+        "title": "Consolidate memory source indexing within its database owner [#145207](http...",
+        "description": "Consolidate memory source indexing within its database owner [#145207](https://github.com/openclaw/openclaw/pull/145207).",
+        "href": "https://github.com/openclaw/openclaw/issues/145207"
+      },
+      {
+        "title": "Remove the retired Discord QA serializer [#145211](https",
+        "description": "//github.com/openclaw/openclaw/pull/145211).",
+        "href": "https://github.com/openclaw/openclaw/issues/145211"
+      },
+      {
+        "title": "Reduce allocations in repeated plugin directory lookups [#145226](https://g...",
+        "description": "Reduce allocations in repeated plugin directory lookups [#145226](https://github.com/openclaw/openclaw/pull/145226).",
+        "href": "https://github.com/openclaw/openclaw/issues/145226"
+      },
+      {
+        "title": "Reduce repeated setup in zoned date parsing [#145231](https",
+        "description": "//github.com/openclaw/openclaw/pull/145231).",
+        "href": "https://github.com/openclaw/openclaw/issues/145231"
+      },
+      {
+        "title": "Remove unused Tlon image-storage code [#145234](https",
+        "description": "//github.com/openclaw/openclaw/pull/145234).",
+        "href": "https://github.com/openclaw/openclaw/issues/145234"
+      },
+      {
+        "title": "Reuse provider policies while building model catalogs [#145257](https",
+        "description": "//github.com/openclaw/openclaw/pull/145257).",
+        "href": "https://github.com/openclaw/openclaw/issues/145257"
+      },
+      {
+        "title": "Avoid unused collections in Tailscale address lookup [#145263](https",
+        "description": "//github.com/openclaw/openclaw/pull/145263).",
+        "href": "https://github.com/openclaw/openclaw/issues/145263"
+      },
+      {
+        "title": "Avoid unused session and tool-event copies [#145271](https",
+        "description": "//github.com/openclaw/openclaw/pull/145271).",
+        "href": "https://github.com/openclaw/openclaw/issues/145271"
+      },
+      {
+        "title": "Reuse browser-tab selection during chat rendering [#145275](https",
+        "description": "//github.com/openclaw/openclaw/pull/145275).",
+        "href": "https://github.com/openclaw/openclaw/issues/145275"
+      },
+      {
+        "title": "Reuse command metadata for shell completion caches [#145279](https",
+        "description": "//github.com/openclaw/openclaw/pull/145279).",
+        "href": "https://github.com/openclaw/openclaw/issues/145279"
+      },
+      {
+        "title": "Reuse the Policy diagnostic finding builder [#145314](https",
+        "description": "//github.com/openclaw/openclaw/pull/145314).",
+        "href": "https://github.com/openclaw/openclaw/issues/145314"
+      },
+      {
+        "title": "Prepare backup history access for asynchronous storage [#145353](https://gi...",
+        "description": "Prepare backup history access for asynchronous storage [#145353](https://github.com/openclaw/openclaw/pull/145353).",
+        "href": "https://github.com/openclaw/openclaw/issues/145353"
+      },
+      {
+        "title": "Remove retired session statistics internals [#145354](https",
+        "description": "//github.com/openclaw/openclaw/pull/145354).",
+        "href": "https://github.com/openclaw/openclaw/issues/145354"
+      },
+      {
+        "title": "Consolidate static credential secret collection [#145359](https",
+        "description": "//github.com/openclaw/openclaw/pull/145359).",
+        "href": "https://github.com/openclaw/openclaw/issues/145359"
+      },
+      {
+        "title": "Share media generation failure cleanup [#145361](https",
+        "description": "//github.com/openclaw/openclaw/pull/145361).",
+        "href": "https://github.com/openclaw/openclaw/issues/145361"
+      },
+      {
+        "title": "Skip preparation of discarded assistant answers [#145364](https",
+        "description": "//github.com/openclaw/openclaw/pull/145364).",
+        "href": "https://github.com/openclaw/openclaw/issues/145364"
+      },
+      {
+        "title": "Consolidate Discord administration command setup [#145389](https",
+        "description": "//github.com/openclaw/openclaw/pull/145389).",
+        "href": "https://github.com/openclaw/openclaw/issues/145389"
+      },
+      {
+        "title": "Await Slack presence cooldown storage [#145392](https",
+        "description": "//github.com/openclaw/openclaw/pull/145392).",
+        "href": "https://github.com/openclaw/openclaw/issues/145392"
+      },
+      {
+        "title": "Await Telegram sticker cache operations [#145398](https",
+        "description": "//github.com/openclaw/openclaw/pull/145398).",
+        "href": "https://github.com/openclaw/openclaw/issues/145398"
+      },
+      {
+        "title": "Reduce long health-message formatting work [#145401](https",
+        "description": "//github.com/openclaw/openclaw/pull/145401).",
+        "href": "https://github.com/openclaw/openclaw/issues/145401"
+      },
+      {
+        "title": "Remove redundant Mac Canvas and permission checks [#145411](https",
+        "description": "//github.com/openclaw/openclaw/pull/145411).",
+        "href": "https://github.com/openclaw/openclaw/issues/145411"
+      },
+      {
+        "title": "Avoid duplicate tool-schema definition collection [#145425](https",
+        "description": "//github.com/openclaw/openclaw/pull/145425).",
+        "href": "https://github.com/openclaw/openclaw/issues/145425"
+      },
+      {
+        "title": "Share hovercard keyboard handling [#145434](https",
+        "description": "//github.com/openclaw/openclaw/pull/145434).",
+        "href": "https://github.com/openclaw/openclaw/issues/145434"
+      },
+      {
+        "title": "Reduce repeated plugin API path construction [#145443](https",
+        "description": "//github.com/openclaw/openclaw/pull/145443).",
+        "href": "https://github.com/openclaw/openclaw/issues/145443"
+      },
+      {
+        "title": "Consolidate database upgrade and deletion checks [#145475](https",
+        "description": "//github.com/openclaw/openclaw/pull/145475).",
+        "href": "https://github.com/openclaw/openclaw/issues/145475"
+      },
+      {
+        "title": "Avoid repeated transcript export size scans [#145495](https",
+        "description": "//github.com/openclaw/openclaw/pull/145495).",
+        "href": "https://github.com/openclaw/openclaw/issues/145495"
+      },
+      {
+        "title": "Share ACP session metadata readers [#145498](https",
+        "description": "//github.com/openclaw/openclaw/pull/145498).",
+        "href": "https://github.com/openclaw/openclaw/issues/145498"
+      },
+      {
+        "title": "Remove obsolete environment-picker styling [#145513](https",
+        "description": "//github.com/openclaw/openclaw/pull/145513).",
+        "href": "https://github.com/openclaw/openclaw/issues/145513"
+      },
+      {
+        "title": "Remove redundant touch-details cursor CSS [#145516](https",
+        "description": "//github.com/openclaw/openclaw/pull/145516). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145516"
+      },
+      {
+        "title": "Remove obsolete logging test configuration hook [#145519](https",
+        "description": "//github.com/openclaw/openclaw/pull/145519).",
+        "href": "https://github.com/openclaw/openclaw/issues/145519"
+      },
+      {
+        "title": "Share settings navigation grouping [#145526](https",
+        "description": "//github.com/openclaw/openclaw/pull/145526).",
+        "href": "https://github.com/openclaw/openclaw/issues/145526"
+      },
+      {
+        "title": "Remove unused manual Bash session layer [#145566](https",
+        "description": "//github.com/openclaw/openclaw/pull/145566).",
+        "href": "https://github.com/openclaw/openclaw/issues/145566"
+      },
+      {
+        "title": "Remove obsolete plugin page styles [#145586](https",
+        "description": "//github.com/openclaw/openclaw/pull/145586).",
+        "href": "https://github.com/openclaw/openclaw/issues/145586"
+      },
+      {
+        "title": "Simplify realtime voice support code [#145599](https",
+        "description": "//github.com/openclaw/openclaw/pull/145599).",
+        "href": "https://github.com/openclaw/openclaw/issues/145599"
+      },
+      {
+        "title": "Consolidate Google provider lazy loading [#145614](https",
+        "description": "//github.com/openclaw/openclaw/pull/145614).",
+        "href": "https://github.com/openclaw/openclaw/issues/145614"
+      },
+      {
+        "title": "Reduce repeated final-reply history scans [#145618](https",
+        "description": "//github.com/openclaw/openclaw/pull/145618).",
+        "href": "https://github.com/openclaw/openclaw/issues/145618"
+      },
+      {
+        "title": "Share assistant display-text extraction [#145642](https",
+        "description": "//github.com/openclaw/openclaw/pull/145642).",
+        "href": "https://github.com/openclaw/openclaw/issues/145642"
+      },
+      {
+        "title": "Share catalog icon-request management [#145644](https",
+        "description": "//github.com/openclaw/openclaw/pull/145644).",
+        "href": "https://github.com/openclaw/openclaw/issues/145644"
+      },
+      {
+        "title": "Share Mac process timeout observation [#145651](https",
+        "description": "//github.com/openclaw/openclaw/pull/145651).",
+        "href": "https://github.com/openclaw/openclaw/issues/145651"
+      },
+      {
+        "title": "Separate task storage from connection ownership [#145652](https",
+        "description": "//github.com/openclaw/openclaw/pull/145652).",
+        "href": "https://github.com/openclaw/openclaw/issues/145652"
+      },
+      {
+        "title": "Share Voice Call history encoding [#145661](https",
+        "description": "//github.com/openclaw/openclaw/pull/145661).",
+        "href": "https://github.com/openclaw/openclaw/issues/145661"
+      },
+      {
+        "title": "Avoid redundant pending-message identity work [#145663](https",
+        "description": "//github.com/openclaw/openclaw/pull/145663).",
+        "href": "https://github.com/openclaw/openclaw/issues/145663"
+      },
+      {
+        "title": "Reduce repeated plugin-state query work [#145677](https",
+        "description": "//github.com/openclaw/openclaw/pull/145677).",
+        "href": "https://github.com/openclaw/openclaw/issues/145677"
+      },
+      {
+        "title": "Skip unused voice-wake ownership reads [#145695](https",
+        "description": "//github.com/openclaw/openclaw/pull/145695).",
+        "href": "https://github.com/openclaw/openclaw/issues/145695"
+      },
+      {
+        "title": "Skip unused Slack reply scans [#145701](https",
+        "description": "//github.com/openclaw/openclaw/pull/145701).",
+        "href": "https://github.com/openclaw/openclaw/issues/145701"
+      },
+      {
+        "title": "Consolidate failure-report receipt writes [#145704](https",
+        "description": "//github.com/openclaw/openclaw/pull/145704). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145704"
+      },
+      {
+        "title": "Derive sign-in metadata from manifests [#145707](https",
+        "description": "//github.com/openclaw/openclaw/pull/145707). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145707"
+      },
+      {
+        "title": "Reuse task and flow read queries [#145716](https",
+        "description": "//github.com/openclaw/openclaw/pull/145716).",
+        "href": "https://github.com/openclaw/openclaw/issues/145716"
+      },
+      {
+        "title": "Share Buzz directory filtering [#145763](https",
+        "description": "//github.com/openclaw/openclaw/pull/145763).",
+        "href": "https://github.com/openclaw/openclaw/issues/145763"
+      },
+      {
+        "title": "Consolidate native browser title updates [#145769](https",
+        "description": "//github.com/openclaw/openclaw/pull/145769).",
+        "href": "https://github.com/openclaw/openclaw/issues/145769"
+      },
+      {
+        "title": "Consolidate plugin startup planning [#145791](https",
+        "description": "//github.com/openclaw/openclaw/pull/145791).",
+        "href": "https://github.com/openclaw/openclaw/issues/145791"
+      },
+      {
+        "title": "Remove unused internal Tailscale status fields [#145801](https",
+        "description": "//github.com/openclaw/openclaw/pull/145801).",
+        "href": "https://github.com/openclaw/openclaw/issues/145801"
+      },
+      {
+        "title": "Simplify container runtime selection [#145814](https",
+        "description": "//github.com/openclaw/openclaw/pull/145814).",
+        "href": "https://github.com/openclaw/openclaw/issues/145814"
+      },
+      {
+        "title": "Reduce repeated plugin diagnostic scans [#145815](https",
+        "description": "//github.com/openclaw/openclaw/pull/145815).",
+        "href": "https://github.com/openclaw/openclaw/issues/145815"
+      },
+      {
+        "title": "Reduce repeated network-result processing [#145818](https",
+        "description": "//github.com/openclaw/openclaw/pull/145818).",
+        "href": "https://github.com/openclaw/openclaw/issues/145818"
+      },
+      {
+        "title": "Consolidate heartbeat response selection [#145830](https",
+        "description": "//github.com/openclaw/openclaw/pull/145830).",
+        "href": "https://github.com/openclaw/openclaw/issues/145830"
+      },
+      {
+        "title": "Remove unused plugin-test factories [#145844](https",
+        "description": "//github.com/openclaw/openclaw/pull/145844).",
+        "href": "https://github.com/openclaw/openclaw/issues/145844"
+      },
+      {
+        "title": "Reuse board read queries [#145849](https",
+        "description": "//github.com/openclaw/openclaw/pull/145849).",
+        "href": "https://github.com/openclaw/openclaw/issues/145849"
+      },
+      {
+        "title": "Share home-directory resolution [#145866](https",
+        "description": "//github.com/openclaw/openclaw/pull/145866). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145866"
+      },
+      {
+        "title": "Share installation policy sequencing [#145868](https",
+        "description": "//github.com/openclaw/openclaw/pull/145868). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145868"
+      },
+      {
+        "title": "Share provider setup option handling [#145869](https",
+        "description": "//github.com/openclaw/openclaw/pull/145869). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145869"
+      },
+      {
+        "title": "Simplify abort waits and test native cleanup [#145877](https",
+        "description": "//github.com/openclaw/openclaw/pull/145877).",
+        "href": "https://github.com/openclaw/openclaw/issues/145877"
+      },
+      {
+        "title": "Reuse CLI plugin eligibility preparation [#145896](https",
+        "description": "//github.com/openclaw/openclaw/pull/145896).",
+        "href": "https://github.com/openclaw/openclaw/issues/145896"
+      },
+      {
+        "title": "Stop development scans at missing plugin output [#145898](https",
+        "description": "//github.com/openclaw/openclaw/pull/145898).",
+        "href": "https://github.com/openclaw/openclaw/issues/145898"
+      },
+      {
+        "title": "Reuse heartbeat timezone formatters [#145900](https",
+        "description": "//github.com/openclaw/openclaw/pull/145900).",
+        "href": "https://github.com/openclaw/openclaw/issues/145900"
+      },
+      {
+        "title": "Centralize Gateway client readiness [#145901](https",
+        "description": "//github.com/openclaw/openclaw/pull/145901).",
+        "href": "https://github.com/openclaw/openclaw/issues/145901"
+      },
+      {
+        "title": "Share model prefix normalization [#145910](https",
+        "description": "//github.com/openclaw/openclaw/pull/145910).",
+        "href": "https://github.com/openclaw/openclaw/issues/145910"
+      },
+      {
+        "title": "Simplify usage session discovery [#145912](https",
+        "description": "//github.com/openclaw/openclaw/pull/145912).",
+        "href": "https://github.com/openclaw/openclaw/issues/145912"
+      },
+      {
+        "title": "Reuse model matches in provider lookup [#145914](https",
+        "description": "//github.com/openclaw/openclaw/pull/145914).",
+        "href": "https://github.com/openclaw/openclaw/issues/145914"
+      },
+      {
+        "title": "Avoid provider metadata copies [#145921](https",
+        "description": "//github.com/openclaw/openclaw/pull/145921).",
+        "href": "https://github.com/openclaw/openclaw/issues/145921"
+      },
+      {
+        "title": "Register Android Plugins string resource [#145924](https",
+        "description": "//github.com/openclaw/openclaw/pull/145924).",
+        "href": "https://github.com/openclaw/openclaw/issues/145924"
+      },
+      {
+        "title": "Remove unused session model cycling [#145934](https",
+        "description": "//github.com/openclaw/openclaw/pull/145934).",
+        "href": "https://github.com/openclaw/openclaw/issues/145934"
+      },
+      {
+        "title": "Limit session people-filter sorting [#145941](https",
+        "description": "//github.com/openclaw/openclaw/pull/145941).",
+        "href": "https://github.com/openclaw/openclaw/issues/145941"
+      },
+      {
+        "title": "Simplify channel media-limit resolution [#145943](https",
+        "description": "//github.com/openclaw/openclaw/pull/145943).",
+        "href": "https://github.com/openclaw/openclaw/issues/145943"
+      },
+      {
+        "title": "Share Gateway connection lifecycle [#145950](https",
+        "description": "//github.com/openclaw/openclaw/pull/145950). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/145950"
+      },
+      {
+        "title": "Separate SQLite broker and client lifecycle [#145958](https",
+        "description": "//github.com/openclaw/openclaw/pull/145958).",
+        "href": "https://github.com/openclaw/openclaw/issues/145958"
+      },
+      {
+        "title": "Share people-card keyboard handling [#145967](https",
+        "description": "//github.com/openclaw/openclaw/pull/145967).",
+        "href": "https://github.com/openclaw/openclaw/issues/145967"
+      },
+      {
+        "title": "Separate board database operations [#145969](https",
+        "description": "//github.com/openclaw/openclaw/pull/145969).",
+        "href": "https://github.com/openclaw/openclaw/issues/145969"
+      },
+      {
+        "title": "Remove retired Nostr translation entries [#145990](https",
+        "description": "//github.com/openclaw/openclaw/pull/145990).",
+        "href": "https://github.com/openclaw/openclaw/issues/145990"
+      },
+      {
+        "title": "Separate admission claims from database handles [#146015](https",
+        "description": "//github.com/openclaw/openclaw/pull/146015).",
+        "href": "https://github.com/openclaw/openclaw/issues/146015"
+      },
+      {
+        "title": "Share plugin discovery while loading build configuration [#146042](https://...",
+        "description": "Share plugin discovery while loading build configuration [#146042](https://github.com/openclaw/openclaw/pull/146042).",
+        "href": "https://github.com/openclaw/openclaw/issues/146042"
+      },
+      {
+        "title": "Remove unused intermediate skill status records [#146061](https",
+        "description": "//github.com/openclaw/openclaw/pull/146061).",
+        "href": "https://github.com/openclaw/openclaw/issues/146061"
+      },
+      {
+        "title": "Simplify plugin reload lifecycle code and tests [#146072](https",
+        "description": "//github.com/openclaw/openclaw/pull/146072).",
+        "href": "https://github.com/openclaw/openclaw/issues/146072"
+      },
+      {
+        "title": "Consolidate Matrix inbound media and context handling [#146099](https",
+        "description": "//github.com/openclaw/openclaw/pull/146099).",
+        "href": "https://github.com/openclaw/openclaw/issues/146099"
+      },
+      {
+        "title": "Share media-generation preparation and resource handoff [#146106](https://g...",
+        "description": "Share media-generation preparation and resource handoff [#146106](https://github.com/openclaw/openclaw/pull/146106).",
+        "href": "https://github.com/openclaw/openclaw/issues/146106"
+      },
+      {
+        "title": "Simplify chat send state and test fixtures [#146149](https",
+        "description": "//github.com/openclaw/openclaw/pull/146149).",
+        "href": "https://github.com/openclaw/openclaw/issues/146149"
+      },
+      {
+        "title": "Simplify internal node status aggregation [#146159](https",
+        "description": "//github.com/openclaw/openclaw/pull/146159).",
+        "href": "https://github.com/openclaw/openclaw/issues/146159"
+      },
+      {
+        "title": "Share automation CLI integer validation [#146203](https",
+        "description": "//github.com/openclaw/openclaw/pull/146203).",
+        "href": "https://github.com/openclaw/openclaw/issues/146203"
+      },
+      {
+        "title": "Reuse PowerShell completion choice text [#146270](https",
+        "description": "//github.com/openclaw/openclaw/pull/146270).",
+        "href": "https://github.com/openclaw/openclaw/issues/146270"
+      },
+      {
+        "title": "Remove redundant streamed JSON recovery [#146272](https",
+        "description": "//github.com/openclaw/openclaw/pull/146272).",
+        "href": "https://github.com/openclaw/openclaw/issues/146272"
+      },
+      {
+        "title": "Simplify reclaimed-worker resume code and tests [#146279](https",
+        "description": "//github.com/openclaw/openclaw/pull/146279).",
+        "href": "https://github.com/openclaw/openclaw/issues/146279"
+      },
+      {
+        "title": "Reuse canonical SQL for first-use database setup [#146296](https",
+        "description": "//github.com/openclaw/openclaw/pull/146296).",
+        "href": "https://github.com/openclaw/openclaw/issues/146296"
+      },
+      {
+        "title": "Simplify internal Markdown link-span construction [#146299](https",
+        "description": "//github.com/openclaw/openclaw/pull/146299).",
+        "href": "https://github.com/openclaw/openclaw/issues/146299"
+      },
+      {
+        "title": "Remove duplicate release-helper type declarations [#146322](https",
+        "description": "//github.com/openclaw/openclaw/pull/146322).",
+        "href": "https://github.com/openclaw/openclaw/issues/146322"
+      },
+      {
+        "title": "Reuse severity style selection in CLI logs [#146354](https",
+        "description": "//github.com/openclaw/openclaw/pull/146354).",
+        "href": "https://github.com/openclaw/openclaw/issues/146354"
+      },
+      {
+        "title": "Centralize iMessage transport and attachment staging [#146460](https",
+        "description": "//github.com/openclaw/openclaw/pull/146460).",
+        "href": "https://github.com/openclaw/openclaw/issues/146460"
+      },
+      {
+        "title": "Consolidate automatic-update campaign cleanup [#146555](https",
+        "description": "//github.com/openclaw/openclaw/pull/146555).",
+        "href": "https://github.com/openclaw/openclaw/issues/146555"
+      },
+      {
+        "title": "Centralize transcript reads for interrupted-turn recovery [#146566](https:/...",
+        "description": "Centralize transcript reads for interrupted-turn recovery [#146566](https://github.com/openclaw/openclaw/pull/146566).",
+        "href": "https://github.com/openclaw/openclaw/issues/146566"
+      },
+      {
+        "title": "Reuse normalized aliases in command catalogs [#146570](https",
+        "description": "//github.com/openclaw/openclaw/pull/146570).",
+        "href": "https://github.com/openclaw/openclaw/issues/146570"
+      },
+      {
+        "title": "Simplify voice playback and cancellation state [#146605](https",
+        "description": "//github.com/openclaw/openclaw/pull/146605).",
+        "href": "https://github.com/openclaw/openclaw/issues/146605"
+      },
+      {
+        "title": "Remove unused terminal chat cleanup [#146624](https",
+        "description": "//github.com/openclaw/openclaw/pull/146624).",
+        "href": "https://github.com/openclaw/openclaw/issues/146624"
+      },
+      {
+        "title": "Share discovery metadata and port parsing [#146627](https",
+        "description": "//github.com/openclaw/openclaw/pull/146627).",
+        "href": "https://github.com/openclaw/openclaw/issues/146627"
+      },
+      {
+        "title": "Share media generation preparation [#146648](https",
+        "description": "//github.com/openclaw/openclaw/pull/146648).",
+        "href": "https://github.com/openclaw/openclaw/issues/146648"
+      },
+      {
+        "title": "Remove unused provider setup menu construction [#146695](https",
+        "description": "//github.com/openclaw/openclaw/pull/146695).",
+        "href": "https://github.com/openclaw/openclaw/issues/146695"
+      },
+      {
+        "title": "Share QA Lab capture-filter rendering [#146696](https",
+        "description": "//github.com/openclaw/openclaw/pull/146696). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146696"
+      },
+      {
+        "title": "Share channel plugin metadata merging [#146757](https",
+        "description": "//github.com/openclaw/openclaw/pull/146757).",
+        "href": "https://github.com/openclaw/openclaw/issues/146757"
+      },
+      {
+        "title": "Share diagnostic timers for Git operations [#146762](https",
+        "description": "//github.com/openclaw/openclaw/pull/146762).",
+        "href": "https://github.com/openclaw/openclaw/issues/146762"
+      },
+      {
+        "title": "Reuse shared provider usage error construction [#146767](https",
+        "description": "//github.com/openclaw/openclaw/pull/146767).",
+        "href": "https://github.com/openclaw/openclaw/issues/146767"
+      },
+      {
+        "title": "Simplify Control UI value formatting [#146785](https",
+        "description": "//github.com/openclaw/openclaw/pull/146785).",
+        "href": "https://github.com/openclaw/openclaw/issues/146785"
+      },
+      {
+        "title": "Reduce session-row bookkeeping during UI refreshes [#146797](https",
+        "description": "//github.com/openclaw/openclaw/pull/146797).",
+        "href": "https://github.com/openclaw/openclaw/issues/146797"
+      },
+      {
+        "title": "Reuse existing CLI command-group names [#146893](https",
+        "description": "//github.com/openclaw/openclaw/pull/146893).",
+        "href": "https://github.com/openclaw/openclaw/issues/146893"
+      },
+      {
+        "title": "Share QA harness comparison result construction [#146903](https",
+        "description": "//github.com/openclaw/openclaw/pull/146903). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146903"
+      },
+      {
+        "title": "Remove unreachable Feishu reply-route selection [#146904](https",
+        "description": "//github.com/openclaw/openclaw/pull/146904). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146904"
+      },
+      {
+        "title": "Simplify outgoing attachment preparation [#146928](https",
+        "description": "//github.com/openclaw/openclaw/pull/146928).",
+        "href": "https://github.com/openclaw/openclaw/issues/146928"
+      },
+      {
+        "title": "Remove duplicate attachment path fallback [#146933](https",
+        "description": "//github.com/openclaw/openclaw/pull/146933). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146933"
+      },
+      {
+        "title": "Simplify terminal note token checks [#146934](https",
+        "description": "//github.com/openclaw/openclaw/pull/146934). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146934"
+      },
+      {
+        "title": "Consolidate Memory Wiki freshness results [#146935](https",
+        "description": "//github.com/openclaw/openclaw/pull/146935). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146935"
+      },
+      {
+        "title": "Reuse Telegram's HTML text encoder [#146936](https",
+        "description": "//github.com/openclaw/openclaw/pull/146936). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146936"
+      },
+      {
+        "title": "Simplify the thinking-level support check [#146937](https",
+        "description": "//github.com/openclaw/openclaw/pull/146937). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146937"
+      },
+      {
+        "title": "Share ACP runtime mode command handling [#146943](https",
+        "description": "//github.com/openclaw/openclaw/pull/146943). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146943"
+      },
+      {
+        "title": "Share Memory Wiki lint report rendering [#146970](https",
+        "description": "//github.com/openclaw/openclaw/pull/146970). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146970"
+      },
+      {
+        "title": "Consolidate scheduled-job payload normalization [#146971](https",
+        "description": "//github.com/openclaw/openclaw/pull/146971). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146971"
+      },
+      {
+        "title": "Separate browser tab tracking from cleanup [#146973](https",
+        "description": "//github.com/openclaw/openclaw/pull/146973).",
+        "href": "https://github.com/openclaw/openclaw/issues/146973"
+      },
+      {
+        "title": "Reuse Feishu target parsing helpers [#146980](https",
+        "description": "//github.com/openclaw/openclaw/pull/146980). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146980"
+      },
+      {
+        "title": "Consolidate session match classification [#146983](https",
+        "description": "//github.com/openclaw/openclaw/pull/146983). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146983"
+      },
+      {
+        "title": "Share streaming media marker buffering logic [#146989](https",
+        "description": "//github.com/openclaw/openclaw/pull/146989). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146989"
+      },
+      {
+        "title": "Reuse timezone suggestion normalization [#146992](https",
+        "description": "//github.com/openclaw/openclaw/pull/146992).",
+        "href": "https://github.com/openclaw/openclaw/issues/146992"
+      },
+      {
+        "title": "Share Markdown span indexing [#146997](https",
+        "description": "//github.com/openclaw/openclaw/pull/146997). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146997"
+      },
+      {
+        "title": "Share ANSI compatibility matching [#146998](https",
+        "description": "//github.com/openclaw/openclaw/pull/146998). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146998"
+      },
+      {
+        "title": "Reuse text while splitting Discord replies [#147002](https",
+        "description": "//github.com/openclaw/openclaw/pull/147002).",
+        "href": "https://github.com/openclaw/openclaw/issues/147002"
+      },
+      {
+        "title": "Reuse shared approval-destination deduplication [#147004](https",
+        "description": "//github.com/openclaw/openclaw/pull/147004).",
+        "href": "https://github.com/openclaw/openclaw/issues/147004"
+      },
+      {
+        "title": "Share Slack workspace-qualified allowlist resolution [#147024](https",
+        "description": "//github.com/openclaw/openclaw/pull/147024). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147024"
+      },
+      {
+        "title": "Share Active Memory closing-tag scanning [#147031](https",
+        "description": "//github.com/openclaw/openclaw/pull/147031). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147031"
+      },
+      {
+        "title": "Share CLI poll-result line assembly [#147033](https",
+        "description": "//github.com/openclaw/openclaw/pull/147033). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147033"
+      },
+      {
+        "title": "Reuse shared string normalization for skill installers [#147035](https://gi...",
+        "description": "Reuse shared string normalization for skill installers [#147035](https://github.com/openclaw/openclaw/pull/147035). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147035"
+      },
+      {
+        "title": "Consolidate health status color formatting [#147043](https",
+        "description": "//github.com/openclaw/openclaw/pull/147043). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147043"
+      },
+      {
+        "title": "Remove redundant private Markdown chunking checks [#147046](https",
+        "description": "//github.com/openclaw/openclaw/pull/147046). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147046"
+      },
+      {
+        "title": "Simplify the LanceDB dependency loader [#147050](https",
+        "description": "//github.com/openclaw/openclaw/pull/147050).",
+        "href": "https://github.com/openclaw/openclaw/issues/147050"
+      },
+      {
+        "title": "Share marketplace Git source normalization [#147053](https",
+        "description": "//github.com/openclaw/openclaw/pull/147053). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147053"
+      },
+      {
+        "title": "Centralize wizard cursor restoration [#147058](https",
+        "description": "//github.com/openclaw/openclaw/pull/147058). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147058"
+      },
+      {
+        "title": "Consolidate escape-sequence restart handling [#147060](https",
+        "description": "//github.com/openclaw/openclaw/pull/147060). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147060"
+      },
+      {
+        "title": "Share QA Multipass mount retry handling [#147084](https",
+        "description": "//github.com/openclaw/openclaw/pull/147084). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147084"
+      },
+      {
+        "title": "Share Slack Agent View store-opening logic [#147091](https",
+        "description": "//github.com/openclaw/openclaw/pull/147091). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147091"
+      },
+      {
+        "title": "Share browser action dispatch and result handling [#147098](https",
+        "description": "//github.com/openclaw/openclaw/pull/147098). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147098"
+      },
+      {
+        "title": "Simplify Memory Wiki candidate deduplication [#147108](https",
+        "description": "//github.com/openclaw/openclaw/pull/147108). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147108"
+      },
+      {
+        "title": "Share Control UI pairing request handling [#147123](https",
+        "description": "//github.com/openclaw/openclaw/pull/147123). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147123"
+      },
+      {
+        "title": "Remove unused proxy registration fields [#147126](https",
+        "description": "//github.com/openclaw/openclaw/pull/147126). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147126"
+      },
+      {
+        "title": "Share HTML transcript output formatting [#147140](https",
+        "description": "//github.com/openclaw/openclaw/pull/147140). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147140"
+      },
+      {
+        "title": "Await Microsoft Teams delegated token storage [#147142](https",
+        "description": "//github.com/openclaw/openclaw/pull/147142).",
+        "href": "https://github.com/openclaw/openclaw/issues/147142"
+      },
+      {
+        "title": "Consolidate silent-reply token cache helpers [#147148](https",
+        "description": "//github.com/openclaw/openclaw/pull/147148). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147148"
+      },
+      {
+        "title": "Consolidate ACP option parsing results [#147153](https",
+        "description": "//github.com/openclaw/openclaw/pull/147153). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147153"
+      },
+      {
+        "title": "Reuse WhatsApp target parsing results [#147176](https",
+        "description": "//github.com/openclaw/openclaw/pull/147176).",
+        "href": "https://github.com/openclaw/openclaw/issues/147176"
+      },
+      {
+        "title": "Simplify shared status formatting [#147190](https",
+        "description": "//github.com/openclaw/openclaw/pull/147190).",
+        "href": "https://github.com/openclaw/openclaw/issues/147190"
+      },
+      {
+        "title": "Remove unused Channels refresh timeout [#147268](https",
+        "description": "//github.com/openclaw/openclaw/pull/147268).",
+        "href": "https://github.com/openclaw/openclaw/issues/147268"
+      },
+      {
+        "title": "Separate delivery queue operations from connection acquisition [#147288](ht...",
+        "description": "Separate delivery queue operations from connection acquisition [#147288](https://github.com/openclaw/openclaw/pull/147288).",
+        "href": "https://github.com/openclaw/openclaw/issues/147288"
+      },
+      {
+        "title": "Simplify skills formatting internals [#147368](https",
+        "description": "//github.com/openclaw/openclaw/pull/147368).",
+        "href": "https://github.com/openclaw/openclaw/issues/147368"
+      },
+      {
+        "title": "Separate transcript writes and validate export metadata [#147375](https://g...",
+        "description": "Separate transcript writes and validate export metadata [#147375](https://github.com/openclaw/openclaw/pull/147375).",
+        "href": "https://github.com/openclaw/openclaw/issues/147375"
+      },
+      {
+        "title": "Refresh Control UI translation records [#147391](https",
+        "description": "//github.com/openclaw/openclaw/pull/147391).",
+        "href": "https://github.com/openclaw/openclaw/issues/147391"
+      },
+      {
+        "title": "Reuse shared filesystem readers [#147475](https",
+        "description": "//github.com/openclaw/openclaw/pull/147475).",
+        "href": "https://github.com/openclaw/openclaw/issues/147475"
+      },
+      {
+        "title": "Simplify compaction summary internals [#147479](https",
+        "description": "//github.com/openclaw/openclaw/pull/147479).",
+        "href": "https://github.com/openclaw/openclaw/issues/147479"
+      },
+      {
+        "title": "Consolidate Mattermost reply bookkeeping [#147497](https",
+        "description": "//github.com/openclaw/openclaw/pull/147497).",
+        "href": "https://github.com/openclaw/openclaw/issues/147497"
+      },
+      {
+        "title": "Remove unused SSH tunnel metadata [#147589](https",
+        "description": "//github.com/openclaw/openclaw/pull/147589). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147589"
+      },
+      {
+        "title": "Consolidate message-delivery outcome parsing [#147595](https",
+        "description": "//github.com/openclaw/openclaw/pull/147595).",
+        "href": "https://github.com/openclaw/openclaw/issues/147595"
+      },
+      {
+        "title": "Simplify Matrix history tracker factory [#147617](https",
+        "description": "//github.com/openclaw/openclaw/pull/147617). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147617"
+      },
+      {
+        "title": "Share cron validation responses [#147671](https",
+        "description": "//github.com/openclaw/openclaw/pull/147671). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147671"
+      },
+      {
+        "title": "Remove readiness helper’s global logging dependency [#147676](https",
+        "description": "//github.com/openclaw/openclaw/pull/147676).",
+        "href": "https://github.com/openclaw/openclaw/issues/147676"
+      },
+      {
+        "title": "Share install metadata audit logic [#147679](https",
+        "description": "//github.com/openclaw/openclaw/pull/147679). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147679"
+      },
+      {
+        "title": "Share Policy Doctor rule detection [#147683](https",
+        "description": "//github.com/openclaw/openclaw/pull/147683). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147683"
+      },
+      {
+        "title": "Simplify configuration wizard dispatch [#147691](https",
+        "description": "//github.com/openclaw/openclaw/pull/147691). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147691"
+      },
+      {
+        "title": "Share native text delimiter scanning [#147695](https",
+        "description": "//github.com/openclaw/openclaw/pull/147695). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147695"
+      },
+      {
+        "title": "Consolidate vLLM thinking-format migration [#147698](https",
+        "description": "//github.com/openclaw/openclaw/pull/147698). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147698"
+      },
+      {
+        "title": "Reuse secret target matching [#147723](https",
+        "description": "//github.com/openclaw/openclaw/pull/147723). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147723"
+      },
+      {
+        "title": "Share web provider selection completion [#147734](https",
+        "description": "//github.com/openclaw/openclaw/pull/147734). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147734"
+      },
+      {
+        "title": "Share Google Meet result handling [#147742](https",
+        "description": "//github.com/openclaw/openclaw/pull/147742). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147742"
+      },
+      {
+        "title": "Reuse translation validation helpers [#147747](https",
+        "description": "//github.com/openclaw/openclaw/pull/147747). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147747"
+      },
+      {
+        "title": "Share Discord option construction [#147763](https",
+        "description": "//github.com/openclaw/openclaw/pull/147763). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147763"
+      },
+      {
+        "title": "Share Matrix context truncation [#147792](https",
+        "description": "//github.com/openclaw/openclaw/pull/147792). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147792"
+      },
+      {
+        "title": "Share Matrix reply delivery arguments [#147811](https",
+        "description": "//github.com/openclaw/openclaw/pull/147811). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147811"
+      },
+      {
+        "title": "Reuse string-list normalization [#147825](https",
+        "description": "//github.com/openclaw/openclaw/pull/147825). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147825"
+      },
+      {
+        "title": "Simplify health diagnostic parsing [#147834](https",
+        "description": "//github.com/openclaw/openclaw/pull/147834).",
+        "href": "https://github.com/openclaw/openclaw/issues/147834"
+      },
+      {
+        "title": "Share terminal color encoding [#147838](https",
+        "description": "//github.com/openclaw/openclaw/pull/147838). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147838"
+      },
+      {
+        "title": "Share fast-mode persistence [#147847](https",
+        "description": "//github.com/openclaw/openclaw/pull/147847). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147847"
+      },
+      {
+        "title": "Share presentation record sanitization [#147851](https",
+        "description": "//github.com/openclaw/openclaw/pull/147851). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147851"
+      },
+      {
+        "title": "Skip absent-overlay asset scans [#147852](https",
+        "description": "//github.com/openclaw/openclaw/pull/147852).",
+        "href": "https://github.com/openclaw/openclaw/issues/147852"
+      },
+      {
+        "title": "Share usage formatter numeric conversion [#147863](https",
+        "description": "//github.com/openclaw/openclaw/pull/147863). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147863"
+      },
+      {
+        "title": "Remove unreachable firewall fallback [#147882](https",
+        "description": "//github.com/openclaw/openclaw/pull/147882). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147882"
+      },
+      {
+        "title": "Defer unused MCP OAuth loading [#147884](https",
+        "description": "//github.com/openclaw/openclaw/pull/147884).",
+        "href": "https://github.com/openclaw/openclaw/issues/147884"
+      },
+      {
+        "title": "Avoid duplicate registry comparisons [#147893](https",
+        "description": "//github.com/openclaw/openclaw/pull/147893).",
+        "href": "https://github.com/openclaw/openclaw/issues/147893"
+      },
+      {
+        "title": "Share custom-provider model construction [#147915](https",
+        "description": "//github.com/openclaw/openclaw/pull/147915). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147915"
+      },
+      {
+        "title": "Consolidate optional provider validation [#147925](https",
+        "description": "//github.com/openclaw/openclaw/pull/147925). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147925"
+      },
+      {
+        "title": "Share provider-auth configuration merging [#147933](https",
+        "description": "//github.com/openclaw/openclaw/pull/147933). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147933"
+      },
+      {
+        "title": "Extract archive database operations [#147946](https",
+        "description": "//github.com/openclaw/openclaw/pull/147946).",
+        "href": "https://github.com/openclaw/openclaw/issues/147946"
+      },
+      {
+        "title": "Reduce repeated validation preparation [#147971](https",
+        "description": "//github.com/openclaw/openclaw/pull/147971).",
+        "href": "https://github.com/openclaw/openclaw/issues/147971"
+      },
+      {
+        "title": "Simplify internal browser loopback authentication [#147989](https",
+        "description": "//github.com/openclaw/openclaw/pull/147989).",
+        "href": "https://github.com/openclaw/openclaw/issues/147989"
+      },
+      {
+        "title": "Consolidate short-term memory imports [#148037](https",
+        "description": "//github.com/openclaw/openclaw/pull/148037). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148037"
+      },
+      {
+        "title": "Share the memory phase-signal string reader [#148049](https",
+        "description": "//github.com/openclaw/openclaw/pull/148049). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148049"
+      },
+      {
+        "title": "Share native chat math-label configuration [#148073](https",
+        "description": "//github.com/openclaw/openclaw/pull/148073). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148073"
+      },
+      {
+        "title": "Reduce unnecessary plugin activation lookup work [#148078](https",
+        "description": "//github.com/openclaw/openclaw/pull/148078).",
+        "href": "https://github.com/openclaw/openclaw/issues/148078"
+      },
+      {
+        "title": "Reuse sandbox skill path preparation [#148079](https",
+        "description": "//github.com/openclaw/openclaw/pull/148079).",
+        "href": "https://github.com/openclaw/openclaw/issues/148079"
+      },
+      {
+        "title": "Reuse plugin invocation default callbacks [#148080](https",
+        "description": "//github.com/openclaw/openclaw/pull/148080).",
+        "href": "https://github.com/openclaw/openclaw/issues/148080"
+      },
+      {
+        "title": "Share dream diary read-error classification [#148091](https",
+        "description": "//github.com/openclaw/openclaw/pull/148091). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148091"
+      },
+      {
+        "title": "Load less code for secret-target discovery [#148096](https",
+        "description": "//github.com/openclaw/openclaw/pull/148096).",
+        "href": "https://github.com/openclaw/openclaw/issues/148096"
+      },
+      {
+        "title": "Reduce publication-status database reads [#148144](https",
+        "description": "//github.com/openclaw/openclaw/pull/148144).",
+        "href": "https://github.com/openclaw/openclaw/issues/148144"
+      },
+      {
+        "title": "Share outbound location range validation [#148166](https",
+        "description": "//github.com/openclaw/openclaw/pull/148166). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148166"
+      },
+      {
+        "title": "Aggregate Gemini quota summaries directly [#148172](https",
+        "description": "//github.com/openclaw/openclaw/pull/148172).",
+        "href": "https://github.com/openclaw/openclaw/issues/148172"
+      },
+      {
+        "title": "Resolve explicit skill references in one pass [#148173](https",
+        "description": "//github.com/openclaw/openclaw/pull/148173).",
+        "href": "https://github.com/openclaw/openclaw/issues/148173"
+      },
+      {
+        "title": "Format decoded Feishu forwards directly [#148184](https",
+        "description": "//github.com/openclaw/openclaw/pull/148184).",
+        "href": "https://github.com/openclaw/openclaw/issues/148184"
+      },
+      {
+        "title": "Reduce repeated chat-history paging calculations [#148198](https",
+        "description": "//github.com/openclaw/openclaw/pull/148198).",
+        "href": "https://github.com/openclaw/openclaw/issues/148198"
+      },
+      {
+        "title": "Share Feishu event chat-type validation [#148204](https",
+        "description": "//github.com/openclaw/openclaw/pull/148204). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148204"
+      },
+      {
+        "title": "Reuse shared numeric validation for speech directives [#148206](https",
+        "description": "//github.com/openclaw/openclaw/pull/148206). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148206"
+      },
+      {
+        "title": "Reduce pending-message database reads [#148208](https",
+        "description": "//github.com/openclaw/openclaw/pull/148208).",
+        "href": "https://github.com/openclaw/openclaw/issues/148208"
+      },
+      {
+        "title": "Simplify internal iMessage send wrappers [#148212](https",
+        "description": "//github.com/openclaw/openclaw/pull/148212).",
+        "href": "https://github.com/openclaw/openclaw/issues/148212"
+      },
+      {
+        "title": "Consolidate configuration unset removal logic [#148216](https",
+        "description": "//github.com/openclaw/openclaw/pull/148216). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148216"
+      },
+      {
+        "title": "Share iMessage handle classification [#148229](https",
+        "description": "//github.com/openclaw/openclaw/pull/148229). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148229"
+      },
+      {
+        "title": "Remove unused Android helper methods [#148233](https",
+        "description": "//github.com/openclaw/openclaw/pull/148233). Thanks @iwhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/148233"
+      },
+      {
+        "title": "Avoid temporary messages during tool-result budgeting [#148238](https",
+        "description": "//github.com/openclaw/openclaw/pull/148238).",
+        "href": "https://github.com/openclaw/openclaw/issues/148238"
+      },
+      {
+        "title": "Read less metadata during managed-image cleanup [#148244](https",
+        "description": "//github.com/openclaw/openclaw/pull/148244).",
+        "href": "https://github.com/openclaw/openclaw/issues/148244"
+      },
+      {
+        "title": "Reduce output-buffer trimming work during bursts [#148260](https",
+        "description": "//github.com/openclaw/openclaw/pull/148260).",
+        "href": "https://github.com/openclaw/openclaw/issues/148260"
+      },
+      {
+        "title": "Prepare compaction records for atomic storage operations [#148261](https://...",
+        "description": "Prepare compaction records for atomic storage operations [#148261](https://github.com/openclaw/openclaw/pull/148261).",
+        "href": "https://github.com/openclaw/openclaw/issues/148261"
+      },
+      {
+        "title": "Prepare task-visibility configuration asynchronously [#148305](https",
+        "description": "//github.com/openclaw/openclaw/pull/148305).",
+        "href": "https://github.com/openclaw/openclaw/issues/148305"
+      },
+      {
+        "title": "Reuse fixed defaults when building plugin APIs [#148315](https",
+        "description": "//github.com/openclaw/openclaw/pull/148315).",
+        "href": "https://github.com/openclaw/openclaw/issues/148315"
+      },
+      {
+        "title": "Reuse accepted Tool Search batch response text [#148316](https",
+        "description": "//github.com/openclaw/openclaw/pull/148316).",
+        "href": "https://github.com/openclaw/openclaw/issues/148316"
+      },
+      {
+        "title": "Separate reply-delivery handlers into modules [#148318](https",
+        "description": "//github.com/openclaw/openclaw/pull/148318). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/148318"
+      },
+      {
+        "title": "Separate proxy-capture operations from store lifecycle [#148336](https://gi...",
+        "description": "Separate proxy-capture operations from store lifecycle [#148336](https://github.com/openclaw/openclaw/pull/148336).",
+        "href": "https://github.com/openclaw/openclaw/issues/148336"
+      },
+      {
+        "title": "Reduce allocations for ordinary plugin property reads [#148343](https",
+        "description": "//github.com/openclaw/openclaw/pull/148343).",
+        "href": "https://github.com/openclaw/openclaw/issues/148343"
+      },
+      {
+        "title": "Simplify z.ai quota response processing [#148344](https",
+        "description": "//github.com/openclaw/openclaw/pull/148344).",
+        "href": "https://github.com/openclaw/openclaw/issues/148344"
+      },
+      {
+        "title": "Extract connection-bound outbound queue operations [#148355](https",
+        "description": "//github.com/openclaw/openclaw/pull/148355).",
+        "href": "https://github.com/openclaw/openclaw/issues/148355"
+      },
+      {
+        "title": "Move registered-project lookups to the database worker [#148364](https://gi...",
+        "description": "Move registered-project lookups to the database worker [#148364](https://github.com/openclaw/openclaw/pull/148364).",
+        "href": "https://github.com/openclaw/openclaw/issues/148364"
+      },
+      {
+        "title": "Record backup outcomes in the shared database worker [#148378](https",
+        "description": "//github.com/openclaw/openclaw/pull/148378).",
+        "href": "https://github.com/openclaw/openclaw/issues/148378"
+      },
+      {
+        "title": "Share streamed-reply chunk boundary selection [#148391](https",
+        "description": "//github.com/openclaw/openclaw/pull/148391). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148391"
+      },
+      {
+        "title": "Share Feishu's direct image sender [#148396](https",
+        "description": "//github.com/openclaw/openclaw/pull/148396).",
+        "href": "https://github.com/openclaw/openclaw/issues/148396"
+      },
+      {
+        "title": "Batch reads when preparing session replacements [#148406](https",
+        "description": "//github.com/openclaw/openclaw/pull/148406).",
+        "href": "https://github.com/openclaw/openclaw/issues/148406"
+      },
+      {
+        "title": "Remove duplicate diagnostic flag normalization [#148438](https",
+        "description": "//github.com/openclaw/openclaw/pull/148438).",
+        "href": "https://github.com/openclaw/openclaw/issues/148438"
+      },
+      {
+        "title": "Consolidate filesystem operations on fs-safe [#148442](https",
+        "description": "//github.com/openclaw/openclaw/pull/148442).",
+        "href": "https://github.com/openclaw/openclaw/issues/148442"
+      },
+      {
+        "title": "Remove redundant timeout and announcement helpers [#148450](https",
+        "description": "//github.com/openclaw/openclaw/pull/148450).",
+        "href": "https://github.com/openclaw/openclaw/issues/148450"
+      },
+      {
+        "title": "Skip unnecessary plugin selection path resolution [#148463](https",
+        "description": "//github.com/openclaw/openclaw/pull/148463).",
+        "href": "https://github.com/openclaw/openclaw/issues/148463"
+      },
+      {
+        "title": "Make outbound preparation checkpoints awaitable [#148473](https",
+        "description": "//github.com/openclaw/openclaw/pull/148473).",
+        "href": "https://github.com/openclaw/openclaw/issues/148473"
+      },
+      {
+        "title": "Load scheduled-job facts asynchronously during maintenance [#148505](https:...",
+        "description": "Load scheduled-job facts asynchronously during maintenance [#148505](https://github.com/openclaw/openclaw/pull/148505).",
+        "href": "https://github.com/openclaw/openclaw/issues/148505"
+      },
+      {
+        "title": "Consolidate terminal attachment reply formatting [#148520](https",
+        "description": "//github.com/openclaw/openclaw/pull/148520).",
+        "href": "https://github.com/openclaw/openclaw/issues/148520"
+      },
+      {
+        "title": "Return committed transcript parents from persistence [#148539](https",
+        "description": "//github.com/openclaw/openclaw/pull/148539).",
+        "href": "https://github.com/openclaw/openclaw/issues/148539"
+      },
+      {
+        "title": "Reduce code loaded for first chat-history reads [#148542](https",
+        "description": "//github.com/openclaw/openclaw/pull/148542).",
+        "href": "https://github.com/openclaw/openclaw/issues/148542"
+      },
+      {
+        "title": "Reduce unused frame metadata reads during Logbook revisions [#148551](https...",
+        "description": "Reduce unused frame metadata reads during Logbook revisions [#148551](https://github.com/openclaw/openclaw/pull/148551).",
+        "href": "https://github.com/openclaw/openclaw/issues/148551"
+      },
+      {
+        "title": "Avoid duplicate payload reads when acknowledging deliveries [#148552](https...",
+        "description": "Avoid duplicate payload reads when acknowledging deliveries [#148552](https://github.com/openclaw/openclaw/pull/148552).",
+        "href": "https://github.com/openclaw/openclaw/issues/148552"
+      },
+      {
+        "title": "Avoid redundant inventory reads during session cleanup [#148572](https://gi...",
+        "description": "Avoid redundant inventory reads during session cleanup [#148572](https://github.com/openclaw/openclaw/pull/148572).",
+        "href": "https://github.com/openclaw/openclaw/issues/148572"
+      },
+      {
+        "title": "Simplify assistant display-content filtering [#148590](https",
+        "description": "//github.com/openclaw/openclaw/pull/148590).",
+        "href": "https://github.com/openclaw/openclaw/issues/148590"
+      },
+      {
+        "title": "Skip unused revision reads when classifying session archives [#148616](http...",
+        "description": "Skip unused revision reads when classifying session archives [#148616](https://github.com/openclaw/openclaw/pull/148616).",
+        "href": "https://github.com/openclaw/openclaw/issues/148616"
+      },
+      {
+        "title": "Share optional reply metadata mapping across hooks [#148641](https",
+        "description": "//github.com/openclaw/openclaw/pull/148641). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148641"
+      },
+      {
+        "title": "Share positional scanning in configuration audit redaction [#148643](https:...",
+        "description": "Share positional scanning in configuration audit redaction [#148643](https://github.com/openclaw/openclaw/pull/148643). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148643"
+      },
+      {
+        "title": "Centralize device-token denial responses [#148644](https",
+        "description": "//github.com/openclaw/openclaw/pull/148644). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148644"
+      },
+      {
+        "title": "Reuse shared record handling in Hermes migration parsing [#148645](https://...",
+        "description": "Reuse shared record handling in Hermes migration parsing [#148645](https://github.com/openclaw/openclaw/pull/148645). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148645"
+      },
+      {
+        "title": "Share plugin source-path display formatting [#148646](https",
+        "description": "//github.com/openclaw/openclaw/pull/148646). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148646"
+      },
+      {
+        "title": "Share Nostr Doctor state migration flow [#148647](https",
+        "description": "//github.com/openclaw/openclaw/pull/148647). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148647"
+      },
+      {
+        "title": "Reuse stable JSON serializer key storage [#148661](https",
+        "description": "//github.com/openclaw/openclaw/pull/148661).",
+        "href": "https://github.com/openclaw/openclaw/issues/148661"
+      },
+      {
+        "title": "Remove unused Responses replay return metadata [#148673](https",
+        "description": "//github.com/openclaw/openclaw/pull/148673). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148673"
+      },
+      {
+        "title": "Avoid temporary field copies during log redaction [#148677](https",
+        "description": "//github.com/openclaw/openclaw/pull/148677).",
+        "href": "https://github.com/openclaw/openclaw/issues/148677"
+      },
+      {
+        "title": "Reuse cron list parsing [#148686](https",
+        "description": "//github.com/openclaw/openclaw/pull/148686).",
+        "href": "https://github.com/openclaw/openclaw/issues/148686"
+      },
+      {
+        "title": "Reduce channel metadata loaded by history workers [#148711](https",
+        "description": "//github.com/openclaw/openclaw/pull/148711).",
+        "href": "https://github.com/openclaw/openclaw/issues/148711"
+      },
+      {
+        "title": "Check named plugin owners before scanning other sources [#148716](https://g...",
+        "description": "Check named plugin owners before scanning other sources [#148716](https://github.com/openclaw/openclaw/pull/148716). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148716"
+      },
+      {
+        "title": "Centralize terminal theme color lookup [#148717](https",
+        "description": "//github.com/openclaw/openclaw/pull/148717). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148717"
+      },
+      {
+        "title": "Remove unused internal context-overflow wrapper [#148719](https",
+        "description": "//github.com/openclaw/openclaw/pull/148719). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148719"
+      },
+      {
+        "title": "Reuse shared Unicode truncation in ClickClack [#148732](https",
+        "description": "//github.com/openclaw/openclaw/pull/148732).",
+        "href": "https://github.com/openclaw/openclaw/issues/148732"
+      },
+      {
+        "title": "Share memory recall-repair count formatting [#148753](https",
+        "description": "//github.com/openclaw/openclaw/pull/148753). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148753"
+      },
+      {
+        "title": "Reduce cold model-policy loading dependencies [#148767](https",
+        "description": "//github.com/openclaw/openclaw/pull/148767).",
+        "href": "https://github.com/openclaw/openclaw/issues/148767"
+      },
+      {
+        "title": "Skip repeated plugin argument bookkeeping [#148777](https",
+        "description": "//github.com/openclaw/openclaw/pull/148777).",
+        "href": "https://github.com/openclaw/openclaw/issues/148777"
+      },
+      {
+        "title": "Avoid repeated copying of plugin setup registration keys [#148778](https://...",
+        "description": "Avoid repeated copying of plugin setup registration keys [#148778](https://github.com/openclaw/openclaw/pull/148778).",
+        "href": "https://github.com/openclaw/openclaw/issues/148778"
+      },
+      {
+        "title": "Simplify browser access and media recovery internals [#148811](https",
+        "description": "//github.com/openclaw/openclaw/pull/148811).",
+        "href": "https://github.com/openclaw/openclaw/issues/148811"
+      },
+      {
+        "title": "Avoid redundant fields in plugin-state reads [#148815](https",
+        "description": "//github.com/openclaw/openclaw/pull/148815).",
+        "href": "https://github.com/openclaw/openclaw/issues/148815"
+      },
+      {
+        "title": "Consolidate chat metadata preparation internals [#148820](https",
+        "description": "//github.com/openclaw/openclaw/pull/148820).",
+        "href": "https://github.com/openclaw/openclaw/issues/148820"
+      },
+      {
+        "title": "Simplify subagent delivery and recovery internals [#148828](https",
+        "description": "//github.com/openclaw/openclaw/pull/148828).",
+        "href": "https://github.com/openclaw/openclaw/issues/148828"
+      },
+      {
+        "title": "Avoid redundant checks for trajectory truncation markers [#148870](https://...",
+        "description": "Avoid redundant checks for trajectory truncation markers [#148870](https://github.com/openclaw/openclaw/pull/148870).",
+        "href": "https://github.com/openclaw/openclaw/issues/148870"
+      },
+      {
+        "title": "Bound intermediate MiniMax usage parsing work [#148871](https",
+        "description": "//github.com/openclaw/openclaw/pull/148871).",
+        "href": "https://github.com/openclaw/openclaw/issues/148871"
+      },
+      {
+        "title": "Simplify Claude usage normalization [#148873](https",
+        "description": "//github.com/openclaw/openclaw/pull/148873).",
+        "href": "https://github.com/openclaw/openclaw/issues/148873"
+      },
+      {
+        "title": "Reuse fs-safe operations and repair test fixtures [#148881](https",
+        "description": "//github.com/openclaw/openclaw/pull/148881).",
+        "href": "https://github.com/openclaw/openclaw/issues/148881"
+      },
+      {
+        "title": "Skip empty-coordinator path lookups [#148900](https",
+        "description": "//github.com/openclaw/openclaw/pull/148900).",
+        "href": "https://github.com/openclaw/openclaw/issues/148900"
+      },
+      {
+        "title": "Reuse plugin policy preparation during provider lookup [#148905](https://gi...",
+        "description": "Reuse plugin policy preparation during provider lookup [#148905](https://github.com/openclaw/openclaw/pull/148905).",
+        "href": "https://github.com/openclaw/openclaw/issues/148905"
+      },
+      {
+        "title": "Move Beam upload persistence to the plugin-state worker [#148908](https://g...",
+        "description": "Move Beam upload persistence to the plugin-state worker [#148908](https://github.com/openclaw/openclaw/pull/148908).",
+        "href": "https://github.com/openclaw/openclaw/issues/148908"
+      },
+      {
+        "title": "Defer unused provider registration preparation [#148912](https",
+        "description": "//github.com/openclaw/openclaw/pull/148912). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148912"
+      },
+      {
+        "title": "Retire delivered pairing subscriptions through the SQLite worker [#148915](...",
+        "description": "Retire delivered pairing subscriptions through the SQLite worker [#148915](https://github.com/openclaw/openclaw/pull/148915).",
+        "href": "https://github.com/openclaw/openclaw/issues/148915"
+      },
+      {
+        "title": "Avoid temporary arrays for single-child plugin data [#148921](https",
+        "description": "//github.com/openclaw/openclaw/pull/148921).",
+        "href": "https://github.com/openclaw/openclaw/issues/148921"
+      },
+      {
+        "title": "Avoid temporary pairs during context iteration [#148923](https",
+        "description": "//github.com/openclaw/openclaw/pull/148923).",
+        "href": "https://github.com/openclaw/openclaw/issues/148923"
+      },
+      {
+        "title": "Project only selected OpenRouter video capabilities [#148924](https",
+        "description": "//github.com/openclaw/openclaw/pull/148924).",
+        "href": "https://github.com/openclaw/openclaw/issues/148924"
+      },
+      {
+        "title": "Combine DeepSeek balance summary and billing processing [#148925](https://g...",
+        "description": "Combine DeepSeek balance summary and billing processing [#148925](https://github.com/openclaw/openclaw/pull/148925).",
+        "href": "https://github.com/openclaw/openclaw/issues/148925"
+      },
+      {
+        "title": "Resolve Discord fallback text only when needed [#148926](https",
+        "description": "//github.com/openclaw/openclaw/pull/148926).",
+        "href": "https://github.com/openclaw/openclaw/issues/148926"
+      },
+      {
+        "title": "Reduce repeated work in Matrix style restoration [#148927](https",
+        "description": "//github.com/openclaw/openclaw/pull/148927).",
+        "href": "https://github.com/openclaw/openclaw/issues/148927"
+      },
+      {
+        "title": "Collect compatible media models without intermediate lists [#148928](https:...",
+        "description": "Collect compatible media models without intermediate lists [#148928](https://github.com/openclaw/openclaw/pull/148928).",
+        "href": "https://github.com/openclaw/openclaw/issues/148928"
+      },
+      {
+        "title": "Reuse serialized arguments in tool-failure diagnostics [#148930](https://gi...",
+        "description": "Reuse serialized arguments in tool-failure diagnostics [#148930](https://github.com/openclaw/openclaw/pull/148930).",
+        "href": "https://github.com/openclaw/openclaw/issues/148930"
+      },
+      {
+        "title": "Use atomic comparisons for memory workspace-lock deletion [#148934](https:/...",
+        "description": "Use atomic comparisons for memory workspace-lock deletion [#148934](https://github.com/openclaw/openclaw/pull/148934).",
+        "href": "https://github.com/openclaw/openclaw/issues/148934"
+      },
+      {
+        "title": "Reuse web-search request preparation [#148949](https",
+        "description": "//github.com/openclaw/openclaw/pull/148949).",
+        "href": "https://github.com/openclaw/openclaw/issues/148949"
+      },
+      {
+        "title": "Avoid a redundant session read when saving turns [#148993](https",
+        "description": "//github.com/openclaw/openclaw/pull/148993).",
+        "href": "https://github.com/openclaw/openclaw/issues/148993"
+      },
+      {
+        "title": "Build Google model templates only when selected [#149021](https",
+        "description": "//github.com/openclaw/openclaw/pull/149021).",
+        "href": "https://github.com/openclaw/openclaw/issues/149021"
+      },
+      {
+        "title": "Simplify SuperGrok usage-period normalization [#149022](https",
+        "description": "//github.com/openclaw/openclaw/pull/149022).",
+        "href": "https://github.com/openclaw/openclaw/issues/149022"
+      },
+      {
+        "title": "Reduce unused data in SQLite index inspection [#149046](https",
+        "description": "//github.com/openclaw/openclaw/pull/149046).",
+        "href": "https://github.com/openclaw/openclaw/issues/149046"
+      },
+      {
+        "title": "Simplify primary CLI command registration [#149053](https",
+        "description": "//github.com/openclaw/openclaw/pull/149053).",
+        "href": "https://github.com/openclaw/openclaw/issues/149053"
+      },
+      {
+        "title": "Avoid transcript storage imports during model selection [#149079](https://g...",
+        "description": "Avoid transcript storage imports during model selection [#149079](https://github.com/openclaw/openclaw/pull/149079). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149079"
+      },
+      {
+        "title": "Reuse quote handling in XML tag scanning [#149105](https",
+        "description": "//github.com/openclaw/openclaw/pull/149105). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149105"
+      },
+      {
+        "title": "Consolidate channel contract verification [#149144](https",
+        "description": "//github.com/openclaw/openclaw/pull/149144). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149144"
+      },
+      {
+        "title": "Share directory traversal for session resources [#149146](https",
+        "description": "//github.com/openclaw/openclaw/pull/149146). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149146"
+      },
+      {
+        "title": "Reduce SQLite schema-validation reads [#149155](https",
+        "description": "//github.com/openclaw/openclaw/pull/149155). Thanks @kvnloo.",
+        "href": "https://github.com/openclaw/openclaw/issues/149155"
+      },
+      {
+        "title": "Reuse model-list row identity for adjacent lookups [#149196](https",
+        "description": "//github.com/openclaw/openclaw/pull/149196).",
+        "href": "https://github.com/openclaw/openclaw/issues/149196"
+      },
+      {
+        "title": "Return queue status from completion admission [#149281](https",
+        "description": "//github.com/openclaw/openclaw/pull/149281).",
+        "href": "https://github.com/openclaw/openclaw/issues/149281"
+      },
+      {
+        "title": "Extract outbound attempt rollback for future scheduling [#149310](https://g...",
+        "description": "Extract outbound attempt rollback for future scheduling [#149310](https://github.com/openclaw/openclaw/pull/149310).",
+        "href": "https://github.com/openclaw/openclaw/issues/149310"
+      },
+      {
+        "title": "Fetch less redundant data when loading scheduled jobs [#149342](https",
+        "description": "//github.com/openclaw/openclaw/pull/149342).",
+        "href": "https://github.com/openclaw/openclaw/issues/149342"
+      },
+      {
+        "title": "Reduce temporary provider-route allocations [#149385](https",
+        "description": "//github.com/openclaw/openclaw/pull/149385).",
+        "href": "https://github.com/openclaw/openclaw/issues/149385"
+      },
+      {
+        "title": "Run native-hook storage in the shared worker [#149397](https",
+        "description": "//github.com/openclaw/openclaw/pull/149397).",
+        "href": "https://github.com/openclaw/openclaw/issues/149397"
+      },
+      {
+        "title": "Reduce browser dashboard discovery reads [#149398](https",
+        "description": "//github.com/openclaw/openclaw/pull/149398).",
+        "href": "https://github.com/openclaw/openclaw/issues/149398"
+      },
+      {
+        "title": "Reuse delivery-queue query compilation [#149421](https",
+        "description": "//github.com/openclaw/openclaw/pull/149421).",
+        "href": "https://github.com/openclaw/openclaw/issues/149421"
+      },
+      {
+        "title": "Reuse prepared attachment text [#149424](https",
+        "description": "//github.com/openclaw/openclaw/pull/149424).",
+        "href": "https://github.com/openclaw/openclaw/issues/149424"
+      },
+      {
+        "title": "Support awaited process output consumers [#149442](https",
+        "description": "//github.com/openclaw/openclaw/pull/149442).",
+        "href": "https://github.com/openclaw/openclaw/issues/149442"
+      },
+      {
+        "title": "Reduce database reads for transcript cache checks [#149459](https",
+        "description": "//github.com/openclaw/openclaw/pull/149459).",
+        "href": "https://github.com/openclaw/openclaw/issues/149459"
+      },
+      {
+        "title": "Skip unnecessary worktree owner checks [#149469](https",
+        "description": "//github.com/openclaw/openclaw/pull/149469).",
+        "href": "https://github.com/openclaw/openclaw/issues/149469"
+      },
+      {
+        "title": "Remove redundant policy reads during transcript saves [#149496](https",
+        "description": "//github.com/openclaw/openclaw/pull/149496).",
+        "href": "https://github.com/openclaw/openclaw/issues/149496"
+      },
+      {
+        "title": "Centralize memory-origin SQL operations [#149510](https",
+        "description": "//github.com/openclaw/openclaw/pull/149510).",
+        "href": "https://github.com/openclaw/openclaw/issues/149510"
+      },
+      {
+        "title": "Reuse thinking profiles in Gateway metadata [#149514](https",
+        "description": "//github.com/openclaw/openclaw/pull/149514).",
+        "href": "https://github.com/openclaw/openclaw/issues/149514"
+      },
+      {
+        "title": "Reduce repeated session reads during compaction and Goal edits [#149537](ht...",
+        "description": "Reduce repeated session reads during compaction and Goal edits [#149537](https://github.com/openclaw/openclaw/pull/149537).",
+        "href": "https://github.com/openclaw/openclaw/issues/149537"
+      },
+      {
+        "title": "Reuse selected runtime when preparing thinking options [#149579](https://gi...",
+        "description": "Reuse selected runtime when preparing thinking options [#149579](https://github.com/openclaw/openclaw/pull/149579).",
+        "href": "https://github.com/openclaw/openclaw/issues/149579"
+      },
+      {
+        "title": "Remove an unused QA session-toggle writer [#149593](https",
+        "description": "//github.com/openclaw/openclaw/pull/149593).",
+        "href": "https://github.com/openclaw/openclaw/issues/149593"
+      },
+      {
+        "title": "Remove test-only skill-installer dependency wiring [#149609](https",
+        "description": "//github.com/openclaw/openclaw/pull/149609).",
+        "href": "https://github.com/openclaw/openclaw/issues/149609"
+      },
+      {
+        "title": "Remove redundant Gateway startup bookkeeping [#149635](https",
+        "description": "//github.com/openclaw/openclaw/pull/149635).",
+        "href": "https://github.com/openclaw/openclaw/issues/149635"
+      },
+      {
+        "title": "Simplify browser request and page-state handling [#149651](https",
+        "description": "//github.com/openclaw/openclaw/pull/149651).",
+        "href": "https://github.com/openclaw/openclaw/issues/149651"
+      },
+      {
+        "title": "Separate transcript readers from storage lifecycle management [#149670](htt...",
+        "description": "Separate transcript readers from storage lifecycle management [#149670](https://github.com/openclaw/openclaw/pull/149670). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149670"
+      },
+      {
+        "title": "Extract reusable session suggestion storage operations [#149723](https://gi...",
+        "description": "Extract reusable session suggestion storage operations [#149723](https://github.com/openclaw/openclaw/pull/149723).",
+        "href": "https://github.com/openclaw/openclaw/issues/149723"
+      },
+      {
+        "title": "Reuse prepared schema queries during credential loads [#149750](https",
+        "description": "//github.com/openclaw/openclaw/pull/149750).",
+        "href": "https://github.com/openclaw/openclaw/issues/149750"
+      },
+      {
+        "title": "Share transcript-statistics batching on existing connections [#149756](http...",
+        "description": "Share transcript-statistics batching on existing connections [#149756](https://github.com/openclaw/openclaw/pull/149756).",
+        "href": "https://github.com/openclaw/openclaw/issues/149756"
+      },
+      {
+        "title": "Separate session metadata preparation from time-dependent display [#149771]...",
+        "description": "Separate session metadata preparation from time-dependent display [#149771](https://github.com/openclaw/openclaw/pull/149771).",
+        "href": "https://github.com/openclaw/openclaw/issues/149771"
+      },
+      {
+        "title": "Avoid a duplicate database read when saving assistant replies [#149783](htt...",
+        "description": "Avoid a duplicate database read when saving assistant replies [#149783](https://github.com/openclaw/openclaw/pull/149783).",
+        "href": "https://github.com/openclaw/openclaw/issues/149783"
+      },
+      {
+        "title": "Reduce stored-content reads during progress-card updates [#149790](https://...",
+        "description": "Reduce stored-content reads during progress-card updates [#149790](https://github.com/openclaw/openclaw/pull/149790).",
+        "href": "https://github.com/openclaw/openclaw/issues/149790"
+      },
+      {
+        "title": "Reduce repeated statement preparation during transcript writes [#149793](ht...",
+        "description": "Reduce repeated statement preparation during transcript writes [#149793](https://github.com/openclaw/openclaw/pull/149793).",
+        "href": "https://github.com/openclaw/openclaw/issues/149793"
+      },
+      {
+        "title": "Reuse shared filesystem reads, traversal and removal [#149815](https",
+        "description": "//github.com/openclaw/openclaw/pull/149815).",
+        "href": "https://github.com/openclaw/openclaw/issues/149815"
+      },
+      {
+        "title": "Simplify completed-prompt accounting for scheduled runs [#149818](https://g...",
+        "description": "Simplify completed-prompt accounting for scheduled runs [#149818](https://github.com/openclaw/openclaw/pull/149818).",
+        "href": "https://github.com/openclaw/openclaw/issues/149818"
+      },
+      {
+        "title": "Consolidate Kimi thinking payload handling [#149819](https",
+        "description": "//github.com/openclaw/openclaw/pull/149819).",
+        "href": "https://github.com/openclaw/openclaw/issues/149819"
+      },
+      {
+        "title": "Move queued-edit property assembly into session controls [#149826](https://...",
+        "description": "Move queued-edit property assembly into session controls [#149826](https://github.com/openclaw/openclaw/pull/149826).",
+        "href": "https://github.com/openclaw/openclaw/issues/149826"
+      },
+      {
+        "title": "Skip redundant session inserts during transcript appends [#149831](https://...",
+        "description": "Skip redundant session inserts during transcript appends [#149831](https://github.com/openclaw/openclaw/pull/149831).",
+        "href": "https://github.com/openclaw/openclaw/issues/149831"
+      },
+      {
+        "title": "Remove unused Gateway startup work [#149847](https",
+        "description": "//github.com/openclaw/openclaw/pull/149847).",
+        "href": "https://github.com/openclaw/openclaw/issues/149847"
+      },
+      {
+        "title": "Isolate Gateway history reads from host initialization [#149876](https://gi...",
+        "description": "Isolate Gateway history reads from host initialization [#149876](https://github.com/openclaw/openclaw/pull/149876). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149876"
+      },
+      {
+        "title": "Move Codex managed-thread bookkeeping to the database worker [#149895](http...",
+        "description": "Move Codex managed-thread bookkeeping to the database worker [#149895](https://github.com/openclaw/openclaw/pull/149895).",
+        "href": "https://github.com/openclaw/openclaw/issues/149895"
+      },
+      {
+        "title": "Simplify LINE auto-reply helper wiring [#150043](https",
+        "description": "//github.com/openclaw/openclaw/pull/150043).",
+        "href": "https://github.com/openclaw/openclaw/issues/150043"
+      },
+      {
+        "title": "Extract shared SQL for the session usage cache [#150051](https",
+        "description": "//github.com/openclaw/openclaw/pull/150051).",
+        "href": "https://github.com/openclaw/openclaw/issues/150051"
+      },
+      {
+        "title": "Reduce temporary objects when listing sessions [#150103](https",
+        "description": "//github.com/openclaw/openclaw/pull/150103).",
+        "href": "https://github.com/openclaw/openclaw/issues/150103"
+      },
+      {
+        "title": "Separate asynchronous audit imports from synchronous storage [#150107](http...",
+        "description": "Separate asynchronous audit imports from synchronous storage [#150107](https://github.com/openclaw/openclaw/pull/150107).",
+        "href": "https://github.com/openclaw/openclaw/issues/150107"
+      },
+      {
+        "title": "Isolate SQLite session-entry mutation operations [#150127](https",
+        "description": "//github.com/openclaw/openclaw/pull/150127).",
+        "href": "https://github.com/openclaw/openclaw/issues/150127"
+      },
+      {
+        "title": "Share test inventory report argument parsing [#150212](https",
+        "description": "//github.com/openclaw/openclaw/pull/150212). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150212"
+      },
+      {
+        "title": "Extract reusable device-token operations [#150346](https",
+        "description": "//github.com/openclaw/openclaw/pull/150346).",
+        "href": "https://github.com/openclaw/openclaw/issues/150346"
+      },
+      {
+        "title": "Move Goal event writes to shared database worker [#150389](https",
+        "description": "//github.com/openclaw/openclaw/pull/150389).",
+        "href": "https://github.com/openclaw/openclaw/issues/150389"
+      },
+      {
+        "title": "Reuse shared filesystem resolution and readers [#150414](https",
+        "description": "//github.com/openclaw/openclaw/pull/150414).",
+        "href": "https://github.com/openclaw/openclaw/issues/150414"
+      },
+      {
+        "title": "Share node command execution between production and tests [#150434](https:/...",
+        "description": "Share node command execution between production and tests [#150434](https://github.com/openclaw/openclaw/pull/150434).",
+        "href": "https://github.com/openclaw/openclaw/issues/150434"
+      },
+      {
+        "title": "Filter MCP OAuth keys before returning query results [#150510](https",
+        "description": "//github.com/openclaw/openclaw/pull/150510).",
+        "href": "https://github.com/openclaw/openclaw/issues/150510"
+      },
+      {
+        "title": "Batch session-history pruning updates [#150521](https",
+        "description": "//github.com/openclaw/openclaw/pull/150521).",
+        "href": "https://github.com/openclaw/openclaw/issues/150521"
+      },
+      {
+        "title": "Reduce data fetched for skill-upload capacity checks [#150546](https",
+        "description": "//github.com/openclaw/openclaw/pull/150546).",
+        "href": "https://github.com/openclaw/openclaw/issues/150546"
+      },
+      {
+        "title": "Skip unused worker-bundle retention scans [#150583](https",
+        "description": "//github.com/openclaw/openclaw/pull/150583).",
+        "href": "https://github.com/openclaw/openclaw/issues/150583"
+      },
+      {
+        "title": "Remove test-only machine-model overrides [#150590](https",
+        "description": "//github.com/openclaw/openclaw/pull/150590).",
+        "href": "https://github.com/openclaw/openclaw/issues/150590"
+      },
+      {
+        "title": "Reduce plugin source-scanning allocations [#150597](https",
+        "description": "//github.com/openclaw/openclaw/pull/150597).",
+        "href": "https://github.com/openclaw/openclaw/issues/150597"
+      },
+      {
+        "title": "Move promotion annotations off the CLI thread [#150607](https",
+        "description": "//github.com/openclaw/openclaw/pull/150607).",
+        "href": "https://github.com/openclaw/openclaw/issues/150607"
+      },
+      {
+        "title": "Remove redundant Gateway startup adapters [#150609](https",
+        "description": "//github.com/openclaw/openclaw/pull/150609).",
+        "href": "https://github.com/openclaw/openclaw/issues/150609"
+      },
+      {
+        "title": "Load Gateway health collection on first use [#150720](https",
+        "description": "//github.com/openclaw/openclaw/pull/150720).",
+        "href": "https://github.com/openclaw/openclaw/issues/150720"
+      },
+      {
+        "title": "Move shared-state task commands into task module [#150775](https",
+        "description": "//github.com/openclaw/openclaw/pull/150775).",
+        "href": "https://github.com/openclaw/openclaw/issues/150775"
+      },
+      {
+        "title": "Extract promotion storage handlers from shared worker [#150779](https",
+        "description": "//github.com/openclaw/openclaw/pull/150779).",
+        "href": "https://github.com/openclaw/openclaw/issues/150779"
+      },
+      {
+        "title": "Reuse unchanged session archive projections [#151010](https",
+        "description": "//github.com/openclaw/openclaw/pull/151010).",
+        "href": "https://github.com/openclaw/openclaw/issues/151010"
+      },
+      {
+        "title": "Simplify session reply delivery [#151019](https",
+        "description": "//github.com/openclaw/openclaw/pull/151019).",
+        "href": "https://github.com/openclaw/openclaw/issues/151019"
+      },
+      {
+        "title": "Avoid rebuilding normalized session keys [#151105](https",
+        "description": "//github.com/openclaw/openclaw/pull/151105).",
+        "href": "https://github.com/openclaw/openclaw/issues/151105"
+      },
+      {
+        "title": "Prepare incognito session data before presentation [#151186](https",
+        "description": "//github.com/openclaw/openclaw/pull/151186).",
+        "href": "https://github.com/openclaw/openclaw/issues/151186"
+      },
+      {
+        "title": "Simplify update-dialog state and shared test setup [70219e26](https",
+        "description": "//github.com/openclaw/openclaw/commit/70219e26cd3697fca355a537f4ac9ff94aad3676).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reduce redaction capture overhead [d363685c](https",
+        "description": "//github.com/openclaw/openclaw/commit/d363685cab9fd6c6202998216cf945c46a195904).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Derive hook types from validation schemas [#143985](https",
+        "description": "//github.com/openclaw/openclaw/pull/143985). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143985"
+      },
+      {
+        "title": "Share agent-default schema and types [#143986](https",
+        "description": "//github.com/openclaw/openclaw/pull/143986). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143986"
+      },
+      {
+        "title": "Derive MCP types from their validator [#143987](https",
+        "description": "//github.com/openclaw/openclaw/pull/143987). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143987"
+      },
+      {
+        "title": "Share memory-search schemas and types [#143988](https",
+        "description": "//github.com/openclaw/openclaw/pull/143988). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/143988"
+      },
+      {
+        "title": "Derive protocol registration from canonical schemas [#144112](https",
+        "description": "//github.com/openclaw/openclaw/pull/144112).",
+        "href": "https://github.com/openclaw/openclaw/issues/144112"
+      },
+      {
+        "title": "Reuse Wear startup defaults on phone changes [#144138](https",
+        "description": "//github.com/openclaw/openclaw/pull/144138).",
+        "href": "https://github.com/openclaw/openclaw/issues/144138"
+      },
+      {
+        "title": "Share Policy validation primitives [#144186](https",
+        "description": "//github.com/openclaw/openclaw/pull/144186).",
+        "href": "https://github.com/openclaw/openclaw/issues/144186"
+      },
+      {
+        "title": "Derive cron types from shared contracts [#144189](https",
+        "description": "//github.com/openclaw/openclaw/pull/144189).",
+        "href": "https://github.com/openclaw/openclaw/issues/144189"
+      },
+      {
+        "title": "Unified message configuration types and schemas [#144462](https",
+        "description": "//github.com/openclaw/openclaw/pull/144462). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/144462"
+      },
+      {
+        "title": "Unified session configuration definitions [#144463](https",
+        "description": "//github.com/openclaw/openclaw/pull/144463). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/144463"
+      },
+      {
+        "title": "Memory configuration type maintenance [#144464](https",
+        "description": "//github.com/openclaw/openclaw/pull/144464). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/144464"
+      },
+      {
+        "title": "Unified Gateway configuration definitions [#144465](https",
+        "description": "//github.com/openclaw/openclaw/pull/144465). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/144465"
+      },
+      {
+        "title": "Derive Gateway probe summary types from their producer [#144555](https://gi...",
+        "description": "Derive Gateway probe summary types from their producer [#144555](https://github.com/openclaw/openclaw/pull/144555).",
+        "href": "https://github.com/openclaw/openclaw/issues/144555"
+      },
+      {
+        "title": "Normalize Codex account quota responses once [#144620](https",
+        "description": "//github.com/openclaw/openclaw/pull/144620). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/144620"
+      },
+      {
+        "title": "Derive native device settings types from schemas [#144705](https",
+        "description": "//github.com/openclaw/openclaw/pull/144705). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/144705"
+      },
+      {
+        "title": "Normalize Claude usage data through one schema [#144707](https",
+        "description": "//github.com/openclaw/openclaw/pull/144707). Thanks @jesse-merhi.",
+        "href": "https://github.com/openclaw/openclaw/issues/144707"
+      },
+      {
+        "title": "Preserve SDK types in Slack slash-command helpers [#144734](https",
+        "description": "//github.com/openclaw/openclaw/pull/144734).",
+        "href": "https://github.com/openclaw/openclaw/issues/144734"
+      },
+      {
+        "title": "Reuse status-table input types [#145200](https",
+        "description": "//github.com/openclaw/openclaw/pull/145200).",
+        "href": "https://github.com/openclaw/openclaw/issues/145200"
+      },
+      {
+        "title": "Share scheduler diagnostics type [#145953](https",
+        "description": "//github.com/openclaw/openclaw/pull/145953).",
+        "href": "https://github.com/openclaw/openclaw/issues/145953"
+      },
+      {
+        "title": "Use validated request types in message handlers [#146206](https",
+        "description": "//github.com/openclaw/openclaw/pull/146206).",
+        "href": "https://github.com/openclaw/openclaw/issues/146206"
+      },
+      {
+        "title": "Derive authoring types from existing schemas [#146355](https",
+        "description": "//github.com/openclaw/openclaw/pull/146355).",
+        "href": "https://github.com/openclaw/openclaw/issues/146355"
+      },
+      {
+        "title": "Reuse validated Gateway parameter types [#146521](https",
+        "description": "//github.com/openclaw/openclaw/pull/146521).",
+        "href": "https://github.com/openclaw/openclaw/issues/146521"
+      },
+      {
+        "title": "Derive configuration types from validation schemas [#146633](https",
+        "description": "//github.com/openclaw/openclaw/pull/146633).",
+        "href": "https://github.com/openclaw/openclaw/issues/146633"
+      },
+      {
+        "title": "Derive ClickClack configuration types from its schema [#146761](https",
+        "description": "//github.com/openclaw/openclaw/pull/146761).",
+        "href": "https://github.com/openclaw/openclaw/issues/146761"
+      },
+      {
+        "title": "Narrow the Skill Workshop proposal context [#146977](https",
+        "description": "//github.com/openclaw/openclaw/pull/146977). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146977"
+      },
+      {
+        "title": "Remove duplicate plugin type exports [#147174](https",
+        "description": "//github.com/openclaw/openclaw/pull/147174).",
+        "href": "https://github.com/openclaw/openclaw/issues/147174"
+      },
+      {
+        "title": "Reuse validated request types in Gateway skill handlers [#147185](https://g...",
+        "description": "Reuse validated request types in Gateway skill handlers [#147185](https://github.com/openclaw/openclaw/pull/147185).",
+        "href": "https://github.com/openclaw/openclaw/issues/147185"
+      },
+      {
+        "title": "Remove redundant memory facade assertions [#147751](https",
+        "description": "//github.com/openclaw/openclaw/pull/147751). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147751"
+      },
+      {
+        "title": "Derive Telegram pipeline types [#147764](https",
+        "description": "//github.com/openclaw/openclaw/pull/147764). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147764"
+      },
+      {
+        "title": "Derive SMS webhook diagnostic types [#147765](https",
+        "description": "//github.com/openclaw/openclaw/pull/147765). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147765"
+      },
+      {
+        "title": "Derive Nostr metrics types [#147766](https",
+        "description": "//github.com/openclaw/openclaw/pull/147766). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147766"
+      },
+      {
+        "title": "Derive Matrix factory types [#147767](https",
+        "description": "//github.com/openclaw/openclaw/pull/147767). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/147767"
+      },
+      {
+        "title": "Derive daemon status types from their collector [#148108](https",
+        "description": "//github.com/openclaw/openclaw/pull/148108). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148108"
+      },
+      {
+        "title": "Derive QA dependency types from their producer [#148109](https",
+        "description": "//github.com/openclaw/openclaw/pull/148109). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148109"
+      },
+      {
+        "title": "Derive internal computer action fields [#148110](https",
+        "description": "//github.com/openclaw/openclaw/pull/148110). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148110"
+      },
+      {
+        "title": "Derive Slack monitor context types [#148111](https",
+        "description": "//github.com/openclaw/openclaw/pull/148111). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148111"
+      },
+      {
+        "title": "Derive status summary types from their producer [#148418](https",
+        "description": "//github.com/openclaw/openclaw/pull/148418). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148418"
+      },
+      {
+        "title": "Derive inline directive types from the parser [#148419](https",
+        "description": "//github.com/openclaw/openclaw/pull/148419). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148419"
+      },
+      {
+        "title": "Derive the Matrix QA client type from its factory [#148420](https",
+        "description": "//github.com/openclaw/openclaw/pull/148420). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148420"
+      },
+      {
+        "title": "Derive session CLI row types from their producers [#148421](https",
+        "description": "//github.com/openclaw/openclaw/pull/148421). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148421"
+      },
+      {
+        "title": "Centralize agent-session extension type exports [#148746](https",
+        "description": "//github.com/openclaw/openclaw/pull/148746).",
+        "href": "https://github.com/openclaw/openclaw/issues/148746"
+      },
+      {
+        "title": "Type worker drain access and stabilize browser tests [#148913](https",
+        "description": "//github.com/openclaw/openclaw/pull/148913).",
+        "href": "https://github.com/openclaw/openclaw/issues/148913"
+      },
+      {
+        "title": "Share Codex protocol schema normalization [#149147](https",
+        "description": "//github.com/openclaw/openclaw/pull/149147). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149147"
+      },
+      {
+        "title": "Derive configuration audit types from record producers [#149626](https://gi...",
+        "description": "Derive configuration audit types from record producers [#149626](https://github.com/openclaw/openclaw/pull/149626). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149626"
+      },
+      {
+        "title": "Narrow IRC inbound runtime typing to logging [#150183](https",
+        "description": "//github.com/openclaw/openclaw/pull/150183).",
+        "href": "https://github.com/openclaw/openclaw/issues/150183"
+      },
+      {
+        "title": "Derive configuration types from runtime factories [#150394](https",
+        "description": "//github.com/openclaw/openclaw/pull/150394). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150394"
+      },
+      {
+        "title": "Derive Talk configuration types from its schema [#150404](https",
+        "description": "//github.com/openclaw/openclaw/pull/150404). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150404"
+      },
+      {
+        "title": "Align speech configuration contracts with their schema [#150405](https://gi...",
+        "description": "Align speech configuration contracts with their schema [#150405](https://github.com/openclaw/openclaw/pull/150405). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150405"
+      },
+      {
+        "title": "Derive token-efficiency report types from builders [#150411](https",
+        "description": "//github.com/openclaw/openclaw/pull/150411). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150411"
+      },
+      {
+        "title": "Derive realtime voice session types from builders [#150412](https",
+        "description": "//github.com/openclaw/openclaw/pull/150412). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150412"
+      },
+      {
+        "title": "Avoid redundant hashes before mandatory cache restores [#144242](https://gi...",
+        "description": "Avoid redundant hashes before mandatory cache restores [#144242](https://github.com/openclaw/openclaw/pull/144242).",
+        "href": "https://github.com/openclaw/openclaw/issues/144242"
+      },
+      {
+        "title": "Speed coercion declaration checks [#144253](https",
+        "description": "//github.com/openclaw/openclaw/pull/144253).",
+        "href": "https://github.com/openclaw/openclaw/issues/144253"
+      },
+      {
+        "title": "Give full CLI CI more runner capacity [#144257](https",
+        "description": "//github.com/openclaw/openclaw/pull/144257).",
+        "href": "https://github.com/openclaw/openclaw/issues/144257"
+      },
+      {
+        "title": "Avoid duplicate SDK checker scans [#144298](https",
+        "description": "//github.com/openclaw/openclaw/pull/144298).",
+        "href": "https://github.com/openclaw/openclaw/issues/144298"
+      },
+      {
+        "title": "Avoid unrelated tests for baseline maintenance [#144359](https",
+        "description": "//github.com/openclaw/openclaw/pull/144359).",
+        "href": "https://github.com/openclaw/openclaw/issues/144359"
+      },
+      {
+        "title": "Reuse verified Git trees in CI source checks [#144421](https",
+        "description": "//github.com/openclaw/openclaw/pull/144421).",
+        "href": "https://github.com/openclaw/openclaw/issues/144421"
+      },
+      {
+        "title": "Preserve required metadata in targeted tooling CI [#144621](https",
+        "description": "//github.com/openclaw/openclaw/pull/144621).",
+        "href": "https://github.com/openclaw/openclaw/issues/144621"
+      },
+      {
+        "title": "Avoid duplicate startup tests on full main CI [#145078](https",
+        "description": "//github.com/openclaw/openclaw/pull/145078).",
+        "href": "https://github.com/openclaw/openclaw/issues/145078"
+      },
+      {
+        "title": "Run SDK declaration builds together when capacity permits [#145090](https:/...",
+        "description": "Run SDK declaration builds together when capacity permits [#145090](https://github.com/openclaw/openclaw/pull/145090).",
+        "href": "https://github.com/openclaw/openclaw/issues/145090"
+      },
+      {
+        "title": "Retain Android CI test timing reports [#145131](https",
+        "description": "//github.com/openclaw/openclaw/pull/145131).",
+        "href": "https://github.com/openclaw/openclaw/issues/145131"
+      },
+      {
+        "title": "Reserve headroom in test typecheck partitions [#145461](https",
+        "description": "//github.com/openclaw/openclaw/pull/145461).",
+        "href": "https://github.com/openclaw/openclaw/issues/145461"
+      },
+      {
+        "title": "Use smaller runners for current artifact builds [#145611](https",
+        "description": "//github.com/openclaw/openclaw/pull/145611).",
+        "href": "https://github.com/openclaw/openclaw/issues/145611"
+      },
+      {
+        "title": "Balance runtime tests across existing runners [#145956](https",
+        "description": "//github.com/openclaw/openclaw/pull/145956).",
+        "href": "https://github.com/openclaw/openclaw/issues/145956"
+      },
+      {
+        "title": "Reuse idle Vitest caches across scheduler slots [#146167](https",
+        "description": "//github.com/openclaw/openclaw/pull/146167).",
+        "href": "https://github.com/openclaw/openclaw/issues/146167"
+      },
+      {
+        "title": "Rebalance Gateway server typecheck tests [#146212](https",
+        "description": "//github.com/openclaw/openclaw/pull/146212).",
+        "href": "https://github.com/openclaw/openclaw/issues/146212"
+      },
+      {
+        "title": "Reduce memory used by source validation [#146266](https",
+        "description": "//github.com/openclaw/openclaw/pull/146266).",
+        "href": "https://github.com/openclaw/openclaw/issues/146266"
+      },
+      {
+        "title": "Reuse compiled workers across CI test groups [#146353](https",
+        "description": "//github.com/openclaw/openclaw/pull/146353).",
+        "href": "https://github.com/openclaw/openclaw/issues/146353"
+      },
+      {
+        "title": "Keep CI focused on precisely selected tests [#146366](https",
+        "description": "//github.com/openclaw/openclaw/pull/146366).",
+        "href": "https://github.com/openclaw/openclaw/issues/146366"
+      },
+      {
+        "title": "Avoid duplicate startup tests in broad pull requests [#146465](https",
+        "description": "//github.com/openclaw/openclaw/pull/146465).",
+        "href": "https://github.com/openclaw/openclaw/issues/146465"
+      },
+      {
+        "title": "Refresh the Control UI startup-size baseline [#146526](https",
+        "description": "//github.com/openclaw/openclaw/pull/146526). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/146526"
+      },
+      {
+        "title": "Share extension inventory across CI boundary checks [#146771](https",
+        "description": "//github.com/openclaw/openclaw/pull/146771).",
+        "href": "https://github.com/openclaw/openclaw/issues/146771"
+      },
+      {
+        "title": "Record resource and timing data for slow CI tests [#147254](https",
+        "description": "//github.com/openclaw/openclaw/pull/147254).",
+        "href": "https://github.com/openclaw/openclaw/issues/147254"
+      },
+      {
+        "title": "Parallelize isolated browser fixtures [#147529](https",
+        "description": "//github.com/openclaw/openclaw/pull/147529).",
+        "href": "https://github.com/openclaw/openclaw/issues/147529"
+      },
+      {
+        "title": "Guard wizard recovery test worker routing [#148510](https",
+        "description": "//github.com/openclaw/openclaw/pull/148510). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148510"
+      },
+      {
+        "title": "Skip unrelated Docker validation for Node planner edits [#148562](https://g...",
+        "description": "Skip unrelated Docker validation for Node planner edits [#148562](https://github.com/openclaw/openclaw/pull/148562).",
+        "href": "https://github.com/openclaw/openclaw/issues/148562"
+      },
+      {
+        "title": "Avoid unrelated plugin downloads during Android CI [#148791](https",
+        "description": "//github.com/openclaw/openclaw/pull/148791).",
+        "href": "https://github.com/openclaw/openclaw/issues/148791"
+      },
+      {
+        "title": "Rebalance heartbeat typecheck ownership [#148861](https",
+        "description": "//github.com/openclaw/openclaw/pull/148861).",
+        "href": "https://github.com/openclaw/openclaw/issues/148861"
+      },
+      {
+        "title": "Reuse environment names across combined source checks [#149186](https",
+        "description": "//github.com/openclaw/openclaw/pull/149186).",
+        "href": "https://github.com/openclaw/openclaw/issues/149186"
+      },
+      {
+        "title": "Calculate test-cache fingerprints before dependency restore [#149213](https...",
+        "description": "Calculate test-cache fingerprints before dependency restore [#149213](https://github.com/openclaw/openclaw/pull/149213).",
+        "href": "https://github.com/openclaw/openclaw/issues/149213"
+      },
+      {
+        "title": "Avoid unused import-cycle resolver allocations [#149266](https",
+        "description": "//github.com/openclaw/openclaw/pull/149266).",
+        "href": "https://github.com/openclaw/openclaw/issues/149266"
+      },
+      {
+        "title": "Reuse directory lookups in import-cycle checking [#149468](https",
+        "description": "//github.com/openclaw/openclaw/pull/149468).",
+        "href": "https://github.com/openclaw/openclaw/issues/149468"
+      },
+      {
+        "title": "Overlap declaration builds when memory permits [#149592](https",
+        "description": "//github.com/openclaw/openclaw/pull/149592).",
+        "href": "https://github.com/openclaw/openclaw/issues/149592"
+      },
+      {
+        "title": "Reject worsening file-length debt in contributor checks [#149622](https://g...",
+        "description": "Reject worsening file-length debt in contributor checks [#149622](https://github.com/openclaw/openclaw/pull/149622).",
+        "href": "https://github.com/openclaw/openclaw/issues/149622"
+      },
+      {
+        "title": "Adjust selected Blacksmith CI runner sizes [#149625](https",
+        "description": "//github.com/openclaw/openclaw/pull/149625). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149625"
+      },
+      {
+        "title": "Select Docker, QA and UI performance CI by affected files [#149655](https:/...",
+        "description": "Select Docker, QA and UI performance CI by affected files [#149655](https://github.com/openclaw/openclaw/pull/149655).",
+        "href": "https://github.com/openclaw/openclaw/issues/149655"
+      },
+      {
+        "title": "Skip CI runners for ignored comments [#149664](https",
+        "description": "//github.com/openclaw/openclaw/pull/149664).",
+        "href": "https://github.com/openclaw/openclaw/issues/149664"
+      },
+      {
+        "title": "Move short CI jobs to hosted runners within a capacity budget [#149685](htt...",
+        "description": "Move short CI jobs to hosted runners within a capacity budget [#149685](https://github.com/openclaw/openclaw/pull/149685).",
+        "href": "https://github.com/openclaw/openclaw/issues/149685"
+      },
+      {
+        "title": "Reduce unit-fast test-discovery matching work [#150031](https",
+        "description": "//github.com/openclaw/openclaw/pull/150031).",
+        "href": "https://github.com/openclaw/openclaw/issues/150031"
+      },
+      {
+        "title": "Restore CI capacity for compact Node and real-Gateway tests [#150137](https...",
+        "description": "Restore CI capacity for compact Node and real-Gateway tests [#150137](https://github.com/openclaw/openclaw/pull/150137).",
+        "href": "https://github.com/openclaw/openclaw/issues/150137"
+      },
+      {
+        "title": "Refresh CI test timings and split oversized groups [#150226](https",
+        "description": "//github.com/openclaw/openclaw/pull/150226).",
+        "href": "https://github.com/openclaw/openclaw/issues/150226"
+      },
+      {
+        "title": "Shorten serial plugin lint on capable Linux runners [#150342](https",
+        "description": "//github.com/openclaw/openclaw/pull/150342).",
+        "href": "https://github.com/openclaw/openclaw/issues/150342"
+      },
+      {
+        "title": "Reduce repeated CI planning calculations [#150567](https",
+        "description": "//github.com/openclaw/openclaw/pull/150567). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150567"
+      },
+      {
+        "title": "Avoid duplicate boundary-test jobs [#150572](https",
+        "description": "//github.com/openclaw/openclaw/pull/150572). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150572"
+      },
+      {
+        "title": "Run startup compatibility fallback checks in parallel [#150719](https",
+        "description": "//github.com/openclaw/openclaw/pull/150719). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150719"
+      },
+      {
+        "title": "Reuse native dependency outputs in hosted CI [#150725](https",
+        "description": "//github.com/openclaw/openclaw/pull/150725).",
+        "href": "https://github.com/openclaw/openclaw/issues/150725"
+      },
+      {
+        "title": "Remove redundant dependency-cache warmup job [#150784](https",
+        "description": "//github.com/openclaw/openclaw/pull/150784). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150784"
+      },
+      {
+        "title": "Install fewer dependencies for Apple CI jobs [#150785](https",
+        "description": "//github.com/openclaw/openclaw/pull/150785). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150785"
+      },
+      {
+        "title": "Separate Android base and emulator cache identities [#150794](https",
+        "description": "//github.com/openclaw/openclaw/pull/150794). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150794"
+      },
+      {
+        "title": "Cache stable test inventories during CI planning [#150846](https",
+        "description": "//github.com/openclaw/openclaw/pull/150846). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150846"
+      },
+      {
+        "title": "Correct Windows CI concurrency documentation [#144684](https",
+        "description": "//github.com/openclaw/openclaw/pull/144684).",
+        "href": "https://github.com/openclaw/openclaw/issues/144684"
+      },
+      {
+        "title": "Remove the retired CI credential scanner [#145053](https",
+        "description": "//github.com/openclaw/openclaw/pull/145053).",
+        "href": "https://github.com/openclaw/openclaw/issues/145053"
+      },
+      {
+        "title": "Make file-length lint findings nonblocking warnings [#149805](https",
+        "description": "//github.com/openclaw/openclaw/pull/149805).",
+        "href": "https://github.com/openclaw/openclaw/issues/149805"
+      },
+      {
+        "title": "Add bounded Tool Search failure diagnostics [#123145](https",
+        "description": "//github.com/openclaw/openclaw/pull/123145). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/123145"
+      },
+      {
+        "title": "Reuse managed Crabbox installations across QA and proof [#144154](https://g...",
+        "description": "Reuse managed Crabbox installations across QA and proof [#144154](https://github.com/openclaw/openclaw/pull/144154).",
+        "href": "https://github.com/openclaw/openclaw/issues/144154"
+      },
+      {
+        "title": "Separate benchmark transport comparison modes [#144159](https",
+        "description": "//github.com/openclaw/openclaw/pull/144159). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144159"
+      },
+      {
+        "title": "Separate performance evaluation from candidate execution [#144162](https://...",
+        "description": "Separate performance evaluation from candidate execution [#144162](https://github.com/openclaw/openclaw/pull/144162). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144162"
+      },
+      {
+        "title": "Share Docker diagnostic command lookup [#144231](https",
+        "description": "//github.com/openclaw/openclaw/pull/144231). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144231"
+      },
+      {
+        "title": "Opt-in catalog-test screenshots and videos [#144466](https",
+        "description": "//github.com/openclaw/openclaw/pull/144466).",
+        "href": "https://github.com/openclaw/openclaw/issues/144466"
+      },
+      {
+        "title": "Remove redundant QA Git fixture waits [#144504](https",
+        "description": "//github.com/openclaw/openclaw/pull/144504).",
+        "href": "https://github.com/openclaw/openclaw/issues/144504"
+      },
+      {
+        "title": "Test Gateway startup with retained operator configurations [#144626](https:...",
+        "description": "Test Gateway startup with retained operator configurations [#144626](https://github.com/openclaw/openclaw/pull/144626). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144626"
+      },
+      {
+        "title": "Consolidate Mantis remote-machine lease handling [#144655](https",
+        "description": "//github.com/openclaw/openclaw/pull/144655).",
+        "href": "https://github.com/openclaw/openclaw/issues/144655"
+      },
+      {
+        "title": "Test startup upgrades against saved prior-release state [#144659](https://g...",
+        "description": "Test startup upgrades against saved prior-release state [#144659](https://github.com/openclaw/openclaw/pull/144659). Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144659"
+      },
+      {
+        "title": "Share Matrix recovery QA command construction [#144727](https",
+        "description": "//github.com/openclaw/openclaw/pull/144727).",
+        "href": "https://github.com/openclaw/openclaw/issues/144727"
+      },
+      {
+        "title": "Profile allocations in concurrency benchmarks [#145629](https",
+        "description": "//github.com/openclaw/openclaw/pull/145629).",
+        "href": "https://github.com/openclaw/openclaw/issues/145629"
+      },
+      {
+        "title": "Share QA transport command registration [#145705](https",
+        "description": "//github.com/openclaw/openclaw/pull/145705). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145705"
+      },
+      {
+        "title": "Reuse shared QA bus protocol [#145706](https",
+        "description": "//github.com/openclaw/openclaw/pull/145706). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/145706"
+      },
+      {
+        "title": "Benchmark sustained tool-using conversations [#145751](https",
+        "description": "//github.com/openclaw/openclaw/pull/145751).",
+        "href": "https://github.com/openclaw/openclaw/issues/145751"
+      },
+      {
+        "title": "Add fixed probe counts to Gateway benchmarks [#146006](https",
+        "description": "//github.com/openclaw/openclaw/pull/146006).",
+        "href": "https://github.com/openclaw/openclaw/issues/146006"
+      },
+      {
+        "title": "Use packaged SQLite workers in repair tests [#146320](https",
+        "description": "//github.com/openclaw/openclaw/pull/146320).",
+        "href": "https://github.com/openclaw/openclaw/issues/146320"
+      },
+      {
+        "title": "Run Gateway browser tests more efficiently with clearer diagnostics [#14655...",
+        "description": "Run Gateway browser tests more efficiently with clearer diagnostics [#146550](https://github.com/openclaw/openclaw/pull/146550). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/146550"
+      },
+      {
+        "title": "Check sibling plugin imports during release upgrades [#146636](https",
+        "description": "//github.com/openclaw/openclaw/pull/146636).",
+        "href": "https://github.com/openclaw/openclaw/issues/146636"
+      },
+      {
+        "title": "Compress temporary archives for UI performance checks [#146687](https",
+        "description": "//github.com/openclaw/openclaw/pull/146687).",
+        "href": "https://github.com/openclaw/openclaw/issues/146687"
+      },
+      {
+        "title": "Add live tests for subagent waiting and operator resume [#146874](https://g...",
+        "description": "Add live tests for subagent waiting and operator resume [#146874](https://github.com/openclaw/openclaw/pull/146874).",
+        "href": "https://github.com/openclaw/openclaw/issues/146874"
+      },
+      {
+        "title": "Preserve Gateway recovery test failure diagnostics [#146925](https",
+        "description": "//github.com/openclaw/openclaw/pull/146925).",
+        "href": "https://github.com/openclaw/openclaw/issues/146925"
+      },
+      {
+        "title": "Share QA memory retrieval argument construction [#147034](https",
+        "description": "//github.com/openclaw/openclaw/pull/147034). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147034"
+      },
+      {
+        "title": "Share approval-forwarding configuration in QA Lab [#147062](https",
+        "description": "//github.com/openclaw/openclaw/pull/147062). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147062"
+      },
+      {
+        "title": "Share QA cache-miss report formatting [#147069](https",
+        "description": "//github.com/openclaw/openclaw/pull/147069). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147069"
+      },
+      {
+        "title": "Consolidate Docker diagnostic command lookup [#147396](https",
+        "description": "//github.com/openclaw/openclaw/pull/147396).",
+        "href": "https://github.com/openclaw/openclaw/issues/147396"
+      },
+      {
+        "title": "Measure total Gateway CPU in concurrency benchmarks [#147436](https",
+        "description": "//github.com/openclaw/openclaw/pull/147436).",
+        "href": "https://github.com/openclaw/openclaw/issues/147436"
+      },
+      {
+        "title": "Compare Code Mode task and interview evidence [#147537](https",
+        "description": "//github.com/openclaw/openclaw/pull/147537).",
+        "href": "https://github.com/openclaw/openclaw/issues/147537"
+      },
+      {
+        "title": "Add native Feishu Gateway coverage [#147549](https",
+        "description": "//github.com/openclaw/openclaw/pull/147549). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147549"
+      },
+      {
+        "title": "Skip identical-commit SDK rendering [#147572](https",
+        "description": "//github.com/openclaw/openclaw/pull/147572). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147572"
+      },
+      {
+        "title": "Include worker profiles in Gateway benchmarks [#147699](https",
+        "description": "//github.com/openclaw/openclaw/pull/147699).",
+        "href": "https://github.com/openclaw/openclaw/issues/147699"
+      },
+      {
+        "title": "Share mock followthrough evidence aggregation [#147706](https",
+        "description": "//github.com/openclaw/openclaw/pull/147706). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147706"
+      },
+      {
+        "title": "Consolidate Matrix QA output parsing [#147709](https",
+        "description": "//github.com/openclaw/openclaw/pull/147709). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147709"
+      },
+      {
+        "title": "Share Matrix QA permission helpers [#147783](https",
+        "description": "//github.com/openclaw/openclaw/pull/147783). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147783"
+      },
+      {
+        "title": "Share Docker lifecycle trace checks [#147822](https",
+        "description": "//github.com/openclaw/openclaw/pull/147822). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147822"
+      },
+      {
+        "title": "Reuse Matrix approval QA formatting [#147867](https",
+        "description": "//github.com/openclaw/openclaw/pull/147867). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147867"
+      },
+      {
+        "title": "Share Gateway benchmark trace aggregation [#148134](https",
+        "description": "//github.com/openclaw/openclaw/pull/148134). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148134"
+      },
+      {
+        "title": "Reduce QA evidence script startup overhead [#148153](https",
+        "description": "//github.com/openclaw/openclaw/pull/148153). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148153"
+      },
+      {
+        "title": "Share unknown-result construction in confidence reports [#148200](https://g...",
+        "description": "Share unknown-result construction in confidence reports [#148200](https://github.com/openclaw/openclaw/pull/148200). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148200"
+      },
+      {
+        "title": "Simplify Telegram QA formatting comparisons [#148219](https",
+        "description": "//github.com/openclaw/openclaw/pull/148219). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/148219"
+      },
+      {
+        "title": "Preserve desktop resize failure diagnostics [#148354](https",
+        "description": "//github.com/openclaw/openclaw/pull/148354). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148354"
+      },
+      {
+        "title": "Share restart benchmark summary test fixtures [#148555](https",
+        "description": "//github.com/openclaw/openclaw/pull/148555).",
+        "href": "https://github.com/openclaw/openclaw/issues/148555"
+      },
+      {
+        "title": "Add configuration diagnostics to failing plugin inspection tests [#148597](...",
+        "description": "Add configuration diagnostics to failing plugin inspection tests [#148597](https://github.com/openclaw/openclaw/pull/148597).",
+        "href": "https://github.com/openclaw/openclaw/issues/148597"
+      },
+      {
+        "title": "Retain profiling-test diagnostics before timeout cleanup [#148610](https://...",
+        "description": "Retain profiling-test diagnostics before timeout cleanup [#148610](https://github.com/openclaw/openclaw/pull/148610).",
+        "href": "https://github.com/openclaw/openclaw/issues/148610"
+      },
+      {
+        "title": "Retain both output streams in test configuration failures [#148665](https:/...",
+        "description": "Retain both output streams in test configuration failures [#148665](https://github.com/openclaw/openclaw/pull/148665).",
+        "href": "https://github.com/openclaw/openclaw/issues/148665"
+      },
+      {
+        "title": "Share ClawHub artifact checks in plugin tests [#148733](https",
+        "description": "//github.com/openclaw/openclaw/pull/148733). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148733"
+      },
+      {
+        "title": "Expose configuration-read failures in plugin inspection tests [#148736](htt...",
+        "description": "Expose configuration-read failures in plugin inspection tests [#148736](https://github.com/openclaw/openclaw/pull/148736).",
+        "href": "https://github.com/openclaw/openclaw/issues/148736"
+      },
+      {
+        "title": "Reuse QA Lab's media-path reader [#148771](https",
+        "description": "//github.com/openclaw/openclaw/pull/148771). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148771"
+      },
+      {
+        "title": "Explain recursive-spawn test failures with lifecycle state [#148794](https:...",
+        "description": "Explain recursive-spawn test failures with lifecycle state [#148794](https://github.com/openclaw/openclaw/pull/148794).",
+        "href": "https://github.com/openclaw/openclaw/issues/148794"
+      },
+      {
+        "title": "Add shutdown stages to profiler test diagnostics [#148804](https",
+        "description": "//github.com/openclaw/openclaw/pull/148804).",
+        "href": "https://github.com/openclaw/openclaw/issues/148804"
+      },
+      {
+        "title": "Identify plugin cache invalidation in test diagnostics [#148944](https://gi...",
+        "description": "Identify plugin cache invalidation in test diagnostics [#148944](https://github.com/openclaw/openclaw/pull/148944).",
+        "href": "https://github.com/openclaw/openclaw/issues/148944"
+      },
+      {
+        "title": "Add configuration-test diagnostics and account for Copilot overlap [#149001...",
+        "description": "Add configuration-test diagnostics and account for Copilot overlap [#149001](https://github.com/openclaw/openclaw/pull/149001). Thanks @vincentkoc, @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/149001"
+      },
+      {
+        "title": "Unify Crabline QA transport construction [#149061](https",
+        "description": "//github.com/openclaw/openclaw/pull/149061). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/149061"
+      },
+      {
+        "title": "Retain safe dirty-checkout diagnostics in desktop CI [#149085](https",
+        "description": "//github.com/openclaw/openclaw/pull/149085). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149085"
+      },
+      {
+        "title": "Remove redundant credentials reads from QA model selection [#149159](https:...",
+        "description": "Remove redundant credentials reads from QA model selection [#149159](https://github.com/openclaw/openclaw/pull/149159).",
+        "href": "https://github.com/openclaw/openclaw/issues/149159"
+      },
+      {
+        "title": "Add multi-agent Gateway benchmark workloads [#149178](https",
+        "description": "//github.com/openclaw/openclaw/pull/149178).",
+        "href": "https://github.com/openclaw/openclaw/issues/149178"
+      },
+      {
+        "title": "Identify failing MCP external-auth test phases [#149441](https",
+        "description": "//github.com/openclaw/openclaw/pull/149441).",
+        "href": "https://github.com/openclaw/openclaw/issues/149441"
+      },
+      {
+        "title": "Add diagnostics for MCP fixture execution failures [#149692](https",
+        "description": "//github.com/openclaw/openclaw/pull/149692). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149692"
+      },
+      {
+        "title": "Move QA audit counts into a SQLite worker [#149717](https",
+        "description": "//github.com/openclaw/openclaw/pull/149717).",
+        "href": "https://github.com/openclaw/openclaw/issues/149717"
+      },
+      {
+        "title": "Add diagnostics for off-frame chat streaming test updates [#149848](https:/...",
+        "description": "Add diagnostics for off-frame chat streaming test updates [#149848](https://github.com/openclaw/openclaw/pull/149848). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149848"
+      },
+      {
+        "title": "Add bounded failure diagnostics to Android branch tests [#149857](https://g...",
+        "description": "Add bounded failure diagnostics to Android branch tests [#149857](https://github.com/openclaw/openclaw/pull/149857). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149857"
+      },
+      {
+        "title": "Retain Control UI browser startup diagnostics in CI [#149873](https",
+        "description": "//github.com/openclaw/openclaw/pull/149873). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149873"
+      },
+      {
+        "title": "Include diagnostics when E2E mock-server startup fails [#150062](https://gi...",
+        "description": "Include diagnostics when E2E mock-server startup fails [#150062](https://github.com/openclaw/openclaw/pull/150062).",
+        "href": "https://github.com/openclaw/openclaw/issues/150062"
+      },
+      {
+        "title": "Report declaration-cache test phases on failure [#150160](https",
+        "description": "//github.com/openclaw/openclaw/pull/150160).",
+        "href": "https://github.com/openclaw/openclaw/issues/150160"
+      },
+      {
+        "title": "Preserve Gateway readiness diagnostics in desktop tests [#150276](https://g...",
+        "description": "Preserve Gateway readiness diagnostics in desktop tests [#150276](https://github.com/openclaw/openclaw/pull/150276).",
+        "href": "https://github.com/openclaw/openclaw/issues/150276"
+      },
+      {
+        "title": "Capture diagnostics when CLI test children stall [#150288](https",
+        "description": "//github.com/openclaw/openclaw/pull/150288).",
+        "href": "https://github.com/openclaw/openclaw/issues/150288"
+      },
+      {
+        "title": "Capture stack and handle reports for hung CLI tests [#151088](https",
+        "description": "//github.com/openclaw/openclaw/pull/151088).",
+        "href": "https://github.com/openclaw/openclaw/issues/151088"
+      },
+      {
+        "title": "Run Discord QA through Crabline [013f409f](https",
+        "description": "//github.com/openclaw/openclaw/commit/013f409f7a956afc34d7d4ed6f04d4be9e8cdee2). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Check frozen source compatibility before release jobs [#144236](https",
+        "description": "//github.com/openclaw/openclaw/pull/144236). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144236"
+      },
+      {
+        "title": "Publish the 2026.9.4 macOS appcast entry [#144636](https",
+        "description": "//github.com/openclaw/openclaw/pull/144636).",
+        "href": "https://github.com/openclaw/openclaw/issues/144636"
+      },
+      {
+        "title": "Reconcile main with shipped 2026",
+        "description": "Reconcile main with shipped 2026.9.4 fixes and versions [#144708](https://github.com/openclaw/openclaw/pull/144708). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144708"
+      },
+      {
+        "title": "Share cleanup across Docker release test runners [#144798](https",
+        "description": "//github.com/openclaw/openclaw/pull/144798). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144798"
+      },
+      {
+        "title": "Share release file-content assertions [#144904](https",
+        "description": "//github.com/openclaw/openclaw/pull/144904). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/144904"
+      },
+      {
+        "title": "Share release artifact restore workflow definitions [#146528](https",
+        "description": "//github.com/openclaw/openclaw/pull/146528).",
+        "href": "https://github.com/openclaw/openclaw/issues/146528"
+      },
+      {
+        "title": "Share iOS release argument parsing [#146626](https",
+        "description": "//github.com/openclaw/openclaw/pull/146626).",
+        "href": "https://github.com/openclaw/openclaw/issues/146626"
+      },
+      {
+        "title": "Centralize database compatibility-check defaults [#146675](https",
+        "description": "//github.com/openclaw/openclaw/pull/146675).",
+        "href": "https://github.com/openclaw/openclaw/issues/146675"
+      },
+      {
+        "title": "Share mobile changelog extraction [#146909](https",
+        "description": "//github.com/openclaw/openclaw/pull/146909). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146909"
+      },
+      {
+        "title": "Centralize upgrade-test scenario minimum versions [#146975](https",
+        "description": "//github.com/openclaw/openclaw/pull/146975). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/146975"
+      },
+      {
+        "title": "Share retry handling across release-check agent turns [#147076](https",
+        "description": "//github.com/openclaw/openclaw/pull/147076). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147076"
+      },
+      {
+        "title": "Share model setup commands across release checks [#147077](https",
+        "description": "//github.com/openclaw/openclaw/pull/147077). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147077"
+      },
+      {
+        "title": "Batch release source size validation [#147768](https",
+        "description": "//github.com/openclaw/openclaw/pull/147768).",
+        "href": "https://github.com/openclaw/openclaw/issues/147768"
+      },
+      {
+        "title": "Share Docker image version label parsing [#148243](https",
+        "description": "//github.com/openclaw/openclaw/pull/148243). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/148243"
+      },
+      {
+        "title": "Inspect iOS beta distribution without another upload [#149007](https",
+        "description": "//github.com/openclaw/openclaw/pull/149007). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/149007"
+      },
+      {
+        "title": "Add Projects and task-state published-upgrade tests [#149487](https",
+        "description": "//github.com/openclaw/openclaw/pull/149487).",
+        "href": "https://github.com/openclaw/openclaw/issues/149487"
+      },
+      {
+        "title": "Add project workspace startup migration upgrade coverage [#150077](https://...",
+        "description": "Add project workspace startup migration upgrade coverage [#150077](https://github.com/openclaw/openclaw/pull/150077).",
+        "href": "https://github.com/openclaw/openclaw/issues/150077"
+      },
+      {
+        "title": "Keep complete SDK reports within release artifact limits [#150273](https://...",
+        "description": "Keep complete SDK reports within release artifact limits [#150273](https://github.com/openclaw/openclaw/pull/150273). Thanks @vincentkoc, @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150273"
+      },
+      {
+        "title": "Compare complete publisher inventories [#150333](https",
+        "description": "//github.com/openclaw/openclaw/pull/150333). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/150333"
+      },
+      {
+        "title": "Test Doctor-only workspace repair with independent specimens [#150365](http...",
+        "description": "Test Doctor-only workspace repair with independent specimens [#150365](https://github.com/openclaw/openclaw/pull/150365).",
+        "href": "https://github.com/openclaw/openclaw/issues/150365"
+      },
+      {
+        "title": "Reduce release-validation command startup overhead [#150732](https",
+        "description": "//github.com/openclaw/openclaw/pull/150732).",
+        "href": "https://github.com/openclaw/openclaw/issues/150732"
+      },
+      {
+        "title": "Reduce subprocess overhead in Linux release tests [#150854](https",
+        "description": "//github.com/openclaw/openclaw/pull/150854). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150854"
+      },
+      {
+        "title": "Align 2026.9.5 versions and release records [5c27f51f](https",
+        "description": "//github.com/openclaw/openclaw/commit/5c27f51f6c62ee19dbfc0d88a46dc59b293f5aae).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Add the detailed v2026.9.4 release guide [#144665](https",
+        "description": "//github.com/openclaw/openclaw/pull/144665). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/144665"
+      },
+      {
+        "title": "Improve readability of v2026.9.4 release notes [#144693](https",
+        "description": "//github.com/openclaw/openclaw/pull/144693). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/144693"
+      },
+      {
+        "title": "Refresh session-restart translation memory [#146111](https",
+        "description": "//github.com/openclaw/openclaw/pull/146111).",
+        "href": "https://github.com/openclaw/openclaw/issues/146111"
+      },
+      {
+        "title": "Require UI screenshots in chat and pull requests [#147263](https",
+        "description": "//github.com/openclaw/openclaw/pull/147263).",
+        "href": "https://github.com/openclaw/openclaw/issues/147263"
+      },
+      {
+        "title": "Refresh the 2026.9.5 contribution records [c396abe6](https",
+        "description": "//github.com/openclaw/openclaw/commit/c396abe66d9d3635113ae33de31a21bd0943d959).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Refresh release records for the managed-service update fix [ec9c1a13](https...",
+        "description": "Refresh release records for the managed-service update fix [ec9c1a13](https://github.com/openclaw/openclaw/commit/ec9c1a13db8938e5a3eaa51fca2e981cde2395a9).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Restrict extended-stable publishing to the preceding month [#143679](https:...",
+        "description": "Restrict extended-stable publishing to the preceding month [#143679](https://github.com/openclaw/openclaw/pull/143679).",
+        "href": "https://github.com/openclaw/openclaw/issues/143679"
+      },
+      {
+        "title": "Refresh dependencies while preserving existing contracts [#145124](https://...",
+        "description": "Refresh dependencies while preserving existing contracts [#145124](https://github.com/openclaw/openclaw/pull/145124).",
+        "href": "https://github.com/openclaw/openclaw/issues/145124"
+      },
+      {
+        "title": "Discover static plugin assets once during postbuild [#145250](https",
+        "description": "//github.com/openclaw/openclaw/pull/145250).",
+        "href": "https://github.com/openclaw/openclaw/issues/145250"
+      },
+      {
+        "title": "Move SQLite capability probes off startup thread [#147866](https",
+        "description": "//github.com/openclaw/openclaw/pull/147866). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147866"
+      },
+      {
+        "title": "Remove unused Android test dependencies [#148231](https",
+        "description": "//github.com/openclaw/openclaw/pull/148231). Thanks @iwhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/148231"
+      },
+      {
+        "title": "Reduce temporary memory in SDK API report rendering [#148393](https",
+        "description": "//github.com/openclaw/openclaw/pull/148393).",
+        "href": "https://github.com/openclaw/openclaw/issues/148393"
+      },
+      {
+        "title": "Skip unnecessary maturity-link parsing [#147560](https",
+        "description": "//github.com/openclaw/openclaw/pull/147560).",
+        "href": "https://github.com/openclaw/openclaw/issues/147560"
+      },
+      {
+        "title": "Record redundant PR-wrapper inventory addition [#150451](https",
+        "description": "//github.com/openclaw/openclaw/pull/150451). Thanks @romneyda, @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/150451"
+      },
+      {
+        "title": "Skip unused config loading during native PR worktree setup [#150900](https:...",
+        "description": "Skip unused config loading during native PR worktree setup [#150900](https://github.com/openclaw/openclaw/pull/150900).",
+        "href": "https://github.com/openclaw/openclaw/issues/150900"
+      },
+      {
+        "title": "Validate reviews early and show CI job progress [#150987](https",
+        "description": "//github.com/openclaw/openclaw/pull/150987). Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/150987"
+      },
+      {
+        "title": "Keep source-review sessions free of dependency installation [f5c3d165](http...",
+        "description": "Keep source-review sessions free of dependency installation [f5c3d165](https://github.com/openclaw/openclaw/commit/f5c3d16561edef89048546a6cb37dfbae8ccdc69). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Reuse managed source clones for PR worktrees [387f6983](https",
+        "description": "//github.com/openclaw/openclaw/commit/387f69830a81968ed2d4ef830d67456167bc7f43). Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      },
+      {
+        "title": "Remove duplicate Docker test guidance [#144406](https",
+        "description": "//github.com/openclaw/openclaw/pull/144406). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144406"
+      },
+      {
+        "title": "Remove duplicate secret-placeholder guidance [#144407](https",
+        "description": "//github.com/openclaw/openclaw/pull/144407). Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/144407"
+      },
+      {
+        "title": "Require update compatibility and recovery review [#145100](https",
+        "description": "//github.com/openclaw/openclaw/pull/145100).",
+        "href": "https://github.com/openclaw/openclaw/issues/145100"
+      },
+      {
+        "title": "Document UI review galleries with per-example feedback [#145306](https://gi...",
+        "description": "Document UI review galleries with per-example feedback [#145306](https://github.com/openclaw/openclaw/pull/145306). Thanks @patrick-erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/145306"
+      },
+      {
+        "title": "Correct CI test shard documentation [#146238](https",
+        "description": "//github.com/openclaw/openclaw/pull/146238).",
+        "href": "https://github.com/openclaw/openclaw/issues/146238"
+      },
+      {
+        "title": "Lead PR descriptions with problems and practical impact [#146253](https://g...",
+        "description": "Lead PR descriptions with problems and practical impact [#146253](https://github.com/openclaw/openclaw/pull/146253). Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/146253"
+      },
+      {
+        "title": "Clarify approval boundaries for internal repairs [#146462](https",
+        "description": "//github.com/openclaw/openclaw/pull/146462).",
+        "href": "https://github.com/openclaw/openclaw/issues/146462"
+      },
+      {
+        "title": "Alphabetize sponsor acknowledgments and add Red Hat artwork [#147302](https...",
+        "description": "Alphabetize sponsor acknowledgments and add Red Hat artwork [#147302](https://github.com/openclaw/openclaw/pull/147302). Thanks @vacinc.",
+        "href": "https://github.com/openclaw/openclaw/issues/147302"
+      },
+      {
+        "title": "Document current-main scorecard dispatch [#150417](https",
+        "description": "//github.com/openclaw/openclaw/pull/150417). Thanks @romneyda.",
+        "href": "https://github.com/openclaw/openclaw/issues/150417"
+      },
+      {
+        "title": "Require coordination for Team site updates [a5fb8446](https",
+        "description": "//github.com/openclaw/openclaw/commit/a5fb8446c0e1a4b29b9b0a636e4b18aa3e6afae3).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202695"
+      }
+    ],
+    "fixes": [
+      "Preserve selected teams through onboarding recovery [#145817](https://github.com/openclaw/openclaw/pull/145817).",
+      "Apply installer timeout settings to curl connections [#110657](https://github.com/openclaw/openclaw/pull/110657). Thanks @xydigit-zt and @fuller-stack-dev.",
+      "Recognize versioned Node executables for services [#129301](https://github.com/openclaw/openclaw/pull/129301). Supported current runtimes named `nodejs`, `node24` and `node-24`, including `.exe` variants, still undergo the existing capability checks.",
+      "Preserve useful automatic Control UI build errors [#144844](https://github.com/openclaw/openclaw/pull/144844). Thanks @vincentkoc.",
+      "Preserve existing Node and nvm setups during installation [#145317](https://github.com/openclaw/openclaw/pull/145317). Thanks @jb-lopez.",
+      "Restore Gateway installation on systemd 239 [#146022](https://github.com/openclaw/openclaw/pull/146022). Thanks @pollybot13 and @bruce-cham.",
+      "Correct llama.cpp download-speed estimates [#146263](https://github.com/openclaw/openclaw/pull/146263).",
+      "Restore Linux installs with stale session-bus settings [#146569](https://github.com/openclaw/openclaw/pull/146569). Deep status also shows the selected connection.",
+      "Recover Mac CLI setup from temporary-directory permission errors [#146730](https://github.com/openclaw/openclaw/pull/146730). The original environment is restored before service setup.",
+      "Preserve working runtime links when validation fails [#147221](https://github.com/openclaw/openclaw/pull/147221). Relative-path selections remain usable after changing directories. Alpine system-package changes are not rolled back. Thanks @vincentkoc and @lucarinaorg.",
+      "Preserve installer PATH search behavior [#147249](https://github.com/openclaw/openclaw/pull/147249). Intentional current-directory entries remain usable without introducing a lookup when all search locations are excluded. Thanks @vincentkoc and @lucarinaorg.",
+      "Preserve CLI startup metadata when refresh fails [#147290](https://github.com/openclaw/openclaw/pull/147290).",
+      "Use host libraries for Linux AppImage installer tools [#148174](https://github.com/openclaw/openclaw/pull/148174). Thanks @xydigitlybnnnn, @fuller-stack-dev and @jb-lopez.",
+      "Handle permission-denied Node runtime probes [#150858](https://github.com/openclaw/openclaw/pull/150858). Restricted child-process launches now reject the unusable candidate without granting additional permissions. Thanks @romneyda.",
+      "Fix Matrix-selected Docker source builds [#146081](https://github.com/openclaw/openclaw/pull/146081). Thanks @vincentkoc.",
+      "Restore sandbox workspace files in Docker-hosted Gateways [#147276](https://github.com/openclaw/openclaw/pull/147276). Thanks @vincentkoc, @aaronwander, @frankekn and @jiesou.",
+      "Accept whitespace around device pairing request IDs [#110848](https://github.com/openclaw/openclaw/pull/110848). Thanks @nocodet888-arch and @obviyus.",
+      "Use discovered Gateway ports in SSH tunnel hints [#129649](https://github.com/openclaw/openclaw/pull/129649).",
+      "Explain pairing setup failures by authentication mode [#144136](https://github.com/openclaw/openclaw/pull/144136). Thanks @liuwqgit, @obviyus and @delicate-xqy.",
+      "Reject empty push environments before Gateway contact [#144687](https://github.com/openclaw/openclaw/pull/144687). Omit `--environment` for the node's default, or supply `sandbox` or `production`. Thanks @alix-007 and @obviyus.",
+      "Allow QR setup with trusted-proxy-only authentication [#147036](https://github.com/openclaw/openclaw/pull/147036). Thanks @vincentkoc.",
+      "Keep device-pairing commands inside the dialog [#147427](https://github.com/openclaw/openclaw/pull/147427). Mobile controls remain reachable by scrolling. Thanks @donniefi and @vincentkoc.",
+      "Reconnect browsers after approving requested admin access [#149192](https://github.com/openclaw/openclaw/pull/149192). Thanks @obviyus and @liuwqgit.",
+      "Preserve migrated default agents across restarts [#146246](https://github.com/openclaw/openclaw/pull/146246). Explicit targets and existing data ownership remain intact. A separate legacy-session import case for sole-agent setups remains unresolved, with original files retained. Thanks @lilei0311.",
+      "Explain FreeBSD desktop setup prerequisites [#147211](https://github.com/openclaw/openclaw/pull/147211). Thanks @vincentkoc and @lucarinaorg.",
+      "Identify FreeBSD process owners during update handoffs [#147415](https://github.com/openclaw/openclaw/pull/147415). Thanks @vincentkoc and @lucarinaorg.",
+      "Explain FreeBSD maintenance refusals [#147736](https://github.com/openclaw/openclaw/pull/147736). Thanks @vincentkoc and @lucarinaorg.",
+      "Honor migration options before subcommands [#144111](https://github.com/openclaw/openclaw/pull/144111). A parent `--no-auth-credentials` remains effective when the subcommand explicitly includes secrets. Thanks @yetval.",
+      "Resume setup in the approved workspace [#147705](https://github.com/openclaw/openclaw/pull/147705). Thanks @vincentkoc.",
+      "Cancel obsolete session actions when switching agents [#133331](https://github.com/openclaw/openclaw/pull/133331). Thanks @aniruddhaadak80, @vincentkoc.",
+      "Keep Sessions Refresh usable during background updates [#139023](https://github.com/openclaw/openclaw/pull/139023). Thanks @pollybot13, @lakemike, @patrick-erichsen, @he-yufeng.",
+      "Restore pinning for ordinary Home-linked conversations [#143250](https://github.com/openclaw/openclaw/pull/143250). Thanks @sunnyshu0925, @patrick-erichsen, @jalehman, @foxrainhy.",
+      "Keep sidebar sessions active while subagents work [#145028](https://github.com/openclaw/openclaw/pull/145028).",
+      "Hide empty native CLI sidebar sections [#145054](https://github.com/openclaw/openclaw/pull/145054).",
+      "Remove leftover sidebar headings after owner filtering [#145082](https://github.com/openclaw/openclaw/pull/145082).",
+      "Recover session links after temporary disconnects [#145347](https://github.com/openclaw/openclaw/pull/145347).",
+      "Keep archived sessions visible in Activity [#145462](https://github.com/openclaw/openclaw/pull/145462).",
+      "Hide empty Other sections under owner filters [#145521](https://github.com/openclaw/openclaw/pull/145521).",
+      "Distinguish terminal connections in Online cards [#145559](https://github.com/openclaw/openclaw/pull/145559).",
+      "Hide empty sections under personal session filters [#146069](https://github.com/openclaw/openclaw/pull/146069). Thanks @vincentkoc.",
+      "Stop unrelated sidebar child-session reloads [#146410](https://github.com/openclaw/openclaw/pull/146410).",
+      "Refresh newly available sessions after discovery [#146535](https://github.com/openclaw/openclaw/pull/146535).",
+      "Align the Online sidebar heading with session categories [#146747](https://github.com/openclaw/openclaw/pull/146747).",
+      "Keep subagent sessions out of the Activity conversation feed [#147253](https://github.com/openclaw/openclaw/pull/147253).",
+      "Avoid overlapping sidebar activity requests [#147400](https://github.com/openclaw/openclaw/pull/147400). Thanks @lakemike.",
+      "Keep sidebar focus outlines visible [#147520](https://github.com/openclaw/openclaw/pull/147520). Thanks @romneyda.",
+      "Center sidebar agent names [#147597](https://github.com/openclaw/openclaw/pull/147597). Thanks @vyctorbrzezowski.",
+      "Distinguish waiting sidebar sessions from active work [#148543](https://github.com/openclaw/openclaw/pull/148543). Thanks @patrick-erichsen.",
+      "Restore continuous sidebar scrolling [#148809](https://github.com/openclaw/openclaw/pull/148809).",
+      "Preserve session edits during concurrent lifecycle updates [#148969](https://github.com/openclaw/openclaw/pull/148969).",
+      "Keep shared-session owner counts visible beside avatars [#149141](https://github.com/openclaw/openclaw/pull/149141). Thanks @vyctorbrzezowski.",
+      "Stop repeated rejected read acknowledgements [#149359](https://github.com/openclaw/openclaw/pull/149359).",
+      "Keep pinned subagents visibly nested [#149379](https://github.com/openclaw/openclaw/pull/149379).",
+      "Keep conversation names visible while reconnecting [#149464](https://github.com/openclaw/openclaw/pull/149464).",
+      "Show recovery actions for sessions lost during reconnect [#149582](https://github.com/openclaw/openclaw/pull/149582).",
+      "Keep sidebar request previews open when tapped [#149659](https://github.com/openclaw/openclaw/pull/149659).",
+      "Preserve session lists when earlier actions finish [#149959](https://github.com/openclaw/openclaw/pull/149959).",
+      "Keep sidebar child sessions visible during cached refreshes [#150095](https://github.com/openclaw/openclaw/pull/150095). Thanks @jalehman.",
+      "Keep independent conversations outside Home's sidebar subtree [#150096](https://github.com/openclaw/openclaw/pull/150096). Thanks @jalehman, @vyctorbrzezowski.",
+      "Keep sidebar pagination working after agent switches during deletion [#150125](https://github.com/openclaw/openclaw/pull/150125).",
+      "Keep session lists updating after agent switches [#150305](https://github.com/openclaw/openclaw/pull/150305).",
+      "Disable session pagination while the sidebar refreshes [#150718](https://github.com/openclaw/openclaw/pull/150718).",
+      "Skip redundant scheduling for loaded sidebar children [#150001](https://github.com/openclaw/openclaw/pull/150001).",
+      "Keep delayed avatar downloads on their original profile store [#145180](https://github.com/openclaw/openclaw/pull/145180).",
+      "Prevent fallback-avatar flashes while images load [#146109](https://github.com/openclaw/openclaw/pull/146109).",
+      "Match avatar outlines to sidebar backgrounds [#147875](https://github.com/openclaw/openclaw/pull/147875). Thanks @vyctorbrzezowski.",
+      "Show command palette search progress before empty results [#146938](https://github.com/openclaw/openclaw/pull/146938). Thanks @vincentkoc.",
+      "Preserve command-palette text composition [#150164](https://github.com/openclaw/openclaw/pull/150164).",
+      "Align the Connect a machine picker action [#144530](https://github.com/openclaw/openclaw/pull/144530). Thanks @patrick-erichsen.",
+      "Preserve cloud selection while the picker opens [#145420](https://github.com/openclaw/openclaw/pull/145420).",
+      "Show the selected worktree branch [#145574](https://github.com/openclaw/openclaw/pull/145574).",
+      "Keep host availability current during event bursts [#146165](https://github.com/openclaw/openclaw/pull/146165).",
+      "Improve suggested-task contrast and menu placement [#147575](https://github.com/openclaw/openclaw/pull/147575).",
+      "Spread Auto session starts across available paired devices [#148099](https://github.com/openclaw/openclaw/pull/148099).",
+      "Preserve clones after uncertain project registration [#149386](https://github.com/openclaw/openclaw/pull/149386).",
+      "Keep device-picker focus during capacity refreshes [87ff8b24](https://github.com/openclaw/openclaw/commit/87ff8b2497df0a68fff42df12f9d85526c641357).",
+      "Return chat rail focus to the current message [#143611](https://github.com/openclaw/openclaw/pull/143611). Thanks @vyctorbrzezowski.",
+      "Preserve replies during IME Escape [#144271](https://github.com/openclaw/openclaw/pull/144271). Thanks @vincentkoc.",
+      "Steer active sessions across browsers and identify queued messages [#144694](https://github.com/openclaw/openclaw/pull/144694).",
+      "Keep earlier retained messages selected during refresh [#145240](https://github.com/openclaw/openclaw/pull/145240).",
+      "Prevent reconnect freezes and preserve account paging focus [#145405](https://github.com/openclaw/openclaw/pull/145405).",
+      "Recover from stalled chat and model loading [#145436](https://github.com/openclaw/openclaw/pull/145436). Thanks @fuller-stack-dev, @obviyus.",
+      "Save queued message edits across disconnects [#145481](https://github.com/openclaw/openclaw/pull/145481). Thanks @romneyda.",
+      "Recover draft storage after browser closure [#145545](https://github.com/openclaw/openclaw/pull/145545).",
+      "Withdraw canceled steering before delivery [#145809](https://github.com/openclaw/openclaw/pull/145809). Thanks @shakkernerd.",
+      "Preserve every line of text steer and tell commands [#146009](https://github.com/openclaw/openclaw/pull/146009). Thanks @masatohoshino, @obviyus.",
+      "Show reconnecting messages once and preserve queue order [#146466](https://github.com/openclaw/openclaw/pull/146466).",
+      "Avoid database waits when finishing already-recorded chat input [#146795](https://github.com/openclaw/openclaw/pull/146795).",
+      "Clear accepted drafts before interrupted navigation [#147413](https://github.com/openclaw/openclaw/pull/147413).",
+      "Show queued external messages and their source [#147848](https://github.com/openclaw/openclaw/pull/147848).",
+      "Clear accepted drafts after leaving New Session [#147921](https://github.com/openclaw/openclaw/pull/147921).",
+      "Preserve queue order when editing messages [#147923](https://github.com/openclaw/openclaw/pull/147923).",
+      "Preserve newer split-pane drafts and final selections [#149364](https://github.com/openclaw/openclaw/pull/149364).",
+      "Preserve queued corrections during navigation and updates [#149366](https://github.com/openclaw/openclaw/pull/149366).",
+      "Honor queued-message changes while attachments load [#149479](https://github.com/openclaw/openclaw/pull/149479).",
+      "Clear resolved queued-message reorder warnings [#149962](https://github.com/openclaw/openclaw/pull/149962).",
+      "Preserve New Session drafts through Incognito navigation and toggling [#149973](https://github.com/openclaw/openclaw/pull/149973).",
+      "Preserve rejected Home commands across page and dock moves [#150039](https://github.com/openclaw/openclaw/pull/150039).",
+      "Return to queued edits while another page loads [#150066](https://github.com/openclaw/openclaw/pull/150066).",
+      "Preserve lobster proportions and landings [#147750](https://github.com/openclaw/openclaw/pull/147750).",
+      "Keep chat comments usable across transcript and composer changes [#148763](https://github.com/openclaw/openclaw/pull/148763). Thanks @patrick-erichsen.",
+      "Read sent comments by tapping their count [#149360](https://github.com/openclaw/openclaw/pull/149360).",
+      "Keep local workspaces when forking conversations [#148098](https://github.com/openclaw/openclaw/pull/148098).",
+      "Show one chat bubble for a correlated channel reply [#121871](https://github.com/openclaw/openclaw/pull/121871). Thanks @aadi-joshi, @obviyus, @fatihfulness, @aaajiao.",
+      "Render CJK bold text and table line breaks correctly [#123084](https://github.com/openclaw/openclaw/pull/123084). Thanks @romneyda, @shng-fujiwara, @zhangbo-cn.",
+      "Keep your place when earlier chat messages load [#143343](https://github.com/openclaw/openclaw/pull/143343). Thanks @jalehman.",
+      "Keep completed answers visible after later tool activity [#143525](https://github.com/openclaw/openclaw/pull/143525). Thanks @jalehman.",
+      "Stop styling inactive preview links as clickable [#144193](https://github.com/openclaw/openclaw/pull/144193).",
+      "Keep recent conversations loaded when another is evicted [#144284](https://github.com/openclaw/openclaw/pull/144284).",
+      "Keep plain tooltips from blocking nearby controls [#144313](https://github.com/openclaw/openclaw/pull/144313). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Prevent duplicate streamed commentary [#144498](https://github.com/openclaw/openclaw/pull/144498). Thanks @fuller-stack-dev.",
+      "Keep reply tags in streamed code examples literal [#144632](https://github.com/openclaw/openclaw/pull/144632).",
+      "Preserve collapsible sections in streamed replies [#145702](https://github.com/openclaw/openclaw/pull/145702).",
+      "Show Claude background tasks as system notices [#145772](https://github.com/openclaw/openclaw/pull/145772). Thanks @marvinthebored, @peetiegonzalez, @obviyus.",
+      "Preserve code controls while replies stream [#145826](https://github.com/openclaw/openclaw/pull/145826).",
+      "Restore complete error details in reopened chats [#146259](https://github.com/openclaw/openclaw/pull/146259).",
+      "Align chat loading placeholders with the conversation [#146280](https://github.com/openclaw/openclaw/pull/146280).",
+      "Keep assistant messages intact while tools run [#146554](https://github.com/openclaw/openclaw/pull/146554). Thanks @vacinc.",
+      "Keep final chat replies single after refresh or reconnect [#147080](https://github.com/openclaw/openclaw/pull/147080). Thanks @obviyus, @panyhp.",
+      "Keep chat navigation markers steady [#147462](https://github.com/openclaw/openclaw/pull/147462). Thanks @vyctorbrzezowski.",
+      "Avoid repeated commentary when reopening chats [#147600](https://github.com/openclaw/openclaw/pull/147600). Thanks @romneyda.",
+      "Keep own messages aligned during reconnect [#147634](https://github.com/openclaw/openclaw/pull/147634). Thanks @sunnyshu0925, @obviyus, @keith9681.",
+      "Keep sent prompts from reappearing after reconnect [#147670](https://github.com/openclaw/openclaw/pull/147670).",
+      "Show earlier-history loading feedback [#147804](https://github.com/openclaw/openclaw/pull/147804). Thanks @vyctorbrzezowski.",
+      "Remove duplicate prompts beside buffered replies [#147836](https://github.com/openclaw/openclaw/pull/147836).",
+      "Preserve CLI and RPC attribution in older reply previews [#148537](https://github.com/openclaw/openclaw/pull/148537).",
+      "Restore conversation scrolling over the composer [#149347](https://github.com/openclaw/openclaw/pull/149347).",
+      "Show saved interrupted replies once [#149405](https://github.com/openclaw/openclaw/pull/149405). Thanks @fuller-stack-dev.",
+      "Keep transcript search titles when filtering sessions [#149606](https://github.com/openclaw/openclaw/pull/149606).",
+      "Close previews when their source pane becomes hidden [#149669](https://github.com/openclaw/openclaw/pull/149669).",
+      "Close the focused split-chat preview first with Escape [#149781](https://github.com/openclaw/openclaw/pull/149781).",
+      "Find recovered full replies in transcript search [#149915](https://github.com/openclaw/openclaw/pull/149915).",
+      "Reveal quoted messages inside collapsed chat work [#150163](https://github.com/openclaw/openclaw/pull/150163).",
+      "Keep collapsed prompt previews readable [#150478](https://github.com/openclaw/openclaw/pull/150478). Thanks @vyctorbrzezowski.",
+      "Match link-card menus to the active theme [#150883](https://github.com/openclaw/openclaw/pull/150883). Thanks @vyctorbrzezowski.",
+      "Keep wide chat content inside the shared message boundary [#151123](https://github.com/openclaw/openclaw/pull/151123). Thanks @vyctorbrzezowski.",
+      "Reconcile saved tool-use answers with live replies [be29f772](https://github.com/openclaw/openclaw/commit/be29f7722b3c5bcce6e9ec2719b778c93dd15316). Thanks @eatmoreduck, @jalehman.",
+      "Remove nested scrolling in expanded tool activity [#139120](https://github.com/openclaw/openclaw/pull/139120). Thanks @aniruddhaadak80, @obviyus, @wajdamian.",
+      "Show when the parent is still working after subtasks finish [#142853](https://github.com/openclaw/openclaw/pull/142853). Thanks @sunnyshu0925, @jalehman, @patrick-erichsen.",
+      "Show readable chat error and system labels [#144829](https://github.com/openclaw/openclaw/pull/144829). Thanks @romneyda.",
+      "Align chat expand and collapse arrows [#145167](https://github.com/openclaw/openclaw/pull/145167). Thanks @vyctorbrzezowski, digitalnav.",
+      "Preserve selected Debug event text [#145600](https://github.com/openclaw/openclaw/pull/145600). Thanks @vincentkoc.",
+      "Keep final status updates after cancelling a run [#145987](https://github.com/openclaw/openclaw/pull/145987).",
+      "Stop preparing previews after delivery shuts down [#146896](https://github.com/openclaw/openclaw/pull/146896). Thanks @vincentkoc.",
+      "Group nested commands under their named operations [#147156](https://github.com/openclaw/openclaw/pull/147156).",
+      "Avoid progress-card freezes on malformed content [#147528](https://github.com/openclaw/openclaw/pull/147528). Thanks @jjjhenriksen, @honki12345, @noelillinger, @vyctorbrzezowski.",
+      "Keep Task progress collapsed while reading history [#147802](https://github.com/openclaw/openclaw/pull/147802). Thanks @vyctorbrzezowski, @vincentkoc.",
+      "Keep task progress collapsed while reading history [#148291](https://github.com/openclaw/openclaw/pull/148291).",
+      "Deliver background-command results to WebChat [#148360](https://github.com/openclaw/openclaw/pull/148360). Thanks @etzelm, @jalehman, @oywino.",
+      "Keep Task progress collapsed and the composer available [#149384](https://github.com/openclaw/openclaw/pull/149384). Thanks @vyctorbrzezowski.",
+      "Label stopped Swarm tasks accurately [#149508](https://github.com/openclaw/openclaw/pull/149508).",
+      "Stop labeling deferred session yields as failures [#149983](https://github.com/openclaw/openclaw/pull/149983). Thanks @obviyus.",
+      "Distinguish steering skips from tool failures in the Control UI [#150185](https://github.com/openclaw/openclaw/pull/150185).",
+      "Focus Side chat when its panel opens [#144428](https://github.com/openclaw/openclaw/pull/144428). Thanks @patrick-erichsen.",
+      "Keep latest chat visible and support multiline Side chat questions [#144703](https://github.com/openclaw/openclaw/pull/144703).",
+      "Open and focus Side chat with slash commands [#147795](https://github.com/openclaw/openclaw/pull/147795). Thanks @vyctorbrzezowski.",
+      "Keep failed Side chat questions for retry [#147873](https://github.com/openclaw/openclaw/pull/147873). Thanks @vyctorbrzezowski.",
+      "Keep Side chat reads available within the selected session [#148248](https://github.com/openclaw/openclaw/pull/148248). Thanks @vacinc.",
+      "Keep reopened model pickers visible during updates [#144399](https://github.com/openclaw/openclaw/pull/144399).",
+      "Keep new chats on the displayed model and allow setup commands [#144967](https://github.com/openclaw/openclaw/pull/144967). Thanks @obviyus.",
+      "Keep newer model choices during settings refresh [#145478](https://github.com/openclaw/openclaw/pull/145478).",
+      "Separate model refresh warnings from selection controls [#146201](https://github.com/openclaw/openclaw/pull/146201).",
+      "Refresh chat model controls after discovery [#146258](https://github.com/openclaw/openclaw/pull/146258).",
+      "Allow thinking and fast-mode changes with session write access [#146343](https://github.com/openclaw/openclaw/pull/146343). Thanks @vacinc.",
+      "Keep model choices usable while provider details load [#146396](https://github.com/openclaw/openclaw/pull/146396). Thanks @obviyus.",
+      "Open model choices before catalog refresh completes [#146643](https://github.com/openclaw/openclaw/pull/146643). Thanks @obviyus.",
+      "Defer hidden-chat refreshes and share model reads [#146685](https://github.com/openclaw/openclaw/pull/146685).",
+      "Reduce repeated background reads while loading chat [#146953](https://github.com/openclaw/openclaw/pull/146953).",
+      "Recover model picker after catalog changes [#147926](https://github.com/openclaw/openclaw/pull/147926).",
+      "Keep saved global model settings current across agent switches [#148843](https://github.com/openclaw/openclaw/pull/148843).",
+      "Keep the selected chat model visible while a response starts [#149789](https://github.com/openclaw/openclaw/pull/149789). Thanks @obviyus.",
+      "Preserve model search while composing text [#149845](https://github.com/openclaw/openclaw/pull/149845).",
+      "Keep confirmed model selections after refresh failures [#150101](https://github.com/openclaw/openclaw/pull/150101).",
+      "Keep model choices visible while New Session refreshes [#150827](https://github.com/openclaw/openclaw/pull/150827). Thanks @obviyus.",
+      "Reduce repeated model catalog reads during chat updates [#151198](https://github.com/openclaw/openclaw/pull/151198).",
+      "Avoid model-information refreshes for routine account usage [#151247](https://github.com/openclaw/openclaw/pull/151247).",
+      "Include committed work with remote-only default branches [#144246](https://github.com/openclaw/openclaw/pull/144246). Thanks @zhangguiping-xydt, @obviyus, @ansxor.",
+      "Share repeated Git reads and keep branch requests responsive [#146273](https://github.com/openclaw/openclaw/pull/146273).",
+      "Keep large repository reads and queued cancellation responsive [#146499](https://github.com/openclaw/openclaw/pull/146499).",
+      "Restore Review previews for filenames with spaces and escapes [#146533](https://github.com/openclaw/openclaw/pull/146533).",
+      "Avoid repeated GitHub setup during chat refresh [#146697](https://github.com/openclaw/openclaw/pull/146697).",
+      "Keep session PR status visible after checkout changes [#147166](https://github.com/openclaw/openclaw/pull/147166).",
+      "Correct PR status and restore shared publication progress [#147195](https://github.com/openclaw/openclaw/pull/147195). Thanks @vincentkoc.",
+      "Preserve unchanged line endings in published changes [#147618](https://github.com/openclaw/openclaw/pull/147618).",
+      "Avoid duplicate publication and pull-request status rows [#148385](https://github.com/openclaw/openclaw/pull/148385).",
+      "Check published history before changing local work [#148741](https://github.com/openclaw/openclaw/pull/148741). Thanks @vacinc.",
+      "Restore image attachments when rewinding or forking chats [#92223](https://github.com/openclaw/openclaw/pull/92223). Thanks @joeykrug, @fuller-stack-dev, @bsg2000, @amknight, @syfvb.",
+      "Deliver fetched directory files with replies [#138427](https://github.com/openclaw/openclaw/pull/138427). Thanks @nianjiuzst, @obviyus, @igs-rogenlo.",
+      "Make inline image uploads available to file tools [#143753](https://github.com/openclaw/openclaw/pull/143753). Thanks @harjothkhara, @obviyus, @woohahahaaa, @johnmacob, @rodja.",
+      "Preserve Markdown code controls after refresh [#145805](https://github.com/openclaw/openclaw/pull/145805).",
+      "Clear stale table-copy success feedback [#145962](https://github.com/openclaw/openclaw/pull/145962).",
+      "Distinguish absolute and relative file links [#146572](https://github.com/openclaw/openclaw/pull/146572).",
+      "Restore browser image menus in chat [#146618](https://github.com/openclaw/openclaw/pull/146618). Thanks @fuller-stack-dev.",
+      "Show generated images once in chat [#146777](https://github.com/openclaw/openclaw/pull/146777).",
+      "Fix large inline media validation failures [#146972](https://github.com/openclaw/openclaw/pull/146972).",
+      "Align uploaded images with their prompts [#147389](https://github.com/openclaw/openclaw/pull/147389).",
+      "Keep chat images in place while loading [#147565](https://github.com/openclaw/openclaw/pull/147565). Thanks @vyctorbrzezowski.",
+      "Render relative files as chat attachments [#147646](https://github.com/openclaw/openclaw/pull/147646).",
+      "Keep assistant images beside their labels [#147731](https://github.com/openclaw/openclaw/pull/147731).",
+      "Attach generated speech to its answer during live chat [#148696](https://github.com/openclaw/openclaw/pull/148696). Thanks @liuwqgit, @obviyus, @zerolxgic.",
+      "Keep progress images visible inline and after reload [#148795](https://github.com/openclaw/openclaw/pull/148795).",
+      "Give transcript media consistent spacing [#149137](https://github.com/openclaw/openclaw/pull/149137). Thanks @vyctorbrzezowski.",
+      "Keep annotation buttons free of unwanted shadows [#149929](https://github.com/openclaw/openclaw/pull/149929).",
+      "Cancel delayed copy fallbacks from closed file previews [#150074](https://github.com/openclaw/openclaw/pull/150074).",
+      "Restore attachments after website sign-in expires [#148400](https://github.com/openclaw/openclaw/pull/148400).",
+      "Renew website access before prompting for sign-in [#149833](https://github.com/openclaw/openclaw/pull/149833).",
+      "Restore ACP binding and reply history in dashboard chats [#145147](https://github.com/openclaw/openclaw/pull/145147). Thanks @fuller-stack-dev, @cjn119-ui.",
+      "Keep slow control connections online while pings wait to send [#145191](https://github.com/openclaw/openclaw/pull/145191). Thanks @fuller-stack-dev.",
+      "Forward selected themes to plugin tabs [#145409](https://github.com/openclaw/openclaw/pull/145409). Thanks @chazgo, Chaz Gordish.",
+      "Let slow dashboard downloads finish before recovery [#146881](https://github.com/openclaw/openclaw/pull/146881).",
+      "Keep widgets interactive when they define an open helper [#147327](https://github.com/openclaw/openclaw/pull/147327).",
+      "Release removed dashboard progress widgets [#147471](https://github.com/openclaw/openclaw/pull/147471). Thanks @vincentkoc.",
+      "Clarify where saved widgets appear after restart [#147533](https://github.com/openclaw/openclaw/pull/147533).",
+      "Release removed content from panel tab focus tracking [#148086](https://github.com/openclaw/openclaw/pull/148086). Thanks @vincentkoc.",
+      "Fill narrow windows with the active split chat [#148165](https://github.com/openclaw/openclaw/pull/148165).",
+      "Accept HTML widgets with an empty report placeholder [#148570](https://github.com/openclaw/openclaw/pull/148570). Thanks @mertbasar0, @akarshghale, @obviyus.",
+      "Preserve loaded dashboard widgets when switching tabs [#149607](https://github.com/openclaw/openclaw/pull/149607).",
+      "Restore keyboard focus after closing a split chat pane [#149827](https://github.com/openclaw/openclaw/pull/149827). Thanks @aniruddhaadak80.",
+      "Name the surviving chat pane for assistive technology [#149989](https://github.com/openclaw/openclaw/pull/149989). Thanks @aniruddhaadak80.",
+      "Preserve appearance while profile preferences load [#150529](https://github.com/openclaw/openclaw/pull/150529). Thanks @vyctorbrzezowski.",
+      "Keep RTL page actions clear of sidebar controls [#149299](https://github.com/openclaw/openclaw/pull/149299).",
+      "Hide completed cloud workers from current machine lists [#148821](https://github.com/openclaw/openclaw/pull/148821).",
+      "Keep environment lists responsive during pairing cleanup [#148988](https://github.com/openclaw/openclaw/pull/148988).",
+      "Keep terminal Retry paired with the right error [#145222](https://github.com/openclaw/openclaw/pull/145222).",
+      "Keep closed connecting terminal tabs closed [#145452](https://github.com/openclaw/openclaw/pull/145452).",
+      "Fix Home and System busyness loading dialogs [#147434](https://github.com/openclaw/openclaw/pull/147434).",
+      "Restore retention and security-header settings controls [#143700](https://github.com/openclaw/openclaw/pull/143700). Thanks @wangyan2026, @obviyus, @gregbond.",
+      "Keep sidebar visible at default desktop size [#145569](https://github.com/openclaw/openclaw/pull/145569).",
+      "Keep differently typed settings choices distinct [#145578](https://github.com/openclaw/openclaw/pull/145578).",
+      "Keep About copy retries busy until completion [#146459](https://github.com/openclaw/openclaw/pull/146459).",
+      "Keep selected-agent checkmarks compact [#146485](https://github.com/openclaw/openclaw/pull/146485). Thanks @vyctorbrzezowski.",
+      "Prevent settings reload stack overflows [#147970](https://github.com/openclaw/openclaw/pull/147970).",
+      "Keep the selected agent across Settings pages [#148667](https://github.com/openclaw/openclaw/pull/148667). Thanks @patrick-erichsen.",
+      "Show the selected agent's execution policy in Devices [#149066](https://github.com/openclaw/openclaw/pull/149066). Thanks @piyushrathoree, @obviyus.",
+      "Keep long secret names clear of access badges [#149108](https://github.com/openclaw/openclaw/pull/149108). Thanks @kip-claw, @obviyus.",
+      "Recover agent identity editing after reconnect [#149470](https://github.com/openclaw/openclaw/pull/149470).",
+      "Keep unsaved file edits when switching agents [#149524](https://github.com/openclaw/openclaw/pull/149524).",
+      "Prevent lost device binding edits and allow clearing unavailable nodes [#149721](https://github.com/openclaw/openclaw/pull/149721).",
+      "Find typography controls through Settings search [#150006](https://github.com/openclaw/openclaw/pull/150006).",
+      "Preserve Back navigation through moved Settings links [#150133](https://github.com/openclaw/openclaw/pull/150133).",
+      "Preserve included credentials when saving configuration forms [#150637](https://github.com/openclaw/openclaw/pull/150637). Thanks @wakawakaooo.",
+      "Keep credential cancellation errors current [#150658](https://github.com/openclaw/openclaw/pull/150658).",
+      "Show channel icons from their owning plugins [#144177](https://github.com/openclaw/openclaw/pull/144177). Thanks @emoriwan, @obviyus.",
+      "Restore WebKit chat permission icons [#144423](https://github.com/openclaw/openclaw/pull/144423). Thanks @patrick-erichsen.",
+      "Show automation names in scheduled chat messages [#150553](https://github.com/openclaw/openclaw/pull/150553). Thanks @vyctorbrzezowski.",
+      "Hide avatars for unknown forwarded senders [4f3482a7](https://github.com/openclaw/openclaw/commit/4f3482a7d3f166c3c7b3c063789d9f8916f83b4a). Thanks @vyctorbrzezowski.",
+      "Use recorded sources for forwarded-message sender labels [#138579](https://github.com/openclaw/openclaw/pull/138579). Thanks @liuwqgit, @obviyus, @cubefarm-valkyrie.",
+      "Keep usage footers with total or cache-only counts [#144302](https://github.com/openclaw/openclaw/pull/144302). Thanks @richchen01.",
+      "Refresh Usage details when sessions are recreated [#144430](https://github.com/openclaw/openclaw/pull/144430).",
+      "Clear obsolete Usage ranges after session replacement [#144497](https://github.com/openclaw/openclaw/pull/144497).",
+      "Coordinate usage refreshes with database opening and cleanup [#145209](https://github.com/openclaw/openclaw/pull/145209).",
+      "Refresh usage estimates after model price writes [#146113](https://github.com/openclaw/openclaw/pull/146113).",
+      "Label model usage counts as messages [#146735](https://github.com/openclaw/openclaw/pull/146735).",
+      "Prevent Usage hour filters freezing during daylight-saving changes [#146919](https://github.com/openclaw/openclaw/pull/146919). Thanks @rex993.",
+      "Honor the selected timezone in Usage date shortcuts [#148277](https://github.com/openclaw/openclaw/pull/148277). Thanks @quziang, @takhoffman.",
+      "Retain usage-refresh errors alongside cleanup failures [#149296](https://github.com/openclaw/openclaw/pull/149296).",
+      "Correct Usage tool totals and interval message counts [#149547](https://github.com/openclaw/openclaw/pull/149547).",
+      "Keep Usage results matched to selected filters [#150086](https://github.com/openclaw/openclaw/pull/150086).",
+      "Recover chats after missed completion events [#145798](https://github.com/openclaw/openclaw/pull/145798). Thanks @romneyda.",
+      "Reduce Sessions-list waits with large saved prompts [#146001](https://github.com/openclaw/openclaw/pull/146001).",
+      "Reduce chat startup delays on busy Gateways [#146102](https://github.com/openclaw/openclaw/pull/146102).",
+      "Show chat history before loading supporting details [#146107](https://github.com/openclaw/openclaw/pull/146107).",
+      "Avoid redundant child-session refreshes in chat [#146122](https://github.com/openclaw/openclaw/pull/146122).",
+      "Keep the Gateway responsive while preparing large session lists [#146175](https://github.com/openclaw/openclaw/pull/146175).",
+      "Reduce session-switch overhead under Gateway load [#146243](https://github.com/openclaw/openclaw/pull/146243).",
+      "Reduce session-loading stalls during skill watcher startup [#146480](https://github.com/openclaw/openclaw/pull/146480).",
+      "Load selected chats before background session lists [#146591](https://github.com/openclaw/openclaw/pull/146591).",
+      "Preserve chat metadata refreshes and retries [#146666](https://github.com/openclaw/openclaw/pull/146666).",
+      "Reduce history read work and keep paging consistent [#146770](https://github.com/openclaw/openclaw/pull/146770).",
+      "Avoid redrawing chat history for run-status changes [#146802](https://github.com/openclaw/openclaw/pull/146802). Thanks @vincentkoc.",
+      "Limit repeated chat refreshes and settle expired cancellations [#146810](https://github.com/openclaw/openclaw/pull/146810). Thanks @fuller-stack-dev.",
+      "Fix shared-store searches and reduce preview overhead [#146823](https://github.com/openclaw/openclaw/pull/146823). Thanks @vincentkoc.",
+      "Release closed chat panes after queued updates [#147240](https://github.com/openclaw/openclaw/pull/147240). Thanks @vincentkoc, @vyctorbrzezowski.",
+      "Share chat recovery across panes [#147416](https://github.com/openclaw/openclaw/pull/147416).",
+      "Prioritize chats over background refreshes [#147845](https://github.com/openclaw/openclaw/pull/147845).",
+      "Restore live updates when retrying history [#147865](https://github.com/openclaw/openclaw/pull/147865).",
+      "Avoid redundant selected-session reads during sidebar refreshes [#148373](https://github.com/openclaw/openclaw/pull/148373).",
+      "Keep metadata loads valid during repeat contributions [#148398](https://github.com/openclaw/openclaw/pull/148398).",
+      "Load chat metadata without waiting for unrelated agents [#148415](https://github.com/openclaw/openclaw/pull/148415).",
+      "Avoid full metadata reloads after participant updates [#148467](https://github.com/openclaw/openclaw/pull/148467).",
+      "Load the selected conversation before automatic chat extras [#148483](https://github.com/openclaw/openclaw/pull/148483).",
+      "Keep metadata loading during unrelated session updates [#148487](https://github.com/openclaw/openclaw/pull/148487).",
+      "Avoid duplicate sidebar session requests during startup [#148917](https://github.com/openclaw/openclaw/pull/148917).",
+      "Keep transcript search working across large session inventories [#149254](https://github.com/openclaw/openclaw/pull/149254).",
+      "Correct failed-view recovery and blocked reload handling [#149492](https://github.com/openclaw/openclaw/pull/149492).",
+      "Improve Gateway responsiveness during large session-detail reads [#149749](https://github.com/openclaw/openclaw/pull/149749).",
+      "Reduce repeated session-list reloads during activity [#149774](https://github.com/openclaw/openclaw/pull/149774). Thanks @lakemike.",
+      "Keep chat metadata loading during unrelated session writes [#149853](https://github.com/openclaw/openclaw/pull/149853).",
+      "Avoid repeated reads during session-list refreshes [#150964](https://github.com/openclaw/openclaw/pull/150964).",
+      "Open conversations before the full session refresh finishes [#150989](https://github.com/openclaw/openclaw/pull/150989).",
+      "Reduce repeated subagent bookkeeping in large session lists [#151202](https://github.com/openclaw/openclaw/pull/151202).",
+      "Release old session-list data during repeated refreshes [#151248](https://github.com/openclaw/openclaw/pull/151248).",
+      "Correct Turkish attachment-removal labels [#147445](https://github.com/openclaw/openclaw/pull/147445). Thanks @vincentkoc.",
+      "Restore scrolling in Files sidebar previews [#147115](https://github.com/openclaw/openclaw/pull/147115).",
+      "Open workspace file links with Unicode names [#148097](https://github.com/openclaw/openclaw/pull/148097).",
+      "Refresh file previews on explicit reopen [#148157](https://github.com/openclaw/openclaw/pull/148157).",
+      "Label raw file previews as Source [#148265](https://github.com/openclaw/openclaw/pull/148265).",
+      "Align file-search matches with visible line endings [#148827](https://github.com/openclaw/openclaw/pull/148827).",
+      "Ignore surrounding whitespace in Files search [#149362](https://github.com/openclaw/openclaw/pull/149362).",
+      "Keep workspace files readable and consistently selected [#149499](https://github.com/openclaw/openclaw/pull/149499).",
+      "Keep Files selection and search results current during refreshes [#149900](https://github.com/openclaw/openclaw/pull/149900).",
+      "Keep parent-folder navigation when a folder becomes unavailable [#150118](https://github.com/openclaw/openclaw/pull/150118).",
+      "Fix strict HTML preview isolation and saving reopened drafts [#146873](https://github.com/openclaw/openclaw/pull/146873).",
+      "Loading feedback for Gateway host readings [#145328](https://github.com/openclaw/openclaw/pull/145328).",
+      "Show Gateway uptime in the Debug overlay [#146960](https://github.com/openclaw/openclaw/pull/146960).",
+      "Reduce Gateway work while viewing diagnostics [#147110](https://github.com/openclaw/openclaw/pull/147110).",
+      "Keep Undo available while notifications are hovered or focused [#146940](https://github.com/openclaw/openclaw/pull/146940). Thanks @vincentkoc.",
+      "Keep successful archive and pin results after refresh failures [#148155](https://github.com/openclaw/openclaw/pull/148155).",
+      "Keep archive Undo available after switching chats [#148831](https://github.com/openclaw/openclaw/pull/148831).",
+      "Keep archive confirmation and Undo after leaving Sessions [#150108](https://github.com/openclaw/openclaw/pull/150108).",
+      "Keep delayed attachments out of rewound drafts [#150181](https://github.com/openclaw/openclaw/pull/150181).",
+      "Recover offline device sessions blocking Delete or Archive [#146588](https://github.com/openclaw/openclaw/pull/146588). Thanks @zachisfine, @obviyus, @jalehman.",
+      "Restore Continue on Gateway with pending device results [#147390](https://github.com/openclaw/openclaw/pull/147390). Thanks @obviyus, @masterswords1, @jalehman.",
+      "Reduce Gateway stalls while saving recaps [#147837](https://github.com/openclaw/openclaw/pull/147837).",
+      "Avoid session-list reloads when Activity recaps update [#148706](https://github.com/openclaw/openclaw/pull/148706).",
+      "Keep Activity recaps and image galleries current [#148814](https://github.com/openclaw/openclaw/pull/148814).",
+      "Keep Activity filters and search focus during navigation [#149176](https://github.com/openclaw/openclaw/pull/149176).",
+      "Preserve stored conversations in Activity navigation [#149513](https://github.com/openclaw/openclaw/pull/149513).",
+      "Skip conversation recaps for scheduled jobs [#150965](https://github.com/openclaw/openclaw/pull/150965). Thanks @giodl73-repo.",
+      "Keep screen actions in the requesting browser [#147647](https://github.com/openclaw/openclaw/pull/147647).",
+      "Keep artifact reads working during concurrent archival [#145625](https://github.com/openclaw/openclaw/pull/145625).",
+      "Reduce repeated session admission scans with schema21 [#149388](https://github.com/openclaw/openclaw/pull/149388). Thanks @todddickerson.",
+      "Reduce memory use during legacy-session migration [#149704](https://github.com/openclaw/openclaw/pull/149704).",
+      "Preserve retained session history through Doctor migrations [#149741](https://github.com/openclaw/openclaw/pull/149741).",
+      "Repair older shared databases before recording pending plugin migrations [#149753](https://github.com/openclaw/openclaw/pull/149753).",
+      "Finish deferred migrations when upgrading from older versions [#149913](https://github.com/openclaw/openclaw/pull/149913). Thanks @fuller-stack-dev.",
+      "Handle damaged retained session history during updates [#149956](https://github.com/openclaw/openclaw/pull/149956).",
+      "Check current plugin migrations before archiving retained sessions [#149964](https://github.com/openclaw/openclaw/pull/149964).",
+      "Archive orphan transcripts after deferred plugin migrations [#150015](https://github.com/openclaw/openclaw/pull/150015).",
+      "Keep legacy session repairs in Doctor [#150110](https://github.com/openclaw/openclaw/pull/150110).",
+      "Move legacy pairing and delivery repairs to Doctor [#150190](https://github.com/openclaw/openclaw/pull/150190).",
+      "Require affirmative consent for interactive update repair [#146693](https://github.com/openclaw/openclaw/pull/146693). Thanks @fuller-stack-dev, @as76.",
+      "Owner update requests through default tool profiles [#145573](https://github.com/openclaw/openclaw/pull/145573).",
+      "Prevent Mac metadata files from stopping backups [#140989](https://github.com/openclaw/openclaw/pull/140989). Thanks @ericcaiwx-star, @obviyus, @pollybot13.",
+      "Preserve committed data across SQLite backup hardlink aliases [#144624](https://github.com/openclaw/openclaw/pull/144624). Thanks @obviyus, @aron-intframe.",
+      "Preserve cyclic and dangling links in backups [#146161](https://github.com/openclaw/openclaw/pull/146161). Thanks @obviyus, @adele-with-a-b.",
+      "Verify and stage-restore backups with Windows UNC paths [#148386](https://github.com/openclaw/openclaw/pull/148386).",
+      "Preserve unavailable agents' previous Git backups [#149265](https://github.com/openclaw/openclaw/pull/149265). Thanks @yetval.",
+      "Prevent stale legacy messages from replaying after upgrades [#146583](https://github.com/openclaw/openclaw/pull/146583). Thanks @iwhatsskill, @scottrawson-sketch.",
+      "Finish update repair after redundant plugin-path cleanup [#144367](https://github.com/openclaw/openclaw/pull/144367). Thanks @theangrypit, @cassiemei, @obviyus.",
+      "Preserve OpenClaw package names in repair commands [#144808](https://github.com/openclaw/openclaw/pull/144808). Thanks @romneyda.",
+      "Keep core updates moving when compatible plugin updates are unavailable [#145045](https://github.com/openclaw/openclaw/pull/145045). Thanks @blaekmajik, @noma-marketplacedb, @zhangmianzhong-glitch.",
+      "Preserve source-built plugins during repair and updates [#145356](https://github.com/openclaw/openclaw/pull/145356). Thanks @donniefi.",
+      "Retain unavailable-plugin update diagnostics [#145369](https://github.com/openclaw/openclaw/pull/145369). Thanks @fuller-stack-dev.",
+      "Complete bundled plugin files on the first Git update [#145664](https://github.com/openclaw/openclaw/pull/145664).",
+      "Preserve custom-plugin sibling imports during updates [#146616](https://github.com/openclaw/openclaw/pull/146616). Thanks Jenna Brinning.",
+      "Preserve explicitly linked plugins during core updates [#147009](https://github.com/openclaw/openclaw/pull/147009). Thanks @obviyus.",
+      "Clear false migration warnings for installed bundled runtimes [#149653](https://github.com/openclaw/openclaw/pull/149653). Thanks @obviyus.",
+      "Keep unavailable configured plugins from rolling back core updates [#150016](https://github.com/openclaw/openclaw/pull/150016). Thanks @olli0103, @holny.",
+      "Preserve plugin settings when configured paths cannot be inspected [#150312](https://github.com/openclaw/openclaw/pull/150312). Thanks @olli0103.",
+      "Recover official plugin updates and separate retry notices [b6073553b799](https://github.com/openclaw/openclaw/commit/b6073553b799d81cb4805cc6111e73545d9b5d24). Thanks @finn763, @shakkernerd.",
+      "Let upgrades continue while unavailable plugin migrations wait [dac3cb6d47c2](https://github.com/openclaw/openclaw/commit/dac3cb6d47c2387442b3e50327fe6346af6d3232).",
+      "Preserve compatible state when switching to npm stable [#144155](https://github.com/openclaw/openclaw/pull/144155).",
+      "Unblock pnpm 12 global update staging [#144713](https://github.com/openclaw/openclaw/pull/144713). Thanks @xilopaint.",
+      "Continue npm updates after baseline scan timeouts [#144758](https://github.com/openclaw/openclaw/pull/144758).",
+      "Complete pnpm updates after package directory changes [#144778](https://github.com/openclaw/openclaw/pull/144778). Thanks @obviyus, @xilopaint.",
+      "Install explicitly selected packages when versions match [#144894](https://github.com/openclaw/openclaw/pull/144894). Thanks @romneyda.",
+      "Allow longer baseline package scans on slow disks [#144925](https://github.com/openclaw/openclaw/pull/144925). Thanks @njuboy11, @vincentkoc, @richard355168, @highsensor, @jaysonsolis, @baumus.",
+      "Explain skipped updates for unsupported installations [#145193](https://github.com/openclaw/openclaw/pull/145193). Thanks @robotx5.",
+      "Preserve macOS launcher permissions during updates and rollback [#145282](https://github.com/openclaw/openclaw/pull/145282). Thanks @pollybot13, @yuxiao345, @alexph-dev, @oktrev, @rileyjjy.",
+      "Compare package build identity before skipping updates [#145349](https://github.com/openclaw/openclaw/pull/145349). Thanks @nmotyl.",
+      "Stage Git update objects before stopping the Gateway [#145501](https://github.com/openclaw/openclaw/pull/145501). Thanks @romneyda, @fuller-stack-dev.",
+      "Recognize custom npm prefixes when updating [#146091](https://github.com/openclaw/openclaw/pull/146091). Thanks Rex Horizon.",
+      "Avoid lint memory exhaustion during older Git upgrades [#146186](https://github.com/openclaw/openclaw/pull/146186).",
+      "Restore Gateway after verified pnpm replacement [#146395](https://github.com/openclaw/openclaw/pull/146395). Thanks @obviyus, @timetrvlr.",
+      "Preserve selected packages during repeated managed updates [#146756](https://github.com/openclaw/openclaw/pull/146756).",
+      "Accept Bun pipes during managed update handoff [#149150](https://github.com/openclaw/openclaw/pull/149150).",
+      "Protect other installations during Node update recovery [#150526](https://github.com/openclaw/openclaw/pull/150526). Thanks @arrobapontocom-ui.",
+      "Prevent older updaters from rolling back healthy Gateway updates [#151977](https://github.com/openclaw/openclaw/pull/151977).",
+      "Preserve pkg-owned files during self-update [#147988](https://github.com/openclaw/openclaw/pull/147988). Thanks @vincentkoc, @lucarinaorg.",
+      "Check system Node during Bun-driven Git updates [#149083](https://github.com/openclaw/openclaw/pull/149083).",
+      "Tolerate missing historical objects during partial-clone updates [#150788](https://github.com/openclaw/openclaw/pull/150788). Thanks @romneyda.",
+      "Explain missing Git objects during updates [#150793](https://github.com/openclaw/openclaw/pull/150793). Thanks @romneyda.",
+      "Report updates blocked by local edits as failures [77985738b800](https://github.com/openclaw/openclaw/commit/77985738b80008aa31f0e74f7c919d5e7d746275). Thanks @romneyda.",
+      "Fix false runtime-pin failures in Linux service installs [#150952](https://github.com/openclaw/openclaw/pull/150952).",
+      "Keep unchanged Linux Gateways restartable after upgrades [#151049](https://github.com/openclaw/openclaw/pull/151049).",
+      "Preserve local package changes during updates [#89985](https://github.com/openclaw/openclaw/pull/89985). Thanks @fuller-stack-dev.",
+      "Honor local override replay in fresh-profile updates [#145754](https://github.com/openclaw/openclaw/pull/145754).",
+      "Clean up cancelled update checks and adjust inspection deadlines [#144542](https://github.com/openclaw/openclaw/pull/144542). Thanks @jalehman.",
+      "Fix Windows update snapshots with extended-length paths [#144688](https://github.com/openclaw/openclaw/pull/144688). Thanks @fszcd, @rogerspires4452-dev, @yyds-xxxx, @unknowbug, @nachopenclaw-svg.",
+      "Let updates finish copying large databases [#144901](https://github.com/openclaw/openclaw/pull/144901). Thanks @vincentkoc, @baumus, @jplavoiemtl.",
+      "Fix updates blocked by former Workshop workspaces [#145084](https://github.com/openclaw/openclaw/pull/145084). Thanks @compoodment.",
+      "Keep development updates on selected source and enforce deadlines [#145300](https://github.com/openclaw/openclaw/pull/145300). Thanks @theangrypit, @fuller-stack-dev.",
+      "Avoid sandbox port conflicts during update checks [#145342](https://github.com/openclaw/openclaw/pull/145342). Thanks @carme99.",
+      "Allow updates with intentional open-group policies [#145379](https://github.com/openclaw/openclaw/pull/145379). Thanks @donniefi, @patrykpatryk5.",
+      "Keep copied background tasks idle during update checks [#145496](https://github.com/openclaw/openclaw/pull/145496).",
+      "Avoid false update rejection with debug capture [#145547](https://github.com/openclaw/openclaw/pull/145547).",
+      "Preserve live workspace files during update rehearsal [#145606](https://github.com/openclaw/openclaw/pull/145606). Thanks @xbb19730559, @itilys, @githoubi, @ggfp2dhtht-wq, @romneyda.",
+      "Choose update snapshot storage for databases and plugins [#145802](https://github.com/openclaw/openclaw/pull/145802). Thanks @sootyax.",
+      "Avoid full history copies during update checks [#146027](https://github.com/openclaw/openclaw/pull/146027). Thanks @jalehman.",
+      "Preserve authentication policy settings during update checks [#146071](https://github.com/openclaw/openclaw/pull/146071). Thanks @jj5638521.",
+      "Keep update checks on foreground Gateway startup [#147011](https://github.com/openclaw/openclaw/pull/147011).",
+      "Defer plugin downloads during update validation [#148694](https://github.com/openclaw/openclaw/pull/148694). Thanks @aaronqianaa.",
+      "Show known installed versions and explain unresolved update targets [#149693](https://github.com/openclaw/openclaw/pull/149693). Thanks @obviyus.",
+      "Report Node compatibility in update previews [#149718](https://github.com/openclaw/openclaw/pull/149718). Thanks @water-run.",
+      "Pause update heartbeats during activation Doctor repairs [#149823](https://github.com/openclaw/openclaw/pull/149823). Thanks @masatohoshino.",
+      "Restore custom-plugin Doctor checks in update rehearsals [#150978](https://github.com/openclaw/openclaw/pull/150978). Thanks @romneyda.",
+      "Defer MCP connections during update validation [b18667756495](https://github.com/openclaw/openclaw/commit/b186677564956fa9c4f311e2670f57c2c37c7ede). Thanks @zzs12345-web.",
+      "Move update-check storage work into the background worker [#150824](https://github.com/openclaw/openclaw/pull/150824).",
+      "Keep interrupted updates from leaving service commands in control [#143905](https://github.com/openclaw/openclaw/pull/143905). Thanks @fuller-stack-dev.",
+      "Keep retired update records from blocking settings writes [#144208](https://github.com/openclaw/openclaw/pull/144208).",
+      "Preserve recorded failure phases in update reports [#144281](https://github.com/openclaw/openclaw/pull/144281). Thanks @jason-allen-oneal, @fuller-stack-dev.",
+      "Allow authorized Linux updates past Gateway stop checks [#144532](https://github.com/openclaw/openclaw/pull/144532). Thanks @jalehman.",
+      "Allow normal operations before update storage initialization [#144715](https://github.com/openclaw/openclaw/pull/144715). Thanks @fuller-stack-dev.",
+      "Preserve the initial error in failed-update diagnostics [#144729](https://github.com/openclaw/openclaw/pull/144729). Thanks @richard355168.",
+      "Report the real configuration error during update repair [#144819](https://github.com/openclaw/openclaw/pull/144819). Thanks @romneyda, @fuller-stack-dev.",
+      "Show one next step for update recovery [#144822](https://github.com/openclaw/openclaw/pull/144822). Thanks @romneyda.",
+      "Avoid implying rollback in update failure reports [#145039](https://github.com/openclaw/openclaw/pull/145039). Thanks @bodegaclaw.",
+      "Run update repair with the version that owns the data [#145044](https://github.com/openclaw/openclaw/pull/145044). Thanks @jalehman, @vincentkoc, @pfrederiksen, @rosssaunders.",
+      "Recover safe permission drift after interrupted update storage creation [#145085](https://github.com/openclaw/openclaw/pull/145085).",
+      "Recover Linux updates after Gateway shutdown errors [#145094](https://github.com/openclaw/openclaw/pull/145094). Thanks @eleqtrizit.",
+      "Let validated update repairs apply Doctor migrations [#145215](https://github.com/openclaw/openclaw/pull/145215). Thanks @bodegaclaw.",
+      "Remove misleading recovery claims after finalization failure [#145321](https://github.com/openclaw/openclaw/pull/145321). Thanks @fuller-stack-dev.",
+      "Preserve failing checks in update reports [#145390](https://github.com/openclaw/openclaw/pull/145390). Thanks @vincentkoc, @zhangguiping-xydt, @guarismo, @jason-allen-oneal.",
+      "Keep update recovery checks on the selected database [#145507](https://github.com/openclaw/openclaw/pull/145507).",
+      "Preserve failure diagnostics during automated update repair [#146229](https://github.com/openclaw/openclaw/pull/146229).",
+      "Preserve exact file identity during update handoff [#146461](https://github.com/openclaw/openclaw/pull/146461).",
+      "Continue update repair and restore Gateway after updater exit [#146514](https://github.com/openclaw/openclaw/pull/146514).",
+      "Preserve diagnostics after update cleanup fails [#146529](https://github.com/openclaw/openclaw/pull/146529). Thanks @fuller-stack-dev.",
+      "Stop stale retry advice after a newer update [#146982](https://github.com/openclaw/openclaw/pull/146982). Thanks @vincentkoc, @rosssaunders.",
+      "Bound update activation and allow slower Windows identity checks [#147019](https://github.com/openclaw/openclaw/pull/147019). Thanks @rogerspires4452-dev, @hermannmetzker-ai, @zaraki-a.",
+      "Preserve update finalization failure details [#147286](https://github.com/openclaw/openclaw/pull/147286). Thanks @navras98.",
+      "Explain recovery after Doctor refuses a Git update [#147404](https://github.com/openclaw/openclaw/pull/147404). Thanks @obviyus.",
+      "Clarify update verification and recovery reports [#147553](https://github.com/openclaw/openclaw/pull/147553). Thanks @freshxiaoyao.",
+      "Retain actionable update-check failures [#147581](https://github.com/openclaw/openclaw/pull/147581). Thanks @romneyda.",
+      "Attribute update failures to the correct check [#147583](https://github.com/openclaw/openclaw/pull/147583). Thanks @romneyda.",
+      "Complete the updater’s Doctor handoff [#147615](https://github.com/openclaw/openclaw/pull/147615).",
+      "Separate update checks from installation progress [#147724](https://github.com/openclaw/openclaw/pull/147724). Thanks @vyctorbrzezowski.",
+      "Explain invalid configuration at update preflight [#147771](https://github.com/openclaw/openclaw/pull/147771). Thanks @gryffindorhammer.",
+      "Handle missing Windows process timestamps during updates [#147797](https://github.com/openclaw/openclaw/pull/147797). Thanks @rogerspires4452-dev, @fazedors.",
+      "Show status feedback and earlier disk warnings [#147883](https://github.com/openclaw/openclaw/pull/147883).",
+      "Keep update readiness checks off managed proxy [#147941](https://github.com/openclaw/openclaw/pull/147941). Thanks @yoyo837.",
+      "Finish managed upgrades started by OpenClaw 2026.9.3 [#148604](https://github.com/openclaw/openclaw/pull/148604). Thanks @jalehman.",
+      "Retain installed version and Doctor exit in update reports [#148702](https://github.com/openclaw/openclaw/pull/148702). Thanks @nickfost.",
+      "Clarify update verification and finish applying saved model keys [#148830](https://github.com/openclaw/openclaw/pull/148830). Thanks @vincentkoc.",
+      "Verify update recovery before reporting successful repair [#148968](https://github.com/openclaw/openclaw/pull/148968). Thanks @pollybot13, @rlosito, @sinenguquko.",
+      "Keep restart notices with the Gateway being updated [#149047](https://github.com/openclaw/openclaw/pull/149047). Thanks @vincentkoc.",
+      "Preserve the reason managed update handoff failed [#149202](https://github.com/openclaw/openclaw/pull/149202). Thanks @leoin1, @373246784-design, @flyintothesky.",
+      "Include recognized causes beside update exit codes [#149399](https://github.com/openclaw/openclaw/pull/149399). Thanks @guxiangya, @jhvics1, @arnehorn, @gbates19-jpg, @jh-pm, @rshields-tfd.",
+      "Prevent update progress writes from blocking Doctor [#149509](https://github.com/openclaw/openclaw/pull/149509). Thanks @shakkernerd.",
+      "Identify configuration errors that block updates [#149571](https://github.com/openclaw/openclaw/pull/149571). Thanks @mmhzlrj, @ghank, @clawli-coder, @oxiaom, @qudingshun, @phucmep91-debug, @caiming0331.",
+      "Wait for busy update history and explain deferred updates [#149598](https://github.com/openclaw/openclaw/pull/149598). Thanks @caiming0331.",
+      "Log unexpected Gateway update exceptions [#149939](https://github.com/openclaw/openclaw/pull/149939). Thanks @chelsealong, @tannhatcms.",
+      "Keep update JSON clear of finalization diagnostics [#150061](https://github.com/openclaw/openclaw/pull/150061).",
+      "Avoid false cleanup failures on busy hosts [#150392](https://github.com/openclaw/openclaw/pull/150392).",
+      "Preserve useful details in unexpected update failures [#151089](https://github.com/openclaw/openclaw/pull/151089). Thanks @isinghmitesh.",
+      "Keep temporary Doctor cleanup failures from blocking updates [#151110](https://github.com/openclaw/openclaw/pull/151110). Thanks @osipovia, @nktoronto, @qq2744138qq, @zaraki-a, @youfa08, @legion-web3, @luomou12.",
+      "Repair external systemd installs and clear refusal-only warnings [#151132](https://github.com/openclaw/openclaw/pull/151132). Thanks @thaman666, @chac4l.",
+      "Preserve update channels through Node recovery [#151150](https://github.com/openclaw/openclaw/pull/151150). Thanks @arrobapontocom-ui.",
+      "Restore Gateway restarts after package upgrades [#151179](https://github.com/openclaw/openclaw/pull/151179).",
+      "Preserve update failure details without repeating errors [7423bc2a4cb6](https://github.com/openclaw/openclaw/commit/7423bc2a4cb60d0c5edf3ba94b4a6fcca7694e06). Thanks @romneyda.",
+      "Wait for Gateway reachability before refreshing login [6c6b03462404](https://github.com/openclaw/openclaw/commit/6c6b03462404b36e68e269fcbceb678294a236a7). Thanks @sallyom, @fuller-stack-dev.",
+      "Restore the stopped Gateway after failed repair and clear stale recovery prompts [#151003](https://github.com/openclaw/openclaw/pull/151003). Thanks @shadesurgeon.",
+      "Preserve update ownership when recovery is pending [#144314](https://github.com/openclaw/openclaw/pull/144314). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Stop configuration changes after update ownership is lost [#144315](https://github.com/openclaw/openclaw/pull/144315). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Avoid startup hangs during address checks [#80921](https://github.com/openclaw/openclaw/pull/80921). Thanks @leegisang, @fuller-stack-dev.",
+      "Warn when Windows state is stored in OneDrive [#123720](https://github.com/openclaw/openclaw/pull/123720). Thanks @mohammedalkindi, @vincentkoc, @haruaiclone-droid.",
+      "Keep restart timing stable across clock changes [#137191](https://github.com/openclaw/openclaw/pull/137191). Thanks @xialonglee, @patrick-erichsen.",
+      "Restart Windows Gateways with redirected launcher output [#137374](https://github.com/openclaw/openclaw/pull/137374). Thanks @akagifreeez, @vincentkoc.",
+      "Preserve literal paths in Linux service units [#137831](https://github.com/openclaw/openclaw/pull/137831). Thanks @fuller-stack-dev.",
+      "Wait for Tailscale readiness before claiming Serve or Funnel [#140309](https://github.com/openclaw/openclaw/pull/140309). Thanks @ylcn91, @liuyu1984.",
+      "Wait for Gateway health after Doctor restarts [#142497](https://github.com/openclaw/openclaw/pull/142497). Thanks @zackmsa777-a11y, @jalehman, @novaunboundai.",
+      "Preserve Doctor warnings after failed rollback [#143839](https://github.com/openclaw/openclaw/pull/143839). Thanks @xialonglee.",
+      "Fix Mac Gateway reinstall with a self-referencing wrapper [#144053](https://github.com/openclaw/openclaw/pull/144053). Thanks @chelsealong, @obviyus, @xaver-savemyphone.",
+      "Complete Gateway restarts after forced child cleanup [#144069](https://github.com/openclaw/openclaw/pull/144069). Thanks @jalehman.",
+      "Preserve legacy sandbox files after quarantine failure [#144787](https://github.com/openclaw/openclaw/pull/144787). Thanks @alix-007, @obviyus.",
+      "Preserve Unix termination signals through startup wrappers [#144838](https://github.com/openclaw/openclaw/pull/144838). Thanks @shakkernerd.",
+      "Fix account-switched service probes and explain repair blockers [#145023](https://github.com/openclaw/openclaw/pull/145023). Thanks @deltaecho3, @mattfaus, @jared-oberhaus.",
+      "Explain temporary tool limits after restart [#145057](https://github.com/openclaw/openclaw/pull/145057). Thanks @sunnyshu0925, @abacha, @obviyus.",
+      "Cancel dashboard preparation during Gateway shutdown [#145118](https://github.com/openclaw/openclaw/pull/145118).",
+      "Restart Linux Gateways after Doctor repairs [#145220](https://github.com/openclaw/openclaw/pull/145220). Thanks @bruce-yii, @kip-claw.",
+      "Recover orphan task deliveries with Doctor [#145284](https://github.com/openclaw/openclaw/pull/145284). Thanks @fuller-stack-dev, @githoubi.",
+      "Recover orphan task records before starting an update [#145312](https://github.com/openclaw/openclaw/pull/145312). Thanks @fuller-stack-dev, @githoubi.",
+      "Doctor warnings for Linux service shutdown settings [#145322](https://github.com/openclaw/openclaw/pull/145322). Thanks @iwhatsskill, @deregtx, @dasx.",
+      "Continue repair after safely skipped audit recovery [#145376](https://github.com/openclaw/openclaw/pull/145376). Thanks @robertemetz-afk.",
+      "Show Linux port clients with spaced process names [#145465](https://github.com/openclaw/openclaw/pull/145465).",
+      "Count work inspection toward Gateway pause expiry [#145471](https://github.com/openclaw/openclaw/pull/145471).",
+      "Retain Linux service inspection after session-bus loss [#145597](https://github.com/openclaw/openclaw/pull/145597). Thanks @fuller-stack-dev.",
+      "Avoid false service-name mismatches during Linux updates [#146090](https://github.com/openclaw/openclaw/pull/146090).",
+      "Restore startup after older updaters rewrite legacy settings [#146139](https://github.com/openclaw/openclaw/pull/146139).",
+      "Wait for Gateway ownership during restart [#146189](https://github.com/openclaw/openclaw/pull/146189). Thanks @waynegault.",
+      "Complete Doctor repairs for older installations [#146196](https://github.com/openclaw/openclaw/pull/146196).",
+      "Finish native Gateway shutdown when calls ignore cancellation [#146217](https://github.com/openclaw/openclaw/pull/146217). Thanks @waynegault.",
+      "Recover Windows stop and restart after process inspection fails [#146387](https://github.com/openclaw/openclaw/pull/146387). Thanks @fszcd, @milo-yellow.",
+      "Preserve referenced environment credentials during startup [#146660](https://github.com/openclaw/openclaw/pull/146660). Thanks @foxsky, @fuller-stack-dev.",
+      "Let database workers finish during Doctor repair [#146714](https://github.com/openclaw/openclaw/pull/146714).",
+      "Explain remaining Gateway processes blocking Linux maintenance [#146865](https://github.com/openclaw/openclaw/pull/146865). Thanks @vacinc.",
+      "Preserve running Gateways during restart cleanup [#147242](https://github.com/openclaw/openclaw/pull/147242). Thanks @deyangar, @shojikumaru.",
+      "Keep Doctor saving task flows after module reloads [#147292](https://github.com/openclaw/openclaw/pull/147292).",
+      "Verify a replacement Gateway before reporting restart completion [#147437](https://github.com/openclaw/openclaw/pull/147437). Thanks @miluo-star, @taihartman.",
+      "Reduce Doctor work on large conversation histories [#147464](https://github.com/openclaw/openclaw/pull/147464). Thanks @vacinc.",
+      "Stop ended tasks delaying subsequent restarts [#147585](https://github.com/openclaw/openclaw/pull/147585). Thanks @gregbond, @vacinc.",
+      "Cancel background recaps when shutdown begins [#147713](https://github.com/openclaw/openclaw/pull/147713).",
+      "Let update repair run its own Doctor maintenance [#147720](https://github.com/openclaw/openclaw/pull/147720). Thanks @rogerspires4452-dev.",
+      "Avoid false credential warnings for unavailable plugins [#147888](https://github.com/openclaw/openclaw/pull/147888). Thanks @zhangguiping-xydt.",
+      "Avoid false maintenance failures during shutdown [#147904](https://github.com/openclaw/openclaw/pull/147904). Thanks @obviyus.",
+      "Report plugin cleanup failures during shutdown [#147917](https://github.com/openclaw/openclaw/pull/147917). Thanks @obviyus.",
+      "Keep updates connected to the intended service manager [#148061](https://github.com/openclaw/openclaw/pull/148061). Thanks @romneyda.",
+      "Keep Doctor cleanup scoped to its own database clients [#148126](https://github.com/openclaw/openclaw/pull/148126).",
+      "Cancel idle node-readiness waits during shutdown [#148544](https://github.com/openclaw/openclaw/pull/148544).",
+      "Preserve stopped private inputs through Doctor repair [#148625](https://github.com/openclaw/openclaw/pull/148625). Thanks @fuller-stack-dev.",
+      "Restore Windows Scheduled Task inspection diagnostics [#148671](https://github.com/openclaw/openclaw/pull/148671). Thanks @westaicommerce.",
+      "Recognize systemd system services in status and Doctor [#149055](https://github.com/openclaw/openclaw/pull/149055). Thanks @cookywook.",
+      "Let Doctor wait for slow Gateway restarts [#149422](https://github.com/openclaw/openclaw/pull/149422). Thanks @novaunboundai.",
+      "Avoid unrelated service errors in Gateway status [#149654](https://github.com/openclaw/openclaw/pull/149654). Thanks @obviyus.",
+      "Preserve Gateway credentials when reinstalling legacy services [#149686](https://github.com/openclaw/openclaw/pull/149686). Thanks @tlopez80-a11y, @yuexiaoyong-star.",
+      "Preserve caller signal handling in FreeBSD service discovery [#149706](https://github.com/openclaw/openclaw/pull/149706). Thanks @vincentkoc, @lucarinaorg.",
+      "Prevent Doctor restart inspection from timing out on systemd [#149970](https://github.com/openclaw/openclaw/pull/149970). Thanks @kip-claw.",
+      "Quarantine changed legacy audit archives and continue repairs [#150425](https://github.com/openclaw/openclaw/pull/150425).",
+      "Allow updates when service inspection is unavailable [#150494](https://github.com/openclaw/openclaw/pull/150494).",
+      "Preserve channel-account ownership through legacy upgrades [#150555](https://github.com/openclaw/openclaw/pull/150555). Thanks @arrobapontocom-ui, @lwh0424, @hyspacex.",
+      "Honor prepared empty migration lists in Doctor validation [#150730](https://github.com/openclaw/openclaw/pull/150730).",
+      "Check maintenance ownership before stopping the Gateway [#150848](https://github.com/openclaw/openclaw/pull/150848). Thanks @romneyda.",
+      "Preserve legacy speech preferences and explain local memory setup [#150927](https://github.com/openclaw/openclaw/pull/150927). Thanks @arrobapontocom-ui.",
+      "Fix Doctor diagnostics for keyed agent configurations [7133cee79246](https://github.com/openclaw/openclaw/commit/7133cee79246af3854f216cdb9acde5a07bd3366). Thanks @romneyda.",
+      "Keep Windows scheduled Gateways running after restart [7c51ba75120a](https://github.com/openclaw/openclaw/commit/7c51ba75120ad3fd0e97fdc8da064f4fd15c392c). Thanks @ly85206559.",
+      "Preserve managed environment keys during startup repair [778d6fef4894](https://github.com/openclaw/openclaw/commit/778d6fef489410aead93c5e4d5e8356ee8f6ef1a). Thanks @dasx, @fuller-stack-dev.",
+      "Fit Gateway shutdown within systemd stop deadlines [#150954](https://github.com/openclaw/openclaw/pull/150954).",
+      "Honor stop deadlines for externally managed Linux services [#151142](https://github.com/openclaw/openclaw/pull/151142).",
+      "Prepare chat metadata on demand instead of warming every agent [#149716](https://github.com/openclaw/openclaw/pull/149716). Thanks @609nft.",
+      "Reduce background-worker memory growth in large fleets [#150354](https://github.com/openclaw/openclaw/pull/150354). Thanks @609nft.",
+      "Make online JSON status responsive on large agent fleets [#150269](https://github.com/openclaw/openclaw/pull/150269). Thanks @609nft.",
+      "Fix shutdown tracking after verifier errors [#144451](https://github.com/openclaw/openclaw/pull/144451).",
+      "Recover misplaced duplicate agent databases during upgrades [#144714](https://github.com/openclaw/openclaw/pull/144714).",
+      "Keep healthy agents online during secondary database conflicts [#145426](https://github.com/openclaw/openclaw/pull/145426).",
+      "Recover agent registrations after interrupted upgrades [#145595](https://github.com/openclaw/openclaw/pull/145595).",
+      "Continue Doctor repairs after legacy directory conflicts [#146092](https://github.com/openclaw/openclaw/pull/146092). Thanks Aristotelianism.",
+      "Repair duplicate Windows database paths [#147762](https://github.com/openclaw/openclaw/pull/147762). Thanks @taihartman, @agebreak0083, @amadeubordaneto.",
+      "Repair legacy Workshop catalog damage through Doctor [#148834](https://github.com/openclaw/openclaw/pull/148834).",
+      "Complete history migration with unused configured agents [#148901](https://github.com/openclaw/openclaw/pull/148901). Thanks @vincentkoc.",
+      "Explain database-version refusals during startup and status [#149168](https://github.com/openclaw/openclaw/pull/149168). Thanks @mtoko.",
+      "Unblock unused agents with empty legacy session indexes [#149260](https://github.com/openclaw/openclaw/pull/149260). Thanks @wangmiao0668000666.",
+      "Include custom agent databases in Doctor repair [#149268](https://github.com/openclaw/openclaw/pull/149268). Thanks @609nft.",
+      "Preserve session state across repeated Doctor repairs [#149308](https://github.com/openclaw/openclaw/pull/149308).",
+      "Allow Doctor maintenance after slow database preparation [#149380](https://github.com/openclaw/openclaw/pull/149380). Thanks @shakkernerd.",
+      "Show the original database-opening error [#149554](https://github.com/openclaw/openclaw/pull/149554).",
+      "Allow Bun to open more than four SQLite stores [#149663](https://github.com/openclaw/openclaw/pull/149663).",
+      "Preserve unknown database write outcomes during recovery [#149881](https://github.com/openclaw/openclaw/pull/149881).",
+      "Preserve shared database files when a custom restore is refused [#149918](https://github.com/openclaw/openclaw/pull/149918).",
+      "Preserve uncertain nested write outcomes during lease failures [#150055](https://github.com/openclaw/openclaw/pull/150055).",
+      "Keep healthy agents available during slow database checks [#150755](https://github.com/openclaw/openclaw/pull/150755). Thanks @desksk.",
+      "Repair current-schema agent indexes during startup [#150819](https://github.com/openclaw/openclaw/pull/150819). Thanks @dh-js, @n0sn3b.",
+      "Reject uncertain session database ownership [#151174](https://github.com/openclaw/openclaw/pull/151174).",
+      "Fix Bun SQLite worker startup and cleanup [#145046](https://github.com/openclaw/openclaw/pull/145046).",
+      "Speed local session cleanup and correct archive accounting [#144232](https://github.com/openclaw/openclaw/pull/144232).",
+      "Wait through brief database contention during cleanup [#144355](https://github.com/openclaw/openclaw/pull/144355).",
+      "Reject outdated session deletion requests sooner [#144525](https://github.com/openclaw/openclaw/pull/144525). Thanks @hermanzeng.",
+      "Prevent Gateway crashes during large session cleanup [#145129](https://github.com/openclaw/openclaw/pull/145129). Thanks @aatreya.",
+      "Preserve sessions during active lifecycle changes [#146749](https://github.com/openclaw/openclaw/pull/146749).",
+      "Correct cleanup status after post-commit failures [#149546](https://github.com/openclaw/openclaw/pull/149546).",
+      "Retain inspection snapshots through database cleanup failures [#145360](https://github.com/openclaw/openclaw/pull/145360).",
+      "Avoid repeated integrity scans when reopening agent databases [#146512](https://github.com/openclaw/openclaw/pull/146512). Thanks @najef1979-code, @zyv5ge, @sollaci.",
+      "Await temporary SQLite snapshot cleanup [#146571](https://github.com/openclaw/openclaw/pull/146571).",
+      "Explain SQLite inspection failures and retry steps [#147476](https://github.com/openclaw/openclaw/pull/147476). Thanks @obviyus, @sunnyshu0925, @pfrederiksen.",
+      "Preserve database files during schema-version reads [#147633](https://github.com/openclaw/openclaw/pull/147633). Thanks @sunnyshu0925, @emilywinslow-source, @ayaangazali.",
+      "Reuse consistent plugin metadata during Doctor startup checks [#149737](https://github.com/openclaw/openclaw/pull/149737). Thanks @dgmoon1994, @fede-kamel.",
+      "Reclaim temporary database copies after interrupted runs [#150816](https://github.com/openclaw/openclaw/pull/150816). Thanks @vyctorbrzezowski, @glucksberg, @stwhwing.",
+      "Recover searchable conversations missing from old session registries [#120781](https://github.com/openclaw/openclaw/pull/120781). Thanks @leochun92-sudo, @fuller-stack-dev, @rybing7, @injinj, @countermarch.",
+      "Reject invalid redacted worker transcript batches cleanly [#143495](https://github.com/openclaw/openclaw/pull/143495). Thanks @vincentkoc.",
+      "Stop flagging system-agent state as abandoned [#144156](https://github.com/openclaw/openclaw/pull/144156). Thanks @emes, @obviyus.",
+      "Apply SQLite lock waiting when readers open [#144175](https://github.com/openclaw/openclaw/pull/144175).",
+      "Preserve session updates during database maintenance [#146732](https://github.com/openclaw/openclaw/pull/146732).",
+      "Preserve database error handling across module reloads [#146741](https://github.com/openclaw/openclaw/pull/146741).",
+      "Coordinate transcript writes with cleanup-worker shutdown [#147178](https://github.com/openclaw/openclaw/pull/147178).",
+      "Prevent startup failures during slow database checks [#147277](https://github.com/openclaw/openclaw/pull/147277). Thanks @vacinc.",
+      "Retry archived transcript recovery after asynchronous read errors [#147284](https://github.com/openclaw/openclaw/pull/147284).",
+      "Preserve session updates when participant cache refresh fails [#148607](https://github.com/openclaw/openclaw/pull/148607).",
+      "Coordinate database housekeeping with session writes [#148941](https://github.com/openclaw/openclaw/pull/148941).",
+      "Avoid unused avatar reads and preserve rollback-safe profiles [#148953](https://github.com/openclaw/openclaw/pull/148953).",
+      "Keep new sessions independent of unrelated archive failures [#148958](https://github.com/openclaw/openclaw/pull/148958).",
+      "Close database readers when ownership validation fails [#149228](https://github.com/openclaw/openclaw/pull/149228).",
+      "Stop revoked history restores and bound rebuild checks [#149333](https://github.com/openclaw/openclaw/pull/149333).",
+      "Track new sessions before their first transcript write [#149712](https://github.com/openclaw/openclaw/pull/149712).",
+      "Preserve Windows state-directory selection for queued database work [#149976](https://github.com/openclaw/openclaw/pull/149976).",
+      "Prevent stale Side chat and cloud transcript writes [#149997](https://github.com/openclaw/openclaw/pull/149997).",
+      "Preserve Windows state directories when opening database workers [#150035](https://github.com/openclaw/openclaw/pull/150035).",
+      "Preserve session ownership when recording blocked CLI turns [#150038](https://github.com/openclaw/openclaw/pull/150038).",
+      "Preserve Windows state directories during session writes [#150146](https://github.com/openclaw/openclaw/pull/150146).",
+      "Coordinate usage-cache writes with other database work [e6e377d7418a](https://github.com/openclaw/openclaw/commit/e6e377d7418a40e8ac0025c6f833980454de1376).",
+      "Preserve configuration edits made during Doctor confirmation [#145140](https://github.com/openclaw/openclaw/pull/145140). Thanks @shakkernerd.",
+      "Accurate config save and rollback errors [#145365](https://github.com/openclaw/openclaw/pull/145365). Thanks @shakkernerd.",
+      "Protect included settings from stale drafts [#145660](https://github.com/openclaw/openclaw/pull/145660). Thanks @obviyus.",
+      "Show literal configuration keys correctly [#145724](https://github.com/openclaw/openclaw/pull/145724).",
+      "Return complete JSON configuration errors [#145768](https://github.com/openclaw/openclaw/pull/145768). Thanks @alix-007, @obviyus.",
+      "Report unavailable config values as unset [#145872](https://github.com/openclaw/openclaw/pull/145872).",
+      "Preserve concurrent settings across autosaves [#145939](https://github.com/openclaw/openclaw/pull/145939). Thanks @obviyus.",
+      "Acknowledge saved settings after concurrent edits [#145983](https://github.com/openclaw/openclaw/pull/145983). Thanks @obviyus.",
+      "Save Settings reverts made during autosave [#146002](https://github.com/openclaw/openclaw/pull/146002). Thanks @obviyus.",
+      "Reject blank config batch inputs [#146053](https://github.com/openclaw/openclaw/pull/146053).",
+      "Accept configuration edits under startup overrides [#146275](https://github.com/openclaw/openclaw/pull/146275).",
+      "Preserve configuration and backups after failed saves [#146291](https://github.com/openclaw/openclaw/pull/146291). Thanks @obviyus.",
+      "Fix updates with model and agent settings in included files [#146743](https://github.com/openclaw/openclaw/pull/146743).",
+      "Preserve Settings drafts after failed configuration recovery [#146856](https://github.com/openclaw/openclaw/pull/146856). Thanks @obviyus.",
+      "Resume Settings autosave after Reload Config [#147136](https://github.com/openclaw/openclaw/pull/147136).",
+      "Move configuration health and audit persistence to the shared worker [#147256](https://github.com/openclaw/openclaw/pull/147256).",
+      "Refresh settings after rejected stale writes [#148143](https://github.com/openclaw/openclaw/pull/148143).",
+      "Preserve valid configuration during shared-state retirement [#148839](https://github.com/openclaw/openclaw/pull/148839). Thanks @vincentkoc.",
+      "Preserve exact filenames for configuration imports [#149629](https://github.com/openclaw/openclaw/pull/149629). Thanks @zhangguiping-xydt, @obviyus.",
+      "Allow approved chat config edits and separately approved corrections [#149870](https://github.com/openclaw/openclaw/pull/149870). Thanks @obviyus.",
+      "Reject conflicting Doctor maintenance requests [#117488](https://github.com/openclaw/openclaw/pull/117488). Thanks @fuller-stack-dev.",
+      "Reject oversized trajectory sources before parsing [#130877](https://github.com/openclaw/openclaw/pull/130877). Thanks @sunnyshu0925, @patrick-erichsen.",
+      "Explain USER.md size limits accurately in Doctor [#136967](https://github.com/openclaw/openclaw/pull/136967). Thanks @xialonglee, @patrick-erichsen, @majik360, @pawel-kowalczyk.",
+      "Reject empty audit time filters and limits [#137335](https://github.com/openclaw/openclaw/pull/137335). Thanks @alix-007.",
+      "Use selected-model context in Doctor tool checks [#144332](https://github.com/openclaw/openclaw/pull/144332).",
+      "Clear old log records after observed file disappearance [#144360](https://github.com/openclaw/openclaw/pull/144360).",
+      "Report temporary SQLite snapshot cleanup failures [#144558](https://github.com/openclaw/openclaw/pull/144558). Thanks @sunnyshu0925.",
+      "Explain Codex plugin health failures in Doctor [#144813](https://github.com/openclaw/openclaw/pull/144813). Thanks @romneyda.",
+      "Suppress repeated Bonjour warnings after interface removal [#144870](https://github.com/openclaw/openclaw/pull/144870). Thanks @tzy-17, @obviyus, @tontoko.",
+      "Preserve dashboard HTTP errors when repair text fails [#145227](https://github.com/openclaw/openclaw/pull/145227).",
+      "Include worker requests in latency diagnostics [#145602](https://github.com/openclaw/openclaw/pull/145602). Thanks @vincentkoc.",
+      "Count active sessions beyond the first history page [#146207](https://github.com/openclaw/openclaw/pull/146207).",
+      "Avoid full database copies during status ownership checks [#146213](https://github.com/openclaw/openclaw/pull/146213).",
+      "Stop suggesting invalid names as configuration choices [#146321](https://github.com/openclaw/openclaw/pull/146321). Thanks @vincentkoc.",
+      "Report blocked database checkpoints in status and Doctor [#146775](https://github.com/openclaw/openclaw/pull/146775). Thanks @thegizmopro.",
+      "Label the status session count as stored [#146979](https://github.com/openclaw/openclaw/pull/146979).",
+      "Keep status polling from delaying Gateway responses [#147141](https://github.com/openclaw/openclaw/pull/147141).",
+      "Label terminal session counts as stored sessions [#147273](https://github.com/openclaw/openclaw/pull/147273).",
+      "Report Claude directory inspection failures in Doctor [#147287](https://github.com/openclaw/openclaw/pull/147287). Thanks @alix-007, @obviyus.",
+      "Preserve new log records after concurrent truncation [#147311](https://github.com/openclaw/openclaw/pull/147311). Thanks @alix-007, @vincentkoc.",
+      "Show configuration inspection failures in support summaries [#147414](https://github.com/openclaw/openclaw/pull/147414).",
+      "Preserve node worker startup failure reasons [#147798](https://github.com/openclaw/openclaw/pull/147798).",
+      "Report actual trajectory export files [#147987](https://github.com/openclaw/openclaw/pull/147987).",
+      "Retain Gateway shutdown failure details after exit [#148163](https://github.com/openclaw/openclaw/pull/148163). Thanks @navras98.",
+      "Recover log following when rotation removes the active file [#148654](https://github.com/openclaw/openclaw/pull/148654). Thanks @alix-007, @fuller-stack-dev.",
+      "Fix Linux log-follow fallback timestamp compatibility [#148781](https://github.com/openclaw/openclaw/pull/148781). Thanks @alix-007, @obviyus.",
+      "Show shutdown triggers and recent Gateway stop history [#148910](https://github.com/openclaw/openclaw/pull/148910). Thanks @mtoko.",
+      "Show plugin names in text logs [#149011](https://github.com/openclaw/openclaw/pull/149011). Thanks @alix-007, Tak.",
+      "Identify slow session subscription warnings correctly [#149062](https://github.com/openclaw/openclaw/pull/149062).",
+      "Standardize malformed push-proxy credential errors [#149112](https://github.com/openclaw/openclaw/pull/149112).",
+      "Give slow Gateways more time for Doctor diagnostics [#149373](https://github.com/openclaw/openclaw/pull/149373).",
+      "Keep status reports available when Git checks are slow [#149491](https://github.com/openclaw/openclaw/pull/149491). Thanks @novaunboundai.",
+      "Return Doctor exit 2 for JSON runtime failures [#149713](https://github.com/openclaw/openclaw/pull/149713).",
+      "Preserve Doctor JSON output when SQLite workers log diagnostics [#150184](https://github.com/openclaw/openclaw/pull/150184).",
+      "Preserve SQLite failure details through cleanup errors [#150368](https://github.com/openclaw/openclaw/pull/150368).",
+      "Preserve final SQLite worker shutdown diagnostics [#150511](https://github.com/openclaw/openclaw/pull/150511).",
+      "Show repeated plugin diagnostics once in Doctor reports [#150796](https://github.com/openclaw/openclaw/pull/150796). Thanks @romneyda.",
+      "Distinguish status timeouts from connectivity failures [#150828](https://github.com/openclaw/openclaw/pull/150828). Thanks @romneyda.",
+      "Preserve session-read errors when cleanup also fails [#151163](https://github.com/openclaw/openclaw/pull/151163).",
+      "Preserve task diagnostics when worker shutdown also fails [#151177](https://github.com/openclaw/openclaw/pull/151177).",
+      "Show diagnostic details in plain Gateway warnings and errors [#151215](https://github.com/openclaw/openclaw/pull/151215).",
+      "Accept valid CPU profiles with out-of-order timestamps [#149276](https://github.com/openclaw/openclaw/pull/149276).",
+      "Accept valid negative coordinates in CPU profiles [#149597](https://github.com/openclaw/openclaw/pull/149597).",
+      "Accept CPU profiles containing WebAssembly callback frames [#149701](https://github.com/openclaw/openclaw/pull/149701).",
+      "Clarify memory-pressure guidance and named Doctor removals [#150894](https://github.com/openclaw/openclaw/pull/150894). Thanks @dom521.",
+      "Refresh dependencies and repair chat scrolling, voice cancellation and hidden Mac windows [#149908](https://github.com/openclaw/openclaw/pull/149908).",
+      "Show inferred Extended stable in update settings [#138952](https://github.com/openclaw/openclaw/pull/138952). Thanks @marmar9615-cloud, @obviyus.",
+      "Clear stale Git update prompts after refresh [#142959](https://github.com/openclaw/openclaw/pull/142959). Thanks @ly85206559.",
+      "Report built versions and flag stale Git builds [#143538](https://github.com/openclaw/openclaw/pull/143538). Thanks @romneyda.",
+      "Explain failures from outdated running installations [#143906](https://github.com/openclaw/openclaw/pull/143906). Thanks @romneyda.",
+      "Keep reconciliation imports stable across development rebuilds [#148561](https://github.com/openclaw/openclaw/pull/148561). Thanks @romneyda, @newsstand, @sonpiaz.",
+      "Keep outdated QA evidence out of current maturity coverage [#143976](https://github.com/openclaw/openclaw/pull/143976). Thanks @vincentkoc, @romneyda.",
+      "Restore code text in documentation titles [#144389](https://github.com/openclaw/openclaw/pull/144389). Thanks @vyctorbrzezowski.",
+      "Render complete labels containing angle brackets [#144390](https://github.com/openclaw/openclaw/pull/144390). Thanks @vyctorbrzezowski.",
+      "Report malformed docs search responses [#145613](https://github.com/openclaw/openclaw/pull/145613).",
+      "Restore docs publishing and preserve existing links [#146415](https://github.com/openclaw/openclaw/pull/146415). Thanks @hannesrudolph.",
+      "Keep unrelated SQLite files from blocking backups [#146700](https://github.com/openclaw/openclaw/pull/146700). Thanks @obviyus, @clawputerlabs.",
+      "Preserve backup discovery during concurrent state writes [#146912](https://github.com/openclaw/openclaw/pull/146912). Thanks @obviyus.",
+      "Correct backup commands in recovery guidance [#147023](https://github.com/openclaw/openclaw/pull/147023). Thanks @zzs12345-web.",
+      "Let slow Gateway startups finish during managed updates [#144890](https://github.com/openclaw/openclaw/pull/144890). Thanks @baumus.",
+      "Keep slow-starting Gateways running after update readiness expires [#149760](https://github.com/openclaw/openclaw/pull/149760). Thanks @djskinner, @novaunboundai.",
+      "Honor agent timeouts during setup and repair [#147422](https://github.com/openclaw/openclaw/pull/147422).",
+      "Preserve participant context for Discord and Slack replies [#145735](https://github.com/openclaw/openclaw/pull/145735).",
+      "Wait for pending Raft wake work during shutdown [#150070](https://github.com/openclaw/openclaw/pull/150070).",
+      "Restore Discord replies after reopening archived threads [#111148](https://github.com/openclaw/openclaw/pull/111148). Thanks @hanamizuki and @fuller-stack-dev.",
+      "Correct Discord thread permission diagnostics [#121144](https://github.com/openclaw/openclaw/pull/121144). Thanks @alix-007.",
+      "Honor configured Discord line limits in durable sends [#137969](https://github.com/openclaw/openclaw/pull/137969). Thanks @anyech, @davidbennett1979, and @patrick-erichsen.",
+      "Keep Discord model selections tied to available runtimes [#143322](https://github.com/openclaw/openclaw/pull/143322). Thanks @obviyus.",
+      "Prevent resolved Discord Activities from confusing later clicks [#145162](https://github.com/openclaw/openclaw/pull/145162).",
+      "Preserve resolved Discord account credentials [#145424](https://github.com/openclaw/openclaw/pull/145424).",
+      "Restore continuous GPT-Live conversations in Discord [#146289](https://github.com/openclaw/openclaw/pull/146289).",
+      "Wait for Discord interaction registration and cleanup [#146319](https://github.com/openclaw/openclaw/pull/146319).",
+      "Reduce Discord voice playback gaps and stale controls [#146798](https://github.com/openclaw/openclaw/pull/146798).",
+      "Finish voice processing before releasing temporary audio [#146885](https://github.com/openclaw/openclaw/pull/146885).",
+      "Update the Discord and OpenAI voice codec [#147093](https://github.com/openclaw/openclaw/pull/147093).",
+      "Preserve voice speech and pauses across playback gaps [#148023](https://github.com/openclaw/openclaw/pull/148023).",
+      "Prevent Gateway hangs during Discord voice join cleanup [#148638](https://github.com/openclaw/openclaw/pull/148638).",
+      "Reject malformed Discord message IDs before requests [#150151](https://github.com/openclaw/openclaw/pull/150151). Thanks @shakkernerd.",
+      "Reopen accessible unlocked Discord threads with Send Messages permission [#150216](https://github.com/openclaw/openclaw/pull/150216). Thanks @shakkernerd.",
+      "Restore Discord transcript capture across plugin loads [#150905](https://github.com/openclaw/openclaw/pull/150905). Thanks @romneyda.",
+      "Preserve Discord channel identity in commands and model selection [#148852](https://github.com/openclaw/openclaw/pull/148852). Thanks @k-oc-agent, @obviyus, and K.",
+      "Honor message IDs when reading Discord messages [#149113](https://github.com/openclaw/openclaw/pull/149113). Thanks @donniefi, @obviyus, and @dg-thinkgoode.",
+      "Restore Discord DM actions with channel-prefixed targets [#149201](https://github.com/openclaw/openclaw/pull/149201). Thanks @shakkernerd and @nissl24.",
+      "Keep presence-greeting storage from blocking Discord events [#149576](https://github.com/openclaw/openclaw/pull/149576).",
+      "Restore Discord thread bindings without blocking the main thread [#149861](https://github.com/openclaw/openclaw/pull/149861).",
+      "Finish accepted Discord introductions before shutdown [#150072](https://github.com/openclaw/openclaw/pull/150072).",
+      "Keep malformed LINE carousel replies readable as text [#113366](https://github.com/openclaw/openclaw/pull/113366). Thanks @edenfunf, @vincentkoc, and @patrick-erichsen.",
+      "Handle photos sent together in LINE as one turn [#132136](https://github.com/openclaw/openclaw/pull/132136). Thanks @edenfunf and @patrick-erichsen.",
+      "Explain disabled or missing LINE webhook settings [#133649](https://github.com/openclaw/openclaw/pull/133649). Thanks @edenfunf and @patrick-erichsen.",
+      "Make LINE block streaming settings work [#142145](https://github.com/openclaw/openclaw/pull/142145). Thanks @edenfunf and @patrick-erichsen.",
+      "Show one Slack progress card per command [#143879](https://github.com/openclaw/openclaw/pull/143879). Thanks @n1hility and @sallyom.",
+      "Keep command text stable when progress completes [#143880](https://github.com/openclaw/openclaw/pull/143880). Thanks @n1hility and @sallyom.",
+      "Honor proxy settings for Slack relay connections [#143881](https://github.com/openclaw/openclaw/pull/143881). Thanks @n1hility and @obviyus.",
+      "Preserve complete Slack replies without repeating native choices [#144653](https://github.com/openclaw/openclaw/pull/144653). Thanks @obviyus.",
+      "Preserve Slack diagnostics for cyclic errors [#145721](https://github.com/openclaw/openclaw/pull/145721). Thanks @alix-007 and @altaywtf.",
+      "Restore Slack onboarding after core updates [#147109](https://github.com/openclaw/openclaw/pull/147109). Thanks @vincentkoc.",
+      "Close Slack health-check connections [#147846](https://github.com/openclaw/openclaw/pull/147846).",
+      "Fall back safely for malformed Slack table headers [#148872](https://github.com/openclaw/openclaw/pull/148872).",
+      "Wait for pending Slack reply settlement during shutdown [#150073](https://github.com/openclaw/openclaw/pull/150073).",
+      "Reject malformed queued Slack relay records [#150406](https://github.com/openclaw/openclaw/pull/150406). Thanks @romneyda.",
+      "Retry Slack messages after temporary authorization failures [#150457](https://github.com/openclaw/openclaw/pull/150457). Thanks @pash-openai.",
+      "Prevent Slack control notifications from crashing the Gateway [#150608](https://github.com/openclaw/openclaw/pull/150608). Thanks @pash-openai.",
+      "Keep Slack threads responsive during queued work [bffda1f](https://github.com/openclaw/openclaw/commit/bffda1f9452113c1db771f694598c8e4ede380a0). Thanks @pash-openai.",
+      "Restore protected credential links in Telegram [#140079](https://github.com/openclaw/openclaw/pull/140079). Thanks @wantosure, @obviyus, @mganjoo, and @waterundman.",
+      "Show Telegram topic names in conversation titles [#140983](https://github.com/openclaw/openclaw/pull/140983). Thanks @obviyus.",
+      "Keep deliberately skipped Telegram messages from failing jobs [#143583](https://github.com/openclaw/openclaw/pull/143583). Thanks @sunlit-deng, @obviyus, and @jerabinovich.",
+      "Preserve Telegram input order and cancel buffered text with stop [#144839](https://github.com/openclaw/openclaw/pull/144839). Thanks @obviyus and @xilopaint.",
+      "Deliver plain Telegram text after legacy rich-message rejection [#145223](https://github.com/openclaw/openclaw/pull/145223). Thanks @0xalydev, @obviyus, and @elharonyclaw.",
+      "Restore Telegram persistent subagent conversations [#145543](https://github.com/openclaw/openclaw/pull/145543). Thanks @nimarosa, @obviyus, and @jackpothan.",
+      "Preserve queued Telegram messages interrupted by restart [#149953](https://github.com/openclaw/openclaw/pull/149953). Thanks @obviyus.",
+      "Keep reply and photo context in Telegram commands [#150028](https://github.com/openclaw/openclaw/pull/150028). Thanks @obviyus.",
+      "Wait for accepted Telegram work before account shutdown [#150080](https://github.com/openclaw/openclaw/pull/150080).",
+      "Keep Telegram model buttons tied to their original provider [#150880](https://github.com/openclaw/openclaw/pull/150880). Thanks @obviyus.",
+      "Correct Teams table boundaries around list code blocks [#146464](https://github.com/openclaw/openclaw/pull/146464).",
+      "Preserve escaped display names in Teams mentions [#146532](https://github.com/openclaw/openclaw/pull/146532).",
+      "Reduce poll cleanup reads and protect concurrent votes [#146575](https://github.com/openclaw/openclaw/pull/146575).",
+      "Recover encrypted replies in existing Matrix rooms [#115688](https://github.com/openclaw/openclaw/pull/115688). Thanks @alexscfraser, @fuller-stack-dev, and @aurorabotticus-svg.",
+      "Report malformed Matrix directory replies as errors [#131718](https://github.com/openclaw/openclaw/pull/131718). Thanks @xu-kai-quan, @obviyus, and @shojikumaru.",
+      "Refresh Matrix keys before reporting device trust [#136226](https://github.com/openclaw/openclaw/pull/136226). Thanks @romneyda.",
+      "Preserve unrelated files after Matrix migration failures [#144883](https://github.com/openclaw/openclaw/pull/144883).",
+      "Keep background media delivery working after Matrix requests end [#144907](https://github.com/openclaw/openclaw/pull/144907). Thanks @romneyda.",
+      "Correct Matrix reply metadata after delivery recovery [#145173](https://github.com/openclaw/openclaw/pull/145173).",
+      "Preserve Matrix encrypted sync state across restarts [#148152](https://github.com/openclaw/openclaw/pull/148152). Thanks @romneyda.",
+      "Preserve Matrix account secret references when saving settings [#150321](https://github.com/openclaw/openclaw/pull/150321). Thanks @donniefi, @fuller-stack-dev, and @june-repro.",
+      "Find Feishu contacts beyond the first directory page [#149077](https://github.com/openclaw/openclaw/pull/149077). Thanks @shakkernerd.",
+      "Restore iMessage feedback after bridge recovery [#142626](https://github.com/openclaw/openclaw/pull/142626). Thanks @omarshahine.",
+      "Restore remote attachments for external iMessage installs [#144048](https://github.com/openclaw/openclaw/pull/144048). Thanks @liuwqgit, @obviyus, and @mlapida.",
+      "Recover older missed iMessages before advancing catchup [#147395](https://github.com/openclaw/openclaw/pull/147395). Thanks @obviyus, @zhangguiping-xydt, and @yetval.",
+      "Detect unusable configured command paths [#147703](https://github.com/openclaw/openclaw/pull/147703). Thanks @alix-007 and @obviyus.",
+      "Respect Signal container connection timeouts [#108574](https://github.com/openclaw/openclaw/pull/108574). Thanks @pick-cat and @fuller-stack-dev.",
+      "Repair Signal accounts skipped because of their names [#138982](https://github.com/openclaw/openclaw/pull/138982). Thanks @marmar9615-cloud and @obviyus.",
+      "Start Signal accounts with spaced names [#145750](https://github.com/openclaw/openclaw/pull/145750). Thanks @obviyus and @marmar9615-cloud.",
+      "Refuse Signal deletion that changes account identity [#145981](https://github.com/openclaw/openclaw/pull/145981). Thanks @obviyus.",
+      "Move Signal reply-context persistence off the Gateway thread [#149896](https://github.com/openclaw/openclaw/pull/149896).",
+      "Honor selected accounts in Mattermost model menus [#144880](https://github.com/openclaw/openclaw/pull/144880). Thanks @obviyus.",
+      "Recognize accepted Mattermost reactions [#148055](https://github.com/openclaw/openclaw/pull/148055). Thanks @chengyouj and @fuller-stack-dev.",
+      "Recover Nostr profile actions with saved credentials [#138975](https://github.com/openclaw/openclaw/pull/138975). Thanks @zhangguiping-xydt and @obviyus.",
+      "Restore Nostr profile actions for paired operators [#145932](https://github.com/openclaw/openclaw/pull/145932). Thanks @obviyus.",
+      "Keep eligible Buzz rooms online and restore newly granted rooms [#144070](https://github.com/openclaw/openclaw/pull/144070). Thanks @sla55er and @obviyus.",
+      "Explain how to recover failed room sessions [#146363](https://github.com/openclaw/openclaw/pull/146363). Thanks @chachi-max.",
+      "Honor explicitly configured reset command aliases [#149203](https://github.com/openclaw/openclaw/pull/149203).",
+      "Wait for approval bindings to save and clear [#146325](https://github.com/openclaw/openclaw/pull/146325).",
+      "Make Discord and Slack change-approval cards actionable [#147152](https://github.com/openclaw/openclaw/pull/147152). Thanks @obviyus, @liuwqgit, and @anyech.",
+      "Keep approval prompts available during native-handler downtime [#148228](https://github.com/openclaw/openclaw/pull/148228). Thanks @edenfunf, @obviyus, @harshitgupta31415, and @mertbasar0.",
+      "Report empty IRC sends as failures [#129660](https://github.com/openclaw/openclaw/pull/129660).",
+      "Show explicitly started channel accounts in status [#144503](https://github.com/openclaw/openclaw/pull/144503). Thanks @ericcaiwx-star and @obviyus.",
+      "Prevent channel startup failures when plugins load together [#145026](https://github.com/openclaw/openclaw/pull/145026). Thanks @meajuda365.",
+      "Wait for pending delivery reads during shutdown [#145168](https://github.com/openclaw/openclaw/pull/145168).",
+      "Reject blank integer channel setup options [#145534](https://github.com/openclaw/openclaw/pull/145534). Thanks @hugenshen and @obviyus.",
+      "Restore model switching with omitted plugin defaults [#145904](https://github.com/openclaw/openclaw/pull/145904). Thanks @obviyus, @tsuel-dev, and @jiajia021.",
+      "Keep filtered channel status independent of unrelated accounts [#146271](https://github.com/openclaw/openclaw/pull/146271).",
+      "Preserve configured channels in plugin send results [#146619](https://github.com/openclaw/openclaw/pull/146619).",
+      "Recover channels despite diagnostic inspector failures [#146720](https://github.com/openclaw/openclaw/pull/146720).",
+      "Keep delayed replies tied to the current conversation [#146866](https://github.com/openclaw/openclaw/pull/146866).",
+      "Keep queued deliveries in their original state directory [#146917](https://github.com/openclaw/openclaw/pull/146917).",
+      "Recheck conversation routing before saving discovered addresses [#146927](https://github.com/openclaw/openclaw/pull/146927).",
+      "Keep queued conversation replies on original storage [#146984](https://github.com/openclaw/openclaw/pull/146984).",
+      "Keep channel replies working after hot configuration reloads [#147001](https://github.com/openclaw/openclaw/pull/147001). Thanks @sunhsiao, @xiankun-liang, @lidashi1025, @bronyazaychik0328, @bruce-yii, @obviyus, and @cqforest123-wq.",
+      "Keep delayed session announcements working after replies finish [#147150](https://github.com/openclaw/openclaw/pull/147150). Thanks @vincentkoc, @mikywang, @liuwqgit, @sunlit-deng, and @bruce-yii.",
+      "Avoid false errors after channel startup cancellation [#147510](https://github.com/openclaw/openclaw/pull/147510).",
+      "Restore delegation from peer-bound groups [#147716](https://github.com/openclaw/openclaw/pull/147716). Thanks @vincentkoc.",
+      "Preserve Telegram webhook startup error codes [#148417](https://github.com/openclaw/openclaw/pull/148417).",
+      "Prevent duplicate channel-task cleanup and repeated errors [#148922](https://github.com/openclaw/openclaw/pull/148922). Thanks @holny.",
+      "Avoid repeated sleep recovery on busy Gateways [#149369](https://github.com/openclaw/openclaw/pull/149369). Thanks @pollybot13.",
+      "Keep queued channel messages alive during long replies [dba4da1](https://github.com/openclaw/openclaw/commit/dba4da1f8b00cec0f5578ead7628aa83aff0c8a1). Thanks @pollybot13 and @obviyus.",
+      "Recover from stalled Zalo Personal connection attempts [#109506](https://github.com/openclaw/openclaw/pull/109506). Thanks @lsr911 and @fuller-stack-dev.",
+      "Prevent HTML-only email from stalling IMAP [#142678](https://github.com/openclaw/openclaw/pull/142678). Thanks @ericcaiwx-star, @obviyus, and @dennyjoe.",
+      "Preserve location pins after private text is removed [#129390](https://github.com/openclaw/openclaw/pull/129390).",
+      "Preserve attachments with unusual content-type headers [#143673](https://github.com/openclaw/openclaw/pull/143673). Thanks @xialonglee and @obviyus.",
+      "Recover final answers after failed streamed messages [#145428](https://github.com/openclaw/openclaw/pull/145428). Thanks @obviyus.",
+      "Recover missing streamed reply tails [#148301](https://github.com/openclaw/openclaw/pull/148301). Thanks @obviyus.",
+      "Restore deferred replies for official channel installations [#148146](https://github.com/openclaw/openclaw/pull/148146). Thanks @anyech and @o0j4yj4y0o.",
+      "Keep webhook-triggered replies alive after ingress polling ends [#148548](https://github.com/openclaw/openclaw/pull/148548). Thanks @edenfunf and @obviyus.",
+      "Wait for outbound ownership renewal before cancellation cleanup [#148390](https://github.com/openclaw/openclaw/pull/148390). Thanks @fuller-stack-dev.",
+      "Keep broadcast results after cancellation [#151165](https://github.com/openclaw/openclaw/pull/151165). Thanks @shakkernerd.",
+      "Stop further Slack requests after direct delivery is revoked [#151102](https://github.com/openclaw/openclaw/pull/151102). Thanks @shakkernerd.",
+      "Stop canceled A2A deliveries before requests and retries [#151108](https://github.com/openclaw/openclaw/pull/151108). Thanks @shakkernerd.",
+      "Stop canceled Tlon sends and preserve per-send account isolation [#151129](https://github.com/openclaw/openclaw/pull/151129). Thanks @shakkernerd.",
+      "Stop canceled Talk deliveries before further requests [#151135](https://github.com/openclaw/openclaw/pull/151135). Thanks @shakkernerd.",
+      "Stop canceled iMessage deliveries before further sends [#151144](https://github.com/openclaw/openclaw/pull/151144). Thanks @shakkernerd.",
+      "Stop canceled Google Chat sends after preparation [#151146](https://github.com/openclaw/openclaw/pull/151146). Thanks @shakkernerd.",
+      "Stop canceled Nostr sends before relay fallback [#151160](https://github.com/openclaw/openclaw/pull/151160). Thanks @shakkernerd.",
+      "Stop pending LINE sends after cancellation or supersession [#151162](https://github.com/openclaw/openclaw/pull/151162). Thanks @shakkernerd.",
+      "Stop remaining Slack requests when an action ends [#151166](https://github.com/openclaw/openclaw/pull/151166). Thanks @shakkernerd.",
+      "Stop pending Signal sends after cancellation [#151169](https://github.com/openclaw/openclaw/pull/151169). Thanks @shakkernerd.",
+      "Recheck Zalo sends after preparation [#151171](https://github.com/openclaw/openclaw/pull/151171). Thanks @shakkernerd.",
+      "Stop later Feishu sends after cancellation [#151168](https://github.com/openclaw/openclaw/pull/151168). Thanks @shakkernerd.",
+      "Stop pending Teams sends after cancellation and retain accepted receipts [#151193](https://github.com/openclaw/openclaw/pull/151193). Thanks @shakkernerd.",
+      "Stop later ClickClack sends after cancellation and retain accepted messages [#151208](https://github.com/openclaw/openclaw/pull/151208). Thanks @shakkernerd.",
+      "Stop later Zalo Personal requests after cancellation [#151230](https://github.com/openclaw/openclaw/pull/151230). Thanks @shakkernerd.",
+      "Stop pending Feishu edits, pins and reactions after cancellation [#151235](https://github.com/openclaw/openclaw/pull/151235). Thanks @shakkernerd.",
+      "Stop pending Teams pins, reactions and chat changes after cancellation [#151237](https://github.com/openclaw/openclaw/pull/151237). Thanks @shakkernerd.",
+      "Stop later Telegram pins after delivery cancellation [#151244](https://github.com/openclaw/openclaw/pull/151244). Thanks @shakkernerd.",
+      "Stop further Matrix uploads and sends after cancellation [#151257](https://github.com/openclaw/openclaw/pull/151257). Thanks @shakkernerd.",
+      "Honor Discord persona text limits and reply targets [#144629](https://github.com/openclaw/openclaw/pull/144629).",
+      "Close Feishu streams after failed saves [#145891](https://github.com/openclaw/openclaw/pull/145891).",
+      "Stop contradictory QQBot direct-message warnings [#144187](https://github.com/openclaw/openclaw/pull/144187). Thanks @ericcaiwx-star, @obviyus, @lamkan0210, and @yubingjiaocn.",
+      "Show readable progress-card notes in channel drafts [#144790](https://github.com/openclaw/openclaw/pull/144790). Thanks @obviyus and @lastguru-net.",
+      "Keep recoverable tool failures out of quiet progress [#145345](https://github.com/openclaw/openclaw/pull/145345). Thanks @stemkat100 and @joncursi.",
+      "Remove abandoned Slack and Telegram streaming previews [#147106](https://github.com/openclaw/openclaw/pull/147106). Thanks @vincentkoc, @doomclaw, @sweetsophia, and @100yenadmin.",
+      "Restore quiet Slack progress updates [#150407](https://github.com/openclaw/openclaw/pull/150407). Thanks @pash-openai and @fuller-stack-dev.",
+      "Avoid fragment-only Slack progress notifications [#150671](https://github.com/openclaw/openclaw/pull/150671). Thanks @pash-openai.",
+      "Clear temporary Slack status after queued followups finish [#151084](https://github.com/openclaw/openclaw/pull/151084). Thanks @pash-openai.",
+      "Keep complete Slack progress messages visible between updates [#151164](https://github.com/openclaw/openclaw/pull/151164). Thanks @pash-openai.",
+      "Preserve Mattermost thread participation expiry [#147289](https://github.com/openclaw/openclaw/pull/147289).",
+      "Restore Mattermost thread context after restart or reset [#150644](https://github.com/openclaw/openclaw/pull/150644). Thanks @fuller-stack-dev, @iloveleon19, and @geekforlife.",
+      "Keep subagent results on the selected conversation [#144704](https://github.com/openclaw/openclaw/pull/144704).",
+      "Preserve selected channel destinations [#147492](https://github.com/openclaw/openclaw/pull/147492). Thanks @shakkernerd.",
+      "Keep Slack message-tool updates in their reply thread [#151069](https://github.com/openclaw/openclaw/pull/151069). Thanks @pash-openai.",
+      "Expose Teams team IDs in message actions [#147579](https://github.com/openclaw/openclaw/pull/147579). Thanks @shakkernerd.",
+      "Honor selected Teams conversations [#147591](https://github.com/openclaw/openclaw/pull/147591). Thanks @shakkernerd.",
+      "Select Matrix and Teams conversations for CLI member lookup [#149074](https://github.com/openclaw/openclaw/pull/149074). Thanks @shakkernerd.",
+      "Accept current-channel ID aliases in Teams lookups [#149093](https://github.com/openclaw/openclaw/pull/149093). Thanks @shakkernerd.",
+      "Honor Teams CLI search targets and limits [#149353](https://github.com/openclaw/openclaw/pull/149353). Thanks @masatohoshino and @obviyus.",
+      "Restore permitted context reads in installed Discord and Slack plugins [#143341](https://github.com/openclaw/openclaw/pull/143341). Thanks @anyech, @shakkernerd, @josh-cornelius, @wg-mojo, @kareemelangbawy191, and @nissl24.",
+      "Restore Slack requester and emoji lookups [#147657](https://github.com/openclaw/openclaw/pull/147657). Thanks @shakkernerd and @josh-cornelius.",
+      "Restore Discord metadata reads after official installation [#147658](https://github.com/openclaw/openclaw/pull/147658). Thanks @shakkernerd, @josh-cornelius, @wg-mojo, and @kareemelangbawy191.",
+      "Restore permitted Slack file downloads [#147659](https://github.com/openclaw/openclaw/pull/147659). Thanks @shakkernerd and @josh-cornelius.",
+      "Restore permitted Mattermost history reads [#147660](https://github.com/openclaw/openclaw/pull/147660). Thanks @shakkernerd and @josh-cornelius.",
+      "Restore permitted Teams context reads [#147661](https://github.com/openclaw/openclaw/pull/147661). Thanks @shakkernerd and @josh-cornelius.",
+      "Restore Matrix context reads after official installation [#147665](https://github.com/openclaw/openclaw/pull/147665). Thanks @shakkernerd.",
+      "Preserve Feishu reads after official installation [#147667](https://github.com/openclaw/openclaw/pull/147667). Thanks @shakkernerd.",
+      "Restore permitted message actions for CLI channel replies [#149131](https://github.com/openclaw/openclaw/pull/149131). Thanks @shakkernerd and @nissl24.",
+      "Restore permitted dashboard reads through official plugins [#150309](https://github.com/openclaw/openclaw/pull/150309). Thanks @shakkernerd.",
+      "Keep Matrix reads from changing direct-message mappings [#151093](https://github.com/openclaw/openclaw/pull/151093). Thanks @shakkernerd.",
+      "Reuse completed embeddings after failed rebuilds [#144404](https://github.com/openclaw/openclaw/pull/144404). Thanks @jalehman, @louisone1, @gaodaabao, @niriakot, @dbostik, @loshay1.",
+      "Recognize embedding quota errors in long responses [#144619](https://github.com/openclaw/openclaw/pull/144619).",
+      "Recover missing memory search index rows [#144641](https://github.com/openclaw/openclaw/pull/144641). Thanks @jinliyl.",
+      "Correct Bun memory file destinations and indexing order [#144700](https://github.com/openclaw/openclaw/pull/144700).",
+      "Restore memory search fallback for index-name collisions [#144783](https://github.com/openclaw/openclaw/pull/144783).",
+      "Automatically repair outdated memory indexes after upgrades [#146713](https://github.com/openclaw/openclaw/pull/146713). Thanks @obviyus, @githoubi, @itanyplus.",
+      "Coordinate memory indexing with database writes and shutdown [#146760](https://github.com/openclaw/openclaw/pull/146760).",
+      "Return one JSON error for memory command failures [#147366](https://github.com/openclaw/openclaw/pull/147366).",
+      "Preserve indexing retries during redaction changes [#147870](https://github.com/openclaw/openclaw/pull/147870).",
+      "Background bounded session-memory reindex writes [#148101](https://github.com/openclaw/openclaw/pull/148101).",
+      "Avoid Gateway stalls during memory rebuild cleanup [#148230](https://github.com/openclaw/openclaw/pull/148230).",
+      "Recover memory indexing from Zhipu item limits [0afc023](https://github.com/openclaw/openclaw/commit/0afc02335308892d7efa3ccf7d981e912c6dd238). Thanks @ylcn91, @vincentkoc.",
+      "Reject malformed Google embeddings before memory indexing [4068854](https://github.com/openclaw/openclaw/commit/4068854ba5de7ce0d1deb8f226f19592cc0ee451). Thanks @fuller-stack-dev.",
+      "Preserve newer memory indexes and disclose rebuild costs [#146908](https://github.com/openclaw/openclaw/pull/146908). Thanks @obviyus.",
+      "Remove forgotten sessions' memory-ranking signals [#144622](https://github.com/openclaw/openclaw/pull/144622). Thanks @jinliyl, @obviyus.",
+      "Keep consolidated memories removable after write errors [#149340](https://github.com/openclaw/openclaw/pull/149340).",
+      "Guide conversation recall to session history [#144669](https://github.com/openclaw/openclaw/pull/144669). Thanks @fuller-stack-dev.",
+      "Read memory from the workspace searched for explicit agents [#147072](https://github.com/openclaw/openclaw/pull/147072). Thanks @pollybot13, @obviyus.",
+      "Reduce indexing load and preserve conversation reset boundaries [#147234](https://github.com/openclaw/openclaw/pull/147234). Thanks @datrab.",
+      "Match session-search guidance to available capabilities [#147328](https://github.com/openclaw/openclaw/pull/147328). Thanks @liuwqgit, @vincentkoc, @danhayman.",
+      "Explain partial memory search timeouts [#147702](https://github.com/openclaw/openclaw/pull/147702).",
+      "Allow memory recalls to proceed concurrently [#99105](https://github.com/openclaw/openclaw/pull/99105). Thanks @gorkem2020, @fuller-stack-dev.",
+      "Reuse file previews across memory search matches [#145238](https://github.com/openclaw/openclaw/pull/145238).",
+      "Reduce Gateway pauses while scanning transcript archives [#148072](https://github.com/openclaw/openclaw/pull/148072).",
+      "Keep Active Memory recall focused on the current request [#149180](https://github.com/openclaw/openclaw/pull/149180). Thanks @lordratner, @sercada, @fuller-stack-dev, @gisk0, @joeykrug, @suidge.",
+      "Prevent repeated vector scans in semantic memory search [#149348](https://github.com/openclaw/openclaw/pull/149348). Thanks @wrgrant, @obviyus.",
+      "Keep Gateway responsive while publishing memory indexes [#149901](https://github.com/openclaw/openclaw/pull/149901). Thanks @fuller-stack-dev, @jalehman, @hk31584-alt, @aron-intframe.",
+      "Release temporary tools after background memory work [#150899](https://github.com/openclaw/openclaw/pull/150899).",
+      "Skip directories when finding the Obsidian command [#144681](https://github.com/openclaw/openclaw/pull/144681). Thanks @alix-007, @obviyus.",
+      "Keep memory promotion within bootstrap limits [#142545](https://github.com/openclaw/openclaw/pull/142545). Thanks @romneyda, @zachisfine.",
+      "Avoid counting unchanged daily memories twice after capped sweeps [#144611](https://github.com/openclaw/openclaw/pull/144611). Thanks @jinliyl, @obviyus.",
+      "Explain why dreaming candidates were not saved [#145458](https://github.com/openclaw/openclaw/pull/145458). Thanks @migelizaga-rgb, @vincentkoc, @ctbritt, @nocode-ananas.",
+      "Coordinate reminder updates with session persistence [#148816](https://github.com/openclaw/openclaw/pull/148816).",
+      "Show ClawHub skill artwork in search and details [#123051](https://github.com/openclaw/openclaw/pull/123051). Thanks @romneyda.",
+      "Read selected manual personal skills with workspace-only access [#144954](https://github.com/openclaw/openclaw/pull/144954). Thanks @iwhatsskill, @fuller-stack-dev, and @sisutuulenisa.",
+      "Preserve complete skill verification reports in CLI output [#144559](https://github.com/openclaw/openclaw/pull/144559). Thanks @patrick-erichsen.",
+      "Warn about stale automation paths after Skill Workshop relocation [#144680](https://github.com/openclaw/openclaw/pull/144680). Thanks @obviyus and @rayseling.",
+      "Dismiss expired Skill Workshop confirmations [#145015](https://github.com/openclaw/openclaw/pull/145015).",
+      "Avoid false Workshop relocation warnings [#145396](https://github.com/openclaw/openclaw/pull/145396). Thanks @raydestar, @obviyus, and @githoubi.",
+      "Explain sandbox restrictions on Skill Workshop [#145546](https://github.com/openclaw/openclaw/pull/145546). Thanks @deltaecho3.",
+      "Recover Skill Workshop backups after workspace moves [#148995](https://github.com/openclaw/openclaw/pull/148995). Thanks @zoroo07 and @holny.",
+      "Keep Workshop action results and suggestions consistent [56fcd66](https://github.com/openclaw/openclaw/commit/56fcd66e484876f1eba1055fe6eb45f8b673006a). Thanks @obviyus and @yangxiansheng.",
+      "Pause Workshop reviews with no supported runtime [#141626](https://github.com/openclaw/openclaw/pull/141626). Thanks @anyech, @patrick-erichsen, @mwclaw, @fuma2013, @xilopaint, and @dbarbatti.",
+      "Keep file reads responsive and skill scans current [#146654](https://github.com/openclaw/openclaw/pull/146654).",
+      "Keep sag available with alternate credentials [#147685](https://github.com/openclaw/openclaw/pull/147685). Thanks @obviyus, @liuwqgit, and @navras98.",
+      "Correct FreeBSD dependency recovery advice [#147733](https://github.com/openclaw/openclaw/pull/147733). Thanks @vincentkoc and @lucarinaorg.",
+      "Preserve literal skill keys in API-key setup commands [#149026](https://github.com/openclaw/openclaw/pull/149026). Thanks @zhangguiping-xydt and @obviyus.",
+      "Show accurate alternative prerequisite groups in skills info [#149132](https://github.com/openclaw/openclaw/pull/149132). Thanks @liuwqgit, @obviyus, and @zhangguiping-xydt.",
+      "Keep Gateway requests responsive during weekly skill-review preparation [#149600](https://github.com/openclaw/openclaw/pull/149600). Thanks @609nft.",
+      "Keep Workshop review-preference inspection read-only [#149627](https://github.com/openclaw/openclaw/pull/149627).",
+      "Guard skill reads and reduce worker packaging memory [#147336](https://github.com/openclaw/openclaw/pull/147336).",
+      "Recover local Gateway setup from the Mac Connection window [#144554](https://github.com/openclaw/openclaw/pull/144554). Thanks @fuller-stack-dev.",
+      "Avoid Gateway reinstalls after inconclusive Mac service checks [#146880](https://github.com/openclaw/openclaw/pull/146880). Retains startup diagnostics.",
+      "Retain Mac app IDs despite unrelated metadata [#144381](https://github.com/openclaw/openclaw/pull/144381).",
+      "Recover expired Mac Gateway sign-ins inside the window [#145040](https://github.com/openclaw/openclaw/pull/145040).",
+      "Stable Mac dashboard errors for Gateway port conflicts [#145333](https://github.com/openclaw/openclaw/pull/145333).",
+      "Keep Mac debug actions on the selected Gateway [#145427](https://github.com/openclaw/openclaw/pull/145427). Cancel stale Mac connection resets and diagnose the active tunnel port.",
+      "Keep Gateway discovery results current [#145435](https://github.com/openclaw/openclaw/pull/145435). Ignore stale Apple Gateway discovery results after stop or refresh.",
+      "Recover Mac Gateway sign-in when the browser does not open [#146787](https://github.com/openclaw/openclaw/pull/146787).",
+      "Keep Nearby discovery from replacing saved Mac connections [#121622](https://github.com/openclaw/openclaw/pull/121622). Thanks @jacobtomlinson, @eleqtrizit, @freeqaz-openai, @joshavant, @pgondhi987, and @vincentkoc.",
+      "Keep Mac browser tabs with their chat [#144508](https://github.com/openclaw/openclaw/pull/144508). Thanks @patrick-erichsen.",
+      "Discard outdated Mac browser-import banners [#145449](https://github.com/openclaw/openclaw/pull/145449). Discards outdated banners after mode changes.",
+      "Discard late local speech after cancellation on Mac [#144586](https://github.com/openclaw/openclaw/pull/144586).",
+      "Finish microphone and camera cleanup before subsequent work [#145450](https://github.com/openclaw/openclaw/pull/145450).",
+      "Prevent Mac Cookie Sync startup crashes [#137052](https://github.com/openclaw/openclaw/pull/137052). Thanks @zhangguiping-xydt, @fuller-stack-dev, @loshay1, and @joncursi.",
+      "Restore native plugin stylesheets over local HTTP [#139735](https://github.com/openclaw/openclaw/pull/139735). Thanks @jjjhenriksen, @kimiyu-186, @jalehman, @theangrypit, and @atlas-crete.",
+      "Keep Mac Dashboard controls visible in full screen [#144571](https://github.com/openclaw/openclaw/pull/144571). Thanks @fuller-stack-dev, @shojikumaru, and @arong-me.",
+      "Preserve executable permissions in macOS worker packages [#145042](https://github.com/openclaw/openclaw/pull/145042).",
+      "Prevent false timeouts for fast Mac commands [#145437](https://github.com/openclaw/openclaw/pull/145437).",
+      "Preserve the latest Mac launch-at-login choice [#145451](https://github.com/openclaw/openclaw/pull/145451).",
+      "Stop obsolete Mac file notifications and release watchers [#145453](https://github.com/openclaw/openclaw/pull/145453). Includes Canvas watcher cleanup.",
+      "Drag macOS windows from empty tab-header space [#146404](https://github.com/openclaw/openclaw/pull/146404). Applies to empty side-panel tab headers.",
+      "Prevent crashes when automation closes OpenClaw windows [#147114](https://github.com/openclaw/openclaw/pull/147114).",
+      "Show Android refresh warnings and reload agent model choices [#142355](https://github.com/openclaw/openclaw/pull/142355). Thanks @obviyus.",
+      "Keep Android Chat actions menus open [#145505](https://github.com/openclaw/openclaw/pull/145505). Thanks @donniefi and @iwhatsskill.",
+      "Keep the Android sidebar stable during opening and dragging [#147312](https://github.com/openclaw/openclaw/pull/147312). Thanks @ansxor.",
+      "Stop watch audio before waiting for Talk to end [#144346](https://github.com/openclaw/openclaw/pull/144346). Thanks @iwhatsskill.",
+      "Settle Wear replies and replace stale streamed text [#144387](https://github.com/openclaw/openclaw/pull/144387). Thanks @iwhatsskill.",
+      "Recover Wear microphone permission and failed Talk audio [#144414](https://github.com/openclaw/openclaw/pull/144414). Thanks @iwhatsskill.",
+      "Show model choices for the watch's selected chat [#144717](https://github.com/openclaw/openclaw/pull/144717). Thanks @obviyus.",
+      "Show audio errors when Wear OS recording cannot start [#147073](https://github.com/openclaw/openclaw/pull/147073). Thanks @iwhatsskill.",
+      "Keep the correct Wear OS title after session search [#148227](https://github.com/openclaw/openclaw/pull/148227). Thanks @iwhatsskill.",
+      "Show watch chat replies after typing or dictating from Voice [#151224](https://github.com/openclaw/openclaw/pull/151224). Thanks @iwhatsskill.",
+      "Open the watch app from a failed reply notification [#151262](https://github.com/openclaw/openclaw/pull/151262). Thanks @iwhatsskill.",
+      "Prevent Tauri startup crashes and repeated Gateway alerts [#148430](https://github.com/openclaw/openclaw/pull/148430).",
+      "Match Gateway manager appearance to the system [#148668](https://github.com/openclaw/openclaw/pull/148668).",
+      "Show OpenClaw as the Linux tray name [#146174](https://github.com/openclaw/openclaw/pull/146174).",
+      "Respect saved Linux connections when service status is unknown [#146045](https://github.com/openclaw/openclaw/pull/146045). Accepts healthy Gateways even when service status is unknown. Thanks @vincentkoc.",
+      "Clear abandoned Linux sleep state [#146046](https://github.com/openclaw/openclaw/pull/146046). Thanks @vincentkoc.",
+      "Recover Linux remote connections without disrupting active sessions [#146047](https://github.com/openclaw/openclaw/pull/146047). Retry saved Linux connections and a failed SSH tunnel once, preserve chats when leaving Settings, reuse credentials for the same address, and restore native access after local Start or Restart. Thanks @vincentkoc.",
+      "Keep Linux Gateway recovery active when status is unknown [#146857](https://github.com/openclaw/openclaw/pull/146857).",
+      "Recover completed Quick Chat answers after lost acknowledgements [#146048](https://github.com/openclaw/openclaw/pull/146048). Rejects stale sends after switching Gateways. Thanks @vincentkoc.",
+      "Keep Linux Quick Chat widgets tied to their Gateway [47060d1](https://github.com/openclaw/openclaw/commit/47060d1cef27c69794b68f6652ba183ad65a494d). Applies the latest layout and error status. Thanks @vincentkoc.",
+      "Keep macOS chat preferences in the active profile [#146966](https://github.com/openclaw/openclaw/pull/146966).",
+      "Recognize Linux correction updates and retain download retries [#146050](https://github.com/openclaw/openclaw/pull/146050). Retains manual download retries without reviving dismissed or replacing newer banners. Thanks @vincentkoc.",
+      "Keep iOS Talk cleanup on its original Gateway connection [#149786](https://github.com/openclaw/openclaw/pull/149786). Thanks @vincentkoc.",
+      "Restore Android Talk replies and configured speech voices [#150175](https://github.com/openclaw/openclaw/pull/150175). Thanks @guarismo and @iwhatsskill.",
+      "Avoid Talk stalls from blocked diagnostic output [#150338](https://github.com/openclaw/openclaw/pull/150338). Thanks @patrick-erichsen.",
+      "Correct spoken-update guidance for public GPT-Live [#145807](https://github.com/openclaw/openclaw/pull/145807).",
+      "Prevent microphone timing drift in GPT-Live relay calls [#146078](https://github.com/openclaw/openclaw/pull/146078).",
+      "Discourage repeated backend work in GPT-Live calls [#146182](https://github.com/openclaw/openclaw/pull/146182).",
+      "Fix GPT-Live caption repeats and spoken confirmations [#146370](https://github.com/openclaw/openclaw/pull/146370).",
+      "Retain call storage during deferred callbacks [#147689](https://github.com/openclaw/openclaw/pull/147689). Thanks @romneyda.",
+      "Isolate voice-switch cancellation and connection cleanup [#149865](https://github.com/openclaw/openclaw/pull/149865).",
+      "Restore Apple Foundation Models artwork [#150842](https://github.com/openclaw/openclaw/pull/150842). Thanks @romneyda.",
+      "Resolve credentials for plugin-generated titles and summaries [#112257](https://github.com/openclaw/openclaw/pull/112257). Thanks @0xghost42, @fuller-stack-dev.",
+      "Use saved account credentials for local inference [#141569](https://github.com/openclaw/openclaw/pull/141569). Thanks @bruce-yii, @obviyus, @richard355168.",
+      "Preserve settings during login and acknowledge auth refresh [#144181](https://github.com/openclaw/openclaw/pull/144181). Thanks @obviyus.",
+      "Keep saved sign-ins after failed setup checks [#144195](https://github.com/openclaw/openclaw/pull/144195). Thanks @obviyus.",
+      "Explain partial success after provider login [#144436](https://github.com/openclaw/openclaw/pull/144436). Thanks @obviyus.",
+      "Keep replacement sign-ins inactive until confirmed [#144524](https://github.com/openclaw/openclaw/pull/144524). Thanks @obviyus.",
+      "Preserve concurrent settings edits during provider setup [#144568](https://github.com/openclaw/openclaw/pull/144568). Thanks @obviyus.",
+      "Restore saved credentials for local media and embedding commands [#144931](https://github.com/openclaw/openclaw/pull/144931). Thanks @masatohoshino, @bruce-yii, @obviyus.",
+      "Recover saved sign-ins and expired model-access choices [#145051](https://github.com/openclaw/openclaw/pull/145051). Thanks @obviyus.",
+      "Refresh provider status across clients and explain recovery [#145089](https://github.com/openclaw/openclaw/pull/145089). Thanks @obviyus.",
+      "Keep selected accounts working after Doctor renames credentials [#145136](https://github.com/openclaw/openclaw/pull/145136). Thanks @obviyus.",
+      "Preserve replacement API keys during pending removal [#145143](https://github.com/openclaw/openclaw/pull/145143). Thanks @obviyus.",
+      "Preserve current accounts during delayed OAuth refresh [#145196](https://github.com/openclaw/openclaw/pull/145196).",
+      "Preserve subscription billing during OpenAI model migrations [#145305](https://github.com/openclaw/openclaw/pull/145305). Thanks @dbraendle.",
+      "Fix false legacy credential removal failures [#145585](https://github.com/openclaw/openclaw/pull/145585). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Apply provider sign-in settings after reload [#145761](https://github.com/openclaw/openclaw/pull/145761). Thanks @obviyus.",
+      "Recover OpenAI subscription accounts after quota resets [#145853](https://github.com/openclaw/openclaw/pull/145853). Thanks @obviyus, @grynn, @rookai471.",
+      "Preserve plugin authentication during provider discovery [#146336](https://github.com/openclaw/openclaw/pull/146336).",
+      "Clean up temporary plugin files after catalog workers stop [#146513](https://github.com/openclaw/openclaw/pull/146513).",
+      "Reuse model catalogs after slow discovery [#146665](https://github.com/openclaw/openclaw/pull/146665).",
+      "Refresh model readiness after stored-account quota recovery [#146691](https://github.com/openclaw/openclaw/pull/146691).",
+      "Clean up credential requests after lost registration replies [#147068](https://github.com/openclaw/openclaw/pull/147068). Thanks @vincentkoc.",
+      "Expose typed model API-key editing contracts [#148093](https://github.com/openclaw/openclaw/pull/148093). Thanks @obviyus.",
+      "Remove the unsupported Brave model setup choice [#148178](https://github.com/openclaw/openclaw/pull/148178). Thanks @obviyus.",
+      "Restore working connections after failed setup activation [#148195](https://github.com/openclaw/openclaw/pull/148195). Thanks @obviyus.",
+      "Complete provider sign-in from the waiting dialog [#148300](https://github.com/openclaw/openclaw/pull/148300). Thanks @obviyus.",
+      "Preserve working sign-ins when Gateway activation fails [#148312](https://github.com/openclaw/openclaw/pull/148312). Thanks @obviyus.",
+      "Keep local provider sign-in links available [#148469](https://github.com/openclaw/openclaw/pull/148469). Thanks @obviyus.",
+      "Complete local OpenRouter sign-in and correct pasted input [#148785](https://github.com/openclaw/openclaw/pull/148785). Thanks @obviyus.",
+      "Activate custom providers with omitted model defaults [#148856](https://github.com/openclaw/openclaw/pull/148856). Thanks @obviyus.",
+      "Complete Model Setup after the first device sign-in [#148860](https://github.com/openclaw/openclaw/pull/148860). Thanks @obviyus.",
+      "Preserve current credentials during concurrent auth updates [#148960](https://github.com/openclaw/openclaw/pull/148960).",
+      "Clarify saved-account health and model availability [#148987](https://github.com/openclaw/openclaw/pull/148987). Thanks @obviyus.",
+      "Restore Copilot connection and private-chat login choices [#149038](https://github.com/openclaw/openclaw/pull/149038).",
+      "Keep account details session-specific in shared catalogs [#150535](https://github.com/openclaw/openclaw/pull/150535).",
+      "Correct provider connection guidance in Ask OpenClaw [#150800](https://github.com/openclaw/openclaw/pull/150800). Thanks @obviyus.",
+      "Remove retired Raptor mini from Copilot fallback choices [#116505](https://github.com/openclaw/openclaw/pull/116505). Thanks @vincentkoc.",
+      "Respect OpenRouter models' advertised tool support [#129659](https://github.com/openclaw/openclaw/pull/129659).",
+      "Show the exact answering fallback model and context limit [#134496](https://github.com/openclaw/openclaw/pull/134496).",
+      "Use fallback for timeout-classified agent errors [#143649](https://github.com/openclaw/openclaw/pull/143649). Thanks @sunnyshu0925, @familievantuyll-max.",
+      "Keep model catalogs and request settings consistent [#143837](https://github.com/openclaw/openclaw/pull/143837). Thanks @obviyus.",
+      "Preserve model choices through fallback and credential refresh [#143961](https://github.com/openclaw/openclaw/pull/143961).",
+      "Keep capabilities aligned with configured model connections [#144180](https://github.com/openclaw/openclaw/pull/144180).",
+      "Keep configured prices tied to the exact model [#144182](https://github.com/openclaw/openclaw/pull/144182).",
+      "Keep lightweight and worker requests on the selected model [#144238](https://github.com/openclaw/openclaw/pull/144238).",
+      "Preserve provider-prefixed model IDs in configuration [#144275](https://github.com/openclaw/openclaw/pull/144275).",
+      "Stop unlisted models inheriting sibling output limits [#144292](https://github.com/openclaw/openclaw/pull/144292). Thanks @ylcn91, @obviyus, @yetval.",
+      "Normalize bare defaults using captured provider metadata [#144429](https://github.com/openclaw/openclaw/pull/144429).",
+      "Preserve fallback models when aliases are reused [#144438](https://github.com/openclaw/openclaw/pull/144438).",
+      "Validate the intended model when saving settings [#144474](https://github.com/openclaw/openclaw/pull/144474).",
+      "Start the Gateway when bundled providers omit custom models [#144599](https://github.com/openclaw/openclaw/pull/144599). Thanks @obviyus.",
+      "Keep effort and speed controls during partial model refresh failures [#144750](https://github.com/openclaw/openclaw/pull/144750). Thanks @obviyus, @conan-scott.",
+      "Avoid false model-change reports when saving settings [#144807](https://github.com/openclaw/openclaw/pull/144807). Thanks @vincentkoc.",
+      "Keep discovered models through same-account token renewal [#144861](https://github.com/openclaw/openclaw/pull/144861). Thanks @obviyus.",
+      "Avoid false model warnings when no offline catalog exists [#145076](https://github.com/openclaw/openclaw/pull/145076). Thanks @emes, @mnowrot.",
+      "Discover account models automatically after sign-in [#145190](https://github.com/openclaw/openclaw/pull/145190). Thanks @obviyus.",
+      "Use newly discovered models on the next turn [#145726](https://github.com/openclaw/openclaw/pull/145726). Thanks @obviyus.",
+      "Refresh model lists with unavailable startup accounts [#145859](https://github.com/openclaw/openclaw/pull/145859). Thanks @obviyus.",
+      "Skip stale fallback lookups after model changes [#146016](https://github.com/openclaw/openclaw/pull/146016).",
+      "Refresh expired model lists in the background [#146317](https://github.com/openclaw/openclaw/pull/146317). Thanks @obviyus.",
+      "Show fetched account models after choosing Show all [#146342](https://github.com/openclaw/openclaw/pull/146342). Thanks @obviyus.",
+      "Limit model discovery scope and initialize provider request hooks [#147159](https://github.com/openclaw/openclaw/pull/147159).",
+      "Preserve provider selection when assembling model catalogs [#147323](https://github.com/openclaw/openclaw/pull/147323).",
+      "Resolve Groq models during external-plugin setup [#147539](https://github.com/openclaw/openclaw/pull/147539). Thanks @obviyus, @jason-allen-oneal.",
+      "Preserve selected model settings for runtime choice [#147849](https://github.com/openclaw/openclaw/pull/147849).",
+      "Keep model lists loading during sibling updates [#147878](https://github.com/openclaw/openclaw/pull/147878).",
+      "Warn when model inventory refresh fails [#148084](https://github.com/openclaw/openclaw/pull/148084). Thanks @obviyus.",
+      "Fix MiniMax model discovery for versioned endpoints [#148782](https://github.com/openclaw/openclaw/pull/148782). Thanks @obviyus.",
+      "Fix LiteLLM discovery URLs already ending in v1 [#149472](https://github.com/openclaw/openclaw/pull/149472). Thanks @masatohoshino, @obviyus.",
+      "Wait for standalone model discovery before listing results [#149752](https://github.com/openclaw/openclaw/pull/149752). Thanks @obviyus.",
+      "Keep native model choices available during refresh [#150806](https://github.com/openclaw/openclaw/pull/150806).",
+      "Restore Z.AI model listings on China endpoints [#150851](https://github.com/openclaw/openclaw/pull/150851). Thanks @kybrcore.",
+      "Preserve Gateway defaults during automatic plugin activation [d13f15f2](https://github.com/openclaw/openclaw/commit/d13f15f2d17e4e22b5aa5a76115dccd1b09b5eb8).",
+      "Preserve LiteLLM discovery for explicit proxy URLs [f9584dc5](https://github.com/openclaw/openclaw/commit/f9584dc5cc8cd9a2428de02537e69186808f5cf5). Thanks @obviyus.",
+      "Keep saved model-catalog repair in Doctor [0a7f6493](https://github.com/openclaw/openclaw/commit/0a7f64932f13c5067fdf0601ddc44740f2f75416).",
+      "Preserve selected models and enforce exact model grants [#144041](https://github.com/openclaw/openclaw/pull/144041).",
+      "Check model support before selection and subagent creation [#150128](https://github.com/openclaw/openclaw/pull/150128). Thanks @obviyus.",
+      "Show executing models for worker and native responses [#146115](https://github.com/openclaw/openclaw/pull/146115). Thanks @ekinnee, @obviyus, @laurencebrown.",
+      "Show the model generating local WebChat responses [#148756](https://github.com/openclaw/openclaw/pull/148756). Thanks @obviyus, @ekinnee, @laurencebrown.",
+      "Separate manual model permissions from automatic selection [#148167](https://github.com/openclaw/openclaw/pull/148167). Thanks @obviyus.",
+      "Preserve configured backup models for visible child sessions [#148954](https://github.com/openclaw/openclaw/pull/148954). Thanks @liuwqgit, @obviyus, @chilango74.",
+      "Preserve the active parent model when spawning subagents [#149036](https://github.com/openclaw/openclaw/pull/149036). Thanks @vincentkoc.",
+      "Clear provider rejection reasons in live and saved chat [#145402](https://github.com/openclaw/openclaw/pull/145402).",
+      "Honor provider retry waits during stuck-run recovery [#144543](https://github.com/openclaw/openclaw/pull/144543). Thanks @obviyus, @corvid-reads.",
+      "Recover tasks after interrupted Responses tool-call streams [#144583](https://github.com/openclaw/openclaw/pull/144583).",
+      "Skip retries after daily provider caps [#147807](https://github.com/openclaw/openclaw/pull/147807). Thanks @etzelm, @rfd62794, @jalehman.",
+      "Start Codex ACP with inherited max thinking defaults [#132116](https://github.com/openclaw/openclaw/pull/132116). Thanks @pollybot13, @patrick-erichsen.",
+      "Explain why Codex receiver startup was cancelled [#144677](https://github.com/openclaw/openclaw/pull/144677). Thanks @fuller-stack-dev.",
+      "Preserve completed tool results in fresh Codex forks [#149096](https://github.com/openclaw/openclaw/pull/149096).",
+      "Preserve Codex request timeouts during clock changes [#149614](https://github.com/openclaw/openclaw/pull/149614).",
+      "Resume remote Codex conversations after instruction changes [#149647](https://github.com/openclaw/openclaw/pull/149647). Thanks @sjf-oa, @sjf.",
+      "Preserve Codex subagent results across follow-ups and recovery [#149864](https://github.com/openclaw/openclaw/pull/149864). Thanks @romneyda.",
+      "Cancel disconnected Codex hook waits [#147444](https://github.com/openclaw/openclaw/pull/147444). Thanks @vincentkoc, @nvtoroy, @aspalagin.",
+      "Older Codex follow-up records without a safe task boundary can remain unresolved, and identical-result ambiguity can allow an extra continuation. Let pending native work finish before downgrading.",
+      "Keep ordinary Codex chats out of personal history [#149355](https://github.com/openclaw/openclaw/pull/149355). Thanks @fuller-stack-dev.",
+      "Avoid Linux Codex inspection timeouts under filesystem load [#148434](https://github.com/openclaw/openclaw/pull/148434). Thanks @datrab, @pfrederiksen.",
+      "Recover failed Codex conversations after instruction changes [#149000](https://github.com/openclaw/openclaw/pull/149000). Thanks @mertbasar0, @obviyus, @compoodment.",
+      "Keep other Codex turns running after startup timeout [#149393](https://github.com/openclaw/openclaw/pull/149393). Thanks @fuller-stack-dev.",
+      "Reduce history-loading memory in long Codex sessions [#149520](https://github.com/openclaw/openclaw/pull/149520). Thanks @fuller-stack-dev.",
+      "Preserve who said what through Codex compaction [#150490](https://github.com/openclaw/openclaw/pull/150490). Thanks @compoodment, @jalehman.",
+      "Preserve Codex previews and reasoning without duplicate async replies [#151200](https://github.com/openclaw/openclaw/pull/151200).",
+      "Preserve Copilot subagent outcomes after failed saves [#145467](https://github.com/openclaw/openclaw/pull/145467).",
+      "Preserve Codex subagent results through storage failures [#145520](https://github.com/openclaw/openclaw/pull/145520).",
+      "Prevent early recovery aborts of long foreground commands [#148959](https://github.com/openclaw/openclaw/pull/148959). Thanks @obviyus, @vicvinc, @alvinveroy.",
+      "Preserve CLI timeout budgets across process freezes [#149130](https://github.com/openclaw/openclaw/pull/149130). Thanks @xialonglee, @obviyus, @raltonaugust.",
+      "Honor foreground remote-command timeouts in Codex [#149267](https://github.com/openclaw/openclaw/pull/149267).",
+      "Preserve startup output during private input delivery [#149311](https://github.com/openclaw/openclaw/pull/149311).",
+      "Supported reasoning choices for OpenAI and Codex [#145329](https://github.com/openclaw/openclaw/pull/145329).",
+      "Correct Fable and Mythos thinking choices [#145395](https://github.com/openclaw/openclaw/pull/145395).",
+      "Preserve thinking choices across models and runtimes [#150106](https://github.com/openclaw/openclaw/pull/150106).",
+      "Preserve selected models and their thinking settings [#150509](https://github.com/openclaw/openclaw/pull/150509).",
+      "Respect compatible providers' supported reasoning efforts [ec798a46](https://github.com/openclaw/openclaw/commit/ec798a4687fa08f60bc6745f98c7230ced795391). Thanks @snowzlmbot, @alex-govorov, @fuller-stack-dev.",
+      "Fix Kimi tool-definition rejection through OpenRouter [#110138](https://github.com/openclaw/openclaw/pull/110138). Thanks @novalis78, @fuller-stack-dev, @harjothkhara.",
+      "Hide encoded MiniMax tool text in replies and shared history [#126307](https://github.com/openclaw/openclaw/pull/126307). Thanks @zhucegep, @obviyus.",
+      "Preserve supported DeepSeek tool argument alternatives [#143819](https://github.com/openclaw/openclaw/pull/143819). Thanks @azuretek, @obviyus.",
+      "DeepSeek Flash image input and thinking controls [#144469](https://github.com/openclaw/openclaw/pull/144469). Thanks @obviyus, @gluo88.",
+      "Honor configured MiniMax endpoints during model refresh [#144782](https://github.com/openclaw/openclaw/pull/144782). Thanks @vantang, @obviyus.",
+      "Preserve advertised context on hosted Ollama subdomains [#144891](https://github.com/openclaw/openclaw/pull/144891). Thanks @obviyus.",
+      "Fix model selection through the Fireworks alias [#144913](https://github.com/openclaw/openclaw/pull/144913). Thanks @shakkernerd.",
+      "Resolve supported Anthropic Vertex models at turn startup [#145160](https://github.com/openclaw/openclaw/pull/145160). Thanks @obviyus.",
+      "Ignore corrupted Z.ai detection errors [#145380](https://github.com/openclaw/openclaw/pull/145380). Thanks @xydt-juyaohui, @altaywtf.",
+      "Honor configured Anthropic output limits [#145985](https://github.com/openclaw/openclaw/pull/145985).",
+      "Preserve declared custom-provider reasoning levels [#146134](https://github.com/openclaw/openclaw/pull/146134). Thanks @alex-govorov, @itanyplus.",
+      "Preserve requested output limits for custom models [#146479](https://github.com/openclaw/openclaw/pull/146479).",
+      "Load selected CLI plugins that use built-in model APIs [#148664](https://github.com/openclaw/openclaw/pull/148664). Thanks @alix-007, @obviyus, @donniefi.",
+      "Restore session-affinity headers for managed chat completions [#149615](https://github.com/openclaw/openclaw/pull/149615). Thanks @sunnyshu0925, @obviyus, @blackhu.",
+      "Preserve configured provider endpoints during credential refresh [#150003](https://github.com/openclaw/openclaw/pull/150003). Thanks @obviyus.",
+      "Preserve model capabilities on the first local agent request [#150136](https://github.com/openclaw/openclaw/pull/150136). Thanks @obviyus.",
+      "Tell compaction when workspace context is incomplete [#140249](https://github.com/openclaw/openclaw/pull/140249). Thanks @sunnyshu0925, @vincentkoc.",
+      "Count tool definitions and warn about tiny reply budgets [#140902](https://github.com/openclaw/openclaw/pull/140902). Thanks @sunnyshu0925, @patrick-erichsen, @jlapenna.",
+      "Preserve provider-specific prompt limits through reply selection [#141052](https://github.com/openclaw/openclaw/pull/141052). Thanks @snotty, @jalehman.",
+      "Preserve model budgets through context-engine commits [#142871](https://github.com/openclaw/openclaw/pull/142871). Thanks @marvinthebored, @jalehman.",
+      "Keep input budgets within model context limits [#144168](https://github.com/openclaw/openclaw/pull/144168).",
+      "Keep selected fallback models during compaction [#144432](https://github.com/openclaw/openclaw/pull/144432).",
+      "Report native session models accurately to context engines [#146801](https://github.com/openclaw/openclaw/pull/146801).",
+      "Restore context-window choices for configured models [#147559](https://github.com/openclaw/openclaw/pull/147559). Thanks @obviyus, @marvinthebored, @peetiegonzalez.",
+      "Continue after context overflow following completed tools [#148383](https://github.com/openclaw/openclaw/pull/148383).",
+      "Continue output-limited tool calls using completed results [#148440](https://github.com/openclaw/openclaw/pull/148440).",
+      "Preserve compaction checkpoints in the selected store [#148489](https://github.com/openclaw/openclaw/pull/148489).",
+      "Explain cache drops alongside changing prompt context [#150547](https://github.com/openclaw/openclaw/pull/150547). Thanks @vacinc, @yigtwxx.",
+      "Prevent duplicate context maintenance during task callbacks [#151106](https://github.com/openclaw/openclaw/pull/151106).",
+      "Prevent premature context overflow after compaction [#149462](https://github.com/openclaw/openclaw/pull/149462).",
+      "Preserve conversation context and session ownership through compaction [#149840](https://github.com/openclaw/openclaw/pull/149840).",
+      "Preserve speakers in conversation summaries [#149869](https://github.com/openclaw/openclaw/pull/149869). Thanks @compoodment, @jalehman.",
+      "Keep replies moving during long conversation compaction [#150040](https://github.com/openclaw/openclaw/pull/150040). Thanks @obviyus.",
+      "Explain compaction authentication failures and recovery options [#150400](https://github.com/openclaw/openclaw/pull/150400). Thanks @shakkernerd.",
+      "Stored speaker IDs help preserve attribution but cannot recover identities absent from older messages. In the affected pre-reply compaction case, use the channel's `/stop`; the Gateway chat-abort route did not cancel that waiting work.",
+      "Recover tool turns rejected under Zero Data Retention [#139320](https://github.com/openclaw/openclaw/pull/139320). Thanks @ylcn91, @marcelolebre.",
+      "Report final outcomes after unfinished model streams [#140156](https://github.com/openclaw/openclaw/pull/140156). Thanks @sunnyshu0925, @patrick-erichsen, @vacinc.",
+      "Avoid compression-related Responses stream failures [#141592](https://github.com/openclaw/openclaw/pull/141592). Thanks @anyech, @patrick-erichsen.",
+      "Preserve HTTP conversations with uppercase keys [#142746](https://github.com/openclaw/openclaw/pull/142746). Thanks @ruel225, @obviyus, @kevinammerman.",
+      "Continue agent tasks after Responses progress messages [#146393](https://github.com/openclaw/openclaw/pull/146393). Thanks @vacinc.",
+      "Keep transcript repair diagnostics out of later model context [#148738](https://github.com/openclaw/openclaw/pull/148738). Thanks @alix-007, @obviyus, @nierclaw-sudo.",
+      "Report incomplete Anthropic-compatible replies as failures [#149842](https://github.com/openclaw/openclaw/pull/149842). Thanks @zhangguiping-xydt, @obviyus.",
+      "Recover through fallback after xAI token-generation errors [#150433](https://github.com/openclaw/openclaw/pull/150433). Thanks @rileyjjy, @obviyus, @michaeljgood71.",
+      "Keep streamed chunks consistent with diagnostics [#150682](https://github.com/openclaw/openclaw/pull/150682).",
+      "Cancel unfinished HTTP work after client disconnects [#148317](https://github.com/openclaw/openclaw/pull/148317).",
+      "Preserve optional tool arguments on ChatGPT subscriptions [#149501](https://github.com/openclaw/openclaw/pull/149501). Thanks @modestapproach, @obviyus, @josephbergvinson, Ted Dessert.",
+      "Resize photos to the image-description model's limits [#122431](https://github.com/openclaw/openclaw/pull/122431). Thanks @alix-007, @obviyus, @tracycollins.",
+      "Use each image request's model metadata [#144254](https://github.com/openclaw/openclaw/pull/144254).",
+      "Keep PDF model selection and reporting consistent [#144417](https://github.com/openclaw/openclaw/pull/144417).",
+      "Honor agent selection for image descriptions [#147456](https://github.com/openclaw/openclaw/pull/147456). Thanks @obviyus, @mertbasar0.",
+      "Preserve image model choices and resize limits [#147830](https://github.com/openclaw/openclaw/pull/147830).",
+      "Keep restored images with their source messages [#147913](https://github.com/openclaw/openclaw/pull/147913).",
+      "Preserve tool-returned images on Bedrock GPT-5.6 Sol [#149336](https://github.com/openclaw/openclaw/pull/149336). Thanks @dclosefuturex, @yigtwxx, @obviyus.",
+      "Read local media from the active task worktree [#148414](https://github.com/openclaw/openclaw/pull/148414).",
+      "Preserve visible replies across split speech directives [#144161](https://github.com/openclaw/openclaw/pull/144161). Thanks @bartok9, @obviyus, @yetval.",
+      "Keep the selected model for speech summaries [#144354](https://github.com/openclaw/openclaw/pull/144354).",
+      "Preserve Deepgram Flux voice notes beyond 20 minutes [#145391](https://github.com/openclaw/openclaw/pull/145391). Thanks @obviyus.",
+      "Find bundled speech-summary models after startup [#146183](https://github.com/openclaw/openclaw/pull/146183).",
+      "Reject unsupported remote speech output before synthesis [#146222](https://github.com/openclaw/openclaw/pull/146222). Thanks @leon-sk668.",
+      "Resolve Kimi aliases before provider startup [#146261](https://github.com/openclaw/openclaw/pull/146261).",
+      "Show provider and model used for audio transcription [#147170](https://github.com/openclaw/openclaw/pull/147170).",
+      "Run the intended local transcription executable [#148270](https://github.com/openclaw/openclaw/pull/148270).",
+      "Fix Radius Claude requests with thinking disabled [#145565](https://github.com/openclaw/openclaw/pull/145565).",
+      "Refresh device-sign-in credentials before model discovery [#148482](https://github.com/openclaw/openclaw/pull/148482). Thanks @obviyus.",
+      "Preserve the first failure across web-search fallback [#132755](https://github.com/openclaw/openclaw/pull/132755). Thanks @tommyjoseph, @obviyus.",
+      "Report docs search HTTP errors promptly [#146987](https://github.com/openclaw/openclaw/pull/146987). Thanks @alix-007, @obviyus.",
+      "Preserve failed web-command output through slow pipes [#148234](https://github.com/openclaw/openclaw/pull/148234).",
+      "Handle denied Codex fallback access without losing results [#145105](https://github.com/openclaw/openclaw/pull/145105).",
+      "A native Codex retry may show both the original refusal and its result, and a policy-review notice can remain after cancellation or failure.",
+      "Preserve signed media links through delivery retries [#118830](https://github.com/openclaw/openclaw/pull/118830).",
+      "Preserve chosen music filenames [#147570](https://github.com/openclaw/openclaw/pull/147570).",
+      "Preserve readable image and video filenames [#147833](https://github.com/openclaw/openclaw/pull/147833).",
+      "Validate DeepInfra inline video output before accepting it [#117319](https://github.com/openclaw/openclaw/pull/117319). Thanks @fuller-stack-dev.",
+      "Reject invalid speech and video response headers [#117369](https://github.com/openclaw/openclaw/pull/117369). Thanks @fuller-stack-dev.",
+      "Enforce the total timeout for Alibaba and Qwen videos [#117781](https://github.com/openclaw/openclaw/pull/117781). Thanks @fuller-stack-dev.",
+      "Preserve video frame roles and compatible media fallbacks [#148805](https://github.com/openclaw/openclaw/pull/148805).",
+      "PDF inspection rejects non-PDF inputs and does not accept data URLs. Late cancelled image-read results are discarded. Media-header and container checks do not guarantee decoding or playback.",
+      "Honor runtime preferences for profile-pinned models [#149604](https://github.com/openclaw/openclaw/pull/149604). Thanks @shakkernerd.",
+      "Reduce retained strings and repeated streaming waits [#147972](https://github.com/openclaw/openclaw/pull/147972).",
+      "Buffered parsing paths remain outside the ordinary-text retention repair, and a single expensive event cannot be interrupted. The retention repair can take more processing time than the scheduling change alone; measured string storage is not total process memory.",
+      "Release queued reservations after cron startup failures [#141008](https://github.com/openclaw/openclaw/pull/141008). Thanks @holny, @fuller-stack-dev and @wilhelminavonhunt.",
+      "Reduce cron cleanup stalls on large agent fleets [#142591](https://github.com/openclaw/openclaw/pull/142591). Thanks @zachisfine, @pollybot13 and @609nft.",
+      "Forward saved CLI credentials to scheduled and queued runs [#144266](https://github.com/openclaw/openclaw/pull/144266). Thanks @masterswords1, @fuller-stack-dev, @angeliti999 and @iwhatsskill.",
+      "Allow zero scheduler timeouts for automations [#144551](https://github.com/openclaw/openclaw/pull/144551). Thanks @jalehman.",
+      "Preserve standing reminders after prompt-hook timeouts [#145107](https://github.com/openclaw/openclaw/pull/145107).",
+      "Release old Automation page state after switching agents [#145236](https://github.com/openclaw/openclaw/pull/145236).",
+      "Preserve running automation edits after crash recovery [#145375](https://github.com/openclaw/openclaw/pull/145375). Thanks @shakkernerd.",
+      "Preserve spaces in automation script filenames [#145673](https://github.com/openclaw/openclaw/pull/145673).",
+      "Recover the correct cron run when timestamps collide [#145734](https://github.com/openclaw/openclaw/pull/145734). Thanks @shakkernerd.",
+      "Preserve edited schedules during recovery [#145828](https://github.com/openclaw/openclaw/pull/145828). Thanks @shakkernerd.",
+      "Preserve cron failure details when sessions are renamed [#146551](https://github.com/openclaw/openclaw/pull/146551). Thanks @vacinc.",
+      "Recover automation tools and group recurring failure alerts [#146582](https://github.com/openclaw/openclaw/pull/146582).",
+      "Show active automation runs despite disabled stream sources [#146793](https://github.com/openclaw/openclaw/pull/146793).",
+      "Preserve scheduled conversation delivery through Doctor repair [#146794](https://github.com/openclaw/openclaw/pull/146794). Thanks @fuller-stack-dev.",
+      "Keep run history attached to the selected automation [#147399](https://github.com/openclaw/openclaw/pull/147399).",
+      "Preserve automation management after child tasks [#147499](https://github.com/openclaw/openclaw/pull/147499).",
+      "Keep automation fields focused during validation [#147841](https://github.com/openclaw/openclaw/pull/147841).",
+      "Correct heartbeat owner discovery and status [#147944](https://github.com/openclaw/openclaw/pull/147944). Thanks @perpaul.",
+      "Restore schedule controls after failed automation saves [#148242](https://github.com/openclaw/openclaw/pull/148242).",
+      "Reject blank cron schedules before changing jobs [#148271](https://github.com/openclaw/openclaw/pull/148271).",
+      "Report actual abort reasons in cron warnings [#148331](https://github.com/openclaw/openclaw/pull/148331).",
+      "Reject blank script paths before changing scheduled jobs [#148787](https://github.com/openclaw/openclaw/pull/148787). Thanks @alix-007 and @obviyus.",
+      "Avoid heartbeat timeouts while waiting for busy agents [#148876](https://github.com/openclaw/openclaw/pull/148876). Thanks @srinatar and @obviyus.",
+      "Skip idle cron cleanup availability checks [#148920](https://github.com/openclaw/openclaw/pull/148920). Thanks @obviyus, @609nft and @zachisfine.",
+      "Keep long CLI cron jobs active through completion [#149245](https://github.com/openclaw/openclaw/pull/149245). Thanks @donniefi and @obviyus.",
+      "Clear saved automation timeout overrides [#149274](https://github.com/openclaw/openclaw/pull/149274).",
+      "Preserve automation pacing in copies and clear it for Once schedules [#149594](https://github.com/openclaw/openclaw/pull/149594).",
+      "Refresh automation details without losing edits [#149608](https://github.com/openclaw/openclaw/pull/149608).",
+      "Preserve automation events, timing and recovery history [#149673](https://github.com/openclaw/openclaw/pull/149673). Thanks @vincentkoc.",
+      "Clean up scheduled replies and retain continuation usage [#149697](https://github.com/openclaw/openclaw/pull/149697).",
+      "Preserve scheduled-run usage when a retry fails [#149767](https://github.com/openclaw/openclaw/pull/149767).",
+      "Prevent extra runs of event-triggered automations [#149902](https://github.com/openclaw/openclaw/pull/149902).",
+      "Keep automation history with its selected task and clear recovered errors [#149955](https://github.com/openclaw/openclaw/pull/149955).",
+      "Keep the selected automation open when an earlier save finishes [#150129](https://github.com/openclaw/openclaw/pull/150129).",
+      "Acknowledge manual runs after queue acceptance [#150849](https://github.com/openclaw/openclaw/pull/150849). Thanks @shakkernerd.",
+      "Read completed automation transcripts after session cleanup [#148211](https://github.com/openclaw/openclaw/pull/148211).",
+      "Keep filtered automation history on the correct page [#149482](https://github.com/openclaw/openclaw/pull/149482).",
+      "Avoid false MCP blockers in group heartbeats [#140316](https://github.com/openclaw/openclaw/pull/140316). Thanks @ylcn91, @obviyus and @fuma2013.",
+      "Preserve heartbeat alerts and private notes through retries [#144377](https://github.com/openclaw/openclaw/pull/144377). Thanks @obviyus and @jlahullier.",
+      "Respect deliberate silence in heartbeat finalization [#145343](https://github.com/openclaw/openclaw/pull/145343). Thanks @pollybot13, @nixcyry and @obviyus.",
+      "Keep quiet heartbeat checks silent after CLI fallback [#149549](https://github.com/openclaw/openclaw/pull/149549). Thanks @ruel225, @obviyus and @axeg0.",
+      "Guide agents away from duplicating inaccessible automations [#137451](https://github.com/openclaw/openclaw/pull/137451). Thanks @liuwqgit, @sallyom, @eason-mars, @pkinjo and @emmyallears.",
+      "Finish manual automation requests when their owner is missing [#143804](https://github.com/openclaw/openclaw/pull/143804). Thanks @sunnyshu0925, @obviyus and @yncubys.",
+      "Restore prompt editing for older automations [#145730](https://github.com/openclaw/openclaw/pull/145730). Thanks @joncursi.",
+      "Report unavailable automation creator accounts [#145783](https://github.com/openclaw/openclaw/pull/145783). Thanks @runvouch and @joncursi.",
+      "Honor scheduled-job tool restrictions across harnesses [#149375](https://github.com/openclaw/openclaw/pull/149375).",
+      "Preserve Claude automation targets within current policy [#150089](https://github.com/openclaw/openclaw/pull/150089). Thanks @shakkernerd.",
+      "Restrict update and restart notices to configured owners [#146079](https://github.com/openclaw/openclaw/pull/146079). Thanks @adembektas.",
+      "Respect account send settings for update notices [#146084](https://github.com/openclaw/openclaw/pull/146084). Thanks @eleqtrizit and @adembektas.",
+      "Preserve automation account restrictions across payload changes [#150221](https://github.com/openclaw/openclaw/pull/150221). Thanks @shakkernerd.",
+      "Preserve Cron outcomes while enforcing current caller authority [#150906](https://github.com/openclaw/openclaw/pull/150906). Thanks @shakkernerd.",
+      "Stop agent Cron changes after caller revocation [#150921](https://github.com/openclaw/openclaw/pull/150921). Thanks @shakkernerd.",
+      "Require authorization support for scheduled message changes [#151064](https://github.com/openclaw/openclaw/pull/151064). Thanks @shakkernerd and @nissl24.",
+      "Restore channel reads for operator-created scheduled jobs [#150166](https://github.com/openclaw/openclaw/pull/150166). Thanks @shakkernerd and @nissl24.",
+      "Restore scheduled Discord message edits, deletion and pinning [#150191](https://github.com/openclaw/openclaw/pull/150191). Thanks @shakkernerd and @nissl24.",
+      "Restore scheduled channel reads for creator accounts [#150278](https://github.com/openclaw/openclaw/pull/150278). Thanks @shakkernerd.",
+      "Preserve local authorization for scheduled account reads [#150311](https://github.com/openclaw/openclaw/pull/150311). Thanks @shakkernerd.",
+      "Let automatic-reset hooks finish delayed work [#146350](https://github.com/openclaw/openclaw/pull/146350). Thanks @vasubansal7576, @liuwqgit, @vincentkoc and @yigtwxx.",
+      "Preserve private subagent results across parent yield [#148405](https://github.com/openclaw/openclaw/pull/148405).",
+      "Preserve timeout outcomes for private parent continuations [#148619](https://github.com/openclaw/openclaw/pull/148619). Thanks @fuller-stack-dev.",
+      "Preserve project and task context in visible child sessions [#145102](https://github.com/openclaw/openclaw/pull/145102).",
+      "Avoid duplicate work after inline child replies [#147394](https://github.com/openclaw/openclaw/pull/147394). Thanks @obviyus, @ylcn91 and @tonyisblind.",
+      "Keep long-running subagents in activity counts [#147431](https://github.com/openclaw/openclaw/pull/147431). Thanks @fuller-stack-dev.",
+      "Respect subagent cleanup retry limits [#147480](https://github.com/openclaw/openclaw/pull/147480).",
+      "Preserve recorded replies when chat waits finish [#147656](https://github.com/openclaw/openclaw/pull/147656). Thanks @vincentkoc.",
+      "Prevent scheduled subagent waits stalling Gateway [#147779](https://github.com/openclaw/openclaw/pull/147779).",
+      "Clarify where cross-session announcements are recorded [#148740](https://github.com/openclaw/openclaw/pull/148740). Thanks @vincentkoc and @nikolascostello.",
+      "Avoid reporting cancellation for native children still running [#149025](https://github.com/openclaw/openclaw/pull/149025).",
+      "Show child follow-up activity in the parent chat [#149807](https://github.com/openclaw/openclaw/pull/149807).",
+      "Wait for admitted ACP cleanup before returning spawn failure [#150792](https://github.com/openclaw/openclaw/pull/150792). Thanks @yigtwxx.",
+      "Keep subagent waits responsive with large task histories [#151261](https://github.com/openclaw/openclaw/pull/151261).",
+      "Fix false process failures and stalled waits [#147871](https://github.com/openclaw/openclaw/pull/147871).",
+      "Preserve agent timeouts after background commands complete [#148388](https://github.com/openclaw/openclaw/pull/148388).",
+      "Preserve execution budgets and late task replies [#148508](https://github.com/openclaw/openclaw/pull/148508).",
+      "Keep worker reports on their task completion path [#150520](https://github.com/openclaw/openclaw/pull/150520).",
+      "Stop child reply loops and clear internal control markers [#150527](https://github.com/openclaw/openclaw/pull/150527). Thanks @romneyda.",
+      "Hide worker coordination and prevent reciprocal child reply loops [#150625](https://github.com/openclaw/openclaw/pull/150625).",
+      "Reject model switches that cannot run on the assigned worker [#136833](https://github.com/openclaw/openclaw/pull/136833). Thanks @sunnyshu0925, @patrick-erichsen, @jalehman, and @skorfmann.",
+      "Prevent expired forks from extending warm-image demand [#146163](https://github.com/openclaw/openclaw/pull/146163).",
+      "Prevent large-workspace preparation stalls [#147470](https://github.com/openclaw/openclaw/pull/147470).",
+      "Reuse supported Crabbox binaries without loading the installer [#149658](https://github.com/openclaw/openclaw/pull/149658). Thanks @vincentkoc.",
+      "Bootstrap cloud nodes from builds containing private QA tooling [#149926](https://github.com/openclaw/openclaw/pull/149926).",
+      "Stop obsolete cloud attempts before bundle installation [#150763](https://github.com/openclaw/openclaw/pull/150763). An ownership change after installation has already started may still delay completion and cleanup.",
+      "Resume cloud-session setup after Gateway restarts [#145068](https://github.com/openclaw/openclaw/pull/145068).",
+      "Match Stop actions to actual cloud-worker recovery state [#145153](https://github.com/openclaw/openclaw/pull/145153).",
+      "Archive sessions with starting or cleanup-pending cloud workers [#145170](https://github.com/openclaw/openclaw/pull/145170).",
+      "Restart failed cloud sessions on the local Gateway [#146054](https://github.com/openclaw/openclaw/pull/146054).",
+      "Resume cloud sessions without false setup-stall errors [#146225](https://github.com/openclaw/openclaw/pull/146225).",
+      "Keep pending cloud archives visible [#147552](https://github.com/openclaw/openclaw/pull/147552). The later archive fix below supersedes pending-row visibility with immediate hiding and Undo. This change also avoids unrelated queued-maintenance delays and rejects duplicate archive requests.",
+      "Archive sessions while failed-worker cleanup remains pending [#147651](https://github.com/openclaw/openclaw/pull/147651).",
+      "Preserve cancelled hosted turns after shutdown errors [#148181](https://github.com/openclaw/openclaw/pull/148181).",
+      "Recover repository conversations that need a worker [#148256](https://github.com/openclaw/openclaw/pull/148256). Thanks @zachisfine and @obviyus.",
+      "Reject interrupted remote workspace uploads [#149080](https://github.com/openclaw/openclaw/pull/149080). Thanks @wangmiao0668000666 and @obviyus. For an existing incomplete workspace, preserve needed remote changes before running `openclaw sandbox recreate`.",
+      "Recover cloud-worker workspace sync after slow process checks [#149963](https://github.com/openclaw/openclaw/pull/149963). Exhausted recovery can leave workers paused for a later retry; a rollback delay may also last until the original lease expires.",
+      "Recover saved cloud messages and abandoned Desktop viewers [#150484](https://github.com/openclaw/openclaw/pull/150484).",
+      "Keep snapshot builds visible during inventory failures [#144127](https://github.com/openclaw/openclaw/pull/144127).",
+      "Remove dismissed snapshot builds immediately [#145122](https://github.com/openclaw/openclaw/pull/145122).",
+      "Clean up containers after failed sandbox creation [#150713](https://github.com/openclaw/openclaw/pull/150713). Thanks @vincentkoc and @eleqtrizit.",
+      "Screenshot-free accessibility inspection on CUA [#145351](https://github.com/openclaw/openclaw/pull/145351). Honor screenshot-free accessibility inspection on updated CUA nodes; Peekaboo remains unsupported and pixel clicks still require an image.",
+      "Desktop input feedback and capability-aware guidance [#145352](https://github.com/openclaw/openclaw/pull/145352).",
+      "Restore desktop and portal streams on Bun [#146005](https://github.com/openclaw/openclaw/pull/146005).",
+      "Let cloud worker commands open desktop apps [#146223](https://github.com/openclaw/openclaw/pull/146223).",
+      "Return fresh window observations after computer actions [#146822](https://github.com/openclaw/openclaw/pull/146822). Thanks @vincentkoc.",
+      "Keep Desktop connected across quick Chat tab switches [#147175](https://github.com/openclaw/openclaw/pull/147175). Retain connected Desktop viewers for quick Chat tab switches within 30 seconds, pausing input while hidden and disconnecting during active drags or session changes.",
+      "Release retired desktop keyboard connections [#148082](https://github.com/openclaw/openclaw/pull/148082). Thanks @vincentkoc. Release the desktop keyboard's old viewer connection after a full reset without waiting for another input event.",
+      "Avoid leftover helpers after SSH desktop connections [#149345](https://github.com/openclaw/openclaw/pull/149345).",
+      "Prevent Computer Use refresh from aborting Codex startup [#149365](https://github.com/openclaw/openclaw/pull/149365). Thanks @bdjben, @obviyus, and Benjamin Badejo.",
+      "Correct Codex Computer Use readiness checks [#149494](https://github.com/openclaw/openclaw/pull/149494). Thanks @jalehman and @jason-allen-oneal.",
+      "Recover Desktop viewer slots after abandoned setup [#150801](https://github.com/openclaw/openclaw/pull/150801).",
+      "Wait for Desktop stream cleanup during shutdown [#151139](https://github.com/openclaw/openclaw/pull/151139).",
+      "Finish desktop cleanup across repeated stops and queued app launches [#151236](https://github.com/openclaw/openclaw/pull/151236).",
+      "Keep Desktop reconnect controls after rapid visibility changes [#151243](https://github.com/openclaw/openclaw/pull/151243).",
+      "Preserve visible webpage text after hidden HTML [#144210](https://github.com/openclaw/openclaw/pull/144210). Thanks @ruel225, @obviyus, and @yetval.",
+      "Keep sidebar tab menus visible over native Browser pages [#145108](https://github.com/openclaw/openclaw/pull/145108). Thanks @patrick-erichsen.",
+      "Warn when browser response bodies are truncated [#145210](https://github.com/openclaw/openclaw/pull/145210).",
+      "Keep Mac Browser panes visible beside menus [#145482](https://github.com/openclaw/openclaw/pull/145482).",
+      "Show element references in plain accessibility snapshots [#146247](https://github.com/openclaw/openclaw/pull/146247).",
+      "Clarify browser profile data removal status [#146965](https://github.com/openclaw/openclaw/pull/146965). Report unconfirmed browser data removal when deleting a profile, rather than claiming no data exists.",
+      "Preserve browser scope in repair advice [#147859](https://github.com/openclaw/openclaw/pull/147859). Keep `--browser` in sandbox inspection and recreation advice so follow-up commands target browser containers.",
+      "Restore subscribed tabs after target loss [#147943](https://github.com/openclaw/openclaw/pull/147943).",
+      "Guide browser-sidebar requests to the existing panel [#148471](https://github.com/openclaw/openclaw/pull/148471).",
+      "Open remote browser tabs when discovery advertises localhost [#148546](https://github.com/openclaw/openclaw/pull/148546). Thanks @donniefi, @obviyus, and @batmanscode.",
+      "Keep browser previews readable during refresh [#149328](https://github.com/openclaw/openclaw/pull/149328).",
+      "Keep browser dispatch failures from stopping the Gateway [#150177](https://github.com/openclaw/openclaw/pull/150177). Thanks @moerai, @tdvtoan, and @fuller-stack-dev.",
+      "Keep new browser tabs accessible during first navigation [#150233](https://github.com/openclaw/openclaw/pull/150233).",
+      "Tolerate delayed managed-browser readiness responses [#149284](https://github.com/openclaw/openclaw/pull/149284).",
+      "Preserve slow running browsers and locked profile data [#149354](https://github.com/openclaw/openclaw/pull/149354).",
+      "Protect browser session cleanup and shared-work cancellation [#149820](https://github.com/openclaw/openclaw/pull/149820).",
+      "Retry browser installation after failed file replacement [#151254](https://github.com/openclaw/openclaw/pull/151254).",
+      "Enable plain-text paste into Agent browser panels [#148451](https://github.com/openclaw/openclaw/pull/148451). Thanks @vincentkoc.",
+      "Restore Space typing in the Browser panel [#150317](https://github.com/openclaw/openclaw/pull/150317). Thanks @donniefi and @moltmanisgreat.",
+      "Prefer the host browser for automatic routing [#147446](https://github.com/openclaw/openclaw/pull/147446).",
+      "Validate complete browser output paths [#147541](https://github.com/openclaw/openclaw/pull/147541). Preserve literal browser output directory names, reject symlinked ancestors, and clean up temporary Chrome MCP screenshot workspaces.",
+      "Restore replies for plugins using the older inbound API [#91245](https://github.com/openclaw/openclaw/pull/91245). Thanks @849261680, @fuller-stack-dev, @ckai49500-source, @jakuboleksy, @davidchpl, @nissanlogan, @bravostation.",
+      "Preserve plugin files when update ownership is lost [#144316](https://github.com/openclaw/openclaw/pull/144316). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Preserve plugin registration object identity [#145488](https://github.com/openclaw/openclaw/pull/145488). Thanks @romneyda.",
+      "Keep callbacks working when another plugin instance retires [#145804](https://github.com/openclaw/openclaw/pull/145804).",
+      "Recover plugin reloads and complete resource cleanup [#145816](https://github.com/openclaw/openclaw/pull/145816).",
+      "Load JavaScript plugins natively under Bun [#145947](https://github.com/openclaw/openclaw/pull/145947).",
+      "Release retired plugin services after hot reload [#146073](https://github.com/openclaw/openclaw/pull/146073). Thanks @vincentkoc.",
+      "Reduce memory retained after repeated plugin reloads [#146239](https://github.com/openclaw/openclaw/pull/146239).",
+      "Apply approved plugin artifacts without restarting Gateway [#146413](https://github.com/openclaw/openclaw/pull/146413).",
+      "Apply first channel setup without restarting Gateway [#146481](https://github.com/openclaw/openclaw/pull/146481).",
+      "Preserve plugin update errors when rollback fails [#146483](https://github.com/openclaw/openclaw/pull/146483). Thanks @aniruddhaadak80.",
+      "Preserve plugin install failures when rollback also fails [#146656](https://github.com/openclaw/openclaw/pull/146656).",
+      "Reuse plugin registrations with prepared metadata [#146703](https://github.com/openclaw/openclaw/pull/146703).",
+      "Preserve pending chats during plugin reload [#147472](https://github.com/openclaw/openclaw/pull/147472).",
+      "Preserve runtime context for deferred plugin commands [#147688](https://github.com/openclaw/openclaw/pull/147688). Thanks @romneyda.",
+      "Preserve ClawHub artifact size in install metadata [#148118](https://github.com/openclaw/openclaw/pull/148118). Thanks @onlyysaurabh, @vincentkoc.",
+      "Restore native addon discovery during plugin reloads [#148170](https://github.com/openclaw/openclaw/pull/148170). Thanks @novaunboundai.",
+      "Release retired plugin-service startup references [#148175](https://github.com/openclaw/openclaw/pull/148175).",
+      "Use the selected registry's integrity for ClawHub installs [#148220](https://github.com/openclaw/openclaw/pull/148220). Thanks @romneyda.",
+      "Avoid blocking the Gateway during plugin artifact cleanup [#148286](https://github.com/openclaw/openclaw/pull/148286).",
+      "Keep plugin CLI callbacks in their owning runtime [#148524](https://github.com/openclaw/openclaw/pull/148524). Thanks @vincentkoc, @romneyda.",
+      "Stop Gateway stalls after plugin retirement [#148635](https://github.com/openclaw/openclaw/pull/148635).",
+      "Repair stale ClawHub plugin connections with Doctor [#149634](https://github.com/openclaw/openclaw/pull/149634). Thanks @patrick-erichsen.",
+      "Reuse loaded channel plugins during setup and preserve current credential views [#150026](https://github.com/openclaw/openclaw/pull/150026). Thanks @liuwqgit, @fuller-stack-dev, @dh-js.",
+      "Check plugin SDK aliases only when needed [#150840](https://github.com/openclaw/openclaw/pull/150840). Thanks @romneyda.",
+      "Recover channels after plugin replacement timeouts [#150953](https://github.com/openclaw/openclaw/pull/150953).",
+      "Preserve SQLite host context across module copies [#151153](https://github.com/openclaw/openclaw/pull/151153). Thanks @romneyda.",
+      "Keep plugin service identities stable across registration and reload [54a71610](https://github.com/openclaw/openclaw/commit/54a71610a84fbd72bfac97afadb711c8539d8300). Thanks @fuller-stack-dev.",
+      "Release plugin memory retained by cached error stacks [#149643](https://github.com/openclaw/openclaw/pull/149643). Thanks @patrick-erichsen.",
+      "Release old plugin registries after replacement [#149644](https://github.com/openclaw/openclaw/pull/149644). Thanks @patrick-erichsen.",
+      "Release stopped lease timers and worker references [#149645](https://github.com/openclaw/openclaw/pull/149645). Thanks @patrick-erichsen.",
+      "Avoid redundant inbound plugin registration during reload [#149648](https://github.com/openclaw/openclaw/pull/149648). Thanks @patrick-erichsen.",
+      "Keep Lossless and other plugins usable after settings reloads [#149675](https://github.com/openclaw/openclaw/pull/149675). Thanks @patrick-erichsen.",
+      "Resolve captured plugin module targets under Bun [#150154](https://github.com/openclaw/openclaw/pull/150154).",
+      "Preserve Bun plugin source loading and import failure behavior [#150287](https://github.com/openclaw/openclaw/pull/150287).",
+      "Fix direct loading of plugin marketplace pages [#142798](https://github.com/openclaw/openclaw/pull/142798). Thanks @patrick-erichsen.",
+      "Stop retaining obsolete plugin catalog entries [#144219](https://github.com/openclaw/openclaw/pull/144219).",
+      "Keep selected plugin tabs open while information loads [#144647](https://github.com/openclaw/openclaw/pull/144647).",
+      "Keep plugin categories available while searching [#144661](https://github.com/openclaw/openclaw/pull/144661).",
+      "Fix Plugins catalog refresh at the trailing-slash URL [#144740](https://github.com/openclaw/openclaw/pull/144740). Thanks @gokay-ai, @conan-scott, @obviyus.",
+      "Preserve plugin page links on reload [#145303](https://github.com/openclaw/openclaw/pull/145303).",
+      "Package icons and reliable missing-image placeholders [#145415](https://github.com/openclaw/openclaw/pull/145415). Thanks @patrick-erichsen.",
+      "Match plugin loading placeholders to cards [#145417](https://github.com/openclaw/openclaw/pull/145417). Thanks @vyctorbrzezowski.",
+      "Preserve plugin diagnostic details in Doctor JSON [#147020](https://github.com/openclaw/openclaw/pull/147020).",
+      "Complete Radius and Session Share plugin listings [#147104](https://github.com/openclaw/openclaw/pull/147104).",
+      "Restore plugin search icons and distinguish official results [#148518](https://github.com/openclaw/openclaw/pull/148518). Thanks @patrick-erichsen.",
+      "Show disabled plugins' declared CLI backends during inspection [#149837](https://github.com/openclaw/openclaw/pull/149837). Thanks @zhangguiping-xydt, @obviyus.",
+      "Restore bundled plugin descriptions [#150331](https://github.com/openclaw/openclaw/pull/150331).",
+      "Keep unpublished Logbook, Memory Wiki and 1Password bundled [#150316](https://github.com/openclaw/openclaw/pull/150316). Thanks @fuller-stack-dev.",
+      "Make supported plugin credential fields editable [#148192](https://github.com/openclaw/openclaw/pull/148192). Thanks @obviyus.",
+      "Keep independent tests out of generated tool packages [#129393](https://github.com/openclaw/openclaw/pull/129393).",
+      "Report missing plugin manifests as build failures [#145823](https://github.com/openclaw/openclaw/pull/145823).",
+      "Reject missing JavaScript plugin entries [#145903](https://github.com/openclaw/openclaw/pull/145903).",
+      "Preserve plugin-validation debug details [#147632](https://github.com/openclaw/openclaw/pull/147632).",
+      "Preserve plugin source paths outside the home directory [#148142](https://github.com/openclaw/openclaw/pull/148142). Thanks @qingminglong.",
+      "Restore plugin manifest hashes through directory aliases [#148632](https://github.com/openclaw/openclaw/pull/148632). Thanks @patrick-erichsen, @hannesrudolph.",
+      "Preserve plugin manifest permissions during builds [#147393](https://github.com/openclaw/openclaw/pull/147393). Thanks @vincentkoc.",
+      "Drain active plugin work before Claw package removal [#145649](https://github.com/openclaw/openclaw/pull/145649).",
+      "Keep shared sessions focused on conversation text [#146598](https://github.com/openclaw/openclaw/pull/146598).",
+      "Preserve conversation before tool activity in large CLI imports [#143995](https://github.com/openclaw/openclaw/pull/143995). Thanks @von8794, @obviyus.",
+      "Preserve Claude CLI replies during backend replacement [#145378](https://github.com/openclaw/openclaw/pull/145378). Thanks @ylcn91, @jalehman, @emi-ercel.",
+      "Use saved subscription tokens for new Claude CLI conversations [#146095](https://github.com/openclaw/openclaw/pull/146095). Thanks @obviyus, @klaussarros.",
+      "Restore native Codex discovery and hide empty catalogs [#146305](https://github.com/openclaw/openclaw/pull/146305).",
+      "Release cancelled session catalog requests from the queue [#146498](https://github.com/openclaw/openclaw/pull/146498).",
+      "Stop retired session-catalog lookups [#148407](https://github.com/openclaw/openclaw/pull/148407).",
+      "Preserve shared Codex catalog reads under cache pressure [#148513](https://github.com/openclaw/openclaw/pull/148513). Thanks @giangthb.",
+      "Reuse pending Codex catalog reads after polling timeouts [#148631](https://github.com/openclaw/openclaw/pull/148631).",
+      "Back off repeatedly failing Codex catalog sources [#149378](https://github.com/openclaw/openclaw/pull/149378).",
+      "Let waiting catalogs progress after node work completes [#149396](https://github.com/openclaw/openclaw/pull/149396).",
+      "Keep active catalog refreshes shared under query pressure [#149500](https://github.com/openclaw/openclaw/pull/149500).",
+      "Stop history updates after a catalog pane closes [#149505](https://github.com/openclaw/openclaw/pull/149505).",
+      "Avoid repeated Codex scans across multiple homes [#149879](https://github.com/openclaw/openclaw/pull/149879).",
+      "Avoid repeated recent-session scans during older-session discovery [#150517](https://github.com/openclaw/openclaw/pull/150517).",
+      "Bound searches through hidden Codex sessions [#150639](https://github.com/openclaw/openclaw/pull/150639).",
+      "Preserve starting limits for Codex session searches [#150859](https://github.com/openclaw/openclaw/pull/150859).",
+      "Resolve current ACP tasks after run ID reuse [#151030](https://github.com/openclaw/openclaw/pull/151030).",
+      "Introduce ACP sessions before sending their updates [#110455](https://github.com/openclaw/openclaw/pull/110455). Thanks @superdiaodiao, @fuller-stack-dev, @fused-id.",
+      "Stop canceled ACP turns before they start provider work [#114199](https://github.com/openclaw/openclaw/pull/114199). Thanks @kevin2966n, @fuller-stack-dev.",
+      "Resume ACP conversations after reset cleanup stalls [#115184](https://github.com/openclaw/openclaw/pull/115184). Thanks @jacks1237, @fuller-stack-dev, @romneyda, @enominera.",
+      "Stop language-server startup when a turn is canceled [#148762](https://github.com/openclaw/openclaw/pull/148762).",
+      "Preserve waiting Workboard cards during idle dispatch [#149160](https://github.com/openclaw/openclaw/pull/149160). Thanks @obviyus, @gregbond.",
+      "Keep transcript reads consistent through updates and cleanup [#145031](https://github.com/openclaw/openclaw/pull/145031).",
+      "Save Google Meet summaries to the requested output file [#147078](https://github.com/openclaw/openclaw/pull/147078).",
+      "Keep Reef inbox processing available when storage fills [#144637](https://github.com/openclaw/openclaw/pull/144637). Thanks @eleqtrizit.",
+      "Save ClickClack ownership before creating discussions [#149574](https://github.com/openclaw/openclaw/pull/149574).",
+      "Hide deleted Beams immediately [#147460](https://github.com/openclaw/openclaw/pull/147460).",
+      "Release MCP servers after isolated heartbeats [#143433](https://github.com/openclaw/openclaw/pull/143433). Thanks @ylcn91, @chachi-max, @as76, @kgerman-ar, @jmmoncada95.",
+      "Contain MCP startup cleanup failures and preserve Doctor findings [#144941](https://github.com/openclaw/openclaw/pull/144941). Thanks @libraho, @itanyplus.",
+      "Reject folders as MCP server commands [#144998](https://github.com/openclaw/openclaw/pull/144998). Thanks @masatohoshino.",
+      "Accept nested-reference MCP result schemas [#145533](https://github.com/openclaw/openclaw/pull/145533).",
+      "Accept cleanup of already-ended MCP sessions [#145831](https://github.com/openclaw/openclaw/pull/145831). Thanks @zhangguiping-xydt, @baumus, @obviyus.",
+      "Preserve underlying errors when MCP cleanup is uncertain [#146561](https://github.com/openclaw/openclaw/pull/146561).",
+      "Explain MCP probes with no enabled servers [#147216](https://github.com/openclaw/openclaw/pull/147216).",
+      "Preserve MCP OAuth logins during Doctor checks [#147454](https://github.com/openclaw/openclaw/pull/147454). Thanks @shad0wca7.",
+      "Attribute tool-preparation delays to the correct stages [#148349](https://github.com/openclaw/openclaw/pull/148349).",
+      "Cancel language-server startup during conversation compaction [#148845](https://github.com/openclaw/openclaw/pull/148845).",
+      "Wait for bounded tool subprocess cleanup during shutdown [#149005](https://github.com/openclaw/openclaw/pull/149005). Thanks @vincentkoc.",
+      "Prevent premature aborts of silent MCP tools [#149206](https://github.com/openclaw/openclaw/pull/149206). Thanks @obviyus, @wujialehk.",
+      "Stop pending MCP startup when compaction is cancelled [#149339](https://github.com/openclaw/openclaw/pull/149339).",
+      "Complete MCP cleanup when shutdown helpers stall [#150306](https://github.com/openclaw/openclaw/pull/150306).",
+      "Keep Claude CLI tools available across turns [#150339](https://github.com/openclaw/openclaw/pull/150339). Thanks @marieldejesus12, @josepeluso, @seahopark, @potterdigital.",
+      "Skip denied MCP servers and close unused discovery connections [#150364](https://github.com/openclaw/openclaw/pull/150364). Thanks @michaeljgood71, @terrencehinds99, @clode2026, @radekpohl-rgb.",
+      "Remove unused empty MCP session records [#150901](https://github.com/openclaw/openclaw/pull/150901).",
+      "Protect current task-flow progress from stale updates [#145699](https://github.com/openclaw/openclaw/pull/145699).",
+      "Keep finished subagent tasks stable across restarts [#145940](https://github.com/openclaw/openclaw/pull/145940). Thanks @zhangguiping-xydt, @anusha0501, @obviyus, @eliasbogordos.",
+      "Return complete large SQLite worker results [#145926](https://github.com/openclaw/openclaw/pull/145926).",
+      "Allow large SQLite worker writes [#146019](https://github.com/openclaw/openclaw/pull/146019).",
+      "Move async database opening into its worker [#146172](https://github.com/openclaw/openclaw/pull/146172).",
+      "Preserve causes of asynchronous TaskFlow creation errors [#148241](https://github.com/openclaw/openclaw/pull/148241).",
+      "Prevent plugin storage failures after read-only database inspection [#150236](https://github.com/openclaw/openclaw/pull/150236).",
+      "Preserve conversation history when context hooks fail [#117328](https://github.com/openclaw/openclaw/pull/117328). Thanks @fuller-stack-dev.",
+      "Keep context-engine resources through pending work [#145621](https://github.com/openclaw/openclaw/pull/145621).",
+      "Prevent false context-engine quarantine after caller closure [#148600](https://github.com/openclaw/openclaw/pull/148600). Thanks @jalehman.",
+      "Treat disabled context engines as normal built-in selection [#149319](https://github.com/openclaw/openclaw/pull/149319). Thanks @jalehman.",
+      "Preserve attachments when deleted Workboard cards are recreated [#147191](https://github.com/openclaw/openclaw/pull/147191).",
+      "Keep deferred webhook processing alive after requests finish [#144801](https://github.com/openclaw/openclaw/pull/144801). Thanks @liuwqgit, @maxwell-code07, @vincentkoc.",
+      "Restore Tool Search code mode under Bun [#145688](https://github.com/openclaw/openclaw/pull/145688).",
+      "Explain invalid Code Mode tool results before retrying [#147239](https://github.com/openclaw/openclaw/pull/147239).",
+      "Restore MCP tool discovery in Code Mode [#149662](https://github.com/openclaw/openclaw/pull/149662). Thanks @vincentkoc.",
+      "Avoid false failures after Code Mode replies are saved [#151021](https://github.com/openclaw/openclaw/pull/151021).",
+      "Preserve Code Mode tool selection, waits and returned values [#151210](https://github.com/openclaw/openclaw/pull/151210).",
+      "Classify Code Mode tool-call deadlines as timeouts [4c7cabb5](https://github.com/openclaw/openclaw/commit/4c7cabb58b4a1712d583a8e9edec6b628962fe72). Thanks @yigtwxx, @vasubansal7576.",
+      "Keep CLI conversation context after cancellation [#147139](https://github.com/openclaw/openclaw/pull/147139). Thanks @obviyus, @peetiegonzalez, @marvinthebored, @enotionz, @ataraxiat.",
+      "Report unexpected ACP signal exits as failures [#148027](https://github.com/openclaw/openclaw/pull/148027).",
+      "Shut down the ACP client when terminal input closes [#148611](https://github.com/openclaw/openclaw/pull/148611).",
+      "Consolidate ACP agent process management [#150150](https://github.com/openclaw/openclaw/pull/150150). Thanks @obviyus.",
+      "Settle disconnected Codex sockets and enforce forced shutdown [#151192](https://github.com/openclaw/openclaw/pull/151192).",
+      "Preserve newly registered diff files during cleanup [#147624](https://github.com/openclaw/openclaw/pull/147624).",
+      "Restore originals after interrupted approved overwrites [#140678](https://github.com/openclaw/openclaw/pull/140678). Thanks @zenglingbiao.",
+      "Prevent PDF cancellation from aborting Node [#150752](https://github.com/openclaw/openclaw/pull/150752).",
+      "Clarify permission for authorized email CLI actions [#148521](https://github.com/openclaw/openclaw/pull/148521). Thanks @vacinc, @aanalog-crow.",
+      "Reduce approval prompts caused by truncated command reviews [#144587](https://github.com/openclaw/openclaw/pull/144587). Thanks @masterswords1 and @unknownengineofficial.",
+      "Match verified Gateway users in command allowlists [#144601](https://github.com/openclaw/openclaw/pull/144601). Thanks @jamesy023 and @obviyus.",
+      "Enforce required approvals for requester-specific MCP tools [#144631](https://github.com/openclaw/openclaw/pull/144631). Thanks @eleqtrizit.",
+      "Block project environment files from choosing Homebrew executables [#146389](https://github.com/openclaw/openclaw/pull/146389). Thanks @eleqtrizit.",
+      "Recheck command approvals at process launch [#146517](https://github.com/openclaw/openclaw/pull/146517).",
+      "Preserve public status links during redaction [#145553](https://github.com/openclaw/openclaw/pull/145553). Thanks @obviyus and @schjonhaug.",
+      "Detect missing credentials under numeric and quoted keys [#148310](https://github.com/openclaw/openclaw/pull/148310). Thanks @zhangguiping-xydt and @obviyus.",
+      "Preserve literal exec secret-provider arguments [#148327](https://github.com/openclaw/openclaw/pull/148327).",
+      "Require private single-link SecretRef files [#148087](https://github.com/openclaw/openclaw/pull/148087).",
+      "Preserve Windows secure credential reads and Agent Files navigation [#149124](https://github.com/openclaw/openclaw/pull/149124). Agent Files links also retain the requested panel while the agent roster loads, with newer sidebar selections taking precedence.",
+      "Preserve command restrictions in isolated workers [#123236](https://github.com/openclaw/openclaw/pull/123236). Thanks @drobison00 and @vincentkoc. Host-local command approvals and safe-bin allowances are not portable to workers, and remote approval or unsupported node/sandbox execution is not added.",
+      "Ignore Teams reactions outside allowed routes [#143735](https://github.com/openclaw/openclaw/pull/143735). Thanks @pgondhi987.",
+      "Stop worker workspace downloads after access revocation [#144640](https://github.com/openclaw/openclaw/pull/144640). Thanks @eleqtrizit. Worker teardown interrupts active transfers when it revokes permanent access; routine credential rotation does not cancel them.",
+      "Reject another agent's restored credentials [#145692](https://github.com/openclaw/openclaw/pull/145692). Thanks @obviyus. Keep the restored database's recorded agent identity or initialize separate agent state for local embedding and media commands.",
+      "Apply limited profiles to Codex native execution [#145694](https://github.com/openclaw/openclaw/pull/145694).",
+      "Require explicit trust for workspace channel plugins [#146352](https://github.com/openclaw/openclaw/pull/146352). Thanks @eleqtrizit.",
+      "Enforce cross-context permissions for topic changes [#146409](https://github.com/openclaw/openclaw/pull/146409). Thanks @eleqtrizit.",
+      "Enforce child-agent scheduling restrictions through MCP [#146671](https://github.com/openclaw/openclaw/pull/146671). Thanks @eleqtrizit.",
+      "Prevent Doctor from granting unintended LINE group access [#147135](https://github.com/openclaw/openclaw/pull/147135). Thanks @obviyus and @edenfunf.",
+      "Keep message lookups consistent with current session visibility [#147330](https://github.com/openclaw/openclaw/pull/147330). Thanks @fuller-stack-dev. Reload the conversation when a replaced session returns a retryable read error.",
+      "Enforce cross-provider rules without a target address [#147939](https://github.com/openclaw/openclaw/pull/147939).",
+      "Keep cancellation tied to current control and selected execution [#149082](https://github.com/openclaw/openclaw/pull/149082). Older ACP tasks without execution details cannot be cancelled through the core task controls. Select the current task or use ACP session controls. Accepted stops can report cleanup still pending.",
+      "Stop pending message operations after their caller closes [#149277](https://github.com/openclaw/openclaw/pull/149277). Thanks @shakkernerd.",
+      "Prevent rejected queued messages from sending during recovery [#149370](https://github.com/openclaw/openclaw/pull/149370). Thanks @shakkernerd.",
+      "Honor Feishu account restrictions regardless of casing [#149497](https://github.com/openclaw/openclaw/pull/149497). Thanks @eleqtrizit. Calls that previously used the wrong account can now be refused by the intended account's restrictions.",
+      "Recognize PDF in core tool policies and diagnostics [#146408](https://github.com/openclaw/openclaw/pull/146408). Thanks @bartok9 and @mnowrot.",
+      "Restore system-expert access across equivalent credential sources [e2d2146](https://github.com/openclaw/openclaw/commit/e2d214683e22916573014da229edf47499519f3c). Thanks @nullarbitrage and @jalehman.",
+      "Protect device credentials through reconnect and shutdown [#150349](https://github.com/openclaw/openclaw/pull/150349). External integrations must honor conditional storage checks to protect newer tokens; asynchronous waiting applies to hosts that provide asynchronous storage.",
+      "Revoke retained Dashboard read access after disconnect [#150811](https://github.com/openclaw/openclaw/pull/150811). Thanks @shakkernerd.",
+      "Apply session visibility rules to Side Chat [#150703](https://github.com/openclaw/openclaw/pull/150703). Thanks @vincentkoc, @eleqtrizit and @1052.",
+      "Recheck Side Chat access before provider requests [#150704](https://github.com/openclaw/openclaw/pull/150704). Thanks @vincentkoc and @eleqtrizit.",
+      "Preserve session privacy, recall freshness and usage totals [#149529](https://github.com/openclaw/openclaw/pull/149529). Thanks @masatohoshino.",
+      "Stop warning about native conversation discovery opt-outs [#148426](https://github.com/openclaw/openclaw/pull/148426). Thanks @zhangguiping-xydt and @liuwqgit.",
+      "Keep privacy defaults from unintentionally enabling Codex [#148669](https://github.com/openclaw/openclaw/pull/148669). Thanks @zhangguiping-xydt.",
+      "Apply webhook configuration changes before dispatch [#147785](https://github.com/openclaw/openclaw/pull/147785). Thanks @eleqtrizit.",
+      "Limit stalled Mattermost slash-command uploads [#136503](https://github.com/openclaw/openclaw/pull/136503). Thanks @drobison00 and @vincentkoc. Each recognized-credential pool and the shared anonymous pool permits eight concurrent admissions.",
+      "Enforce destination policy for browser downloads [#146297](https://github.com/openclaw/openclaw/pull/146297). Thanks @eleqtrizit.",
+      "Bound Nextcloud Talk webhook reads [#146356](https://github.com/openclaw/openclaw/pull/146356). Thanks @eleqtrizit. The fixed limit is 64 simultaneous unauthenticated reads, with earlier acknowledgements preserved before an overflow rejection closes the connection.",
+      "Limit concurrent unauthenticated Feishu webhook reads [04644af](https://github.com/openclaw/openclaw/commit/04644af394011ab7ea15c31833360e7132d3053f). Thanks @alix-007. The fixed limit is 64 simultaneous reads per account route; the default WebSocket transport is unaffected. Related proposal [#137230](https://github.com/openclaw/openclaw/pull/137230).",
+      "Update IMAP Nodemailer security dependency [#145477](https://github.com/openclaw/openclaw/pull/145477). Thanks @romneyda.",
+      "Update markdown-it for the smartquotes security advisory [#148375](https://github.com/openclaw/openclaw/pull/148375). Thanks @romneyda.",
+      "Update proxy-addr to correct proxy trust matching [#149013](https://github.com/openclaw/openclaw/pull/149013). Thanks @romneyda.",
+      "Patch desktop TLS handshake handling with Rustls0.23.45 [#149911](https://github.com/openclaw/openclaw/pull/149911). Thanks @vincentkoc.",
+      "Offer a private socket for managed Signal daemons [#143511](https://github.com/openclaw/openclaw/pull/143511). Thanks @eleqtrizit and @vincentkoc.",
+      "Prevent Fleet actions from targeting reused container names [#143098](https://github.com/openclaw/openclaw/pull/143098). Thanks @masatohoshino and @obviyus.",
+      "Stop TLS renewal watchers during Gateway shutdown [#146412](https://github.com/openclaw/openclaw/pull/146412).",
+      "Limit TLS certificate and key files to 64 KiB each [#150534](https://github.com/openclaw/openclaw/pull/150534). Thanks @fuller-stack-dev and @zhanxingxin1998.",
+      "Preserve fixed-length uploads through protected egress [#144902](https://github.com/openclaw/openclaw/pull/144902). Thanks @iwhatsskill and @vacinc.",
+      "Stop remaining buffered upload writes after cancellation [#146840](https://github.com/openclaw/openclaw/pull/146840). Thanks @vincentkoc.",
+      "Preserve WebSocket messages through the secret proxy [#149676](https://github.com/openclaw/openclaw/pull/149676).",
+      "Guard canceled workspace changes and bound attachment copying [#147138](https://github.com/openclaw/openclaw/pull/147138). Managed-worktree copies preserve source modes, supported hardlinks, large files, and literal tilde names. Backup capture avoids blocking on substituted special files, bundle checks use the admitted file's bytes, and Control UI health checks retain their file-size limit.",
+      "Revoke CLI tool access when a run is cancelled [#149154](https://github.com/openclaw/openclaw/pull/149154). Thanks @shakkernerd.",
+      "Fix Git certificate trust behind the secret egress proxy [#147410](https://github.com/openclaw/openclaw/pull/147410).",
+      "Bind Gateway actions to the selected profile [#143587](https://github.com/openclaw/openclaw/pull/143587). Thanks @vincentkoc.",
+      "Keep selected Codex apps available across connection ID formats [#151228](https://github.com/openclaw/openclaw/pull/151228). Thanks @pash-openai. Matching supported identifiers refer to the same selected app; explicit denials and account authorization remain enforced.",
+      "Show small token counts accurately in session listings [#117517](https://github.com/openclaw/openclaw/pull/117517).",
+      "Default omitted shell-platform checks to the local host [#133752](https://github.com/openclaw/openclaw/pull/133752). Thanks @xialonglee, @gracy769, and @patrick-erichsen.",
+      "Show the remembered terminal session during startup [#138070](https://github.com/openclaw/openclaw/pull/138070). Thanks @sunnyshu0925, @patrick-erichsen, and @vyctorbrzezowski.",
+      "Keep transcript output free of startup notes [#144579](https://github.com/openclaw/openclaw/pull/144579). Thanks @bruce-yii and @obviyus.",
+      "Keep terminal activity visible after Ctrl+C [#146367](https://github.com/openclaw/openclaw/pull/146367).",
+      "Protect replacement task terminals from stale cleanup [#146712](https://github.com/openclaw/openclaw/pull/146712). Failed task notifications can be sent on a later update.",
+      "Restore mid-command PowerShell suggestions [#147737](https://github.com/openclaw/openclaw/pull/147737). Command and option-value suggestions work when editing before arguments already on the command line.",
+      "Resolve relative command paths from the session workspace [#148162](https://github.com/openclaw/openclaw/pull/148162). Local working directories keep `~` literal and `..` parent-relative.",
+      "Keep startup diagnostics clear of the CLI spinner [#148506](https://github.com/openclaw/openclaw/pull/148506).",
+      "Finish database cleanup before removing temporary agent state [#148674](https://github.com/openclaw/openclaw/pull/148674).",
+      "Honor plain output for log diagnostics and recovery notices [#149595](https://github.com/openclaw/openclaw/pull/149595). Thanks @liuwqgit, @obviyus, @zhangguiping-xydt, and @holny.",
+      "Respect the end of options in Bash completion [#149678](https://github.com/openclaw/openclaw/pull/149678). Thanks @zhangguiping-xydt and @obviyus.",
+      "Correct home-path labels for ignored overrides [#149897](https://github.com/openclaw/openclaw/pull/149897).",
+      "Restore nested completion after boolean option overrides [#150395](https://github.com/openclaw/openclaw/pull/150395). Thanks @alix-007 and @obviyus.",
+      "Speed up managed APFS worktree creation [#146401](https://github.com/openclaw/openclaw/pull/146401).",
+      "Preserve inherited permissions in APFS worktrees [#146586](https://github.com/openclaw/openclaw/pull/146586).",
+      "Keep workspace setup moving during background cleanup [#147358](https://github.com/openclaw/openclaw/pull/147358). Unrelated cleanup inspection can proceed alongside preparation; shared disk allocation can still require waiting. Thanks @vacinc.",
+      "Stop further workspace cleanup after cancellation [#147616](https://github.com/openclaw/openclaw/pull/147616). An already-started node deletion finishes.",
+      "Recover workspace preparation from transient Git failures [#147692](https://github.com/openclaw/openclaw/pull/147692). Managed Git reads and project clones retry once after one second within the original timeout. Pushes, pulls, authentication failures, and arbitrary agent or setup commands are excluded.",
+      "Preserve worktree snapshots after failed deletion [#147922](https://github.com/openclaw/openclaw/pull/147922). This also covers a state directory different from the default.",
+      "Preserve managed worktrees during creation and cleanup races [#149914](https://github.com/openclaw/openclaw/pull/149914).",
+      "Fix worktree preparation with partial Git clones [#150909](https://github.com/openclaw/openclaw/pull/150909).",
+      "Preserve refresh ownership and Windows environment settings [70b587ba](https://github.com/openclaw/openclaw/commit/70b587ba40560872f4f5cdf67cb1c50a87a254e6).",
+      "Preserve Windows environment settings in project operations [b5eb5895](https://github.com/openclaw/openclaw/commit/b5eb58956fa1557eb2ddd456dfe405c2878590fc).",
+      "Allow ten minutes for managed worktree allocation [#148470](https://github.com/openclaw/openclaw/pull/148470). Cancellation or an overall request deadline can end the wait sooner.",
+      "Restore idle cleanup for worktrees with large ignored directories [#148608](https://github.com/openclaw/openclaw/pull/148608).",
+      "Preserve work during managed worktree cleanup [#148765](https://github.com/openclaw/openclaw/pull/148765). Thanks @fuller-stack-dev.",
+      "Finish cleanup of large untracked worktree directories [#151231](https://github.com/openclaw/openclaw/pull/151231). Git output limits still apply to large numbers of top-level entries.",
+      "Clean up conflicted worktrees while preserving replacement directories [#151259](https://github.com/openclaw/openclaw/pull/151259).",
+      "Preserve goal instructions and optional budgets [#145041](https://github.com/openclaw/openclaw/pull/145041).",
+      "Open the Goal form from composer shortcuts and empty starters [#150976](https://github.com/openclaw/openclaw/pull/150976). Typed creation starters open the form after a following separator. Thanks @jalehman and @vyctorbrzezowski.",
+      "Respect 24-hour locales with non-Latin digits [#147321](https://github.com/openclaw/openclaw/pull/147321).",
+      "Reduce Gateway stalls when reading retained subagent runs [#147209](https://github.com/openclaw/openclaw/pull/147209). Chat polling, session updates, and waits for selected agents avoid loading old task and result bodies.",
+      "Fix Bun UI builds and development refresh prompts [#144345](https://github.com/openclaw/openclaw/pull/144345). Thanks @vincentkoc.",
+      "Match QA previews to file formats [#145612](https://github.com/openclaw/openclaw/pull/145612).",
+      "Reject blank scenario filters in dedicated QA commands [#146345](https://github.com/openclaw/openclaw/pull/146345).",
+      "Stop surviving Linux QA worker threads [#147386](https://github.com/openclaw/openclaw/pull/147386). Thanks @vincentkoc.",
+      "Distinguish unavailable Linux QA memory from zero [#147407](https://github.com/openclaw/openclaw/pull/147407). Thanks @vincentkoc.",
+      "Preserve text previews for path-like QA labels [#147545](https://github.com/openclaw/openclaw/pull/147545). Thanks @romneyda.",
+      "Avoid slow history reads after database analysis [#148057](https://github.com/openclaw/openclaw/pull/148057). Sparse conversation-history markers avoid unnecessary scans without a new index or user action.",
+      "Keep other requests responsive during large session reads [#148818](https://github.com/openclaw/openclaw/pull/148818).",
+      "Reduce Gateway pauses while listing sessions [#149466](https://github.com/openclaw/openclaw/pull/149466).",
+      "Prevent repeated tools after a missing completion reply [#85308](https://github.com/openclaw/openclaw/pull/85308). Thanks @dolencluka, @fuller-stack-dev.",
+      "Recognize completed work after progress narration [#90864](https://github.com/openclaw/openclaw/pull/90864). Thanks @moeedahmed, @smfworks, @fuller-stack-dev.",
+      "Keep completed subagent work available to later turns [#112623](https://github.com/openclaw/openclaw/pull/112623). Thanks @ericcaiwx-star, @fuller-stack-dev, eric.",
+      "Correct orphaned subagent status after restart [#126322](https://github.com/openclaw/openclaw/pull/126322). Thanks @vladimirkrdzic, @fuller-stack-dev, @vacinc.",
+      "Keep yielded parent conversations intact across sibling completions [#141602](https://github.com/openclaw/openclaw/pull/141602). Thanks @ylcn91, @jalehman, @mrclawfield.",
+      "Clear stale subagent activity after restart cleanup [#146248](https://github.com/openclaw/openclaw/pull/146248). Thanks @vacinc.",
+      "Preserve original callers for queued Swarm tasks [#146490](https://github.com/openclaw/openclaw/pull/146490).",
+      "Read current subagent completion and protect replacements [#146542](https://github.com/openclaw/openclaw/pull/146542). An unreadable session can still interrupt the completion sweep for healthy siblings.",
+      "Protect reset subagent sessions from old cleanup retries [#146565](https://github.com/openclaw/openclaw/pull/146565). Reset can fail while completion settles or protection cannot be saved; saved protection remains if a later reset step fails.",
+      "Recover paused subagents and show their parent hierarchy [#146667](https://github.com/openclaw/openclaw/pull/146667).",
+      "Keep explicitly stopped child runs canceled [#146711](https://github.com/openclaw/openclaw/pull/146711).",
+      "Restore structured results for CLI-backed Swarm collectors [#146715](https://github.com/openclaw/openclaw/pull/146715). Thanks @etzelm, @vacinc, @potterdigital. Collectors must submit valid data through the required result tool and no longer receive `sessions_yield`, `ask_user`, or `sessions_send`.",
+      "Finish yielded collectors so waiting callers receive results [#146716](https://github.com/openclaw/openclaw/pull/146716). Thanks @etzelm, @vacinc, @potterdigital. Missing required output still returns an error; previously stranded records are not recovered.",
+      "Avoid redundant chat refreshes and repair task recovery [#146736](https://github.com/openclaw/openclaw/pull/146736).",
+      "Complete system-expert requests at concurrency one [#147596](https://github.com/openclaw/openclaw/pull/147596). Thanks @obviyus, @ekinnee, @maulu5.",
+      "Preserve follow-through after private subagent completion [#149073](https://github.com/openclaw/openclaw/pull/149073). Thanks @vacinc.",
+      "Avoid duplicate replies after native Codex waits [#149104](https://github.com/openclaw/openclaw/pull/149104).",
+      "Resume yielded tasks after slow Gateway admission [#149208](https://github.com/openclaw/openclaw/pull/149208). Thanks @kvnloo.",
+      "Deliver complete subagent answers to waiting parents [#149223](https://github.com/openclaw/openclaw/pull/149223). Thanks @obviyus, @aleps001, @kvnloo.",
+      "Finish yielded tasks and identify failed child sessions [#149261](https://github.com/openclaw/openclaw/pull/149261).",
+      "Deliver child results after background media generation [#149368](https://github.com/openclaw/openclaw/pull/149368). Thanks @obviyus, @adamamzalag.",
+      "Check subagent fork limits against current conversation context [#149666](https://github.com/openclaw/openclaw/pull/149666).",
+      "Prevent stale subagent notifications from failing chats [#149863](https://github.com/openclaw/openclaw/pull/149863). Thanks @fuller-stack-dev.",
+      "Preserve follow-through and cancellation after private subagent batches [#150065](https://github.com/openclaw/openclaw/pull/150065). Thanks @vacinc.",
+      "Recover accepted Codex child results after restart [6caadad](https://github.com/openclaw/openclaw/commit/6caadadb6762bc39a3da3d1c40e22dbf657e8a5c). Thanks @fuller-stack-dev. Changed ownership, cancellation, changed task outcomes, and intervening human input block stale replay. Matrix also rechecks permission before later events and redirects, preserving already accepted events; relay cleanup retains incomplete-output errors.",
+      "Stop surviving Linux subprocesses after cancellation [#117151](https://github.com/openclaw/openclaw/pull/117151). Thanks @miorbnli, @fuller-stack-dev.",
+      "Unblock later messages when an agent turn stalls [#123055](https://github.com/openclaw/openclaw/pull/123055). Thanks @romneyda.",
+      "Preserve replies to messages arriving after final delivery [#129001](https://github.com/openclaw/openclaw/pull/129001). Thanks @finn763, @obviyus, @andersonjeccel.",
+      "Deliver child replies that match the empty placeholder [#130647](https://github.com/openclaw/openclaw/pull/130647). Thanks @zeroaltitude, @obviyus.",
+      "Preserve background-task results after late cancellation [#144949](https://github.com/openclaw/openclaw/pull/144949). Thanks @gabrielnkl, @obviyus.",
+      "Explain tasks that finish during cancellation [#145111](https://github.com/openclaw/openclaw/pull/145111). Thanks @obviyus, @gabrielnkl.",
+      "Honor retry waits beyond timer limits [#145718](https://github.com/openclaw/openclaw/pull/145718). Thanks @alix-007, @altaywtf.",
+      "Resume interrupted turns after tool activity [#146487](https://github.com/openclaw/openclaw/pull/146487).",
+      "Preserve cancellation and recover interrupted conversations [#146792](https://github.com/openclaw/openclaw/pull/146792). Thanks @desksk.",
+      "Preserve cross-agent replies after configuration reload [#146799](https://github.com/openclaw/openclaw/pull/146799). Thanks @zachisfine, @vincentkoc, @davidcittadini.",
+      "Finish chat-history repairs before session cleanup [#146842](https://github.com/openclaw/openclaw/pull/146842).",
+      "Prevent archived-history duplication during overflow recovery [#147202](https://github.com/openclaw/openclaw/pull/147202). Thanks @vacinc.",
+      "Resume unfinished tasks after tools finish and the model times out [#147203](https://github.com/openclaw/openclaw/pull/147203). Thanks @vacinc.",
+      "Show pending chats and a single recovery notice [#147362](https://github.com/openclaw/openclaw/pull/147362).",
+      "Resume interrupted work before new messages [#147486](https://github.com/openclaw/openclaw/pull/147486).",
+      "Keep current instructions and tool results after replay cleanup [#147531](https://github.com/openclaw/openclaw/pull/147531). Thanks @obviyus, @masterswords1, @fray-ai, @mertbasar0.",
+      "Stop fallback for closed turns and preserve reply ownership [#149518](https://github.com/openclaw/openclaw/pull/149518). Thanks @mertbasar0, @jalehman, @travellingsoldier85.",
+      "Preserve intentional silence after successful agent actions [#149642](https://github.com/openclaw/openclaw/pull/149642). Thanks @sjf-oa, @sjf.",
+      "Prevent duplicate user turns during context-engine startup [#149690](https://github.com/openclaw/openclaw/pull/149690). Thanks @marvinthebored, @peetiegonzalez.",
+      "Resume tasks after output-limited tool calls [#149844](https://github.com/openclaw/openclaw/pull/149844).",
+      "Preserve answers to follow-up messages during a run [#149925](https://github.com/openclaw/openclaw/pull/149925). Thanks @obviyus.",
+      "Distinguish saved tool activity from conversation and completed replies [#150415](https://github.com/openclaw/openclaw/pull/150415). Thanks @romneyda.",
+      "Avoid duplicate answers after silent tool continuations [#150539](https://github.com/openclaw/openclaw/pull/150539). Thanks @jalehman.",
+      "Remove failed reply fragments after recovery [#150645](https://github.com/openclaw/openclaw/pull/150645). Thanks @obviyus.",
+      "Keep transcript errors local and show recovery guidance [#150882](https://github.com/openclaw/openclaw/pull/150882). Thanks @donniefi, @spiral-cmd.",
+      "Preserve worker cleanup failures without replaying completed actions [83c1767](https://github.com/openclaw/openclaw/commit/83c1767446cb101f239cbed430524e2934556ebe). Thanks @fuller-stack-dev.",
+      "Explain incomplete answers instead of dropping them [#146646](https://github.com/openclaw/openclaw/pull/146646). Thanks @dasx, @obviyus, @amittell, @galshir.",
+      "Unblock question responses while the asking turn waits [#149498](https://github.com/openclaw/openclaw/pull/149498). Thanks @obviyus, @amittell.",
+      "Resume waiting agents after saved question answers [#149617](https://github.com/openclaw/openclaw/pull/149617). Thanks @obviyus, @hustfreefly.",
+      "Preserve deliberate silence after read failures [#151042](https://github.com/openclaw/openclaw/pull/151042). Thanks @pash-openai.",
+      "Preserve complete streamed tool arguments [#139534](https://github.com/openclaw/openclaw/pull/139534). Thanks @sunnyshu0925, @reisball, @ylcn91, @patrick-erichsen, @vacinc.",
+      "Keep one-shot agents alive for command results [#144268](https://github.com/openclaw/openclaw/pull/144268). Thanks @kimiyu-186, @osolmaz.",
+      "Keep valid model results before trailing diagnostics [#145764](https://github.com/openclaw/openclaw/pull/145764). Thanks @zengwen-dt, @vincentkoc.",
+      "Avoid extra connections for hosted configuration reads [#146226](https://github.com/openclaw/openclaw/pull/146226).",
+      "Avoid disconnects in Gateway-hosted tool calls [#146369](https://github.com/openclaw/openclaw/pull/146369). Thanks @jalfaro2876, @luissalve.",
+      "Preserve summaries when tool details exceed limits [#147805](https://github.com/openclaw/openclaw/pull/147805). Thanks @liuwqgit, @obviyus, @joshpetras.",
+      "Reject extra empty CLI arguments [#145468](https://github.com/openclaw/openclaw/pull/145468).",
+      "Preserve command output during Bun stalls [#145564](https://github.com/openclaw/openclaw/pull/145564).",
+      "Restore supervised interactive commands under Bun [#145749](https://github.com/openclaw/openclaw/pull/145749). Non-Windows Bun sessions use the existing Node helper. Deferred startup still has authorization and cleanup gaps, so cancellation during startup may not prevent command effects or establish completed cleanup.",
+      "Clarify invalid working directories under Bun [#145852](https://github.com/openclaw/openclaw/pull/145852).",
+      "Contain child cleanup failures and preserve diagnostic stacks [#150427](https://github.com/openclaw/openclaw/pull/150427). Thanks @itanyplus, @waynegault, @chachi-max, @kip-claw.",
+      "Preserve launch errors and recovery under file limits [#150975](https://github.com/openclaw/openclaw/pull/150975).",
+      "Avoid direct Git launches from Gateway WebSocket requests [#151040](https://github.com/openclaw/openclaw/pull/151040).",
+      "Bundle shell parser assets for paired-node sessions [1b9e8d0](https://github.com/openclaw/openclaw/commit/1b9e8d03f48bab5fdb64c879acec84c38f75d8d6).",
+      "Clean up child processes after host commands finish [#150750](https://github.com/openclaw/openclaw/pull/150750). Thanks @php737, @terrencehinds99, @flowzito, @michaeljgood71, @kgerman-ar, @jmmoncada95.",
+      "Release transcript context after completed writes [#141181](https://github.com/openclaw/openclaw/pull/141181). Thanks @ooooo9x, @orangejon, @jalehman.",
+      "Release completed caller state from idle workers [#145605](https://github.com/openclaw/openclaw/pull/145605).",
+      "Release ended attempts when reply delivery stalls [#146034](https://github.com/openclaw/openclaw/pull/146034).",
+      "Bound concurrent compute work and queued inputs [#146067](https://github.com/openclaw/openclaw/pull/146067).",
+      "Release SQLite handles after state shutdown on Windows [#146160](https://github.com/openclaw/openclaw/pull/146160).",
+      "Keep Gateway I/O responsive during queued writes [#146491](https://github.com/openclaw/openclaw/pull/146491).",
+      "Recognize stalled Gateway connections as transport timeouts [#146508](https://github.com/openclaw/openclaw/pull/146508).",
+      "Coordinate diagnostic recording with session writes [#146563](https://github.com/openclaw/openclaw/pull/146563).",
+      "Reduce pauses during trajectory history cleanup [#146639](https://github.com/openclaw/openclaw/pull/146639).",
+      "Keep task-list scans responsive during registry reloads [#146661](https://github.com/openclaw/openclaw/pull/146661).",
+      "Explain when the Gateway is busy and users should retry [#146872](https://github.com/openclaw/openclaw/pull/146872).",
+      "Reduce turn preparation delays under load [#147231](https://github.com/openclaw/openclaw/pull/147231).",
+      "Preserve slow-consumer disconnect reasons [#147707](https://github.com/openclaw/openclaw/pull/147707). Thanks @sunnyshu0925, @vincentkoc, @aniruddhaadak80.",
+      "Bound device-required probe cache retention [#147708](https://github.com/openclaw/openclaw/pull/147708). Thanks @sunnyshu0925, @aniruddhaadak80.",
+      "Cancel large command backlogs without repeated scans [#148754](https://github.com/openclaw/openclaw/pull/148754). Thanks @vincentkoc.",
+      "Serialize Gateway connection admission [62507cc](https://github.com/openclaw/openclaw/commit/62507cc516f706f40a1985086f06d066917f2d92). Thanks @romneyda.",
+      "Propagate cancellation to Bun response streams [#145598](https://github.com/openclaw/openclaw/pull/145598).",
+      "Avoid connection resets on Bun HTTP rejections [#145736](https://github.com/openclaw/openclaw/pull/145736).",
+      "Fix Bun worker connections and failed-output handling [#146008](https://github.com/openclaw/openclaw/pull/146008).",
+      "Restore bundled plugin migrations under Bun [#146060](https://github.com/openclaw/openclaw/pull/146060).",
+      "Improve Bun tooling and Gateway connection compatibility [#146807](https://github.com/openclaw/openclaw/pull/146807). Node-owned child operations still require Node. In the Bun host-command wrapper, unterminated stderr can still hide a timeout marker and turn a catchable timeout into process exit.",
+      "Fix remaining Bun session and connection compatibility gaps [#147085](https://github.com/openclaw/openclaw/pull/147085). Bundled channel schemas beyond 256 levels raise an error; external schemas remain available unchanged to their validator.",
+      "Repair Bun Discord forwarding and Nostr URL handling [#147360](https://github.com/openclaw/openclaw/pull/147360).",
+      "Restore Codex history in Bun source runs [#147408](https://github.com/openclaw/openclaw/pull/147408).",
+      "Restore Bun browser and plugin networking [#147421](https://github.com/openclaw/openclaw/pull/147421). This covers browser relay/CDP, Slack proxy, Reef, Codex, the shared Mattermost adapter, and Nextcloud Talk stopping during startup. Qualifying managed Codex JavaScript launches use Bun without Node on the child PATH. Plugin authors gain the typed public `openclaw/plugin-sdk/websocket-runtime` adapter.",
+      "Use Bun's native loader for TypeScript source workers [#148272](https://github.com/openclaw/openclaw/pull/148272).",
+      "Fix Bun skill watching and retained plugin contexts [#150655](https://github.com/openclaw/openclaw/pull/150655).",
+      "Release snapshot locks that block Gateway startup under Bun [#151269](https://github.com/openclaw/openclaw/pull/151269). This fixes the affected Bun 1.4.0 snapshot-release failure without configuration or database-schema changes.",
+      "Complete interrupted ACPX fixture turns correctly [#137049](https://github.com/openclaw/openclaw/pull/137049). Thanks @vincentkoc.",
+      "Isolate IPv6 portal tests from ephemeral listeners [#137722](https://github.com/openclaw/openclaw/pull/137722).",
+      "Keep OpenRouter cleanup tests past request setup [#144178](https://github.com/openclaw/openclaw/pull/144178).",
+      "Clean up port-test listeners and report skips [#144197](https://github.com/openclaw/openclaw/pull/144197).",
+      "Test production ownership during queued compaction [#144217](https://github.com/openclaw/openclaw/pull/144217).",
+      "Test session cleanup against real writer queues [#144247](https://github.com/openclaw/openclaw/pull/144247).",
+      "Isolate task-cancellation test notifications [#144330](https://github.com/openclaw/openclaw/pull/144330).",
+      "Test Twitch targets with real utilities [#144386](https://github.com/openclaw/openclaw/pull/144386).",
+      "Stabilize paginated-history eviction testing [#144419](https://github.com/openclaw/openclaw/pull/144419).",
+      "Exercise real IRC utilities in send tests [#144425](https://github.com/openclaw/openclaw/pull/144425).",
+      "Update provider tests for plugin roots [#144450](https://github.com/openclaw/openclaw/pull/144450).",
+      "Clean up singleton fixtures after failed tests [#144489](https://github.com/openclaw/openclaw/pull/144489).",
+      "Isolate update CLI test state [#144513](https://github.com/openclaw/openclaw/pull/144513).",
+      "Stabilize plugin-settings tests during reconnects [#144605](https://github.com/openclaw/openclaw/pull/144605).",
+      "Wait for rendered Android connection status in tests [#144682](https://github.com/openclaw/openclaw/pull/144682). Thanks @obviyus.",
+      "Clean up heartbeat fixtures after storage setup failures [#144686](https://github.com/openclaw/openclaw/pull/144686).",
+      "Correct session-link tests for loaded chat styles [#144690](https://github.com/openclaw/openclaw/pull/144690).",
+      "Refresh dashboard test events before timeout [#144710](https://github.com/openclaw/openclaw/pull/144710).",
+      "Restore memory search fallback test coverage [#144761](https://github.com/openclaw/openclaw/pull/144761).",
+      "Avoid fixture port collisions in MCP OAuth tests [#145060](https://github.com/openclaw/openclaw/pull/145060). Thanks @vincentkoc.",
+      "Keep Node-specific tests working under Bun [#145064](https://github.com/openclaw/openclaw/pull/145064).",
+      "Restore core lint by simplifying daemon-install tests [#145115](https://github.com/openclaw/openclaw/pull/145115).",
+      "Isolate plugin loader fallback tests [#145374](https://github.com/openclaw/openclaw/pull/145374). Thanks @fuller-stack-dev.",
+      "Settle interrupted speech tests before fixture reset [#145406](https://github.com/openclaw/openclaw/pull/145406).",
+      "Stabilize native relay deadline tests [#145421](https://github.com/openclaw/openclaw/pull/145421). Thanks @shakkernerd.",
+      "Remove host timing from health snapshot tests [#145432](https://github.com/openclaw/openclaw/pull/145432).",
+      "Repair New Session test screenshots [#145463](https://github.com/openclaw/openclaw/pull/145463).",
+      "Run Bun terminal tests through the runtime adapter [#145473](https://github.com/openclaw/openclaw/pull/145473).",
+      "Align custom-provider setup regression tests [#145500](https://github.com/openclaw/openclaw/pull/145500). Thanks @romneyda.",
+      "Verify worker profiles in SDK tests [#145508](https://github.com/openclaw/openclaw/pull/145508). Thanks @romneyda.",
+      "Complete model catalog mocks for status tests [#145512](https://github.com/openclaw/openclaw/pull/145512). Thanks @romneyda.",
+      "Repair New Session screenshot capture [#145540](https://github.com/openclaw/openclaw/pull/145540).",
+      "Split thinking tests to restore lint [#145632](https://github.com/openclaw/openclaw/pull/145632).",
+      "Initialize readers before worker launch tests [#145657](https://github.com/openclaw/openclaw/pull/145657).",
+      "Select Node for Node test fixtures [#145674](https://github.com/openclaw/openclaw/pull/145674).",
+      "Compile model-context workers for tests [#145708](https://github.com/openclaw/openclaw/pull/145708).",
+      "Make context and transcription tests portable [#145715](https://github.com/openclaw/openclaw/pull/145715).",
+      "Prevent loaded-host worker test timeouts [#145770](https://github.com/openclaw/openclaw/pull/145770).",
+      "Wait for hook relay test readiness [#145771](https://github.com/openclaw/openclaw/pull/145771).",
+      "Load TypeScript in Node retention fixtures [#145774](https://github.com/openclaw/openclaw/pull/145774).",
+      "Repair incomplete plugin test manifests [#145794](https://github.com/openclaw/openclaw/pull/145794).",
+      "Restore Bun worker fault-injection tests [#145822](https://github.com/openclaw/openclaw/pull/145822).",
+      "Retry failed script-test cleanup [#145861](https://github.com/openclaw/openclaw/pull/145861).",
+      "Preserve isolation after temporary-home failures [#145876](https://github.com/openclaw/openclaw/pull/145876).",
+      "Prevent environment leakage between tests [#145879](https://github.com/openclaw/openclaw/pull/145879).",
+      "Fail validation when reload RPC stays unavailable [#145966](https://github.com/openclaw/openclaw/pull/145966).",
+      "Correct the unchanged plugin-update test target [#145991](https://github.com/openclaw/openclaw/pull/145991).",
+      "Prevent false passing results after test timeouts [#145999](https://github.com/openclaw/openclaw/pull/145999).",
+      "Wait for inline widget controls in browser tests [#146664](https://github.com/openclaw/openclaw/pull/146664). Thanks @fuller-stack-dev.",
+      "Wait for avatar imports in forwarded-message tests [#146729](https://github.com/openclaw/openclaw/pull/146729). Thanks @vincentkoc.",
+      "Wait for quiet scrolling before measuring composer rendering [#146836](https://github.com/openclaw/openclaw/pull/146836).",
+      "Correct scripted arguments in the Telegram emoji test [#146848](https://github.com/openclaw/openclaw/pull/146848). Thanks @fuller-stack-dev, @vincentkoc.",
+      "Restore sidebar scope tests after helper migration [#146862](https://github.com/openclaw/openclaw/pull/146862).",
+      "Isolate installer and Docker tests from shell profiles [#146897](https://github.com/openclaw/openclaw/pull/146897).",
+      "Keep temporary test homes private under group-writable umasks [#146931](https://github.com/openclaw/openclaw/pull/146931).",
+      "Stabilize concurrent settings-save tests [#146949](https://github.com/openclaw/openclaw/pull/146949). Thanks @vincentkoc.",
+      "Make systemd clock tests independent of host permissions [#146990](https://github.com/openclaw/openclaw/pull/146990).",
+      "Restore isolated plugin runtime tests [#147000](https://github.com/openclaw/openclaw/pull/147000).",
+      "Restore session deletion and memory-write regression coverage [#147028](https://github.com/openclaw/openclaw/pull/147028). Thanks @vincentkoc.",
+      "Prevent false settings-lock test timeouts [#147029](https://github.com/openclaw/openclaw/pull/147029).",
+      "Restore OAuth recovery tests after registry changes [#147045](https://github.com/openclaw/openclaw/pull/147045). Thanks @vincentkoc.",
+      "Fix Codex subagent live-test setup and lifecycle [#147079](https://github.com/openclaw/openclaw/pull/147079).",
+      "Prepare Doctor refusal test workers before deadlines [#147082](https://github.com/openclaw/openclaw/pull/147082).",
+      "Isolate timing-history tests from inherited settings [#147112](https://github.com/openclaw/openclaw/pull/147112).",
+      "Accept remaining timeout budget in systemd tests [#147117](https://github.com/openclaw/openclaw/pull/147117). Thanks @vincentkoc.",
+      "Stabilize Models catalog picker tests [#147215](https://github.com/openclaw/openclaw/pull/147215). Thanks @vincentkoc.",
+      "Preserve open-ended pricing in live-test setup [#147339](https://github.com/openclaw/openclaw/pull/147339). Thanks @vincentkoc.",
+      "Correct OpenShell environment-validation test expectations [#147348](https://github.com/openclaw/openclaw/pull/147348). Thanks @vincentkoc.",
+      "Repair Linux service-ownership test setup [#147398](https://github.com/openclaw/openclaw/pull/147398). Thanks @vincentkoc.",
+      "Wait for model-picker readiness in tests [#147489](https://github.com/openclaw/openclaw/pull/147489). Thanks @romneyda.",
+      "Stabilize Reef scan test timestamps [#147551](https://github.com/openclaw/openclaw/pull/147551).",
+      "Repair native routing and typography checks [#147598](https://github.com/openclaw/openclaw/pull/147598). Thanks @vincentkoc.",
+      "Synchronize Composer test readiness [#147606](https://github.com/openclaw/openclaw/pull/147606). Thanks @vincentkoc.",
+      "Stabilize progress-animation tests [#147623](https://github.com/openclaw/openclaw/pull/147623).",
+      "Handle model restrictions in terminal auth tests [#147729](https://github.com/openclaw/openclaw/pull/147729). Thanks @romneyda.",
+      "Restore normal Bun smoke status timeout [#147774](https://github.com/openclaw/openclaw/pull/147774).",
+      "Stabilize retained child-result fixtures [#147784](https://github.com/openclaw/openclaw/pull/147784). Thanks @shakkernerd.",
+      "Keep cancelled Gateway tests attached to cleanup [#147844](https://github.com/openclaw/openclaw/pull/147844). Thanks @vincentkoc.",
+      "Wait for Workboard test writes [#147950](https://github.com/openclaw/openclaw/pull/147950). Thanks @romneyda.",
+      "Retire workers before extension test cleanup [#147986](https://github.com/openclaw/openclaw/pull/147986).",
+      "Stabilize cold terminal-opening tests [#147990](https://github.com/openclaw/openclaw/pull/147990).",
+      "Align CLI test subprocess runtime flags [#148038](https://github.com/openclaw/openclaw/pull/148038).",
+      "Synchronize post-login model catalog tests [#148107](https://github.com/openclaw/openclaw/pull/148107). Thanks @obviyus.",
+      "Keep scanner timeout fixtures alive [#148125](https://github.com/openclaw/openclaw/pull/148125).",
+      "Correct the ClawHub sweep test expectation [#148129](https://github.com/openclaw/openclaw/pull/148129).",
+      "Align process lifecycle test expectations [#148149](https://github.com/openclaw/openclaw/pull/148149). Thanks @romneyda.",
+      "Keep cron cooldown fixture incidents distinct [#148151](https://github.com/openclaw/openclaw/pull/148151). Thanks @romneyda.",
+      "Restore session race tests on Node 26 [#148182](https://github.com/openclaw/openclaw/pull/148182).",
+      "Wait for complete Workboard sweeps in timer tests [#148221](https://github.com/openclaw/openclaw/pull/148221).",
+      "Use the shared response timeout in Gateway abort tests [#148254](https://github.com/openclaw/openclaw/pull/148254).",
+      "Await resumed playback acknowledgment in Discord tests [#148268](https://github.com/openclaw/openclaw/pull/148268).",
+      "Stabilize model catalog scope integration checks [#148293](https://github.com/openclaw/openclaw/pull/148293).",
+      "Retry temporary-directory cleanup in Windows Canvas tests [#148352](https://github.com/openclaw/openclaw/pull/148352). Thanks @romneyda, @vincentkoc.",
+      "Check diagnostic environment values across runtimes [#148371](https://github.com/openclaw/openclaw/pull/148371).",
+      "Make Control UI tests portable across Node and Bun [#148401](https://github.com/openclaw/openclaw/pull/148401).",
+      "Remove stale exit listeners during test cleanup [#148404](https://github.com/openclaw/openclaw/pull/148404).",
+      "Wait for descendant readiness in Parallels timeout tests [#148410](https://github.com/openclaw/openclaw/pull/148410).",
+      "Check Windows launcher arguments without full process snapshots [#148433](https://github.com/openclaw/openclaw/pull/148433).",
+      "Restore Custodian session-recovery test coverage [#148444](https://github.com/openclaw/openclaw/pull/148444).",
+      "Stabilize configuration include revision tests [#148499](https://github.com/openclaw/openclaw/pull/148499). Thanks @shakkernerd.",
+      "Restore plugin directory lookup test coverage [#148509](https://github.com/openclaw/openclaw/pull/148509).",
+      "Give TUI terminal tests an isolated configuration [#148571](https://github.com/openclaw/openclaw/pull/148571).",
+      "Wait for child readiness in boundary watchdog tests [#148587](https://github.com/openclaw/openclaw/pull/148587). Thanks @vincentkoc.",
+      "Publish native updater test signals atomically [#148591](https://github.com/openclaw/openclaw/pull/148591).",
+      "Finish database cleanup before deleting watcher test files [#148606](https://github.com/openclaw/openclaw/pull/148606).",
+      "Exercise exhausted retries in the cron idle-timeout proof [#148617](https://github.com/openclaw/openclaw/pull/148617). Thanks @jalehman, @ylcn91, @philippmuller.",
+      "Isolate manual plugin reload tests from filesystem notifications [#148618](https://github.com/openclaw/openclaw/pull/148618).",
+      "Wait for worker previews in chat-cap tests [#148628](https://github.com/openclaw/openclaw/pull/148628). Thanks @fuller-stack-dev.",
+      "Align Gateway end-to-end tests with current behavior [#148653](https://github.com/openclaw/openclaw/pull/148653). Thanks @vincentkoc.",
+      "Drain database workers before removing test state [#148666](https://github.com/openclaw/openclaw/pull/148666).",
+      "Select the correct request in Codex delivery-cache tests [#148675](https://github.com/openclaw/openclaw/pull/148675). Thanks @vincentkoc.",
+      "Fix memory-lock repair test isolation on Windows [#148695](https://github.com/openclaw/openclaw/pull/148695).",
+      "Allow legitimate status polls in launchd restoration tests [#148710](https://github.com/openclaw/openclaw/pull/148710).",
+      "Wait for database shutdown before cleaning test fixtures [#148734](https://github.com/openclaw/openclaw/pull/148734).",
+      "Wait for SQLite workers before cleaning test fixtures [#148742](https://github.com/openclaw/openclaw/pull/148742).",
+      "Finish config test database work before cleanup [#148743](https://github.com/openclaw/openclaw/pull/148743).",
+      "Wait for failed Cron completion in regression tests [#148749](https://github.com/openclaw/openclaw/pull/148749). Thanks @vincentkoc, @holny.",
+      "Keep database writers alive in crash-recovery tests [#148759](https://github.com/openclaw/openclaw/pull/148759).",
+      "Stabilize CI fixtures and narrow Claude helper imports [#148769](https://github.com/openclaw/openclaw/pull/148769). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Select Node for pnpm dependency test fixtures [#148776](https://github.com/openclaw/openclaw/pull/148776).",
+      "Make nested cleanup tests independent of terminal attachment [#148792](https://github.com/openclaw/openclaw/pull/148792).",
+      "Preserve repeat counts and isolated recovery test sessions [#148810](https://github.com/openclaw/openclaw/pull/148810).",
+      "Drain session test resources before database cleanup [#148849](https://github.com/openclaw/openclaw/pull/148849). Thanks @vincentkoc.",
+      "Make Kitchen Sink tests portable across Node and Bun [#148891](https://github.com/openclaw/openclaw/pull/148891).",
+      "Accept Bun error labels in plugin assertion tests [#148955](https://github.com/openclaw/openclaw/pull/148955).",
+      "Prevent memory exhaustion in full Gateway-core tests [#148971](https://github.com/openclaw/openclaw/pull/148971).",
+      "Synchronize permission browser-test fixtures [#148977](https://github.com/openclaw/openclaw/pull/148977). Thanks @vincentkoc.",
+      "Align Copilot registry expectations with existing metadata [#148981](https://github.com/openclaw/openclaw/pull/148981). Thanks @vincentkoc, @finn763.",
+      "Remove polling sensitivity from ACPX startup tests [#148989](https://github.com/openclaw/openclaw/pull/148989).",
+      "Align model and image fixtures with runtime auth reads [#149004](https://github.com/openclaw/openclaw/pull/149004). Thanks @vincentkoc.",
+      "Isolate catalog publication tests from startup scheduling [#149020](https://github.com/openclaw/openclaw/pull/149020). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Refresh setup tests and guard read-only auth fixtures [#149023](https://github.com/openclaw/openclaw/pull/149023).",
+      "Wait for setup test database workers before cleanup [#149027](https://github.com/openclaw/openclaw/pull/149027).",
+      "Align Models tests with readiness and account status [#149035](https://github.com/openclaw/openclaw/pull/149035).",
+      "Restore auth fixtures for thinking-route tests [#149049](https://github.com/openclaw/openclaw/pull/149049). Thanks @vincentkoc, @fuller-stack-dev.",
+      "Wait for background-task test recovery to complete [#149056](https://github.com/openclaw/openclaw/pull/149056).",
+      "Exercise TUI session replacement at cleanup boundary [#149076](https://github.com/openclaw/openclaw/pull/149076).",
+      "Wait for cron completion before checking test results [#149088](https://github.com/openclaw/openclaw/pull/149088). Thanks @romneyda.",
+      "Remove startup polling race from CUA transport tests [#149092](https://github.com/openclaw/openclaw/pull/149092).",
+      "Make infrastructure tests portable across Node and Bun [#149098](https://github.com/openclaw/openclaw/pull/149098).",
+      "Await SQLite worker cleanup between fixtures [#149127](https://github.com/openclaw/openclaw/pull/149127).",
+      "Match archive Undo test counting to its refresh query [#149135](https://github.com/openclaw/openclaw/pull/149135).",
+      "Use compatible Bash for Linux workflow tests on macOS [#149152](https://github.com/openclaw/openclaw/pull/149152).",
+      "Restore QA evidence fixtures that simulate Bun [#149164](https://github.com/openclaw/openclaw/pull/149164).",
+      "Isolate the subagent test model catalog [#149179](https://github.com/openclaw/openclaw/pull/149179).",
+      "Restrict raw-byte filename fixtures to Linux [#149197](https://github.com/openclaw/openclaw/pull/149197).",
+      "Wait for model entry in recursive-spawn tests [#149199](https://github.com/openclaw/openclaw/pull/149199). Thanks @vincentkoc.",
+      "Make infrastructure subprocess fixtures work under Bun [#149250](https://github.com/openclaw/openclaw/pull/149250).",
+      "Await worker shutdown in Doctor read-only tests [#149252](https://github.com/openclaw/openclaw/pull/149252).",
+      "Repair repository identity fixtures in PR tests [#149294](https://github.com/openclaw/openclaw/pull/149294).",
+      "Repair Codex model-attribution test fixture [#149301](https://github.com/openclaw/openclaw/pull/149301).",
+      "Repair Windows compiled-worker test fixtures [#149403](https://github.com/openclaw/openclaw/pull/149403).",
+      "Wait for published cron results in tests [#149412](https://github.com/openclaw/openclaw/pull/149412).",
+      "Limit Telegram fixtures to tests that need them [#149434](https://github.com/openclaw/openclaw/pull/149434).",
+      "Stabilize Codex turn-completion regression tests [#149435](https://github.com/openclaw/openclaw/pull/149435).",
+      "Stabilize Active Memory recovery tests [#149443](https://github.com/openclaw/openclaw/pull/149443).",
+      "Remove runtime assumptions from Bun test fixtures [#149473](https://github.com/openclaw/openclaw/pull/149473).",
+      "Remove duplicate dependency setup from PR alias tests [#149477](https://github.com/openclaw/openclaw/pull/149477). Thanks @fuller-stack-dev, @vincentkoc.",
+      "Restore dependencies in PR alias test fixtures [#149481](https://github.com/openclaw/openclaw/pull/149481).",
+      "Restore PR alias fixture setup with overlap accounted [#149488](https://github.com/openclaw/openclaw/pull/149488).",
+      "Stabilize transcript shutdown tests under load [#149523](https://github.com/openclaw/openclaw/pull/149523).",
+      "Stabilize worktree cancellation test readiness [#149531](https://github.com/openclaw/openclaw/pull/149531).",
+      "Avoid false native session-refresh test timeouts [#149532](https://github.com/openclaw/openclaw/pull/149532).",
+      "Stabilize yielded-session and dependency fixtures [#149558](https://github.com/openclaw/openclaw/pull/149558). Thanks @vincentkoc.",
+      "Isolate Windows updater tests from Bun host detection [#149560](https://github.com/openclaw/openclaw/pull/149560).",
+      "Synchronize task-list visibility revocation tests [#149632](https://github.com/openclaw/openclaw/pull/149632). Thanks @vincentkoc.",
+      "Preserve dependency links during repeated PR test setup [#149638](https://github.com/openclaw/openclaw/pull/149638).",
+      "Prevent macOS workflow-test shell hangs [#149641](https://github.com/openclaw/openclaw/pull/149641).",
+      "Control timing in the Active Memory zero-hit recall test [#149661](https://github.com/openclaw/openclaw/pull/149661).",
+      "Isolate cancelled Gateway placement tests [#149668](https://github.com/openclaw/openclaw/pull/149668). Thanks @fuller-stack-dev, @obviyus.",
+      "Make runtime test fixtures portable to Bun [#149699](https://github.com/openclaw/openclaw/pull/149699).",
+      "Wait for editor module loading in the file-tab test [#149715](https://github.com/openclaw/openclaw/pull/149715). Thanks @vincentkoc.",
+      "Restore extension test-packing fixture checks [#149726](https://github.com/openclaw/openclaw/pull/149726). Thanks @vincentkoc.",
+      "Wait for settled settings in the native verbosity test [#149736](https://github.com/openclaw/openclaw/pull/149736). Thanks @vincentkoc.",
+      "Stabilize systemd clock-step regression tests [#149742](https://github.com/openclaw/openclaw/pull/149742). Thanks @vincentkoc.",
+      "Accept runtime preparation for already-serial CI jobs [#149762](https://github.com/openclaw/openclaw/pull/149762).",
+      "Stabilize catalog, CLI process and worker-build tests [#149766](https://github.com/openclaw/openclaw/pull/149766).",
+      "Test the Mantis resolver's selected candidate directly [#149814](https://github.com/openclaw/openclaw/pull/149814).",
+      "Wait for session adoption in Android archive tests [#149830](https://github.com/openclaw/openclaw/pull/149830). Thanks @vincentkoc.",
+      "Keep Gateway shutdown tests on native timers [#149835](https://github.com/openclaw/openclaw/pull/149835).",
+      "Remove unintended timer eligibility from on-exit cron tests [#149841](https://github.com/openclaw/openclaw/pull/149841). Thanks @vincentkoc.",
+      "Wait for model startup to finish in the browser test [#149862](https://github.com/openclaw/openclaw/pull/149862).",
+      "Restore late-added test environment variables [#149883](https://github.com/openclaw/openclaw/pull/149883).",
+      "Finish relay test cleanup after setup failures [#149885](https://github.com/openclaw/openclaw/pull/149885).",
+      "Wait for completed subagent cancellation in refresh tests [#149890](https://github.com/openclaw/openclaw/pull/149890).",
+      "Stabilize the chat footer keyboard-focus test [#149919](https://github.com/openclaw/openclaw/pull/149919).",
+      "Prevent iMessage receipt-recovery test deadlocks [#149945](https://github.com/openclaw/openclaw/pull/149945).",
+      "Repair reconnect browser-test session fixtures [#149957](https://github.com/openclaw/openclaw/pull/149957).",
+      "Wait for conversation navigation in queued-correction tests [#149972](https://github.com/openclaw/openclaw/pull/149972).",
+      "Stabilize sandbox file-descriptor cleanup verification [#149974](https://github.com/openclaw/openclaw/pull/149974).",
+      "Wait for desktop viewer readiness before resize tests [#149975](https://github.com/openclaw/openclaw/pull/149975).",
+      "Wait for descendant readiness in the timeout-drain test [#149995](https://github.com/openclaw/openclaw/pull/149995).",
+      "Synchronize Stop tests with the child completion observer [#149998](https://github.com/openclaw/openclaw/pull/149998).",
+      "Avoid cold-import timeouts in iMessage rendering tests [#150005](https://github.com/openclaw/openclaw/pull/150005).",
+      "Prepare metadata before Moonshot and Qwen catalog tests [#150017](https://github.com/openclaw/openclaw/pull/150017).",
+      "Close SQLite connections before removing test fixtures [#150022](https://github.com/openclaw/openclaw/pull/150022).",
+      "Correct memory index regression test observation [#150025](https://github.com/openclaw/openclaw/pull/150025).",
+      "Select Node for Node-dependent fixtures under Bun [#150056](https://github.com/openclaw/openclaw/pull/150056).",
+      "Fix memory-forget test measurements on newer Node [#150090](https://github.com/openclaw/openclaw/pull/150090).",
+      "Synchronize Telegram coalescing tests with dispatch [#150093](https://github.com/openclaw/openclaw/pull/150093).",
+      "Measure memory-search responsiveness separately from maintenance [#150098](https://github.com/openclaw/openclaw/pull/150098).",
+      "Release held catalog responses promptly in quota tests [#150115](https://github.com/openclaw/openclaw/pull/150115).",
+      "Stabilize table expansion in browser history tests [#150120](https://github.com/openclaw/openclaw/pull/150120).",
+      "Match quota-recovery observations to the primary request [#150145](https://github.com/openclaw/openclaw/pull/150145).",
+      "Correct Activity test snapshots after completed work [#150168](https://github.com/openclaw/openclaw/pull/150168).",
+      "Wait for MCP App imports before chat test cleanup [#150206](https://github.com/openclaw/openclaw/pull/150206).",
+      "Isolate memory annotation performance regression tests [#150260](https://github.com/openclaw/openclaw/pull/150260).",
+      "Repair captured dependencies in plugin validation [#150347](https://github.com/openclaw/openclaw/pull/150347). Thanks @vincentkoc, @romneyda.",
+      "Allow harmless discovery variation in Codex auth tests [#150362](https://github.com/openclaw/openclaw/pull/150362). Thanks @romneyda.",
+      "Restore skill bundle byte-budget regression [#150419](https://github.com/openclaw/openclaw/pull/150419). Thanks @fuller-stack-dev.",
+      "Align plugin tests with existing behavior [#150485](https://github.com/openclaw/openclaw/pull/150485). Thanks @romneyda.",
+      "Avoid concurrent mock OpenAI port conflicts [#150492](https://github.com/openclaw/openclaw/pull/150492). Thanks @shakkernerd.",
+      "Stabilize Qwen video deadline tests [#150523](https://github.com/openclaw/openclaw/pull/150523).",
+      "Keep test readiness probes within startup deadlines [#150559](https://github.com/openclaw/openclaw/pull/150559).",
+      "Prevent Windows test fixture cleanup stalls [#150568](https://github.com/openclaw/openclaw/pull/150568).",
+      "Use native paths in Windows workspace tests [#150585](https://github.com/openclaw/openclaw/pull/150585).",
+      "Correct startup delivery-queue test timing [#150631](https://github.com/openclaw/openclaw/pull/150631). Thanks @obviyus.",
+      "Reserve Gateway test ports throughout startup [#150642](https://github.com/openclaw/openclaw/pull/150642).",
+      "Make Google response-deadline tests deterministic [#150663](https://github.com/openclaw/openclaw/pull/150663).",
+      "Close Doctor test databases before fixture cleanup [#150676](https://github.com/openclaw/openclaw/pull/150676).",
+      "Restore Slack Socket Mode test typechecking [#150678](https://github.com/openclaw/openclaw/pull/150678). Thanks @romneyda.",
+      "Stabilize Gateway startup scheduling tests [#150689](https://github.com/openclaw/openclaw/pull/150689).",
+      "Await MCP question test cleanup directly [#150690](https://github.com/openclaw/openclaw/pull/150690).",
+      "Preserve callback binding in UI test harnesses [#150727](https://github.com/openclaw/openclaw/pull/150727). Thanks @romneyda.",
+      "Close Doctor test handles before Windows cleanup [#150771](https://github.com/openclaw/openclaw/pull/150771).",
+      "Stabilize monitor cancellation tests under load [#150789](https://github.com/openclaw/openclaw/pull/150789).",
+      "Match spawn-broker tests to Node runtime [#150804](https://github.com/openclaw/openclaw/pull/150804).",
+      "Remove external DNS dependence from SMS retry tests [#150814](https://github.com/openclaw/openclaw/pull/150814).",
+      "Make database-state tests portable across Bun and Node [#150821](https://github.com/openclaw/openclaw/pull/150821).",
+      "Align steering tests with current skip wording [#150852](https://github.com/openclaw/openclaw/pull/150852). Thanks @romneyda.",
+      "Correct plugin update authority fixtures [#150853](https://github.com/openclaw/openclaw/pull/150853). Thanks @romneyda, @vincentkoc.",
+      "Accept portable missing-module diagnostics in tooling tests [#150860](https://github.com/openclaw/openclaw/pull/150860).",
+      "Repair Doctor and channel-setup test fixtures [#150861](https://github.com/openclaw/openclaw/pull/150861). Thanks @romneyda, @vincentkoc.",
+      "Close MCP sessions owned by private-memory tests [#150874](https://github.com/openclaw/openclaw/pull/150874). Thanks @vincentkoc.",
+      "Stabilize MCP catalog recovery test timing [#150887](https://github.com/openclaw/openclaw/pull/150887).",
+      "Keep guided onboarding tests on fresh setup path [#150897](https://github.com/openclaw/openclaw/pull/150897). Thanks @romneyda.",
+      "Scope MCP cleanup assertions to the owned test session [#150910](https://github.com/openclaw/openclaw/pull/150910). Thanks @romneyda.",
+      "Fix competing cleanup in session reclamation tests [#150928](https://github.com/openclaw/openclaw/pull/150928). Thanks @romneyda.",
+      "Finish transcript reconciliation before test cleanup [#150947](https://github.com/openclaw/openclaw/pull/150947). Thanks @shakkernerd.",
+      "Prevent Bash spill-test startup timeouts [#150971](https://github.com/openclaw/openclaw/pull/150971).",
+      "Prevent cold-initialization timeouts in image tests [#150979](https://github.com/openclaw/openclaw/pull/150979).",
+      "Make healthy restart-probe tests deterministic [#150985](https://github.com/openclaw/openclaw/pull/150985).",
+      "Use system Bash in macOS workflow fixtures [#150990](https://github.com/openclaw/openclaw/pull/150990).",
+      "Accept durable replay in output-limit tests [#150999](https://github.com/openclaw/openclaw/pull/150999). Thanks @romneyda.",
+      "Wait for accepted catalog renewal in freshness tests [#151005](https://github.com/openclaw/openclaw/pull/151005).",
+      "Avoid macOS Bash hangs in installer version tests [#151014](https://github.com/openclaw/openclaw/pull/151014).",
+      "Wait for catalog publication in integration tests [#151018](https://github.com/openclaw/openclaw/pull/151018).",
+      "Prevent false plugin-retention test failures [#151026](https://github.com/openclaw/openclaw/pull/151026).",
+      "Make readiness deadline tests deterministic [#151027](https://github.com/openclaw/openclaw/pull/151027).",
+      "Complete silent-answer test fixture [#151062](https://github.com/openclaw/openclaw/pull/151062).",
+      "Run preflight import tests with Node under Bun [#151077](https://github.com/openclaw/openclaw/pull/151077).",
+      "Remove Slack test import blocking CI [#151080](https://github.com/openclaw/openclaw/pull/151080).",
+      "Initialize synthetic child streams in process tests [#151096](https://github.com/openclaw/openclaw/pull/151096).",
+      "Repair Codex app-server timeout test helpers [#151101](https://github.com/openclaw/openclaw/pull/151101). Thanks @romneyda.",
+      "Observe checkpoint warnings through logging sink [#151104](https://github.com/openclaw/openclaw/pull/151104).",
+      "Await explicit connection readiness in tests [#151122](https://github.com/openclaw/openclaw/pull/151122).",
+      "Match browser fixtures to pagination windows [#151148](https://github.com/openclaw/openclaw/pull/151148).",
+      "Release voice-call test workers during cleanup [#151187](https://github.com/openclaw/openclaw/pull/151187).",
+      "Wait for broker cleanup before process-death assertions [#151195](https://github.com/openclaw/openclaw/pull/151195).",
+      "Run native review tests with Node under Bun [#151220](https://github.com/openclaw/openclaw/pull/151220).",
+      "Isolate verifier tests without skipping broad selections [66fe933e](https://github.com/openclaw/openclaw/commit/66fe933ec5f07903e151a47cbfeb2206cdcc0511).",
+      "Prevent false streaming render-budget failures [9e6026a9](https://github.com/openclaw/openclaw/commit/9e6026a90e9fdc084c21a9115b9d43775c32385d).",
+      "Wait for saved delegation replies before checking tool activity in UI tests [#151209](https://github.com/openclaw/openclaw/pull/151209).",
+      "Remove ineffective confirmation-dialog imports [#145423](https://github.com/openclaw/openclaw/pull/145423).",
+      "Keep shared database connections open until the last worker closes [#147246](https://github.com/openclaw/openclaw/pull/147246).",
+      "Bind Slack control acknowledgements at receiver construction [#150656](https://github.com/openclaw/openclaw/pull/150656).",
+      "Run Android CI for shared Talk fixture changes [#135276](https://github.com/openclaw/openclaw/pull/135276). Thanks @qingminglong, @iwhatsskill.",
+      "Repair Android CI package sources and screenshot checks [#143468](https://github.com/openclaw/openclaw/pull/143468). Thanks @vincentkoc.",
+      "Recover interrupted review checkouts [#144431](https://github.com/openclaw/openclaw/pull/144431).",
+      "Keep growing PR test plans within the job cap [#144965](https://github.com/openclaw/openclaw/pull/144965).",
+      "Rebalance session test typechecking [#145431](https://github.com/openclaw/openclaw/pull/145431).",
+      "Preserve npm termination signals in package checks [#145558](https://github.com/openclaw/openclaw/pull/145558).",
+      "Bound CI planner regression inputs [#145759](https://github.com/openclaw/openclaw/pull/145759).",
+      "Preserve failures in redirected test reports [#145800](https://github.com/openclaw/openclaw/pull/145800).",
+      "Make Docker test registry helper readable [#145919](https://github.com/openclaw/openclaw/pull/145919). Thanks @romneyda.",
+      "Keep exclusions from selecting wrong test projects [#145968](https://github.com/openclaw/openclaw/pull/145968).",
+      "Restore desktop CI setup and selection [#145980](https://github.com/openclaw/openclaw/pull/145980).",
+      "Select Kova tests for agent-default schema changes [#146057](https://github.com/openclaw/openclaw/pull/146057). Thanks @vincentkoc.",
+      "Respect process memory limits when scheduling tests [#146298](https://github.com/openclaw/openclaw/pull/146298). Thanks @vincentkoc.",
+      "Rebalance hook typechecks to restore CI headroom [#146538](https://github.com/openclaw/openclaw/pull/146538).",
+      "Honor empty POSIX PATH entries when selecting pnpm [#146541](https://github.com/openclaw/openclaw/pull/146541).",
+      "Keep archived UI builds on their own workspace source [#146548](https://github.com/openclaw/openclaw/pull/146548).",
+      "Support stopped-service inspection in upgrade tests [#146622](https://github.com/openclaw/openclaw/pull/146622).",
+      "Preserve compiler cache reuse after native Mac builds [#146658](https://github.com/openclaw/openclaw/pull/146658).",
+      "Balance slow runtime suites in complete PR checks [#146916](https://github.com/openclaw/openclaw/pull/146916).",
+      "Run SQLite consumer tests in forked processes [#146991](https://github.com/openclaw/openclaw/pull/146991).",
+      "Preserve CI workload estimates as test groups grow [#147095](https://github.com/openclaw/openclaw/pull/147095).",
+      "Fix QA workflow routing test expectation [#147293](https://github.com/openclaw/openclaw/pull/147293).",
+      "Prevent passing test names from triggering live CI retries [#147322](https://github.com/openclaw/openclaw/pull/147322). Thanks @vincentkoc.",
+      "Run Node-specific child-process tests on Node under Bun [#147329](https://github.com/openclaw/openclaw/pull/147329).",
+      "Preserve workflow loader choices in tests [#147403](https://github.com/openclaw/openclaw/pull/147403).",
+      "Retain affected tests for common filenames [#147754](https://github.com/openclaw/openclaw/pull/147754). Thanks @shakkernerd.",
+      "Support Bun QA source-script execution [#147996](https://github.com/openclaw/openclaw/pull/147996).",
+      "Restore UI lint and startup-size checks [#148010](https://github.com/openclaw/openclaw/pull/148010). Thanks @obviyus.",
+      "Extend combined Android Play test and lint budgets [#148124](https://github.com/openclaw/openclaw/pull/148124). Thanks @vincentkoc.",
+      "Make local Node and Bun test fixtures portable [#148247](https://github.com/openclaw/openclaw/pull/148247).",
+      "Run wizard recovery tests with the shared-state broker [#148337](https://github.com/openclaw/openclaw/pull/148337).",
+      "Record duplicate wizard recovery test registration [#148353](https://github.com/openclaw/openclaw/pull/148353). Thanks @vincentkoc.",
+      "Fail test runs when Vitest workers exit unexpectedly [#148408](https://github.com/openclaw/openclaw/pull/148408). Thanks @shakkernerd.",
+      "Remove duplicate database-worker test registration [#148425](https://github.com/openclaw/openclaw/pull/148425). Thanks @decent9967, @romneyda.",
+      "Route provider integration and wizard recovery tests correctly [#148504](https://github.com/openclaw/openclaw/pull/148504). Thanks @obviyus.",
+      "Restore database-host routing for plugin trust tests [#148516](https://github.com/openclaw/openclaw/pull/148516). Thanks @vincentkoc, @romneyda.",
+      "Keep focused Node CI when documentation accompanies tests [#148528](https://github.com/openclaw/openclaw/pull/148528).",
+      "Run plugin setup lifecycle tests with the database broker [#148534](https://github.com/openclaw/openclaw/pull/148534).",
+      "Run isolated Gateway tests with config-health storage support [#148536](https://github.com/openclaw/openclaw/pull/148536).",
+      "Restore capacity for services test typechecking [#148602](https://github.com/openclaw/openclaw/pull/148602).",
+      "Limit the full tooling test aggregate to one worker [#148657](https://github.com/openclaw/openclaw/pull/148657).",
+      "Retain passing hosted checks after skipped duplicates [#148722](https://github.com/openclaw/openclaw/pull/148722). Thanks @vincentkoc.",
+      "Restore capacity in core test typechecking [#148788](https://github.com/openclaw/openclaw/pull/148788).",
+      "Restore services typecheck capacity [#148885](https://github.com/openclaw/openclaw/pull/148885).",
+      "Account for overlapping secrets typecheck assignment [#148889](https://github.com/openclaw/openclaw/pull/148889). Thanks @vincentkoc.",
+      "Keep changed tooling tests alongside their consumers [#148946](https://github.com/openclaw/openclaw/pull/148946). Thanks @vincentkoc.",
+      "Keep Docker tooling changes on their targeted CI group [#148979](https://github.com/openclaw/openclaw/pull/148979). Thanks @vincentkoc.",
+      "Remove duplicate Copilot authentication metadata [#149016](https://github.com/openclaw/openclaw/pull/149016). Thanks @vincentkoc.",
+      "Request revalidation while watching CI status [#149418](https://github.com/openclaw/openclaw/pull/149418).",
+      "Preserve distributed typechecks when tests are deleted [#149460](https://github.com/openclaw/openclaw/pull/149460).",
+      "Fit extension fallback tests within the PR job limit [#149652](https://github.com/openclaw/openclaw/pull/149652). Thanks @fuller-stack-dev.",
+      "Correct plugin test scope and refresh CI timing estimates [#149665](https://github.com/openclaw/openclaw/pull/149665).",
+      "Pin Android CI's Gradle JVM and validate toolchain changes [#149832](https://github.com/openclaw/openclaw/pull/149832). Thanks @vincentkoc.",
+      "Preserve test module caches during report merging [#150134](https://github.com/openclaw/openclaw/pull/150134).",
+      "Repair formatting failures in the CI scope test [#150330](https://github.com/openclaw/openclaw/pull/150330). Thanks @fuller-stack-dev.",
+      "Reuse prepared workers in extension test batches [#150360](https://github.com/openclaw/openclaw/pull/150360). Thanks @vincentkoc, @romneyda.",
+      "Bound database-worker CI jobs [#150581](https://github.com/openclaw/openclaw/pull/150581).",
+      "Reuse cached pnpm archives before CI setup [#150782](https://github.com/openclaw/openclaw/pull/150782).",
+      "Prepare runtime before parallel startup checks [#151071](https://github.com/openclaw/openclaw/pull/151071).",
+      "Avoid false silence timeouts during worker preparation [#151131](https://github.com/openclaw/openclaw/pull/151131).",
+      "Run Gateway-booting plans without competing plans [211e67f9](https://github.com/openclaw/openclaw/commit/211e67f9e300c6588b37a349060374b0bc8e2b80).",
+      "Bound stalled Mantis checks and protect failure evidence [#111051](https://github.com/openclaw/openclaw/pull/111051). Thanks @zhangguiping-xydt, @fuller-stack-dev.",
+      "Prevent stale replies from passing character checks [#129312](https://github.com/openclaw/openclaw/pull/129312).",
+      "Preserve skipped outcomes in runtime QA reports [#129616](https://github.com/openclaw/openclaw/pull/129616).",
+      "Wait for memory-profiler child cleanup [#143503](https://github.com/openclaw/openclaw/pull/143503). Thanks @vincentkoc.",
+      "Keep memory diagnostics tied to their launched Gateway [#143504](https://github.com/openclaw/openclaw/pull/143504). Thanks @vincentkoc.",
+      "Prevent startup-memory reports from overwriting each other [#143505](https://github.com/openclaw/openclaw/pull/143505). Thanks @vincentkoc.",
+      "Retain replacement models for capped validation runs [#143943](https://github.com/openclaw/openclaw/pull/143943). Thanks @romneyda.",
+      "Accept valid Matrix QA progress ordering [#143957](https://github.com/openclaw/openclaw/pull/143957). Thanks @romneyda.",
+      "Retain QA profile diagnostics after failures [#143968](https://github.com/openclaw/openclaw/pull/143968). Thanks @vincentkoc.",
+      "Close Crabline QA servers after Gateway shutdown [#143992](https://github.com/openclaw/openclaw/pull/143992). Thanks @romneyda.",
+      "Count onboarding coverage per passing check [#144000](https://github.com/openclaw/openclaw/pull/144000). Thanks @vincentkoc.",
+      "Fix macOS catalog test shortcuts and optional capture [#144539](https://github.com/openclaw/openclaw/pull/144539).",
+      "Preserve Workboard development-preview session state [#144747](https://github.com/openclaw/openclaw/pull/144747). Thanks @vyctorbrzezowski.",
+      "Skip suspicious default skills in installation tests [#144833](https://github.com/openclaw/openclaw/pull/144833). Thanks @romneyda.",
+      "Match Telegram release tests to candidate source [#144841](https://github.com/openclaw/openclaw/pull/144841). Thanks @romneyda.",
+      "Isolate Matrix QA progress checks from earlier events [#144852](https://github.com/openclaw/openclaw/pull/144852). Thanks @romneyda.",
+      "Avoid false log-tail QA failures from concurrent logs [#144867](https://github.com/openclaw/openclaw/pull/144867). Thanks @romneyda.",
+      "Align Kitchen Sink QA with expected diagnostics [#144873](https://github.com/openclaw/openclaw/pull/144873). Thanks @romneyda.",
+      "Normalize expected Telegram formatting data in QA [#144874](https://github.com/openclaw/openclaw/pull/144874). Thanks @romneyda.",
+      "Recognize native Slack Exec headers in QA [#144893](https://github.com/openclaw/openclaw/pull/144893). Thanks @romneyda.",
+      "Isolate Matrix progress QA scenarios [#144895](https://github.com/openclaw/openclaw/pull/144895). Thanks @romneyda.",
+      "Enable compaction progress in Telegram QA fixtures [#144896](https://github.com/openclaw/openclaw/pull/144896). Thanks @romneyda.",
+      "Recognize split schemas in performance validation [#145366](https://github.com/openclaw/openclaw/pull/145366). Thanks @vincentkoc.",
+      "Recognize reviewed Codex sandbox test fixture [#145479](https://github.com/openclaw/openclaw/pull/145479). Thanks @romneyda.",
+      "Retry validation candidates after security blocks [#145489](https://github.com/openclaw/openclaw/pull/145489). Thanks @romneyda.",
+      "Stop merge checks on unreadable change evidence [#145603](https://github.com/openclaw/openclaw/pull/145603).",
+      "Report failed ClawSweeper dispatch requests [#145617](https://github.com/openclaw/openclaw/pull/145617).",
+      "Reject empty extra script arguments [#145887](https://github.com/openclaw/openclaw/pull/145887).",
+      "Fix false QA delegation failures [#145905](https://github.com/openclaw/openclaw/pull/145905). Thanks @vincentkoc.",
+      "Validate repeated samples in Kova reports [#146146](https://github.com/openclaw/openclaw/pull/146146).",
+      "Restore diagnostics browser test selection [#146323](https://github.com/openclaw/openclaw/pull/146323).",
+      "Keep QA Gateway restarts under QA control [#146397](https://github.com/openclaw/openclaw/pull/146397).",
+      "Prevent test profiler shutdown hangs after errors [#146530](https://github.com/openclaw/openclaw/pull/146530).",
+      "Recognize the expected Kitchen Sink worker rejection [#146681](https://github.com/openclaw/openclaw/pull/146681). Thanks @vincentkoc.",
+      "Preserve worker identity in startup profiles [#146861](https://github.com/openclaw/openclaw/pull/146861).",
+      "Preserve nested Control UI test failure details [#146864](https://github.com/openclaw/openclaw/pull/146864).",
+      "Clean up SQLite reliability waits after callback failures [#146900](https://github.com/openclaw/openclaw/pull/146900). Thanks @vincentkoc.",
+      "Retain viewer diagnostics after desktop resize test failures [#147067](https://github.com/openclaw/openclaw/pull/147067). Thanks @vincentkoc.",
+      "Identify the first hooks CLI test timeout phase [#147145](https://github.com/openclaw/openclaw/pull/147145).",
+      "Preserve final Gateway logs during QA teardown [#147300](https://github.com/openclaw/openclaw/pull/147300). Thanks @vincentkoc.",
+      "Correct provider identity in release-candidate QA reports [#147425](https://github.com/openclaw/openclaw/pull/147425). Thanks @vincentkoc.",
+      "Exclude rejected Telegram calls from QA evidence [#147484](https://github.com/openclaw/openclaw/pull/147484). Thanks @vincentkoc.",
+      "Preserve QA finals and clear unfinished previews [#147536](https://github.com/openclaw/openclaw/pull/147536). Thanks @obviyus, @alix-007.",
+      "Stabilize Teams timeout QA setup [#147686](https://github.com/openclaw/openclaw/pull/147686). Thanks @romneyda.",
+      "Retain onboarding prompts through redraws [#147687](https://github.com/openclaw/openclaw/pull/147687). Thanks @romneyda.",
+      "Complete channel-picker QA prompts [#147730](https://github.com/openclaw/openclaw/pull/147730). Thanks @romneyda.",
+      "Keep Slack QA markers visible [#147748](https://github.com/openclaw/openclaw/pull/147748). Thanks @romneyda.",
+      "Compare Telegram QA formatting fields [#147752](https://github.com/openclaw/openclaw/pull/147752). Thanks @romneyda.",
+      "Explain source staging filesystem failures [#147778](https://github.com/openclaw/openclaw/pull/147778). Thanks @vincentkoc.",
+      "Continue skill validation past blocked automatic candidates [#148041](https://github.com/openclaw/openclaw/pull/148041). Thanks @romneyda.",
+      "Separate generic plugin test fixtures from official packages [#148074](https://github.com/openclaw/openclaw/pull/148074). Thanks @romneyda.",
+      "Preserve QA browser cleanup and transcript checks [#148141](https://github.com/openclaw/openclaw/pull/148141). Thanks @vincentkoc.",
+      "Isolate bundled-skill QA from the parent Gateway [#148150](https://github.com/openclaw/openclaw/pull/148150). Thanks @romneyda.",
+      "Recognize plain Slack progress rows in QA checks [#148217](https://github.com/openclaw/openclaw/pull/148217). Thanks @romneyda.",
+      "Preserve QA restart ownership and ordinary command access [#148218](https://github.com/openclaw/openclaw/pull/148218). Thanks @romneyda.",
+      "Avoid false Telegram formatting QA comparisons [#148563](https://github.com/openclaw/openclaw/pull/148563). Thanks @romneyda.",
+      "Use the prepared Gateway in Ollama paired-node QA [#148564](https://github.com/openclaw/openclaw/pull/148564). Thanks @romneyda.",
+      "Keep plugin lifecycle test packages on the fixture registry [#148565](https://github.com/openclaw/openclaw/pull/148565). Thanks @romneyda.",
+      "Separate TUI maturity checks from shared-build scripts [#148566](https://github.com/openclaw/openclaw/pull/148566). Thanks @romneyda.",
+      "Clarify Gateway test cleanup errors [#148692](https://github.com/openclaw/openclaw/pull/148692).",
+      "Keep startup CPU out of idle measurements [#148768](https://github.com/openclaw/openclaw/pull/148768).",
+      "Allow profiler help to finish normal Node shutdown [#149010](https://github.com/openclaw/openclaw/pull/149010). Thanks @fuller-stack-dev.",
+      "Wait for developer-probe cleanup before reporting completion [#149041](https://github.com/openclaw/openclaw/pull/149041).",
+      "Run shared-runtime QA scenarios serially [#149086](https://github.com/openclaw/openclaw/pull/149086). Thanks @romneyda.",
+      "Repair obsolete Gateway maturity event expectations [#149087](https://github.com/openclaw/openclaw/pull/149087). Thanks @romneyda.",
+      "Reduce QA child-producer fixture startup overhead [#149243](https://github.com/openclaw/openclaw/pull/149243). Thanks @vincentkoc.",
+      "Wait for prompt-probe process cleanup [#149428](https://github.com/openclaw/openclaw/pull/149428).",
+      "Preserve Bun in Kitchen Sink RPC validation [#149474](https://github.com/openclaw/openclaw/pull/149474). Thanks @vincentkoc.",
+      "Report missing readiness in lint cancellation tests [#149495](https://github.com/openclaw/openclaw/pull/149495).",
+      "Stop E2E process launches after cancellation [#149521](https://github.com/openclaw/openclaw/pull/149521).",
+      "Correct Gateway benchmark request accounting and tool evidence [#149698](https://github.com/openclaw/openclaw/pull/149698). Thanks @vincentkoc.",
+      "Recognize compact Slack command progress in live QA [#149777](https://github.com/openclaw/openclaw/pull/149777). Thanks @romneyda.",
+      "Compare Telegram QA formatting by field values [#149778](https://github.com/openclaw/openclaw/pull/149778). Thanks @romneyda.",
+      "Accept safely omitted command text in Matrix progress QA [#149779](https://github.com/openclaw/openclaw/pull/149779). Thanks @romneyda.",
+      "Separate Slack QA silence observation from flow timeout [#149780](https://github.com/openclaw/openclaw/pull/149780). Thanks @romneyda.",
+      "Align Codex authentication recovery tests with native failures [#149784](https://github.com/openclaw/openclaw/pull/149784). Thanks @romneyda.",
+      "Capture QA evidence from the running transport [#149928](https://github.com/openclaw/openclaw/pull/149928). Thanks @romneyda.",
+      "Repair Telegram QA credential imports [#150356](https://github.com/openclaw/openclaw/pull/150356). Thanks @romneyda.",
+      "Run heavyweight terminal QA serially [#150357](https://github.com/openclaw/openclaw/pull/150357). Thanks @romneyda.",
+      "Give disabled-channel Slack QA time to finish [#150358](https://github.com/openclaw/openclaw/pull/150358). Thanks @romneyda.",
+      "Use model defaults in OpenAI onboarding probes [#150474](https://github.com/openclaw/openclaw/pull/150474). Thanks @romneyda.",
+      "Check Codex ownership through Gateway observations [#150475](https://github.com/openclaw/openclaw/pull/150475). Thanks @romneyda.",
+      "Supply session identity to OpenCode live checks [#150501](https://github.com/openclaw/openclaw/pull/150501). Thanks @romneyda.",
+      "Align live tests with continuation and saved compaction state [#150503](https://github.com/openclaw/openclaw/pull/150503). Thanks @romneyda.",
+      "Restore plugin memory profiling on Windows [#150648](https://github.com/openclaw/openclaw/pull/150648).",
+      "Delete Matrix QA devices before driver shutdown [#150661](https://github.com/openclaw/openclaw/pull/150661). Thanks @romneyda.",
+      "Align Telegram QA with silent access denial [#150662](https://github.com/openclaw/openclaw/pull/150662). Thanks @romneyda.",
+      "Select native runtime in ultra handoff test [#150722](https://github.com/openclaw/openclaw/pull/150722). Thanks @romneyda.",
+      "Remove retired timeout setting from Codex auth tests [#150863](https://github.com/openclaw/openclaw/pull/150863). Thanks @romneyda.",
+      "Align Gateway and QA Lab test expectations [#150866](https://github.com/openclaw/openclaw/pull/150866). Thanks @romneyda.",
+      "Separate restart QA delivery from child completion [#150867](https://github.com/openclaw/openclaw/pull/150867). Thanks @romneyda.",
+      "Run live Gateway tests in host processes [#150873](https://github.com/openclaw/openclaw/pull/150873). Thanks @romneyda.",
+      "Avoid Bash hangs in macOS computer-use test setup [#150973](https://github.com/openclaw/openclaw/pull/150973).",
+      "Isolate Telegram startup QA account [#150993](https://github.com/openclaw/openclaw/pull/150993). Thanks @romneyda.",
+      "Handle text history in Cron allowlist tests [#150997](https://github.com/openclaw/openclaw/pull/150997). Thanks @romneyda.",
+      "Isolate compaction testing from plugin discovery [#151000](https://github.com/openclaw/openclaw/pull/151000). Thanks @romneyda.",
+      "Isolate provider checks from background summaries [#151002](https://github.com/openclaw/openclaw/pull/151002). Thanks @romneyda.",
+      "Correct QA parity request and completion evidence [#151075](https://github.com/openclaw/openclaw/pull/151075).",
+      "Preserve thread identity in QA channel delivery [35bfbb53](https://github.com/openclaw/openclaw/commit/35bfbb537752b20d831e8b5d212fbdcc6f4820aa). Thanks @romneyda.",
+      "Drain test workers and diagnose stalled shutdowns [#151225](https://github.com/openclaw/openclaw/pull/151225). Thanks @romneyda.",
+      "Keep leased Telegram QA tokens out of child environments [#148819](https://github.com/openclaw/openclaw/pull/148819). Thanks @obviyus.",
+      "Redact credentials from test failure reports [#150983](https://github.com/openclaw/openclaw/pull/150983).",
+      "Remove the legacy QA channel-selection input [#149667](https://github.com/openclaw/openclaw/pull/149667). Thanks @romneyda.",
+      "Bound plugin release build and packaging checks [#111349](https://github.com/openclaw/openclaw/pull/111349). Thanks @zhangguiping-xydt, @fuller-stack-dev.",
+      "Reject unsupported monthly release checklist launches [#127215](https://github.com/openclaw/openclaw/pull/127215). Thanks @vincentkoc.",
+      "Prepare heartbeat and Doctor release-test fixtures [#144338](https://github.com/openclaw/openclaw/pull/144338). Thanks @vincentkoc.",
+      "Initialize Node before release planning [#144411](https://github.com/openclaw/openclaw/pull/144411). Thanks @romneyda, @vincentkoc.",
+      "Repair categories for frozen ClawHub plugin releases [#144615](https://github.com/openclaw/openclaw/pull/144615). Thanks @vincentkoc.",
+      "Verify archived publication evidence for 2026.9.4 closeout [#144638](https://github.com/openclaw/openclaw/pull/144638). Thanks @vincentkoc.",
+      "Restore release-validation artifact downloads [#144760](https://github.com/openclaw/openclaw/pull/144760). Thanks @vincentkoc.",
+      "Resolve updater compatibility files from the runtime build [#144831](https://github.com/openclaw/openclaw/pull/144831).",
+      "Recover generated PR publication after push timeouts [#144878](https://github.com/openclaw/openclaw/pull/144878). Thanks @romneyda.",
+      "Exclude unverified local identities from squash credits [#145128](https://github.com/openclaw/openclaw/pull/145128).",
+      "Reuse beta validation after canonical changelog changes [#145594](https://github.com/openclaw/openclaw/pull/145594).",
+      "Recognize older schemas in release validation [#145628](https://github.com/openclaw/openclaw/pull/145628). Thanks @romneyda.",
+      "Register 9.5 plugin scan inventory [#145670](https://github.com/openclaw/openclaw/pull/145670). Thanks @romneyda.",
+      "Respect Talk-defaults live-test opt-in [#145840](https://github.com/openclaw/openclaw/pull/145840). Thanks @romneyda.",
+      "Honor Crabbox live-test opt-in [#145889](https://github.com/openclaw/openclaw/pull/145889). Thanks @romneyda.",
+      "Align release fixtures with current behavior [#145946](https://github.com/openclaw/openclaw/pull/145946). Thanks @romneyda.",
+      "Restore explicit Sol release-test selection [#145974](https://github.com/openclaw/openclaw/pull/145974). Thanks @romneyda.",
+      "Serve release-check artifacts with special filenames [#146104](https://github.com/openclaw/openclaw/pull/146104).",
+      "Exclude empty refresh commits from automatic squash credit [#146585](https://github.com/openclaw/openclaw/pull/146585).",
+      "Align Discord upgrade tests with explicit plugin arguments [#146606](https://github.com/openclaw/openclaw/pull/146606).",
+      "Allow versioned Linux release requests to reach publishing [#146878](https://github.com/openclaw/openclaw/pull/146878).",
+      "Prepare PRs despite stale GitHub pull refs [#146950](https://github.com/openclaw/openclaw/pull/146950).",
+      "Preserve source identities in repository E2E checks [#146955](https://github.com/openclaw/openclaw/pull/146955). Thanks @vincentkoc.",
+      "Honor meeting live-test opt-in in CI [#147044](https://github.com/openclaw/openclaw/pull/147044). Thanks @vincentkoc.",
+      "Check release package metadata before validation jobs [#147049](https://github.com/openclaw/openclaw/pull/147049). Thanks @vincentkoc.",
+      "Align release fixtures with existing runtime behavior [#147158](https://github.com/openclaw/openclaw/pull/147158). Thanks @vincentkoc.",
+      "Check publication registries before release validation jobs [#147184](https://github.com/openclaw/openclaw/pull/147184). Thanks @vincentkoc.",
+      "Remove the final unnecessary release-verification wait [#147299](https://github.com/openclaw/openclaw/pull/147299).",
+      "Make merge drift checks independent of locale [#147309](https://github.com/openclaw/openclaw/pull/147309). Thanks @vincentkoc.",
+      "Keep frozen-release checks aligned with selected source [#148042](https://github.com/openclaw/openclaw/pull/148042). Thanks @romneyda.",
+      "Repair private QA imports in Telegram package checks [#148044](https://github.com/openclaw/openclaw/pull/148044). Thanks @romneyda.",
+      "Install release-check dependencies before using them [#148045](https://github.com/openclaw/openclaw/pull/148045). Thanks @romneyda.",
+      "Respect the frozen SDK package contract during validation [#148046](https://github.com/openclaw/openclaw/pull/148046). Thanks @romneyda.",
+      "Accept reachable release commits with large ref listings [#148161](https://github.com/openclaw/openclaw/pull/148161). Thanks @vincentkoc.",
+      "Retain current-run receipts for successful Docker upgrade checks [#148245](https://github.com/openclaw/openclaw/pull/148245).",
+      "Avoid unrelated downloads during mobile release script export [#148384](https://github.com/openclaw/openclaw/pull/148384). Thanks @vincentkoc.",
+      "Restore dependency-free cross-platform release checks [#148634](https://github.com/openclaw/openclaw/pull/148634). Thanks @romneyda.",
+      "Unblock skill and Telegram package validation [#148729](https://github.com/openclaw/openclaw/pull/148729). Thanks @vincentkoc.",
+      "Accept verified existing TestFlight internal-group access [#148739](https://github.com/openclaw/openclaw/pull/148739). Thanks @vincentkoc.",
+      "Make malformed-filename release tests work on macOS [#148780](https://github.com/openclaw/openclaw/pull/148780).",
+      "Exclude RoboClaw service credit from reviewed squash messages [#148883](https://github.com/openclaw/openclaw/pull/148883). Thanks @takhoffman.",
+      "Keep release-preflight tests offline under Bun [#148892](https://github.com/openclaw/openclaw/pull/148892).",
+      "Pin a maintained ClawHub installation fixture [#148902](https://github.com/openclaw/openclaw/pull/148902). Thanks @vincentkoc.",
+      "Recognize reviewed Codex test probes in package scans [#149058](https://github.com/openclaw/openclaw/pull/149058). Thanks @romneyda.",
+      "Report release child-workflow startup failures promptly [#149059](https://github.com/openclaw/openclaw/pull/149059). Thanks @romneyda.",
+      "Require fresh checks after relevant main changes [#149143](https://github.com/openclaw/openclaw/pull/149143).",
+      "Route PR aliases through their current shared wrapper [#149191](https://github.com/openclaw/openclaw/pull/149191).",
+      "Supply dependencies for linked-checkout PR wrappers [#149193](https://github.com/openclaw/openclaw/pull/149193). Thanks @vincentkoc.",
+      "Preserve merge receipts across repository ID formats [#149230](https://github.com/openclaw/openclaw/pull/149230).",
+      "Specify Node for Codex release smoke tests [#149407](https://github.com/openclaw/openclaw/pull/149407). Thanks @romneyda.",
+      "Prevent false downgrade refusals in packaged QA fixtures [#149409](https://github.com/openclaw/openclaw/pull/149409). Thanks @romneyda.",
+      "Restore private QA imports and safe failure evidence [#149411](https://github.com/openclaw/openclaw/pull/149411). Thanks @vincentkoc, @romneyda.",
+      "Reject incomplete or inconsistent PR review metadata [#149567](https://github.com/openclaw/openclaw/pull/149567). Thanks @fuller-stack-dev.",
+      "Recover qualified historical merge refusals while retaining evidence [#149674](https://github.com/openclaw/openclaw/pull/149674). Thanks @patrick-erichsen.",
+      "Repair upgrade-test fixtures, outcomes and Doctor diagnostics [#149705](https://github.com/openclaw/openclaw/pull/149705).",
+      "Match frozen-package Telegram tests to the selected source [#149714](https://github.com/openclaw/openclaw/pull/149714). Thanks @romneyda.",
+      "Initialize PR review inside the macOS sandbox [#149776](https://github.com/openclaw/openclaw/pull/149776). Thanks @fuller-stack-dev.",
+      "Preserve required browser files in raw CDP smoke tests [#149813](https://github.com/openclaw/openclaw/pull/149813). Thanks @vincentkoc.",
+      "Verify Telegram release candidates missing from GitHub associations [#149846](https://github.com/openclaw/openclaw/pull/149846). Thanks @romneyda.",
+      "Run npm artifact qualification after skipped evidence reuse [#149851](https://github.com/openclaw/openclaw/pull/149851). Thanks @vincentkoc.",
+      "Continue release history fetching when shallow boundaries change [#150304](https://github.com/openclaw/openclaw/pull/150304). Thanks @romneyda.",
+      "Repair release setup and record validation exceptions [#150337](https://github.com/openclaw/openclaw/pull/150337). Thanks @vincentkoc, @romneyda.",
+      "Correct deferred-plugin inventory expectations [#150341](https://github.com/openclaw/openclaw/pull/150341). Thanks @fuller-stack-dev.",
+      "Verify workspace repair before Gateway startup [#150375](https://github.com/openclaw/openclaw/pull/150375).",
+      "Fetch upgrade metadata before release admission [#150385](https://github.com/openclaw/openclaw/pull/150385). Thanks @romneyda.",
+      "Include missing shared dependency in E2E checkout [#150471](https://github.com/openclaw/openclaw/pull/150471). Thanks @romneyda.",
+      "Record reviewed process-test scanner findings [#150473](https://github.com/openclaw/openclaw/pull/150473). Thanks @romneyda.",
+      "Isolate published baseline packages in upgrade tests [#150542](https://github.com/openclaw/openclaw/pull/150542).",
+      "Avoid false warnings for explicitly patched dependency versions [#150657](https://github.com/openclaw/openclaw/pull/150657). Thanks @romneyda.",
+      "Select synthetic user bus in Doctor-switch tests [#150698](https://github.com/openclaw/openclaw/pull/150698). Thanks @vincentkoc, @romneyda.",
+      "Handle absent missing-plugin-path fixtures in upgrade tests [#150740](https://github.com/openclaw/openclaw/pull/150740). Thanks @vincentkoc, @romneyda.",
+      "Recognize expected registry fallback in missing-plugin upgrade tests [#150748](https://github.com/openclaw/openclaw/pull/150748).",
+      "Accept verified historical upgrades in installer smoke tests [#150757](https://github.com/openclaw/openclaw/pull/150757). Thanks @vincentkoc, @romneyda.",
+      "Match Telegram package tests to explicit command denials [#150761](https://github.com/openclaw/openclaw/pull/150761). Thanks @romneyda.",
+      "Prevent registry timeouts in prepack tests [#150832](https://github.com/openclaw/openclaw/pull/150832).",
+      "Recognize reviewed Signal socket-test findings [#150844](https://github.com/openclaw/openclaw/pull/150844). Thanks @romneyda.",
+      "Validate SDK setup types through compilation [#150845](https://github.com/openclaw/openclaw/pull/150845). Thanks @romneyda.",
+      "Correct update-repair isolation assertions [#150917](https://github.com/openclaw/openclaw/pull/150917). Thanks @romneyda.",
+      "Prevent validation stalls on large generated inputs [#150936](https://github.com/openclaw/openclaw/pull/150936).",
+      "Retry failed npm qualification without restarting validation [#150991](https://github.com/openclaw/openclaw/pull/150991). Thanks @romneyda.",
+      "Enable selected node-timeout test in release validation [#150998](https://github.com/openclaw/openclaw/pull/150998). Thanks @romneyda.",
+      "Keep frozen candidates eligible after release branch advancement [#151039](https://github.com/openclaw/openclaw/pull/151039). Thanks @romneyda.",
+      "Preserve candidate registry during plugin-repair validation [#151158](https://github.com/openclaw/openclaw/pull/151158). Thanks @romneyda.",
+      "Accept preserved runtime skips in QA reports [#151170](https://github.com/openclaw/openclaw/pull/151170).",
+      "Exclude provider credentials from package smoke overrides [#143331](https://github.com/openclaw/openclaw/pull/143331). Thanks @giodl73-repo.",
+      "Keep release validation inputs out of child-process arguments [#144815](https://github.com/openclaw/openclaw/pull/144815). Thanks @vincentkoc.",
+      "Initialize Bun SQLite before test workers start [#145198](https://github.com/openclaw/openclaw/pull/145198).",
+      "Honor requested Node versions when packaging the Mac app [#146556](https://github.com/openclaw/openclaw/pull/146556).",
+      "Keep HTTP headers out of native translation discovery [#147119](https://github.com/openclaw/openclaw/pull/147119). Thanks @vincentkoc.",
+      "Restore repeatable Linux Crabbox dependency setup [#147864](https://github.com/openclaw/openclaw/pull/147864).",
+      "Fix false unused-export failures in Windows checks [#148751](https://github.com/openclaw/openclaw/pull/148751).",
+      "Avoid duplicate asset copies during merge resolution [#148907](https://github.com/openclaw/openclaw/pull/148907). Thanks @vincentkoc.",
+      "Reject builds produced from subsequently reverted source edits [#149866](https://github.com/openclaw/openclaw/pull/149866).",
+      "Complete Windows build and test cleanup without losing output [#150244](https://github.com/openclaw/openclaw/pull/150244).",
+      "Restore macOS builds for chat handoffs [#150292](https://github.com/openclaw/openclaw/pull/150292). Thanks @vincentkoc, @romneyda.",
+      "Prevent oversized plugin boundary compiler work [#150721](https://github.com/openclaw/openclaw/pull/150721).",
+      "Reject links to unpublished permalink URLs [#144279](https://github.com/openclaw/openclaw/pull/144279).",
+      "Use source plugin schemas for documentation checks [#144312](https://github.com/openclaw/openclaw/pull/144312).",
+      "Preserve links between separate HTML examples [#144537](https://github.com/openclaw/openclaw/pull/144537).",
+      "Exempt bare versions from glossary validation [#147377](https://github.com/openclaw/openclaw/pull/147377). Thanks @hannesrudolph, @vincentkoc.",
+      "Confine PR cleanup to its worktree [#147527](https://github.com/openclaw/openclaw/pull/147527). Thanks @vincentkoc.",
+      "Preserve unrelated worktrees during PR fetches [#147828](https://github.com/openclaw/openclaw/pull/147828).",
+      "Recover preparation after committed merge conflicts [#148063](https://github.com/openclaw/openclaw/pull/148063). Thanks @fuller-stack-dev.",
+      "Preserve unfinished work during completed PR cleanup [#148704](https://github.com/openclaw/openclaw/pull/148704). Thanks @fuller-stack-dev.",
+      "Prevent automatic Git maintenance during PR operations [#150399](https://github.com/openclaw/openclaw/pull/150399).",
+      "Restore review initialization from fresh tooling snapshots [#150453](https://github.com/openclaw/openclaw/pull/150453). Thanks @shakkernerd.",
+      "Include snapshot worker in isolated PR tooling [#150480](https://github.com/openclaw/openclaw/pull/150480).",
+      "Restore PR tooling startup from older worktrees [#150504](https://github.com/openclaw/openclaw/pull/150504).",
+      "Preserve Labeler work during ignored description edits [#150728](https://github.com/openclaw/openclaw/pull/150728).",
+      "Honor explicit bases in staged checks [#150934](https://github.com/openclaw/openclaw/pull/150934)."
+    ]
+  },
+  {
     "version": "2026.9.4",
     "date": "2026.9.4",
     "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202694",
@@ -139064,229 +151888,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "**PR #88989** perf(ui)",
         "description": "guard chat transcript rerenders. Thanks @vincentkoc.",
         "href": "https://github.com/openclaw/openclaw/issues/88989"
-      }
-    ],
-    "fixes": []
-  },
-  {
-    "version": "2026.5.28",
-    "date": "2026.5.28",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528",
-    "features": [
-      {
-        "title": "Agent and Codex runtime recovery is steadier",
-        "description": "subagents keep cwd/workspace separation, hook context stays prompt-local, session locks release on timeout abort while live OpenClaw locks survive cleanup, stale restart continuations are avoided, and Codex app-server/helper failures no longer tear down shared runtime state. (#87218, #86875, #87409, #87399, #87375, #88129)",
-        "href": "https://github.com/openclaw/openclaw/issues/87218"
-      },
-      {
-        "title": "Channel delivery and session identity got safer across outbound plugin hook...",
-        "description": "Channel delivery and session identity got safer across outbound plugin hooks, Matrix room ids, iMessage reactions/approvals, Slack final replies, Discord recovered tool warnings, runtime-config message actions, WhatsApp profile auth roots, Telegram polling, and Microsoft Teams service URL trust checks. (#73706, #75670, #87366, #87451, #87334, #84535, #82492, #83304, #87160)",
-        "href": "https://github.com/openclaw/openclaw/issues/73706"
-      },
-      {
-        "title": "Mobile and chat surfaces got a broader refresh",
-        "description": "the iOS Pro UI, hosted push relay default, realtime Talk tab playback, Gateway chat transport, onboarding, Talk permissions, WebChat reconnect delivery, and session picker behavior now preserve more state across reconnects and empty searches. (#87367, #87531, #87682, #88096, #88105) Thanks @ngutman and @BunsDev.",
-        "href": "https://github.com/openclaw/openclaw/issues/87367"
-      },
-      {
-        "title": "Browser, channel, and automation inputs are stricter",
-        "description": "Browser tool timeouts, viewport/tab indices, Gateway ports, cron retry handling, Discord component ids, schema array refs, Telegram callback pages, and channel progress callbacks now reject malformed values earlier and preserve the intended delivery context. (#82887)",
-        "href": "https://github.com/openclaw/openclaw/pull/82887"
-      },
-      {
-        "title": "Provider, media, and document coverage expands with Claude Opus 4",
-        "description": "Provider, media, and document coverage expands with Claude Opus 4.8, Fal Krea image schemas, NVIDIA featured models, MiniMax streaming music responses, encrypted PDF extraction, voice model catalogs, GitHub Copilot agent runtime support, and a Codex Supervisor plugin path for delegated Codex workflows. (#87845, #87890, #80775, #84764, #87751, #87794)",
-        "href": "https://github.com/openclaw/openclaw/issues/87845"
-      },
-      {
-        "title": "CLI, auth, doctor, and provider paths fail faster and recover more clearly:...",
-        "description": "CLI, auth, doctor, and provider paths fail faster and recover more clearly: malformed numeric/version options are rejected, workspace dotenv provider credentials are ignored, heartbeat defaults, OAuth/token lifetimes, and local service startup requests are bounded, agent auth health labels are clearer, legacy `api_key` auth profiles migrate to canonical form, and restart guidance is actionable. (#87398, #86281, #87361, #88133, #83655, #87559, #88088, #85924) Thanks @vincentkoc and @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/87398"
-      },
-      {
-        "title": "Plugin and Gateway hot paths do less repeated work while preserving cache c...",
-        "description": "Plugin and Gateway hot paths do less repeated work while preserving cache correctness for install records, config JSON parsing, tool search catalogs, session stores, manifest model rows, auto-enabled plugin config, browser tokens, viewer assets, and release-split external plugin packages. (#86699)",
-        "href": "https://github.com/openclaw/openclaw/pull/86699"
-      },
-      {
-        "title": "Release, QA, and E2E validation now bound more log, artifact, harness, and...",
-        "description": "Release, QA, and E2E validation now bound more log, artifact, harness, and cross-OS waits so failing lanes produce proof instead of hanging or false-greening.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Status",
-        "description": "show active subagent details in status output.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Diffs",
-        "description": "split the default language pack and expand default Diffs language coverage while keeping the host floor aligned. (#87370, #87372) Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/87370"
-      },
-      {
-        "title": "ClawHub",
-        "description": "add plugin display names plus skill verification and trust surfaces. (#87354, #86699) Thanks @thewilloftheshadow and @Patrick-Erichsen.",
-        "href": "https://github.com/openclaw/openclaw/issues/87354"
-      },
-      {
-        "title": "iOS",
-        "description": "refresh the dev app with Pro Command, Chat, Agents, Settings, hosted push relay defaults, and realtime Talk playback wired to gateway sessions, diagnostics, chat, and realtime Talk. (#87367, #88096, #88105) Thanks @Solvely-Colin and @ngutman.",
-        "href": "https://github.com/openclaw/openclaw/issues/87367"
-      },
-      {
-        "title": "Docs",
-        "description": "clarify Codex computer-use setup, paste-token stdin auth setup, macOS gateway sleep troubleshooting, native Codex hook relay recovery, container model auth, install deployment cards, device-token admin gating, CLI setup flow compatibility, Notte cloud browser CDP setup, and backport targets. (#87313, #63050, #87685) Thanks @bdjben, @liaoandi, and @thewilloftheshadow.",
-        "href": "https://github.com/openclaw/openclaw/issues/87313"
-      },
-      {
-        "title": "PDF/tools",
-        "description": "use ClawPDF for PDF extraction, support encrypted PDF extraction, and surface MCP structured content in agent tool results. (#87670, #87751)",
-        "href": "https://github.com/openclaw/openclaw/issues/87670"
-      },
-      {
-        "title": "Providers",
-        "description": "add Claude Opus 4.8 support, Fal Krea image model schemas, NVIDIA featured model catalogs, MiniMax streaming music responses, and provider-backed voice model catalogs. (#87845, #87890, #80775, #84764, #87794) Thanks @eleqtrizit and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/87845"
-      },
-      {
-        "title": "Codex/GitHub",
-        "description": "add the GitHub Copilot agent runtime and the Codex Supervisor plugin package.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Plugins",
-        "description": "externalize GitHub Copilot and Tokenjuice as official install-on-demand plugins with npm and ClawHub publish metadata.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Workboard",
-        "description": "add agent coordination tools for tracking and handing off active agent work.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Discord",
-        "description": "show commentary in progress drafts so live Discord runs expose useful in-progress context. (#85200)",
-        "href": "https://github.com/openclaw/openclaw/pull/85200"
-      },
-      {
-        "title": "Plugin SDK",
-        "description": "add a reply payload sending hook for plugins that need to deliver channel-owned replies and flatten package types for SDK declarations. (#82823, #87165) Thanks @piersonr and @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/82823"
-      },
-      {
-        "title": "Policy",
-        "description": "add policy comparison, ingress-channel conformance, and sandbox-posture conformance checks. (#85572, #85744, #86768)",
-        "href": "https://github.com/openclaw/openclaw/issues/85572"
-      },
-      {
-        "title": "Agents",
-        "description": "fall back to local config pruning when the optional `agents delete` Gateway probe cannot authenticate, so offline installs can still delete agents without removing shared workspaces.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Tighten phone-control mutation authorization [AI]",
-        "description": "Tighten phone-control mutation authorization [AI]. (#87150) Thanks @pgondhi987.",
-        "href": "https://github.com/openclaw/openclaw/pull/87150"
-      },
-      {
-        "title": "Clarify directive persistence authorization policy [AI]",
-        "description": "Clarify directive persistence authorization policy [AI]. (#86369) Thanks @pgondhi987.",
-        "href": "https://github.com/openclaw/openclaw/pull/86369"
-      },
-      {
-        "title": "Agents/Codex",
-        "description": "keep spawned agent cwd/workspace state separated, forward ACP spawn attachments, keep hook context prompt-local, release session locks on timeout abort and runtime teardown without deleting live OpenClaw-owned locks during cleanup, avoid session event queue self-wait, clean up exec abort listeners, stream assistant deltas incrementally, recover raw missing-thread compaction failures, preserve rotated compaction session identity, keep compaction-timeout snapshots continuable, preserve shared app-server state across startup or helper failures, keep native hook relay alive across restarts and prune stale bridge files, close native hook relay replacement races, keep Claude live tool progress visible for watchdog recovery, suppress abandoned requester completion handoff, route workspace memory through tools, resolve Codex runtime models first, report quarantined dynamic tools, format `skills` command output, bind node auto-review to prepared plans, retry Claude CLI transcript probes, and bound compaction/steering retries. (#87218, #86875, #86123, #88129, #87399, #87375, #72574, #87383, #87400, #83022, #87671, #87738, #87747, #87706, #87546, #87541, #81048) Thanks @mbelinky, @Alix-007, @luoyanglang, @yetval, @sjf, @joshavant, @benjamin1492, @c19354837, @fuller-stack-dev, @pfrederiksen, and @dodge1218.",
-        "href": "https://github.com/openclaw/openclaw/issues/87218"
-      },
-      {
-        "title": "Codex Supervisor",
-        "description": "keep real-home app-server MCP session listing on the loaded state path, bound stored history scans, and close WebSocket probes cleanly.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Channels",
-        "description": "thread canonical session keys into outbound hooks, preserve Matrix room-id case, keep fallback tool warnings mention-inert, retain delivered Slack final replies during late cleanup, continue iMessage polling after denied reactions, suppress duplicate native exec approvals, resolve Gateway message actions against the active runtime config, preserve Telegram SecretRef prompt config and polling keepalives, preserve WhatsApp profile auth roots, QR display, document filenames, and plugin hook config, suppress Discord recovered tool warnings, preserve the Discord voice outbound helper, cap Discord/Signal/Zalo channel request and container timeouts, and block untrusted Teams service URLs while keeping TeamsSDK patterns aligned. (#73706, #75670, #87366, #87451, #87465, #87334, #84535, #76262, #83304, #82492, #87581, #77114, #86426, #85529, #87160) Thanks @zeroaltitude, @lukeboyett, @jarvis-mns1, @xiaotian, @funmerlin, @joshavant, @eleqtrizit, @heyitsaamir, @amittell, @lidge-jun, @liorb-mountapps, @masatohoshino, @bladin, and @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/73706"
-      },
-      {
-        "title": "CLI/auth/doctor/providers",
-        "description": "reject malformed numeric/timeout/subcommand-version inputs, ignore workspace dotenv provider credentials, wait for respawn child shutdown, bound heartbeat defaults plus Codex, GitHub Copilot, OpenAI, Anthropic, Google, Feishu, LM Studio, MiniMax, Xiaomi TTS, and local-provider OAuth/token/model requests, harden Codex auth probes, label auth health by agent, preserve explicit agentRuntime pins during Codex model migration, warm provider auth off the main thread, honor Codex response timeouts, stop migrating current Claude Haiku 4.5 profiles to Sonnet, bound local service startup, resolve GPT-5.5 without cached catalog, migrate legacy memory auto-provider config, rewrite non-canonical `api_key` auth profiles, and make doctor restart follow-ups actionable. (#87398, #86281, #87361, #88133, #83655, #87559, #87719, #88088, #85924, #84362) Thanks @Patrick-Erichsen, @samzong, @giodl73-repo, @alkor2000, @mmaps, @nxmxbbd, and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/87398"
-      },
-      {
-        "title": "Gateway/security/session state",
-        "description": "expire browser tokens after auth rotation, scope assistant idempotency dedupe, drain probe client closes, avoid stale restart continuation reuse, preserve retry-after fallbacks and stale rate-limit cooldown probes, bound webchat image and artifact transcript scans, include seconds in inbound metadata timestamps, clear completed session active runs, clear stale chat stream buffers, and evict current plugin-state namespaces at row caps. (#87810, #87833, #75089) Thanks @joshavant and @litang9.",
-        "href": "https://github.com/openclaw/openclaw/issues/87810"
-      },
-      {
-        "title": "Config/parsing/network",
-        "description": "reject partial numeric parsing, parse provider/Discord retry headers and dates strictly, honor IPv6 and bare IPv6 `no_proxy` entries, preserve empty plugin allowlists, canonicalize secret target array indexes, and reject malformed media content lengths, inspected TCP ports, marketplace content lengths, cron epochs, sandbox stat fields, unsafe duration values, empty config path segments, noncanonical schema array refs, unsafe Telegram callback pages, and invalid Teams attachment-fetch DNS targets. (#87883) Thanks @zhangguiping-xydt.",
-        "href": "https://github.com/openclaw/openclaw/pull/87883"
-      },
-      {
-        "title": "Browser/input hardening",
-        "description": "reject invalid tab indexes, excessive viewport resizes, explicit zero CDP ports, malformed geolocation options, unsafe screenshot or permission-grant timeouts, loose response-body limits, invalid cookie expiries, and non-finite Browser tool delays/timeouts.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Cron/automation",
-        "description": "retry recurring jobs after transient model rate limits before waiting for the next scheduled slot, and preflight model fallbacks before skipping scheduled work. (#82887) Thanks @chen-zhang-cs-code.",
-        "href": "https://github.com/openclaw/openclaw/pull/82887"
-      },
-      {
-        "title": "Auto-reply/directives",
-        "description": "respect provider and relayed channel metadata during directive persistence so channel-originated decisions keep their intended context. (#87683)",
-        "href": "https://github.com/openclaw/openclaw/pull/87683"
-      },
-      {
-        "title": "WhatsApp",
-        "description": "resolve the auth directory from the active profile so profile-scoped WhatsApp installs do not drift to the wrong credential root. (#82492) Thanks @lidge-jun.",
-        "href": "https://github.com/openclaw/openclaw/pull/82492"
-      },
-      {
-        "title": "Gateway/session state",
-        "description": "clear completed session active runs, avoid cold-loading providers for MCP inventory, cache single-session child indexes, cap handshake timers, and bound preauth, auth-guard, media, transcript, readiness, and port options.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Channels/replies",
-        "description": "preserve channel-owned progress callbacks when verbose output is off, keep group-room progress suppression intact, prefer external session delivery context, escape Discord component id delimiters, force final TUI chat repaints, show Slack reasoning previews, and normalize Discord/Matrix/Mattermost channel numeric options. (#87476, #87423)",
-        "href": "https://github.com/openclaw/openclaw/issues/87476"
-      },
-      {
-        "title": "Agents/tool args",
-        "description": "harden smart-quoted argument repair for edit arrays and exact escaped arguments so model-produced tool calls recover without corrupting valid input. (#86611) Thanks @ferminquant.",
-        "href": "https://github.com/openclaw/openclaw/pull/86611"
-      },
-      {
-        "title": "Providers/agents",
-        "description": "preserve seeded Anthropic signatures, preserve signed thinking payloads, concatenate signature-delta chunks, preserve DeepSeek `reasoning_content` replay across tier suffixes, apply OpenRouter strict9 ids to Mistral routes, promote Ollama plain-text tool calls, load NVIDIA featured model catalogs, stream MiniMax music generation responses, and recover empty preflight compaction. (#87593, #87493, #80775, #84764) Thanks @Pluviobyte and @eleqtrizit.",
-        "href": "https://github.com/openclaw/openclaw/issues/87593"
-      },
-      {
-        "title": "Media/images",
-        "description": "skip CLI image cache refs when resolving generated images, allow trusted generated HTML attachments, and bound generated video downloads so stale refs and slow providers fail cleanly. (#87523, #87982)",
-        "href": "https://github.com/openclaw/openclaw/issues/87523"
-      },
-      {
-        "title": "File transfer",
-        "description": "handle late tar stdin pipe errors after archive validation or unpacking has already settled.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026528"
-      },
-      {
-        "title": "Performance",
-        "description": "trust install-record caches between reloads, prefer native JSON parsing, reuse unchanged tool-search catalogs, reuse gateway session and plugin metadata paths, skip unchanged store serialization, patch single-entry session writes, add precomputed session patch writers, reduce store clone allocations, cache manifest model catalog rows and auto-enabled plugin config, avoid full session snapshots for entry reads, defer configured Slack full startup, prefer bundled plugin dist entries, and slim current metadata identity caches. (#87760)",
-        "href": "https://github.com/openclaw/openclaw/pull/87760"
-      },
-      {
-        "title": "Docker/release/QA",
-        "description": "package runtime workspace templates, stream cross-OS served artifacts, preserve sparse Crabbox run artifacts, isolate npm plugin installs per package, reject incompatible package plugin API installs, drop the leftover root Sharp dependency from package manifests after the Rastermill migration, bound OpenClaw instance logs, plugin gauntlet relay logs, MCP channel buffers, kitchen-sink scans, agent-turn assertions, QA-Lab credential broker calls, QA Matrix substrate requests, and release scenario logs, and keep release/google live guards current. (#87647, #87477) Thanks @rohitjavvadi and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/87647"
-      },
-      {
-        "title": "Release/CI",
-        "description": "bound manual git fetches, ClawHub verifier responses, ClawHub owner metadata, dependency-guard error bodies, Parallels limits, startup/test/memory budget parsing, and diffs viewer build warnings so release lanes fail with useful proof instead of hanging. (#87839)",
-        "href": "https://github.com/openclaw/openclaw/pull/87839"
       }
     ],
     "fixes": []
