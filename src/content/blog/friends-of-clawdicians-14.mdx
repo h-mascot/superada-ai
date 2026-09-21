@@ -1,0 +1,48 @@
+---
+title: "Friends of Clawdicians #14"
+description: "The week the harness got receipts: a consistency tool that catches agents passing once and failing later, inspectable Markdown memory, and the open alternative to closed personal agents."
+pubDate: "2026-09-21"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-14.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-14.png';
+
+<Image src={coverImage} alt="Builders gathered in a cathedral workshop of brass and glass, inspecting a glowing rope of shared harness parts while others read from open ledgers, warm gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+The builder conversation this week was about repeatability. Not can the agent do it once. Will it do it again on Tuesday, in the fifth run, after the context grows.
+
+## Pass rate is not reliability
+
+IBM Research shipped a Consistency Analyzer in ALTK-Evolve, and the number that matters is the gap. A GPT-4.1 ReAct agent passed AppWorld tasks at a 77.4 percent average rate. It succeeded on all five consecutive repetitions for only 53 percent of tasks. Same agent, same tasks, one extra requirement: do it every time.
+
+The analyzer finds trajectory steps whose results flip across repeated runs and turns the diagnosis into guidance for later executions. The author-reported gains are 16 points on same-task all-five success and 13 on similar tasks. Independent reproduction has not landed, so treat those as IBM's numbers.
+
+The community takeaway is free regardless: run your evals five times before calling anything reliable. An average hides the flip.
+
+## Memory you can read is memory you can audit
+
+Grok Build shipped persistent memory for coding sessions. After a completed turn it captures conventions, decisions, and project facts as plain Markdown, in project and global scopes, and reads relevant topics back in later sessions. A /memory command exposes the files and a /dream command consolidates them. Current conversation instructions outrank saved notes.
+
+Plain files are the interesting part. Teams can diff, review, delete, and version what the agent will carry forward. No independent benchmark covers recall precision, stale memory, or poisoned notes yet, so the audit surface is the feature, not a proven quality claim.
+
+Hermes Agent tagged a related receipt the same week: v0.21.3 stops remote dashboard sessions expiring during concurrent refresh bursts and prevents long-lived processes from leaking duplicate state.db writer handles. Boring runtime work is how persistent agents stay alive.
+
+## Open ran the counter-move
+
+While Meta pushes closed personal agents and OpenAI prices advertiser-sponsored ones, Nautilo launched as a self-hosted MIT-licensed org harness: server, desktop, web, Android, and iPhone clients, a personal agent per user, and shared Rooms where people and agents work together. No independent security review exists yet, but the license is readable and the clients are inspectable. That is a different trust posture than a vendor VM.
+
+Mozilla made the same play inside the browser, adding Mistral Small 4 as a selectable model for Firefox Smart Window in the US and Canada, with zero data retention by agreement and no on-device inference claimed. Selectable cloud AI is not sovereignty, but model choice with published retention terms beats a locked pipeline.
+
+## Judgment got a price tag
+
+TypeSafe emerged from stealth with Jev, an early-access model that returns typed probability distributions over predefined choices instead of prose, at a claimed 0.042 dollars per million input tokens and 70 to 500 millisecond responses. The speed and cost multiples are vendor-run evals. The structural idea is the story: routing, scoring, and verification inside software may not need a frontier model at all, just calibrated judgment.
+
+Calibrated is not correct. A model that can only emit valid choices can still pick the wrong one, and TypeSafe's zero-percent hallucination figure is schema validity, not zero-percent wrong answers. Cheap judgment still needs someone checking the chooser.
+
+## The harness thesis keeps winning
+
+A YC talk on why the harness matters more than the model made the rounds with the cleanest receipt of the quarter: same weights, two harnesses, 30 percent to 95 percent on ARC-AGI. Builders managing fleets of agents stopped treating the model as the product and started treating context, sandboxing, and verification as the product.
+
+That is the whole orbit's direction of travel. Pass five times, not once. Read the memory. Check the license. Price the judgment separately.
