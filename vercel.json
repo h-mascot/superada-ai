@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/benchboard/api/:path*",
+      "destination": "/benchboard/api/:path*.json"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
