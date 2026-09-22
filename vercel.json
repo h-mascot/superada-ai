@@ -32,16 +32,6 @@
   ],
   "redirects": [
     {
-      "source": "/benchmarks",
-      "destination": "https://benchy.superada.ai/",
-      "permanent": true
-    },
-    {
-      "source": "/benchmarks/:path*",
-      "destination": "https://benchy.superada.ai/:path*",
-      "permanent": true
-    },
-    {
       "source": "/software-factory",
       "destination": "/resources/software-factory/",
       "permanent": true

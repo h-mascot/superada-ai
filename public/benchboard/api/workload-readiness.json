@@ -1,0 +1,1 @@
+{"suite_id": "local-production-readiness-v1", "models": [], "summary": {"local_replacement_rate": null, "eligible_tracks": 0, "local_ready_tracks": 0, "minimum_repetitions": 5}, "failure_taxonomy": {"MF": "model_failure", "HF": "harness_failure", "PF": "provider_failure", "CF": "contract_failure", "PB": "policy_boundary", "SF": "safety_failure", "DF": "data_fixture_failure"}}
