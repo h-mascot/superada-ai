@@ -1,1 +1,1 @@
-docs/plans/2026-08-09-mc-1261-usecase-resource-copy-ia.md
+docs/plans/2026-09-23-benchboard-app-update.md

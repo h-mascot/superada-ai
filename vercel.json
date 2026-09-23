@@ -3,6 +3,150 @@
     {
       "source": "/benchboard/api/:path*",
       "destination": "/benchboard/api/:path*.json"
+    },
+    {
+      "source": "/api/audio-catalog",
+      "destination": "/benchboard/api/audio-catalog.json"
+    },
+    {
+      "source": "/api/benchmarks",
+      "destination": "/benchboard/api/benchmarks.json"
+    },
+    {
+      "source": "/api/briefs",
+      "destination": "/benchboard/api/briefs.json"
+    },
+    {
+      "source": "/api/browser-benchmark",
+      "destination": "/benchboard/api/browser-benchmark.json"
+    },
+    {
+      "source": "/api/computer-use-tools",
+      "destination": "/benchboard/api/computer-use-tools.json"
+    },
+    {
+      "source": "/api/deep-research-runs",
+      "destination": "/benchboard/api/deep-research-runs.json"
+    },
+    {
+      "source": "/api/image-models",
+      "destination": "/benchboard/api/image-models.json"
+    },
+    {
+      "source": "/api/memory-benchmarks",
+      "destination": "/benchboard/api/memory-benchmarks.json"
+    },
+    {
+      "source": "/api/prompt-eval",
+      "destination": "/benchboard/api/prompt-eval.json"
+    },
+    {
+      "source": "/api/run-requests",
+      "destination": "/benchboard/api/run-requests.json"
+    },
+    {
+      "source": "/api/signature-build",
+      "destination": "/benchboard/api/signature-build.json"
+    },
+    {
+      "source": "/api/tts-benchmarks",
+      "destination": "/benchboard/api/tts-benchmarks.json"
+    },
+    {
+      "source": "/api/workload-readiness",
+      "destination": "/benchboard/api/workload-readiness.json"
+    },
+    {
+      "source": "/agents",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/audio",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/browser",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/computer-use",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/deep-research",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/harnesses",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/history",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/image-models",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/images",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/infrastructure",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/memory",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/memory-v1",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/prompts",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/providers",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/signature-build",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/suites",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/tests",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/workload-readiness",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/workloads",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/run",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/dispatch",
+      "destination": "/benchmarks"
+    },
+    {
+      "source": "/link-runner",
+      "destination": "/benchmarks"
     }
   ],
   "headers": [
