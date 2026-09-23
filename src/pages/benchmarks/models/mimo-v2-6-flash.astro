@@ -1,0 +1,120 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import snapshot from '../../../../public/benchboard/api/benchmarks.json';
+
+const runId = '2026-09-22-v4.1-n5-mimo-v2.6-flash';
+const run = snapshot.runs.find((item) => item.name === runId);
+const model = snapshot.index.models.find((item) => item.runId === runId);
+if (!run || !model) throw new Error('Published MiMo benchmark run is missing');
+const tasks = model.tasks.map((task) => ({
+  id: task.id,
+  name: task.name,
+  mean: task.perDimension?.fixture_mean,
+  passes: task.perDimension?.passes,
+  scored: task.perDimension?.n_scored,
+}));
+const percent = model.percentage.toFixed(1);
+const ci = [61.1, 76.8];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="MiMo V2.6 Flash — Benchmark detail — SuperAda" description="DGX Spark serving details and the verified Text Agent V4.1 n=5 benchmark result for MiMo V2.6 Flash." />
+    <style>
+      .mimo-main { max-width: 1100px; margin: auto; padding: 3rem 1.5rem 5rem; }
+      .mimo-back { display: inline-block; color: var(--accent); margin-bottom: 1.25rem; }
+      .mimo-hero { padding: 2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+      .mimo-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); }
+      .mimo-hero h1 { font: 400 clamp(2rem, 5vw, 3.5rem)/1.1 Georgia, serif; margin: .6rem 0 1rem; }
+      .mimo-hero p, .mimo-section p, .mimo-section li { color: var(--text-soft); line-height: 1.65; }
+      .mimo-hero p { max-width: 790px; margin-bottom: 0; }
+      .mimo-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin: 1rem 0 2rem; }
+      .mimo-metric, .mimo-section { padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
+      .mimo-metric span { display: block; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+      .mimo-metric strong { display: block; font-size: 1.3rem; margin-top: .45rem; }
+      .mimo-section { margin-top: 1rem; }
+      .mimo-section h2 { font: 400 1.65rem Georgia, serif; margin: 0 0 .8rem; }
+      .mimo-section ul { margin-bottom: 0; padding-left: 1.3rem; }
+      .mimo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .mimo-grid .mimo-section { margin-top: 0; }
+      .mimo-table-wrap { overflow-x: auto; }
+      .mimo-table { width: 100%; border-collapse: collapse; text-align: left; }
+      .mimo-table th, .mimo-table td { padding: .7rem .5rem; border-bottom: 1px solid var(--border); }
+      .mimo-table th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+      .mimo-table td { color: var(--text-soft); }
+      .mimo-table td:first-child { color: var(--text); }
+      .mimo-table td:nth-child(n+3) { font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .mimo-code { font-family: monospace; overflow-wrap: anywhere; }
+      .mimo-section a { color: var(--accent); overflow-wrap: anywhere; }
+      @media (max-width: 700px) { .mimo-metrics, .mimo-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 480px) { .mimo-metrics, .mimo-grid { grid-template-columns: 1fr; } .mimo-hero { padding: 1.4rem; } }
+    </style>
+  </head>
+  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
+    <Header />
+    <main class="mimo-main">
+      <a class="mimo-back" href="/benchmarks/">← Back to BenchBoard</a>
+      <section class="mimo-hero">
+        <span class="mimo-eyebrow">Model detail · Text Agent V4.1</span>
+        <h1>MiMo V2.6 Flash</h1>
+        <p>XiaomiMiMo/MiMo-V2.6-Flash-RL served locally on two DGX Spark nodes through Citadel. The published benchmark route is <span class="mimo-code">{model.route}</span>. This is the original scored model, separate from the optional uncensored checkpoint.</p>
+      </section>
+      <div class="mimo-metrics">
+        <div class="mimo-metric"><span>Overall score</span><strong>{percent}%</strong></div>
+        <div class="mimo-metric"><span>95% interval</span><strong>{ci[0]}–{ci[1]}%</strong></div>
+        <div class="mimo-metric"><span>Coverage</span><strong>40/40 runs</strong></div>
+        <div class="mimo-metric"><span>Execution lane</span><strong>DGX Spark</strong></div>
+      </div>
+      <div class="mimo-grid">
+        <section class="mimo-section">
+          <h2>Serving route</h2>
+          <ul>
+            <li>Two DGX Spark nodes: U2 serves the API; U1 is the tensor-parallel worker.</li>
+            <li>Citadel request model: <span class="mimo-code">{model.requestModel}</span>.</li>
+            <li>Observed response model: <span class="mimo-code">{model.responseModel}</span>.</li>
+            <li>Transport: <span class="mimo-code">{model.transport}</span>. The compute lane is local, despite the Citadel proxy.</li>
+          </ul>
+        </section>
+        <section class="mimo-section">
+          <h2>Benchmark method</h2>
+          <ul>
+            <li>Eight Text Agent V4.1 tasks, five predeclared runs per task.</li>
+            <li>Judge: <span class="mimo-code">google/gemini-3.1-pro-preview</span>. MiMo did not judge itself.</li>
+            <li>Each task contributes one eighth of the aggregate. The displayed score rounds {model.score * 100}% to {percent}%.</li>
+            <li>Run ID: <span class="mimo-code">{runId}</span>.</li>
+          </ul>
+        </section>
+      </div>
+      <section class="mimo-section">
+        <h2>Task results</h2>
+        <div class="mimo-table-wrap">
+          <table class="mimo-table">
+            <thead><tr><th>Task</th><th>Capability</th><th>Mean score</th><th>Passes</th></tr></thead>
+            <tbody>
+              {tasks.map((task) => (
+                <tr><td>{task.id}</td><td>{task.name}</td><td>{(task.mean * 100).toFixed(1)}%</td><td>{task.passes}/{task.scored}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="mimo-section">
+        <h2>What the score says</h2>
+        <p>The weakest task was cron failure recovery, <strong>v41_t15</strong>: {((tasks.find((task) => task.id === 'v41_t15')?.mean ?? 0) * 100).toFixed(1)}% mean and 0/5 passes. The responses missed critical diagnosis and recovery requirements. The recovered second run was scored under the original judge protocol; its earlier transport failure was kept as separate evidence. The final campaign covers all 40 scheduled cells.</p>
+        <p>This score is for the original <span class="mimo-code">daystrom-mimo/mimo-v2.6-flash</span> route. It does not evaluate the uncensored/ablated MiMo variant. Audio support and production suitability outside this benchmark are not established by this result.</p>
+      </section>
+      <section class="mimo-section">
+        <h2>Published evidence</h2>
+        <ul>
+          <li><a href="/api/benchmarks">BenchBoard benchmark API</a> — the public run, task rows, route metadata, and score.</li>
+          <li>Artifact checksum: <span class="mimo-code">{model.artifactChecksum}</span>.</li>
+          <li>Run status: <span class="mimo-code">{model.status}</span>; benchmark version: <span class="mimo-code">{model.suiteVersion}</span>.</li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
