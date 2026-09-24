@@ -46,6 +46,12 @@ function setRateLimitHeaders(res, rateLimit, includeRetryAfter = false) {
   if (includeRetryAfter) res.setHeader('Retry-After', String(rateLimit.resetSeconds));
 }
 
+function setApiPolicyHeaders(res) {
+  res.setHeader('API-Version', '1');
+  res.setHeader('X-API-Version', '1');
+  res.setHeader('Link', '<https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"');
+}
+
 function defaultRateLimit() {
   return {
     limited: false,
@@ -148,6 +154,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://superada.ai');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setApiPolicyHeaders(res);
   if (req.method === 'OPTIONS') {
     setRateLimitHeaders(res, defaultRateLimit());
     return send(res, 204, {});

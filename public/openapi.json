@@ -3,10 +3,12 @@
   "info": {
     "title": "SuperAda API",
     "version": "1.0.0",
-    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically. All API responses include RFC RateLimit headers: RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, and RateLimit-Policy. 429 responses also include Retry-After.",
+    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically. All API responses include RFC RateLimit headers: RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, and RateLimit-Policy. 429 responses also include Retry-After. The API currently uses version 1. Unprefixed /api/... endpoints are the v1 contract. Breaking changes will use a future major namespace such as /api/v2/..., and deprecated public endpoints will receive documented replacement guidance with at least 90 days of notice unless security, abuse, or legal requirements force a faster shutdown.",
     "license": {
       "name": "See site terms"
-    }
+    },
+    "x-api-version": "1",
+    "x-versioning-policy": "Unprefixed /api/... endpoints are the v1 contract. Breaking changes use future major namespaces such as /api/v2/.... Deprecated public endpoints receive documented replacement guidance and at least 90 days of notice unless security, abuse, or legal requirements force a faster shutdown."
   },
   "servers": [
     {
@@ -50,10 +52,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       },
       "post": {
         "tags": [
@@ -121,6 +134,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -145,6 +167,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -169,6 +200,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -193,6 +233,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -220,6 +269,15 @@
               },
               "Retry-After": {
                 "$ref": "#/components/headers/RetryAfter"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -244,10 +302,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/workshop-feedback": {
@@ -271,10 +340,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       },
       "post": {
         "tags": [
@@ -315,6 +395,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -339,6 +428,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -363,6 +461,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -387,6 +494,15 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -414,6 +530,15 @@
               },
               "Retry-After": {
                 "$ref": "#/components/headers/RetryAfter"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           },
@@ -438,10 +563,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/benchmarks": {
@@ -473,10 +609,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/audio-catalog": {
@@ -508,10 +655,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/briefs": {
@@ -543,10 +701,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/browser-benchmark": {
@@ -578,10 +747,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/computer-use-tools": {
@@ -613,10 +793,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/deep-research-runs": {
@@ -648,10 +839,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/image-models": {
@@ -683,10 +885,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/memory-benchmarks": {
@@ -718,10 +931,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/prompt-eval": {
@@ -753,10 +977,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/run-requests": {
@@ -788,10 +1023,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/signature-build": {
@@ -823,10 +1069,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/tts-benchmarks": {
@@ -858,10 +1115,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     },
     "/api/workload-readiness": {
@@ -893,10 +1161,21 @@
               },
               "RateLimit-Policy": {
                 "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
               }
             }
           }
-        }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
       }
     }
   },
@@ -1152,7 +1431,32 @@
           "type": "integer",
           "minimum": 1
         }
+      },
+      "ApiVersion": {
+        "description": "Current public API major version. Unprefixed /api/... routes are version 1 unless a future versioned namespace is documented.",
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      "XApiVersion": {
+        "description": "Compatibility alias for API-Version.",
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      "Link": {
+        "description": "Link relations for API policy documentation, including the versioning and deprecation policy.",
+        "schema": {
+          "type": "string",
+          "example": "<https://superada.ai/developers/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
+        }
       }
     }
+  },
+  "externalDocs": {
+    "description": "SuperAda developer docs, including REST versioning and deprecation policy",
+    "url": "https://superada.ai/developers/#versioning-policy"
   }
 }

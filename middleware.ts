@@ -89,6 +89,14 @@ function apiRateLimitHeaders(status: number) {
   return headers;
 }
 
+function apiPolicyHeaders() {
+  return {
+    'API-Version': '1',
+    'X-API-Version': '1',
+    'Link': '<https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"',
+  };
+}
+
 function apiError(status: number, code: string, message: string, hint: string) {
   return new Response(JSON.stringify({ ok: false, error: { code, message, hint } }, null, 2), {
     status,
@@ -96,6 +104,7 @@ function apiError(status: number, code: string, message: string, hint: string) {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store',
       ...apiRateLimitHeaders(status),
+      ...apiPolicyHeaders(),
     },
   });
 }
@@ -111,8 +120,8 @@ function apiErrorForStatus(status: number, fallbackMessage?: string) {
   return apiError(status || 500, 'api_error', fallbackMessage || 'The API request failed.', 'Retry later or check /contact for the best support path.');
 }
 
-function appendApiRateLimitHeaders(headers: Headers, status: number) {
-  for (const [key, value] of Object.entries(apiRateLimitHeaders(status))) {
+function appendApiHeaders(headers: Headers, status: number) {
+  for (const [key, value] of Object.entries({ ...apiRateLimitHeaders(status), ...apiPolicyHeaders() })) {
     if (!headers.has(key)) headers.set(key, value);
   }
 }
@@ -121,7 +130,7 @@ async function normalizeApiError(request: Request) {
   const response = await fetch(request);
   if (response.ok) {
     const headers = new Headers(response.headers);
-    appendApiRateLimitHeaders(headers, response.status);
+    appendApiHeaders(headers, response.status);
     return new Response(response.body, {
       status: response.status,
       statusText: response.statusText,

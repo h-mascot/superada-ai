@@ -48,6 +48,16 @@ import Header from '../components/Header.astro';
 				</article>
 			</section>
 
+			<section class="docs-panel" aria-labelledby="versioning-policy">
+				<h2 id="versioning-policy">REST versioning and deprecation policy</h2>
+				<p>The current public API is <strong>version 1</strong>. Stable endpoints use the unprefixed <code>/api/...</code> paths documented in <a href="/openapi.json">/openapi.json</a>; those paths are treated as the v1 contract unless a future <code>/api/v2/...</code> namespace is introduced.</p>
+				<p>Breaking API changes will ship in a new major versioned namespace, for example <code>/api/v2/subscribe</code>. Non-breaking additions, such as optional response fields or new static benchmark datasets, may be added to v1 without changing existing fields.</p>
+				<p>If a v1 endpoint is deprecated, responses will include deprecation metadata and this page will list the replacement path. SuperAda aims to provide at least 90 days of notice before removing a public API endpoint unless security, abuse, or legal requirements force a faster shutdown.</p>
+				<pre><code>{`API-Version: 1
+X-API-Version: 1
+Link: <https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"`}</code></pre>
+			</section>
+
 			<section class="docs-panel" aria-labelledby="rate-limits-title">
 				<h2 id="rate-limits-title">Rate limits</h2>
 				<p>API responses include standard rate-limit headers so agents can self-throttle instead of retrying blindly. Serverless write endpoints currently allow 5 requests per 60-second window per client IP. Static public JSON endpoints publish a read-policy header for discovery and cache-aware clients.</p>

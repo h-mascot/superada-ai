@@ -7,6 +7,7 @@
     "validate:voice": "python3 scripts/validate-superada-voice.py",
     "validate:timeline": "node scripts/validate-timeline.mjs",
     "test:rate-limits": "node scripts/verify-rate-limit-headers.mjs",
+    "test:api-versioning": "node scripts/verify-api-versioning.mjs",
     "build": "npm run validate:voice && npm run validate:timeline && astro build",
     "clawhub:plan": "node scripts/sync-superada-to-clawhub.mjs --dry-run",
     "clawhub:patch-cli": "node scripts/patch-clawhub-cli-license.mjs",

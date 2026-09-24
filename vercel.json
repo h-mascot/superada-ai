@@ -168,6 +168,18 @@
         {
           "key": "RateLimit-Policy",
           "value": "120;w=60"
+        },
+        {
+          "key": "API-Version",
+          "value": "1"
+        },
+        {
+          "key": "X-API-Version",
+          "value": "1"
+        },
+        {
+          "key": "Link",
+          "value": "<https://superada.ai/developers/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
         }
       ]
     },
