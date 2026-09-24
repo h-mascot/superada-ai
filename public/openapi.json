@@ -1,0 +1,633 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SuperAda API",
+    "version": "1.0.0",
+    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically.",
+    "license": {
+      "name": "See site terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://superada.ai",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Subscriptions",
+      "description": "Subscribe humans or agents to SuperAda updates."
+    },
+    {
+      "name": "Feedback",
+      "description": "Submit workshop feedback."
+    },
+    {
+      "name": "Benchmarks",
+      "description": "Read public benchmark and model registry data."
+    }
+  ],
+  "paths": {
+    "/api/subscribe": {
+      "options": {
+        "tags": ["Subscriptions"],
+        "summary": "CORS preflight for subscription submission",
+        "responses": {
+          "204": {
+            "description": "Preflight accepted"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Subscriptions"],
+        "summary": "Subscribe to SuperAda updates",
+        "description": "Adds or updates a human or agent subscriber. Humans must provide a valid email. Agents may provide an email or agent identity URL/name. At least one topic is required.",
+        "operationId": "subscribeToSuperAda",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeRequest"
+              },
+              "examples": {
+                "human": {
+                  "summary": "Human subscriber",
+                  "value": {
+                    "subscriberType": "human",
+                    "name": "Ada Lovelace",
+                    "email": "ada@example.com",
+                    "topics": ["ship-log", "releases", "weekly-claw"]
+                  }
+                },
+                "agent": {
+                  "summary": "Agent subscriber",
+                  "value": {
+                    "subscriberType": "agent",
+                    "agentName": "Research Agent",
+                    "agentUrl": "https://example.com/agents/research",
+                    "topics": ["tools-skills", "workflow-packs"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscriber saved or honeypot accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid email or missing topics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Subscription storage is not configured",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/workshop-feedback": {
+      "options": {
+        "tags": ["Feedback"],
+        "summary": "CORS preflight for workshop feedback",
+        "responses": {
+          "204": {
+            "description": "Preflight accepted"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Submit workshop feedback",
+        "description": "Stores structured feedback for a SuperAda workshop. All rating fields must be 1-5, and at least one of struggledWith or biggestTakeaway is required.",
+        "operationId": "submitWorkshopFeedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopFeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback saved or honeypot accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ratings or missing required narrative feedback",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Feedback storage is not configured",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/benchmarks": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get public benchmark registry",
+        "operationId": "getBenchmarks",
+        "responses": {
+          "200": {
+            "description": "Benchmark registry JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/audio-catalog": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get audio benchmark catalog",
+        "operationId": "getAudioCatalog",
+        "responses": {
+          "200": {
+            "description": "Audio catalog JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/briefs": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get benchmark briefs",
+        "operationId": "getBriefs",
+        "responses": {
+          "200": {
+            "description": "Briefs JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/browser-benchmark": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get browser benchmark data",
+        "operationId": "getBrowserBenchmark",
+        "responses": {
+          "200": {
+            "description": "Browser benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/computer-use-tools": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get computer-use tools data",
+        "operationId": "getComputerUseTools",
+        "responses": {
+          "200": {
+            "description": "Computer-use tools JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/deep-research-runs": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get deep-research run data",
+        "operationId": "getDeepResearchRuns",
+        "responses": {
+          "200": {
+            "description": "Deep-research run JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/image-models": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get image model benchmark data",
+        "operationId": "getImageModels",
+        "responses": {
+          "200": {
+            "description": "Image model JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/memory-benchmarks": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get memory benchmark data",
+        "operationId": "getMemoryBenchmarks",
+        "responses": {
+          "200": {
+            "description": "Memory benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prompt-eval": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get prompt evaluation data",
+        "operationId": "getPromptEval",
+        "responses": {
+          "200": {
+            "description": "Prompt evaluation JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/run-requests": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get public run-request data",
+        "operationId": "getRunRequests",
+        "responses": {
+          "200": {
+            "description": "Run-request JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/signature-build": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get signature build benchmark data",
+        "operationId": "getSignatureBuild",
+        "responses": {
+          "200": {
+            "description": "Signature build JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tts-benchmarks": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get text-to-speech benchmark data",
+        "operationId": "getTtsBenchmarks",
+        "responses": {
+          "200": {
+            "description": "TTS benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/workload-readiness": {
+      "get": {
+        "tags": ["Benchmarks"],
+        "summary": "Get workload readiness benchmark data",
+        "operationId": "getWorkloadReadiness",
+        "responses": {
+          "200": {
+            "description": "Workload readiness JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SubscribeRequest": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "subscriberType": {
+            "type": "string",
+            "enum": ["human", "agent"],
+            "default": "human"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "agentName": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "agentUrl": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 240
+          },
+          "topics": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": ["ship-log", "releases", "weekly-claw", "tools-skills", "workflow-packs"]
+            }
+          },
+          "company": {
+            "type": "string",
+            "description": "Honeypot field. Leave blank."
+          }
+        },
+        "required": ["topics"]
+      },
+      "WorkshopFeedbackRequest": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "workshop": {
+            "type": "string",
+            "maxLength": 80,
+            "default": "ai-agents-workshop-2026-08"
+          },
+          "ratings": {
+            "type": "object",
+            "properties": {
+              "overall": { "$ref": "#/components/schemas/Rating" },
+              "clarity": { "$ref": "#/components/schemas/Rating" },
+              "pace": { "$ref": "#/components/schemas/Rating" },
+              "handsOn": { "$ref": "#/components/schemas/Rating" },
+              "usefulness": { "$ref": "#/components/schemas/Rating" }
+            },
+            "required": ["overall", "clarity", "pace", "handsOn", "usefulness"]
+          },
+          "mostUsefulModule": {
+            "type": "string",
+            "enum": ["intro-context", "agents-vs-chatbots", "model-landscape", "demo-install", "build-exercise", "none"],
+            "default": "none"
+          },
+          "struggledWith": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "biggestTakeaway": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "wantNext": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "anythingElse": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "company": {
+            "type": "string",
+            "description": "Honeypot field. Leave blank."
+          }
+        },
+        "required": ["ratings"]
+      },
+      "Rating": {
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          {
+            "type": "string",
+            "enum": ["1", "2", "3", "4", "5"]
+          }
+        ]
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["ok"]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": false
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": ["ok", "error"]
+      },
+      "PublicJsonDocument": {
+        "description": "Public static JSON document. Shape varies by benchmark dataset.",
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": true
+          },
+          {
+            "type": "array",
+            "items": true
+          }
+        ]
+      }
+    }
+  }
+}
