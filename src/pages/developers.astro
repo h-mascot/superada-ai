@@ -14,7 +14,7 @@ import Header from '../components/Header.astro';
 			<section class="docs-hero">
 				<div class="kicker">Developer docs</div>
 				<h1 id="docs-title">SuperAda public API and agent docs.</h1>
-				<p class="lede">Use this page as the human-readable companion to <a href="/openapi.json">/openapi.json</a>. It documents authentication, public endpoints, request shapes, response formats, and examples so agents can discover the API from the homepage without guessing.</p>
+				<p class="lede">Use this page as the human-readable companion to <a href="/openapi.json">/openapi.json</a>. It documents authentication, versioned public endpoints, request shapes, response formats, deprecation signals, and examples so agents can discover the API from the homepage without guessing.</p>
 				<div class="docs-actions" aria-label="Developer resources">
 					<a class="pill-link" href="/openapi.json">OpenAPI JSON</a>
 					<a class="pill-link" href="/llms.txt">llms.txt</a>
@@ -50,12 +50,18 @@ import Header from '../components/Header.astro';
 
 			<section class="docs-panel" aria-labelledby="versioning-policy">
 				<h2 id="versioning-policy">REST versioning and deprecation policy</h2>
-				<p>The current public API is <strong>version 1</strong>. Stable endpoints use the unprefixed <code>/api/...</code> paths documented in <a href="/openapi.json">/openapi.json</a>; those paths are treated as the v1 contract unless a future <code>/api/v2/...</code> namespace is introduced.</p>
+				<p>The current public API is <strong>version 1</strong>. Agents should integrate against the canonical versioned paths under <code>/api/v1/...</code>, such as <code>/api/v1/benchmarks</code> and <code>/api/v1/subscribe</code>. The older unprefixed <code>/api/...</code> paths remain compatibility aliases for v1.</p>
 				<p>Breaking API changes will ship in a new major versioned namespace, for example <code>/api/v2/subscribe</code>. Non-breaking additions, such as optional response fields or new static benchmark datasets, may be added to v1 without changing existing fields.</p>
-				<p>If a v1 endpoint is deprecated, responses will include deprecation metadata and this page will list the replacement path. SuperAda aims to provide at least 90 days of notice before removing a public API endpoint unless security, abuse, or legal requirements force a faster shutdown.</p>
+				<p>Active v1 responses include <code>API-Version: 1</code>, <code>X-API-Version: 1</code>, and <code>Deprecation: false</code>. If an endpoint becomes deprecated, SuperAda will change that signal to <code>Deprecation: true</code>, include a <code>Sunset</code> header with the planned retirement date, keep a policy <code>Link</code> header, and list the replacement path on this page.</p>
+				<p>SuperAda aims to provide at least 90 days of notice before removing a public API endpoint unless security, abuse, or legal requirements force a faster shutdown.</p>
 				<pre><code>{`API-Version: 1
 X-API-Version: 1
-Link: <https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"`}</code></pre>
+Deprecation: false
+Link: <https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"
+
+# Future deprecated endpoint example:
+Deprecation: true
+Sunset: Wed, 31 Dec 2027 23:59:59 GMT`}</code></pre>
 			</section>
 
 			<section class="docs-panel" aria-labelledby="rate-limits-title">
@@ -84,9 +90,9 @@ RateLimit-Policy: 5;w=60`}</code></pre>
 					</article>
 
 					<article>
-						<h3><code>POST /api/subscribe</code></h3>
-						<p>Subscribe a human or agent to SuperAda updates. Requires JSON. Rate limited to reduce abuse.</p>
-						<pre><code>{`curl -sS https://superada.ai/api/subscribe \
+						<h3><code>POST /api/v1/subscribe</code></h3>
+						<p>Subscribe a human or agent to SuperAda updates. Requires JSON. Rate limited to reduce abuse. <code>/api/subscribe</code> remains a v1 compatibility alias.</p>
+						<pre><code>{`curl -sS https://superada.ai/api/v1/subscribe \
   -H 'Content-Type: application/json' \
   -d '{
     "subscriberType": "agent",
@@ -96,9 +102,9 @@ RateLimit-Policy: 5;w=60`}</code></pre>
 					</article>
 
 					<article>
-						<h3><code>POST /api/workshop-feedback</code></h3>
-						<p>Submit feedback for a SuperAda workshop. Requires ratings from 1 to 5 and at least one useful text field.</p>
-						<pre><code>{`curl -sS https://superada.ai/api/workshop-feedback \
+						<h3><code>POST /api/v1/workshop-feedback</code></h3>
+						<p>Submit feedback for a SuperAda workshop. Requires ratings from 1 to 5 and at least one useful text field. <code>/api/workshop-feedback</code> remains a v1 compatibility alias.</p>
+						<pre><code>{`curl -sS https://superada.ai/api/v1/workshop-feedback \
   -H 'Content-Type: application/json' \
   -d '{
     "ratings": {
@@ -113,9 +119,9 @@ RateLimit-Policy: 5;w=60`}</code></pre>
 					</article>
 
 					<article>
-						<h3><code>GET /api/benchmarks</code> and benchmark JSON endpoints</h3>
-						<p>Static benchmark data used by the site, including model, browser, memory, workload-readiness, and audio catalog data. See <a href="/openapi.json">/openapi.json</a> for the full list.</p>
-						<pre><code>curl -sS https://superada.ai/api/benchmarks</code></pre>
+						<h3><code>GET /api/v1/benchmarks</code> and benchmark JSON endpoints</h3>
+						<p>Static benchmark data used by the site, including model, browser, memory, workload-readiness, and audio catalog data. See <a href="/openapi.json">/openapi.json</a> for the full versioned list. <code>/api/benchmarks</code> remains a v1 compatibility alias.</p>
+						<pre><code>curl -sS https://superada.ai/api/v1/benchmarks</code></pre>
 					</article>
 				</div>
 			</section>

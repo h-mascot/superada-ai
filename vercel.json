@@ -1,6 +1,66 @@
 {
   "rewrites": [
     {
+      "source": "/api/v1/subscribe",
+      "destination": "/api/subscribe"
+    },
+    {
+      "source": "/api/v1/workshop-feedback",
+      "destination": "/api/workshop-feedback"
+    },
+    {
+      "source": "/api/v1/audio-catalog",
+      "destination": "/benchboard/api/audio-catalog.json"
+    },
+    {
+      "source": "/api/v1/benchmarks",
+      "destination": "/benchboard/api/benchmarks.json"
+    },
+    {
+      "source": "/api/v1/briefs",
+      "destination": "/benchboard/api/briefs.json"
+    },
+    {
+      "source": "/api/v1/browser-benchmark",
+      "destination": "/benchboard/api/browser-benchmark.json"
+    },
+    {
+      "source": "/api/v1/computer-use-tools",
+      "destination": "/benchboard/api/computer-use-tools.json"
+    },
+    {
+      "source": "/api/v1/deep-research-runs",
+      "destination": "/benchboard/api/deep-research-runs.json"
+    },
+    {
+      "source": "/api/v1/image-models",
+      "destination": "/benchboard/api/image-models.json"
+    },
+    {
+      "source": "/api/v1/memory-benchmarks",
+      "destination": "/benchboard/api/memory-benchmarks.json"
+    },
+    {
+      "source": "/api/v1/prompt-eval",
+      "destination": "/benchboard/api/prompt-eval.json"
+    },
+    {
+      "source": "/api/v1/run-requests",
+      "destination": "/benchboard/api/run-requests.json"
+    },
+    {
+      "source": "/api/v1/signature-build",
+      "destination": "/benchboard/api/signature-build.json"
+    },
+    {
+      "source": "/api/v1/tts-benchmarks",
+      "destination": "/benchboard/api/tts-benchmarks.json"
+    },
+    {
+      "source": "/api/v1/workload-readiness",
+      "destination": "/benchboard/api/workload-readiness.json"
+    },
+    {
       "source": "/benchboard/api/:path*",
       "destination": "/benchboard/api/:path*.json"
     },
@@ -180,6 +240,10 @@
         {
           "key": "Link",
           "value": "<https://superada.ai/developers/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
+        },
+        {
+          "key": "Deprecation",
+          "value": "false"
         }
       ]
     },

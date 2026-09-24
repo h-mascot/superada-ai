@@ -49,6 +49,7 @@ function setRateLimitHeaders(res, rateLimit, includeRetryAfter = false) {
 function setApiPolicyHeaders(res) {
   res.setHeader('API-Version', '1');
   res.setHeader('X-API-Version', '1');
+  res.setHeader('Deprecation', 'false');
   res.setHeader('Link', '<https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"');
 }
 

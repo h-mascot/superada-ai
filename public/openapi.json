@@ -3,12 +3,12 @@
   "info": {
     "title": "SuperAda API",
     "version": "1.0.0",
-    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically. All API responses include RFC RateLimit headers: RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, and RateLimit-Policy. 429 responses also include Retry-After. The API currently uses version 1. Unprefixed /api/... endpoints are the v1 contract. Breaking changes will use a future major namespace such as /api/v2/..., and deprecated public endpoints will receive documented replacement guidance with at least 90 days of notice unless security, abuse, or legal requirements force a faster shutdown.",
+    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically. All API responses include RFC RateLimit headers: RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, and RateLimit-Policy. 429 responses also include Retry-After. The API currently uses version 1. Unprefixed /api/... endpoints are the v1 contract. Breaking changes will use a future major namespace such as /api/v2/..., and deprecated public endpoints will receive documented replacement guidance with at least 90 days of notice unless security, abuse, or legal requirements force a faster shutdown. Canonical integration paths use /api/v1/... for version 1. Unprefixed /api/... paths are compatibility aliases for v1. Active endpoints return Deprecation: false. Deprecated endpoints will return Deprecation: true plus a Sunset header with the planned retirement date and replacement guidance in the developer docs.",
     "license": {
       "name": "See site terms"
     },
     "x-api-version": "1",
-    "x-versioning-policy": "Unprefixed /api/... endpoints are the v1 contract. Breaking changes use future major namespaces such as /api/v2/.... Deprecated public endpoints receive documented replacement guidance and at least 90 days of notice unless security, abuse, or legal requirements force a faster shutdown."
+    "x-versioning-policy": "Canonical integration paths use /api/v1/... for version 1. Unprefixed /api/... paths are compatibility aliases. Breaking changes use future major namespaces such as /api/v2/.... Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header with the planned retirement date, a policy Link header, replacement guidance, and at least 90 days of notice unless security, abuse, or legal requirements force faster removal."
   },
   "servers": [
     {
@@ -61,19 +61,25 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/subscribe",
+        "description": "Compatibility alias for canonical v1 path /api/v1/subscribe; agents should prefer /api/v1/subscribe."
       },
       "post": {
         "tags": [
           "Subscriptions"
         ],
         "summary": "Subscribe to SuperAda updates",
-        "description": "Adds or updates a human or agent subscriber. Humans must provide a valid email. Agents may provide an email or agent identity URL/name. At least one topic is required.",
+        "description": "Adds or updates a human or agent subscriber. Humans must provide a valid email. Agents may provide an email or agent identity URL/name. At least one topic is required. Compatibility alias for canonical v1 path /api/v1/subscribe; agents should prefer /api/v1/subscribe.",
         "operationId": "subscribeToSuperAda",
         "requestBody": {
           "required": true,
@@ -143,6 +149,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -176,6 +185,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -209,6 +221,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -242,6 +257,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -278,6 +296,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -311,12 +332,17 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/subscribe"
       }
     },
     "/api/workshop-feedback": {
@@ -349,19 +375,25 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/workshop-feedback",
+        "description": "Compatibility alias for canonical v1 path /api/v1/workshop-feedback; agents should prefer /api/v1/workshop-feedback."
       },
       "post": {
         "tags": [
           "Feedback"
         ],
         "summary": "Submit workshop feedback",
-        "description": "Stores structured feedback for a SuperAda workshop. All rating fields must be 1-5, and at least one of struggledWith or biggestTakeaway is required.",
+        "description": "Stores structured feedback for a SuperAda workshop. All rating fields must be 1-5, and at least one of struggledWith or biggestTakeaway is required. Compatibility alias for canonical v1 path /api/v1/workshop-feedback; agents should prefer /api/v1/workshop-feedback.",
         "operationId": "submitWorkshopFeedback",
         "requestBody": {
           "required": true,
@@ -404,6 +436,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -437,6 +472,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -470,6 +508,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -503,6 +544,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -539,6 +583,9 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           },
@@ -572,12 +619,17 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/workshop-feedback"
       }
     },
     "/api/benchmarks": {
@@ -618,12 +670,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/benchmarks",
+        "description": "Compatibility alias for canonical v1 path /api/v1/benchmarks; agents should prefer /api/v1/benchmarks."
       }
     },
     "/api/audio-catalog": {
@@ -664,12 +722,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/audio-catalog",
+        "description": "Compatibility alias for canonical v1 path /api/v1/audio-catalog; agents should prefer /api/v1/audio-catalog."
       }
     },
     "/api/briefs": {
@@ -710,12 +774,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/briefs",
+        "description": "Compatibility alias for canonical v1 path /api/v1/briefs; agents should prefer /api/v1/briefs."
       }
     },
     "/api/browser-benchmark": {
@@ -756,12 +826,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/browser-benchmark",
+        "description": "Compatibility alias for canonical v1 path /api/v1/browser-benchmark; agents should prefer /api/v1/browser-benchmark."
       }
     },
     "/api/computer-use-tools": {
@@ -802,12 +878,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/computer-use-tools",
+        "description": "Compatibility alias for canonical v1 path /api/v1/computer-use-tools; agents should prefer /api/v1/computer-use-tools."
       }
     },
     "/api/deep-research-runs": {
@@ -848,12 +930,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/deep-research-runs",
+        "description": "Compatibility alias for canonical v1 path /api/v1/deep-research-runs; agents should prefer /api/v1/deep-research-runs."
       }
     },
     "/api/image-models": {
@@ -894,12 +982,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/image-models",
+        "description": "Compatibility alias for canonical v1 path /api/v1/image-models; agents should prefer /api/v1/image-models."
       }
     },
     "/api/memory-benchmarks": {
@@ -940,12 +1034,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/memory-benchmarks",
+        "description": "Compatibility alias for canonical v1 path /api/v1/memory-benchmarks; agents should prefer /api/v1/memory-benchmarks."
       }
     },
     "/api/prompt-eval": {
@@ -986,12 +1086,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/prompt-eval",
+        "description": "Compatibility alias for canonical v1 path /api/v1/prompt-eval; agents should prefer /api/v1/prompt-eval."
       }
     },
     "/api/run-requests": {
@@ -1032,12 +1138,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/run-requests",
+        "description": "Compatibility alias for canonical v1 path /api/v1/run-requests; agents should prefer /api/v1/run-requests."
       }
     },
     "/api/signature-build": {
@@ -1078,12 +1190,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/signature-build",
+        "description": "Compatibility alias for canonical v1 path /api/v1/signature-build; agents should prefer /api/v1/signature-build."
       }
     },
     "/api/tts-benchmarks": {
@@ -1124,12 +1242,18 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/tts-benchmarks",
+        "description": "Compatibility alias for canonical v1 path /api/v1/tts-benchmarks; agents should prefer /api/v1/tts-benchmarks."
       }
     },
     "/api/workload-readiness": {
@@ -1170,12 +1294,1278 @@
               },
               "Link": {
                 "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
               }
             }
           }
         },
         "x-api-version": "1",
-        "x-deprecation-policy": "Breaking changes require a new major versioned namespace. Deprecated public endpoints receive replacement guidance and at least 90 days notice unless security, abuse, or legal requirements force faster removal."
+        "x-deprecation-policy": "Compatibility alias for v1. Agents should prefer the canonical /api/v1/... path.",
+        "deprecated": false,
+        "x-compatibility-alias-for": "/api/v1/workload-readiness",
+        "description": "Compatibility alias for canonical v1 path /api/v1/workload-readiness; agents should prefer /api/v1/workload-readiness."
+      }
+    },
+    "/api/v1/subscribe": {
+      "options": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "CORS preflight for subscription submission",
+        "responses": {
+          "204": {
+            "description": "Preflight accepted",
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/subscribe",
+        "description": "Canonical v1 path: /api/v1/subscribe."
+      },
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Subscribe to SuperAda updates",
+        "description": "Adds or updates a human or agent subscriber. Humans must provide a valid email. Agents may provide an email or agent identity URL/name. At least one topic is required. Canonical v1 path: /api/v1/subscribe.",
+        "operationId": "subscribeToSuperAda",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeRequest"
+              },
+              "examples": {
+                "human": {
+                  "summary": "Human subscriber",
+                  "value": {
+                    "subscriberType": "human",
+                    "name": "Ada Lovelace",
+                    "email": "ada@example.com",
+                    "topics": [
+                      "ship-log",
+                      "releases",
+                      "weekly-claw"
+                    ]
+                  }
+                },
+                "agent": {
+                  "summary": "Agent subscriber",
+                  "value": {
+                    "subscriberType": "agent",
+                    "agentName": "Research Agent",
+                    "agentUrl": "https://example.com/agents/research",
+                    "topics": [
+                      "tools-skills",
+                      "workflow-packs"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscriber saved or honeypot accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid email or missing topics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "500": {
+            "description": "Subscription storage is not configured",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/subscribe"
+      }
+    },
+    "/api/v1/workshop-feedback": {
+      "options": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "CORS preflight for workshop feedback",
+        "responses": {
+          "204": {
+            "description": "Preflight accepted",
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/workshop-feedback",
+        "description": "Canonical v1 path: /api/v1/workshop-feedback."
+      },
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Submit workshop feedback",
+        "description": "Stores structured feedback for a SuperAda workshop. All rating fields must be 1-5, and at least one of struggledWith or biggestTakeaway is required. Canonical v1 path: /api/v1/workshop-feedback.",
+        "operationId": "submitWorkshopFeedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopFeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback saved or honeypot accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ratings or missing required narrative feedback",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "413": {
+            "description": "Request body too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          },
+          "500": {
+            "description": "Feedback storage is not configured",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/workshop-feedback"
+      }
+    },
+    "/api/v1/benchmarks": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get public benchmark registry",
+        "operationId": "getBenchmarks",
+        "responses": {
+          "200": {
+            "description": "Benchmark registry JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/benchmarks",
+        "description": "Canonical v1 path: /api/v1/benchmarks."
+      }
+    },
+    "/api/v1/audio-catalog": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get audio benchmark catalog",
+        "operationId": "getAudioCatalog",
+        "responses": {
+          "200": {
+            "description": "Audio catalog JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/audio-catalog",
+        "description": "Canonical v1 path: /api/v1/audio-catalog."
+      }
+    },
+    "/api/v1/briefs": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get benchmark briefs",
+        "operationId": "getBriefs",
+        "responses": {
+          "200": {
+            "description": "Briefs JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/briefs",
+        "description": "Canonical v1 path: /api/v1/briefs."
+      }
+    },
+    "/api/v1/browser-benchmark": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get browser benchmark data",
+        "operationId": "getBrowserBenchmark",
+        "responses": {
+          "200": {
+            "description": "Browser benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/browser-benchmark",
+        "description": "Canonical v1 path: /api/v1/browser-benchmark."
+      }
+    },
+    "/api/v1/computer-use-tools": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get computer-use tools data",
+        "operationId": "getComputerUseTools",
+        "responses": {
+          "200": {
+            "description": "Computer-use tools JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/computer-use-tools",
+        "description": "Canonical v1 path: /api/v1/computer-use-tools."
+      }
+    },
+    "/api/v1/deep-research-runs": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get deep-research run data",
+        "operationId": "getDeepResearchRuns",
+        "responses": {
+          "200": {
+            "description": "Deep-research run JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/deep-research-runs",
+        "description": "Canonical v1 path: /api/v1/deep-research-runs."
+      }
+    },
+    "/api/v1/image-models": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get image model benchmark data",
+        "operationId": "getImageModels",
+        "responses": {
+          "200": {
+            "description": "Image model JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/image-models",
+        "description": "Canonical v1 path: /api/v1/image-models."
+      }
+    },
+    "/api/v1/memory-benchmarks": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get memory benchmark data",
+        "operationId": "getMemoryBenchmarks",
+        "responses": {
+          "200": {
+            "description": "Memory benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/memory-benchmarks",
+        "description": "Canonical v1 path: /api/v1/memory-benchmarks."
+      }
+    },
+    "/api/v1/prompt-eval": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get prompt evaluation data",
+        "operationId": "getPromptEval",
+        "responses": {
+          "200": {
+            "description": "Prompt evaluation JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/prompt-eval",
+        "description": "Canonical v1 path: /api/v1/prompt-eval."
+      }
+    },
+    "/api/v1/run-requests": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get public run-request data",
+        "operationId": "getRunRequests",
+        "responses": {
+          "200": {
+            "description": "Run-request JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/run-requests",
+        "description": "Canonical v1 path: /api/v1/run-requests."
+      }
+    },
+    "/api/v1/signature-build": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get signature build benchmark data",
+        "operationId": "getSignatureBuild",
+        "responses": {
+          "200": {
+            "description": "Signature build JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/signature-build",
+        "description": "Canonical v1 path: /api/v1/signature-build."
+      }
+    },
+    "/api/v1/tts-benchmarks": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get text-to-speech benchmark data",
+        "operationId": "getTtsBenchmarks",
+        "responses": {
+          "200": {
+            "description": "TTS benchmark JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/tts-benchmarks",
+        "description": "Canonical v1 path: /api/v1/tts-benchmarks."
+      }
+    },
+    "/api/v1/workload-readiness": {
+      "get": {
+        "tags": [
+          "Benchmarks"
+        ],
+        "summary": "Get workload readiness benchmark data",
+        "operationId": "getWorkloadReadiness",
+        "responses": {
+          "200": {
+            "description": "Workload readiness JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicJsonDocument"
+                }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "API-Version": {
+                "$ref": "#/components/headers/ApiVersion"
+              },
+              "X-API-Version": {
+                "$ref": "#/components/headers/XApiVersion"
+              },
+              "Link": {
+                "$ref": "#/components/headers/Link"
+              },
+              "Deprecation": {
+                "$ref": "#/components/headers/Deprecation"
+              }
+            }
+          }
+        },
+        "x-api-version": "1",
+        "x-deprecation-policy": "Active endpoints return Deprecation: false. Deprecated endpoints return Deprecation: true, a Sunset header, replacement guidance, and at least 90 days notice unless security, abuse, or legal requirements force faster removal.",
+        "x-canonical-versioned-path": "/api/v1/workload-readiness",
+        "description": "Canonical v1 path: /api/v1/workload-readiness."
       }
     }
   },
@@ -1433,7 +2823,7 @@
         }
       },
       "ApiVersion": {
-        "description": "Current public API major version. Unprefixed /api/... routes are version 1 unless a future versioned namespace is documented.",
+        "description": "Current public API major version. Canonical version 1 routes use /api/v1/....",
         "schema": {
           "type": "string",
           "example": "1"
@@ -1451,6 +2841,24 @@
         "schema": {
           "type": "string",
           "example": "<https://superada.ai/developers/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
+        }
+      },
+      "Deprecation": {
+        "description": "Current deprecation state for the endpoint. Active v1 endpoints return false. Deprecated endpoints return true and include Sunset.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "false",
+            "true"
+          ],
+          "example": "false"
+        }
+      },
+      "Sunset": {
+        "description": "Only sent on deprecated endpoints. HTTP date for the planned retirement of the deprecated endpoint.",
+        "schema": {
+          "type": "string",
+          "example": "Wed, 31 Dec 2027 23:59:59 GMT"
         }
       }
     }

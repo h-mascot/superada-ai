@@ -93,6 +93,7 @@ function apiPolicyHeaders() {
   return {
     'API-Version': '1',
     'X-API-Version': '1',
+    'Deprecation': 'false',
     'Link': '<https://superada.ai/developers/#versioning-policy>; rel="deprecation"; type="text/html"',
   };
 }
