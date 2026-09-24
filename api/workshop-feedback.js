@@ -17,15 +17,43 @@ function clientIp(req) {
   return req.socket?.remoteAddress || 'unknown';
 }
 
-function isRateLimited(ip) {
+function checkRateLimit(ip) {
   const now = Date.now();
   const entry = rateLimitStore.get(ip);
   if (!entry || now >= entry.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return false;
+    const resetAt = now + RATE_LIMIT_WINDOW_MS;
+    rateLimitStore.set(ip, { count: 1, resetAt });
+    return {
+      limited: false,
+      limit: RATE_LIMIT_MAX,
+      remaining: RATE_LIMIT_MAX - 1,
+      resetSeconds: Math.ceil((resetAt - now) / 1000),
+    };
   }
   entry.count += 1;
-  return entry.count > RATE_LIMIT_MAX;
+  return {
+    limited: entry.count > RATE_LIMIT_MAX,
+    limit: RATE_LIMIT_MAX,
+    remaining: Math.max(0, RATE_LIMIT_MAX - entry.count),
+    resetSeconds: Math.max(1, Math.ceil((entry.resetAt - now) / 1000)),
+  };
+}
+
+function setRateLimitHeaders(res, rateLimit, includeRetryAfter = false) {
+  res.setHeader('RateLimit-Limit', String(rateLimit.limit));
+  res.setHeader('RateLimit-Remaining', String(rateLimit.remaining));
+  res.setHeader('RateLimit-Reset', String(rateLimit.resetSeconds));
+  res.setHeader('RateLimit-Policy', `${rateLimit.limit};w=${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)}`);
+  if (includeRetryAfter) res.setHeader('Retry-After', String(rateLimit.resetSeconds));
+}
+
+function defaultRateLimit() {
+  return {
+    limited: false,
+    limit: RATE_LIMIT_MAX,
+    remaining: RATE_LIMIT_MAX,
+    resetSeconds: Math.ceil(RATE_LIMIT_WINDOW_MS / 1000),
+  };
 }
 
 function send(res, status, payload) {
@@ -121,11 +149,16 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://superada.ai');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return send(res, 204, {});
-  if (req.method !== 'POST') return fail(res, 405, 'method_not_allowed', 'POST only.', 'Send a POST request with a JSON body; see /openapi.json for the request schema.');
+  if (req.method === 'OPTIONS') {
+    setRateLimitHeaders(res, defaultRateLimit());
+    return send(res, 204, {});
+  }
 
   const ip = clientIp(req);
-  if (isRateLimited(ip)) return fail(res, 429, 'rate_limited', 'Too many requests. Try again in a minute.', 'Wait at least 60 seconds before retrying and avoid tight polling loops.');
+  const rateLimit = checkRateLimit(ip);
+  setRateLimitHeaders(res, rateLimit, rateLimit.limited);
+  if (rateLimit.limited) return fail(res, 429, 'rate_limited', 'Too many requests. Try again in a minute.', 'Wait at least 60 seconds before retrying and avoid tight polling loops.');
+  if (req.method !== 'POST') return fail(res, 405, 'method_not_allowed', 'POST only.', 'Send a POST request with a JSON body; see /openapi.json for the request schema.');
 
   try {
     const body = await parseBody(req);

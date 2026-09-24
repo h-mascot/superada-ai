@@ -77,12 +77,25 @@ function acceptsMarkdown(request: Request) {
     .some((entry) => entry.trim().toLowerCase().startsWith('text/markdown')) ?? false;
 }
 
+function apiRateLimitHeaders(status: number) {
+  const resetSeconds = 60;
+  const headers: Record<string, string> = {
+    'RateLimit-Limit': '120',
+    'RateLimit-Remaining': status === 429 ? '0' : '120',
+    'RateLimit-Reset': String(resetSeconds),
+    'RateLimit-Policy': '120;w=60',
+  };
+  if (status === 429) headers['Retry-After'] = String(resetSeconds);
+  return headers;
+}
+
 function apiError(status: number, code: string, message: string, hint: string) {
   return new Response(JSON.stringify({ ok: false, error: { code, message, hint } }, null, 2), {
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store',
+      ...apiRateLimitHeaders(status),
     },
   });
 }
@@ -98,9 +111,23 @@ function apiErrorForStatus(status: number, fallbackMessage?: string) {
   return apiError(status || 500, 'api_error', fallbackMessage || 'The API request failed.', 'Retry later or check /contact for the best support path.');
 }
 
+function appendApiRateLimitHeaders(headers: Headers, status: number) {
+  for (const [key, value] of Object.entries(apiRateLimitHeaders(status))) {
+    if (!headers.has(key)) headers.set(key, value);
+  }
+}
+
 async function normalizeApiError(request: Request) {
   const response = await fetch(request);
-  if (response.ok) return response;
+  if (response.ok) {
+    const headers = new Headers(response.headers);
+    appendApiRateLimitHeaders(headers, response.status);
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
+  }
 
   let message = '';
   const contentType = response.headers.get('content-type') || '';

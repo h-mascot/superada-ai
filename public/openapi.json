@@ -3,7 +3,7 @@
   "info": {
     "title": "SuperAda API",
     "version": "1.0.0",
-    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically.",
+    "description": "Machine-readable API surface for SuperAda, an AI agent operating the Enterprise Crew across research, builds, knowledge, review, and local infrastructure. This specification helps agents discover SuperAda subscription, workshop feedback, and benchmark data endpoints automatically. All API responses include RFC RateLimit headers: RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, and RateLimit-Policy. 429 responses also include Retry-After.",
     "license": {
       "name": "See site terms"
     }
@@ -31,16 +31,34 @@
   "paths": {
     "/api/subscribe": {
       "options": {
-        "tags": ["Subscriptions"],
+        "tags": [
+          "Subscriptions"
+        ],
         "summary": "CORS preflight for subscription submission",
         "responses": {
           "204": {
-            "description": "Preflight accepted"
+            "description": "Preflight accepted",
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
+            }
           }
         }
       },
       "post": {
-        "tags": ["Subscriptions"],
+        "tags": [
+          "Subscriptions"
+        ],
         "summary": "Subscribe to SuperAda updates",
         "description": "Adds or updates a human or agent subscriber. Humans must provide a valid email. Agents may provide an email or agent identity URL/name. At least one topic is required.",
         "operationId": "subscribeToSuperAda",
@@ -58,7 +76,11 @@
                     "subscriberType": "human",
                     "name": "Ada Lovelace",
                     "email": "ada@example.com",
-                    "topics": ["ship-log", "releases", "weekly-claw"]
+                    "topics": [
+                      "ship-log",
+                      "releases",
+                      "weekly-claw"
+                    ]
                   }
                 },
                 "agent": {
@@ -67,7 +89,10 @@
                     "subscriberType": "agent",
                     "agentName": "Research Agent",
                     "agentUrl": "https://example.com/agents/research",
-                    "topics": ["tools-skills", "workflow-packs"]
+                    "topics": [
+                      "tools-skills",
+                      "workflow-packs"
+                    ]
                   }
                 }
               }
@@ -83,6 +108,20 @@
                   "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           },
           "400": {
@@ -92,6 +131,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
               }
             }
           },
@@ -103,6 +156,20 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           },
           "413": {
@@ -112,6 +179,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
               }
             }
           },
@@ -123,6 +204,23 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
             }
           },
           "500": {
@@ -133,6 +231,20 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -140,16 +252,34 @@
     },
     "/api/workshop-feedback": {
       "options": {
-        "tags": ["Feedback"],
+        "tags": [
+          "Feedback"
+        ],
         "summary": "CORS preflight for workshop feedback",
         "responses": {
           "204": {
-            "description": "Preflight accepted"
+            "description": "Preflight accepted",
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
+            }
           }
         }
       },
       "post": {
-        "tags": ["Feedback"],
+        "tags": [
+          "Feedback"
+        ],
         "summary": "Submit workshop feedback",
         "description": "Stores structured feedback for a SuperAda workshop. All rating fields must be 1-5, and at least one of struggledWith or biggestTakeaway is required.",
         "operationId": "submitWorkshopFeedback",
@@ -172,6 +302,20 @@
                   "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           },
           "400": {
@@ -181,6 +325,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
               }
             }
           },
@@ -192,6 +350,20 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           },
           "413": {
@@ -201,6 +373,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
               }
             }
           },
@@ -212,6 +398,23 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              },
+              "Retry-After": {
+                "$ref": "#/components/headers/RetryAfter"
+              }
             }
           },
           "500": {
@@ -222,6 +425,20 @@
                   "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -229,7 +446,9 @@
     },
     "/api/benchmarks": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get public benchmark registry",
         "operationId": "getBenchmarks",
         "responses": {
@@ -241,6 +460,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -248,7 +481,9 @@
     },
     "/api/audio-catalog": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get audio benchmark catalog",
         "operationId": "getAudioCatalog",
         "responses": {
@@ -260,6 +495,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -267,7 +516,9 @@
     },
     "/api/briefs": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get benchmark briefs",
         "operationId": "getBriefs",
         "responses": {
@@ -279,6 +530,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -286,7 +551,9 @@
     },
     "/api/browser-benchmark": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get browser benchmark data",
         "operationId": "getBrowserBenchmark",
         "responses": {
@@ -298,6 +565,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -305,7 +586,9 @@
     },
     "/api/computer-use-tools": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get computer-use tools data",
         "operationId": "getComputerUseTools",
         "responses": {
@@ -317,6 +600,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -324,7 +621,9 @@
     },
     "/api/deep-research-runs": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get deep-research run data",
         "operationId": "getDeepResearchRuns",
         "responses": {
@@ -336,6 +635,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -343,7 +656,9 @@
     },
     "/api/image-models": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get image model benchmark data",
         "operationId": "getImageModels",
         "responses": {
@@ -355,6 +670,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -362,7 +691,9 @@
     },
     "/api/memory-benchmarks": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get memory benchmark data",
         "operationId": "getMemoryBenchmarks",
         "responses": {
@@ -374,6 +705,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -381,7 +726,9 @@
     },
     "/api/prompt-eval": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get prompt evaluation data",
         "operationId": "getPromptEval",
         "responses": {
@@ -393,6 +740,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -400,7 +761,9 @@
     },
     "/api/run-requests": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get public run-request data",
         "operationId": "getRunRequests",
         "responses": {
@@ -412,6 +775,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -419,7 +796,9 @@
     },
     "/api/signature-build": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get signature build benchmark data",
         "operationId": "getSignatureBuild",
         "responses": {
@@ -431,6 +810,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -438,7 +831,9 @@
     },
     "/api/tts-benchmarks": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get text-to-speech benchmark data",
         "operationId": "getTtsBenchmarks",
         "responses": {
@@ -450,6 +845,20 @@
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
               }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
+              }
             }
           }
         }
@@ -457,7 +866,9 @@
     },
     "/api/workload-readiness": {
       "get": {
-        "tags": ["Benchmarks"],
+        "tags": [
+          "Benchmarks"
+        ],
         "summary": "Get workload readiness benchmark data",
         "operationId": "getWorkloadReadiness",
         "responses": {
@@ -468,6 +879,20 @@
                 "schema": {
                   "$ref": "#/components/schemas/PublicJsonDocument"
                 }
+              }
+            },
+            "headers": {
+              "RateLimit-Limit": {
+                "$ref": "#/components/headers/RateLimitLimit"
+              },
+              "RateLimit-Remaining": {
+                "$ref": "#/components/headers/RateLimitRemaining"
+              },
+              "RateLimit-Reset": {
+                "$ref": "#/components/headers/RateLimitReset"
+              },
+              "RateLimit-Policy": {
+                "$ref": "#/components/headers/RateLimitPolicy"
               }
             }
           }
@@ -483,7 +908,10 @@
         "properties": {
           "subscriberType": {
             "type": "string",
-            "enum": ["human", "agent"],
+            "enum": [
+              "human",
+              "agent"
+            ],
             "default": "human"
           },
           "email": {
@@ -509,7 +937,13 @@
             "minItems": 1,
             "items": {
               "type": "string",
-              "enum": ["ship-log", "releases", "weekly-claw", "tools-skills", "workflow-packs"]
+              "enum": [
+                "ship-log",
+                "releases",
+                "weekly-claw",
+                "tools-skills",
+                "workflow-packs"
+              ]
             }
           },
           "company": {
@@ -517,7 +951,9 @@
             "description": "Honeypot field. Leave blank."
           }
         },
-        "required": ["topics"]
+        "required": [
+          "topics"
+        ]
       },
       "WorkshopFeedbackRequest": {
         "type": "object",
@@ -540,17 +976,40 @@
           "ratings": {
             "type": "object",
             "properties": {
-              "overall": { "$ref": "#/components/schemas/Rating" },
-              "clarity": { "$ref": "#/components/schemas/Rating" },
-              "pace": { "$ref": "#/components/schemas/Rating" },
-              "handsOn": { "$ref": "#/components/schemas/Rating" },
-              "usefulness": { "$ref": "#/components/schemas/Rating" }
+              "overall": {
+                "$ref": "#/components/schemas/Rating"
+              },
+              "clarity": {
+                "$ref": "#/components/schemas/Rating"
+              },
+              "pace": {
+                "$ref": "#/components/schemas/Rating"
+              },
+              "handsOn": {
+                "$ref": "#/components/schemas/Rating"
+              },
+              "usefulness": {
+                "$ref": "#/components/schemas/Rating"
+              }
             },
-            "required": ["overall", "clarity", "pace", "handsOn", "usefulness"]
+            "required": [
+              "overall",
+              "clarity",
+              "pace",
+              "handsOn",
+              "usefulness"
+            ]
           },
           "mostUsefulModule": {
             "type": "string",
-            "enum": ["intro-context", "agents-vs-chatbots", "model-landscape", "demo-install", "build-exercise", "none"],
+            "enum": [
+              "intro-context",
+              "agents-vs-chatbots",
+              "model-landscape",
+              "demo-install",
+              "build-exercise",
+              "none"
+            ],
             "default": "none"
           },
           "struggledWith": {
@@ -574,7 +1033,9 @@
             "description": "Honeypot field. Leave blank."
           }
         },
-        "required": ["ratings"]
+        "required": [
+          "ratings"
+        ]
       },
       "Rating": {
         "oneOf": [
@@ -585,7 +1046,13 @@
           },
           {
             "type": "string",
-            "enum": ["1", "2", "3", "4", "5"]
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
           }
         ]
       },
@@ -600,7 +1067,9 @@
             "type": "string"
           }
         },
-        "required": ["ok"]
+        "required": [
+          "ok"
+        ]
       },
       "ErrorResponse": {
         "type": "object",
@@ -610,10 +1079,29 @@
             "const": false
           },
           "error": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "hint": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "hint"
+            ]
           }
         },
-        "required": ["ok", "error"]
+        "required": [
+          "ok",
+          "error"
+        ]
       },
       "PublicJsonDocument": {
         "description": "Public static JSON document. Shape varies by benchmark dataset.",
@@ -627,6 +1115,43 @@
             "items": true
           }
         ]
+      }
+    },
+    "headers": {
+      "RateLimitLimit": {
+        "description": "Maximum number of requests allowed in the current rate-limit window.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "RateLimitRemaining": {
+        "description": "Number of requests remaining in the current rate-limit window.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "RateLimitReset": {
+        "description": "Seconds until the current rate-limit window resets.",
+        "schema": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "RateLimitPolicy": {
+        "description": "Rate-limit policy in the form limit;w=windowSeconds.",
+        "schema": {
+          "type": "string",
+          "example": "5;w=60"
+        }
+      },
+      "RetryAfter": {
+        "description": "Seconds to wait before retrying after a 429 response.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     }
   }

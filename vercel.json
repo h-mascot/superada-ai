@@ -151,6 +151,27 @@
   ],
   "headers": [
     {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "RateLimit-Limit",
+          "value": "120"
+        },
+        {
+          "key": "RateLimit-Remaining",
+          "value": "120"
+        },
+        {
+          "key": "RateLimit-Reset",
+          "value": "60"
+        },
+        {
+          "key": "RateLimit-Policy",
+          "value": "120;w=60"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {

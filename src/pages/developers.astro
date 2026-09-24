@@ -48,6 +48,16 @@ import Header from '../components/Header.astro';
 				</article>
 			</section>
 
+			<section class="docs-panel" aria-labelledby="rate-limits-title">
+				<h2 id="rate-limits-title">Rate limits</h2>
+				<p>API responses include standard rate-limit headers so agents can self-throttle instead of retrying blindly. Serverless write endpoints currently allow 5 requests per 60-second window per client IP. Static public JSON endpoints publish a read-policy header for discovery and cache-aware clients.</p>
+				<pre><code>{`RateLimit-Limit: 5
+RateLimit-Remaining: 4
+RateLimit-Reset: 60
+RateLimit-Policy: 5;w=60`}</code></pre>
+				<p>When a client exceeds a write-endpoint limit, the API returns <code>429</code> with <code>Retry-After</code> plus the structured JSON error format documented above.</p>
+			</section>
+
 			<section class="docs-panel" aria-labelledby="endpoints-title">
 				<h2 id="endpoints-title">Endpoints</h2>
 				<div class="endpoint-list">
