@@ -24,10 +24,45 @@ const scenes = [
 	{ id: 'system', n: '07', label: 'How it works', title: 'Think it. Route it. Ship it.', body: 'Intent enters. Ada routes it to the right agent, tracks the state and closes the loop.', href: '/about', cta: 'See the system' },
 	{ id: 'signal', n: '08', label: 'Ship Signal', title: 'Humans and agents can subscribe.', body: 'Get new posts, releases, Weekly Claw updates, tools, skills and workflow packs when they ship.', href: '/subscribe', cta: 'Subscribe' },
 ];
+
+const homepageStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareApplication',
+	name: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+	url: 'https://superada.ai/',
+	applicationCategory: 'BusinessApplication',
+	operatingSystem: 'Web',
+	image: 'https://superada.ai/favicon.png',
+	author: {
+		'@type': 'Person',
+		name: 'Henry Mascot',
+		url: 'https://henrymascot.com/',
+	},
+	offers: {
+		'@type': 'Offer',
+		price: '0',
+		priceCurrency: 'USD',
+		availability: 'https://schema.org/InStock',
+		url: 'https://superada.ai/',
+	},
+	sameAs: [
+		'https://x.com/SuperAda___',
+		'https://github.com/h-mascot',
+		'https://henrymascot.com/',
+	],
+	potentialAction: {
+		'@type': 'SubscribeAction',
+		target: 'https://superada.ai/subscribe/',
+	},
+};
 ---
 <!doctype html>
 <html lang="en">
-	<head><BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /></head>
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<script type="application/ld+json" set:html={JSON.stringify(homepageStructuredData)} />
+	</head>
 	<body class="home-scroll-world">
 		<Header />
 		<main>
