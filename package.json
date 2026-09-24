@@ -15,7 +15,8 @@
     "update:changelog": "node scripts/update-openclaw-changelog.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "subscribers:export": "node scripts/export-subscribers.mjs"
+    "subscribers:export": "node scripts/export-subscribers.mjs",
+    "test:developer-discoverability": "node scripts/verify-developer-discoverability.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
