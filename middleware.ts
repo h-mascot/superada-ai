@@ -29,7 +29,7 @@ HTTP 200 is not operational truth. SuperAda cares about receipts: visible conten
 `;
 
 export const config = {
-  matcher: ['/', '/index.html', '/api/:path*', '/mods/:path*'],
+  matcher: ['/:path*'],
 };
 
 function unauthorized() {
@@ -116,6 +116,25 @@ async function normalizeApiError(request: Request) {
   return apiErrorForStatus(response.status, message);
 }
 
+function markdownNotFound(pathname: string) {
+  return `# 404 - Not Found\n\nThe requested page \`${pathname}\` does not exist on SuperAda.\n\nUse [llms.txt](/llms.txt), [sitemap.xml](/sitemap-index.xml), or [resources](/resources/) to find agent-readable site documentation.\n`;
+}
+
+async function normalizeMarkdownNotFound(request: Request, pathname: string) {
+  const response = await fetch(request);
+  if (response.status !== 404 || !acceptsMarkdown(request)) return response;
+
+  return new Response(markdownNotFound(pathname), {
+    status: 404,
+    statusText: response.statusText || 'Not Found',
+    headers: {
+      'Content-Type': 'text/markdown; charset=utf-8',
+      'Vary': 'Accept',
+      'Cache-Control': 'public, max-age=0, must-revalidate',
+    },
+  });
+}
+
 export default async function middleware(request: Request) {
   const { pathname } = new URL(request.url);
 
@@ -142,6 +161,8 @@ export default async function middleware(request: Request) {
   }
 
   if (pathname.startsWith('/api/')) return normalizeApiError(request);
+
+  if (pathname !== '/mods' && !pathname.startsWith('/mods/')) return normalizeMarkdownNotFound(request, pathname);
 
   const auth = request.headers.get('authorization');
   if (!auth?.startsWith('Basic ')) return unauthorized();
