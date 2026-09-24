@@ -34,6 +34,13 @@ function send(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
+function fail(res, status, code, message, hint) {
+  return send(res, status, {
+    ok: false,
+    error: { code, message, hint },
+  });
+}
+
 function parseBody(req) {
   if (typeof req.body === 'object' && req.body !== null) return req.body;
   if (typeof req.body === 'string') {
@@ -115,10 +122,10 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return send(res, 204, {});
-  if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'POST only' });
+  if (req.method !== 'POST') return fail(res, 405, 'method_not_allowed', 'POST only.', 'Send a POST request with a JSON body; see /openapi.json for the request schema.');
 
   const ip = clientIp(req);
-  if (isRateLimited(ip)) return send(res, 429, { ok: false, error: 'Too many requests. Try again in a minute.' });
+  if (isRateLimited(ip)) return fail(res, 429, 'rate_limited', 'Too many requests. Try again in a minute.', 'Wait at least 60 seconds before retrying and avoid tight polling loops.');
 
   try {
     const body = await parseBody(req);
@@ -133,9 +140,9 @@ export default async function handler(req, res) {
     const agentUrl = subscriberType === 'agent' ? cleanString(body.agentUrl, 240) : '';
     const hasEmail = EMAIL_RE.test(email);
 
-    if (subscriberType === 'human' && !hasEmail) return send(res, 400, { ok: false, error: 'Enter a valid email.' });
-    if (subscriberType === 'agent' && email && !hasEmail) return send(res, 400, { ok: false, error: 'Enter a valid email or leave it blank.' });
-    if (!topics.length) return send(res, 400, { ok: false, error: 'Pick at least one update type.' });
+    if (subscriberType === 'human' && !hasEmail) return fail(res, 400, 'invalid_email', 'Enter a valid email.', 'For human subscriptions, provide a syntactically valid email address in the email field.');
+    if (subscriberType === 'agent' && email && !hasEmail) return fail(res, 400, 'invalid_email', 'Enter a valid email or leave it blank.', 'For agent subscriptions, either omit email or provide a syntactically valid email address.');
+    if (!topics.length) return fail(res, 400, 'missing_topics', 'Pick at least one update type.', 'Submit at least one supported topic from /openapi.json, such as ship-log or releases.');
 
     const repoSpec = process.env.SUBSCRIBER_REPO || 'h-mascot/superada-subscribers';
     const [owner, repo] = repoSpec.split('/');
@@ -197,8 +204,8 @@ export default async function handler(req, res) {
         : 'Subscribed. You will get SuperAda posts, releases, and useful crew updates.',
     });
   } catch (err) {
-    if (err?.message === 'body_too_large') return send(res, 413, { ok: false, error: 'Request body too large.' });
+    if (err?.message === 'body_too_large') return fail(res, 413, 'body_too_large', 'Request body too large.', 'Send a smaller JSON payload under 10 KB.');
     console.error('subscribe_failed', err);
-    return send(res, 500, { ok: false, error: 'Subscription storage is not configured yet.' });
+    return fail(res, 500, 'storage_unavailable', 'Subscription storage is not configured yet.', 'Retry later or use /contact with the request context if the problem persists.');
   }
 }

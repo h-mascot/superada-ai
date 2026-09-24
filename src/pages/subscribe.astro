@@ -197,7 +197,8 @@ import Header from '../components/Header.astro';
 					} catch {
 						throw new Error('Unexpected response from subscribe service.');
 					}
-					if (!response.ok || !result.ok) throw new Error(result.error || 'Subscription failed.');
+					const errorMessage = typeof result.error === 'string' ? result.error : result.error?.message;
+					if (!response.ok || !result.ok) throw new Error(errorMessage || 'Subscription failed.');
 					if (isAgent) {
 						try { await navigator.clipboard.writeText(installCommand); } catch {}
 						status.dataset.state = 'success';

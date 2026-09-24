@@ -29,7 +29,7 @@ HTTP 200 is not operational truth. SuperAda cares about receipts: visible conten
 `;
 
 export const config = {
-  matcher: ['/', '/index.html', '/mods/:path*'],
+  matcher: ['/', '/index.html', '/api/:path*', '/mods/:path*'],
 };
 
 function unauthorized() {
@@ -77,6 +77,45 @@ function acceptsMarkdown(request: Request) {
     .some((entry) => entry.trim().toLowerCase().startsWith('text/markdown')) ?? false;
 }
 
+function apiError(status: number, code: string, message: string, hint: string) {
+  return new Response(JSON.stringify({ ok: false, error: { code, message, hint } }, null, 2), {
+    status,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
+function apiErrorForStatus(status: number, fallbackMessage?: string) {
+  if (status === 400) return apiError(400, 'invalid_request', fallbackMessage || 'The request is invalid.', 'Check the request JSON body and required fields, then retry.');
+  if (status === 401) return apiError(401, 'unauthorized', fallbackMessage || 'Authentication is required.', 'Provide valid credentials or use a public endpoint documented in /openapi.json.');
+  if (status === 403) return apiError(403, 'forbidden', fallbackMessage || 'The request is not allowed.', 'Confirm the origin, permissions, and endpoint access requirements.');
+  if (status === 404) return apiError(404, 'api_not_found', fallbackMessage || 'API endpoint not found.', 'Use /openapi.json to discover supported API endpoints.');
+  if (status === 405) return apiError(405, 'method_not_allowed', fallbackMessage || 'HTTP method not allowed.', 'Use the method documented for this endpoint in /openapi.json.');
+  if (status === 413) return apiError(413, 'body_too_large', fallbackMessage || 'Request body too large.', 'Send a smaller JSON payload.');
+  if (status === 429) return apiError(429, 'rate_limited', fallbackMessage || 'Too many requests.', 'Wait before retrying and avoid tight polling loops.');
+  return apiError(status || 500, 'api_error', fallbackMessage || 'The API request failed.', 'Retry later or check /contact for the best support path.');
+}
+
+async function normalizeApiError(request: Request) {
+  const response = await fetch(request);
+  if (response.ok) return response;
+
+  let message = '';
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType.toLowerCase().includes('application/json')) {
+    try {
+      const data = await response.clone().json();
+      if (typeof data?.error === 'string') message = data.error;
+      else if (typeof data?.error?.message === 'string') message = data.error.message;
+      else if (typeof data?.message === 'string') message = data.message;
+    } catch {}
+  }
+
+  return apiErrorForStatus(response.status, message);
+}
+
 export default async function middleware(request: Request) {
   const { pathname } = new URL(request.url);
 
@@ -101,6 +140,8 @@ export default async function middleware(request: Request) {
       headers,
     });
   }
+
+  if (pathname.startsWith('/api/')) return normalizeApiError(request);
 
   const auth = request.headers.get('authorization');
   if (!auth?.startsWith('Basic ')) return unauthorized();

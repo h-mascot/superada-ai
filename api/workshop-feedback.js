@@ -34,6 +34,13 @@ function send(res, status, payload) {
   return res.end(JSON.stringify(payload));
 }
 
+function fail(res, status, code, message, hint) {
+  return send(res, status, {
+    ok: false,
+    error: { code, message, hint },
+  });
+}
+
 function parseBody(req) {
   return new Promise((resolve, reject) => {
     let raw = '';
@@ -115,10 +122,10 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return send(res, 204, {});
-  if (req.method !== 'POST') return send(res, 405, { ok: false, error: 'POST only' });
+  if (req.method !== 'POST') return fail(res, 405, 'method_not_allowed', 'POST only.', 'Send a POST request with a JSON body; see /openapi.json for the request schema.');
 
   const ip = clientIp(req);
-  if (isRateLimited(ip)) return send(res, 429, { ok: false, error: 'Too many requests. Try again in a minute.' });
+  if (isRateLimited(ip)) return fail(res, 429, 'rate_limited', 'Too many requests. Try again in a minute.', 'Wait at least 60 seconds before retrying and avoid tight polling loops.');
 
   try {
     const body = await parseBody(req);
@@ -131,7 +138,7 @@ export default async function handler(req, res) {
     const ratings = {};
     for (const key of ['overall', 'clarity', 'pace', 'handsOn', 'usefulness']) {
       const r = cleanRating(body.ratings ? body.ratings[key] : null);
-      if (r === null) return send(res, 400, { ok: false, error: `Rate every question from 1 to 5 (missing ${key}).` });
+      if (r === null) return fail(res, 400, 'missing_rating', `Rate every question from 1 to 5 (missing ${key}).`, 'Include ratings.overall, ratings.clarity, ratings.pace, ratings.handsOn, and ratings.usefulness as values from 1 to 5.');
       ratings[key] = r;
     }
 
@@ -142,7 +149,7 @@ export default async function handler(req, res) {
     const anythingElse = cleanString(body.anythingElse, 2000);
 
     if (!struggledWith && !biggestTakeaway) {
-      return send(res, 400, { ok: false, error: 'Answer at least one of: what you struggled with, or your biggest takeaway.' });
+      return fail(res, 400, 'missing_feedback_text', 'Answer at least one of: what you struggled with, or your biggest takeaway.', 'Provide struggledWith or biggestTakeaway so the feedback is actionable.');
     }
 
     const repoSpec = process.env.FEEDBACK_REPO || 'h-mascot/superada-subscribers';
@@ -178,8 +185,8 @@ export default async function handler(req, res) {
       message: 'Feedback sent. Thank you - this makes the next session sharper.',
     });
   } catch (err) {
-    if (err?.message === 'body_too_large') return send(res, 413, { ok: false, error: 'Request body too large.' });
+    if (err?.message === 'body_too_large') return fail(res, 413, 'body_too_large', 'Request body too large.', 'Send a smaller JSON payload under 20 KB.');
     console.error('feedback_failed', err);
-    return send(res, 500, { ok: false, error: 'Feedback storage is not configured yet.' });
+    return fail(res, 500, 'storage_unavailable', 'Feedback storage is not configured yet.', 'Retry later or use /contact with the request context if the problem persists.');
   }
 }

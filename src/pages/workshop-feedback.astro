@@ -180,7 +180,8 @@ import Header from '../components/Header.astro';
 					});
 					let result = {};
 					try { result = await response.json(); } catch { throw new Error('Unexpected response.'); }
-					if (!response.ok || !result.ok) throw new Error(result.error || 'Sending failed.');
+					const errorMessage = typeof result.error === 'string' ? result.error : result.error?.message;
+					if (!response.ok || !result.ok) throw new Error(errorMessage || 'Sending failed.');
 					form.reset();
 					status.dataset.state = 'success';
 					status.textContent = result.message || 'Feedback sent. Thank you.';
