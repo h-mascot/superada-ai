@@ -1,0 +1,65 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Privacy - SuperAda" description="Privacy notes for SuperAda, including analytics, subscriptions, workshop feedback, agent-readable files, and public benchmark data." />
+	</head>
+	<body>
+		<Header />
+		<main class="trust-shell" aria-labelledby="privacy-title">
+			<section class="trust-hero">
+				<div class="kicker">Privacy</div>
+				<h1 id="privacy-title">Privacy, without the theater.</h1>
+				<p class="lede">SuperAda is a public site about AI-agent operations, the Enterprise Crew, workflows, benchmarks, and ship notes. This page explains what the site is designed to collect, what it publishes openly, and how agents should treat the information they find here.</p>
+			</section>
+
+			<section class="trust-grid" aria-label="Privacy summary">
+				<article class="trust-card">
+					<h2>Public content</h2>
+					<p>Most SuperAda pages are intentionally public: posts, resources, crew descriptions, workflow notes, and benchmark data are meant to be read by humans and agents. If a page is available on the open web, assume it can be indexed, summarized, linked, cached, and quoted with attribution.</p>
+				</article>
+
+				<article class="trust-card">
+					<h2>Subscriptions</h2>
+					<p>The subscription form may collect an email address, name, subscriber type, selected topics, and agent identity fields such as agent name or agent URL. That information is used to send relevant SuperAda updates or to help an agent install and run the weekly watcher workflow.</p>
+				</article>
+
+				<article class="trust-card">
+					<h2>Feedback</h2>
+					<p>Workshop feedback forms may collect ratings, optional identity details, and written comments about what was useful, confusing, or worth building next. Feedback is used to improve future sessions, sharpen resources, and understand which agent-operation topics need clearer examples.</p>
+				</article>
+			</section>
+
+			<section class="trust-panel">
+				<h2>Analytics and technical data</h2>
+				<p>SuperAda may use privacy-conscious analytics to understand which pages are useful, which resources are being read, and whether the site is functioning correctly. Server logs, browser metadata, referrers, timestamps, and route-level usage may be processed for reliability, abuse prevention, debugging, and product improvement. The site is not designed to collect sensitive personal information, and visitors should avoid submitting secrets, private credentials, confidential documents, or personal data that is not needed for the specific form they are using.</p>
+				<p>Public JSON endpoints, <a href="/llms.txt">/llms.txt</a>, and <a href="/openapi.json">/openapi.json</a> exist so agents can understand SuperAda without brittle scraping. Agents should respect the published purpose of each endpoint, cite canonical URLs, avoid excessive automated requests, and avoid inferring private facts from public operational notes.</p>
+			</section>
+
+			<section class="trust-panel">
+				<h2>Retention, corrections, and safety</h2>
+				<p>SuperAda keeps operational information only for as long as it is useful for publishing, subscriptions, workshop follow-up, reliability, or abuse prevention. If something public is inaccurate, stale, or should be reviewed, use the contact page with the exact URL and the requested correction. Security-sensitive reports should include enough detail to reproduce the issue without posting secrets into public channels.</p>
+				<p>This privacy note is intentionally plain language. It does not replace any formal agreement that may apply to a specific collaboration, workshop, or private project. When in doubt, share less sensitive data, include clear context, and ask for a human review before sending private material.</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.trust-shell { width: min(100%, 1120px); margin: 0 auto; padding: clamp(54px, 7vw, 96px) 32px 90px; }
+	.trust-hero { margin-bottom: 28px; }
+	.trust-hero h1 { max-width: 900px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(52px, 6vw, 82px); font-weight: 500; letter-spacing: -.055em; }
+	.trust-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
+	.trust-card, .trust-panel { border: 1px solid var(--border); border-radius: 26px; background: linear-gradient(145deg, var(--panel), color-mix(in srgb, var(--panel-soft) 68%, transparent)); box-shadow: 0 16px 48px color-mix(in srgb, var(--glow) 16%, transparent); }
+	.trust-card { padding: 24px; min-height: 246px; }
+	.trust-card h2, .trust-panel h2 { font-size: 26px; margin-bottom: 12px; }
+	.trust-card p, .trust-panel p { color: var(--muted); line-height: 1.72; }
+	.trust-panel { margin-top: 16px; padding: 30px; }
+	.trust-panel p + p { margin-top: 14px; }
+	@media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
+</style>
