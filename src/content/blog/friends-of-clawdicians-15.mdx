@@ -1,0 +1,76 @@
+---
+title: "Friends of Clawdicians #15"
+description: "Open weights got fast with a 309B MoE at 2,000 tokens per second, Xiaomi opened 7,780 RL environments, judgment got a sub-cent price tag, and agent-built artifacts finally shipped with human editing controls."
+pubDate: "2026-09-28"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-15.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-15.png';
+
+<Image src={coverImage} alt="Builders gathered in a warm cathedral workshop of brass and dark wood, passing a glowing rope of shared mechanical parts hand to hand while others read open ledgers, in gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+The builder conversation this week ran from big open weights to cheap judgment calls to agent-drafted artifacts with human editors. Test everything.
+
+## Open weights got fast
+
+NaiveAI's Naive-N0.5-Flash is an MIT-licensed, open-weight 309B Mixture-of-Experts model with 15.5B parameters active at once, aimed at coding and AI R&D. It has a native 1M-token context window. The weights are on Hugging Face, with a public GitHub repository and homepage.
+
+The attention-grabbing part is NaiveRT, its AI-written runtime. NaiveAI claims up to 2,000 tokens per second, with a peak of 2,122 tokens per second on eight GPUs. Those are vendor-run numbers. There is no independent benchmark yet, so keep the throughput claim attached to its source.
+
+API pricing is $0.10/M input tokens, $0.40/M output tokens, and $0.01/M cached input tokens. That makes the hosted route an inexpensive way to investigate whether the model suits your workload before taking on deployment.
+
+The builder question is how much useful coding work comes out at that speed. A large context window and fast generation are attractive ingredients. Neither gives us an independent answer about task quality. Public weights and runtime code give people something concrete to test. That is the next useful step.
+
+## Open environments deserve their own release cycle
+
+Xiaomi's MiMo-V2.6-RL-oss puts 7,780 Apache-2.0 reinforcement-learning environments into public hands. They span code and software engineering, cyber vulnerability reproduction, general knowledge work, visual web development, and symbolic music.
+
+The release includes executable, rule, rubric, and visual verifiers, plus Docker images. Xiaomi also published a fork of the verl/HybridFlow training framework. That is a substantial amount of machinery around the tasks themselves.
+
+For builders, the interesting unit is a task with a way to judge the result. Training against work requires deciding what completion means, what evidence counts, and which mistakes should fail a run. Verifiers make those decisions inspectable, even when you disagree with them.
+
+Community readers described this as unusually valuable for paid-task-grade environments and one of the largest open cross-domain RL environment releases. That is community assessment, rather than a measured guarantee of training value. The practical next step is to inspect the environments and examine their checks. See which ones resemble the work your agents actually need to do.
+
+## Judgment got a smaller budget
+
+Small decision models are now a concrete design option. Use them where the system needs a choice, ranking, score, or yes/no answer.
+
+Supersonic Labs' Julia-1 is a 144.3M-parameter mmBERT-small decision model for fixed-choice judgments, including 2-20 way classification. The vendor reports 73.15 percent typed-decision accuracy and CPU-capable inference. Its planned API pricing is $0.025/M input tokens and $0 output. "Planned" matters if you are putting it into a budget.
+
+NeoHorse-Jev-4B takes text, or one image plus text, and maps it directly into prefill-only Choice, Noul, and Score probabilities. Its Apache-2.0 weights are available for vLLM/SGLang.
+
+DAIR.AI's roundup carried vendor-run JEV-as-a-Judge numbers of $0.044 per 1,000 judgments and 0.152-second median latency, versus GPT-6 at $12.182 and 1.885 seconds. Those figures make the pattern worth testing. They do not establish equivalent judgment quality on your tasks.
+
+The architectural implication is useful: give bounded decisions their own evaluation and cost budget. Routing, scoring, and classification can be tested as separate components. A cheap wrong answer remains a wrong answer. At least you can afford to measure plenty of them.
+
+## Agents draft, humans get editing controls
+
+Three releases made generated artifacts more practical to review and change.
+
+MIT-licensed open-slide 2.0 lets agents draft 1920x1080 React decks, then gives humans a visual editor with drag, resize, in-place text editing, comments, and presentation mode. It also exports native editable PPTX. The important word is "editable": the handoff includes controls for the person who has to present the thing.
+
+PR Lens, also MIT-licensed, turns each pull request into an animated architecture and data-flow walkthrough. It includes blast radius, payloads, and green/amber/red deltas, delivered through a GitHub comment, Action, CLI, or coding-agent skill. Treat the walkthrough as a review aid whose account still needs checking against the change.
+
+Apache-2.0 Reladraw describes diagram placement through relations such as "below", "right of", and "level with". It compiles to dependency-free SVG and ships an agent skill.
+
+Together, these tools concentrate on what happens after generation. You can edit a slide, inspect a change, or adjust a diagram. No restart needed.
+
+## Replay-verified tasks went public
+
+Microsoft Research, Microsoft AI, and KAIST released ProgramDistill, which built 4,063 software tasks from 1,975 replay-verified behaviors across 26 web apps. The dataset is public on Hugging Face.
+
+The paper reports GPT-6 Astra at 49.2 percent and Claude Opus 5 at 28.8 percent on cumulative full-app workflows. Two frontier models under 50 percent on multi-step web work is the quiet headline. Agentic browser workflows remain hard even for the best systems.
+
+A replay-verified behavior is a workflow the system could successfully reproduce. That is a higher bar than a scraped instruction, and it is the standard worth copying when you build your own eval sets.
+
+## Your runtime is part of the model decision
+
+Paolo Rosson benchmarked Qwen3.8-27B on one M3 Max with 96GB. Same 4-bit weights, multiple Apple-silicon engines. TensorFold led prose at 40.0 tokens per second; mlx-serve led code at 44.6. The reported roughly 28 to 40 tokens-per-second spread represents a throughput swing of over 40 percent.
+
+The winner depended on the workload. For local deployment, benchmark the engine on the work you expect to run before settling the configuration.
+
+The week's direction is toward more separately testable parts of the agent stack. Open weights, training environments, and small decision models give builders distinct places to experiment. Human editors make generated artifacts easier to take into actual work. Runtime comparisons add another concrete requirement: evaluate the whole configuration, including the engine and the handoff.
+
+Pick one part and test it on your own stack before Friday. Run the 4-bit local model on two engines and ship the faster one. Price your routing decisions against the Jev-style numbers before you route them. Inspect one released RL environment and steal its verifier design. Next step: one measured swap, not a stack redesign.
