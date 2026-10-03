@@ -1,0 +1,27 @@
+---
+import CatalogBadges from './CatalogBadges.astro';
+import type { Badge } from '../../lib/catalog';
+
+interface Props {
+	badges?: Badge[];
+}
+
+const { badges = [] } = Astro.props;
+---
+<div class="cat-hero-meta">
+	{badges.length > 0 && <CatalogBadges badges={badges} label="Status and attributes" />}
+	<div class="cat-hero-actions"><slot /></div>
+</div>
+
+<style>
+	.cat-hero-meta { flex: 1 1 100%; display: grid; gap: 22px; }
+	.cat-hero-meta :global(.cat-badges) { gap: 8px; }
+	.cat-hero-meta :global(.ds-badge) { min-height: 28px; padding: 0 11px; }
+	.cat-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+	@media (max-width: 760px) {
+		.cat-hero-meta { gap: 18px; }
+		.cat-hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+		.cat-hero-actions > :global(*) { width: 100%; padding-inline: 14px; }
+		.cat-hero-actions > :global(.ds-btn:nth-child(1 of .ds-btn)), .cat-hero-actions > :global(.ds-btn:nth-last-child(1 of .ds-btn):nth-child(even of .ds-btn)) { grid-column: 1 / -1; }
+	}
+</style>

@@ -2,72 +2,108 @@
 interface Props {
   text: string;
   label?: string;
+  variant?: 'chip' | 'button' | 'ghost';
 }
 
-const { text, label = 'Copy' } = Astro.props;
+const { text, label = 'Copy', variant = 'chip' } = Astro.props;
 ---
 
 <button
   type="button"
-  class="copy-btn"
+  class:list={variant === 'chip' ? ['copy-btn'] : ['ds-btn', 'copy-cta', { 'ds-btn--ghost': variant === 'ghost' }]}
   data-copy-text={text}
   aria-label={label}
 >
+  <svg class="copy-btn-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"></rect><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path></svg>
   <span class="copy-btn-label">{label}</span>
 </button>
 
 <style>
-  .copy-btn {
-    font-size: 0.72rem;
-    font-family: monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  button.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
     color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
-    border-radius: 6px;
-    padding: 0.35rem 0.55rem;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    font: 800 10.5px/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.3s var(--ease-spring, ease);
   }
 
-  .copy-btn:hover {
-    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  button.copy-btn:hover {
+    background: color-mix(in srgb, var(--accent) 17%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
   }
 
-  .copy-btn.is-copied {
+  button.copy-btn:active { transform: scale(0.95); }
+
+  .copy-btn-icon { flex: 0 0 auto; }
+  .copy-cta .copy-btn-icon { width: 16px; height: 16px; }
+
+  button.is-copied {
     color: var(--success);
-    border-color: color-mix(in srgb, var(--success) 40%, transparent);
-    background: color-mix(in srgb, var(--success) 10%, transparent);
+    border-color: color-mix(in srgb, var(--success) 45%, var(--border));
+    background: color-mix(in srgb, var(--success) 12%, transparent);
+  }
+
+  .copy-cta.is-copied { color: var(--success); background: color-mix(in srgb, var(--success) 14%, var(--panel)); }
+
+  @media (max-width: 760px) {
+    button.copy-btn { min-height: 44px; min-width: 44px; padding: 0 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button.copy-btn { transition: none; }
   }
 </style>
 
-<script>
-  document.querySelectorAll('.copy-btn[data-copy-text]').forEach((button) => {
-    if (button.dataset.copyBound === 'true') return;
-    button.dataset.copyBound = 'true';
+<script is:inline>
+  (() => {
+    if (window.__sadaCopyButtons) return;
+    window.__sadaCopyButtons = true;
 
-    button.addEventListener('click', async () => {
+    const fallbackCopy = (text) => {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+      document.body.append(area);
+      area.select();
+      const ok = document.execCommand('copy');
+      area.remove();
+      if (!ok) throw new Error('copy failed');
+    };
+
+    document.addEventListener('click', async (event) => {
+      const button = event.target.closest && event.target.closest('button[data-copy-text]');
+      if (!button) return;
       const text = button.getAttribute('data-copy-text') || '';
       const label = button.querySelector('.copy-btn-label');
       if (!text || !label) return;
+      const original = button.dataset.copyLabel || label.textContent || 'Copy';
+      button.dataset.copyLabel = original;
+      window.clearTimeout(Number(button.dataset.copyTimer));
 
       try {
-        await navigator.clipboard.writeText(text);
-        const original = label.textContent || 'Copy';
+        if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+        else fallbackCopy(text);
         label.textContent = 'Copied';
         button.classList.add('is-copied');
-        window.setTimeout(() => {
-          label.textContent = original;
-          button.classList.remove('is-copied');
-        }, 1600);
       } catch {
         label.textContent = 'Copy failed';
-        window.setTimeout(() => {
-          label.textContent = 'Copy';
-        }, 1600);
       }
+      button.dataset.copyTimer = String(window.setTimeout(() => {
+        label.textContent = original;
+        button.classList.remove('is-copied');
+      }, 1600));
     });
-  });
+  })();
 </script>

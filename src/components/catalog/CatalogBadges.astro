@@ -1,0 +1,29 @@
+---
+import type { Badge } from '../../lib/catalog';
+
+interface Props {
+	badges: Badge[];
+	label?: string;
+}
+
+const { badges, label } = Astro.props;
+---
+<div class="cat-badges" aria-label={label}>
+	{badges.map((badge) => (
+		<span class:list={['ds-badge', {
+			'ds-badge--live': badge.tone === 'live',
+			'ds-badge--accent': badge.tone === 'accent',
+			'ds-badge--warn': badge.tone === 'warn',
+			'ds-badge--muted': badge.tone === 'muted',
+			'cat-badge--info': badge.tone === 'info',
+			'cat-badge--plain': badge.tone === 'plain' || !badge.tone,
+		}]}>{badge.label}</span>
+	))}
+</div>
+
+<style>
+	.cat-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+	.cat-badge--info { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 40%, var(--border)); }
+	.cat-badge--plain::before { display: none; }
+	.cat-badge--plain { color: var(--muted); }
+</style>
