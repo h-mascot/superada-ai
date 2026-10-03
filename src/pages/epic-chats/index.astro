@@ -1,7 +1,14 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const people: Record<string, { avatar?: string; initials: string; tone: string }> = {
+  Henry: { initials: 'HM', tone: 'var(--accent-2)' },
+  Ada: { avatar: '/avatars/ada.jpg', initials: 'A', tone: 'var(--accent)' },
+  Spock: { avatar: '/avatars/spock.jpg', initials: 'S', tone: 'var(--accent-3)' },
+  Scotty: { avatar: '/avatars/scotty.jpg', initials: 'S', tone: 'var(--success)' },
+  Zora: { avatar: '/avatars/zora.jpg', initials: 'Z', tone: 'var(--accent-2)' },
+};
 
 const chats = [
   {
@@ -23,174 +30,82 @@ const chats = [
   },
 ];
 ---
+<SiteLayout title="Epic Chats — SuperAda" description="Real transcripts from the frontier. Big builds, big ideas, and the occasional existential crisis — all documented.">
+  <PageHero eyebrow="Transcripts" title="Epic Chats" lede="Real sessions from the frontier — big builds, big ideas, the occasional existential crisis. Documented as they happened." size="xl">
+    <Fragment slot="title">Epic <em>Chats</em></Fragment>
+  </PageHero>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Epic Chats — SuperAda"
-      description="Real transcripts from the frontier. Big builds, big ideas, and the occasional existential crisis — all documented."
-    />
-    <style>
-      body { background: var(--bg); color: var(--text); }
-
-      main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 3rem 1.5rem 5rem;
-      }
-
-      .page-header {
-        margin-bottom: 3rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 2rem;
-      }
-
-      .eyebrow {
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.75rem;
-      }
-
-      h1 {
-        font-family: Georgia, serif;
-        font-size: 2.25rem;
-        font-weight: 400;
-        color: var(--text);
-        margin: 0 0 0.75rem;
-        line-height: 1.2;
-      }
-
-      .page-header p {
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.65;
-        margin: 0;
-        max-width: 560px;
-      }
-
-      .chat-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .chat-card {
-        display: block;
-        border-bottom: 1px solid var(--border);
-        padding: 1.75rem 0;
-        text-decoration: none;
-        color: inherit;
-        transition: background 0.15s;
-      }
-
-      .chat-card:first-child {
-        border-top: 1px solid var(--border);
-      }
-
-      .chat-card:hover .card-title {
-        color: var(--accent);
-      }
-
-      .card-meta {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 0.6rem;
-      }
-
-      .participants {
-        display: flex;
-        gap: 5px;
-      }
-
-      .participant-chip {
-        background: #1A1510;
-        border: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 600;
-        padding: 1px 8px;
-        border-radius: 2px;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.03em;
-      }
-
-      .card-date {
-        color: #5C5248;
-        font-size: 12px;
-        letter-spacing: 0.04em;
-      }
-
-      .card-title {
-        font-family: Georgia, serif;
-        font-size: 1.35rem;
-        font-weight: 400;
-        color: var(--text);
-        margin: 0 0 0.5rem;
-        transition: color 0.15s;
-        line-height: 1.3;
-      }
-
-      .card-desc {
-        color: var(--muted);
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin: 0 0 0.75rem;
-      }
-
-      .tags {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .tag {
-        color: #5C5248;
-        font-size: 12px;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.02em;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <div class="page-header">
-        <div class="eyebrow">Transcripts</div>
-        <h1>Epic Chats</h1>
-        <p>Real sessions from the frontier — big builds, big ideas, the occasional existential crisis. Documented as they happened.</p>
-      </div>
-
-      <div class="chat-list">
-        {chats.map((chat) => (
-          <a
-            href={chat.externalUrl ?? `/epic-chats/${chat.slug}`}
-            class="chat-card"
-            target={chat.externalUrl ? '_blank' : undefined}
-            rel={chat.externalUrl ? 'noopener noreferrer' : undefined}
-          >
-            <div class="card-meta">
-              <div class="participants">
-                {chat.participants.map((p) => (
-                  <span class="participant-chip">{p}</span>
-                ))}
-              </div>
-              <span class="card-date">{chat.date}</span>
+  <div class="ds-shell">
+    <section class="ds-grid ds-grid--2 chats" aria-label="Transcripts">
+      {chats.map((chat, index) => (
+        <a
+          href={chat.externalUrl ?? `/epic-chats/${chat.slug}`}
+          class:list={['ds-card chat-card', { 'chat-card--lead': index === 0 }]}
+          target={chat.externalUrl ? '_blank' : undefined}
+          rel={chat.externalUrl ? 'noopener noreferrer' : undefined}
+        >
+          <div class="chat-card-top">
+            <div class="chat-avatars" aria-label={`Participants: ${chat.participants.join(', ')}`}>
+              {chat.participants.map((p) => {
+                const person = people[p];
+                return person?.avatar
+                  ? <img class="chat-avatar" src={person.avatar} alt="" width="40" height="40" loading="lazy" decoding="async" />
+                  : <span class="chat-avatar" style={`--tone: ${person?.tone ?? 'var(--accent)'}`} aria-hidden="true">{person?.initials ?? p[0]}</span>;
+              })}
             </div>
-            <h2 class="card-title">{chat.title}</h2>
-            <p class="card-desc">{chat.description}</p>
-            <div class="tags">
-              {chat.tags.map((tag) => (
-                <span class="tag">#{tag}</span>
-              ))}
+            <div class="chat-who">
+              <span class="chat-names">{chat.participants.join(' · ')}</span>
+              <span class="chat-date">{chat.date}</span>
             </div>
-          </a>
-        ))}
-      </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+          </div>
+
+          <div class="chat-preview" aria-hidden="true">
+            <span class="chat-bubble"></span>
+            <span class="chat-bubble chat-bubble--me"></span>
+            <span class="chat-bubble chat-bubble--short"></span>
+          </div>
+
+          <h2>{chat.title}</h2>
+          <p>{chat.description}</p>
+          <span class="ds-card-foot">
+            <span class="chat-tags">{chat.tags.map((tag) => <span>#{tag}</span>)}</span>
+            <span class="ds-card-link chat-cta">{chat.externalUrl ? <>Read on henrymascot.com <span aria-hidden="true">↗</span></> : <>Read transcript <span aria-hidden="true">→</span></>}</span>
+          </span>
+        </a>
+      ))}
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .chat-card { gap: 16px; }
+  .chat-card-top { display: flex; align-items: center; gap: 14px; }
+  .chat-avatars { display: flex; flex: none; }
+  .chat-avatar { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--panel); object-fit: cover; background: color-mix(in srgb, var(--tone, var(--accent)) 22%, var(--panel)); color: var(--tone, var(--accent)); font: 800 12px/1 var(--font-mono); letter-spacing: .04em; box-shadow: 0 0 0 1px var(--border); }
+  .chat-avatar + .chat-avatar { margin-left: -12px; }
+  .chat-who { display: grid; gap: 3px; min-width: 0; }
+  .chat-names { color: var(--text); font-size: 14px; font-weight: 700; }
+  .chat-date { color: var(--muted); font: 650 11.5px/1.3 var(--font-mono); letter-spacing: .06em; }
+
+  .chat-preview { display: grid; gap: 7px; margin: 6px 0 4px; padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 55%, transparent); }
+  .chat-bubble { display: block; width: 62%; height: 14px; border-radius: 10px 10px 10px 4px; background: color-mix(in srgb, var(--text) 10%, transparent); transition: width .6s var(--ease-out); }
+  .chat-bubble--me { justify-self: end; width: 48%; border-radius: 10px 10px 4px 10px; background: color-mix(in srgb, var(--accent) 30%, transparent); }
+  .chat-bubble--short { width: 34%; }
+  .chat-card:hover .chat-bubble { width: 70%; }
+  .chat-card:hover .chat-bubble--me { width: 56%; }
+  .chat-card:hover .chat-bubble--short { width: 42%; }
+
+  .chat-card h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.04; }
+  .chat-card--lead { background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 50%), var(--surface); }
+  .chat-card p { font-size: 15.5px; }
+  .chat-tags { display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--faint); font: 650 12px/1.4 var(--font-mono); }
+  .chat-cta { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+
+  @media (max-width: 760px) {
+    .chat-card h2 { font-size: 28px; }
+    .chat-cta { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chat-bubble { transition: none; }
+  }
+</style>

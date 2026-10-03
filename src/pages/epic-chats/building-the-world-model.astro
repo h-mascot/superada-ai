@@ -1,222 +1,70 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const people = {
+  Henry: { initials: 'HM', badge: 'Founder', side: 'me', tone: 'var(--accent-2)' },
+  Ada: { initials: 'ADA', badge: 'App', side: 'them', tone: 'var(--accent)', avatar: '/avatars/ada.jpg' },
+} as const;
+type Person = keyof typeof people;
+
+const messages: { a: Person; t: string; txt: string }[] = [
+  { a: 'Henry', t: '10:14 PM', txt: 'The autonomy architecture sim ran. Architecture E (Intent Graph) scored 8.28 composite but high cascade risk. D (Orchestrator Loop) is the stable all-rounder at 8.15.' },
+  { a: 'Ada', t: '10:14 PM', txt: 'Proposed: hybrid E+D — intent-graph dependency awareness inside a single orchestrator loop. Target: >8.5 composite.\n\nBut I think we\'re solving the wrong layer. You said "system model" should be the conceptual entities — Company, User, Agents, Goals — not LLM configs or cron schedules.' },
+  { a: 'Henry', t: '10:19 PM', txt: 'Right. The current system is a loose mesh. Agents operate in isolation without shared state. Fix that first.' },
+  { a: 'Ada', t: '10:19 PM', txt: 'Creating <code>world.json</code> — a canonical World Model. Single source of truth for all agents to reason from instead of isolated files.\n\nEntities: user, companies, agents, projects, signals, propagation_rules.' },
+  { a: 'Henry', t: '10:23 PM', txt: 'Soteria grounding for the model:\n• Pre-revenue, pre-SLA\n• Launching AI agent infrastructure for payer ops (stop loss + TPAs)\n• 10 hot leads, 100 total\n• Product: stop loss and TPAs right now' },
+  { a: 'Ada', t: '10:24 PM', txt: 'Updated world.json. Agent intents derived:\n• Spock → stop loss market research\n• Zora → payer ops content\n• Scotty → features to close pilots\n\nThree pi-research tracks established.' },
+  { a: 'Henry', t: '10:41 PM', txt: 'Three tracks:\n1. Propagation — how signals ripple across the crew\n2. Structure — optimal shape for the world model\n3. Co-evolution — how structure + propagation rules iterate together' },
+  { a: 'Ada', t: '10:41 PM', txt: 'Writing program.md for each track. Each gets the question, world.json grounding, and the simulator as the tool to run experiments against.\n\nKick them off now?' },
+  { a: 'Henry', t: '10:54 PM', txt: 'yeah' },
+  { a: 'Ada', t: '10:54 PM', txt: 'Launching:\n• Track 1 (propagation) → session <code>tide-cedar</code>\n• Track 2 (structure) → session <code>good-sage</code>\n• Track 3 (synthesis) → session <code>calm-tidepool</code>\n\nAll three running. Will ping when findings land.' },
+  { a: 'Ada', t: '11:08 PM', txt: 'All three pi runs completed.\n\n<strong>Track 1</strong>: Architecture E + selective propagation at scale 50 → composite <strong>8.85</strong>. Cascade failures: 10 (vs 44 broadcast). p99 latency: 0.299h.\n<strong>Track 2</strong>: Optimistic concurrency + field ownership recommended. v0.2 schema done.\n<strong>Track 3</strong>: E beats D at scale 20 (8.56 vs 8.36). Holds at scale 50 with 0.0 dep-wait.' },
+  { a: 'Henry', t: '11:08 PM', txt: 'I want to add a section on our resources page called Epic Chats\n\nwhere we publish our transcript for big ideas or big builds like this current session — clean up the transcript, publish it inside a UI like the watercooler post' },
+  { a: 'Ada', t: '11:09 PM', txt: '<em>building it</em>' },
+];
+
+const turns = messages.map((msg, i) => ({
+  ...msg,
+  first: messages[i - 1]?.a !== msg.a,
+  last: messages[i + 1]?.a !== msg.a,
+}));
+
+const findings = [
+  { title: 'Track 1 — Propagation', copy: 'Selective propagation (notify only subscribed agents) outperforms broadcast at scale. Dampening rules matter more than routing. An offline agent should buffer signals, not drop them.' },
+  { title: 'Track 2 — Structure', copy: 'Optimistic concurrency with field ownership is the right consistency model for concurrent agent writes. Typed hierarchical JSON beats flat JSON or event log for cold-start reads.' },
+  { title: 'Track 3 — Synthesis', copy: 'Architecture E (Intent Graph) inside a D (Orchestrator Loop) wrapper achieves >8.5 composite with controlled cascade risk. The world model must encode agent subscriptions, not just entity state.' },
+];
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Building the World Model — Epic Chats"
-      description="Henry and Ada design a shared cognitive architecture for the Enterprise Crew: world.json, three pi-research tracks, autonomy simulations, and the first multi-agent orchestration loop."
-    />
-    <style>
-      body { background: var(--bg); color: var(--text); }
-
-      main {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 3rem 1.5rem 5rem;
-      }
-
-      .back-link {
-        display: inline-block;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        text-decoration: none;
-        margin-bottom: 2rem;
-        transition: color 0.15s;
-      }
-      .back-link:hover { color: var(--accent); }
-
-      .page-meta {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 1rem;
-      }
-
-      .participant-chip {
-        background: #1A1510;
-        border: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 600;
-        padding: 2px 8px;
-        border-radius: 2px;
-        font-family: 'Courier New', monospace;
-        letter-spacing: 0.03em;
-      }
-
-      .page-date {
-        color: #5C5248;
-        font-size: 12px;
-        letter-spacing: 0.04em;
-      }
-
-      h1 {
-        font-family: Georgia, serif;
-        font-size: 2.25rem;
-        font-weight: 400;
-        color: var(--text);
-        margin: 0 0 0.875rem;
-        line-height: 1.2;
-      }
-
-      .subtitle {
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.65;
-        margin: 0 0 2.5rem;
-        max-width: 600px;
-      }
-
-      .context-box {
-        background: #110F0C;
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--accent);
-        border-radius: 0 4px 4px 0;
-        padding: 1.5rem 1.75rem;
-        margin-bottom: 2rem;
-      }
-
-      .context-box .eyebrow {
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.75rem;
-      }
-
-      .context-box p {
-        color: var(--muted);
-        font-size: 0.925rem;
-        line-height: 1.7;
-        margin: 0 0 0.75rem;
-      }
-
-      .context-box p:last-of-type { margin-bottom: 1.25rem; }
-
-      .context-box :global(code) {
-        background: #1A1510;
-        border: 1px solid var(--border);
-        padding: 1px 6px;
-        border-radius: 3px;
-        font-family: 'Courier New', monospace;
-        font-size: 87%;
-        color: var(--accent);
-      }
-
-      .stats {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-      }
-
-      .stat {
-        background: #1A1510;
-        border: 1px solid var(--border);
-        padding: 0.6rem 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-
-      .stat-label {
-        color: #5C5248;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .stat-value {
-        color: var(--accent);
-        font-size: 1.1rem;
-        font-weight: 700;
-        font-family: 'Courier New', monospace;
-      }
-
-      .findings {
-        margin-top: 3rem;
-        border-top: 1px solid var(--border);
-        padding-top: 2.5rem;
-      }
-
-      .findings h2 {
-        font-family: Georgia, serif;
-        font-size: 1.35rem;
-        font-weight: 400;
-        color: var(--text);
-        margin: 0 0 1.5rem;
-      }
-
-      .finding-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-      }
-
-      .finding {
-        background: var(--bg);
-        padding: 1.25rem;
-      }
-
-      .finding h3 {
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: var(--accent);
-        margin: 0 0 0.6rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-
-      .finding p {
-        color: var(--muted);
-        font-size: 0.875rem;
-        line-height: 1.65;
-        margin: 0;
-      }
-
-      .chat-embed {
-        margin: 2rem 0;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-      }
-
-      .chat-iframe {
-        width: 100%;
-        height: 700px;
-        border: none;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <a href="/epic-chats" class="back-link">← Epic Chats</a>
-
-      <div class="page-meta">
-        <span class="participant-chip">Henry</span>
-        <span class="participant-chip">Ada</span>
-        <span class="page-date">March 24, 2026</span>
+<SiteLayout title="Building the World Model — Epic Chats" description="Henry and Ada design a shared cognitive architecture for the Enterprise Crew: world.json, three pi-research tracks, autonomy simulations, and the first multi-agent orchestration loop.">
+  <PageHero eyebrow="Epic Chats · March 24, 2026" title="Building the World Model" lede="From autonomy architecture simulations to world.json — the session where the Enterprise Crew got a shared brain. Three pi-research runs. One canonical world model. The beginning of coherent multi-agent reasoning." size="lg">
+    <Fragment slot="title">Building the <em>World Model</em></Fragment>
+    <a href="/epic-chats" class="ds-btn ds-btn--ghost">← Epic Chats</a>
+    <a href="#transcript" class="ds-btn">Read the transcript <span aria-hidden="true">↓</span></a>
+    <Fragment slot="aside">
+      <div class="ds-panel wm-cast">
+        <span class="ds-card-kicker">In this session</span>
+        {(Object.keys(people) as Person[]).map((name) => {
+          const person = people[name];
+          return (
+            <div class="wm-cast-row">
+              {'avatar' in person
+                ? <img class="wm-av" src={person.avatar} alt="" width="44" height="44" />
+                : <span class="wm-av" style={`--tone: ${person.tone}`} aria-hidden="true">{person.initials}</span>}
+              <div><b>{name}</b><span>{person.badge}</span></div>
+              <span class="ds-badge ds-badge--muted">{messages.filter((m) => m.a === name).length} msgs</span>
+            </div>
+          );
+        })}
+        <div class="ds-meta wm-cast-meta"><span>#ops-brain</span><span>March 24, 2026</span><span>10:14–11:09 PM</span></div>
       </div>
+    </Fragment>
+  </PageHero>
 
-      <h1>Building the World Model</h1>
-      <p class="subtitle">
-        From autonomy architecture simulations to world.json — the session where the Enterprise Crew got a shared brain.
-        Three pi-research runs. One canonical world model. The beginning of coherent multi-agent reasoning.
-      </p>
-
-      <div class="context-box">
-        <div class="eyebrow">What happened here</div>
+  <div class="ds-shell wm">
+    <section class="ds-panel wm-context" aria-labelledby="wm-context-title">
+      <div class="wm-context-copy">
+        <span class="ds-eyebrow" id="wm-context-title">What happened here</span>
         <p>
           After running autonomy architecture simulations (6 architectures, scored across context sharing,
           failure resilience, and cascade risk), Henry and Ada realized they were solving the wrong problem.
@@ -228,50 +76,196 @@ import Footer from '../../components/Footer.astro';
           pi-research tracks to stress-test the design, and the first concrete answer to
           "how does a signal from Henry reach the right agents at the right time?"
         </p>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-label">Architecture E+D composite</span>
-            <span class="stat-value">8.85</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">p99 propagation latency</span>
-            <span class="stat-value">0.299h</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Scale tested</span>
-            <span class="stat-value">50 agents</span>
-          </div>
-        </div>
       </div>
+      <div class="ds-stats wm-stats">
+        <div class="ds-stat"><b>8.85</b><span>Architecture E+D composite</span></div>
+        <div class="ds-stat"><b>0.299h</b><span>p99 propagation latency</span></div>
+        <div class="ds-stat"><b>50 agents</b><span>Scale tested</span></div>
+      </div>
+    </section>
 
-      <div class="chat-embed">
-        <iframe
-          src="/epic-chats/world-model-embed.html"
-          class="chat-iframe"
-          title="Building the World Model — conversation transcript"
-          loading="lazy"
-          scrolling="yes"
-        ></iframe>
-      </div>
-
-      <div class="findings">
-        <h2>What we found</h2>
-        <div class="finding-grid">
-          <div class="finding">
-            <h3>Track 1 — Propagation</h3>
-            <p>Selective propagation (notify only subscribed agents) outperforms broadcast at scale. Dampening rules matter more than routing. An offline agent should buffer signals, not drop them.</p>
-          </div>
-          <div class="finding">
-            <h3>Track 2 — Structure</h3>
-            <p>Optimistic concurrency with field ownership is the right consistency model for concurrent agent writes. Typed hierarchical JSON beats flat JSON or event log for cold-start reads.</p>
-          </div>
-          <div class="finding">
-            <h3>Track 3 — Synthesis</h3>
-            <p>Architecture E (Intent Graph) inside a D (Orchestrator Loop) wrapper achieves &gt;8.5 composite with controlled cascade risk. The world model must encode agent subscriptions, not just entity state.</p>
-          </div>
+    <section class="wm-chat" id="transcript" aria-label="Building the World Model — conversation transcript" data-no-reveal>
+      <header class="wm-chat-head">
+        <div class="wm-chat-avs" aria-hidden="true">
+          {(Object.keys(people) as Person[]).map((name) => {
+            const person = people[name];
+            return 'avatar' in person
+              ? <img class="wm-av wm-av--sm" src={person.avatar} alt="" width="32" height="32" />
+              : <span class="wm-av wm-av--sm" style={`--tone: ${person.tone}`}>{person.initials}</span>;
+          })}
         </div>
+        <div class="wm-chat-title">
+          <b><span aria-hidden="true">#</span>ops-brain</b>
+          <span>Building the world model. No tasks. Just architecture.</span>
+        </div>
+        <span class="ds-badge ds-badge--live wm-chat-count">{messages.length} messages</span>
+      </header>
+
+      <div class="wm-day" role="separator"><span>March 24, 2026</span></div>
+
+      <ol class="wm-log" data-wm-log>
+        {turns.map((turn) => {
+          const person = people[turn.a];
+          return (
+            <li class:list={['wm-msg', `is-${person.side}`, { 'is-first': turn.first, 'is-last': turn.last }]} style={`--tone: ${person.tone}`}>
+              <div class="wm-msg-av" aria-hidden="true">
+                {turn.first && ('avatar' in person
+                  ? <img class="wm-av" src={person.avatar} alt="" width="36" height="36" loading="lazy" />
+                  : <span class="wm-av">{person.initials}</span>)}
+              </div>
+              <div class="wm-msg-body">
+                {turn.first && (
+                  <div class="wm-msg-meta">
+                    <b>{turn.a}</b>
+                    <span class="wm-msg-badge">{person.badge}</span>
+                    <time>{turn.t}</time>
+                  </div>
+                )}
+                {!turn.first && <span class="sr-only">{turn.a}, {turn.t}:</span>}
+                <div class="wm-bubble" set:html={turn.txt} />
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+
+      <footer class="wm-chat-foot">
+        <span>End of transcript</span>
+        <a href="/epic-chats/world-model-embed.html" target="_blank" rel="noopener">Open the original embed <span aria-hidden="true">↗</span></a>
+      </footer>
+    </section>
+
+    <section class="ds-section wm-findings" aria-labelledby="wm-findings-title">
+      <div class="ds-section-head">
+        <h2 class="ds-h2" id="wm-findings-title">What we found</h2>
       </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+      <div class="ds-grid ds-grid--3 ds-rail-sm">
+        {findings.map((finding, index) => (
+          <article class="ds-card">
+            <span class="ds-card-kicker">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{finding.title}</h3>
+            <p>{finding.copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <aside class="ds-cta-band">
+      <div>
+        <span class="ds-eyebrow">Epic Chats</span>
+        <p class="ds-h2">More transcripts from the frontier.</p>
+      </div>
+      <a class="ds-btn" href="/epic-chats">All Epic Chats <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
+
+  <Fragment slot="after"><script is:inline>
+    (() => {
+      const log = document.querySelector('[data-wm-log]');
+      if (!log || matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+      const fold = innerHeight * 0.9;
+      const items = [...log.children].filter((item) => item.getBoundingClientRect().top > fold);
+      if (!items.length) return;
+      log.classList.add('is-armed');
+      const io = new IntersectionObserver((entries) => {
+        entries.filter((entry) => entry.isIntersecting).forEach((entry, index) => {
+          entry.target.style.transitionDelay = `${Math.min(index, 4) * 70}ms`;
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+      items.forEach((item) => { item.classList.add('is-pending'); io.observe(item); });
+    })();
+  </script></Fragment>
+</SiteLayout>
+
+<style>
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .wm-av { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 50%; object-fit: cover; border: 1px solid color-mix(in srgb, var(--tone, var(--accent)) 45%, var(--border)); background: color-mix(in srgb, var(--tone, var(--accent)) 20%, var(--panel)); color: var(--tone, var(--accent)); font: 800 11px/1 var(--font-mono); letter-spacing: .04em; }
+  .wm-av--sm { width: 32px; height: 32px; font-size: 10px; border: 2px solid var(--panel); }
+
+  .wm-cast { display: grid; gap: 14px; padding: 22px 24px; border-radius: var(--radius-lg); }
+  .wm-cast-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+  .wm-cast-row .wm-av { width: 44px; height: 44px; font-size: 12px; }
+  .wm-cast-row div { display: grid; gap: 2px; }
+  .wm-cast-row b { color: var(--text); font-size: 15px; }
+  .wm-cast-row div span { color: var(--muted); font-size: 12.5px; }
+  .wm-cast-meta { padding-top: 12px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: 11.5px; }
+
+  .wm-context { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+  .wm-context-copy { display: grid; gap: 16px; }
+  .wm-context-copy p { color: var(--text-soft); font-size: 16.5px; line-height: 1.72; }
+  .wm-context code, .wm-bubble :global(code) { font: 650 .86em var(--font-mono); color: var(--accent); background: color-mix(in srgb, var(--bg) 60%, transparent); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
+  .wm-stats { flex-direction: column; gap: 22px; padding-left: clamp(0px, 3vw, 40px); border-left: 1px solid var(--border); }
+  .wm-stats .ds-stat b { font-size: clamp(34px, 3.6vw, 50px); color: var(--accent); }
+
+  .wm-chat { position: relative; max-width: 860px; margin: clamp(48px, 6vw, 88px) auto 0; border-radius: var(--radius-xl); border: 1px solid var(--surface-border); background: var(--surface); scroll-margin-top: var(--chrome-top); }
+  .wm-chat-head { position: sticky; top: var(--chrome-top); z-index: 5; display: flex; align-items: center; gap: 14px; padding: 14px clamp(16px, 2.4vw, 26px); border-radius: var(--radius-xl) var(--radius-xl) 0 0; border-bottom: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 86%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); transition: top .4s var(--ease-ios), border-radius .3s ease; }
+  .wm-chat-avs { display: flex; flex: none; }
+  .wm-chat-avs .wm-av + .wm-av { margin-left: -10px; }
+  .wm-chat-title { display: grid; gap: 2px; min-width: 0; }
+  .wm-chat-title b { color: var(--text); font-size: 15px; font-weight: 750; }
+  .wm-chat-title b span { margin-right: 2px; color: var(--muted); }
+  .wm-chat-title > span { overflow: hidden; color: var(--muted); font-size: 12.5px; text-overflow: ellipsis; white-space: nowrap; }
+  .wm-chat-count { margin-left: auto; }
+
+  .wm-day { display: flex; align-items: center; gap: 12px; margin: 22px clamp(16px, 2.4vw, 26px) 6px; color: var(--faint); font: 750 10.5px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+  .wm-day::before, .wm-day::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .wm-log { list-style: none; margin: 0; padding: 8px clamp(14px, 2.4vw, 26px) 12px; display: grid; }
+  .wm-msg { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; margin-top: 3px; }
+  .wm-msg.is-first { margin-top: 18px; }
+  .wm-msg-body { display: grid; justify-items: start; gap: 6px; min-width: 0; }
+  .wm-msg-meta { display: flex; align-items: baseline; gap: 8px; padding: 0 4px; }
+  .wm-msg-meta b { color: var(--tone); font-size: 14px; font-weight: 750; }
+  .wm-msg-badge { padding: 2px 6px; border-radius: 5px; border: 1px solid var(--border); color: var(--muted); font: 800 9px/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  .wm-msg-meta time { color: var(--faint); font: 600 11.5px/1 var(--font-mono); }
+  .wm-bubble { max-width: min(100%, 600px); padding: 11px 15px; border-radius: 6px 20px 20px 6px; border: 1px solid var(--border); background: color-mix(in srgb, var(--panel-soft) 75%, transparent); color: var(--text); font-size: 15.5px; line-height: 1.6; white-space: pre-line; overflow-wrap: anywhere; }
+  .wm-msg.is-first .wm-bubble { border-top-left-radius: 20px; }
+  .wm-msg.is-last .wm-bubble { border-bottom-left-radius: 20px; }
+  .wm-bubble :global(strong) { color: var(--text); font-weight: 750; }
+  .wm-bubble :global(em) { color: var(--muted); font-style: italic; }
+
+  .wm-msg.is-me { grid-template-columns: minmax(0, 1fr) 36px; }
+  .wm-msg.is-me .wm-msg-av { order: 2; }
+  .wm-msg.is-me .wm-msg-body { justify-items: end; }
+  .wm-msg.is-me .wm-msg-meta { flex-direction: row-reverse; }
+  .wm-msg.is-me .wm-bubble { border-radius: 20px 6px 6px 20px; border-color: color-mix(in srgb, var(--tone) 40%, var(--border)); background: color-mix(in srgb, var(--tone) 16%, var(--panel)); }
+  .wm-msg.is-me.is-first .wm-bubble { border-top-right-radius: 20px; }
+  .wm-msg.is-me.is-last .wm-bubble { border-bottom-right-radius: 20px; }
+
+  .wm-log.is-armed .wm-msg.is-pending { opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .55s var(--ease-out), transform .7s var(--ease-spring); }
+  .wm-log.is-armed .wm-msg.is-pending.is-me { transform-origin: right bottom; }
+  .wm-log.is-armed .wm-msg.is-pending:not(.is-me) { transform-origin: left bottom; }
+  .wm-log.is-armed .wm-msg.is-pending.is-in { opacity: 1; transform: none; }
+
+  .wm-chat-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 10px clamp(16px, 2.4vw, 26px); border-top: 1px solid var(--border); color: var(--faint); font: 700 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+  .wm-chat-foot a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--muted); letter-spacing: .1em; transition: color .2s ease; }
+  .wm-chat-foot a:hover { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .wm-context { grid-template-columns: 1fr; }
+    .wm-stats { flex-direction: row; flex-wrap: wrap; padding: 22px 0 0; border-left: 0; border-top: 1px solid var(--border); }
+  }
+  @media (max-width: 760px) {
+    .wm-context { padding: 24px 20px; border-radius: var(--radius-lg); }
+    .wm-context-copy p { font-size: 16px; }
+    .wm-stats { gap: 18px 26px; }
+    .wm-stats .ds-stat b { font-size: 32px; }
+    .wm-chat { margin-inline: calc(var(--gutter) * -1); border-radius: 0; border-inline: 0; }
+    .wm-chat-head { border-radius: 0; padding: 12px var(--gutter); }
+    .wm-chat-count { display: none; }
+    .wm-log { padding-inline: 12px; }
+    .wm-msg { grid-template-columns: 30px minmax(0, 1fr); gap: 8px; }
+    .wm-msg.is-me { grid-template-columns: minmax(0, 1fr); }
+    .wm-msg.is-me .wm-msg-av { display: none; }
+    .wm-msg-av .wm-av { width: 30px; height: 30px; font-size: 9.5px; }
+    .wm-bubble { max-width: 92%; font-size: 15px; padding: 10px 13px; }
+    .wm-msg.is-me .wm-bubble { max-width: 86%; }
+    .wm-day { margin-inline: var(--gutter); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wm-chat-head { transition: none; }
+  }
+</style>
