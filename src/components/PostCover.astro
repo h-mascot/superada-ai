@@ -17,7 +17,7 @@ const tone = hashOf(post.id) % 6;
 const firstTag = post.data.tags?.[0];
 const glyph = series ? series.issue : post.data.title.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase();
 ---
-<div class:list={['post-cover', className, { 'is-generated': !cover }]} data-post-media={postHref(post)} data-tone={tone}>
+<div class:list={['post-cover', className, { 'is-generated': !cover }]} data-morph={postHref(post)} data-tone={tone}>
 	{cover ? (
 		<Image src={cover} alt="" widths={widths} sizes={sizes} format="webp" loading={eager ? 'eager' : 'lazy'} decoding="async" />
 	) : (

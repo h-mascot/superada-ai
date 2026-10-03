@@ -64,18 +64,18 @@ const holdFirstRender = !Astro.url.pathname.startsWith('/openclaw-changelog');
 				const type = toRoot && (!back || fromRoot) ? 'tab' : back ? 'back' : 'forward';
 				event.viewTransition.types.add(type);
 
-				// Shared cover morph: the page we came from named its card or hero "post-media" in pageswap.
+				// Shared cover morph: the page we came from named its card or hero "hero-media" in pageswap.
 				if (!activation.from) return;
 				const pathOf = (url) => new URL(url).pathname.replace(/\/?$/, '/');
 				const fromPath = pathOf(activation.from.url);
-				const fromHasCards = fromPath === '/blog/' || fromPath.startsWith('/blog/');
+				const fromHasCards = /^\/($|blog\/|about\/|crew\/)/.test(fromPath);
 				const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
-				const cards = [...document.querySelectorAll('[data-post-media="' + fromPath + '"]')];
+				const cards = [...document.querySelectorAll('[data-morph="' + fromPath + '"]')];
 				const card = cards.find(visible) || cards[0];
-				const hero = document.querySelector('[data-post-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + scrollY < innerHeight * 1.6);
+				const hero = document.querySelector('[data-morph-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + scrollY < innerHeight * 1.6);
 				const target = card && (back || !hero) ? card : hero && fromHasCards ? hero : null;
 				if (!target) return;
-				target.style.viewTransitionName = 'post-media';
+				target.style.viewTransitionName = 'hero-media';
 				event.viewTransition.finished.finally(() => { target.style.viewTransitionName = ''; });
 			} catch {}
 		});

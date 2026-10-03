@@ -350,11 +350,11 @@
 		if (!event.viewTransition || !activation || !activation.entry) return;
 		const toPath = new URL(activation.entry.url).pathname.replace(/\/?$/, '/');
 		const back = activation.navigationType === 'traverse' && activation.from && activation.entry.index < activation.from.index;
-		const fromClick = lastClicked && new URL(lastClicked.href).pathname.replace(/\/?$/, '/') === toPath ? lastClicked.querySelector('[data-post-media]') : null;
-		const card = fromClick || document.querySelector(`[data-post-media="${toPath}"]`);
-		const hero = document.querySelector('[data-post-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + window.scrollY < window.innerHeight * 1.6);
-		const target = card && !back ? card : hero && toPath.startsWith('/blog/') ? hero : null;
-		if (target) target.style.viewTransitionName = 'post-media';
+		const fromClick = lastClicked && new URL(lastClicked.href).pathname.replace(/\/?$/, '/') === toPath ? lastClicked.querySelector('[data-morph]') : null;
+		const card = fromClick || document.querySelector(`[data-morph="${toPath}"]`);
+		const hero = document.querySelector('[data-morph-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + window.scrollY < window.innerHeight * 1.6);
+		const target = card && !back ? card : hero && /^\/($|blog\/|about\/|crew\/)/.test(toPath) ? hero : null;
+		if (target) target.style.viewTransitionName = 'hero-media';
 	});
 
 	/* ---------- Post table of contents: highlight the section being read ---------- */

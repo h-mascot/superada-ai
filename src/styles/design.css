@@ -115,10 +115,10 @@ html[data-theme="neon"] .ds-chip[aria-pressed="true"] { color: #021014; }
 }
 
 /* Shared-element morph between a card cover and the post hero. */
-::view-transition-group(post-media) { animation-duration: .55s; animation-timing-function: var(--ease-out, ease); z-index: 50; }
-::view-transition-old(post-media), ::view-transition-new(post-media) { height: 100%; object-fit: cover; overflow: hidden; }
-::view-transition-old(post-media) { animation: none; opacity: 0; }
-::view-transition-new(post-media) { animation: none; }
+::view-transition-group(hero-media) { animation-duration: .55s; animation-timing-function: var(--ease-out, ease); z-index: 50; }
+::view-transition-old(hero-media), ::view-transition-new(hero-media) { height: 100%; object-fit: cover; overflow: hidden; }
+::view-transition-old(hero-media) { animation: none; opacity: 0; }
+::view-transition-new(hero-media) { animation: none; }
 
 /* ---------- Page hero ---------- */
 

@@ -1,0 +1,61 @@
+---
+import { entryRowsHtml, formatCount, type Entry } from './format';
+
+interface Props {
+	entries: Entry[];
+	offset?: number;
+	changeCount: number;
+	fixCount: number;
+	version: string;
+	headingLevel?: 'h2' | 'h4';
+}
+
+const { entries, offset = 0, changeCount, fixCount, version, headingLevel = 'h4' } = Astro.props;
+const Heading = headingLevel;
+const changes = entries.filter((entry) => entry.kind === 'change');
+const fixes = entries.filter((entry) => entry.kind === 'fix');
+const range = (start: number, length: number, total: number) =>
+	length === total ? `${formatCount(total)} total` : `${formatCount(start + 1)}–${formatCount(start + length)} of ${formatCount(total)}`;
+const groups = [
+	changes.length && { kind: 'Changes', entries: changes, offset, range: range(offset, changes.length, changeCount) },
+	fixes.length && { kind: 'Fixes', entries: fixes, offset: offset + changes.length, range: range(Math.max(0, offset - changeCount), fixes.length, fixCount) },
+].filter(Boolean) as { kind: string; entries: Entry[]; offset: number; range: string }[];
+---
+{groups.map((group) => (
+	<div class:list={['cl-group', `cl-group--${group.kind.toLowerCase()}`]}>
+		<Heading class="cl-group-head"><span>{group.kind}</span><small>{group.range}</small></Heading>
+		<ol class="cl-list" aria-label={`${version} ${group.kind.toLowerCase()}`} data-no-reveal set:html={entryRowsHtml(group.entries, group.offset, changeCount)} />
+	</div>
+))}
+
+<style>
+	.cl-group + .cl-group { margin-top: 36px; }
+	.cl-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; color: var(--accent); font: 800 11px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.cl-group--fixes .cl-group-head { color: var(--success); }
+	.cl-group-head small { color: var(--faint); font: 650 11.5px/1 var(--font-mono); letter-spacing: .04em; text-transform: none; }
+	.cl-list { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--border); }
+	.cl-list :global(.cl-row) { border-bottom: 1px solid var(--border); content-visibility: auto; contain-intrinsic-size: auto 76px; scroll-margin-top: calc(var(--chrome-top) + 104px); }
+	.cl-list :global(.cl-row a) { display: grid; grid-template-columns: 52px minmax(0, 1fr) 20px; gap: 16px; align-items: start; padding: 18px 14px; margin: 0 -14px; border-radius: var(--radius-sm); color: var(--text); transition: background-color .2s ease; }
+	.cl-list :global(.cl-n) { padding-top: 3px; color: var(--accent); font: 750 12px/1.2 var(--font-mono); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+	.cl-list :global(.cl-row--fix .cl-n) { color: var(--success); }
+	.cl-list :global(.cl-copy) { display: grid; gap: 6px; min-width: 0; }
+	.cl-list :global(.cl-copy b) { font-weight: 620; font-size: 16px; line-height: 1.42; color: var(--text); overflow-wrap: anywhere; text-wrap: pretty; transition: color .2s ease; }
+	.cl-list :global(.cl-copy small) { color: var(--muted); font-size: 14.5px; line-height: 1.62; overflow-wrap: anywhere; text-wrap: pretty; }
+	.cl-list :global(.cl-go) { padding-top: 2px; color: var(--accent); opacity: .35; transition: opacity .2s ease, transform .3s var(--ease-out); }
+	.cl-list :global(.cl-row:target a) { background: color-mix(in srgb, var(--accent-soft) 70%, transparent); box-shadow: inset 3px 0 0 var(--accent); }
+	@media (hover: hover) {
+		.cl-list :global(.cl-row a:hover) { background: color-mix(in srgb, var(--panel-soft) 70%, transparent); }
+		.cl-list :global(.cl-row a:hover b) { color: var(--accent); }
+		.cl-list :global(.cl-row a:hover .cl-go) { opacity: 1; transform: translate(2px, -2px); }
+	}
+	@media (max-width: 760px) {
+		.cl-list :global(.cl-row a) { grid-template-columns: 38px minmax(0, 1fr); gap: 10px; padding: 16px 8px; margin: 0 -8px; }
+		.cl-list :global(.cl-go) { display: none; }
+		.cl-list :global(.cl-copy b) { font-size: 15.5px; }
+		.cl-list :global(.cl-copy small) { font-size: 14px; }
+		.cl-list :global(.cl-row a:active) { background: color-mix(in srgb, var(--panel-soft) 70%, transparent); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.cl-list :global(.cl-row a), .cl-list :global(.cl-go) { transition: none; }
+	}
+</style>
