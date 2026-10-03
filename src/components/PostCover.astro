@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import { coverFor, hashOf, postHref, seriesOf, type Post } from '../lib/posts';
+
+interface Props {
+	post: Post;
+	widths?: number[];
+	sizes?: string;
+	eager?: boolean;
+	class?: string;
+}
+
+const { post, widths = [480, 800], sizes = '(max-width: 760px) 92vw, 33vw', eager = false, class: className } = Astro.props;
+const cover = coverFor(post);
+const series = seriesOf(post.data.title);
+const tone = hashOf(post.id) % 6;
+const firstTag = post.data.tags?.[0];
+const glyph = series ? series.issue : post.data.title.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase();
+---
+<div class:list={['post-cover', className, { 'is-generated': !cover }]} data-post-media={postHref(post)} data-tone={tone}>
+	{cover ? (
+		<Image src={cover} alt="" widths={widths} sizes={sizes} format="webp" loading={eager ? 'eager' : 'lazy'} decoding="async" />
+	) : (
+		<div class="post-cover-art" aria-hidden="true">
+			<span class="post-cover-kicker">{series ? series.name : firstTag ?? 'Ship Log'}</span>
+			<span class="post-cover-glyph">{series ? <><small>#</small>{glyph}</> : glyph}</span>
+			<span class="post-cover-rings"></span>
+		</div>
+	)}
+</div>
