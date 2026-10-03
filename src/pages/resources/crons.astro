@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Crons - SuperAda Resources" description="Scheduled agent operations, triage routines, heartbeat checks, and publishing automation." /></head>
-	<body><Header /><ResourceAtlas active="crons" mode="crons" /><Footer /></body>
-</html>
+<SiteLayout title="Crons - SuperAda Resources" description="Scheduled agent operations, triage routines, heartbeat checks, and publishing automation.">
+	<ResourceAtlas active="crons" mode="crons" />
+</SiteLayout>

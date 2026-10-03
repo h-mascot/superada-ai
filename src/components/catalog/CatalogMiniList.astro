@@ -1,0 +1,43 @@
+---
+import type { CatalogLink } from '../../lib/catalog';
+
+interface Props {
+	title: string;
+	items: CatalogLink[];
+}
+
+const { title, items } = Astro.props;
+---
+{items.length > 0 && (
+	<nav class="ds-panel cat-mini" aria-label={title} data-no-reveal>
+		<span class="cat-mini-title">{title}</span>
+		<ul>
+			{items.map((item) => (
+				<li>
+					<a href={item.href}>
+						<b>{item.title}</b>
+						<span>{item.tagline}</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+)}
+
+<style>
+	.cat-mini { padding: 22px 14px 14px; border-radius: var(--radius-lg); }
+	.cat-mini-title { display: block; margin: 0 10px 10px; color: var(--accent); font: 800 10.5px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.cat-mini ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+	.cat-mini a { display: grid; gap: 4px; padding: 12px 10px; border-radius: var(--radius-sm); transition: background-color .25s ease, transform .35s var(--ease-out); }
+	.cat-mini b { color: var(--text); font: 500 18px/1.2 var(--font-display); letter-spacing: -.02em; transition: color .2s ease; }
+	.cat-mini a span { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+	@media (hover: hover) {
+		.cat-mini a:hover { background: color-mix(in srgb, var(--panel-soft) 70%, transparent); transform: translateX(3px); }
+		.cat-mini a:hover b { color: var(--accent); }
+	}
+	@media (max-width: 760px) {
+		.cat-mini { padding: 20px 10px 10px; }
+		.cat-mini a span { font-size: 15px; }
+	}
+	@media (prefers-reduced-motion: reduce) { .cat-mini a { transition: none; } }
+</style>

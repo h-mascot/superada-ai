@@ -93,7 +93,7 @@
 		'.home-card', '.resource-card', '.stat-card', '.mascot-card', '.docs-card', '.docs-panel', '.case-card', '.card', '.panel',
 		'.featured-card', '.analysis-card', '.version-card', '.agent-card', '.trust-card', '.vertical-card', '.timeline-item',
 		'.post-item', '.highlight-box', '.submit-card', '.subscribe-form', '.agent-subscribe-card', '.edition-card', '.under-card',
-		'.trek-item', '.stat-row', '.article-hero-motion', '.transcript-row', '.footer-cta', '.post-card', '.post-hero', '.tl-card',
+		'.trek-item', '.stat-row', '.article-hero-motion', '.transcript-row', '.footer-cta', '.post-card', '.post-hero', '.tl-card', '.ds-card', '.ds-panel', '.ds-cta-band', '.ds-stat',
 	].join(',');
 	const REVEAL_EXCLUDE = '.world-scroll, .scroll-world-engine, .cmdk, .app-sheet, .site-header, [data-no-reveal]';
 
@@ -121,7 +121,7 @@
 
 	/* ---------- Card spotlight + ambient light (desktop only) ---------- */
 
-	const SPOT = '.post-card, .tl-card, .home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .analysis-card, .version-card, .agent-card, .trust-card, .vertical-card, .submit-card, .edition-card, .timeline-item, .subscribe-form, .agent-subscribe-card, .panel';
+	const SPOT = '.post-card, .tl-card, a.ds-card, .ds-card--feature, .home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .analysis-card, .version-card, .agent-card, .trust-card, .vertical-card, .submit-card, .edition-card, .timeline-item, .subscribe-form, .agent-subscribe-card, .panel';
 
 	if (finePointer.matches) {
 		let spotTarget = null;
@@ -350,11 +350,11 @@
 		if (!event.viewTransition || !activation || !activation.entry) return;
 		const toPath = new URL(activation.entry.url).pathname.replace(/\/?$/, '/');
 		const back = activation.navigationType === 'traverse' && activation.from && activation.entry.index < activation.from.index;
-		const fromClick = lastClicked && new URL(lastClicked.href).pathname.replace(/\/?$/, '/') === toPath ? lastClicked.querySelector('[data-post-media]') : null;
-		const card = fromClick || document.querySelector(`[data-post-media="${toPath}"]`);
-		const hero = document.querySelector('[data-post-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + window.scrollY < window.innerHeight * 1.6);
-		const target = card && !back ? card : hero && toPath.startsWith('/blog/') ? hero : null;
-		if (target) target.style.viewTransitionName = 'post-media';
+		const fromClick = lastClicked && new URL(lastClicked.href).pathname.replace(/\/?$/, '/') === toPath ? lastClicked.querySelector('[data-morph]') : null;
+		const card = fromClick || document.querySelector(`[data-morph="${toPath}"]`);
+		const hero = document.querySelector('[data-morph-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + window.scrollY < window.innerHeight * 1.6);
+		const target = card && !back ? card : hero && /^\/($|blog\/|about\/|crew\/)/.test(toPath) ? hero : null;
+		if (target) target.style.viewTransitionName = 'hero-media';
 	});
 
 	/* ---------- Post table of contents: highlight the section being read ---------- */

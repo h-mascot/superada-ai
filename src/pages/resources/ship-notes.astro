@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Ship Notes - SuperAda Resources" description="Mission updates, changelogs, weekly roundups, and decisions from the bridge." /></head>
-	<body><Header /><ResourceAtlas active="ship-notes" mode="ship-notes" /><Footer /></body>
-</html>
+<SiteLayout title="Ship Notes - SuperAda Resources" description="Mission updates, changelogs, weekly roundups, and decisions from the bridge.">
+	<ResourceAtlas active="ship-notes" mode="ship-notes" />
+</SiteLayout>

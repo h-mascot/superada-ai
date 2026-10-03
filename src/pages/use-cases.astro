@@ -1,7 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import NavIcon from '../components/NavIcon.astro';
+import PageHero from '../components/PageHero.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 
 const title = 'Use Cases - SuperAda';
 const description = 'Plain-English examples of how Henry and the Enterprise Crew use agents for research, meetings, inboxes, shipping, and operations.';
@@ -115,7 +115,8 @@ const useCases = [
     connects: 'Henry’s YouTube accounts, read through an authenticated browser on his own machine, plus his learning target and the queue backlog.',
     givesBack: 'A daily scorecard of learning hours against target, a prioritized backlog of videos worth revisiting, and takeaways proposed as todos.',
     humanGate: 'Insights arrive as proposals; nothing becomes a todo until Henry approves. He sees aggregates like hours and counts, not a view-by-view log.',
-    image: '/use-cases/youtube-learning.webp'
+    image: '/use-cases/youtube-learning.webp',
+    story: '/use-cases/youtube-learning-tracker'
   },
               ];
 const setupSteps = [
@@ -125,48 +126,61 @@ const setupSteps = [
   'Write the approval boundary before the automation runs.',
   'Keep receipts, so the output can be checked instead of trusted.'
 ];
+const slug = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const areas = new Set(useCases.map((item) => item.category)).size;
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-  <body class="use-cases-page">
-    <Header />
-    <main>
-      <section class="hero shell">
-        <h1>Henry’s agent use cases</h1>
-        <p class="lede">These are plain examples of how Henry and the Enterprise Crew use agents in daily work. Not a prompt library. Not a raw catalog. Just the recurring jobs, what each one connects to, what comes back, and where the human approval line sits.</p>
-      </section>
+<SiteLayout title={title} description={description}>
+  <PageHero eyebrow="Use cases" title="Henry’s agent use cases" lede="These are plain examples of how Henry and the Enterprise Crew use agents in daily work. Not a prompt library. Not a raw catalog. Just the recurring jobs, what each one connects to, what comes back, and where the human approval line sits." size="lg">
+    <Fragment slot="title">Henry’s agent <em>use cases</em></Fragment>
+    <a class="ds-btn" href="#examples">See the examples <span aria-hidden="true">↓</span></a>
+    <a class="ds-btn ds-btn--ghost" href="/resources/agent-workflow-atlas/">Workflow atlas</a>
+    <Fragment slot="aside">
+      <div class="ds-stats uc-stats">
+        <div class="ds-stat"><b>{useCases.length}</b><span>recurring jobs mapped</span></div>
+        <div class="ds-stat"><b>{areas}</b><span>areas of work</span></div>
+        <div class="ds-stat"><b>{useCases.filter((item) => item.humanGate).length}/{useCases.length}</b><span>with a written approval line</span></div>
+      </div>
+    </Fragment>
+  </PageHero>
 
-      <section class="shell intro-grid" aria-label="What the page covers">
-        <article>
-          <h2>Readable by a normal operator</h2>
-          <p>Each example explains the work in human terms. “Meeting prep” is easier to understand than “calendar-aware contextual synthesis loop,” which sounds like a SaaS landing page got trapped in a blender.</p>
-        </article>
-        <article>
-          <h2>Built around approval</h2>
-          <p>The useful part is not just that an agent can act. It is knowing what it can do alone, what it should draft, and where it must stop for Henry.</p>
-        </article>
-      </section>
+  <div class="ds-shell">
+    <section class="ds-grid ds-grid--2 uc-intro" aria-label="What the page covers">
+      <article class="ds-card">
+        <span class="ds-card-icon"><NavIcon name="docs" /></span>
+        <h2>Readable by a normal operator</h2>
+        <p>Each example explains the work in human terms. “Meeting prep” is easier to understand than “calendar-aware contextual synthesis loop,” which sounds like a SaaS landing page got trapped in a blender.</p>
+      </article>
+      <article class="ds-card ds-card--feature">
+        <span class="ds-card-icon"><NavIcon name="shield" /></span>
+        <h2>Built around approval</h2>
+        <p>The useful part is not just that an agent can act. It is knowing what it can do alone, what it should draft, and where it must stop for Henry.</p>
+      </article>
+    </section>
 
-      <section id="examples" class="shell examples" aria-labelledby="examples-title">
-        <p class="eyebrow">Examples</p>
-        <h2 id="examples-title">How the system gets used</h2>
-        <div class="case-list">
-          {useCases.map((item) => (
-            <article class="case-card">
-              {item.image && (
-                <div class="case-figure">
-                  <img src={item.image} alt={`Illustration: ${item.title}`} width="1024" height="576" loading="lazy" />
-                </div>
-              )}
-              <div class="case-topline">
-                <span>{item.category}</span>
+    <section id="examples" class="ds-section uc-examples" aria-labelledby="examples-title">
+      <div class="uc-examples-head">
+        <span class="ds-eyebrow">Examples</span>
+        <h2 class="ds-h2" id="examples-title">How the system gets used</h2>
+      </div>
+      <nav class="uc-index" aria-label="Jump to a use case" data-no-reveal>
+        {useCases.map((item) => <a class="ds-chip" href={`#${slug(item.title)}`}>{item.title}</a>)}
+      </nav>
+
+      <div class="uc-list">
+        {useCases.map((item, index) => (
+          <article class:list={['uc-case', { 'is-flipped': index % 2 === 1 }]} id={slug(item.title)}>
+            {item.image && (
+              <div class="uc-figure" style={`--art: url('${item.image}')`}>
+                <img src={item.image} alt={`Illustration: ${item.title}`} width="1024" height="576" loading="lazy" decoding="async" />
+              </div>
+            )}
+            <div class="uc-copy">
+              <div class="uc-topline">
+                <span class="ds-card-kicker"><span>{String(index + 1).padStart(2, '0')}</span>{item.category}</span>
                 <h3>{item.title}</h3>
                 <p>{item.summary}</p>
               </div>
-              <dl>
+              <dl class="uc-facts">
                 <div>
                   <dt>When it runs</dt>
                   <dd>{item.runs}</dd>
@@ -179,321 +193,120 @@ const setupSteps = [
                   <dt>What Henry gets back</dt>
                   <dd>{item.givesBack}</dd>
                 </div>
-                <div>
-                  <dt>Where the human stays in charge</dt>
+                <div class="uc-gate">
+                  <dt><NavIcon name="shield" />Where the human stays in charge</dt>
                   <dd>{item.humanGate}</dd>
                 </div>
               </dl>
-            </article>
-          ))}
-        </div>
-      </section>
+              {item.story && <a class="ds-card-link uc-story" href={item.story}>Read the full story <span aria-hidden="true">→</span></a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
 
-      <section class="shell setup" aria-labelledby="setup-title">
-        <div>
-          <p class="eyebrow">Setup pattern</p>
-          <h2 id="setup-title">The recipe is boring on purpose</h2>
-          <p>Good agent workflows are not magic. They are clear inputs, a narrow job, a delivery route, and a gate. The boring version works. The cinematic version sends you a 19-page report no one asked for and calls it strategy.</p>
-        </div>
-        <ol>
-          {setupSteps.map((step) => <li>{step}</li>)}
-        </ol>
-      </section>
+    <section class="ds-section ds-panel uc-setup" aria-labelledby="setup-title">
+      <div class="uc-setup-head">
+        <span class="ds-eyebrow">Setup pattern</span>
+        <h2 class="ds-h2" id="setup-title">The recipe is boring on purpose</h2>
+        <p>Good agent workflows are not magic. They are clear inputs, a narrow job, a delivery route, and a gate. The boring version works. The cinematic version sends you a 19-page report no one asked for and calls it strategy.</p>
+      </div>
+      <ol class="uc-steps">
+        {setupSteps.map((step, index) => <li><span class="uc-step-n">{String(index + 1).padStart(2, '0')}</span><span>{step}</span></li>)}
+      </ol>
+    </section>
 
-      <section class="shell more">
-        <a class="more-link" href="/resources/agent-workflow-atlas/">See more<span>The full workflow atlas, with every mapped use case and filters by agent and category.</span></a>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+    <a class="ds-cta-band uc-more" href="/resources/agent-workflow-atlas/">
+      <div>
+        <span class="ds-eyebrow">Workflow atlas</span>
+        <span class="ds-h2">See more</span>
+        <p>The full workflow atlas, with every mapped use case and filters by agent and category.</p>
+      </div>
+      <span class="ds-btn" aria-hidden="true">Open the atlas <span>→</span></span>
+    </a>
+  </div>
+</SiteLayout>
 
 <style>
-  :global(body.use-cases-page) {
-    background: radial-gradient(circle at top left, rgba(248, 96, 42, 0.16), transparent 28rem), #080706;
-    color: #f7efe7;
+  .uc-stats { display: grid; gap: 0; padding-bottom: 8px; }
+  .uc-stats .ds-stat { grid-template-columns: 120px minmax(0, 1fr); align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .uc-stats .ds-stat:last-child { border-bottom: 0; }
+  .uc-stats .ds-stat b { font-size: clamp(36px, 3.6vw, 52px); color: var(--accent); }
+
+  .uc-examples-head { display: grid; gap: 14px; margin-bottom: 22px; }
+  .uc-index { position: sticky; top: var(--chrome-top); z-index: 20; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1) 28px; padding: 12px var(--gutter); background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent); transition: top .4s var(--ease-ios); }
+  .uc-index::-webkit-scrollbar { display: none; }
+  .uc-index .ds-chip { flex: none; }
+
+  .uc-list { display: grid; gap: clamp(20px, 2.6vw, 32px); }
+  .uc-case { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); overflow: hidden; overflow: clip; border-radius: var(--radius-xl); border: 1px solid var(--surface-border); background: var(--surface); scroll-margin-top: calc(var(--chrome-top) + 80px); transition: border-color .3s ease, box-shadow .5s ease; }
+  .uc-case.is-flipped { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); }
+  .uc-case.is-flipped .uc-figure { order: 2; border-right: 0; border-left: 1px solid var(--border); }
+  @media (hover: hover) {
+    .uc-case:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--surface-border)); box-shadow: var(--lift); }
+    .uc-case:hover .uc-figure img { transform: scale(1.035); }
+  }
+  .uc-figure { position: relative; overflow: hidden; overflow: clip; display: grid; place-items: start center; min-height: 100%; padding: clamp(16px, 2vw, 28px); border-right: 1px solid var(--border); background: #0b0a09; isolation: isolate; }
+  .uc-figure::before { content: ''; position: absolute; inset: -10%; z-index: -1; background: var(--art) center / cover no-repeat; filter: blur(34px) saturate(1.3) brightness(.55); transform: scale(1.1); }
+  .uc-figure img { position: sticky; top: calc(var(--chrome-top) + 96px); width: 100%; height: auto; max-height: 520px; object-fit: contain; display: block; border-radius: var(--radius-md); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); transition: transform 1.1s var(--ease-out); }
+  .uc-copy { display: grid; gap: 20px; align-content: start; padding: clamp(24px, 3vw, 40px); }
+  .uc-topline { display: grid; gap: 12px; }
+  .uc-topline .ds-card-kicker span { color: var(--faint); }
+  .uc-topline h3 { font: 500 clamp(28px, 2.8vw, 40px)/1.02 var(--font-display); letter-spacing: -.045em; color: var(--text); text-wrap: balance; }
+  .uc-topline p { color: var(--text-soft); font-size: 16.5px; line-height: 1.6; }
+  .uc-facts { display: grid; margin: 0; }
+  .uc-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 13px 0; border-top: 1px solid var(--border); }
+  .uc-facts dt { display: flex; align-items: flex-start; gap: 8px; color: var(--muted); font: 750 10.5px/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+  .uc-facts dd { margin: 0; color: var(--text-soft); font-size: 15px; line-height: 1.6; }
+  .uc-facts > .uc-gate { grid-template-columns: 1fr; gap: 8px; margin-top: 6px; padding: 16px 18px; border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--border)); border-radius: var(--radius-md); background: color-mix(in srgb, var(--accent-soft) 55%, transparent); }
+  .uc-gate dt { color: var(--accent); }
+  .uc-gate dt :global(.nav-icon) { width: 16px; height: 16px; flex: none; margin-top: -1px; }
+  .uc-gate dd { color: var(--text); }
+  .uc-story { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; justify-self: start; }
+
+  .uc-setup { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 64px); }
+  .uc-setup-head { display: grid; gap: 14px; align-content: start; }
+  .uc-setup-head p { color: var(--muted); font-size: 16px; line-height: 1.65; }
+  .uc-steps { list-style: none; margin: 0; padding: 0; display: grid; counter-reset: step; }
+  .uc-steps li { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); color: var(--text); font-size: 16.5px; line-height: 1.5; }
+  .uc-steps li:last-child { border-bottom: 0; }
+  .uc-step-n { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); background: var(--accent-soft); color: var(--accent); font: 750 12.5px/1 var(--font-mono); }
+  .uc-steps li:not(:last-child) .uc-step-n::after { content: ''; position: absolute; left: 22px; top: calc(50% + 24px); height: calc(50% - 8px); width: 1px; background: linear-gradient(var(--accent), transparent); opacity: .5; }
+
+  .uc-more { color: var(--text); }
+  .uc-more .ds-h2 { display: block; }
+  .uc-more .ds-btn span { transition: transform .35s var(--ease-spring); }
+  @media (hover: hover) {
+    .uc-more { transition: border-color .3s ease, box-shadow .5s ease, transform .45s var(--ease-out); }
+    .uc-more:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--surface-border)); box-shadow: var(--lift); }
+    .uc-more:hover .ds-btn span { transform: translateX(4px); }
   }
 
-  .shell {
-    width: min(1120px, calc(100vw - 32px));
-    margin: 0 auto;
+  @media (max-width: 1080px) {
+    .uc-facts > div { grid-template-columns: 1fr; gap: 6px; }
   }
-
-  .hero {
-    padding: 7rem 0 3.5rem;
-  }
-
-  .case-figure {
-    margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-
-  .case-figure img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px 12px 0 0;
-  }
-
-  .hero-figure {
-    margin: 3rem 0 0;
-    padding: 0;
-  }
-
-  .hero-figure img {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    display: block;
-  }
-
-  .hero-figure figcaption {
-    margin-top: 0.85rem;
-    font-size: 0.85rem;
-    color: #9aa3b2;
-    letter-spacing: 0.01em;
-  }
-
-  .eyebrow,
-  .case-topline span {
-    display: inline-flex;
-    width: fit-content;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    color: #ffb088;
-    font-weight: 800;
-  }
-
-  h1,
-  h2,
-  h3,
-  p,
-  dl,
-  dd,
-  ol {
-    margin: 0;
-  }
-
-  h1 {
-    max-width: 1120px;
-    margin-top: 0;
-    font-size: clamp(2.1rem, 5vw, 3.4rem);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 560px) {
-    h1 {
-      font-size: 2rem;
-      white-space: normal;
-      line-height: 1.1;
-    }
-  }
-
-  .lede {
-    max-width: 820px;
-    margin-top: 1.4rem;
-    color: #d8c6b9;
-    font-size: clamp(1.08rem, 2vw, 1.3rem);
-    line-height: 1.55;
-  }
-
-  .intro-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    padding: 0 0 3rem;
-  }
-
-  .intro-grid article,
-  .case-card,
-  .setup {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.055);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
-  }
-
-  .intro-grid article {
-    border-radius: 28px;
-    padding: 1.4rem;
-  }
-
-  .intro-grid h2,
-  .examples h2,
-  .setup h2 {
-    font-size: clamp(1.7rem, 3vw, 3rem);
-    line-height: 1;
-    letter-spacing: -0.05em;
-  }
-
-  .intro-grid p,
-  .setup p {
-    margin-top: 0.9rem;
-    color: #d8c6b9;
-    line-height: 1.65;
-  }
-
-  .examples,
-  .setup {
-    margin-top: 1rem;
-  }
-
-  .examples {
-    padding: 2rem 0 3rem;
-  }
-
-  .examples h2 {
-    margin-top: 0.5rem;
-  }
-
-  .case-list {
-    display: grid;
-    gap: 1rem;
-    margin-top: 1.4rem;
-  }
-
-  .case-card {
-    border-radius: 30px;
-    overflow: hidden;
-  }
-
-  .case-topline {
-    padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03));
-  }
-
-  .case-topline h3 {
-    margin-top: 0.5rem;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    letter-spacing: -0.045em;
-  }
-
-  .case-topline p {
-    max-width: 860px;
-    margin-top: 0.65rem;
-    color: #e4d2c5;
-    line-height: 1.55;
-  }
-
-  dl {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  dl > div {
-    padding: 1.1rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  dl > div:last-child {
-    border-right: 0;
-  }
-
-  dt {
-    color: #ffb088;
-    font-size: 0.76rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 850;
-  }
-
-  dd {
-    margin-top: 0.6rem;
-    color: #d8c6b9;
-    line-height: 1.55;
-    font-size: 0.95rem;
-  }
-
-  .setup {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 2rem;
-    border-radius: 30px;
-    padding: 1.6rem;
-    margin-bottom: 4rem;
-  }
-
-  .setup h2 {
-    margin-top: 0.55rem;
-  }
-
-  .setup ol {
-    display: grid;
-    gap: 0.75rem;
-    padding-left: 1.2rem;
-    color: #f7efe7;
-  }
-
-  .setup li {
-    padding-left: 0.3rem;
-    color: #d8c6b9;
-    line-height: 1.5;
-  }
-
-  .more {
-    margin-bottom: 4.5rem;
-  }
-
-  .more-link {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: baseline;
-    column-gap: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03));
-    border-radius: 30px;
-    padding: 1.5rem 1.7rem;
-    text-decoration: none;
-  }
-
-  .more-link:hover {
-    border-color: rgba(255, 176, 136, 0.55);
-  }
-
-  .more-link {
-    color: #f7efe7;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 800;
-    letter-spacing: -0.045em;
-  }
-
-  .more-link span {
-    color: #d8c6b9;
-    font-size: 0.95rem;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1.5;
-  }
-
   @media (max-width: 900px) {
-    .intro-grid,
-    dl,
-    .setup {
-      grid-template-columns: 1fr;
-    }
-
-    .more-link {
-      grid-template-columns: 1fr;
-      row-gap: 0.35rem;
-    }
-
-    dl > div {
-      border-right: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    dl > div:last-child {
-      border-bottom: 0;
-    }
+    .uc-case, .uc-case.is-flipped { grid-template-columns: 1fr; }
+    .uc-case.is-flipped .uc-figure { order: 0; border-left: 0; }
+    .uc-figure { min-height: 0; padding: 0; border-right: 0; border-bottom: 1px solid var(--border); }
+    .uc-figure { place-items: center; }
+    .uc-figure img { position: static; width: auto; max-width: 100%; max-height: 380px; border-radius: 0; box-shadow: 0 0 40px rgba(0, 0, 0, .4); }
+    .uc-setup { grid-template-columns: 1fr; }
   }
-
-  @media (max-width: 560px) {
-    .hero {
-      padding-top: 5rem;
-    }
+  @media (max-width: 760px) {
+    .uc-stats .ds-stat { grid-template-columns: 92px minmax(0, 1fr); padding: 10px 0; }
+    .uc-stats .ds-stat b { font-size: 34px; }
+    .uc-case { border-radius: var(--radius-lg); }
+    .uc-copy { padding: 20px 18px 22px; gap: 16px; }
+    .uc-topline h3 { font-size: 30px; }
+    .uc-topline p { font-size: 16px; }
+    .uc-index .ds-chip { min-height: 44px; }
+    .uc-index { margin-bottom: 20px; }
+    .uc-setup { padding: 24px 20px; border-radius: var(--radius-lg); }
+    .uc-steps li { font-size: 16px; }
+    .uc-case { scroll-margin-top: 80px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .uc-figure img, .uc-case, .uc-more, .uc-more .ds-btn span, .uc-index { transition: none; }
   }
 </style>

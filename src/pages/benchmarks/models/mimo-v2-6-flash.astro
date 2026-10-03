@@ -1,7 +1,9 @@
 ---
-import BaseHead from '../../../components/BaseHead.astro';
-import Header from '../../../components/Header.astro';
-import Footer from '../../../components/Footer.astro';
+import BenchCompare from '../../../components/benchmarks/BenchCompare.astro';
+import type { CompareRow } from '../../../components/benchmarks/types';
+import ScoreRing from '../../../components/benchmarks/ScoreRing.astro';
+import PageHero from '../../../components/PageHero.astro';
+import SiteLayout from '../../../layouts/SiteLayout.astro';
 import snapshot from '../../../../public/benchboard/api/benchmarks.json';
 
 const runId = '2026-09-22-v4.1-n5-mimo-v2.6-flash';
@@ -9,112 +11,267 @@ const run = snapshot.runs.find((item) => item.name === runId);
 const model = snapshot.index.models.find((item) => item.runId === runId);
 if (!run || !model) throw new Error('Published MiMo benchmark run is missing');
 const tasks = model.tasks.map((task) => ({
-  id: task.id,
-  name: task.name,
-  mean: task.perDimension?.fixture_mean,
-  passes: task.perDimension?.passes,
-  scored: task.perDimension?.n_scored,
+	id: task.id,
+	name: task.name,
+	mean: task.perDimension?.fixture_mean,
+	passes: task.perDimension?.passes,
+	scored: task.perDimension?.n_scored,
+	track: task.trackLabel,
 }));
 const percent = model.percentage.toFixed(1);
 const ci = [61.1, 76.8];
----
+const weakest = tasks.find((task) => task.id === 'v41_t15');
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title="MiMo V2.6 Flash — Benchmark detail — SuperAda" description="DGX Spark serving details and the verified Text Agent V4.1 n=5 benchmark result for MiMo V2.6 Flash." />
-    <style>
-      .mimo-main { max-width: 1100px; margin: auto; padding: 3rem 1.5rem 5rem; }
-      .mimo-back { display: inline-block; color: var(--accent); margin-bottom: 1.25rem; }
-      .mimo-hero { padding: 2rem; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
-      .mimo-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); }
-      .mimo-hero h1 { font: 400 clamp(2rem, 5vw, 3.5rem)/1.1 Georgia, serif; margin: .6rem 0 1rem; }
-      .mimo-hero p, .mimo-section p, .mimo-section li { color: var(--text-soft); line-height: 1.65; }
-      .mimo-hero p { max-width: 790px; margin-bottom: 0; }
-      .mimo-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin: 1rem 0 2rem; }
-      .mimo-metric, .mimo-section { padding: 1.25rem; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
-      .mimo-metric span { display: block; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
-      .mimo-metric strong { display: block; font-size: 1.3rem; margin-top: .45rem; }
-      .mimo-section { margin-top: 1rem; }
-      .mimo-section h2 { font: 400 1.65rem Georgia, serif; margin: 0 0 .8rem; }
-      .mimo-section ul { margin-bottom: 0; padding-left: 1.3rem; }
-      .mimo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-      .mimo-grid .mimo-section { margin-top: 0; }
-      .mimo-table-wrap { overflow-x: auto; }
-      .mimo-table { width: 100%; border-collapse: collapse; text-align: left; }
-      .mimo-table th, .mimo-table td { padding: .7rem .5rem; border-bottom: 1px solid var(--border); }
-      .mimo-table th { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
-      .mimo-table td { color: var(--text-soft); }
-      .mimo-table td:first-child { color: var(--text); }
-      .mimo-table td:nth-child(n+3) { font-variant-numeric: tabular-nums; white-space: nowrap; }
-      .mimo-code { font-family: monospace; overflow-wrap: anywhere; }
-      .mimo-section a { color: var(--accent); overflow-wrap: anywhere; }
-      @media (max-width: 700px) { .mimo-metrics, .mimo-grid { grid-template-columns: 1fr 1fr; } }
-      @media (max-width: 480px) { .mimo-metrics, .mimo-grid { grid-template-columns: 1fr; } .mimo-hero { padding: 1.4rem; } }
-    </style>
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    <main class="mimo-main">
-      <a class="mimo-back" href="/benchmarks/">← Back to BenchBoard</a>
-      <section class="mimo-hero">
-        <span class="mimo-eyebrow">Model detail · Text Agent V4.1</span>
-        <h1>MiMo V2.6 Flash</h1>
-        <p>XiaomiMiMo/MiMo-V2.6-Flash-RL served locally on two DGX Spark nodes through Citadel. The published benchmark route is <span class="mimo-code">{model.route}</span>. This is the original scored model, separate from the optional uncensored checkpoint.</p>
-      </section>
-      <div class="mimo-metrics">
-        <div class="mimo-metric"><span>Overall score</span><strong>{percent}%</strong></div>
-        <div class="mimo-metric"><span>95% interval</span><strong>{ci[0]}–{ci[1]}%</strong></div>
-        <div class="mimo-metric"><span>Coverage</span><strong>40/40 runs</strong></div>
-        <div class="mimo-metric"><span>Execution lane</span><strong>DGX Spark</strong></div>
-      </div>
-      <div class="mimo-grid">
-        <section class="mimo-section">
-          <h2>Serving route</h2>
-          <ul>
-            <li>Two DGX Spark nodes: U2 serves the API; U1 is the tensor-parallel worker.</li>
-            <li>Citadel request model: <span class="mimo-code">{model.requestModel}</span>.</li>
-            <li>Observed response model: <span class="mimo-code">{model.responseModel}</span>.</li>
-            <li>Transport: <span class="mimo-code">{model.transport}</span>. The compute lane is local, despite the Citadel proxy.</li>
-          </ul>
-        </section>
-        <section class="mimo-section">
-          <h2>Benchmark method</h2>
-          <ul>
-            <li>Eight Text Agent V4.1 tasks, five predeclared runs per task.</li>
-            <li>Judge: <span class="mimo-code">google/gemini-3.1-pro-preview</span>. MiMo did not judge itself.</li>
-            <li>Each task contributes one eighth of the aggregate. The displayed score rounds {model.score * 100}% to {percent}%.</li>
-            <li>Run ID: <span class="mimo-code">{runId}</span>.</li>
-          </ul>
-        </section>
-      </div>
-      <section class="mimo-section">
-        <h2>Task results</h2>
-        <div class="mimo-table-wrap">
-          <table class="mimo-table">
-            <thead><tr><th>Task</th><th>Capability</th><th>Mean score</th><th>Passes</th></tr></thead>
-            <tbody>
-              {tasks.map((task) => (
-                <tr><td>{task.id}</td><td>{task.name}</td><td>{(task.mean * 100).toFixed(1)}%</td><td>{task.passes}/{task.scored}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-      <section class="mimo-section">
-        <h2>What the score says</h2>
-        <p>The weakest task was cron failure recovery, <strong>v41_t15</strong>: {((tasks.find((task) => task.id === 'v41_t15')?.mean ?? 0) * 100).toFixed(1)}% mean and 0/5 passes. The responses missed critical diagnosis and recovery requirements. The recovered second run was scored under the original judge protocol; its earlier transport failure was kept as separate evidence. The final campaign covers all 40 scheduled cells.</p>
-        <p>This score is for the original <span class="mimo-code">daystrom-mimo/mimo-v2.6-flash</span> route. It does not evaluate the uncensored/ablated MiMo variant. Audio support and production suitability outside this benchmark are not established by this result.</p>
-      </section>
-      <section class="mimo-section">
-        <h2>Published evidence</h2>
-        <ul>
-          <li><a href="/api/benchmarks">BenchBoard benchmark API</a> — the public run, task rows, route metadata, and score.</li>
-          <li>Artifact checksum: <span class="mimo-code">{model.artifactChecksum}</span>.</li>
-          <li>Run status: <span class="mimo-code">{model.status}</span>; benchmark version: <span class="mimo-code">{model.suiteVersion}</span>.</li>
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+const tracks = Object.entries(model.trackBreakdown ?? {})
+	.map(([key, value]) => ({ key, label: key.replace(/^[A-Z]-/, '').replace(/-/g, ' '), code: key.split('-')[0], value: Number(value) }))
+	.sort((a, b) => b.value - a.value);
+const tone = (value: number) => (value >= 85 ? 'high' : value >= 60 ? 'mid' : 'low');
+
+const field = snapshot.index.models
+	.filter((item) => item.suiteVersion === model.suiteVersion && item.status === 'success' && typeof item.percentage === 'number')
+	.sort((a, b) => b.percentage - a.percentage);
+const position = field.findIndex((item) => item.runId === runId);
+const toRow = (item: (typeof field)[number], index: number): CompareRow => ({
+	rank: index + 1,
+	label: item.shortName || item.model,
+	score: item.percentage,
+	display: `${item.percentage.toFixed(1)}%`,
+	meta: item.provider ?? undefined,
+	current: item.runId === runId,
+});
+const windowStart = Math.max(3, position - 3);
+const windowEnd = Math.min(field.length, position + 4);
+const compareRows: CompareRow[] = [
+	...field.slice(0, 3).map((item, i) => toRow(item, i)),
+	...(windowStart > 3 ? [{ gap: windowStart - 3 }] : []),
+	...field.slice(windowStart, windowEnd).map((item, i) => toRow(item, windowStart + i)),
+	...(windowEnd < field.length ? [{ gap: field.length - windowEnd }] : []),
+];
+const fieldMedian = field[Math.floor(field.length / 2)]?.percentage ?? 0;
+---
+<SiteLayout title="MiMo V2.6 Flash — Benchmark detail — SuperAda" description="DGX Spark serving details and the verified Text Agent V4.1 n=5 benchmark result for MiMo V2.6 Flash." mainClass="mimo-page">
+	<div class="ds-shell mimo-back-row"><a class="mimo-back" href="/benchmarks/">← Back to BenchBoard</a></div>
+
+	<PageHero eyebrow="Model detail · Text Agent V4.1" title="MiMo V2.6 Flash" size="lg" id="mimo-title">
+		<div class="mimo-lede">
+			<p class="ds-lede">XiaomiMiMo/MiMo-V2.6-Flash-RL served locally on two DGX Spark nodes through Citadel. The published benchmark route is <span class="mimo-code">{model.route}</span>. This is the original scored model, separate from the optional uncensored checkpoint.</p>
+		</div>
+		<a class="ds-btn" href="#tasks">Task results <span aria-hidden="true">↓</span></a>
+		<a class="ds-btn ds-btn--ghost" href="/api/benchmarks">Benchmark API</a>
+		<div slot="aside" class="mimo-score ds-panel" data-no-reveal>
+			<ScoreRing value={model.percentage} display={percent} unit="%" label="Overall score" />
+			<div class="mimo-ci" aria-label={`95% interval ${ci[0]} to ${ci[1]} percent`}>
+				<div class="mimo-ci-track" style={`--lo:${ci[0]}%;--hi:${ci[1]}%;--pt:${model.percentage}%`} aria-hidden="true"><span class="mimo-ci-band"></span><span class="mimo-ci-pt"></span></div>
+				<div class="mimo-ci-axis" aria-hidden="true"><span>0</span><span>50</span><span>100</span></div>
+			</div>
+			<div class="mimo-metrics">
+				<div class="mimo-metric"><span>Overall score</span><strong>{percent}%</strong></div>
+				<div class="mimo-metric"><span>95% interval</span><strong>{ci[0]}–{ci[1]}%</strong></div>
+				<div class="mimo-metric"><span>Coverage</span><strong>40/40 runs</strong></div>
+				<div class="mimo-metric"><span>Execution lane</span><strong>DGX Spark</strong></div>
+			</div>
+		</div>
+	</PageHero>
+
+	<div class="ds-shell">
+		<section aria-labelledby="tracks-title">
+			<div class="ds-section-head">
+				<div class="mimo-head"><span class="ds-eyebrow">Per-track breakdown</span><h2 class="ds-h2" id="tracks-title">Where the points came from</h2></div>
+				<span class="mimo-head-meta">{model.suites.join(' · ')}</span>
+			</div>
+			<div class="ds-grid ds-rail-sm mimo-tracks" style="--min: 148px">
+				{tracks.map((track) => (
+					<div class={`ds-card mimo-track is-${tone(track.value)}`}>
+						<span class="ds-card-kicker"><span class="mimo-track-code">{track.code}</span><span class="mimo-track-label">{track.label}</span></span>
+						<b>{track.value.toFixed(1)}<small>%</small></b>
+						<span class="mimo-bar" style={`--w:${track.value}%`} aria-hidden="true"><i></i></span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<div class="ds-section ds-grid ds-grid--2 mimo-grid">
+			<section class="ds-card mimo-section">
+				<span class="ds-card-kicker">Infrastructure</span>
+				<h2>Serving route</h2>
+				<ul>
+					<li>Two DGX Spark nodes: U2 serves the API; U1 is the tensor-parallel worker.</li>
+					<li>Citadel request model: <span class="mimo-code">{model.requestModel}</span>.</li>
+					<li>Observed response model: <span class="mimo-code">{model.responseModel}</span>.</li>
+					<li>Transport: <span class="mimo-code">{model.transport}</span>. The compute lane is local, despite the Citadel proxy.</li>
+				</ul>
+			</section>
+			<section class="ds-card mimo-section">
+				<span class="ds-card-kicker">Protocol</span>
+				<h2>Benchmark method</h2>
+				<ul>
+					<li>Eight Text Agent V4.1 tasks, five predeclared runs per task.</li>
+					<li>Judge: <span class="mimo-code">google/gemini-3.1-pro-preview</span>. MiMo did not judge itself.</li>
+					<li>Each task contributes one eighth of the aggregate. The displayed score rounds {model.score * 100}% to {percent}%.</li>
+					<li>Run ID: <span class="mimo-code">{runId}</span>.</li>
+				</ul>
+			</section>
+		</div>
+
+		<section class="ds-section" id="tasks" aria-labelledby="tasks-title">
+			<div class="ds-section-head">
+				<div class="mimo-head"><span class="ds-eyebrow">Eight tasks · five runs each</span><h2 class="ds-h2" id="tasks-title">Task results</h2></div>
+			</div>
+			<div class="mimo-table-wrap">
+				<table class="mimo-table">
+					<thead><tr><th scope="col">Task</th><th scope="col">Capability</th><th scope="col">Mean score</th><th scope="col">Passes</th></tr></thead>
+					<tbody>
+						{tasks.map((task) => (
+							<tr class={`is-${tone((task.mean ?? 0) * 100)}`}>
+								<td>{task.id}</td>
+								<td><span class="mimo-cap">{task.name}</span>{task.track && <small class="mimo-cap-track">{task.track}</small>}</td>
+								<td><span class="mimo-cell-score"><b>{(task.mean * 100).toFixed(1)}%</b><span class="mimo-bar" style={`--w:${(task.mean ?? 0) * 100}%`} aria-hidden="true"><i></i></span></span></td>
+								<td><span class="mimo-passes"><b>{task.passes}/{task.scored}</b><span class="mimo-dots" aria-hidden="true">{Array.from({ length: task.scored ?? 0 }, (_, i) => <i class:list={{ 'is-pass': i < (task.passes ?? 0) }}></i>)}</span></span></td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="ds-section mimo-says ds-panel" aria-labelledby="says-title">
+			<div class="mimo-head">
+				<span class="ds-eyebrow">Reading the result</span>
+				<h2 class="ds-h2" id="says-title">What the score says</h2>
+			</div>
+			<div class="mimo-says-copy">
+				<p>The weakest task was cron failure recovery, <strong>v41_t15</strong>: {((weakest?.mean ?? 0) * 100).toFixed(1)}% mean and 0/5 passes. The responses missed critical diagnosis and recovery requirements. The recovered second run was scored under the original judge protocol; its earlier transport failure was kept as separate evidence. The final campaign covers all 40 scheduled cells.</p>
+				<p>This score is for the original <span class="mimo-code">daystrom-mimo/mimo-v2.6-flash</span> route. It does not evaluate the uncensored/ablated MiMo variant. Audio support and production suitability outside this benchmark are not established by this result.</p>
+			</div>
+		</section>
+
+		{position >= 0 && (
+			<section class="ds-section" id="compare" aria-labelledby="compare-title">
+				<div class="ds-section-head">
+					<div class="mimo-head"><span class="ds-eyebrow">Comparison</span><h2 class="ds-h2" id="compare-title">Against the {model.suiteVersion} field</h2></div>
+					<a href="/benchmarks/">Full BenchBoard <span aria-hidden="true">→</span></a>
+				</div>
+				<div class="mimo-compare">
+					<div class="ds-panel mimo-compare-panel">
+						<BenchCompare rows={compareRows} label={`Text Agent ${model.suiteVersion} results around MiMo V2.6 Flash`} />
+					</div>
+					<aside class="mimo-compare-note">
+						<p class="mimo-rank"><b>#{position + 1}</b><span>of {field.length} successful {model.suiteVersion} runs</span></p>
+						<dl class="ds-kv">
+							<div><dt>Field leader</dt><dd>{field[0].percentage.toFixed(1)}%</dd></div>
+							<div><dt>Field median</dt><dd>{fieldMedian.toFixed(1)}%</dd></div>
+							<div><dt>MiMo V2.6 Flash</dt><dd>{percent}%</dd></div>
+						</dl>
+					</aside>
+				</div>
+			</section>
+		)}
+
+		<section class="ds-section mimo-evidence ds-panel" aria-labelledby="evidence-title">
+			<div class="mimo-head">
+				<span class="ds-eyebrow">Provenance</span>
+				<h2 class="ds-h2" id="evidence-title">Published evidence</h2>
+			</div>
+			<ul>
+				<li><a href="/api/benchmarks">BenchBoard benchmark API</a> — the public run, task rows, route metadata, and score.</li>
+				<li>Artifact checksum: <span class="mimo-code">{model.artifactChecksum}</span>.</li>
+				<li>Run status: <span class="mimo-code">{model.status}</span>; benchmark version: <span class="mimo-code">{model.suiteVersion}</span>.</li>
+			</ul>
+		</section>
+	</div>
+</SiteLayout>
+
+<style>
+	:global(.mimo-page .page-hero.has-aside) { align-items: center; }
+	.mimo-back-row { padding-top: clamp(20px, 3vw, 36px); margin-bottom: calc(clamp(44px, 7vw, 108px) * -1 + 12px); }
+	.mimo-back { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 13px; font-weight: 700; transition: color .2s ease; }
+	.mimo-back:hover { color: var(--accent); }
+	.mimo-lede { flex-basis: 100%; margin: -4px 0 8px; }
+	.mimo-code { font-family: var(--font-mono); font-size: .86em; color: var(--text); background: color-mix(in srgb, var(--panel-soft) 80%, transparent); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; overflow-wrap: anywhere; }
+
+	.mimo-score { display: grid; justify-items: center; gap: 22px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--radius-lg); }
+	.mimo-ci { width: 100%; display: grid; gap: 8px; }
+	.mimo-ci-track { position: relative; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--border) 70%, transparent); }
+	.mimo-ci-band { position: absolute; top: 0; bottom: 0; left: var(--lo); right: calc(100% - var(--hi)); border-radius: inherit; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 35%, transparent), color-mix(in srgb, var(--accent) 60%, transparent), color-mix(in srgb, var(--accent) 35%, transparent)); }
+	.mimo-ci-pt { position: absolute; top: 50%; left: var(--pt); width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--accent); border: 3px solid var(--panel); box-shadow: 0 0 14px var(--glow); }
+	.mimo-ci-axis { display: flex; justify-content: space-between; color: var(--faint); font: 650 10px/1 var(--font-mono); }
+	.mimo-metrics { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--border); }
+	.mimo-metric { display: grid; gap: 6px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+	.mimo-metric:nth-child(odd) { padding-right: 14px; border-right: 1px solid var(--border); }
+	.mimo-metric:nth-child(even) { padding-left: 16px; }
+	.mimo-metric:nth-last-child(-n + 2) { border-bottom: 0; padding-bottom: 0; }
+	.mimo-metric span { color: var(--muted); font: 750 10px/1.2 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.mimo-metric strong { color: var(--text); font: 500 22px/1.1 var(--font-display); letter-spacing: -.02em; }
+
+	.mimo-head { display: grid; gap: 12px; }
+	.ds-section-head > a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+	.mimo-head-meta { color: var(--muted); font: 650 12px/1.3 var(--font-mono); text-align: right; }
+
+	.mimo-track { gap: 14px; padding: 20px; }
+	.mimo-track b { margin-top: auto; }
+	.mimo-track.is-high { --tone: var(--success); }
+	.mimo-track.is-mid { --tone: var(--accent); }
+	.mimo-track.is-low { --tone: #f78d72; }
+	.mimo-track .ds-card-kicker { flex-direction: column; align-items: flex-start; gap: 10px; color: var(--text-soft); line-height: 1.4; letter-spacing: .1em; }
+	.mimo-track-label { min-width: 0; max-width: 100%; overflow-wrap: anywhere; min-height: 2.8em; }
+	.mimo-track-code { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 7px; background: color-mix(in srgb, var(--tone) 16%, transparent); color: var(--tone); flex: 0 0 auto; }
+	.mimo-track b { font: 500 44px/1 var(--font-display); letter-spacing: -.05em; color: var(--text); font-variant-numeric: tabular-nums; }
+	.mimo-track b small { font-size: .45em; color: var(--muted); margin-left: 2px; }
+	.mimo-bar { position: relative; display: block; height: 6px; border-radius: 999px; background: color-mix(in srgb, var(--border) 70%, transparent); overflow: hidden; }
+	.mimo-bar i { position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit; background: var(--tone, var(--accent)); }
+
+	.mimo-section ul { list-style: none; padding: 0; gap: 12px; }
+	.mimo-section li { position: relative; padding-left: 18px; color: var(--text-soft); }
+	.mimo-section li::before { content: ''; position: absolute; left: 0; top: .72em; width: 7px; height: 1px; background: var(--accent); }
+
+	.mimo-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); -webkit-overflow-scrolling: touch; }
+	.mimo-table { width: 100%; min-width: 640px; border-collapse: collapse; text-align: left; }
+	.mimo-table th, .mimo-table td { padding: 16px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+	.mimo-table tbody tr:last-child td { border-bottom: 0; }
+	.mimo-table th { color: var(--muted); font: 800 10.5px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; background: color-mix(in srgb, var(--panel-soft) 60%, transparent); }
+	.mimo-table td { color: var(--text-soft); font-size: 14.5px; }
+	.mimo-table td:first-child { color: var(--text); font: 700 13px/1 var(--font-mono); white-space: nowrap; }
+	.mimo-table tr.is-high { --tone: var(--success); }
+	.mimo-table tr.is-mid { --tone: var(--accent); }
+	.mimo-table tr.is-low { --tone: #f78d72; }
+	.mimo-cap { display: block; color: var(--text); line-height: 1.45; }
+	.mimo-cap-track { display: block; margin-top: 4px; color: var(--faint); font: 650 11px/1 var(--font-mono); letter-spacing: .06em; }
+	.mimo-cell-score { display: grid; gap: 8px; min-width: 130px; }
+	.mimo-cell-score b { color: var(--tone); font: 700 14px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+	.mimo-passes { display: grid; gap: 8px; white-space: nowrap; }
+	.mimo-passes b { color: var(--text); font: 700 13px/1 var(--font-mono); }
+	.mimo-dots { display: flex; gap: 4px; }
+	.mimo-dots i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--border-strong); }
+	.mimo-dots i.is-pass { background: var(--success); border-color: var(--success); }
+
+	.mimo-says { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(20px, 4vw, 56px); }
+	.mimo-says-copy { display: grid; gap: 16px; color: var(--text-soft); font-size: 16.5px; line-height: 1.7; }
+	.mimo-says-copy strong { color: var(--text); font-family: var(--font-mono); font-size: .92em; }
+
+	.mimo-compare { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(240px, .7fr); gap: clamp(20px, 3vw, 40px); align-items: start; }
+	.mimo-compare-panel { padding: clamp(10px, 1.4vw, 18px); border-radius: var(--radius-lg); }
+	.mimo-compare-note { display: grid; gap: 18px; }
+	.mimo-rank { display: grid; gap: 6px; }
+	.mimo-rank b { font: 500 clamp(64px, 7vw, 104px)/.9 var(--font-display); letter-spacing: -.06em; color: var(--text); }
+	.mimo-rank span { color: var(--muted); font: 750 10.5px/1.3 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+
+	.mimo-evidence { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(20px, 4vw, 56px); }
+	.mimo-evidence ul { list-style: none; margin: 0; padding: 0; display: grid; }
+	.mimo-evidence li { padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text-soft); line-height: 1.6; }
+	.mimo-evidence li:first-child { padding-top: 0; }
+	.mimo-evidence li:last-child { border-bottom: 0; }
+	.mimo-evidence a { color: var(--accent); font-weight: 650; overflow-wrap: anywhere; }
+
+	@media (max-width: 980px) {
+		.mimo-back-row { margin-bottom: -40px; }
+		.mimo-says, .mimo-evidence, .mimo-compare { grid-template-columns: 1fr; }
+		.mimo-compare-note { order: -1; }
+	}
+	@media (max-width: 760px) {
+		.mimo-back-row { padding-top: 10px; margin-bottom: -26px; }
+		.mimo-head-meta { display: none; }
+		.mimo-tracks > * { flex-basis: 62%; }
+		.mimo-track b { font-size: 38px; }
+		.mimo-rank b { font-size: 64px; }
+	}
+</style>

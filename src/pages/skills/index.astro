@@ -1,85 +1,102 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CatalogCard from '../../components/catalog/CatalogCard.astro';
+import CatalogCrossBand from '../../components/catalog/CatalogCrossBand.astro';
+import CatalogFilterBar from '../../components/catalog/CatalogFilterBar.astro';
+import CatalogHeroMeta from '../../components/catalog/CatalogHeroMeta.astro';
+import CatalogStats from '../../components/catalog/CatalogStats.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 import { publishedSkills } from '../../data/skills';
+import { catalogs, clawhubLinkFor, countBy } from '../../lib/catalog';
 
 const skills = [...publishedSkills].sort((a, b) => a.title.localeCompare(b.title));
 const availabilityLabel = {
   'agent-installable': 'Agent-installable',
   manual: 'Manual setup',
 } as const;
-const availabilityColor = {
-  'agent-installable': '#059669',
-  manual: 'var(--accent)',
+const availabilityTone = {
+  'agent-installable': 'live',
+  manual: 'accent',
 } as const;
+
+const byAvailability = countBy(skills, (skill) => skill.availability);
+const byCategory = [...countBy(skills, (skill) => skill.category)].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const chips = [{ value: 'All', label: 'All', count: skills.length }, ...byCategory.map(([category, count]) => ({ value: category, label: category, count }))];
+const onClawhub = skills.filter((skill) => clawhubLinkFor(skill)).length;
+const otherCatalogs = catalogs.filter((catalog) => catalog.href !== '/skills/');
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Skills — SuperAda"
-      description="Public Enterprise Crew skills with source links, install contracts, and honest installability labels."
+<SiteLayout
+  title="Skills — SuperAda"
+  description="Public Enterprise Crew skills with source links, install contracts, and honest installability labels."
+>
+  <PageHero
+    eyebrow="Skills"
+    title="Public skill pages"
+    lede="These pages point at the real public skill sources. If a skill is agent-installable, the page shows the exact source spec and install command. If it is not, the page says so plainly instead of bluffing."
+    id="skills-title"
+  >
+    <Fragment slot="title">Public <em>skill</em> pages</Fragment>
+    <CatalogHeroMeta>
+      <a class="ds-btn" href="#catalog">Browse {skills.length} skills <span aria-hidden="true">↓</span></a>
+      {otherCatalogs.map((catalog) => <a class="ds-btn ds-btn--ghost" href={catalog.href}>{catalog.title}</a>)}
+    </CatalogHeroMeta>
+    <CatalogStats
+      slot="aside"
+      label="Skills at a glance"
+      items={[
+        { value: skills.length, label: 'Skills' },
+        { value: byAvailability.get('agent-installable') ?? 0, label: 'Agent-installable', tone: 'live' },
+        { value: byAvailability.get('manual') ?? 0, label: 'Manual setup', tone: 'accent' },
+        { value: onClawhub, label: 'On ClawHub' },
+      ]}
+      caption={`${byCategory.length} categories, from ${byCategory.slice(0, 3).map(([category]) => category.toLowerCase()).join(', ')} and more.`}
     />
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    <main style="max-width:980px; margin:0 auto; padding:3rem 1.5rem;">
-      <section style="margin-bottom:2rem;">
-        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">Skills</div>
-        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Public skill pages</h1>
-        <p style="color:var(--muted); margin:0; line-height:1.75; max-width:760px;">
-          These pages point at the real public skill sources. If a skill is agent-installable, the page shows the exact source spec and install command. If it is not, the page says so plainly instead of bluffing.
-        </p>
-      </section>
+  </PageHero>
 
-      <section style="display:grid; gap:1rem;">
+  <section class="ds-shell cat-catalog" id="catalog" aria-labelledby="catalog-title">
+    <div class="ds-section-head cat-catalog-head">
+      <div>
+        <h2 class="ds-h2" id="catalog-title">All skills</h2>
+        <p>Send the detail page URL to an agent if you want it to read the install contract first.</p>
+      </div>
+    </div>
+
+    <CatalogFilterBar label="Filter skills by category" chips={chips} target="#skill-grid" noun={['skill', 'skills']}>
+      <div class="ds-grid cat-grid" id="skill-grid">
         {skills.map((skill) => (
-          <article style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.35rem 1.4rem;">
-            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; flex-wrap:wrap; margin-bottom:0.75rem;">
-              <div>
-                <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.45rem; align-items:center;">
-                  <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${availabilityColor[skill.availability]}; background:${availabilityColor[skill.availability]}18; border:1px solid ${availabilityColor[skill.availability]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
-                    {availabilityLabel[skill.availability]}
-                  </span>
-                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{skill.category}</span>
-                </div>
-                <h2 style="font-family:Georgia,serif; font-size:1.55rem; font-weight:400; margin:0 0 0.2rem;">
-                  <a href={`/skills/${skill.slug}/`} style="color:var(--text); text-decoration:none;">{skill.title}</a>
-                </h2>
-                <p style="margin:0; color:#C9BDA8; line-height:1.7;">{skill.tagline}</p>
-              </div>
-              <div style="font-size:0.78rem; color:var(--muted); font-family:monospace; white-space:nowrap;">{skill.estimatedSetup}</div>
-            </div>
-
-            <p style="margin:0 0 1rem; color:var(--muted); line-height:1.75;">{skill.description}</p>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
-              <div>
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Source</div>
-                <a href={skill.sourceUrl} style="color:#C9BDA8; text-decoration:none; line-height:1.6;">{skill.sourceLabel}</a>
-              </div>
-              <div>
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Installability</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{skill.availability === 'agent-installable' ? 'Installable by agent from source spec' : 'Manual repo/script setup only right now'}</div>
-              </div>
-            </div>
-
-            {skill.installCommand ? (
-              <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.8rem; font-size:0.78rem; overflow:auto; margin-bottom:1rem;">{skill.installCommand}</code>
-            ) : (
-              <div style="color:var(--muted); margin-bottom:1rem; line-height:1.7;">No first-class <code style="font-size:0.8rem; color:var(--text);">openclaw skills install</code> contract is published for this one yet.</div>
-            )}
-
-            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; padding-top:1rem; border-top:1px solid var(--border);">
-              <div style="color:var(--muted); font-size:0.85rem;">Send the detail page URL to an agent if you want it to read the install contract first.</div>
-              <a href={`/skills/${skill.slug}/`} style="color:var(--accent); text-decoration:none; font-size:0.85rem; white-space:nowrap;">View skill →</a>
-            </div>
-          </article>
+          <CatalogCard
+            href={`/skills/${skill.slug}/`}
+            title={skill.title}
+            tagline={skill.tagline}
+            summary={skill.description}
+            badges={[
+              { label: availabilityLabel[skill.availability], tone: availabilityTone[skill.availability] },
+              { label: skill.category, tone: 'plain' },
+            ]}
+            facts={[
+              { label: 'Source', value: skill.sourceLabel, href: skill.sourceUrl },
+              { label: 'Installability', value: skill.availability === 'agent-installable' ? 'Installable by agent from source spec' : 'Manual repo/script setup only right now' },
+            ]}
+            command={skill.installCommand}
+            commandFallback="No first-class <code>openclaw skills install</code> contract is published for this one yet."
+            meta={[skill.estimatedSetup]}
+            cta="View skill"
+            attrs={{ 'data-category': skill.category, 'data-title': skill.title.toLowerCase() }}
+          />
         ))}
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </div>
+    </CatalogFilterBar>
+  </section>
+
+  <CatalogCrossBand current="/skills/" title="Need more than one skill?" copy="Workflows bundle skills into repeatable operator routines. Plugins hook the live runtime itself." />
+</SiteLayout>
+
+<style>
+  .cat-catalog { scroll-margin-top: var(--chrome-top); }
+  .cat-catalog-head p { margin-top: 10px; color: var(--muted); font-size: 15px; }
+  .cat-grid { --min: 340px; gap: 18px; }
+  @media (max-width: 760px) {
+    .cat-grid { gap: 12px; }
+  }
+</style>

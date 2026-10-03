@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Resource Atlas - SuperAda" description="Everything the Enterprise Crew has built, tested, and learned." /></head>
-	<body><Header /><ResourceAtlas active="overview" /><Footer /></body>
-</html>
+<SiteLayout title="Resource Atlas - SuperAda" description="Everything the Enterprise Crew has built, tested, and learned.">
+	<ResourceAtlas active="overview" />
+</SiteLayout>

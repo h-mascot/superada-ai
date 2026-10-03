@@ -239,7 +239,7 @@
         },
         {
           "key": "Link",
-          "value": "<https://superada.ai/developers/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
+          "value": "<https://superada.ai/docs/#versioning-policy>; rel=\"deprecation\"; type=\"text/html\""
         },
         {
           "key": "Deprecation",
@@ -289,33 +289,43 @@
       "permanent": false
     },
     {
+      "source": "/developers",
+      "destination": "/docs/",
+      "permanent": true
+    },
+    {
+      "source": "/developers/:path*",
+      "destination": "/docs/",
+      "permanent": true
+    },
+    {
       "source": "/api",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {
       "source": "/api-docs",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {
       "source": "/api-docs/:path*",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {
       "source": "/developer",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {
       "source": "/developer-docs",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {
       "source": "/docs/api",
-      "destination": "/developers/",
+      "destination": "/docs/",
       "permanent": true
     },
     {

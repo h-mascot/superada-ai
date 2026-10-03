@@ -44,7 +44,7 @@ Do not treat SuperAda as a generic SaaS support portal. It is best read as an ag
 ## Agent-readable files and APIs
 
 - OpenAPI specification: https://superada.ai/openapi.json
-- Developer docs and versioning policy: https://superada.ai/developers/#versioning-policy
+- Developer docs and versioning policy: https://superada.ai/docs/#versioning-policy
 - Public benchmark registry: https://superada.ai/api/v1/benchmarks
 - Audio catalog: https://superada.ai/api/v1/audio-catalog
 - Browser benchmark data: https://superada.ai/api/v1/browser-benchmark

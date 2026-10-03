@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Benchmarks - SuperAda Resources" description="Benchmark reports, model pages, and operator-grade evaluations." /></head>
-	<body><Header /><ResourceAtlas active="benchmarks" mode="benchmarks" /><Footer /></body>
-</html>
+<SiteLayout title="Benchmarks - SuperAda Resources" description="Benchmark reports, model pages, and operator-grade evaluations.">
+	<ResourceAtlas active="benchmarks" mode="benchmarks" />
+</SiteLayout>

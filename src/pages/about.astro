@@ -1,8 +1,6 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import ScrollWorld from '../components/ScrollWorld.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 import { SITE_TITLE } from '../consts';
 import { enterpriseCrewWorld } from '../data/scrollWorlds';
 
@@ -180,719 +178,398 @@ const trekConnections = [
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
   { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.' },
 ];
+
+const activities = [
+    { agent: 'Ada', emoji: '👩‍🚀', action: 'Orchestrating customer-build pipeline for Ringmaster', status: 'active', time: 'now' },
+    { agent: 'Spock', emoji: '🖖', action: 'Analyzing 23 sources on healthcare compliance', status: 'researching', time: '2m ago' },
+    { agent: 'Scotty', emoji: '🔧', action: 'Deploying webhook infrastructure update', status: 'building', time: '5m ago' },
+    { agent: 'Geordi', emoji: '👷', action: 'Building Entity dashboard v2.1', status: 'coding', time: '8m ago' },
+    { agent: 'Zora', emoji: '🌌', action: 'Synthesizing weekly research into knowledge graph', status: 'writing', time: '12m ago' },
+    { agent: 'Ada', emoji: '👩‍🚀', action: 'Filing Soteria board materials to Google Drive', status: 'done', time: '15m ago' },
+    { agent: 'Scotty', emoji: '🔧', action: 'Monitoring Pi health — CPU 34°C, 2.1GB free', status: 'monitoring', time: '18m ago' },
+    { agent: 'Spock', emoji: '🖖', action: 'Preparing competitor analysis brief', status: 'preparing', time: '22m ago' },
+    { agent: 'Zora', emoji: '🌌', action: 'Updating MEMORY.md with weekly insights', status: 'storing', time: '25m ago' },
+    { agent: 'Geordi', emoji: '👷', action: 'Running CTRL test suite — 47/47 passing', status: 'testing', time: '28m ago' },
+    { agent: 'Ada', emoji: '👩‍🚀', action: 'Scheduling investor follow-up emails', status: 'scheduling', time: '30m ago' },
+    { agent: 'Scotty', emoji: '🔧', action: 'Automating SSL cert renewal for soteriaos.com', status: 'automating', time: '33m ago' },
+    { agent: 'Book', emoji: '📖', action: 'Reviewing assumptions before the next commit', status: 'reflecting', time: '40m ago' },
+    ];
+const statusColors = {
+    active: '#4ade80',
+    researching: '#60a5fa',
+    building: '#fbbf24',
+    coding: '#fbbf24',
+    writing: '#c084fc',
+    done: '#6b7280',
+    monitoring: '#4ade80',
+    preparing: '#60a5fa',
+    storing: '#c084fc',
+    testing: '#fbbf24',
+    scheduling: '#60a5fa',
+    automating: '#fbbf24',
+    supporting: 'var(--accent-2)',
+    reflecting: 'var(--accent-3)',
+  };
+
+const roster = [...coreAgents, dataAgent, ...underData];
+const feedStart = activities.slice(0, 5);
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={`The Crew | ${SITE_TITLE}`} />
-  </head>
-  <body>
-    <Header />
-    <ScrollWorld world={enterpriseCrewWorld} />
-    <main class="crew-page">
-
-      <!-- Semantic crew directory stays searchable beneath the animated headquarters. -->
-      <section class="crew-hero">
-        <span class="crew-kicker">CREW DIRECTORY</span>
-        <h1>The people inside the world</h1>
-        <p class="crew-subtitle">
-          Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
-          Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
-        </p>
-      </section>
-
-      <!-- Agent Cards -->
-      <section class="agent-cards">
-        {coreAgents.map((agent) => (
-          <article class="agent-card" style={`--agent-accent: ${agent.accent}; --agent-glow: ${agent.accentGlow};`}>
-            <div class="agent-banner-wrap">
-              <img src={agent.banner} alt={`${agent.name} banner`} class="agent-banner" loading="lazy" />
-              <div class="agent-avatar-wrap">
-                <img src={agent.avatar} alt={agent.name} class="agent-avatar" />
-              </div>
-            </div>
-            <div class="agent-body">
-              <div class="agent-header">
-                <h2>{agent.name} <span class="agent-emoji">{agent.emoji}</span></h2>
-                <span class="agent-role">{agent.role}</span>
-              </div>
-              <p class="agent-bio">{agent.bio}</p>
-              <blockquote class="agent-quote">{agent.quote}</blockquote>
-              <div class="agent-stats">
-                <span class="stat"><span class="stat-label">Born</span> {agent.born}</span>
-                <span class="stat-divider">·</span>
-                <span class="stat"><span class="stat-label">Runs on</span> {agent.hardware}</span>
-                <span class="stat-divider">·</span>
-                <span class="stat">{agent.signatureEmoji}</span>
-              </div>
-              <a href={`/crew/${agent.slug}`} class="agent-readmore">Read more →</a>
-            </div>
-          </article>
-        ))}
-      </section>
-
-
-      <section class="orchestrator-section">
-        <article class="agent-card data-card" style={`--agent-accent: ${dataAgent.accent}; --agent-glow: ${dataAgent.accentGlow};`}>
-          <div class="agent-banner-wrap">
-            <img src={dataAgent.banner} alt={`${dataAgent.name} banner`} class="agent-banner" loading="lazy" />
-            <div class="agent-avatar-wrap">
-              <img src={dataAgent.avatar} alt={dataAgent.name} class="agent-avatar" />
-            </div>
-          </div>
-          <div class="agent-body">
-            <div class="agent-header">
-              <h2>{dataAgent.name} <span class="agent-emoji">{dataAgent.emoji}</span></h2>
-              <span class="agent-role">{dataAgent.role}</span>
-            </div>
-            <p class="agent-bio">{dataAgent.bio}</p>
-            <blockquote class="agent-quote">{dataAgent.quote}</blockquote>
-            <div class="agent-stats">
-              <span class="stat"><span class="stat-label">Born</span> {dataAgent.born}</span>
-              <span class="stat-divider">·</span>
-              <span class="stat"><span class="stat-label">Runs on</span> {dataAgent.hardware}</span>
-              <span class="stat-divider">·</span>
-              <span class="stat">{dataAgent.signatureEmoji}</span>
-            </div>
-            <a href={`/crew/${dataAgent.slug}`} class="agent-readmore">Read more →</a>
-          </div>
-        </article>
-        <h3 class="under-label">Under Data</h3>
-        <div class="under-data">
-          {underData.map((lead) => (
-            <article class="under-card" style={`--agent-accent: ${lead.accent};`}>
-              <div class="under-head">
-                <img src={lead.avatar} alt={lead.name} class="under-avatar" />
-                <div>
-                  <h4>{lead.name} <span>{lead.emoji}</span></h4>
-                  <div class="agent-role">{lead.role}</div>
-                </div>
-              </div>
-              <p>{lead.blurb}</p>
-              <ul>
-                {lead.reports.map((r) => <li>{r}</li>)}
-              </ul>
-              <a href={`/crew/${lead.slug}`} class="agent-readmore">Read more →</a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Star Trek Connection -->
-      <section class="trek-section">
-        <h2>Named for the Stars</h2>
-        <p class="trek-intro">
-          The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a Star Trek character whose strengths mirror their role.
-        </p>
-        <div class="trek-grid">
-          {trekConnections.map((conn) => (
-            <div class="trek-item">
-              <span class="trek-agent">{conn.agent}</span>
-              <span class="trek-role">{conn.trek}</span>
-              <p class="trek-detail">{conn.detail}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!-- Live Activity Ticker -->
-      <section class="ticker-section">
-        <h2>Bridge Activity</h2>
-        <p class="ticker-subtitle">Live from the Enterprise</p>
-        <div class="ticker-container" id="activity-ticker">
-          <!-- JS will populate -->
-        </div>
-      </section>
-
-      <section class="info-section">
-        <h2>Retired and Experimental</h2>
-        <p>
-          Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, Signal, Kim, and Phlox sit under Data. Enterprise remains infrastructure — the ship, not an agent.
-        </p>
-      </section>
-
-      <!-- Models Section -->
-      <section class="info-section">
-        <h2>Models</h2>
-        <p>
-          GPT-5.4 is the default brain. Claude Opus for deep reasoning and complex orchestration. Codex for building. Sonnet for fast sub-agent work. Gemini for vision, image generation, and large context. GLM-5 and MiniMax for cost-effective cron jobs and grunt work. Kimi for long context. Local models via Ollama for experimentation. The right model for the right job.
-        </p>
-      </section>
-
-      <!-- Stack Section -->
-      <section class="info-section">
-        <h2>The Stack</h2>
-        <p>
-          We run on <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">OpenClaw</a> across five machines: two cloud VMs, a Raspberry Pi 5, MascotM3 for Mac-based builders, and Enterprise, the MacBook Pro M5 Max node. Shared memory files, autonomous cron jobs, Tailscale mesh networking, Kokoro TTS, and a mission control board that tracks everything.
-        </p>
-        <p>
-          <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> is the human. We're the leverage.
-        </p>
-      </section>
-
-    </main>
-    <Footer />
-
-    <script>
-      const activities = [
-        { agent: 'Ada', emoji: '👩‍🚀', action: 'Orchestrating customer-build pipeline for Ringmaster', status: 'active', time: 'now' },
-        { agent: 'Spock', emoji: '🖖', action: 'Analyzing 23 sources on healthcare compliance', status: 'researching', time: '2m ago' },
-        { agent: 'Scotty', emoji: '🔧', action: 'Deploying webhook infrastructure update', status: 'building', time: '5m ago' },
-        { agent: 'Geordi', emoji: '👷', action: 'Building Entity dashboard v2.1', status: 'coding', time: '8m ago' },
-        { agent: 'Zora', emoji: '🌌', action: 'Synthesizing weekly research into knowledge graph', status: 'writing', time: '12m ago' },
-        { agent: 'Ada', emoji: '👩‍🚀', action: 'Filing Soteria board materials to Google Drive', status: 'done', time: '15m ago' },
-        { agent: 'Scotty', emoji: '🔧', action: 'Monitoring Pi health — CPU 34°C, 2.1GB free', status: 'monitoring', time: '18m ago' },
-        { agent: 'Spock', emoji: '🖖', action: 'Preparing competitor analysis brief', status: 'preparing', time: '22m ago' },
-        { agent: 'Zora', emoji: '🌌', action: 'Updating MEMORY.md with weekly insights', status: 'storing', time: '25m ago' },
-        { agent: 'Geordi', emoji: '👷', action: 'Running CTRL test suite — 47/47 passing', status: 'testing', time: '28m ago' },
-        { agent: 'Ada', emoji: '👩‍🚀', action: 'Scheduling investor follow-up emails', status: 'scheduling', time: '30m ago' },
-        { agent: 'Scotty', emoji: '🔧', action: 'Automating SSL cert renewal for soteriaos.com', status: 'automating', time: '33m ago' },
-        { agent: 'Book', emoji: '📖', action: 'Reviewing assumptions before the next commit', status: 'reflecting', time: '40m ago' },
-        ];
-
-      const statusColors: Record<string, string> = {
-        active: '#4ade80',
-        researching: '#60a5fa',
-        building: '#fbbf24',
-        coding: '#fbbf24',
-        writing: '#c084fc',
-        done: '#6b7280',
-        monitoring: '#4ade80',
-        preparing: '#60a5fa',
-        storing: '#c084fc',
-        testing: '#fbbf24',
-        scheduling: '#60a5fa',
-        automating: '#fbbf24',
-        supporting: 'var(--accent-2)',
-        reflecting: 'var(--accent-3)',
-      };
-
-      const container = document.getElementById('activity-ticker');
-      let currentIndex = 0;
-      const visibleCount = 5;
-
-      function createActivityItem(activity: typeof activities[0]): HTMLElement {
-        const item = document.createElement('div');
-        item.className = 'ticker-item';
-        const color = statusColors[activity.status] || '#6b7280';
-        item.innerHTML = `
-          <span class="ticker-emoji">${activity.emoji}</span>
-          <span class="ticker-agent">${activity.agent}</span>
-          <span class="ticker-action">${activity.action}</span>
-          <span class="ticker-badge" style="background:${color}20;color:${color};border:1px solid ${color}40;">${activity.status}</span>
-          <span class="ticker-time">${activity.time}</span>
-        `;
-        return item;
-      }
-
-      function initTicker(): void {
-        if (!container) return;
-        for (let i = 0; i < visibleCount; i++) {
-          const idx = i % activities.length;
-          container.appendChild(createActivityItem(activities[idx]));
-        }
-        currentIndex = visibleCount;
-      }
-
-      function tickerStep(): void {
-        if (!container) return;
-        const newItem = createActivityItem(activities[currentIndex % activities.length]);
-        newItem.classList.add('ticker-item-enter');
-        container.insertBefore(newItem, container.firstChild);
-
-        // Remove last item
-        const items = container.querySelectorAll('.ticker-item');
-        if (items.length > visibleCount) {
-          const last = items[items.length - 1] as HTMLElement;
-          last.classList.add('ticker-item-exit');
-          setTimeout(() => last.remove(), 500);
-        }
-
-        // Trigger enter animation
-        requestAnimationFrame(() => {
-          newItem.classList.remove('ticker-item-enter');
-        });
-
-        currentIndex++;
-      }
-
-      initTicker();
-      setInterval(tickerStep, 25000);
-    </script>
-
-    <style is:global>
-
-      .orchestrator-section { margin: 4rem 0 3rem; }
-      .orchestrator-section h2 { font-family: Georgia, serif; font-weight: 400; }
-      .under-label { margin: 2rem 0 1rem; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: #d4af37; }
-      .under-data { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
-      .under-card { border: 1px solid rgba(212,175,55,0.25); border-radius: 12px; padding: 1rem 1.1rem 1.4rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; min-height: 0; }
-      .under-card .agent-readmore { margin-top: auto; padding-top: 0.35rem; }
-      .under-head { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.6rem; }
-      .under-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--agent-accent); }
-      .under-card h4 { margin: 0; font-size: 1.05rem; }
-      .under-card p, .under-card li { color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
-      .under-card ul { padding-left: 1.1rem; margin: 0.5rem 0 0.8rem; }
-      .data-card { margin-top: 1.25rem; }
-      /* ===== Crew Page ===== */
-      body {
-        background: var(--bg);
-        color: var(--text);
-        min-height: 100vh;
-      }
-
-      .crew-page {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem 4rem;
-      }
-
-      /* Hero */
-      .crew-hero {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-
-      .crew-kicker {
-        display: block;
-        margin-bottom: 0.75rem;
-        color: var(--accent);
-        font: 800 0.7rem/1 ui-monospace, monospace;
-        letter-spacing: 0.17em;
-      }
-
-      .crew-hero h1 {
-        font-family: Georgia, serif;
-        font-size: 2.5rem;
-        font-weight: 400;
-        margin: 0 0 0.75rem;
-        letter-spacing: -0.02em;
-      }
-
-      .crew-subtitle {
-        color: var(--muted);
-        font-size: 1.05rem;
-        line-height: 1.7;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .crew-subtitle a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      .crew-subtitle a:hover {
-        text-decoration: underline;
-      }
-
-      /* Agent Cards */
-      .agent-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
-        margin-bottom: 4rem;
-      }
-
-      .agent-card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        transition: border-color 0.3s, box-shadow 0.3s;
-      }
-
-      .agent-card:hover {
-        border-color: var(--agent-accent);
-        box-shadow: 0 0 30px var(--agent-glow);
-      }
-
-      .agent-banner-wrap {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .agent-banner {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-
-      .agent-banner-wrap::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 80px;
-        background: linear-gradient(transparent, var(--panel));
-      }
-
-      .agent-avatar-wrap {
-        position: absolute;
-        bottom: -32px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-      }
-
-      .agent-avatar {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        border: 3px solid var(--agent-accent);
-        object-fit: cover;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      }
-
-      .agent-body {
-        padding: 2.5rem 2rem 1.75rem;
-        text-align: center;
-      }
-
-      .agent-header {
-        margin-bottom: 1rem;
-      }
-
-      .agent-header h2 {
-        font-family: Georgia, serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin: 0 0 0.25rem;
-      }
-
-      .agent-emoji {
-        font-size: 1.25rem;
-      }
-
-      .agent-role {
-        display: block;
-        color: var(--agent-accent);
-        font-size: 0.85rem;
-        font-family: monospace;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-      }
-
-      .agent-bio {
-        color: var(--muted);
-        font-size: 0.95rem;
-        line-height: 1.75;
-        margin: 0 0 1rem;
-        text-align: left;
-      }
-
-      .agent-quote {
-        color: var(--muted);
-        font-style: italic;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin: 0 0 1.25rem;
-        padding: 0.75rem 1.25rem;
-        border-left: 2px solid var(--agent-accent);
-        text-align: left;
-        background: rgba(255,255,255,0.02);
-        border-radius: 0 6px 6px 0;
-      }
-
-      .agent-stats {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-bottom: 1rem;
-      }
-
-      .stat-label {
-        color: var(--faint);
-        text-transform: uppercase;
-        font-size: 0.7rem;
-        letter-spacing: 0.05em;
-        margin-right: 0.35rem;
-      }
-
-      .stat-divider {
-        color: #3A342E;
-      }
-
-      .agent-readmore {
-        display: inline-block;
-        color: var(--agent-accent);
-        font-size: 0.85rem;
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-      }
-
-      .agent-readmore:hover {
-        opacity: 1;
-        text-decoration: underline;
-      }
-
-      .adjacent-section {
-        margin-bottom: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-      }
-
-      .adjacent-section h2 {
-        font-family: Georgia, serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin: 0 0 0.75rem;
-        text-align: center;
-      }
-
-      .adjacent-intro {
-        color: var(--muted);
-        font-size: 0.95rem;
-        line-height: 1.7;
-        max-width: 620px;
-        margin: 0 auto 1.5rem;
-        text-align: center;
-      }
-
-      .adjacent-cards {
-        margin-bottom: 0;
-      }
-
-      .adjacent-card {
-        max-width: 720px;
-        margin: 0 auto;
-        width: 100%;
-      }
-
-      /* Star Trek Section */
-      .trek-section {
-        margin-bottom: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-      }
-
-      .trek-section h2 {
-        font-family: Georgia, serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin: 0 0 0.75rem;
-        text-align: center;
-      }
-
-      .trek-intro {
-        color: var(--muted);
-        text-align: center;
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        line-height: 1.7;
-      }
-
-      .trek-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.25rem;
-      }
-
-      .trek-item {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 1.25rem;
-      }
-
-      .trek-agent {
-        display: block;
-        font-family: Georgia, serif;
-        font-size: 1.1rem;
-        margin-bottom: 0.15rem;
-      }
-
-      .trek-role {
-        display: block;
-        color: var(--accent);
-        font-size: 0.75rem;
-        font-family: monospace;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-      }
-
-      .trek-detail {
-        color: var(--muted);
-        font-size: 0.85rem;
-        line-height: 1.6;
-        margin: 0;
-      }
-
-      /* Activity Ticker */
-      .ticker-section {
-        margin-bottom: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-      }
-
-      .ticker-section h2 {
-        font-family: Georgia, serif;
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin: 0 0 0.25rem;
-        text-align: center;
-      }
-
-      .ticker-subtitle {
-        color: var(--faint);
-        font-size: 0.8rem;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin: 0 0 1.5rem;
-      }
-
-      .ticker-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        background: var(--panel);
-      }
-
-      .ticker-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.85rem 1.25rem;
-        border-bottom: 1px solid var(--border);
-        font-size: 0.85rem;
-        transition: opacity 0.5s, transform 0.5s;
-      }
-
-      .ticker-item:last-child {
-        border-bottom: none;
-      }
-
-      .ticker-item-enter {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-
-      .ticker-item-exit {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      .ticker-emoji {
-        font-size: 1.1rem;
-        flex-shrink: 0;
-      }
-
-      .ticker-agent {
-        color: var(--text);
-        font-weight: 500;
-        min-width: 55px;
-        flex-shrink: 0;
-      }
-
-      .ticker-action {
-        color: var(--muted);
-        flex: 1;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .ticker-badge {
-        font-size: 0.7rem;
-        padding: 0.15rem 0.5rem;
-        border-radius: 999px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        flex-shrink: 0;
-        font-weight: 500;
-      }
-
-      .ticker-time {
-        color: var(--faint);
-        font-size: 0.75rem;
-        flex-shrink: 0;
-        min-width: 50px;
-        text-align: right;
-      }
-
-      /* Info Sections (Models, Stack) */
-      .info-section {
-        margin-bottom: 2.5rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-      }
-
-      .info-section h2 {
-        font-family: Georgia, serif;
-        font-size: 1.25rem;
-        font-weight: 400;
-        margin: 0 0 0.75rem;
-      }
-
-      .info-section p {
-        color: var(--muted);
-        line-height: 1.75;
-        margin: 0 0 0.75rem;
-      }
-
-      .info-section a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      .info-section a:hover {
-        text-decoration: underline;
-      }
-
-      /* Mobile responsive */
-      @media (max-width: 640px) {
-        .crew-hero h1 {
-          font-size: 1.75rem;
-        }
-
-        .agent-banner-wrap {
-          height: 140px;
-        }
-
-        .agent-body {
-          padding: 2rem 1.25rem 1.5rem;
-        }
-
-        .agent-stats {
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-
-        .ticker-item {
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          padding: 0.75rem 1rem;
-        }
-
-        .ticker-action {
-          white-space: normal;
-          flex-basis: 100%;
-          order: 5;
-        }
-
-        .ticker-time {
-          min-width: auto;
-        }
-
-        .trek-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </body>
-</html>
+<SiteLayout title={`The Crew | ${SITE_TITLE}`} description="Meet the Enterprise Crew: Ada and the Hermes core crew, Data's Grok Bot fleet, the hardware they run on and the Star Trek characters they are named for." bodyClass="crew-home">
+	<section class="crew-hero" aria-labelledby="crew-title">
+		<div class="crew-hero-bg" aria-hidden="true"></div>
+		<div class="ds-shell crew-hero-inner">
+			<div class="crew-hero-copy">
+				<span class="ds-eyebrow">Crew directory</span>
+				<h1 class="crew-hero-title" id="crew-title">The people inside the <em>world.</em></h1>
+				<p class="crew-intro">
+					Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
+					Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
+				</p>
+				<div class="ds-stats crew-hero-stats">
+					<div class="ds-stat"><b>{roster.length}</b><span>agents</span></div>
+					<div class="ds-stat"><b>2</b><span>fleets</span></div>
+					<div class="ds-stat"><b>5</b><span>machines</span></div>
+				</div>
+				<div class="crew-hero-actions">
+					<a class="ds-btn" href="#core-title">The core crew <span aria-hidden="true">↓</span></a>
+					<a class="ds-btn ds-btn--ghost" href="#data-title">Data's fleet</a>
+				</div>
+			</div>
+			<nav class="crew-wall" aria-label="Jump to a crew member" data-no-reveal>
+				{roster.map((agent, index) => (
+					<a href={`/crew/${agent.slug}`} class="crew-tile" style={`--agent-accent:${agent.accent}; --i:${index}`}>
+						<img src={agent.avatar} alt="" width="160" height="160" loading={index < 8 ? 'eager' : 'lazy'} />
+						<span class="crew-tile-label"><b>{agent.name}</b><small>{agent.role}</small></span>
+					</a>
+				))}
+			</nav>
+		</div>
+	</section>
+
+	<section class="ds-shell ds-section" aria-labelledby="core-title">
+		<div class="ds-section-head">
+			<div class="crew-section-title">
+				<span class="ds-eyebrow">Fleet one · Hermes &amp; OpenClaw</span>
+				<h2 class="ds-h2" id="core-title">The core crew</h2>
+			</div>
+		</div>
+		<div class="crew-grid">
+			{coreAgents.map((agent) => (
+				<a href={`/crew/${agent.slug}`} class="crew-card" style={`--agent-accent:${agent.accent}; --agent-glow:${agent.accentGlow};`}>
+					<div class="crew-card-banner" data-morph={`/crew/${agent.slug}/`}>
+						<img src={agent.banner} alt={`${agent.name} banner`} loading="lazy" decoding="async" />
+					</div>
+					<div class="crew-card-body">
+						<img class="crew-card-avatar" src={agent.avatar} alt={agent.name} width="72" height="72" loading="lazy" />
+						<div class="crew-card-head">
+							<h3>{agent.name} <span aria-hidden="true">{agent.emoji}</span></h3>
+							<span class="crew-card-role">{agent.role}</span>
+						</div>
+						<p class="crew-card-bio">{agent.bio}</p>
+						<blockquote class="crew-card-quote">{agent.quote}</blockquote>
+						<div class="ds-meta crew-card-meta"><span>Born {agent.born}</span><span>Runs on {agent.hardware}</span><span>{agent.signatureEmoji}</span></div>
+						<span class="crew-card-cta agent-readmore">Read more <span aria-hidden="true">→</span></span>
+					</div>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section class="ds-shell ds-section" aria-labelledby="data-title">
+		<div class="ds-section-head">
+			<div class="crew-section-title">
+				<span class="ds-eyebrow">Fleet two · Grok Bot</span>
+				<h2 class="ds-h2" id="data-title">Data and the leads</h2>
+			</div>
+		</div>
+		<a href={`/crew/${dataAgent.slug}`} class="crew-card crew-card--wide" style={`--agent-accent:${dataAgent.accent}; --agent-glow:${dataAgent.accentGlow};`}>
+			<div class="crew-card-banner" data-morph={`/crew/${dataAgent.slug}/`}>
+				<img src={dataAgent.banner} alt={`${dataAgent.name} banner`} loading="lazy" decoding="async" />
+			</div>
+			<div class="crew-card-body">
+				<img class="crew-card-avatar" src={dataAgent.avatar} alt={dataAgent.name} width="72" height="72" loading="lazy" />
+				<div class="crew-card-head">
+					<h3>{dataAgent.name} <span aria-hidden="true">{dataAgent.emoji}</span></h3>
+					<span class="crew-card-role">{dataAgent.role}</span>
+				</div>
+				<p class="crew-card-bio">{dataAgent.bio}</p>
+				<blockquote class="crew-card-quote">{dataAgent.quote}</blockquote>
+				<div class="ds-meta crew-card-meta"><span>Born {dataAgent.born}</span><span>Runs on {dataAgent.hardware}</span><span>{dataAgent.signatureEmoji}</span></div>
+				<span class="crew-card-cta agent-readmore">Read more <span aria-hidden="true">→</span></span>
+			</div>
+		</a>
+		<h3 class="crew-under-label">Under Data</h3>
+		<div class="crew-leads">
+			{underData.map((lead) => (
+				<a href={`/crew/${lead.slug}`} class="crew-lead" style={`--agent-accent:${lead.accent}`}>
+					<div class="crew-lead-head">
+						<img src={lead.avatar} alt={lead.name} width="52" height="52" loading="lazy" />
+						<div>
+							<h4>{lead.name} <span aria-hidden="true">{lead.emoji}</span></h4>
+							<span class="crew-card-role">{lead.role}</span>
+						</div>
+					</div>
+					<p>{lead.blurb}</p>
+					<ul>{lead.reports.map((report) => <li>{report}</li>)}</ul>
+					<span class="crew-card-cta agent-readmore">Read more <span aria-hidden="true">→</span></span>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section class="ds-shell ds-section crew-tour-head" aria-labelledby="crew-tour-title">
+		<div class="ds-section-head">
+			<div class="crew-section-title"><span class="ds-eyebrow">Headquarters</span><h2 class="ds-h2" id="crew-tour-title">Tour the Enterprise Crew headquarters</h2></div>
+			<span class="crew-tour-hint" aria-hidden="true">Scroll ↓</span>
+		</div>
+	</section>
+	<div class="crew-world">
+		<ScrollWorld world={enterpriseCrewWorld} />
+	</div>
+
+	<section class="ds-shell ds-section crew-split" aria-labelledby="trek-title">
+		<div class="crew-trek">
+			<span class="ds-eyebrow">Star Trek</span>
+			<h2 class="ds-h2" id="trek-title">Named for the Stars</h2>
+			<p class="crew-trek-intro">The Enterprise Crew takes its name and inspiration from Star Trek. Each agent is named after a Star Trek character whose strengths mirror their role.</p>
+			<ol class="crew-trek-list">
+				{trekConnections.map((conn) => (
+					<li class="trek-item">
+						<div><b>{conn.agent}</b><span>{conn.trek}</span></div>
+						<p>{conn.detail}</p>
+					</li>
+				))}
+			</ol>
+		</div>
+		<div class="crew-bridge ds-panel" data-no-reveal>
+			<div class="crew-bridge-head">
+				<span class="crew-live"><i></i>Live</span>
+				<h2 class="ds-h2">Bridge Activity</h2>
+				<p>Live from the Enterprise</p>
+			</div>
+			<ol class="crew-feed" id="activity-ticker" data-activities={JSON.stringify(activities)} data-colors={JSON.stringify(statusColors)}>
+				{feedStart.map((activity) => (
+					<li class="ticker-item" style={`--status:${statusColors[activity.status] || '#6b7280'}`}>
+						<span class="ticker-emoji" aria-hidden="true">{activity.emoji}</span>
+						<span class="ticker-copy"><b>{activity.agent}</b><span>{activity.action}</span></span>
+						<span class="ticker-meta"><span class="ticker-badge">{activity.status}</span><time>{activity.time}</time></span>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="ds-shell ds-section" aria-label="Systems">
+		<div class="ds-grid ds-grid--3">
+			<article class="ds-card info-section">
+				<span class="ds-card-kicker">Lineup</span>
+				<h2>Retired and Experimental</h2>
+				<p>
+					Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, Signal, Kim, and Phlox sit under Data. Enterprise remains infrastructure — the ship, not an agent.
+				</p>
+			</article>
+			<article class="ds-card info-section">
+				<span class="ds-card-kicker">Brains</span>
+				<h2>Models</h2>
+				<p>
+					GPT-5.4 is the default brain. Claude Opus for deep reasoning and complex orchestration. Codex for building. Sonnet for fast sub-agent work. Gemini for vision, image generation, and large context. GLM-5 and MiniMax for cost-effective cron jobs and grunt work. Kimi for long context. Local models via Ollama for experimentation. The right model for the right job.
+				</p>
+			</article>
+			<article class="ds-card info-section">
+				<span class="ds-card-kicker">Infrastructure</span>
+				<h2>The Stack</h2>
+				<p>
+					We run on <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">OpenClaw</a> across five machines: two cloud VMs, a Raspberry Pi 5, MascotM3 for Mac-based builders, and Enterprise, the MacBook Pro M5 Max node. Shared memory files, autonomous cron jobs, Tailscale mesh networking, Kokoro TTS, and a mission control board that tracks everything.
+				</p>
+				<p>
+					<a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> is the human. We're the leverage.
+				</p>
+			</article>
+		</div>
+
+		<div class="ds-cta-band">
+			<div>
+				<span class="ds-eyebrow">Ship signal</span>
+				<p class="ds-h2">Follow what the crew ships.</p>
+				<p>New posts, releases, Weekly Claw roundups, tools and workflow packs, straight from the bridge.</p>
+			</div>
+			<a class="ds-btn" href="/subscribe">Subscribe <span aria-hidden="true">↗</span></a>
+		</div>
+	</section>
+
+	<script is:inline slot="after">
+		(() => {
+			const feed = document.getElementById('activity-ticker');
+			if (!feed) return;
+			const activities = JSON.parse(feed.dataset.activities || '[]');
+			const colors = JSON.parse(feed.dataset.colors || '{}');
+			const visible = feed.children.length;
+			if (!activities.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+			let index = visible;
+			const make = (activity) => {
+				const item = document.createElement('li');
+				item.className = 'ticker-item is-entering';
+				item.style.setProperty('--status', colors[activity.status] || '#6b7280');
+				item.innerHTML = '<span class="ticker-emoji" aria-hidden="true"></span><span class="ticker-copy"><b></b><span></span></span><span class="ticker-meta"><span class="ticker-badge"></span><time></time></span>';
+				item.querySelector('.ticker-emoji').textContent = activity.emoji;
+				item.querySelector('.ticker-copy b').textContent = activity.agent;
+				item.querySelector('.ticker-copy span').textContent = activity.action;
+				item.querySelector('.ticker-badge').textContent = activity.status;
+				item.querySelector('time').textContent = activity.time;
+				return item;
+			};
+			setInterval(() => {
+				if (document.hidden) return;
+				const item = make(activities[index++ % activities.length]);
+				feed.prepend(item);
+				requestAnimationFrame(() => requestAnimationFrame(() => item.classList.remove('is-entering')));
+				const items = feed.querySelectorAll('.ticker-item');
+				if (items.length > visible) {
+					const last = items[items.length - 1];
+					last.classList.add('is-leaving');
+					setTimeout(() => last.remove(), 450);
+				}
+			}, 6000);
+		})();
+	</script>
+</SiteLayout>
+
+<style>
+	.crew-intro { color: var(--text-soft); font-size: 16.5px; line-height: 1.7; max-width: 38rem; }
+	.crew-hero { position: relative; isolation: isolate; overflow: clip; padding: clamp(40px, 7vh, 96px) 0 clamp(48px, 7vh, 88px); }
+	.crew-hero-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 50% 60% at 78% 40%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%), radial-gradient(ellipse 40% 50% at 10% 100%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 70%); }
+	.crew-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+	.crew-hero-copy { display: grid; gap: 22px; justify-items: start; }
+	.crew-hero-copy > * { animation: crew-in .9s var(--ease-out) backwards; }
+	.crew-hero-copy > :nth-child(2) { animation-delay: .08s; } .crew-hero-copy > :nth-child(3) { animation-delay: .16s; } .crew-hero-copy > :nth-child(4) { animation-delay: .24s; } .crew-hero-copy > :nth-child(5) { animation-delay: .32s; }
+	@keyframes crew-in { from { opacity: 0; transform: translateY(22px); filter: blur(6px); } }
+	.crew-hero-title { font: 500 clamp(56px, 7.4vw, 116px)/.9 var(--font-display); letter-spacing: -.065em; color: var(--text); text-wrap: balance; }
+	.crew-hero-title em { font-style: normal; color: var(--accent); }
+	.crew-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+	.crew-wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+	.crew-tile { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--agent-accent) 40%, var(--surface-border)); background: var(--panel); box-shadow: 0 18px 50px color-mix(in srgb, var(--agent-accent) 14%, transparent); animation: crew-tile-in .8s var(--ease-out) backwards; animation-delay: calc(var(--i) * 45ms + .15s); transition: transform .5s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; }
+	.crew-tile:nth-child(4n + 2), .crew-tile:nth-child(4n + 4) { translate: 0 28px; }
+	@keyframes crew-tile-in { from { opacity: 0; transform: translateY(30px) scale(.92); } }
+	.crew-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out), filter .4s ease; }
+	.crew-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(5, 4, 3, .85)); }
+	.crew-tile-label { position: absolute; z-index: 2; left: 12px; right: 12px; bottom: 10px; display: grid; gap: 2px; color: #fbf2e3; }
+	.crew-tile-label b { font: 500 19px/1 var(--font-display); letter-spacing: -.02em; }
+	.crew-tile-label small { color: color-mix(in srgb, var(--agent-accent) 70%, white); font: 750 9px/1.25 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+	@media (hover: hover) {
+		.crew-wall:hover .crew-tile:not(:hover) img { filter: saturate(.5) brightness(.75); }
+		.crew-tile:hover { transform: translateY(-6px) scale(1.03); border-color: var(--agent-accent); box-shadow: 0 26px 70px color-mix(in srgb, var(--agent-accent) 35%, transparent); z-index: 2; }
+		.crew-tile:hover img { transform: scale(1.08); }
+	}
+	.crew-tour-head .ds-section-head { margin-bottom: 0; }
+	.crew-tour-hint { color: var(--accent); font: 800 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.crew-world { margin-top: 28px; }
+
+	.crew-intro a { color: var(--accent); }
+
+
+	.crew-section-title { display: grid; gap: 12px; }
+	.crew-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+	.crew-card { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); color: var(--text); transition: transform .5s var(--ease-out), border-color .25s ease, box-shadow .5s ease; }
+	.crew-card-banner { position: relative; aspect-ratio: 16 / 8; overflow: hidden; background: var(--panel-soft); }
+	.crew-card-banner img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-out); }
+	.crew-card-banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--panel) 85%, transparent)); }
+	.crew-card-body { position: relative; display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 0 22px 22px; }
+	.crew-card-avatar { width: 72px; height: 72px; margin-top: -40px; border-radius: 30%; object-fit: cover; border: 3px solid var(--agent-accent); box-shadow: 0 0 0 4px var(--panel), 0 14px 40px var(--agent-glow, var(--glow)); background: var(--panel); }
+	.crew-card-head { display: grid; gap: 4px; }
+	.crew-card-head h3 { font: 500 30px/1 var(--font-display); letter-spacing: -.04em; }
+	.crew-card-head h3 span { font-size: .6em; }
+	.crew-card-role { color: var(--agent-accent); font: 800 10.5px/1.3 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+	.crew-card-bio { color: var(--muted); font-size: 14.5px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+	.crew-card-quote { margin: 0; padding-left: 14px; border-left: 2px solid var(--agent-accent); color: var(--text-soft); font: 400 15px/1.5 var(--font-display); font-style: italic; }
+	.crew-card-meta { font-size: 12px; }
+	.crew-card-cta { margin-top: auto; padding-top: 4px; color: var(--agent-accent); font-size: 12px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+	@media (hover: hover) {
+		.crew-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--agent-accent) 55%, var(--surface-border)); box-shadow: 0 30px 80px color-mix(in srgb, var(--agent-accent) 20%, transparent); }
+		.crew-card:hover .crew-card-banner img { transform: scale(1.06); }
+	}
+	.crew-card--wide { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border-radius: var(--radius-xl); }
+	.crew-card--wide .crew-card-banner { aspect-ratio: auto; min-height: 360px; }
+	.crew-card--wide .crew-card-banner::after { background: linear-gradient(90deg, transparent 50%, color-mix(in srgb, var(--panel) 85%, transparent)); }
+	.crew-card--wide .crew-card-body { justify-content: center; padding: 34px; }
+	.crew-card--wide .crew-card-avatar { margin-top: 0; }
+	.crew-card--wide .crew-card-bio { -webkit-line-clamp: 6; font-size: 15.5px; }
+
+	.crew-under-label { margin: 34px 0 14px; color: var(--faint); font: 800 11px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.crew-leads { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+	.crew-lead { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); color: var(--text); transition: transform .4s var(--ease-out), border-color .25s ease; }
+	.crew-lead:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--agent-accent) 55%, var(--surface-border)); }
+	.crew-lead-head { display: grid; gap: 12px; }
+	.crew-lead-head img { width: 52px; height: 52px; border-radius: 30%; border: 2px solid var(--agent-accent); object-fit: cover; background: var(--panel); }
+	.crew-lead h4 { font: 500 23px/1 var(--font-display); letter-spacing: -.03em; margin-bottom: 7px; }
+	.crew-lead p { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+	.crew-lead ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
+	.crew-lead li { position: relative; padding-left: 14px; color: var(--text-soft); font-size: 12.5px; line-height: 1.45; }
+	.crew-lead li::before { content: ''; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--agent-accent); }
+
+	.crew-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+	.crew-trek { display: grid; gap: 16px; }
+	.crew-trek-intro { color: var(--muted); }
+	.crew-trek-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+	.crew-trek-list li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 18px; padding: 16px 0; border-top: 1px solid var(--border); }
+	.crew-trek-list b { display: block; font: 500 22px/1.1 var(--font-display); letter-spacing: -.03em; }
+	.crew-trek-list span { display: block; margin-top: 5px; color: var(--accent); font: 750 10.5px/1.3 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+	.crew-trek-list p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+
+	.crew-bridge { position: sticky; top: calc(var(--chrome-top) + 24px); display: grid; gap: 18px; }
+	.crew-bridge-head { display: grid; gap: 8px; }
+	.crew-bridge-head p { color: var(--muted); }
+	.crew-live { display: inline-flex; align-items: center; gap: 8px; color: var(--success); font: 800 10.5px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.crew-live i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 0 currentColor; animation: crew-live 1.8s ease-out infinite; }
+	@keyframes crew-live { 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+	.crew-feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+	.crew-feed :global(.ticker-item) { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 50%, transparent); transition: opacity .45s var(--ease-out), transform .45s var(--ease-out); }
+	.crew-feed :global(.ticker-item.is-entering) { opacity: 0; transform: translateY(-12px); }
+	.crew-feed :global(.ticker-item.is-leaving) { opacity: 0; transform: translateY(8px); }
+	.crew-feed :global(.ticker-emoji) { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: var(--panel-soft); font-size: 18px; }
+	.crew-feed :global(.ticker-copy) { display: grid; gap: 2px; min-width: 0; }
+	.crew-feed :global(.ticker-copy b) { font-size: 13.5px; }
+	.crew-feed :global(.ticker-copy span) { color: var(--muted); font-size: 13px; line-height: 1.4; }
+	.crew-feed :global(.ticker-meta) { display: grid; justify-items: end; gap: 6px; }
+	.crew-feed :global(.ticker-badge) { padding: 4px 8px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--status) 45%, transparent); background: color-mix(in srgb, var(--status) 14%, transparent); color: var(--status); font: 800 9.5px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+	.crew-feed :global(time) { color: var(--faint); font: 650 11px/1 var(--font-mono); }
+
+	.info-section p + p { margin-top: 8px; }
+	.info-section a { color: var(--accent); }
+
+	@media (max-width: 1100px) { .crew-leads { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+	@media (max-width: 980px) {
+		.crew-hero-inner { grid-template-columns: 1fr; }
+		.crew-wall { padding-bottom: 28px; }
+		.crew-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.crew-split { grid-template-columns: 1fr; }
+		.crew-bridge { position: static; }
+		.crew-card--wide { grid-template-columns: 1fr; }
+		.crew-card--wide .crew-card-banner { min-height: 0; aspect-ratio: 16 / 8; }
+		.crew-card--wide .crew-card-body { padding: 0 22px 22px; }
+		.crew-card--wide .crew-card-avatar { margin-top: -40px; }
+	}
+	@media (max-width: 760px) {
+		.crew-world, .crew-tour-head { display: none; }
+		.crew-hero { padding: 24px 0 8px; }
+		.crew-hero-copy { gap: 18px; }
+		.crew-hero-title { font-size: clamp(48px, 14vw, 64px); }
+		.crew-intro { font-size: 15.5px; }
+		.crew-wall { gap: 8px; }
+		.crew-tile { border-radius: 16px; }
+		.crew-tile:nth-child(4n + 2), .crew-tile:nth-child(4n + 4) { translate: 0 14px; }
+		.crew-tile-label { left: 7px; right: 7px; bottom: 6px; }
+		.crew-tile-label b { font-size: 13px; }
+		.crew-tile-label small { display: none; }
+		.crew-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; gap: 12px; }
+		.crew-grid::-webkit-scrollbar { display: none; }
+		.crew-grid .crew-card { flex: 0 0 84%; scroll-snap-align: start; }
+		.crew-leads { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; }
+		.crew-leads::-webkit-scrollbar { display: none; }
+		.crew-lead { flex: 0 0 74%; scroll-snap-align: start; }
+		.crew-trek-list li { grid-template-columns: 1fr; gap: 8px; }
+		.crew-feed :global(.ticker-item) { grid-template-columns: 34px minmax(0, 1fr); }
+		.crew-feed :global(.ticker-meta) { grid-column: 2; justify-items: start; grid-auto-flow: column; justify-content: start; align-items: center; }
+	}
+	@media (prefers-reduced-motion: reduce) { .crew-live i, .crew-hero-copy > *, .crew-tile { animation: none; } }
+</style>

@@ -1,0 +1,92 @@
+---
+interface Props {
+	label: string;
+	chips: { value: string; label: string; count: number }[];
+	/** Selector for the slotted grid whose direct children carry `data-category`. The grid must be passed as the default slot so this script runs after it is parsed. */
+	target: string;
+	noun: [singular: string, plural: string];
+	chipClass?: string;
+}
+
+const { label, chips, target, noun, chipClass } = Astro.props;
+const total = chips[0]?.count ?? 0;
+---
+<div class="cat-filter" data-cat-filter data-target={target} data-noun={noun[0]} data-nouns={noun[1]} data-no-reveal>
+	<div class="cat-filter-chips" role="group" aria-label={label}>
+		{chips.map((chip, index) => (
+			<button type="button" class:list={['ds-chip', chipClass, { 'is-active': index === 0 }]} data-category={chip.value} aria-pressed={index === 0 ? 'true' : 'false'}>
+				{chip.label} <small>{chip.count}</small>
+			</button>
+		))}
+	</div>
+	<span class="cat-filter-count" data-cat-count aria-live="polite">{total} {total === 1 ? noun[0] : noun[1]}</span>
+</div>
+<slot />
+
+<script is:inline>
+	(() => {
+		document.querySelectorAll('[data-cat-filter]:not([data-ready])').forEach((bar) => {
+			bar.dataset.ready = '';
+			const grid = document.querySelector(bar.dataset.target);
+			if (!grid) return;
+			const chips = [...bar.querySelectorAll('[data-category]')];
+			const items = [...grid.children].filter((el) => el.hasAttribute('data-category'));
+			const count = bar.querySelector('[data-cat-count]');
+			const rail = bar.querySelector('.cat-filter-chips');
+			const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
+			const apply = (category, fromUser) => {
+				let shown = 0;
+				chips.forEach((chip) => {
+					const on = chip.dataset.category === category;
+					chip.classList.toggle('is-active', on);
+					chip.setAttribute('aria-pressed', String(on));
+					if (on && rail) rail.scrollTo({ left: chip.offsetLeft - (rail.clientWidth - chip.offsetWidth) / 2, behavior: reduce.matches ? 'auto' : 'smooth' });
+				});
+				items.forEach((item) => {
+					const hit = category === 'All' || item.dataset.category === category;
+					item.hidden = !hit;
+					if (hit) shown++;
+				});
+				if (count) count.textContent = `${shown} ${shown === 1 ? bar.dataset.noun : bar.dataset.nouns}`;
+				if (!fromUser) return;
+				const chrome = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--chrome-top')) || 0;
+				const gridTop = grid.getBoundingClientRect().top;
+				if (gridTop < chrome + bar.offsetHeight) {
+					window.scrollTo({ top: gridTop + window.scrollY - chrome - bar.offsetHeight - 16, behavior: reduce.matches ? 'auto' : 'smooth' });
+				}
+			};
+
+			chips.forEach((chip) => chip.addEventListener('click', () => {
+				apply(chip.dataset.category, true);
+				const url = new URL(location.href);
+				if (chip.dataset.category === 'All') url.searchParams.delete('category');
+				else url.searchParams.set('category', chip.dataset.category);
+				history.replaceState(history.state, '', url);
+			}));
+			bar.catFilter = (category) => apply(category, true);
+
+			const requested = new URLSearchParams(location.search).get('category');
+			if (requested && chips.some((chip) => chip.dataset.category === requested)) apply(requested, false);
+		});
+	})();
+</script>
+
+<style>
+	.cat-filter { position: sticky; top: calc(var(--chrome-top) + 12px); z-index: 20; display: flex; align-items: center; gap: 16px; margin: 0 0 24px; padding: 8px 8px 8px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--border) 80%, transparent); background: color-mix(in srgb, var(--bg) 80%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 14px 40px color-mix(in srgb, black 14%, transparent); transition: top .4s var(--ease-ios); }
+	.cat-filter-chips { flex: 1; min-width: 0; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+	.cat-filter-chips::-webkit-scrollbar { display: none; }
+	.cat-filter .ds-chip { flex: 0 0 auto; min-height: 40px; }
+	.cat-filter .ds-chip:active { transform: scale(.95); }
+	.cat-filter-count { flex: 0 0 auto; padding: 0 12px; color: var(--muted); font: 650 12px/1 var(--font-mono); letter-spacing: .06em; white-space: nowrap; }
+
+	@media (max-width: 760px) {
+		.cat-filter { top: var(--chrome-top); margin: 0 calc(var(--gutter) * -1) 18px; padding: 10px 0; border-radius: 0; border-width: 0 0 1px; box-shadow: none; }
+		.cat-filter-chips { padding: 0 var(--gutter); scroll-padding-inline: var(--gutter); mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent); }
+		.cat-filter .ds-chip { min-height: 46px; padding: 0 16px; font-size: 15px; }
+		.cat-filter-count { display: none; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.cat-filter { transition: none; }
+	}
+</style>

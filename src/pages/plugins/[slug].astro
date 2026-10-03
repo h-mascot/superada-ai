@@ -1,9 +1,19 @@
 ---
 import { publishedPlugins, pluginMap, pluginPlatforms } from '../../data/plugins';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import CopyButton from '../../components/CopyButton.astro';
+import PageHero from '../../components/PageHero.astro';
+import CatalogCode from '../../components/catalog/CatalogCode.astro';
+import CatalogDetail from '../../components/catalog/CatalogDetail.astro';
+import CatalogFacts from '../../components/catalog/CatalogFacts.astro';
+import CatalogHeroMeta from '../../components/catalog/CatalogHeroMeta.astro';
+import CatalogList from '../../components/catalog/CatalogList.astro';
+import CatalogMiniList from '../../components/catalog/CatalogMiniList.astro';
+import CatalogPanel from '../../components/catalog/CatalogPanel.astro';
+import CatalogRelated from '../../components/catalog/CatalogRelated.astro';
+import CatalogRows from '../../components/catalog/CatalogRows.astro';
+import CatalogSteps from '../../components/catalog/CatalogSteps.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { clawhubLinkFor, neighbours, statusTone } from '../../lib/catalog';
 
 export async function getStaticPaths() {
   return publishedPlugins.map((plugin) => ({ params: { slug: plugin.slug } }));
@@ -17,19 +27,7 @@ if (!plugin) throw new Error(`Plugin not found: ${slug}`);
 
 const relatedPlugins = publishedPlugins.filter((entry) => entry.slug !== plugin.slug).slice(0, 2);
 
-const clawhubLink = plugin.clawhubUrl
-  ?? (plugin.clawhubSlug
-    ? (plugin.clawhubOwner
-      ? `https://clawhub.ai/${plugin.clawhubOwner}/skills/${plugin.clawhubSlug}`
-      : `https://clawhub.ai/skill/${plugin.clawhubSlug}`)
-    : null);
-
-const statusColors = {
-  Live: '#059669',
-  Internal: '#2563EB',
-  Beta: 'var(--accent)',
-  Draft: 'var(--accent)',
-} as const;
+const clawhubLink = clawhubLinkFor(plugin);
 
 const platformLabel = (id: keyof typeof pluginPlatforms) => pluginPlatforms[id].label;
 const platformHint = (id: keyof typeof pluginPlatforms) => pluginPlatforms[id].installHint;
@@ -40,207 +38,113 @@ const requirementTypeLabel: Record<string, string> = {
   review: 'Review',
   dependency: 'Dependency',
 };
+
+const toLink = (entry: typeof plugin) => ({
+  href: `/plugins/${entry.slug}/`,
+  title: entry.title,
+  tagline: entry.tagline,
+  badges: [
+    { label: entry.status, tone: statusTone(entry.status) },
+    ...entry.platforms.map((platform) => ({ label: platformLabel(platform), tone: 'accent' as const })),
+  ],
+});
+const sorted = [...publishedPlugins].sort((a, b) => a.title.localeCompare(b.title)).map(toLink);
+const morePlugins = neighbours(sorted, sorted.findIndex((entry) => entry.href === `/plugins/${plugin.slug}/`), new Set(relatedPlugins.map((entry) => `/plugins/${entry.slug}/`)));
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={`${plugin.title} — Plugin Marketplace`} description={plugin.summary} />
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    <main style="max-width:1080px; margin:0 auto; padding:3rem 1.5rem;">
-      <a href="/plugins" style="display:inline-block; color:var(--accent); text-decoration:none; font-size:0.85rem; margin-bottom:1.25rem;">← Back to plugins</a>
+<SiteLayout title={`${plugin.title} — Plugin Marketplace`} description={plugin.summary}>
+  <PageHero eyebrow={`Plugin · ${plugin.category}`} title={plugin.title} lede={plugin.tagline} size="md">
+    <CatalogHeroMeta
+      badges={[
+        { label: plugin.status, tone: statusTone(plugin.status) },
+        { label: plugin.category, tone: 'plain' },
+        { label: plugin.difficulty, tone: 'plain' },
+        ...plugin.platforms.map((platform) => ({ label: platformLabel(platform), tone: 'accent' as const })),
+      ]}
+    >
+      <CopyButton text={plugin.installCommand} label="Copy install command" variant="button" />
+      <a class="ds-btn ds-btn--ghost" href={plugin.sourceUrl}>View source</a>
+      {clawhubLink && <a class="ds-btn ds-btn--ghost" href={clawhubLink}>Open on ClawHub</a>}
+    </CatalogHeroMeta>
+  </PageHero>
 
-      <div class="plugin-detail-layout">
-        <article style="min-width:0;">
-          <div style="display:flex; gap:0.55rem; flex-wrap:wrap; margin-bottom:0.85rem;">
-            <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${statusColors[plugin.status]}; background:${statusColors[plugin.status]}18; border:1px solid ${statusColors[plugin.status]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
-              {plugin.status}
-            </span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{plugin.category}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{plugin.difficulty}</span>
-            {plugin.platforms.map((platform) => (
-              <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); background:var(--accent)18; border:1px solid var(--accent)33; border-radius:999px; padding:0.2rem 0.5rem;">
-                {platformLabel(platform)}
-              </span>
-            ))}
-          </div>
+  <CatalogDetail sideLabel="Plugin facts and other plugins">
+    <CatalogPanel id="overview" eyebrow="Overview" title="What this plugin does">
+      <p>{plugin.summary}</p>
+    </CatalogPanel>
 
-          <h1 style="font-family:Georgia,serif; font-size:3rem; font-weight:400; margin:0 0 0.6rem; line-height:1.1;">{plugin.title}</h1>
-          <p style="font-size:1.15rem; color:#C9BDA8; margin:0 0 1rem; line-height:1.7;">{plugin.tagline}</p>
-          <p style="color:var(--muted); margin:0 0 1.5rem; line-height:1.8;">{plugin.summary}</p>
+    {clawhubLink && (
+      <CatalogPanel id="clawhub" eyebrow="ClawHub download" title="Install from ClawHub" tone="accent">
+        <a slot="action" class="ds-btn cat-panel-btn" href={clawhubLink}>Open on ClawHub <span aria-hidden="true">→</span></a>
+        <p>This plugin is mirrored to the <a href={clawhubLink}>h-mascot ClawHub account</a> for install-from-the-page convenience.</p>
+        <p class="cat-muted">The ClawHub package is regenerated by <code>scripts/sync-superada-to-clawhub.mjs</code> on every push to <code>main</code>.</p>
+      </CatalogPanel>
+    )}
 
-          {clawhubLink && (
-            <section style="border:1px solid var(--accent); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-              <div style="min-width:0;">
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.35rem;">ClawHub download</div>
-                <div style="color:var(--text); margin-bottom:0.25rem;">This plugin is mirrored to the <a href={clawhubLink} style="color:var(--accent); text-decoration:none;">h-mascot ClawHub account</a> for install-from-the-page convenience.</div>
-                <div style="color:var(--muted); font-size:0.85rem; line-height:1.6;">The ClawHub package is regenerated by <code style="font-family:monospace;">scripts/sync-superada-to-clawhub.mjs</code> on every push to <code style="font-family:monospace;">main</code>.</div>
-              </div>
-              <a href={clawhubLink} style="background:var(--accent); color:#0D0A07; text-decoration:none; padding:0.7rem 1.1rem; border-radius:10px; font-weight:600; font-size:0.9rem; white-space:nowrap;">Open on ClawHub →</a>
-            </section>
-          )}
+    <CatalogPanel id="source" eyebrow="Source" title={plugin.sourceLabel}>
+      <p class="cat-muted">Canonical source: <a href={plugin.sourceUrl}>{plugin.sourceUrl}</a></p>
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Source</div>
-            <p style="margin:0 0 0.45rem; color:var(--text);">{plugin.sourceLabel}</p>
-            <p style="margin:0; color:var(--muted); font-size:0.9rem; line-height:1.7;">
-              Canonical source: <a href={plugin.sourceUrl} style="color:var(--accent); text-decoration:none; word-break:break-all;">{plugin.sourceUrl}</a>
-            </p>
-          </section>
+    <CatalogPanel id="platforms" eyebrow="Runtimes" title="Supported platforms">
+      <CatalogRows rows={plugin.platforms.map((platform) => ({ title: platformLabel(platform), detail: platformHint(platform) }))} />
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Supported platforms</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.9rem;">
-              {plugin.platforms.map((platform) => (
-                <div>
-                  <div style="font-size:0.95rem; color:var(--text); margin-bottom:0.25rem; font-family:monospace;">{platformLabel(platform)}</div>
-                  <div style="font-size:0.85rem; color:var(--muted); line-height:1.6;">{platformHint(platform)}</div>
-                </div>
-              ))}
-            </div>
-          </section>
+    <CatalogPanel id="prerequisites" eyebrow="Before you start" title="Prerequisites">
+      <CatalogRows rows={plugin.prerequisites.map((req) => ({ title: req.label, tag: requirementTypeLabel[req.type], detail: req.detail }))} />
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Prerequisites</div>
-            <div style="display:grid; gap:0.8rem;">
-              {plugin.prerequisites.map((req) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.85rem 0.95rem; background:#100D0A;">
-                  <div style="display:flex; gap:0.5rem; align-items:center; margin-bottom:0.3rem; flex-wrap:wrap;">
-                    <span style="font-size:0.66rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); background:var(--accent)14; border:1px solid var(--accent)33; border-radius:999px; padding:0.18rem 0.5rem;">{requirementTypeLabel[req.type]}</span>
-                    <span style="color:var(--text); font-weight:500;">{req.label}</span>
-                  </div>
-                  <div style="color:var(--muted); font-size:0.9rem; line-height:1.7;">{req.detail}</div>
-                </div>
-              ))}
-            </div>
-          </section>
+    <CatalogPanel id="install" eyebrow="Setup" title="Install">
+      <CopyButton slot="action" text={plugin.installCommand} label="Copy install" />
+      <p class="cat-muted">One-shot install into a host plugins/ directory, then the auto installer registers the plugin with the running runtime.</p>
+      <CatalogCode code={plugin.installCommand} />
+      <CatalogSteps steps={plugin.installSteps} label="Install steps" prefix="Step" />
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:0.45rem;">
-              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em;">Install</div>
-              <CopyButton text={plugin.installCommand} label="Copy install" />
-            </div>
-            <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.85rem;">One-shot install into a host plugins/ directory, then the auto installer registers the plugin with the running runtime.</p>
-            <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.85rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{plugin.installCommand}</code>
-            <div style="display:grid; gap:0.8rem;">
-              {plugin.installSteps.map((step, index) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Step {index + 1}</div>
-                  <div style="color:var(--text); margin-bottom:0.35rem;">{step.title}</div>
-                  <div style={`color:var(--muted); line-height:1.7; margin-bottom:${step.command ? '0.6rem' : '0'};`}>{step.detail}</div>
-                  {step.command && <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{step.command}</code>}
-                </div>
-              ))}
-            </div>
-          </section>
+    <CatalogPanel id="verification" eyebrow="Proof" title="Verification">
+      <CopyButton slot="action" text={plugin.verifyCommand} label="Copy verify" />
+      <p class="cat-muted">Configuration is what you wanted. Enforcement is what happened. The verify script is the receipt.</p>
+      <CatalogCode code={plugin.verifyCommand} />
+      <CatalogSteps steps={plugin.verification.map((check) => ({ title: check.label, detail: check.detail, command: check.command, expected: check.expected }))} label="Verification checks" prefix="Check" />
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:0.45rem;">
-              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em;">Verification</div>
-              <CopyButton text={plugin.verifyCommand} label="Copy verify" />
-            </div>
-            <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.85rem;">Configuration is what you wanted. Enforcement is what happened. The verify script is the receipt.</p>
-            <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.85rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{plugin.verifyCommand}</code>
-            <div style="display:grid; gap:0.8rem;">
-              {plugin.verification.map((check, index) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Check {index + 1}</div>
-                  <div style="color:var(--text); margin-bottom:0.3rem;">{check.label}</div>
-                  <div style="color:var(--muted); line-height:1.7; margin-bottom:0.5rem;">{check.detail}</div>
-                  {check.command && <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:0.45rem;">{check.command}</code>}
-                  {check.expected && (
-                    <div style="font-size:0.78rem; color:#9BB899;">
-                      <span style="color:var(--accent); font-family:monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; margin-right:0.4rem;">Expected</span>
-                      <code style="font-family:monospace;">{check.expected}</code>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
+    <CatalogPanel id="rollback" eyebrow="Rollback" title="Uninstall / rollback">
+      <p class="cat-muted">Disable the plugin with the running runtime first, then remove the staged plugin directory. The audit store stays so you can prove the rollout happened.</p>
+      <CatalogCode code={plugin.uninstallCommand} copy="Copy" />
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Uninstall / rollback</div>
-            <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.85rem;">Disable the plugin with the running runtime first, then remove the staged plugin directory. The audit store stays so you can prove the rollout happened.</p>
-            <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.85rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{plugin.uninstallCommand}</code>
-          </section>
+    {plugin.sections.map((section, index) => (
+      <CatalogPanel id={`section-${index + 1}`} title={section.heading}>
+        <p>{section.body}</p>
+        {section.command && <CatalogCode code={section.command} copy="Copy" />}
+        {section.bullets && section.bullets.length > 0 && <CatalogList items={section.bullets} />}
+      </CatalogPanel>
+    ))}
 
-          {plugin.sections.map((section) => (
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-              <h2 style="font-family:Georgia,serif; font-size:1.5rem; font-weight:400; margin:0 0 0.5rem;">{section.heading}</h2>
-              <p style="color:#C9BDA8; margin:0 0 0.7rem; line-height:1.8;">{section.body}</p>
-              {section.command && (
-                <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:0.7rem;">{section.command}</code>
-              )}
-              {section.bullets && section.bullets.length > 0 && (
-                <ul style="margin:0; padding-left:1.15rem; color:#C9BDA8; line-height:1.8;">
-                  {section.bullets.map((bullet) => <li>{bullet}</li>)}
-                </ul>
-              )}
-            </section>
-          ))}
-        </article>
+    <Fragment slot="side">
+      <CatalogFacts
+        title="Plugin facts"
+        items={[
+          { label: 'Status', value: plugin.status },
+          { label: 'Category', value: plugin.category },
+          { label: 'Difficulty', value: plugin.difficulty },
+          { label: 'Platforms', value: plugin.platforms.map((p) => platformLabel(p)).join(', '), mono: true },
+          { label: 'Slug', value: plugin.slug, mono: true, wide: true },
+          { label: 'Source', value: plugin.sourceLabel, href: plugin.sourceUrl, mono: true, wide: true },
+          ...(clawhubLink ? [{ label: 'ClawHub', value: plugin.clawhubSlug || 'View on ClawHub', href: clawhubLink, mono: true, wide: true }] : []),
+        ]}
+      >
+        <span class="cat-side-cta"><CopyButton text={plugin.installCommand} label="Copy install command" variant="button" /></span>
+      </CatalogFacts>
+      <CatalogMiniList title="Other plugins" items={relatedPlugins.map((entry) => ({ href: `/plugins/${entry.slug}/`, title: entry.title, tagline: entry.tagline }))} />
+    </Fragment>
+  </CatalogDetail>
 
-        <aside style="display:flex; flex-direction:column; gap:1rem; min-width:0;">
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.55rem;">Plugin facts</div>
-            <dl style="margin:0; display:grid; gap:0.6rem;">
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Slug</dt>
-                <dd style="margin:0; color:var(--text); font-family:monospace; font-size:0.85rem;">{plugin.slug}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Status</dt>
-                <dd style="margin:0; color:var(--text);">{plugin.status}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Category</dt>
-                <dd style="margin:0; color:var(--text);">{plugin.category}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Difficulty</dt>
-                <dd style="margin:0; color:var(--text);">{plugin.difficulty}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Platforms</dt>
-                <dd style="margin:0; color:var(--text); font-family:monospace; font-size:0.85rem;">{plugin.platforms.map((p) => platformLabel(p)).join(', ')}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">Source</dt>
-                <dd style="margin:0;"><a href={plugin.sourceUrl} style="color:var(--accent); text-decoration:none; font-family:monospace; font-size:0.78rem; word-break:break-all;">{plugin.sourceLabel}</a></dd>
-              </div>
-              {clawhubLink && (
-                <div>
-                  <dt style="font-size:0.72rem; color:var(--muted); margin-bottom:0.15rem;">ClawHub</dt>
-                  <dd style="margin:0;"><a href={clawhubLink} style="color:var(--accent); text-decoration:none; font-family:monospace; font-size:0.78rem; word-break:break-all;">{plugin.clawhubSlug || 'View on ClawHub'}</a></dd>
-                </div>
-              )}
-            </dl>
-          </section>
+  <CatalogRelated title="More plugins" items={morePlugins} indexHref="/plugins/" indexLabel="All plugins" backLabel="Back to plugins" />
+</SiteLayout>
 
-          {relatedPlugins.length > 0 && (
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.55rem;">Other plugins</div>
-              <ul style="list-style:none; margin:0; padding:0; display:grid; gap:0.6rem;">
-                {relatedPlugins.map((entry) => (
-                  <li>
-                    <a href={`/plugins/${entry.slug}/`} style="color:var(--accent); text-decoration:none; font-family:Georgia,serif; font-size:1.05rem;">{entry.title}</a>
-                    <div style="color:var(--muted); font-size:0.8rem; line-height:1.5; margin-top:0.15rem;">{entry.tagline}</div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-        </aside>
-      </div>
-
-      <style>
-        .plugin-detail-layout { display:grid; grid-template-columns:minmax(0, 1fr) 280px; gap:1.5rem; }
-        @media (max-width: 900px) { .plugin-detail-layout { grid-template-columns:1fr; } }
-      </style>
-    </main>
-    <Footer />
-  </body>
-</html>
+<style>
+  .cat-panel-btn { min-height: 44px; padding: 0 18px; }
+  .cat-side-cta { display: contents; }
+  @media (max-width: 980px) { .cat-side-cta { display: none; } }
+  @media (max-width: 760px) { .cat-panel-btn { display: none; } }
+</style>

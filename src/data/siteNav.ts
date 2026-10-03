@@ -14,7 +14,7 @@ export const primaryNav: NavLink[] = [
 	{ href: '/about', label: 'Crew', icon: 'crew', description: 'The Enterprise Crew and how Ada routes work.' },
 	{ href: '/use-cases', label: 'Use Cases', icon: 'cases', description: 'How Henry and the crew use agents in daily work.' },
 	{ href: '/resources', label: 'Resources', icon: 'atlas', description: 'Tools, workflow packs, plugins, skills, crons and guides.' },
-	{ href: '/developers', label: 'API Docs', icon: 'code', description: 'Public API, OpenAPI spec and agent docs.' },
+	{ href: '/docs', label: 'Docs', icon: 'docs', description: 'OpenAPI spec, llms.txt, versioning policy and agent docs.' },
 	{ href: '/blog', label: 'Ship Log', icon: 'log', description: 'Notes from live systems and work that shipped.' },
 	{ href: '/journey', label: 'Timeline', icon: 'timeline', description: 'The milestones behind the 1000x journey.' },
 ];
@@ -31,7 +31,6 @@ export const mobileTabs: NavLink[] = [
 export const moreNav: NavLink[] = [
 	{ href: '/use-cases', label: 'Use Cases', icon: 'cases' },
 	{ href: '/journey', label: 'Timeline', icon: 'timeline' },
-	{ href: '/developers', label: 'API Docs', icon: 'code' },
 	{ href: '/weekly-claw', label: 'Weekly Claw', icon: 'claw' },
 	{ href: '/openclaw-changelog', label: 'Changelog', icon: 'changelog' },
 	{ href: '/docs', label: 'Docs', icon: 'docs' },

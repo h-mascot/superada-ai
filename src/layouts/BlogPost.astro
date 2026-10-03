@@ -65,7 +65,7 @@ const showToc = toc.length >= 3;
 
 				{heroImage && (
 					<figure class="post-hero ds-shell">
-						<div class="post-hero-media" data-post-hero>
+						<div class="post-hero-media" data-morph-hero>
 							<Image src={heroImage} alt={heroAlt || `Illustration for ${title}`} format="webp" widths={[800, 1200, 1800]} sizes="(max-width: 1240px) 100vw, 1180px" fetchpriority="high" loading="eager" />
 						</div>
 					</figure>
@@ -152,33 +152,6 @@ const showToc = toc.length >= 3;
 	.post-toc a.is-current::before { transform: scaleY(1); }
 	.post-body { min-width: 0; }
 
-	.prose { color: var(--text-soft); font-size: 18px; line-height: 1.78; }
-	.prose > :first-child { margin-top: 0; }
-	.prose h1, .prose h2, .prose h3, .prose h4 { font-family: var(--font-display); font-weight: 500; color: var(--text); letter-spacing: -.03em; scroll-margin-top: calc(var(--chrome-top) + 24px); text-wrap: balance; }
-	.prose h1 { font-size: 2rem; margin: 3rem 0 1rem; line-height: 1.15; }
-	.prose h2 { font-size: clamp(1.75rem, 2.6vw, 2.2rem); margin: 3.4rem 0 1rem; line-height: 1.1; }
-	.prose h3 { font-size: 1.4rem; margin: 2.4rem 0 .6rem; line-height: 1.2; }
-	.prose h4 { font-size: 1.15rem; margin: 1.8rem 0 .5rem; line-height: 1.3; }
-	.prose p { margin-bottom: 1.35rem; text-wrap: pretty; }
-	.prose a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; transition: text-decoration-color .2s ease; }
-	.prose a:hover { text-decoration-color: var(--accent); }
-	.prose strong { color: var(--text); font-weight: 650; }
-	.prose em { font-style: italic; }
-	.prose code { background: var(--panel-soft); border: 1px solid var(--border); border-radius: 6px; padding: .12em .4em; font-size: .84em; color: var(--accent-2); }
-	.prose pre { background: color-mix(in srgb, var(--bg) 70%, black); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem 1.4rem; overflow-x: auto; margin: 0 0 1.6rem; font-size: 14.5px; line-height: 1.6; }
-	.prose pre code { background: none; border: none; padding: 0; color: var(--text-soft); font-size: inherit; }
-	.prose blockquote { margin: 2rem 0; padding: 1.1rem 1.4rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius-md) var(--radius-md) 0; background: color-mix(in srgb, var(--accent-soft) 40%, transparent); color: var(--text); font-family: var(--font-display); font-size: 1.2em; line-height: 1.5; }
-	.prose blockquote p:last-child { margin-bottom: 0; }
-	.prose ul, .prose ol { padding-left: 1.4rem; margin-bottom: 1.4rem; }
-	.prose ul { list-style-type: disc; }
-	.prose ol { list-style-type: decimal; }
-	.prose li { margin-bottom: .45rem; color: var(--text-soft); }
-	.prose li::marker { color: var(--accent); }
-	.prose hr { border: none; height: 1px; margin: 3rem auto; width: 40%; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
-	.prose img { display: block; max-width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border); margin: 2rem 0; }
-	.prose table { width: 100%; border-collapse: collapse; margin: 0 0 1.6rem; font-size: 15px; }
-	.prose th, .prose td { padding: .7rem .8rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
-	.prose th { color: var(--text); font-weight: 650; }
 
 	.post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 3rem 0 0; padding-top: 1.6rem; border-top: 1px solid var(--border); }
 	.post-tags .ds-chip { text-transform: capitalize; }
@@ -207,9 +180,6 @@ const showToc = toc.length >= 3;
 		.post-byline-meta { justify-content: flex-start; }
 		.post-hero { padding-inline: 0; margin-bottom: 30px; }
 		.post-hero-media { border-radius: 0; border-left: 0; border-right: 0; }
-		.prose { font-size: 17px; line-height: 1.72; }
-		.prose img { border-radius: var(--radius-md); margin: 1.6rem 0; }
-		.prose blockquote { font-size: 1.1em; }
 		.post-next-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; gap: 12px; }
 		.post-next-grid::-webkit-scrollbar { display: none; }
 		.post-next-grid > * { flex: 0 0 80%; scroll-snap-align: start; }
