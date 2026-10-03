@@ -1,5 +1,4 @@
 ---
-import PageHero from '../components/PageHero.astro';
 import ScrollWorld from '../components/ScrollWorld.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { SITE_TITLE } from '../consts';
@@ -217,30 +216,36 @@ const feedStart = activities.slice(0, 5);
 ---
 
 <SiteLayout title={`The Crew | ${SITE_TITLE}`} description="Meet the Enterprise Crew: Ada and the Hermes core crew, Data's Grok Bot fleet, the hardware they run on and the Star Trek characters they are named for." bodyClass="crew-home">
-	<div class="crew-world">
-		<ScrollWorld world={enterpriseCrewWorld} />
-	</div>
-
-	<PageHero eyebrow="Crew directory" title="The people inside the world." size="lg">
-		<p slot="aside" class="crew-intro">
-			Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
-			Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
-		</p>
-		<div slot="aside" class="ds-stats">
-			<div class="ds-stat"><b>{roster.length}</b><span>agents</span></div>
-			<div class="ds-stat"><b>2</b><span>fleets</span></div>
-			<div class="ds-stat"><b>5</b><span>machines</span></div>
+	<section class="crew-hero" aria-labelledby="crew-title">
+		<div class="crew-hero-bg" aria-hidden="true"></div>
+		<div class="ds-shell crew-hero-inner">
+			<div class="crew-hero-copy">
+				<span class="ds-eyebrow">Crew directory</span>
+				<h1 class="crew-hero-title" id="crew-title">The people inside the <em>world.</em></h1>
+				<p class="crew-intro">
+					Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
+					Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
+				</p>
+				<div class="ds-stats crew-hero-stats">
+					<div class="ds-stat"><b>{roster.length}</b><span>agents</span></div>
+					<div class="ds-stat"><b>2</b><span>fleets</span></div>
+					<div class="ds-stat"><b>5</b><span>machines</span></div>
+				</div>
+				<div class="crew-hero-actions">
+					<a class="ds-btn" href="#core-title">The core crew <span aria-hidden="true">↓</span></a>
+					<a class="ds-btn ds-btn--ghost" href="#data-title">Data's fleet</a>
+				</div>
+			</div>
+			<nav class="crew-wall" aria-label="Jump to a crew member" data-no-reveal>
+				{roster.map((agent, index) => (
+					<a href={`/crew/${agent.slug}`} class="crew-tile" style={`--agent-accent:${agent.accent}; --i:${index}`}>
+						<img src={agent.avatar} alt="" width="160" height="160" loading={index < 8 ? 'eager' : 'lazy'} />
+						<span class="crew-tile-label"><b>{agent.name}</b><small>{agent.role}</small></span>
+					</a>
+				))}
+			</nav>
 		</div>
-	</PageHero>
-
-	<nav class="crew-stories ds-shell" aria-label="Jump to a crew member" data-no-reveal>
-		{roster.map((agent) => (
-			<a href={`/crew/${agent.slug}`} class="crew-story" style={`--agent-accent:${agent.accent}`}>
-				<span class="crew-story-ring"><img src={agent.avatar} alt="" width="64" height="64" loading="lazy" /></span>
-				<span class="crew-story-name">{agent.name}</span>
-			</a>
-		))}
-	</nav>
+	</section>
 
 	<section class="ds-shell ds-section" aria-labelledby="core-title">
 		<div class="ds-section-head">
@@ -312,6 +317,16 @@ const feedStart = activities.slice(0, 5);
 			))}
 		</div>
 	</section>
+
+	<section class="ds-shell ds-section crew-tour-head" aria-labelledby="crew-tour-title">
+		<div class="ds-section-head">
+			<div class="crew-section-title"><span class="ds-eyebrow">Headquarters</span><h2 class="ds-h2" id="crew-tour-title">Tour the Enterprise Crew headquarters</h2></div>
+			<span class="crew-tour-hint" aria-hidden="true">Scroll ↓</span>
+		</div>
+	</section>
+	<div class="crew-world">
+		<ScrollWorld world={enterpriseCrewWorld} />
+	</div>
 
 	<section class="ds-shell ds-section crew-split" aria-labelledby="trek-title">
 		<div class="crew-trek">
@@ -421,17 +436,37 @@ const feedStart = activities.slice(0, 5);
 </SiteLayout>
 
 <style>
-	.crew-intro { color: var(--text-soft); font-size: 16px; line-height: 1.7; }
+	.crew-intro { color: var(--text-soft); font-size: 16.5px; line-height: 1.7; max-width: 38rem; }
+	.crew-hero { position: relative; isolation: isolate; overflow: clip; padding: clamp(40px, 7vh, 96px) 0 clamp(48px, 7vh, 88px); }
+	.crew-hero-bg { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 50% 60% at 78% 40%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%), radial-gradient(ellipse 40% 50% at 10% 100%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 70%); }
+	.crew-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+	.crew-hero-copy { display: grid; gap: 22px; justify-items: start; }
+	.crew-hero-copy > * { animation: crew-in .9s var(--ease-out) backwards; }
+	.crew-hero-copy > :nth-child(2) { animation-delay: .08s; } .crew-hero-copy > :nth-child(3) { animation-delay: .16s; } .crew-hero-copy > :nth-child(4) { animation-delay: .24s; } .crew-hero-copy > :nth-child(5) { animation-delay: .32s; }
+	@keyframes crew-in { from { opacity: 0; transform: translateY(22px); filter: blur(6px); } }
+	.crew-hero-title { font: 500 clamp(56px, 7.4vw, 116px)/.9 var(--font-display); letter-spacing: -.065em; color: var(--text); text-wrap: balance; }
+	.crew-hero-title em { font-style: normal; color: var(--accent); }
+	.crew-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+	.crew-wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+	.crew-tile { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--agent-accent) 40%, var(--surface-border)); background: var(--panel); box-shadow: 0 18px 50px color-mix(in srgb, var(--agent-accent) 14%, transparent); animation: crew-tile-in .8s var(--ease-out) backwards; animation-delay: calc(var(--i) * 45ms + .15s); transition: transform .5s var(--ease-spring), box-shadow .4s ease, border-color .3s ease; }
+	.crew-tile:nth-child(4n + 2), .crew-tile:nth-child(4n + 4) { translate: 0 28px; }
+	@keyframes crew-tile-in { from { opacity: 0; transform: translateY(30px) scale(.92); } }
+	.crew-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out), filter .4s ease; }
+	.crew-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(5, 4, 3, .85)); }
+	.crew-tile-label { position: absolute; z-index: 2; left: 12px; right: 12px; bottom: 10px; display: grid; gap: 2px; color: #fbf2e3; }
+	.crew-tile-label b { font: 500 19px/1 var(--font-display); letter-spacing: -.02em; }
+	.crew-tile-label small { color: color-mix(in srgb, var(--agent-accent) 70%, white); font: 750 9px/1.25 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+	@media (hover: hover) {
+		.crew-wall:hover .crew-tile:not(:hover) img { filter: saturate(.5) brightness(.75); }
+		.crew-tile:hover { transform: translateY(-6px) scale(1.03); border-color: var(--agent-accent); box-shadow: 0 26px 70px color-mix(in srgb, var(--agent-accent) 35%, transparent); z-index: 2; }
+		.crew-tile:hover img { transform: scale(1.08); }
+	}
+	.crew-tour-head .ds-section-head { margin-bottom: 0; }
+	.crew-tour-hint { color: var(--accent); font: 800 11px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.crew-world { margin-top: 28px; }
+
 	.crew-intro a { color: var(--accent); }
 
-	.crew-stories { display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none; padding-block: 6px 4px; mask-image: linear-gradient(90deg, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent); }
-	.crew-stories::-webkit-scrollbar { display: none; }
-	.crew-story { flex: 0 0 auto; display: grid; justify-items: center; gap: 8px; width: 84px; color: var(--text-soft); }
-	.crew-story-ring { width: 72px; height: 72px; padding: 3px; border-radius: 50%; background: conic-gradient(from 210deg, var(--agent-accent), color-mix(in srgb, var(--agent-accent) 30%, transparent), var(--agent-accent)); transition: transform .4s var(--ease-spring); }
-	.crew-story-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg); background: var(--panel); }
-	.crew-story-name { font-size: 12.5px; font-weight: 700; }
-	.crew-story:hover .crew-story-ring { transform: translateY(-3px) scale(1.05); }
-	.crew-story:active .crew-story-ring { transform: scale(.92); }
 
 	.crew-section-title { display: grid; gap: 12px; }
 	.crew-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -504,6 +539,8 @@ const feedStart = activities.slice(0, 5);
 
 	@media (max-width: 1100px) { .crew-leads { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 	@media (max-width: 980px) {
+		.crew-hero-inner { grid-template-columns: 1fr; }
+		.crew-wall { padding-bottom: 28px; }
 		.crew-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 		.crew-split { grid-template-columns: 1fr; }
 		.crew-bridge { position: static; }
@@ -513,7 +550,17 @@ const feedStart = activities.slice(0, 5);
 		.crew-card--wide .crew-card-avatar { margin-top: -40px; }
 	}
 	@media (max-width: 760px) {
-		.crew-world { display: none; }
+		.crew-world, .crew-tour-head { display: none; }
+		.crew-hero { padding: 24px 0 8px; }
+		.crew-hero-copy { gap: 18px; }
+		.crew-hero-title { font-size: clamp(48px, 14vw, 64px); }
+		.crew-intro { font-size: 15.5px; }
+		.crew-wall { gap: 8px; }
+		.crew-tile { border-radius: 16px; }
+		.crew-tile:nth-child(4n + 2), .crew-tile:nth-child(4n + 4) { translate: 0 14px; }
+		.crew-tile-label { left: 7px; right: 7px; bottom: 6px; }
+		.crew-tile-label b { font-size: 13px; }
+		.crew-tile-label small { display: none; }
 		.crew-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; gap: 12px; }
 		.crew-grid::-webkit-scrollbar { display: none; }
 		.crew-grid .crew-card { flex: 0 0 84%; scroll-snap-align: start; }
@@ -524,5 +571,5 @@ const feedStart = activities.slice(0, 5);
 		.crew-feed :global(.ticker-item) { grid-template-columns: 34px minmax(0, 1fr); }
 		.crew-feed :global(.ticker-meta) { grid-column: 2; justify-items: start; grid-auto-flow: column; justify-content: start; align-items: center; }
 	}
-	@media (prefers-reduced-motion: reduce) { .crew-live i { animation: none; } }
+	@media (prefers-reduced-motion: reduce) { .crew-live i, .crew-hero-copy > *, .crew-tile { animation: none; } }
 </style>
