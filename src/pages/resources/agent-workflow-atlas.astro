@@ -1,7 +1,6 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 
 const atlas = {
   "generatedAt": "2026-08-09T10:55:18Z",
@@ -1521,23 +1520,22 @@ const stats = [
   { label: 'Inferred', value: atlas.summary.by_evidence.inferred },
 ];
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title="Agent Workflow Atlas - SuperAda" description="A public-safe atlas of 100 Enterprise Crew workflows, written like use cases and filterable by category, agent, proof state, and risk." />
-  </head>
-  <body class="use-cases-page atlas-page">
-    <Header />
-    <main>
-      <section class="hero shell">
-        <p class="eyebrow">Workflow atlas</p>
-        <h1>Agent workflow atlas</h1>
-        <p class="lede">The long list behind the use-cases page. Same useful structure: what runs, what it connects to, what comes back, and where the human gate sits. Filter it by lane, agent, proof state, or risk. No raw inventory dump.</p>
+<SiteLayout title="Agent Workflow Atlas - SuperAda" description="A public-safe atlas of 100 Enterprise Crew workflows, written like use cases and filterable by category, agent, proof state, and risk." bodyClass="atlas-page">
+      <PageHero eyebrow="Workflow atlas" title="Agent workflow atlas" lede="The long list behind the use-cases page. Same useful structure: what runs, what it connects to, what comes back, and where the human gate sits. Filter it by lane, agent, proof state, or risk. No raw inventory dump.">
+        <a class="ds-btn" href="#catalog">Browse the catalog <span aria-hidden="true">↓</span></a>
+        <a class="ds-btn ds-btn--ghost" href="#usecases">Featured use cases</a>
+        <div slot="aside" class="ds-stats awa-stats" aria-label="Atlas counts">
+          {stats.map((stat) => <div class="ds-stat"><b>{stat.value}</b><span>{stat.label}</span></div>)}
+        </div>
+      </PageHero>
+
+      <section class="shell intro-grid" aria-label="Atlas summary">
+        <article class="ds-card"><span class="ds-card-kicker">Shape</span><h2>Same shape as the use-cases page</h2><p>Every workflow reads like an operator card, not a spreadsheet row wearing a cheap suit. The private receipts stay private; the reusable pattern is public.</p></article>
+        <article class="ds-card"><span class="ds-card-kicker">Filters</span><h2>Filters that stay useful</h2><p>Search across title, category, agent, sources, output, risk, and approval gate. Then narrow by category, agent, proof state, or risk level.</p></article>
       </section>
 
       <section id="catalog" class="shell examples catalog" aria-labelledby="catalog-title">
-        <p class="eyebrow">Filterable catalog</p>
-        <h2 id="catalog-title">100 workflow cards</h2>
+        <div class="ds-section-head"><div class="awa-head"><span class="ds-eyebrow">Filterable catalog</span><h2 class="ds-h2" id="catalog-title">100 workflow cards</h2></div></div>
         <div class="filters" aria-label="Workflow filters">
           <label><span>Search</span><input id="atlas-search" type="search" placeholder="Search title, source, output, agent, risk…" /></label>
           <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{atlas.categories.map((category) => <option value={category.name}>{category.name}</option>)}</select></label>
@@ -1547,15 +1545,6 @@ const stats = [
           <label><span>Sort</span><select id="sort-control"><option value="original">Original atlas order</option><option value="title">Title A-Z</option><option value="category">Category A-Z</option><option value="agent">Primary agent A-Z</option><option value="proof">Verified first</option><option value="risk">Lowest risk first</option></select></label>
         </div>
         <p id="catalog-count" class="count">100 workflows shown</p>
-      </section>
-
-      <section class="shell intro-grid" aria-label="Atlas summary">
-        <article><h2>Same shape as the use-cases page</h2><p>Every workflow reads like an operator card, not a spreadsheet row wearing a cheap suit. The private receipts stay private; the reusable pattern is public.</p></article>
-        <article><h2>Filters that stay useful</h2><p>Search across title, category, agent, sources, output, risk, and approval gate. Then narrow by category, agent, proof state, or risk level.</p></article>
-      </section>
-
-      <section class="shell stat-strip" aria-label="Atlas counts">
-        {stats.map((stat) => <article><span>{stat.label}</span><strong>{stat.value}</strong></article>)}
       </section>
 
       <section class="shell examples catalog catalog-results" aria-label="Workflow cards">
@@ -1578,7 +1567,7 @@ const stats = [
 
       <section id="usecases" class="shell examples usecases" aria-labelledby="usecases-title">
         <div class="atlas-section-head">
-          <p class="eyebrow">Sixteen more in practice</p>
+          <p class="ds-eyebrow">Sixteen more in practice</p>
           <h2 id="usecases-title">Featured use cases, straight from the operator's week</h2>
           <p>The same recurring jobs, told plainly: what runs, what it connects to, what comes back, and where the human approval line sits.</p>
         </div>
@@ -1747,13 +1736,12 @@ const stats = [
       </section>
 
 
-      <section class="shell setup" aria-labelledby="setup-title">
-        <div><p class="eyebrow">Setup pattern</p><h2 id="setup-title">Copy the operating shape</h2><p>Use the atlas like a pattern library. Pick a repeated job, connect safe sources, define the returned artifact, and write the approval gate before automating anything.</p></div>
+      <section class="shell setup ds-panel" aria-labelledby="setup-title">
+        <div><p class="ds-eyebrow">Setup pattern</p><h2 id="setup-title">Copy the operating shape</h2><p>Use the atlas like a pattern library. Pick a repeated job, connect safe sources, define the returned artifact, and write the approval gate before automating anything.</p></div>
         <ol><li>Choose one card that matches the repeated job.</li><li>Replace the connected sources with systems the operator can safely read.</li><li>Define the output format before the agent runs.</li><li>Keep the human gate explicit, especially for external sends, spend, production, and commitments.</li><li>Save receipts so the result can be checked instead of believed.</li></ol>
       </section>
-    </main>
-    <Footer />
-    <script>
+    <script is:inline slot="after">
+    (() => {
       const search = document.getElementById('atlas-search');
       const category = document.getElementById('category-filter');
       const agent = document.getElementById('agent-filter');
@@ -1800,59 +1788,65 @@ const stats = [
       sort?.addEventListener('change', () => { sortCards(); applyFilters(); });
       sortCards();
       applyFilters();
+    })();
     </script>
-  </body>
-</html>
+</SiteLayout>
 
 <style>
-  :global(body.use-cases-page) { background: radial-gradient(circle at top left, rgba(248, 96, 42, 0.16), transparent 28rem), #080706; color: #f7efe7; }
-  .shell { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; }
-  .hero { padding: 7rem 0 3.5rem; }
-  .eyebrow, .case-topline span, .filters span, .stat-strip span { display: inline-flex; width: fit-content; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.72rem; color: #ffb088; font-weight: 800; }
+  .shell { width: min(100%, var(--shell)); margin-inline: auto; padding-inline: var(--gutter); }
+  .awa-stats { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 24px 40px; }
+  .awa-head { display: grid; gap: 12px; }
   h1, h2, h3, p, dl, dd, ol { margin: 0; }
-  h1 { max-width: 980px; margin-top: 0.45rem; font-size: clamp(2.6rem, 7vw, 5.8rem); line-height: 0.95; letter-spacing: -0.055em; }
-  .lede { max-width: 840px; margin-top: 1.4rem; color: #d8c6b9; font-size: clamp(1.08rem, 2vw, 1.3rem); line-height: 1.55; }
-  .intro-grid, .stat-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 0 0 3rem; }
-  .stat-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); padding-bottom: 1rem; }
-  .intro-grid article, .stat-strip article, .case-card, .setup, .empty-state { border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(255, 255, 255, 0.055); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25); }
-  .intro-grid article, .stat-strip article { border-radius: 28px; padding: 1.4rem; }
-  .stat-strip strong { display: block; margin-top: 0.55rem; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.05em; }
-  .intro-grid h2, .examples h2, .setup h2, .atlas-section-head h2 { font-size: clamp(1.7rem, 3vw, 3rem); line-height: 1; letter-spacing: -0.05em; }
-  .intro-grid p, .setup p, .atlas-section-head p:not(.eyebrow) { margin-top: 0.9rem; color: #d8c6b9; line-height: 1.65; }
-  .examples, .setup { margin-top: 1rem; }
-  .examples { padding: 2rem 0 3rem; }
-  .examples h2 { margin-top: 0.5rem; }
-  .case-list { display: grid; gap: 1rem; margin-top: 1.4rem; }
-  .featured-list { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
-  .case-card { border-radius: 30px; overflow: hidden; }
+  .intro-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .examples { margin-top: clamp(56px, 7vw, 96px); }
+  .catalog-results { margin-top: 18px; }
+  .filters { position: sticky; top: calc(var(--chrome-top) + 12px); z-index: 20; display: grid; grid-template-columns: minmax(240px, 1.6fr) repeat(5, minmax(0, 1fr)); gap: 10px; padding: 12px; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: color-mix(in srgb, var(--panel) 88%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 18px 50px color-mix(in srgb, black 22%, transparent); }
+  .filters label { display: grid; gap: 6px; min-width: 0; }
+  .filters span { color: var(--faint); font: 800 9.5px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+  .filters input, .filters select { width: 100%; min-height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font: inherit; font-size: 14px; }
+  .filters input:focus, .filters select:focus { outline: none; border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .count { margin-top: 14px; color: var(--muted); font: 700 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .case-list { display: grid; gap: 14px; }
+  .featured-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); align-items: start; margin-top: 24px; }
+  .case-card { overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); transition: border-color .25s ease, box-shadow .4s ease; }
+  .case-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--surface-border)); box-shadow: var(--lift); }
   .case-card[hidden] { display: none; }
-  .uc-figure img { display: block; width: 100%; height: auto; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .case-topline { padding: 1.5rem; background: linear-gradient(135deg, rgba(255, 106, 42, 0.18), rgba(255, 255, 255, 0.03)); }
-  .featured-card .case-topline { background: transparent; }
-  .case-topline h3 { margin-top: 0.5rem; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -0.045em; }
-  .featured-card .case-topline h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); }
-  .case-topline p { max-width: 860px; margin-top: 0.65rem; color: #e4d2c5; line-height: 1.55; }
-  dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .uc-figure img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
+  .case-topline { display: grid; gap: 10px; padding: 24px 24px 20px; background: radial-gradient(circle at 0 0, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%); }
+  .case-topline span { justify-self: start; padding: 5px 10px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); color: var(--accent); font: 800 10px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+  .case-topline h3 { font: 500 clamp(24px, 2.6vw, 32px)/1.08 var(--font-display); letter-spacing: -.035em; color: var(--text); text-wrap: balance; }
+  .featured-card .case-topline h3 { font-size: clamp(22px, 2vw, 27px); }
+  .case-topline p { max-width: 860px; color: var(--text-soft); line-height: 1.6; }
+  dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--border); }
   .featured-card dl { grid-template-columns: 1fr; }
-  dl > div { padding: 1.1rem; border-right: 1px solid rgba(255, 255, 255, 0.1); }
+  dl > div { padding: 16px 20px; border-right: 1px solid var(--border); }
   dl > div:last-child { border-right: 0; }
-  .featured-card dl > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .featured-card dl > div { border-right: 0; border-bottom: 1px solid var(--border); }
   .featured-card dl > div:last-child { border-bottom: 0; }
-  dt { color: #ffb088; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 850; }
-  dd { margin-top: 0.6rem; color: #d8c6b9; line-height: 1.55; font-size: 0.95rem; }
-  .filters { display: grid; grid-template-columns: minmax(260px, 1.4fr) repeat(4, minmax(150px, 1fr)); gap: 0.8rem; margin-top: 1.4rem; }
-  .filters label { display: grid; gap: 0.45rem; }
-  .filters input, .filters select { min-height: 48px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; background: rgba(255, 255, 255, 0.055); color: #f7efe7; padding: 0 0.9rem; }
-  .filters select option { background: #120f0d; color: #f7efe7; }
-  .count { margin-top: 0.9rem; color: #d8c6b9; font-weight: 800; }
-  .case-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.9rem 1.1rem 1.1rem; border-top: 1px solid rgba(255,255,255,0.1); }
-  .case-meta span { border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 0.35rem 0.55rem; color: #f7efe7; background: rgba(255,255,255,0.045); font-size: 0.78rem; }
-  .empty-state { margin-top: 1rem; border-radius: 24px; padding: 1.3rem; color: #d8c6b9; }
-  .setup { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2rem; border-radius: 30px; padding: 1.6rem; margin-bottom: 4rem; }
-  .setup h2 { margin-top: 0.55rem; }
-  .setup ol { display: grid; gap: 0.75rem; padding-left: 1.2rem; color: #f7efe7; }
-  .setup li { padding-left: 0.3rem; color: #d8c6b9; line-height: 1.5; }
-  @media (max-width: 1000px) { .filters, .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 900px) { .intro-grid, dl, .setup { grid-template-columns: 1fr; } dl > div { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.1); } dl > div:last-child { border-bottom: 0; } }
-  @media (max-width: 560px) { .hero { padding-top: 5rem; } h1 { font-size: 2.55rem; } .filters, .stat-strip, .featured-list { grid-template-columns: 1fr; } }
+  dt { color: var(--accent); font: 800 9.5px/1.3 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+  dd { margin-top: 8px; color: var(--text-soft); font-size: 14.5px; line-height: 1.55; }
+  .case-meta { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 20px 18px; border-top: 1px solid var(--border); }
+  .case-meta span { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 50%, transparent); color: var(--muted); font: 700 11px/1 var(--font-mono); }
+  .empty-state { margin-top: 16px; padding: 28px; border-radius: var(--radius-lg); border: 1px dashed var(--border); color: var(--muted); text-align: center; }
+  .atlas-section-head { display: grid; gap: 12px; max-width: 760px; }
+  .atlas-section-head h2 { font: 500 clamp(32px, 4vw, 52px)/1.02 var(--font-display); letter-spacing: -.045em; }
+  .atlas-section-head p:not(.ds-eyebrow) { color: var(--muted); line-height: 1.65; }
+  .setup { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(56px, 7vw, 96px); }
+  .setup > div { display: grid; gap: 14px; align-content: start; }
+  .setup h2 { font: 500 clamp(30px, 3.4vw, 44px)/1.04 var(--font-display); letter-spacing: -.04em; }
+  .setup p:not(.ds-eyebrow) { color: var(--muted); line-height: 1.65; }
+  .setup ol { list-style: none; margin: 0; padding: 0; display: grid; counter-reset: step; }
+  .setup li { counter-increment: step; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text-soft); line-height: 1.55; }
+  .setup li:last-child { border-bottom: 0; }
+  .setup li::before { content: counter(step, decimal-leading-zero); color: var(--accent); font: 700 13px/1.6 var(--font-mono); }
+  @media (max-width: 1100px) { .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); } .filters label:first-child { grid-column: 1 / -1; } }
+  @media (max-width: 900px) { .intro-grid, dl, .setup { grid-template-columns: 1fr; } dl > div { border-right: 0; border-bottom: 1px solid var(--border); } dl > div:last-child { border-bottom: 0; } }
+  @media (max-width: 760px) {
+    .awa-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .awa-stats :global(.ds-stat b) { font-size: 34px; }
+    .filters { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 10px; }
+    .case-topline { padding: 20px 18px 16px; }
+    dl > div { padding: 14px 18px; }
+    .case-meta { padding: 12px 18px 16px; }
+  }
 </style>
