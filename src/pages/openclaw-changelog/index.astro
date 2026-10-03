@@ -53,7 +53,7 @@ const weeklyDecks = [
 			</div>
 			<div class="cl-pulse-chart" role="list" aria-label="Entries per release, oldest to newest">
 				{pulse.map((version) => (
-					<a role="listitem" href={releaseHref(version)} style={`--h:${pct(Math.max(0.05, scale(version.entries.length)))}`} class:list={{ 'is-latest': version === latest }} aria-label={`${version.version}: ${formatCount(version.changeCount)} changes, ${formatCount(version.fixCount)} fixes`} title={`${version.version} · ${formatCount(version.entries.length)} entries`}><i></i></a>
+					<a role="listitem" href={releaseHref(version)} style={`--h:${pct(Math.max(0.08, scale(version.entries.length)))}`} class:list={{ 'is-latest': version === latest }} aria-label={`${version.version}: ${formatCount(version.changeCount)} changes, ${formatCount(version.fixCount)} fixes`} title={`${version.version} · ${formatCount(version.entries.length)} entries`}><i></i></a>
 				))}
 			</div>
 			<div class="cl-pulse-axis" aria-hidden="true"><span>{pulse[0].version}</span><span>Entries per release</span><span>{latest.version}</span></div>
@@ -155,7 +155,7 @@ const weeklyDecks = [
 	.back-link:hover { color: var(--accent); }
 
 	.cl-pulse { display: grid; gap: 22px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--radius-lg); }
-	.cl-stats { gap: 18px 28px; }
+	.cl-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 18px; }
 	.cl-stats .ds-stat b { font-size: clamp(32px, 3.2vw, 46px); }
 	.cl-pulse-chart { display: flex; align-items: end; gap: 4px; height: 104px; padding-bottom: 1px; border-bottom: 1px solid var(--border); }
 	.cl-pulse-chart a { flex: 1; display: flex; align-items: end; height: 100%; min-width: 0; }
@@ -169,6 +169,8 @@ const weeklyDecks = [
 	.cl-pulse-axis span:nth-child(2) { text-transform: uppercase; letter-spacing: .14em; }
 
 	.weekly-deck-card { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr); gap: clamp(24px, 4vw, 56px); background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 46%), radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 50%), var(--surface); }
+	.weekly-deck-main .deck-link { min-height: 48px; }
+	.ds-section-head > a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 	.weekly-deck-main { display: grid; gap: 16px; justify-items: start; align-content: start; }
 	.weekly-deck-main h2 a { color: var(--text); transition: color .2s ease; }
 	.weekly-deck-main h2 a:hover { color: var(--accent); }
@@ -239,7 +241,7 @@ const weeklyDecks = [
 	@media (max-width: 760px) {
 		.cl-back { padding-top: 10px; margin-bottom: -26px; }
 		.cl-pulse { padding: 20px; }
-		.cl-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+		.cl-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 		.cl-stats .ds-stat b { font-size: 30px; }
 		.cl-stats .ds-stat span { font-size: 9.5px; letter-spacing: .12em; }
 		.cl-pulse-chart { height: 76px; gap: 3px; }

@@ -32,9 +32,7 @@ const description = `Every change and fix shipped in OpenClaw ${release.version}
 const fixesStartPage = release.fixCount ? Math.floor(release.changeCount / PAGE_SIZE) + 1 : 0;
 const fixesHref = fixesStartPage ? `${releaseHref(release, fixesStartPage)}#c-${release.changeCount + 1}` : '';
 const pages = Array.from({ length: release.pages }, (_, i) => i + 1);
-const lede = release.highlights.length
-	? `Headline work: ${release.highlights.slice(0, 2).join('; ')}.`
-	: `The full list of what shipped in OpenClaw ${release.version}.`;
+const lede = `${formatCount(release.changeCount)} changes and ${formatCount(release.fixCount)} fixes shipped in OpenClaw ${release.version}${release.pages > 1 ? `, split across ${release.pages} pages` : ''}. Every entry links back to its upstream PR or issue.`;
 ---
 <SiteLayout title={title} description={description} mainClass="clr-page">
 	<nav class="ds-shell clr-crumbs" aria-label="Breadcrumb">

@@ -21,6 +21,8 @@ const MD_LINK = /\[([^\]]*)\]\(([^)\s]+)\)/g;
 const tidy = (text: string) =>
 	text
 		.replace(MD_LINK, '$1')
+		.replace(/\]\(https?:[^)\s]*\)/g, '')
+		.replace(/\[(?![^\]]*\])/g, '')
 		.replace(/\*\*/g, '')
 		.replace(/`([^`]+)`/g, '$1')
 		.replace(/\s+/g, ' ')
