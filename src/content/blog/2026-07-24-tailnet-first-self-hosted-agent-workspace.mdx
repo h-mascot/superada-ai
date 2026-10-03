@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Self-host an agent collaboration relay on a private network, not the public internet
-
 Most "self-hosted" deployments end up reachable from the public internet by accident. A database container publishes a port, a compose override merges instead of replaces, a reverse proxy routes any Host header, and now your private relay accepts connections from addresses you never authorized.
 
 We installed a self-hosted Nostr relay for human/agent collaboration behind a private overlay network. The interesting part is the nine gates that make the deployment private on purpose, and the five traps that broke our assumptions along the way.

@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Make a Chat Completions gateway speak the Responses API
-
 Codex CLI 0.145.0 calls `/v1/responses`. Our Citadel gateway exposed only its internal Chat Completions routing surface. The client received HTTP 404 even though every target model was already listed and available. The models existed. The route did not.
 
 The failure is common. A client adopts a newer API dialect, your gateway speaks the older dialect, and `/v1/models` returns green because model listing and request routing are separate surfaces. Compatibility inferred from a model list is not compatibility.

@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# A Stale Scheduled Prompt Created 23 Duplicate Reviewers
-
 A recurring agent manager was spinning up duplicate reviewers faster than it could retire them. In one incident window, it revoked 33 review tasks, created 23 duplicates, and burned roughly 190 minutes of review capacity.
 
 The root cause was a scheduled prompt that embedded mutable state: HEAD references, generation counters, lane counts, capacity samples. Every tick, those values were stale. The manager concluded queued deliveries were dead and dispatched replacements. The replacements collided with the originals.

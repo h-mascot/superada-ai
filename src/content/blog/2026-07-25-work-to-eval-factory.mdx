@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Seven gates between operational history and an evaluation
-
 Building an evaluation suite from private operational history is a privacy problem wearing a benchmark costume. You want reusable, calibrated tasks that reflect how your agents and models behave under real load. You do not want raw transcripts, cron bodies, internal paths, or session text leaking into a benchmark someone might publish or share.
 
 We built a deterministic factory that turns bounded benchmark runs plus Hermes session and cron metadata into scrubbed evaluation candidates. It requires explicit approval before generating any task, emits no-network Harbor tasks, and validates privacy, provenance, fixtures, and deterministic replay.

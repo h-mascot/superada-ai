@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Seven invariants that stop backup code from deleting your last good recovery source
-
 Backup code has one job most people never think about until it fails: do not delete the last complete recovery source before a newer one proves itself. Every backup system that prunes old snapshots has the same latent failure mode. A snapshot looks like it succeeded. The prune step runs. The old archive disappears. Then someone tries to restore and discovers the new snapshot was corrupt, incomplete, or zeroed out. Both copies are gone.
 
 We qualified the Hermes state-recovery and backup safety surface after a same-version upstream update. A focused four-file test cluster passed 184 tests in 40.77 seconds and checked seven failure invariants. The broader post-update verification ran 1,930 tests. 1,929 passed. One failed: a synthetic timing assertion that broke under host scheduling variance. No confirmed feature regression.

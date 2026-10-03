@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Audit Duplicate Agent Listeners Without Storing Message Content
-
 Two agents were listening to the same Discord channels. We suspected duplication. We needed to measure it without copying message text into an audit database.
 
 The answer is a read-only token-overlap audit that hashes content into fingerprints and never persists the original text. It runs against the agent session store in place. It produces three accounting bounds, not one causal claim.
