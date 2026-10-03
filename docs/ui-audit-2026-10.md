@@ -10,7 +10,7 @@ The audit scripts live outside the repo; the numbers below are from the live sit
 | --- | --- | --- |
 | Mobile pages with horizontal scroll | 32 | 0 (desktop: 0 before and after) |
 | Mobile nav text size | 9px, 6 links in a 5-col grid ("Timeline" wrapped to its own row) | Floating tab bar + More sheet, 11px labels, 64px targets |
-| Mobile tap targets under 32px (all pages) | 5,040 | 1,206, mostly short inline text links |
+| Mobile tap targets under 32px (all pages) | 5,040 | 473, mostly short inline text links in prose |
 | Mobile text runs under 11px (all pages) | 2,247 | 597, mostly decorative `aria-hidden` scene labels |
 | Weekly Claw editions rendering their deck | 0 of 23 (blank grey frame) | All, after the CSP change deploys |
 | Pages with duplicate `h1` | 10 | 0 |
@@ -50,6 +50,15 @@ Shared pieces every page already uses (`BaseHead`, `Header`, `Footer`, `global.c
 - `public/manifest.webmanifest`.
 
 Everything respects `prefers-reduced-motion`; reveals only hide content below the fold and only once JS is running.
+
+### View transition reliability
+
+In a headed Chrome, only about half of navigations animated at first. Two things caused Chrome to skip the incoming transition:
+
+- Loading the experience code as a deferred module script (even an empty module reproduced it).
+- Pages whose first frame was painted mid-parse, for example at an inline `<script>` in the page body, before the footer and experience script ran.
+
+The script is now inlined synchronously at the end of `<body>` (`Footer.astro`), and `BaseHead` holds first render with `<link rel="expect" href="#xp-ready" blocking="render">` until it has run. Across four page pairs, 30 navigations each, success went from roughly 50% to 120 of 121. The 20 MB changelog page opts out so it still paints progressively.
 
 ## Recommended next steps (not in this branch)
 
