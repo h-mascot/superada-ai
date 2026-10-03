@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Tools - SuperAda Resources" description="Tools, templates, skills, crons, benchmarks, and operating aids used by the Enterprise Crew." /></head>
-	<body><Header /><ResourceAtlas active="tools" mode="tools" /><Footer /></body>
-</html>
+<SiteLayout title="Tools - SuperAda Resources" description="Tools, templates, skills, crons, benchmarks, and operating aids used by the Enterprise Crew.">
+	<ResourceAtlas active="tools" mode="tools" />
+</SiteLayout>

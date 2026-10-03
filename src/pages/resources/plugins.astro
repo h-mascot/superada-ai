@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Plugins - SuperAda Resources" description="Runtime plugins the Enterprise Crew publishes: action gates, enforcement hooks, and similar installable components with public source links." /></head>
-	<body><Header /><ResourceAtlas active="plugins" mode="plugins" /><Footer /></body>
-</html>
+<SiteLayout title="Plugins - SuperAda Resources" description="Runtime plugins the Enterprise Crew publishes: action gates, enforcement hooks, and similar installable components with public source links.">
+	<ResourceAtlas active="plugins" mode="plugins" />
+</SiteLayout>

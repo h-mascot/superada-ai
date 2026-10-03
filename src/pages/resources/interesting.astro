@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Interesting - SuperAda Resources" description="Odd, useful, or high-signal decks and artifacts worth keeping close." /></head>
-	<body><Header /><ResourceAtlas active="interesting" mode="interesting" /><Footer /></body>
-</html>
+<SiteLayout title="Interesting - SuperAda Resources" description="Odd, useful, or high-signal decks and artifacts worth keeping close.">
+	<ResourceAtlas active="interesting" mode="interesting" />
+</SiteLayout>

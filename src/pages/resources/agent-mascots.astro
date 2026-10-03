@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Agent Mascots (Pets) - SuperAda Resources" description="Spock, Picard, Zora, Burnham, Tilly, and Saru mascot resources for the Enterprise Crew." /></head>
-	<body><Header /><ResourceAtlas active="mascots" mode="mascots" /><Footer /></body>
-</html>
+<SiteLayout title="Agent Mascots (Pets) - SuperAda Resources" description="Spock, Picard, Zora, Burnham, Tilly, and Saru mascot resources for the Enterprise Crew.">
+	<ResourceAtlas active="mascots" mode="mascots" />
+</SiteLayout>

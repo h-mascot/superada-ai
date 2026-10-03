@@ -263,22 +263,6 @@ dialog:focus-visible { outline: none; }
 	.cmdk-go, .cmdk-footer { display: none; }
 }
 
-/* ---------- Resource atlas: sticky chip rail on small screens ---------- */
-
-@media (max-width: 980px) {
-	.atlas-shell { padding-top: 0 !important; }
-	.atlas-layout { gap: 18px !important; }
-	.resource-sidebar { display: contents !important; }
-	.sidebar-label { display: none; }
-	.resource-nav { position: sticky; top: var(--chrome-top); z-index: 30; display: flex !important; gap: 8px !important; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 10px 20px; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); scroll-snap-type: x proximity; transition: top .4s var(--ease-ios); }
-	.resource-nav::-webkit-scrollbar { display: none; }
-	.resource-nav a { flex: 0 0 auto; min-height: 40px !important; padding: 0 14px !important; border-radius: 999px !important; border-color: var(--border) !important; background: var(--panel); scroll-snap-align: center; white-space: nowrap; }
-	.resource-nav a.is-active { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)) !important; background: var(--accent-soft); }
-	.resource-nav strong { font-size: 11px; }
-	.atlas-main { order: 2; }
-	.submit-card { order: 3; margin-top: 8px; }
-}
-
 /* ---------- Small-screen overflow guards ---------- */
 
 @media (max-width: 760px) {

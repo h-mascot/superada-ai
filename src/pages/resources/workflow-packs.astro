@@ -1,11 +1,7 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ResourceAtlas from '../../components/resources/ResourceAtlas.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 ---
-<!doctype html>
-<html lang="en">
-	<head><BaseHead title="Workflow Packs - SuperAda Resources" description="Reusable workflow bundles and operator patterns for the Enterprise Crew." /></head>
-	<body><Header /><ResourceAtlas active="workflow-packs" mode="workflow-packs" /><Footer /></body>
-</html>
+<SiteLayout title="Workflow Packs - SuperAda Resources" description="Reusable workflow bundles and operator patterns for the Enterprise Crew.">
+	<ResourceAtlas active="workflow-packs" mode="workflow-packs" />
+</SiteLayout>

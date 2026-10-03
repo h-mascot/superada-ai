@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { publishedSkills } from '../../data/skills';
 import { publishedPlugins } from '../../data/plugins';
+import PageHero from '../PageHero.astro';
 
 interface ResourceItem {
 	title: string;
@@ -197,90 +198,117 @@ function icon(name: string) {
 }
 
 const category = pageCopy[mode];
+const featured = overviewCards.slice(0, 3);
+const hubs = overviewCards.slice(3);
+const sectionKeys = Object.keys(resourceSections) as ResourceSectionKey[];
+const allItems = sectionKeys.flatMap((key) => resourceSections[key].items.map((item) => ({ ...item, section: key })));
+const totalItems = allItems.length;
+const isExternal = (href: string) => /^https?:/.test(href);
+const tone = (status = '') => {
+	const value = status.toUpperCase();
+	if (['LIVE', 'INSTALLABLE', 'GITHUB', 'ACTIVE', 'STABLE'].includes(value)) return 'live';
+	if (['NEW', 'UPDATED', 'WEEKLY', 'START', 'CORE'].includes(value)) return 'accent';
+	if (['COOKING', 'MANUAL', 'BETA', 'DRAFT', 'EXPERIMENTAL'].includes(value)) return 'warn';
+	return 'muted';
+};
+const hero = mode === 'overview'
+	? { eyebrow: 'Resources · Discovery', title: 'Resource Atlas', lede: 'Everything the Enterprise Crew has built, tested, and learned. Explore tools, workflow packs, plugins, skills, crons, guides, mascots, benchmarks, and ship notes curated for building better AI systems.', id: 'resource-atlas-title' }
+	: mode === 'mascots'
+		? { eyebrow: 'Resources · Codex pets', title: 'Agent Mascots (Pets)', lede: 'Spock, Picard, Zora, Burnham, Tilly, and Saru mascot concepts for crew surfaces. The live ones install with one command.', id: undefined }
+		: { eyebrow: `Resources · ${category?.kicker ?? ''}`, title: category?.title ?? '', lede: category?.copy, id: undefined };
+const heroCount = mode === 'overview' ? totalItems : mode === 'mascots' ? mascotVisuals.length : category?.items.length ?? 0;
 ---
 
-<main class="atlas-shell">
-	<div class="atlas-layout">
-		<aside class="resource-sidebar" aria-label="Resources navigation">
-			<a class="sidebar-logo" href="/">SuperAda</a>
-			<div class="sidebar-label">Resources</div>
-			<nav class="resource-nav">
+<div class="ra">
+	<PageHero eyebrow={hero.eyebrow} title={hero.title} lede={hero.lede} id={hero.id} size={mode === 'overview' ? 'lg' : 'md'}>
+		<div slot="aside" class="ds-stats ra-stats">
+			{mode === 'overview' ? stats.map((stat) => (
+				<a class="ds-stat ra-stat" href={stat.href}><b>{stat.value}</b><span>{stat.label}</span></a>
+			)) : (
+				<div class="ds-stat"><b>{heroCount}</b><span>{mode === 'mascots' ? 'pets' : resourceSections[mode as ResourceSectionKey]?.unit ?? 'items'}</span></div>
+			)}
+		</div>
+	</PageHero>
+
+	<div class="ra-layout ds-shell">
+		<aside class="ra-side" aria-label="Resources navigation">
+			<nav class="resource-nav" aria-label="Resource sections">
 				{nav.map((item) => (
-					<a href={item.href} class:list={[{ 'is-active': active === item.key }]}>
+					<a href={item.href} class:list={[{ 'is-active': active === item.key }]} aria-current={active === item.key ? 'page' : undefined}>
 						<span class="nav-main"><Fragment set:html={icon(item.icon)} />{item.label}</span>
-						<strong>{item.count}</strong>
+						{item.count && <strong>{item.count}</strong>}
 					</a>
 				))}
 			</nav>
-
-			<div class="submit-card">
-				<div class="submit-icon">+</div>
+			<div class="ra-submit">
+				<span class="ra-submit-icon" aria-hidden="true">+</span>
 				<h2>Suggest a resource</h2>
 				<p>Share something valuable with the crew.</p>
-				<a href="mailto:hello@superada.ai">Submit resource &gt;</a>
+				<a href="mailto:hello@superada.ai">Submit resource <span aria-hidden="true">→</span></a>
 			</div>
 		</aside>
 
-		<section class="atlas-main">
+		<section class="ra-main">
 			{mode === 'overview' && (
 				<>
-					<section class="atlas-hero" aria-labelledby="resource-atlas-title">
-						<div>
-							<div class="breadcrumb">Resources / Discovery</div>
-							<h1 id="resource-atlas-title">Resource Atlas</h1>
-							<p>Everything the Enterprise Crew has built, tested, and learned. Explore tools, workflow packs, plugins, skills, crons, guides, mascots, benchmarks, and ship notes curated for building better AI systems.</p>
-						</div>
-					</section>
-
-					<section class="stat-strip" aria-label="Resource highlights">
-						{stats.map((stat) => (
-							<article class="stat-card">
-								<div class="stat-card-head"><div class="stat-label">{stat.label}</div><Fragment set:html={icon(stat.icon)} /></div>
-								<strong>{stat.value}</strong>
-								<p>{stat.copy}</p>
-								<a href={stat.href}>{stat.cta} -&gt;</a>
-							</article>
+					<div class="ra-featured">
+						{featured.map((card, index) => (
+							<a class:list={['ds-card ds-card--feature resource-card ra-feature', { 'is-lead': index === 0 }]} href={card.href}>
+								<span class="ra-card-top"><Fragment set:html={icon(card.icon)} /><span class={`ds-badge ds-badge--${tone(card.status)}`}>{card.status}</span></span>
+								<span class="ds-card-kicker">{card.meta}</span>
+								<h2>{card.title}</h2>
+								<p>{card.copy}</p>
+								<span class="ds-card-foot"><span class="ds-card-link">Open <span aria-hidden="true">→</span></span></span>
+							</a>
 						))}
-					</section>
+					</div>
 
-					<section class="discovery-panel" aria-label="Resource discovery">
-						<div class="search-row">
-							<label class="search-box">
-								<span>⌕</span>
-								<input data-resource-search type="search" placeholder="Search tools, workflow packs, plugins, skills, crons, guides, mascots..." />
-							</label>
-							<select aria-label="Sort resources"><option>Sort: Relevance</option><option>Sort: Newest</option><option>Sort: Most used</option></select>
-							<button type="button" class="filter-button">Filters</button>
+					<section class="ra-discover" aria-label="Resource discovery">
+						<label class="ra-search">
+							<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+							<span class="sr-only">Search resources</span>
+							<input data-resource-search type="search" placeholder="Search tools, workflow packs, plugins, skills, crons, guides, mascots..." autocomplete="off" />
+							<kbd data-resource-count>{totalItems}</kbd>
+						</label>
+						<div class="ra-chips" role="toolbar" aria-label="Resource categories">
+							<button type="button" class="ds-chip" data-section-filter="" aria-pressed="true">All</button>
+							{sectionKeys.map((key) => <button type="button" class="ds-chip" data-section-filter={key} aria-pressed="false">{resourceSections[key].label}<small>{resourceCount(key)}</small></button>)}
 						</div>
 
-						<div class="tab-row" aria-label="Resource categories">
-							{tabs.map((tab, index) => <a href="#resource-cards" class:list={[{ 'is-active': index === 0 }]}>{tab}</a>)}
-						</div>
-
-						<div class="resource-card-grid" id="resource-cards" data-resource-grid>
-							{overviewCards.map((card) => (
-								<a class="resource-card" href={card.href} data-title={card.title.toLowerCase()} data-copy={card.copy.toLowerCase()}>
-									<Fragment set:html={icon(card.icon)} />
-									<h2>{card.title}</h2>
+						<div class="ra-grid" id="resource-cards" data-resource-hubs>
+							{hubs.map((card) => (
+								<a class="ds-card resource-card" href={card.href}>
+									<span class="ra-card-top"><Fragment set:html={icon(card.icon)} /><span class={`ds-badge ds-badge--${tone(card.status)}`}>{card.status}</span></span>
+									<h3>{card.title}</h3>
 									<p>{card.copy}</p>
-									<div class="card-meta"><span>{card.meta}</span><strong>{card.status}</strong></div>
+									<span class="ds-card-foot">{card.meta}</span>
 								</a>
 							))}
 						</div>
+
+						<div class="ra-grid" data-resource-grid hidden>
+							{allItems.map((item) => (
+								<a class="ds-card resource-card" href={item.href} data-section={item.section} data-title={item.title.toLowerCase()} data-copy={`${item.copy} ${item.meta}`.toLowerCase()} target={isExternal(item.href) ? '_blank' : undefined} rel={isExternal(item.href) ? 'noopener noreferrer' : undefined}>
+									<span class="ra-card-top"><Fragment set:html={icon(item.icon)} />{item.status && <span class={`ds-badge ds-badge--${tone(item.status)}`}>{item.status}</span>}</span>
+									<h3>{item.title}</h3>
+									<p>{item.copy}</p>
+									<span class="ds-card-foot"><span>{resourceSections[item.section].label}</span><span>{item.meta}</span></span>
+								</a>
+							))}
+						</div>
+						<p class="ra-empty" data-resource-empty hidden>Nothing matches yet. Try a broader word, or <a href="mailto:hello@superada.ai">suggest the resource</a>.</p>
 					</section>
 				</>
 			)}
 
 			{mode === 'mascots' && (
-				<section class="mascot-roster is-standalone" id="mascot-roster">
-					<div class="mascot-heading">
-						<h1>Agent Mascots (Pets)</h1>
-					</div>
-					<div class="mascot-grid">
-						{mascotVisuals.map((mascot) => (
-							<article class:list={["mascot-card", { "is-pending": !mascot.available }]} id={mascot.id}>
-								<div class="preview-frame pet-preview"><img src={mascot.icon} alt={`${mascot.name} Codex pet`} loading="lazy" /></div>
-								<div class="mascot-title-row"><h2>{mascot.name}</h2>{!mascot.available && <span>Cooking</span>}</div>
+				<section class="ra-mascots" id="mascot-roster" aria-label="Agent mascots">
+					{mascotVisuals.map((mascot) => (
+						<article class:list={['mascot-card', { 'is-pending': !mascot.available }]} id={mascot.id}>
+							<div class="ra-pet"><img src={mascot.icon} alt={`${mascot.name} Codex pet`} loading="lazy" /></div>
+							<div class="ra-pet-body">
+								<div class="ra-pet-title"><h2>{mascot.name}</h2><span class={`ds-badge ds-badge--${mascot.available ? 'live' : 'warn'}`}>{mascot.available ? 'Live' : 'Cooking'}</span></div>
+								<span class="ds-card-kicker">{mascot.kind}</span>
 								<p>{mascot.copy}</p>
 								<div class="pet-install-card">
 									<div class="pet-path">~/.codex/pets/{mascot.id}/</div>
@@ -296,56 +324,175 @@ const category = pageCopy[mode];
 										</>
 									)}
 								</div>
-							</article>
-						))}
-					</div>
+							</div>
+						</article>
+					))}
 				</section>
 			)}
 
 			{category && mode !== 'overview' && mode !== 'mascots' && (
-				<section class="resource-page">
-					<div class="resource-page-head">
-						<div class="eyebrow">{category.kicker}</div>
-						<h1>{category.title}</h1>
-						<p>{category.copy}</p>
-					</div>
-					<div class="resource-card-grid resource-list-grid" data-resource-grid>
-						{category.items.map((item) => (
-							<a class="resource-card resource-list-card" href={item.href} data-title={item.title.toLowerCase()} data-copy={item.copy.toLowerCase()}>
-								<Fragment set:html={icon(item.icon)} />
-								<h2>{item.title}</h2>
-								<p>{item.copy}</p>
-								<div class="card-meta"><span>{item.meta}</span>{item.status && <strong>{item.status}</strong>}</div>
-							</a>
-						))}
-					</div>
-				</section>
+				<div class="ra-grid ra-grid--list" data-resource-grid>
+					{category.items.map((item) => (
+						<a class="ds-card resource-card" href={item.href} data-title={item.title.toLowerCase()} data-copy={item.copy.toLowerCase()} target={isExternal(item.href) ? '_blank' : undefined} rel={isExternal(item.href) ? 'noopener noreferrer' : undefined}>
+							<span class="ra-card-top"><Fragment set:html={icon(item.icon)} />{item.status && <span class={`ds-badge ds-badge--${tone(item.status)}`}>{item.status}</span>}</span>
+							<h2>{item.title}</h2>
+							<p>{item.copy}</p>
+							<span class="ds-card-foot"><span>{item.meta}</span><span class="ds-card-link">{isExternal(item.href) ? 'Source ↗' : 'Open →'}</span></span>
+						</a>
+					))}
+				</div>
 			)}
 		</section>
 	</div>
-</main>
+</div>
 
 <script is:inline>
-	const input = document.querySelector('[data-resource-search]');
-	const cards = Array.from(document.querySelectorAll('[data-resource-grid] .resource-card'));
-	input?.addEventListener('input', () => {
-		const q = input.value.trim().toLowerCase();
-		cards.forEach((card) => {
-			const hit = !q || card.dataset.title?.includes(q) || card.dataset.copy?.includes(q);
-			card.toggleAttribute('hidden', !hit);
-		});
-	});
+	(() => {
+		const input = document.querySelector('[data-resource-search]');
+		const hubs = document.querySelector('[data-resource-hubs]');
+		const grid = document.querySelector('[data-resource-grid]');
+		const empty = document.querySelector('[data-resource-empty]');
+		const count = document.querySelector('[data-resource-count]');
+		const chips = [...document.querySelectorAll('[data-section-filter]')];
+		if (input && hubs && grid) {
+			const cards = [...grid.querySelectorAll('.resource-card')];
+			let section = '';
+			const apply = () => {
+				const q = input.value.trim().toLowerCase();
+				const filtering = !!q || !!section;
+				hubs.hidden = filtering;
+				grid.hidden = !filtering;
+				let shown = 0;
+				cards.forEach((card) => {
+					const hit = (!section || card.dataset.section === section) && (!q || card.dataset.title.includes(q) || card.dataset.copy.includes(q));
+					card.hidden = !hit;
+					if (hit) shown += 1;
+				});
+				if (empty) empty.hidden = !filtering || shown > 0;
+				if (count) count.textContent = String(filtering ? shown : cards.length);
+			};
+			input.addEventListener('input', apply);
+			chips.forEach((chip) => chip.addEventListener('click', () => {
+				section = chip.dataset.sectionFilter || '';
+				chips.forEach((other) => other.setAttribute('aria-pressed', String(other === chip)));
+				apply();
+			}));
+		}
 
-	document.querySelectorAll('[data-copy-command]').forEach((button) => {
-		button.addEventListener('click', async () => {
-			const command = button.getAttribute('data-copy-command') || '';
-			try {
-				await navigator.clipboard.writeText(command);
-				button.setAttribute('data-copied', 'true');
-				setTimeout(() => button.removeAttribute('data-copied'), 1400);
-			} catch {
-				window.prompt('Copy install command', command);
-			}
+		document.querySelectorAll('[data-copy-command]').forEach((button) => {
+			button.addEventListener('click', async () => {
+				const command = button.getAttribute('data-copy-command') || '';
+				try {
+					await navigator.clipboard.writeText(command);
+					button.setAttribute('data-copied', 'true');
+					setTimeout(() => button.removeAttribute('data-copied'), 1400);
+				} catch {
+					window.prompt('Copy install command', command);
+				}
+			});
 		});
-	});
+	})();
 </script>
+
+<style>
+	.ra-stats { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 26px clamp(28px, 4vw, 56px); }
+	.ra-stat { color: inherit; transition: transform .3s var(--ease-out); }
+	.ra-stat:hover { transform: translateY(-2px); }
+	.ra-stat:hover b { color: var(--accent); }
+
+	.ra-layout { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+	.ra-side { position: sticky; top: calc(var(--chrome-top) + 20px); display: grid; gap: 22px; }
+	.resource-nav { display: grid; gap: 2px; }
+	.resource-nav a { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 42px; padding: 0 12px; border-radius: 12px; color: var(--muted); font-size: 14px; font-weight: 650; transition: color .2s ease, background-color .2s ease; }
+	.resource-nav a:hover { color: var(--text); background: color-mix(in srgb, var(--panel-soft) 70%, transparent); }
+	.resource-nav a.is-active { color: var(--text); background: var(--accent-soft); }
+	.resource-nav a.is-active::before { content: ''; position: absolute; left: -8px; top: 10px; bottom: 10px; width: 3px; border-radius: 3px; background: var(--accent); }
+	.resource-nav a.is-active :global(.atlas-icon) { color: var(--accent); }
+	.resource-nav strong { color: var(--faint); font: 700 11px/1 var(--font-mono); }
+	.nav-main { display: flex; align-items: center; gap: 11px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+	.ra-submit { display: grid; gap: 8px; padding: 18px; border-radius: var(--radius-md); border: 1px dashed color-mix(in srgb, var(--accent) 35%, var(--border)); }
+	.ra-submit-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-soft); color: var(--accent); font-weight: 800; }
+	.ra-submit h2 { font: 500 19px/1.1 var(--font-display); letter-spacing: -.02em; }
+	.ra-submit p { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+	.ra-submit a { color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+
+	.ra-main { min-width: 0; display: grid; gap: 28px; }
+	.ra-featured { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; }
+	.ra-feature { min-height: 300px; }
+	.ra-feature.is-lead h2 { font-size: clamp(28px, 2.8vw, 38px); }
+	.ra-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+	.ra-card-top :global(.atlas-icon) { --icon-shift: 12px; width: 42px; height: 42px; border-radius: 13px; border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border)); background: var(--accent-soft); color: var(--accent); }
+	.resource-card[hidden] { display: none; }
+
+	.ra-discover { display: grid; gap: 16px; }
+	.ra-search { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 12px 0 18px; border-radius: 18px; border: 1px solid var(--surface-border); background: var(--surface); transition: border-color .2s ease, box-shadow .2s ease; }
+	.ra-search:focus-within { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); box-shadow: 0 0 0 4px var(--accent-soft); }
+	.ra-search svg { width: 20px; height: 20px; flex: 0 0 auto; fill: none; stroke: var(--muted); stroke-width: 1.8; stroke-linecap: round; }
+	.ra-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; }
+	.ra-search kbd { min-width: 34px; padding: 5px 8px; border-radius: 9px; border: 1px solid var(--border); color: var(--muted); font: 700 11px/1 var(--font-mono); text-align: center; }
+	.ra-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+	.ra-chips small { margin-left: 6px; color: var(--faint); font: 700 10.5px/1 var(--font-mono); }
+	.ra-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+	.ra-grid[hidden] { display: none; }
+	.ra-grid--list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+	.ra-grid .resource-card h3 { font-size: 21px; }
+	.ra-grid .ds-card-foot { justify-content: space-between; font-size: 12px; }
+	.ra-empty { padding: 34px; border-radius: var(--radius-lg); border: 1px dashed var(--border); color: var(--muted); text-align: center; }
+	.ra-empty a { color: var(--accent); }
+
+	.ra-mascots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+	.mascot-card { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); scroll-margin-top: calc(var(--chrome-top) + 20px); }
+	.mascot-card:target { border-color: color-mix(in srgb, var(--accent) 60%, var(--border)); box-shadow: 0 0 0 4px var(--accent-soft); }
+	.ra-pet { aspect-ratio: 16 / 10; display: grid; place-items: center; background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 62%), color-mix(in srgb, var(--bg) 60%, var(--panel)); }
+	.ra-pet img { max-width: 60%; max-height: 74%; object-fit: contain; image-rendering: pixelated; transition: transform .6s var(--ease-spring); }
+	.mascot-card:hover .ra-pet img { transform: translateY(-6px) scale(1.04); }
+	.mascot-card.is-pending .ra-pet img { filter: grayscale(.6); opacity: .65; }
+	.ra-pet-body { display: flex; flex: 1; flex-direction: column; gap: 10px; padding: 20px; }
+	.ra-pet-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+	.ra-pet-title h2 { font: 500 28px/1 var(--font-display); letter-spacing: -.04em; }
+	.ra-pet-body p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+	.pet-install-card { margin-top: auto; padding-top: 8px; display: grid; gap: 8px; }
+	.pet-path { color: var(--faint); font: 700 11.5px/1.3 var(--font-mono); }
+	.pet-command { width: 100%; min-height: 52px; padding: 10px 14px; border-radius: 14px; border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 70%, black); color: var(--text); font: 650 12px/1.45 var(--font-mono); text-align: left; overflow-wrap: anywhere; cursor: pointer; transition: border-color .2s ease; }
+	.pet-command span { color: var(--accent); }
+	.pet-command:hover { border-color: color-mix(in srgb, var(--accent) 52%, var(--border)); }
+	.pet-command[data-copied="true"] { color: var(--success); }
+	.pet-command[data-copied="true"]::after { content: ' copied'; color: var(--success); }
+	.pet-command:disabled { cursor: not-allowed; color: var(--faint); }
+	.pet-command:disabled span { color: var(--faint); }
+	.pet-download { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+	.pet-download.is-disabled { cursor: not-allowed; border-color: var(--border); color: var(--faint); }
+
+	@media (max-width: 1100px) { .ra-featured { grid-template-columns: 1fr 1fr; } .ra-feature.is-lead { grid-column: 1 / -1; min-height: 0; } }
+	@media (max-width: 980px) {
+		.ra-layout { grid-template-columns: 1fr; gap: 20px; }
+		.ra-side { position: static; display: contents; }
+		.resource-nav { position: sticky; top: var(--chrome-top); z-index: 30; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 10px var(--gutter); background: color-mix(in srgb, var(--bg) 86%, transparent); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+		.resource-nav::-webkit-scrollbar { display: none; }
+		.resource-nav a { flex: 0 0 auto; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel); }
+		.resource-nav a.is-active { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+		.resource-nav a.is-active::before { display: none; }
+		.ra-main { order: 2; }
+		.ra-submit { order: 3; }
+	}
+	@media (max-width: 760px) {
+		.ra-featured { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 8px; }
+		.ra-featured::-webkit-scrollbar { display: none; }
+		.ra-feature { flex: 0 0 84%; min-height: 260px; scroll-snap-align: start; }
+		.ra-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+		.ra-chips::-webkit-scrollbar { display: none; }
+		.ra-chips .ds-chip { flex: 0 0 auto; }
+		.ra-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+		.ra-grid .resource-card { padding: 16px; border-radius: var(--radius-md); }
+		.ra-grid .resource-card h3 { font-size: 18px; }
+		.ra-grid .resource-card p { font-size: 13px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+		.ra-grid .ds-card-foot { display: none; }
+		.ra-grid .ra-card-top :global(.atlas-icon) { --icon-shift: 9px; width: 36px; height: 36px; }
+		.ra-grid .ds-badge { display: none; }
+		.ra-grid--list { grid-template-columns: 1fr; }
+		.ra-grid--list .resource-card p { -webkit-line-clamp: unset; display: block; }
+		.ra-grid--list .ds-card-foot, .ra-grid--list .ds-badge { display: flex; }
+		.ra-stats { display: flex; flex-wrap: wrap; gap: 18px 26px; }
+		.ra-stats .ds-stat b { font-size: 34px; }
+	}
+</style>
