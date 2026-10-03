@@ -318,7 +318,7 @@
 			input.value = '';
 			render('');
 			load().then(() => render(input.value));
-			setTimeout(() => input.focus(), 30);
+			input.focus({ preventScroll: true });
 		};
 
 		document.querySelectorAll('[data-search-open]').forEach((btn) => btn.addEventListener('click', open));

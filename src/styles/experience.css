@@ -99,6 +99,7 @@ html.xp [data-reveal="in"] { animation: xp-reveal .9s var(--ease-out) var(--reve
 /* ---------- Shared interaction polish ---------- */
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+dialog:focus-visible { outline: none; }
 ::selection { background: color-mix(in srgb, var(--accent) 34%, transparent); color: var(--text); }
 .scene-cta, .scroll-world-chapter a, .home-subscribe-strip a, .subscribe-submit, .agent-skill-link { transition: transform .35s var(--ease-spring), box-shadow .3s ease, background-color .2s ease, border-color .2s ease; }
 @media (hover: hover) {
@@ -172,7 +173,7 @@ html.xp [data-reveal="in"] { animation: xp-reveal .9s var(--ease-out) var(--reve
 
 	/* Bottom sheet */
 	.app-sheet[open] { display: block; }
-	.app-sheet, .cmdk { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow: hidden; }
+	.app-sheet, .cmdk { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow: clip; }
 	.app-sheet::backdrop, .cmdk::backdrop { background: rgba(0, 0, 0, .5); opacity: 0; transition: opacity .3s ease; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 	.app-sheet.is-open::backdrop, .cmdk.is-open::backdrop { opacity: 1; }
 	.app-sheet-panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: calc(100dvh - 40px); overflow-y: auto; overscroll-behavior: contain; padding: 6px 18px calc(22px + env(safe-area-inset-bottom, 0px)); border-radius: 30px 30px 0 0; background: color-mix(in srgb, var(--panel) 94%, transparent); border-top: 1px solid var(--border-strong); box-shadow: 0 -30px 80px rgba(0, 0, 0, .45); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); transform: translateY(100%); transition: transform .48s var(--ease-ios); }
@@ -226,7 +227,7 @@ html.xp [data-reveal="in"] { animation: xp-reveal .9s var(--ease-out) var(--reve
 /* ---------- Search palette ---------- */
 
 .cmdk[open] { display: block; }
-.cmdk { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow: hidden; }
+.cmdk { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--text); overflow: clip; }
 .cmdk::backdrop { background: rgba(4, 3, 2, .55); opacity: 0; transition: opacity .28s ease; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .cmdk.is-open::backdrop { opacity: 1; }
 .cmdk-panel { position: absolute; left: 50%; top: 12vh; width: min(680px, calc(100vw - 32px)); max-height: 72vh; display: flex; flex-direction: column; border-radius: 24px; border: 1px solid color-mix(in srgb, var(--border-strong) 70%, transparent); background: color-mix(in srgb, var(--panel) 92%, transparent); box-shadow: 0 40px 120px rgba(0, 0, 0, .5), 0 0 0 1px color-mix(in srgb, white 4%, transparent) inset, 0 0 80px color-mix(in srgb, var(--glow) 40%, transparent); -webkit-backdrop-filter: blur(26px) saturate(1.5); backdrop-filter: blur(26px) saturate(1.5); overflow: hidden; opacity: 0; transform: translate(-50%, -10px) scale(.97); transition: opacity .24s ease, transform .4s var(--ease-spring); }

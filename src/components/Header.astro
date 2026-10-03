@@ -61,7 +61,7 @@ const activeTabIndex = activeTab ? mobileTabs.findIndex((tab) => tab.href === ac
 	</button>
 </nav>
 
-<dialog class="app-sheet" id="app-sheet" aria-label="More" data-sheet>
+<dialog class="app-sheet" id="app-sheet" aria-label="More" tabindex="-1" autofocus data-sheet>
 	<div class="app-sheet-panel" data-sheet-panel>
 		<div class="app-sheet-grabber" data-sheet-grabber aria-hidden="true"><span></span></div>
 		<button type="button" class="app-sheet-search" data-search-open>
@@ -93,7 +93,7 @@ const activeTabIndex = activeTab ? mobileTabs.findIndex((tab) => tab.href === ac
 	</div>
 </dialog>
 
-<dialog class="cmdk" aria-label="Search SuperAda" data-cmdk>
+<dialog class="cmdk" aria-label="Search SuperAda" tabindex="-1" autofocus data-cmdk>
 	<div class="cmdk-panel" role="combobox" aria-expanded="true" aria-haspopup="listbox" aria-owns="cmdk-results">
 		<div class="cmdk-input-row">
 			<NavIcon name="search" />
