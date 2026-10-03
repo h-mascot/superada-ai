@@ -116,7 +116,7 @@ const { id, placeholder, idleStatus, scope = '', label = 'Search' } = Astro.prop
 </script>
 
 <style>
-	.cls-bar { position: sticky; top: var(--chrome-top); z-index: 20; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 18px; margin: 0 calc(var(--gutter) * -1) 22px; padding: 12px var(--gutter); background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); transition: top .4s var(--ease-ios); }
+	.cls-bar { position: sticky; top: var(--chrome-top); z-index: 20; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px 18px; margin: 0 calc(var(--gutter) * -1) 22px; padding: 12px var(--gutter); border: 1px solid color-mix(in srgb, var(--border) 60%, transparent); border-top: 0; border-radius: 0 0 22px 22px; background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transition: top .4s var(--ease-ios); }
 	.cls-field { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-radius: 16px; border: 1px solid var(--border); background: var(--panel); color: var(--accent); cursor: text; transition: border-color .2s ease, box-shadow .2s ease; }
 	.cls-field:focus-within { border-color: color-mix(in srgb, var(--accent) 60%, var(--border)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--glow) 35%, transparent); }
 	.cls-field :global(.nav-icon) { width: 18px; height: 18px; }
