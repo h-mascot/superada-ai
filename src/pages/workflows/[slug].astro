@@ -148,7 +148,7 @@ const moreWorkflows = neighbours(sorted, sorted.findIndex((entry) => entry.href 
       )}
       <div class="cat-subblock">
         <h3>Agent steps</h3>
-        <CatalogSteps steps={installable.instructions.map((detail) => ({ detail }))} label="Agent steps" />
+        <CatalogSteps steps={installable.instructions.map((detail) => ({ detail }))} label="Agent steps" prefix="Agent step" />
       </div>
       {installable.prompt && <CatalogCode label="Prompt" code={installable.prompt} copy="Copy" />}
       {installable.postInstallVerification && <CatalogCode label="Verification command" code={installable.postInstallVerification} copy="Copy" />}
@@ -161,7 +161,7 @@ const moreWorkflows = neighbours(sorted, sorted.findIndex((entry) => entry.href 
     </CatalogPanel>
 
     <CatalogPanel id="install-steps" eyebrow="Setup" title="Install steps">
-      <CatalogSteps steps={data.installSteps} label="Install steps" />
+      <CatalogSteps steps={data.installSteps} label="Install steps" prefix="Step" />
       <p class="cat-note">If you hand an agent this workflow URL, this install contract is the source of truth for whether it can really install the bundle now, what source to use, and what still needs a human.</p>
     </CatalogPanel>
 

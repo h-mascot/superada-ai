@@ -97,14 +97,14 @@ const morePlugins = neighbours(sorted, sorted.findIndex((entry) => entry.href ==
       <CopyButton slot="action" text={plugin.installCommand} label="Copy install" />
       <p class="cat-muted">One-shot install into a host plugins/ directory, then the auto installer registers the plugin with the running runtime.</p>
       <CatalogCode code={plugin.installCommand} />
-      <CatalogSteps steps={plugin.installSteps} label="Install steps" />
+      <CatalogSteps steps={plugin.installSteps} label="Install steps" prefix="Step" />
     </CatalogPanel>
 
     <CatalogPanel id="verification" eyebrow="Proof" title="Verification">
       <CopyButton slot="action" text={plugin.verifyCommand} label="Copy verify" />
       <p class="cat-muted">Configuration is what you wanted. Enforcement is what happened. The verify script is the receipt.</p>
       <CatalogCode code={plugin.verifyCommand} />
-      <CatalogSteps steps={plugin.verification.map((check) => ({ title: check.label, detail: check.detail, command: check.command, expected: check.expected }))} label="Verification checks" />
+      <CatalogSteps steps={plugin.verification.map((check) => ({ title: check.label, detail: check.detail, command: check.command, expected: check.expected }))} label="Verification checks" prefix="Check" />
     </CatalogPanel>
 
     <CatalogPanel id="rollback" eyebrow="Rollback" title="Uninstall / rollback">

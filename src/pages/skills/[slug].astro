@@ -109,7 +109,7 @@ const moreSkills = neighbours(sorted, sorted.findIndex((entry) => entry.href ===
     </CatalogPanel>
 
     <CatalogPanel id="install-steps" eyebrow="Setup" title="Install steps">
-      <CatalogSteps steps={skill.instructions.map((detail) => ({ detail }))} label="Install steps" />
+      <CatalogSteps steps={skill.instructions.map((detail) => ({ detail }))} label="Install steps" prefix="Step" />
     </CatalogPanel>
 
     <div class="cat-pair">

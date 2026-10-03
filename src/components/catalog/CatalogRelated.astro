@@ -37,6 +37,8 @@ const { title, items, indexHref, indexLabel, backLabel } = Astro.props;
 
 <style>
 	.cat-related h2 { scroll-margin-top: calc(var(--chrome-top) + 24px); }
+	.cat-related .ds-section-head { align-items: center; }
+	.cat-related .ds-section-head a { display: inline-flex; align-items: center; min-height: 44px; }
 	.cat-related-card p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 	.cat-back { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; margin-top: 28px; padding: 0 20px 0 16px; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 70%, transparent); color: var(--text); font-size: 14px; font-weight: 700; transition: border-color .2s ease, color .2s ease, transform .35s var(--ease-spring); }
 	.cat-back span { color: var(--accent); transition: transform .35s var(--ease-spring); }
