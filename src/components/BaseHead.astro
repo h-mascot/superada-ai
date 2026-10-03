@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/experience.css';
 
 interface Props {
 	title: string;
@@ -20,10 +21,12 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 		const key = 'superada-theme';
 		const aliases = { warm: 'light', bronze: 'current', navy: 'neon' };
 		const themes = new Set(['light', 'current', 'neon']);
+		const chrome = { light: '#fbf6ee', current: '#050403', neon: '#030814' };
 		const normalize = (theme) => aliases[theme] || theme || 'current';
 		const apply = (theme) => {
 			const next = themes.has(normalize(theme)) ? normalize(theme) : 'current';
 			document.documentElement.dataset.theme = next;
+			document.querySelector('meta[name="theme-color"]')?.setAttribute('content', chrome[next]);
 			document.querySelectorAll('[data-theme-choice]').forEach((button) => {
 				const active = button.dataset.themeChoice === next;
 				button.classList.toggle('is-active', active);
@@ -43,6 +46,19 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 			});
 			apply(current);
 		});
+		const tabRoots = ['/', '/about', '/blog', '/resources'];
+		const isTabRoot = (url) => { try { return tabRoots.includes(new URL(url).pathname.replace(/\/+$/, '') || '/'); } catch { return false; } };
+		window.addEventListener('pagereveal', (event) => {
+			if (!event.viewTransition) return;
+			document.documentElement.dataset.vt = '';
+			try {
+				const activation = window.navigation && window.navigation.activation;
+				let type = 'forward';
+				if (activation && activation.navigationType === 'traverse' && activation.entry.index < (activation.from ? activation.from.index : -1)) type = 'back';
+				if (activation && activation.from && isTabRoot(activation.from.url) && isTabRoot(activation.entry.url)) type = 'tab';
+				event.viewTransition.types && event.viewTransition.types.add(type);
+			} catch {}
+		});
 	})();
 </script>
 
@@ -51,7 +67,14 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 )}
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#050403" />
+<meta name="color-scheme" content="dark light" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="SuperAda" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="manifest" href="/manifest.webmanifest" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
