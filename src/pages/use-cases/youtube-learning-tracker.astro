@@ -1,96 +1,178 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import NavIcon from '../../components/NavIcon.astro';
+import PageHero from '../../components/PageHero.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
 
 const title = 'My agents grade my YouTube - Use Case - SuperAda';
 const description = 'Every night, agents track what Henry watches on YouTube, keep him honest against his 10-hour learning target, and turn the best videos into insights and todos.';
 const heroImage = '/use-cases/youtube-learning.webp';
----
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
+const steps = [
+  { label: 'Step 1', title: 'Watch', icon: 'search', copy: "An agent reads what I actually watched, both of my accounts, the trailing month. It verifies which account it's looking at before it reads a single row." },
+  { label: 'Step 2', title: 'Measure', icon: 'timeline', copy: 'Music gets filtered out, repeats deduped, and the rest becomes a learning queue: currently 484 videos, 267 hours of content, scored daily against my target.' },
+  { label: 'Step 3', title: 'Learn', icon: 'spark', copy: 'The best videos come back as proposed insights and todos. I approve them one by one. Nothing becomes a task until I say so.' },
+] as const;
+---
+<SiteLayout title={title} description={description} mainClass="yt">
+  <Fragment slot="head">
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={heroImage} />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary_large_image" />
-  </head>
-  <body class="use-cases-page">
-    <Header />
-    <main>
-      <section class="hero shell">
-        <p class="eyebrow"><a href="/use-cases">Use Cases</a> · Learning</p>
-        <h1>My agents grade my YouTube</h1>
-        <p class="lede">I watch a lot of YouTube. Lectures, deep dives, conference talks. Some of it is learning. Some of it is lo-fi viking chants at 2am. Without a system, the ratio drifts and the good stuff evaporates.</p>
-        <p class="lede">So I gave it to my agents. Every night they grade what I watched, keep me honest against my learning target, and turn the best videos into takeaways I can act on.</p>
-        <div class="case-figure"><img src={heroImage} alt="Infographic: My agents grade my YouTube. A film ribbon of watched video flows through three stations: Watch, Measure, Learn, ending in insight cards. 10 hr/day target, 267 hrs queued, 484 videos." width="928" height="1152" /></div>
-      </section>
+  </Fragment>
 
-      <section class="shell intro-grid" aria-label="How it works">
-        <article>
-          <h2>When it runs</h2>
-          <p>Every night, automatically. A report lands in a private channel before I wake up: what I watched, how many hours, how that stacks against my 10-hour-a-day learning target, and which videos earned a second pass.</p>
-        </article>
-        <article>
-          <h2>What it connects to</h2>
-          <p>My own YouTube accounts, read through an authenticated browser session on my own machine. Nothing and no one else's data. My learning target and the running queue backlog make up the rest.</p>
-        </article>
-      </section>
+  <PageHero eyebrow="Use Cases · Learning" title="My agents grade my YouTube" lede="I watch a lot of YouTube. Lectures, deep dives, conference talks. Some of it is learning. Some of it is lo-fi viking chants at 2am. Without a system, the ratio drifts and the good stuff evaporates." size="lg">
+    <Fragment slot="title">My agents <em>grade my YouTube</em></Fragment>
+    <a class="ds-btn ds-btn--ghost" href="/use-cases">← Use Cases</a>
+    <a class="ds-btn" href="#workflow">How it works <span aria-hidden="true">↓</span></a>
+    <Fragment slot="aside">
+      <figure class="yt-figure">
+        <img src={heroImage} alt="Infographic: My agents grade my YouTube. A film ribbon of watched video flows through three stations: Watch, Measure, Learn, ending in insight cards. 10 hr/day target, 267 hrs queued, 484 videos." width="928" height="1152" fetchpriority="high" />
+      </figure>
+    </Fragment>
+  </PageHero>
 
-      <section id="workflow" class="shell examples" aria-labelledby="workflow-title">
-        <p class="eyebrow">The workflow</p>
-        <h2 id="workflow-title">Watch. Measure. Learn.</h2>
-        <div class="case-list">
-          <article class="case-card">
-            <div class="case-topline">
-              <span>Step 1</span>
-              <h3>Watch</h3>
-              <p>An agent reads what I actually watched, both of my accounts, the trailing month. It verifies which account it's looking at before it reads a single row.</p>
+  <div class="ds-shell">
+    <section class="yt-standfirst" aria-label="Why">
+      <p>So I gave it to my agents. Every night they grade what I watched, keep me honest against my learning target, and turn the best videos into takeaways I can act on.</p>
+      <div class="ds-stats yt-stats" aria-label="By the numbers">
+        <div class="ds-stat"><b>10 hr</b><span>daily learning target</span></div>
+        <div class="ds-stat"><b>484</b><span>videos in the queue</span></div>
+        <div class="ds-stat"><b>267 hrs</b><span>of content queued</span></div>
+      </div>
+    </section>
+
+    <section class="ds-section ds-grid ds-grid--2" aria-label="How it works">
+      <article class="ds-card">
+        <span class="ds-card-icon"><NavIcon name="changelog" /></span>
+        <h2>When it runs</h2>
+        <p>Every night, automatically. A report lands in a private channel before I wake up: what I watched, how many hours, how that stacks against my 10-hour-a-day learning target, and which videos earned a second pass.</p>
+      </article>
+      <article class="ds-card">
+        <span class="ds-card-icon"><NavIcon name="signal" /></span>
+        <h2>What it connects to</h2>
+        <p>My own YouTube accounts, read through an authenticated browser session on my own machine. Nothing and no one else's data. My learning target and the running queue backlog make up the rest.</p>
+      </article>
+    </section>
+
+    <section id="workflow" class="ds-section yt-workflow" aria-labelledby="workflow-title">
+      <div class="yt-head">
+        <span class="ds-eyebrow">The workflow</span>
+        <h2 class="ds-h2" id="workflow-title">Watch. Measure. Learn.</h2>
+      </div>
+      <ol class="yt-steps">
+        {steps.map((step) => (
+          <li class="ds-card yt-step">
+            <div class="yt-step-top">
+              <span class="ds-card-icon"><NavIcon name={step.icon} /></span>
+              <span class="ds-card-kicker">{step.label}</span>
             </div>
-          </article>
-          <article class="case-card">
-            <div class="case-topline">
-              <span>Step 2</span>
-              <h3>Measure</h3>
-              <p>Music gets filtered out, repeats deduped, and the rest becomes a learning queue: currently 484 videos, 267 hours of content, scored daily against my target.</p>
-            </div>
-          </article>
-          <article class="case-card">
-            <div class="case-topline">
-              <span>Step 3</span>
-              <h3>Learn</h3>
-              <p>The best videos come back as proposed insights and todos. I approve them one by one. Nothing becomes a task until I say so.</p>
-            </div>
-          </article>
+            <h3>{step.title}</h3>
+            <p>{step.copy}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="ds-section yt-control" aria-label="Results and control">
+      <article class="ds-card">
+        <span class="ds-card-kicker">Output</span>
+        <h2>What I get back</h2>
+        <p>A daily scorecard that keeps my watching on target instead of drifting. A prioritized backlog so a great talk I saw on a Tuesday doesn't vanish. And takeaways that turn watching into doing, which is the entire point.</p>
+        <p class="yt-aside-note">The report shows aggregates: hours, counts, queue depth. Not a view-by-view log of my life.</p>
+      </article>
+      <article class="ds-card ds-card--feature yt-gate">
+        <span class="ds-card-kicker"><NavIcon name="shield" />Human in the loop</span>
+        <h2>Where I stay in charge</h2>
+        <p>The agents read and analyze. I decide. Every insight lands as a proposal with my name on the approval, and a todo only exists once I've accepted it. If the system can't verify what happened on a given night, the report says zero and says why, rather than inventing a plausible number. I've been bitten by confident fiction before. Zeros I can work with.</p>
+        <div class="yt-approval" aria-hidden="true">
+          <span class="yt-approval-row"><i></i>Proposed insight</span>
+          <span class="yt-approval-arrow">→</span>
+          <span class="yt-approval-row is-ok"><i></i>Approved by Henry</span>
+          <span class="yt-approval-arrow">→</span>
+          <span class="yt-approval-row"><i></i>Todo</span>
         </div>
-      </section>
+      </article>
+    </section>
 
-      <section class="shell intro-grid" aria-label="Results and control">
-        <article>
-          <h2>What I get back</h2>
-          <p>A daily scorecard that keeps my watching on target instead of drifting. A prioritized backlog so a great talk I saw on a Tuesday doesn't vanish. And takeaways that turn watching into doing, which is the entire point.</p>
-          <p>The report shows aggregates: hours, counts, queue depth. Not a view-by-view log of my life.</p>
-        </article>
-        <article>
-          <h2>Where I stay in charge</h2>
-          <p>The agents read and analyze. I decide. Every insight lands as a proposal with my name on the approval, and a todo only exists once I've accepted it. If the system can't verify what happened on a given night, the report says zero and says why, rather than inventing a plausible number. I've been bitten by confident fiction before. Zeros I can work with.</p>
-        </article>
-      </section>
+    <section class="ds-section yt-story" aria-labelledby="yt-story-title">
+      <div class="yt-story-mark" aria-hidden="true">
+        <b>0.0</b>
+        <span>hours · zero receipts</span>
+      </div>
+      <div class="yt-story-copy">
+        <span class="ds-eyebrow">Honest zeros</span>
+        <h2 class="ds-h2" id="yt-story-title">The night it reported nothing</h2>
+        <div class="prose">
+          <p>One night the report showed 0.0 hours, zero receipts. Looked broken. It wasn't: the capture had happened but the proof file failed to write, sandbox permissions, and the report refused to guess. The fix took a shared write path and a schedule that fires while the authenticated browser is actually up. Two small bugs, both caught because the system would rather show me an honest zero than a comfortable lie.</p>
+          <p>That's the whole design philosophy: watch what I watch, measure it honestly, and turn it into work I approve. The rest is plumbing, and the plumbing knows its place.</p>
+        </div>
+      </div>
+    </section>
 
-      <section class="shell examples" aria-label="Failure story">
-        <p class="eyebrow">Honest zeros</p>
-        <h2>The night it reported nothing</h2>
-        <p>One night the report showed 0.0 hours, zero receipts. Looked broken. It wasn't: the capture had happened but the proof file failed to write, sandbox permissions, and the report refused to guess. The fix took a shared write path and a schedule that fires while the authenticated browser is actually up. Two small bugs, both caught because the system would rather show me an honest zero than a comfortable lie.</p>
-        <p>That's the whole design philosophy: watch what I watch, measure it honestly, and turn it into work I approve. The rest is plumbing, and the plumbing knows its place.</p>
-      </section>
+    <aside class="ds-cta-band">
+      <div>
+        <span class="ds-eyebrow">More examples</span>
+        <p class="ds-h2">See how the rest of the crew works.</p>
+      </div>
+      <a class="ds-btn cta-link" href="/use-cases">Back to all use cases</a>
+    </aside>
+  </div>
+</SiteLayout>
 
-      <section class="shell" style="padding-top: 2rem;">
-        <p><a class="cta-link" href="/use-cases">Back to all use cases</a></p>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+<style>
+  .yt-figure { margin: 0; width: min(100%, 440px); justify-self: end; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); box-shadow: 0 40px 100px color-mix(in srgb, var(--glow) 40%, transparent), 0 20px 50px rgba(0, 0, 0, .25); transform: rotate(1.2deg); transition: transform .8s var(--ease-spring); }
+  .yt-figure:hover { transform: rotate(0deg) scale(1.01); }
+  .yt-figure img { display: block; width: 100%; height: auto; }
+
+  .yt-standfirst { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: clamp(24px, 5vw, 72px); align-items: end; padding-top: clamp(8px, 2vw, 24px); }
+  .yt-standfirst > p { font: 500 clamp(26px, 3vw, 40px)/1.2 var(--font-display); letter-spacing: -.03em; color: var(--text); text-wrap: balance; }
+  .yt-stats { flex-direction: column; gap: 20px; padding-left: clamp(0px, 3vw, 36px); border-left: 1px solid var(--border); }
+  .yt-stats .ds-stat b { font-size: clamp(34px, 3.4vw, 48px); color: var(--accent); }
+
+  .yt-head { display: grid; gap: 14px; margin-bottom: 24px; }
+  .yt-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: yt; }
+  .yt-step { position: relative; }
+  .yt-step-top { display: flex; align-items: center; justify-content: space-between; }
+  .yt-step h3 { font-size: clamp(28px, 2.8vw, 36px); }
+  .yt-step:not(:last-child)::after { content: ''; position: absolute; z-index: 1; top: 44px; right: -17px; width: 18px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
+
+  .yt-control { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 16px; align-items: stretch; }
+  .yt-aside-note { padding-top: 12px; border-top: 1px solid var(--border); color: var(--text-soft) !important; font-style: italic; }
+  .yt-gate { border-color: color-mix(in srgb, var(--accent) 40%, var(--surface-border)); }
+  .yt-gate .ds-card-kicker :global(.nav-icon) { width: 16px; height: 16px; }
+  .yt-gate p { color: var(--text-soft); font-size: 16px; }
+  .yt-approval { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 6px; }
+  .yt-approval-row { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 80%, transparent); color: var(--muted); font-size: 13px; font-weight: 650; }
+  .yt-approval-row i { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .yt-approval-row.is-ok { color: var(--text); border-color: color-mix(in srgb, var(--success) 50%, var(--border)); }
+  .yt-approval-row.is-ok i { background: var(--success); box-shadow: 0 0 10px var(--success); }
+  .yt-approval-arrow { color: var(--faint); }
+
+  .yt-story { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(28px, 5vw, 80px); align-items: start; padding-top: clamp(32px, 4vw, 56px); border-top: 1px solid var(--border); }
+  .yt-story-mark { position: sticky; top: calc(var(--chrome-top) + 32px); display: grid; gap: 8px; }
+  .yt-story-mark b { font: 500 clamp(96px, 12vw, 180px)/.85 var(--font-display); letter-spacing: -.07em; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+  .yt-story-mark span { color: var(--muted); font: 700 11px/1.3 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+  .yt-story-copy { display: grid; gap: 16px; max-width: 720px; }
+  .yt-story-copy .prose { margin-top: 8px; }
+
+  @media (max-width: 980px) {
+    .yt-figure { justify-self: start; transform: none; width: min(100%, 420px); }
+    .yt-standfirst, .yt-control, .yt-story { grid-template-columns: 1fr; }
+    .yt-stats { flex-direction: row; flex-wrap: wrap; padding: 22px 0 0; border-left: 0; border-top: 1px solid var(--border); }
+    .yt-story-mark { position: static; }
+  }
+  @media (max-width: 760px) {
+    .yt-figure { width: 100%; }
+    .yt-standfirst > p { font-size: 25px; }
+    .yt-stats { gap: 18px 28px; }
+    .yt-stats .ds-stat b { font-size: 32px; }
+    .yt-steps { grid-template-columns: 1fr; gap: 12px; }
+    .yt-step:not(:last-child)::after { top: auto; bottom: -13px; right: auto; left: 44px; width: 1px; height: 14px; background: linear-gradient(var(--accent), transparent); }
+    .yt-story-mark b { font-size: 96px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .yt-figure { transition: none; transform: none; }
+  }
+</style>
