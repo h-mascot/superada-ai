@@ -67,6 +67,8 @@ html[data-theme="neon"] .ds-chip[aria-pressed="true"] { color: #021014; }
 .post-card-title { font: 500 23px/1.12 var(--font-display); letter-spacing: -.03em; text-wrap: balance; }
 .post-card-dek { color: var(--muted); font-size: 14.5px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .post-card-byline { margin-top: auto; padding-top: 6px; display: flex; align-items: center; gap: 10px; color: var(--text-soft); font-size: 13px; font-weight: 650; }
+.post-card-byline .ds-meta { color: var(--text-soft); font-size: 13px; }
+.post-card-byline .ds-meta > :last-child { color: var(--muted); font-weight: 500; }
 .post-card-byline img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
 .post-card-cta { margin-left: auto; color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
 @media (hover: hover) {

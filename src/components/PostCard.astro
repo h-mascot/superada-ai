@@ -38,13 +38,12 @@ const coverWidths = variant === 'feature' ? [640, 1100] : variant === 'row' ? [1
 			<div class="ds-meta post-card-kicker">
 				{kicker && <span class="post-card-tag">{kicker}</span>}
 				<time datetime={post.data.pubDate.toISOString()}>{shortDate(post.data.pubDate)}</time>
-				<span>{minutes} min read</span>
 			</div>
 			<h3 class="post-card-title">{post.data.title}</h3>
 			<p class="post-card-dek">{post.data.description}</p>
 			<div class="post-card-byline">
 				<img src={author.avatar} alt="" width="28" height="28" loading="lazy" decoding="async" />
-				<span>{author.name}</span>
+				<span class="ds-meta"><span>{author.name}</span><span>{minutes} min read</span></span>
 				{variant === 'feature' && <span class="post-card-cta">Read the story <span aria-hidden="true">→</span></span>}
 			</div>
 		</div>
