@@ -455,6 +455,7 @@ const heroCount = mode === 'overview' ? totalItems : mode === 'mascots' ? mascot
 	.pet-path { color: var(--faint); font: 700 11.5px/1.3 var(--font-mono); }
 	.pet-command { width: 100%; min-height: 52px; padding: 10px 14px; border-radius: 14px; border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 70%, black); color: var(--text); font: 650 12px/1.45 var(--font-mono); text-align: left; overflow-wrap: anywhere; cursor: pointer; transition: border-color .2s ease; }
 	.pet-command span { color: var(--accent); }
+	:global(html[data-theme="light"]) .pet-command { background: color-mix(in srgb, var(--panel-soft) 70%, var(--bg)); }
 	.pet-command:hover { border-color: color-mix(in srgb, var(--accent) 52%, var(--border)); }
 	.pet-command[data-copied="true"] { color: var(--success); }
 	.pet-command[data-copied="true"]::after { content: ' copied'; color: var(--success); }
