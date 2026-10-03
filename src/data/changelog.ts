@@ -16,6 +16,106 @@ export const CHANGELOG_SOURCE_URL = "https://raw.githubusercontent.com/openclaw/
 
 export const CHANGELOG_VERSIONS: Version[] = [
   {
+    "version": "2026.9.8",
+    "date": "2026.9.8",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202698",
+    "features": [
+      {
+        "title": "Clarify translated silent-reply settings help [#163409](https",
+        "description": "//github.com/openclaw/openclaw/pull/163409). One message is updated in each of 20 existing locales, with translation rows and catalog metadata synchronized across 41 generated files. The change reuses the translations from [#162942](https://github.com/openclaw/openclaw/pull/162942). Contributions from [vincentkoc](https://github.com/vincentkoc).",
+        "href": "https://github.com/openclaw/openclaw/issues/163409"
+      },
+      {
+        "title": "Add GPT-6",
+        "description": "Add GPT-6.1 Sol selection, API-key and account-discovered subscription routing, text and image inputs, Responses tool calls, reasoning controls and usage estimates. Select it with `openclaw models set openai/gpt-6.1-sol`. The accompanying model documentation covers access, runtime differences, limits and pricing. [#161400](https://github.com/openclaw/openclaw/pull/161400)",
+        "href": "https://github.com/openclaw/openclaw/issues/161400"
+      },
+      {
+        "title": "Bring the same model support to the release branch, including mandatory rea...",
+        "description": "Bring the same model support to the release branch, including mandatory reasoning when discovery supplies account-specific capabilities and request handling that omits unsupported sampling parameters. Backport by [RomneyDa](https://github.com/RomneyDa). [#163132](https://github.com/openclaw/openclaw/pull/163132)",
+        "href": "https://github.com/openclaw/openclaw/issues/163132"
+      },
+      {
+        "title": "Add `pnpm frv watch` with saved transition state, one-shot and interval con...",
+        "description": "Add `pnpm frv watch` with saved transition state, one-shot and interval controls, and NDJSON output, plus `frv rerun` with child selection and a default two-attempt budget counted from the planned attempt. Named non-root installer failures can rerun the payload producer and dependents; passed children and standalone artifact producers are refused. Runner diagnostics accompany the retry. Callers must retire `prioritize --run`, which now fails; historical `prioritize --restore` remains, and `continue --failed` still performs final resealing. Known limits include early watcher termination on partial job lists, accepting a retry before later duplicates appear, and missing audit records when verification fails after sending a retry. Related [issue #161317](https://github.com/openclaw/openclaw/issues/161317) supplies installer-attempt context. [#161516](https://github.com/openclaw/openclaw/pull/161516).",
+        "href": "https://github.com/openclaw/openclaw/issues/161317"
+      },
+      {
+        "title": "Show GitHub observation phases, continuation transitions, five-minute heart...",
+        "description": "Show GitHub observation phases, continuation transitions, five-minute heartbeats, and confirmed attempt URLs. The configurable observation budget defaults to 180 seconds, with each read capped at 60 seconds and the remaining budget. Failed or unread observations carry warnings and replay commands; known concurrent publishers remain failures. Exact-tag lookup uses authenticated, filtered inventory for draft detection after a 404. Existing-evidence preparation checks SDK acknowledgement immediately after authentication and supplies a quoted rerun command when needed. Temporary cleanup removes its own file tree before targeted Git worktree removal. Operator guidance also covers clean candidate checkouts and package-store lock diagnosis. The observation budget is not a whole-preparation deadline, and a warning is not permission to publish. [#161633](https://github.com/openclaw/openclaw/pull/161633).",
+        "href": "https://github.com/openclaw/openclaw/issues/161633"
+      },
+      {
+        "title": "Add server-aware exponential backoff for packed plugin publication, normall...",
+        "description": "Add server-aware exponential backoff for packed plugin publication, normally starting at 60 seconds, capped at 300 seconds per sleep and 900 seconds of cumulative sleep. Packed identity is checked before every attempt, including timeout retries; source-tree publication refuses automatic replay. `pnpm release:clawhub-recovery` validates recorded package identities, statuses, and unique attempts, skips published packages, and prints quoted recovery commands without executing them. The reusable publisher pin is updated; the npm-distributed `clawhub@0.23.3` remains unchanged and lacks the recovery command, so the documented pinned-source route is required. Older transports may omit retry headers, and server delays above the cap cannot be honored. [#161713](https://github.com/openclaw/openclaw/pull/161713).",
+        "href": "https://github.com/openclaw/openclaw/issues/161713"
+      },
+      {
+        "title": "Expand the 2026",
+        "description": "Expand the 2026.9.8 changelog, update its acknowledgements, and add a separate contribution record. Direct commit [0ea96bc](https://github.com/openclaw/openclaw/commit/0ea96bc2c594db037b960c8fd81bfef25f85cb40).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202698"
+      },
+      {
+        "title": "Shorten nine CI workflow comments to fit the 480,000-byte file-size guard w...",
+        "description": "Shorten nine CI workflow comments to fit the 480,000-byte file-size guard while preserving all executable settings, including the preceding timeout adjustment. Direct commit [2e4ea3f](https://github.com/openclaw/openclaw/commit/2e4ea3f995213493379d8875c85fc8a4c3842304).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202698"
+      },
+      {
+        "title": "Restore the comment wording expected by the workflow-planning test after th...",
+        "description": "Restore the comment wording expected by the workflow-planning test after the trimming change. Only a comment changes; the workflow's executable behavior remains the same. Direct commit [fcfa665](https://github.com/openclaw/openclaw/commit/fcfa66550ddb31707634004245101cef1f0a3bb9).",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202698"
+      }
+    ],
+    "fixes": [
+      "Keep retained Control UI files available to older tabs [#163478](https://github.com/openclaw/openclaw/pull/163478). Missing-file requests wait for cache verification before reporting a miss. Newly retained builds omit Brotli and gzip copies and serve retained files uncompressed, reducing copying and leaving more of the existing budget for previous builds. Regression coverage includes requests during inventory, uncompressed responses, cancellation of pending lookups, coexistence with older cache formats, and budget eviction. Budget tests are consolidated into the existing publication suite. This backports the fixes from [#163090](https://github.com/openclaw/openclaw/pull/163090) and [#163099](https://github.com/openclaw/openclaw/pull/163099). Contributions from [vincentkoc](https://github.com/vincentkoc).",
+      "Prevent unintended assignment when opening the session menu [#163467](https://github.com/openclaw/openclaw/pull/163467). Both shipped Web Awesome dropdown bundles now respect the focused menu item, with updated dependency-patch hashes and a browser regression covering hover followed by Enter. This backports [#161393](https://github.com/openclaw/openclaw/pull/161393). Coauthored by [RomneyDa](https://github.com/RomneyDa) and [vincentkoc](https://github.com/vincentkoc).",
+      "Preserve update settings and repair startup, replies and session maintenance [#162959](https://github.com/openclaw/openclaw/pull/162959). Backport by [RomneyDa](https://github.com/RomneyDa), with included work by [VACInc](https://github.com/VACInc), [obviyus](https://github.com/obviyus) and [ericcaiwx-star](https://github.com/ericcaiwx-star).",
+      "Recover package replacement interruptions and deliver delegated results once [#163074](https://github.com/openclaw/openclaw/pull/163074). Backport by [RomneyDa](https://github.com/RomneyDa), with included work by [fuller-stack-dev](https://github.com/fuller-stack-dev) and [obviyus](https://github.com/obviyus).",
+      "Recognize aliased macOS installations while their package directory is absent [#163481](https://github.com/openclaw/openclaw/pull/163481), with work by [vincentkoc](https://github.com/vincentkoc). The resolver uses the existing parent directory to recover the installation's canonical path during npm replacement. An existing dangling symlink remains distinct from an absent directory, and inspection errors retain the existing fallback. This backports the corresponding main-branch repair [#163479](https://github.com/openclaw/openclaw/pull/163479) without adding a setting or changing the activation API.",
+      "Preserve accepted work across connection-policy reloads [#163174](https://github.com/openclaw/openclaw/pull/163174), backported by [RomneyDa](https://github.com/RomneyDa) from the contextual original repair [#160909](https://github.com/openclaw/openclaw/pull/160909). Proxy-header, OIDC-mapping, device-auto-approval and trusted-proxy-address changes no longer cancel accepted runs, queued inputs or a committed session's requested initial turn solely because the originating connection retires.",
+      "Keep channel listeners active after the reload or recovery operation that started them has finished. The shared channel manager now separates listener startup from that temporary work scope while retaining plugin lifecycle and generation boundaries. Explicitly stopping a channel still cancels its listener, and no new setting or migration is required. [#163504](https://github.com/openclaw/openclaw/pull/163504), backport of [#163268](https://github.com/openclaw/openclaw/pull/163268). Thanks to upstream author [scotthuang](https://github.com/scotthuang) and contributor [vincentkoc](https://github.com/vincentkoc).",
+      "Recover missing Visual C++ runtime files during managed setup for Windows ARM64 and x64 CPU servers and the x64 CUDA server. After a failed startup probe, setup downloads a pinned Microsoft bundle, verifies its size and SHA-256, extracts selected regular DLL files beside the server and retries. The redistributable installer is not executed. By [RomneyDa](https://github.com/RomneyDa). [#163093](https://github.com/openclaw/openclaw/pull/163093)",
+      "Bring the same conditional runtime recovery to the release branch, preserving both the original launch error and the fallback error if recovery fails. Backport by [RomneyDa](https://github.com/RomneyDa). [#163128](https://github.com/openclaw/openclaw/pull/163128)",
+      "Restore Windows session access and native Computer Use readiness in [#162931](https://github.com/openclaw/openclaw/pull/162931), authored by [RomneyDa](https://github.com/RomneyDa).",
+      "Recognize the Telegram and Matrix QA waiver for exactly version 2026.9.7. The policy adds the named waiver and a matching stable-profile regression case, without changing either channel's behavior. Direct commit [9015311](https://github.com/openclaw/openclaw/commit/9015311b3cca62a2bbbcd35f5860d060f0d846a5).",
+      "Exclude the waived progress-refresh, response-output-limit, and subagent-restart live-test files before checking for passing assertions, only for candidate 2026.9.7. Unknown versions retain ordinary selection. This original filter is inactive for 2026.9.8; that version's extension appears below. Direct commit [b6dae4a](https://github.com/openclaw/openclaw/commit/b6dae4acd049964010ae1b6b8732059652d92ac8).",
+      "Allow completed `checks-windows-node-*` shard failures or timeouts in the release validation's `normalCi` child to become advisories when exactly one completed, successful CI gate establishes coverage. Packaging, Windows installation and upgrade checks, other selected checks, cancellations, and missing or unsuccessful gates remain blocking; ordinary CI remains strict. Advisory evidence is rechecked through publication, without adding operator waiver controls. The supporting process-census test helper now uses its owning operation's deadline and still rejects late replies. The advisory rule identifies eligible jobs, not whether their failures are intermittent. [#161256](https://github.com/openclaw/openclaw/pull/161256).",
+      "Record non-malware dependency findings of every severity and dependency graph as advisories, remove the per-release risk-acceptance table, and retain blocking for findings already classified as malware. Reports retain findings and warning summaries. A separate CI audit wrapper turns every nonzero audit result into a warning for `workflow_dispatch` requests whose IDs begin with `full-release-validation-` or `release-native-android-`; ordinary and scheduled audit contexts retain failures. This can also suppress incomplete audits, and the prefix is caller-supplied. Blocking classified malware does not guarantee detection of every malware finding. Updated guidance covers deferred dependency fixes, unrelated main-CI failures, and bounded flake handling; individual flake acceptance is implemented separately below. [#161463](https://github.com/openclaw/openclaw/pull/161463).",
+      "Add individual tracked-flake classification for eligible failed or timed-out `normalCi` jobs. Records bind the exact job, attempt, parent, release commit, actor, reason, and tracking reference; continuation can then reseal an advisory-only parent without rerunning that child. Summaries, manifests, and release verification retain the failure. Protected package, installation, update, artifact, and evidence checks remain blocking, and an old record cannot cover a new rerun. The workflow has no dedicated current-release-lead check or second approver; the two-rerun guidance is operator policy, not enforced by the record writer. Earlier parents need the supported tooling update, and limitations around pre-publication advisory size checks and older release bodies remain. [#161515](https://github.com/openclaw/openclaw/pull/161515).",
+      "Extend the bounded exception set to 2026.9.8 for Telegram and Matrix coverage, the three omitted live-test files, and the existing reviewed plugin security inventory on `release/2026.9.8`. Later or unknown contexts retain their normal treatment. This changes qualification policy without repairing the omitted checks or accepted plugin security findings. [#162981](https://github.com/openclaw/openclaw/pull/162981), by [RomneyDa](https://github.com/RomneyDa).",
+      "Wait for confirmed Windows process-tree termination and updater closure before a release test falls back to installation. Unverified cleanup remains a distinct failure. Package-directory removal retries only `EPERM` and `EBUSY`, with bounded delays; it does not retry npm. Windows update-step budgets use 1.5 times the measured baseline installation, bounded to 600–1200 seconds, and the wrapper allows two steps plus 120 seconds. Only Windows packaged-upgrade jobs receive the expanded 180-minute workflow deadline. Direct commit [bbbde77](https://github.com/openclaw/openclaw/commit/bbbde7780b2ee7ba06ed54672800e7b326763f79).",
+      "Define the simulated child process ID through `Object.defineProperty` instead of assigning to Node's readonly `pid` property. The Windows cleanup, closure, and fallback assertions remain; this is a test-fixture correction. Direct commit [c939110](https://github.com/openclaw/openclaw/commit/c9391109ae16fb2ac855b6d8aefcbc8198bc36d2).",
+      "Accept reworded service advice in the already-current second-update test while still checking the advisory kind, a nonblank explanation, and unchanged step, command, directory, duration, and exit result. The test continues to require no package mutation or repair. The Doctor service-home change belongs to contextual [#160056](https://github.com/openclaw/openclaw/pull/160056); this adjustment changes only its validation. [#161079](https://github.com/openclaw/openclaw/pull/161079).",
+      "Remove retired `webhookHost` and `webhookPort` fields from the Feishu upgrade-survivor recipe, retaining the verification token, encryption key, webhook path, and account settings. Listener binding stays with its existing owner. [#163184](https://github.com/openclaw/openclaw/pull/163184), by [RomneyDa](https://github.com/RomneyDa).",
+      "Copy the temporary npm registry server and its bounded-response helper into the Docker validation image with mode `0644`, so its unprivileged user can read files from a restrictive checkout. This extends the adjacent permission repair in contextual [#145919](https://github.com/openclaw/openclaw/pull/145919). [#163188](https://github.com/openclaw/openclaw/pull/163188), by [RomneyDa](https://github.com/RomneyDa).",
+      "Temporarily remove the combined self-upgrade job from stable validation after contention between upgrade-survivor and six initial-update lanes. Beta, minimum, and full profiles retained the job with its then-current 130-minute limit. The final stable restoration appears in the next entry. The related older-updater rollback concern in [issue #161257](https://github.com/openclaw/openclaw/issues/161257) was not repaired by this scheduling change. [#161291](https://github.com/openclaw/openclaw/pull/161291).",
+      "Restore stable self-upgrade coverage and increase the combined job budget from 130 to 210 minutes. First-hop checks now consume two scheduler slots under the existing five-slot limit, allowing at most two together or one alongside the three-slot survivor check. Individual lane budgets and upgrade commands stay unchanged, with matching planning tests and documentation. This is the backport of contextual [#161774](https://github.com/openclaw/openclaw/pull/161774). [#163215](https://github.com/openclaw/openclaw/pull/163215), backported by [RomneyDa](https://github.com/RomneyDa).",
+      "Reuse successful child checks from failed, cancelled, or active validation parents only when both release and tooling revisions match. Empty and omitted inputs compare equally; nonempty defaults and candidate descriptor bytes still must match. Discovery remains bounded to 100 runs, 40 receipt probes, and five full candidate validations within the deadline, with logs explaining reuse, rejection, or fresh dispatch. Sealing and final verification enforce the same tooling identity. Cross-tooling reuse is not implemented. [#161520](https://github.com/openclaw/openclaw/pull/161520).",
+      "Ignore a queued duplicate only in a superseded attempt when it has no runner, an explicitly empty steps array, and a completed same-name sibling. Effective-attempt duplicates and executed or unmatched copies retain strict checks. Queued copies with nonempty copied steps remain outside this exception, and the unchanged receipt-sealing path may still reject predecessor jobs. [#161404](https://github.com/openclaw/openclaw/pull/161404).",
+      "Check stale publishing jobs before any fresh dispatch. Occupied plugin slots block with reviewer rejection or cancellation guidance; core npm can warn and proceed under its distinct existing slot and live-parent safeguards. The publication parent allows 180 minutes, and its configurable beta-sync wait defaults to 50 minutes with status updates and five-minute heartbeats. A still-running owned sync explicitly fails at the deadline before beta verification; other sync failures retain their existing handling. [#161632](https://github.com/openclaw/openclaw/pull/161632).",
+      "Include selected `@openclaw/ai`, `@openclaw/gateway-client`, and `@openclaw/gateway-protocol` packages in beta-floor verification. Shared selection with bundle preparation validates package identity and version, aggregates stale-tag diagnostics, and blocks the later postpublish stage on core failures. Reused versions and superseded selectors remain supported without requiring the selected tag to equal the release version. This verifies tags; it does not synchronize them or change publication selection. [#161968](https://github.com/openclaw/openclaw/pull/161968).",
+      "Share exact package/version publication-state validation between plugin planning and prepared-artifact resolution. Recognized pending or failed versions stay out of writer jobs, published prepared packages can be adopted, and dry runs retain the full roster. Failed attempts receive manual recovery guidance requiring a human publisher token; the recovery CLI also handles symlinked invocation. Unknown or malformed states fail validation, but a hidden first publication can return 404 from both probes and still be treated as absent. [#161985](https://github.com/openclaw/openclaw/pull/161985).",
+      "Keep the intermittent MiniMax and MiniMax Portal gateway suite in the full profile while removing it from stable selection. This changes test coverage, not model behavior or user settings. The prompt clarification below leaves that profile selection unchanged. Direct commit [1925798](https://github.com/openclaw/openclaw/commit/1925798db6c9006001d23421af52b6b0e0d7edcd).",
+      "Register five opt-in live suites with the shard guard so intentionally disabled files do not fail for lacking passing assertions. The mappings cover the Claude compaction watchdog, subagent continuation, late replies, yield/resume, and peer messaging under their respective compaction, end-to-end, or stress flags. Enabled suites still require passing assertions. Direct commit [533fcd5](https://github.com/openclaw/openclaw/commit/533fcd59a2591a4d3453e642d6948fb5b69c044b).",
+      "Register six more optional suites covering Claude CLI compaction, Codex approval requester, asynchronous questions and restricted MCP scenarios, Ollama, and Twitch. Their existing environment flags control intentional skips, while enabled suites retain the assertion requirement. This adds no provider or channel capability. Direct commit [8498629](https://github.com/openclaw/openclaw/commit/8498629e767ed097cc678508933ba1c320e306f7).",
+      "Update three xAI search and code-execution test expectations to the existing Grok 4.7 default, retaining the other response and provider checks. This neither adds the model nor changes the runtime default. [#163175](https://github.com/openclaw/openclaw/pull/163175), by [RomneyDa](https://github.com/RomneyDa).",
+      "Replace fixed IRC test deadlines with waits for actual admission, completion, reconnection, and socket events. The helper respects test cancellation and removes its listener after settlement; the sanitized-empty reply case explicitly waits for admission before completion. Behavioral assertions remain, without changing IRC message handling or reconnect policy. [#163180](https://github.com/openclaw/openclaw/pull/163180), by [RomneyDa](https://github.com/RomneyDa).",
+      "Exercise the registered Matrix account-schema migration directly, avoiding unrelated full-CLI startup in its account-repair test. Released fixtures, stale-schema write rejection, detection warnings, account-row preservation, untouched archived bytes, repaired writes, reopening, and cleanup checks remain. This changes test execution rather than production repair speed. [#163183](https://github.com/openclaw/openclaw/pull/163183), by [RomneyDa](https://github.com/RomneyDa).",
+      "Run four expensive declaration-build fixture cases sequentially on every platform, preserving compiler assertions and time limits. Windows contention motivated the repair, but production compilation stays unchanged. The full Windows test file still includes a fixture that requires symlink privileges. [#163217](https://github.com/openclaw/openclaw/pull/163217), by [RomneyDa](https://github.com/RomneyDa).",
+      "Align private-subagent QA with existing internal-review outcomes. The mock returns a worker-started status after handoff and a private-review-complete status after the second result; direct and catalog-routed tests and the scenario wording follow those responses. This supplies fixture alignment for the earlier delegated-work changes, without adding completion or privacy behavior. [#163503](https://github.com/openclaw/openclaw/pull/163503), with contributions from [RomneyDa](https://github.com/RomneyDa) and [vincentkoc](https://github.com/vincentkoc).",
+      "Stop requiring xAI's inconsistent interruption acknowledgement in the voice live test, while retaining speech detection, the outbound truncation request, cleared playback, and subsequent transcription and response-completion checks. This backports contextual [#163529](https://github.com/openclaw/openclaw/pull/163529). [#163530](https://github.com/openclaw/openclaw/pull/163530), with a contribution from [vincentkoc](https://github.com/vincentkoc).",
+      "Wait for persisted recovery admission in the restart test instead of relying on a one-second Gateway-call polling window. The subsequent recovery stop and Gateway-parameter assertions remain, without changing session recovery itself. [#163606](https://github.com/openclaw/openclaw/pull/163606), by [RomneyDa](https://github.com/RomneyDa).",
+      "Give both strict and non-strict live file-read prompts an explicit JavaScript read-and-text example. The prompt recognizes Code Mode by the `exec` tool's JavaScript interface, allows additional directly exposed tools, and retains the requirement to return both file markers. It refines contextual [#157779](https://github.com/openclaw/openclaw/pull/157779); related [issue #161072](https://github.com/openclaw/openclaw/issues/161072) remains open, including its broader retry and recovery concerns. [#163619](https://github.com/openclaw/openclaw/pull/163619), by [RomneyDa](https://github.com/RomneyDa).",
+      "Retain the cron ownership test's five-port Gateway reservation until its instance has finished cleanup, preventing another cooperating fixture from taking the selected port before startup. Existing cron assertions remain. This backports the cron fixture change from contextual [#163003](https://github.com/openclaw/openclaw/pull/163003); it changes no production scheduling behavior and does not cover every possible port conflict. [#163620](https://github.com/openclaw/openclaw/pull/163620), by [RomneyDa](https://github.com/RomneyDa).",
+      "Account for bundled npm dependencies through their nearest non-bundled enclosing package, requiring that carrier's download and integrity metadata. Reports add a path-sorted `bundledDependencies` list and per-package and total counts while preserving the original lock payload. Malformed bundled entries and incomplete ordinary dependencies still fail. Metadata checks do not themselves fetch or cryptographically authenticate archive bytes. Direct commit [c434cbe](https://github.com/openclaw/openclaw/commit/c434cbefd4d1428c47d020346fdd8480bf0a2a87).",
+      "Normalize omitted bundle markers only under the existing exact npm version, dependency path, version, and name exception; explicit false markers remain rejected, and final authentication against the locked npm archive remains required. The same change makes Telegram test cleanup await actual transcript-append promises before deleting its database, preventing delayed writes from recreating fixture state. Dependency versions, production Telegram delivery, and locales do not change. [#163392](https://github.com/openclaw/openclaw/pull/163392), with a contribution from [vincentkoc](https://github.com/vincentkoc).",
+      "Upgrade both locked Undici copies and the override in the Vercel release tool from 6.28.0 to 6.28.1, refreshing the installer checksum for the changed lock. This addresses the WebSocket denial-of-service advisory `GHSA-rfgv-xxqx-mfg5` in tooling used for registry mirroring. That tooling does not ship in OpenClaw packages, so this is not an installed-product vulnerability fix. [#161418](https://github.com/openclaw/openclaw/pull/161418).",
+      "Move ten compatibility annotation families and the legacy media record to `removal-pending`, preserving their original review dates and documenting outstanding migration and published-plugin checks. No API is removed. The registry tracks twenty pending records, including existing branch-specific records, with none eligible for removal. This backports contextual [#163127](https://github.com/openclaw/openclaw/pull/163127), with corresponding registry, test, and compatibility-documentation updates. [#163354](https://github.com/openclaw/openclaw/pull/163354), with contributions from [Patrick-Erichsen](https://github.com/Patrick-Erichsen) and [RomneyDa](https://github.com/RomneyDa).",
+      "Increase the extension-package-boundary CI job's allowance from 20 to 30 minutes, keeping other additional checks at 20 minutes. Regression guards and [CI documentation](https://docs.openclaw.ai/ci) reflect the scoped budget; compiler concurrency, check selection, caches, and validation requirements stay unchanged. Direct commit [c305d7a](https://github.com/openclaw/openclaw/commit/c305d7adbbc147dfb6395d28cf7d463e6ed44d07).",
+      "Select hosted timing jobs by the exact test-shard step, preserving hosting and compact-job exclusions and still rejecting missing or ambiguous shard descriptors. Historical compatibility tracing additionally recognizes one frozen wrapper body, checking its digest, target, generated bindings, and provenance while rejecting altered or unknown wrappers. These repairs restore collection and regeneration tools without changing stored timing costs, the compatibility inventory itself, or current wrapper generation. The timing repair closes [issue #161550](https://github.com/openclaw/openclaw/issues/161550). [#161635](https://github.com/openclaw/openclaw/pull/161635)."
+    ]
+  },
+  {
     "version": "2026.9.7",
     "date": "2026.9.7",
     "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202697",
@@ -165978,389 +166078,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "**PR #91423** feat(qqbot)",
         "description": "add /bot-group-allways command to toggle mention requirement. Thanks @cxyhhhhh.",
         "href": "https://github.com/openclaw/openclaw/issues/91423"
-      }
-    ],
-    "fixes": []
-  },
-  {
-    "version": "2026.6.2",
-    "date": "2026.6.2",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662",
-    "features": [
-      {
-        "title": "**Governed plugin and skill installs",
-        "description": "** the old dangerous-code scanner gives way to an operator install policy with clearer doctor, CLI, ClawHub, package, archive, source, upload, and marketplace recovery paths. (#89516) Thanks @joshavant and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/pull/89516"
-      },
-      {
-        "title": "**Safer channel delivery",
-        "description": "** Telegram, Feishu, Discord, WhatsApp, and outbound sends now handle transcript mirroring, streamed finals, admin writeback, approval allowlists, poll modifiers, and setup state without corrupting delivery. (#88973, #89626, #89812, #89035, #89814, #89813, #89601) Thanks @pgondhi987, @Petru2224, @zhangguiping-xydt, @ppmuzyk, @codezz, @takhoffman, @vincentkoc, @harjothkhara, @obviyus, @glenn-agent, @kesslerio, and @leiJack-lo.",
-        "href": "https://github.com/openclaw/openclaw/issues/88973"
-      },
-      {
-        "title": "**Steadier chat and operator UI",
-        "description": "** visible stream text, completed sends, Workboard keyboard navigation, dialog accessibility, lazy usage views, and Android companion flows retain their state through normal interaction. (#89801, #89777) Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89801"
-      },
-      {
-        "title": "**Stricter safety checks",
-        "description": "** config, policy, shell snapshots, exec prechecks, script limits, and Gateway startup reject malformed or unsafe input before it becomes runtime state. (#89701, #87074, #81488, #87056, #89480) Thanks @RomneyDa, @giodl73-repo, @mmaps, @drobison00, @vincentkoc, and @q1387154-spec.",
-        "href": "https://github.com/openclaw/openclaw/issues/89701"
-      },
-      {
-        "title": "**More reliable Gateway and model sessions",
-        "description": "** session locks, abandoned Codex startup, ACP handoffs, custom-provider fanout, provider aliases, prompt caching, and memory checks recover without leaving a run wedged. (#89811, #89244) Thanks @RomneyDa, @takhoffman, @spencer2211, and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89811"
-      },
-      {
-        "title": "Plugins/security",
-        "description": "replace dangerous-code scanner enforcement with operator install policy, install-policy context, doctor checks, install/update CLI wiring, ClawHub metadata paths, and package/archive/source/upload lifecycle coverage. (#89516) Thanks @joshavant and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/pull/89516"
-      },
-      {
-        "title": "Policy",
-        "description": "add data-handling conformance checks and reject unsupported policy keys. (#87056, #87074) Thanks @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/87056"
-      },
-      {
-        "title": "Telegram/channels",
-        "description": "show commentary and reasoning in progress drafts, share progress draft compositors across channel plugins, and keep Telegram polling stop/reset boundaries cheaper and more reliable.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
-      },
-      {
-        "title": "UI/mobile",
-        "description": "add Workboard keyboard movement controls, tighten Workboard card operations, and improve Android companion-first shell UX. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
-      },
-      {
-        "title": "Channels/outbound",
-        "description": "keep channel sends durable when transcript mirroring fails, stop schema-padded poll modifiers from blocking normal sends, preserve WebChat `sessions_send` handoffs, preserve Discord channel-label suppression while hiding internal agent failure traces, match Discord libopus error shapes, and sanitize Discord tool progress scaffolding. (#89626, #89812, #89601) Thanks @Petru2224, @codezz, @takhoffman, @harjothkhara, and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89626"
-      },
-      {
-        "title": "Telegram/Feishu",
-        "description": "require admin rights for Telegram target writeback, keep Telegram DM exec approval allowlists working with `ask:off`, prevent Telegram preview duplication across streaming modes, isolate verbose status after streamed finals, cancel clean restart stop timers, slow polling restart storms, and wire Feishu setup runtime setters. (#88973, #89035, #89813, #89814) Thanks @pgondhi987, @zhangguiping-xydt, @ppmuzyk, @takhoffman, @vincentkoc, @obviyus, @kesslerio, @glenn-agent, and @leiJack-lo.",
-        "href": "https://github.com/openclaw/openclaw/issues/88973"
-      },
-      {
-        "title": "Feishu",
-        "description": "preserve full streaming card content by sending the merged text on each update instead of only the latest delta, so card readers see complete output when intermediate frames are missed. (#90181) Thanks @mushuiyu886.",
-        "href": "https://github.com/openclaw/openclaw/pull/90181"
-      },
-      {
-        "title": "Chat/UI/Gateway",
-        "description": "preserve visible chat stream text, clear stale stream buffers before terminal commits, reconcile completed sends, scroll pending sends into view, harden Workboard dialog accessibility, stabilize WebChat prompt-cache affinity, overlap chat catalog startup, render chat history incrementally, lazy-load usage dashboard, and report gateway health auth diagnostics. (#89337) Thanks @RomneyDa and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/pull/89337"
-      },
-      {
-        "title": "Agents/Codex/providers/models",
-        "description": "release session write locks when prompt-release fence reads fail, retire abandoned Codex app-server startups, keep stream-to-parent ACP spawns registered, close Codex startup clients on timeout, recover bundled provider aliases, avoid custom-provider runtime fanout, preserve provider prompt-cache boundaries, forward Gemini stop sequences, and strip Kimi-incompatible Anthropic cache markers. (#89811) Thanks @takhoffman, @spencer2211, and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/pull/89811"
-      },
-      {
-        "title": "Memory/build/update",
-        "description": "warn after startup watcher pressure checks, externalize optional Baileys image backends, restore and pin Canvas A2UI compatibility assets, keep plugin repair fetch failures nonblocking, restore Skill Workshop view switching, and keep the current chat toggle active after awaited session switches. (#89244) Thanks @RomneyDa and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/pull/89244"
-      },
-      {
-        "title": "Plugins/auth",
-        "description": "keep Hermes migration reports pointed at SQLite auth-profile stores.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
-      },
-      {
-        "title": "Plugins/CLI",
-        "description": "avoid importing the runtime plugin loader only to clear in-process caches after short-lived plugin install, enable, disable, update, and uninstall commands refresh registry metadata.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#202662"
-      },
-      {
-        "title": "Security/config/tooling",
-        "description": "reject corrupt shell snapshots, suspicious gateway startup configs, malformed numeric limits, oversized audit responses, unsafe exec precheck env, and invalid pending-agent SQLite scaffold denials. (#89701, #89705, #89480, #81488) Thanks @RomneyDa, @mmaps, @drobison00, @vincentkoc, and @q1387154-spec.",
-        "href": "https://github.com/openclaw/openclaw/issues/89701"
-      },
-      {
-        "title": "**PR #88922** fix(google)",
-        "description": "forward stop sequences to Gemini generationConfig. Thanks @coder999999999.",
-        "href": "https://github.com/openclaw/openclaw/issues/88922"
-      },
-      {
-        "title": "**PR #89460** fix(models)",
-        "description": "preserve provider prompt cache boundaries. Related #89386. Thanks @Enominera.",
-        "href": "https://github.com/openclaw/openclaw/issues/89460"
-      },
-      {
-        "title": "**PR #89478** fix",
-        "description": "restore Skill Workshop view switcher. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/issues/89478"
-      },
-      {
-        "title": "**PR #76741** fix(kimi)",
-        "description": "strip anthropic cache markers. Related #76612. Thanks @BryanTegomoh and @vliuyt.",
-        "href": "https://github.com/openclaw/openclaw/issues/76741"
-      },
-      {
-        "title": "**PR #89480** fix",
-        "description": "recover suspicious gateway startup configs. Related #89331. Thanks @q1387154-spec.",
-        "href": "https://github.com/openclaw/openclaw/issues/89480"
-      },
-      {
-        "title": "**PR #87056** Policy",
-        "description": "add data handling conformance checks. Thanks @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/87056"
-      },
-      {
-        "title": "**PR #81488** Harden node exec approval precheck env [AI]",
-        "description": "**PR #81488** Harden node exec approval precheck env [AI]. Thanks @mmaps and @drobison00.",
-        "href": "https://github.com/openclaw/openclaw/issues/81488"
-      },
-      {
-        "title": "**PR #89356** Add accessible Workboard movement controls",
-        "description": "**PR #89356** Add accessible Workboard movement controls. Thanks @BunsDev.",
-        "href": "https://github.com/openclaw/openclaw/issues/89356"
-      },
-      {
-        "title": "**PR #87074** fix(policy)",
-        "description": "reject unsupported policy keys. Thanks @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/87074"
-      },
-      {
-        "title": "**PR #89601** fix(outbound)",
-        "description": "stop schema-padded poll modifiers from blocking send. Thanks @codezz and @Takhoffman.",
-        "href": "https://github.com/openclaw/openclaw/issues/89601"
-      },
-      {
-        "title": "**PR #88963** perf(telegram)",
-        "description": "avoid broad reset-boundary scan. Thanks @MonkeyLeeT.",
-        "href": "https://github.com/openclaw/openclaw/issues/88963"
-      },
-      {
-        "title": "**PR #89125** Suppress internal agent failure traces before channel delivery",
-        "description": "**PR #89125** Suppress internal agent failure traces before channel delivery. Thanks @fuller-stack-dev.",
-        "href": "https://github.com/openclaw/openclaw/issues/89125"
-      },
-      {
-        "title": "**PR #89701** fix(exec)",
-        "description": "reject corrupt shell snapshots. Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/89701"
-      },
-      {
-        "title": "**PR #89705** fix",
-        "description": "allowlist pending agent sqlite scaffold. Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/89705"
-      },
-      {
-        "title": "**PR #89704** Share channel progress draft compositor",
-        "description": "**PR #89704** Share channel progress draft compositor. Thanks @obviyus.",
-        "href": "https://github.com/openclaw/openclaw/issues/89704"
-      },
-      {
-        "title": "**PR #89708** perf(control-ui)",
-        "description": "coalesce chat metadata startup. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89708"
-      },
-      {
-        "title": "**PR #89337** fix",
-        "description": "report gateway health auth diagnostics. Related #89711. Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/89337"
-      },
-      {
-        "title": "**PR #88685** Render dashboard chat history incrementally",
-        "description": "**PR #88685** Render dashboard chat history incrementally. Related #87345. Thanks @alexzhu0 and @2xmncvcx92-dotcom.",
-        "href": "https://github.com/openclaw/openclaw/issues/88685"
-      },
-      {
-        "title": "**PR #89740** fix(gateway)",
-        "description": "stabilize webchat prompt cache affinity. Related #89139. Thanks @vincentkoc and @Enominera.",
-        "href": "https://github.com/openclaw/openclaw/issues/89740"
-      },
-      {
-        "title": "**PR #89191** fix(webchat)",
-        "description": "show sessions_send handoffs as forwarded. Related #89161. Thanks @849261680 and @Xj49688-lgtm.",
-        "href": "https://github.com/openclaw/openclaw/issues/89191"
-      },
-      {
-        "title": "**PR #89723** fix(auto-reply)",
-        "description": "surface fatal channel errors. Thanks @fuller-stack-dev.",
-        "href": "https://github.com/openclaw/openclaw/issues/89723"
-      },
-      {
-        "title": "**PR #89727** fix #87699",
-        "description": "[Bug]: [BUG] UI shows agent \"running\" after conversation ends — requires manual page refresh every time. Thanks @zhangguiping-xydt and @csck-luoy.",
-        "href": "https://github.com/openclaw/openclaw/issues/89727"
-      },
-      {
-        "title": "**PR #88786** fix #71992",
-        "description": "[Bug]: Control UI webchat duplicates every assistant reply on 2026.4.21 — regression from #5964/#39469. Thanks @zhangguiping-xydt and @rzhnrhjr6j-cloud and @astoreyai and @kAIborg24.",
-        "href": "https://github.com/openclaw/openclaw/issues/88786"
-      },
-      {
-        "title": "**PR #89530** fix(ui)",
-        "description": "preserve visible chat stream text. Related #67035. Thanks @osolmaz and @q7793527.",
-        "href": "https://github.com/openclaw/openclaw/issues/89530"
-      },
-      {
-        "title": "**PR #87072** feat(telegram)",
-        "description": "opt-in interleaved progress lane. Thanks @anagnorisis2peripeteia.",
-        "href": "https://github.com/openclaw/openclaw/issues/87072"
-      },
-      {
-        "title": "**PR #89771** perf(ui)",
-        "description": "start chat refresh before bootstrap. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89771"
-      },
-      {
-        "title": "**PR #89777** perf(ui)",
-        "description": "label delayed chat sends in telemetry. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89777"
-      },
-      {
-        "title": "**PR #89786** perf(gateway)",
-        "description": "overlap chat catalog startup. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89786"
-      },
-      {
-        "title": "**PR #89793** test(ui)",
-        "description": "cover control chat send timing phases. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89793"
-      },
-      {
-        "title": "**PR #89801** perf(ui)",
-        "description": "surface chat ACK server timing. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89801"
-      },
-      {
-        "title": "**PR #89355** Harden Workboard modal and drawer accessibility",
-        "description": "**PR #89355** Harden Workboard modal and drawer accessibility. Thanks @BunsDev.",
-        "href": "https://github.com/openclaw/openclaw/issues/89355"
-      },
-      {
-        "title": "**PR #89802** docs(web)",
-        "description": "document chat ACK timing metadata. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89802"
-      },
-      {
-        "title": "**PR #89391** fix(android)",
-        "description": "improve companion-first shell UX. Thanks @Tosko4.",
-        "href": "https://github.com/openclaw/openclaw/issues/89391"
-      },
-      {
-        "title": "**PR #89811** fix(agents)",
-        "description": "release session write lock if fence read throws on prompt release. Thanks @Takhoffman and @spencer2211.",
-        "href": "https://github.com/openclaw/openclaw/issues/89811"
-      },
-      {
-        "title": "**PR #89808** perf(ui)",
-        "description": "trace chat send server milestones. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89808"
-      },
-      {
-        "title": "**PR #89813** fix(telegram)",
-        "description": "isolate verbose status after streamed finals. Related #89540. Thanks @Takhoffman and @kesslerio.",
-        "href": "https://github.com/openclaw/openclaw/issues/89813"
-      },
-      {
-        "title": "**PR #89814** fix(feishu)",
-        "description": "wire setup runtime setter. Related #88024. Thanks @Takhoffman and @glenn-agent and @leiJack-lo.",
-        "href": "https://github.com/openclaw/openclaw/issues/89814"
-      },
-      {
-        "title": "**PR #85961** fix #85807",
-        "description": "retain Telegram preview after generation race. Thanks @zhangguiping-xydt and @samson1357924.",
-        "href": "https://github.com/openclaw/openclaw/issues/85961"
-      },
-      {
-        "title": "**PR #89035** fix #88773",
-        "description": "[Bug]: Telegram DM exec requires approval despite allowlist + ask:off — works in webchat, not in Telegram. Thanks @zhangguiping-xydt and @obviyus and @ppmuzyk.",
-        "href": "https://github.com/openclaw/openclaw/issues/89035"
-      },
-      {
-        "title": "**PR #88634** fix(telegram)",
-        "description": "prevent preview duplication in partial and block streaming modes. Related #87624. Thanks @jmao0001 and @tuckyapps.",
-        "href": "https://github.com/openclaw/openclaw/issues/88634"
-      },
-      {
-        "title": "**PR #89812** fix(outbound)",
-        "description": "keep channel send durable when transcript mirror fails (#89626). Thanks @Takhoffman and @harjothkhara and @Petru2224.",
-        "href": "https://github.com/openclaw/openclaw/pull/89626"
-      },
-      {
-        "title": "**PR #88973** fix(telegram)",
-        "description": "require admin for target writeback [AI]. Thanks @pgondhi987 and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/88973"
-      },
-      {
-        "title": "**PR #89449** refactor(gateway)",
-        "description": "share duplicated test helpers. Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/89449"
-      },
-      {
-        "title": "**PR #88832** fix(telegram)",
-        "description": "slow polling restart storms. Thanks @TurboTheTurtle.",
-        "href": "https://github.com/openclaw/openclaw/issues/88832"
-      },
-      {
-        "title": "**PR #89960** test(channels)",
-        "description": "fix guardrail regex lint. Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/89960"
-      },
-      {
-        "title": "**PR #89244** fix(memory)",
-        "description": "warn after startup watcher pressure check. Thanks @RomneyDa.",
-        "href": "https://github.com/openclaw/openclaw/issues/89244"
-      },
-      {
-        "title": "**PR #89516** Add operator install policy and remove dangerous-code install...",
-        "description": "**PR #89516** Add operator install policy and remove dangerous-code install scanners. Thanks @joshavant.",
-        "href": "https://github.com/openclaw/openclaw/issues/89516"
-      },
-      {
-        "title": "**PR #90024** chore(release)",
-        "description": "update appcast for 2026.6.1.",
-        "href": "https://github.com/openclaw/openclaw/issues/90024"
-      },
-      {
-        "title": "**PR #89613** docs",
-        "description": "document auth profile failure policy contract.",
-        "href": "https://github.com/openclaw/openclaw/issues/89613"
-      },
-      {
-        "title": "**PR #89548** fix(agents)",
-        "description": "classify read-only shell commands as non-mutating. Thanks @Glucksberg.",
-        "href": "https://github.com/openclaw/openclaw/issues/89548"
-      },
-      {
-        "title": "**PR #89939** fix",
-        "description": "keep stream-to-parent spawns registered. Thanks @scotthuang.",
-        "href": "https://github.com/openclaw/openclaw/issues/89939"
-      },
-      {
-        "title": "**PR #88964** fix(agents)",
-        "description": "repair context-engine tool-result pairing. Related #88561. Thanks @MonkeyLeeT and @Finn-jiejie.",
-        "href": "https://github.com/openclaw/openclaw/issues/88964"
-      },
-      {
-        "title": "**PR #82219** fix(codex)",
-        "description": "accept first-party OpenAI plugin marketplaces (bundled and primary-runtime). Related #82216. Thanks @yaanfpv.",
-        "href": "https://github.com/openclaw/openclaw/issues/82219"
-      },
-      {
-        "title": "**PR #89998** revert(codex)",
-        "description": "revert first-party marketplace allowlist. Thanks @kevinslin.",
-        "href": "https://github.com/openclaw/openclaw/issues/89998"
-      },
-      {
-        "title": "**PR #89176** fix(browser)",
-        "description": "honor tab timeout for Chrome MCP. Related #88213. Thanks @MonkeyLeeT and @lamkan0210.",
-        "href": "https://github.com/openclaw/openclaw/issues/89176"
-      },
-      {
-        "title": "**PR #90043** fix",
-        "description": "restore Skill Workshop current chat toggle. Thanks @shakkernerd.",
-        "href": "https://github.com/openclaw/openclaw/issues/90043"
-      },
-      {
-        "title": "**PR #81422** fix(update)",
-        "description": "surface plugin channel fallbacks. Thanks @BKF-Gitty.",
-        "href": "https://github.com/openclaw/openclaw/issues/81422"
       }
     ],
     "fixes": []
