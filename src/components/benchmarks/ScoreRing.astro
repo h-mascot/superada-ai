@@ -29,6 +29,6 @@ const tone = pct >= 85 ? 'high' : pct >= 60 ? 'mid' : 'low';
 	.score-ring figcaption { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; }
 	.score-ring b { font: 500 calc(var(--size) * .29)/1 var(--font-display); letter-spacing: -.05em; color: var(--text); font-variant-numeric: tabular-nums; }
 	.score-ring small { font-size: .42em; color: var(--muted); letter-spacing: -.02em; margin-left: 2px; }
-	.score-ring span { max-width: 70%; color: var(--muted); font: 750 10px/1.3 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.score-ring figcaption span { max-width: 70%; color: var(--muted); font: 750 10px/1.3 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
 	@media (prefers-reduced-motion: reduce) { .score-ring-dial { animation: none; } }
 </style>

@@ -79,7 +79,7 @@ const taskTone = (score: number) => (score >= 20 ? 'high' : score >= 10 ? 'mid' 
 		<a class="ds-btn" href="#compare">How it compares <span aria-hidden="true">↓</span></a>
 		<a class="ds-btn ds-btn--ghost" href="#artifacts">Source artifacts</a>
 		<div slot="aside" class="bm-score ds-panel" data-no-reveal>
-			<ScoreRing value={model.score} label="Benchmark score" unit="/100" />
+			<ScoreRing value={model.score} label="Benchmark score" unit="/100" size={180} />
 			<div class="bm-score-side">
 				<span class="ds-badge ds-badge--accent">{model.positioning}</span>
 				<dl class="ds-kv">
@@ -175,7 +175,7 @@ const taskTone = (score: number) => (score >= 20 ? 'high' : score >= 10 ? 'mid' 
 					<div class="ds-card">
 						<span class="ds-card-kicker">MFSF</span>
 						<div class="bm-tags">{report.mfsf.map((tag) => <span>{tag}</span>)}</div>
-						<ul>{report.limitations.map((l) => <li>{l}</li>)}</ul>
+						<ul class="bm-limits">{report.limitations.map((l) => <li>{l}</li>)}</ul>
 					</div>
 				</section>
 			</>
@@ -228,17 +228,20 @@ const taskTone = (score: number) => (score >= 20 ? 'high' : score >= 10 ? 'mid' 
 </SiteLayout>
 
 <style>
+	:global(.bm-page .page-hero.has-aside) { align-items: center; }
 	.bm-back { padding-top: clamp(20px, 3vw, 36px); margin-bottom: calc(clamp(44px, 7vw, 108px) * -1 + 12px); }
 	.back-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 13px; font-weight: 700; transition: color .2s ease; }
 	.back-link:hover { color: var(--accent); }
 
-	.bm-score { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 26px; align-items: center; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--radius-lg); }
-	.bm-score-side { display: grid; gap: 14px; justify-items: start; min-width: 0; }
+	.bm-score { display: grid; justify-items: center; gap: 22px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--radius-lg); }
+	.bm-score-side { display: grid; gap: 14px; justify-items: center; width: 100%; min-width: 0; }
+	.bm-score-side .ds-badge { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
 	.bm-score-side .ds-kv { width: 100%; }
 	.bm-score-side .ds-kv > div { padding: 9px 0; }
 	.bm-score-side .ds-kv dd { overflow-wrap: anywhere; }
 
 	.bm-head { display: grid; gap: 12px; }
+	.ds-section-head > a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 	.bm-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; }
 	.bm-metric b, .bm-suite b { font: 500 clamp(26px, 2.6vw, 36px)/1.05 var(--font-display); letter-spacing: -.035em; color: var(--text); overflow-wrap: anywhere; }
 	.bm-suite b { font-size: clamp(22px, 2vw, 28px); }
@@ -281,6 +284,9 @@ const taskTone = (score: number) => (score >= 20 ? 'high' : score >= 10 ? 'mid' 
 	.bm-quote--best blockquote { border-left-color: var(--success); }
 	.bm-quote--worst blockquote { border-left-color: #e8b04a; }
 	.bm-bottom { color: var(--text-soft) !important; font-size: 16px !important; }
+	.bm-limits { list-style: none; padding: 0 !important; gap: 10px !important; }
+	.bm-limits li { position: relative; padding-left: 18px; }
+	.bm-limits li::before { content: ''; position: absolute; left: 0; top: .78em; width: 8px; height: 1px; background: var(--accent); }
 	.bm-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 	.bm-tags span { padding: 5px 10px; border-radius: 8px; border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); background: var(--accent-soft); color: var(--accent); font: 750 12px/1 var(--font-mono); }
 
@@ -316,8 +322,7 @@ const taskTone = (score: number) => (score >= 20 ? 'high' : score >= 10 ? 'mid' 
 	}
 	@media (max-width: 760px) {
 		.bm-back { padding-top: 10px; margin-bottom: -26px; }
-		.bm-score { grid-template-columns: 1fr; justify-items: center; padding: 22px 20px; }
-		.bm-score-side { justify-items: center; width: 100%; }
+		.bm-score { padding: 22px 20px; }
 		.bm-compare-rank b { font-size: 64px; }
 		.bm-artifact-list a, .bm-artifact-internal { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; }
 		.bm-artifact-list .ds-badge { grid-column: 1 / -1; justify-self: start; }
