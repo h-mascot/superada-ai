@@ -1,0 +1,23 @@
+---
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lede?: string;
+	size?: 'xl' | 'lg' | 'md';
+	align?: 'left' | 'center';
+	id?: string;
+}
+
+const { eyebrow, title, lede, size = 'lg', align = 'left', id } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+const hasActions = Astro.slots.has('default');
+---
+<header class:list={['page-hero ds-shell', `page-hero--${size}`, `page-hero--${align}`, { 'has-aside': hasAside }]}>
+	<div class="page-hero-main">
+		{eyebrow && <span class="ds-eyebrow">{eyebrow}</span>}
+		<h1 class="page-hero-title" id={id}>{Astro.slots.has('title') ? <slot name="title" /> : title}</h1>
+		{lede && <p class="ds-lede">{lede}</p>}
+		{hasActions && <div class="page-hero-actions"><slot /></div>}
+	</div>
+	{hasAside && <div class="page-hero-aside"><slot name="aside" /></div>}
+</header>
