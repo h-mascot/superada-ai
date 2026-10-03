@@ -279,6 +279,16 @@
   ],
   "redirects": [
     {
+      "source": "/3026",
+      "destination": "/resources/humanity-3026/",
+      "permanent": false
+    },
+    {
+      "source": "/3026/",
+      "destination": "/resources/humanity-3026/",
+      "permanent": false
+    },
+    {
       "source": "/api",
       "destination": "/developers/",
       "permanent": true

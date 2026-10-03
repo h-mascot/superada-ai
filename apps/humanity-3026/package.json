@@ -1,0 +1,17 @@
+{
+  "name": "humanity-3026",
+  "private": true,
+  "version": "1.0.0",
+  "description": "An interactive, cinematic web story about humanity in the year 3026.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "build:site": "tsc --noEmit && vite build --base=/resources/humanity-3026/ --outDir ../../public/resources/humanity-3026 --emptyOutDir"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  }
+}
