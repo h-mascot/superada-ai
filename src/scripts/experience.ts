@@ -13,6 +13,9 @@ const header = document.querySelector<HTMLElement>('[data-site-header]');
 const progress = document.querySelector<HTMLElement>('[data-read-progress]');
 const hasOwnStage = !!document.querySelector('.world-scroll');
 let lastY = window.scrollY;
+if (header && 'ResizeObserver' in window) {
+	new ResizeObserver(() => root.style.setProperty('--header-real', `${header.offsetHeight}px`)).observe(header);
+}
 let scrollTicking = false;
 
 const onScroll = () => {
