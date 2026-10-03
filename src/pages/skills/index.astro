@@ -1,6 +1,7 @@
 ---
 import PageHero from '../../components/PageHero.astro';
 import CatalogCard from '../../components/catalog/CatalogCard.astro';
+import CatalogCrossBand from '../../components/catalog/CatalogCrossBand.astro';
 import CatalogFilterBar from '../../components/catalog/CatalogFilterBar.astro';
 import CatalogHeroMeta from '../../components/catalog/CatalogHeroMeta.astro';
 import CatalogStats from '../../components/catalog/CatalogStats.astro';
@@ -61,54 +62,41 @@ const otherCatalogs = catalogs.filter((catalog) => catalog.href !== '/skills/');
       </div>
     </div>
 
-    <CatalogFilterBar label="Filter skills by category" chips={chips} target="#skill-grid" noun={['skill', 'skills']} />
-
-    <div class="ds-grid cat-grid" id="skill-grid">
-      {skills.map((skill) => (
-        <CatalogCard
-          href={`/skills/${skill.slug}/`}
-          title={skill.title}
-          tagline={skill.tagline}
-          summary={skill.description}
-          badges={[
-            { label: availabilityLabel[skill.availability], tone: availabilityTone[skill.availability] },
-            { label: skill.category, tone: 'plain' },
-          ]}
-          facts={[
-            { label: 'Source', value: skill.sourceLabel, href: skill.sourceUrl },
-            { label: 'Installability', value: skill.availability === 'agent-installable' ? 'Installable by agent from source spec' : 'Manual repo/script setup only right now' },
-          ]}
-          command={skill.installCommand}
-          commandFallback="No first-class <code>openclaw skills install</code> contract is published for this one yet."
-          meta={[skill.estimatedSetup]}
-          cta="View skill"
-          attrs={{ 'data-category': skill.category, 'data-title': skill.title.toLowerCase() }}
-        />
-      ))}
-    </div>
+    <CatalogFilterBar label="Filter skills by category" chips={chips} target="#skill-grid" noun={['skill', 'skills']}>
+      <div class="ds-grid cat-grid" id="skill-grid">
+        {skills.map((skill) => (
+          <CatalogCard
+            href={`/skills/${skill.slug}/`}
+            title={skill.title}
+            tagline={skill.tagline}
+            summary={skill.description}
+            badges={[
+              { label: availabilityLabel[skill.availability], tone: availabilityTone[skill.availability] },
+              { label: skill.category, tone: 'plain' },
+            ]}
+            facts={[
+              { label: 'Source', value: skill.sourceLabel, href: skill.sourceUrl },
+              { label: 'Installability', value: skill.availability === 'agent-installable' ? 'Installable by agent from source spec' : 'Manual repo/script setup only right now' },
+            ]}
+            command={skill.installCommand}
+            commandFallback="No first-class <code>openclaw skills install</code> contract is published for this one yet."
+            meta={[skill.estimatedSetup]}
+            cta="View skill"
+            attrs={{ 'data-category': skill.category, 'data-title': skill.title.toLowerCase() }}
+          />
+        ))}
+      </div>
+    </CatalogFilterBar>
   </section>
 
-  <section class="ds-shell">
-    <div class="ds-cta-band">
-      <div>
-        <span class="ds-eyebrow">Keep exploring</span>
-        <p class="ds-h2">Need more than one skill?</p>
-        <p>Workflows bundle skills into repeatable operator routines. Plugins hook the live runtime itself.</p>
-      </div>
-      <div class="cat-band-actions">
-        {otherCatalogs.map((catalog, index) => <a class:list={['ds-btn', { 'ds-btn--ghost': index > 0 }]} href={catalog.href}>{catalog.title} <span aria-hidden="true">→</span></a>)}
-      </div>
-    </div>
-  </section>
+  <CatalogCrossBand current="/skills/" title="Need more than one skill?" copy="Workflows bundle skills into repeatable operator routines. Plugins hook the live runtime itself." />
 </SiteLayout>
 
 <style>
   .cat-catalog { scroll-margin-top: var(--chrome-top); }
   .cat-catalog-head p { margin-top: 10px; color: var(--muted); font-size: 15px; }
   .cat-grid { --min: 340px; gap: 18px; }
-  .cat-band-actions { display: flex; flex-wrap: wrap; gap: 10px; flex: 0 0 auto; }
   @media (max-width: 760px) {
     .cat-grid { gap: 12px; }
-    .cat-band-actions { display: grid; }
   }
 </style>

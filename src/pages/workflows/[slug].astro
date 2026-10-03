@@ -1,8 +1,20 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import CopyButton from '../../components/CopyButton.astro';
+import PageHero from '../../components/PageHero.astro';
+import CatalogCode from '../../components/catalog/CatalogCode.astro';
+import CatalogDetail from '../../components/catalog/CatalogDetail.astro';
+import CatalogFacts from '../../components/catalog/CatalogFacts.astro';
+import CatalogFields from '../../components/catalog/CatalogFields.astro';
+import CatalogHeroMeta from '../../components/catalog/CatalogHeroMeta.astro';
+import CatalogList from '../../components/catalog/CatalogList.astro';
+import CatalogMiniList from '../../components/catalog/CatalogMiniList.astro';
+import CatalogPanel from '../../components/catalog/CatalogPanel.astro';
+import CatalogRelated from '../../components/catalog/CatalogRelated.astro';
+import CatalogRows from '../../components/catalog/CatalogRows.astro';
+import CatalogSteps from '../../components/catalog/CatalogSteps.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { neighbours, statusTone } from '../../lib/catalog';
 
 export async function getStaticPaths() {
   const workflows = (await getCollection('workflows')).filter((workflow) => !workflow.data.isTemplate);
@@ -15,15 +27,11 @@ if (!slug) throw new Error('Missing workflow slug');
 const workflow = await getEntry('workflows', slug);
 if (!workflow) throw new Error(`Workflow not found: ${slug}`);
 
-const relatedWorkflows = (await getCollection('workflows'))
-  .filter((entry) => !entry.data.isTemplate && entry.id !== workflow.id && entry.data.category === workflow.data.category)
+const allWorkflows = (await getCollection('workflows')).filter((entry) => !entry.data.isTemplate);
+const relatedWorkflows = allWorkflows
+  .filter((entry) => entry.id !== workflow.id && entry.data.category === workflow.data.category)
   .slice(0, 2);
 
-const statusColors = {
-  Live: '#059669',
-  Internal: '#2563EB',
-  Draft: 'var(--accent)',
-} as const;
 const classificationLabels = {
   local: 'Local bundle',
   external: 'External bundle',
@@ -51,319 +59,181 @@ const installabilityLabels = {
   manual: 'Manual operator install',
   concept: 'Concept only',
 } as const;
+
+const { data } = workflow;
+const { bundle, verification } = data;
+const installable = bundle.installable;
+
+const toLink = (entry: typeof workflow) => ({
+  href: `/workflows/${entry.id}/`,
+  title: entry.data.title,
+  tagline: entry.data.tagline,
+  badges: [
+    { label: entry.data.status, tone: statusTone(entry.data.status) },
+    { label: entry.data.category, tone: 'plain' as const },
+  ],
+});
+const sorted = [...allWorkflows].sort((a, b) => a.data.title.localeCompare(b.data.title)).map(toLink);
+const moreWorkflows = neighbours(sorted, sorted.findIndex((entry) => entry.href === `/workflows/${workflow.id}/`), new Set(relatedWorkflows.map((entry) => `/workflows/${entry.id}/`)));
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={`${workflow.data.title} — Workflow Marketplace`} description={workflow.data.summary} />
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    <main style="max-width:1080px; margin:0 auto; padding:3rem 1.5rem;">
-      <a href="/workflows" style="display:inline-block; color:var(--accent); text-decoration:none; font-size:0.85rem; margin-bottom:1.25rem;">← Back to workflows</a>
+<SiteLayout title={`${data.title} — Workflow Marketplace`} description={data.summary}>
+  <PageHero eyebrow={`Workflow · ${data.category}`} title={data.title} lede={data.tagline} size="md">
+    <CatalogHeroMeta
+      badges={[
+        { label: data.status, tone: statusTone(data.status) },
+        { label: data.category, tone: 'plain' },
+        { label: data.difficulty, tone: 'plain' },
+        { label: classificationLabels[bundle.classification], tone: 'plain' },
+        { label: `v${bundle.version}`, tone: 'plain' },
+      ]}
+    >
+      {installable.supported
+        ? <CopyButton text={data.installCommand} label="Copy install command" variant="button" />
+        : <a class="ds-btn" href={data.sourceUrl}>View source <span aria-hidden="true">↗</span></a>}
+      {installable.supported
+        ? <a class="ds-btn ds-btn--ghost" href={data.sourceUrl}>View source</a>
+        : <a class="ds-btn ds-btn--ghost" href="#install-contract">Install contract</a>}
+    </CatalogHeroMeta>
+  </PageHero>
 
-      <div class="workflow-detail-layout">
-        <article style="min-width:0;">
-          <div style="display:flex; gap:0.55rem; flex-wrap:wrap; margin-bottom:0.85rem;">
-            <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${statusColors[workflow.data.status]}; background:${statusColors[workflow.data.status]}18; border:1px solid ${statusColors[workflow.data.status]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
-              {workflow.data.status}
-            </span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{workflow.data.category}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{workflow.data.difficulty}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">{classificationLabels[workflow.data.bundle.classification]}</span>
-            <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">v{workflow.data.bundle.version}</span>
-          </div>
+  <CatalogDetail sideLabel="Workflow facts and related workflows">
+    <CatalogPanel id="overview" eyebrow="Overview" title="What this workflow does">
+      <p>{data.summary}</p>
+    </CatalogPanel>
 
-          <h1 style="font-family:Georgia,serif; font-size:3rem; font-weight:400; margin:0 0 0.6rem; line-height:1.1;">{workflow.data.title}</h1>
-          <p style="font-size:1.15rem; color:#C9BDA8; margin:0 0 1rem; line-height:1.7;">{workflow.data.tagline}</p>
-          <p style="color:var(--muted); margin:0 0 1.5rem; line-height:1.8;">{workflow.data.summary}</p>
+    <CatalogPanel id="availability" eyebrow="Availability" title="How it ships today">
+      <CatalogFields
+        items={[
+          { label: 'Classification', value: classificationLabels[bundle.classification] },
+          { label: 'Install mode', value: installModeLabels[bundle.installMode] },
+          { label: 'Review status', value: reviewStatusLabels[bundle.reviewStatus] },
+          { label: 'Verification mode', value: verificationModeLabels[verification.mode] },
+        ]}
+      />
+      <p class="cat-muted">{bundle.availabilityNote}</p>
+      {bundle.installSource && (
+        <div class="cat-subblock">
+          <h3>Install source</h3>
+          <p>{bundle.installSource.label}</p>
+          {bundle.installSource.url && <p><a href={bundle.installSource.url}>{bundle.installSource.url}</a></p>}
+          {bundle.installSource.script && <CatalogCode code={bundle.installSource.script} copy="Copy" />}
+        </div>
+      )}
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Availability</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Classification</div>
-                <div style="color:var(--text);">{classificationLabels[workflow.data.bundle.classification]}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Install mode</div>
-                <div style="color:var(--text);">{installModeLabels[workflow.data.bundle.installMode]}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Review status</div>
-                <div style="color:var(--text);">{reviewStatusLabels[workflow.data.bundle.reviewStatus]}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Verification mode</div>
-                <div style="color:var(--text);">{verificationModeLabels[workflow.data.verification.mode]}</div>
-              </div>
-            </div>
-            <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0 0 0.9rem;">{workflow.data.bundle.availabilityNote}</p>
-            {workflow.data.bundle.installSource && (
-              <div style="border:1px solid var(--border); border-radius:10px; background:#100D0A; padding:0.9rem;">
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install source</div>
-                <div style="color:var(--text); margin-bottom:0.25rem;">{workflow.data.bundle.installSource.label}</div>
-                {workflow.data.bundle.installSource.url && (
-                  <div style="margin-bottom:0.5rem;"><a href={workflow.data.bundle.installSource.url} style="color:var(--accent); text-decoration:none;">{workflow.data.bundle.installSource.url}</a></div>
-                )}
-                {workflow.data.bundle.installSource.script && (
-                  <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto;">{workflow.data.bundle.installSource.script}</code>
-                )}
-              </div>
-            )}
-          </section>
+    <CatalogPanel id="workflow-record" eyebrow="Workflow record" title="Bundle anatomy">
+      <CatalogFields
+        items={[
+          { label: 'Bundle id', value: bundle.id, mono: true },
+          { label: 'Entrypoint', value: bundle.entrypoint, mono: true },
+          { label: 'Bundle root', value: bundle.bundleRoot, mono: true },
+          { label: 'Artifact count', value: `${bundle.artifactCount} described items` },
+        ]}
+      />
+      <p class="cat-muted">{bundle.summary}</p>
+    </CatalogPanel>
 
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Workflow record</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Bundle id</div>
-                <div style="color:var(--text); font-family:monospace; font-size:0.88rem;">{workflow.data.bundle.id}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Entrypoint</div>
-                <div style="color:var(--text); font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.entrypoint}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Bundle root</div>
-                <div style="color:var(--text); font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.bundleRoot}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Artifact count</div>
-                <div style="color:var(--text);">{workflow.data.bundle.artifactCount} described items</div>
-              </div>
-            </div>
-            <p style="color:var(--muted); font-size:0.9rem; line-height:1.7; margin:0;">{workflow.data.bundle.summary}</p>
-          </section>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.1rem; margin-bottom:1.25rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.45rem;">Install contract</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Installability</div>
-                <div style="color:var(--text);">{workflow.data.bundle.installable.supported ? 'Truly installable now' : 'Not installable yet'}</div>
-              </div>
-              <div>
-                <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Method</div>
-                <div style="color:var(--text);">{installabilityLabels[workflow.data.bundle.installable.method]}</div>
-              </div>
-              {workflow.data.bundle.installable.sourceSpec && (
-                <div>
-                  <div style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Install source spec</div>
-                  <div style="color:var(--text); font-family:monospace; font-size:0.88rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.bundle.installable.sourceSpec}</div>
-                </div>
-              )}
-            </div>
-            <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.8rem 0.9rem; font-size:0.82rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:1rem;">{workflow.data.installCommand}</code>
-            {workflow.data.bundle.installable.sourceUrl && (
-              <p style="margin:0 0 1rem; color:var(--muted); line-height:1.7;">Canonical source: <a href={workflow.data.bundle.installable.sourceUrl} style="color:var(--accent); text-decoration:none;">{workflow.data.bundle.installable.sourceUrl}</a></p>
-            )}
-            <div style="display:grid; gap:0.8rem; margin-bottom:1rem;">
-              {workflow.data.bundle.installable.instructions.map((instruction, index) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Agent step {index + 1}</div>
-                  <div style="color:#C9BDA8; line-height:1.7;">{instruction}</div>
-                </div>
-              ))}
-            </div>
-            {workflow.data.bundle.installable.prompt && (
-              <div style="margin-bottom:1rem;">
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Prompt</div>
-                <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{workflow.data.bundle.installable.prompt}</code>
-              </div>
-            )}
-            {workflow.data.bundle.installable.postInstallVerification && (
-              <div style="margin-bottom:1rem;">
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Verification command</div>
-                <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{workflow.data.bundle.installable.postInstallVerification}</code>
-              </div>
-            )}
-            {workflow.data.bundle.installable.limitations && workflow.data.bundle.installable.limitations.length > 0 && (
-              <div style="margin-bottom:1rem;">
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Current limits</div>
-                <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-                  {workflow.data.bundle.installable.limitations.map((item) => <li>{item}</li>)}
-                </ul>
-              </div>
-            )}
-            <div style="display:grid; gap:0.8rem;">
-              {workflow.data.installSteps.map((step, index) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Step {index + 1}</div>
-                  <div style="color:var(--text); margin-bottom:0.35rem;">{step.title}</div>
-                  <div style={`color:var(--muted); line-height:1.7; margin-bottom:${step.command ? '0.6rem' : '0'};`}>{step.detail}</div>
-                  {step.command && <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{step.command}</code>}
-                </div>
-              ))}
-            </div>
-            <p style="color:var(--muted); font-size:0.84rem; line-height:1.7; margin:0.9rem 0 0;">If you hand an agent this workflow URL, this install contract is the source of truth for whether it can really install the bundle now, what source to use, and what still needs a human.</p>
-          </section>
-
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-bottom:1.25rem;">
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-              <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">What you get</h2>
-              <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-                {workflow.data.outcomes.map((item) => <li>{item}</li>)}
-              </ul>
-            </section>
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-              <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Workflow includes</h2>
-              <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-                {workflow.data.includes.map((item) => <li>{item}</li>)}
-              </ul>
-            </section>
-          </div>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
-            <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Described artifacts</h2>
-            <div style="display:grid; gap:0.75rem;">
-              {workflow.data.artifacts.map((artifact) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:0.25rem;">
-                    <div style="color:var(--text);">{artifact.name}</div>
-                    <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em;">{artifact.type}{artifact.optional ? ' · optional' : ''}</div>
-                  </div>
-                  <div style="color:var(--text); font-family:monospace; font-size:0.8rem; margin-bottom:0.35rem; overflow-wrap:anywhere; word-break:break-word;">{artifact.path}</div>
-                  <div style="color:var(--muted); line-height:1.7;">{artifact.description}</div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
-            <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Requirements</h2>
-            <div style="display:grid; gap:0.75rem;">
-              {workflow.data.requirements.map((requirement) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:0.25rem;">
-                    <div style="color:var(--text);">{requirement.label}</div>
-                    <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em;">{requirement.type}</div>
-                  </div>
-                  <div style="color:var(--muted); line-height:1.7;">{requirement.detail}</div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
-            <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Declared structure</h2>
-            <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-              {workflow.data.structure.map((item) => <li><code style="font-size:0.8rem; color:var(--text); overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap;">{item}</code></li>)}
-            </ul>
-          </section>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
-            <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Verification</h2>
-            <p style="color:var(--muted); line-height:1.7; margin:0 0 0.9rem;">Verification language now matches reality. Installable bundles can be tested after install, external bundles should be source-reviewed first, and conceptual entries are reviewed as designs until real artifacts exist.</p>
-            <div style="display:grid; gap:0.8rem; margin-bottom:0.9rem;">
-              {workflow.data.verification.checks.map((check) => (
-                <div style="border:1px solid var(--border); border-radius:10px; padding:0.9rem; background:#100D0A;">
-                  <div style="color:var(--text); margin-bottom:0.3rem;">{check.label}</div>
-                  <div style={`color:var(--muted); line-height:1.7; margin-bottom:${check.command || check.expected ? '0.6rem' : '0'};`}>{check.detail}</div>
-                  {check.command && <code style={`display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.75rem 0.8rem; font-size:0.78rem; overflow:auto; overflow-wrap:anywhere; word-break:break-word; white-space:pre-wrap; margin-bottom:${check.expected ? '0.5rem' : '0'};`}>{check.command}</code>}
-                  {check.expected && <div style="font-size:0.82rem; color:#C9BDA8;">Expected: {check.expected}</div>}
-                </div>
-              ))}
-            </div>
-            <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-              {workflow.data.verification.reviewNotes.map((item) => <li>{item}</li>)}
-            </ul>
-          </section>
-
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem; margin-bottom:1.25rem;">
-            <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Best used for</h2>
-            <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-              {workflow.data.useCases.map((item) => <li>{item}</li>)}
-            </ul>
-          </section>
-
-          {workflow.data.notes && workflow.data.notes.length > 0 && (
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-              <h2 style="font-family:Georgia,serif; font-size:1.2rem; font-weight:400; margin:0 0 0.7rem;">Operator notes</h2>
-              <ul style="margin:0; padding-left:1.1rem; color:#C9BDA8; line-height:1.8;">
-                {workflow.data.notes.map((item) => <li>{item}</li>)}
-              </ul>
-            </section>
-          )}
-        </article>
-
-        <aside class="workflow-sidebar">
-          <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-            <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.7rem;">Workflow facts</div>
-            <dl style="margin:0; display:grid; gap:0.8rem;">
-              <div>
-                <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Setup time</dt>
-                <dd style="margin:0; color:var(--text);">{workflow.data.estimatedSetup}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Operators</dt>
-                <dd style="margin:0; color:var(--text);">{workflow.data.operators.join(', ')}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Stack</dt>
-                <dd style="margin:0; color:var(--text); line-height:1.7;">{workflow.data.stack.join(' · ')}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Artifacts</dt>
-                <dd style="margin:0; color:var(--text);">{workflow.data.bundle.artifactCount}</dd>
-              </div>
-              <div>
-                <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Source</dt>
-                <dd style="margin:0;"><a href={workflow.data.sourceUrl} style="color:var(--accent); text-decoration:none;">{workflow.data.sourceLabel}</a></dd>
-              </div>
-              {workflow.data.repoPath && (
-                <div>
-                  <dt style="font-size:0.75rem; color:var(--muted); margin-bottom:0.2rem;">Repo path</dt>
-                  <dd style="margin:0; color:var(--text); font-family:monospace; font-size:0.82rem; overflow-wrap:anywhere; word-break:break-word;">{workflow.data.repoPath}</dd>
-                </div>
-              )}
-            </dl>
-          </section>
-
-          {relatedWorkflows.length > 0 && (
-            <section style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1rem;">
-              <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.7rem;">Related workflows</div>
-              <div style="display:flex; flex-direction:column; gap:0.8rem;">
-                {relatedWorkflows.map((entry) => (
-                  <a href={`/workflows/${entry.id}/`} style="text-decoration:none; color:inherit; border-top:1px solid var(--border); padding-top:0.8rem;">
-                    <div style="color:var(--text); margin-bottom:0.2rem;">{entry.data.title}</div>
-                    <div style="color:var(--muted); font-size:0.88rem; line-height:1.6;">{entry.data.tagline}</div>
-                  </a>
-                ))}
-              </div>
-            </section>
-          )}
-        </aside>
+    <CatalogPanel id="install-contract" eyebrow="Install contract" title="Can an agent install it now?">
+      <CatalogFields
+        items={[
+          { label: 'Installability', value: installable.supported ? 'Truly installable now' : 'Not installable yet' },
+          { label: 'Method', value: installabilityLabels[installable.method] },
+          ...(installable.sourceSpec ? [{ label: 'Install source spec', value: installable.sourceSpec, mono: true }] : []),
+        ]}
+      />
+      <CatalogCode label="Install command" code={data.installCommand} copy="Copy" />
+      {installable.sourceUrl && (
+        <p class="cat-muted">Canonical source: <a href={installable.sourceUrl}>{installable.sourceUrl}</a></p>
+      )}
+      <div class="cat-subblock">
+        <h3>Agent steps</h3>
+        <CatalogSteps steps={installable.instructions.map((detail) => ({ detail }))} label="Agent steps" />
       </div>
-    </main>
-    <Footer />
+      {installable.prompt && <CatalogCode label="Prompt" code={installable.prompt} copy="Copy" />}
+      {installable.postInstallVerification && <CatalogCode label="Verification command" code={installable.postInstallVerification} copy="Copy" />}
+      {installable.limitations && installable.limitations.length > 0 && (
+        <div class="cat-subblock">
+          <h3>Current limits</h3>
+          <CatalogList items={installable.limitations} marker="warn" />
+        </div>
+      )}
+    </CatalogPanel>
 
-    <style>
-      .workflow-detail-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 300px;
-        gap: 1.5rem;
-        align-items: start;
-      }
+    <CatalogPanel id="install-steps" eyebrow="Setup" title="Install steps">
+      <CatalogSteps steps={data.installSteps} label="Install steps" />
+      <p class="cat-note">If you hand an agent this workflow URL, this install contract is the source of truth for whether it can really install the bundle now, what source to use, and what still needs a human.</p>
+    </CatalogPanel>
 
-      .workflow-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        position: sticky;
-        top: 1.5rem;
-      }
+    <div class="cat-pair">
+      <CatalogPanel id="outcomes" title="What you get">
+        <CatalogList items={data.outcomes} marker="check" />
+      </CatalogPanel>
+      <CatalogPanel id="includes" title="Workflow includes">
+        <CatalogList items={data.includes} />
+      </CatalogPanel>
+    </div>
 
-      @media (max-width: 900px) {
-        .workflow-detail-layout {
-          grid-template-columns: 1fr;
-        }
+    <CatalogPanel id="artifacts" eyebrow="Files" title="Described artifacts">
+      <CatalogRows rows={data.artifacts.map((artifact) => ({ title: artifact.name, tag: `${artifact.type}${artifact.optional ? ' · optional' : ''}`, mono: artifact.path, detail: artifact.description }))} />
+    </CatalogPanel>
 
-        .workflow-sidebar {
-          position: static;
-        }
-      }
-    </style>
-  </body>
-</html>
+    <CatalogPanel id="requirements" eyebrow="Before you start" title="Requirements">
+      <CatalogRows rows={data.requirements.map((requirement) => ({ title: requirement.label, tag: requirement.type, detail: requirement.detail }))} />
+    </CatalogPanel>
+
+    <CatalogPanel id="structure" eyebrow="Layout" title="Declared structure">
+      <div class="cat-tree"><CatalogList items={data.structure} mono /></div>
+    </CatalogPanel>
+
+    <CatalogPanel id="verification" eyebrow="Proof" title="Verification">
+      <p class="cat-muted">Verification language now matches reality. Installable bundles can be tested after install, external bundles should be source-reviewed first, and conceptual entries are reviewed as designs until real artifacts exist.</p>
+      <CatalogSteps steps={verification.checks.map((check) => ({ title: check.label, detail: check.detail, command: check.command, expected: check.expected }))} label="Verification checks" />
+      <CatalogList items={verification.reviewNotes} />
+    </CatalogPanel>
+
+    <CatalogPanel id="use-cases" title="Best used for">
+      <CatalogList items={data.useCases} marker="check" />
+    </CatalogPanel>
+
+    {data.notes && data.notes.length > 0 && (
+      <CatalogPanel id="notes" eyebrow="From the operators" title="Operator notes">
+        <CatalogList items={data.notes} />
+      </CatalogPanel>
+    )}
+
+    <Fragment slot="side">
+      <CatalogFacts
+        title="Workflow facts"
+        items={[
+          { label: 'Status', value: data.status },
+          { label: 'Category', value: data.category },
+          { label: 'Difficulty', value: data.difficulty },
+          { label: 'Version', value: `v${bundle.version}` },
+          { label: 'Setup time', value: data.estimatedSetup },
+          { label: 'Artifacts', value: String(bundle.artifactCount) },
+          { label: 'Operators', value: data.operators.join(', '), wide: true },
+          { label: 'Stack', value: data.stack.join(' · '), wide: true },
+          { label: 'Source', value: data.sourceLabel, href: data.sourceUrl, wide: true },
+          ...(data.repoPath ? [{ label: 'Repo path', value: data.repoPath, mono: true, wide: true }] : []),
+        ]}
+      >
+        {installable.supported && <span class="cat-side-cta"><CopyButton text={data.installCommand} label="Copy install command" variant="button" /></span>}
+      </CatalogFacts>
+      <CatalogMiniList title="Related workflows" items={relatedWorkflows.map((entry) => ({ href: `/workflows/${entry.id}/`, title: entry.data.title, tagline: entry.data.tagline }))} />
+    </Fragment>
+  </CatalogDetail>
+
+  <CatalogRelated title="More workflows" items={moreWorkflows} indexHref="/workflows/" indexLabel="All workflows" backLabel="Back to workflows" />
+</SiteLayout>
+
+<style>
+  .cat-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; }
+  .cat-subblock { display: grid; gap: 12px; min-width: 0; }
+  .cat-note { padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14.5px; }
+  .cat-tree { padding: 16px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 40%, transparent); }
+  .cat-side-cta { display: contents; }
+  @media (max-width: 1180px) { .cat-pair { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 980px) { .cat-side-cta { display: none; } }
+  @media (max-width: 760px) { .cat-pair { gap: 16px; } .cat-note { font-size: 15px; } }
+</style>

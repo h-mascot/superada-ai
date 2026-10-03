@@ -1,27 +1,22 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CatalogCard from '../../components/catalog/CatalogCard.astro';
+import CatalogCrossBand from '../../components/catalog/CatalogCrossBand.astro';
+import CatalogFilterBar from '../../components/catalog/CatalogFilterBar.astro';
+import CatalogHeroMeta from '../../components/catalog/CatalogHeroMeta.astro';
+import CatalogStats from '../../components/catalog/CatalogStats.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { catalogs, countBy, statusTone } from '../../lib/catalog';
 
 const workflows = (await getCollection('workflows'))
   .filter((workflow) => !workflow.data.isTemplate)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
 const categories = ['All', ...new Set(workflows.map((workflow) => workflow.data.category))];
-const statusColors = {
-  Live: '#059669',
-  Internal: '#2563EB',
-  Draft: 'var(--accent)',
-} as const;
 const classificationLabels = {
   local: 'Local bundle',
   external: 'External bundle',
   conceptual: 'Conceptual workflow',
-} as const;
-const installModeLabels = {
-  manual: 'Manual install',
-  'agent-installable': 'Agent-installable',
-  'prompt-only': 'Prompt-driven',
 } as const;
 const reviewModeLabels = {
   manual: 'Manual verification',
@@ -35,136 +30,100 @@ const installabilityLabels = {
   manual: 'Manual install',
   concept: 'Concept only',
 } as const;
+
+const byStatus = countBy(workflows, (workflow) => workflow.data.status);
+const byCategory = countBy(workflows, (workflow) => workflow.data.category);
+const installableNow = workflows.filter((workflow) => workflow.data.bundle.installable.supported).length;
+const chips = categories.map((category) => ({ value: category, label: category, count: category === 'All' ? workflows.length : byCategory.get(category) ?? 0 }));
+const otherCatalogs = catalogs.filter((catalog) => catalog.href !== '/workflows/');
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Workflow Marketplace — SuperAda"
-      description="Browse workflow bundles and workflow patterns for operations, publishing, research, and security, with availability labels that reflect reality."
+<SiteLayout
+  title="Workflow Marketplace — SuperAda"
+  description="Browse workflow bundles and workflow patterns for operations, publishing, research, and security, with availability labels that reflect reality."
+>
+  <PageHero
+    eyebrow="Workflow Marketplace"
+    title="Workflows and bundles"
+    lede="Browse real installable bundles plus prompt-driven and conceptual workflow patterns for operator work. Each listing now says whether it is local, external, or still just a blueprint."
+    id="workflows-title"
+  >
+    <Fragment slot="title">Workflows <em>and</em> bundles</Fragment>
+    <CatalogHeroMeta>
+      <a class="ds-btn" href="#catalog">Browse {workflows.length} workflows <span aria-hidden="true">↓</span></a>
+      {otherCatalogs.map((catalog) => <a class="ds-btn ds-btn--ghost" href={catalog.href}>{catalog.title}</a>)}
+    </CatalogHeroMeta>
+    <CatalogStats
+      slot="aside"
+      label="Workflows by status"
+      items={[
+        { value: workflows.length, label: 'Workflows' },
+        { value: byStatus.get('Live') ?? 0, label: 'Live', tone: 'live' },
+        { value: byStatus.get('Internal') ?? 0, label: 'Internal', tone: 'info' },
+        { value: byStatus.get('Draft') ?? 0, label: 'Draft', tone: 'warn' },
+      ]}
+      caption={`${installableNow} of ${workflows.length} are installable now. The rest are reviewed as prompts or designs until real artifacts exist.`}
     />
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    <main style="max-width:980px; margin:0 auto; padding:3rem 1.5rem;">
-      <section style="margin-bottom:2.25rem;">
-        <div style="font-size:0.75rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:0.65rem;">Workflow Marketplace</div>
-        <h1 style="font-family:Georgia,serif; font-size:2.8rem; font-weight:400; margin:0 0 0.75rem;">Workflows and bundles</h1>
-        <p style="color:var(--muted); margin:0 0 0.9rem; line-height:1.75; max-width:720px;">
-          Browse real installable bundles plus prompt-driven and conceptual workflow patterns for operator work. Each listing now says whether it is local, external, or still just a blueprint.
-        </p>
-        <p style="color:var(--muted); margin:0; line-height:1.75; max-width:720px;">
-          That means no more pretending every listing ships as local artifacts in this repo. Review the source, install path, and verification mode before rollout.
-        </p>
-      </section>
+  </PageHero>
 
-      <section style="display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.25rem;">
-        {categories.map((category, index) => (
-          <button
-            type="button"
-            class={`filter-chip ${index === 0 ? 'is-active' : ''}`}
-            data-category={category}
-            onclick="filterWorkflows(this.dataset.category)"
-          >
-            {category}
-          </button>
-        ))}
-      </section>
+  <section class="ds-shell cat-catalog" id="catalog" aria-labelledby="catalog-title">
+    <div class="ds-section-head cat-catalog-head">
+      <div>
+        <h2 class="ds-h2" id="catalog-title">All workflows</h2>
+        <p>That means no more pretending every listing ships as local artifacts in this repo. Review the source, install path, and verification mode before rollout.</p>
+      </div>
+    </div>
 
-      <section id="workflow-grid" style="display:grid; gap:1rem;">
+    <CatalogFilterBar label="Filter workflows by category" chips={chips} target="#workflow-grid" noun={['workflow', 'workflows']} chipClass="filter-chip">
+      <div class="ds-grid ds-grid--2 cat-grid" id="workflow-grid">
         {workflows.map((workflow) => (
-          <article
-            data-category={workflow.data.category}
-            data-title={workflow.data.title.toLowerCase()}
-            data-summary={workflow.data.summary.toLowerCase()}
-            style="border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:1.35rem 1.4rem;"
-          >
-            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:0.8rem; flex-wrap:wrap;">
-              <div>
-                <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem;">
-                  <span style={`font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:${statusColors[workflow.data.status]}; background:${statusColors[workflow.data.status]}18; border:1px solid ${statusColors[workflow.data.status]}33; border-radius:999px; padding:0.2rem 0.5rem;`}>
-                    {workflow.data.status}
-                  </span>
-                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
-                    {workflow.data.category}
-                  </span>
-                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
-                    {workflow.data.difficulty}
-                  </span>
-                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
-                    {classificationLabels[workflow.data.bundle.classification]}
-                  </span>
-                  <span style="font-size:0.68rem; font-family:monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:0.2rem 0.5rem;">
-                    v{workflow.data.bundle.version}
-                  </span>
-                </div>
-                <h2 style="font-family:Georgia,serif; font-size:1.5rem; font-weight:400; margin:0 0 0.2rem;">
-                  <a href={`/workflows/${workflow.id}/`} style="color:var(--text); text-decoration:none;">{workflow.data.title}</a>
-                </h2>
-                <p style="margin:0; color:#C9BDA8; line-height:1.7;">{workflow.data.tagline}</p>
-              </div>
-              <div style="font-size:0.78rem; color:var(--muted); font-family:monospace; white-space:nowrap;">{workflow.data.estimatedSetup}</div>
-            </div>
-
-            <p style="margin:0 0 1rem; color:var(--muted); line-height:1.75;">{workflow.data.summary}</p>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.9rem; margin-bottom:1rem;">
-              <div>
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Availability</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.availabilityNote}</div>
-              </div>
-              <div>
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Artifacts</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.artifactCount} described items</div>
-              </div>
-              <div>
-                <div style="font-size:0.72rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem;">Install and review</div>
-                <div style="color:#C9BDA8; line-height:1.6;">{workflow.data.bundle.installable.supported ? 'Installable now' : 'Not installable yet'} · {installabilityLabels[workflow.data.bundle.installable.method]} · {reviewModeLabels[workflow.data.verification.mode]}</div>
-              </div>
-            </div>
-
-            <div style="display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; padding-top:1rem; border-top:1px solid var(--border);">
-              <code style="display:block; color:var(--text); background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:0.65rem 0.8rem; font-size:0.78rem; overflow:auto; max-width:100%;">{workflow.data.installCommand}</code>
-              <a href={`/workflows/${workflow.id}/`} style="color:var(--accent); text-decoration:none; font-size:0.85rem; white-space:nowrap;">View details →</a>
-            </div>
-          </article>
+          <CatalogCard
+            href={`/workflows/${workflow.id}/`}
+            title={workflow.data.title}
+            tagline={workflow.data.tagline}
+            summary={workflow.data.summary}
+            badges={[
+              { label: workflow.data.status, tone: statusTone(workflow.data.status) },
+              { label: workflow.data.category, tone: 'plain' },
+              { label: workflow.data.difficulty, tone: 'plain' },
+              { label: classificationLabels[workflow.data.bundle.classification], tone: 'plain' },
+              { label: `v${workflow.data.bundle.version}`, tone: 'plain' },
+            ]}
+            facts={[
+              { label: 'Availability', value: workflow.data.bundle.availabilityNote },
+              { label: 'Artifacts', value: `${workflow.data.bundle.artifactCount} described items` },
+              { label: 'Install and review', value: `${workflow.data.bundle.installable.supported ? 'Installable now' : 'Not installable yet'} · ${installabilityLabels[workflow.data.bundle.installable.method]} · ${reviewModeLabels[workflow.data.verification.mode]}` },
+            ]}
+            command={workflow.data.installCommand}
+            meta={[workflow.data.estimatedSetup]}
+            cta="View details"
+            attrs={{
+              'data-category': workflow.data.category,
+              'data-title': workflow.data.title.toLowerCase(),
+              'data-summary': workflow.data.summary.toLowerCase(),
+            }}
+          />
         ))}
-      </section>
-    </main>
-    <Footer />
+      </div>
+    </CatalogFilterBar>
+  </section>
 
-    <script is:inline>
-      function filterWorkflows(category) {
-        document.querySelectorAll('.filter-chip').forEach((chip) => {
-          chip.classList.toggle('is-active', chip.dataset.category === category);
-        });
+  <CatalogCrossBand current="/workflows/" title="Looking for a single capability?" copy="Skills are the individual building blocks behind these workflows. Plugins enforce behavior inside the live runtime." />
 
-        document.querySelectorAll('#workflow-grid [data-category]').forEach((card) => {
-          card.style.display = category === 'All' || card.dataset.category === category ? 'block' : 'none';
-        });
-      }
-    </script>
+  <script is:inline slot="after">
+    (() => {
+      window.filterWorkflows = (category) => document.querySelector('[data-cat-filter]')?.catFilter?.(category);
+    })();
+  </script>
+</SiteLayout>
 
-    <style>
-      .filter-chip {
-        appearance: none;
-        border: 1px solid var(--border);
-        background: var(--panel);
-        color: var(--muted);
-        border-radius: 999px;
-        padding: 0.45rem 0.8rem;
-        font: inherit;
-        cursor: pointer;
-        transition: 0.15s ease;
-      }
-
-      .filter-chip:hover,
-      .filter-chip.is-active {
-        color: var(--text);
-        border-color: #3A2A1E;
-        background: #1A140F;
-      }
-    </style>
-  </body>
-</html>
+<style>
+  .cat-catalog { scroll-margin-top: var(--chrome-top); }
+  .cat-catalog-head p { max-width: 44rem; margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .cat-grid { gap: 18px; }
+  .cat-grid :global(.cat-card-facts) { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); }
+  .cat-grid :global(.cat-card-facts > div:first-child) { grid-column: 1 / -1; }
+  @media (max-width: 760px) {
+    .cat-grid { gap: 12px; }
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import { catalogs } from '../../lib/catalog';
+
+interface Props {
+	current: string;
+	title: string;
+	copy: string;
+}
+
+const { current, title, copy } = Astro.props;
+const others = catalogs.filter((catalog) => catalog.href !== current);
+---
+<section class="ds-shell" aria-label="Other catalogs">
+	<div class="ds-cta-band">
+		<div>
+			<span class="ds-eyebrow">Keep exploring</span>
+			<p class="ds-h2">{title}</p>
+			<p>{copy}</p>
+		</div>
+		<div class="cat-band-actions">
+			{others.map((catalog, index) => <a class:list={['ds-btn', { 'ds-btn--ghost': index > 0 }]} href={catalog.href}>{catalog.title} <span aria-hidden="true">→</span></a>)}
+		</div>
+	</div>
+</section>
+
+<style>
+	.cat-band-actions { display: flex; flex-wrap: wrap; gap: 10px; flex: 0 0 auto; }
+	@media (max-width: 760px) { .cat-band-actions { display: grid; } }
+</style>

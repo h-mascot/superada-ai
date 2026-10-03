@@ -2,7 +2,7 @@
 interface Props {
 	label: string;
 	chips: { value: string; label: string; count: number }[];
-	/** Selector for the grid whose direct children carry `data-category`. */
+	/** Selector for the slotted grid whose direct children carry `data-category`. The grid must be passed as the default slot so this script runs after it is parsed. */
 	target: string;
 	noun: [singular: string, plural: string];
 	chipClass?: string;
@@ -21,6 +21,7 @@ const total = chips[0]?.count ?? 0;
 	</div>
 	<span class="cat-filter-count" data-cat-count aria-live="polite">{total} {total === 1 ? noun[0] : noun[1]}</span>
 </div>
+<slot />
 
 <script is:inline>
 	(() => {

@@ -30,7 +30,7 @@ const { code, label, copy, wrap = true } = Astro.props;
 	.ds-code { max-width: 100%; padding: 16px 18px; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--bg) 82%, var(--text) 4%); font-size: 13px; line-height: 1.65; scrollbar-width: thin; }
 	html[data-theme='current'] .ds-code, html[data-theme='neon'] .ds-code { background: color-mix(in srgb, var(--bg) 70%, black); }
 	.ds-code.is-wrap { white-space: pre-wrap; overflow-wrap: anywhere; }
-	.ds-code code { font: inherit; color: inherit; }
+	.ds-code code { padding: 0; border: 0; background: none; font: inherit; color: inherit; }
 	@media (max-width: 760px) {
 		.ds-code { padding: 14px 15px; font-size: 13px; }
 	}
