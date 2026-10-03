@@ -1,0 +1,34 @@
+---
+interface Props {
+	value: number;
+	display?: string;
+	unit?: string;
+	label: string;
+	size?: number;
+}
+
+const { value, display, unit = '', label, size = 196 } = Astro.props;
+const pct = Math.max(0, Math.min(100, value));
+const tone = pct >= 85 ? 'high' : pct >= 60 ? 'mid' : 'low';
+---
+<figure class:list={['score-ring', `score-ring--${tone}`]} style={`--s:${pct};--size:${size}px`} aria-label={`${label}: ${display ?? pct}${unit}`}>
+	<span class="score-ring-dial" aria-hidden="true"></span>
+	<figcaption>
+		<b>{display ?? pct}<small>{unit}</small></b>
+		<span>{label}</span>
+	</figcaption>
+</figure>
+
+<style>
+	@property --sweep { syntax: '<number>'; inherits: false; initial-value: 0; }
+	.score-ring { --tone: var(--accent); position: relative; display: grid; place-items: center; width: var(--size); max-width: 100%; aspect-ratio: 1; margin: 0; }
+	.score-ring--high { --tone: var(--success); }
+	.score-ring--low { --tone: #f78d72; }
+	.score-ring-dial { --sweep: var(--s); position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from -90deg, var(--tone) calc(var(--sweep) * 1%), color-mix(in srgb, var(--border) 80%, transparent) 0); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px)); mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px)); filter: drop-shadow(0 0 16px color-mix(in srgb, var(--tone) 35%, transparent)); animation: ring-sweep 1.4s var(--ease-out) .15s backwards; }
+	@keyframes ring-sweep { from { --sweep: 0; } }
+	.score-ring figcaption { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; }
+	.score-ring b { font: 500 calc(var(--size) * .29)/1 var(--font-display); letter-spacing: -.05em; color: var(--text); font-variant-numeric: tabular-nums; }
+	.score-ring small { font-size: .42em; color: var(--muted); letter-spacing: -.02em; margin-left: 2px; }
+	.score-ring span { max-width: 70%; color: var(--muted); font: 750 10px/1.3 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	@media (prefers-reduced-motion: reduce) { .score-ring-dial { animation: none; } }
+</style>

@@ -1,0 +1,58 @@
+---
+import type { CompareRow } from './types';
+
+interface Props {
+	rows: CompareRow[];
+	label: string;
+}
+
+const { rows, label } = Astro.props;
+const tone = (score: number) => (score >= 85 ? 'high' : score >= 60 ? 'mid' : 'low');
+---
+<ol class="bc" aria-label={label}>
+	{rows.map((row) => {
+		if ('gap' in row) return <li class="bc-gap" aria-hidden="true"><span>{row.gap} more</span></li>;
+		const Tag = row.href && !row.current ? 'a' : 'div';
+		return (
+			<li class:list={['bc-row', `bc-row--${tone(row.score)}`, { 'is-current': row.current }]} aria-current={row.current ? 'true' : undefined}>
+				<Tag class="bc-link" href={Tag === 'a' ? row.href : undefined}>
+					<span class="bc-rank">{String(row.rank).padStart(2, '0')}</span>
+					<span class="bc-name"><b>{row.label}</b>{row.meta && <small>{row.meta}</small>}</span>
+					<span class="bc-bar" style={`--w:${Math.max(0, Math.min(100, row.score))}%`} aria-hidden="true"><i></i></span>
+					<span class="bc-score">{row.display}</span>
+				</Tag>
+			</li>
+		);
+	})}
+</ol>
+
+<style>
+	.bc { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+	.bc-link { display: grid; grid-template-columns: 34px minmax(0, 1.1fr) minmax(90px, 1fr) 64px; align-items: center; gap: 16px; min-height: 52px; padding: 8px 14px; border-radius: var(--radius-sm); color: var(--text); transition: background-color .2s ease; }
+	a.bc-link:hover { background: color-mix(in srgb, var(--panel-soft) 70%, transparent); }
+	a.bc-link:hover b { color: var(--accent); }
+	.bc-row.is-current .bc-link { background: var(--accent-soft); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent); }
+	.bc-rank { color: var(--faint); font: 750 12px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+	.is-current .bc-rank { color: var(--accent); }
+	.bc-name { display: grid; gap: 3px; min-width: 0; }
+	.bc-name b { font-weight: 650; font-size: 14.5px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color .2s ease; }
+	.bc-name small { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.bc-bar { position: relative; height: 8px; border-radius: 999px; background: color-mix(in srgb, var(--border) 70%, transparent); overflow: hidden; }
+	.bc-bar i { position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit; background: var(--tone, var(--accent)); transform-origin: left; animation: bc-grow 1s var(--ease-out) backwards; }
+	.bc-row--high { --tone: var(--success); }
+	.bc-row--mid { --tone: var(--accent); }
+	.bc-row--low { --tone: #f78d72; }
+	.is-current .bc-bar i { box-shadow: 0 0 14px var(--glow); }
+	@keyframes bc-grow { from { transform: scaleX(0); } }
+	.bc-score { justify-self: end; color: var(--text); font: 650 14px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+	.bc-gap { display: flex; align-items: center; gap: 12px; padding: 6px 14px 6px 64px; color: var(--faint); font: 650 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+	.bc-gap::after { content: ''; flex: 1; border-top: 1px dashed var(--border); }
+	@media (max-width: 760px) {
+		.bc-link { grid-template-columns: 26px minmax(0, 1fr) 54px; grid-template-rows: auto auto; gap: 8px 12px; padding: 10px; }
+		.bc-rank { grid-row: 1 / 3; }
+		.bc-bar { grid-column: 2 / 4; grid-row: 2; }
+		.bc-score { grid-column: 3; grid-row: 1; }
+		.bc-gap { padding-left: 48px; }
+	}
+	@media (prefers-reduced-motion: reduce) { .bc-bar i { animation: none; } }
+</style>
