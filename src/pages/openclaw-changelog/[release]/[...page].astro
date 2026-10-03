@@ -1,0 +1,131 @@
+---
+import ChangelogEntries from '../../../components/changelog/ChangelogEntries.astro';
+import ChangelogSearch from '../../../components/changelog/ChangelogSearch.astro';
+import { PAGE_SIZE, formatCount, getReleases, releaseHref, type Release } from '../../../components/changelog/format';
+import PageHero from '../../../components/PageHero.astro';
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+
+export function getStaticPaths() {
+	const releases = getReleases();
+	return releases.flatMap((release, index) =>
+		Array.from({ length: release.pages }, (_, i) => ({
+			params: { release: release.slug, page: i === 0 ? undefined : String(i + 1) },
+			props: { release, page: i + 1, newer: releases[index - 1], older: releases[index + 1] },
+		})),
+	);
+}
+
+interface Props {
+	release: Release;
+	page: number;
+	newer?: Release;
+	older?: Release;
+}
+
+const { release, page, newer, older } = Astro.props;
+const start = (page - 1) * PAGE_SIZE;
+const entries = release.entries.slice(start, start + PAGE_SIZE);
+const total = release.entries.length;
+const pageLabel = release.pages > 1 ? ` (page ${page} of ${release.pages})` : '';
+const title = `OpenClaw ${release.version} changelog${pageLabel} | SuperAda`;
+const description = `Every change and fix shipped in OpenClaw ${release.version}: ${formatCount(release.changeCount)} changes and ${formatCount(release.fixCount)} fixes, each linked to its upstream PR or issue.`;
+const fixesStartPage = release.fixCount ? Math.floor(release.changeCount / PAGE_SIZE) + 1 : 0;
+const fixesHref = fixesStartPage ? `${releaseHref(release, fixesStartPage)}#c-${release.changeCount + 1}` : '';
+const pages = Array.from({ length: release.pages }, (_, i) => i + 1);
+const lede = release.highlights.length
+	? `Headline work: ${release.highlights.slice(0, 2).join('; ')}.`
+	: `The full list of what shipped in OpenClaw ${release.version}.`;
+---
+<SiteLayout title={title} description={description} mainClass="clr-page">
+	<nav class="ds-shell clr-crumbs" aria-label="Breadcrumb">
+		<a href="/openclaw-changelog/">Changelog</a>
+		<span aria-hidden="true">/</span>
+		<a href={`/openclaw-changelog/#v-${release.version}`} aria-current={page === 1 ? 'page' : undefined}>{release.version}</a>
+		{page > 1 && <><span aria-hidden="true">/</span><span>Page {page}</span></>}
+	</nav>
+
+	<PageHero eyebrow={`OpenClaw release${release === getReleases()[0] ? ' · Latest' : ''}`} title={release.version} lede={lede} size="lg" id="release-title">
+		<a class="ds-btn" href={release.fullChangelogHref} target="_blank" rel="noopener noreferrer">Upstream notes <span aria-hidden="true">↗</span></a>
+		{fixesHref && <a class="ds-btn ds-btn--ghost" href={fixesHref}>Jump to fixes <span aria-hidden="true">↓</span></a>}
+		<div slot="aside" class="clr-aside ds-panel" data-no-reveal>
+			<div class="ds-stats clr-stats">
+				<div class="ds-stat"><b>{formatCount(release.changeCount)}</b><span>changes</span></div>
+				<div class="ds-stat"><b>{formatCount(release.fixCount)}</b><span>fixes</span></div>
+				{release.pages > 1 && <div class="ds-stat"><b>{page}<small>/{release.pages}</small></b><span>page</span></div>}
+			</div>
+			<span class="clr-split" style={`--c:${((release.changeCount / total) * 100).toFixed(2)}%`} aria-hidden="true"><i></i></span>
+			<div class="clr-steps">
+				{newer ? <a href={releaseHref(newer)} rel="prev"><small>Newer</small><b>{newer.version}</b></a> : <span><small>Newer</small><b>None yet</b></span>}
+				{older ? <a href={releaseHref(older)} rel="next"><small>Older</small><b>{older.version}</b></a> : <span><small>Older</small><b>First tracked</b></span>}
+			</div>
+		</div>
+	</PageHero>
+
+	<div class="ds-shell clr-body">
+		<ChangelogSearch id="release-search" scope={release.slug} label="Find" placeholder={`Search ${formatCount(total)} entries in ${release.version}`} idleStatus={release.pages > 1 ? `Showing ${formatCount(start + 1)}–${formatCount(start + entries.length)} of ${formatCount(total)}` : `${formatCount(total)} entries`} />
+
+		<div data-cl-hide-on-search>
+			{release.pages > 1 && (
+				<nav class="clr-pager" aria-label="Release pages">
+					{pages.map((n) => (
+						<a class="ds-chip" href={releaseHref(release, n)} aria-current={n === page ? 'page' : undefined} aria-pressed={n === page ? 'true' : 'false'}>{n}</a>
+					))}
+				</nav>
+			)}
+
+			<ChangelogEntries entries={entries} offset={start} changeCount={release.changeCount} fixCount={release.fixCount} version={release.version} headingLevel="h2" />
+
+			<nav class="clr-next" aria-label="Continue reading">
+				{page > 1 ? <a class="clr-next-card" href={releaseHref(release, page - 1)}><small>Previous page</small><b>Page {page - 1}</b></a> : newer ? <a class="clr-next-card" href={releaseHref(newer)}><small>Newer release</small><b>{newer.version}</b></a> : <a class="clr-next-card" href="/openclaw-changelog/"><small>Back to</small><b>All releases</b></a>}
+				{page < release.pages ? <a class="clr-next-card is-forward" href={releaseHref(release, page + 1)}><small>Next page</small><b>Page {page + 1} of {release.pages}</b></a> : older ? <a class="clr-next-card is-forward" href={releaseHref(older)}><small>Older release</small><b>{older.version}</b></a> : <a class="clr-next-card is-forward" href="/openclaw-changelog/"><small>Back to</small><b>All releases</b></a>}
+			</nav>
+		</div>
+	</div>
+</SiteLayout>
+
+<style>
+	.clr-crumbs { display: flex; align-items: center; gap: 10px; padding-top: clamp(20px, 3vw, 36px); margin-bottom: calc(clamp(44px, 7vw, 108px) * -1 + 12px); color: var(--faint); font: 650 12px/1 var(--font-mono); letter-spacing: .04em; }
+	.clr-crumbs a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); transition: color .2s ease; }
+	.clr-crumbs a:hover { color: var(--accent); }
+	.clr-crumbs a[aria-current] { color: var(--text); }
+
+	.clr-aside { display: grid; gap: 20px; padding: clamp(22px, 2.4vw, 30px); border-radius: var(--radius-lg); }
+	.clr-stats { gap: 18px 32px; }
+	.clr-stats .ds-stat b { font-size: clamp(34px, 3.4vw, 50px); }
+	.clr-stats .ds-stat small { font-size: .45em; color: var(--muted); letter-spacing: 0; }
+	.clr-split { display: block; height: 8px; border-radius: 999px; overflow: hidden; background: var(--success); }
+	.clr-split i { display: block; height: 100%; width: var(--c); background: var(--accent); box-shadow: 0 0 16px var(--glow); }
+	.clr-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+	.clr-steps > * { display: grid; gap: 6px; min-height: 64px; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 40%, transparent); transition: border-color .2s ease, transform .3s var(--ease-out); }
+	.clr-steps > :last-child { text-align: right; }
+	.clr-steps small { color: var(--faint); font: 750 10px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+	.clr-steps b { color: var(--text); font: 500 20px/1 var(--font-display); letter-spacing: -.02em; }
+	.clr-steps span b { color: var(--muted); font-size: 16px; }
+	.clr-steps a:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); transform: translateY(-2px); }
+
+	.clr-body { --shell: 1040px; }
+	.clr-body > [data-cl-hide-on-search][hidden] { display: none; }
+	.clr-pager { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1) 28px; padding: 2px var(--gutter); }
+	.clr-pager::-webkit-scrollbar { display: none; }
+	.clr-pager .ds-chip { justify-content: center; min-width: 44px; min-height: 44px; font-variant-numeric: tabular-nums; }
+
+	.clr-next { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: clamp(40px, 5vw, 64px); }
+	.clr-next-card { display: grid; gap: 8px; padding: 22px 24px; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); color: var(--text); transition: transform .45s var(--ease-out), border-color .25s ease, box-shadow .45s ease; }
+	.clr-next-card.is-forward { text-align: right; }
+	.clr-next-card small { color: var(--accent); font: 800 10.5px/1 var(--font-mono); letter-spacing: .16em; text-transform: uppercase; }
+	.clr-next-card b { font: 500 clamp(22px, 2.4vw, 30px)/1.05 var(--font-display); letter-spacing: -.03em; }
+	.clr-next-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--surface-border)); box-shadow: var(--lift); }
+
+	@media (max-width: 980px) { .clr-crumbs { margin-bottom: -40px; } }
+	@media (max-width: 760px) {
+		.clr-crumbs { padding-top: 10px; margin-bottom: -26px; }
+		.clr-aside { padding: 20px; }
+		.clr-stats .ds-stat b { font-size: 34px; }
+		.clr-next { grid-template-columns: 1fr; }
+		.clr-next-card.is-forward { order: -1; }
+		.clr-next-card:active { transform: scale(.98); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.clr-next-card, .clr-steps > * { transition: none; }
+	}
+</style>
