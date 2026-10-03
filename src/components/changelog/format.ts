@@ -33,6 +33,8 @@ const firstSentence = (text: string) => {
 	return match ? [match[1], text.slice(match[0].length)] : [text, ''];
 };
 
+const cleanPrefix = (text: string) => text.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+
 const sentenceCase = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /** Turn the updater's raw title/description split into readable display copy. */
@@ -43,7 +45,7 @@ export function displayEntry(rawTitle: string, rawDescription: string) {
 		const [head, rest] = firstSentence(tidy(`${title}:${description}`));
 		return { title: stripTrailingRefs(head) || head, description: rest };
 	}
-	if (title.endsWith('...') && tidy(description).startsWith(tidy(title.slice(0, -3)))) {
+	if (title.endsWith('...') && cleanPrefix(description).startsWith(cleanPrefix(title.slice(0, -3)))) {
 		const [head, rest] = firstSentence(tidy(description));
 		return { title: stripTrailingRefs(head) || head, description: rest };
 	}
