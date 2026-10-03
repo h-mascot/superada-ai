@@ -273,6 +273,16 @@ const nav = [
 					setTimeout(() => { button.textContent = 'Copy'; }, 1600);
 				});
 			});
+
+			const rail = document.querySelector('.dev-nav > ol');
+			if (rail && 'MutationObserver' in window) {
+				const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+				new MutationObserver((records) => {
+					if (rail.scrollWidth <= rail.clientWidth) return;
+					const link = records.map((r) => r.target).find((el) => el.classList.contains('is-current') && el.parentElement.parentElement === rail);
+					if (link) rail.scrollTo({ left: link.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
+				}).observe(rail, { subtree: true, attributes: true, attributeFilter: ['class'] });
+			}
 		})();
 	</script></Fragment>
 </SiteLayout>
