@@ -1,4 +1,6 @@
 ---
+import experienceScript from '../scripts/experience.js?raw';
+
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
@@ -52,3 +54,5 @@ const year = new Date().getFullYear();
 		<p>Humans and agents welcome.</p>
 	</div>
 </footer>
+<script is:inline set:html={experienceScript} />
+<template id="xp-ready"></template>

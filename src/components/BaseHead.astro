@@ -14,6 +14,9 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? 'ca441918-ef94
 const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? 'https://analytics.henrymascot.com/script.js';
 const umamiTag = import.meta.env.PUBLIC_UMAMI_TAG ?? 'superada';
 const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
+// Hold first paint until Footer's experience script has run, otherwise Chrome often skips the
+// incoming view transition. The multi-megabyte changelog page renders progressively instead.
+const holdFirstRender = !Astro.url.pathname.startsWith('/openclaw-changelog');
 ---
 
 <script is:inline>
@@ -77,6 +80,7 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 <meta name="apple-mobile-web-app-title" content="SuperAda" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="manifest" href="/manifest.webmanifest" />
+{holdFirstRender && <link rel="expect" href="#xp-ready" blocking="render" />}
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
