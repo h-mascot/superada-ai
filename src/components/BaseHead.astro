@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../styles/experience.css';
+import '../styles/design.css';
 
 interface Props {
 	title: string;
@@ -13,6 +15,9 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? 'ca441918-ef94
 const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? 'https://analytics.henrymascot.com/script.js';
 const umamiTag = import.meta.env.PUBLIC_UMAMI_TAG ?? 'superada';
 const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
+// Hold first paint until Footer's experience script has run, otherwise Chrome often skips the
+// incoming view transition. The multi-megabyte changelog page renders progressively instead.
+const holdFirstRender = !Astro.url.pathname.startsWith('/openclaw-changelog');
 ---
 
 <script is:inline>
@@ -20,10 +25,12 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 		const key = 'superada-theme';
 		const aliases = { warm: 'light', bronze: 'current', navy: 'neon' };
 		const themes = new Set(['light', 'current', 'neon']);
+		const chrome = { light: '#fbf6ee', current: '#050403', neon: '#030814' };
 		const normalize = (theme) => aliases[theme] || theme || 'current';
 		const apply = (theme) => {
 			const next = themes.has(normalize(theme)) ? normalize(theme) : 'current';
 			document.documentElement.dataset.theme = next;
+			document.querySelector('meta[name="theme-color"]')?.setAttribute('content', chrome[next]);
 			document.querySelectorAll('[data-theme-choice]').forEach((button) => {
 				const active = button.dataset.themeChoice === next;
 				button.classList.toggle('is-active', active);
@@ -43,6 +50,35 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 			});
 			apply(current);
 		});
+		const tabRoots = ['/', '/about', '/blog', '/resources'];
+		const isTabRoot = (url) => { try { return tabRoots.includes(new URL(url).pathname.replace(/\/+$/, '') || '/'); } catch { return false; } };
+		window.addEventListener('pagereveal', (event) => {
+			if (!event.viewTransition) return;
+			document.documentElement.dataset.vt = '';
+			try {
+				const activation = window.navigation && window.navigation.activation;
+				if (!activation || !activation.entry || !event.viewTransition.types) return;
+				const back = activation.navigationType === 'traverse' && activation.from && activation.entry.index < activation.from.index;
+				const toRoot = isTabRoot(activation.entry.url);
+				const fromRoot = activation.from && isTabRoot(activation.from.url);
+				const type = toRoot && (!back || fromRoot) ? 'tab' : back ? 'back' : 'forward';
+				event.viewTransition.types.add(type);
+
+				// Shared cover morph: the page we came from named its card or hero "post-media" in pageswap.
+				if (!activation.from) return;
+				const pathOf = (url) => new URL(url).pathname.replace(/\/?$/, '/');
+				const fromPath = pathOf(activation.from.url);
+				const fromHasCards = fromPath === '/blog/' || fromPath.startsWith('/blog/');
+				const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; };
+				const cards = [...document.querySelectorAll('[data-post-media="' + fromPath + '"]')];
+				const card = cards.find(visible) || cards[0];
+				const hero = document.querySelector('[data-post-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + scrollY < innerHeight * 1.6);
+				const target = card && (back || !hero) ? card : hero && fromHasCards ? hero : null;
+				if (!target) return;
+				target.style.viewTransitionName = 'post-media';
+				event.viewTransition.finished.finally(() => { target.style.viewTransitionName = ''; });
+			} catch {}
+		});
 	})();
 </script>
 
@@ -51,7 +87,15 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 )}
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#050403" />
+<meta name="color-scheme" content="dark light" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="SuperAda" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="manifest" href="/manifest.webmanifest" />
+{holdFirstRender && <link rel="expect" href="#xp-ready" blocking="render" />}
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

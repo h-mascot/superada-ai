@@ -1,0 +1,51 @@
+---
+import PostCover from './PostCover.astro';
+import { authorFor, postHref, readingMinutes, seriesOf, shortDate, type Post } from '../lib/posts';
+
+interface Props {
+	post: Post;
+	variant?: 'feature' | 'card' | 'row';
+	eager?: boolean;
+}
+
+const { post, variant = 'card', eager = false } = Astro.props;
+const author = authorFor(post);
+const series = seriesOf(post.data.title);
+const kicker = series?.name ?? post.data.tags?.[0];
+const minutes = readingMinutes(post);
+const coverSizes = variant === 'feature' ? '(max-width: 760px) 92vw, 720px' : variant === 'row' ? '96px' : '(max-width: 760px) 80vw, 380px';
+const coverWidths = variant === 'feature' ? [640, 1100] : variant === 'row' ? [160] : [480, 760];
+---
+{variant === 'row' ? (
+	<a
+		href={postHref(post)}
+		class="post-row post-item"
+		data-tags={(post.data.tags ?? []).join(',')}
+		data-title={`${post.data.title} ${post.data.description}`.toLowerCase()}
+		data-author={post.data.author}
+	>
+		<PostCover post={post} widths={coverWidths} sizes={coverSizes} class="post-row-cover" />
+		<span class="post-row-copy">
+			<b>{post.data.title}</b>
+			<span class="ds-meta"><span>{author.name}</span><span>{minutes} min</span></span>
+		</span>
+		<time datetime={post.data.pubDate.toISOString()}>{shortDate(post.data.pubDate)}</time>
+	</a>
+) : (
+	<a href={postHref(post)} class:list={['post-card', `post-card--${variant}`]}>
+		<PostCover post={post} widths={coverWidths} sizes={coverSizes} eager={eager} class="post-card-cover" />
+		<div class="post-card-copy">
+			<div class="ds-meta post-card-kicker">
+				{kicker && <span class="post-card-tag">{kicker}</span>}
+				<time datetime={post.data.pubDate.toISOString()}>{shortDate(post.data.pubDate)}</time>
+			</div>
+			<h3 class="post-card-title">{post.data.title}</h3>
+			<p class="post-card-dek">{post.data.description}</p>
+			<div class="post-card-byline">
+				<img src={author.avatar} alt="" width="28" height="28" loading="lazy" decoding="async" />
+				<span class="ds-meta"><span>{author.name}</span><span>{minutes} min read</span></span>
+				{variant === 'feature' && <span class="post-card-cta">Read the story <span aria-hidden="true">→</span></span>}
+			</div>
+		</div>
+	</a>
+)}

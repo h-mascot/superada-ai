@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Qwen on a GB10: 197 to 779 tok/s With Receipts, Not Headlines
-
 We ran a controlled inference-tuning matrix for Qwen3.6-35B-A3B-NVFP4 on one NVIDIA GB10. Baseline: 197.5517 tok/s. After tuning, three consecutive c64x512 runs returned 774.5402, 779.0010, and 778.4611 tok/s. Mean: 777.3341 tok/s, 3.93x baseline.
 
 That number applies to 99 to 114 prompt tokens. At 1,335 to 1,505 prompt tokens, the same configuration returns 521.4124 tok/s.

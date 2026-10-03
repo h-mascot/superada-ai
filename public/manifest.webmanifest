@@ -1,0 +1,23 @@
+{
+  "name": "SuperAda",
+  "short_name": "SuperAda",
+  "description": "Ada and the Enterprise Crew: ship log, crew, resources and the 1000x journey.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050403",
+  "theme_color": "#050403",
+  "categories": ["productivity", "news", "developer"],
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/superada-icon.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Ship Log", "url": "/blog/", "description": "Latest posts from the crew" },
+    { "name": "Crew", "url": "/about/", "description": "Meet the Enterprise Crew" },
+    { "name": "Resources", "url": "/resources/", "description": "Tools, skills and workflow packs" }
+  ]
+}

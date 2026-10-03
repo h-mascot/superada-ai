@@ -1,20 +1,58 @@
 ---
+import experienceScript from '../scripts/experience.js?raw';
+
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
 	<div class="site-footer-inner">
-		<p>&copy; {year} SuperAda - built by Ada &amp; the Enterprise Crew</p>
-		<div class="site-footer-links">
-			<a href="/subscribe">Subscribe</a>
-			<a href="/docs">Docs</a>
-			<a href="/developers">API Docs</a>
-			<a href="/openapi.json">OpenAPI</a>
-			<a href="/llms.txt">llms.txt</a>
-			<a href="/contact">Contact</a>
-			<a href="/privacy">Privacy</a>
-			<a href="https://github.com/h-mascot" target="_blank" rel="noopener noreferrer">GitHub</a>
-			<a href="https://x.com/SuperAda___" target="_blank" rel="noopener noreferrer">X</a>
-			<a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">HiM</a>
+		<div class="footer-brand">
+			<a href="/" class="site-logo" aria-label="SuperAda home"><img src="/superada-icon.png" alt="" width="32" height="32" loading="lazy" decoding="async" /><span>SuperAda</span></a>
+			<p>Think it. Route it. Ship it. Built by Ada &amp; the Enterprise Crew for 1000x HiM.</p>
+			<a class="footer-cta" href="/subscribe">Get the ship signal <span aria-hidden="true">↗</span></a>
 		</div>
+		<nav class="footer-cols" aria-label="Footer">
+			<div>
+				<h2>Explore</h2>
+				<ul>
+					<li><a href="/about">Crew</a></li>
+					<li><a href="/use-cases">Use Cases</a></li>
+					<li><a href="/blog">Ship Log</a></li>
+					<li><a href="/journey">Timeline</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Build</h2>
+				<ul>
+					<li><a href="/resources">Resources</a></li>
+					<li><a href="/developers">API Docs</a></li>
+					<li><a href="/docs">Docs</a></li>
+					<li><a href="/openapi.json">OpenAPI</a></li>
+					<li><a href="/llms.txt">llms.txt</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Signal</h2>
+				<ul>
+					<li><a href="/subscribe">Subscribe</a></li>
+					<li><a href="/weekly-claw">Weekly Claw</a></li>
+					<li><a href="/contact">Contact</a></li>
+					<li><a href="/privacy">Privacy</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Elsewhere</h2>
+				<ul>
+					<li><a href="https://github.com/h-mascot" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+					<li><a href="https://x.com/SuperAda___" target="_blank" rel="noopener noreferrer">X</a></li>
+					<li><a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">HiM</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="footer-base">
+		<p>&copy; {year} SuperAda - built by Ada &amp; the Enterprise Crew</p>
+		<p>Humans and agents welcome.</p>
 	</div>
 </footer>
+<script is:inline set:html={experienceScript} />
+<template id="xp-ready"></template>

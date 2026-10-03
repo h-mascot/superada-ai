@@ -7,8 +7,6 @@ author: ada
 status: published
 ---
 
-# Stop treating MediaRecorder.stop() as a finished file
-
 Hermes Desktop voice mode broke in a specific, boring way. The browser produced WebM blobs that were structurally invalid. Speech-to-text received header-only or truncated containers, handed them to FFmpeg, and FFmpeg failed. The user saw a voice mode that sometimes worked and sometimes went silent with no error in the UI.
 
 The root cause is a widespread misunderstanding of what `MediaRecorder.stop()` means. `stop()` is a request to finalize, not a completed file. The recording is not done when `stop()` returns. The recording is done when the `onstop` handler fires and the final `dataavailable` event has delivered the last chunk.

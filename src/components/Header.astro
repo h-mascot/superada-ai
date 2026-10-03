@@ -1,34 +1,109 @@
 ---
+import NavIcon from './NavIcon.astro';
+import { isCurrentPath, mobileTabs, moreNav, primaryNav } from '../data/siteNav';
+
 const { pathname } = Astro.url;
-const nav = [
-	{ href: '/about', label: 'Crew' },
-	{ href: '/use-cases', label: 'Use Cases' },
-	{ href: '/resources', label: 'Resources' },
-	{ href: '/developers', label: 'API Docs' },
-	{ href: '/blog', label: 'Ship Log' },
-	{ href: '/journey', label: 'Timeline' },
-];
+
+const tabMatches: Record<string, string[]> = {
+	'/': ['/'],
+	'/about': ['/about', '/crew'],
+	'/blog': ['/blog'],
+	'/resources': ['/resources', '/skills', '/workflows', '/plugins', '/benchmarks'],
+};
+const activeTab = mobileTabs.find((tab) => (tabMatches[tab.href] ?? [tab.href]).some((href) => isCurrentPath(pathname, href)))?.href;
+const moreActive = !activeTab;
+const activeTabIndex = activeTab ? mobileTabs.findIndex((tab) => tab.href === activeTab) : mobileTabs.length;
 ---
 
-<header class="site-header">
+<header class="site-header" data-site-header>
 	<nav class="site-nav" aria-label="Primary navigation">
 		<a href="/" class="site-logo" aria-label="SuperAda home"><img src="/superada-icon.png" alt="" width="32" height="32" loading="eager" decoding="async" /><span>SuperAda</span></a>
-		<div class="nav-links">
-			{nav.map((item) => (
-				<a href={item.href} class:list={["nav-link", { "is-current": pathname === item.href || pathname.startsWith(`${item.href}/`) }]}>{item.label}</a>
+		<div class="nav-links" data-nav-links>
+			<span class="nav-indicator" aria-hidden="true"></span>
+			{primaryNav.map((item) => (
+				<a href={item.href} class:list={["nav-link", { "is-current": isCurrentPath(pathname, item.href) }]} aria-current={isCurrentPath(pathname, item.href) ? 'page' : undefined}>{item.label}</a>
 			))}
 		</div>
-		<div class="theme-toggle" role="group" aria-label="Theme switcher">
-			<span class="theme-thumb" aria-hidden="true"></span>
-			<button type="button" class="theme-segment" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
-				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"></path></svg>
+		<div class="header-actions">
+			<button type="button" class="search-trigger" data-search-open aria-label="Search SuperAda" aria-keyshortcuts="Meta+K Control+K">
+				<NavIcon name="search" />
+				<span class="search-trigger-label">Search</span>
+				<kbd class="search-trigger-kbd" data-kbd-hint>⌘K</kbd>
 			</button>
-			<button type="button" class="theme-segment is-active" data-theme-choice="current" aria-label="Current dark theme" aria-pressed="true">
-				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.4 2.8c.3 2.9-1.5 4.6-3.1 6.1-1.4 1.3-2.6 2.5-2.6 4.6 0 3.6 2.7 6.5 6.4 6.5 3.4 0 6.1-2.6 6.1-6.2 0-2.7-1.4-4.8-3.8-6.6.1 1.8-.6 3.1-1.8 4.1.2-2.7-.4-5.2-1.2-8.5Z"></path><path d="M10.1 16.2c0-1.5.9-2.4 2.1-3.4.2 1.3.8 2.4 1.8 3.3.4-.7.6-1.5.5-2.5 1.1 1 1.8 2.1 1.8 3.4 0 1.8-1.4 3.1-3.1 3.1-1.8 0-3.1-1.5-3.1-3.9Z"></path></svg>
-			</button>
-			<button type="button" class="theme-segment" data-theme-choice="neon" aria-label="Neon theme" aria-pressed="false">
-				<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"></path><path d="M19 15l.8 2.7L22 18.5l-2.2.8L19 22l-.8-2.7-2.2-.8 2.2-.8L19 15Z"></path></svg>
-			</button>
+			<div class="theme-toggle" role="group" aria-label="Theme switcher">
+				<span class="theme-thumb" aria-hidden="true"></span>
+				<button type="button" class="theme-segment" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
+					<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"></path></svg>
+				</button>
+				<button type="button" class="theme-segment is-active" data-theme-choice="current" aria-label="Current dark theme" aria-pressed="true">
+					<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12.4 2.8c.3 2.9-1.5 4.6-3.1 6.1-1.4 1.3-2.6 2.5-2.6 4.6 0 3.6 2.7 6.5 6.4 6.5 3.4 0 6.1-2.6 6.1-6.2 0-2.7-1.4-4.8-3.8-6.6.1 1.8-.6 3.1-1.8 4.1.2-2.7-.4-5.2-1.2-8.5Z"></path><path d="M10.1 16.2c0-1.5.9-2.4 2.1-3.4.2 1.3.8 2.4 1.8 3.3.4-.7.6-1.5.5-2.5 1.1 1 1.8 2.1 1.8 3.4 0 1.8-1.4 3.1-3.1 3.1-1.8 0-3.1-1.5-3.1-3.9Z"></path></svg>
+				</button>
+				<button type="button" class="theme-segment" data-theme-choice="neon" aria-label="Neon theme" aria-pressed="false">
+					<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2l1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2Z"></path><path d="M19 15l.8 2.7L22 18.5l-2.2.8L19 22l-.8-2.7-2.2-.8 2.2-.8L19 15Z"></path></svg>
+				</button>
+			</div>
 		</div>
 	</nav>
+	<div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
 </header>
+
+<nav class="app-tabbar" aria-label="App navigation" data-tabbar>
+	<span class="tab-indicator" style={`--tab-i:${activeTabIndex}`} aria-hidden="true"></span>
+	{mobileTabs.map((tab) => (
+		<a href={tab.href} class:list={["app-tab", { "is-active": activeTab === tab.href }]} aria-current={activeTab === tab.href ? 'page' : undefined}>
+			<span class="app-tab-icon"><NavIcon name={tab.icon} /></span>
+			<span class="app-tab-label">{tab.label}</span>
+		</a>
+	))}
+	<button type="button" class:list={["app-tab", { "is-active": moreActive }]} data-sheet-open aria-haspopup="dialog" aria-controls="app-sheet">
+		<span class="app-tab-icon"><NavIcon name="more" /></span>
+		<span class="app-tab-label">More</span>
+	</button>
+</nav>
+
+<dialog class="app-sheet" id="app-sheet" aria-label="More" tabindex="-1" autofocus data-sheet>
+	<div class="app-sheet-panel" data-sheet-panel>
+		<div class="app-sheet-grabber" data-sheet-grabber aria-hidden="true"><span></span></div>
+		<button type="button" class="app-sheet-search" data-search-open>
+			<NavIcon name="search" /><span>Search posts, crew, skills…</span>
+		</button>
+		<div class="app-sheet-grid">
+			{moreNav.map((item) => (
+				<a href={item.href} class:list={["app-sheet-link", { "is-current": isCurrentPath(pathname, item.href) }]}>
+					<span class="app-sheet-icon"><NavIcon name={item.icon} /></span>
+					<span>{item.label}</span>
+				</a>
+			))}
+		</div>
+		<div class="app-sheet-row">
+			<span class="app-sheet-row-label">Appearance</span>
+			<div class="theme-toggle theme-toggle--sheet" role="group" aria-label="Theme switcher">
+				<span class="theme-thumb" aria-hidden="true"></span>
+				<button type="button" class="theme-segment" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">Light</button>
+				<button type="button" class="theme-segment is-active" data-theme-choice="current" aria-label="Current dark theme" aria-pressed="true">Ember</button>
+				<button type="button" class="theme-segment" data-theme-choice="neon" aria-label="Neon theme" aria-pressed="false">Neon</button>
+			</div>
+		</div>
+		<div class="app-sheet-socials">
+			<a href="https://github.com/h-mascot" target="_blank" rel="noopener noreferrer">GitHub</a>
+			<a href="https://x.com/SuperAda___" target="_blank" rel="noopener noreferrer">X</a>
+			<a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">HiM</a>
+			<a href="/llms.txt">llms.txt</a>
+		</div>
+	</div>
+</dialog>
+
+<dialog class="cmdk" aria-label="Search SuperAda" tabindex="-1" autofocus data-cmdk>
+	<div class="cmdk-panel" role="combobox" aria-expanded="true" aria-haspopup="listbox" aria-owns="cmdk-results">
+		<div class="cmdk-input-row">
+			<NavIcon name="search" />
+			<input type="search" class="cmdk-input" placeholder="Search posts, crew, skills, pages…" aria-label="Search" aria-controls="cmdk-results" autocomplete="off" spellcheck="false" enterkeyhint="go" data-cmdk-input />
+			<button type="button" class="cmdk-close" data-cmdk-close aria-label="Close search"><span>Esc</span></button>
+		</div>
+		<ul class="cmdk-results" id="cmdk-results" role="listbox" data-cmdk-results></ul>
+		<div class="cmdk-footer" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+	</div>
+</dialog>
+
+<div class="ambient-light" aria-hidden="true" data-ambient></div>
+
