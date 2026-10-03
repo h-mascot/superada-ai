@@ -1,26 +1,31 @@
 ---
 import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
 
-// Discover weekly editions from public/weekly-claw/weekNN/
+// Discover weekly editions from public/weekly-claw/weekNN[x]/
 const allSlides = import.meta.glob('/public/weekly-claw/week*/slide-*.jpg', { eager: false });
 const editionMap = new Map<string, string[]>();
 
 for (const path of Object.keys(allSlides)) {
-  const match = path.match(/\/public\/weekly-claw\/(week\d+)\/slide-(\d+)\.jpg$/);
-  if (match) {
-    const week = match[1];
-    if (!editionMap.has(week)) editionMap.set(week, []);
-    editionMap.get(week)!.push(path.replace('/public', ''));
-  }
+	const match = path.match(/\/public\/weekly-claw\/(week\d+[a-z]?)\/slide-(\d+)\.jpg$/);
+	if (match) {
+		const week = match[1];
+		if (!editionMap.has(week)) editionMap.set(week, []);
+		editionMap.get(week)!.push(path.replace('/public', ''));
+	}
 }
 
-interface Edition { week: string; slides: string[] }
+interface Edition { week: string; number: number; suffix: string; slides: string[] }
 const editions: Edition[] = [];
 for (const [week, slides] of editionMap) {
-  slides.sort();
-  editions.push({ week, slides });
+	slides.sort();
+	const [, number, suffix = ''] = week.match(/week(\d+)([a-z]?)/) ?? [];
+	editions.push({ week, number: Number(number), suffix, slides });
 }
-editions.sort((a, b) => b.week.localeCompare(a.week));
+editions.sort((a, b) => b.number - a.number || a.suffix.localeCompare(b.suffix));
+const [latest, ...rest] = editions;
+const label = (edition: Edition) => `#${edition.number}${edition.suffix ? ` ${edition.suffix.toUpperCase()}` : ''}`;
 ---
 
 <!doctype html>
@@ -28,49 +33,60 @@ editions.sort((a, b) => b.week.localeCompare(a.week));
 	<head>
 		<BaseHead title="The Weekly Claw — All Editions" description="Weekly OpenClaw release roundup" />
 		<style>
-			* { margin: 0; padding: 0; box-sizing: border-box; }
-			html, body { width: 100%; height: 100%; background: #050505; color: #fff; }
-			body { font-family: 'Inter', system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-
-			.editions { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-			.editions h1 { font-size: 1.5rem; font-weight: 300; color: #fff; }
-			.editions .sub { color: #555; font-size: 0.875rem; margin-bottom: 1.5rem; }
-			.edition-link {
-				display: block;
-				padding: 1rem 2rem;
-				border: 1px solid #222;
-				border-radius: 8px;
-				color: var(--text);
-				text-decoration: none;
-				font-size: 1rem;
-				transition: all 0.2s;
-				min-width: 280px;
-				text-align: center;
-			}
-			.edition-link:hover { border-color: #F65454; color: #F65454; }
-			.edition-link .num { color: #F65454; font-weight: 600; }
-			.edition-link .date { color: #555; font-size: 0.75rem; display: block; margin-top: 0.25rem; }
-
-			#back { position: fixed; top: 20px; left: 28px; z-index: 100; }
-			#back a { font-size: 11px; color: #444; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; border: 1px solid #222; border-radius: 4px; padding: 4px 10px; transition: color 0.2s; }
-			#back a:hover { color: var(--accent); border-color: var(--accent); }
+			.claw-shell { width: min(100%, 1240px); margin: 0 auto; padding: clamp(42px, 6vw, 80px) 32px 40px; }
+			.claw-head { max-width: 760px; margin-bottom: 34px; }
+			.claw-head h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: clamp(48px, 6.4vw, 84px); letter-spacing: -.055em; line-height: .98; margin-bottom: 16px; }
+			.claw-head p { color: var(--muted); font-size: 17px; line-height: 1.65; }
+			.edition-feature { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 0; margin-bottom: 18px; border: 1px solid var(--border); border-radius: 28px; overflow: hidden; background: linear-gradient(145deg, var(--panel), color-mix(in srgb, var(--panel-soft) 70%, transparent)); color: var(--text); box-shadow: var(--shadow); }
+			.edition-feature img { width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; transition: transform 1.2s var(--ease-out, ease); }
+			.edition-feature:hover img { transform: scale(1.03); }
+			.edition-feature-copy { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+			.edition-feature-copy h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: clamp(38px, 4vw, 58px); }
+			.edition-feature-copy p { color: var(--muted); }
+			.edition-open { display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px; border-radius: 999px; background: var(--accent); color: #120b04; font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+			.edition-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+			.edition-card { display: grid; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; background: var(--panel); color: var(--text); transition: transform .35s var(--ease-out, ease), border-color .2s ease, box-shadow .3s ease; }
+			.edition-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: 0 22px 60px color-mix(in srgb, var(--glow) 40%, transparent); }
+			.edition-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: var(--panel-soft); }
+			.edition-card div { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 14px 16px; }
+			.edition-card b { font-size: 17px; letter-spacing: -.02em; }
+			.edition-card span { color: var(--faint); font: 700 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; }
+			@media (max-width: 980px) { .edition-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .edition-feature { grid-template-columns: 1fr; } }
+			@media (max-width: 640px) { .claw-shell { padding-left: 16px; padding-right: 16px; } .edition-grid { gap: 10px; } .edition-card div { padding: 11px 12px; } .edition-card b { font-size: 15px; } }
 		</style>
 	</head>
 	<body>
-		<div id="back"><a href="/">← SuperAda</a></div>
+		<Header />
+		<main class="claw-shell">
+			<header class="claw-head">
+				<div class="eyebrow">OpenClaw · Weekly roundup</div>
+				<h1>The Weekly Claw</h1>
+				<p>Every OpenClaw release that mattered this week, condensed into a slide deck by the crew.</p>
+			</header>
 
-		<div class="editions">
-			<h1>🦞 The Weekly Claw</h1>
-			<p class="sub">Weekly OpenClaw release roundup</p>
+			{editions.length === 0 && <p style="color:var(--muted);">No editions yet.</p>}
 
-			{editions.length === 0 && <p style="color:#555;">No editions yet.</p>}
-
-			{editions.map(ed => (
-				<a href={`/weekly-claw/${ed.week}`} class="edition-link">
-					<span class="num">{ed.week.replace('week', '#')}</span>
-					<span class="date">{ed.slides.length} slides</span>
+			{latest && (
+				<a class="edition-feature" href={`/weekly-claw/${latest.week}`}>
+					<img src={latest.slides[0]} alt={`Cover slide for The Weekly Claw ${label(latest)}`} loading="eager" decoding="async" />
+					<div class="edition-feature-copy">
+						<div class="eyebrow" style="margin:0;">Latest edition</div>
+						<h2>{label(latest)}</h2>
+						<p>{latest.slides.length} slides</p>
+						<span class="edition-open">Open deck <span aria-hidden="true">↗</span></span>
+					</div>
 				</a>
-			))}
-		</div>
+			)}
+
+			<div class="edition-grid">
+				{rest.map((edition) => (
+					<a class="edition-card" href={`/weekly-claw/${edition.week}`}>
+						<img src={edition.slides[0]} alt={`Cover slide for The Weekly Claw ${label(edition)}`} loading="lazy" decoding="async" />
+						<div><b>{label(edition)}</b><span>{edition.slides.length} slides</span></div>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
 	</body>
 </html>
