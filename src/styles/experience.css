@@ -104,8 +104,6 @@ dialog:focus-visible { outline: none; }
 .scene-cta, .scroll-world-chapter a, .home-subscribe-strip a, .subscribe-submit, .agent-skill-link { transition: transform .35s var(--ease-spring), box-shadow .3s ease, background-color .2s ease, border-color .2s ease; }
 @media (hover: hover) {
 	.scene-cta:hover, .home-subscribe-strip a:hover, .subscribe-submit:hover, .agent-skill-link:hover { transform: translateY(-2px); box-shadow: 0 18px 50px color-mix(in srgb, var(--glow) 60%, transparent); }
-	.post-item { transition: padding .35s var(--ease-out), background-color .25s ease; }
-	.post-item:hover { padding-left: .75rem !important; padding-right: .75rem !important; background: color-mix(in srgb, var(--panel-soft) 55%, transparent); }
 }
 
 /* ---------- Footer ---------- */
@@ -208,7 +206,6 @@ dialog:focus-visible { outline: none; }
 	/* Touch feedback */
 	:is(.home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .agent-card, .edition-card, .post-item, .resource-nav a, .app-sheet-link) { transition: transform .18s var(--ease-out); }
 	:is(.home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .agent-card, .edition-card):active { transform: scale(.98); }
-	.post-item:active { background: color-mix(in srgb, var(--panel-soft) 70%, transparent); }
 	:is(.filter-pill, .tab-row a, .scene-cta, .scroll-world-chapter a, .subscribe-submit, .agent-skill-link, .footer-cta, .pet-download, .resource-nav a):active { transform: scale(.95); }
 
 	/* Bigger tap targets */
