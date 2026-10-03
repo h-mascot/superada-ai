@@ -53,10 +53,12 @@ const enableUmami = Boolean(umamiWebsiteId && umamiScriptUrl);
 			document.documentElement.dataset.vt = '';
 			try {
 				const activation = window.navigation && window.navigation.activation;
-				let type = 'forward';
-				if (activation && activation.navigationType === 'traverse' && activation.entry.index < (activation.from ? activation.from.index : -1)) type = 'back';
-				if (activation && activation.from && isTabRoot(activation.from.url) && isTabRoot(activation.entry.url)) type = 'tab';
-				event.viewTransition.types && event.viewTransition.types.add(type);
+				if (!activation || !activation.entry || !event.viewTransition.types) return;
+				const back = activation.navigationType === 'traverse' && activation.from && activation.entry.index < activation.from.index;
+				const toRoot = isTabRoot(activation.entry.url);
+				const fromRoot = activation.from && isTabRoot(activation.from.url);
+				const type = toRoot && (!back || fromRoot) ? 'tab' : back ? 'back' : 'forward';
+				event.viewTransition.types.add(type);
 			} catch {}
 		});
 	})();
