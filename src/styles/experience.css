@@ -213,7 +213,7 @@ html.xp [data-reveal="in"] { animation: xp-reveal .9s var(--ease-out) var(--reve
 	/* Bigger tap targets */
 	.filter-pill { min-height: 40px; padding-left: 1rem !important; padding-right: 1rem !important; }
 	.tab-row a { min-height: 40px; display: inline-flex; align-items: center; }
-	.footer-cols a { min-height: 40px; }
+	.footer-cols a { min-height: 40px; min-width: 44px; }
 	:root .speed-btn { min-width: 40px; min-height: 36px; }
 	:root .copy-btn { min-width: 44px; min-height: 36px; }
 	:root :is(.detail-back-link, .back-link, .timeline-read-more, .agent-readmore, .mimo-back, .deck-link) { display: inline-flex; align-items: center; min-height: 40px; }
