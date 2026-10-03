@@ -93,7 +93,7 @@
 		'.home-card', '.resource-card', '.stat-card', '.mascot-card', '.docs-card', '.docs-panel', '.case-card', '.card', '.panel',
 		'.featured-card', '.analysis-card', '.version-card', '.agent-card', '.trust-card', '.vertical-card', '.timeline-item',
 		'.post-item', '.highlight-box', '.submit-card', '.subscribe-form', '.agent-subscribe-card', '.edition-card', '.under-card',
-		'.trek-item', '.stat-row', '.article-hero-motion', '.transcript-row', '.footer-cta',
+		'.trek-item', '.stat-row', '.article-hero-motion', '.transcript-row', '.footer-cta', '.post-card', '.post-hero', '.tl-card',
 	].join(',');
 	const REVEAL_EXCLUDE = '.world-scroll, .scroll-world-engine, .cmdk, .app-sheet, .site-header, [data-no-reveal]';
 
@@ -121,7 +121,7 @@
 
 	/* ---------- Card spotlight + ambient light (desktop only) ---------- */
 
-	const SPOT = '.home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .analysis-card, .version-card, .agent-card, .trust-card, .vertical-card, .submit-card, .edition-card, .post-item, .timeline-item, .subscribe-form, .agent-subscribe-card, .panel';
+	const SPOT = '.post-card, .tl-card, .home-card, .resource-card, .stat-card, .mascot-card, .docs-card, .case-card, .card, .featured-card, .analysis-card, .version-card, .agent-card, .trust-card, .vertical-card, .submit-card, .edition-card, .timeline-item, .subscribe-form, .agent-subscribe-card, .panel';
 
 	if (finePointer.matches) {
 		let spotTarget = null;
@@ -339,6 +339,35 @@
 			else if (e.key === '/' && !typing && !cmdk.open) { e.preventDefault(); open(); }
 		});
 		document.querySelectorAll('[data-search-open]').forEach((btn) => btn.addEventListener('pointerenter', () => load(), { once: true }));
+	}
+
+	/* ---------- Shared cover morph (outgoing side; incoming side lives in BaseHead) ---------- */
+
+	let lastClicked = null;
+	document.addEventListener('click', (e) => { lastClicked = e.target.closest?.('a[href]') || null; }, true);
+	window.addEventListener('pageswap', (event) => {
+		const activation = event.activation;
+		if (!event.viewTransition || !activation || !activation.entry) return;
+		const toPath = new URL(activation.entry.url).pathname.replace(/\/?$/, '/');
+		const back = activation.navigationType === 'traverse' && activation.from && activation.entry.index < activation.from.index;
+		const fromClick = lastClicked && new URL(lastClicked.href).pathname.replace(/\/?$/, '/') === toPath ? lastClicked.querySelector('[data-post-media]') : null;
+		const card = fromClick || document.querySelector(`[data-post-media="${toPath}"]`);
+		const hero = document.querySelector('[data-post-hero]') || [...document.querySelectorAll('.prose img')].find((img) => img.getBoundingClientRect().top + window.scrollY < window.innerHeight * 1.6);
+		const target = card && !back ? card : hero && toPath.startsWith('/blog/') ? hero : null;
+		if (target) target.style.viewTransitionName = 'post-media';
+	});
+
+	/* ---------- Post table of contents: highlight the section being read ---------- */
+
+	const tocLinks = [...document.querySelectorAll('[data-toc] a')];
+	if (tocLinks.length && 'IntersectionObserver' in window) {
+		const sections = tocLinks.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter(Boolean);
+		const setCurrent = (id) => tocLinks.forEach((link) => link.classList.toggle('is-current', decodeURIComponent(link.hash.slice(1)) === id));
+		const spy = new IntersectionObserver((entries) => {
+			const visibleEntry = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+			if (visibleEntry) setCurrent(visibleEntry.target.id);
+		}, { rootMargin: '-15% 0px -70% 0px' });
+		sections.forEach((section) => spy.observe(section));
 	}
 
 	/* ---------- Resource atlas: keep the active chip in view on small screens ---------- */

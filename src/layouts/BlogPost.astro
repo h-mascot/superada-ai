@@ -1,253 +1,220 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
 import { Image } from 'astro:assets';
+import AudioPlayer from '../components/AudioPlayer.astro';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import AudioPlayer from '../components/AudioPlayer.astro';
+import PostCard from '../components/PostCard.astro';
 import ScrollWorld from '../components/ScrollWorld.astro';
 import { scrollWorlds, type ScrollWorldId } from '../data/scrollWorlds';
+import { authorFor, readingMinutes, seriesOf, shortDate, type Post } from '../lib/posts';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface Props {
+	post: Post;
+	headings: MarkdownHeading[];
+	related: Post[];
+}
 
-const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', audio, author = 'ada', visualMode = 'standard', visualWorld } = Astro.props;
+const { post, headings, related } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', audio, author = 'ada', tags = [], visualMode = 'standard', visualWorld } = post.data;
 const articleWorld = visualWorld ? scrollWorlds[visualWorld as ScrollWorldId] : undefined;
-
-const authors = {
-  ada: {
-    name: 'Ada',
-    role: 'Enterprise Crew orchestrator',
-    avatar: '/avatars/ada.jpg',
-  },
-  book: {
-    name: 'Book',
-    role: 'Enterprise Crew continuity keeper',
-    avatar: '/avatars/book.png',
-  },
-  spock: {
-    name: 'Spock',
-    role: 'Enterprise Crew research & operations officer',
-    avatar: '/avatars/spock.jpg',
-  },
-} as const;
-
-const authorProfile = authors[author as keyof typeof authors] ?? authors.ada;
+const authorProfile = authorFor(post);
+const series = seriesOf(title);
+const minutes = readingMinutes(post);
+const toc = headings.filter((heading) => heading.depth === 2).slice(0, 14);
+const showToc = toc.length >= 3;
 ---
 
 <html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-    <style is:global>
-      .prose {
-        color: var(--text-soft);
-        line-height: 1.8;
-        font-size: 1rem;
-      }
-      .prose h1 {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        color: var(--text);
-        font-size: 1.75rem;
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        line-height: 1.3;
-      }
-      .prose h2 {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        color: var(--text);
-        font-size: 1.5rem;
-        margin-top: 2.5rem;
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-      }
-      .prose h3 {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        color: var(--text);
-        font-size: 1.25rem;
-        margin-top: 2rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-      }
-      .prose h4 {
-        font-family: Georgia, 'Times New Roman', serif;
-        font-weight: 400;
-        color: var(--text);
-        font-size: 1.125rem;
-        margin-top: 1.5rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-      }
-      .prose p {
-        margin-bottom: 1.25rem;
-      }
-      .prose a { color: var(--accent); }
-      .prose a:hover { text-decoration: underline; }
-      .prose strong { color: var(--text); font-weight: 600; }
-      .prose em { font-style: italic; }
-      .prose code {
-        background: var(--panel-soft);
-        border: 1px solid var(--border);
-        border-radius: 3px;
-        padding: 0.1em 0.4em;
-        font-size: 0.875em;
-        color: var(--accent-3);
-      }
-      .prose pre {
-        background: var(--panel-soft);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 1.25rem;
-        overflow-x: auto;
-        margin-bottom: 1.25rem;
-      }
-      .prose pre code {
-        background: none;
-        border: none;
-        padding: 0;
-        color: var(--text-soft);
-      }
-      .prose blockquote {
-        border-left: 3px solid var(--accent);
-        margin-left: 0;
-        padding-left: 1.25rem;
-        color: var(--muted);
-        font-style: italic;
-        margin-bottom: 1.25rem;
-      }
-      .prose ul, .prose ol {
-        padding-left: 1.5rem;
-        margin-bottom: 1.25rem;
-      }
-      .prose ul {
-        list-style-type: disc;
-      }
-      .prose ol {
-        list-style-type: decimal;
-      }
-      .prose li {
-        margin-bottom: 0.4rem;
-        color: var(--text-soft);
-      }
-      .prose hr {
-        border: none;
-        border-top: 1px solid var(--border);
-        margin: 2rem 0;
-      }
-      .prose img {
-        border-radius: 6px;
-        border: 1px solid var(--border);
-        max-width: 100%;
-      }
-      .article-visual-label {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 1rem 1.5rem;
-        color: var(--accent);
-        font: 800 0.65rem/1 ui-monospace, monospace;
-        letter-spacing: 0.17em;
-      }
-      .article-hero-motion {
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        box-shadow: 0 24px 70px rgba(0,0,0,.22);
-      }
-      .article-hero-motion::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--accent) 14%, transparent) 48%, transparent 66%);
-        transform: translateX(-110%);
-        animation: article-scan 8s ease-in-out infinite;
-      }
-      .article-hero-motion img { border: 0!important; border-radius: 0!important; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-      .article-hero-motion:hover img { transform: scale(1.025); }
-      @keyframes article-scan { 0%,55%{transform:translateX(-110%)}85%,100%{transform:translateX(110%)} }
-      @media(prefers-reduced-motion:reduce){.article-hero-motion::after{display:none}.article-hero-motion img{transition:none}}
-    </style>
-  </head>
-  <body style="background:var(--bg); color:var(--text); min-height:100vh;">
-    <Header />
-    {visualMode === 'flagship' && articleWorld && <ScrollWorld world={articleWorld} />}
-    {visualMode === 'visual-essay' && articleWorld && (
-      <section aria-label="Visual essay introduction">
-        <div class="article-visual-label">VISUAL ESSAY · SCROLL TO EXPLORE</div>
-        <ScrollWorld world={articleWorld} compact={true} showIntro={false} />
-      </section>
-    )}
-    <main style="max-width:800px; margin:0 auto; padding:3rem 1.5rem;">
-      <article>
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="post-page">
+		<Header />
+		{visualMode === 'flagship' && articleWorld && <ScrollWorld world={articleWorld} />}
+		{visualMode === 'visual-essay' && articleWorld && (
+			<section aria-label="Visual essay introduction">
+				<div class="article-visual-label">VISUAL ESSAY · SCROLL TO EXPLORE</div>
+				<ScrollWorld world={articleWorld} compact={true} showIntro={false} />
+			</section>
+		)}
+		<main class="post">
+			<article>
+				<header class="post-head ds-shell">
+					<nav class="post-crumbs" aria-label="Breadcrumb">
+						<a href="/blog">Ship Log</a>
+						{series && <span>{series.name}</span>}
+						{!series && tags[0] && <a href={`/blog/?tag=${encodeURIComponent(tags[0])}#archive`}>{tags[0]}</a>}
+					</nav>
+					<h1 class="post-title">{title}</h1>
+					{description && <p class="post-dek">{description}</p>}
+					<div class="post-byline" data-author={author}>
+						<img src={authorProfile.avatar} alt={`${authorProfile.name} avatar`} width="44" height="44" />
+						<div>
+							<b>Published by {authorProfile.name}</b>
+							<span>{authorProfile.role}</span>
+						</div>
+						<div class="ds-meta post-byline-meta">
+							<time datetime={pubDate.toISOString()}>{shortDate(pubDate)}</time>
+							<span>{minutes} min read</span>
+							{updatedDate && <span>Updated {shortDate(updatedDate)}</span>}
+						</div>
+					</div>
+				</header>
 
-        <!-- Date & meta -->
-        <div style="font-size:0.8125rem; color:var(--muted); margin-bottom:1.5rem; font-variant-numeric:tabular-nums;">
-          <FormattedDate date={pubDate} />
-          {updatedDate && (
-            <span style="margin-left:0.75rem;">
-              &bull; Updated <FormattedDate date={updatedDate} />
-            </span>
-          )}
-        </div>
+				{heroImage && (
+					<figure class="post-hero ds-shell">
+						<div class="post-hero-media" data-post-hero>
+							<Image src={heroImage} alt={heroAlt || `Illustration for ${title}`} format="webp" widths={[800, 1200, 1800]} sizes="(max-width: 1240px) 100vw, 1180px" fetchpriority="high" loading="eager" />
+						</div>
+					</figure>
+				)}
 
-        <!-- Title -->
-        <h1 style="font-family:Georgia,'Times New Roman',serif; font-size:clamp(2.2rem, 4.6vw, 3.5rem); font-weight:500; margin:0 0 1rem; line-height:1.04; letter-spacing:-0.045em; color:var(--text); text-wrap:balance;">
-          {title}
-        </h1>
+				<div class:list={['post-layout ds-shell', { 'has-toc': showToc }]}>
+					{showToc && (
+						<aside class="post-toc" aria-label="On this page" data-no-reveal>
+							<span class="post-toc-label">On this page</span>
+							<ol data-toc>
+								{toc.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+							</ol>
+						</aside>
+					)}
+					<div class="post-body">
+						<AudioPlayer audioSrc={audio} author={author} />
+						<div class="prose">
+							<slot />
+						</div>
+						{tags.length > 0 && (
+							<div class="post-tags" aria-label="Topics">
+								{tags.map((tag) => <a class="ds-chip" href={`/blog/?tag=${encodeURIComponent(tag)}#archive`}>{tag}</a>)}
+							</div>
+						)}
+						<a class="post-back" href="/blog">&larr; Back to Ship Log</a>
+					</div>
+				</div>
+			</article>
 
-        {description && (
-          <p style="font-size:1.125rem; color:var(--muted); margin:0 0 2.5rem; line-height:1.6; text-wrap:pretty;">
-            {description}
-          </p>
-        )}
+			{related.length > 0 && (
+				<section class="post-next ds-shell" aria-labelledby="keep-reading">
+					<div class="ds-section-head">
+						<h2 class="ds-h2" id="keep-reading">Keep reading</h2>
+						<a href="/blog">All posts <span aria-hidden="true">→</span></a>
+					</div>
+					<div class="post-next-grid">
+						{related.map((other) => <PostCard post={other} />)}
+					</div>
+				</section>
+			)}
 
-        <div data-author={author} style="display:flex; align-items:center; gap:0.75rem; margin:-1rem 0 2rem; color:var(--muted); font-size:0.875rem;">
-          <img src={authorProfile.avatar} alt={`${authorProfile.name} avatar`} style="width:36px; height:36px; border-radius:999px; border:1px solid var(--border); object-fit:cover;" />
-          <div>
-            <div style="color:var(--text);">Published by {authorProfile.name}</div>
-            <div>{authorProfile.role}</div>
-          </div>
-        </div>
-
-        <!-- Hero image -->
-        {heroImage && (
-          <div class="article-hero-motion" style="margin-bottom:2.5rem;">
-            <Image
-              src={heroImage}
-              alt={heroAlt || `Illustration for ${title}`}
-              format="webp"
-              widths={[800, 1200]}
-              sizes="(max-width: 800px) 100vw, 800px"
-              fetchpriority="high"
-              style="width:100%; height:auto; border-radius:6px; border:1px solid var(--border);"
-            />
-          </div>
-        )}
-
-        <!-- Audio player -->
-        <AudioPlayer audioSrc={audio} author={author} />
-
-        <hr style="border:none; border-top:1px solid var(--border); margin-bottom:2.5rem;" />
-
-        <!-- Content -->
-        <div class="prose">
-          <slot />
-        </div>
-
-      </article>
-
-      <!-- Back link -->
-      <div style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border);">
-        <a href="/blog" style="display:inline-flex; align-items:center; min-height:44px; color:var(--accent); font-size:0.875rem; text-decoration:none;"
-          onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
-          &larr; Back to Ship Log
-        </a>
-      </div>
-
-    </main>
-    <Footer />
-  </body>
+			<section class="post-signal ds-shell">
+				<div>
+					<span class="ds-eyebrow">Ship signal</span>
+					<p class="ds-h2">Get the next one when it ships.</p>
+				</div>
+				<a class="ds-btn" href="/subscribe">Subscribe <span aria-hidden="true">↗</span></a>
+			</section>
+		</main>
+		<Footer />
+	</body>
 </html>
+
+<style is:global>
+	.post-page .article-visual-label { max-width: 800px; margin: 0 auto; padding: 1rem 1.5rem; color: var(--accent); font: 800 .65rem/1 var(--font-mono); letter-spacing: .17em; }
+
+	.post-head { --shell: 960px; padding-top: clamp(40px, 7vw, 96px); padding-bottom: clamp(28px, 4vw, 48px); text-align: center; }
+	.post-crumbs { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 26px; }
+	.post-crumbs > * { display: inline-flex; align-items: center; min-height: 32px; padding: 0 13px; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 70%, transparent); color: var(--muted); font: 750 11px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease, border-color .2s ease; }
+	.post-crumbs > a:hover { color: var(--text); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+	.post-crumbs > :first-child { color: var(--accent); }
+	.post-title { margin: 0 auto 22px; max-width: 18ch; font: 500 clamp(40px, 6.4vw, 84px)/.98 var(--font-display); letter-spacing: -.055em; color: var(--text); text-wrap: balance; }
+	.post-dek { margin: 0 auto; max-width: 40rem; color: var(--text-soft); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; text-wrap: pretty; }
+	.post-byline { display: inline-grid; grid-template-columns: auto auto; align-items: center; gap: 4px 14px; margin-top: 30px; text-align: left; }
+	.post-byline img { grid-row: span 2; width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 70%, transparent); }
+	.post-byline b { color: var(--text); font-size: 14.5px; font-weight: 650; }
+	.post-byline > div:not(.post-byline-meta) { display: grid; gap: 2px; }
+	.post-byline > div:not(.post-byline-meta) span { color: var(--muted); font-size: 13px; }
+	.post-byline-meta { grid-column: 1 / -1; justify-content: center; margin-top: 12px; }
+
+	.post-hero { margin: 0 auto clamp(36px, 5vw, 64px); --shell: 1240px; }
+	.post-hero-media { overflow: hidden; border-radius: var(--radius-xl); border: 1px solid var(--surface-border); box-shadow: 0 40px 120px rgba(0, 0, 0, .32); background: var(--panel-soft); }
+	.post-hero-media img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: cover; }
+
+	.post-layout { --shell: 1240px; display: grid; grid-template-columns: minmax(0, 720px); justify-content: center; gap: 56px; }
+	.post-layout.has-toc { grid-template-columns: 220px minmax(0, 720px) 220px; }
+	.post-toc { position: sticky; top: calc(var(--chrome-top) + 28px); align-self: start; max-height: calc(100vh - var(--chrome-top) - 60px); overflow-y: auto; padding-top: 6px; scrollbar-width: none; }
+	.post-toc-label { display: block; margin-bottom: 14px; color: var(--faint); font: 800 10.5px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.post-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--border); }
+	.post-toc a { position: relative; display: block; padding: 7px 0 7px 16px; color: var(--muted); font-size: 13px; line-height: 1.4; transition: color .2s ease; }
+	.post-toc a::before { content: ''; position: absolute; left: -1px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: var(--accent); transform: scaleY(0); transition: transform .35s var(--ease-out); box-shadow: 0 0 10px var(--glow); }
+	.post-toc a:hover { color: var(--text); }
+	.post-toc a.is-current { color: var(--text); }
+	.post-toc a.is-current::before { transform: scaleY(1); }
+	.post-body { min-width: 0; }
+
+	.prose { color: var(--text-soft); font-size: 18px; line-height: 1.78; }
+	.prose > :first-child { margin-top: 0; }
+	.prose h1, .prose h2, .prose h3, .prose h4 { font-family: var(--font-display); font-weight: 500; color: var(--text); letter-spacing: -.03em; scroll-margin-top: calc(var(--chrome-top) + 24px); text-wrap: balance; }
+	.prose h1 { font-size: 2rem; margin: 3rem 0 1rem; line-height: 1.15; }
+	.prose h2 { font-size: clamp(1.75rem, 2.6vw, 2.2rem); margin: 3.4rem 0 1rem; line-height: 1.1; }
+	.prose h3 { font-size: 1.4rem; margin: 2.4rem 0 .6rem; line-height: 1.2; }
+	.prose h4 { font-size: 1.15rem; margin: 1.8rem 0 .5rem; line-height: 1.3; }
+	.prose p { margin-bottom: 1.35rem; text-wrap: pretty; }
+	.prose a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; transition: text-decoration-color .2s ease; }
+	.prose a:hover { text-decoration-color: var(--accent); }
+	.prose strong { color: var(--text); font-weight: 650; }
+	.prose em { font-style: italic; }
+	.prose code { background: var(--panel-soft); border: 1px solid var(--border); border-radius: 6px; padding: .12em .4em; font-size: .84em; color: var(--accent-2); }
+	.prose pre { background: color-mix(in srgb, var(--bg) 70%, black); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem 1.4rem; overflow-x: auto; margin: 0 0 1.6rem; font-size: 14.5px; line-height: 1.6; }
+	.prose pre code { background: none; border: none; padding: 0; color: var(--text-soft); font-size: inherit; }
+	.prose blockquote { margin: 2rem 0; padding: 1.1rem 1.4rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius-md) var(--radius-md) 0; background: color-mix(in srgb, var(--accent-soft) 40%, transparent); color: var(--text); font-family: var(--font-display); font-size: 1.2em; line-height: 1.5; }
+	.prose blockquote p:last-child { margin-bottom: 0; }
+	.prose ul, .prose ol { padding-left: 1.4rem; margin-bottom: 1.4rem; }
+	.prose ul { list-style-type: disc; }
+	.prose ol { list-style-type: decimal; }
+	.prose li { margin-bottom: .45rem; color: var(--text-soft); }
+	.prose li::marker { color: var(--accent); }
+	.prose hr { border: none; height: 1px; margin: 3rem auto; width: 40%; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+	.prose img { display: block; max-width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border); margin: 2rem 0; }
+	.prose table { width: 100%; border-collapse: collapse; margin: 0 0 1.6rem; font-size: 15px; }
+	.prose th, .prose td { padding: .7rem .8rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+	.prose th { color: var(--text); font-weight: 650; }
+
+	.post-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 3rem 0 0; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+	.post-tags .ds-chip { text-transform: capitalize; }
+	.post-back { display: inline-flex; align-items: center; min-height: 44px; margin-top: 1.2rem; color: var(--accent); font-size: 14px; font-weight: 650; }
+
+	.post-next { margin-top: clamp(64px, 8vw, 120px); }
+	.post-next-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+	.post-signal { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: clamp(48px, 6vw, 80px); padding-top: 32px; padding-bottom: 32px; border-radius: var(--radius-xl); border: 1px solid var(--surface-border); background: radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 45%), var(--surface); }
+	.post-signal > div { display: grid; gap: 14px; }
+
+	@media (max-width: 1180px) {
+		.post-layout.has-toc { grid-template-columns: 200px minmax(0, 720px); justify-content: center; gap: 44px; }
+	}
+	@media (max-width: 980px) {
+		.post-layout.has-toc { grid-template-columns: minmax(0, 720px); }
+		.post-toc { display: none; }
+		.post-next-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.post-next-grid > :nth-child(3) { display: none; }
+	}
+	@media (max-width: 760px) {
+		.post-head { text-align: left; padding-top: 26px; }
+		.post-crumbs { justify-content: flex-start; margin-bottom: 18px; }
+		.post-title { margin-left: 0; max-width: none; font-size: clamp(36px, 10.5vw, 48px); line-height: 1.02; }
+		.post-dek { margin: 0; font-size: 17px; }
+		.post-byline { display: grid; justify-content: start; margin-top: 22px; }
+		.post-byline-meta { justify-content: flex-start; }
+		.post-hero { padding-inline: 0; margin-bottom: 30px; }
+		.post-hero-media { border-radius: 0; border-left: 0; border-right: 0; }
+		.prose { font-size: 17px; line-height: 1.72; }
+		.prose img { border-radius: var(--radius-md); margin: 1.6rem 0; }
+		.prose blockquote { font-size: 1.1em; }
+		.post-next-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; gap: 12px; }
+		.post-next-grid::-webkit-scrollbar { display: none; }
+		.post-next-grid > * { flex: 0 0 80%; scroll-snap-align: start; }
+		.post-next-grid > :nth-child(3) { display: flex; }
+		.post-signal { width: auto; flex-direction: column; align-items: flex-start; margin-inline: var(--gutter); padding: 26px 22px; }
+		.post-signal .ds-btn { width: 100%; }
+	}
+</style>
