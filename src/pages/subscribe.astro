@@ -305,7 +305,7 @@ const installCommand = 'curl -sSf https://superada.ai/install/superada-weekly-wa
 	.sub-signals li { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-soft); font-weight: 650; line-height: 1.4; }
 	.sub-signals li:last-child { border-bottom: 0; }
 	.sub-signals li span { width: 18px; flex: none; color: var(--accent); text-align: center; }
-	.sub-note { color: var(--muted); font-size: 14px !important; }
+	.sub-note { color: var(--muted); font-size: 15px !important; }
 	.sub-skill-link { display: inline-flex; align-items: center; min-height: 44px; }
 
 	@media (max-width: 980px) {
@@ -319,6 +319,8 @@ const installCommand = 'curl -sSf https://superada.ai/install/superada-weekly-wa
 		.sub-fields { grid-template-columns: 1fr; }
 		.sub-side { grid-template-columns: 1fr; }
 		.sub-topics label { font-size: 14.5px; }
+		.sub-install-head { min-height: 46px; padding-right: 2px; }
+		.sub-install-head button { min-height: 44px; }
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.sub-toggle::before, .sub-topics label, .sub-form, .sub-side { transition: none; }
