@@ -1,0 +1,45 @@
+---
+import CatalogCode from './CatalogCode.astro';
+
+interface Props {
+	steps: { title?: string; detail: string; command?: string; expected?: string }[];
+	label?: string;
+}
+
+const { steps, label } = Astro.props;
+---
+<ol class="cat-steps" aria-label={label}>
+	{steps.map((step, index) => (
+		<li class="cat-step">
+			<span class="cat-step-n" aria-hidden="true">{index + 1}</span>
+			<div class="cat-step-body">
+				{step.title && <b class="cat-step-title">{step.title}</b>}
+				<p class:list={{ 'cat-step-lead': !step.title }}>{step.detail}</p>
+				{step.command && <CatalogCode code={step.command} copy="Copy" />}
+				{step.expected && <p class="cat-step-expected"><span>Expected</span> <code>{step.expected}</code></p>}
+			</div>
+		</li>
+	))}
+</ol>
+
+<style>
+	.cat-steps { list-style: none; margin: 0; padding: 0; display: grid; }
+	.cat-step { position: relative; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; padding-bottom: 22px; }
+	.cat-step:last-child { padding-bottom: 0; }
+	.cat-step:not(:last-child)::before { content: ''; position: absolute; left: 17.5px; top: 40px; bottom: 4px; width: 1px; background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 45%, var(--border)), var(--border)); }
+	.cat-step-n { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border)); background: var(--accent-soft); color: var(--accent); font: 700 13px/1 var(--font-mono); }
+	.cat-step-body { display: grid; gap: 8px; min-width: 0; padding-top: 6px; }
+	.cat-step-title { color: var(--text); font-size: 16.5px; font-weight: 650; line-height: 1.4; }
+	.cat-step-body p { color: var(--muted); font-size: 15.5px; line-height: 1.65; }
+	.cat-step-body p.cat-step-lead { color: var(--text-soft); }
+	.cat-step-body :global(.cat-code) { margin-top: 4px; }
+	.cat-step-expected { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+	.cat-step-expected span { color: var(--success); font: 800 10px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.cat-step-expected code { color: var(--text-soft); font: 600 13px/1.5 var(--font-mono); overflow-wrap: anywhere; }
+	@media (max-width: 760px) {
+		.cat-step { grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+		.cat-step-n { width: 32px; height: 32px; font-size: 12px; }
+		.cat-step:not(:last-child)::before { left: 15.5px; top: 36px; }
+		.cat-step-body { padding-top: 4px; }
+	}
+</style>

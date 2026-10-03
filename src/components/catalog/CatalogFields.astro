@@ -1,0 +1,24 @@
+---
+interface Props {
+	items: { label: string; value: string; mono?: boolean; href?: string }[];
+}
+
+const { items } = Astro.props;
+---
+<dl class="cat-fields">
+	{items.map((item) => (
+		<div>
+			<dt>{item.label}</dt>
+			<dd class:list={{ 'is-mono': item.mono }}>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</dd>
+		</div>
+	))}
+</dl>
+
+<style>
+	.cat-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 10px; margin: 0; }
+	.cat-fields > div { display: grid; align-content: start; gap: 7px; min-width: 0; padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: color-mix(in srgb, var(--bg) 40%, transparent); }
+	.cat-fields dt { color: var(--faint); font: 800 10px/1.2 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+	.cat-fields dd { margin: 0; color: var(--text); font-size: 15px; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
+	.cat-fields dd.is-mono { font: 600 13px/1.5 var(--font-mono); }
+	.cat-fields a { color: var(--accent); }
+</style>

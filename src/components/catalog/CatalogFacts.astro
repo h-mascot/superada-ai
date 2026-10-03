@@ -1,0 +1,44 @@
+---
+interface Props {
+	title: string;
+	items: { label: string; value: string; href?: string; mono?: boolean; wide?: boolean }[];
+}
+
+const { title, items } = Astro.props;
+const hasFoot = Astro.slots.has('default');
+---
+<section class="ds-panel cat-facts" aria-label={title} data-no-reveal>
+	<span class="cat-facts-title">{title}</span>
+	<dl class="ds-kv">
+		{items.map((item) => (
+			<div class:list={{ 'is-wide': item.wide }}>
+				<dt>{item.label}</dt>
+				<dd class:list={{ 'is-mono': item.mono }}>{item.href ? <a href={item.href}>{item.value}</a> : item.value}</dd>
+			</div>
+		))}
+	</dl>
+	{hasFoot && <div class="cat-facts-foot"><slot /></div>}
+</section>
+
+<style>
+	.cat-facts { padding: 24px 24px 20px; border-radius: var(--radius-lg); }
+	.cat-facts-title { display: block; margin-bottom: 6px; color: var(--accent); font: 800 10.5px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
+	.ds-kv > div { align-items: baseline; }
+	.ds-kv dt { flex: 0 0 auto; }
+	.ds-kv dd { min-width: 0; overflow-wrap: anywhere; line-height: 1.45; }
+	.ds-kv dd.is-mono { font: 600 12.5px/1.5 var(--font-mono); }
+	.ds-kv a { color: var(--accent); }
+	.ds-kv a:hover { text-decoration: underline; text-underline-offset: 3px; }
+	.cat-facts-foot { display: grid; gap: 8px; margin-top: 16px; }
+	.cat-facts-foot :global(.ds-btn) { width: 100%; }
+
+	@media (max-width: 980px) {
+		.cat-facts { padding: 20px; }
+		.ds-kv { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; clip-path: inset(0 0 1px 0); }
+		.ds-kv > div { flex-direction: column; justify-content: flex-start; gap: 5px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+		.ds-kv > div.is-wide { grid-column: 1 / -1; }
+		.ds-kv dt { color: var(--faint); font: 800 10px/1.2 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+		.ds-kv dd { text-align: left; font-size: 15px; }
+		.cat-facts-foot { grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+	}
+</style>

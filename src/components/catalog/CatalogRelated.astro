@@ -1,0 +1,50 @@
+---
+import CatalogBadges from './CatalogBadges.astro';
+import type { CatalogLink } from '../../lib/catalog';
+
+interface Props {
+	title: string;
+	items: CatalogLink[];
+	indexHref: string;
+	indexLabel: string;
+	backLabel: string;
+}
+
+const { title, items, indexHref, indexLabel, backLabel } = Astro.props;
+---
+<section class="ds-shell ds-section cat-related" aria-labelledby="cat-related-title">
+	{items.length > 0 && (
+		<>
+			<div class="ds-section-head">
+				<h2 class="ds-h2" id="cat-related-title">{title}</h2>
+				<a href={indexHref}>{indexLabel} <span aria-hidden="true">→</span></a>
+			</div>
+			<div class="ds-grid ds-grid--3 ds-rail-sm">
+				{items.map((item) => (
+					<a class="ds-card cat-related-card" href={item.href}>
+						{item.kicker && <span class="ds-card-kicker">{item.kicker}</span>}
+						{item.badges && item.badges.length > 0 && <CatalogBadges badges={item.badges} />}
+						<h3>{item.title}</h3>
+						<p>{item.tagline}</p>
+						<span class="ds-card-foot"><span class="ds-card-link">Open <span aria-hidden="true">→</span></span></span>
+					</a>
+				))}
+			</div>
+		</>
+	)}
+	<a class="cat-back" href={indexHref.replace(/\/$/, '')}><span aria-hidden="true">←</span> {backLabel}</a>
+</section>
+
+<style>
+	.cat-related h2 { scroll-margin-top: calc(var(--chrome-top) + 24px); }
+	.cat-related-card p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+	.cat-back { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; margin-top: 28px; padding: 0 20px 0 16px; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 70%, transparent); color: var(--text); font-size: 14px; font-weight: 700; transition: border-color .2s ease, color .2s ease, transform .35s var(--ease-spring); }
+	.cat-back span { color: var(--accent); transition: transform .35s var(--ease-spring); }
+	.cat-back:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+	.cat-back:hover span { transform: translateX(-3px); }
+	.cat-back:active { transform: scale(.97); }
+	@media (max-width: 760px) {
+		.cat-back { width: 100%; justify-content: center; }
+	}
+	@media (prefers-reduced-motion: reduce) { .cat-back, .cat-back span { transition: none; } }
+</style>
