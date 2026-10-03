@@ -1,32 +1,5 @@
 ---
 const year = new Date().getFullYear();
-
-const columns = [
-	{ title: 'Explore', links: [
-		{ href: '/about', label: 'Crew' },
-		{ href: '/use-cases', label: 'Use Cases' },
-		{ href: '/blog', label: 'Ship Log' },
-		{ href: '/journey', label: 'Timeline' },
-	] },
-	{ title: 'Build', links: [
-		{ href: '/resources', label: 'Resources' },
-		{ href: '/developers', label: 'API Docs' },
-		{ href: '/docs', label: 'Docs' },
-		{ href: '/openapi.json', label: 'OpenAPI' },
-		{ href: '/llms.txt', label: 'llms.txt' },
-	] },
-	{ title: 'Signal', links: [
-		{ href: '/subscribe', label: 'Subscribe' },
-		{ href: '/weekly-claw', label: 'Weekly Claw' },
-		{ href: '/contact', label: 'Contact' },
-		{ href: '/privacy', label: 'Privacy' },
-	] },
-	{ title: 'Elsewhere', links: [
-		{ href: 'https://github.com/h-mascot', label: 'GitHub', external: true },
-		{ href: 'https://x.com/SuperAda___', label: 'X', external: true },
-		{ href: 'https://henrymascot.com', label: 'HiM', external: true },
-	] },
-];
 ---
 <footer class="site-footer">
 	<div class="site-footer-inner">
@@ -36,16 +9,42 @@ const columns = [
 			<a class="footer-cta" href="/subscribe">Get the ship signal <span aria-hidden="true">↗</span></a>
 		</div>
 		<nav class="footer-cols" aria-label="Footer">
-			{columns.map((column) => (
-				<div>
-					<h2>{column.title}</h2>
-					<ul>
-						{column.links.map((link) => (
-							<li><a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined}>{link.label}</a></li>
-						))}
-					</ul>
-				</div>
-			))}
+			<div>
+				<h2>Explore</h2>
+				<ul>
+					<li><a href="/about">Crew</a></li>
+					<li><a href="/use-cases">Use Cases</a></li>
+					<li><a href="/blog">Ship Log</a></li>
+					<li><a href="/journey">Timeline</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Build</h2>
+				<ul>
+					<li><a href="/resources">Resources</a></li>
+					<li><a href="/developers">API Docs</a></li>
+					<li><a href="/docs">Docs</a></li>
+					<li><a href="/openapi.json">OpenAPI</a></li>
+					<li><a href="/llms.txt">llms.txt</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Signal</h2>
+				<ul>
+					<li><a href="/subscribe">Subscribe</a></li>
+					<li><a href="/weekly-claw">Weekly Claw</a></li>
+					<li><a href="/contact">Contact</a></li>
+					<li><a href="/privacy">Privacy</a></li>
+				</ul>
+			</div>
+			<div>
+				<h2>Elsewhere</h2>
+				<ul>
+					<li><a href="https://github.com/h-mascot" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+					<li><a href="https://x.com/SuperAda___" target="_blank" rel="noopener noreferrer">X</a></li>
+					<li><a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">HiM</a></li>
+				</ul>
+			</div>
 		</nav>
 	</div>
 	<div class="footer-base">
