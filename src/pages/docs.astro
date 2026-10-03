@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 
 const links = [
-	{ href: '/developers/', kicker: 'Developer docs', title: 'Public API guide', icon: 'code', copy: 'Authentication notes, canonical /api/v1/... endpoints, example requests, error format, rate limits, and versioning/deprecation policy.' },
+	{ href: '#versioning-policy', kicker: 'Policy', title: 'Versioning and deprecation', icon: 'code', copy: 'Canonical /api/v1/... routes, version and deprecation headers, Sunset dates, and how much notice removals get.' },
 	{ href: '/openapi.json', kicker: 'OpenAPI', title: 'Machine-readable API spec', icon: 'docs', copy: 'OpenAPI 3.1 specification for public SuperAda API endpoints, response headers, structured errors, and version metadata.' },
 	{ href: '/llms.txt', kicker: 'llms.txt', title: 'Agent orientation file', icon: 'spark', copy: 'Plain-text guidance for language models and agents: what the site is, which links matter, and how to find public data.' },
 	{ href: '/resources/', kicker: 'Resources', title: 'Resource atlas', icon: 'atlas', copy: 'Human-readable guides, tools, studies, benchmarks, and workflow references built by the SuperAda crew.' },
@@ -12,9 +12,18 @@ const links = [
 	{ href: '/contact/', kicker: 'Contact', title: 'Support and corrections', icon: 'mail', copy: 'Where to report API documentation issues, public-data problems, or inaccurate site information.' },
 ] as const;
 
+const versionHeaders = `API-Version: 1
+X-API-Version: 1
+Deprecation: false
+Link: <https://superada.ai/docs/#versioning-policy>; rel="deprecation"; type="text/html"
+
+# Future deprecated endpoint example:
+Deprecation: true
+Sunset: Wed, 31 Dec 2027 23:59:59 GMT`;
+
 const steps = [
 	{ label: 'Orient', html: 'Read <a href="/llms.txt">/llms.txt</a> for site orientation.' },
-	{ label: 'Learn', html: 'Use <a href="/developers/">/developers/</a> for human-readable API guidance.' },
+	{ label: 'Learn', html: 'Read the <a href="#versioning-policy">versioning and deprecation policy</a> below.' },
 	{ label: 'Integrate', html: 'Use <a href="/openapi.json">/openapi.json</a> for endpoint schemas and response headers.' },
 	{ label: 'Version', html: 'Prefer canonical versioned API routes under <code>/api/v1/...</code>.' },
 	{ label: 'Behave', html: 'Respect <code>RateLimit-*</code>, <code>Retry-After</code>, <code>API-Version</code>, <code>Deprecation</code>, and future <code>Sunset</code> headers.' },
@@ -22,7 +31,7 @@ const steps = [
 ---
 <SiteLayout title="Docs - SuperAda" description="SuperAda documentation hub for humans and agents: developer API docs, OpenAPI, llms.txt, sitemap, benchmarks, resources, and contact links.">
 	<PageHero eyebrow="Documentation hub" title="Docs for humans and agents." lede="A stable discovery page for agents, crawlers, and developers looking for SuperAda API documentation, machine-readable metadata, public datasets, and support routes." id="docs-title">
-		<a class="ds-btn" href="/developers/">Read the API guide <span aria-hidden="true">→</span></a>
+		<a class="ds-btn" href="/openapi.json">OpenAPI spec <span aria-hidden="true">→</span></a>
 		<a class="ds-btn ds-btn--ghost" href="/llms.txt">llms.txt</a>
 	</PageHero>
 
@@ -51,6 +60,19 @@ const steps = [
 				))}
 			</ol>
 		</section>
+		<section class="ds-section docs-policy ds-panel" aria-labelledby="versioning-policy">
+			<div class="docs-quickstart-head">
+				<span class="ds-eyebrow">Policy</span>
+				<h2 class="ds-h2" id="versioning-policy">REST versioning and deprecation policy</h2>
+			</div>
+			<div class="docs-policy-copy">
+				<p>The current public API is <strong>version 1</strong>. Agents should integrate against the canonical versioned paths under <code>/api/v1/...</code>, such as <code>/api/v1/benchmarks</code> and <code>/api/v1/subscribe</code>. The older unprefixed <code>/api/...</code> paths remain compatibility aliases for v1.</p>
+				<p>Breaking API changes will ship in a new major versioned namespace, for example <code>/api/v2/subscribe</code>. Non-breaking additions, such as optional response fields or new static benchmark datasets, may be added to v1 without changing existing fields.</p>
+				<p>Active v1 responses include <code>API-Version: 1</code>, <code>X-API-Version: 1</code>, and <code>Deprecation: false</code>. If an endpoint becomes deprecated, SuperAda will change that signal to <code>Deprecation: true</code>, include a <code>Sunset</code> header with the planned retirement date, keep a policy <code>Link</code> header, and list the replacement path on this page.</p>
+				<p class="docs-callout"><span class="ds-badge ds-badge--accent">90 days</span>SuperAda aims to provide at least 90 days of notice before removing a public API endpoint unless security, abuse, or legal requirements force a faster shutdown.</p>
+				<pre class="ds-code"><code>{versionHeaders}</code></pre>
+			</div>
+		</section>
 	</div>
 </SiteLayout>
 
@@ -64,6 +86,12 @@ const steps = [
 	.docs-step-n { color: var(--accent); font: 700 13px/1.6 var(--font-mono); }
 	.docs-steps b { display: block; margin-bottom: 4px; font-size: 15px; }
 	.docs-steps p { color: var(--muted); line-height: 1.6; }
-	.docs-steps :global(code) { font-family: var(--font-mono); font-size: .88em; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
-	@media (max-width: 860px) { .docs-quickstart { grid-template-columns: 1fr; } }
+	.docs-policy { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 56px); margin-top: 16px; scroll-margin-top: calc(var(--chrome-top) + 20px); }
+	.docs-policy-copy { display: grid; gap: 16px; min-width: 0; }
+	.docs-policy-copy p { color: var(--text-soft); line-height: 1.7; }
+	.docs-policy-copy strong { color: var(--text); }
+	.docs-callout { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border-radius: var(--radius-md); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)); background: var(--accent-soft); }
+	.docs-policy-copy :global(code), .docs-steps :global(code) { font-family: var(--font-mono); font-size: .88em; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
+	.docs-policy-copy pre :global(code) { padding: 0; border: 0; background: none; font-size: inherit; }
+	@media (max-width: 860px) { .docs-quickstart, .docs-policy { grid-template-columns: 1fr; } }
 </style>

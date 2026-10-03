@@ -44,7 +44,7 @@ function assertPolicyHeaders(headers, label) {
   assert(get('X-API-Version') === '1', `${label} missing X-API-Version: 1`);
   assert(get('Deprecation') === 'false', `${label} missing Deprecation: false`);
   const link = get('Link') || '';
-  assert(link.includes('/developers/#versioning-policy'), `${label} Link header missing versioning policy URL`);
+  assert(link.includes('/docs/#versioning-policy'), `${label} Link header missing versioning policy URL`);
   assert(link.includes('rel="deprecation"'), `${label} Link header missing deprecation relation`);
 }
 
@@ -89,7 +89,7 @@ function assertVercelStaticApiPolicyHeaders() {
   assert(values.get('API-Version') === '1', 'vercel /api/:path* missing API-Version: 1');
   assert(values.get('X-API-Version') === '1', 'vercel /api/:path* missing X-API-Version: 1');
   assert(values.get('Deprecation') === 'false', 'vercel /api/:path* missing Deprecation: false');
-  assert(values.get('Link')?.includes('/developers/#versioning-policy'), 'vercel /api/:path* Link missing versioning policy');
+  assert(values.get('Link')?.includes('/docs/#versioning-policy'), 'vercel /api/:path* Link missing versioning policy');
 
   const rewrites = new Map((vercel.rewrites || []).map((rewrite) => [rewrite.source, rewrite.destination]));
   assert(rewrites.get('/api/v1/subscribe') === '/api/subscribe', 'vercel.json missing /api/v1/subscribe rewrite');
@@ -101,7 +101,7 @@ function assertOpenApiPolicy() {
   const spec = JSON.parse(fs.readFileSync('public/openapi.json', 'utf8'));
   assert(spec.info?.['x-api-version'] === '1', 'OpenAPI missing info.x-api-version');
   assert(spec.info?.['x-versioning-policy']?.includes('Canonical integration paths use /api/v1/...'), 'OpenAPI missing canonical /api/v1 versioning policy text');
-  assert(spec.externalDocs?.url === 'https://superada.ai/developers/#versioning-policy', 'OpenAPI externalDocs missing policy URL');
+  assert(spec.externalDocs?.url === 'https://superada.ai/docs/#versioning-policy', 'OpenAPI externalDocs missing policy URL');
   for (const key of ['ApiVersion', 'XApiVersion', 'Deprecation', 'Sunset', 'Link']) {
     assert(spec.components?.headers?.[key], `OpenAPI missing components.headers.${key}`);
   }
@@ -117,13 +117,13 @@ function assertOpenApiPolicy() {
 }
 
 function assertDeveloperDocsPolicy() {
-  const docs = fs.readFileSync('src/pages/developers.astro', 'utf8');
-  assert(docs.includes('id="versioning-policy"'), 'developers page missing versioning-policy anchor');
-  assert(docs.includes('REST versioning and deprecation policy'), 'developers page missing policy heading');
-  assert(docs.includes('/api/v1/...'), 'developers page missing canonical /api/v1 policy');
-  assert(docs.includes('Deprecation: false'), 'developers page missing active deprecation signal');
-  assert(docs.includes('Sunset'), 'developers page missing Sunset header policy');
-  assert(docs.includes('at least 90 days of notice'), 'developers page missing deprecation notice period');
+  const docs = fs.readFileSync('src/pages/docs.astro', 'utf8');
+  assert(docs.includes('id="versioning-policy"'), 'docs page missing versioning-policy anchor');
+  assert(docs.includes('REST versioning and deprecation policy'), 'docs page missing policy heading');
+  assert(docs.includes('/api/v1/...'), 'docs page missing canonical /api/v1 policy');
+  assert(docs.includes('Deprecation: false'), 'docs page missing active deprecation signal');
+  assert(docs.includes('Sunset'), 'docs page missing Sunset header policy');
+  assert(docs.includes('at least 90 days of notice'), 'docs page missing deprecation notice period');
 }
 
 await assertHandlerPolicyHeaders(subscribeHandler, 'subscribe', '192.0.2');
