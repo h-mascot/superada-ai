@@ -10,9 +10,17 @@ assert(baseHead.includes('href="/openapi.json"'), 'BaseHead missing /openapi.jso
 assert(baseHead.includes('rel="alternate" type="text/plain" href="/llms.txt"'), 'BaseHead missing llms.txt alternate discovery link');
 assert(baseHead.includes('rel="help" href="/docs/"'), 'BaseHead missing docs help link');
 
+// Developer resources are machine-discoverable through BaseHead only; human navigation stays clear of them.
 const footer = read('src/components/Footer.astro');
-for (const link of ['/docs', '/openapi.json', '/llms.txt', '/contact', '/privacy']) {
+for (const link of ['/contact', '/privacy']) {
   assert(footer.includes(`href="${link}"`), `Footer missing ${link}`);
+}
+const header = read('src/components/Header.astro');
+const siteNav = read('src/data/siteNav.ts');
+for (const link of ['/docs', '/openapi.json', '/llms.txt', '/developers']) {
+  assert(!footer.includes(`href="${link}"`), `Footer should not link ${link}`);
+  assert(!header.includes(`href="${link}"`), `Header should not link ${link}`);
+  assert(!siteNav.includes(`href: '${link}'`), `siteNav should not link ${link}`);
 }
 
 const docs = read('src/pages/docs.astro');
