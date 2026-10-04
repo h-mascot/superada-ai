@@ -1,7 +1,7 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import { SITE_TITLE } from '../../consts';
-import { crew, fleetOf, hermesSlugs, type CrewMember } from '../../data/crew';
+import { coreSlugs, crew, hermesSlugs, type CrewMember } from '../../data/crew';
 
 export function getStaticPaths() {
 	return crew.map((agent) => ({ params: { slug: agent.slug }, props: { agent } }));
@@ -9,9 +9,8 @@ export function getStaticPaths() {
 
 interface Props { agent: CrewMember }
 const { agent } = Astro.props;
-const fleet = fleetOf(agent.slug);
-const fleetName = hermesSlugs.includes(agent.slug) ? 'Core crew · Hermes & OpenClaw' : "Data's fleet · Grok Bot";
-const peers = fleet.map((slug) => crew.find((member) => member.slug === slug)!).filter(Boolean);
+const fleetName = hermesSlugs.includes(agent.slug) ? 'Core crew · Hermes & OpenClaw' : 'Core crew · Grok Bot';
+const peers = coreSlugs.map((slug) => crew.find((member) => member.slug === slug)!).filter(Boolean);
 const index = peers.findIndex((member) => member.slug === agent.slug);
 const prev = peers[(index - 1 + peers.length) % peers.length];
 const next = peers[(index + 1) % peers.length];

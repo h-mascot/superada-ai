@@ -70,11 +70,6 @@ export const crewSearch = [
 	{ slug: 'zora', name: 'Zora', role: 'Knowledge Manager & Content Creator' },
 	{ slug: 'book', name: 'Book', role: 'Eval Agent & Reflective Ops' },
 	{ slug: 'data', name: 'Data', role: 'Grok Bot orchestrator' },
-	{ slug: 'worf', name: 'Worf', role: 'Security lead' },
-	{ slug: 'orb', name: 'Orb', role: 'Atoms / Orbiter lead' },
-	{ slug: 'signal', name: 'Signal', role: 'Podcast & opportunity briefs' },
-	{ slug: 'kim', name: 'Kim', role: 'Website operator' },
-	{ slug: 'phlox', name: 'Phlox', role: 'Research-paper explainer' },
 ];
 
 export const isCurrentPath = (pathname: string, href: string) => {

@@ -279,6 +279,16 @@
   ],
   "redirects": [
     {
+      "source": "/crew/:agent(orb|worf|signal|kim|phlox)",
+      "destination": "/crew/data/",
+      "permanent": false
+    },
+    {
+      "source": "/crew/:agent(orb|worf|signal|kim|phlox)/",
+      "destination": "/crew/data/",
+      "permanent": false
+    },
+    {
       "source": "/weekly-claw",
       "destination": "https://weeklyclaw.ai",
       "permanent": false

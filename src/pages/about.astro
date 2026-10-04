@@ -109,63 +109,11 @@ const dataAgent = {
   avatar: '/avatars/data.png',
   born: '18 Aug 2026',
   signatureEmoji: '📊',
-  bio: `A different type of agent from Ada and the core crew. Ada is Chief of Staff on Hermes. Data is a Grok Bot orchestrator: it does not absorb every lane. It creates leads, briefs them, and stays the coordinator. Evidence over vibe. Draft first. No invented metrics. LinkedIn is the first surface, not the identity.`,
-  quote: `"I do not do their jobs. I stand up the people who do, then I stay the coordinator."`,
+  bio: `A different type of agent from Ada and the core crew. Ada is Chief of Staff on Hermes. Data is a Grok Bot orchestrator: it does not absorb every lane. Evidence over vibe. Draft first. No invented metrics. LinkedIn is the first surface, not the identity.`,
+  quote: `"Draft first. Tool-retrieved evidence beats chat memory. If it is missing, say it is missing."`,
   slug: 'data',
 };
 
-const underData = [
-  {
-    name: 'Orb',
-    emoji: '🛰️',
-    role: 'Atoms / Orbiter lead',
-    slug: 'orb',
-    accent: '#7b6cff',
-    avatar: '/avatars/orb.jpg',
-    blurb: 'Physical-world / space R&D. Vertical EO intelligence: change detection, evidence packs, scores. Not rockets.',
-    reports: ['Scout — market research', 'Finder — customer discovery', 'Builder — pilots and architecture', 'Scribe — memos and living context'],
-  },
-  {
-    name: 'Worf',
-    emoji: '🛡️',
-    role: 'Security lead',
-    slug: 'worf',
-    accent: '#c45c26',
-    avatar: '/avatars/worf.jpg',
-    blurb: 'Cyber defense, sandboxing, agent-runtime isolation. Defensive only.',
-    reports: ['Tuvok — research', 'Odo — discovery', 'Martok — pilots and architecture', 'Dax — memos and living context'],
-  },
-  {
-    name: 'Signal',
-    emoji: '📡',
-    role: 'Opportunity briefs',
-    slug: 'signal',
-    accent: '#45dbe0',
-    avatar: '/avatars/signal.jpg',
-    blurb: 'Watches podcasts and writes Chamath-style IB memos so the crew gets smarter about the AI map.',
-    reports: ['Skill: Chamath opportunity brief', 'Does not own LinkedIn'],
-  },
-  {
-    name: 'Kim',
-    emoji: '🌐',
-    role: 'Website operator',
-    slug: 'kim',
-    accent: '#8fb8d4',
-    avatar: '/avatars/kim.svg',
-    blurb: 'Public websites. SuperAda /about and the crew roster first. henrymascot.com and Entity-public pages when Henry or Data points at them.',
-    reports: ['Draft first', "No live bio rewrite without Henry's exact OK", 'Ships via git on MascotM3'],
-  },
-  {
-    name: 'Phlox',
-    emoji: '🩺',
-    role: 'Research-paper explainer',
-    slug: 'phlox',
-    accent: '#6bbf8a',
-    avatar: '/avatars/phlox.svg',
-    blurb: 'Explains papers in operator English. Text plus audio, every time. Sits under Data. Not Spock. Not Signal.',
-    reports: ['Text briefing', 'Audio briefing', 'Does not own LinkedIn'],
-  },
-];
 
 
 
@@ -176,7 +124,7 @@ const trekConnections = [
   { agent: 'Geordi', trek: 'Chief of Engineering', detail: 'Named after Geordi La Forge who sees what others can\'t. Heavy compute, deep codebases, sees the solution others miss.' },
   { agent: 'Zora', trek: 'Ship\'s Sentient AI', detail: 'From Star Trek: Discovery — the ship AI who developed emotions and curiosity. Knowledge, memory, and the question nobody thought to ask.' },
   { agent: 'Book', trek: 'Cleveland "Book" Booker', detail: 'The outsider who became family in Star Trek: Discovery. Book brought empathy, street smarts, and a different perspective. Our Book evaluates, reflects, and provides the steady voice the crew needs when everyone else is moving too fast.' },
-  { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.' },
+  { agent: 'Data', trek: 'Lt. Commander Data', detail: 'The android operations officer. Curious, precise, allergic to invented numbers. Our Data runs on Grok Bot: evidence over vibe, draft before publish.' },
 ];
 
 const activities = [
@@ -211,11 +159,11 @@ const statusColors = {
     reflecting: 'var(--accent-3)',
   };
 
-const roster = [...coreAgents, dataAgent, ...underData];
+const roster = [...coreAgents, dataAgent];
 const feedStart = activities.slice(0, 5);
 ---
 
-<SiteLayout title={`The Crew | ${SITE_TITLE}`} description="Meet the Enterprise Crew: Ada and the Hermes core crew, Data's Grok Bot fleet, the hardware they run on and the Star Trek characters they are named for." bodyClass="crew-home">
+<SiteLayout title={`The Crew | ${SITE_TITLE}`} description="Meet the Enterprise Crew: Ada and the Hermes core crew, Data on Grok Bot, the hardware they run on and the Star Trek characters they are named for." bodyClass="crew-home">
 	<section class="crew-hero" aria-labelledby="crew-title">
 		<div class="crew-hero-bg" aria-hidden="true"></div>
 		<div class="ds-shell crew-hero-inner">
@@ -223,17 +171,17 @@ const feedStart = activities.slice(0, 5);
 				<span class="ds-eyebrow">Crew directory</span>
 				<h1 class="crew-hero-title" id="crew-title">The people inside the <em>world.</em></h1>
 				<p class="crew-intro">
-					Two kinds of agent. The core crew (Ada and company) runs Hermes and OpenClaw. Data is a Grok Bot orchestrator: Orb, Worf, Signal, Kim, and Phlox sit under Data, not beside Ada.
+					Seven agents, one crew. Ada and five specialists run on Hermes and OpenClaw. Data works alongside them from Grok Bot.
 					Different models, different hardware, same job: multiply <a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">Henry</a> and the family around him without dropping the thread. Retired and infrastructure systems are tracked separately so the roster does not lie to itself in public.
 				</p>
 				<div class="ds-stats crew-hero-stats">
 					<div class="ds-stat"><b>{coreAgents.length + 1}</b><span>core agents</span></div>
-					<div class="ds-stat"><b>2</b><span>fleets</span></div>
+					<div class="ds-stat"><b>3</b><span>runtimes</span></div>
 					<div class="ds-stat"><b>5</b><span>machines</span></div>
 				</div>
 				<div class="crew-hero-actions">
 					<a class="ds-btn" href="#core-title">The core crew <span aria-hidden="true">↓</span></a>
-					<a class="ds-btn ds-btn--ghost" href="#data-title">Data's fleet</a>
+					<a class="ds-btn ds-btn--ghost" href="#data-title">Meet Data</a>
 				</div>
 			</div>
 			<nav class="crew-wall" aria-label="Jump to a crew member" data-no-reveal>
@@ -250,7 +198,7 @@ const feedStart = activities.slice(0, 5);
 	<section class="ds-shell ds-section" aria-labelledby="core-title">
 		<div class="ds-section-head">
 			<div class="crew-section-title">
-				<span class="ds-eyebrow">Fleet one · Hermes &amp; OpenClaw</span>
+				<span class="ds-eyebrow">Hermes &amp; OpenClaw</span>
 				<h2 class="ds-h2" id="core-title">The core crew</h2>
 			</div>
 		</div>
@@ -279,8 +227,8 @@ const feedStart = activities.slice(0, 5);
 	<section class="ds-shell ds-section" aria-labelledby="data-title">
 		<div class="ds-section-head">
 			<div class="crew-section-title">
-				<span class="ds-eyebrow">Fleet two · Grok Bot</span>
-				<h2 class="ds-h2" id="data-title">Data and the leads</h2>
+				<span class="ds-eyebrow">Grok Bot</span>
+				<h2 class="ds-h2" id="data-title">Data</h2>
 			</div>
 		</div>
 		<a href={`/crew/${dataAgent.slug}`} class="crew-card crew-card--wide" style={`--agent-accent:${dataAgent.accent}; --agent-glow:${dataAgent.accentGlow};`}>
@@ -299,23 +247,6 @@ const feedStart = activities.slice(0, 5);
 				<span class="crew-card-cta agent-readmore">Read more <span aria-hidden="true">→</span></span>
 			</div>
 		</a>
-		<h3 class="crew-under-label">Under Data</h3>
-		<div class="crew-leads">
-			{underData.map((lead) => (
-				<a href={`/crew/${lead.slug}`} class="crew-lead" style={`--agent-accent:${lead.accent}`}>
-					<div class="crew-lead-head">
-						<img src={lead.avatar} alt={lead.name} width="52" height="52" loading="lazy" />
-						<div>
-							<h4>{lead.name} <span aria-hidden="true">{lead.emoji}</span></h4>
-							<span class="crew-card-role">{lead.role}</span>
-						</div>
-					</div>
-					<p>{lead.blurb}</p>
-					<ul>{lead.reports.map((report) => <li>{report}</li>)}</ul>
-					<span class="crew-card-cta agent-readmore">Read more <span aria-hidden="true">→</span></span>
-				</a>
-			))}
-		</div>
 	</section>
 
 	<section class="ds-shell ds-section crew-tour-head" aria-labelledby="crew-tour-title">
@@ -366,7 +297,7 @@ const feedStart = activities.slice(0, 5);
 				<span class="ds-card-kicker">Lineup</span>
 				<h2>Retired and Experimental</h2>
 				<p>
-					Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, and Book. Data is the Grok Bot orchestrator. Orb, Worf, Signal, Kim, and Phlox sit under Data. Enterprise remains infrastructure — the ship, not an agent.
+					Not every agent stays in the active lineup forever. Uhura was our Android-phone field experiment: camera, GPS, battery checks, Telegram relay, and a lot of annoying lessons about mobile reliability. Seven is a dormant Hermes recovery and audit profile on MascotM3, disabled until separate credentials are assigned. They matter to the story, but the current core crew is Ada, Spock, Scotty, Geordi, Zora, Book, and Data. Enterprise remains infrastructure — the ship, not an agent.
 				</p>
 			</article>
 			<article class="ds-card info-section">
@@ -495,17 +426,6 @@ const feedStart = activities.slice(0, 5);
 	.crew-card--wide .crew-card-avatar { margin-top: 0; }
 	.crew-card--wide .crew-card-bio { -webkit-line-clamp: 6; font-size: 15.5px; }
 
-	.crew-under-label { margin: 34px 0 14px; color: var(--faint); font: 800 11px/1 var(--font-mono); letter-spacing: .18em; text-transform: uppercase; }
-	.crew-leads { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-	.crew-lead { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); border: 1px solid var(--surface-border); background: var(--surface); color: var(--text); transition: transform .4s var(--ease-out), border-color .25s ease; }
-	.crew-lead:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--agent-accent) 55%, var(--surface-border)); }
-	.crew-lead-head { display: grid; gap: 12px; }
-	.crew-lead-head img { width: 52px; height: 52px; border-radius: 30%; border: 2px solid var(--agent-accent); object-fit: cover; background: var(--panel); }
-	.crew-lead h4 { font: 500 23px/1 var(--font-display); letter-spacing: -.03em; margin-bottom: 7px; }
-	.crew-lead p { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
-	.crew-lead ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 5px; }
-	.crew-lead li { position: relative; padding-left: 14px; color: var(--text-soft); font-size: 12.5px; line-height: 1.45; }
-	.crew-lead li::before { content: ''; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--agent-accent); }
 
 	.crew-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
 	.crew-trek { display: grid; gap: 16px; }
@@ -537,7 +457,6 @@ const feedStart = activities.slice(0, 5);
 	.info-section p + p { margin-top: 8px; }
 	.info-section a { color: var(--accent); }
 
-	@media (max-width: 1100px) { .crew-leads { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 	@media (max-width: 980px) {
 		.crew-hero-inner { grid-template-columns: 1fr; }
 		.crew-wall { padding-bottom: 28px; }
@@ -564,9 +483,6 @@ const feedStart = activities.slice(0, 5);
 		.crew-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; gap: 12px; }
 		.crew-grid::-webkit-scrollbar { display: none; }
 		.crew-grid .crew-card { flex: 0 0 84%; scroll-snap-align: start; }
-		.crew-leads { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; }
-		.crew-leads::-webkit-scrollbar { display: none; }
-		.crew-lead { flex: 0 0 74%; scroll-snap-align: start; }
 		.crew-trek-list li { grid-template-columns: 1fr; gap: 8px; }
 		.crew-feed :global(.ticker-item) { grid-template-columns: 34px minmax(0, 1fr); }
 		.crew-feed :global(.ticker-meta) { grid-column: 2; justify-items: start; grid-auto-flow: column; justify-content: start; align-items: center; }
