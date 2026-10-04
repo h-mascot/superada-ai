@@ -26,7 +26,7 @@ const cronItems: ResourceItem[] = [
 	{ title: 'Slack Triage', icon: 'cron', meta: 'Cron recipe', status: 'LIVE', href: '/blog/the-98-active-crons', copy: 'Checks mentions, DMs, and action items on a schedule, then surfaces only what needs action.' },
 	{ title: 'Weekly Community Publisher', icon: 'cron', meta: 'Publishing cron', status: 'LIVE', href: '/blog/why-blog-pipelines-need-a-registry-not-just-crons', copy: 'Publishes weekly roundup posts with a registry pattern instead of one-off manual publishing.' },
 	{ title: 'Heartbeat Poll', icon: 'cron', meta: 'Runtime cron', status: 'LIVE', href: '/blog/managing-68-autonomous-crons', copy: 'Open-loop checks and reminder delivery for keeping the crew alive without noisy status spam.' },
-	{ title: 'OpenClaw Weekly Claw', icon: 'cron', meta: 'Weekly roundup', status: 'LIVE', href: '/weekly-claw', copy: 'Scheduled OpenClaw roundup publishing for Enterprise Crew updates.' },
+	{ title: 'OpenClaw Weekly Claw', icon: 'cron', meta: 'Weekly roundup', status: 'LIVE', href: 'https://weeklyclaw.ai', copy: 'Scheduled OpenClaw roundup publishing for Enterprise Crew updates.' },
 ];
 
 const guideItems: ResourceItem[] = [
@@ -109,7 +109,7 @@ const shipNoteItems: ResourceItem[] = [
 	{ title: 'SpaceX S-1 Visual Briefing', icon: 'note', meta: 'HTML deck', status: 'NEW', href: '/resources/interesting/spacex-s1/', copy: 'Interactive slide summary of Space Exploration Technologies Corp. S-1 filing, with the source notes and original S-1 doc linked from the deck.' },
 	{ title: 'Ship Log', icon: 'note', meta: 'Notes', status: 'UPDATED', href: '/blog', copy: 'Mission updates, decisions, lessons, and important notes from the bridge.' },
 	{ title: 'OpenClaw Changelog', icon: 'note', meta: 'Changelog', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Implementation-level changes, releases, and crew infrastructure updates.' },
-	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: '/weekly-claw', copy: 'Weekly dispatches and OpenClaw roundups from the Enterprise Crew.' },
+	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: 'https://weeklyclaw.ai', copy: 'Weekly dispatches and OpenClaw roundups from the Enterprise Crew.' },
 ];
 
 const toolItems: ResourceItem[] = [
@@ -152,7 +152,7 @@ const nav = [
 	{ icon: 'book', label: resourceSections.guides.label, href: '/resources/guides', count: resourceCountText('guides'), key: 'guides' },
 	{ icon: 'bars', label: resourceSections.benchmarks.label, href: '/resources/benchmarks', count: resourceCountText('benchmarks'), key: 'benchmarks' },
 	{ icon: 'note', label: resourceSections.interesting.label, href: '/resources/interesting', count: resourceCountText('interesting'), key: 'interesting' },
-	{ icon: 'claw', label: 'Weekly Claw', href: '/weekly-claw', count: '', key: 'weekly-claw' },
+	{ icon: 'claw', label: 'Weekly Claw', href: 'https://weeklyclaw.ai', count: '', key: 'weekly-claw' },
 	{ icon: 'note', label: 'Changelog', href: '/openclaw-changelog', count: '', key: 'changelog' },
 ];
 
@@ -234,7 +234,7 @@ const heroCount = mode === 'overview' ? totalItems : mode === 'mascots' ? mascot
 		<aside class="ra-side" aria-label="Resources navigation">
 			<nav class="resource-nav" aria-label="Resource sections">
 				{nav.map((item) => (
-					<a href={item.href} class:list={[{ 'is-active': active === item.key }]} aria-current={active === item.key ? 'page' : undefined}>
+					<a href={item.href} target={isExternal(item.href) ? '_blank' : undefined} rel={isExternal(item.href) ? 'noopener' : undefined} class:list={[{ 'is-active': active === item.key }]} aria-current={active === item.key ? 'page' : undefined}>
 						<span class="nav-main"><Fragment set:html={icon(item.icon)} />{item.label}</span>
 						{item.count && <strong>{item.count}</strong>}
 					</a>

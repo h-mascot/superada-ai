@@ -69,7 +69,7 @@ const activeTabIndex = activeTab ? mobileTabs.findIndex((tab) => tab.href === ac
 		</button>
 		<div class="app-sheet-grid">
 			{moreNav.map((item) => (
-				<a href={item.href} class:list={["app-sheet-link", { "is-current": isCurrentPath(pathname, item.href) }]}>
+				<a href={item.href} class:list={["app-sheet-link", { "is-current": !item.external && isCurrentPath(pathname, item.href) }]} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined}>
 					<span class="app-sheet-icon"><NavIcon name={item.icon} /></span>
 					<span>{item.label}</span>
 				</a>
@@ -88,7 +88,7 @@ const activeTabIndex = activeTab ? mobileTabs.findIndex((tab) => tab.href === ac
 			<a href="https://github.com/h-mascot" target="_blank" rel="noopener noreferrer">GitHub</a>
 			<a href="https://x.com/SuperAda___" target="_blank" rel="noopener noreferrer">X</a>
 			<a href="https://henrymascot.com" target="_blank" rel="noopener noreferrer">HiM</a>
-			<a href="/llms.txt">llms.txt</a>
+			<a href="/privacy">Privacy</a>
 		</div>
 	</div>
 </dialog>

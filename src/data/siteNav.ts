@@ -1,20 +1,23 @@
 export type NavIcon =
 	| 'home' | 'crew' | 'log' | 'atlas' | 'more' | 'cases' | 'code' | 'timeline'
-	| 'signal' | 'docs' | 'claw' | 'changelog' | 'mail' | 'shield' | 'spark' | 'search';
+	| 'signal' | 'docs' | 'claw' | 'changelog' | 'mail' | 'shield' | 'spark' | 'search' | 'bench';
 
 export interface NavLink {
 	href: string;
 	label: string;
 	icon: NavIcon;
 	description?: string;
+	external?: boolean;
 }
+
+export const WEEKLY_CLAW_URL = 'https://weeklyclaw.ai';
+export const BENCHY_URL = 'https://benchy.superada.ai';
 
 /** Primary desktop navigation. */
 export const primaryNav: NavLink[] = [
 	{ href: '/about', label: 'Crew', icon: 'crew', description: 'The Enterprise Crew and how Ada routes work.' },
 	{ href: '/use-cases', label: 'Use Cases', icon: 'cases', description: 'How Henry and the crew use agents in daily work.' },
 	{ href: '/resources', label: 'Resources', icon: 'atlas', description: 'Tools, workflow packs, plugins, skills, crons and guides.' },
-	{ href: '/docs', label: 'Docs', icon: 'docs', description: 'OpenAPI spec, llms.txt, versioning policy and agent docs.' },
 	{ href: '/blog', label: 'Ship Log', icon: 'log', description: 'Notes from live systems and work that shipped.' },
 	{ href: '/journey', label: 'Timeline', icon: 'timeline', description: 'The milestones behind the 1000x journey.' },
 ];
@@ -31,12 +34,10 @@ export const mobileTabs: NavLink[] = [
 export const moreNav: NavLink[] = [
 	{ href: '/use-cases', label: 'Use Cases', icon: 'cases' },
 	{ href: '/journey', label: 'Timeline', icon: 'timeline' },
-	{ href: '/weekly-claw', label: 'Weekly Claw', icon: 'claw' },
-	{ href: '/openclaw-changelog', label: 'Changelog', icon: 'changelog' },
-	{ href: '/docs', label: 'Docs', icon: 'docs' },
+	{ href: WEEKLY_CLAW_URL, label: 'Weekly Claw', icon: 'claw', external: true, description: 'Weekly OpenClaw roundups at weeklyclaw.ai.' },
+	{ href: BENCHY_URL, label: 'Benchy', icon: 'bench', external: true, description: 'Model Benchy: how models do the work Henry actually needs.' },
 	{ href: '/subscribe', label: 'Subscribe', icon: 'signal' },
 	{ href: '/contact', label: 'Contact', icon: 'mail' },
-	{ href: '/privacy', label: 'Privacy', icon: 'shield' },
 ];
 
 /** Static destinations surfaced by the search palette alongside collection content. */
@@ -58,6 +59,7 @@ export const searchPages: NavLink[] = [
 	{ href: '/benchmarks/operator-index', label: 'OperatorIndex', icon: 'atlas', description: 'Benchmark for AI agents under real constraints.' },
 	{ href: '/epic-chats', label: 'Epic Chats', icon: 'log', description: 'Real sessions from the frontier.' },
 	...moreNav.filter((item) => !primaryNav.some((p) => p.href === item.href)),
+	{ href: '/privacy', label: 'Privacy', icon: 'shield', description: 'What SuperAda collects and why.' },
 ];
 
 export const crewSearch = [
