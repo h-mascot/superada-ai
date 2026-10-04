@@ -37,19 +37,19 @@ const holdFirstRender = !Astro.url.pathname.startsWith('/openclaw-changelog');
 				button.setAttribute('aria-pressed', active ? 'true' : 'false');
 			});
 		};
-		try { apply(localStorage.getItem(key) || 'current'); } catch { apply('current'); }
-		window.addEventListener('DOMContentLoaded', () => {
-			let current = 'current';
-			try { current = localStorage.getItem(key) || 'current'; } catch {}
-			document.querySelectorAll('[data-theme-choice]').forEach((button) => {
-				button.addEventListener('click', () => {
-					const theme = button.dataset.themeChoice || 'current';
-					try { localStorage.setItem(key, theme); } catch {}
-					apply(theme);
-				});
-			});
-			apply(current);
+		const stored = () => { try { return localStorage.getItem(key) || 'current'; } catch { return 'current'; } };
+		apply(stored());
+		// Delegated and synced at readyState "interactive" rather than DOMContentLoaded: a slow
+		// deferred third-party script delays DOMContentLoaded and left the switcher dead.
+		document.addEventListener('click', (event) => {
+			const button = event.target instanceof Element && event.target.closest('[data-theme-choice]');
+			if (!button) return;
+			const theme = button.dataset.themeChoice || 'current';
+			try { localStorage.setItem(key, theme); } catch {}
+			apply(theme);
 		});
+		document.addEventListener('readystatechange', () => apply(stored()), { once: true });
+		window.addEventListener('storage', (event) => { if (event.key === key) apply(stored()); });
 		const tabRoots = ['/', '/about', '/blog', '/resources'];
 		const isTabRoot = (url) => { try { return tabRoots.includes(new URL(url).pathname.replace(/\/+$/, '') || '/'); } catch { return false; } };
 		window.addEventListener('pagereveal', (event) => {
@@ -83,7 +83,7 @@ const holdFirstRender = !Astro.url.pathname.startsWith('/openclaw-changelog');
 </script>
 
 {enableUmami && (
-	<script defer src={umamiScriptUrl} data-website-id={umamiWebsiteId} data-tag={umamiTag}></script>
+	<script async src={umamiScriptUrl} data-website-id={umamiWebsiteId} data-tag={umamiTag}></script>
 )}
 
 <meta charset="utf-8" />
