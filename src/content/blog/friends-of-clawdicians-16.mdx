@@ -1,0 +1,96 @@
+---
+title: "Friends of Clawdicians #16"
+description: "GPT-6.1 Sol prices agentic work at a fifth of Astra, Cloudflare and Perplexity shipped open decision models, Aleph Alpha went sovereign, a 27B quant landed on 16GB, and Microsoft's voice loop got faster."
+pubDate: "2026-10-05"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-16.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-16.png';
+
+<Image src={coverImage} alt="A warm cathedral workshop of brass and dark wood where a small brass balance scale weighs two glowing model weights beside a tiny golden gate valve and a suspended ribbon of audio waveform, in gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+This week's releases span agentic work, decision models, smaller deployment footprints, and streaming voice. The useful questions are concrete. What does a long request actually cost? Can a classifier handle your awkward cases? Does a model still behave on the hardware you have?
+
+## GPT-6.1 Sol adds agentic capacity with a long-context price threshold
+
+OpenAI released GPT-6.1 Sol at DevDay 2026 on 29 September. OpenAI reports that it nearly matches GPT-6 Astra on agentic coding, computer use, and professional work at about one-fifth of Astra's standard token prices. The API identifier is `gpt-6.1-sol`; it is also available in ChatGPT Work and Codex.
+
+The context window is 1,050,000 tokens, with a maximum of 922,000 input tokens and 128,000 output tokens. The knowledge cutoff is 30 April 2026. A Sol Ultrafast speed tier was announced as coming soon, so leave it out of today's capacity assumptions.
+
+Pricing is $2 per million input tokens, $0.10 for cached input, $2.50 for cache writes, and $10 for output. Prompts above 272K input tokens trigger 2x input/cache pricing and 1.5x output pricing for the full request. That last clause deserves its own spreadsheet cell.
+
+Builder test: compare a representative agent task below and above that threshold, recording completion quality and total request cost. A large context window is available capacity, not an instruction to fill it.
+
+[Source](https://www.llm-releases.com/models/gpt-6-1-sol)
+
+## Cloudflare releases Clef decision models and fine-tuning
+
+Cloudflare introduced Clef and Clef-flash on 1 October, its first self-trained decision models. The weights use Apache 2.0, the models are hosted on Workers AI, and they are Jev-API compatible. Clef currently leads the Jev Decision Index, with a live benchmark demo site.
+
+Cloudflare's Browser Run example fetched, rendered, and classified a website in 2.2 seconds, against 4.7 seconds for gpt-oss-120b. Cloudflare says Clef also returned more classifications: 95% fashion, 85% ecommerce, and under 1% phishing in that example. Those are vendor example results, not measurements of your classification queue.
+
+Cloudflare also debuted a reinforcement-learning product for customers to fine-tune Clef.
+
+The test worth running: push your existing website labels through the complete fetch, render, and classification path. Include ambiguous pages, then inspect both label quality and elapsed time. A fast answer to the wrong classification question remains the wrong answer.
+
+[Weights](https://huggingface.co/Cloudflare/clef) · [Source](https://blog.cloudflare.com/clef-decision-models/)
+
+## Perplexity publishes Decider v1 27B weights
+
+Perplexity released Decider v1 27B on 1 October, adding another decision-model entrant in the same week. Apache 2.0 weights and a model card are published on Hugging Face.
+
+The concrete size here is 27B. The release information supplied does not establish latency, deployment memory, or a quality advantage over Clef. There is enough to put it into an evaluation, not enough to crown it.
+
+Put Decider through the same labeled cases you use for Clef, with the same expected outputs and scoring rules. Read the model card before choosing the serving configuration. Keep the comparison tied to correct decisions on your inputs; a shared release date is not a benchmark methodology.
+
+[Weights and model card](https://huggingface.co/perplexity-ai/pplx-decider-v1-27b) · [Source](https://benchlm.ai/model-updates/releases/october-2026)
+
+## Kolibri-1 brings German-English text and evidence abstention
+
+Aleph Alpha released Kolibri-1 on 3 October: a sovereign open-weight text LLM under Apache-2.0, built and trained in Germany and Finland. Hugging Face variants include an FP8 flagship checkpoint, a BF16 base, and quantized versions.
+
+Its Mixture-of-Experts architecture has 78.1 billion total parameters and about 3.46 billion active, across 50 layers with 384 routed experts and 6 active per token. It is bilingual in German and English, natively trained for 262,144 tokens of context and extensible to 1M. Its knowledge cutoff is 18 June 2026.
+
+Aleph Alpha reports overall scores of 75.5% in English and 70.8% in German, English averages of 96.5% for math and 89.3% for code, and 63.2% on RULER at 1M context. These are vendor-reported figures.
+
+The model was trained for grounding, tool-calling, and abstention when evidence is insufficient. Try it with German and English document questions that deliberately omit the evidence, check whether it abstains, then repeat with the supporting passage present.
+
+[Source](https://www.llm-releases.com/models/kolibri-1)
+
+## OrcaSAQ-2 27B reduces checkpoint size for a 16GB GPU
+
+OrcaRouter / Continuum AI released OrcaSAQ-2 27B on 28 September under Apache 2.0. It applies sensitivity-aware mixed-precision quantization to Alibaba's Qwen3.8-27B, storing weights at an average 3.21 bits.
+
+OrcaRouter reports a reduction from a 54GB BF16 checkpoint to 12.3GB, about 4.4x smaller, allowing the 27.8B-parameter model to fit and serve on a single 16GB GPU. The vision tower is dropped, leaving text and code; the 262,144-token context is retained.
+
+Vendor-reported results include WikiText-2 perplexity of 5.6482 versus 5.6468 at BF16 (+0.02%), 93.2% top-1 token agreement, 70.0% on SWE-bench Verified, and 58.4% on Terminal-Bench 2.1.
+
+OrcaRouter also reports about 65 tokens per second single-stream, about 90 with MTP speculative decoding, and 330+ across 8-16 concurrent streams through vLLM on a 16GB GPU.
+
+Measure memory and throughput at your actual prompt lengths and concurrency before trusting the config for your fleet. Checkpoint size alone does not establish your serving configuration.
+
+[Weights](https://huggingface.co/orcarouter/OrcaSAQ-2-27B) · [Source](https://www.llm-releases.com/models/orcasaq-2-27b)
+
+## Microsoft adds streaming transcription and multilingual voices
+
+Microsoft's 1 October release includes MAI-Transcribe-2-Streaming, supporting 60 languages with automatic continuous language detection. Microsoft reports that it ranks no. 1 on Artificial Analysis for final and partial transcript accuracy, with partials arriving in just over 100ms. Internal evaluations show words appearing 2x faster than the closest competitor.
+
+Introductory transcription pricing is $0.54 per audio hour through the end of the year.
+
+MAI-Voice-2.1 supports 23 languages and 26 locales, using one voice across languages with a native accent, at $22 per 1M characters. Microsoft reports that MAI-Voice-2.1-Flash delivers 45 seconds of audio at 150ms end-to-end latency, with 55% faster inference and pricing about 60% below comparable models. Its listed price is $15 per 1M characters.
+
+Both voice models support cloning from a few seconds of reference audio, with consent guardrails. The practical check: feed it language-switching speech and watch how the partial transcripts get revised.
+
+[Source](https://microsoft.ai/news/our-first-streaming-transcription-model/)
+
+## Microsoft Agent Framework adds database connectors
+
+Microsoft Agent Framework 1.20.0 arrived on 2 October. The Python update hosts agent workflows over Foundry and adds DuckDB and SQL Server connectors for storing and searching data.
+
+Builder test: exercise a write followed by a search against your intended connector. Verify the returned records before wiring the result into an agent workflow.
+
+[Source](https://github.com/microsoft/agent-framework/blob/main/python/CHANGELOG.md)
+
+Next step: before Friday, compare Sol costs across the 272K threshold, run Clef and Decider against the same labeled cases, and measure OrcaSAQ memory under your intended concurrency. Record the failures alongside the timings.
