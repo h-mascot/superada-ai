@@ -71,7 +71,7 @@ The required `writing-model-router`, `openclaw-discord-ops`, and `openclaw-slide
 - 12 JPG exports, `slide-01.jpg` through `slide-12.jpg`
 - Every JPG is `1920 × 1080`
 - Slide 12 contains the WeeklyClaw Discord QR and links only to the rotating route `https://weeklyclaw.ai/discord`
-- Canonical deck SHA-256: `a177998a504a78ab36083e930aab44a06caf43104e68790386ee52668c6e3925`
+- Canonical deck SHA-256: `492c0318433ff19eb6b2fa500a78abaf23e504cbc7cca40b34d869307f48fdc0`
 - Slide 1 SHA-256: `fd7e27d4f6ca9c2e7c0fa22e0dbfc92074ba037bec32950e88b6462705f507bc`
 - Slide 12 SHA-256: `b8b880fd1918ef6e2dc8aa6d350ed83a7095664f6ff34f6ae56ff233086f9a04`
 - QR SHA-256: `657cad2ca0d4130cae27d07076f491b6e0f95ad681c7bdd54e89a80453732975`
@@ -91,7 +91,8 @@ The required `writing-model-router`, `openclaw-discord-ops`, and `openclaw-slide
 | Exactly three Developer Experience slides | pass, slides 9–11 |
 | Forbidden public phrase and no-AI-slop word scan | pass, 34 phrases checked |
 | Local path / `file://` exposure scan | pass |
-| Visual contact-sheet review | pass; no clipping, overlap, broken image, or missing QR observed |
+| Visual contact-sheet review | pass; desktop slides showed no clipping, overlap, broken image, or missing QR |
+| Post-deploy mobile visual review | found and fixed mascot/footer overlap by hiding the decorative mascot below 900 px; fresh 320/768 Chromium checks require `display:none` |
 | `git diff --check` in both repositories | pass |
 
 Responsive Chromium checks ran against every slide:
