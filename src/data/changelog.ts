@@ -21,7584 +21,2384 @@ export const CHANGELOG_VERSIONS: Version[] = [
     "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101",
     "features": [
       {
-        "title": "Eligible installed skills remain discoverable when the prompt's size limit...",
-        "description": "Eligible installed skills remain discoverable when the prompt's size limit leaves them out of its skill list. Disabled skills and those unavailable for model use remain excluded. [#158089](https://github.com/openclaw/openclaw/pull/158089). Thanks [@vincentkoc](https://github.com/vincentkoc) and [@eltonwf-del](https://github.com/eltonwf-del).",
-        "href": "https://github.com/openclaw/openclaw/issues/158089"
-      },
-      {
-        "title": "Installed-skill search returns matching names and descriptions, while an ex...",
-        "description": "Installed-skill search returns matching names and descriptions, while an exact-name read returns complete instructions or an explicit size error. New instruction reads support files up to 256 KiB. [#158090](https://github.com/openclaw/openclaw/pull/158090). Thanks [@vincentkoc](https://github.com/vincentkoc), [@eltonwf-del](https://github.com/eltonwf-del) and [@Jarvis-Baba](https://github.com/Jarvis-Baba).",
-        "href": "https://github.com/openclaw/openclaw/issues/158090"
-      },
-      {
-        "title": "Embedded agents, Code Mode and Codex gain the installed-skill search and re...",
-        "description": "Embedded agents, Code Mode and Codex gain the installed-skill search and read tools. Codex reads use the correct workspace or delivered sandbox copy and return complete instructions or an error. [#158091](https://github.com/openclaw/openclaw/pull/158091). Thanks [@vincentkoc](https://github.com/vincentkoc) and [@eltonwf-del](https://github.com/eltonwf-del).",
-        "href": "https://github.com/openclaw/openclaw/issues/158091"
-      },
-      {
-        "title": "Search can find capabilities described inside skill instructions under the...",
-        "description": "Search can find capabilities described inside skill instructions under the agent's current native read permission. Removing that permission also suppresses cached or in-progress instruction matches. [#160538](https://github.com/openclaw/openclaw/pull/160538). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/160538"
-      },
-      {
-        "title": "Agents receive guidance to search for task-relevant skills even when their...",
-        "description": "Agents receive guidance to search for task-relevant skills even when their prompt contains no skill list. Simple conversation can skip discovery, and known skill names can be read directly. [#162842](https://github.com/openclaw/openclaw/pull/162842). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162842"
-      },
-      {
-        "title": "Exact capitalization takes priority when matching skill names, so a request...",
-        "description": "Exact capitalization takes priority when matching skill names, so a request for `Deploy` can distinguish it from `deploy`. [#162849](https://github.com/openclaw/openclaw/pull/162849). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162849"
-      },
-      {
-        "title": "Long local instruction files contribute their beginning to search instead o...",
-        "description": "Long local instruction files contribute their beginning to search instead of losing all instruction-text matches. Coverage remains partial, with up to 16 KiB per file within the total search budget. Words beyond that prefix are not matched. [#162856](https://github.com/openclaw/openclaw/pull/162856). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162856"
-      },
-      {
-        "title": "Discovery guidance also works when filtering leaves only notices or an empt...",
-        "description": "Discovery guidance also works when filtering leaves only notices or an empty skill list. Existing notices remain visible, and the guidance reflects the tools the agent is allowed to use. [#162963](https://github.com/openclaw/openclaw/pull/162963). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162963"
-      },
-      {
-        "title": "If selected instructions and supporting files exceed the combined 8 MiB lim...",
-        "description": "If selected instructions and supporting files exceed the combined 8 MiB limit, the agent receives an explanation to select fewer skills even when diagnostics are off. [#164012](https://github.com/openclaw/openclaw/pull/164012). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/164012"
-      },
-      {
-        "title": "Open apps directly, use their settings, attach removable content, and view...",
-        "description": "Open apps directly, use their settings, attach removable content, and view or edit advertised workspace-file formats. [#161747](https://github.com/openclaw/openclaw/pull/161747). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161747"
-      },
-      {
-        "title": "File views follow appended or replaced files, consumed context clears witho...",
-        "description": "File views follow appended or replaced files, consumed context clears without losing newer selections, and inactive panels explain how to restore interaction. [#164277](https://github.com/openclaw/openclaw/pull/164277). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164277"
-      },
-      {
-        "title": "App messages, workspace file opens and confirmed board prompts use visible...",
-        "description": "App messages, workspace file opens and confirmed board prompts use visible approval controls inside their pane. [#164493](https://github.com/openclaw/openclaw/pull/164493). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164493"
-      },
-      {
-        "title": "Repeated calls to one app tool can share a temporary approval for the curre...",
-        "description": "Repeated calls to one app tool can share a temporary approval for the current view. [#164496](https://github.com/openclaw/openclaw/pull/164496). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164496"
-      },
-      {
-        "title": "Tool and resource-template listings preserve server pagination tokens, incl...",
-        "description": "Tool and resource-template listings preserve server pagination tokens, including empty and whitespace-only tokens, to retrieve the correct next page. [#164368](https://github.com/openclaw/openclaw/pull/164368). Thanks [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164368"
-      },
-      {
-        "title": "MCP session controls follow current metadata, withdrawn previews disappear,...",
-        "description": "MCP session controls follow current metadata, withdrawn previews disappear, and access revoked during preparation returns an authorization error. [#163548](https://github.com/openclaw/openclaw/pull/163548). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163548"
-      },
-      {
-        "title": "Transparent, theme-aware MCP Apps blend with the dashboard in light and dar...",
-        "description": "Transparent, theme-aware MCP Apps blend with the dashboard in light and dark modes; apps with their own opaque background retain it. [#161494](https://github.com/openclaw/openclaw/pull/161494). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161494"
-      },
-      {
-        "title": "Dashboard, widget and MCP App reads follow previously accepted board writes...",
-        "description": "Dashboard, widget and MCP App reads follow previously accepted board writes, avoiding older widget revisions. A changed destination rejects the read instead of serving from its former location. [#164448](https://github.com/openclaw/openclaw/pull/164448). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164448"
-      },
-      {
-        "title": "MCP Apps fill their dashboard panel again in fullscreen, resized and split...",
-        "description": "MCP Apps fill their dashboard panel again in fullscreen, resized and split layouts instead of shrinking above a blank gap. [11515ce](https://github.com/openclaw/openclaw/commit/11515ce5b3dad2dde1c8a667c6252f62085dd6de). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Full backups support external storage and Cloudflare R2, optional schedules...",
-        "description": "Full backups support external storage and Cloudflare R2, optional schedules and retention, destination checks and restoration into fresh staging. [#161913](https://github.com/openclaw/openclaw/pull/161913). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161913"
-      },
-      {
-        "title": "Full restore checks archive size plus a 256 MiB free-space reserve before e...",
-        "description": "Full restore checks archive size plus a 256 MiB free-space reserve before extraction when destination capacity can be measured. [#164492](https://github.com/openclaw/openclaw/pull/164492). Thanks [@RomneyDa](https://github.com/RomneyDa), [@smoe](https://github.com/smoe).",
-        "href": "https://github.com/openclaw/openclaw/issues/164492"
-      },
-      {
-        "title": "Restore guides explain extra extraction space and recovering configuration,...",
-        "description": "Restore guides explain extra extraction space and recovering configuration, databases and credentials from one matching backup generation. [#164491](https://github.com/openclaw/openclaw/pull/164491). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/164491"
-      },
-      {
-        "title": "Backup and storage controls, status and provider or encryption guidance use...",
-        "description": "Backup and storage controls, status and provider or encryption guidance use the existing translated locales. [#162578](https://github.com/openclaw/openclaw/pull/162578).",
-        "href": "https://github.com/openclaw/openclaw/issues/162578"
-      },
-      {
-        "title": "Save small JSON working values across interactive Code Mode cells, replies...",
-        "description": "Save small JSON working values across interactive Code Mode cells, replies and restarts. Only completed cells save them; older versions remain in conversation history after overwrite or deletion. [#164086](https://github.com/openclaw/openclaw/pull/164086). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164086"
-      },
-      {
-        "title": "Wait for Code Mode workers when their Gateway or CLI host shuts down, while...",
-        "description": "Wait for Code Mode workers when their Gateway or CLI host shuts down, while another live host retains its own reusable workers. The shutdown ordering applies after restart. [#162141](https://github.com/openclaw/openclaw/pull/162141). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162141"
-      },
-      {
-        "title": "Snooze hides eligible active web conversations until a chosen time while wo...",
-        "description": "Snooze hides eligible active web conversations until a chosen time while work continues. Snoozed and All views, Wake and Undo make them accessible; interaction, completion or pinning can wake them early. Native controls and archived, child or protected conversations are excluded. [#161960](https://github.com/openclaw/openclaw/pull/161960). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161960"
-      },
-      {
-        "title": "App-owned Mac update and repair actions use the app updater, and hosted pro...",
-        "description": "App-owned Mac update and repair actions use the app updater, and hosted processes shut down when their app connection is lost. [#161583](https://github.com/openclaw/openclaw/pull/161583). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161583"
-      },
-      {
-        "title": "The Mac private worker and browser setup use bundled Bun and SQLite support...",
-        "description": "The Mac private worker and browser setup use bundled Bun and SQLite support without separate Node or Homebrew SQLite. See [Mac app signing](https://docs.openclaw.ai/platforms/mac/signing). [#161603](https://github.com/openclaw/openclaw/pull/161603). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161603"
-      },
-      {
-        "title": "Fresh This Mac setup starts the included Gateway for the app lifetime, whil...",
-        "description": "Fresh This Mac setup starts the included Gateway for the app lifetime, while eligible existing installations retain their ownership. [#161709](https://github.com/openclaw/openclaw/pull/161709). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161709"
-      },
-      {
-        "title": "The Mac startup dependency-target mismatch is corrected while the macOS 15...",
-        "description": "The Mac startup dependency-target mismatch is corrected while the macOS 15 minimum remains. [#161754](https://github.com/openclaw/openclaw/pull/161754). Thanks to [@steipete](https://github.com/steipete), [@coygeek](https://github.com/coygeek).",
-        "href": "https://github.com/openclaw/openclaw/issues/161754"
-      },
-      {
-        "title": "Mac app-managed hosting gains the app-closed background toggle and eligible...",
-        "description": "Mac app-managed hosting gains the app-closed background toggle and eligible Node migration and paused-service recovery. [#161779](https://github.com/openclaw/openclaw/pull/161779). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161779"
-      },
-      {
-        "title": "An earlier bundled Mac runtime update improves compatibility when copying l...",
-        "description": "An earlier bundled Mac runtime update improves compatibility when copying large files. [#161825](https://github.com/openclaw/openclaw/pull/161825). Thanks to [@steipete](https://github.com/steipete), [@hannesrudolph](https://github.com/hannesrudolph).",
-        "href": "https://github.com/openclaw/openclaw/issues/161825"
-      },
-      {
-        "title": "The Mac x64 worker avoids a native process-reader startup crash under Rosetta",
-        "description": "The Mac x64 worker avoids a native process-reader startup crash under Rosetta. [#161876](https://github.com/openclaw/openclaw/pull/161876). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161876"
-      },
-      {
-        "title": "An earlier bundled Mac runtime update fixes worker environment handling, ca...",
-        "description": "An earlier bundled Mac runtime update fixes worker environment handling, canceled requests, default certificates and local file paths. [#162570](https://github.com/openclaw/openclaw/pull/162570). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162570"
-      },
-      {
-        "title": "An earlier bundled Mac runtime update fixes streams retaining their parent...",
-        "description": "An earlier bundled Mac runtime update fixes streams retaining their parent process and adds module-loading and process-callback compatibility. [#163081](https://github.com/openclaw/openclaw/pull/163081). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163081"
-      },
-      {
-        "title": "The bundled Mac runtime sequence improves individual-file change, replaceme...",
-        "description": "The bundled Mac runtime sequence improves individual-file change, replacement and deletion notifications, plus pipe and module compatibility. Recursive directory watches retain host-dependent delays. [#163170](https://github.com/openclaw/openclaw/pull/163170). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163170"
-      },
-      {
-        "title": "An earlier bundled Mac runtime update fixes output shutdown, worker messagi...",
-        "description": "An earlier bundled Mac runtime update fixes output shutdown, worker messaging, preload ordering and canceled network requests. [#163687](https://github.com/openclaw/openclaw/pull/163687). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163687"
-      },
-      {
-        "title": "The bundled Mac runtime sequence fixes affected package loading for hook-us...",
-        "description": "The bundled Mac runtime sequence fixes affected package loading for hook-using plugins and tools; the hook-free hosted Gateway was unaffected. [#163831](https://github.com/openclaw/openclaw/pull/163831). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163831"
-      },
-      {
-        "title": "Remote or unconfigured Mac profiles without a local service avoid false uni...",
-        "description": "Remote or unconfigured Mac profiles without a local service avoid false uninstall failures. A loaded service whose definition was removed outside the app is not stopped by this path. [#164069](https://github.com/openclaw/openclaw/pull/164069). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164069"
-      },
-      {
-        "title": "The bundled Mac runtime sequence includes equivalent-path module crash fixe...",
-        "description": "The bundled Mac runtime sequence includes equivalent-path module crash fixes, filesystem defaults and package validation. [#164121](https://github.com/openclaw/openclaw/pull/164121). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164121"
-      },
-      {
-        "title": "Linux fresh setup uses bundled Bun, with a confirmed tray switch for eligib...",
-        "description": "Linux fresh setup uses bundled Bun, with a confirmed tray switch for eligible running Gateways, preserved runtime choices and manual recovery on failure. [#164401](https://github.com/openclaw/openclaw/pull/164401). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164401"
-      },
-      {
-        "title": "The final shared desktop Bun version `1",
-        "description": "The final shared desktop Bun version `1.4.3-canary.1+c999d9cb9` includes plugin-file and symlink resolution, concurrent module lookup, child-process messaging and stack-format fixes. [#164606](https://github.com/openclaw/openclaw/pull/164606). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164606"
-      },
-      {
-        "title": "Mac installs through the current bundled CLI preserve newer service or runt...",
-        "description": "Mac installs through the current bundled CLI preserve newer service or runtime choices and require inspection after refusal instead of automatic recovery. [#164616](https://github.com/openclaw/openclaw/pull/164616). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164616"
-      },
-      {
-        "title": "Mac Gateway setup, preparation and update-error guidance gains translations",
-        "description": "Mac Gateway setup, preparation and update-error guidance gains translations. [#162265](https://github.com/openclaw/openclaw/pull/162265).",
-        "href": "https://github.com/openclaw/openclaw/issues/162265"
-      },
-      {
-        "title": "Mac background hosting, update, migration and retry guidance gains translat...",
-        "description": "Mac background hosting, update, migration and retry guidance gains translations. [#162834](https://github.com/openclaw/openclaw/pull/162834).",
-        "href": "https://github.com/openclaw/openclaw/issues/162834"
-      },
-      {
-        "title": "[Refresh model lists while unused Anthropic credentials remain saved](https...",
-        "description": "[Refresh model lists while unused Anthropic credentials remain saved](https://github.com/openclaw/openclaw/pull/156493) — Thanks [serg0x](https://github.com/serg0x), [RomneyDa](https://github.com/RomneyDa), [yoyo837](https://github.com/yoyo837).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Adopt downloaded model choices and prices without restarting the Gateway](...",
-        "description": "[Adopt downloaded model choices and prices without restarting the Gateway](https://github.com/openclaw/openclaw/pull/158000) — Thanks [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Prepare model catalogs without blocking database reads and keep selected c...",
-        "description": "[Prepare model catalogs without blocking database reads and keep selected credential sources isolated](https://github.com/openclaw/openclaw/pull/161201) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep DeepInfra live model discovery when metadata contains unexpected or r...",
-        "description": "[Keep DeepInfra live model discovery when metadata contains unexpected or repeated tags](https://github.com/openclaw/openclaw/pull/161471) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid repeated model-picker preparation when clients reconnect](https://gi...",
-        "description": "[Avoid repeated model-picker preparation when clients reconnect](https://github.com/openclaw/openclaw/pull/162326) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Let canceled model-list requests finish while discovery continues for othe...",
-        "description": "[Let canceled model-list requests finish while discovery continues for other callers](https://github.com/openclaw/openclaw/pull/162516) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Discover supported OpenAI API-key account chat models absent from the bund...",
-        "description": "[Discover supported OpenAI API-key account chat models absent from the bundled catalog](https://github.com/openclaw/openclaw/pull/162563) — Thanks [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use fallback catalog prices when Vercel live rates overflow](https",
-        "description": "//github.com/openclaw/openclaw/pull/162897) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Retain less duplicated data in the model-catalog worker](https",
-        "description": "//github.com/openclaw/openclaw/pull/164428) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid activating every native agent integration just to build a model cata...",
-        "description": "[Avoid activating every native agent integration just to build a model catalog](https://github.com/openclaw/openclaw/commit/1acda5764e6fa45bbb91dc43e16664b75b157cff) — Thanks [RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Reduce memory used while building model catalogs](https",
-        "description": "//github.com/openclaw/openclaw/commit/a3510e81ba559bd8b312412c2288ef45e94c584a) — Thanks [RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Sessions boards combine current conversation status with placement rules an...",
-        "description": "Sessions boards combine current conversation status with placement rules and persistent pins, including active or failed runs without an observer health summary. [#161958](https://github.com/openclaw/openclaw/pull/161958), [#163761](https://github.com/openclaw/openclaw/pull/163761), [#163823](https://github.com/openclaw/openclaw/pull/163823). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161958"
-      },
-      {
-        "title": "Everyone, Involving me and person filters keep your board focus local to yo...",
-        "description": "Everyone, Involving me and person filters keep your board focus local to your browser and device. [#162283](https://github.com/openclaw/openclaw/pull/162283). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162283"
-      },
-      {
-        "title": "Nested board links and removable, reorderable sidebar pins make boards easi...",
-        "description": "Nested board links and removable, reorderable sidebar pins make boards easier to reach. [#164604](https://github.com/openclaw/openclaw/pull/164604). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164604"
-      },
-      {
-        "title": "Sessions-board requests share prepared facts and concurrent refresh work, w...",
-        "description": "Sessions-board requests share prepared facts and concurrent refresh work, with missing PR details filled through background updates. [#164218](https://github.com/openclaw/openclaw/pull/164218). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164218"
-      },
-      {
-        "title": "Repeated reads of unchanged cards share server work, and committed changes...",
-        "description": "Repeated reads of unchanged cards share server work, and committed changes invalidate the saved result. [#164301](https://github.com/openclaw/openclaw/pull/164301). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164301"
-      },
-      {
-        "title": "Saving proof, artifacts and worker logs avoids repeated card reads and data...",
-        "description": "Saving proof, artifacts and worker logs avoids repeated card reads and database preparation. [#164120](https://github.com/openclaw/openclaw/pull/164120). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164120"
-      },
-      {
-        "title": "A rejected attachment is deleted once, preserving the original metadata-lim...",
-        "description": "A rejected attachment is deleted once, preserving the original metadata-limit error. [#162805](https://github.com/openclaw/openclaw/pull/162805). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162805"
-      },
-      {
-        "title": "Older Workboard KV records require the intermediate Doctor migration, while...",
-        "description": "Older Workboard KV records require the intermediate Doctor migration, while malformed Quick Chat widget URLs are rejected without a panic. [#163713](https://github.com/openclaw/openclaw/pull/163713). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163713"
-      },
-      {
-        "title": "First install on a Bun-only machine skips Node checks when Node is absent o...",
-        "description": "First install on a Bun-only machine skips Node checks when Node is absent or unusable. This still requires the supported explicit Bun 1.4 or newer launcher, and older published updaters do not gain Bun-only update support retroactively. [#161512](https://github.com/openclaw/openclaw/pull/161512), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161512"
-      },
-      {
-        "title": "Eligible trusted Bun-only global installs on macOS and Linux can run plain...",
-        "description": "Eligible trusted Bun-only global installs on macOS and Linux can run plain `openclaw` without Node using the selected Bun executable. The OpenClaw command still needs to be on your PATH. Reinstall to refresh the launcher, or invoke the installed entry through Bun and use `doctor --fix` to approve its repair. [#162541](https://github.com/openclaw/openclaw/pull/162541), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162541"
-      },
-      {
-        "title": "Bun native-dependency repair preserves existing packages and warns when a r...",
-        "description": "Bun native-dependency repair preserves existing packages and warns when a repair is unavailable. Codex startup retains useful missing-file, permission and architecture errors, while malformed JSON produces a redacted warning and no longer blocks later valid messages. [#162559](https://github.com/openclaw/openclaw/pull/162559), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162559"
-      },
-      {
-        "title": "Preserve large computer-control and MCP responses under Bun on Linux and ma...",
-        "description": "Preserve large computer-control and MCP responses under Bun on Linux and macOS, while retaining process cleanup. [#163456](https://github.com/openclaw/openclaw/pull/163456) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163456"
-      },
-      {
-        "title": "[Affected Bun builds on macOS leave intended background descendants running...",
-        "description": "[Affected Bun builds on macOS leave intended background descendants running after command output completes](https://github.com/openclaw/openclaw/pull/163633). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Cloud-worker pairing can complete after downloads exceed ten minutes while...",
-        "description": "Cloud-worker pairing can complete after downloads exceed ten minutes while enrollment is still active. The ten-minute lifetime of generic setup tokens is unchanged. [#161552](https://github.com/openclaw/openclaw/pull/161552), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161552"
-      },
-      {
-        "title": "Cloud bootstrap retries continue while the download gains bytes, avoiding a...",
-        "description": "Cloud bootstrap retries continue while the download gains bytes, avoiding an early stop after several interruptions that still made progress. Three consecutive transient failures with no progress end the attempt, and the existing overall deadlines still apply. [#162408](https://github.com/openclaw/openclaw/pull/162408), thanks to [@steipete](https://github.com/steipete) and [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162408"
-      },
-      {
-        "title": "Preparing and checking cloud-node packages no longer holds up the Gateway's...",
-        "description": "Preparing and checking cloud-node packages no longer holds up the Gateway's main thread, so it can handle other work during that step. [#163446](https://github.com/openclaw/openclaw/pull/163446), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163446"
-      },
-      {
-        "title": "Interrupted worker-bundle downloads resume from bytes retained during the s...",
-        "description": "Interrupted worker-bundle downloads resume from bytes retained during the same installation, then check the complete size and hash before use. Three consecutive failures with no progress stop the attempt, and cancellation or failure removes the temporary download. [#164114](https://github.com/openclaw/openclaw/pull/164114), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164114"
-      },
-      {
-        "title": "The revised Debian and Ubuntu cloud setup example waits for first-boot init...",
-        "description": "The revised Debian and Ubuntu cloud setup example waits for first-boot initialization when Node needs installation and gives package-manager locks up to ten minutes to clear. Existing saved setup profiles need the revised script. [#164133](https://github.com/openclaw/openclaw/pull/164133), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164133"
-      },
-      {
-        "title": "[The revised cloud setup example repairs the Node version selected by nvm a...",
-        "description": "[The revised cloud setup example repairs the Node version selected by nvm and reports its path and version. Update saved scripts to use it. If prerequisites remain missing, check GitHub CLI installation as well.](https://github.com/openclaw/openclaw/pull/164613). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "npm packages bundle worker files in an archive so their file count no longe...",
-        "description": "npm packages bundle worker files in an archive so their file count no longer trips the updater's entry limit, while retaining worker support. [#163985](https://github.com/openclaw/openclaw/pull/163985), thanks to [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/163985"
-      },
-      {
-        "title": "npm installs filter optional native packages by platform, reducing the disk...",
-        "description": "npm installs filter optional native packages by platform, reducing the disk used by unrelated binaries. Existing oversized installations are not automatically pruned, and an older updater that rejects the package may require a supported manual reinstall. [#165997](https://github.com/openclaw/openclaw/pull/165997), thanks to [@steipete](https://github.com/steipete), [@tommyfive](https://github.com/TommyFive) and [@kenmege](https://github.com/Kenmege).",
-        "href": "https://github.com/openclaw/openclaw/issues/165997"
-      },
-      {
-        "title": "Published packages now include the generator and helper files needed by the...",
-        "description": "Published packages now include the generator and helper files needed by the prepare hook, fixing a package-integrity failure during Docker seed installation. [98421de](https://github.com/openclaw/openclaw/commit/98421de805fb68652bcd5d0877116a469255590e), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Let workspace-only host media tools read the shared Gateway screenshot and...",
-        "description": "Let workspace-only host media tools read the shared Gateway screenshot and attachment store. [#162285](https://github.com/openclaw/openclaw/pull/162285) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162285"
-      },
-      {
-        "title": "Message-search previews show basic inline formatting and highlighted URL ma...",
-        "description": "Message-search previews show basic inline formatting and highlighted URL matches while keeping links and images passive. [#162279](https://github.com/openclaw/openclaw/pull/162279). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162279"
-      },
-      {
-        "title": "Conversation-title search normalizes punctuation and spacing, and message s...",
-        "description": "Conversation-title search normalizes punctuation and spacing, and message search supports a prefix in the final query term. Earlier message terms still need complete words. [#162517](https://github.com/openclaw/openclaw/pull/162517). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162517"
-      },
-      {
-        "title": "Online offers All and Running filters, plus presence, running-count, open-c...",
-        "description": "Online offers All and Running filters, plus presence, running-count, open-chat-count and name sorting. Counts cover accessible open chats rather than lifetime history. [#163664](https://github.com/openclaw/openclaw/pull/163664). Thanks [@steipete](https://github.com/steipete), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@vyctorbrzezowski](https://github.com/vyctorbrzezowski) and [@jesse-merhi](https://github.com/jesse-merhi).",
-        "href": "https://github.com/openclaw/openclaw/issues/163664"
-      },
-      {
-        "title": "Cached conversation content, drafts and queues remain usable during connect...",
-        "description": "Cached conversation content, drafts and queues remain usable during connection loss. Prepared Chat and New Session pages can reopen when the browser is explicitly offline, with completed cache and retained access information. Uncertain sends wait for receipt checks and recovery review; cached data remains readable to anyone who can use that browser profile. [#162428](https://github.com/openclaw/openclaw/pull/162428). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162428"
-      },
-      {
-        "title": "Eligible cached conversation routes can display before Gateway reconnect fi...",
-        "description": "Eligible cached conversation routes can display before Gateway reconnect finishes. Missing or ambiguous cached routing still waits for live verification. [#162794](https://github.com/openclaw/openclaw/pull/162794). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162794"
-      },
-      {
-        "title": "Send waits during account recovery while the draft remains editable",
-        "description": "Send waits during account recovery while the draft remains editable. It becomes available after account recovery even if ordinary history is still loading, and never sends the held draft automatically. [#161695](https://github.com/openclaw/openclaw/pull/161695). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161695"
-      },
-      {
-        "title": "After a reconnect or profile change, the Control UI preserves the conversat...",
-        "description": "After a reconnect or profile change, the Control UI preserves the conversation lists and chat-startup information saved by the new connection. [943286f](https://github.com/openclaw/openclaw/commit/943286f39b80e2135c3f57cd74cfa4de5d7f8fc7). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Saved-draft pencil markers include text, attachments, replies and goals aft...",
-        "description": "Saved-draft pencil markers include text, attachments, replies and goals after reload or a fresh tab. Incognito is excluded, and unavailable browser storage falls back to the current tab. [#162049](https://github.com/openclaw/openclaw/pull/162049). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162049"
-      },
-      {
-        "title": "Saved recovery shows meaningful previews, attachment and message counts, an...",
-        "description": "Saved recovery shows meaningful previews, attachment and message counts, and a source conversation when known. Restoration moves the saved input into an empty eligible chat without sending; uncertain delivery remains paused for checking in the original chat. Confirmed deletion removes the displayed saved copies and files, not sent history. [#163717](https://github.com/openclaw/openclaw/pull/163717). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/163717"
-      },
-      {
-        "title": "Saved queue copies disappear when loaded history proves the exact message w...",
-        "description": "Saved queue copies disappear when loaded history proves the exact message was delivered in the same conversation and recorded session. Remaining Draft or Unsent rows retain Restore, Delete and possible-send warnings; recovery never sends automatically. [#164486](https://github.com/openclaw/openclaw/pull/164486). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164486"
-      },
-      {
-        "title": "Successfully queued, unchanged attachments leave the composer while newly e...",
-        "description": "Successfully queued, unchanged attachments leave the composer while newly edited text and files remain. Storage or connection changes prevent stale cleanup. [#162898](https://github.com/openclaw/openclaw/pull/162898). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162898"
-      },
-      {
-        "title": "Queued messages show a small preview of their first image",
-        "description": "Queued messages show a small preview of their first image. [#161459](https://github.com/openclaw/openclaw/pull/161459). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161459"
-      },
-      {
-        "title": "Queued messages and their remove controls remain visible when a plugin repl...",
-        "description": "Queued messages and their remove controls remain visible when a plugin replaces, delegates or fails to mount the composer. [1571690](https://github.com/openclaw/openclaw/commit/15716905f62344c36b975583c5ab4e6d96b41052). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Assistant replies can show YouTube thumbnail cards with Play, supported sta...",
-        "description": "Assistant replies can show YouTube thumbnail cards with Play, supported start times and an external watch link. Thumbnails contact Google before Play; strict mode, narrow cards and provider restrictions can require external playback. [#164576](https://github.com/openclaw/openclaw/pull/164576). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164576"
-      },
-      {
-        "title": "Allowed native local audio and video can play and seek inline up to 4 GiB",
-        "description": "Allowed native local audio and video can play and seek inline up to 4 GiB. Remote-workspace, channel and transcoding limits remain unchanged, and browser codecs still govern playback. Rejected links show Media not attached without exposing the URL, and rejected-only replies avoid duplicate history rows. [#164137](https://github.com/openclaw/openclaw/pull/164137). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164137"
-      },
-      {
-        "title": "New authored progress attachments from session-bound agent runs remain in h...",
-        "description": "New authored progress attachments from session-bound agent runs remain in history after temporary files disappear or the page reloads, including recovered runs. Previously lost files are not restored. [#165275](https://github.com/openclaw/openclaw/pull/165275). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/165275"
-      },
-      {
-        "title": "Newly staged inbound images retain their display references when history is...",
-        "description": "Newly staged inbound images retain their display references when history is reopened or reloaded, without exposing private workspace paths. Already-damaged older transcripts are not repaired. [#161842](https://github.com/openclaw/openclaw/pull/161842). Thanks [@brandon-julio-t](https://github.com/brandon-julio-t) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161842"
-      },
-      {
-        "title": "Generated media from retained rewind branches remains available when return...",
-        "description": "Generated media from retained rewind branches remains available when returning to that branch after file cleanup. Retention uses disk until the branch is removed, and already-deleted files cannot be restored. [#163043](https://github.com/openclaw/openclaw/pull/163043). Thanks [@steipete](https://github.com/steipete) and [@yetval](https://github.com/yetval).",
-        "href": "https://github.com/openclaw/openclaw/issues/163043"
-      },
-      {
-        "title": "Identified participants can react to eligible saved shared-chat prompts and...",
-        "description": "Identified participants can react to eligible saved shared-chat prompts and replies without waking the agent. Some imported messages cannot receive reactions. Supported channel-origin prompts can mirror as the bot; assistant replies stay local and failed mirrors retain the local reaction. [#161053](https://github.com/openclaw/openclaw/pull/161053). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161053"
-      },
-      {
-        "title": "Durable reactions keep local changes even when a changed channel route prev...",
-        "description": "Durable reactions keep local changes even when a changed channel route prevents mirroring. Telegram and WhatsApp removals can restore another reaction, with a remaining limitation when several people chose the same emoji. [#162434](https://github.com/openclaw/openclaw/pull/162434). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162434"
-      },
-      {
-        "title": "Reaction labels, hints and participant text use the existing twenty transla...",
-        "description": "Reaction labels, hints and participant text use the existing twenty translated locales. [#161785](https://github.com/openclaw/openclaw/pull/161785).",
-        "href": "https://github.com/openclaw/openclaw/issues/161785"
-      },
-      {
-        "title": "Admins can separately schedule PR repair or comments, merge when ready, and...",
-        "description": "Admins can separately schedule PR repair or comments, merge when ready, and archive controls from the CI popup. Jobs run every five minutes, use model allowance and can survive browser close or Gateway restart. Canceling prevents future runs but cannot undo an action already accepted by GitHub. [#161492](https://github.com/openclaw/openclaw/pull/161492). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161492"
-      },
-      {
-        "title": "PR automation controls, status, help and errors use the existing translated...",
-        "description": "PR automation controls, status, help and errors use the existing translated locales. [#161688](https://github.com/openclaw/openclaw/pull/161688).",
-        "href": "https://github.com/openclaw/openclaw/issues/161688"
-      },
-      {
-        "title": "The CI popup uses less space while retaining its three automation controls,...",
-        "description": "The CI popup uses less space while retaining its three automation controls, status, job links and errors. [#162444](https://github.com/openclaw/openclaw/pull/162444). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162444"
-      },
-      {
-        "title": "Eligible guests can publish a PR from their own session through a shared ac...",
-        "description": "Eligible guests can publish a PR from their own session through a shared account and qualified target. Personal publication still requires broader write access. [#162988](https://github.com/openclaw/openclaw/pull/162988). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162988"
-      },
-      {
-        "title": "A single permitted publishing destination uses a direct button",
-        "description": "A single permitted publishing destination uses a direct button. Choosing a personal account explicitly can request publication; picking an account in a multi-account menu leaves publication for the next action. [#160967](https://github.com/openclaw/openclaw/pull/160967). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160967"
-      },
-      {
-        "title": "Current PR status is separated from a previous failed publishing attempt",
-        "description": "Current PR status is separated from a previous failed publishing attempt. Failure details remain expandable, and pending confirmation stays visible. [#162173](https://github.com/openclaw/openclaw/pull/162173). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162173"
-      },
-      {
-        "title": "The previous-failed-attempt label uses the existing translated locales",
-        "description": "The previous-failed-attempt label uses the existing translated locales. [#162185](https://github.com/openclaw/openclaw/pull/162185).",
-        "href": "https://github.com/openclaw/openclaw/issues/162185"
-      },
-      {
-        "title": "A shared-publication warning retires when GitHub proves the same accepted w...",
-        "description": "A shared-publication warning retires when GitHub proves the same accepted work was already published. Newer, unverified or unavailable results keep the recovery warning. [#162257](https://github.com/openclaw/openclaw/pull/162257). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162257"
-      },
-      {
-        "title": "Chat-scoped connections avoid unauthorized PR and Discussion reads, clear s...",
-        "description": "Chat-scoped connections avoid unauthorized PR and Discussion reads, clear stale badges after access loss and retain permitted shared-publication options. [bf2883a](https://github.com/openclaw/openclaw/commit/bf2883a22e341cdc0cbbdd60fadfacf505b68c62). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen) and [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "File links use the sender's workspace, and authorized outside-workspace pre...",
-        "description": "File links use the sender's workspace, and authorized outside-workspace previews stay read-only. Session-folder HTML and unsaved drafts can load relative images, media, styles and scripts. Local fonts, CSS imports and folderless attachments remain unsupported. Relative assets have limits of 64 references, 1 MiB each and 4 MiB per request; cloud assets retain the 256 KiB cap. [#163185](https://github.com/openclaw/openclaw/pull/163185). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163185"
-      },
-      {
-        "title": "Replying to uses the original author's avatar and name instead of repeating...",
-        "description": "Replying to uses the original author's avatar and name instead of repeating a quoted excerpt. Selecting it returns to and highlights the original, opening collapsed work or clearing search when needed. Unknown authors are not guessed, and unavailable originals are not clickable. [ed9d2c1](https://github.com/openclaw/openclaw/commit/ed9d2c1605c32e6c960bfc7a491038f2013420c6). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Reply and copy controls follow hover, keyboard focus and touch selection wi...",
-        "description": "Reply and copy controls follow hover, keyboard focus and touch selection without shifting the message footer. [#160612](https://github.com/openclaw/openclaw/pull/160612). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/160612"
-      },
-      {
-        "title": "Your own replies keep Original message unavailable visible when the source...",
-        "description": "Your own replies keep Original message unavailable visible when the source cannot be found. [#162040](https://github.com/openclaw/openclaw/pull/162040). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162040"
-      },
-      {
-        "title": "Replying to stays with its completed work and answer after resumptions or p...",
-        "description": "Replying to stays with its completed work and answer after resumptions or partial history. Earlier failures remain visible without marking a later successful answer as failed. [#162322](https://github.com/openclaw/openclaw/pull/162322). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/162322"
-      },
-      {
-        "title": "Reply-context help and cold-history loading labels use the existing twenty...",
-        "description": "Reply-context help and cold-history loading labels use the existing twenty translated locales. [#161664](https://github.com/openclaw/openclaw/pull/161664).",
-        "href": "https://github.com/openclaw/openclaw/issues/161664"
-      },
-      {
-        "title": "Adjacent updates from the same outside conversation fold into expandable rows",
-        "description": "Adjacent updates from the same outside conversation fold into expandable rows. Search and reply navigation reveal the original messages, with their times and available source links. [#161656](https://github.com/openclaw/openclaw/pull/161656). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161656"
-      },
-      {
-        "title": "A selected conversation shows Waiting on subagents when only its descendant...",
-        "description": "A selected conversation shows Waiting on subagents when only its descendants are active, with a child link when exactly one active direct child is identifiable. Successful handoff and later resumption remain visible when tool details are hidden. [#164190](https://github.com/openclaw/openclaw/pull/164190). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164190"
-      },
-      {
-        "title": "Delegated-work rows show the task and plain named child titles, with Subage...",
-        "description": "Delegated-work rows show the task and plain named child titles, with Subagent as the unnamed fallback. [#163745](https://github.com/openclaw/openclaw/pull/163745). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163745"
-      },
-      {
-        "title": "Supported Discord and Slack browser plugins can link the session header bac...",
-        "description": "Supported Discord and Slack browser plugins can link the session header back to its first source conversation. Slack and GovSlack open the channel or DM rather than an exact message or thread; older sessions acquire a link from a later inbound event. [a49a332](https://github.com/openclaw/openclaw/commit/a49a3321fa9a4f15d50246ccd2daf456acbbaa48). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Progress-card X hides the card only in the current pane, including for viewers",
-        "description": "Progress-card X hides the card only in the current pane, including for viewers. Reload or a Gateway connection change restores it. Writers use the separate Clear saved progress for everyone trash action to remove the saved card for peers. [4e529ba](https://github.com/openclaw/openclaw/commit/4e529baa8f6dc431fd93f8591859a022d29858fb). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen). Thanks [@griswomw2](https://github.com/griswomw2) for the earlier inactive-card investigation.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Plugin details can expand published MCP connection, transport, authenticati...",
-        "description": "Plugin details can expand published MCP connection, transport, authentication, permissions and setup information, with missing or withheld details stated explicitly. These details describe setup, not a live connection or login status. [#163849](https://github.com/openclaw/openclaw/pull/163849). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163849"
-      },
-      {
-        "title": "Clearing a settled plugin search reuses Featured and Trending shelves, avoi...",
-        "description": "Clearing a settled plugin search reuses Featured and Trending shelves, avoids duplicate equivalent searches and keeps loading placeholders filling the view. Rapid category and type changes followed by clearing can still leave the previous category displayed. [#163836](https://github.com/openclaw/openclaw/pull/163836). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163836"
-      },
-      {
-        "title": "Recommendation cards keep available artwork during status loading, refresh...",
-        "description": "Recommendation cards keep available artwork during status loading, refresh or failure and show the publisher beside the title. Current status still governs installation. [#163860](https://github.com/openclaw/openclaw/pull/163860). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163860"
-      },
-      {
-        "title": "Identity editing adds an optional searchable emoji picker, retains direct e...",
-        "description": "Identity editing adds an optional searchable emoji picker, retains direct entry and shows larger text or emoji welcome avatars. Clearing a saved emoji remains unsupported. [#160950](https://github.com/openclaw/openclaw/pull/160950). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen) and [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/160950"
-      },
-      {
-        "title": "The identity emoji-picker button sits inside its input",
-        "description": "The identity emoji-picker button sits inside its input. [#161236](https://github.com/openclaw/openclaw/pull/161236). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161236"
-      },
-      {
-        "title": "Profile name and avatar updates display the latest committed result even wh...",
-        "description": "Profile name and avatar updates display the latest committed result even when writes finish out of order. [#162571](https://github.com/openclaw/openclaw/pull/162571). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162571"
-      },
-      {
-        "title": "The old browser-wide avatar is no longer migrated automatically",
-        "description": "The old browser-wide avatar is no longer migrated automatically. Set an agent's avatar in Overview under Identity. [#163209](https://github.com/openclaw/openclaw/pull/163209). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163209"
-      },
-      {
-        "title": "Quiet Hours groups its time window and timezone and adds a menu with saved...",
-        "description": "Quiet Hours groups its time window and timezone and adds a menu with saved aliases. An unsaved zone outside the browser catalog cannot be entered; without enumeration, choices may be only local, UTC and the saved zone. [#149048](https://github.com/openclaw/openclaw/pull/149048). Thanks [@nancymx-dev](https://github.com/nancymx-dev) and [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/149048"
-      },
-      {
-        "title": "Supported Linux immutable installations add explicitly enabled generation s...",
-        "description": "Supported Linux immutable installations add explicitly enabled generation switching and recovery with documented root, service, launcher and schema requirements. [#164306](https://github.com/openclaw/openclaw/pull/164306). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164306"
-      },
-      {
-        "title": "Explicit adoption prepares sealed Linux candidates away from the serving ge...",
-        "description": "Explicit adoption prepares sealed Linux candidates away from the serving generation, with activation requiring separate opt-in. SQLite worker cleanup releases native writers after the final borrower closes. The initial immutable detector can misidentify an ordinary checkout containing current and releases. [99babf27](https://github.com/openclaw/openclaw/commit/99babf27254314921f7e71a8c8b710b10a851ad8). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Updates prepare eligible older databases to reclaim deleted pages while ret...",
-        "description": "Updates prepare eligible older databases to reclaim deleted pages while retaining records and retention settings. Initial conversion needs a stopped Gateway, time and temporary free space; inspect a failed conversion before restarting. [#163105](https://github.com/openclaw/openclaw/pull/163105). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/163105"
-      },
-      {
-        "title": "Linux btrfs stores gain in-place-write preparation and offline Doctor conve...",
-        "description": "Linux btrfs stores gain in-place-write preparation and offline Doctor conversion, disabling filesystem checksums and compression. Stop database users, retain verified backups, meet tool and space requirements, and check required non-ACL extended attributes or security labels, which are not all preserved. [#160877](https://github.com/openclaw/openclaw/pull/160877). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160877"
-      },
-      {
-        "title": "Offline Doctor btrfs repair no longer falsely refuses shared and agent stor...",
-        "description": "Offline Doctor btrfs repair no longer falsely refuses shared and agent stores because of ownership checks or a newly created empty database log; the Gateway must remain stopped. [#161501](https://github.com/openclaw/openclaw/pull/161501). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161501"
-      },
-      {
-        "title": "Managed updates defer optional btrfs NOCOW database rewrites by default, le...",
-        "description": "Managed updates defer optional btrfs NOCOW database rewrites by default, leaving directories in place while retaining advice; explicit Doctor repair outside managed updates keeps its existing behavior. [#162786](https://github.com/openclaw/openclaw/pull/162786). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162786"
-      },
-      {
-        "title": "Offline btrfs repair refusals now distinguish process holders from failed i...",
-        "description": "Offline btrfs repair refusals now distinguish process holders from failed inspection and show useful process IDs or errors while leaving the original store in place. [#162809](https://github.com/openclaw/openclaw/pull/162809). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162809"
-      },
-      {
-        "title": "Doctor releases its own authentication readers and checks large btrfs store...",
-        "description": "Doctor releases its own authentication readers and checks large btrfs stores in bounded batches before offline NOCOW repair; external holders or inspection failures still block replacement. [#162919](https://github.com/openclaw/openclaw/pull/162919). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162919"
-      },
-      {
-        "title": "Optional offline btrfs NOCOW repair preserves ordinary symbolic links and e...",
-        "description": "Optional offline btrfs NOCOW repair preserves ordinary symbolic links and empty files without following link targets; unsupported file types and database aliases remain refused. [#163023](https://github.com/openclaw/openclaw/pull/163023). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163023"
-      },
-      {
-        "title": "Doctor checks the SQLite directory again after checking open files, refusin...",
-        "description": "Doctor checks the SQLite directory again after checking open files, refusing unexpected new files before NOCOW replacement. [4d1890a3](https://github.com/openclaw/openclaw/commit/4d1890a3cdc3b8f31ac70bb63e19723fee0cc6a9). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Direct updates and standalone Doctor repairs attempt to retain original sta...",
-        "description": "Direct updates and standalone Doctor repairs attempt to retain original state before changing it, with clearer incomplete-capture status; complete recovery still needs a verified backup. [#161044](https://github.com/openclaw/openclaw/pull/161044). Thanks [@steipete](https://github.com/steipete), [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/161044"
-      },
-      {
-        "title": "Unresolved original-state captures now point to the retained manifest and m...",
-        "description": "Unresolved original-state captures now point to the retained manifest and manual recovery guide, with instructions to preserve current data before restoring anything. [#161292](https://github.com/openclaw/openclaw/pull/161292). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161292"
-      },
-      {
-        "title": "Doctor reduces pre-repair capture overhead and, after a successful fresh ca...",
-        "description": "Doctor reduces pre-repair capture overhead and, after a successful fresh capture, removes eligible completed standalone recovery copies older than 30 days; use a verified backup for lasting recovery. [#162364](https://github.com/openclaw/openclaw/pull/162364). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162364"
-      },
-      {
-        "title": "Recovery copies can share unchanged filesystem pages without sharing later...",
-        "description": "Recovery copies can share unchanged filesystem pages without sharing later edits; ordinary-copy fallback and free-space requirements remain. [#162466](https://github.com/openclaw/openclaw/pull/162466). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/162466"
-      },
-      {
-        "title": "Doctor captures relevant Wiki and Teams migration files",
-        "description": "Doctor captures relevant Wiki and Teams migration files; blocked Teams archival keeps the token source and reports a warning. [#163780](https://github.com/openclaw/openclaw/pull/163780). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163780"
-      },
-      {
-        "title": "Doctor stops before repairs when an explicitly supplied original-state capt...",
-        "description": "Doctor stops before repairs when an explicitly supplied original-state capture cannot be verified; inspect retained update evidence before retrying. [#163808](https://github.com/openclaw/openclaw/pull/163808). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163808"
-      },
-      {
-        "title": "Doctor can repair temporary update rehearsal databases under verified maint...",
-        "description": "Doctor can repair temporary update rehearsal databases under verified maintenance ownership while preserving protection for stores outside the rehearsal. [#163869](https://github.com/openclaw/openclaw/pull/163869). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163869"
-      },
-      {
-        "title": "Explicit update repair can reclaim eligible abandoned handoffs after the re...",
-        "description": "Explicit update repair can reclaim eligible abandoned handoffs after the required grace period, with retained evidence, dead-process checks and unfinished-rollback refusals. [9680e57a](https://github.com/openclaw/openclaw/commit/9680e57a9631b6a7060b9d4642bffb9f9fbc3000). Thanks [@steipete](https://github.com/steipete), [@taihartman](https://github.com/taihartman).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A fixed installed CLI can retire unused preparation or verify an already in...",
-        "description": "A fixed installed CLI can retire unused preparation or verify an already installed interrupted candidate while retaining recovery evidence. It checks packaged content and launchers; launcher targets outside dist receive resolution checks rather than full-content verification. Live updaters and unfinished restoration still block settlement. [5a5966fa](https://github.com/openclaw/openclaw/commit/5a5966fa994f637c624f0ec493cf29893bced148). Thanks [@RomneyDa](https://github.com/RomneyDa), [@steipete](https://github.com/steipete). Thanks [@shanselman](https://github.com/shanselman) for coauthoring the landed change.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Non-root macOS updates tolerate launcher ownership they cannot reproduce",
-        "description": "Non-root macOS updates tolerate launcher ownership they cannot reproduce; stranded operations have a guarded recovery path after manual installation of a fixed CLI at the same root. [#164636](https://github.com/openclaw/openclaw/pull/164636). Thanks [@steipete](https://github.com/steipete), [@hrp6vv9mwr-glitch](https://github.com/hrp6vv9mwr-glitch), [@cmillwat](https://github.com/cmillwat).",
-        "href": "https://github.com/openclaw/openclaw/issues/164636"
-      },
-      {
-        "title": "A fixed CLI can repair a package update blocked by replacement of its owner...",
-        "description": "A fixed CLI can repair a package update blocked by replacement of its ownership database while retaining staged files, the helper and recovery evidence. [#164849](https://github.com/openclaw/openclaw/pull/164849). Thanks [@steipete](https://github.com/steipete), [@szef-svg](https://github.com/szef-svg), [@izrl613](https://github.com/izrl613).",
-        "href": "https://github.com/openclaw/openclaw/issues/164849"
-      },
-      {
-        "title": "The Control UI and healthy agents can become ready while eligible large age...",
-        "description": "The Control UI and healthy agents can become ready while eligible large agent databases finish checking; pending agents remain unavailable until admitted. [#163690](https://github.com/openclaw/openclaw/pull/163690). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163690"
-      },
-      {
-        "title": "Pending agent database checks return retry hints and keep startup probes wa...",
-        "description": "Pending agent database checks return retry hints and keep startup probes waiting while healthy agents and the Control UI remain available. [#163839](https://github.com/openclaw/openclaw/pull/163839). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163839"
-      },
-      {
-        "title": "Restarts wait for accepted subagent cleanup, and eligible agent-database pr...",
-        "description": "Restarts wait for accepted subagent cleanup, and eligible agent-database preparation can start before unrelated subagents finish restoring. [#164403](https://github.com/openclaw/openclaw/pull/164403). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164403"
-      },
-      {
-        "title": "Built-source memory diagnostics add an isolated workload and snapshot refer...",
-        "description": "Built-source memory diagnostics add an isolated workload and snapshot reference paths for investigating retained objects. [#163764](https://github.com/openclaw/openclaw/pull/163764). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163764"
-      },
-      {
-        "title": "Node memory diagnostics expose heap-space metrics and before-and-after heap...",
-        "description": "Node memory diagnostics expose heap-space metrics and before-and-after heap-profile breakdowns for the main V8 isolate. [#164057](https://github.com/openclaw/openclaw/pull/164057). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164057"
-      },
-      {
-        "title": "Gateway diagnostics measure reply sizes and approximate memory changes",
-        "description": "Gateway diagnostics measure reply sizes and approximate memory changes; later exclusive sampling excludes overlapping handlers. [#164335](https://github.com/openclaw/openclaw/pull/164335). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164335"
-      },
-      {
-        "title": "RPC memory samples exclude overlapping handlers and report sample coverage",
-        "description": "RPC memory samples exclude overlapping handlers and report sample coverage; an omitted sample does not mean zero memory use. [#164418](https://github.com/openclaw/openclaw/pull/164418). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164418"
-      },
-      {
-        "title": "An eligible stalled channel request can make one continuation from saved co...",
-        "description": "An eligible stalled channel request can make one continuation from saved context. Web UI and group-thread requests need a matching queued follow-up; the continuation can still fail. [#161069](https://github.com/openclaw/openclaw/pull/161069), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161069"
-      },
-      {
-        "title": "Model-timeout recovery after compaction can use an already-saved user turn...",
-        "description": "Model-timeout recovery after compaction can use an already-saved user turn without attempting to append it again. [#162260](https://github.com/openclaw/openclaw/pull/162260), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162260"
-      },
-      {
-        "title": "A waiting follow-up cannot replace the original question during that questi...",
-        "description": "A waiting follow-up cannot replace the original question during that question's existing model retries or fallback; the follow-up receives a separate turn. [#162439](https://github.com/openclaw/openclaw/pull/162439), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162439"
-      },
-      {
-        "title": "An answer already sent to the source chat suppresses a later false stalled-...",
-        "description": "An answer already sent to the source chat suppresses a later false stalled-turn recovery notice; progress and partial sends do not count as completed answers. [#162756](https://github.com/openclaw/openclaw/pull/162756), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162756"
-      },
-      {
-        "title": "Fresh Telegram, Feishu, Microsoft Teams and Nextcloud Talk webhook installa...",
-        "description": "Fresh Telegram, Feishu, Microsoft Teams and Nextcloud Talk webhook installations use Gateway routes by default. Existing eligible accounts retain historical listener pins, and Telegram keeps its old listener until replacement registration succeeds. Move and verify callbacks before removing pins, retain `meta.migrations.webhookListeners`, and upgrade core to at least 2026.9.9 before manually replacing these standalone plugins. Retired Nextcloud Talk `allowPrivateNetwork` settings require the documented 2026.9.5 bridge. [c7c937a](https://github.com/openclaw/openclaw/commit/c7c937abfea22f17be5cac24bfc906d4d91368f6), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor skips inferred historical Nextcloud Talk listeners when the channel...",
-        "description": "Doctor skips inferred historical Nextcloud Talk listeners when the channel is absent, incomplete or disabled, avoiding a startup refusal on installations that do not use it. [96622c4](https://github.com/openclaw/openclaw/commit/96622c4447ed8c2df5a297fa8d6da49709ae0e19), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Let compatible record-based providers serve supported recall, Wiki and voic...",
-        "description": "Let compatible record-based providers serve supported recall, Wiki and voice readers, with selected-provider diagnostics [#162175](https://github.com/openclaw/openclaw/pull/162175). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/162175"
-      },
-      {
-        "title": "Determine private or exact-conversation memory access in the host and valid...",
-        "description": "Determine private or exact-conversation memory access in the host and validate spawned-agent inheritance [a9f6758](https://github.com/openclaw/openclaw/commit/a9f675839a0d7bdbcef9a4371513f2f8c91a1d88). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Allow supporting memory plugins to save context before compaction with perm...",
-        "description": "Allow supporting memory plugins to save context before compaction with permitted provider tools and optional lookups to check existing memories first [32339db](https://github.com/openclaw/openclaw/commit/32339db16b0d4af32b9925e46c59f660ec816d42). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Configured paired-node sources own skill installation, tracking, ClawHub up...",
-        "description": "Configured paired-node sources own skill installation, tracking, ClawHub updates and removal under the required workspace permissions. Native version and local-edit checks remain in place, and replacement can restore the previous skill after cancellation or revoked access, with limited rollback after a forced worker stop. [#162960](https://github.com/openclaw/openclaw/pull/162960). Thanks [@Kimiyu-186](https://github.com/Kimiyu-186).",
-        "href": "https://github.com/openclaw/openclaw/issues/162960"
-      },
-      {
-        "title": "Managed remote skill instructions and supporting files are read from the co...",
-        "description": "Managed remote skill instructions and supporting files are read from the correct host, including when local and remote paths match. A stopped node returns a failure instead of stale local content. [#161440](https://github.com/openclaw/openclaw/pull/161440). Thanks [@RomneyDa](https://github.com/RomneyDa), [@sallyom](https://github.com/sallyom) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161440"
-      },
-      {
-        "title": "Scheduled Workshop reviews add a compatible Codex path using host tools wit...",
-        "description": "Scheduled Workshop reviews add a compatible Codex path using host tools within the captured Workshop directory. It excludes shell, process and native tools, MCP, delegation and hooks, and refuses to run when restrictions cannot be verified or required host tools are missing. [#162406](https://github.com/openclaw/openclaw/pull/162406). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162406"
-      },
-      {
-        "title": "Workshop retires a pending review when its activity check throws instead of...",
-        "description": "Workshop retires a pending review when its activity check throws instead of leaving it stuck. Queued skill selections retain the choices made when submitted, and selector text counts toward the existing size limit. [#161316](https://github.com/openclaw/openclaw/pull/161316). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161316"
-      },
-      {
-        "title": "Background reviews are guided to list pending proposals and use a returned...",
-        "description": "Background reviews are guided to list pending proposals and use a returned proposal ID to inspect or revise one. The result remains a pending proposal, awaiting acceptance. [#164292](https://github.com/openclaw/openclaw/pull/164292). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164292"
-      },
-      {
-        "title": "Eligible Workshop runs that allow silence can end with `NO_REPLY` after too...",
-        "description": "Eligible Workshop runs that allow silence can end with `NO_REPLY` after tool rejections have settled, without being prompted for an unnecessary closing reply. A rejected tool still remains a failure, and runs requiring a visible response retain reply recovery. [4b08683](https://github.com/openclaw/openclaw/commit/4b0868363fab28d689ae7459d15c0aeaf893bd91). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Full Mac chat windows show consistent conversation facts, immediate renames...",
-        "description": "Full Mac chat windows show consistent conversation facts, immediate renames and reconciled late or failed updates across navigation surfaces. [#161745](https://github.com/openclaw/openclaw/pull/161745). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161745"
-      },
-      {
-        "title": "Experimental Mac conversation rows show clearer names, status, channels, de...",
-        "description": "Experimental Mac conversation rows show clearer names, status, channels, descendant summaries and supplied previews, with Pin and Archive controls. [#161973](https://github.com/openclaw/openclaw/pull/161973). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161973"
-      },
-      {
-        "title": "Mac Online people cards show reported activity, environment and conversatio...",
-        "description": "Mac Online people cards show reported activity, environment and conversation links, with other-viewer counts excluding yourself. [#162022](https://github.com/openclaw/openclaw/pull/162022). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162022"
-      },
-      {
-        "title": "Mac transport forwards permission/tool guards and replacements supplied by...",
-        "description": "Mac transport forwards permission/tool guards and replacements supplied by callers, rejecting unsupported Gateway capabilities before sending. [#162043](https://github.com/openclaw/openclaw/pull/162043). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162043"
-      },
-      {
-        "title": "Apple child lists retain larger reported totals and available partial rows",
-        "description": "Apple child lists retain larger reported totals and available partial rows. Custom Swift child-list callbacks must return `OpenClawChatChildSessionsResult(rows:isComplete:)`; old array overloads can yield empty defaults. [#162278](https://github.com/openclaw/openclaw/pull/162278). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162278"
-      },
-      {
-        "title": "Mac conversations gain icon and color organization, owner assignment, trans...",
-        "description": "Mac conversations gain icon and color organization, owner assignment, transcript and link copying, and correctly targeted new windows. Deleting a group retains its conversations. [#163001](https://github.com/openclaw/openclaw/pull/163001). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163001"
-      },
-      {
-        "title": "Mac group defaults select a starting Gateway folder and eligible separate G...",
-        "description": "Mac group defaults select a starting Gateway folder and eligible separate Git working copy for new conversations; failed saves retain selections for retry. [#163162](https://github.com/openclaw/openclaw/pull/163162). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163162"
-      },
-      {
-        "title": "Mac sidebar draft markers and queued-message attention counts accompany Mor...",
-        "description": "Mac sidebar draft markers and queued-message attention counts accompany More actions for the selected conversation when the Gateway UI supports it. Only draft presence and attention counts are shared. [#163193](https://github.com/openclaw/openclaw/pull/163193). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163193"
-      },
-      {
-        "title": "Mac More actions waits for the selected conversation menu to render and can...",
-        "description": "Mac More actions waits for the selected conversation menu to render and cancels a late popup after switching. [#163351](https://github.com/openclaw/openclaw/pull/163351). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163351"
-      },
-      {
-        "title": "Abandoned Mac conversation-menu requests finish promptly without a misleadi...",
-        "description": "Abandoned Mac conversation-menu requests finish promptly without a misleading timeout or late popup. [#163672](https://github.com/openclaw/openclaw/pull/163672). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163672"
-      },
-      {
-        "title": "Experimental Mac visible-root multiselection adds batch actions and drag or...",
-        "description": "Experimental Mac visible-root multiselection adds batch actions and drag organization, retaining successful operations through partial failure. [#164013](https://github.com/openclaw/openclaw/pull/164013). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164013"
-      },
-      {
-        "title": "Experimental Mac archive Undo and selected-thread group creation preserve s...",
-        "description": "Experimental Mac archive Undo and selected-thread group creation preserve successful results; restored threads return to Active and cross-agent names remain distinct. [#164073](https://github.com/openclaw/openclaw/pull/164073). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164073"
-      },
-      {
-        "title": "Mac sidebar identity and Gateway menus route Dashboard, Settings and Usage...",
-        "description": "Mac sidebar identity and Gateway menus route Dashboard, Settings and Usage to the window’s Gateway. The request badge counts the oldest request kind rather than all kinds together. [#164591](https://github.com/openclaw/openclaw/pull/164591). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164591"
-      },
-      {
-        "title": "Existing shared-owner, active and idle labels gain native translations",
-        "description": "Existing shared-owner, active and idle labels gain native translations. [#161733](https://github.com/openclaw/openclaw/pull/161733).",
-        "href": "https://github.com/openclaw/openclaw/issues/161733"
-      },
-      {
-        "title": "Existing Apple conversation, status and cloud-warning messages gain transla...",
-        "description": "Existing Apple conversation, status and cloud-warning messages gain translations. [#162030](https://github.com/openclaw/openclaw/pull/162030).",
-        "href": "https://github.com/openclaw/openclaw/issues/162030"
-      },
-      {
-        "title": "Native activity, people, retry and connection explanations gain translations",
-        "description": "Native activity, people, retry and connection explanations gain translations. [#162060](https://github.com/openclaw/openclaw/pull/162060).",
-        "href": "https://github.com/openclaw/openclaw/issues/162060"
-      },
-      {
-        "title": "Native conversation, group and copy controls gain translations",
-        "description": "Native conversation, group and copy controls gain translations. [#163050](https://github.com/openclaw/openclaw/pull/163050).",
-        "href": "https://github.com/openclaw/openclaw/issues/163050"
-      },
-      {
-        "title": "Apple group, folder, filter, draft and pull-request labels gain translations",
-        "description": "Apple group, folder, filter, draft and pull-request labels gain translations. [#163219](https://github.com/openclaw/openclaw/pull/163219).",
-        "href": "https://github.com/openclaw/openclaw/issues/163219"
-      },
-      {
-        "title": "Apple sidebar, agent, accessibility and child-loading error text gains tran...",
-        "description": "Apple sidebar, agent, accessibility and child-loading error text gains translations. [#163793](https://github.com/openclaw/openclaw/pull/163793).",
-        "href": "https://github.com/openclaw/openclaw/issues/163793"
-      },
-      {
-        "title": "Native selection prompts, configuration-save, restart and audio labels gain...",
-        "description": "Native selection prompts, configuration-save, restart and audio labels gain translations. [#163935](https://github.com/openclaw/openclaw/pull/163935).",
-        "href": "https://github.com/openclaw/openclaw/issues/163935"
-      },
-      {
-        "title": "Apple selection, deletion, archive, error and preserved-working-copy messag...",
-        "description": "Apple selection, deletion, archive, error and preserved-working-copy messages gain translations. [#164050](https://github.com/openclaw/openclaw/pull/164050).",
-        "href": "https://github.com/openclaw/openclaw/issues/164050"
-      },
-      {
-        "title": "Apple archive, Undo, group creation and Gateway recovery messages gain tran...",
-        "description": "Apple archive, Undo, group creation and Gateway recovery messages gain translations. [#164155](https://github.com/openclaw/openclaw/pull/164155).",
-        "href": "https://github.com/openclaw/openclaw/issues/164155"
-      },
-      {
-        "title": "Mac Set as primary and iOS Primary and Retry now gain translated labels",
-        "description": "Mac Set as primary and iOS Primary and Retry now gain translated labels. [#164623](https://github.com/openclaw/openclaw/pull/164623).",
-        "href": "https://github.com/openclaw/openclaw/issues/164623"
-      },
-      {
-        "title": "Mac Load more reaches older selected-agent threads",
-        "description": "Mac Load more reaches older selected-agent threads; local and Gateway search retain results and expose retry or incomplete-index notices. [#163114](https://github.com/openclaw/openclaw/pull/163114). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163114"
-      },
-      {
-        "title": "Mac filters, owner views, grouping, sorting, previews and reset choices per...",
-        "description": "Mac filters, owner views, grouping, sorting, previews and reset choices persist per Gateway profile. [#163164](https://github.com/openclaw/openclaw/pull/163164). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163164"
-      },
-      {
-        "title": "Full Mac chat detail cards expose available people, workspace, branch, pull...",
-        "description": "Full Mac chat detail cards expose available people, workspace, branch, pull request, progress, notepad and preview information, with last-known notices when needed. [#163165](https://github.com/openclaw/openclaw/pull/163165). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163165"
-      },
-      {
-        "title": "Mac follow-up trees, expandable agent rosters and cross-agent Pages retain...",
-        "description": "Mac follow-up trees, expandable agent rosters and cross-agent Pages retain loaded children and use configured image avatars with text fallback. [#163699](https://github.com/openclaw/openclaw/pull/163699). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163699"
-      },
-      {
-        "title": "Apple conversation search, loading, indexing and archive notices gain trans...",
-        "description": "Apple conversation search, loading, indexing and archive notices gain translations. [#163159](https://github.com/openclaw/openclaw/pull/163159).",
-        "href": "https://github.com/openclaw/openclaw/issues/163159"
-      },
-      {
-        "title": "Mac plugin catalogs add project or person grouping, owner filters, profile-...",
-        "description": "Mac plugin catalogs add project or person grouping, owner filters, profile-specific visibility, independent paging and retry, and supported source actions. [#164436](https://github.com/openclaw/openclaw/pull/164436). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164436"
-      },
-      {
-        "title": "Paired Mac Claude Code discovery respects nonblank `CLAUDE_CONFIG_DIR` in t...",
-        "description": "Paired Mac Claude Code discovery respects nonblank `CLAUDE_CONFIG_DIR` in the app launch environment, otherwise using the home-directory default. [#163787](https://github.com/openclaw/openclaw/pull/163787). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163787"
-      },
-      {
-        "title": "Apple session source, catalog, owner, open, hide, delete and retry messages...",
-        "description": "Apple session source, catalog, owner, open, hide, delete and retry messages gain translations. [#164481](https://github.com/openclaw/openclaw/pull/164481).",
-        "href": "https://github.com/openclaw/openclaw/issues/164481"
-      },
-      {
-        "title": "Android long-press Snooze presets, the Snoozed list and early Wake apply to...",
-        "description": "Android long-press Snooze presets, the Snoozed list and early Wake apply to eligible root conversations while work continues. Pinning or archiving clears snooze. [#162293](https://github.com/openclaw/openclaw/pull/162293). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162293"
-      },
-      {
-        "title": "iOS Snooze and Wake add Active, Snoozed and Archived views, including cache...",
-        "description": "iOS Snooze and Wake add Active, Snoozed and Archived views, including cached Active and Snoozed browsing offline. [#162399](https://github.com/openclaw/openclaw/pull/162399). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162399"
-      },
-      {
-        "title": "Mac eligible root conversations gain Snooze and Wake, preserving existing p...",
-        "description": "Mac eligible root conversations gain Snooze and Wake, preserving existing pins while messages or run completion can wake them. [#163241](https://github.com/openclaw/openclaw/pull/163241). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163241"
-      },
-      {
-        "title": "Android Snooze and Wake controls gain translations. [#162363](https",
-        "description": "//github.com/openclaw/openclaw/pull/162363).",
-        "href": "https://github.com/openclaw/openclaw/issues/162363"
-      },
-      {
-        "title": "Apple snooze choices and iOS snooze status gain translations",
-        "description": "Apple snooze choices and iOS snooze status gain translations. [#162630](https://github.com/openclaw/openclaw/pull/162630).",
-        "href": "https://github.com/openclaw/openclaw/issues/162630"
-      },
-      {
-        "title": "Mac snooze and wake labels gain translations. [#163293](https",
-        "description": "//github.com/openclaw/openclaw/pull/163293).",
-        "href": "https://github.com/openclaw/openclaw/issues/163293"
-      },
-      {
-        "title": "iOS saved-message reactions add counted chips, an emoji picker and VoiceOve...",
-        "description": "iOS saved-message reactions add counted chips, an emoji picker and VoiceOver controls, with live updates and permission checks. [#162296](https://github.com/openclaw/openclaw/pull/162296). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162296"
-      },
-      {
-        "title": "Android saved, nonstreaming message reactions add chips, media-message long...",
-        "description": "Android saved, nonstreaming message reactions add chips, media-message long-press access and TalkBack controls; inline add appears alongside existing reactions. [#162307](https://github.com/openclaw/openclaw/pull/162307). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162307"
-      },
-      {
-        "title": "Apple reaction controls and accessibility labels gain translations",
-        "description": "Apple reaction controls and accessibility labels gain translations. [#162475](https://github.com/openclaw/openclaw/pull/162475).",
-        "href": "https://github.com/openclaw/openclaw/issues/162475"
-      },
-      {
-        "title": "Android emoji, reaction-count and reaction-name labels gain translations",
-        "description": "Android emoji, reaction-count and reaction-name labels gain translations. [#162568](https://github.com/openclaw/openclaw/pull/162568).",
-        "href": "https://github.com/openclaw/openclaw/issues/162568"
-      },
-      {
-        "title": "iOS pastes copied images as removable attachments in enabled composers",
-        "description": "iOS pastes copied images as removable attachments in enabled composers; Files URLs are not included. [#161627](https://github.com/openclaw/openclaw/pull/161627). Thanks to [@Marvinthebored](https://github.com/Marvinthebored), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/161627"
-      },
-      {
-        "title": "Mac automation launches can avoid foreground activation, with prompt-requir...",
-        "description": "Mac automation launches can avoid foreground activation, with prompt-requiring actions deferred until a normal relaunch. [#163758](https://github.com/openclaw/openclaw/pull/163758). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163758"
-      },
-      {
-        "title": "[Send maximum thinking effort to GLM 5",
-        "description": "[Send maximum thinking effort to GLM 5.3, GLM 5.3 Flash, Kimi K3 and DeepSeek V4.1 Flash on Ollama Cloud](https://github.com/openclaw/openclaw/pull/155640) — Thanks [Ram-G](https://github.com/Ram-G), [RomneyDa](https://github.com/RomneyDa), [serg0x](https://github.com/serg0x), [g0st1n](https://github.com/g0st1n), [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor supported maximum thinking in Codex chat and channel replies](https:...",
-        "description": "[Honor supported maximum thinking in Codex chat and channel replies](https://github.com/openclaw/openclaw/pull/161103) — Thanks [yashas-13](https://github.com/yashas-13), [obviyus](https://github.com/obviyus), [Oldrich333](https://github.com/Oldrich333).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Restore xhigh and max reasoning choices for eligible Daybreak Blue and Red...",
-        "description": "[Restore xhigh and max reasoning choices for eligible Daybreak Blue and Red accounts](https://github.com/openclaw/openclaw/pull/162024) — Thanks [VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Add bundled Claude Sonnet 5",
-        "description": "[Add bundled Claude Sonnet 5.5 and Opus 5.5 definitions for Copilot](https://github.com/openclaw/openclaw/pull/162171) — Thanks [roslinmahmud](https://github.com/roslinmahmud), [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor maximum thinking on verified models connected directly to Ollama Clo...",
-        "description": "[Honor maximum thinking on verified models connected directly to Ollama Cloud through an ordinary Ollama provider](https://github.com/openclaw/openclaw/pull/162204) — Thanks [serg0x](https://github.com/serg0x), [RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep GLM 5",
-        "description": "[Keep GLM 5.3 and GLM 5.3 Flash reasoning separate from replies when Ollama thinking is Off](https://github.com/openclaw/openclaw/pull/162300) — Thanks [serg0x](https://github.com/serg0x).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor prepared reasoning settings in affected xAI, MiniMax and custom-prov...",
-        "description": "[Honor prepared reasoning settings in affected xAI, MiniMax and custom-provider chat replies](https://github.com/openclaw/openclaw/pull/163909) — Thanks [steipete](https://github.com/steipete), [Oldrich333](https://github.com/Oldrich333), [yashas-13](https://github.com/yashas-13).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Allow Off on xAI models without effort controls while retaining their nati...",
-        "description": "[Allow Off on xAI models without effort controls while retaining their native reasoning](https://github.com/openclaw/openclaw/pull/164352) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use DeepSeek V4",
-        "description": "[Use DeepSeek V4.1 Flash for new Baseten setups, restore Flash image and thinking options, and preserve current Pro conversation replay](https://github.com/openclaw/openclaw/pull/164389) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Configure Codex Ultrafast and its shared speed controls](https",
-        "description": "//github.com/openclaw/openclaw/pull/163320) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve explicitly requested Ultrafast in OpenClaw-runtime OpenAI and Cha...",
-        "description": "[Preserve explicitly requested Ultrafast in OpenClaw-runtime OpenAI and ChatGPT Responses requests](https://github.com/openclaw/openclaw/pull/163484) — Thanks [VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Offer Ultrafast on available embedded API-key Responses routes and carry s...",
-        "description": "[Offer Ultrafast on available embedded API-key Responses routes and carry selected Speed through worker calls](https://github.com/openclaw/openclaw/pull/163663) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Offer Ultrafast with direct API keys and require an explicit eligible sele...",
-        "description": "[Offer Ultrafast with direct API keys and require an explicit eligible selection in Codex](https://github.com/openclaw/openclaw/pull/164556) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Eligible sessions can select Ultrafast in the model picker or with `/fast u...",
-        "description": "Eligible sessions can select Ultrafast in the model picker or with `/fast ultrafast`. Availability depends on the account, model and runtime, and an unavailable choice may fall back to Fast. [#160352](https://github.com/openclaw/openclaw/pull/160352). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160352"
-      },
-      {
-        "title": "Fast and Ultrafast use distinct bolt icons, with full accessible names and...",
-        "description": "Fast and Ultrafast use distinct bolt icons, with full accessible names and compact effort controls. [#162356](https://github.com/openclaw/openclaw/pull/162356). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/162356"
-      },
-      {
-        "title": "[Show the runtime and account context used by background utility models](ht...",
-        "description": "[Show the runtime and account context used by background utility models](https://github.com/openclaw/openclaw/pull/160884) — Thanks [etzelm](https://github.com/etzelm), [Patrick-Erichsen](https://github.com/Patrick-Erichsen), [miguelarios](https://github.com/miguelarios), [asikorskiy](https://github.com/asikorskiy), [cbhawthorne84](https://github.com/cbhawthorne84).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Let eligible automatic background tasks borrow the primary model’s CLI run...",
-        "description": "[Let eligible automatic background tasks borrow the primary model’s CLI runtime when API credentials are absent](https://github.com/openclaw/openclaw/pull/157867) — Thanks [etzelm](https://github.com/etzelm), [Patrick-Erichsen](https://github.com/Patrick-Erichsen), [miguelarios](https://github.com/miguelarios), [cbhawthorne84](https://github.com/cbhawthorne84).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Correct Agents API runtime selection and explain how to verify execution a...",
-        "description": "[Correct Agents API runtime selection and explain how to verify execution and returned files](https://github.com/openclaw/openclaw/pull/162158) — Thanks [sjf-oa](https://github.com/sjf-oa), [sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Continue hosted Agents API attachment turns with usable originals and hone...",
-        "description": "[Continue hosted Agents API attachment turns with usable originals and honest upload feedback](https://github.com/openclaw/openclaw/pull/162210) — Thanks [sjf-oa](https://github.com/sjf-oa), [sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Choose native tools and web-search options when creating or resetting Agen...",
-        "description": "[Choose native tools and web-search options when creating or resetting Agents API sessions after restart](https://github.com/openclaw/openclaw/pull/162335) — Thanks [sjf-oa](https://github.com/sjf-oa), [sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Identify native OpenAI Agents API requests with the OpenClaw product and v...",
-        "description": "[Identify native OpenAI Agents API requests with the OpenClaw product and version](https://github.com/openclaw/openclaw/pull/162426) — Thanks [sjf-oa](https://github.com/sjf-oa), [sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve new-format Agents API session identity across credential changes...",
-        "description": "[Preserve new-format Agents API session identity across credential changes and document unsupported older bindings and access recovery](https://github.com/openclaw/openclaw/pull/162948) — Thanks [sjf-oa](https://github.com/sjf-oa), [sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Find and read existing sdk-ts Claude transcripts through the Gateway, with...",
-        "description": "[Find and read existing sdk-ts Claude transcripts through the Gateway, with the native Mac node reader unchanged](https://github.com/openclaw/openclaw/pull/143248) — Thanks [nimarosa](https://github.com/nimarosa), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve Claude CLI context in independent whole-conversation forks](https...",
-        "description": "[Preserve Claude CLI context in independent whole-conversation forks](https://github.com/openclaw/openclaw/pull/155591) — Thanks [Marvinthebored](https://github.com/Marvinthebored), [Patrick-Erichsen](https://github.com/Patrick-Erichsen), [Peetiegonzalez](https://github.com/Peetiegonzalez).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Resume Claude CLI conversations after a completed consult, fallback or han...",
-        "description": "[Resume Claude CLI conversations after a completed consult, fallback or handoff](https://github.com/openclaw/openclaw/pull/161228) — Thanks [SunnyShu0925](https://github.com/SunnyShu0925), [Patrick-Erichsen](https://github.com/Patrick-Erichsen), [Oldrich333](https://github.com/Oldrich333), [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Finish Claude CLI turns after background commands and retain overlapping t...",
-        "description": "[Finish Claude CLI turns after background commands and retain overlapping task answers](https://github.com/openclaw/openclaw/pull/161260) — Thanks [VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Find CLI backends using the selected custom state directory](https",
-        "description": "//github.com/openclaw/openclaw/pull/161270) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Return a process handle for long local Claude CLI shell work through Gatew...",
-        "description": "[Return a process handle for long local Claude CLI shell work through Gateway MCP](https://github.com/openclaw/openclaw/pull/161780) — Thanks [VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Restore permitted tools for verified automatic Claude CLI child-result tur...",
-        "description": "[Restore permitted tools for verified automatic Claude CLI child-result turns](https://github.com/openclaw/openclaw/pull/162374) — Thanks [Stronggenetics](https://github.com/Stronggenetics), [VACInc](https://github.com/VACInc), [Jeehut](https://github.com/Jeehut), [abacha](https://github.com/abacha), [glaiveai](https://github.com/glaiveai), [pibur](https://github.com/pibur), [ranukadf82-hub](https://github.com/ranukadf82-hub), [nano-richtera](https://github.com/nano-richtera), [aspalagin](https://github.com/aspalagin), [Oldrich333](https://github.com/Oldrich333), [davidcittadini](https://github.com/davidcittadini), [Marvinthebored](https://github.com/Marvinthebored), [aikohoshinoai-prog](https://github.com/aikohoshinoai-prog).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep CLI parent-conversation context when child tasks complete](https://gi...",
-        "description": "[Keep CLI parent-conversation context when child tasks complete](https://github.com/openclaw/openclaw/pull/164378) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid new approval requests after canceling a paired-node Claude CLI turn]...",
-        "description": "[Avoid new approval requests after canceling a paired-node Claude CLI turn](https://github.com/openclaw/openclaw/pull/164614) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep Gateway tools available to CLI agents after the first turn ends](http...",
-        "description": "[Keep Gateway tools available to CLI agents after the first turn ends](https://github.com/openclaw/openclaw/pull/165428) — Thanks [steipete](https://github.com/steipete), [nano-richtera](https://github.com/nano-richtera).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Save provider conversation bindings after CLI history-writer recovery](htt...",
-        "description": "[Save provider conversation bindings after CLI history-writer recovery](https://github.com/openclaw/openclaw/commit/ed71fa44a4ab5ef8dfe9217771ef62ea69cb20ec) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid starting a remote Claude approval request after cancellation](https:...",
-        "description": "[Avoid starting a remote Claude approval request after cancellation](https://github.com/openclaw/openclaw/commit/2039d9cf2fcd949c8e07055fcdba92f20a24fb35).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep Claude’s cached prompt prefix while updating workspace instructions a...",
-        "description": "[Keep Claude’s cached prompt prefix while updating workspace instructions and temporary context](https://github.com/openclaw/openclaw/pull/163461) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Deliver shared workspace persona and memory to Codex connections without t...",
-        "description": "[Deliver shared workspace persona and memory to Codex connections without the managed relay](https://github.com/openclaw/openclaw/pull/162156) — Thanks [Kimiyu-186](https://github.com/Kimiyu-186), [mbelinky](https://github.com/mbelinky).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep OpenAI compaction checkpoints when later tool-call IDs are repaired](...",
-        "description": "[Keep OpenAI compaction checkpoints when later tool-call IDs are repaired](https://github.com/openclaw/openclaw/pull/160895) — Thanks [brandon-julio-t](https://github.com/brandon-julio-t), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Reuse eligible OpenAI HTTP conversation baselines after pauses of up to 90...",
-        "description": "[Reuse eligible OpenAI HTTP conversation baselines after pauses of up to 90 minutes](https://github.com/openclaw/openclaw/commit/13ed30a6603de6fe2c6e106db17bb09b7587ea16) — Thanks [hartmark](https://github.com/hartmark), [Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Give embedded Node model runtimes separate credential policies, connection...",
-        "description": "[Give embedded Node model runtimes separate credential policies, connections and cleanup](https://github.com/openclaw/openclaw/commit/8a2d2ff7e28cf0ec5dfeeda5c96c29fad094558b) — Thanks [RomneyDa](https://github.com/RomneyDa), [sallyom](https://github.com/sallyom), [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Optionally omit unneeded tools for conversational turns with experimental...",
-        "description": "[Optionally omit unneeded tools for conversational turns with experimental Decision assistance](https://github.com/openclaw/openclaw/commit/2f1f8beed7a3314e704d5435e90a33397b4ca787) — Thanks [MertBasar0](https://github.com/MertBasar0), [jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Query history across visible automations with `runs --all`, retaining filte...",
-        "description": "Query history across visible automations with `runs --all`, retaining filters and pagination. Use it without a positional job ID or `--id`. [#148947](https://github.com/openclaw/openclaw/pull/148947) Thanks [@Alix-007](https://github.com/Alix-007) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/148947"
-      },
-      {
-        "title": "Search job IDs, names, descriptions and agent names with `list --query`",
-        "description": "Search job IDs, names, descriptions and agent names with `list --query`; message and script contents are outside this search. [#150097](https://github.com/openclaw/openclaw/pull/150097) Thanks [@Alix-007](https://github.com/Alix-007) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/150097"
-      },
-      {
-        "title": "Open the job History page from a completed message's From link",
-        "description": "Open the job History page from a completed message's From link. Older runs may need manual paging, and deleted jobs cannot be opened. [#161643](https://github.com/openclaw/openclaw/pull/161643) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161643"
-      },
-      {
-        "title": "Keep automation names current across history and live messages",
-        "description": "Keep automation names current across history and live messages; deleted jobs retain the Automation label. [#163797](https://github.com/openclaw/openclaw/pull/163797) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163797"
-      },
-      {
-        "title": "Preserve recorded creators of prior recurring runs when the next run starts...",
-        "description": "Preserve recorded creators of prior recurring runs when the next run starts, rather than moving them into Unattributed. [#161806](https://github.com/openclaw/openclaw/pull/161806) Thanks [@PollyBot13](https://github.com/PollyBot13), [@Conan-Scott](https://github.com/Conan-Scott) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161806"
-      },
-      {
-        "title": "Omit a stale next-run time from newly completed one-time jobs that delete t...",
-        "description": "Omit a stale next-run time from newly completed one-time jobs that delete themselves. An early manual run still retains its future scheduled occurrence; existing historical entries are unchanged. [#161554](https://github.com/openclaw/openclaw/pull/161554) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161554"
-      },
-      {
-        "title": "Make the existing `cron show` and `cron scratch` commands discoverable in t...",
-        "description": "Make the existing `cron show` and `cron scratch` commands discoverable in the main CLI index. [#145034](https://github.com/openclaw/openclaw/pull/145034) Thanks [@qingminglong](https://github.com/qingminglong).",
-        "href": "https://github.com/openclaw/openclaw/issues/145034"
-      },
-      {
-        "title": "Give eligible default scheduled agent jobs current owner-conversation tools...",
-        "description": "Give eligible default scheduled agent jobs current owner-conversation tools without rewriting saved rows. Converting one to a script or adding a condition captures a concrete tool list. Claude CLI wildcard jobs use ordinary chat behavior without a CLI tool cap. [#162432](https://github.com/openclaw/openclaw/pull/162432) Thanks [@obviyus](https://github.com/obviyus), [@jalehman](https://github.com/jalehman), [@steipete](https://github.com/steipete) and [@joshavant](https://github.com/joshavant).",
-        "href": "https://github.com/openclaw/openclaw/issues/162432"
-      },
-      {
-        "title": "Reject invalid nonblank CLI thinking levels before agent-job creation or ed...",
-        "description": "Reject invalid nonblank CLI thinking levels before agent-job creation or editing. Recognized values still depend on model support, and previously saved invalid values need correction. [#149968](https://github.com/openclaw/openclaw/pull/149968) Thanks [@Alix-007](https://github.com/Alix-007) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/149968"
-      },
-      {
-        "title": "Preserve the selected provider when saving a newly discovered automation model",
-        "description": "Preserve the selected provider when saving a newly discovered automation model. Existing saved bare model overrides stay unchanged, and only models eligible for manual selection are offered. [425d77a8](https://github.com/openclaw/openclaw/commit/425d77a86afba0d23b668081f63a26922073ee74) Thanks [@ooiuuii](https://github.com/ooiuuii) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Return completed short-run outcomes to the agent and give longer runs an ex...",
-        "description": "Return completed short-run outcomes to the agent and give longer runs an exact run ID for later inspection. A wait timeout leaves accepted work running; the calling agent must inspect the run later for its outcome. CLI waiting is unchanged. [#162481](https://github.com/openclaw/openclaw/pull/162481) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162481"
-      },
-      {
-        "title": "Avoid holding the caller's turn while waiting for work that needs that same...",
-        "description": "Avoid holding the caller's turn while waiting for work that needs that same conversation, including named main-session aliases and current-session announcements. [#162683](https://github.com/openclaw/openclaw/pull/162683) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162683"
-      },
-      {
-        "title": "Deliver chat-triggered automation reports after the initiating turn ends an...",
-        "description": "Deliver chat-triggered automation reports after the initiating turn ends and retain affected transcript copies. [#162780](https://github.com/openclaw/openclaw/pull/162780) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162780"
-      },
-      {
-        "title": "Record and announce the child's final answer when a delegated job's parent...",
-        "description": "Record and announce the child's final answer when a delegated job's parent has no substantive reply, instead of sending the job prompt. [#162460](https://github.com/openclaw/openclaw/pull/162460) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162460"
-      },
-      {
-        "title": "Keep child results in private history for isolated, no-delivery jobs whose...",
-        "description": "Keep child results in private history for isolated, no-delivery jobs whose parent only delegates. Missing or late output follows normal error accounting, with alerts only where configured. [#162474](https://github.com/openclaw/openclaw/pull/162474) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162474"
-      },
-      {
-        "title": "Recover the full scheduled reply when history marks its display preview as...",
-        "description": "Recover the full scheduled reply when history marks its display preview as truncated. If recovery fails, the incomplete preview is not treated as the complete answer. [#160520](https://github.com/openclaw/openclaw/pull/160520) Thanks [@jayzhou2309](https://github.com/jayzhou2309), [@xiao398008](https://github.com/xiao398008), [@obviyus](https://github.com/obviyus) and [@markoub](https://github.com/markoub). Thanks [@vincentkoc](https://github.com/vincentkoc) for provenance advice.",
-        "href": "https://github.com/openclaw/openclaw/issues/160520"
-      },
-      {
-        "title": "Retain a scheduled child's captured answer after `cleanup` is set to `delet...",
-        "description": "Retain a scheduled child's captured answer after `cleanup` is set to `delete`, while still deleting its session. The answer expires at the existing archive deadline, normally 60 minutes, or after five minutes when archiving is disabled. [#162962](https://github.com/openclaw/openclaw/pull/162962) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162962"
-      },
-      {
-        "title": "Restore follow-up messages addressed to an automation's stable session key...",
-        "description": "Restore follow-up messages addressed to an automation's stable session key after a scheduled execution. They reach its latest local detached run and stay in that run's transcript without inheriting the original conversation's worktree or cloud worker. A newer run cancels an older in-flight follow-up, without undoing completed effects. [#161085](https://github.com/openclaw/openclaw/pull/161085) Thanks [@steipete](https://github.com/steipete) and [@ysumatta](https://github.com/ysumatta).",
-        "href": "https://github.com/openclaw/openclaw/issues/161085"
-      },
-      {
-        "title": "Request diagnosis and workspace repair in the owning conversation for eligi...",
-        "description": "Request diagnosis and workspace repair in the owning conversation for eligible repeated failures. Command jobs, stream or on-exit schedules, webhook routes and jobs without an owner keep their alert path. Rejected requests fall back on the next qualifying failure. [#161007](https://github.com/openclaw/openclaw/pull/161007) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161007"
-      },
-      {
-        "title": "Request repair once per failure streak even when the error changes, preserv...",
-        "description": "Request repair once per failure streak even when the error changes, preserve final alerts for jobs without another scheduled attempt, and keep ordinary cooldowns after the fallback alert. [#162702](https://github.com/openclaw/openclaw/pull/162702) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162702"
-      },
-      {
-        "title": "Record explicit agent-reported task failures with their explanation, includ...",
-        "description": "Record explicit agent-reported task failures with their explanation, including for otherwise silent jobs. An unconfigured no-delivery job stays silent without alerts or repair requests. [#162391](https://github.com/openclaw/openclaw/pull/162391) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162391"
-      },
-      {
-        "title": "Classify adopted child failure reports correctly and retain failed-run tran...",
-        "description": "Classify adopted child failure reports correctly and retain failed-run transcripts. Deliberately silent recurring jobs without an alert route stay enabled for agent-reported failures. A later runtime fault after accumulated failures, or a crash between saving history and job state, can still disable the job. [#162686](https://github.com/openclaw/openclaw/pull/162686) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162686"
-      },
-      {
-        "title": "Clearing a failure-alert override with `null` restores inherited policy ins...",
-        "description": "Clearing a failure-alert override with `null` restores inherited policy instead of disabling alerts. Jobs previously saved with `false` still need an explicit correction. [#158869](https://github.com/openclaw/openclaw/pull/158869) Thanks [@masatohoshino](https://github.com/masatohoshino) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/158869"
-      },
-      {
-        "title": "Show a sanitized unresolved execution warning in job details and history ev...",
-        "description": "Show a sanitized unresolved execution warning in job details and history even when the agent turn succeeds. The warning omits raw errors and arguments; see [cron troubleshooting](https://docs.openclaw.ai/automation/cron-jobs/troubleshooting). [#158929](https://github.com/openclaw/openclaw/pull/158929) Thanks [@Ayushdevo](https://github.com/Ayushdevo), [@elvisquirino](https://github.com/elvisquirino), [@MertBasar0](https://github.com/MertBasar0) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/158929"
-      },
-      {
-        "title": "Keep failure-alert webhooks **Unknown** when delivery is ambiguous, avoidin...",
-        "description": "Keep failure-alert webhooks **Unknown** when delivery is ambiguous, avoiding a fallback based on an incorrect Not delivered status. Known rejection or proven pre-send failure still permits fallback; Unknown does not confirm receipt. [#161750](https://github.com/openclaw/openclaw/pull/161750) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161750"
-      },
-      {
-        "title": "Suppress generic runtime try-again warnings from failed automatic repair tu...",
-        "description": "Suppress generic runtime try-again warnings from failed automatic repair turns while retaining authored replies and job-failure alerts. A repair resumed after restart can still emit its timeout warning. [#162772](https://github.com/openclaw/openclaw/pull/162772) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162772"
-      },
-      {
-        "title": "Correct guidance about failed-run output versus threshold-based failure alerts",
-        "description": "Correct guidance about failed-run output versus threshold-based failure alerts. Ordinary output follows the job's delivery setting; alerts can wait for repeated failures. [#162695](https://github.com/openclaw/openclaw/pull/162695) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162695"
-      },
-      {
-        "title": "Let conditions and script payloads query explicitly allowed MCP server tool...",
-        "description": "Let conditions and script payloads query explicitly allowed MCP server tools and skip payload execution when a condition does not fire. Unavailable servers remain absent with diagnostics. [#160995](https://github.com/openclaw/openclaw/pull/160995) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160995"
-      },
-      {
-        "title": "Guide agents toward scripts for repeatable automation work, precise tool ch...",
-        "description": "Guide agents toward scripts for repeatable automation work, precise tool choices and explicit script failures. Script-specific advice follows whether triggers are enabled. [#160996](https://github.com/openclaw/openclaw/pull/160996) Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160996"
-      },
-      {
-        "title": "Support feedback and selection checkpoints, corrected JSON or schema answer...",
-        "description": "Support feedback and selection checkpoints, corrected JSON or schema answers, successive pauses and explicit cancellation. The installed Lobster runtime owns saved progress and validation. [#162003](https://github.com/openclaw/openclaw/pull/162003) Thanks [@miguelbranco80](https://github.com/miguelbranco80), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen) and [@Alix-007](https://github.com/Alix-007).",
-        "href": "https://github.com/openclaw/openclaw/issues/162003"
-      },
-      {
-        "title": "Plugins adopting the conversation dock can place a chosen conversation besi...",
-        "description": "Plugins adopting the conversation dock can place a chosen conversation beside their page, with drafts, attachments and removable page context. [#161957](https://github.com/openclaw/openclaw/pull/161957). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161957"
-      },
-      {
-        "title": "On a supported host, plugins can open their own registered side panel besid...",
-        "description": "On a supported host, plugins can open their own registered side panel beside the requesting conversation with `operator.write` permission. [#163428](https://github.com/openclaw/openclaw/pull/163428). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/163428"
-      },
-      {
-        "title": "Configured Enterprise repository defaults and authorized browser presence p...",
-        "description": "Configured Enterprise repository defaults and authorized browser presence prepare matching cloud-worker capacity within the chosen pool limits. [db01f6d520b8](https://github.com/openclaw/openclaw/commit/db01f6d520b844c62f146a789f3da2c11075529c). Thanks [@galiniliev](https://github.com/galiniliev).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Fresh Agents API sessions discover and call configured Streamable HTTP MCP...",
-        "description": "Fresh Agents API sessions discover and call configured Streamable HTTP MCP tools with resolved credential headers. [#160931](https://github.com/openclaw/openclaw/pull/160931). Thanks [@sjf-oa](https://github.com/sjf-oa), [@sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/issues/160931"
-      },
-      {
-        "title": "Agents API gains an independent plugin-selection configuration block that n...",
-        "description": "Agents API gains an independent plugin-selection configuration block that needs no Gateway restart; it does not activate native apps or connectors. [#161048](https://github.com/openclaw/openclaw/pull/161048). Thanks [@sjf-oa](https://github.com/sjf-oa), [@sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/issues/161048"
-      },
-      {
-        "title": "Self-hosted turns can submit staged attachments when their workspace provid...",
-        "description": "Self-hosted turns can submit staged attachments when their workspace provider makes the complete batch readable to the executor. [#161312](https://github.com/openclaw/openclaw/pull/161312). Thanks [@sjf-oa](https://github.com/sjf-oa), [@sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/issues/161312"
-      },
-      {
-        "title": "Accepted follow-up instructions no longer prevent an Agents API task from r...",
-        "description": "Accepted follow-up instructions no longer prevent an Agents API task from retrying a temporary failure; the next turn reads fresh history. [#161444](https://github.com/openclaw/openclaw/pull/161444). Thanks [@sjf-oa](https://github.com/sjf-oa), [@sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/issues/161444"
-      },
-      {
-        "title": "The dedicated plugin guide brings Agents API setup and capabilities togethe...",
-        "description": "The dedicated plugin guide brings Agents API setup and capabilities together, replacing the older runtime-fragment bookmarks. [#162255](https://github.com/openclaw/openclaw/pull/162255). Thanks [@sjf-oa](https://github.com/sjf-oa).",
-        "href": "https://github.com/openclaw/openclaw/issues/162255"
-      },
-      {
-        "title": "Experimental Claw migration previews enrollment of an existing configured a...",
-        "description": "Experimental Claw migration previews enrollment of an existing configured agent and retains its original resources on removal. [#162329](https://github.com/openclaw/openclaw/pull/162329). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@sasan1200](https://github.com/sasan1200), [@jalehman](https://github.com/jalehman). Thanks [@giodl73-repo](https://github.com/giodl73-repo) for earlier adoption proposals.",
-        "href": "https://github.com/openclaw/openclaw/issues/162329"
-      },
-      {
-        "title": "Ordinary stop/restart preserves plugin session state and reports settled ca...",
-        "description": "Ordinary stop/restart preserves plugin session state and reports settled callback errors as named warnings. [#164975](https://github.com/openclaw/openclaw/pull/164975). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164975"
-      },
-      {
-        "title": "Every loaded plugin can save its own managed state and process durable inco...",
-        "description": "Every loaded plugin can save its own managed state and process durable incoming-message queues without the former storage trust refusal. [#165063](https://github.com/openclaw/openclaw/pull/165063). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/165063"
-      },
-      {
-        "title": "Delayed session-start and session-end callbacks can finish after the trigge...",
-        "description": "Delayed session-start and session-end callbacks can finish after the triggering request closes, including `/new` rollover. [e9e1134c1809](https://github.com/openclaw/openclaw/commit/e9e1134c1809dbd6f66afde81c11a06046ece012). Thanks [@xialonglee](https://github.com/xialonglee), [@vincentkoc](https://github.com/vincentkoc), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Adopting session-end plugins can read an authorized bounded tail of the end...",
-        "description": "Adopting session-end plugins can read an authorized bounded tail of the ended conversation during the handler lifetime; external plugins must opt into conversation access. [#161451](https://github.com/openclaw/openclaw/pull/161451). Thanks [@ekinnee](https://github.com/ekinnee), [@jalehman](https://github.com/jalehman), [@PaulClawitzki](https://github.com/PaulClawitzki), [@xydigitLybnnnn](https://github.com/xydigitLybnnnn), [@azuretek](https://github.com/azuretek).",
-        "href": "https://github.com/openclaw/openclaw/issues/161451"
-      },
-      {
-        "title": "Plugin authors can await session history, extension changes and replay meta...",
-        "description": "Plugin authors can await session history, extension changes and replay metadata. Transcript rewrites require awaiting both preparation and its returned commit; see [persistence migration](https://docs.openclaw.ai/plugins/sdk-migration/how-to-migrate#await-session-transcript-persistence). [#163264](https://github.com/openclaw/openclaw/pull/163264). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163264"
-      },
-      {
-        "title": "Awaited workspace-result and publication readers are available alongside de...",
-        "description": "Awaited workspace-result and publication readers are available alongside deprecated synchronous adapters that retain their return values and completion timing. [#163819](https://github.com/openclaw/openclaw/pull/163819). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163819"
-      },
-      {
-        "title": "Plugins can subscribe to changed session keys and invalidation tags, with u...",
-        "description": "Plugins can subscribe to changed session keys and invalidation tags, with unsubscribe and fallback reads for changes outside the subscription. [#163820](https://github.com/openclaw/openclaw/pull/163820). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163820"
-      },
-      {
-        "title": "Mention Inbox uses background storage and settles accepted records and dism...",
-        "description": "Mention Inbox uses background storage and settles accepted records and dismissals on orderly shutdown; plugin authors gain awaited methods while synchronous methods remain with deprecation warnings. Publication callbacks must send their response synchronously and await dependent mutations afterward. [#164291](https://github.com/openclaw/openclaw/pull/164291). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164291"
-      },
-      {
-        "title": "Plugin authors can retain a draft throttle deadline during reset and defer...",
-        "description": "Plugin authors can retain a draft throttle deadline during reset and defer stale-message retirement through optional lifecycle arguments. [#162219](https://github.com/openclaw/openclaw/pull/162219). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162219"
-      },
-      {
-        "title": "Meeting authors can reuse documented browser-adapter and page-script builde...",
-        "description": "Meeting authors can reuse documented browser-adapter and page-script builders for existing Zoom, Teams and Slack huddles behavior. [19f112eaabcb](https://github.com/openclaw/openclaw/commit/19f112eaabcbd24250929900ee7c5d3b0b6efa28). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "`ChannelThreadBindingsSchema` exposes existing validation through the chann...",
-        "description": "`ChannelThreadBindingsSchema` exposes existing validation through the channel-config-schema facade for reuse by plugin authors. [1a158881cd01](https://github.com/openclaw/openclaw/commit/1a158881cd01f0ba5d4155c1ced4f1ba87a13ba1). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Client developers can retrieve selected ClawHub plugin and skill release de...",
-        "description": "Client developers can retrieve selected ClawHub plugin and skill release details before installation, with missing metadata and incomplete remote capability summaries explicit. [#163460](https://github.com/openclaw/openclaw/pull/163460). Thanks [@jacobtomlinson](https://github.com/jacobtomlinson).",
-        "href": "https://github.com/openclaw/openclaw/issues/163460"
-      },
-      {
-        "title": "Optional `gateway",
-        "description": "Optional `gateway.roles.assignments.byGithubLogin` mappings use the cached verified primary GitHub login. An explicit role assignment takes priority, then the mapping, then the default; administrators can see the effective role and its source. [#163825](https://github.com/openclaw/openclaw/pull/163825). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163825"
-      },
-      {
-        "title": "Visitor invitations accept a GitHub selector without requiring a public email",
-        "description": "Visitor invitations accept a GitHub selector without requiring a public email. Use exactly one GitHub or email selector and an existing verified Cloudflare OIDC account-ID mapping; the invitation plugin does not configure the sign-in provider. [#162666](https://github.com/openclaw/openclaw/pull/162666). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162666"
-      },
-      {
-        "title": "Administrators can revoke a person's recorded visitor grants across verifie...",
-        "description": "Administrators can revoke a person's recorded visitor grants across verified email aliases by profile ID, or revoke one invitation by grant ID before sign-in. This requires host support and affects the recorded grants, leaving independent access intact. [#162207](https://github.com/openclaw/openclaw/pull/162207). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162207"
-      },
-      {
-        "title": "Visitor access lists and revocation use the current verified GitHub identit...",
-        "description": "Visitor access lists and revocation use the current verified GitHub identity to avoid matching someone else with the same handle. Explicit email selection takes priority, with exact-email fallback when identity is missing or ambiguous. [#160497](https://github.com/openclaw/openclaw/pull/160497). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/160497"
-      },
-      {
-        "title": "Agents API hosted VMs can use enabled, disabled or restricted networking wi...",
-        "description": "Agents API hosted VMs can use enabled, disabled or restricted networking with 1–100 exact hosts. Subdomains and redirects need their own entries, and adding, changing or removing the policy requires a session reset. Hosted stdio MCP requires enabled networking. See [hosted network controls](https://developers.openai.com/api/docs/guides/agents-api/environments/openai-hosted#control-network-access). [#161004](https://github.com/openclaw/openclaw/pull/161004). Thanks [@sjf-oa](https://github.com/sjf-oa), [@sjf](https://github.com/sjf).",
-        "href": "https://github.com/openclaw/openclaw/issues/161004"
-      },
-      {
-        "title": "The default-off per-agent GitHub opt-in supports built-in Docker and Podman...",
-        "description": "The default-off per-agent GitHub opt-in supports built-in Docker and Podman backends. Missing or insecure managed credentials refuse execution, and security audit reports each opted-in agent. [#163784](https://github.com/openclaw/openclaw/pull/163784). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163784"
-      },
-      {
-        "title": "Keep required command and child results pending until collection, resuming...",
-        "description": "Keep required command and child results pending until collection, resuming the same Code Mode program from completion events. The option introduced as `required` is now `awaitResults`; detached services and existing deadlines retain their behavior. [#162707](https://github.com/openclaw/openclaw/pull/162707). Thanks to [@VACInc](https://github.com/VACInc), [@SparcleAI](https://github.com/SparcleAI), [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/162707"
-      },
-      {
-        "title": "Avoid a stale command-completion message after a visible child agent has al...",
-        "description": "Avoid a stale command-completion message after a visible child agent has already finished. [#147432](https://github.com/openclaw/openclaw/pull/147432). Thanks to [@Tosko4](https://github.com/Tosko4), [@obviyus](https://github.com/obviyus), [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/147432"
-      },
-      {
-        "title": "Guide ordinary agents to handle routine work directly and delegate when ind...",
-        "description": "Guide ordinary agents to handle routine work directly and delegate when independent work has a clear benefit. [#151599](https://github.com/openclaw/openclaw/pull/151599). Thanks to [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/151599"
-      },
-      {
-        "title": "Deliver the parent’s answer after private child-agent waiting, following th...",
-        "description": "Deliver the parent’s answer after private child-agent waiting, following the conversation’s reply policy while keeping child findings private. [#156540](https://github.com/openclaw/openclaw/pull/156540). Thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/156540"
-      },
-      {
-        "title": "Recover a parent’s continuation after supported failures publishing a compl...",
-        "description": "Recover a parent’s continuation after supported failures publishing a completed child result, without repeating the saved change or answer. Recovery waits when the original queued request cannot be verified. [#160472](https://github.com/openclaw/openclaw/pull/160472). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160472"
-      },
-      {
-        "title": "Prepare initial child waits, result handoffs and saved-agent restoration in...",
-        "description": "Prepare initial child waits, result handoffs and saved-agent restoration in background storage work, retaining the original caller and interrupted handoff progress. [#160778](https://github.com/openclaw/openclaw/pull/160778). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160778"
-      },
-      {
-        "title": "Read less saved-session data during child recovery",
-        "description": "Read less saved-session data during child recovery. Browser cleanup leaves tabs untouched and asks for an update when the installed Browser lacks the required cleanup support. [#160831](https://github.com/openclaw/openclaw/pull/160831). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160831"
-      },
-      {
-        "title": "Preserve a resumed child’s time allowance within the same session",
-        "description": "Preserve a resumed child’s time allowance within the same session. Restart-recovered work and older records without session identity use ordinary agent policy, normally 48 hours unless that policy is unlimited. [#161078](https://github.com/openclaw/openclaw/pull/161078). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161078"
-      },
-      {
-        "title": "Notify a parent when a completion-announcing child explicitly pauses for a...",
-        "description": "Notify a parent when a completion-announcing child explicitly pauses for a message. The parent must send the continuation; already-paused records receive no retroactive notice. [#161114](https://github.com/openclaw/openclaw/pull/161114). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161114"
-      },
-      {
-        "title": "Wait for accepted watched follow-ups to existing children, including queued...",
-        "description": "Wait for accepted watched follow-ups to existing children, including queued work, and retain their separate answers. If steering reports `sentBeforeError`, inspect the target before retrying. [#161130](https://github.com/openclaw/openclaw/pull/161130). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161130"
-      },
-      {
-        "title": "Resume the parent after child completion without completion bookkeeping lea...",
-        "description": "Resume the parent after child completion without completion bookkeeping leaving it stuck or interrupting its reply, including after a restart. [#161194](https://github.com/openclaw/openclaw/pull/161194). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161194"
-      },
-      {
-        "title": "Preserve a waiting agent’s handoff through tool cleanup so it can resume wi...",
-        "description": "Preserve a waiting agent’s handoff through tool cleanup so it can resume without a premature ended-turn error. [#161197](https://github.com/openclaw/openclaw/pull/161197). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161197"
-      },
-      {
-        "title": "Allow a valid follow-up to a finished child while its completion record is...",
-        "description": "Allow a valid follow-up to a finished child while its completion record is still being saved, using a bounded additional wait while still rejecting retired callers and replaced runs. [#161279](https://github.com/openclaw/openclaw/pull/161279). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161279"
-      },
-      {
-        "title": "Avoid unnecessary parent replies for successful child tasks that request no...",
-        "description": "Avoid unnecessary parent replies for successful child tasks that request no announcement, alongside the explicit single-reply delivery rules. [#161542](https://github.com/openclaw/openclaw/pull/161542). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161542"
-      },
-      {
-        "title": "Keep a finished private child’s answer available when its parent checks sta...",
-        "description": "Keep a finished private child’s answer available when its parent checks status before yielding. [#161820](https://github.com/openclaw/openclaw/pull/161820). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161820"
-      },
-      {
-        "title": "Return one peer reply from `sessions_send`",
-        "description": "Return one peer reply from `sessions_send`. Continue with another send and post to people with an explicit `message` call. Use `message` and `delivery.status`; the old aliases, `delivery.mode`, `ANNOUNCE_SKIP` and `REPLY_SKIP` controls are removed. [#162227](https://github.com/openclaw/openclaw/pull/162227). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162227"
-      },
-      {
-        "title": "Record a failed or timed-out child’s explanation in its own transcript when...",
-        "description": "Record a failed or timed-out child’s explanation in its own transcript when it has not produced an assistant reply, even after the requester finishes. [#162297](https://github.com/openclaw/openclaw/pull/162297). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162297"
-      },
-      {
-        "title": "Let eligible peer and child replies arrive after the requester’s original t...",
-        "description": "Let eligible peer and child replies arrive after the requester’s original turn ends. A nonblocking send waits for handoff; revoked access, restart or lost ownership can still stop later delivery. [#162299](https://github.com/openclaw/openclaw/pull/162299). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162299"
-      },
-      {
-        "title": "Show the normal waiting acknowledgment for an accepted child message wait i...",
-        "description": "Show the normal waiting acknowledgment for an accepted child message wait instead of a false missing-continuation warning. [#162306](https://github.com/openclaw/openclaw/pull/162306). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162306"
-      },
-      {
-        "title": "Include a successful child with an empty final reply in the parent’s result...",
-        "description": "Include a successful child with an empty final reply in the parent’s result batch, retaining its task identity and explicit no-output result without reviving old text or intentionally silent announcements. [#162542](https://github.com/openclaw/openclaw/pull/162542). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162542"
-      },
-      {
-        "title": "Retain delegated follow-ups until their answer is processed and recover mis...",
-        "description": "Retain delegated follow-ups until their answer is processed and recover missing answers without repeating completed tool effects. Doctor removes retired `silentReply.internal` settings using its normal backup and validation path. Worker-upload cancellation also avoids an unhandled file-opening error. [#162567](https://github.com/openclaw/openclaw/pull/162567). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162567"
-      },
-      {
-        "title": "Preserve the parent’s wakeup when sibling child tasks finish together, and...",
-        "description": "Preserve the parent’s wakeup when sibling child tasks finish together, and prevent delayed result reads from overwriting newer retry timing or counts. [#162760](https://github.com/openclaw/openclaw/pull/162760). Thanks to [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162760"
-      },
-      {
-        "title": "Keep compact child-agent lists consistent with full lists when a saved reco...",
-        "description": "Keep compact child-agent lists consistent with full lists when a saved record repeats metadata fields. [#163135](https://github.com/openclaw/openclaw/pull/163135). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163135"
-      },
-      {
-        "title": "Preserve parent wakeups when child completions overlap yields, pauses, canc...",
-        "description": "Preserve parent wakeups when child completions overlap yields, pauses, cancellation or recovery. [#163195](https://github.com/openclaw/openclaw/pull/163195). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163195"
-      },
-      {
-        "title": "Use the child’s recorded owning agent for follow-ups, steering and cancella...",
-        "description": "Use the child’s recorded owning agent for follow-ups, steering and cancellation when session keys overlap. Older records without an owner retain key-only matching. [#163282](https://github.com/openclaw/openclaw/pull/163282). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163282"
-      },
-      {
-        "title": "Allow completed-child cleanup to notify its context engine after the initia...",
-        "description": "Allow completed-child cleanup to notify its context engine after the initiating request ends, and show readable redacted errors when cleanup fails. [#163331](https://github.com/openclaw/openclaw/pull/163331). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163331"
-      },
-      {
-        "title": "Retain a child’s completed first answer when another ordinary task starts b...",
-        "description": "Retain a child’s completed first answer when another ordinary task starts before delivery, keeping separate answers. Paused continuations and steering retain their replacement behavior. [#163352](https://github.com/openclaw/openclaw/pull/163352). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163352"
-      },
-      {
-        "title": "Deliver required child results when silent siblings share the batch, while...",
-        "description": "Deliver required child results when silent siblings share the batch, while silent-only work can finish cleanup without starting an unnecessary parent reply. [#163677](https://github.com/openclaw/openclaw/pull/163677). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163677"
-      },
-      {
-        "title": "Avoid a false browser-cleanup failure when another completion callback or n...",
-        "description": "Avoid a false browser-cleanup failure when another completion callback or newer child run owns cleanup. [#163741](https://github.com/openclaw/openclaw/pull/163741). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163741"
-      },
-      {
-        "title": "Suppress obsolete pause notices after a quick default child follow-up",
-        "description": "Suppress obsolete pause notices after a quick default child follow-up; later follow-up adoption preserves eligible replies for the original requester. [#163814](https://github.com/openclaw/openclaw/pull/163814). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163814"
-      },
-      {
-        "title": "Deliver an eligible still-running plugin follow-up once when it was accepte...",
-        "description": "Deliver an eligible still-running plugin follow-up once when it was accepted just before a child pause. Completed-before-pause follow-ups and restarts before adoption remain outside this repair. [#164101](https://github.com/openclaw/openclaw/pull/164101). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164101"
-      },
-      {
-        "title": "Allow active registered visible and hidden native children to wait for inco...",
-        "description": "Allow active registered visible and hidden native children to wait for incoming messages. An authorized sender must provide the continuation, and required background results still need collection. [#164463](https://github.com/openclaw/openclaw/pull/164463). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164463"
-      },
-      {
-        "title": "Let queued shared-compute work reach another eligible worker checkpoint ins...",
-        "description": "Let queued shared-compute work reach another eligible worker checkpoint instead of repeatedly targeting a worker waiting for a host response. [#164537](https://github.com/openclaw/openclaw/pull/164537). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164537"
-      },
-      {
-        "title": "Accept a completed child’s follow-up while browser cleanup is pending, keep...",
-        "description": "Accept a completed child’s follow-up while browser cleanup is pending, keeping old cleanup from taking over the replacement. [b725cc7](https://github.com/openclaw/openclaw/commit/b725cc7b27f64ae1b1cf72eccc0bd5959d982839). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Deliver completed child results when unrelated bookkeeping changes during d...",
-        "description": "Deliver completed child results when unrelated bookkeeping changes during delivery preparation, while rejecting genuinely replaced replies. [dab6c79](https://github.com/openclaw/openclaw/commit/dab6c7975c1969fbcf13d6614ba9a0ff00dca556). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Import reachable native-tool conversation text through the Control UI or `s...",
-        "description": "Import reachable native-tool conversation text through the Control UI or `sessions import`. Repeat imports append unseen items for the same agent and full locator, with incomplete-copy reporting and the documented text and item limits. [#161955](https://github.com/openclaw/openclaw/pull/161955). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161955"
-      },
-      {
-        "title": "Restore visible-session assignment for agents acting for non-admin channel...",
-        "description": "Restore visible-session assignment for agents acting for non-admin channel requesters. Registered people and configured agents can receive responsibility without transferring privileges or credentials. [#154239](https://github.com/openclaw/openclaw/pull/154239). Thanks to [@VACInc](https://github.com/VACInc), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/154239"
-      },
-      {
-        "title": "Give hidden native children separate managed Git checkouts without persiste...",
-        "description": "Give hidden native children separate managed Git checkouts without persistent sidebar sessions. Keep retains the checkout; delete saves a snapshot before removal. ACP does not support these worktree options. [#163124](https://github.com/openclaw/openclaw/pull/163124). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163124"
-      },
-      {
-        "title": "Reuse verified pnpm dependencies in eligible new private Docker or Podman c...",
-        "description": "Reuse verified pnpm dependencies in eligible new private Docker or Podman checkouts. The first generation installs them; failed or unsupported preparation falls back to source-only files. Existing sessions keep independent checkouts. [#164517](https://github.com/openclaw/openclaw/pull/164517). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164517"
-      },
-      {
-        "title": "Create worktrees through the authenticated local Gateway with `operator",
-        "description": "Create worktrees through the authenticated local Gateway with `operator.admin`, or through the supported exclusive offline path. Upgrade or stop older Gateways, and inspect the worktree list and repository after an uncertain result before retrying. [#163853](https://github.com/openclaw/openclaw/pull/163853). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163853"
-      },
-      {
-        "title": "Coordinate in-process setup of the same local workspace through bootstrap a...",
-        "description": "Coordinate in-process setup of the same local workspace through bootstrap and sandbox preparation. Cancelled or revoked queued requests stop before creating files; separate directories remain independent. [#164377](https://github.com/openclaw/openclaw/pull/164377). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164377"
-      },
-      {
-        "title": "Retain allocation renewal during slow Git preparation",
-        "description": "Retain allocation renewal during slow Git preparation. Fetches skip inline automatic maintenance, which moves to hourly cleanup or `worktrees gc` with a 30-minute maintenance timeout. [#164521](https://github.com/openclaw/openclaw/pull/164521). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164521"
-      },
-      {
-        "title": "Keep allocation renewal during long worktree creation and restoration while...",
-        "description": "Keep allocation renewal during long worktree creation and restoration while deferring automatic Git maintenance. [b8f5fea](https://github.com/openclaw/openclaw/commit/b8f5feae579eda0d3a110345bdc6fa5680baf5fd).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Wait for cancelled remote work to finish entered workspace changes and proc...",
-        "description": "Wait for cancelled remote work to finish entered workspace changes and process cleanup before starting replacement work. An unconfirmed remote stop can keep the replacement waiting. [#161759](https://github.com/openclaw/openclaw/pull/161759). Thanks to [@RomneyDa](https://github.com/RomneyDa), [@sallyom](https://github.com/sallyom), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161759"
-      },
-      {
-        "title": "Keep an existing cloud worker’s original session and workspace when main-se...",
-        "description": "Keep an existing cloud worker’s original session and workspace when main-session aliases change, removing that cause of recovery and Stop failures while new requests still follow current aliases. [#163133](https://github.com/openclaw/openclaw/pull/163133). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163133"
-      },
-      {
-        "title": "Reduce reply-completion overhead on supported Linux paired nodes by reusing...",
-        "description": "Reduce reply-completion overhead on supported Linux paired nodes by reusing the native watchdog connection. Update the native node host; a worker-bundle refresh alone does not enable it. [#163866](https://github.com/openclaw/openclaw/pull/163866). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163866"
-      },
-      {
-        "title": "Reuse an idle native helper for already-running supported Linux paired-node...",
-        "description": "Reuse an idle native helper for already-running supported Linux paired-node workers. Update the native host; final replies still wait for saved workspace reconciliation and show conflicts or failures. [#163954](https://github.com/openclaw/openclaw/pull/163954). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163954"
-      },
-      {
-        "title": "Pause advisory disk probes and repeated warnings while a paired device is o...",
-        "description": "Pause advisory disk probes and repeated warnings while a paired device is offline or session hosting is disabled. Keep its workspace and last sample, then refresh on the next scheduled sweep after reconnecting. [#164048](https://github.com/openclaw/openclaw/pull/164048). Thanks to [@jayzhou2309](https://github.com/jayzhou2309), [@steipete](https://github.com/steipete), [@wynxo](https://github.com/wynxo).",
-        "href": "https://github.com/openclaw/openclaw/issues/164048"
-      },
-      {
-        "title": "Reject cloud-workspace uploads after the result loses authorization, and wa...",
-        "description": "Reject cloud-workspace uploads after the result loses authorization, and wait for local recovery and any started upload before releasing the transfer. [#164104](https://github.com/openclaw/openclaw/pull/164104). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164104"
-      },
-      {
-        "title": "Overlap worker-bundle download with runtime installation during Crabbox set...",
-        "description": "Overlap worker-bundle download with runtime installation during Crabbox setup, and stop the owned installer before removing temporary files on failure or cancellation. [#164187](https://github.com/openclaw/openclaw/pull/164187). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164187"
-      },
-      {
-        "title": "Restore permitted Gateway web, memory, session, installed-skill and GitHub...",
-        "description": "Restore permitted Gateway web, memory, session, installed-skill and GitHub identity tools to node-hosted agents. File and process work stays on the node, larger tool batches queue, and browser/computer tools depend on placement capabilities. [#164296](https://github.com/openclaw/openclaw/pull/164296). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164296"
-      },
-      {
-        "title": "Return Windows worker edits from deeply nested Git repositories using comma...",
-        "description": "Return Windows worker edits from deeply nested Git repositories using command-scoped long-path support. The repository’s saved setting stays unchanged; other Git clients may still need their own long-path setting. [#164331](https://github.com/openclaw/openclaw/pull/164331). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164331"
-      },
-      {
-        "title": "Reject changed or missing worker session targets before workspace preparati...",
-        "description": "Reject changed or missing worker session targets before workspace preparation starts. [be13aee](https://github.com/openclaw/openclaw/commit/be13aeea2072f847b9a7810bd96631c60a957602). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Load the remote turn runtime after admission and tool validation, avoiding...",
-        "description": "Load the remote turn runtime after admission and tool validation, avoiding preparation for rejected or cancelled work. Verified installations include the required split runtime files. [4aa24e3](https://github.com/openclaw/openclaw/commit/4aa24e3a1340cf17e0d661e87d35d7789948d76f). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Show a worker’s failed status and recovery reason after cleanup",
-        "description": "Show a worker’s failed status and recovery reason after cleanup. Worker commands avoid secret-store reads from temporary local state, while separately delegated GitHub credentials remain available when supplied. [2e33b81](https://github.com/openclaw/openclaw/commit/2e33b81f2efa7d4b2a719640b58837fb02e1d814), [953f6b4b](https://github.com/openclaw/openclaw/commit/953f6b4b7a35914f9d742c99999293a0fc5f0e96). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Allow up to 15 minutes of live-only Node Gateway heap sampling",
-        "description": "Allow up to 15 minutes of live-only Node Gateway heap sampling. Including objects collected by either garbage-collection flag retains the 30-second cap; profiles describe allocations made during capture that remain at its end. [#163813](https://github.com/openclaw/openclaw/pull/163813). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163813"
-      },
-      {
-        "title": "Identify dependency packages and frames without JavaScript source in heap a...",
-        "description": "Identify dependency packages and frames without JavaScript source in heap and CPU profiles, while hiding detailed dependency paths, versions and function names. Package/native labels change the redacted-node counts, and native labels do not identify a specific allocator. [#163922](https://github.com/openclaw/openclaw/pull/163922). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163922"
-      },
-      {
-        "title": "Identify registered plugin and auxiliary methods in request and timing metrics",
-        "description": "Identify registered plugin and auxiliary methods in request and timing metrics. Update dashboard queries for the changed labels; the shared sample cap can still drop new series and records those drops. [#164028](https://github.com/openclaw/openclaw/pull/164028). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164028"
-      },
-      {
-        "title": "Model setup lets you correct a bad LM Studio or llama",
-        "description": "Model setup lets you correct a bad LM Studio or llama.cpp address and continue. If the Gateway restarts during web setup, a successful settings refresh can reopen provider selection or offer verification of a saved model. **Check again** retries a failed refresh; a saved model still needs verification. See the [setup reference](https://docs.openclaw.ai/start/wizard-cli-reference).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "You can use guided `agents add` to recreate a fully deleted agent after cle...",
-        "description": "You can use guided `agents add` to recreate a fully deleted agent after cleanup finishes, with copied or new sign-in credentials. Starting a Gateway directly or in a container also checks whether another Gateway already owns its saved data, even on another port; startup may wait up to five minutes before reporting the conflict.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "If replacing a sign-in fails, setup restores the previous credential before...",
-        "description": "If replacing a sign-in fails, setup restores the previous credential before reconnecting. Copilot setup can reuse an authorized saved token or secret reference on the same host domain; changing domains still requires a fresh login. Rerunning setup preserves trusted-proxy sign-in unless you explicitly change it; combining it with Tailscale Funnel is refused, so choose password sign-in or leave public exposure off.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Mobile Settings links work with a [custom web-interface path](https",
-        "description": "//docs.openclaw.ai/gateway/config-gateway) when pairing uses a new code. Affected clients need a new code and must re-pair. Setup also shows its fixed welcomes and choices in the selected Simplified or Traditional Chinese language.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "The configuration examples no longer suggest an accidental ten-minute limit...",
-        "description": "The configuration examples no longer suggest an accidental ten-minute limit for an entire agent run. If you copied it into your settings, [remove or change that override yourself](https://docs.openclaw.ai/concepts/agent-loop#timeouts). Multi-agent examples now explain which agent owns the data and receives each conversation. After a manual binary upgrade with a legacy agent roster, run `openclaw doctor --fix` before startup; the [roster migration guide](https://docs.openclaw.ai/gateway/doctor/config-migrations#agent-roster-migration) covers configurations split across files.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Installing in a macOS VM has clearer guidance for the [installer](https://docs",
-        "description": "Installing in a macOS VM has clearer guidance for the [installer](https://docs.openclaw.ai/install/installer), Node, npm and background service setup in the [VM guide](https://github.com/openclaw/openclaw/blob/f05312877512a29b216ae233c4a2ee9f535b1f89/docs/install/macos-vm.md). Check [Node platform requirements](https://docs.openclaw.ai/install/node); reported CLI operation on older macOS does not make those systems supported. Source installs without Corepack use the checkout’s pinned pnpm version. Canvas build fallbacks also reject incomplete renderer bundles.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "The optional [macOS DNS guide](https",
-        "description": "//docs.openclaw.ai/cli/dns) explains what happens when Homebrew times out or is terminated. Fresh installs with no Matrix configuration or old Matrix data no longer receive an irrelevant migration warning. Configured installations and incomplete scans retain the [migration checks](https://docs.openclaw.ai/cli/doctor/state-migrations).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Recreate a fully deleted agent with its previous ID through guided `agents...",
-        "description": "Recreate a fully deleted agent with its previous ID through guided `agents add`, using copied or new sign-in credentials. Recreation remains blocked while deletion cleanup is pending. [#143991](https://github.com/openclaw/openclaw/pull/143991), thanks to [@Giannoulakos](https://github.com/Giannoulakos), [@ioannis-giannoulakos](https://github.com/ioannis-giannoulakos), [@steipete](https://github.com/steipete) and [@Arslan-Mehmood1](https://github.com/Arslan-Mehmood1).",
-        "href": "https://github.com/openclaw/openclaw/issues/143991"
-      },
-      {
-        "title": "Configuration examples drop an accidental 600-second limit on the whole age...",
-        "description": "Configuration examples drop an accidental 600-second limit on the whole agent run. Existing copied configurations need a manual change, and the runtime default is unchanged. [#158513](https://github.com/openclaw/openclaw/pull/158513), thanks to [@HunterStile](https://github.com/HunterStile), [@100yenadmin](https://github.com/100yenadmin) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/158513"
-      },
-      {
-        "title": "Starting a Gateway directly or in a container now prevents a second instanc...",
-        "description": "Starting a Gateway directly or in a container now prevents a second instance from sharing state already owned by a running Gateway, even on another port. Startup can wait up to five minutes before reporting the conflict. [#160193](https://github.com/openclaw/openclaw/pull/160193), thanks to [@steipete](https://github.com/steipete), [@grtninja](https://github.com/grtninja) and [@R3NK0R](https://github.com/R3NK0R).",
-        "href": "https://github.com/openclaw/openclaw/issues/160193"
-      },
-      {
-        "title": "The fresh macOS VM guide uses the existing installer to provide Node and np...",
-        "description": "The fresh macOS VM guide uses the existing installer to provide Node and npm, then directs you to stop the foreground Gateway with Ctrl+C, run `openclaw gateway install`, and check status before headless setup. [#160239](https://github.com/openclaw/openclaw/pull/160239), thanks to [@samadarsh](https://github.com/samadarsh).",
-        "href": "https://github.com/openclaw/openclaw/issues/160239"
-      },
-      {
-        "title": "Source-install instructions without Corepack now select the pnpm version pi...",
-        "description": "Source-install instructions without Corepack now select the pnpm version pinned by the checkout, removing its integrity suffix before installation. The required install scripts and optional dependencies remain part of the instructions. [#160513](https://github.com/openclaw/openclaw/pull/160513), thanks to [@Irish-Joseph](https://github.com/Irish-Joseph).",
-        "href": "https://github.com/openclaw/openclaw/issues/160513"
-      },
-      {
-        "title": "Correct an invalid local-model server address in either web or terminal setup",
-        "description": "Correct an invalid local-model server address in either web or terminal setup. LM Studio and external llama.cpp addresses accept HTTP or HTTPS without embedded credentials, and shorthand addresses still work. [#160720](https://github.com/openclaw/openclaw/pull/160720), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160720"
-      },
-      {
-        "title": "Optional macOS DNS setup explains when its Homebrew-prefix lookup hits the...",
-        "description": "Optional macOS DNS setup explains when its Homebrew-prefix lookup hits the existing 15-second timeout or is terminated. The messages clarify a failed step without adding a new timeout. [#160797](https://github.com/openclaw/openclaw/pull/160797), thanks to [@ericcurtin](https://github.com/ericcurtin) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160797"
-      },
-      {
-        "title": "When a normal source build falls back to prebuilt Canvas assets, it now rej...",
-        "description": "When a normal source build falls back to prebuilt Canvas assets, it now rejects an incomplete renderer set instead of accepting a bundle missing a required version. [#161390](https://github.com/openclaw/openclaw/pull/161390), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161390"
-      },
-      {
-        "title": "New mobile QR and setup codes retain the Control UI mount path in setup and...",
-        "description": "New mobile QR and setup codes retain the Control UI mount path in setup and join addresses, fixing Settings links that returned 404. Affected clients need a new code and must re-pair. [#161620](https://github.com/openclaw/openclaw/pull/161620), thanks to [@Marvinthebored](https://github.com/Marvinthebored), [@Peetiegonzalez](https://github.com/Peetiegonzalez) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/161620"
-      },
-      {
-        "title": "The setup welcome and options follow your selected Simplified or Traditiona...",
-        "description": "The setup welcome and options follow your selected Simplified or Traditional Chinese language even when it differs from the browser language or translations are still loading. [#162913](https://github.com/openclaw/openclaw/pull/162913), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162913"
-      },
-      {
-        "title": "macOS documentation distinguishes Node's official macOS 13",
-        "description": "macOS documentation distinguishes Node's official macOS 13.5 build target from reported CLI and Gateway operation on macOS 12 with Node 24. Older macOS remains unsupported and untested, and native binaries and the app have separate requirements. [#163324](https://github.com/openclaw/openclaw/pull/163324), thanks to [@NovaUnboundAi](https://github.com/NovaUnboundAi), [@xXG0DLessXx](https://github.com/xXG0DLessXx) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163324"
-      },
-      {
-        "title": "Multi-agent documentation uses the correct configuration shape and makes ow...",
-        "description": "Multi-agent documentation uses the correct configuration shape and makes ownership and routing explicit. If you manually replace the binary while keeping a legacy configuration, run `openclaw doctor --fix` before startup. Normal updates already run Doctor through their backup flow. [#163475](https://github.com/openclaw/openclaw/pull/163475), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163475"
-      },
-      {
-        "title": "Web model setup can recover after a Gateway restart by successfully refresh...",
-        "description": "Web model setup can recover after a Gateway restart by successfully refreshing saved settings. A saved model needs explicit verification before continuing. If the refresh fails, the setup guard stays in place and offers **Check again**. [#164602](https://github.com/openclaw/openclaw/pull/164602), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164602"
-      },
-      {
-        "title": "Fresh installations avoid irrelevant Matrix migration work when Matrix is u...",
-        "description": "Fresh installations avoid irrelevant Matrix migration work when Matrix is unconfigured and a complete scan finds no legacy state. Configured Matrix installations and incomplete scans retain the migration checks. [#165209](https://github.com/openclaw/openclaw/pull/165209), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/165209"
-      },
-      {
-        "title": "If replacement sign-in credentials fail to activate, the previous saved cre...",
-        "description": "If replacement sign-in credentials fail to activate, the previous saved credential is restored before reconnecting. [cd75f44](https://github.com/openclaw/openclaw/commit/cd75f44f9cd3fb2476beb313f87d8b8acd50f2f5), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Interactive Copilot setup recognizes a saved token or secret reference alre...",
-        "description": "Interactive Copilot setup recognizes a saved token or secret reference already authorized for the same host domain. Secret references stay references, and changing domains requires a fresh login. [332e4d3](https://github.com/openclaw/openclaw/commit/332e4d3ec02df53b18003155fe44a0a102b383e1), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Setup reruns preserve trusted-proxy sign-in and its trust policy unless you...",
-        "description": "Setup reruns preserve trusted-proxy sign-in and its trust policy unless you explicitly change them. Completion checks use the configured local Gateway and its local password, preserving secret references. An incompatible Tailscale Funnel choice is refused before rewriting the policy. [1f74f3c](https://github.com/openclaw/openclaw/commit/1f74f3cf39b065f89a4b5bffc63e5d9dd53fcc92), thanks to [@wangmiao0668000666](https://github.com/wangmiao0668000666) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Organizing chats keeps the list in step with your actions",
-        "description": "Organizing chats keeps the list in step with your actions. Custom groups survive `/new` and `/reset`, marking a chat read does not move it up the list, and confirmed Archive, Restore or Undo appears immediately. Sidebar Reset restores Display settings as well as Filters, and titles drop outdated decorations when the profile or connection changes.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Short chat panes keep Send and Stop within reach, and restricted drafts ret...",
-        "description": "Short chat panes keep Send and Stop within reach, and restricted drafts retain their text and attachments. A failed camera preview leaves the camera action available; confirming composed characters no longer sends or saves the affected draft. Comment editors remain readable while scrolling, completed work keeps its widgets in order, and saved safety refusals explain why a partial answer stopped.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Opening and navigating long chats requires less repeated download, history...",
-        "description": "Opening and navigating long chats requires less repeated download, history and layout work, while keeping your reading position and Stop available. After a restart, normal agent preparation shows Starting up and loads chat and sidebar data when ready. Reconnect bursts prioritize establishing connections, so initial session lists can take longer. Older tabs whose retained files were pruned need to reload. Restricted container deployments need a repaired image installed or built to apply the whole-UI 503 repair.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Workspace folders",
-        "description": "** Workspace views open the prepared checkout and keep invalid folder text available for correction. Native Windows workspace creation handles deeper repositories, with cross-drive and deep-reference limits remaining.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Browser terminals",
-        "description": "** Browser terminals preserve pending output, wait for overlapping shutdowns to finish before reopening, and advertise supported RGB colors.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Widgets",
-        "description": "** Widgets follow supported themes, let scrolling continue into chat and keep controls usable beside the browser dock.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Video previews",
-        "description": "** New video previews can download media before Play.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Tool activity names the tool that ran and shows whether it is still running...",
-        "description": "Tool activity names the tool that ran and shows whether it is still running, finished or has an unknown outcome. Activity also corrects time-range totals, screenshot strips and filters; assignment menus offer one searchable list of loaded people and agents, and Mention Inbox failures retry on schedule. Eligible Activity changes appear immediately from session events, but compact lists can still retain some previous-model details after a model change.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Model choices",
-        "description": "** Choosing a model focuses search immediately, keeps long choices readable and distinguishes configured Codex alternatives.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Credentials",
-        "description": "** New credential fields accept the full masked value while stored redacted secrets stay protected.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Preference edits",
-        "description": "** Preference-only edits avoid an unnecessary restart when plugin defaults arrive between loading and saving.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Browser and client updates",
-        "description": "** Browser selections saved before July 1 need reselection, with conversations preserved; unsupported v2026.6.1 web clients need a supported client.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Community invitations",
-        "description": "** Community invitations now offer Reddit, Discord and X and may appear once after an older dismissal; opt-out and later dismissals remain honored.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Custom workspace-group defaults show the required admin access and offer Re...",
-        "description": "Custom workspace-group defaults show the required admin access and offer Retry after folder inspection fails. Saving still requires permission and a successful inspection. [#139024](https://github.com/openclaw/openclaw/pull/139024). Thanks [@LiuwqGit](https://github.com/LiuwqGit), [@hewal-dev](https://github.com/hewal-dev) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/139024"
-      },
-      {
-        "title": "Long model names wrap inside the model menu while the closed picker stays o...",
-        "description": "Long model names wrap inside the model menu while the closed picker stays on one line. [#150464](https://github.com/openclaw/openclaw/pull/150464). Thanks [@SunnyShu0925](https://github.com/SunnyShu0925), [@dh-js](https://github.com/dh-js) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/150464"
-      },
-      {
-        "title": "Sessions avoid unnecessary refreshes when their effective settings are unch...",
-        "description": "Sessions avoid unnecessary refreshes when their effective settings are unchanged. Changed values and resolved secrets still refresh them. [#155300](https://github.com/openclaw/openclaw/pull/155300). Thanks [@azuretek](https://github.com/azuretek), [@obviyus](https://github.com/obviyus), [@VACInc](https://github.com/VACInc) and [@jbfranklin](https://github.com/jbfranklin).",
-        "href": "https://github.com/openclaw/openclaw/issues/155300"
-      },
-      {
-        "title": "Pasted-text and grouped-comment attachments load near the visible conversat...",
-        "description": "Pasted-text and grouped-comment attachments load near the visible conversation or when focused, keeping keyboard focus as their details arrive. [#156277](https://github.com/openclaw/openclaw/pull/156277). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/156277"
-      },
-      {
-        "title": "Simplified Chinese displays the existing translations for Approvals, Teleme...",
-        "description": "Simplified Chinese displays the existing translations for Approvals, Telemetry and Cloud Workers. [#157414](https://github.com/openclaw/openclaw/pull/157414). Thanks [@chaitongxue](https://github.com/chaitongxue).",
-        "href": "https://github.com/openclaw/openclaw/issues/157414"
-      },
-      {
-        "title": "The browser dock and embedded panels share page space without competing lay...",
-        "description": "The browser dock and embedded panels share page space without competing layouts. [Panel guide](https://docs.openclaw.ai/web/control-ui/panels). [#157533](https://github.com/openclaw/openclaw/pull/157533). Thanks [@sonofakel](https://github.com/sonofakel) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/157533"
-      },
-      {
-        "title": "Reading a conversation clears its unread marker without making it more recent",
-        "description": "Reading a conversation clears its unread marker without making it more recent. Marking it unread can still change its position. [#158577](https://github.com/openclaw/openclaw/pull/158577). Thanks [@sxh313](https://github.com/sxh313), [@hannesrudolph](https://github.com/hannesrudolph) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/158577"
-      },
-      {
-        "title": "Context-usage warnings mark estimated values as approximate",
-        "description": "Context-usage warnings mark estimated values as approximate. [#159549](https://github.com/openclaw/openclaw/pull/159549). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/159549"
-      },
-      {
-        "title": "Checking for a pending question avoids rereading history that cannot contai...",
-        "description": "Checking for a pending question avoids rereading history that cannot contain it. [#159556](https://github.com/openclaw/openclaw/pull/159556). Thanks [@Marvinthebored](https://github.com/Marvinthebored) and [@Peetiegonzalez](https://github.com/Peetiegonzalez).",
-        "href": "https://github.com/openclaw/openclaw/issues/159556"
-      },
-      {
-        "title": "Enabled sidebar progress can show tool icons on a second line while retaini...",
-        "description": "Enabled sidebar progress can show tool icons on a second line while retaining readable activity text and accessible names. [#160066](https://github.com/openclaw/openclaw/pull/160066). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160066"
-      },
-      {
-        "title": "Split-dashboard widgets use one full-width title, with resize controls in t...",
-        "description": "Split-dashboard widgets use one full-width title, with resize controls in the task menu. [#160117](https://github.com/openclaw/openclaw/pull/160117). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160117"
-      },
-      {
-        "title": "Cold remote conversations can show the transcript earlier, and permitted fa...",
-        "description": "Cold remote conversations can show the transcript earlier, and permitted favicon reuse avoids repeat downloads within the current credentials. [#160293](https://github.com/openclaw/openclaw/pull/160293). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160293"
-      },
-      {
-        "title": "Use device camera remains available after a denied or failed preview so the...",
-        "description": "Use device camera remains available after a denied or failed preview so the browser can handle another camera attempt. [#160359](https://github.com/openclaw/openclaw/pull/160359). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160359"
-      },
-      {
-        "title": "Selected-text comment pins avoid unnecessary repositioning when new content...",
-        "description": "Selected-text comment pins avoid unnecessary repositioning when new content streams below their source. [#160799](https://github.com/openclaw/openclaw/pull/160799). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160799"
-      },
-      {
-        "title": "Large sidebars avoid repeated work on unrelated updates while activity subt...",
-        "description": "Large sidebars avoid repeated work on unrelated updates while activity subtitles continue refreshing. [#160876](https://github.com/openclaw/openclaw/pull/160876). Thanks [@steipete](https://github.com/steipete) and [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/160876"
-      },
-      {
-        "title": "New channel conversations retain an already-known sender name for the shari...",
-        "description": "New channel conversations retain an already-known sender name for the sharing Owner field. Older conversations and missing names keep their existing fallback. [#160923](https://github.com/openclaw/openclaw/pull/160923). Thanks [@stevenlee-oai](https://github.com/stevenlee-oai).",
-        "href": "https://github.com/openclaw/openclaw/issues/160923"
-      },
-      {
-        "title": "Theme-aware inline widgets can follow dark mode where their widget theme me...",
-        "description": "Theme-aware inline widgets can follow dark mode where their widget theme messages support it. [#160940](https://github.com/openclaw/openclaw/pull/160940). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160940"
-      },
-      {
-        "title": "The navigation rail uses the configured agent identity, with a generic fall...",
-        "description": "The navigation rail uses the configured agent identity, with a generic fallback when its name is empty. [#160941](https://github.com/openclaw/openclaw/pull/160941). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/160941"
-      },
-      {
-        "title": "Interrupted provider sign-in closes its reserved blank tab and explains the...",
-        "description": "Interrupted provider sign-in closes its reserved blank tab and explains the reconnect or startup timeout. Check again handles a sign-in whose result is no longer known. [#160954](https://github.com/openclaw/openclaw/pull/160954). Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160954"
-      },
-      {
-        "title": "A restricted composer explains why sending is unavailable and retains its d...",
-        "description": "A restricted composer explains why sending is unavailable and retains its draft and attachments. Queued sends recheck access for the relevant agent. [#160977](https://github.com/openclaw/openclaw/pull/160977). Thanks [@stevenlee-oai](https://github.com/stevenlee-oai).",
-        "href": "https://github.com/openclaw/openclaw/issues/160977"
-      },
-      {
-        "title": "Host-information views avoid unauthorized requests and retire stale results",
-        "description": "Host-information views avoid unauthorized requests and retire stale results. Host statistics stay unavailable when the account lacks access. [#160982](https://github.com/openclaw/openclaw/pull/160982). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/160982"
-      },
-      {
-        "title": "Accounts with portal read access can open the panel, while previews require...",
-        "description": "Accounts with portal read access can open the panel, while previews require write access. Accounts without read access see an access explanation. [#160984](https://github.com/openclaw/openclaw/pull/160984). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/160984"
-      },
-      {
-        "title": "Focusing an embedded dashboard dismisses Inbox without taking focus or disc...",
-        "description": "Focusing an embedded dashboard dismisses Inbox without taking focus or discarding notes. Ordinary window blur leaves it open. [#160997](https://github.com/openclaw/openclaw/pull/160997). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/160997"
-      },
-      {
-        "title": "Scroll to latest shows hover feedback. [#161009](https",
-        "description": "//github.com/openclaw/openclaw/pull/161009). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161009"
-      },
-      {
-        "title": "Review and Files follow a newly ready checkout during the first run, keepin...",
-        "description": "Review and Files follow a newly ready checkout during the first run, keeping an existing diff on same-workspace refreshes and showing no changes while preparation is pending. [#161010](https://github.com/openclaw/openclaw/pull/161010). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161010"
-      },
-      {
-        "title": "Activity screenshot strips use downloadable images, retain their layout dur...",
-        "description": "Activity screenshot strips use downloadable images, retain their layout during refresh and show an unavailable tile when a remote image fails. Large images require a reachable download reference. [#161021](https://github.com/openclaw/openclaw/pull/161021). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161021"
-      },
-      {
-        "title": "Bun-based Gateways reuse their state reader during startup to reduce conges...",
-        "description": "Bun-based Gateways reuse their state reader during startup to reduce congestion that could delay sign-in and conversation lists. [#161040](https://github.com/openclaw/openclaw/pull/161040). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161040"
-      },
-      {
-        "title": "Activity totals use the complete matching time range, including sessions be...",
-        "description": "Activity totals use the complete matching time range, including sessions beyond the displayed list. The all-time chart shows the latest twelve months of activity. [#161060](https://github.com/openclaw/openclaw/pull/161060). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161060"
-      },
-      {
-        "title": "Channel `/new` and `/reset` keep custom conversation groups",
-        "description": "Channel `/new` and `/reset` keep custom conversation groups. [#161066](https://github.com/openclaw/openclaw/pull/161066). Thanks [@jayzhou2309](https://github.com/jayzhou2309), [@catnipluss](https://github.com/catnipluss) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161066"
-      },
-      {
-        "title": "The Applying indicator animates before the settings page finishes loading",
-        "description": "The Applying indicator animates before the settings page finishes loading. [#161102](https://github.com/openclaw/openclaw/pull/161102). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161102"
-      },
-      {
-        "title": "Short chat panes and installed-app canvases keep the editor and Send or Sto...",
-        "description": "Short chat panes and installed-app canvases keep the editor and Send or Stop controls reachable. Very short panes may hide the transcript to make room. [#161134](https://github.com/openclaw/openclaw/pull/161134). Thanks [@hxy91819](https://github.com/hxy91819).",
-        "href": "https://github.com/openclaw/openclaw/issues/161134"
-      },
-      {
-        "title": "Confirming composed characters keeps the chat draft, annotations and rename...",
-        "description": "Confirming composed characters keeps the chat draft, annotations and rename input from acting on that same Enter key. [#161302](https://github.com/openclaw/openclaw/pull/161302). Thanks [@NianJiuZst](https://github.com/NianJiuZst), [@obviyus](https://github.com/obviyus) and [@stbtyx747](https://github.com/stbtyx747).",
-        "href": "https://github.com/openclaw/openclaw/issues/161302"
-      },
-      {
-        "title": "Enter on a hovered Assign to control keeps the person menu open instead of...",
-        "description": "Enter on a hovered Assign to control keeps the person menu open instead of assigning the session to yourself. [Multi-user guide](https://docs.openclaw.ai/concepts/multi-user). [#161393](https://github.com/openclaw/openclaw/pull/161393). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161393"
-      },
-      {
-        "title": "Conversation links discard old or late titles after Gateway, profile or con...",
-        "description": "Conversation links discard old or late titles after Gateway, profile or connection changes while the underlying link remains usable. [#161433](https://github.com/openclaw/openclaw/pull/161433). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161433"
-      },
-      {
-        "title": "Sidebar Reset restores visible Display settings alongside Filters, while pr...",
-        "description": "Sidebar Reset restores visible Display settings alongside Filters, while preserving hidden all-agent preferences. [#161437](https://github.com/openclaw/openclaw/pull/161437). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161437"
-      },
-      {
-        "title": "New conversations avoid repeated background reads when their parent is miss...",
-        "description": "New conversations avoid repeated background reads when their parent is missing while showing the new row and slash commands promptly. [#161442](https://github.com/openclaw/openclaw/pull/161442). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161442"
-      },
-      {
-        "title": "Feature-reference navigation restores its existing anchor and removes the r...",
-        "description": "Feature-reference navigation restores its existing anchor and removes the retired Tasks entry. [#161453](https://github.com/openclaw/openclaw/pull/161453). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161453"
-      },
-      {
-        "title": "Collapsed completed work keeps widgets and browser previews in their execut...",
-        "description": "Collapsed completed work keeps widgets and browser previews in their execution order. [#161473](https://github.com/openclaw/openclaw/pull/161473). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161473"
-      },
-      {
-        "title": "Confirmed non-Git folders hide checkout controls, and switching from cloud...",
-        "description": "Confirmed non-Git folders hide checkout controls, and switching from cloud or device storage to local does not carry forced isolation. A failed Git check requires a successful retry before creation. [#161475](https://github.com/openclaw/openclaw/pull/161475). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161475"
-      },
-      {
-        "title": "Conversation image previews gain faint borders that follow the theme",
-        "description": "Conversation image previews gain faint borders that follow the theme. [#161478](https://github.com/openclaw/openclaw/pull/161478). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161478"
-      },
-      {
-        "title": "System and danger notices have balanced spacing in desktop and touch conver...",
-        "description": "System and danger notices have balanced spacing in desktop and touch conversations. [#161479](https://github.com/openclaw/openclaw/pull/161479). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161479"
-      },
-      {
-        "title": "Chat activity uses tool icons with exact names on hover or through assistiv...",
-        "description": "Chat activity uses tool icons with exact names on hover or through assistive technology, while expansion keeps the details and outcomes available. [#161483](https://github.com/openclaw/openclaw/pull/161483). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161483"
-      },
-      {
-        "title": "The permission picker uses a compact icon with a named menu, tooltip and ac...",
-        "description": "The permission picker uses a compact icon with a named menu, tooltip and accessible label. [#161484](https://github.com/openclaw/openclaw/pull/161484). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161484"
-      },
-      {
-        "title": "Open person cards retain up to three already-loaded accessible conversation...",
-        "description": "Open person cards retain up to three already-loaded accessible conversation links, keeping their targets steady while times and presence update. Removed entries do not refill until the card is reopened. [#161493](https://github.com/openclaw/openclaw/pull/161493). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/161493"
-      },
-      {
-        "title": "Screenshot-only recap updates no longer leave a misleading omitted-messages...",
-        "description": "Screenshot-only recap updates no longer leave a misleading omitted-messages notice. Genuine omitted messages still show the notice. [#161518](https://github.com/openclaw/openclaw/pull/161518). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161518"
-      },
-      {
-        "title": "Assignment failures display the Gateway error, and the current owner is che...",
-        "description": "Assignment failures display the Gateway error, and the current owner is checked and disabled in the picker. [#161562](https://github.com/openclaw/openclaw/pull/161562). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161562"
-      },
-      {
-        "title": "Eligible same-origin HTTPS still screenshots can use a smaller preview whil...",
-        "description": "Eligible same-origin HTTPS still screenshots can use a smaller preview while opening keeps the original. Animated images and failed or larger conversions keep the original preview. [#161602](https://github.com/openclaw/openclaw/pull/161602). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161602"
-      },
-      {
-        "title": "Short history pages avoid parsing older messages that are already indexed",
-        "description": "Short history pages avoid parsing older messages that are already indexed. [#161638](https://github.com/openclaw/openclaw/pull/161638). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161638"
-      },
-      {
-        "title": "Initial Control UI loading makes fewer JavaScript requests, with remote des...",
-        "description": "Initial Control UI loading makes fewer JavaScript requests, with remote desktop available when opened. [#161648](https://github.com/openclaw/openclaw/pull/161648). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161648"
-      },
-      {
-        "title": "Signed-in startup avoids premature sign-in downloads and duplicate matching...",
-        "description": "Signed-in startup avoids premature sign-in downloads and duplicate matching self-avatar requests. Authentication rejection still loads the sign-in view. [#161649](https://github.com/openclaw/openclaw/pull/161649). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161649"
-      },
-      {
-        "title": "GitHub hovercards bound their upstream wait and can omit optional pictures...",
-        "description": "GitHub hovercards bound their upstream wait and can omit optional pictures or coauthors. Slow required information offers a retryable unavailable result; a partial card may need refresh. [GitHub guide](https://docs.openclaw.ai/plugins/github). [#161653](https://github.com/openclaw/openclaw/pull/161653). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161653"
-      },
-      {
-        "title": "Branch statistics include untracked text files whose names start with white...",
-        "description": "Branch statistics include untracked text files whose names start with whitespace. [#161723](https://github.com/openclaw/openclaw/pull/161723). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161723"
-      },
-      {
-        "title": "Returning to Live activity restores the active tool filter, including after...",
-        "description": "Returning to Live activity restores the active tool filter, including after an older unselected tool disappears. [#161860](https://github.com/openclaw/openclaw/pull/161860). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161860"
-      },
-      {
-        "title": "IP-location labels recover when their component returns, ignore late detach...",
-        "description": "IP-location labels recover when their component returns, ignore late detached results and clear when the address disappears. [#161911](https://github.com/openclaw/openclaw/pull/161911). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161911"
-      },
-      {
-        "title": "Switching through large rosters avoids unnecessary archive lookups for ordi...",
-        "description": "Switching through large rosters avoids unnecessary archive lookups for ordinary and restored conversations. [#161995](https://github.com/openclaw/openclaw/pull/161995). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161995"
-      },
-      {
-        "title": "Long-chat local saving reduces repeated serialization and uses idle time wh...",
-        "description": "Long-chat local saving reduces repeated serialization and uses idle time when available, with immediate saving on lifecycle changes. [#162004](https://github.com/openclaw/openclaw/pull/162004). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162004"
-      },
-      {
-        "title": "Live conversation updates avoid an unrelated display-refresh wait",
-        "description": "Live conversation updates avoid an unrelated display-refresh wait. Slow subscriptions gain [diagnostic phase logs](https://docs.openclaw.ai/gateway/logging). A scoped restoration check lets [Windows update cleanup](https://docs.openclaw.ai/cli/update/how-updates-run) proceed after interruption; it cannot repair an older update already in progress. [#162013](https://github.com/openclaw/openclaw/pull/162013). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162013"
-      },
-      {
-        "title": "Typing, streaming and scrolling through loaded long conversations avoid rep...",
-        "description": "Typing, streaming and scrolling through loaded long conversations avoid repeated history processing. [#162035](https://github.com/openclaw/openclaw/pull/162035). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162035"
-      },
-      {
-        "title": "Large-session views and long chats reduce repeated local run checks and sav...",
-        "description": "Large-session views and long chats reduce repeated local run checks and saved-stream selection while keeping Stop available. [#162092](https://github.com/openclaw/openclaw/pull/162092). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162092"
-      },
-      {
-        "title": "Confirmed Archive, Restore and Undo update the loaded sidebar immediately,...",
-        "description": "Confirmed Archive, Restore and Undo update the loaded sidebar immediately, without waiting for a separate event or page reload. [#162208](https://github.com/openclaw/openclaw/pull/162208). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162208"
-      },
-      {
-        "title": "Model choices distinguish configured Codex alternatives with a codex suffix...",
-        "description": "Model choices distinguish configured Codex alternatives with a codex suffix when both runtimes are offered. A single runtime keeps its plain label. [Model guide](https://docs.openclaw.ai/concepts/models). [#162292](https://github.com/openclaw/openclaw/pull/162292). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162292"
-      },
-      {
-        "title": "Opening the Control UI no longer downloads as much Review display code befo...",
-        "description": "Opening the Control UI no longer downloads as much Review display code before it is needed. [#162294](https://github.com/openclaw/openclaw/pull/162294). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162294"
-      },
-      {
-        "title": "System busyness expand and minimize animations survive unrelated updates an...",
-        "description": "System busyness expand and minimize animations survive unrelated updates and still respond to real size changes. [#162315](https://github.com/openclaw/openclaw/pull/162315). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162315"
-      },
-      {
-        "title": "Conversation titles no longer gain repeated translated prefixes when those...",
-        "description": "Conversation titles no longer gain repeated translated prefixes when those prefixes contain punctuation, and hiding the prefix works too. [#162331](https://github.com/openclaw/openclaw/pull/162331). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162331"
-      },
-      {
-        "title": "Cmd+K on Apple devices or Ctrl+K elsewhere opens the command palette from a...",
-        "description": "Cmd+K on Apple devices or Ctrl+K elsewhere opens the command palette from a normal-chat dashboard widget. Escape returns to the same input, caret and draft. [#162369](https://github.com/openclaw/openclaw/pull/162369). Thanks [@vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/issues/162369"
-      },
-      {
-        "title": "Cold New Session loading downloads less initial JavaScript and makes fewer...",
-        "description": "Cold New Session loading downloads less initial JavaScript and makes fewer requests. [#162382](https://github.com/openclaw/openclaw/pull/162382). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162382"
-      },
-      {
-        "title": "Existing translations cover import results, admin access to folders outside...",
-        "description": "Existing translations cover import results, admin access to folders outside the workspace and catalog-check guidance. [#162451](https://github.com/openclaw/openclaw/pull/162451).",
-        "href": "https://github.com/openclaw/openclaw/issues/162451"
-      },
-      {
-        "title": "Saved OpenAI safety refusals that contain only an older code now display th...",
-        "description": "Saved OpenAI safety refusals that contain only an older code now display their explanation and guidance beside a partial answer. [#162469](https://github.com/openclaw/openclaw/pull/162469). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162469"
-      },
-      {
-        "title": "An eligible web-chat attempt that stalls before answering can make one reco...",
-        "description": "An eligible web-chat attempt that stalls before answering can make one recovery attempt in the same conversation. Failure leaves retry guidance; personal or workspace skill-write permission requires a fresh user message. [Queue and recovery guide](https://docs.openclaw.ai/concepts/queue). [#162490](https://github.com/openclaw/openclaw/pull/162490). Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162490"
-      },
-      {
-        "title": "The browser terminal keeps its pending output and reports the original clea...",
-        "description": "The browser terminal keeps its pending output and reports the original cleanup error. [#162520](https://github.com/openclaw/openclaw/pull/162520). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162520"
-      },
-      {
-        "title": "Chat controls and viewer avatars avoid redundant updates while real content...",
-        "description": "Chat controls and viewer avatars avoid redundant updates while real content, access and presence changes still refresh them. [#162536](https://github.com/openclaw/openclaw/pull/162536). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162536"
-      },
-      {
-        "title": "Tooltips create their popup on first use and reuse it while keeping keyboar...",
-        "description": "Tooltips create their popup on first use and reuse it while keeping keyboard focus and accessible descriptions available. [#162539](https://github.com/openclaw/openclaw/pull/162539). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162539"
-      },
-      {
-        "title": "Large conversations and lists avoid unnecessary styling work and measure of...",
-        "description": "Large conversations and lists avoid unnecessary styling work and measure offscreen labels when they first become visible. [#162589](https://github.com/openclaw/openclaw/pull/162589). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162589"
-      },
-      {
-        "title": "Switching, scrolling and resizing chats avoid repeated layout work while pr...",
-        "description": "Switching, scrolling and resizing chats avoid repeated layout work while preserving reading position and end anchoring. [#162617](https://github.com/openclaw/openclaw/pull/162617). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162617"
-      },
-      {
-        "title": "Simultaneous clients have more bounded waiting capacity for setup and sessi...",
-        "description": "Simultaneous clients have more bounded waiting capacity for setup and session requests. Overloaded Gateways can still refuse requests. [#162668](https://github.com/openclaw/openclaw/pull/162668). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162668"
-      },
-      {
-        "title": "If both the original and recovery attempts stall before output, Please try...",
-        "description": "If both the original and recovery attempts stall before output, Please try again returns instead of leaving the conversation stuck. [#162713](https://github.com/openclaw/openclaw/pull/162713). Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162713"
-      },
-      {
-        "title": "Codex reasoning and compaction activity no longer appear as empty completed...",
-        "description": "Codex reasoning and compaction activity no longer appear as empty completed tool cards. Genuine tool activity remains visible. [#162758](https://github.com/openclaw/openclaw/pull/162758). Thanks [@jayzhou2309](https://github.com/jayzhou2309), [@DarkJuanFra](https://github.com/DarkJuanFra) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162758"
-      },
-      {
-        "title": "Opening Approvals for the first time avoids initializing unrelated chat and...",
-        "description": "Opening Approvals for the first time avoids initializing unrelated chat and redaction work. [#162808](https://github.com/openclaw/openclaw/pull/162808). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162808"
-      },
-      {
-        "title": "Opening the model picker focuses its search without disturbing the unsent c...",
-        "description": "Opening the model picker focuses its search without disturbing the unsent conversation draft. [#162832](https://github.com/openclaw/openclaw/pull/162832). Thanks [@eleqtrizit](https://github.com/eleqtrizit).",
-        "href": "https://github.com/openclaw/openclaw/issues/162832"
-      },
-      {
-        "title": "Local workspace icons load without opening chat and can recover after cache...",
-        "description": "Local workspace icons load without opening chat and can recover after cache eviction, falling back to a folder icon after bounded retries. [#162885](https://github.com/openclaw/openclaw/pull/162885). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/162885"
-      },
-      {
-        "title": "Offscreen sidebar indicators pause their animation while sessions continue...",
-        "description": "Offscreen sidebar indicators pause their animation while sessions continue working. [#162905](https://github.com/openclaw/openclaw/pull/162905). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162905"
-      },
-      {
-        "title": "The first stored conversation after startup can load sooner",
-        "description": "The first stored conversation after startup can load sooner. [#162936](https://github.com/openclaw/openclaw/pull/162936). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162936"
-      },
-      {
-        "title": "Session-only users avoid catalog permission errors, and revoked or late cat...",
-        "description": "Session-only users avoid catalog permission errors, and revoked or late catalog results stop appearing as current. [#162944](https://github.com/openclaw/openclaw/pull/162944). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162944"
-      },
-      {
-        "title": "GitHub icons stay beside the first line of wrapped labels in narrow and rig...",
-        "description": "GitHub icons stay beside the first line of wrapped labels in narrow and right-to-left layouts. [#163047](https://github.com/openclaw/openclaw/pull/163047). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163047"
-      },
-      {
-        "title": "Hidden retained chat panes pause updates and apply them on return, while vi...",
-        "description": "Hidden retained chat panes pause updates and apply them on return, while visible split panes continue updating. [#163073](https://github.com/openclaw/openclaw/pull/163073). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163073"
-      },
-      {
-        "title": "Browser selections saved before July 1 require reselection, with conversati...",
-        "description": "Browser selections saved before July 1 require reselection, with conversations preserved. An old token alone is not restored as a credential. [#163083](https://github.com/openclaw/openclaw/pull/163083). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163083"
-      },
-      {
-        "title": "Older open tabs wait for retained UI-file inventory after a Gateway restart",
-        "description": "Older open tabs wait for retained UI-file inventory after a Gateway restart. Tabs whose files have been pruned still need to reload. [#163090](https://github.com/openclaw/openclaw/pull/163090). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163090"
-      },
-      {
-        "title": "Retained UI builds avoid storing compressed duplicates, keeping earlier tab...",
-        "description": "Retained UI builds avoid storing compressed duplicates, keeping earlier tabs usable within the existing three-generation and 96 MiB limits. Earlier-build downloads use larger uncompressed files. [#163099](https://github.com/openclaw/openclaw/pull/163099). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163099"
-      },
-      {
-        "title": "The community invitation links to Reddit, Discord and X and renews an old d...",
-        "description": "The community invitation links to Reddit, Discord and X and renews an old dismissal once. A new dismissal is retained when browser storage is available, and the opt-out setting is honored. [#163109](https://github.com/openclaw/openclaw/pull/163109). Thanks [@hannesrudolph](https://github.com/hannesrudolph) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163109"
-      },
-      {
-        "title": "The first browser connection after a restart avoids heavier startup-schedul...",
-        "description": "The first browser connection after a restart avoids heavier startup-scheduling preparation. [#163173](https://github.com/openclaw/openclaw/pull/163173). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163173"
-      },
-      {
-        "title": "Existing translations cover model connections, accounts and billing controls",
-        "description": "Existing translations cover model connections, accounts and billing controls. [#163176](https://github.com/openclaw/openclaw/pull/163176).",
-        "href": "https://github.com/openclaw/openclaw/issues/163176"
-      },
-      {
-        "title": "A failed Mention Inbox refresh retries after a minute instead of waiting fo...",
-        "description": "A failed Mention Inbox refresh retries after a minute instead of waiting for a distant expiry. [#163229](https://github.com/openclaw/openclaw/pull/163229). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163229"
-      },
-      {
-        "title": "Enter on an invalid relative folder path preserves the input and listing wh...",
-        "description": "Enter on an invalid relative folder path preserves the input and listing while keeping that path unselectable. [#163284](https://github.com/openclaw/openclaw/pull/163284). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163284"
-      },
-      {
-        "title": "Review stays unloaded when its tab is absent, while an existing hidden Revi...",
-        "description": "Review stays unloaded when its tab is absent, while an existing hidden Review tab retains its content. [#163346](https://github.com/openclaw/openclaw/pull/163346). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163346"
-      },
-      {
-        "title": "Notification settings do less database preparation on the Gateway request t...",
-        "description": "Notification settings do less database preparation on the Gateway request thread, with saves completed before pending subscription changes proceed. [#163355](https://github.com/openclaw/openclaw/pull/163355). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163355"
-      },
-      {
-        "title": "New credential fields accept the full masked value and receive focus",
-        "description": "New credential fields accept the full masked value and receive focus. Previously redacted secrets and structured secret references remain protected and cannot be replaced in these forms. [#163487](https://github.com/openclaw/openclaw/pull/163487). Thanks [@ericcurtin](https://github.com/ericcurtin), [@jonathanlindsay](https://github.com/jonathanlindsay) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163487"
-      },
-      {
-        "title": "Paired Codex disconnection keeps guidance to start a fresh attempt",
-        "description": "Paired Codex disconnection keeps guidance to start a fresh attempt. [Placement guidance](https://docs.openclaw.ai/plugins/codex-harness/placement). [#163515](https://github.com/openclaw/openclaw/pull/163515). Thanks [@vincentkoc](https://github.com/vincentkoc) and [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/163515"
-      },
-      {
-        "title": "Tool cards distinguish unfinished work from reported success, failure or in...",
-        "description": "Tool cards distinguish unfinished work from reported success, failure or interruption, including recognized Wait and matching agent-completion events. An unknown outcome stays unknown. [#163545](https://github.com/openclaw/openclaw/pull/163545). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/163545"
-      },
-      {
-        "title": "Reconnect bursts prioritize connection handshakes and spread retries, which...",
-        "description": "Reconnect bursts prioritize connection handshakes and spread retries, which can leave the first session lists taking longer to arrive. [#163714](https://github.com/openclaw/openclaw/pull/163714). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163714"
-      },
-      {
-        "title": "The community invitation uses themed light and dark artwork and labeled Red...",
-        "description": "The community invitation uses themed light and dark artwork and labeled Reddit, Discord and X controls with larger touch targets. [#163734](https://github.com/openclaw/openclaw/pull/163734). Thanks [@hannesrudolph](https://github.com/hannesrudolph).",
-        "href": "https://github.com/openclaw/openclaw/issues/163734"
-      },
-      {
-        "title": "The community invitation refreshes its copy in the existing translated locales",
-        "description": "The community invitation refreshes its copy in the existing translated locales. [#163738](https://github.com/openclaw/openclaw/pull/163738). Thanks [@hannesrudolph](https://github.com/hannesrudolph).",
-        "href": "https://github.com/openclaw/openclaw/issues/163738"
-      },
-      {
-        "title": "Unused vertical scrolling inside an inline widget passes through to chat",
-        "description": "Unused vertical scrolling inside an inline widget passes through to chat. New video guidance can load a preview before Play, so it may download media in advance. [#163762](https://github.com/openclaw/openclaw/pull/163762). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163762"
-      },
-      {
-        "title": "Concurrent conversation-history reads do less preparation on the Gateway re...",
-        "description": "Concurrent conversation-history reads do less preparation on the Gateway request thread. Local terminal startup also avoids an authentication-reader maintenance race. [#163771](https://github.com/openclaw/openclaw/pull/163771). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163771"
-      },
-      {
-        "title": "Add to chat comment editors stay readable while scrolling in desktop and mo...",
-        "description": "Add to chat comment editors stay readable while scrolling in desktop and mobile create or edit views. [Chat guide](https://docs.openclaw.ai/web/control-ui/chat). [#163772](https://github.com/openclaw/openclaw/pull/163772). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163772"
-      },
-      {
-        "title": "The Execution permissions heading is separate from Learn more, so clicking...",
-        "description": "The Execution permissions heading is separate from Learn more, so clicking the heading keeps the menu open. [Permission modes](https://docs.openclaw.ai/gateway/permission-modes). [#163776](https://github.com/openclaw/openclaw/pull/163776). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163776"
-      },
-      {
-        "title": "Tool Search activity cards show the tool actually called and its query, fil...",
-        "description": "Tool Search activity cards show the tool actually called and its query, file or command instead of only the dispatcher. [#163829](https://github.com/openclaw/openclaw/pull/163829). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163829"
-      },
-      {
-        "title": "Session status and Workboard digests accept valid observer replies wrapped...",
-        "description": "Session status and Workboard digests accept valid observer replies wrapped in plain or JSON code blocks, while rejecting malformed content. [#163878](https://github.com/openclaw/openclaw/pull/163878). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163878"
-      },
-      {
-        "title": "Resizing chats avoids redundant redraws while retaining scroll anchoring an...",
-        "description": "Resizing chats avoids redundant redraws while retaining scroll anchoring and hidden-pane geometry. [#163898](https://github.com/openclaw/openclaw/pull/163898). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163898"
-      },
-      {
-        "title": "Malformed terminal attachments release their listener, slash commands retai...",
-        "description": "Malformed terminal attachments release their listener, slash commands retain their supplied help text, and MCP setup can continue when the browser has supported cryptography but lacks its UUID helper. [#164011](https://github.com/openclaw/openclaw/pull/164011). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164011"
-      },
-      {
-        "title": "The terminal stays closed until overlapping shutdown waits have all ended,...",
-        "description": "The terminal stays closed until overlapping shutdown waits have all ended, preventing partial or duplicate releases from reopening it early. [#164014](https://github.com/openclaw/openclaw/pull/164014). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164014"
-      },
-      {
-        "title": "Avatar lookup stops on a temporary primary Gravatar error and tries a secon...",
-        "description": "Avatar lookup stops on a temporary primary Gravatar error and tries a secondary address after a definite miss. Unsupported v2026.6.1 Control UI clients need a supported client because the retired configuration route is removed. [Migration guidance](https://docs.openclaw.ai/gateway/doctor/config-migrations). [#164022](https://github.com/openclaw/openclaw/pull/164022). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164022"
-      },
-      {
-        "title": "PR previews reuse unchanged checkout information while selected-ref, staged...",
-        "description": "PR previews reuse unchanged checkout information while selected-ref, staged, configuration and ancestry changes remain visible on the next read. Unstaged-only counts can stay stale for five minutes, including after refresh. [#164035](https://github.com/openclaw/openclaw/pull/164035). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164035"
-      },
-      {
-        "title": "An agent still preparing keeps a startup message instead of a settled failu...",
-        "description": "An agent still preparing keeps a startup message instead of a settled failure, even after a minute. [#164041](https://github.com/openclaw/openclaw/pull/164041). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/164041"
-      },
-      {
-        "title": "Native Windows managed workspaces can be created or reused from deeply nest...",
-        "description": "Native Windows managed workspaces can be created or reused from deeply nested source repositories that hit Git's metadata-path-too-big error. Cross-drive metadata and separate deep-reference reconciliation limits remain. [#164249](https://github.com/openclaw/openclaw/pull/164249). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164249"
-      },
-      {
-        "title": "RGB-aware programs in local browser terminals use their intended colors whe...",
-        "description": "RGB-aware programs in local browser terminals use their intended colors when the host lacks COLORTERM. Explicit environment choices and catalog overrides retain precedence. [#164325](https://github.com/openclaw/openclaw/pull/164325). Thanks [@ooiuuii](https://github.com/ooiuuii).",
-        "href": "https://github.com/openclaw/openclaw/issues/164325"
-      },
-      {
-        "title": "Large Claude CLI conversations use ordinary bounded pages and backscroll fo...",
-        "description": "Large Claude CLI conversations use ordinary bounded pages and backscroll for local and native-only messages. Initial indexing still scans history, and an unavailable native transcript can still block loading despite readable local history. [#164419](https://github.com/openclaw/openclaw/pull/164419). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164419"
-      },
-      {
-        "title": "Completed-work headings spell out elapsed time, with call totals on expansi...",
-        "description": "Completed-work headings spell out elapsed time, with call totals on expansion and non-success outcomes visible while collapsed. Missing timing leaves Worked without an invented duration. [#164430](https://github.com/openclaw/openclaw/pull/164430). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164430"
-      },
-      {
-        "title": "Tool activity keeps a readable label such as Wait or Session Status when th...",
-        "description": "Tool activity keeps a readable label such as Wait or Session Status when there is no distinct detail to show. [#164437](https://github.com/openclaw/openclaw/pull/164437). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164437"
-      },
-      {
-        "title": "Preference-only edits avoid an unnecessary Gateway restart when plugin defa...",
-        "description": "Preference-only edits avoid an unnecessary Gateway restart when plugin defaults become available between reading and saving settings. [#164450](https://github.com/openclaw/openclaw/pull/164450). Thanks [@RomneyDa](https://github.com/RomneyDa), [@wenwenxiong](https://github.com/wenwenxiong) and [@SuperMarioYL](https://github.com/SuperMarioYL).",
-        "href": "https://github.com/openclaw/openclaw/issues/164450"
-      },
-      {
-        "title": "Assignment and membership menus show all already-loaded matching people and...",
-        "description": "Assignment and membership menus show all already-loaded matching people and agents in one scrollable list with search kept visible. [#164469](https://github.com/openclaw/openclaw/pull/164469). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164469"
-      },
-      {
-        "title": "Normal agent preparation shows Starting up and automatically loads chat and...",
-        "description": "Normal agent preparation shows Starting up and automatically loads chat and sidebar data when ready. Preparation can take minutes; real failures keep their diagnostics. [#164532](https://github.com/openclaw/openclaw/pull/164532). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164532"
-      },
-      {
-        "title": "Confirming composed characters keeps queued-message editing open and preser...",
-        "description": "Confirming composed characters keeps queued-message editing open and preserves the Side chat draft without sending. A later deliberate shortcut performs the intended save or send. [#164560](https://github.com/openclaw/openclaw/pull/164560). Thanks [@steipete](https://github.com/steipete) and [@NianJiuZst](https://github.com/NianJiuZst).",
-        "href": "https://github.com/openclaw/openclaw/issues/164560"
-      },
-      {
-        "title": "Eligible Activity and Current Work changes appear directly from session eve...",
-        "description": "Eligible Activity and Current Work changes appear directly from session events, with smaller sidebar and dashboard list responses. Filtered or incomplete views still refresh, and a model change can leave some compact-row model details from the previous model. [#164573](https://github.com/openclaw/openclaw/pull/164573). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164573"
-      },
-      {
-        "title": "Device-control text loads when Devices needs it, reducing the initial JavaS...",
-        "description": "Device-control text loads when Devices needs it, reducing the initial JavaScript download. [#164735](https://github.com/openclaw/openclaw/pull/164735). Thanks [@shakkernerd](https://github.com/shakkernerd) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164735"
-      },
-      {
-        "title": "Repaired container bundles let restricted arbitrary user IDs read the core...",
-        "description": "Repaired container bundles let restricted arbitrary user IDs read the core Control UI assets, addressing the whole-UI 503 failure. Install or build the repaired image; existing deployments are not changed automatically, and private runtime files remain restricted. [#165937](https://github.com/openclaw/openclaw/pull/165937). Thanks [@RomneyDa](https://github.com/RomneyDa) and [@Conan-Scott](https://github.com/Conan-Scott).",
-        "href": "https://github.com/openclaw/openclaw/issues/165937"
-      },
-      {
-        "title": "New Session ends a stalled model-catalog wait after a shared twenty-second...",
-        "description": "New Session ends a stalled model-catalog wait after a shared twenty-second deadline, explains that no session was created and retains the draft for retry. This deadline covers catalog waiting rather than the full workspace setup or first answer. [#165989](https://github.com/openclaw/openclaw/pull/165989). Thanks [@steipete](https://github.com/steipete), [@DonnieFi](https://github.com/DonnieFi) and [@dprev](https://github.com/dprev).",
-        "href": "https://github.com/openclaw/openclaw/issues/165989"
-      },
-      {
-        "title": "Chat updates return to on-demand scheduling after removal of the frame wait...",
-        "description": "Chat updates return to on-demand scheduling after removal of the frame wait that could hold working indicators and draft updates. [d1dc3cd](https://github.com/openclaw/openclaw/commit/d1dc3cd51104d5592968802de29b54002578117a). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Direct-linked automation editors and unsaved edits survive delayed initial...",
-        "description": "Direct-linked automation editors and unsaved edits survive delayed initial agent information. Deliberate agent-filter changes and connection retirement keep their existing reset behavior. [a7d093b](https://github.com/openclaw/openclaw/commit/a7d093b7e2d0c5e1d58e1e9c7185afbe49985a44). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Completed tools stop showing Running while the assistant continues",
-        "description": "Completed tools stop showing Running while the assistant continues. Without a definite result they show Outcome unknown; partial output alone keeps the tool running. [7b3972c](https://github.com/openclaw/openclaw/commit/7b3972c677e20444376aeac1f3b2860633467b9d). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Preparing the bundled web interface checks up to four retained files at onc...",
-        "description": "Preparing the bundled web interface checks up to four retained files at once, verifying each before making it available. [4cf8c4d](https://github.com/openclaw/openclaw/commit/4cf8c4d334a18a521f94314b0abbe357ff0bf470). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Update efficiency",
-        "description": "** Package and source updates do less repeated checking and copying, keep the selected runtime and package manager, and retain recovery tools through replacement.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Installed updater limits",
-        "description": "** Several fixes must be present in the installed updater that starts the operation. If an older updater refuses before staging, follow the [manual update procedure](https://docs.openclaw.ai/install/updating/update-methods#alternative-manual-npm-pnpm-or-bun) with a verified backup, then use the new CLI's Doctor and repair commands.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Windows 2026.9.4 automatic updates",
-        "description": "** Affected automatic updates from Windows 2026.9.4 refuse an incompatible candidate; wait for the updater to exit, make a [verified backup](https://docs.openclaw.ai/install/updating/rollback-and-recovery#before-updating-create-a-verified-backup), and update manually from an independent shell using the same account, installation and profile.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Other Gateways and stopped services",
-        "description": "** Stop other Gateways and installation-modifying tools yourself during updates; restart sibling Gateways separately. A stopped service stays stopped unless the updater owns its restoration.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Saving compatible settings during update checks can now be followed by a fr...",
-        "description": "Saving compatible settings during update checks can now be followed by a fresh check instead of an immediate failure. The updater keeps caller and service profiles separate and still refuses incompatible or repeatedly changing settings. Rollback prepares restore copies before moving live databases and refuses restoration that would discard newer changes. Even legitimate Doctor migrations disable automatic restoration of changed databases, so recovery after a later failure may need manual action. See [rollback and recovery](https://docs.openclaw.ai/install/updating/rollback-and-recovery).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update reports stay visible through the final result, keep JSON output pars...",
-        "description": "Update reports stay visible through the final result, keep JSON output parseable and explain failures without exposing private details. An old failure can be labeled historical when the Gateway is ready and serving the intended target; its original result is retained. Eligible Linux update receipts can refresh after the filesystem's device number changes, allowing another update. The initial `update --dry-run` path can also rewrite those receipts, so that preview is not read-only.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor can repair supported session ownership and quarantined data, do less...",
-        "description": "Doctor can repair supported session ownership and quarantined data, do less repeated archive work, and repair writable state with [read-only configuration](https://docs.openclaw.ai/cli/config). Required configuration edits still belong in the deployment source. Accepted settings and repair permissions remain protected, and explicit recovery references must verify before repair. If Doctor finishes while the managed Gateway is still starting, check `openclaw gateway status` afterward. Empty-transcript recovery can still break another agent's reference to a shared file; keep the originals and backups together at their reported paths. See [running Doctor](https://docs.openclaw.ai/cli/doctor/running).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Very old configurations and saved-data formats may need an intermediate rel...",
-        "description": "Very old configurations and saved-data formats may need an intermediate release before this upgrade can proceed; refusals preserve the old files. Back up complete configuration, state and queue-owned media first. The documented configuration forms need **2026.9.5 Doctor**; Matrix's five retired files also need Matrix started once, and older flat layouts first need **2026.6 Doctor and Gateway startup**. Retired outgoing/session JSON queues, cron files, encrypted OAuth sidecars, Voice Call logs and nested workspace setup files need **2026.9.7 on the original host, then Doctor**. Do not rename migrated queue artifacts to replay messages. Supported July routing aliases, supported JSON imports and current SQLite state remain supported. Follow [state migrations](https://docs.openclaw.ai/cli/doctor/state-migrations), [Matrix migrations](https://docs.openclaw.ai/channels/matrix-migration#retired-pre-july-state-files) and [incoming-queue migration](https://docs.openclaw.ai/plugins/sdk-migration/how-to-migrate#migrate-durable-ingress-files-through-doctor) for the affected format.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor gives eligible single-file [Talk configurations](https",
-        "description": "//docs.openclaw.ai/nodes/talk) their own saved provider settings, so later Voice Call edits do not change Talk. Configurations split across included files can lose inherited settings and need separate correction; see [Talk migration](https://docs.openclaw.ai/gateway/doctor/config-migrations#talk-realtime-inheritance). Supported command-approval policies also receive repair with a private original copy, but ordinary pre-Doctor exports can omit old command permissions or MCP grants. Run Doctor against the correct state directory before relying on an older-format export. Retired embedded session settings and shortcuts require backed-up manual correction; current Doctor does not repair them. Follow [session-setting migrations](https://docs.openclaw.ai/gateway/doctor/config-migrations#session-settings).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Stopping the Gateway waits for accepted database maintenance and worker cle...",
-        "description": "Stopping the Gateway waits for accepted database maintenance and worker cleanup. A plugin cleanup timeout no longer turns a successful message command into a failure, though cleanup can remain pending. A final native-worker cleanup failure leaves that source unavailable until the process restarts. Restarts continue after duplicate configuration notifications, and crash-loop pauses keep interrupted-turn retries for replay after a full stable window. Running or queued work survives an access-policy change only while its original access remains valid. See [restart recovery](https://docs.openclaw.ai/gateway/restart-recovery#safety-valves-and-observability) and [message commands](https://docs.openclaw.ai/cli/message).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Containers recognize a verified live owner of shared Gateway data even when...",
-        "description": "Containers recognize a verified live owner of shared Gateway data even when process IDs differ between containers. A foreign or unverifiable owner needs a heartbeat older than 90 seconds before eligible recovery; Doctor refuses a fresh unknown owner. Use the documented shared process namespace for a separate Docker CLI container, or run the TUI inside the Gateway container. Windows recovery can re-enable a verified disabled Gateway task while refusing a foreign launcher. See [Windows guidance](https://docs.openclaw.ai/platforms/windows).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Archive cleanup and integrity checks",
-        "description": "** Session and archive cleanup moves supported database work into background workers while keeping retention rules and denied-access checks. Automatic five-minute and daily full database integrity scans stop; requested quick checks cover less corruption than those full scans.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Source Control UI rebuilds",
-        "description": "** When a source Control UI rebuild fails, the previous bundle is retained, but the wrapper still overrides custom `--outDir` with `dist/control-ui`.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Idle browser nodes can update while upload files are retained, with restart...",
-        "description": "Idle browser nodes can update while upload files are retained, with restart recovery for interrupted cleanup. [#154384](https://github.com/openclaw/openclaw/pull/154384). Thanks [@xialonglee](https://github.com/xialonglee), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/154384"
-      },
-      {
-        "title": "Doctor checks that an explicitly selected session store belongs to the requ...",
-        "description": "Doctor checks that an explicitly selected session store belongs to the requested agent; scripts with mismatched selectors must use its actual owner. [#156907](https://github.com/openclaw/openclaw/pull/156907). Thanks [@Alix-007](https://github.com/Alix-007), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/156907"
-      },
-      {
-        "title": "Older compacted sessions can enter enabled cold storage after the configure...",
-        "description": "Older compacted sessions can enter enabled cold storage after the configured idle period while references to required history remain protected. [#157994](https://github.com/openclaw/openclaw/pull/157994). Thanks [@anyech](https://github.com/anyech), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/157994"
-      },
-      {
-        "title": "Keeping a deleted agent’s history no longer blocks the affected plugin-stor...",
-        "description": "Keeping a deleted agent’s history no longer blocks the affected plugin-store cleanup during Gateway shutdown. [#158473](https://github.com/openclaw/openclaw/pull/158473). Thanks [@anyech](https://github.com/anyech), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/158473"
-      },
-      {
-        "title": "Doctor accepts a service home override pointing to the account’s canonical...",
-        "description": "Doctor accepts a service home override pointing to the account’s canonical home, restoring the existing credential-repair path. [#160056](https://github.com/openclaw/openclaw/pull/160056). Thanks [@steipete](https://github.com/steipete), [@oscarsixsecllc](https://github.com/oscarsixsecllc), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/160056"
-      },
-      {
-        "title": "An already-stopped Gateway stays stopped when Doctor cannot verify its curr...",
-        "description": "An already-stopped Gateway stays stopped when Doctor cannot verify its current ownership and offline state; inspect deep status before starting it manually. [#160083](https://github.com/openclaw/openclaw/pull/160083). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160083"
-      },
-      {
-        "title": "Doctor can remove abandoned update files beside unrelated Node or Bun apps...",
-        "description": "Doctor can remove abandoned update files beside unrelated Node or Bun apps when readable process and package evidence confirms they do not use those files. [#160158](https://github.com/openclaw/openclaw/pull/160158). Thanks [@steipete](https://github.com/steipete), [@Marvinthebored](https://github.com/Marvinthebored).",
-        "href": "https://github.com/openclaw/openclaw/issues/160158"
-      },
-      {
-        "title": "Failed-update recovery preserves databases changed during Doctor, including...",
-        "description": "Failed-update recovery preserves databases changed during Doctor, including legitimate migrations; restoring those databases then requires manual recovery. [#160167](https://github.com/openclaw/openclaw/pull/160167). Thanks [@steipete](https://github.com/steipete), [@RomneyDa](https://github.com/RomneyDa), [@vyctorbrzezowski](https://github.com/vyctorbrzezowski), [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/160167"
-      },
-      {
-        "title": "A restart can skip repeated database scans after idle or finished writers c...",
-        "description": "A restart can skip repeated database scans after idle or finished writers close successfully, even when other shutdown cleanup reaches its deadline. [#160201](https://github.com/openclaw/openclaw/pull/160201). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160201"
-      },
-      {
-        "title": "Repair preserves settings for incompatible plugins and finishes pending sav...",
-        "description": "Repair preserves settings for incompatible plugins and finishes pending saved-data confirmation after compatibility is corrected, including when packages are unchanged. [#160344](https://github.com/openclaw/openclaw/pull/160344). Thanks [@steipete](https://github.com/steipete), [@EndeavorPioneer](https://github.com/EndeavorPioneer).",
-        "href": "https://github.com/openclaw/openclaw/issues/160344"
-      },
-      {
-        "title": "Eligible database rollback retains current update attempts and failure deta...",
-        "description": "Eligible database rollback retains current update attempts and failure details while leaving the original snapshots unchanged. [#160614](https://github.com/openclaw/openclaw/pull/160614). Thanks [@steipete](https://github.com/steipete), [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/160614"
-      },
-      {
-        "title": "Updates refuse to replace a shared installation while an observed sibling G...",
-        "description": "Updates refuse to replace a shared installation while an observed sibling Gateway is running; stop that service yourself and restart it after the update. [#160663](https://github.com/openclaw/openclaw/pull/160663). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160663"
-      },
-      {
-        "title": "Gateways already running this fix retain cleanup code through package repla...",
-        "description": "Gateways already running this fix retain cleanup code through package replacement and save final speech with heuristic notes; model notes can be regenerated after restart. [#160674](https://github.com/openclaw/openclaw/pull/160674). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160674"
-      },
-      {
-        "title": "Windows Gateway inspection and update repair preserve empty arguments, quot...",
-        "description": "Windows Gateway inspection and update repair preserve empty arguments, quotes, backslashes and Unicode when identifying running processes. [#160680](https://github.com/openclaw/openclaw/pull/160680). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160680"
-      },
-      {
-        "title": "Doctor and plugin maintenance can continue through brief competing database...",
-        "description": "Doctor and plugin maintenance can continue through brief competing database writes without immediately failing admission or losing maintenance ownership. [#160702](https://github.com/openclaw/openclaw/pull/160702). Thanks [@RomneyDa](https://github.com/RomneyDa), [@Ludwigtheo0815](https://github.com/Ludwigtheo0815), [@laurentschwartz](https://github.com/laurentschwartz).",
-        "href": "https://github.com/openclaw/openclaw/issues/160702"
-      },
-      {
-        "title": "Incompatible automatic updates from Windows 2026",
-        "description": "Incompatible automatic updates from Windows 2026.9.4 stop before activation; wait for the updater to exit, create a verified backup and follow the manual update procedure. [#160718](https://github.com/openclaw/openclaw/pull/160718). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160718"
-      },
-      {
-        "title": "Busy database writers move automatic checkpoint work away from saving chang...",
-        "description": "Busy database writers move automatic checkpoint work away from saving changes, addressing one source of pauses on large stores; idle-worker checkpoint completion remains uncertain. [#160818](https://github.com/openclaw/openclaw/pull/160818). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160818"
-      },
-      {
-        "title": "Cloud workers retain their new runtime after a Gateway update until install...",
-        "description": "Cloud workers retain their new runtime after a Gateway update until installation is recorded, avoiding a missing-runtime failure on the next turn. [#160820](https://github.com/openclaw/openclaw/pull/160820). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160820"
-      },
-      {
-        "title": "Eligible scheduled session cleanup runs in the background and preserves pub...",
-        "description": "Eligible scheduled session cleanup runs in the background and preserves publication records belonging to a recreated session. [#160858](https://github.com/openclaw/openclaw/pull/160858). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160858"
-      },
-      {
-        "title": "New request errors distinguish a Gateway restart, shutdown or temporary pau...",
-        "description": "New request errors distinguish a Gateway restart, shutdown or temporary pause and explain when to try again. [#160869](https://github.com/openclaw/openclaw/pull/160869). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/160869"
-      },
-      {
-        "title": "Running and queued work can survive live connection-policy changes when its...",
-        "description": "Running and queued work can survive live connection-policy changes when its original access remains valid; clients still reconnect, and actual access loss still cancels affected work. [#160909](https://github.com/openclaw/openclaw/pull/160909). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160909"
-      },
-      {
-        "title": "A delayed node-connection alert is suppressed when its pairing check finish...",
-        "description": "A delayed node-connection alert is suppressed when its pairing check finishes after Gateway shutdown begins. [#160915](https://github.com/openclaw/openclaw/pull/160915). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160915"
-      },
-      {
-        "title": "Session-history cleanup can resume after its blocking writes are safely che...",
-        "description": "Session-history cleanup can resume after its blocking writes are safely checkpointed even while unrelated writes continue; relevant open readers still postpone cleanup. [#161061](https://github.com/openclaw/openclaw/pull/161061). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161061"
-      },
-      {
-        "title": "Interrupted update validation waits for accepted progress writes and retain...",
-        "description": "Interrupted update validation waits for accepted progress writes and retains temporary recovery data when their outcome is uncertain. [#161104](https://github.com/openclaw/openclaw/pull/161104). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161104"
-      },
-      {
-        "title": "The current automatic source-server update script checks a private candidat...",
-        "description": "The current automatic source-server update script checks a private candidate before stopping the Gateway; preparation failures preserve the serving installation, while shared sibling services remain yours to stop. [#161110](https://github.com/openclaw/openclaw/pull/161110). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161110"
-      },
-      {
-        "title": "Active session updates can commit while background maintenance performs its...",
-        "description": "Active session updates can commit while background maintenance performs its initial database check. [#161181](https://github.com/openclaw/openclaw/pull/161181). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161181"
-      },
-      {
-        "title": "Doctor can recover interrupted imports of old MCP sign-in files without rep...",
-        "description": "Doctor can recover interrupted imports of old MCP sign-in files without replaying retired credentials or undoing a later logout; uncertain outcomes retain recovery state and warn. [#161219](https://github.com/openclaw/openclaw/pull/161219). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161219"
-      },
-      {
-        "title": "Updates and source rebuilds identify discovered sibling Gateways by their a...",
-        "description": "Updates and source rebuilds identify discovered sibling Gateways by their actual service name, including loaded Linux services with missing unit files, and explain which service to stop. [#161238](https://github.com/openclaw/openclaw/pull/161238). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161238"
-      },
-      {
-        "title": "Source update completion and update repair refuse to replace files used by...",
-        "description": "Source update completion and update repair refuse to replace files used by a discovered running sibling Gateway; stop overlapping services yourself and retry. [#161239](https://github.com/openclaw/openclaw/pull/161239). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161239"
-      },
-      {
-        "title": "Unmanaged foreground Gateways can remain alive for manual configuration rep...",
-        "description": "Unmanaged foreground Gateways can remain alive for manual configuration repair after restart triage declines or fails; requests resume only after startup succeeds. [#161294](https://github.com/openclaw/openclaw/pull/161294). Thanks [@steipete](https://github.com/steipete), [@dh-js](https://github.com/dh-js).",
-        "href": "https://github.com/openclaw/openclaw/issues/161294"
-      },
-      {
-        "title": "Older updaters no longer falsely report a changed database inventory and ro...",
-        "description": "Older updaters no longer falsely report a changed database inventory and roll back because optional ownership details were omitted. [#161411](https://github.com/openclaw/openclaw/pull/161411). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161411"
-      },
-      {
-        "title": "Failed update recovery skips waiting for a Gateway known to be absent, whil...",
-        "description": "Failed update recovery skips waiting for a Gateway known to be absent, while retaining the original failure and restoration checks. [#161426](https://github.com/openclaw/openclaw/pull/161426). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161426"
-      },
-      {
-        "title": "Source installations retain the previous Control UI bundle after a failed r...",
-        "description": "Source installations retain the previous Control UI bundle after a failed rebuild and can recover an interrupted replacement on the next build; the wrapper overrides custom --outDir with dist/control-ui. [#161438](https://github.com/openclaw/openclaw/pull/161438). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161438"
-      },
-      {
-        "title": "Doctor clears eligible installation-only upgrade warnings for disabled SMS...",
-        "description": "Doctor clears eligible installation-only upgrade warnings for disabled SMS and unconfigured Mistral without enabling the channel or adding settings; real migration work still needs completion. [#161535](https://github.com/openclaw/openclaw/pull/161535). Thanks [@steipete](https://github.com/steipete), [@akennedytog](https://github.com/akennedytog), [@g62nkcx4q7-wq](https://github.com/g62nkcx4q7-wq).",
-        "href": "https://github.com/openclaw/openclaw/issues/161535"
-      },
-      {
-        "title": "Docker package JSON receipts no longer leave an extra copy of the finished...",
-        "description": "Docker package JSON receipts no longer leave an extra copy of the finished archive in the shared npm cache; initial packing can still use that cache. [#161548](https://github.com/openclaw/openclaw/pull/161548). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161548"
-      },
-      {
-        "title": "Shutdown and restart close shared native workers and their supervisor after...",
-        "description": "Shutdown and restart close shared native workers and their supervisor after accepted work finishes; cleanup failures remain visible. [#161558](https://github.com/openclaw/openclaw/pull/161558). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161558"
-      },
-      {
-        "title": "Doctor recognizes verified Skill Workshop history archives after their orig...",
-        "description": "Doctor recognizes verified Skill Workshop history archives after their original workspace is retired, stopping repeated warnings while retaining original backups. [#161586](https://github.com/openclaw/openclaw/pull/161586). Thanks [@steipete](https://github.com/steipete), [@percilabs](https://github.com/percilabs), [@sunlit-deng](https://github.com/sunlit-deng).",
-        "href": "https://github.com/openclaw/openclaw/issues/161586"
-      },
-      {
-        "title": "Updates record and check the previous Gateway’s stop in background database...",
-        "description": "Updates record and check the previous Gateway’s stop in background database workers while still waiting for durable confirmation before maintenance proceeds. [#161813](https://github.com/openclaw/openclaw/pull/161813). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161813"
-      },
-      {
-        "title": "Doctor archives strictly verified empty retired Telegram binding files so u...",
-        "description": "Doctor archives strictly verified empty retired Telegram binding files so updates can continue, while preserving their original bytes and refusing meaningful or uncertain state. [#161832](https://github.com/openclaw/openclaw/pull/161832). Thanks [@ericcaiwx-star](https://github.com/ericcaiwx-star), [@PennyVibe](https://github.com/PennyVibe).",
-        "href": "https://github.com/openclaw/openclaw/issues/161832"
-      },
-      {
-        "title": "Managed updates record activation before stopping the Gateway and refuse a...",
-        "description": "Managed updates record activation before stopping the Gateway and refuse a stop after ownership changes; accepted rollback can finish during interruption. [#161851](https://github.com/openclaw/openclaw/pull/161851). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/161851"
-      },
-      {
-        "title": "Doctor refuses to overwrite a recovery record after another owner replaces...",
-        "description": "Doctor refuses to overwrite a recovery record after another owner replaces its maintenance files, retaining the existing recovery information. [#161861](https://github.com/openclaw/openclaw/pull/161861). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161861"
-      },
-      {
-        "title": "Update recovery loads fewer bundled components while keeping its existing s...",
-        "description": "Update recovery loads fewer bundled components while keeping its existing service and recovery checks. [#161919](https://github.com/openclaw/openclaw/pull/161919). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161919"
-      },
-      {
-        "title": "Doctor and local TLS Gateway checks work with a managed proxy enabled while...",
-        "description": "Doctor and local TLS Gateway checks work with a managed proxy enabled while retaining loopback routing policy and certificate fingerprint checks. [#161946](https://github.com/openclaw/openclaw/pull/161946). Thanks [@obviyus](https://github.com/obviyus), [@saizero-dr](https://github.com/saizero-dr).",
-        "href": "https://github.com/openclaw/openclaw/issues/161946"
-      },
-      {
-        "title": "Windows updates run by the fixed installed version restore the original tas...",
-        "description": "Windows updates run by the fixed installed version restore the original task autostart state after cancellation following successful suspension and before installation changes. [#161990](https://github.com/openclaw/openclaw/pull/161990). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161990"
-      },
-      {
-        "title": "Automatic five-minute and daily full database scans stop",
-        "description": "Automatic five-minute and daily full database scans stop; requested quick checks provide less coverage for index and page corruption. [#162015](https://github.com/openclaw/openclaw/pull/162015). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162015"
-      },
-      {
-        "title": "Doctor moves its initial contended Gateway ownership inspection into a back...",
-        "description": "Doctor moves its initial contended Gateway ownership inspection into a background worker and checks cancellation and permission again before stopping a service. [#162021](https://github.com/openclaw/openclaw/pull/162021). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162021"
-      },
-      {
-        "title": "Windows update cancellation can restore previously enabled autostart when d...",
-        "description": "Windows update cancellation can restore previously enabled autostart when disabling the task took effect before reporting failure, provided the original updater still owns recovery. [#162050](https://github.com/openclaw/openclaw/pull/162050). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162050"
-      },
-      {
-        "title": "Updates started by the fixed installed updater retain SQLite verification w...",
-        "description": "Updates started by the fixed installed updater retain SQLite verification workers after package replacement, avoiding the missing-worker startup failure. [#162076](https://github.com/openclaw/openclaw/pull/162076). Thanks [@steipete](https://github.com/steipete), [@xilopaint](https://github.com/xilopaint), [@paweldrozd](https://github.com/paweldrozd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162076"
-      },
-      {
-        "title": "Gateway shutdown cancels future background maintenance and waits for runnin...",
-        "description": "Gateway shutdown cancels future background maintenance and waits for running callbacks before releasing resources; stopping one subsystem leaves unrelated schedules active. [#162079](https://github.com/openclaw/openclaw/pull/162079). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162079"
-      },
-      {
-        "title": "Updates wait for saved progress before advancing, preserve authorized recov...",
-        "description": "Updates wait for saved progress before advancing, preserve authorized recovery after recording refusal and retain both operation and reporting errors. [#162098](https://github.com/openclaw/openclaw/pull/162098). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162098"
-      },
-      {
-        "title": "Shutdown retains native worker cleanup errors after the supervisor exits",
-        "description": "Shutdown retains native worker cleanup errors after the supervisor exits; terminal cleanup failure requires a process restart before that source can accept new work. [#162128](https://github.com/openclaw/openclaw/pull/162128). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162128"
-      },
-      {
-        "title": "Doctor preserves existing scheduled-task history archives and saves newly i...",
-        "description": "Doctor preserves existing scheduled-task history archives and saves newly imported legacy logs byte-for-byte under a numbered name, warning when archival needs retry. [#162152](https://github.com/openclaw/openclaw/pull/162152). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162152"
-      },
-      {
-        "title": "Orderly shutdown waits for accepted database maintenance before closing sto...",
-        "description": "Orderly shutdown waits for accepted database maintenance before closing storage; emergency process-exit cleanup remains best effort. [#162166](https://github.com/openclaw/openclaw/pull/162166). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162166"
-      },
-      {
-        "title": "Direct binary upgrades with retired context budgets or the Copilot discover...",
-        "description": "Direct binary upgrades with retired context budgets or the Copilot discovery switch must run openclaw doctor --fix before startup; managed updates apply these migrations before validating settings. [#162184](https://github.com/openclaw/openclaw/pull/162184). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162184"
-      },
-      {
-        "title": "Chat-requested updates avoid repeated whole-database copies while Doctor ch...",
-        "description": "Chat-requested updates avoid repeated whole-database copies while Doctor checks current permissions; removing or replacing the requester still stops further changes. [#162200](https://github.com/openclaw/openclaw/pull/162200). Thanks [@steipete](https://github.com/steipete), [@DasX](https://github.com/DasX), [@xilopaint](https://github.com/xilopaint).",
-        "href": "https://github.com/openclaw/openclaw/issues/162200"
-      },
-      {
-        "title": "Doctor recovers supported old Telegram incoming queues without repeating im...",
-        "description": "Doctor recovers supported old Telegram incoming queues without repeating imports or replaying historical failures; retired outgoing and session JSON queues use the separate 2026.9.7 repair route. [#162206](https://github.com/openclaw/openclaw/pull/162206). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162206"
-      },
-      {
-        "title": "Automatic session cleanup stands down during Gateway shutdown, avoiding rep...",
-        "description": "Automatic session cleanup stands down during Gateway shutdown, avoiding repeated maintenance-worker startup; later writes can resume cleanup after restart. [#162212](https://github.com/openclaw/openclaw/pull/162212). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162212"
-      },
-      {
-        "title": "Doctor skips loading Codex recovery helpers when there is no legacy assignm...",
-        "description": "Doctor skips loading Codex recovery helpers when there is no legacy assignment state to inspect, reducing unnecessary work in empty scans. [#162215](https://github.com/openclaw/openclaw/pull/162215). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162215"
-      },
-      {
-        "title": "Windows updates run by the fixed installed updater retry brief package-fold...",
-        "description": "Windows updates run by the fixed installed updater retry brief package-folder locks during backup for up to 57.75 seconds, retain warnings and explain persistent failures. [#162231](https://github.com/openclaw/openclaw/pull/162231). Thanks [@steipete](https://github.com/steipete), [@miguelpt2026](https://github.com/miguelpt2026).",
-        "href": "https://github.com/openclaw/openclaw/issues/162231"
-      },
-      {
-        "title": "Doctor reuses its update-history discovery snapshot to reduce repeated read...",
-        "description": "Doctor reuses its update-history discovery snapshot to reduce repeated reads and offers optional phase timings for diagnosing slow repairs. [#162232](https://github.com/openclaw/openclaw/pull/162232). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162232"
-      },
-      {
-        "title": "Fixed npm updaters exclude historical package backups from dependency scans...",
-        "description": "Fixed npm updaters exclude historical package backups from dependency scans and retire only eligible captured backups after verified activation; older running updaters still need the documented backup-preserving recovery. [#162246](https://github.com/openclaw/openclaw/pull/162246). Thanks [@steipete](https://github.com/steipete), [@DonnieFi](https://github.com/DonnieFi).",
-        "href": "https://github.com/openclaw/openclaw/issues/162246"
-      },
-      {
-        "title": "Deleting an agent or running path-scoped maintenance now closes its session...",
-        "description": "Deleting an agent or running path-scoped maintenance now closes its session cleanup worker when the state directory is reached through a symlink. [#162248](https://github.com/openclaw/openclaw/pull/162248). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162248"
-      },
-      {
-        "title": "Update database checks retry transient changes when an inactive agent datab...",
-        "description": "Update database checks retry transient changes when an inactive agent database becomes active, returning only a consistent snapshot; persistent changes and cleanup failures still stop inspection. [#162258](https://github.com/openclaw/openclaw/pull/162258). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/162258"
-      },
-      {
-        "title": "Successful update and repair progress is logged as information, advisories...",
-        "description": "Successful update and repair progress is logged as information, advisories as warnings and failed phases as errors, while progress remains on stderr and JSON stdout stays clean. [#162270](https://github.com/openclaw/openclaw/pull/162270). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/162270"
-      },
-      {
-        "title": "Failed archival of verified empty retired Telegram bindings now warns and p...",
-        "description": "Failed archival of verified empty retired Telegram bindings now warns and preserves the source for retry; uncertain or nonempty files still block migration with readable recovery guidance. [#162290](https://github.com/openclaw/openclaw/pull/162290). Thanks [@steipete](https://github.com/steipete), [@PennyVibe](https://github.com/PennyVibe), [@ericcaiwx-star](https://github.com/ericcaiwx-star).",
-        "href": "https://github.com/openclaw/openclaw/issues/162290"
-      },
-      {
-        "title": "Doctor repairs deep chains of session owners without a stack overflow, pres...",
-        "description": "Doctor repairs deep chains of session owners without a stack overflow, preserving the terminal session and conversation history without shortening the chain. [#162321](https://github.com/openclaw/openclaw/pull/162321). Thanks [@steipete](https://github.com/steipete), [@jasdeepohri-max](https://github.com/jasdeepohri-max).",
-        "href": "https://github.com/openclaw/openclaw/issues/162321"
-      },
-      {
-        "title": "Failed updates with --no-restart retain recovery diagnostics through one in...",
-        "description": "Failed updates with --no-restart retain recovery diagnostics through one inspection without waiting for unrequested startup, while package activation and required maintenance remain in effect. [#162327](https://github.com/openclaw/openclaw/pull/162327). Thanks [@steipete](https://github.com/steipete), [@PennyVibe](https://github.com/PennyVibe).",
-        "href": "https://github.com/openclaw/openclaw/issues/162327"
-      },
-      {
-        "title": "Doctor setting-conflict notices consistently name the full current-setting...",
-        "description": "Doctor setting-conflict notices consistently name the full current-setting path when removing an obsolete alias whose replacement is already set. [#162336](https://github.com/openclaw/openclaw/pull/162336). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162336"
-      },
-      {
-        "title": "Startup progress no longer hides actual errors from older updaters",
-        "description": "Startup progress no longer hides actual errors from older updaters; reports retain useful redacted error details. [#162344](https://github.com/openclaw/openclaw/pull/162344). Thanks [@steipete](https://github.com/steipete), [@jamiezigelbaum](https://github.com/jamiezigelbaum).",
-        "href": "https://github.com/openclaw/openclaw/issues/162344"
-      },
-      {
-        "title": "Updates started by the fixed installed updater avoid repeated whole-databas...",
-        "description": "Updates started by the fixed installed updater avoid repeated whole-database copying and stalls from progress polling while retaining committed phases and the final report. [#162345](https://github.com/openclaw/openclaw/pull/162345). Thanks [@steipete](https://github.com/steipete), [@xilopaint](https://github.com/xilopaint). Thanks [@alkor2000](https://github.com/alkor2000) for the related pnpm terminal diagnosis and repair.",
-        "href": "https://github.com/openclaw/openclaw/issues/162345"
-      },
-      {
-        "title": "Fixed installed updaters tolerate narrowly defined npm bookkeeping changes...",
-        "description": "Fixed installed updaters tolerate narrowly defined npm bookkeeping changes during package rollback and report bounded details about genuine mismatches; older running updaters retain their prior checks. [#162365](https://github.com/openclaw/openclaw/pull/162365). Thanks [@steipete](https://github.com/steipete), [@nessim-liamani](https://github.com/nessim-liamani).",
-        "href": "https://github.com/openclaw/openclaw/issues/162365"
-      },
-      {
-        "title": "Database backups captured by a fixed installed updater retain their origina...",
-        "description": "Database backups captured by a fixed installed updater retain their originally verified content facts so rollback can reject later changes before replacing live databases. [#162383](https://github.com/openclaw/openclaw/pull/162383). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162383"
-      },
-      {
-        "title": "Source builds skip redundant plugin file checks and preserve tracked specia...",
-        "description": "Source builds skip redundant plugin file checks and preserve tracked special filenames on supporting filesystems; add new auto-discovered packages and entries to the Git index before a root build. [#162384](https://github.com/openclaw/openclaw/pull/162384). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162384"
-      },
-      {
-        "title": "npm plugin updates reuse metadata already resolved for the same installatio...",
-        "description": "npm plugin updates reuse metadata already resolved for the same installation attempt, avoiding a duplicate registry lookup while retaining compatibility, integrity, policy and consent checks. [#162385](https://github.com/openclaw/openclaw/pull/162385). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162385"
-      },
-      {
-        "title": "Updates using the repaired verifier warn about non-object plugin manifests...",
-        "description": "Updates using the repaired verifier warn about non-object plugin manifests and continue checking later plugins, while other configuration, ownership and readiness failures retain their existing handling. [#162386](https://github.com/openclaw/openclaw/pull/162386). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162386"
-      },
-      {
-        "title": "Git update staging can use native directory copying when no disposable cach...",
-        "description": "Git update staging can use native directory copying when no disposable caches need filtering, avoiding unnecessary staging work while retaining real exclusions. [#162387](https://github.com/openclaw/openclaw/pull/162387). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162387"
-      },
-      {
-        "title": "Doctor uses less memory preparing large fleets with equivalent plugin sourc...",
-        "description": "Doctor uses less memory preparing large fleets with equivalent plugin sources, while preserving distinct plugin selections and workspaces. [#162394](https://github.com/openclaw/openclaw/pull/162394). Thanks [@steipete](https://github.com/steipete), [@609NFT](https://github.com/609NFT).",
-        "href": "https://github.com/openclaw/openclaw/issues/162394"
-      },
-      {
-        "title": "Newer updaters can avoid recopying a private rehearsal database and preserv...",
-        "description": "Newer updaters can avoid recopying a private rehearsal database and preserve its original row IDs for migration checks; existing free-space requirements and older-updater limits remain. [#162403](https://github.com/openclaw/openclaw/pull/162403). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/162403"
-      },
-      {
-        "title": "Doctor prepares unchanged transcript archives before stopping a managed Gat...",
-        "description": "Doctor prepares unchanged transcript archives before stopping a managed Gateway and reuses verified work on later same-version runs, reducing archive-dependent downtime while rechecking changed or restored sources. [#162404](https://github.com/openclaw/openclaw/pull/162404). Thanks [@steipete](https://github.com/steipete), [@boeingchoco](https://github.com/boeingchoco), [@MikyWang](https://github.com/MikyWang), [@harshitgupta31415](https://github.com/harshitgupta31415).",
-        "href": "https://github.com/openclaw/openclaw/issues/162404"
-      },
-      {
-        "title": "Doctor migrates covered sender tool policies to typed keys such as id",
-        "description": "Alice while preserving the first effective policy; direct binary upgrades need Doctor before startup, and external-channel policies may require explicit migration. [#162427](https://github.com/openclaw/openclaw/pull/162427). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162427"
-      },
-      {
-        "title": "Update rehearsals avoid redundant backups of verified disposable core datab...",
-        "description": "Update rehearsals avoid redundant backups of verified disposable core database copies while retaining ordinary recovery backups and separate configuration, plugin and Workshop captures. [#162429](https://github.com/openclaw/openclaw/pull/162429). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/162429"
-      },
-      {
-        "title": "Compatibility checks preserve current values when identifying older sandbox...",
-        "description": "Compatibility checks preserve current values when identifying older sandbox and embedded-agent settings; retired forms follow intermediate-version guidance. [#162430](https://github.com/openclaw/openclaw/pull/162430). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162430"
-      },
-      {
-        "title": "Doctor skips unused plugin completion checks when there is no deferred migr...",
-        "description": "Doctor skips unused plugin completion checks when there is no deferred migration or verified retained legacy session source, avoiding an unnecessary detector pass while retaining ordinary repair checks. [#162486](https://github.com/openclaw/openclaw/pull/162486). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162486"
-      },
-      {
-        "title": "Supported POSIX npm updates can recover interrupted package replacement wit...",
-        "description": "Supported POSIX npm updates can recover interrupted package replacement with the selected Node or Bun executable, retaining the macOS SQLite library; recovery leaves the Gateway stopped for a separate restart. [#162586](https://github.com/openclaw/openclaw/pull/162586). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162586"
-      },
-      {
-        "title": "Doctor backs up and converts older pending-reply, fallback-notice and memor...",
-        "description": "Doctor backs up and converts older pending-reply, fallback-notice and memory-flush state; sessions that still need conversion request a stopped Gateway and openclaw doctor --fix. [#162595](https://github.com/openclaw/openclaw/pull/162595). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162595"
-      },
-      {
-        "title": "Updates with matching recovery receipts can restore the previous package af...",
-        "description": "Updates with matching recovery receipts can restore the previous package after SQLite moves already-captured data, while still refusing restoration that would discard newer changes; older updater receipt formats remain a limitation. [#162599](https://github.com/openclaw/openclaw/pull/162599). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162599"
-      },
-      {
-        "title": "An installed updater containing this fix keeps progress recording from disr...",
-        "description": "An installed updater containing this fix keeps progress recording from disrupting its own validation copy and reports progress errors without relabeling successful checks as failed. [#162604](https://github.com/openclaw/openclaw/pull/162604). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162604"
-      },
-      {
-        "title": "Doctor preserves existing agent data and workspace ownership when convertin...",
-        "description": "Doctor preserves existing agent data and workspace ownership when converting older rosters; direct binary replacement requires repair before startup or ordinary configuration edits, with extra care for included configuration. [#162612](https://github.com/openclaw/openclaw/pull/162612). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162612"
-      },
-      {
-        "title": "Gateway shutdown keeps the database worker available to finish accepted mem...",
-        "description": "Gateway shutdown keeps the database worker available to finish accepted memory writes, reducing repeated worker starts without discarding writes or shortening shutdown deadlines. [#162616](https://github.com/openclaw/openclaw/pull/162616). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162616"
-      },
-      {
-        "title": "Doctor preserves previously accepted settings when a plugin repair fails or...",
-        "description": "Doctor preserves previously accepted settings when a plugin repair fails or reports no changes, continues later repairs and retains warning-only guidance. [#162641](https://github.com/openclaw/openclaw/pull/162641). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162641"
-      },
-      {
-        "title": "Doctor migrates inherited Talk provider settings in eligible single-file co...",
-        "description": "Doctor migrates inherited Talk provider settings in eligible single-file configurations; include-backed configurations can lose those settings and need separate correction. [#162644](https://github.com/openclaw/openclaw/pull/162644). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162644"
-      },
-      {
-        "title": "A present but broken channel repair module now stops Doctor with its origin...",
-        "description": "A present but broken channel repair module now stops Doctor with its original load error instead of silently selecting fallback repairs; genuinely absent modules remain optional. [#162645](https://github.com/openclaw/openclaw/pull/162645). Thanks [@wangmiao0668000666](https://github.com/wangmiao0668000666), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162645"
-      },
-      {
-        "title": "Bun updates from the supported 2026",
-        "description": "Bun updates from the supported 2026.9.7 updater can finish candidate Doctor and activate the replacement Gateway instead of hanging; this repair arrives in the candidate package. [#162655](https://github.com/openclaw/openclaw/pull/162655). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162655"
-      },
-      {
-        "title": "Once a stop or restart signal is accepted, the Gateway immediately refuses...",
-        "description": "Once a stop or restart signal is accepted, the Gateway immediately refuses new work while continuing its existing shutdown and restart policy. [#162679](https://github.com/openclaw/openclaw/pull/162679). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162679"
-      },
-      {
-        "title": "Doctor repairs supported command-approval policies with a private original...",
-        "description": "Doctor repairs supported command-approval policies with a private original copy; ordinary exports before Doctor can omit legacy permissions and MCP grants. Run Doctor against the correct state directory first. [#162687](https://github.com/openclaw/openclaw/pull/162687). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162687"
-      },
-      {
-        "title": "Agent deletion and state-root cleanup through symlinks can release executio...",
-        "description": "Agent deletion and state-root cleanup through symlinks can release execution and history resources retained by archive pruning, preview and related storage maintenance. [#162700](https://github.com/openclaw/openclaw/pull/162700). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162700"
-      },
-      {
-        "title": "Rollback prepares restore copies before moving current databases, so alloca...",
-        "description": "Rollback prepares restore copies before moving current databases, so allocation or disk-space refusal leaves current databases and journals in place; later publication failures retain recovery files. [#162726](https://github.com/openclaw/openclaw/pull/162726). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/162726"
-      },
-      {
-        "title": "Doctor retires verified completed plugin-import obligations so later histor...",
-        "description": "Doctor retires verified completed plugin-import obligations so later history can be imported, and update cleanup inventories recorded migration backups with guarded retirement after a later successful update; retain backups needed for rollback. [#162771](https://github.com/openclaw/openclaw/pull/162771). Thanks [@steipete](https://github.com/steipete), [@shadow-enthusiast](https://github.com/shadow-enthusiast), [@islandpreneur007](https://github.com/islandpreneur007).",
-        "href": "https://github.com/openclaw/openclaw/issues/162771"
-      },
-      {
-        "title": "macOS service diagnostics read the selected Gateway job’s own state and rep...",
-        "description": "macOS service diagnostics read the selected Gateway job’s own state and report unknown when launchd output cannot identify that job. [#162838](https://github.com/openclaw/openclaw/pull/162838). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162838"
-      },
-      {
-        "title": "Update timeout reports retain the check name, elapsed time and last sanitiz...",
-        "description": "Update timeout reports retain the check name, elapsed time and last sanitized progress; old installed updater deadlines still apply and observed progress does not prove completion. [#162883](https://github.com/openclaw/openclaw/pull/162883). Thanks [@steipete](https://github.com/steipete), [@nachoratico-source](https://github.com/nachoratico-source).",
-        "href": "https://github.com/openclaw/openclaw/issues/162883"
-      },
-      {
-        "title": "Doctor can remove eligible abandoned updater runtimes after its inspection...",
-        "description": "Doctor can remove eligible abandoned updater runtimes after its inspection workers finish, identifies independent processes that still block cleanup and advises rerunning repair after their work ends. [#162886](https://github.com/openclaw/openclaw/pull/162886). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162886"
-      },
-      {
-        "title": "Failed update reports put plain runtime-check guidance and the selected nex...",
-        "description": "Failed update reports put plain runtime-check guidance and the selected next step first, and label saved recovery observations so they are not mistaken for current Gateway health. [#162887](https://github.com/openclaw/openclaw/pull/162887). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162887"
-      },
-      {
-        "title": "When updates hand finalization to a fresh candidate after schema migration,...",
-        "description": "When updates hand finalization to a fresh candidate after schema migration, transferred progress is confirmed in order before finalization; a refused write stops further work. [#162909](https://github.com/openclaw/openclaw/pull/162909). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162909"
-      },
-      {
-        "title": "Doctor recovers supported empty transcripts from verified backups or canoni...",
-        "description": "Doctor recovers supported empty transcripts from verified backups or canonical history. With shared owners, recovery may move an empty original before every agent verifies it, leaving another agent's recovery record unable to find the file; keep originals and backups together at their reported paths. [#162946](https://github.com/openclaw/openclaw/pull/162946). Thanks [@steipete](https://github.com/steipete), [@leoreq](https://github.com/leoreq).",
-        "href": "https://github.com/openclaw/openclaw/issues/162946"
-      },
-      {
-        "title": "Cleanup can release a worker lease after first database creation even when...",
-        "description": "Cleanup can release a worker lease after first database creation even when read permission was revoked before its receipt arrived; the revoked operation still fails and leaves the session unchanged. [#162950](https://github.com/openclaw/openclaw/pull/162950). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162950"
-      },
-      {
-        "title": "Doctor repairs supported older credential fields independently of unsafe ac...",
-        "description": "Doctor repairs supported older credential fields independently of unsafe account renames, keeps usable current credentials and verified originals, and gives affected runtime readers the repair command. [#162958](https://github.com/openclaw/openclaw/pull/162958). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162958"
-      },
-      {
-        "title": "An updater containing this change reduces repeated filesystem scans while p...",
-        "description": "An updater containing this change reduces repeated filesystem scans while preserving its runtime, with fallback progress inspection retained when copying stalls; older installed updaters do not gain this on their first attempt. [#162995](https://github.com/openclaw/openclaw/pull/162995). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162995"
-      },
-      {
-        "title": "Update snapshots avoid redundant intermediate integrity scans while retaini...",
-        "description": "Update snapshots avoid redundant intermediate integrity scans while retaining source and final checks; the published 2026.9.7 updater’s initial snapshot still uses its older implementation. [#162996](https://github.com/openclaw/openclaw/pull/162996). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162996"
-      },
-      {
-        "title": "Selected source builds avoid generating pure plugin assets twice while keep...",
-        "description": "Selected source builds avoid generating pure plugin assets twice while keeping manifest-writing hooks early and validating completed assets before staging. [#162997](https://github.com/openclaw/openclaw/pull/162997). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162997"
-      },
-      {
-        "title": "Temporary update-validation Gateways skip restoring retained subagent runs,...",
-        "description": "Temporary update-validation Gateways skip restoring retained subagent runs, leaving recovery to the serving Gateway while retaining required configuration, database and readiness checks. [#162998](https://github.com/openclaw/openclaw/pull/162998). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162998"
-      },
-      {
-        "title": "An updater containing this change verifies package contents with bounded co...",
-        "description": "An updater containing this change verifies package contents with bounded concurrent reads while preserving fingerprints and fresh recovery checks; the benefit applies to verification work rather than a guaranteed whole-update speedup. [#162999](https://github.com/openclaw/openclaw/pull/162999). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162999"
-      },
-      {
-        "title": "On POSIX, an updater containing this fix settles its retained local databas...",
-        "description": "On POSIX, an updater containing this fix settles its retained local database writer before capture, avoiding a false rollback refusal after Doctor errors while still protecting genuine newer data. [#163008](https://github.com/openclaw/openclaw/pull/163008). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163008"
-      },
-      {
-        "title": "More retired configuration forms now require the documented 2026",
-        "description": "More retired configuration forms now require the documented 2026.9.5 intermediate repair before upgrading, including old agent runtime, sandbox, Browser, queue, webchat and authored plugin-install formats. [#163015](https://github.com/openclaw/openclaw/pull/163015). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163015"
-      },
-      {
-        "title": "The Bun guide explains the installed 2026",
-        "description": "The Bun guide explains the installed 2026.9.7 updater’s temporary Node 24 workaround, keeping Gateway and updater on the same runtime and state, and distinguishing restored package files from completed Gateway recovery. [#163017](https://github.com/openclaw/openclaw/pull/163017). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163017"
-      },
-      {
-        "title": "The 2026",
-        "description": "The 2026.9.7 Bun workaround now uses the ordinary published-release update by default; a particular version or local package remains optional, with the same readiness and state-preservation steps. [#163034](https://github.com/openclaw/openclaw/pull/163034). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163034"
-      },
-      {
-        "title": "Retired pre-July formats receive source-preserving refusals",
-        "description": "Retired pre-July formats receive source-preserving refusals; supported July routing aliases and JSON imports remain separately supported. [#163036](https://github.com/openclaw/openclaw/pull/163036). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163036"
-      },
-      {
-        "title": "A repaired updater retries eligible named npm or Bun dependency-cache failu...",
-        "description": "A repaired updater retries eligible named npm or Bun dependency-cache failures once and preserves safe phase, error-code and package details in reports without exposing commands, credentials or private paths. [#163039](https://github.com/openclaw/openclaw/pull/163039). Thanks [@steipete](https://github.com/steipete), [@ttcmourao](https://github.com/ttcmourao), [@akrosliving](https://github.com/akrosliving).",
-        "href": "https://github.com/openclaw/openclaw/issues/163039"
-      },
-      {
-        "title": "Archive discovery leaves very old global session files untouched",
-        "description": "Archive discovery leaves very old global session files untouched; use a recorded or explicit path to inspect supported history. [#163055](https://github.com/openclaw/openclaw/pull/163055). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163055"
-      },
-      {
-        "title": "Doctor preserves unsupported pre-July plugin install JSON and requires the...",
-        "description": "Doctor preserves unsupported pre-July plugin install JSON and requires the documented 2026.9.5 repair with a compatible pre-update backup; supported SQLite upgrades refresh plugin discovery after schema repair. [#163075](https://github.com/openclaw/openclaw/pull/163075). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163075"
-      },
-      {
-        "title": "Maintenance errors identify the operation that first lost access and distin...",
-        "description": "Maintenance errors identify the operation that first lost access and distinguish storage failure from unavailable ownership. [#163103](https://github.com/openclaw/openclaw/pull/163103). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163103"
-      },
-      {
-        "title": "Database heartbeat errors retain ownership-loss details already received be...",
-        "description": "Database heartbeat errors retain ownership-loss details already received before a worker fails. [#163134](https://github.com/openclaw/openclaw/pull/163134). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163134"
-      },
-      {
-        "title": "Unconfigured old global session indexes no longer block startup",
-        "description": "Unconfigured old global session indexes no longer block startup; select the former store explicitly to import its supported history. [#163160](https://github.com/openclaw/openclaw/pull/163160). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163160"
-      },
-      {
-        "title": "Doctor restores supported July session-routing aliases while preserving bac...",
-        "description": "Doctor restores supported July session-routing aliases while preserving backups; retired room-only grouping still needs an intermediate repair. [#163171](https://github.com/openclaw/openclaw/pull/163171). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163171"
-      },
-      {
-        "title": "Retired Telegram DM, thread and streaming settings now require Doctor in 2026",
-        "description": "Retired Telegram DM, thread and streaming settings now require Doctor in 2026.9.5 before upgrading; canonical nested streaming remains supported. [#163181](https://github.com/openclaw/openclaw/pull/163181). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163181"
-      },
-      {
-        "title": "Historical encrypted OAuth sidecars stop upgrades without changing state",
-        "description": "Historical encrypted OAuth sidecars stop upgrades without changing state; the documented repair uses 2026.9.7 on the original host, and residual-file recovery is not guaranteed. [#163186](https://github.com/openclaw/openclaw/pull/163186). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163186"
-      },
-      {
-        "title": "Five old Talk realtime selectors need 2026",
-        "description": "Five old Talk realtime selectors need 2026.9.5 Doctor; refusal preserves settings and backups, including recoverable prefixed JSON. [#163189](https://github.com/openclaw/openclaw/pull/163189). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163189"
-      },
-      {
-        "title": "Cold-storage maintenance selects inactive archives in workers while protect...",
-        "description": "Cold-storage maintenance selects inactive archives in workers while protecting active sessions and retaining existing limits. [#163200](https://github.com/openclaw/openclaw/pull/163200). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163200"
-      },
-      {
-        "title": "Reload checks retire obsolete task-result and singular model fallbacks whil...",
-        "description": "Reload checks retire obsolete task-result and singular model fallbacks while preserving supported task envelopes and model settings. [#163207](https://github.com/openclaw/openclaw/pull/163207). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163207"
-      },
-      {
-        "title": "Archive retention runs ordinary database cleanup in workers and rechecks ch...",
-        "description": "Archive retention runs ordinary database cleanup in workers and rechecks changed references and files before deletion; retention rules stay the same. [#163218](https://github.com/openclaw/openclaw/pull/163218). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163218"
-      },
-      {
-        "title": "Doctor correctly names the installed plugin index in its existing manifest-...",
-        "description": "Doctor correctly names the installed plugin index in its existing manifest-drift warning. [#163220](https://github.com/openclaw/openclaw/pull/163220). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163220"
-      },
-      {
-        "title": "Old cron jobs, split-state and run-history files require 2026",
-        "description": "Old cron jobs, split-state and run-history files require 2026.9.7 Doctor on the original host; supported SQLite jobs and quarantine imports remain. [#163221](https://github.com/openclaw/openclaw/pull/163221). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163221"
-      },
-      {
-        "title": "Bun-driven Git updates use compatible Node from PATH consistently for candi...",
-        "description": "Bun-driven Git updates use compatible Node from PATH consistently for candidate tooling while retaining the chosen Gateway runtime. [#163227](https://github.com/openclaw/openclaw/pull/163227). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163227"
-      },
-      {
-        "title": "An obsolete memory-index layout now refuses upgrade without dropping its ta...",
-        "description": "An obsolete memory-index layout now refuses upgrade without dropping its tables; recovery guidance calls for a July-or-newer backup. [#163271](https://github.com/openclaw/openclaw/pull/163271). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163271"
-      },
-      {
-        "title": "Retired agent and subagent model timeout fields require the 2026",
-        "description": "Retired agent and subagent model timeout fields require the 2026.9.5 repair step; tool-model timeouts remain supported. [#163280](https://github.com/openclaw/openclaw/pull/163280). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163280"
-      },
-      {
-        "title": "Source updates preserve the selected package-manager launcher when the qual...",
-        "description": "Source updates preserve the selected package-manager launcher when the qualified Node directory also contains pnpm. [#163310](https://github.com/openclaw/openclaw/pull/163310). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163310"
-      },
-      {
-        "title": "Chat update notices show a short outcome and next step, with full diagnosti...",
-        "description": "Chat update notices show a short outcome and next step, with full diagnostics in Settings → Updates or openclaw update status. [#163318](https://github.com/openclaw/openclaw/pull/163318). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163318"
-      },
-      {
-        "title": "Doctor continues authorized database repairs when an older updater cannot s...",
-        "description": "Doctor continues authorized database repairs when an older updater cannot supply capture history, without inventing recovery copies or extending package rollback. [#163344](https://github.com/openclaw/openclaw/pull/163344). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163344"
-      },
-      {
-        "title": "Saving restart and update notices moves off the request thread while requir...",
-        "description": "Saving restart and update notices moves off the request thread while required saves remain enforced. [#163364](https://github.com/openclaw/openclaw/pull/163364). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163364"
-      },
-      {
-        "title": "Doctor archive maintenance avoids repeated full-database hashing and copyin...",
-        "description": "Doctor archive maintenance avoids repeated full-database hashing and copying while checking current repair permissions. [#163369](https://github.com/openclaw/openclaw/pull/163369). Thanks [@victor-gurbani](https://github.com/victor-gurbani), [@Olli0103](https://github.com/Olli0103), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163369"
-      },
-      {
-        "title": "Updates repeat fewer package scans",
-        "description": "Updates repeat fewer package scans; completed runtime copies can remain when their layout prevents later cleanup discovery. [#163370](https://github.com/openclaw/openclaw/pull/163370). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163370"
-      },
-      {
-        "title": "Git updates keep scoped pnpm ahead of competing copies even when the select...",
-        "description": "Git updates keep scoped pnpm ahead of competing copies even when the selected Node directory already leads or repeats on PATH. [#163380](https://github.com/openclaw/openclaw/pull/163380). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163380"
-      },
-      {
-        "title": "Five retired Matrix state files require 2026",
-        "description": "Five retired Matrix state files require 2026.9.5 Doctor and starting Matrix once; older flat layouts first need 2026.6 Doctor and Gateway startup. Refused originals remain intact. [#163383](https://github.com/openclaw/openclaw/pull/163383). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163383"
-      },
-      {
-        "title": "Later npm updates reuse settled file checks to shorten downtime",
-        "description": "Later npm updates reuse settled file checks to shorten downtime; stop other tools that modify the installation while updating. [#163432](https://github.com/openclaw/openclaw/pull/163432). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163432"
-      },
-      {
-        "title": "Optional orphan-result cleanup checks small idle batches after restart and...",
-        "description": "Optional orphan-result cleanup checks small idle batches after restart and provides fixed Git operation names for diagnostics. [#163445](https://github.com/openclaw/openclaw/pull/163445). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163445"
-      },
-      {
-        "title": "Restart recovery checks durable session stores in workers and rejects stale...",
-        "description": "Restart recovery checks durable session stores in workers and rejects stale or cancelled results. [#163457](https://github.com/openclaw/openclaw/pull/163457). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163457"
-      },
-      {
-        "title": "Routine package-backup cleanup is logged as progress instead of a misleadin...",
-        "description": "Routine package-backup cleanup is logged as progress instead of a misleading update error. [#163477](https://github.com/openclaw/openclaw/pull/163477). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163477"
-      },
-      {
-        "title": "npm upgrades retain installation identity through macOS directory aliases w...",
-        "description": "npm upgrades retain installation identity through macOS directory aliases while the package directory is temporarily absent. [#163479](https://github.com/openclaw/openclaw/pull/163479). Thanks [@RomneyDa](https://github.com/RomneyDa), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163479"
-      },
-      {
-        "title": "Startup Git discovery retries one timeout and reports unavailable facts",
-        "description": "Startup Git discovery retries one timeout and reports unavailable facts; exhausted results stay cached, with Dev refresh or restart needed to recover. [#163500](https://github.com/openclaw/openclaw/pull/163500). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163500"
-      },
-      {
-        "title": "Unrelated ancestor packages stop falsely blocking update checks, and two ma...",
-        "description": "Unrelated ancestor packages stop falsely blocking update checks, and two matching candidate-Doctor failures pause automatic retries until a new candidate or manual intervention. [#163541](https://github.com/openclaw/openclaw/pull/163541). Thanks [@steipete](https://github.com/steipete), [@iJaack](https://github.com/iJaack).",
-        "href": "https://github.com/openclaw/openclaw/issues/163541"
-      },
-      {
-        "title": "Legacy memory conversion processes vectors one row at a time, and updated u...",
-        "description": "Legacy memory conversion processes vectors one row at a time, and updated updaters retain crash signals and bounded redacted diagnostics. [#163640](https://github.com/openclaw/openclaw/pull/163640). Thanks [@steipete](https://github.com/steipete), [@fenglanhua](https://github.com/fenglanhua).",
-        "href": "https://github.com/openclaw/openclaw/issues/163640"
-      },
-      {
-        "title": "Git update and rollback reports show both recorded version numbers and shor...",
-        "description": "Git update and rollback reports show both recorded version numbers and short commits. [#163683](https://github.com/openclaw/openclaw/pull/163683). Thanks [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/163683"
-      },
-      {
-        "title": "Experimental pre-schema-8 session and retired search layouts require comple...",
-        "description": "Experimental pre-schema-8 session and retired search layouts require complete-copy recovery through 2026.9.7 Doctor; released memory, auth and cache formats stay supported. [#163723](https://github.com/openclaw/openclaw/pull/163723). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163723"
-      },
-      {
-        "title": "Doctor guidance distinguishes supported provider-alias repair from the sepa...",
-        "description": "Doctor guidance distinguishes supported provider-alias repair from the separate 2026.9.5 route for room-to-groupChannel state. [#163729](https://github.com/openclaw/openclaw/pull/163729). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163729"
-      },
-      {
-        "title": "Eligible update recovery checks and completes pending shared and agent migr...",
-        "description": "Eligible update recovery checks and completes pending shared and agent migrations before restarting; unresolved or newer schemas refuse with manual guidance. [#163803](https://github.com/openclaw/openclaw/pull/163803). Thanks [@steipete](https://github.com/steipete), [@chffhc](https://github.com/chffhc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163803"
-      },
-      {
-        "title": "Doctor recognizes verified Linux systemd environment overrides and still re...",
-        "description": "Doctor recognizes verified Linux systemd environment overrides and still reports genuinely missing managed settings. [#163847](https://github.com/openclaw/openclaw/pull/163847). Thanks [@steipete](https://github.com/steipete), [@travellingsoldier85](https://github.com/travellingsoldier85).",
-        "href": "https://github.com/openclaw/openclaw/issues/163847"
-      },
-      {
-        "title": "Gateway logs identify the client requesting a valid chat or session stop, i...",
-        "description": "Gateway logs identify the client requesting a valid chat or session stop, including fast requests previously missing attribution. [#163851](https://github.com/openclaw/openclaw/pull/163851). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163851"
-      },
-      {
-        "title": "Doctor restores Teams warnings directing retired JSON data through OpenClaw...",
-        "description": "Doctor restores Teams warnings directing retired JSON data through OpenClaw 2026.9.5 and doctor --fix before upgrading. [#163896](https://github.com/openclaw/openclaw/pull/163896). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163896"
-      },
-      {
-        "title": "Failed updates retain their specific reason and original installer error on...",
-        "description": "Failed updates retain their specific reason and original installer error on stderr in normal and JSON modes. [#163901](https://github.com/openclaw/openclaw/pull/163901). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163901"
-      },
-      {
-        "title": "Verified session-import receipts survive macOS VM device-number changes",
-        "description": "Verified session-import receipts survive macOS VM device-number changes; Doctor upgrades older receipts without replaying completed imports. [#163904](https://github.com/openclaw/openclaw/pull/163904). Thanks [@steipete](https://github.com/steipete), [@paulotvlincelia](https://github.com/paulotvlincelia).",
-        "href": "https://github.com/openclaw/openclaw/issues/163904"
-      },
-      {
-        "title": "Retired embedded session settings and shortcuts need backed-up manual corre...",
-        "description": "Retired embedded session settings and shortcuts need backed-up manual correction. Setup utility-model selection, inline Pi API inheritance and prototype-named Talk voice aliases also receive fixes. [#163919](https://github.com/openclaw/openclaw/pull/163919). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163919"
-      },
-      {
-        "title": "Sandbox permission edits avoid unrelated service restarts",
-        "description": "Sandbox permission edits avoid unrelated service restarts; slow service cleanup stays isolated and required restarts retain bounded shutdown grace. [#163931](https://github.com/openclaw/openclaw/pull/163931). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163931"
-      },
-      {
-        "title": "Diagnostic export retires automatic conversion of pre-July trajectory entri...",
-        "description": "Diagnostic export retires automatic conversion of pre-July trajectory entries while preserving source files and current SQLite export. [#163934](https://github.com/openclaw/openclaw/pull/163934). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163934"
-      },
-      {
-        "title": "Git backups restore triggers containing CASE expressions",
-        "description": "Git backups restore triggers containing CASE expressions; retired same-file memory indexes require a preserved compatible copy through 2026.9.7. [#163945](https://github.com/openclaw/openclaw/pull/163945). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163945"
-      },
-      {
-        "title": "Worktree cleanup and recovery use the owning Gateway",
-        "description": "Worktree cleanup and recovery use the owning Gateway; uncertain outcomes require inspection and sandbox recreation requires exclusive offline ownership. [#163953](https://github.com/openclaw/openclaw/pull/163953). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163953"
-      },
-      {
-        "title": "Status marks a saved update failure as historical when the ready local Gate...",
-        "description": "Status marks a saved update failure as historical when the ready local Gateway serves the intended target, preserving the original failure record. [#163991](https://github.com/openclaw/openclaw/pull/163991). Thanks [@steipete](https://github.com/steipete), [@sergiorodriguez-sudo](https://github.com/sergiorodriguez-sudo).",
-        "href": "https://github.com/openclaw/openclaw/issues/163991"
-      },
-      {
-        "title": "Migration planning explains an invalid copied-state path before inspecting...",
-        "description": "Migration planning explains an invalid copied-state path before inspecting delivery queues. [#164007](https://github.com/openclaw/openclaw/pull/164007). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164007"
-      },
-      {
-        "title": "Future npm updates using the fixed installed updater verify fresh package c...",
-        "description": "Future npm updates using the fixed installed updater verify fresh package contents with bounded hashing workers and unchanged integrity checks. [#164052](https://github.com/openclaw/openclaw/pull/164052). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164052"
-      },
-      {
-        "title": "Updated nodes accept the Skill Workshop launch field used by a 2026",
-        "description": "Updated nodes accept the Skill Workshop launch field used by a 2026.9.8 Gateway, preserving affected hosted turns. [#164068](https://github.com/openclaw/openclaw/pull/164068). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164068"
-      },
-      {
-        "title": "Database opening and index repair avoid repeated metadata checks while reta...",
-        "description": "Database opening and index repair avoid repeated metadata checks while retaining full integrity and foreign-key safeguards. [#164099](https://github.com/openclaw/openclaw/pull/164099). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164099"
-      },
-      {
-        "title": "Failed-delivery health counts avoid unrelated history scans without planner...",
-        "description": "Failed-delivery health counts avoid unrelated history scans without planner statistics, with a one-time writable index rebuild. [#164131](https://github.com/openclaw/openclaw/pull/164131). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164131"
-      },
-      {
-        "title": "Doctor media repair removes redundant table scans and still refuses concurr...",
-        "description": "Doctor media repair removes redundant table scans and still refuses concurrent changes; stop competing database users before retrying. [#164139](https://github.com/openclaw/openclaw/pull/164139). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164139"
-      },
-      {
-        "title": "Supported service recovery and local diagnostics remain usable with invalid...",
-        "description": "Supported service recovery and local diagnostics remain usable with invalid configuration while startup validation and newer-version guards remain. [#164158](https://github.com/openclaw/openclaw/pull/164158). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164158"
-      },
-      {
-        "title": "Update reports retain recognized worker error causes while removing private...",
-        "description": "Update reports retain recognized worker error causes while removing private paths and filename suffixes. [#164169](https://github.com/openclaw/openclaw/pull/164169). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164169"
-      },
-      {
-        "title": "Fixed installed updaters avoid discarded duplicate configuration reads whil...",
-        "description": "Fixed installed updaters avoid discarded duplicate configuration reads while retaining fresh edits and database compatibility checks. [#164182](https://github.com/openclaw/openclaw/pull/164182). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164182"
-      },
-      {
-        "title": "Plugin snapshots and runtime preparation overlap bounded metadata checks wi...",
-        "description": "Plugin snapshots and runtime preparation overlap bounded metadata checks without changing discovery order or integrity checks. [#164183](https://github.com/openclaw/openclaw/pull/164183). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164183"
-      },
-      {
-        "title": "Verified pnpm 11 and 12 isolated updates skip an unnecessary global-root su...",
-        "description": "Verified pnpm 11 and 12 isolated updates skip an unnecessary global-root subprocess while retaining fallback discovery. [#164184](https://github.com/openclaw/openclaw/pull/164184). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164184"
-      },
-      {
-        "title": "Trusted official plugin prerelease updates reuse successful package-selecti...",
-        "description": "Trusted official plugin prerelease updates reuse successful package-selection metadata within the same attempt, retaining integrity, consent and warnings. [#164185](https://github.com/openclaw/openclaw/pull/164185). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164185"
-      },
-      {
-        "title": "Caller and service profiles using the exact same state path share one datab...",
-        "description": "Caller and service profiles using the exact same state path share one database backup per checkpoint, with fresh checks retained. [#164186](https://github.com/openclaw/openclaw/pull/164186). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164186"
-      },
-      {
-        "title": "Failed-update advice correctly identifies a verified serving Gateway while...",
-        "description": "Failed-update advice correctly identifies a verified serving Gateway while preserving failed status and restart or rollback restrictions. [#164193](https://github.com/openclaw/openclaw/pull/164193). Thanks [@steipete](https://github.com/steipete), [@DonnieFi](https://github.com/DonnieFi).",
-        "href": "https://github.com/openclaw/openclaw/issues/164193"
-      },
-      {
-        "title": "Doctor repairs writable state under externally managed read-only config and...",
-        "description": "Doctor repairs writable state under externally managed read-only config and reports required source edits; older-image rollback may need a matched backup. [#164235](https://github.com/openclaw/openclaw/pull/164235). Thanks [@steipete](https://github.com/steipete), [@JD8855122](https://github.com/JD8855122).",
-        "href": "https://github.com/openclaw/openclaw/issues/164235"
-      },
-      {
-        "title": "Docker CLI containers preserve fresh Gateway ownership across process names...",
-        "description": "Docker CLI containers preserve fresh Gateway ownership across process namespaces and explain how to share the namespace or run TUI inside the Gateway container. [#164236](https://github.com/openclaw/openclaw/pull/164236). Thanks [@steipete](https://github.com/steipete), [@JakeMalis](https://github.com/JakeMalis).",
-        "href": "https://github.com/openclaw/openclaw/issues/164236"
-      },
-      {
-        "title": "Completed Doctor repairs warn and exit successfully when the managed Gatewa...",
-        "description": "Completed Doctor repairs warn and exit successfully when the managed Gateway is still starting; check gateway status afterward to confirm readiness. [#164261](https://github.com/openclaw/openclaw/pull/164261). Thanks [@steipete](https://github.com/steipete), [@waynegault](https://github.com/waynegault).",
-        "href": "https://github.com/openclaw/openclaw/issues/164261"
-      },
-      {
-        "title": "Update JSON output omits the human cleanup-progress line while retaining st...",
-        "description": "Update JSON output omits the human cleanup-progress line while retaining structured cleanup results. [#164312](https://github.com/openclaw/openclaw/pull/164312). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164312"
-      },
-      {
-        "title": "Updates detect retired Voice Call logs before replacing the Gateway and dir...",
-        "description": "Updates detect retired Voice Call logs before replacing the Gateway and direct affected users through 2026.9.7 Doctor first. [#164330](https://github.com/openclaw/openclaw/pull/164330). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164330"
-      },
-      {
-        "title": "Repair timeout JSON retains the failed result and original stuck phase even...",
-        "description": "Repair timeout JSON retains the failed result and original stuck phase even when Gateway restoration also fails. [#164337](https://github.com/openclaw/openclaw/pull/164337). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164337"
-      },
-      {
-        "title": "Doctor can publish unchanged pre-migration backups when Linux creation-time...",
-        "description": "Doctor can publish unchanged pre-migration backups when Linux creation-time metadata is unavailable, retaining file identity, size, hash and ownership checks. [#164363](https://github.com/openclaw/openclaw/pull/164363). Thanks [@jayzhou2309](https://github.com/jayzhou2309), [@steipete](https://github.com/steipete), [@StevenKrebs](https://github.com/StevenKrebs), [@kirylh](https://github.com/kirylh), [@stunt4711](https://github.com/stunt4711).",
-        "href": "https://github.com/openclaw/openclaw/issues/164363"
-      },
-      {
-        "title": "Nested workspace setup files require 2026",
-        "description": "Nested workspace setup files require 2026.9.7 doctor --fix before further upgrades; retired nested bytes remain untouched and root-level imports remain supported. [#164399](https://github.com/openclaw/openclaw/pull/164399). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164399"
-      },
-      {
-        "title": "Fixed updaters accept recreated command links with unchanged targets",
-        "description": "Fixed updaters accept recreated command links with unchanged targets; older Claude Code recovery prompts warn that normal customization applies. [#164438](https://github.com/openclaw/openclaw/pull/164438). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164438"
-      },
-      {
-        "title": "Doctor finishes database cleanup before releasing maintenance resources, pr...",
-        "description": "Doctor finishes database cleanup before releasing maintenance resources, preventing its leftover leases from blocking a later repair. [#164503](https://github.com/openclaw/openclaw/pull/164503). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/164503"
-      },
-      {
-        "title": "Updates proceed around retained agent-deletion holds while Doctor preserves...",
-        "description": "Updates proceed around retained agent-deletion holds while Doctor preserves uncertain stores and explains reserved-agent recovery. [#164509](https://github.com/openclaw/openclaw/pull/164509). Thanks [@steipete](https://github.com/steipete), [@rosmiroslav-create](https://github.com/rosmiroslav-create), [@PollyBot13](https://github.com/PollyBot13).",
-        "href": "https://github.com/openclaw/openclaw/issues/164509"
-      },
-      {
-        "title": "Container ownership recovery uses proven process death or a heartbeat older...",
-        "description": "Container ownership recovery uses proven process death or a heartbeat older than 90 seconds, protecting verified live owners. [#164546](https://github.com/openclaw/openclaw/pull/164546). Thanks [@steipete](https://github.com/steipete), [@Alex-vonAllmen](https://github.com/Alex-vonAllmen), [@coygeek](https://github.com/coygeek).",
-        "href": "https://github.com/openclaw/openclaw/issues/164546"
-      },
-      {
-        "title": "Doctor reports the actual newer-database or recovery-manifest result",
-        "description": "Doctor reports the actual newer-database or recovery-manifest result; failed deletion of a disposable inspection snapshot warns after its reader closes. [#164697](https://github.com/openclaw/openclaw/pull/164697). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164697"
-      },
-      {
-        "title": "Doctor and gateway start can re-enable a verified disabled Windows Gateway...",
-        "description": "Doctor and gateway start can re-enable a verified disabled Windows Gateway task, with profile-aware guidance and foreign-launcher refusal. [#164728](https://github.com/openclaw/openclaw/pull/164728). Thanks [@steipete](https://github.com/steipete), [@taoxia255-del](https://github.com/taoxia255-del).",
-        "href": "https://github.com/openclaw/openclaw/issues/164728"
-      },
-      {
-        "title": "Reports retain Doctor’s check-completion message after a later crash",
-        "description": "Reports retain Doctor’s check-completion message after a later crash; a nonzero or signal exit still fails validation. [#164853](https://github.com/openclaw/openclaw/pull/164853). Thanks [@steipete](https://github.com/steipete), [@cunzai007-hub](https://github.com/cunzai007-hub).",
-        "href": "https://github.com/openclaw/openclaw/issues/164853"
-      },
-      {
-        "title": "Message commands keep their action result when a plugin shutdown hook times...",
-        "description": "Message commands keep their action result when a plugin shutdown hook times out, with unfinished shared-state cleanup reported as deferred. [#164915](https://github.com/openclaw/openclaw/pull/164915). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164915"
-      },
-      {
-        "title": "Updates from 2026",
-        "description": "Updates from 2026.10.1-beta.1 retain the cleanup imports needed after package replacement. [#165855](https://github.com/openclaw/openclaw/pull/165855). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/165855"
-      },
-      {
-        "title": "Doctor imports legacy pending replies from JSON sessions without repeating...",
-        "description": "Doctor imports legacy pending replies from JSON sessions without repeating the repair refusal, preserving exact session IDs, transcripts and original archive bytes. [#165866](https://github.com/openclaw/openclaw/pull/165866). Thanks [@SunnyShu0925](https://github.com/SunnyShu0925), [@steipete](https://github.com/steipete), [@609NFT](https://github.com/609NFT).",
-        "href": "https://github.com/openclaw/openclaw/issues/165866"
-      },
-      {
-        "title": "Crash-loop safe mode preserves interrupted-turn retries and resumes replay...",
-        "description": "Crash-loop safe mode preserves interrupted-turn retries and resumes replay after the full stable window, unless another crash or shutdown intervenes. [#166238](https://github.com/openclaw/openclaw/pull/166238). Thanks [@steipete](https://github.com/steipete), [@masatohoshino](https://github.com/masatohoshino), [@KoalaShen](https://github.com/KoalaShen).",
-        "href": "https://github.com/openclaw/openclaw/issues/166238"
-      },
-      {
-        "title": "The new updater refreshes eligible completed Linux receipts after device-nu...",
-        "description": "The new updater refreshes eligible completed Linux receipts after device-number changes; initial update dry-run can also rewrite those receipts. [#166394](https://github.com/openclaw/openclaw/pull/166394). Thanks [@steipete](https://github.com/steipete), [@neilofneils404](https://github.com/neilofneils404).",
-        "href": "https://github.com/openclaw/openclaw/issues/166394"
-      },
-      {
-        "title": "The 2026",
-        "description": "The 2026.10.1-beta.2 updater bridge inventory is restored and excludes standalone worker copies from bridge selection. [#167091](https://github.com/openclaw/openclaw/pull/167091). Thanks [@RomneyDa](https://github.com/RomneyDa), [@ericcurtin](https://github.com/ericcurtin), [@obviyus](https://github.com/obviyus), [@steipete](https://github.com/steipete), [@adele-with-a-b](https://github.com/adele-with-a-b), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/167091"
-      },
-      {
-        "title": "Candidate compatibility checks leave original profile databases and their S...",
-        "description": "Candidate compatibility checks leave original profile databases and their SQLite sidecar files unchanged when preservation is requested. [5a19f360](https://github.com/openclaw/openclaw/commit/5a19f3608c28baf0a890526c82bf4e09f5dde32b). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Candidate checks preserve original agent database files when requested and...",
-        "description": "Candidate checks preserve original agent database files when requested and still refuse newer schemas saved only in the log. [89217d3b](https://github.com/openclaw/openclaw/commit/89217d3b875373f5ba4f63dfc5e23fa9ca744ba6). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Temporary database snapshots survive module reloads",
-        "description": "Temporary database snapshots survive module reloads; shutdown waits for readers and stale cleanup cannot remove a replacement snapshot. [7b64dada](https://github.com/openclaw/openclaw/commit/7b64dadaeeb43212fb23787feaf8722f56a45032). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Explicit channel changes keep caller and managed-service compatibility chec...",
-        "description": "Explicit channel changes keep caller and managed-service compatibility checks separate, preserving each profile’s settings. [1794d8b4](https://github.com/openclaw/openclaw/commit/1794d8b4ef8dde46f39a16da2bdbcf0bf2b519ef). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Updates recheck settings saved during validation and reselect an implicit c...",
-        "description": "Updates recheck settings saved during validation and reselect an implicit channel when needed; incompatible or repeatedly changing settings still stop activation. [b36eb3e7](https://github.com/openclaw/openclaw/commit/b36eb3e7b11afb2774d1f6ab41977df4713269ff). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update progress saves run in database workers",
-        "description": "Update progress saves run in database workers; delayed saves cannot let a replaced or revoked update continue. [ea4aaef1](https://github.com/openclaw/openclaw/commit/ea4aaef16715c65bf9a9530a1e275bdbf84f548e). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Configuration-triggered Gateway restarts continue after duplicate file-watc...",
-        "description": "Configuration-triggered Gateway restarts continue after duplicate file-watcher notifications while retaining readiness and secret checks. [a4cc77c3](https://github.com/openclaw/openclaw/commit/a4cc77c355f50dc650087815b43a2b73a34c29ae). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update verification can continue when its starting directory disappears by...",
-        "description": "Update verification can continue when its starting directory disappears by launching the read-only worker from a valid temporary directory. [8e303782](https://github.com/openclaw/openclaw/commit/8e303782bb5677edbb27c77c222b568fb692dbbf). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Corrected installed updaters preserve relative user, session and local-pack...",
-        "description": "Corrected installed updaters preserve relative user, session and local-package paths while replacing an installation that contains their starting directory. [6830c82e](https://github.com/openclaw/openclaw/commit/6830c82ea080767b8953edce13a3e543eed419da). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Interactive update progress remains visible through final verification and...",
-        "description": "Interactive update progress remains visible through final verification and result reporting. [82fe5e96](https://github.com/openclaw/openclaw/commit/82fe5e962f72a54bc80c43cb9b2a116228bafb3b). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Eligible Windows updates settle pending database log writes before rollback...",
-        "description": "Eligible Windows updates settle pending database log writes before rollback capture; another connection still limits snapshots to manual recovery. [9863e3f9](https://github.com/openclaw/openclaw/commit/9863e3f97ab4ad345ebbdcb575e6d310b13d40a1). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Pending session-maintenance callbacks stop when database access is refused,...",
-        "description": "Pending session-maintenance callbacks stop when database access is refused, avoiding unhandled errors without changing the restriction. [5ca95288](https://github.com/openclaw/openclaw/commit/5ca95288927072852018ac363be57bb5154032a6). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Gateway inspection recognizes Bun watch and hot commands and separate Node...",
-        "description": "Gateway inspection recognizes Bun watch and hot commands and separate Node heap-limit values; worker diagnostics omit runtime stack fields. [4c7d05d9](https://github.com/openclaw/openclaw/commit/4c7d05d917325b77836455a55837ecb2b1b23eef). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Blank migration-plan snapshot paths receive the specific argument error in...",
-        "description": "Blank migration-plan snapshot paths receive the specific argument error in both human and machine output. [71b857a7](https://github.com/openclaw/openclaw/commit/71b857a75b52b64bded377bda4f53086897a8283). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Retired outgoing and session JSON queues require a complete state-and-media...",
-        "description": "Retired outgoing and session JSON queues require a complete state-and-media backup, original-host 2026.9.7 and its Doctor before retrying; retained recovery artifacts must not be replayed. [ff96d47c](https://github.com/openclaw/openclaw/commit/ff96d47c3506c50123a555332e6a6cc576b2559f). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Gateway startup leaves webhook config bytes unchanged for completion-only m...",
-        "description": "Gateway startup leaves webhook config bytes unchanged for completion-only markers; actual repairs require Doctor and a subsequent restart. [b978fc0e](https://github.com/openclaw/openclaw/commit/b978fc0e0e7107b1a6bfa00989557e0aa51d2641). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor backs up and repairs supported Claw ownership-history columns before...",
-        "description": "Doctor backs up and repairs supported Claw ownership-history columns before planning; package removal retains current ownership and protects modified or shared files. [de1f4385](https://github.com/openclaw/openclaw/commit/de1f4385dc66f31f586b79f3e274007e0e3da253). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Overlapping session-recovery requests read after the preceding recovery is...",
-        "description": "Overlapping session-recovery requests read after the preceding recovery is saved, avoiding false conflicts while retaining access checks. [2a206318](https://github.com/openclaw/openclaw/commit/2a206318a7f53bfaa0aa9112c21aed405ac6ab16). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Shareable failed-update reports retain a public-safe reason after private d...",
-        "description": "Shareable failed-update reports retain a public-safe reason after private details are removed, including failures before any command ran. [fc7e71ba](https://github.com/openclaw/openclaw/commit/fc7e71bad25845ba8c23ddd6f3c44ded11a9f427). Thanks [@steipete](https://github.com/steipete). Thanks [@iancollyer87](https://github.com/iancollyer87) for reporting the problem.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor and temporary agent commands wait for their background database main...",
-        "description": "Doctor and temporary agent commands wait for their background database maintenance before releasing access or removing storage. [b58e6e98](https://github.com/openclaw/openclaw/commit/b58e6e98933e82d956cad7991c3df4c312665f8c). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Snapshot errors keep their original explanation when temporary-file cleanup...",
-        "description": "Snapshot errors keep their original explanation when temporary-file cleanup also fails. [20f485c7](https://github.com/openclaw/openclaw/commit/20f485c7af9185eb29707fb7d8d879ce6b88ca33). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor can inspect quarantined state to begin repair when no active or unve...",
-        "description": "Doctor can inspect quarantined state to begin repair when no active or unverifiable Gateway owner blocks maintenance; ordinary reads still respect quarantine. [6d4ee0af](https://github.com/openclaw/openclaw/commit/6d4ee0afd92e9636b81b6e9bdb65a7367f072bc6). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Already-current updates can apply recognized legacy configuration repairs w...",
-        "description": "Already-current updates can apply recognized legacy configuration repairs without a channel option, preserving the stored channel. [d1006ac0](https://github.com/openclaw/openclaw/commit/d1006ac0a2066bfc78334b4a5433c1ded40a9051). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Candidate configuration checks retain supported legacy repair plans without...",
-        "description": "Candidate configuration checks retain supported legacy repair plans without switching channels or writing the original file. [107b2353](https://github.com/openclaw/openclaw/commit/107b2353d13e2a793ef1fbac6301585b310bccac). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update rehearsals preserve historical webhook listener settings for Telegra...",
-        "description": "Update rehearsals preserve historical webhook listener settings for Telegram, Feishu, Teams and Nextcloud Talk when a missing official plugin install is deferred. [237b7b91](https://github.com/openclaw/openclaw/commit/237b7b91fd69e5d3963d9e94eb8f727768530726). Thanks [@RomneyDa](https://github.com/RomneyDa). Thanks [@shakkernerd](https://github.com/shakkernerd) for the original webhook-migration repair.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update, Doctor and delivery ownership timers handle backward clock changes...",
-        "description": "Update, Doctor and delivery ownership timers handle backward clock changes and distant deadlines without expiring prematurely. [15405665](https://github.com/openclaw/openclaw/commit/1540566502bde1656f525ef4f2b9283d1d310379). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor can recover readable retained conversations when an older import rec...",
-        "description": "Doctor can recover readable retained conversations when an older import record points to another database, preserving current settings and known deletions. Missing or ambiguous history can remain deferred; that warning alone no longer blocks updater-owned Gateway restoration. See [SQLite maintenance](https://docs.openclaw.ai/cli/doctor/sqlite-maintenance). [#167538](https://github.com/openclaw/openclaw/pull/167538). Thanks [@bipolar84](https://github.com/bipolar84), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167538"
-      },
-      {
-        "title": "With a fixed updater installed, `openclaw update repair` can clear a pendin...",
-        "description": "With a fixed updater installed, `openclaw update repair` can clear a pending recovery record when its candidate package is already installed, retaining the recovery evidence and allowing later updates. Other generation mismatches still require inspection. [#167648](https://github.com/openclaw/openclaw/pull/167648). Thanks [@cbhawthorne84](https://github.com/cbhawthorne84), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167648"
-      },
-      {
-        "title": "Failed-update rollback can restore the previous installation without waitin...",
-        "description": "Failed-update rollback can restore the previous installation without waiting through the normal drain timeout when the Gateway is confirmed stopped and its port is free. A refused connection alone is insufficient. [#167649](https://github.com/openclaw/openclaw/pull/167649). Thanks [@alkor2000](https://github.com/alkor2000), [@hannnnn-l](https://github.com/hannnnn-l), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167649"
-      },
-      {
-        "title": "Triage reports pending package recovery as unrepaired and points to `opencl...",
-        "description": "Triage reports pending package recovery as unrepaired and points to `openclaw update repair`, even when Doctor, current health and the last update record look successful. This guidance does not perform the repair. See [update recovery](https://docs.openclaw.ai/cli/update/repair-and-recovery#update-repair). [#167782](https://github.com/openclaw/openclaw/pull/167782). Thanks [@steipete](https://github.com/steipete), [@waynegault](https://github.com/waynegault).",
-        "href": "https://github.com/openclaw/openclaw/issues/167782"
-      },
-      {
-        "title": "New Windows Gateway launchers for verified pnpm global installations follow...",
-        "description": "New Windows Gateway launchers for verified pnpm global installations follow package replacement instead of pointing to a removed version. Repair an existing stale launcher with `openclaw gateway install --force` from the current installation. See [Windows setup](https://docs.openclaw.ai/platforms/windows). [#167905](https://github.com/openclaw/openclaw/pull/167905). Thanks [@SMF12138](https://github.com/SMF12138), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167905"
-      },
-      {
-        "title": "`openclaw update repair --yes` can release eligible abandoned child ownersh...",
-        "description": "`openclaw update repair --yes` can release eligible abandoned child ownership left by an earlier updater, including after a manual upgrade. It can also finish beside an ordinary active updater while leaving that updater's ownership intact. Live or uninspectable abandoned-work owners, surviving process groups, ambiguous history and unfinished rollback remain protected; the original OS account and inspection permissions may be needed. See [repair and recovery](https://docs.openclaw.ai/cli/update/repair-and-recovery). [#168043](https://github.com/openclaw/openclaw/pull/168043), [#168197](https://github.com/openclaw/openclaw/pull/168197), [#168198](https://github.com/openclaw/openclaw/pull/168198). Thanks [@farisoftfry](https://github.com/farisoftfry), [@steipete](https://github.com/steipete), [@alkor2000](https://github.com/alkor2000), [@amittell](https://github.com/amittell), [@frankhli843](https://github.com/frankhli843), [@goutamadwant](https://github.com/goutamadwant), [@hannesrudolph](https://github.com/hannesrudolph), [@hannnnn-l](https://github.com/hannnnn-l), [@jacobtomlinson](https://github.com/jacobtomlinson), [@jlapenna](https://github.com/jlapenna), [@obviyus](https://github.com/obviyus), [@Oldrich333](https://github.com/Oldrich333), [@RomneyDa](https://github.com/RomneyDa), [@SMF12138](https://github.com/SMF12138), [@Tosko4](https://github.com/Tosko4), [@waynegault](https://github.com/waynegault), [@yu-xin-c](https://github.com/yu-xin-c).",
-        "href": "https://github.com/openclaw/openclaw/issues/168043"
-      },
-      {
-        "title": "Doctor and update repair reuse already recorded continuation or takeover pe...",
-        "description": "Doctor and update repair reuse already recorded continuation or takeover permissions after checking current ownership, avoiding redundant database scans. Cold reads and other service-inspection delays can still remain. See [Doctor recovery](https://docs.openclaw.ai/cli/doctor/recovery). [#168069](https://github.com/openclaw/openclaw/pull/168069). Thanks [@obviyus](https://github.com/obviyus), [@steipete](https://github.com/steipete), [@Tosko4](https://github.com/Tosko4).",
-        "href": "https://github.com/openclaw/openclaw/issues/168069"
-      },
-      {
-        "title": "Post-install Doctor works when updating from older versions, including 2026",
-        "description": "Post-install Doctor works when updating from older versions, including 2026.8.2, without an environment-variable workaround. Invalid run IDs and receipts belonging to another Doctor invocation still reject. [0322c196](https://github.com/openclaw/openclaw/commit/0322c1969400d2674094f829d0a0a294ebd77947). Thanks [@GoDiao](https://github.com/GoDiao), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Telegram replies can use the related photos, forwarded notes and attachment...",
-        "description": "Telegram replies can use the related photos, forwarded notes and attachments together when they are already queued on a busy host or an eligible attachment download is slow. Albums keep their arrival order within each chat or topic, and successive messages from one sender can queue separately behind a busy agent. Collection remains bounded, so late arrivals can still form another turn.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Telegram agents can see supported images sent as files when they have [imag...",
-        "description": "Telegram agents can see supported images sent as files when they have [image capability](https://docs.openclaw.ai/nodes/media-understanding). Hyphenated commands remain copyable, deeply nested replies become readable text with media links, and [rich messages](https://docs.openclaw.ai/channels/telegram/rich-messages) keep explicit numeric user mentions. Long single-agent tasks can deliver completed [progress messages](https://docs.openclaw.ai/channels/telegram/messaging) through reply plugins, respecting streaming opt-outs. Progress links remain clickable without website preview cards.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Sending several files in a supported quoted list or compact array keeps eve...",
-        "description": "Sending several files in a supported quoted list or compact array keeps every attachment in order, including filenames with spaces or commas. Long code blocks and unusual line endings keep their formatting and captions. Supported speech-only answers can complete alongside model reasoning without filler chat text. See the [TTS reply guide](https://docs.openclaw.ai/tools/tts/commands) and [restricted-profile setup](https://docs.openclaw.ai/tools/tts/api#tool-profiles).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Replies from a remote worker attach its actual files, including completed r...",
-        "description": "Replies from a remote worker attach its actual files, including completed replies sent before the workspace is copied back. Copy outputs from outside its assigned workspace into that workspace before attaching them; unreadable files produce a labeled failure instead of substituting a Gateway file.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A queued follow-up can still finish after its original request closes, and...",
-        "description": "A queued follow-up can still finish after its original request closes, and a system-clock change no longer stretches its normal quiet period. Canceling while model settings load frees the conversation for your next message. Reset and deletion wait for channel work that has already started to settle.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Background-command and restart replies return to the eligible web conversat...",
-        "description": "Background-command and restart replies return to the eligible web conversation they belong to. Affected channels keep answering after wake-from-sleep maintenance, and a channel with unchanged settings can finish a prepared reply after an unrelated plugin reload. Successful background media requests no longer show a false missing-reply notice while waiting for the result.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Allowing a Discord parent channel lets the agent discover its active thread...",
-        "description": "Allowing a Discord parent channel lets the agent discover its active threads without a server-wide wildcard; explicit thread denies remain effective. Long model IDs retain the full selection through Submit; reopen `/models` if the catalog no longer resolves it. Voice joins and playback use elapsed time, so changing the system clock does not stretch or cut short that allowance.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Slack fallback progress cards show quieter narration by default",
-        "description": "Slack fallback progress cards show quieter narration by default; the existing option still enables detailed tool activity. Slack and Matrix previews wait before displaying fragments that might be a silent-reply instruction. Matrix preserves unrelated contacts by stopping contact-map writes when account reads fail; retry the repair after reads recover.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Each [WhatsApp named account](https",
-        "description": "//docs.openclaw.ai/channels/whatsapp) uses its own group reply preference, falling back to its configured mention policy. If a group relied on the old shared setting, rerun `/activation always` or `/activation mention` in that group with the intended account. Doctor preserves configured accounts and warns about ambiguous unlinked defaults; review them yourself and preserve needed shared policy before removing an unwanted default.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "IMAP catch-up batches messages, Tlon invitations can be renewed, malformed...",
-        "description": "IMAP catch-up batches messages, Tlon invitations can be renewed, malformed Mattermost callbacks receive an invalid-request response, and Twilio disconnects clear stale call-stream registrations. Early [Reef sends](https://docs.openclaw.ai/channels/reef) without delivery records can remain unknown; check with the recipient before resending. A late rejection of those old sends no longer starts the 15-minute cooldown, so a later rejection may allow one automatic rephrased resend.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Upgrading very old channel settings or data can require a bridge release",
-        "description": "Upgrading very old channel settings or data can require a bridge release. Keep a **complete pre-update backup** and follow the [old-version upgrade guide](https://docs.openclaw.ai/install/updating#upgrading-very-old-versions). Retired Nextcloud Talk replay caches, Discord JSON preferences/bindings, Telegram sidecars and selected Matrix/Slack settings require the **2026.9.5** bridge. Retired Discord voice-TTS and guild-channel settings require **2026.9.7** Doctor. Migrate old Matrix JSON state before updating, and never run an older release against an already upgraded shared database. Very old Mattermost `allowPrivateNetwork` aliases lose their Doctor conversion; preserve the original configuration because a confirmed recovery path remains unresolved.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "If Telegram settings contain a full bot endpoint instead of an API root, ru...",
-        "description": "If Telegram settings contain a full bot endpoint instead of an API root, run `openclaw doctor --fix` and restart; read-only sources need manual correction. After manual package replacement, affected older Telegram polling offsets and shared-root WhatsApp credentials also need Doctor before account startup. Old unversioned Telegram reply context is unavailable until messages are observed again, and assistant replies without recorded identity can appear twice in context. Supported conversation history remains available.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Eligible forwarded attachments are buffered before download, keeping their...",
-        "description": "Eligible forwarded attachments are buffered before download, keeping their note and context together during slow downloads; retryable download failures leave the burst pending. [#162787](https://github.com/openclaw/openclaw/pull/162787), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162787"
-      },
-      {
-        "title": "Telegram forwarded text and media can combine across separate polls within...",
-        "description": "Telegram forwarded text and media can combine across separate polls within a one-second quiet window and the five-second batch deadline. [#163286](https://github.com/openclaw/openclaw/pull/163286), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163286"
-      },
-      {
-        "title": "Photo albums queued behind a busy agent retain their chat or topic arrival...",
-        "description": "Photo albums queued behind a busy agent retain their chat or topic arrival order, avoiding retries that could replay or misplace photos while waiting. [#163926](https://github.com/openclaw/openclaw/pull/163926), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163926"
-      },
-      {
-        "title": "Same-sender Telegram messages and forward batches can take separate places...",
-        "description": "Same-sender Telegram messages and forward batches can take separate places in the queue while the agent is busy, avoiding timeout-related replays and accidental merging while waiting. [#164549](https://github.com/openclaw/openclaw/pull/164549), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164549"
-      },
-      {
-        "title": "Telegram holds album and forward collection for matching items already queu...",
-        "description": "Telegram holds album and forward collection for matching items already queued under local backlog. Collection remains bounded, so later arrivals can form another turn. [db966d6](https://github.com/openclaw/openclaw/commit/db966d62ae0fc6ec3da692dfd5dee3707e8a5b7a), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Telegram routes supported image files to image-capable agents without requi...",
-        "description": "Telegram routes supported image files to image-capable agents without requiring users to resend them as compressed photos; PDFs remain documents. [#141292](https://github.com/openclaw/openclaw/pull/141292), thanks to [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus), [@sercada](https://github.com/sercada).",
-        "href": "https://github.com/openclaw/openclaw/issues/141292"
-      },
-      {
-        "title": "Hyphenated plugin commands remain complete and copyable in Telegram command...",
-        "description": "Hyphenated plugin commands remain complete and copyable in Telegram command help, including across list pages. [#141332](https://github.com/openclaw/openclaw/pull/141332), thanks to [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/141332"
-      },
-      {
-        "title": "When Telegram cannot delete a replaced media message, it attempts to clear...",
-        "description": "When Telegram cannot delete a replaced media message, it attempts to clear the old inline controls; controls can remain if the edit also fails. [#159012](https://github.com/openclaw/openclaw/pull/159012), thanks to [@wakqasahmed](https://github.com/wakqasahmed), [@aniruddhaadak80](https://github.com/aniruddhaadak80), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/159012"
-      },
-      {
-        "title": "A guarded preview from a replaced Telegram turn cannot overwrite the curren...",
-        "description": "A guarded preview from a replaced Telegram turn cannot overwrite the current turn's message after a scheduling delay or flood wait. [#160137](https://github.com/openclaw/openclaw/pull/160137), thanks to [@steipete](https://github.com/steipete), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160137"
-      },
-      {
-        "title": "Deeply nested Telegram rich replies render excess nesting as readable text...",
-        "description": "Deeply nested Telegram rich replies render excess nesting as readable text with media source links instead of overflowing the call stack. [#160437](https://github.com/openclaw/openclaw/pull/160437), thanks to [@Ayushdevo](https://github.com/Ayushdevo), [@obviyus](https://github.com/obviyus), [@hpyhandsome](https://github.com/hpyhandsome).",
-        "href": "https://github.com/openclaw/openclaw/issues/160437"
-      },
-      {
-        "title": "Completed Telegram [streaming progress blocks](https",
-        "description": "//docs.openclaw.ai/concepts/streaming) can appear during a long single-agent task with reply plugins applied, while explicit streaming and block opt-outs remain effective. [#161546](https://github.com/openclaw/openclaw/pull/161546), thanks to [@VACInc](https://github.com/VACInc), [@sercada](https://github.com/sercada).",
-        "href": "https://github.com/openclaw/openclaw/issues/161546"
-      },
-      {
-        "title": "Invalid Telegram topic zero is rejected before sending",
-        "description": "Invalid Telegram topic zero is rejected before sending; use a positive topic ID or omit the topic for an ordinary chat. [#162197](https://github.com/openclaw/openclaw/pull/162197), thanks to [@adamczhang](https://github.com/adamczhang), [@aniruddhaadak80](https://github.com/aniruddhaadak80), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162197"
-      },
-      {
-        "title": "Telegram rich messages turn safe numeric `tg",
-        "description": "//user?id=` links into named mentions when sending or editing. [#162523](https://github.com/openclaw/openclaw/pull/162523), thanks to [@jayzhou2309](https://github.com/jayzhou2309), [@alexph-dev](https://github.com/alexph-dev), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162523"
-      },
-      {
-        "title": "Telegram progress links suppress website cards without changing the account...",
-        "description": "Telegram progress links suppress website cards without changing the account's final-answer preview preference, including when progress and final text match. [#163727](https://github.com/openclaw/openclaw/pull/163727), thanks to [@ivan-magda](https://github.com/ivan-magda).",
-        "href": "https://github.com/openclaw/openclaw/issues/163727"
-      },
-      {
-        "title": "Telegram message-tool sends, including native inline buttons, work after af...",
-        "description": "Telegram message-tool sends, including native inline buttons, work after affected ACP or chat handoffs without an invalid inferred reply target. [#165137](https://github.com/openclaw/openclaw/pull/165137), thanks to [@mbelinky](https://github.com/mbelinky).",
-        "href": "https://github.com/openclaw/openclaw/issues/165137"
-      },
-      {
-        "title": "Completed subagent work sent through the direct-message fallback retains at...",
-        "description": "Completed subagent work sent through the direct-message fallback retains attachments, captionless media and voice-note intent when the requester cannot be awakened; a partial terminal send is not automatically repeated. [#142852](https://github.com/openclaw/openclaw/pull/142852), thanks to [@Finn763](https://github.com/Finn763), [@obviyus](https://github.com/obviyus), [@hotfemale](https://github.com/hotfemale).",
-        "href": "https://github.com/openclaw/openclaw/issues/142852"
-      },
-      {
-        "title": "Several whitespace-separated, fully quoted paths on one legacy `MEDIA",
-        "description": "` line deliver as separate attachments in order, preserving spaces and punctuation in filenames. [#150958](https://github.com/openclaw/openclaw/pull/150958), thanks to [@zhangguiping-xydt](https://github.com/zhangguiping-xydt), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/150958"
-      },
-      {
-        "title": "TTS documentation shows `tools.alsoAllow",
-        "description": "[\"tts\"]` for [restricted tool profiles](https://docs.openclaw.ai/gateway/config-tools/tool-policy#tool-profiles), with separate [automatic speech-output guidance](https://docs.openclaw.ai/tools/tts/output#auto-tts-behavior); restricted profiles do not gain TTS by default. [#155950](https://github.com/openclaw/openclaw/pull/155950), thanks to [@fede-kamel](https://github.com/fede-kamel).",
-        "href": "https://github.com/openclaw/openclaw/issues/155950"
-      },
-      {
-        "title": "Plain-text outbound replies preserve comparison text following affected emo...",
-        "description": "Plain-text outbound replies preserve comparison text following affected emoji or astral Unicode letters instead of removing it as apparent markup. [#160850](https://github.com/openclaw/openclaw/pull/160850), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160850"
-      },
-      {
-        "title": "Outgoing structured channel data preserves its own `__proto__` field when i...",
-        "description": "Outgoing structured channel data preserves its own `__proto__` field when internal text is removed. [#160938](https://github.com/openclaw/openclaw/pull/160938), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160938"
-      },
-      {
-        "title": "Discord and LINE preserve fenced code across long messages when newline-bas...",
-        "description": "Discord and LINE preserve fenced code across long messages when newline-based streaming chunks are selected. [#162412](https://github.com/openclaw/openclaw/pull/162412), thanks to [@boeingchoco](https://github.com/boeingchoco), [@altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/issues/162412"
-      },
-      {
-        "title": "Newline chunking with a zero or negative limit keeps a fenced block and its...",
-        "description": "Newline chunking with a zero or negative limit keeps a fenced block and its following paragraph together. [#163255](https://github.com/openclaw/openclaw/pull/163255), thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163255"
-      },
-      {
-        "title": "Comma-separated, quoted `MEDIA",
-        "description": "` paths deliver every attachment in order while retaining punctuation in names. [#163448](https://github.com/openclaw/openclaw/pull/163448), thanks to [@sxh313](https://github.com/sxh313).",
-        "href": "https://github.com/openclaw/openclaw/issues/163448"
-      },
-      {
-        "title": "Compact `MEDIA",
-        "description": "` arrays retain every listed attachment and its order, including filenames containing spaces or commas. [#163627](https://github.com/openclaw/openclaw/pull/163627), thanks to [@sxh313](https://github.com/sxh313).",
-        "href": "https://github.com/openclaw/openclaw/issues/163627"
-      },
-      {
-        "title": "Replies using carriage-return-only or mixed line endings retain attachments...",
-        "description": "Replies using carriage-return-only or mixed line endings retain attachments, captions and literal fenced content. [#163665](https://github.com/openclaw/openclaw/pull/163665), thanks to [@ly85206559](https://github.com/ly85206559), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163665"
-      },
-      {
-        "title": "Newline chunking preserves Unicode line and paragraph separators inside fen...",
-        "description": "Newline chunking preserves Unicode line and paragraph separators inside fenced or inline code. [#163697](https://github.com/openclaw/openclaw/pull/163697), thanks to [@ly85206559](https://github.com/ly85206559).",
-        "href": "https://github.com/openclaw/openclaw/issues/163697"
-      },
-      {
-        "title": "A selected zero or negative media limit uses the existing bounded fallback...",
-        "description": "A selected zero or negative media limit uses the existing bounded fallback instead of rejecting every buffer, restoring affected Matrix buffer sends. [#163701](https://github.com/openclaw/openclaw/pull/163701), thanks to [@sxh313](https://github.com/sxh313), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163701"
-      },
-      {
-        "title": "Remote-worker attachments use the remote bytes and enforce the assigned-wor...",
-        "description": "Remote-worker attachments use the remote bytes and enforce the assigned-workspace path boundary, including in completed live replies. [#164219](https://github.com/openclaw/openclaw/pull/164219), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164219"
-      },
-      {
-        "title": "A nonblank paired `[[tts",
-        "description": "text]]` speech block counts as a complete answer when the model also returns reasoning, allowing supported inbound channels to deliver audio without visible filler text. [#164285](https://github.com/openclaw/openclaw/pull/164285), thanks to [@obviyus](https://github.com/obviyus), [@Twilight-Networks](https://github.com/Twilight-Networks).",
-        "href": "https://github.com/openclaw/openclaw/issues/164285"
-      },
-      {
-        "title": "Queued follow-ups resume after their normal quiet period when the system cl...",
-        "description": "Queued follow-ups resume after their normal quiet period when the system clock moves backward. [#160836](https://github.com/openclaw/openclaw/pull/160836), thanks to [@nwang783](https://github.com/nwang783), [@aniruddhaadak80](https://github.com/aniruddhaadak80), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160836"
-      },
-      {
-        "title": "Eligible Control UI and WebChat background-command or restart replies retur...",
-        "description": "Eligible Control UI and WebChat background-command or restart replies return to their own conversation instead of the configured heartbeat destination; failed restart replies remain retryable. [#161006](https://github.com/openclaw/openclaw/pull/161006), thanks to [@Marvinthebored](https://github.com/Marvinthebored), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@oywino](https://github.com/oywino).",
-        "href": "https://github.com/openclaw/openclaw/issues/161006"
-      },
-      {
-        "title": "Channel-reformatted replies retain the original conversation association ne...",
-        "description": "Channel-reformatted replies retain the original conversation association needed for queued delivery and completion tracking. [#161123](https://github.com/openclaw/openclaw/pull/161123), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161123"
-      },
-      {
-        "title": "Successful background media requests can acknowledge the request and later...",
-        "description": "Successful background media requests can acknowledge the request and later deliver the result without a false missing-reply or yield-failure notice while waiting. [#161154](https://github.com/openclaw/openclaw/pull/161154), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161154"
-      },
-      {
-        "title": "Canceling a reply during model-settings discovery releases that reply so it...",
-        "description": "Canceling a reply during model-settings discovery releases that reply so it does not block the next conversation message. [#161319](https://github.com/openclaw/openclaw/pull/161319), thanks to [@Baumus](https://github.com/Baumus), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161319"
-      },
-      {
-        "title": "[Custom channels](https",
-        "description": "//docs.openclaw.ai/plugins/sdk-channel-outbound) using the direct message drain with `deferredLaneOccupancy: release` can start the next same-lane message when the previous handler immediately defers. [#161476](https://github.com/openclaw/openclaw/pull/161476), thanks to [@xydigitLybnnnn](https://github.com/xydigitLybnnnn), [@aniruddhaadak80](https://github.com/aniruddhaadak80).",
-        "href": "https://github.com/openclaw/openclaw/issues/161476"
-      },
-      {
-        "title": "When a turn ends after its successful source-chat progress batch, OpenClaw...",
-        "description": "When a turn ends after its successful source-chat progress batch, OpenClaw avoids a redundant final-answer request. [#162367](https://github.com/openclaw/openclaw/pull/162367), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162367"
-      },
-      {
-        "title": "A sent final reply keeps its completion result and sent notification if not...",
-        "description": "A sent final reply keeps its completion result and sent notification if notification for an earlier suppressed reply fails; the earlier error remains reportable. [#162509](https://github.com/openclaw/openclaw/pull/162509), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162509"
-      },
-      {
-        "title": "Deliberately silent unauthorized group commands avoid false missing-deliver...",
-        "description": "Deliberately silent unauthorized group commands avoid false missing-delivery warnings. [#163148](https://github.com/openclaw/openclaw/pull/163148), thanks to [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163148"
-      },
-      {
-        "title": "Conversation delivery records preserve send order, and a saved reply remain...",
-        "description": "Conversation delivery records preserve send order, and a saved reply remains consumed when its waiting request expires. [#163222](https://github.com/openclaw/openclaw/pull/163222), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163222"
-      },
-      {
-        "title": "Affected channel listeners can continue sending replies after the maintenan...",
-        "description": "Affected channel listeners can continue sending replies after the maintenance work started on host wake has closed. [#163268](https://github.com/openclaw/openclaw/pull/163268), thanks to [@scotthuang](https://github.com/scotthuang), [@obviyus](https://github.com/obviyus), [@ChenGuoShun1979](https://github.com/ChenGuoShun1979), [@Harvey-XuH](https://github.com/Harvey-XuH).",
-        "href": "https://github.com/openclaw/openclaw/issues/163268"
-      },
-      {
-        "title": "Logs identify an unsupported action on a loaded channel instead of incorrec...",
-        "description": "Logs identify an unsupported action on a loaded channel instead of incorrectly reporting that its plugin is missing. [#163551](https://github.com/openclaw/openclaw/pull/163551), thanks to [@jayzhou2309](https://github.com/jayzhou2309), [@axeg0](https://github.com/AXEG0).",
-        "href": "https://github.com/openclaw/openclaw/issues/163551"
-      },
-      {
-        "title": "A definite rejection before dispatch no longer produces a false uncertain-d...",
-        "description": "A definite rejection before dispatch no longer produces a false uncertain-delivery notice on the next turn. [#163769](https://github.com/openclaw/openclaw/pull/163769), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163769"
-      },
-      {
-        "title": "Prepared sends on channels without a preparation callback can finish after...",
-        "description": "Prepared sends on channels without a preparation callback can finish after an unrelated plugin reload when their registration and settings remain unchanged. [#163893](https://github.com/openclaw/openclaw/pull/163893), thanks to [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163893"
-      },
-      {
-        "title": "Completed approvals notify channel cleanup, including Telegram approval tra...",
-        "description": "Completed approvals notify channel cleanup, including Telegram approval tracking. [#163969](https://github.com/openclaw/openclaw/pull/163969), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163969"
-      },
-      {
-        "title": "Message-tool-only answers retain completion history while its database work...",
-        "description": "Message-tool-only answers retain completion history while its database work runs in the background. [#164112](https://github.com/openclaw/openclaw/pull/164112), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164112"
-      },
-      {
-        "title": "Conversation reset or deletion waits for already-started channel processing...",
-        "description": "Conversation reset or deletion waits for already-started channel processing to settle after queued cancellation; an idle canceled turn releases promptly. [#164247](https://github.com/openclaw/openclaw/pull/164247), thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/164247"
-      },
-      {
-        "title": "Chat retries report a retryable unavailable response when the original-mess...",
-        "description": "Chat retries report a retryable unavailable response when the original-message comparison cannot be read, instead of replaying an unverified answer. [#164313](https://github.com/openclaw/openclaw/pull/164313), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164313"
-      },
-      {
-        "title": "Replies without a session key retain the session-ID and file fallback witho...",
-        "description": "Replies without a session key retain the session-ID and file fallback without attempting invalid keyed lookups or draining keyed events. [4a1c078](https://github.com/openclaw/openclaw/commit/4a1c07851faa9aa7fb50bc8de4f08e3134949e88), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Delayed queued follow-ups can complete after the triggering request closes...",
-        "description": "Delayed queued follow-ups can complete after the triggering request closes instead of repeatedly failing against its closed work lifetime. [3400fd9](https://github.com/openclaw/openclaw/commit/3400fd992cfce289f33e25271eaecfc7362e7e8d), thanks to [@xialonglee](https://github.com/xialonglee), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen). Related proposal: [#148025](https://github.com/openclaw/openclaw/pull/148025) (context).",
-        "href": "https://github.com/openclaw/openclaw/issues/148025"
-      },
-      {
-        "title": "Incoming messages wait for session metadata to finish saving, avoiding a fi...",
-        "description": "Incoming messages wait for session metadata to finish saving, avoiding a first-use database initialization race. [4324af4](https://github.com/openclaw/openclaw/commit/4324af413b0606667368b063814f49a598db8af9), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Retrying an affected canceled chat request returns its recorded timeout eve...",
-        "description": "Retrying an affected canceled chat request returns its recorded timeout even after its reservation was lost; changed input using the same request ID still conflicts. [9b83d35](https://github.com/openclaw/openclaw/commit/9b83d350f1841d632f28fbb24153669e330a36be), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Discord voice joins retain their connection allowance when the system clock...",
-        "description": "Discord voice joins retain their connection allowance when the system clock changes. [#156979](https://github.com/openclaw/openclaw/pull/156979), thanks to [@SunnyShu0925](https://github.com/SunnyShu0925), [@altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/issues/156979"
-      },
-      {
-        "title": "Agents allowed to read a Discord parent channel can discover its permitted...",
-        "description": "Agents allowed to read a Discord parent channel can discover its permitted active threads and member records without a server-wide wildcard. Explicit thread denies still apply. [#160629](https://github.com/openclaw/openclaw/pull/160629), thanks to [@PollyBot13](https://github.com/PollyBot13), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@postoso](https://github.com/postoso).",
-        "href": "https://github.com/openclaw/openclaw/issues/160629"
-      },
-      {
-        "title": "Discord attachment uploads retain the caller's mention restrictions when co...",
-        "description": "Discord attachment uploads retain the caller's mention restrictions when component delivery falls back to classic messages. [#161604](https://github.com/openclaw/openclaw/pull/161604), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161604"
-      },
-      {
-        "title": "Discord and OpenAI realtime voice codec handling adds input validation and...",
-        "description": "Discord and OpenAI realtime voice codec handling adds input validation and cleanup after allocation or partial-initialization failures. [#162592](https://github.com/openclaw/openclaw/pull/162592), thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162592"
-      },
-      {
-        "title": "Discord playback deadlines tolerate system-clock changes, avoiding cutoff o...",
-        "description": "Discord playback deadlines tolerate system-clock changes, avoiding cutoff or delayed cleanup caused by that trigger. [#163652](https://github.com/openclaw/openclaw/pull/163652), thanks to [@ly85206559](https://github.com/ly85206559).",
-        "href": "https://github.com/openclaw/openclaw/issues/163652"
-      },
-      {
-        "title": "Discord's picker shortens display labels for model IDs over 100 characters...",
-        "description": "Discord's picker shortens display labels for model IDs over 100 characters while retaining the exact full selection through Submit. If the catalog no longer resolves the selection, reopen `/models`; shared prefixes can still produce identical displayed labels. [#164311](https://github.com/openclaw/openclaw/pull/164311), thanks to [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164311"
-      },
-      {
-        "title": "The [Nextcloud Talk guide](https",
-        "description": "//docs.openclaw.ai/channels/nextcloud-talk) explains message receipt, permission checks and reply delivery separately, so a webhook acknowledgment is not mistaken for a completed answer. [#157715](https://github.com/openclaw/openclaw/pull/157715), thanks to [@deepujain](https://github.com/deepujain), [@jm9151821](https://github.com/jm9151821).",
-        "href": "https://github.com/openclaw/openclaw/issues/157715"
-      },
-      {
-        "title": "The optional [IMAP plugin](https",
-        "description": "//docs.openclaw.ai/automation/imap) fetches pending message bodies in batches of 20 during catch-up, preserving ordered retries without retaining every body at once. [#160413](https://github.com/openclaw/openclaw/pull/160413), thanks to [@Ayushdevo](https://github.com/Ayushdevo), [@obviyus](https://github.com/obviyus), [@addyCooks](https://github.com/addyCooks).",
-        "href": "https://github.com/openclaw/openclaw/issues/160413"
-      },
-      {
-        "title": "Slack and Matrix draft previews hold a possible lone-`N` silence-marker fra...",
-        "description": "Slack and Matrix draft previews hold a possible lone-`N` silence-marker fragment while ordinary words beginning with N and a genuine final N remain deliverable. [#160582](https://github.com/openclaw/openclaw/pull/160582), thanks to [@jayzhou2309](https://github.com/jayzhou2309), [@imabotone-ui](https://github.com/imabotone-ui), [@nashtu3000](https://github.com/nashtu3000), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160582"
-      },
-      {
-        "title": "Automatic channel resolution accepts Slack workspace-qualified user IDs wit...",
-        "description": "Automatic channel resolution accepts Slack workspace-qualified user IDs without the `--kind user` workaround. [#160619](https://github.com/openclaw/openclaw/pull/160619), thanks to [@LinzeShi](https://github.com/LinzeShi), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/160619"
-      },
-      {
-        "title": "Slack fallback cards use quiet narration by default",
-        "description": "Slack fallback cards use quiet narration by default. Set `channels.slack.streaming.progress.toolProgress: true` for detailed activity; when explicitly disabling it while keeping fallback cards, also select `style: card`. [#161472](https://github.com/openclaw/openclaw/pull/161472), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161472"
-      },
-      {
-        "title": "Tlon can process a renewed group invitation after the preceding invitation...",
-        "description": "Tlon can process a renewed group invitation after the preceding invitation ends, under its existing auto-accept and inviter rules. [#161596](https://github.com/openclaw/openclaw/pull/161596), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161596"
-      },
-      {
-        "title": "A failed Matrix account-data read stops the direct-room mapping write inste...",
-        "description": "A failed Matrix account-data read stops the direct-room mapping write instead of erasing unrelated contacts. [#161727](https://github.com/openclaw/openclaw/pull/161727), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161727"
-      },
-      {
-        "title": "Matrix silently declines excess requests when its pending pairing queue is...",
-        "description": "Matrix silently declines excess requests when its pending pairing queue is full instead of sending an empty code or false approval reminder. [#161767](https://github.com/openclaw/openclaw/pull/161767), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161767"
-      },
-      {
-        "title": "Mattermost interaction callbacks containing JSON `null` return the invalid-...",
-        "description": "Mattermost interaction callbacks containing JSON `null` return the invalid-body response instead of throwing a context exception. [#162603](https://github.com/openclaw/openclaw/pull/162603), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162603"
-      },
-      {
-        "title": "WhatsApp named accounts no longer inherit the old unscoped group activation...",
-        "description": "WhatsApp named accounts no longer inherit the old unscoped group activation setting; rerun the desired `/activation` command in the intended account's group when needed. [#162799](https://github.com/openclaw/openclaw/pull/162799), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162799"
-      },
-      {
-        "title": "Reef's model guard accepts the exact `gpt-6",
-        "description": "Reef's model guard accepts the exact `gpt-6.1-sol` ID under its existing validation rules. [#162955](https://github.com/openclaw/openclaw/pull/162955), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162955"
-      },
-      {
-        "title": "Early Reef sends without canonical receipts retain unknown delivery status...",
-        "description": "Early Reef sends without canonical receipts retain unknown delivery status without imposing a historical-rejection cooldown. Check with the recipient before resending; later recorded rejections retain the guarded rephrasing rules. [#163205](https://github.com/openclaw/openclaw/pull/163205), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163205"
-      },
-      {
-        "title": "Tlon displays configured model names such as `constructor` and `toString` a...",
-        "description": "Tlon displays configured model names such as `constructor` and `toString` as ordinary strings. [#163438](https://github.com/openclaw/openclaw/pull/163438), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163438"
-      },
-      {
-        "title": "Twilio clears even an empty stream-ID registration on disconnect so the nex...",
-        "description": "Twilio clears even an empty stream-ID registration on disconnect so the next inbound call can stream. The ngrok loopback option requires valid Twilio signatures. Very old Mattermost `allowPrivateNetwork` aliases lose their Doctor conversion; keep the original configuration because a confirmed recovery path remains unresolved. [#163767](https://github.com/openclaw/openclaw/pull/163767), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163767"
-      },
-      {
-        "title": "Doctor preserves existing channel account maps and WhatsApp shared policy",
-        "description": "Doctor preserves existing channel account maps and WhatsApp shared policy. It warns about ambiguous unlinked defaults for operator review instead of deleting them; preserve needed shared policy before explicitly removing an unwanted default. [#163974](https://github.com/openclaw/openclaw/pull/163974), thanks to [@steipete](https://github.com/steipete), [@ooiuuii](https://github.com/ooiuuii).",
-        "href": "https://github.com/openclaw/openclaw/issues/163974"
-      },
-      {
-        "title": "Matrix partial [message previews](https",
-        "description": "//docs.openclaw.ai/concepts/messages) hold punctuation-prefixed silence-marker fragments such as `.NO_REP`; divergent text resumes streaming and genuine final fragments remain deliverable. [#164259](https://github.com/openclaw/openclaw/pull/164259), thanks to [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164259"
-      },
-      {
-        "title": "Telegram troubleshooting distinguishes the Node networking threshold from O...",
-        "description": "Telegram troubleshooting distinguishes the Node networking threshold from OpenClaw's maintained [supported-runtime requirements](https://docs.openclaw.ai/install/node). [#159240](https://github.com/openclaw/openclaw/pull/159240), thanks to [@AmelioMansour](https://github.com/AmelioMansour), [@aniruddhaadak80](https://github.com/aniruddhaadak80).",
-        "href": "https://github.com/openclaw/openclaw/issues/159240"
-      },
-      {
-        "title": "Doctor imports implicit shared-root WhatsApp credentials into `credentials/...",
-        "description": "Doctor imports implicit shared-root WhatsApp credentials into `credentials/whatsapp/default` with private `.migrated` backups and conflict preservation. After manual replacement, run `openclaw doctor --fix`, upgrading core first if needed. Explicit `authDir` stays authoritative. Remove the reported ignored `exposeErrorText` key, including false values, or use its documented 2026.9.5 Doctor bridge. [#163203](https://github.com/openclaw/openclaw/pull/163203), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163203"
-      },
-      {
-        "title": "Nextcloud Talk preserves and refuses retired replay-deduplication JSON files",
-        "description": "Nextcloud Talk preserves and refuses retired replay-deduplication JSON files; migrate affected state with 2026.9.5 Doctor in the same profile before upgrading. [#163216](https://github.com/openclaw/openclaw/pull/163216), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163216"
-      },
-      {
-        "title": "Matrix preserves and refuses active `thread-bindings",
-        "description": "Matrix preserves and refuses active `thread-bindings.json` and `startup-verification.json` files. Migrate before updating and retain a compatible pre-update backup; an older release must not open an already upgraded shared database. [#163292](https://github.com/openclaw/openclaw/pull/163292), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163292"
-      },
-      {
-        "title": "Discord preserves and refuses old model-picker-preference and thread-bindin...",
-        "description": "Discord preserves and refuses old model-picker-preference and thread-binding JSON files. Use a pre-update backup and the 2026.9.5 Doctor bridge before upgrading. [#163329](https://github.com/openclaw/openclaw/pull/163329), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163329"
-      },
-      {
-        "title": "Zalo Personal Doctor repairs supported older direct-message keys for named...",
-        "description": "Zalo Personal Doctor repairs supported older direct-message keys for named agents without converting genuine groups; run `openclaw doctor --fix` for affected state. [#163399](https://github.com/openclaw/openclaw/pull/163399), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163399"
-      },
-      {
-        "title": "Normal updates back up and repair older Telegram SQLite polling offsets bef...",
-        "description": "Normal updates back up and repair older Telegram SQLite polling offsets before startup. Manual replacements need `openclaw doctor --fix`; sidecar-only historical state needs a complete pre-update backup and the 2026.9.5 bridge. Replace retired `groupMentionsOnly` with `groups[\"*\"].requireMention` through the documented migration path. [#163418](https://github.com/openclaw/openclaw/pull/163418), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163418"
-      },
-      {
-        "title": "Discord audits honor `allowFrom`, including an explicit empty override, and...",
-        "description": "Discord audits honor `allowFrom`, including an explicit empty override, and timed-out operations retain timeout errors. Doctor correctly names `dangerouslyAllowNameMatching`. Retired Discord voice-TTS provider and guild-channel `allow` or `agentId` settings require 2026.9.7 Doctor before upgrading; replacements use `voice.tts.providers`, channel `enabled` and top-level bindings. [#163728](https://github.com/openclaw/openclaw/pull/163728), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163728"
-      },
-      {
-        "title": "Matrix bounds pairing tracking and keeps original whitespace text when its...",
-        "description": "Matrix bounds pairing tracking and keeps original whitespace text when its compatibility chunker receives a nonpositive limit. Retired Matrix trusted-DM, flat private-network and room/group allow settings, plus Slack channel allow settings, require 2026.9.5 Doctor before upgrading. [#163740](https://github.com/openclaw/openclaw/pull/163740), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163740"
-      },
-      {
-        "title": "Old unversioned Telegram reply context becomes unavailable until messages a...",
-        "description": "Old unversioned Telegram reply context becomes unavailable until messages are observed again, and assistant replies without recorded identity can appear in both reply context and transcript. Supported history remains available. [#164173](https://github.com/openclaw/openclaw/pull/164173), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164173"
-      },
-      {
-        "title": "Telegram reports full bot-endpoint configuration and directs operators to D...",
-        "description": "Telegram reports full bot-endpoint configuration and directs operators to Doctor repair before startup, probing or sending instead of silently trimming the URL. [#164414](https://github.com/openclaw/openclaw/pull/164414), thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164414"
-      },
-      {
-        "title": "Telegram settings commands and skill invocations wait behind a pending ques...",
-        "description": "Telegram settings commands and skill invocations wait behind a pending question instead of silently losing it. Authorized stop, `/new` and `/reset` still cancel pending work. [#168004](https://github.com/openclaw/openclaw/pull/168004). Thanks [@obviyus](https://github.com/obviyus), [@vicary](https://github.com/vicary).",
-        "href": "https://github.com/openclaw/openclaw/issues/168004"
-      },
-      {
-        "title": "Search and Dreaming keep distinct memories in different languages, and Wiki...",
-        "description": "Search and Dreaming keep distinct memories in different languages, and Wiki searches retain accented and non-Latin words. Supported Brazilian Portuguese questions can prompt deeper lookup, and ordinary Conversation Summary notes become eligible for Dreaming. Blank searches offer keyword-retry guidance, filename searches avoid repeated scans, and recall instructions account for an optional Wiki. See the [session search guide](https://docs.openclaw.ai/concepts/session-search), [Active Memory lookup explanation](https://docs.openclaw.ai/concepts/active-memory/how-it-works) and [recall setup guide](https://docs.openclaw.ai/concepts/active-memory/enabling#remember-across-conversations).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Long conversations can finish a summary that needs several stages when a pl...",
-        "description": "Long conversations can finish a summary that needs several stages when a plugin delegates to built-in compaction. Each request remains bounded; plugin authors must pass the original host cancellation signal for this fix to apply. Automatic summaries use your reasoning setting and current conversation size, keep requested AGENTS.md excerpts separate from unrelated material, and distinguish completed checks from work still needed. See the [context-engine guide](https://docs.openclaw.ai/plugins/architecture-internals/context-engines), [compaction settings](https://docs.openclaw.ai/gateway/config-agents/heartbeat-compaction-and-streaming), [compaction policy](https://docs.openclaw.ai/reference/session-management-compaction/compaction) and [overview](https://docs.openclaw.ai/concepts/compaction).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Large conversation histories can become searchable again after database lim...",
-        "description": "Large conversation histories can become searchable again after database limits or a deadlock prevented indexing. Memory updates and cleanup put more database work in the background, and excluded system-only sessions stop falsely showing that the index needs updating. Forget keeps the original transcripts and excludes selected sessions from future indexing; if its result is uncertain, retry explicitly.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Memory search can resume with your primary embedding provider after an outa...",
-        "description": "Memory search can resume with your primary embedding provider after an outage, without restarting or rebuilding the index. A later search attempts recovery when the provider, model and settings match the saved index and the fallback is incompatible; attempts have a 30-second cooldown, and a working compatible fallback stays in use. Bedrock indexing also shares credential lookups without preventing rotation, while Zhipu batches split and retry when its 64-item limit is reported in Chinese.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Memory search can again use an eligible saved Codex OAuth account for OpenA...",
-        "description": "Memory search can again use an eligible saved Codex OAuth account for OpenAI embeddings without a separate API key. The account must have the required access: the separate Sign in with ChatGPT token-sharing grant does not authorize embeddings.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Memory and skill edits use a 30-second polling default when native file wat...",
-        "description": "Memory and skill edits use a 30-second polling default when native file watching is unavailable or polling is selected. `CHOKIDAR_INTERVAL` overrides that default, down to 20 ms; shorter intervals mean more background scanning. Allow for the interval plus scan and debounce time before an edit appears. Status explains the watching mode and fallback reason; restart OpenClaw after repairing the native backend to try native watching again.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Very old Dreaming and Wiki installations need an upgrade recovery plan: Doc...",
-        "description": "Very old Dreaming and Wiki installations need an upgrade recovery plan: Doctor no longer imports four pre-July Dreaming JSON journals or two older Wiki JSON formats. The files stay intact, and ordinary Markdown memories remain supported. Preserve a backup compatible with your current version before upgrading. A verified recovery route without a newer backup or established SQLite state remains missing; moving the old files aside does not migrate their data. See [memory guidance](https://docs.openclaw.ai/concepts/memory) and [upgrading very old versions](https://docs.openclaw.ai/install/updating#upgrading-very-old-versions).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Check older Wiki settings and preserve retired Active Memory JSON preferenc...",
-        "description": "Check older Wiki settings and preserve retired Active Memory JSON preferences before upgrading. Doctor no longer repairs Wiki's `bridge.readMemoryCore` setting or warns about those preferences; an old Wiki configuration can fail validation without the former repair guidance.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Ask for a keyword retry when a conversation search is blank [#129120](https...",
-        "description": "Ask for a keyword retry when a conversation search is blank [#129120](https://github.com/openclaw/openclaw/pull/129120). Thanks [@ruel225](https://github.com/ruel225), [@obviyus](https://github.com/obviyus) and [@brainatworkharris](https://github.com/brainatworkharris).",
-        "href": "https://github.com/openclaw/openclaw/issues/129120"
-      },
-      {
-        "title": "Recognize supported Brazilian Portuguese retrospective questions for deeper...",
-        "description": "Recognize supported Brazilian Portuguese retrospective questions for deeper Active Memory lookup [#135137](https://github.com/openclaw/openclaw/pull/135137). Thanks [@wangyan2026](https://github.com/wangyan2026), [@obviyus](https://github.com/obviyus) and [@wave-workflow](https://github.com/wave-workflow).",
-        "href": "https://github.com/openclaw/openclaw/issues/135137"
-      },
-      {
-        "title": "Avoid repeated full-index scans for filename and path searches [#152585](ht...",
-        "description": "Avoid repeated full-index scans for filename and path searches [#152585](https://github.com/openclaw/openclaw/pull/152585). Thanks [@sahilsatralkar](https://github.com/sahilsatralkar), [@personaltrainerkoichan](https://github.com/personaltrainerkoichan), [@aron-intframe](https://github.com/aron-intframe) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/152585"
-      },
-      {
-        "title": "Guide the assistant to use successful configured recall without treating an...",
-        "description": "Guide the assistant to use successful configured recall without treating an absent optional Wiki as a failure [#157089](https://github.com/openclaw/openclaw/pull/157089). Thanks [@LLagoon3](https://github.com/LLagoon3) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/157089"
-      },
-      {
-        "title": "Keep accented and non-Latin words in Memory Wiki multi-word searches [#1596...",
-        "description": "Keep accented and non-Latin words in Memory Wiki multi-word searches [#159683](https://github.com/openclaw/openclaw/pull/159683). Thanks [@Yigtwxx](https://github.com/Yigtwxx) and [@altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/issues/159683"
-      },
-      {
-        "title": "Clarify when configured recall runs and how to enable remembering across co...",
-        "description": "Clarify when configured recall runs and how to enable remembering across conversations [#161179](https://github.com/openclaw/openclaw/pull/161179). Thanks [@yashas-13](https://github.com/yashas-13), [@obviyus](https://github.com/obviyus) and [@Raven-Gt](https://github.com/Raven-Gt).",
-        "href": "https://github.com/openclaw/openclaw/issues/161179"
-      },
-      {
-        "title": "Make ordinary Conversation Summary notes eligible for Dreaming while filter...",
-        "description": "Make ordinary Conversation Summary notes eligible for Dreaming while filtering raw conversation turns [#161363](https://github.com/openclaw/openclaw/pull/161363). Thanks [@Irish-Joseph](https://github.com/Irish-Joseph), [@obviyus](https://github.com/obviyus) and [@Gabrielnkl](https://github.com/Gabrielnkl).",
-        "href": "https://github.com/openclaw/openclaw/issues/161363"
-      },
-      {
-        "title": "Resume search after the configured embedding provider recovers from an outa...",
-        "description": "Resume search after the configured embedding provider recovers from an outage [#163936](https://github.com/openclaw/openclaw/pull/163936). Thanks [@obviyus](https://github.com/obviyus), [@cknzraposo](https://github.com/cknzraposo) and [@hubofvalley](https://github.com/hubofvalley).",
-        "href": "https://github.com/openclaw/openclaw/issues/163936"
-      },
-      {
-        "title": "Preserve distinct multilingual memories in search and Dreaming selection [#...",
-        "description": "Preserve distinct multilingual memories in search and Dreaming selection [#164062](https://github.com/openclaw/openclaw/pull/164062). Thanks [@harshitgupta31415](https://github.com/harshitgupta31415) and [@jarimustonen](https://github.com/jarimustonen) for the fix and acknowledged prior work.",
-        "href": "https://github.com/openclaw/openclaw/issues/164062"
-      },
-      {
-        "title": "Estimate active conversation context without recounting history already rep...",
-        "description": "Estimate active conversation context without recounting history already replaced by a summary [#150623](https://github.com/openclaw/openclaw/pull/150623). Thanks [@goutamadwant](https://github.com/goutamadwant), [@obviyus](https://github.com/obviyus), [@BillBOT33](https://github.com/BillBOT33) and [@he-yufeng](https://github.com/he-yufeng).",
-        "href": "https://github.com/openclaw/openclaw/issues/150623"
-      },
-      {
-        "title": "Honor the configured compaction reasoning level during automatic summaries...",
-        "description": "Honor the configured compaction reasoning level during automatic summaries [#159476](https://github.com/openclaw/openclaw/pull/159476). Thanks [@MoerAI](https://github.com/MoerAI), [@obviyus](https://github.com/obviyus), [@rtfcv](https://github.com/rtfcv) and [@he-yufeng](https://github.com/he-yufeng).",
-        "href": "https://github.com/openclaw/openclaw/issues/159476"
-      },
-      {
-        "title": "Improve summary instructions to retain completed checks that found a proble...",
-        "description": "Improve summary instructions to retain completed checks that found a problem and separate remaining remediation [#161293](https://github.com/openclaw/openclaw/pull/161293). Thanks [@itayzit](https://github.com/itayzit) and [@jacobtomlinson](https://github.com/jacobtomlinson).",
-        "href": "https://github.com/openclaw/openclaw/issues/161293"
-      },
-      {
-        "title": "Keep requested AGENTS",
-        "description": "Keep requested AGENTS.md sections separate from unrelated appendices while preserving fenced examples [#162735](https://github.com/openclaw/openclaw/pull/162735). Thanks [@boeingchoco](https://github.com/boeingchoco).",
-        "href": "https://github.com/openclaw/openclaw/issues/162735"
-      },
-      {
-        "title": "Restore transcript-based context estimates in affected non-Codex Bun conver...",
-        "description": "Restore transcript-based context estimates in affected non-Codex Bun conversation paths and missing Cloudflare plugin identity and activity artwork [#163051](https://github.com/openclaw/openclaw/pull/163051). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163051"
-      },
-      {
-        "title": "Refresh the timeout between built-in summarization stages reached through d...",
-        "description": "Refresh the timeout between built-in summarization stages reached through delegating plugins [#163636](https://github.com/openclaw/openclaw/pull/163636). Thanks [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163636"
-      },
-      {
-        "title": "Run saved conditional instructions' database work in a background worker [#...",
-        "description": "Run saved conditional instructions' database work in a background worker [#161395](https://github.com/openclaw/openclaw/pull/161395). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161395"
-      },
-      {
-        "title": "Reuse watcher paths to avoid redundant work when processing file changes [#...",
-        "description": "Reuse watcher paths to avoid redundant work when processing file changes [#161495](https://github.com/openclaw/openclaw/pull/161495). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161495"
-      },
-      {
-        "title": "Move memory maintenance planning and forgotten-session reads into workers [...",
-        "description": "Move memory maintenance planning and forgotten-session reads into workers [#161741](https://github.com/openclaw/openclaw/pull/161741). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161741"
-      },
-      {
-        "title": "Save generated search-vector cache entries in a worker while checking that...",
-        "description": "Save generated search-vector cache entries in a worker while checking that the index is still current [#161831](https://github.com/openclaw/openclaw/pull/161831). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161831"
-      },
-      {
-        "title": "Count and prune cached embeddings in a worker, yielding between batches [#1...",
-        "description": "Count and prune cached embeddings in a worker, yielding between batches [#161884](https://github.com/openclaw/openclaw/pull/161884). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161884"
-      },
-      {
-        "title": "Finish Forget checks and writes in a worker, retaining previews and requiri...",
-        "description": "Finish Forget checks and writes in a worker, retaining previews and requiring explicit recovery after an uncertain result [#161959](https://github.com/openclaw/openclaw/pull/161959). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161959"
-      },
-      {
-        "title": "Move Forget preview and apply index scans into the retrieval worker [#16204...",
-        "description": "Move Forget preview and apply index scans into the retrieval worker [#162045](https://github.com/openclaw/openclaw/pull/162045). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162045"
-      },
-      {
-        "title": "Introduce a 30-second polling default and expose fallback health",
-        "description": "Introduce a 30-second polling default and expose fallback health; a later fix restores explicit shorter overrides [#162271](https://github.com/openclaw/openclaw/pull/162271). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162271"
-      },
-      {
-        "title": "Read source hashes and reusable cached embeddings off the Gateway thread du...",
-        "description": "Read source hashes and reusable cached embeddings off the Gateway thread during indexing [#162528](https://github.com/openclaw/openclaw/pull/162528). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162528"
-      },
-      {
-        "title": "Move durable-session memory accounting and side-chat history preparation in...",
-        "description": "Move durable-session memory accounting and side-chat history preparation into workers, stopping delayed accounting from starting maintenance after access expires [#163045](https://github.com/openclaw/openclaw/pull/163045). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163045"
-      },
-      {
-        "title": "Scan session-memory startup statistics in the indexing worker [#163194](htt...",
-        "description": "Scan session-memory startup statistics in the indexing worker [#163194](https://github.com/openclaw/openclaw/pull/163194). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163194"
-      },
-      {
-        "title": "Discover stored conversations for indexing, archived search and selective f...",
-        "description": "Discover stored conversations for indexing, archived search and selective forgetting in the history worker [#163234](https://github.com/openclaw/openclaw/pull/163234). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163234"
-      },
-      {
-        "title": "Plan durable recall and Dreaming cleanup in the history worker [#163269](ht...",
-        "description": "Plan durable recall and Dreaming cleanup in the history worker [#163269](https://github.com/openclaw/openclaw/pull/163269). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163269"
-      },
-      {
-        "title": "Skip unnecessary embedding-cache eviction scans and remove only the oldest...",
-        "description": "Skip unnecessary embedding-cache eviction scans and remove only the oldest excess entries [#164083](https://github.com/openclaw/openclaw/pull/164083). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164083"
-      },
-      {
-        "title": "Share Bedrock instance-role credential lookup during indexing while allowin...",
-        "description": "Share Bedrock instance-role credential lookup during indexing while allowing later credential rotation [#161164](https://github.com/openclaw/openclaw/pull/161164). Thanks [@obviyus](https://github.com/obviyus) and [@slinkoff](https://github.com/slinkoff).",
-        "href": "https://github.com/openclaw/openclaw/issues/161164"
-      },
-      {
-        "title": "Stop excluded system-only sessions from falsely marking the memory index di...",
-        "description": "Stop excluded system-only sessions from falsely marking the memory index dirty [#161834](https://github.com/openclaw/openclaw/pull/161834). Thanks [@obviyus](https://github.com/obviyus) and [@alfred429](https://github.com/alfred429).",
-        "href": "https://github.com/openclaw/openclaw/issues/161834"
-      },
-      {
-        "title": "Keep unresolved-session Forget dry runs from creating a missing memory data...",
-        "description": "Keep unresolved-session Forget dry runs from creating a missing memory database [#162155](https://github.com/openclaw/openclaw/pull/162155). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162155"
-      },
-      {
-        "title": "Restore memory catch-up, updates and cleanup for large session selections [...",
-        "description": "Restore memory catch-up, updates and cleanup for large session selections [#164336](https://github.com/openclaw/openclaw/pull/164336). Thanks [@jayzhou2309](https://github.com/jayzhou2309) and [@nkarkare](https://github.com/nkarkare).",
-        "href": "https://github.com/openclaw/openclaw/issues/164336"
-      },
-      {
-        "title": "Fix the rollback-journal indexing deadlock that kept affected large session...",
-        "description": "Fix the rollback-journal indexing deadlock that kept affected large sessions out of search [#164624](https://github.com/openclaw/openclaw/pull/164624). Thanks [@triciah73](https://github.com/triciah73) and [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164624"
-      },
-      {
-        "title": "Split and retry oversized Zhipu embedding requests when its 64-item limit i...",
-        "description": "Split and retry oversized Zhipu embedding requests when its 64-item limit is returned in Chinese [00c09b7](https://github.com/openclaw/openclaw/commit/00c09b79fc0f440c390e67c5540d0099137fb0ba). Thanks [@SunnyShu0925](https://github.com/SunnyShu0925) and [@obviyus](https://github.com/obviyus). Thanks [@vanecook](https://github.com/vanecook) for the report and exact error payload.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Select eligible stored Codex OAuth credentials for OpenAI memory embeddings...",
-        "description": "Select eligible stored Codex OAuth credentials for OpenAI memory embeddings [f6883b3](https://github.com/openclaw/openclaw/commit/f6883b3771c0a40d7bd62fcb99815dcbbb2e24f3). Thanks [@astra-openclaw](https://github.com/astra-openclaw) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Retire automatic imports of `memory/",
-        "description": "Retire automatic imports of `memory/.dreams/daily-ingestion.json`, `session-ingestion.json`, `short-term-recall.json` and `phase-signals.json` while leaving their bytes intact [#163334](https://github.com/openclaw/openclaw/pull/163334). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163334"
-      },
-      {
-        "title": "Retire automatic imports of `",
-        "description": "Retire automatic imports of `.openclaw-wiki/source-sync.json` and `.openclaw-wiki/import-runs/<runId>.json` while preserving current SQLite rollback support [#163391](https://github.com/openclaw/openclaw/pull/163391). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163391"
-      },
-      {
-        "title": "Remove the old Wiki `bridge",
-        "description": "Remove the old Wiki `bridge.readMemoryCore` to `readMemoryArtifacts` repair and retired `plugins/active-memory/session-toggles.json` warning, without replacement recovery guidance [#163667](https://github.com/openclaw/openclaw/pull/163667). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163667"
-      },
-      {
-        "title": "Automatic memory-saving turns keep their designated memory tools instead of...",
-        "description": "Automatic memory-saving turns keep their designated memory tools instead of regaining tools that can edit project files or do unrelated work. See [memory saving before compaction](https://docs.openclaw.ai/plugins/sdk-overview/memory-and-context#pre-compaction-memory-flush). [#166650](https://github.com/openclaw/openclaw/pull/166650). Thanks [@jlapenna](https://github.com/jlapenna), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/166650"
-      },
-      {
-        "title": "Built-in conversations with smaller context windows can continue after auto...",
-        "description": "Built-in conversations with smaller context windows can continue after automatic compaction. An individually oversized message receives guidance to shorten it or choose a larger-context model, while saved input and history remain available. See [compaction](https://docs.openclaw.ai/concepts/compaction). [#167900](https://github.com/openclaw/openclaw/pull/167900). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167900"
-      },
-      {
-        "title": "Memory Wiki can use the current cache after a separate CLI compile instead...",
-        "description": "Memory Wiki can use the current cache after a separate CLI compile instead of compiling an unchanged vault again. Changed imports, missing indexes or an invalid replacement cache still need compilation. [#167929](https://github.com/openclaw/openclaw/pull/167929). Thanks [@etzelm](https://github.com/etzelm), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/167929"
-      },
-      {
-        "title": "Managed llama.cpp memory indexing adds smaller missing defaults",
-        "description": "one slot and a 2,048-token context, with room reserved inside the input budget. Explicit native tuning remains authoritative. Lower concurrency and long-input capacity can reduce throughput or require larger existing limits for unusually long requests. See [llama.cpp settings](https://docs.openclaw.ai/plugins/llama-cpp). [#168020](https://github.com/openclaw/openclaw/pull/168020). Thanks [@Deregtx](https://github.com/Deregtx), [@frankhli843](https://github.com/frankhli843), [@jj5638521](https://github.com/jj5638521), [@Nehanth](https://github.com/Nehanth), [@spunzon](https://github.com/spunzon), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/168020"
-      },
-      {
-        "title": "Memory indexing and scheduled dreaming continue through Memory Core or prov...",
-        "description": "Memory indexing and scheduled dreaming continue through Memory Core or provider reloads. Replacing an instance waits for a pending dream diary entry to finish, and retired callbacks cannot use the replacement. [eaf60b0e](https://github.com/openclaw/openclaw/commit/eaf60b0eb517b15c71438c9fd7c4e44154938f59). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Undoing a ChatGPT import in Memory Wiki refuses a folder at an imported-pag...",
-        "description": "Undoing a ChatGPT import in Memory Wiki refuses a folder at an imported-page path instead of moving it into recovery as a page. Missing files retain their existing handled no-op behavior. [08a1d712](https://github.com/openclaw/openclaw/commit/08a1d712b04b00e5244b506f2aa3201caa20e6c7). Thanks [@RomneyDa](https://github.com/RomneyDa), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "You can check whether a skill was found, meets its prerequisites, and is ac...",
-        "description": "You can check whether a skill was found, meets its prerequisites, and is actually visible to the agent using [skill troubleshooting](https://docs.openclaw.ai/cli/skills#commands). After the next agent turn, [`/context list`](https://docs.openclaw.ai/concepts/context) shows the catalog that reached the prompt. Browsing and choosing from your personal skill library also moves database queries into the background.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Installing an invalid skill no longer replaces a working copy, even with a...",
-        "description": "Installing an invalid skill no longer replaces a working copy, even with a forced local or Git install. [Sandbox skill copies](https://docs.openclaw.ai/gateway/sandboxing/workspace-access) can refresh from read-only installations on POSIX systems, with affected copies repaired on the next full sync. SDK sessions also recover nested skills mistakenly hidden by root-only ignore rules.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Skills remain available after file notifications that report no content cha...",
-        "description": "Skills remain available after file notifications that report no content change, and development sessions avoid the resulting false restarts. Scanning skips temporary activity while still refreshing supporting files and rediscovering skills when needed. Skills and Memory now honor existing `CHOKIDAR_INTERVAL` overrides: the default is 30 seconds, the minimum is 20 ms, and shorter settings increase background scanning.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Older skills and hooks need a manual metadata update to retain prerequisite...",
-        "description": "Older skills and hooks need a manual metadata update to retain prerequisites, installation hints and hook events: rename `metadata.clawdbot` to `metadata.openclaw`, preserving existing canonical values if both blocks are present. Reconcile `.clawdhub` tracking into `.clawhub` without overwriting records. Where node clients are equally matched, select an exact node ID; the April 2026 macOS setup PATH-check exemption is also retired.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Skill instructions give clearer routes for finding integrations",
-        "description": "general requests use existing ClawHub plugins, while explicit skill requests use skills; installing either still needs separate authorization. Feishu Wiki instructions use supported browsing or a known wiki token. Callers must adopt the corrected tmux completion-marker example to distinguish fresh output from echoed commands and older results.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Telegram skill shortcuts no longer take over the built-in `/export_session`...",
-        "description": "Telegram skill shortcuts no longer take over the built-in `/export_session` command; a colliding skill gets a numbered alias that affected users should use instead. Multiline arguments beginning on the command line keep their interior indentation, tabs and blank paragraphs as received from the channel.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "After the next agent turn, `/context list` and verbose diagnostics report t...",
-        "description": "After the next agent turn, `/context list` and verbose diagnostics report the skill catalog actually included in the prompt. Counts now reflect omitted catalogs and prompt overrides. [#145775](https://github.com/openclaw/openclaw/pull/145775). Thanks [@tianhaotian](https://github.com/tianhaotian), [@obviyus](https://github.com/obviyus), [@adembektas](https://github.com/adembektas), [@aron-intframe](https://github.com/aron-intframe) and [@bulingbuling688](https://github.com/bulingbuling688).",
-        "href": "https://github.com/openclaw/openclaw/issues/145775"
-      },
-      {
-        "title": "Troubleshooting documentation distinguishes a discovered skill from one who...",
-        "description": "Troubleshooting documentation distinguishes a discovered skill from one whose prerequisites are met or whose instructions are visible to the agent. [#146951](https://github.com/openclaw/openclaw/pull/146951). Thanks [@Frosmans](https://github.com/Frosmans).",
-        "href": "https://github.com/openclaw/openclaw/issues/146951"
-      },
-      {
-        "title": "Personal skill-library browsing, revision lookup and selection preparation...",
-        "description": "Personal skill-library browsing, revision lookup and selection preparation load their records without doing database work on the main Gateway thread. New selections check current permissions and exact revisions, while existing sessions retain access to their pinned revisions. [#164165](https://github.com/openclaw/openclaw/pull/164165). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164165"
-      },
-      {
-        "title": "Local and Git installs fail clearly on unusable or oversized skill roots be...",
-        "description": "Local and Git installs fail clearly on unusable or oversized skill roots before copying files. An invalid forced replacement leaves the existing valid skill in place. Scripts that previously accepted an unusable source now receive failure status 1. [#160492](https://github.com/openclaw/openclaw/pull/160492). Thanks [@Yun-0000](https://github.com/Yun-0000), [@obviyus](https://github.com/obviyus), [@suninweb](https://github.com/suninweb) and [@ooiuuii](https://github.com/ooiuuii).",
-        "href": "https://github.com/openclaw/openclaw/issues/160492"
-      },
-      {
-        "title": "Refresh cleanup removes stale sandbox skill copies while protecting mount t...",
-        "description": "Refresh cleanup removes stale sandbox skill copies while protecting mount targets and symlink targets outside the managed copy. [#162295](https://github.com/openclaw/openclaw/pull/162295). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162295"
-      },
-      {
-        "title": "On POSIX systems, sandbox skill copies refresh from read-only installations...",
-        "description": "On POSIX systems, sandbox skill copies refresh from read-only installations and existing copies repair on the next full sync. Source permissions, executable files and the guest's configured read-only access are preserved. [#162304](https://github.com/openclaw/openclaw/pull/162304). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162304"
-      },
-      {
-        "title": "SDK resource matching treats a root-only `/build` exclusion as root-only, a...",
-        "description": "SDK resource matching treats a root-only `/build` exclusion as root-only, allowing skills under a nested path such as `deploy/build` to remain discoverable. Anchored exceptions retain the same root scope. [#162455](https://github.com/openclaw/openclaw/pull/162455). Thanks [@boeingchoco](https://github.com/boeingchoco) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162455"
-      },
-      {
-        "title": "Skill scanning skips more irrelevant and temporary files while preserving f...",
-        "description": "Skill scanning skips more irrelevant and temporary files while preserving file classifications between partial scans. If the classification cache fills, the next scan rediscovers files. [#161881](https://github.com/openclaw/openclaw/pull/161881). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161881"
-      },
-      {
-        "title": "Unchanged watched content avoids false development restarts, and Claude cat...",
-        "description": "Unchanged watched content avoids false development restarts, and Claude catalog watchers let one-shot commands exit. Skills and Memory polling honor `CHOKIDAR_INTERVAL`, with a 30-second default and 20 ms minimum. [fcdd870](https://github.com/openclaw/openclaw/commit/fcdd87021745fd8352e362626b29b7a2e3a2c87d). Thanks [@steipete](https://github.com/steipete) and [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Legacy `metadata",
-        "description": "Legacy `metadata.clawdbot` is no longer read in skill and hook files. Migrate the needed fields to `metadata.openclaw` manually to retain prerequisites, installation hints and hook events. [#163104](https://github.com/openclaw/openclaw/pull/163104). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163104"
-      },
-      {
-        "title": "Legacy `",
-        "description": "Legacy `.clawdhub` records are no longer read and need manual reconciliation into `.clawhub`, preserving existing canonical records. Equally matched nodes now require an exact node ID instead of the old-client tie-break, and the April 2026 macOS PATH-audit exemption is removed. [#163965](https://github.com/openclaw/openclaw/pull/163965). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163965"
-      },
-      {
-        "title": "ClawHub guidance searches existing plugins for general integrations and ski...",
-        "description": "ClawHub guidance searches existing plugins for general integrations and skills for explicit skill requests. Installation still requires separate authorization. [#163848](https://github.com/openclaw/openclaw/pull/163848). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163848"
-      },
-      {
-        "title": "Feishu wiki guidance uses node listing for a known space or parent and dire...",
-        "description": "Feishu wiki guidance uses node listing for a known space or parent and direct lookup for a wiki token, avoiding the unavailable search action. [#161755](https://github.com/openclaw/openclaw/pull/161755). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161755"
-      },
-      {
-        "title": "The tmux skill's completion-marker example uses a fresh randomized marker s...",
-        "description": "The tmux skill's completion-marker example uses a fresh randomized marker split across `printf` arguments, so an echoed command or old output does not look like a completed task. Callers need to adopt the updated example. [#146329](https://github.com/openclaw/openclaw/pull/146329). Thanks [@GodBlf](https://github.com/GodBlf), [@mrzeepek](https://github.com/mrzeepek) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/146329"
-      },
-      {
-        "title": "Telegram keeps the built-in `/export_session` command",
-        "description": "Telegram keeps the built-in `/export_session` command. A colliding skill receives `/export_session_2` or another unique suffix, so its command alias changes. See [slash-command guidance](https://docs.openclaw.ai/tools/slash-commands). [#163149](https://github.com/openclaw/openclaw/pull/163149). Thanks [@ooiuuii](https://github.com/ooiuuii).",
-        "href": "https://github.com/openclaw/openclaw/issues/163149"
-      },
-      {
-        "title": "Multiline skill-command payloads preserve interior indentation, tabs and bl...",
-        "description": "Multiline skill-command payloads preserve interior indentation, tabs and blank paragraphs when text begins on the command line. Whitespace already transformed by a channel remains subject to that channel's handling. [#164151](https://github.com/openclaw/openclaw/pull/164151). Thanks [@ooiuuii](https://github.com/ooiuuii) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164151"
-      },
-      {
-        "title": "Mac chat stays open while its Gateway finishes setup or reconnects, and ope...",
-        "description": "Mac chat stays open while its Gateway finishes setup or reconnects, and opening a completed conversation can restore a failed Dashboard. Refreshing an unrelated profile preserves sign-in for the same connection. Switching the primary Gateway clears the old chat and preview cache, and dismissing an older notification no longer hides its replacement.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "You can sign in to eligible Cloudflare Access apps inside the Mac Dashboard...",
-        "description": "You can sign in to eligible Cloudflare Access apps inside the Mac Dashboard and keep those app sessions across restarts. Use an updated Mac app with an observed HTTPS app on port 443 on the same site, Access team and account. WebKit restrictions can still require the embedded app's own sign-in link.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Saved remote Mac Gateways can reconnect, open and switch after a valid cert...",
-        "description": "Saved remote Mac Gateways can reconnect, open and switch after a valid certificate renewal for the same host and port that macOS trusts, including administrator-installed roots. An explicit `gateway.remote.tlsFingerprint` stays fixed and needs a deliberate update; expired, untrusted and wrong-host replacements remain rejected.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Canceled Mac and iOS recordings stay canceled when microphone permission ar...",
-        "description": "Canceled Mac and iOS recordings stay canceled when microphone permission arrives late, and Android dictation keeps listening after an older attempt ends. Mac push-to-talk finishes on right-Option release, sometimes waiting briefly for final speech results; cancellation sends nothing. Voice fixes also preserve iOS stereo audio, repeated Voice Wake commands and opening words in Apple realtime playback through ordinary bursts and brief microphone delays. iOS Talk keeps voice directives out of later speech segments, and retired health checks stop reporting stale failures.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Switching Apple conversations no longer lets a late summary, fork, rewind o...",
-        "description": "Switching Apple conversations no longer lets a late summary, fork, rewind or settings save overwrite the chat you're viewing. Mac attachments stay with the chat where you selected or dropped them, case-distinct conversation IDs stay separate, and link previews match the current URL. Local database cleanup avoids a double-close failure, and Watch replies avoid an unnecessary retry pause after reconnecting.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Android group edits stay with their original Gateway",
-        "description": "switching connections rejects stale rename and delete dialogs, and deleting a group leaves its conversations Ungrouped. iPhone and iPad demo captures hide real saved Gateway and credential controls. Android keeps current notification forwarding while removing older recent-app suggestions.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Update pre-July-2026 Gateways before relying on retired native-app connecti...",
-        "description": "Update pre-July-2026 Gateways before relying on retired native-app connection fallbacks. Apple and Android retries with a saved device token now require explicit Gateway permission, and Android stops accepting older incoming field aliases. Apple apps also stop importing selected settings and certificate trust from before July 1, 2026, so older-only setups may need to reconnect and establish trust again. iOS and its share extension now use `openclaw-ios`; old client identity overrides and app-local Talk keys are retired, with local Talk using Gateway-configured keys.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Reading and searching skills on Android has translated labels in 21 existin...",
-        "description": "Reading and searching skills on Android has translated labels in 21 existing non-English locales.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Opening a completed conversation restores a failed Mac Dashboard",
-        "description": "Opening a completed conversation restores a failed Mac Dashboard; queued native actions can recover after a canceled replacement load. [#160886](https://github.com/openclaw/openclaw/pull/160886). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160886"
-      },
-      {
-        "title": "A replacement Mac notification stays visible when an older dismissal animat...",
-        "description": "A replacement Mac notification stays visible when an older dismissal animation finishes. [#161250](https://github.com/openclaw/openclaw/pull/161250). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161250"
-      },
-      {
-        "title": "Saved Mac Dashboard sign-in survives unrelated profile refreshes on the sam...",
-        "description": "Saved Mac Dashboard sign-in survives unrelated profile refreshes on the same active connection. [#161464](https://github.com/openclaw/openclaw/pull/161464). Thanks to [@steipete](https://github.com/steipete), [@fuller-stack-dev](https://github.com/fuller-stack-dev).",
-        "href": "https://github.com/openclaw/openclaw/issues/161464"
-      },
-      {
-        "title": "Eligible Cloudflare Access dashboards support in-app sign-in and persistent...",
-        "description": "Eligible Cloudflare Access dashboards support in-app sign-in and persistent app-specific browser sessions. [#161474](https://github.com/openclaw/openclaw/pull/161474). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161474"
-      },
-      {
-        "title": "Mac menu-bar conversation and preview caches follow the primary Gateway, cl...",
-        "description": "Mac menu-bar conversation and preview caches follow the primary Gateway, clearing former data on a switch. [#163892](https://github.com/openclaw/openclaw/pull/163892). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163892"
-      },
-      {
-        "title": "Mac chat stays open while its unchanged Gateway completes setup or reconnec...",
-        "description": "Mac chat stays open while its unchanged Gateway completes setup or reconnects, including command-line chat launches. [#163971](https://github.com/openclaw/openclaw/pull/163971). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163971"
-      },
-      {
-        "title": "Mac learned certificate pins accept hostname-valid renewal trusted by macOS...",
-        "description": "Mac learned certificate pins accept hostname-valid renewal trusted by macOS, including saved-Gateway opening and switching; explicit fingerprints remain fixed. [#164435](https://github.com/openclaw/openclaw/pull/164435). Thanks to [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@joryirving](https://github.com/joryirving).",
-        "href": "https://github.com/openclaw/openclaw/issues/164435"
-      },
-      {
-        "title": "Mac push-to-talk retires the correct hold on key release, permission delay...",
-        "description": "Mac push-to-talk retires the correct hold on key release, permission delay or voice-mode replacement. [#143064](https://github.com/openclaw/openclaw/pull/143064). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/143064"
-      },
-      {
-        "title": "iOS Voice Wake preserves both channels of queued stereo microphone audio wh...",
-        "description": "iOS Voice Wake preserves both channels of queued stereo microphone audio when the capture buffer is reused. [#161148](https://github.com/openclaw/openclaw/pull/161148). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161148"
-      },
-      {
-        "title": "Restarted Android dictation keeps listening when an older permission or rec...",
-        "description": "Restarted Android dictation keeps listening when an older permission or recognition attempt is canceled late. [#161391](https://github.com/openclaw/openclaw/pull/161391). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161391"
-      },
-      {
-        "title": "iOS Talk removes directives from cumulative text, repeated Voice Wake comma...",
-        "description": "iOS Talk removes directives from cumulative text, repeated Voice Wake commands work after listening restarts, and retired health checks cannot publish stale failures. [#161639](https://github.com/openclaw/openclaw/pull/161639). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161639"
-      },
-      {
-        "title": "Late Apple compact, fork and rewind results cannot replace newer conversati...",
-        "description": "Late Apple compact, fork and rewind results cannot replace newer conversation errors or history. [#161799](https://github.com/openclaw/openclaw/pull/161799). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161799"
-      },
-      {
-        "title": "Apple local-state storage avoids duplicate closing after rejected initializ...",
-        "description": "Apple local-state storage avoids duplicate closing after rejected initialization and concurrent database misuse. [#162782](https://github.com/openclaw/openclaw/pull/162782). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162782"
-      },
-      {
-        "title": "Apple transcripts keep case-distinct Matrix, Signal and catalog conversatio...",
-        "description": "Apple transcripts keep case-distinct Matrix, Signal and catalog conversation keys separate while retaining structural aliases. [#162818](https://github.com/openclaw/openclaw/pull/162818). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162818"
-      },
-      {
-        "title": "Apple realtime voice playback preserves opening words and ordinary bursts t...",
-        "description": "Apple realtime voice playback preserves opening words and ordinary bursts through brief microphone delays. [#163146](https://github.com/openclaw/openclaw/pull/163146). Thanks to [@Marvinthebored](https://github.com/Marvinthebored), [@Peetiegonzalez](https://github.com/Peetiegonzalez). Thanks [@Takhoffman](https://github.com/Takhoffman) for coauthoring the landed change.",
-        "href": "https://github.com/openclaw/openclaw/issues/163146"
-      },
-      {
-        "title": "Apple requires explicit stored-token retry permission, and late microphone...",
-        "description": "Apple requires explicit stored-token retry permission, and late microphone permission cannot revive a canceled or replaced voice note. [#163433](https://github.com/openclaw/openclaw/pull/163433). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163433"
-      },
-      {
-        "title": "A failed Apple settings save from a departed thread cannot replace the curr...",
-        "description": "A failed Apple settings save from a departed thread cannot replace the current thread’s visible errors while its queued messages are put on hold. [#164037](https://github.com/openclaw/openclaw/pull/164037). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164037"
-      },
-      {
-        "title": "Delayed Mac file selections and drops stay bound to their original conversa...",
-        "description": "Delayed Mac file selections and drops stay bound to their original conversation, and Apple link previews show only their current URL’s title and image. [669db5d36e](https://github.com/openclaw/openclaw/commit/669db5d36e0637ba4c3033028ef050303963715b). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Watch reply recovery starts promptly when reconnect cancels an old history...",
-        "description": "Watch reply recovery starts promptly when reconnect cancels an old history request, avoiding its unnecessary retry pause. [287a4003d3](https://github.com/openclaw/openclaw/commit/287a4003d34f14a3e3422456944bd6e1e6edb8ed). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "iPhone and iPad demo captures hide saved Gateway and credential controls an...",
-        "description": "iPhone and iPad demo captures hide saved Gateway and credential controls and remove contradictory pairing prompts. [#160857](https://github.com/openclaw/openclaw/pull/160857). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160857"
-      },
-      {
-        "title": "iOS and its share extension retire old client identities and overrides",
-        "description": "iOS and its share extension retire old client identities and overrides. Local Talk uses Gateway-configured keys; Gateway-routed credentials stay on the Gateway. [#163339](https://github.com/openclaw/openclaw/pull/163339). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163339"
-      },
-      {
-        "title": "Android honors explicit stored-token retry permission and denial instead of...",
-        "description": "Android honors explicit stored-token retry permission and denial instead of the retired code-only fallback. [#163347](https://github.com/openclaw/openclaw/pull/163347). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163347"
-      },
-      {
-        "title": "Android in-flight group rename and delete remain on their original Gateway...",
-        "description": "Android in-flight group rename and delete remain on their original Gateway and reject stale responses. [#163420](https://github.com/openclaw/openclaw/pull/163420). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163420"
-      },
-      {
-        "title": "Android inbound events use canonical `payload` and `paramsJSON` fields",
-        "description": "Android inbound events use canonical `payload` and `paramsJSON` fields; retired inbound aliases require dependent Gateways to update. [#163441](https://github.com/openclaw/openclaw/pull/163441). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163441"
-      },
-      {
-        "title": "Android dismisses stale or restored group dialogs on Gateway changes",
-        "description": "Android dismisses stale or restored group dialogs on Gateway changes. Deleting a group leaves its conversations Ungrouped. [#163455](https://github.com/openclaw/openclaw/pull/163455). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163455"
-      },
-      {
-        "title": "Android stops importing the older recent-notification-app suggestion settin...",
-        "description": "Android stops importing the older recent-notification-app suggestion setting while preserving the current forwarding setting. [#163675](https://github.com/openclaw/openclaw/pull/163675). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163675"
-      },
-      {
-        "title": "Existing Android skill reading and search labels gain translations",
-        "description": "Existing Android skill reading and search labels gain translations. [#162602](https://github.com/openclaw/openclaw/pull/162602).",
-        "href": "https://github.com/openclaw/openclaw/issues/162602"
-      },
-      {
-        "title": "Apple retires selected pre-July settings and certificate imports",
-        "description": "Apple retires selected pre-July settings and certificate imports; older-only setups may need Gateway reconnection and renewed trust. [#163002](https://github.com/openclaw/openclaw/pull/163002). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163002"
-      },
-      {
-        "title": "When the Mac app waits for an existing background Gateway to start, it chec...",
-        "description": "When the Mac app waits for an existing background Gateway to start, it checks that the process is still the same before extending that wait. An earlier response cannot keep it waiting on a replacement process. [ad93d1ac](https://github.com/openclaw/openclaw/commit/ad93d1ac05c1cac3317d237637e25f656c244663). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Choosing a provider now keeps your model on that provider when an alias col...",
-        "description": "Choosing a provider now keeps your model on that provider when an alias collides with its name. `openai/gpt-4o-mini` selects OpenAI; use `openrouter/openai/gpt-4o-mini` to retain the former OpenRouter alias route. Check affected selections, because the route can change credentials, availability and cost. Adding fallbacks keeps the primary model, queued choices survive older cleanup, and shared fallback changes require omitting `--agent`.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Model status uses your saved nickname, and local terminal chat shows the mo...",
-        "description": "Model status uses your saved nickname, and local terminal chat shows the model actually attempted after a fallback. Embedding output gives an eight-value preview, with full vectors available through `--json`; migration links lead to the relevant model guidance.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Bedrock](https",
-        "description": "//docs.openclaw.ai/providers/bedrock) can use externally rotated AWS profile credentials without a restart and continue after an earlier malformed tool argument. Setup preserves your chosen configuration when attempts are canceled, avoids unused connections, and reports self-hosted credential-storage failures before claiming success. Queue overflow also keeps protected entries while removing eligible ones.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Windows local-model setup can recover when llama",
-        "description": "Windows local-model setup can recover when llama.cpp is missing Visual C++ runtime files by placing them beside the managed server. If that recovery fails, rerun setup or configure a compatible server manually.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Older ZAI and Ollama Cloud configurations may need manual changes",
-        "description": "Older ZAI and Ollama Cloud configurations may need manual changes. ZAI usage checks now use supported configuration, the auth store, `ZAI_API_KEY` or `Z_AI_API_KEY`. Replace Ollama Cloud's retired `https://ai.ollama.com` address with `https://ollama.com` in `models.providers.ollama-cloud.baseUrl`; Doctor no longer corrects or warns about the old address.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Official OpenRouter, Vercel and Perplexity requests identify OpenClaw to th...",
-        "description": "Official OpenRouter, Vercel and Perplexity requests identify OpenClaw to the provider through app headers. OpenRouter still receives that identification when install telemetry is disabled, and its Anthropic Messages requests replace configured Referer and Title values. Custom proxy hosts do not receive automatic attribution.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Image generation with OAuth can retry using a supported OpenAI chat model i...",
-        "description": "Image generation with OAuth can retry using a supported OpenAI chat model in `agents.defaults.model` if the account rejects the default. Runway and Together video requests also honor longer timeouts. For ElevenLabs speech, manually replace the old `model` setting with `modelId` to select the intended model; see the [speech configuration guide](https://docs.openclaw.ai/tools/tts/configuration) and [field reference](https://docs.openclaw.ai/tools/tts/field-reference#param-model).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "OpenAI and Azure Responses keep your requested JSON output format, and reco...",
-        "description": "OpenAI and Azure Responses keep your requested JSON output format, and recovered DeepSeek calls keep literal names and empty-string arguments. Models that see images directly avoid unrelated media-provider loading errors.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Astra preserves completed answers after silent tool results without sending...",
-        "description": "Astra preserves completed answers after silent tool results without sending them twice. Custom OpenAI-compatible routes can opt into [stale-output pruning](https://docs.openclaw.ai/concepts/session-pruning). [Image guidance](https://docs.openclaw.ai/nodes/media-understanding) explains replay costs and replacing images with descriptions, which removes access to their pixels for that turn. Kimi K3's Code Mode fix renames the result-waiting argument to `awaitResults` on `exec`, `shellexec` and `agents_wait`; callers must replace `required`, which is now ignored.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Failed requests give clearer retry hints and preserve the original rejectio...",
-        "description": "Failed requests give clearer retry hints and preserve the original rejection, while local SQLite errors stop pointless model switching. Eligible malformed or output-limited tool calls get at most one recovery attempt; incomplete calls do not execute, and completed results stay available. Check results before repeating work, because earlier actions may already have finished. Remote Codex launch failures point to execution approval without rotating healthy credentials.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A solo Codex conversation can delegate even when native admission hooks are...",
-        "description": "A solo Codex conversation can delegate even when native admission hooks are unavailable; another signed-in person's message is queued as a follow-up. Conversations affected by the earlier source-main regression need a new conversation to recover. A stale readiness check gets one refresh before a child follow-up is refused.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Switching or replacing a Codex chat protects the new chat from delayed comm...",
-        "description": "Switching or replacing a Codex chat protects the new chat from delayed commands and cleanup. Child assignments survive parent-thread replacement on the same connection, and an interrupted chat can resume after stopping and subscription cleanup succeed, while sibling chats continue.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Codex avoids repeated history preparation, defers unused catalogs and serve...",
-        "description": "Codex avoids repeated history preparation, defers unused catalogs and servers, and fixes the fleet configuration-copy path that exhausted memory. Failed commands and supported simple Code Mode actions retain saved outcomes; sandbox listings and copies preserve tabs and line breaks in filenames. Missed file notifications can still leave listings stale until restart. Older schema-1 sidecar bindings stay available for diagnosis but are no longer imported or converted.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Codex startup diagnostics identify the stage reached, launcher and pending...",
-        "description": "Codex startup diagnostics identify the stage reached, launcher and pending requests, while known process-wide log notices stop repeating in chats. A managed launcher failure needs installation repair and a Gateway restart to retry. After updating, run standalone Doctor to diagnose sandbox loopback restrictions in affected local Linux Docker or Podman runtimes; it does not make blocked shell commands succeed.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep explicit provider choices from being redirected by colliding model al...",
-        "description": "[Keep explicit provider choices from being redirected by colliding model aliases](https://github.com/openclaw/openclaw/pull/162973) — Thanks [steipete](https://github.com/steipete), [RXQ6](https://github.com/RXQ6), [yunligou711-commits](https://github.com/yunligou711-commits).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep the selected primary model when adding fallbacks or supported tool-mo...",
-        "description": "[Keep the selected primary model when adding fallbacks or supported tool-model timeouts](https://github.com/openclaw/openclaw/pull/162974) — Thanks [steipete](https://github.com/steipete), [jayzhou2309](https://github.com/jayzhou2309), [boeingchoco](https://github.com/boeingchoco).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Reject agent-scoped commands that would change shared text or image fallba...",
-        "description": "[Reject agent-scoped commands that would change shared text or image fallbacks](https://github.com/openclaw/openclaw/pull/163077) — Thanks [ericcurtin](https://github.com/ericcurtin), [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show embedding dimensions and the first eight vector values in normal CLI...",
-        "description": "[Show embedding dimensions and the first eight vector values in normal CLI output](https://github.com/openclaw/openclaw/pull/163722) — Thanks [obviyus](https://github.com/obviyus), [LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep a newer queued model, runtime or account selection pending for the ne...",
-        "description": "[Keep a newer queued model, runtime or account selection pending for the next safe switch](https://github.com/openclaw/openclaw/pull/164015) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show each agent’s own model nicknames correctly in status summaries](https...",
-        "description": "[Show each agent’s own model nicknames correctly in status summaries](https://github.com/openclaw/openclaw/pull/164126) — Thanks [ooiuuii](https://github.com/ooiuuii), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show the fallback model being attempted in local terminal chat](https://gi...",
-        "description": "[Show the fallback model being attempted in local terminal chat](https://github.com/openclaw/openclaw/pull/164364) — Thanks [ooiuuii](https://github.com/ooiuuii).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Repair the Apple Foundation Models and Doctor links to primary-model migra...",
-        "description": "[Repair the Apple Foundation Models and Doctor links to primary-model migration guidance](https://github.com/openclaw/openclaw/commit/7db2084787edbc63b585badc8fe41beaa0d03d89) — Thanks [LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Pick up externally rotated AWS profile credentials in Bedrock without rest...",
-        "description": "[Pick up externally rotated AWS profile credentials in Bedrock without restarting](https://github.com/openclaw/openclaw/pull/154158) — Thanks [ayoakouh](https://github.com/ayoakouh), [obviyus](https://github.com/obviyus), [paweldrozd](https://github.com/paweldrozd).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Continue Bedrock conversations after an earlier tool call stored malformed...",
-        "description": "[Continue Bedrock conversations after an earlier tool call stored malformed arguments](https://github.com/openclaw/openclaw/pull/160729) — Thanks [RileyJJY](https://github.com/RileyJJY), [obviyus](https://github.com/obviyus), [odrodash](https://github.com/odrodash), [ruel225](https://github.com/ruel225).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Identify custom OpenRouter routes as OpenClaw consistently](https",
-        "description": "//github.com/openclaw/openclaw/pull/160956) — Thanks [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use the vendor’s app-identification headers for Vercel AI Gateway and Perp...",
-        "description": "[Use the vendor’s app-identification headers for Vercel AI Gateway and Perplexity](https://github.com/openclaw/openclaw/pull/161018) — Thanks [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor cancellation before an OAuth lookup returns its fallback credential]...",
-        "description": "[Honor cancellation before an OAuth lookup returns its fallback credential](https://github.com/openclaw/openclaw/pull/161122) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid constructing a second unused provider connection for worker turns](h...",
-        "description": "[Avoid constructing a second unused provider connection for worker turns](https://github.com/openclaw/openclaw/pull/161570) — Thanks [joshavant](https://github.com/joshavant).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Stop a Copilot reconnect when authority is revoked during saved-token look...",
-        "description": "[Stop a Copilot reconnect when authority is revoked during saved-token lookup](https://github.com/openclaw/openclaw/pull/162165) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve provider login configuration and discard worker previews retired...",
-        "description": "[Preserve provider login configuration and discard worker previews retired during connection readiness](https://github.com/openclaw/openclaw/pull/162829) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor Copilot cancellation during setup and clean up failed authentication...",
-        "description": "[Honor Copilot cancellation during setup and clean up failed authentication or proxy preparation](https://github.com/openclaw/openclaw/pull/162992) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Supply missing Visual C++ runtime files during managed llama",
-        "description": "[Supply missing Visual C++ runtime files during managed llama.cpp setup on Windows](https://github.com/openclaw/openclaw/pull/163093) — Thanks [RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid unnecessary model-catalog writes when logging out a saved provider p...",
-        "description": "[Avoid unnecessary model-catalog writes when logging out a saved provider profile](https://github.com/openclaw/openclaw/pull/163451) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use supported ZAI usage credentials and set the canonical Ollama Cloud end...",
-        "description": "[Use supported ZAI usage credentials and set the canonical Ollama Cloud endpoint manually](https://github.com/openclaw/openclaw/pull/163827) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Report self-hosted credential-storage failure before setup succeeds, and r...",
-        "description": "[Report self-hosted credential-storage failure before setup succeeds, and remove eligible queue overflow while retaining protected entries](https://github.com/openclaw/openclaw/pull/163960) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Move personal model-account success and failure bookkeeping off the Gatewa...",
-        "description": "[Move personal model-account success and failure bookkeeping off the Gateway’s main thread](https://github.com/openclaw/openclaw/pull/164240) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep an accepted agent turn’s selected configuration and workspace through...",
-        "description": "[Keep an accepted agent turn’s selected configuration and workspace through authentication refresh](https://github.com/openclaw/openclaw/pull/164340) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Retry OAuth image generation with configured OpenAI chat models when the d...",
-        "description": "[Retry OAuth image generation with configured OpenAI chat models when the default is rejected](https://github.com/openclaw/openclaw/pull/158895) — Thanks [TeaCup404](https://github.com/TeaCup404), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use modelId to choose the intended ElevenLabs speech model](https",
-        "description": "//github.com/openclaw/openclaw/pull/161917) — Thanks [obviyus](https://github.com/obviyus), [hartra344](https://github.com/hartra344).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor longer requested video-generation timeouts for Runway and Together](...",
-        "description": "[Honor longer requested video-generation timeouts for Runway and Together](https://github.com/openclaw/openclaw/pull/164381) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve requested JSON formats on OpenAI and Azure Responses](https",
-        "description": "//github.com/openclaw/openclaw/pull/114204) — Thanks [kevin2966n](https://github.com/kevin2966n), [obviyus](https://github.com/obviyus), [axiom-ncis](https://github.com/axiom-ncis).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Honor stale-tool-output pruning on explicitly opted-in custom OpenAI-compa...",
-        "description": "[Honor stale-tool-output pruning on explicitly opted-in custom OpenAI-compatible routes](https://github.com/openclaw/openclaw/pull/159100) — Thanks [chopin-op60](https://github.com/chopin-op60), [joelwp](https://github.com/joelwp), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Explain image replay costs and the tradeoff of replacing selected images w...",
-        "description": "[Explain image replay costs and the tradeoff of replacing selected images with descriptions](https://github.com/openclaw/openclaw/pull/159205) — Thanks [monde](https://github.com/monde), [Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Skip unused media-provider loading when the model reads images itself](htt...",
-        "description": "[Skip unused media-provider loading when the model reads images itself](https://github.com/openclaw/openclaw/pull/159234) — Thanks [alexeysophia](https://github.com/alexeysophia), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve literal argument names when recovering DeepSeek tool calls](https...",
-        "description": "[Preserve literal argument names when recovering DeepSeek tool calls](https://github.com/openclaw/openclaw/pull/162358) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve intentional empty-string arguments in recovered DeepSeek tool cal...",
-        "description": "[Preserve intentional empty-string arguments in recovered DeepSeek tool calls](https://github.com/openclaw/openclaw/pull/162830) — Thanks [ly85206559](https://github.com/ly85206559).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Avoid unrelated media-provider failures on image turns with audio/video-on...",
-        "description": "[Avoid unrelated media-provider failures on image turns with audio/video-only media models](https://github.com/openclaw/openclaw/pull/163106) — Thanks [ly85206559](https://github.com/ly85206559).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep opening tool-call markers out of answer text after a completion witho...",
-        "description": "[Keep opening tool-call markers out of answer text after a completion without a final newline](https://github.com/openclaw/openclaw/pull/163301) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use the same normalized reasoning signatures in fresh node continuations a...",
-        "description": "[Use the same normalized reasoning signatures in fresh node continuations and saved history](https://github.com/openclaw/openclaw/pull/164287) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Completed answers survive a later silent tool follow-up or reasoning-only r...",
-        "description": "Completed answers survive a later silent tool follow-up or reasoning-only response instead of being lost or replaced by a misleading generation-failure warning. Genuine answerless output keeps its existing warning or settled-tool receipt; completed tool actions are not replayed. [#164774](https://github.com/openclaw/openclaw/pull/164774), [#167567](https://github.com/openclaw/openclaw/pull/167567). Thanks [@obviyus](https://github.com/obviyus), [@goutamadwant](https://github.com/goutamadwant), [@hannesrudolph](https://github.com/hannesrudolph).",
-        "href": "https://github.com/openclaw/openclaw/issues/164774"
-      },
-      {
-        "title": "[Avoid malformed Kimi K3 Code Mode calls by renaming the result-waiting arg...",
-        "description": "[Avoid malformed Kimi K3 Code Mode calls by renaming the result-waiting argument](https://github.com/openclaw/openclaw/pull/165022) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep provider reset hints when all fallback models fail](https",
-        "description": "//github.com/openclaw/openclaw/pull/141345) — Thanks [ayaangazali](https://github.com/ayaangazali), [obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use another configured agent’s working model for helper conversations and...",
-        "description": "[Use another configured agent’s working model for helper conversations and greetings](https://github.com/openclaw/openclaw/pull/145002) — Thanks [FtlC-ian](https://github.com/FtlC-ian), [obviyus](https://github.com/obviyus), [Colton-Harris](https://github.com/Colton-Harris), [MaikiMolto](https://github.com/MaikiMolto), [jj5638521](https://github.com/jj5638521).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Give malformed tool-use replies one guarded recovery attempt](https",
-        "description": "//github.com/openclaw/openclaw/pull/156342) — Thanks [namest504](https://github.com/namest504), [obviyus](https://github.com/obviyus), [hogawa000](https://github.com/hogawa000).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Give output-limited OpenAI tool calls one recovery continuation with small...",
-        "description": "[Give output-limited OpenAI tool calls one recovery continuation with smaller-call guidance](https://github.com/openclaw/openclaw/pull/161082) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Report invalid Anthropic requests without an unnecessary thinking-history...",
-        "description": "[Report invalid Anthropic requests without an unnecessary thinking-history retry](https://github.com/openclaw/openclaw/pull/161118) — Thanks [jayzhou2309](https://github.com/jayzhou2309), [abacha](https://github.com/abacha), [altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Handle a provider setup failure that arrives after cancellation](https://g...",
-        "description": "[Handle a provider setup failure that arrives after cancellation](https://github.com/openclaw/openclaw/pull/161337) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show fallback CLI startup errors without stale details from the previous p...",
-        "description": "[Show fallback CLI startup errors without stale details from the previous provider](https://github.com/openclaw/openclaw/pull/162111) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Stop model fallback after local SQLite worker failures](https",
-        "description": "//github.com/openclaw/openclaw/pull/162624) — Thanks [ericcurtin](https://github.com/ericcurtin), [Jeehut](https://github.com/Jeehut).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Give neutral retry guidance for request timeouts without claiming a provid...",
-        "description": "[Give neutral retry guidance for request timeouts without claiming a provider HTTP response](https://github.com/openclaw/openclaw/pull/163250) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Continue the same conversation after acknowledging supported provider-revi...",
-        "description": "[Continue the same conversation after acknowledging supported provider-review findings](https://github.com/openclaw/openclaw/pull/163507) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Retain Anthropic streaming error types for existing retry and model fallba...",
-        "description": "[Retain Anthropic streaming error types for existing retry and model fallback](https://github.com/openclaw/openclaw/pull/163662) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Treat expired or denied remote Codex launch approvals as execution-approva...",
-        "description": "[Treat expired or denied remote Codex launch approvals as execution-approval failures without rotating healthy credentials](https://github.com/openclaw/openclaw/pull/164237) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve solo Codex delegation when native admission hooks are unavailable...",
-        "description": "[Preserve solo Codex delegation when native admission hooks are unavailable](https://github.com/openclaw/openclaw/pull/161070) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Refresh stale Codex readiness once before rejecting a follow-up child task...",
-        "description": "[Refresh stale Codex readiness once before rejecting a follow-up child task](https://github.com/openclaw/openclaw/pull/161155) — Thanks [b4rRa](https://github.com/b4rRa), [obviyus](https://github.com/obviyus), [Olli0103](https://github.com/Olli0103).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep Codex interrupt retries consistent when the system clock changes](htt...",
-        "description": "[Keep Codex interrupt retries consistent when the system clock changes](https://github.com/openclaw/openclaw/pull/155824) — Thanks [SunnyShu0925](https://github.com/SunnyShu0925), [altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Resume remote Codex reconnection after a client closes before monitoring b...",
-        "description": "[Resume remote Codex reconnection after a client closes before monitoring begins](https://github.com/openclaw/openclaw/pull/160912) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep Codex subscriptions, quota snapshots and child cleanup consistent acr...",
-        "description": "[Keep Codex subscriptions, quota snapshots and child cleanup consistent across duplicate loads of the same plugin build](https://github.com/openclaw/openclaw/pull/160949) — Thanks [anyech](https://github.com/anyech), [Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Retain Codex child assignments and completed results when a parent thread...",
-        "description": "[Retain Codex child assignments and completed results when a parent thread is replaced on the same connection](https://github.com/openclaw/openclaw/pull/160952) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Map Codex workspaces from filesystem roots and recover compressed-history...",
-        "description": "[Map Codex workspaces from filesystem roots and recover compressed-history discovery errors](https://github.com/openclaw/openclaw/pull/161425) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve valid Codex tool-context fields and keep app diagnostics tied to...",
-        "description": "[Preserve valid Codex tool-context fields and keep app diagnostics tied to the latest refresh](https://github.com/openclaw/openclaw/pull/162032) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Reuse unchanged Codex session inspection and read current bindings outside...",
-        "description": "[Reuse unchanged Codex session inspection and read current bindings outside the Gateway thread](https://github.com/openclaw/openclaw/pull/162037) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve tabs and line breaks in Codex sandbox directory listings and recu...",
-        "description": "[Preserve tabs and line breaks in Codex sandbox directory listings and recursive copies](https://github.com/openclaw/openclaw/pull/162610) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Prevent fleet configuration copies from exhausting Gateway memory during C...",
-        "description": "[Prevent fleet configuration copies from exhausting Gateway memory during Codex session discovery](https://github.com/openclaw/openclaw/pull/162912) — Thanks [obviyus](https://github.com/obviyus), [609NFT](https://github.com/609NFT).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Load idle agents’ Codex session catalogs when requested instead of at Gate...",
-        "description": "[Load idle agents’ Codex session catalogs when requested instead of at Gateway startup](https://github.com/openclaw/openclaw/pull/163129) — Thanks [obviyus](https://github.com/obviyus), [609NFT](https://github.com/609NFT).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Report early workspace-write rejection as a failed Codex shell command wit...",
-        "description": "[Report early workspace-write rejection as a failed Codex shell command with its original arguments](https://github.com/openclaw/openclaw/pull/163427) — Thanks [joshavant](https://github.com/joshavant), [100yenadmin](https://github.com/100yenadmin), [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Reduce repeated file checks and display preparation when browsing large Co...",
-        "description": "[Reduce repeated file checks and display preparation when browsing large Codex histories](https://github.com/openclaw/openclaw/pull/163706) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Retain older Codex sidecar bindings for diagnosis without importing or con...",
-        "description": "[Retain older Codex sidecar bindings for diagnosis without importing or converting them](https://github.com/openclaw/openclaw/pull/163707) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Keep linked failed patch and shell actions in saved Codex conversations fo...",
-        "description": "[Keep linked failed patch and shell actions in saved Codex conversations for supported simple Code Mode calls](https://github.com/openclaw/openclaw/pull/164116) — Thanks [joshavant](https://github.com/joshavant).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Protect replacement Codex conversations from delayed commands and cleanup...",
-        "description": "[Protect replacement Codex conversations from delayed commands and cleanup belonging to an older session](https://github.com/openclaw/openclaw/pull/164197) — Thanks [steipete](https://github.com/steipete), [galiniliev](https://github.com/galiniliev), [KirDE](https://github.com/KirDE).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Resume an interrupted Codex chat while sibling chats continue](https",
-        "description": "//github.com/openclaw/openclaw/pull/165487) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Preserve useful managed Codex startup errors when the launcher exits befor...",
-        "description": "[Preserve useful managed Codex startup errors when the launcher exits before its error arrives](https://github.com/openclaw/openclaw/pull/161419) — Thanks [steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Stop replaying known process-wide Codex diagnostic-log notices across chat...",
-        "description": "[Stop replaying known process-wide Codex diagnostic-log notices across chats](https://github.com/openclaw/openclaw/pull/161657) — Thanks [vyctorbrzezowski](https://github.com/vyctorbrzezowski).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Use standalone Doctor to detect local Linux Codex sandbox loopback failure...",
-        "description": "[Use standalone Doctor to detect local Linux Codex sandbox loopback failures](https://github.com/openclaw/openclaw/pull/161692) — Thanks [steipete](https://github.com/steipete), [eugifa](https://github.com/eugifa), [oc-jarvis](https://github.com/oc-jarvis), [sallyom](https://github.com/sallyom), [tedassur](https://github.com/tedassur), [Thinkscape](https://github.com/Thinkscape), [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show the observed phase and awaited request counts in Codex timeout diagno...",
-        "description": "[Show the observed phase and awaited request counts in Codex timeout diagnostics](https://github.com/openclaw/openclaw/pull/162927) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Show the last observed Codex startup stage and whether a client was starte...",
-        "description": "[Show the last observed Codex startup stage and whether a client was started, joined or reused](https://github.com/openclaw/openclaw/pull/163156) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Distinguish Codex initialization writes, native responses and version chec...",
-        "description": "[Distinguish Codex initialization writes, native responses and version checks in timeout diagnostics](https://github.com/openclaw/openclaw/pull/163230) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Identify the registered Codex launcher in startup timeout diagnostics](htt...",
-        "description": "[Identify the registered Codex launcher in startup timeout diagnostics](https://github.com/openclaw/openclaw/pull/163388) — Thanks [vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "After a long response reaches its output limit, the first corrective model...",
-        "description": "After a long response reaches its output limit, the first corrective model request gets its existing recovery window from that request's start. Later retries share the same bounded deadline; ordinary provider and inactivity timeouts remain. [#167708](https://github.com/openclaw/openclaw/pull/167708). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167708"
-      },
-      {
-        "title": "Resumed Claude CLI conversations apply updated instructions and changing pl...",
-        "description": "Resumed Claude CLI conversations apply updated instructions and changing plugin context while keeping their conversation history, instead of silently retaining only the first turn's instructions. See [CLI backends](https://docs.openclaw.ai/gateway/cli-backends). [#167817](https://github.com/openclaw/openclaw/pull/167817). Thanks [@robburke](https://github.com/robburke), [@steipete](https://github.com/steipete), [@yu-xin-c](https://github.com/yu-xin-c).",
-        "href": "https://github.com/openclaw/openclaw/issues/167817"
-      },
-      {
-        "title": "OpenAI-compatible proxies with too little estimated room for an answer trig...",
-        "description": "OpenAI-compatible proxies with too little estimated room for an answer trigger context recovery or a clear error instead of returning an unusably short reply, including with thinking disabled. Conservative estimates may require a smaller prompt or a context setting that matches the server's allocation. See [local models](https://docs.openclaw.ai/gateway/local-models). [#167878](https://github.com/openclaw/openclaw/pull/167878). Thanks [@amittell](https://github.com/amittell), [@dankarization](https://github.com/dankarization), [@glebsergeevich](https://github.com/glebsergeevich), [@jacobtomlinson](https://github.com/jacobtomlinson), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167878"
-      },
-      {
-        "title": "Managed Gemma 4 replies can recover a complete standalone tool request retu...",
-        "description": "Managed Gemma 4 replies can recover a complete standalone tool request returned as text at the end of an answer. Incomplete, cancelled, truncated or example text cannot authorize an action; direct mode and other model families are outside this recovery. [#167886](https://github.com/openclaw/openclaw/pull/167886). Thanks [@jlapenna](https://github.com/jlapenna), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167886"
-      },
-      {
-        "title": "Affected Ollama models can execute tools with Tool Search enabled instead o...",
-        "description": "Affected Ollama models can execute tools with Tool Search enabled instead of mistaking the tool-call wrapper for a control function. The correction covers known native and compatible chat envelopes; custom templates and other routes can still need attention. See [Ollama troubleshooting](https://docs.openclaw.ai/providers/ollama/troubleshooting). [#167933](https://github.com/openclaw/openclaw/pull/167933). Thanks [@steipete](https://github.com/steipete). Thanks [@shailaja-bot](https://github.com/shailaja-bot) for the related report and prompt that supported the parser investigation.",
-        "href": "https://github.com/openclaw/openclaw/issues/167933"
-      },
-      {
-        "title": "A ChatGPT turn retries once with its full input after a specific cached Web...",
-        "description": "A ChatGPT turn retries once with its full input after a specific cached WebSocket continuation is rejected before a response starts. Completed tool results carry forward without running the tools again. SSE, later failures and unrelated errors remain outside this repair. See [OpenAI continuation behavior](https://docs.openclaw.ai/providers/openai/advanced). [#168055](https://github.com/openclaw/openclaw/pull/168055). Thanks [@nikosml](https://github.com/nikosml), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/168055"
-      },
-      {
-        "title": "Slow native plugin checks can keep advancing until the model list is ready,...",
-        "description": "Slow native plugin checks can keep advancing until the model list is ready, and ordinary model-list preparation timeouts can recover. A stalled active native check still needs a manual reload or restart. Gateway diagnostics also inspect the installation you selected. [8b786700](https://github.com/openclaw/openclaw/commit/8b786700801e24738e86740535ef57078bbeaac0). Thanks [@martinderm](https://github.com/martinderm), [@matthematics1137](https://github.com/matthematics1137), [@obviyus](https://github.com/obviyus), [@RomneyDa](https://github.com/RomneyDa), [@steipete](https://github.com/steipete), [@swampgorilla](https://github.com/swampgorilla).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A failed model lookup with differently cased provider text no longer hides...",
-        "description": "A failed model lookup with differently cased provider text no longer hides a later valid lookup; provider names remain case-sensitive. Vertex also uses Google Auth's rotated token for non-file application credentials. [99878430](https://github.com/openclaw/openclaw/commit/998784305885de579a83f71aef4bc3f60d4ba6e3). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Replies, scheduled tasks and Gateway agent requests keep their accepted mod...",
-        "description": "Replies, scheduled tasks and Gateway agent requests keep their accepted model information while a background catalog changes. Cancellation, revoked access, closed leases and Gateway shutdown still stop work. See [model catalogs](https://docs.openclaw.ai/concepts/models). [df18524e](https://github.com/openclaw/openclaw/commit/df18524e3f9a41e4e00a6b583a811d9e0b1606c9). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Codex replies recover a missing ending when nonempty streamed text is an ex...",
-        "description": "Codex replies recover a missing ending when nonempty streamed text is an exact prefix of the completed answer. This does not recover missing middle text or a reply with no streamed text. [2bb51e77](https://github.com/openclaw/openclaw/commit/2bb51e77b0de34dda2a9c35bec830e4ed5bd67d1). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Older scheduled jobs keep their original agent and delivery intent instead...",
-        "description": "Older scheduled jobs keep their original agent and delivery intent instead of silently changing during routine activity or edits. Run `openclaw doctor --fix` when prompted, or use the normal updater's Doctor phase. Affected jobs wait before running, editing or removal, with a due one-time occurrence preserved. Unknown delivery modes need review and an explicit choice in the editor before saving.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Interrupted one-time messages and webhooks stay disabled with **Unknown** d...",
-        "description": "Interrupted one-time messages and webhooks stay disabled with **Unknown** delivery status after restart when they may already have been sent, including jobs set to delete themselves. **Check the recipient before retrying**, because Unknown can mean sent or unsent. **Before upgrading, make a verified SQLite backup that includes its write-ahead log.** Older runtimes refuse migrated state outside the updater's temporary grace period; reverting the binary alone is insufficient. Restoring an older backup loses later delivery records and cannot undo messages or webhooks already sent.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "OpenClaw keeps handling events while task edits, results and scratch notes...",
-        "description": "OpenClaw keeps handling events while task edits, results and scratch notes wait to save, preserving newer changes, recorded recipients and cancellation checks. Scheduled-session cleanup does less work in large stores, and background runs can reuse matching prepared plugins without changing their workspace or file-access boundaries. Removing a running job requests cancellation; the acknowledgment does not mean work has stopped or undo completed effects.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Running only due jobs manually now follows the same retry backoff and trigg...",
-        "description": "Running only due jobs manually now follows the same retry backoff and trigger spacing as scheduling. Force can bypass timing and enablement, while active-run, ownership and delivery checks still apply. Stopping a scheduling source waits for callbacks underway. Logbook starts each repeat interval after the callback finishes, so longer callbacks lengthen its cadence; Team Reports keeps absolute due times.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Gmail watchers can recover from short port conflicts during restart, and re...",
-        "description": "Gmail watchers can recover from short port conflicts during restart, and repeated rejected attempts to process the same email produce fewer duplicate notices while retries continue. For a persistent conflict, stop the occupying process and restart OpenClaw or the foreground watcher. Failure messages distinguish periodic checks from event-driven work and explain how to follow the logs.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "You can follow an isolated scheduled run from messages through agent activi...",
-        "description": "You can follow an isolated scheduled run from messages through agent activity and available billed usage in one trace with `diagnostics-otel`.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Preserve historical job owners and delivery intent through Doctor repair, w...",
-        "description": "Preserve historical job owners and delivery intent through Doctor repair, with verified backups and the pending occurrence intact. Within stored delivery objects, missing or null modes and the old `deliver` spelling become `announce`; unknown modes need review. Completely omitted delivery settings keep their normal defaults. Update rehearsals retain live legacy files for the real import. [d89da759](https://github.com/openclaw/openclaw/commit/d89da7595d0d6c51f4e17b5631114023e49f931b) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Hold interrupted one-time message and webhook deliveries when replay could...",
-        "description": "Hold interrupted one-time message and webhook deliveries when replay could send them again; runs proven never to have started delivery remain recoverable. [#159873](https://github.com/openclaw/openclaw/pull/159873) Thanks [@joshavant](https://github.com/joshavant).",
-        "href": "https://github.com/openclaw/openclaw/issues/159873"
-      },
-      {
-        "title": "Reject malformed stored-job saves supplying only the obsolete identity alia...",
-        "description": "Reject malformed stored-job saves supplying only the obsolete identity alias before changing any bundled job rows. Supported jobs and public `jobId` RPC parameters keep their behavior. [#163247](https://github.com/openclaw/openclaw/pull/163247) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163247"
-      },
-      {
-        "title": "Recheck current job state after another process causes an edit to be refuse...",
-        "description": "Recheck current job state after another process causes an edit to be refused, allowing a later edit once that run finishes while retaining ownership checks. [0193905d](https://github.com/openclaw/openclaw/commit/0193905dfa3c8c49f12d4fa432c4e20ef38d3848) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keep Gateway events moving while completed manual or timer jobs wait to sav...",
-        "description": "Keep Gateway events moving while completed manual or timer jobs wait to save their results, with job and execution records updated together. [#161142](https://github.com/openclaw/openclaw/pull/161142) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161142"
-      },
-      {
-        "title": "Save task edits in background workers while preserving newer edits and run...",
-        "description": "Save task edits in background workers while preserving newer edits and run markers. Confirmed changes are not replayed if a worker reply is lost, although the caller can still see a reply-loss error. [#161241](https://github.com/openclaw/openclaw/pull/161241) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161241"
-      },
-      {
-        "title": "Save scratch notes and heartbeat proposals without blocking the Gateway thread",
-        "description": "Save scratch notes and heartbeat proposals without blocking the Gateway thread; queued saves refuse changed jobs, revoked permissions and stale originating turns. [#161332](https://github.com/openclaw/openclaw/pull/161332) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161332"
-      },
-      {
-        "title": "Reduce periodic scheduled-session cleanup pauses in large stores by avoidin...",
-        "description": "Reduce periodic scheduled-session cleanup pauses in large stores by avoiding unnecessary loading of ordinary sessions' saved snapshots. [#161510](https://github.com/openclaw/openclaw/pull/161510) Thanks [@steipete](https://github.com/steipete) and [@todddickerson](https://github.com/todddickerson).",
-        "href": "https://github.com/openclaw/openclaw/issues/161510"
-      },
-      {
-        "title": "Further reduce scheduled-session cleanup work by selecting relevant saved d...",
-        "description": "Further reduce scheduled-session cleanup work by selecting relevant saved data before decoding it, retaining the same checks and retention rules. [#161645](https://github.com/openclaw/openclaw/pull/161645) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161645"
-      },
-      {
-        "title": "Save results for jobs with long histories while holding the shared database...",
-        "description": "Save results for jobs with long histories while holding the shared database writer lock for less time, and identify the operation behind slow writes more clearly. [#161655](https://github.com/openclaw/openclaw/pull/161655) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161655"
-      },
-      {
-        "title": "Use less temporary memory when repeatedly listing automations or reading re...",
-        "description": "Use less temporary memory when repeatedly listing automations or reading restart status by reusing unchanged snapshots. [#164160](https://github.com/openclaw/openclaw/pull/164160) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164160"
-      },
-      {
-        "title": "Disclose active-run cancellation requests when removing an automation, reta...",
-        "description": "Disclose active-run cancellation requests when removing an automation, retaining run history. An admitted run can remove its own job without cancelling itself. [#159586](https://github.com/openclaw/openclaw/pull/159586) Thanks [@ericcaiwx-star](https://github.com/ericcaiwx-star), [@dh-js](https://github.com/dh-js) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/159586"
-      },
-      {
-        "title": "Keep skipped-run history and startup notices tied to the agent and recipien...",
-        "description": "Keep skipped-run history and startup notices tied to the agent and recipient captured when saved, including an absent default recipient. Interrupted cleanup avoids stuck local reservations and replay of uncertain writes. [#161703](https://github.com/openclaw/openclaw/pull/161703) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161703"
-      },
-      {
-        "title": "Check execution records away from the Gateway thread and stop the next affe...",
-        "description": "Check execution records away from the Gateway thread and stop the next affected event, result publication or webhook if its job is removed during that check. [#161935](https://github.com/openclaw/openclaw/pull/161935) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161935"
-      },
-      {
-        "title": "Avoid redundant plugin loading for Gateway background runs in other workspa...",
-        "description": "Avoid redundant plugin loading for Gateway background runs in other workspaces and for matching disabled or failed plugin records. Execution directories and file-access restrictions remain in place. [#164594](https://github.com/openclaw/openclaw/pull/164594) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164594"
-      },
-      {
-        "title": "Preserve stream-job status and nondecreasing loss counters when sources cha...",
-        "description": "Preserve stream-job status and nondecreasing loss counters when sources change or shutdown loses a worker reply. Obsolete updates cannot overwrite a replacement stream, and uncertain outcomes remain errors. [#161502](https://github.com/openclaw/openclaw/pull/161502) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161502"
-      },
-      {
-        "title": "Align manual due-only timing with scheduled retries and settle started work...",
-        "description": "Align manual due-only timing with scheduled retries and settle started work when a scheduling source stops. Sibling schedules continue, and elapsed stream deadlines are handled once after sleep. [#163228](https://github.com/openclaw/openclaw/pull/163228) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163228"
-      },
-      {
-        "title": "Tie Logbook and Team Reports schedules to service lifetimes, waiting for ad...",
-        "description": "Tie Logbook and Team Reports schedules to service lifetimes, waiting for admitted work before closing reporting resources. Logbook uses intervals after completion, while Team Reports retains absolute due times and its existing cancellation deadline. [#163918](https://github.com/openclaw/openclaw/pull/163918) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163918"
-      },
-      {
-        "title": "Retry Gmail watcher port conflicts after 5, 10 and 20 seconds for managed w...",
-        "description": "Retry Gmail watcher port conflicts after 5, 10 and 20 seconds for managed watchers and the foreground command, recovering from short restart overlaps. [#161503](https://github.com/openclaw/openclaw/pull/161503) Thanks [@obviyus](https://github.com/obviyus) and [@kazuyuki-eguchi](https://github.com/kazuyuki-eguchi).",
-        "href": "https://github.com/openclaw/openclaw/issues/161503"
-      },
-      {
-        "title": "Suppress repeat failure notices when the same retained email cannot start p...",
-        "description": "Suppress repeat failure notices when the same retained email cannot start processing within five minutes, while retries and diagnostics continue. Expiry, eviction or restart can permit another notice. Failures after processing starts remain visible. [#164206](https://github.com/openclaw/openclaw/pull/164206) Thanks [@jayzhou2309](https://github.com/jayzhou2309), [@obviyus](https://github.com/obviyus) and [@TrevorDGreen33](https://github.com/TrevorDGreen33).",
-        "href": "https://github.com/openclaw/openclaw/issues/164206"
-      },
-      {
-        "title": "Describe a failed heartbeat as an incomplete background check, with `opencl...",
-        "description": "Describe a failed heartbeat as an incomplete background check, with `openclaw logs --follow` troubleshooting guidance and optional diagnostic details governed by disclosure settings. [#162869](https://github.com/openclaw/openclaw/pull/162869) Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162869"
-      },
-      {
-        "title": "Match failure wording to the selected work, so event-driven requests do not...",
-        "description": "Match failure wording to the selected work, so event-driven requests do not falsely appear to be failed periodic checks. Selected periodic tasks and monitor checks retain heartbeat wording. [ac85f6dc](https://github.com/openclaw/openclaw/commit/ac85f6dc13ab6572f3f564a9fde920e4dd6a4d6e) Thanks [@juyterman1000](https://github.com/juyterman1000) and [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Point the Automations index directly to the existing [mapped-webhook instru...",
-        "description": "Point the Automations index directly to the existing [mapped-webhook instructions](https://docs.openclaw.ai/automation/cron-jobs/webhooks#mapped-hooks-post-hooks-name) for custom `POST /hooks/<name>` routes. [0ad243f9](https://github.com/openclaw/openclaw/commit/0ad243f936f18008dfd307cc90fa4f7e18a44a1e) Thanks [@LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keep an isolated scheduled run's activity and available billed usage togeth...",
-        "description": "Keep an isolated scheduled run's activity and available billed usage together in its diagnostic trace when using `diagnostics-otel`. [#161304](https://github.com/openclaw/openclaw/pull/161304) Thanks [@NianJiuZst](https://github.com/NianJiuZst), [@ryan-dyer-sp](https://github.com/ryan-dyer-sp) and [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161304"
-      },
-      {
-        "title": "Managed browsers can find installed Playwright Chromium on Linux ARM64 and...",
-        "description": "Managed browsers can find installed Playwright Chromium on Linux ARM64 and when `XDG_CACHE_HOME` redirects the cache. Browser Doctor checks the launch settings your profile actually uses, including remote, attached and customized browsers.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Native Codex application control no longer reports a false browser-authenti...",
-        "description": "Native Codex application control no longer reports a false browser-authentication error for API-key installations. Setup keeps its timeout allowance across clock changes, and agents get instructions for locating windows and providing browser and page references together.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Mac desktop automation uses Peekaboo 4",
-        "description": "Mac desktop automation uses Peekaboo 4.7.0. If an exact-window menu action cannot be dispatched safely, `actionOnly` refuses it; use the supported `actionFirst` fallback.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Browser connection addresses keep their explicit default port even when a p...",
-        "description": "Browser connection addresses keep their explicit default port even when a path, query or fragment contains an at-sign. Firecrawl fetches also honor `--format text` through both `infer web fetch` and `capability web fetch`, though some Markdown formatting can remain.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Tab cleanup and Dashboard reconciliation continue after the request that st...",
-        "description": "Tab cleanup and Dashboard reconciliation continue after the request that started them ends, until the Browser service stops. Cleanup retries produce fewer repeated warnings for stopped profiles, and rate-limit errors return without hanging on response cancellation. See [browser configuration](https://docs.openclaw.ai/tools/browser/configuration).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Desktop reconnects no longer accumulate repeated attempts to clean up a fai...",
-        "description": "Desktop reconnects no longer accumulate repeated attempts to clean up a failed session. **Reconnecting alone no longer retries a cleanup failure**, even if it was transient. Inspect the reported process or filesystem error and perform lifecycle cleanup, such as turning Host Desktop off in Labs; a replacement starts only after cleanup succeeds. See [desktop configuration](https://docs.openclaw.ai/gateway/config-browser-ui-desktop).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keeping private-network browser access requires the canonical `browser",
-        "description": "Keeping private-network browser access requires the canonical `browser.ssrfPolicy.dangerouslyAllowPrivateNetwork` setting. Replace the retired `browser.ssrfPolicy.allowPrivateNetwork` key if your configuration still uses it; the old browser key is no longer honored.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Browser inspection shows the registered tool, and sandbox reservation and c...",
-        "description": "Browser inspection shows the registered tool, and sandbox reservation and cleanup work moves into the background while keeping its order. Old unconfigured `browser/clawd` directories now stay on disk instead of being offered for Doctor archival; configured profiles remain supported.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Reduce repeated stopped-profile unreachable-tab warnings without stopping c...",
-        "description": "Reduce repeated stopped-profile unreachable-tab warnings without stopping cleanup retries. [#155211](https://github.com/openclaw/openclaw/pull/155211) Thanks [@LiuwqGit](https://github.com/LiuwqGit), [@obviyus](https://github.com/obviyus), [@ghowkay](https://github.com/ghowkay).",
-        "href": "https://github.com/openclaw/openclaw/issues/155211"
-      },
-      {
-        "title": "Preserve setup-request timeout allowances across system-clock changes",
-        "description": "Preserve setup-request timeout allowances across system-clock changes. [#155873](https://github.com/openclaw/openclaw/pull/155873) Thanks [@SunnyShu0925](https://github.com/SunnyShu0925), [@altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/issues/155873"
-      },
-      {
-        "title": "Show the Browser tool’s name in runtime plugin inspection",
-        "description": "Show the Browser tool’s name in runtime plugin inspection. [#158823](https://github.com/openclaw/openclaw/pull/158823) Thanks [@chopin-op60](https://github.com/chopin-op60), [@priyabrataedu-droid](https://github.com/priyabrataedu-droid), [@Spheresta](https://github.com/Spheresta), [@altaywtf](https://github.com/altaywtf).",
-        "href": "https://github.com/openclaw/openclaw/issues/158823"
-      },
-      {
-        "title": "Bound failed desktop cleanup across reconnects and require explicit cleanup...",
-        "description": "Bound failed desktop cleanup across reconnects and require explicit cleanup before replacement. [#161621](https://github.com/openclaw/openclaw/pull/161621) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161621"
-      },
-      {
-        "title": "Match Browser Doctor prerequisites to effective profiles, including explici...",
-        "description": "Match Browser Doctor prerequisites to effective profiles, including explicit Chrome MCP endpoints and local auto-connect choices. [#161694](https://github.com/openclaw/openclaw/pull/161694) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161694"
-      },
-      {
-        "title": "Keep explicit default ports in the correct part of browser connection addre...",
-        "description": "Keep explicit default ports in the correct part of browser connection addresses containing an at-sign. [#161984](https://github.com/openclaw/openclaw/pull/161984) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161984"
-      },
-      {
-        "title": "Honor the existing text-output option in both web-fetch command aliases",
-        "description": "Honor the existing text-output option in both web-fetch command aliases. [#162036](https://github.com/openclaw/openclaw/pull/162036) Thanks [@LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/issues/162036"
-      },
-      {
-        "title": "Explain window discovery, preparation prerequisites and paired browser/page...",
-        "description": "Explain window discovery, preparation prerequisites and paired browser/page references to agents. [#162286](https://github.com/openclaw/openclaw/pull/162286) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162286"
-      },
-      {
-        "title": "Keep tab cleanup and dashboard reconciliation active for the Browser servic...",
-        "description": "Keep tab cleanup and dashboard reconciliation active for the Browser service’s lifetime. [#162312](https://github.com/openclaw/openclaw/pull/162312) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162312"
-      },
-      {
-        "title": "Avoid false browser-authentication failures in native Computer Use readines...",
-        "description": "Avoid false browser-authentication failures in native Computer Use readiness checks. [#162467](https://github.com/openclaw/openclaw/pull/162467) Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/162467"
-      },
-      {
-        "title": "Update macOS desktop automation to Peekaboo 4",
-        "description": "Update macOS desktop automation to Peekaboo 4.7.0 with its exact-window refusal and fallback behavior. [#162746](https://github.com/openclaw/openclaw/pull/162746) Thanks [@vincentkoc](https://github.com/vincentkoc), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162746"
-      },
-      {
-        "title": "Stop honoring the retired browser private-network key and use the canonical...",
-        "description": "Stop honoring the retired browser private-network key and use the canonical setting. [#163168](https://github.com/openclaw/openclaw/pull/163168) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163168"
-      },
-      {
-        "title": "Find installed Playwright Chromium automatically on Linux ARM64",
-        "description": "Find installed Playwright Chromium automatically on Linux ARM64. [#163281](https://github.com/openclaw/openclaw/pull/163281) Thanks [@jesse-merhi](https://github.com/jesse-merhi).",
-        "href": "https://github.com/openclaw/openclaw/issues/163281"
-      },
-      {
-        "title": "Find Chromium in redirected Linux caches while preserving explicit executab...",
-        "description": "Find Chromium in redirected Linux caches while preserving explicit executable and cache choices. [#163510](https://github.com/openclaw/openclaw/pull/163510) Thanks [@ly85206559](https://github.com/ly85206559).",
-        "href": "https://github.com/openclaw/openclaw/issues/163510"
-      },
-      {
-        "title": "Retire Doctor’s detection and archival of old unconfigured browser profile...",
-        "description": "Retire Doctor’s detection and archival of old unconfigured browser profile residue, leaving existing directories in place. [#163709](https://github.com/openclaw/openclaw/pull/163709) Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163709"
-      },
-      {
-        "title": "[Sandbox browser reservation, activity and cleanup bookkeeping runs outside...",
-        "description": "[Sandbox browser reservation, activity and cleanup bookkeeping runs outside the Gateway’s main thread while preserving reservation and cleanup order and protecting replacement browser instances.](https://github.com/openclaw/openclaw/pull/164106). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Return browser rate-limit errors without hanging on response cancellation",
-        "description": "Return browser rate-limit errors without hanging on response cancellation. [88b1a534](https://github.com/openclaw/openclaw/commit/88b1a534773af8d6770de4fb52d595ca872445ce) Thanks [@obviyus](https://github.com/obviyus). Thanks [@nocodet888-arch](https://github.com/nocodet888-arch) for authoring the fix.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Plugin upgrades",
-        "description": "**Plugin upgrades.** Keep affected plugins working by updating them before the OpenClaw host; the [SDK migration guide](https://docs.openclaw.ai/plugins/sdk-migration) explains retired imports and replacements. Legacy extension-only installs need an explicit supported installation or 2026.9.7 Doctor repair before upgrading. Updated Zoom, Teams, ClickClack, Google Chat, IRC, Slack, SMS and Zalo packages using the refactored helpers require host 2026.9.8 or newer. Historical conversation bindings without recognized plugin ownership can refuse reassignment, with recovery still unresolved.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Loading and reloads",
-        "description": "**Loading and reloads.** You can read model lists, sign-in status and session metadata while a plugin reload waits for work to finish. If that wait fails, retry `openclaw plugins reload <id> --wait` or revert pending settings; a model call blocking its own reload fails promptly and can be retried afterward. Loading avoids repeated native-plugin scans and supports managed npm layouts across filesystems and symlinks. After editing bundled TypeScript, restart OpenClaw; compiled installations also need a rebuild first.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Background work and older files",
-        "description": "**Background work and older files.** Stopping or replacing a service cancels pending callbacks and waits for work already admitted after owner cleanup. Before this upgrade, migrate old Device Pair notify files, Discord model/thread files and iMessage reply, sent-echo or catchup files through 2026.9.5 and Doctor; Voice Call `calls.jsonl` needs 2026.9.7. Verify migration before backing up or moving the preserved originals and retrying. Standalone Voice Call keeps its webhook serving after printing a result; SIGINT or SIGTERM ends it and finishes cleanup.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Cloud workers and GitHub",
-        "description": "**Cloud workers and GitHub.** Worker cleanup and re-enrollment respect your selected profile and platform, with bounded retries for qualifying timeouts. Worker and remote-proof paths require Crabbox 0.69.0 or newer. Definitively unsupported Linux snapshot captures can use existing recovery; older paused captures still need recovery. GitHub publication choices and status stay readable during conflicting snapshot activity. Follow [cloud-worker troubleshooting](https://docs.openclaw.ai/gateway/cloud-workers/troubleshooting) and retain `--lease-id` when a command refuses to proceed.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Tool discovery and input.** [Tool Search](https",
-        "description": "//docs.openclaw.ai/tools/tool-search) finds tools with trusted arguments nested in combined schemas. Repeated tool or skill searches reuse unchanged indexes. Inputs keep referenced types and defaults and accept custom strings alongside presets; overly nested MCP results explain the need for flatter output. Meeting captions and Logbook skip completed history, though their first index build can take time and temporary disk space.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "**Integration setup and recovery",
-        "description": "**Integration setup and recovery.** Voice Call keeps an active call's recorded agent; hang up old unowned calls through the provider and start a new call. `openclaw doctor --fix` repairs legacy MCP transport aliases, and Gmail setup accepts Python paths with spaces. Supported Ollama models sent directly to `ollama.com` can use maximum thinking; local and local `:cloud` relay routes keep the compatible high mapping. The removed Diffs Language Pack `api.ts` entrypoint may affect external imports; replacement guidance remains unresolved.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Whole-store and transcript-file SDK bridges are removed",
-        "description": "Whole-store and transcript-file SDK bridges are removed; affected plugins must adopt the supported focused APIs before the host update. [#162220](https://github.com/openclaw/openclaw/pull/162220). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162220"
-      },
-      {
-        "title": "The `channel-lifecycle`, `channel-message`, `channel-reply-pipeline`, `conf...",
-        "description": "The `channel-lifecycle`, `channel-message`, `channel-reply-pipeline`, `config-runtime` and `infra-runtime` imports are retired, with replacement calls documented in the migration guide. [#162333](https://github.com/openclaw/openclaw/pull/162333). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162333"
-      },
-      {
-        "title": "The `command-auth`, `discord` and `telegram-account` SDK facades are retired",
-        "description": "The `command-auth`, `discord` and `telegram-account` SDK facades are retired; use the supported channel contracts and injected runtime. [#163366](https://github.com/openclaw/openclaw/pull/163366). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163366"
-      },
-      {
-        "title": "Plugins using the retired Copilot token-exchange helpers must move to regis...",
-        "description": "Plugins using the retired Copilot token-exchange helpers must move to registered authentication hooks and provider-owned endpoint resolution. [#163587](https://github.com/openclaw/openclaw/pull/163587). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163587"
-      },
-      {
-        "title": "Provider plugins replace eight retired stream/replay constants with the exi...",
-        "description": "Provider plugins replace eight retired stream/replay constants with the existing family constructors; the [compatibility guide](https://docs.openclaw.ai/plugins/sdk-migration/compatibility-policy) lists replacements and retained aliases. [#163591](https://github.com/openclaw/openclaw/pull/163591). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163591"
-      },
-      {
-        "title": "The refactored Zoom and Teams plugin packages require host 2026",
-        "description": "The refactored Zoom and Teams plugin packages require host 2026.9.8 or newer. [#161628](https://github.com/openclaw/openclaw/pull/161628). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161628"
-      },
-      {
-        "title": "Updated ClickClack, Google Chat, IRC, Slack, SMS and Zalo packages using th...",
-        "description": "Updated ClickClack, Google Chat, IRC, Slack, SMS and Zalo packages using the shared secret helper require host 2026.9.8 or newer. [#162827](https://github.com/openclaw/openclaw/pull/162827). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162827"
-      },
-      {
-        "title": "Old extension-only npm stubs need an explicit supported installation or pre...",
-        "description": "Old extension-only npm stubs need an explicit supported installation or pre-upgrade Doctor repair. [#163231](https://github.com/openclaw/openclaw/pull/163231). Thanks [@steipete](https://github.com/steipete), [@Dylanzhang1128](https://github.com/Dylanzhang1128), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163231"
-      },
-      {
-        "title": "Bundled source plugins share loaded host code, so source edits take effect...",
-        "description": "Bundled source plugins share loaded host code, so source edits take effect after restarting the Gateway. [#163639](https://github.com/openclaw/openclaw/pull/163639). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163639"
-      },
-      {
-        "title": "Supported older Codex harness plugins retain `sourceVisibleReplies`",
-        "description": "Supported older Codex harness plugins retain `sourceVisibleReplies`; `visibleReplies` is the canonical field and explicit message configuration takes precedence. [#163497](https://github.com/openclaw/openclaw/pull/163497), [#163786](https://github.com/openclaw/openclaw/pull/163786). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163497"
-      },
-      {
-        "title": "Typed approval hooks must omit the retired `requireApproval",
-        "description": "Typed approval hooks must omit the retired `requireApproval.timeoutBehavior` field; `timeoutMs` and `timeoutReason` remain supported. [#163333](https://github.com/openclaw/openclaw/pull/163333). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163333"
-      },
-      {
-        "title": "Typed configuration uses `models[ref]",
-        "description": "Typed configuration uses `models[ref].agentRuntime` and `agents.defaults.compaction` instead of the retired per-agent fields. [#164586](https://github.com/openclaw/openclaw/pull/164586). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164586"
-      },
-      {
-        "title": "The newer meeting page-script factory uses `statusPrelude` and `statusCall`...",
-        "description": "The newer meeting page-script factory uses `statusPrelude` and `statusCall` descriptors; older standalone builders remain available. [#163983](https://github.com/openclaw/openclaw/pull/163983). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163983"
-      },
-      {
-        "title": "Installed QA runner plugins using legacy-only registration must move their...",
-        "description": "Installed QA runner plugins using legacy-only registration must move their runner registration to `qa-runner-api.ts` or `.js`. [#164058](https://github.com/openclaw/openclaw/pull/164058). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164058"
-      },
-      {
-        "title": "Feishu broadcasts and agent selection accept canonical keyed rosters, while...",
-        "description": "Feishu broadcasts and agent selection accept canonical keyed rosters, while source types reject retired roster/default fields earlier. [#164103](https://github.com/openclaw/openclaw/pull/164103). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164103"
-      },
-      {
-        "title": "Fixed-proxy helper users should review zero-valued connection options",
-        "description": "Fixed-proxy helper users should review zero-valued connection options. Most use Node defaults, but `maxTotalSockets: 0` fails during construction. [#161624](https://github.com/openclaw/openclaw/pull/161624). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161624"
-      },
-      {
-        "title": "Callable provider catalogs retain lifetime checks, and historical ownerless...",
-        "description": "Callable provider catalogs retain lifetime checks, and historical ownerless conversation bindings now refuse reassignment rather than entering the old migration flow. [#164047](https://github.com/openclaw/openclaw/pull/164047). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164047"
-      },
-      {
-        "title": "Migration-index links reach the matching replacement-API sections directly",
-        "description": "Migration-index links reach the matching replacement-API sections directly. [80f68b8862fc](https://github.com/openclaw/openclaw/commit/80f68b8862fc98c843df31040af3219b6b8b99ed). Thanks [@LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Plugin reloads keep passive model, sign-in and chat metadata available thro...",
-        "description": "Plugin reloads keep passive model, sign-in and chat metadata available through waiting and failed drains. [#162301](https://github.com/openclaw/openclaw/pull/162301). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162301"
-      },
-      {
-        "title": "Session lists, inspection and health can use the active thinking policy whi...",
-        "description": "Session lists, inspection and health can use the active thinking policy while a retired registry transitions to its replacement. [#162470](https://github.com/openclaw/openclaw/pull/162470). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/162470"
-      },
-      {
-        "title": "A plugin model call that would prevent its own reload fails promptly with i...",
-        "description": "A plugin model call that would prevent its own reload fails promptly with instructions to retry afterward. [#162484](https://github.com/openclaw/openclaw/pull/162484). Thanks [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/162484"
-      },
-      {
-        "title": "Ongoing sessions can use current tool-policy handlers after old plugin gene...",
-        "description": "Ongoing sessions can use current tool-policy handlers after old plugin generations retire. [#164451](https://github.com/openclaw/openclaw/pull/164451). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/164451"
-      },
-      {
-        "title": "Reply model lookup honors disabled plugins for custom providers, aliases an...",
-        "description": "Reply model lookup honors disabled plugins for custom providers, aliases and model overrides. [120b43633fde](https://github.com/openclaw/openclaw/commit/120b43633fde174329b35cb6017fad31cac635d3). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Native-prebuild loading avoids repeated full captured-file scans during ins...",
-        "description": "Native-prebuild loading avoids repeated full captured-file scans during inspection and startup. [#165301](https://github.com/openclaw/openclaw/pull/165301). Thanks [@goutamadwant](https://github.com/goutamadwant), [@steipete](https://github.com/steipete), [@exGeni](https://github.com/exGeni).",
-        "href": "https://github.com/openclaw/openclaw/issues/165301"
-      },
-      {
-        "title": "Managed npm plugins with native dependencies load across filesystem boundar...",
-        "description": "Managed npm plugins with native dependencies load across filesystem boundaries and supported symlink layouts. For a wrong-host installation, run `doctor --fix` on the intended host, then reload. [#163876](https://github.com/openclaw/openclaw/pull/163876). Thanks [@steipete](https://github.com/steipete), [@wlassalle724](https://github.com/wlassalle724), [@EmisvaldoSilva](https://github.com/EmisvaldoSilva).",
-        "href": "https://github.com/openclaw/openclaw/issues/163876"
-      },
-      {
-        "title": "Bun loading follows captured dependency metadata, and its portable worker/r...",
-        "description": "Bun loading follows captured dependency metadata, and its portable worker/recovery bundles include JavaScript dependencies needed by supported Node destinations. [#163052](https://github.com/openclaw/openclaw/pull/163052). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163052"
-      },
-      {
-        "title": "Bun plugins resolve valid wildcard package-import aliases with filename suf...",
-        "description": "Bun plugins resolve valid wildcard package-import aliases with filename suffixes. [#163232](https://github.com/openclaw/openclaw/pull/163232). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163232"
-      },
-      {
-        "title": "Deferred Bun SDK imports retain the source or built host selected by their...",
-        "description": "Deferred Bun SDK imports retain the source or built host selected by their plugin generation. [#163360](https://github.com/openclaw/openclaw/pull/163360). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163360"
-      },
-      {
-        "title": "Bun retains its intended plugin loader when it exposes Node-compatible modu...",
-        "description": "Bun retains its intended plugin loader when it exposes Node-compatible module hooks. [#163539](https://github.com/openclaw/openclaw/pull/163539). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163539"
-      },
-      {
-        "title": "Shared plugin caches follow the selected state location, and failed setup p...",
-        "description": "Shared plugin caches follow the selected state location, and failed setup preserves its diagnostic error while attempting cleanup. [#161351](https://github.com/openclaw/openclaw/pull/161351). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161351"
-      },
-      {
-        "title": "Quarantined-tool and context-engine health reads move off the calling threa...",
-        "description": "Quarantined-tool and context-engine health reads move off the calling thread while continuing to report stored status. [#161375](https://github.com/openclaw/openclaw/pull/161375). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161375"
-      },
-      {
-        "title": "Doctor and scheduled cleanup warnings preserve both filesystem and ownershi...",
-        "description": "Doctor and scheduled cleanup warnings preserve both filesystem and ownership-token release failures. [#161488](https://github.com/openclaw/openclaw/pull/161488). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161488"
-      },
-      {
-        "title": "Plugins forwarding provider streams through multiple layers avoid inspectin...",
-        "description": "Plugins forwarding provider streams through multiple layers avoid inspecting the same event repeatedly. [#161696](https://github.com/openclaw/openclaw/pull/161696). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161696"
-      },
-      {
-        "title": "Stream and result handoff removes repeated boundary wrapping",
-        "description": "Stream and result handoff removes repeated boundary wrapping; plugin authors retain responsibility for leaving delivered payloads unchanged. [#163818](https://github.com/openclaw/openclaw/pull/163818). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163818"
-      },
-      {
-        "title": "Native hooks retry brief database locks within the existing deadline before...",
-        "description": "Native hooks retry brief database locks within the existing deadline before declaring their authenticated bridge unavailable. [#161822](https://github.com/openclaw/openclaw/pull/161822). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161822"
-      },
-      {
-        "title": "Context-engine startup and reload wait for accepted health cleanup without...",
-        "description": "Context-engine startup and reload wait for accepted health cleanup without letting an obsolete activation clear a newer failure. [#161952](https://github.com/openclaw/openclaw/pull/161952). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161952"
-      },
-      {
-        "title": "Standalone SDK sandbox preparation refuses shared state owned by a live or...",
-        "description": "Standalone SDK sandbox preparation refuses shared state owned by a live or unverified runtime. Use the owning runtime, or stop it through the service owner and wait for embedded activity before retrying offline. [#164203](https://github.com/openclaw/openclaw/pull/164203). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164203"
-      },
-      {
-        "title": "Remote-exec bootstrap includes required published `",
-        "description": "Remote-exec bootstrap includes required published `.setup` runtime chunks for affected external plugins such as Codex. [#165669](https://github.com/openclaw/openclaw/pull/165669). Thanks [@LiuwqGit](https://github.com/LiuwqGit), [@JakeBotFleet](https://github.com/JakeBotFleet).",
-        "href": "https://github.com/openclaw/openclaw/issues/165669"
-      },
-      {
-        "title": "CLI help and command discovery release executable-owned plugin metadata res...",
-        "description": "CLI help and command discovery release executable-owned plugin metadata resources and retain reported cleanup failures. [bfdb432570ac](https://github.com/openclaw/openclaw/commit/bfdb432570aca3797c8c42230ae2488959381214). Thanks [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Completed disposal can finish shutdown while still reporting its error",
-        "description": "Completed disposal can finish shutdown while still reporting its error; unfinished cleanup and failed prerequisites remain blocking. [cf78e6443477](https://github.com/openclaw/openclaw/commit/cf78e64434775321f863c8c55369979d3ae90d07). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Saved Control UI plugin descriptors remain readable after retirement withou...",
-        "description": "Saved Control UI plugin descriptors remain readable after retirement without invoking the retired plugin. [dc8393473d09](https://github.com/openclaw/openclaw/commit/dc8393473d094e033eab94a66f5c51db0c6b4dc6). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Catalog-created resource controls keep their factory's plugin context, incl...",
-        "description": "Catalog-created resource controls keep their factory's plugin context, including the repaired speech-stream release callback. [a388b8f1a736](https://github.com/openclaw/openclaw/commit/a388b8f1a736201531399571af7b8209569cd392). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Worker-runtime imports resolve through the registered main, worker and life...",
-        "description": "Worker-runtime imports resolve through the registered main, worker and lifecycle package entry points. [6c31d857a79c](https://github.com/openclaw/openclaw/commit/6c31d857a79c9cca42b7d8bf686d36a91851eb03). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Installed-plugin ownership and conflict checks reuse resolved paths within...",
-        "description": "Installed-plugin ownership and conflict checks reuse resolved paths within each check. [6fc676c5b563](https://github.com/openclaw/openclaw/commit/6fc676c5b563072bd29700ca0e6bb2937c195086). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Service/account scheduling cancels pending work and joins admitted callback...",
-        "description": "Service/account scheduling cancels pending work and joins admitted callbacks after owner cleanup, with the separate legacy-file upgrade requirements above. [7f0410c2e66e](https://github.com/openclaw/openclaw/commit/7f0410c2e66e912a524e72ca883deef2dca09d0f). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Claw cleanup and MCP setup-status saving run in the background",
-        "description": "Claw cleanup and MCP setup-status saving run in the background; cleanup waits until its ownership record is saved. [#163112](https://github.com/openclaw/openclaw/pull/163112). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163112"
-      },
-      {
-        "title": "Stopping Beam and Codex desktop watchers cancels polls and retries and wait...",
-        "description": "Stopping Beam and Codex desktop watchers cancels polls and retries and waits for admitted work, preventing late generation publication. [#163914](https://github.com/openclaw/openclaw/pull/163914). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163914"
-      },
-      {
-        "title": "Custom legacy PCM Talk integrations avoid starting an obsolete reply when c...",
-        "description": "Custom legacy PCM Talk integrations avoid starting an obsolete reply when cancellation arrives after its replacement. [#163732](https://github.com/openclaw/openclaw/pull/163732). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163732"
-      },
-      {
-        "title": "Global MCP cleanup continues reporting an earlier unconfirmed disposal inst...",
-        "description": "Global MCP cleanup continues reporting an earlier unconfirmed disposal instead of losing that uncertainty on a later empty cleanup. [a6089edc5cd9](https://github.com/openclaw/openclaw/commit/a6089edc5cd9f53f98313b4392d3fc1566258331). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Crabbox 0",
-        "description": "Crabbox 0.69.0 or newer supports recovery from definitive unsupported Linux snapshot capture without treating every capture error as a fallback. [#161465](https://github.com/openclaw/openclaw/pull/161465), [#162334](https://github.com/openclaw/openclaw/pull/162334). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161465"
-      },
-      {
-        "title": "A healthy macOS Crabbox worker can re-enroll on a busy host without a false...",
-        "description": "A healthy macOS Crabbox worker can re-enroll on a busy host without a false reprovisioning error. [#162233](https://github.com/openclaw/openclaw/pull/162233). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162233"
-      },
-      {
-        "title": "Crabbox cleanup stays with the selected profile, and concurrent requests sh...",
-        "description": "Crabbox cleanup stays with the selected profile, and concurrent requests share executable preparation. [#164128](https://github.com/openclaw/openclaw/pull/164128). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164128"
-      },
-      {
-        "title": "Linux profiles request Linux explicitly, and sanitized worker errors retain...",
-        "description": "Linux profiles request Linux explicitly, and sanitized worker errors retain useful status and recent log details. [#164129](https://github.com/openclaw/openclaw/pull/164129). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164129"
-      },
-      {
-        "title": "Qualifying coordinator timeouts get at most three attempts within the origi...",
-        "description": "Qualifying coordinator timeouts get at most three attempts within the original budget; fresh unsupported-backend refusals identify the profile problem. [#164231](https://github.com/openclaw/openclaw/pull/164231). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164231"
-      },
-      {
-        "title": "GitHub publication account choices and status remain readable during confli...",
-        "description": "GitHub publication account choices and status remain readable during conflicting retained-snapshot activity. [#161551](https://github.com/openclaw/openclaw/pull/161551). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161551"
-      },
-      {
-        "title": "Personal GitHub confirmation status follows session archive/restore and rej...",
-        "description": "Personal GitHub confirmation status follows session archive/restore and rejects reads made stale by archive changes. [#141994](https://github.com/openclaw/openclaw/pull/141994). Thanks [@wangmiao0668000666](https://github.com/wangmiao0668000666), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/141994"
-      },
-      {
-        "title": "Tool Search discovers trusted tool arguments inside combined schemas and tu...",
-        "description": "Tool Search discovers trusted tool arguments inside combined schemas and tuple items. See [Tool Search](https://docs.openclaw.ai/tools/tool-search). [#164032](https://github.com/openclaw/openclaw/pull/164032). Thanks [@harshitgupta31415](https://github.com/harshitgupta31415), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164032"
-      },
-      {
-        "title": "Repeated tool and installed-skill searches reuse an unchanged word index ac...",
-        "description": "Repeated tool and installed-skill searches reuse an unchanged word index across turns and Code Mode cells. [#164166](https://github.com/openclaw/openclaw/pull/164166). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164166"
-      },
-      {
-        "title": "Control UI guidance explains the rendered tab, widget and link-reader contr...",
-        "description": "Control UI guidance explains the rendered tab, widget and link-reader contribution surfaces. See [host hooks](https://docs.openclaw.ai/plugins/sdk-overview/host-hooks). [#147599](https://github.com/openclaw/openclaw/pull/147599). Thanks [@Colton-Harris](https://github.com/Colton-Harris), [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/147599"
-      },
-      {
-        "title": "Client guidance distinguishes session metadata, recent stored messages and...",
-        "description": "Client guidance distinguishes session metadata, recent stored messages and display-normalized history. See [session RPC readers](https://docs.openclaw.ai/gateway/protocol/rpc-session-control). [#155449](https://github.com/openclaw/openclaw/pull/155449). Thanks [@winddd666](https://github.com/winddd666), [@datus1982](https://github.com/datus1982).",
-        "href": "https://github.com/openclaw/openclaw/issues/155449"
-      },
-      {
-        "title": "Affected plugin and MCP tool schemas accept valid custom strings alongside...",
-        "description": "Affected plugin and MCP tool schemas accept valid custom strings alongside named presets. [#159755](https://github.com/openclaw/openclaw/pull/159755). Thanks [@Shenrui-Ma](https://github.com/Shenrui-Ma).",
-        "href": "https://github.com/openclaw/openclaw/issues/159755"
-      },
-      {
-        "title": "Overly nested MCP results fail with flatter-output guidance, including cons...",
-        "description": "Overly nested MCP results fail with flatter-output guidance, including consistent [Code Mode output](https://docs.openclaw.ai/tools/code-mode/output) errors. [#160825](https://github.com/openclaw/openclaw/pull/160825). Thanks [@wangmiao0668000666](https://github.com/wangmiao0668000666), [@hpyhandsome](https://github.com/hpyhandsome).",
-        "href": "https://github.com/openclaw/openclaw/issues/160825"
-      },
-      {
-        "title": "Encoded [plugin schema references](https",
-        "description": "//docs.openclaw.ai/plugins/manifest) retain separators and defaults; use `~1` for a literal slash in a key and `~0` for a tilde. [#161954](https://github.com/openclaw/openclaw/pull/161954). Thanks [@boeingchoco](https://github.com/boeingchoco), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161954"
-      },
-      {
-        "title": "Encoded local tool references retain input types and supported numeric conv...",
-        "description": "Encoded local tool references retain input types and supported numeric conversions while rejecting invalid text. [#162435](https://github.com/openclaw/openclaw/pull/162435). Thanks [@boeingchoco](https://github.com/boeingchoco), [@obviyus](https://github.com/obviyus), [@he-yufeng](https://github.com/he-yufeng).",
-        "href": "https://github.com/openclaw/openclaw/issues/162435"
-      },
-      {
-        "title": "Native plugin preparation reuses successful checks on unchanged captured fi...",
-        "description": "Native plugin preparation reuses successful checks on unchanged captured files in affected hardlink installations. [#162254](https://github.com/openclaw/openclaw/pull/162254). Thanks [@steipete](https://github.com/steipete), [@WG-Mojo](https://github.com/WG-Mojo), [@eddiekk](https://github.com/eddiekk), [@NickM83](https://github.com/NickM83).",
-        "href": "https://github.com/openclaw/openclaw/issues/162254"
-      },
-      {
-        "title": "Bun-backed npm plugin operations use bundled npm 12",
-        "description": "Bun-backed npm plugin operations use bundled npm 12.1.0 while preserving explicit Git and remote-tarball source restrictions. [#162581](https://github.com/openclaw/openclaw/pull/162581). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162581"
-      },
-      {
-        "title": "Running Bun plugins retain selected dependency contents reached through sup...",
-        "description": "Running Bun plugins retain selected dependency contents reached through supported package aliases after source edits. [#164223](https://github.com/openclaw/openclaw/pull/164223). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164223"
-      },
-      {
-        "title": "Repeated configuration checks avoid compiling temporary conditional-default...",
-        "description": "Repeated configuration checks avoid compiling temporary conditional-default validators again. [#164208](https://github.com/openclaw/openclaw/pull/164208). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164208"
-      },
-      {
-        "title": "Meeting caption retries use a narrower index while exact retries stay dedup...",
-        "description": "Meeting caption retries use a narrower index while exact retries stay deduplicated and revisions remain distinct. [#164127](https://github.com/openclaw/openclaw/pull/164127). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164127"
-      },
-      {
-        "title": "Logbook pending-analysis polls avoid scanning completed history while prese...",
-        "description": "Logbook pending-analysis polls avoid scanning completed history while preserving pending order and retries. [#164130](https://github.com/openclaw/openclaw/pull/164130). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164130"
-      },
-      {
-        "title": "The Lobster plugin's runtime 2026",
-        "description": "The Lobster plugin's runtime 2026.9.14 update corrects structured LLM task request/result translation. [#162558](https://github.com/openclaw/openclaw/pull/162558). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162558"
-      },
-      {
-        "title": "Comfy guidance separates hosted MCP account sign-in from workflow-plugin AP...",
-        "description": "Comfy guidance separates hosted MCP account sign-in from workflow-plugin API keys. See [MCP OAuth](https://docs.openclaw.ai/cli/mcp/transports#oauth-workflow) and [Comfy MCP](https://docs.comfy.org/agent-tools/mcp). [#163197](https://github.com/openclaw/openclaw/pull/163197). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163197"
-      },
-      {
-        "title": "QA Lab Multipass accepts a valid repository child such as `",
-        "description": "QA Lab Multipass accepts a valid repository child such as `..qa-artifacts` while rejecting parent, root and symlink escapes. [#163223](https://github.com/openclaw/openclaw/pull/163223). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163223"
-      },
-      {
-        "title": "QuickJS Code Mode cards and setup use the shared white-background mascot",
-        "description": "QuickJS Code Mode cards and setup use the shared white-background mascot. [#163804](https://github.com/openclaw/openclaw/pull/163804). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/163804"
-      },
-      {
-        "title": "Voice Call preserves recorded ownership and leaves old unowned active calls...",
-        "description": "Voice Call preserves recorded ownership and leaves old unowned active calls for provider-side hangup and a fresh call. [#163118](https://github.com/openclaw/openclaw/pull/163118). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163118"
-      },
-      {
-        "title": "Doctor repairs old MCP `type` aliases, and an explicit canonical transport...",
-        "description": "Doctor repairs old MCP `type` aliases, and an explicit canonical transport wins over a conflicting legacy type. [#162256](https://github.com/openclaw/openclaw/pull/162256). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162256"
-      },
-      {
-        "title": "MCP listings preserve opaque pagination tokens, and supported models sent d...",
-        "description": "MCP listings preserve opaque pagination tokens, and supported models sent directly to `ollama.com` receive maximum thinking without changing local-relay compatibility. [db0c17463643](https://github.com/openclaw/openclaw/commit/db0c17463643179148600aa03be5f1f0cc5815b2).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Gmail setup keeps the full discovered Python executable path when its direc...",
-        "description": "Gmail setup keeps the full discovered Python executable path when its directories contain spaces. [fd333c7e1773](https://github.com/openclaw/openclaw/commit/fd333c7e17731cfbb28375b58110b4cd30d3f52a). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "The [Firecrawl guide](https",
-        "description": "//docs.openclaw.ai/tools/firecrawl) links directly to the provider website and API-key dashboard. [#157257](https://github.com/openclaw/openclaw/pull/157257). Thanks [@JuampiHernandez](https://github.com/JuampiHernandez).",
-        "href": "https://github.com/openclaw/openclaw/issues/157257"
-      },
-      {
-        "title": "Malformed Claude Workshop replies reject the waiting MCP request promptly i...",
-        "description": "Malformed Claude Workshop replies reject the waiting MCP request promptly instead of leaving it until the SDK timeout. [#158916](https://github.com/openclaw/openclaw/pull/158916). Thanks [@steipete](https://github.com/steipete), [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/158916"
-      },
-      {
-        "title": "Diffs screenshots honor the readiness deadline, Canvas assets can retry aft...",
-        "description": "Diffs screenshots honor the readiness deadline, Canvas assets can retry after a transient read failure, and failed Twitch startup clears its deadline timer. Diffs Language Pack authors should check imports of the removed top-level `api.ts`; a replacement is unverified. [#161096](https://github.com/openclaw/openclaw/pull/161096). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161096"
-      },
-      {
-        "title": "Saved ClickClack discussion updates begin with service startup rather than...",
-        "description": "Saved ClickClack discussion updates begin with service startup rather than falling back to premature polling. [#161150](https://github.com/openclaw/openclaw/pull/161150). Thanks [@ericcurtin](https://github.com/ericcurtin), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161150"
-      },
-      {
-        "title": "Canvas reconnects avoid duplicate actions, Logbook rejects reversed trimmed...",
-        "description": "Canvas reconnects avoid duplicate actions, Logbook rejects reversed trimmed intervals, Tavily skips impossible dates, and failed LanceDB table discovery closes its connection. [#161706](https://github.com/openclaw/openclaw/pull/161706). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161706"
-      },
-      {
-        "title": "Memory Wiki imports backtick-heavy text, and Plivo V3 verifies valid webhoo...",
-        "description": "Memory Wiki imports backtick-heavy text, and Plivo V3 verifies valid webhooks with prototype-named parameters. [#162425](https://github.com/openclaw/openclaw/pull/162425). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162425"
-      },
-      {
-        "title": "Parallel search caches distinguish delimiter-sensitive requests and an expl...",
-        "description": "Parallel search caches distinguish delimiter-sensitive requests and an explicitly named `default` session. [#163911](https://github.com/openclaw/openclaw/pull/163911). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163911"
-      },
-      {
-        "title": "Adopting a downloaded model catalog reuses unchanged external plugins inste...",
-        "description": "Adopting a downloaded model catalog reuses unchanged external plugins instead of reloading them and making the Gateway unresponsive shortly after startup. Initial plugin loading and explicit reloads still do their own work. [#167544](https://github.com/openclaw/openclaw/pull/167544). Thanks [@cmrstudio56](https://github.com/cmrstudio56), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/167544"
-      },
-      {
-        "title": "Installed-plugin startup repeats fewer ordinary-file reads",
-        "description": "Installed-plugin startup repeats fewer ordinary-file reads. On Windows, eligible small ordinary plugin files also use the existing bounded copy path; large and native files retain their guarded path. Changed or incomplete plugin captures remain rejected. [#168017](https://github.com/openclaw/openclaw/pull/168017), [#168256](https://github.com/openclaw/openclaw/pull/168256). Thanks [@gollymashed](https://github.com/gollymashed), [@krumch](https://github.com/krumch), [@RomneyDa](https://github.com/RomneyDa), [@RuiCatalao7](https://github.com/RuiCatalao7), [@steipete](https://github.com/steipete), [@utesara](https://github.com/utesara).",
-        "href": "https://github.com/openclaw/openclaw/issues/168017"
-      },
-      {
-        "title": "Windows can load valid installed plugins when an ancestor Node directory re...",
-        "description": "Windows can load valid installed plugins when an ancestor Node directory redirects through a junction. Entries outside the verified package root remain rejected. [052baa8c](https://github.com/openclaw/openclaw/commit/052baa8ce55fdd45316e58d3f6b8889a19421520). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Doctor uses an updated plugin's own repair callbacks and settings rules",
-        "description": "Doctor uses an updated plugin's own repair callbacks and settings rules. Preparing large plugins can use fewer disk writes on supported filesystems while later edits stay independent. Reload verifies copied content and asks you to retry if files change during preparation. [7039983b](https://github.com/openclaw/openclaw/commit/7039983bd7909452ff4cb2a4b3ad2251678f4e22), [dd51d9cc](https://github.com/openclaw/openclaw/commit/dd51d9ccd5a83ea810e85907403b7ba2a0f29d25). Thanks [@jjjhenriksen](https://github.com/jjjhenriksen), [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "MCP library updates bind saved sign-in records to their authorization server",
-        "description": "MCP library updates bind saved sign-in records to their authorization server. If that server changes, reconnect explicitly, including when older client information was saved. [f9310588](https://github.com/openclaw/openclaw/commit/f9310588a85ab3acaf17248e360f050b26c3c6af). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen), [@RomneyDa](https://github.com/RomneyDa), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Plugin state operations continue through harmless concurrent conversation e...",
-        "description": "Plugin state operations continue through harmless concurrent conversation edits, while still refusing work after the active session writer changes. [01c06759](https://github.com/openclaw/openclaw/commit/01c06759eb299ac56c07dafe742f542915cdc884). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Valid Gateway startup avoids unnecessary diagnostic-module loading for affe...",
-        "description": "Valid Gateway startup avoids unnecessary diagnostic-module loading for affected external plugins. Invalid configuration and explicit Doctor still receive the plugin's repair checks. See [running the Gateway](https://docs.openclaw.ai/cli/gateway/running). [a84bd1a5](https://github.com/openclaw/openclaw/commit/a84bd1a593ff44246ce8222b1f488bbc54ee98fd). Thanks [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Guests can again launch private sandboxed helpers, notify their child agent...",
-        "description": "Guests can again launch private sandboxed helpers, notify their child agents and ask agents to rename conversations they created without broad write access. Shared work follows the chosen verified participant's permissions and the original run's limits, within a shared trust boundary. On multi-user installations, only creators or administrators can archive or restore threads; assigned noncreators lose those actions after upgrading, including on existing threads.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Sharing controls, agent discovery and command lists recheck access after de...",
-        "description": "Sharing controls, agent discovery and command lists recheck access after delays or reconnects. Session read access works for shared GitHub publication options and receipts, while automation hides private working notes after access or ownership changes.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Approval links show supplied payment, recipient, posting and automation det...",
-        "description": "Approval links show supplied payment, recipient, posting and automation details before you decide. Unrelated edits preserve pending approvals; relevant authority changes invalidate them. Commands suppressing audit output follow ordinary read/write approval policy, including eligible automatic review.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Pairing and execution-approval settings use the running Gateway's current s...",
-        "description": "Pairing and execution-approval settings use the running Gateway's current state. A newer CLI refuses an older Gateway without the required support; update it or stop it through its service owner before retrying. Inspect current requests or settings before repeating a mutation whose result is uncertain. For a narrowed browser token, recover administrator access with `openclaw dashboard --json` on the Gateway host and open the fresh URL in the same browser, origin and Gateway within ten minutes.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Work on a node respects current [workspace and patch-tool restrictions](htt...",
-        "description": "Work on a node respects current [workspace and patch-tool restrictions](https://docs.openclaw.ai/nodes/session-hosting). Eligible native apps on the same machine avoid repeated initial approvals under existing local policy, and reused writable SSH sandboxes receive new uploads. Strict filesystem mode can refuse recursive cleanup on Windows or Linux without `openat2`, leaving directories behind; use a platform supporting the required protection. Migrate old filesystem mode variable names to their native-mode equivalents.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Credential prompts confirm a completed save, even when an accepted save fin...",
-        "description": "Credential prompts confirm a completed save, even when an accepted save finishes privately after reset. If runtime refresh then fails, use `secrets.reload` instead of submitting the answer again. Older core secret references without a provider require `openclaw doctor --fix`. Preserve the original backups and inspect the repair, especially for Talk and realtime Talk, whose setup can discard an older providerless API-key object before repair.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Logout removes copied catalog credentials from still-saved profiles, and se...",
-        "description": "Logout removes copied catalog credentials from still-saved profiles, and secret-excluded Git backups omit catalog keys and headers. Profiles already removed by older logouts and previously created or pushed backups need separate inspection. Permitted CLI commands and literal-loopback HTTP requests work with the secret egress proxy; secret substitution remains refused over HTTP. Provider errors hide reflected credentials, shared OAuth profiles avoid unnecessary copies, and A2A status identifies token settings needing repair.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Secret masking preserves ordinary text after `pass",
-        "description": "` and reduces the affected long-output pauses, including with custom patterns. Chunked custom scanning can miss cross-boundary matches and treat chunk starts as anchors; not every pattern avoids stalls. Fallback diagnostics also mask secrets. Reserved private runtime entries stay out of compaction summaries and saved CLI notes without rewriting transcripts; an unresolved resumed-session issue may discard newly queued text or images in the affected legacy-context case.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Starting OpenClaw with its managed Bun runtime or the macOS bundled runtime...",
-        "description": "Starting OpenClaw with its managed Bun runtime or the macOS bundled runtime no longer installs missing packages implicitly. Install dependencies explicitly; existing services receive the launch flag through normal reinstall or update, and direct stock-Bun launches should use `--no-install`. Private-network Matrix and Mattermost settings need Doctor repair on 2026.9.7 before upgrading; Tlon retains update-time migration, while direct replacement needs `openclaw doctor --fix`. See [Bun installation](https://docs.openclaw.ai/install/bun) and the [configuration migration guide](https://docs.openclaw.ai/gateway/doctor/config-migrations).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Shared turns and their children use the chosen verified participant's permi...",
-        "description": "Shared turns and their children use the chosen verified participant's permissions, bounded by the original run. Model-account credentials stay the same, and permissions can be revoked during retained work. [#160525](https://github.com/openclaw/openclaw/pull/160525). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160525"
-      },
-      {
-        "title": "Guests with own-session write permission can launch hidden sandboxed helper...",
-        "description": "Guests with own-session write permission can launch hidden sandboxed helpers and receive their results, including after yielding. The helper retains the initiating person's model and sandbox restrictions. [#163367](https://github.com/openclaw/openclaw/pull/163367). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/163367"
-      },
-      {
-        "title": "Session-only writers can notify an authorized child they own without starti...",
-        "description": "Session-only writers can notify an authorized child they own without starting a new run. Notifications live in memory for the process lifetime, so restarting does not provide durable delivery. [#162986](https://github.com/openclaw/openclaw/pull/162986). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162986"
-      },
-      {
-        "title": "Guests can ask agents to change the displayed name of a conversation they c...",
-        "description": "Guests can ask agents to change the displayed name of a conversation they created, including under default sandbox policy. Explicit tool restrictions still apply, and renaming another created conversation requires its durable session ID. [#163421](https://github.com/openclaw/openclaw/pull/163421). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/163421"
-      },
-      {
-        "title": "In multi-user installations, only a thread's creator or an administrator ca...",
-        "description": "In multi-user installations, only a thread's creator or an administrator can archive or restore it. This also applies to existing threads; being assigned responsibility alone no longer grants that permission. See [multi-user conversations](https://docs.openclaw.ai/concepts/multi-user). [#160932](https://github.com/openclaw/openclaw/pull/160932). Thanks [@stevenlee-oai](https://github.com/stevenlee-oai).",
-        "href": "https://github.com/openclaw/openclaw/issues/160932"
-      },
-      {
-        "title": "Session-scoped users can read shared GitHub publication options and receipt...",
-        "description": "Session-scoped users can read shared GitHub publication options and receipts for conversations they may view. Options require a supported current managed repository or worktree; personal accounts and publication mutations retain their own permissions. [#162984](https://github.com/openclaw/openclaw/pull/162984). Thanks [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/issues/162984"
-      },
-      {
-        "title": "Shared GitHub publication options remain readable when both the connection...",
-        "description": "Shared GitHub publication options remain readable when both the connection grant and role imply session read using different permission names. Later role revocation still prevents the read. [#163910](https://github.com/openclaw/openclaw/pull/163910). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163910"
-      },
-      {
-        "title": "Agent discovery follows the current role and waits for a fresh roster after...",
-        "description": "Agent discovery follows the current role and waits for a fresh roster after reconnecting. Draft identity edits survive when they still refer to the same profile and intent, and a Stop/completion race no longer leaves a capacity slot occupied. [#161019](https://github.com/openclaw/openclaw/pull/161019). Thanks [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/issues/161019"
-      },
-      {
-        "title": "Sharing controls check fresh stored permissions and visibility after waiting",
-        "description": "Sharing controls check fresh stored permissions and visibility after waiting. Outdated membership or ownership cannot carry a request into a replacement conversation, and stale cached visibility no longer turns a needed update into a no-op. [#163572](https://github.com/openclaw/openclaw/pull/163572). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163572"
-      },
-      {
-        "title": "Command and skill lists for shared conversations are withheld if access, th...",
-        "description": "Command and skill lists for shared conversations are withheld if access, the conversation or selected skill revisions change during discovery. [#163643](https://github.com/openclaw/openclaw/pull/163643). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163643"
-      },
-      {
-        "title": "Delayed owner, membership and suggestion changes reject outdated permissions",
-        "description": "Delayed owner, membership and suggestion changes reject outdated permissions. Cancelled or revoked suggestions cannot become new input; already accepted suggestions can settle without becoming available for replay. Provider-review pauses block new suggestions and edits while allowing dismissal and accepted settlement. [ef27c1fc2b](https://github.com/openclaw/openclaw/commit/ef27c1fc2be3a68c8904e12cf6fe909f05fe4f5d). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Authorized agent work no longer fails a false permission check when runtime...",
-        "description": "Authorized agent work no longer fails a false permission check when runtime modules load independently or reload. Revocation, cancellation and scope limits still apply. [#163725](https://github.com/openclaw/openclaw/pull/163725). Thanks [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163725"
-      },
-      {
-        "title": "Private automation working notes are withheld after caller access is revoke...",
-        "description": "Private automation working notes are withheld after caller access is revoked or ownership changes. Older jobs also avoid false conflicts caused by their creation metadata. [#161387](https://github.com/openclaw/openclaw/pull/161387). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161387"
-      },
-      {
-        "title": "Standalone approval pages display supplied payment amounts and recipients,...",
-        "description": "Standalone approval pages display supplied payment amounts and recipients, automation terms and duration, message recipients or posting destinations. This supplies decision context without granting permission. [#164534](https://github.com/openclaw/openclaw/pull/164534). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164534"
-      },
-      {
-        "title": "Approvals bound to a request survive unrelated agent and secret-store edits",
-        "description": "Approvals bound to a request survive unrelated agent and secret-store edits. Relevant permission or routing changes permanently revoke the pending approval, even if those settings are later restored. [#160856](https://github.com/openclaw/openclaw/pull/160856). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160856"
-      },
-      {
-        "title": "Commands that suppress audit output use the ordinary approval policy for bo...",
-        "description": "Commands that suppress audit output use the ordinary approval policy for both reads and writes. Eligible requests can use automatic review instead of a special human-only prompt; explicit denial, allowlists and always-ask policy remain effective. [#161718](https://github.com/openclaw/openclaw/pull/161718). Thanks [@jesse-merhi](https://github.com/jesse-merhi).",
-        "href": "https://github.com/openclaw/openclaw/issues/161718"
-      },
-      {
-        "title": "Listing and revoking standing scheduled-command grants moves database admin...",
-        "description": "Listing and revoking standing scheduled-command grants moves database administration off the Gateway main thread, with permission checks around changes. Grant validation and consumption at command launch retain their existing path. See [execution approvals](https://docs.openclaw.ai/tools/exec-approvals). [#162549](https://github.com/openclaw/openclaw/pull/162549). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162549"
-      },
-      {
-        "title": "Pairing list/approve and default approvals get/set/allowlist edits use auth...",
-        "description": "Pairing list/approve and default approvals get/set/allowlist edits use authenticated Gateway routing or exclusive offline ownership. Refusal, missing credentials or a lost reply never triggers an automatic local replay; explicit Gateway and node targeting remains available. [#164075](https://github.com/openclaw/openclaw/pull/164075). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164075"
-      },
-      {
-        "title": "Prepared node commands with invalid file bindings or policy metadata stay r...",
-        "description": "Prepared node commands with invalid file bindings or policy metadata stay rejected before execution approval. Retired top-level command-text fallbacks are removed; supported `plan.rawCommand` remains the canonical input. [#164544](https://github.com/openclaw/openclaw/pull/164544). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164544"
-      },
-      {
-        "title": "Authorized GitHub publication can include unchanged Actions workflows inher...",
-        "description": "Authorized GitHub publication can include unchanged Actions workflows inherited exactly from the verified target when ancestry is unambiguous. Authored workflow edits and conflict resolutions still require full write authority. [#162396](https://github.com/openclaw/openclaw/pull/162396). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162396"
-      },
-      {
-        "title": "A browser using a narrowed token explains insufficient permissions instead...",
-        "description": "A browser using a narrowed token explains insufficient permissions instead of offering a futile Retry. To recover administrator access, run `openclaw dashboard --json` on the Gateway host and open its fresh browser URL in the same browser, origin and Gateway within ten minutes. [#162951](https://github.com/openclaw/openclaw/pull/162951). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162951"
-      },
-      {
-        "title": "A CLI `/btw` side-question execution context closes even when backend clean...",
-        "description": "A CLI `/btw` side-question execution context closes even when backend cleanup fails, so later work cannot reuse it. The cleanup error remains visible. [#162070](https://github.com/openclaw/openclaw/pull/162070). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162070"
-      },
-      {
-        "title": "Unexpected `openclaw security audit --fix` errors stop before the audit and...",
-        "description": "Unexpected `openclaw security audit --fix` errors stop before the audit and return exit status 1. JSON callers receive the [CLI failure response](https://docs.openclaw.ai/cli#json-failures); run a separate `openclaw security audit` to inspect the current state. [#164159](https://github.com/openclaw/openclaw/pull/164159). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164159"
-      },
-      {
-        "title": "Security audits retire the model-age and provider-tier advisories `models",
-        "description": "Security audits retire the model-age and provider-tier advisories `models.legacy` and `models.weak_tier`. Structured-report consumers should account for those removed IDs; the separate small-model tool-exposure check remains. [ecb897146e](https://github.com/openclaw/openclaw/commit/ecb897146e5c47a6cde4e0d5552ce7d70c3700c3). Thanks [@jesse-merhi](https://github.com/jesse-merhi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Node turns receive the current filesystem, model and patch-tool policy from...",
-        "description": "Node turns receive the current filesystem, model and patch-tool policy from the Gateway. Global and agent-specific workspace-only and `applyPatch` settings apply with session-permission precedence, and warm workers refresh their tool catalog for each turn. See the [cloud-worker security model](https://docs.openclaw.ai/gateway/cloud-workers/security-model). [10ea4739bd](https://github.com/openclaw/openclaw/commit/10ea4739bd0f3d72663fd924197530bef1c4f6b6). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Codex host-backed file bridges that adopt the supported access contract che...",
-        "description": "Codex host-backed file bridges that adopt the supported access contract check actual file targets for reads, opens and metadata. Denied aliases and targets changed after preparation are refused; this contract does not cover every bridge or file operation. [#150731](https://github.com/openclaw/openclaw/pull/150731). Thanks [@vincentkoc](https://github.com/vincentkoc), [@eleqtrizit](https://github.com/eleqtrizit).",
-        "href": "https://github.com/openclaw/openclaw/issues/150731"
-      },
-      {
-        "title": "New uploads reach reused writable SSH sandboxes, with managed originals and...",
-        "description": "New uploads reach reused writable SSH sandboxes, with managed originals and preprocessing or preview files retained for restart. Read-only sandboxes continue to reject writes; this covers inbound uploads. [#158026](https://github.com/openclaw/openclaw/pull/158026). Thanks [@Olli0103](https://github.com/Olli0103), [@obviyus](https://github.com/obviyus), [@DaveFan-NCHC](https://github.com/DaveFan-NCHC), [@FelixIsaac](https://github.com/FelixIsaac).",
-        "href": "https://github.com/openclaw/openclaw/issues/158026"
-      },
-      {
-        "title": "Strict `OPENCLAW_FS_SAFE_NATIVE_MODE=require` uses stronger native checks f...",
-        "description": "Strict `OPENCLAW_FS_SAFE_NATIVE_MODE=require` uses stronger native checks for file mutations. Recursive cleanup can refuse on Windows or Linux without `openat2`, leaving directories behind; use a supported platform when those guarantees are required. Default automatic mode remains best effort. [#160617](https://github.com/openclaw/openclaw/pull/160617). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160617"
-      },
-      {
-        "title": "Filesystem upgrades preserve legacy `require` settings instead of silently...",
-        "description": "Filesystem upgrades preserve legacy `require` settings instead of silently relaxing them and add the Windows dangling-symlink exclusive-create safeguard. Move `FS_SAFE_PYTHON_MODE` and `OPENCLAW_FS_SAFE_PYTHON_MODE` to their `*_NATIVE_MODE` names. Remove `FS_SAFE_PYTHON`, `OPENCLAW_FS_SAFE_PYTHON`, `OPENCLAW_PINNED_PYTHON` and `OPENCLAW_PINNED_WRITE_PYTHON`. Deprecated Plugin SDK hints remain accepted but ignored; direct fs-safe consumers must use `configureFsSafeNative` and `FsSafeNativeConfig` without `pythonPath`. [#163408](https://github.com/openclaw/openclaw/pull/163408). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163408"
-      },
-      {
-        "title": "Windows plugin paths reject foreign shares and ambiguous device paths befor...",
-        "description": "Windows plugin paths reject foreign shares and ambiguous device paths before inspection. Use an admitted relative path or the root's host/share spelling for a rejected alias; removing namespace prefixes is not a safe repair. [#162574](https://github.com/openclaw/openclaw/pull/162574). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162574"
-      },
-      {
-        "title": "An already-paired local native app can add its first node role with the sam...",
-        "description": "An already-paired local native app can add its first node role with the same key under the existing local auto-approval policy, including an eligible pending retry. Token replacement, revocation, remote and browser connections retain approval requirements. See [pairing](https://docs.openclaw.ai/gateway/pairing). [#163730](https://github.com/openclaw/openclaw/pull/163730). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163730"
-      },
-      {
-        "title": "Eligible silently paired same-machine native nodes can receive their initia...",
-        "description": "Eligible silently paired same-machine native nodes can receive their initial permitted capabilities without an extra review panel, including an app in remote mode whose actual connection is local. `autoApproveLocal=false` retains manual approval; later capability additions, command denies, OS permissions and execution approvals still apply. [#163862](https://github.com/openclaw/openclaw/pull/163862). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163862"
-      },
-      {
-        "title": "Secret-setting operations run through database workers and wait for acknowl...",
-        "description": "Secret-setting operations run through database workers and wait for acknowledged persistence. Credential questions publish only the safe stored marker; accepted saves survive reset, and compensating rollback cannot overwrite a newer writer's entry. [31806d84f3](https://github.com/openclaw/openclaw/commit/31806d84f3bb35b4389fe06ed3963734d01855cf). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Core credential readers require explicit `source`, `provider` and `id`",
-        "description": "Core credential readers require explicit `source`, `provider` and `id`. Doctor repairs registered legacy paths and reports removed extra fields; public SDK input adapters still accept plain providerless references, while extended providerless auth inputs reject before saving. Keep extra metadata outside reference objects. Run `openclaw doctor --fix` for older core references and preserve original backups; Talk and realtime Talk may discard a providerless API-key object before repair. [2c0278b46c](https://github.com/openclaw/openclaw/commit/2c0278b46cd29614fc08f65a1632f4f863146f4e). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Profile logout scrubs matching copied catalog credentials while the profile...",
-        "description": "Profile logout scrubs matching copied catalog credentials while the profile is still saved, and prevents in-flight work from restoring them. Profiles already removed by an older logout cannot be retroactively cleaned this way; an incomplete guarded restoration needs profile inspection. [#143647](https://github.com/openclaw/openclaw/pull/143647). Thanks [@jason-allen-oneal](https://github.com/jason-allen-oneal), [@obviyus](https://github.com/obviyus), [@steipete](https://github.com/steipete), [@NovaUnboundAi](https://github.com/NovaUnboundAi), [@CHAESH](https://github.com/CHAESH), [@matthewmoroz](https://github.com/matthewmoroz), [@sunhsiao](https://github.com/sunhsiao), [@ndakota79](https://github.com/ndakota79).",
-        "href": "https://github.com/openclaw/openclaw/issues/143647"
-      },
-      {
-        "title": "Agent command environments and configured secret values are read in a worke...",
-        "description": "Agent command environments and configured secret values are read in a worker instead of querying on the Gateway main thread. Commands reuse one snapshot per run and refresh next run; cancellation prevents launch without poisoning later reuse. Snapshots over 32 MiB fail visibly instead of supplying a partial environment, and individual values retain the 64 KiB limit. [#164242](https://github.com/openclaw/openclaw/pull/164242). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164242"
-      },
-      {
-        "title": "Permitted CLI commands work with the secret egress proxy by using the admit...",
-        "description": "Permitted CLI commands work with the secret egress proxy by using the admitted run context. Existing approvals and retired-run restrictions continue to apply. [#160760](https://github.com/openclaw/openclaw/pull/160760). Thanks [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/160760"
-      },
-      {
-        "title": "The secret egress proxy can forward permitted HTTP requests to literal `loc...",
-        "description": "The secret egress proxy can forward permitted HTTP requests to literal `localhost`, `127.0.0.1` and `[::1]` addresses. DNS aliases are excluded, and secret substitution remains refused over HTTP. See [secret storage and egress](https://docs.openclaw.ai/gateway/secrets/secret-store-and-egress). [#160974](https://github.com/openclaw/openclaw/pull/160974). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160974"
-      },
-      {
-        "title": "LM Studio loading and Copilot discovery or embedding errors mask credential...",
-        "description": "LM Studio loading and Copilot discovery or embedding errors mask credentials reflected from encoded request headers. Chutes also accepts the IPv6 loopback OAuth callback `[::1]` while retaining the redirect URI. [#162488](https://github.com/openclaw/openclaw/pull/162488). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162488"
-      },
-      {
-        "title": "Multi-agent OAuth synchronization visits the shared credential owner before...",
-        "description": "Multi-agent OAuth synchronization visits the shared credential owner before sibling agents, preserving inheritance without unnecessary new credential copies. Previously duplicated stored credentials are not removed by this fix. [#163243](https://github.com/openclaw/openclaw/pull/163243). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163243"
-      },
-      {
-        "title": "The secrets index opens the existing [Bitwarden Secrets Manager](https://docs",
-        "description": "The secrets index opens the existing [Bitwarden Secrets Manager](https://docs.openclaw.ai/gateway/secrets/integration-examples#bitwarden-secrets-manager-bws) and [password-store](https://docs.openclaw.ai/gateway/secrets/integration-examples#password-store-pass) recipes at their correct sections. [721efcefc0](https://github.com/openclaw/openclaw/commit/721efcefc0c79af2ec7e2af21c47f283e8ee6601). Thanks [@Shenrui-Ma](https://github.com/Shenrui-Ma).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A2A status identifies peers with unresolved token settings and tells operat...",
-        "description": "A2A status identifies peers with unresolved token settings and tells operators what to repair before reload or restart. Automatic plugin setup retains credential-resolution facts through configuration rewrites, and adding another peer preserves unavailable peers in saved configuration. Deliberately tokenless outbound peers retain anonymous sending. [cb24ec1fa7](https://github.com/openclaw/openclaw/commit/cb24ec1fa7d5ce1d7162eedec3dc9447d391e6a8). Thanks [@eleqtrizit](https://github.com/eleqtrizit).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Ordinary prose following `pass",
-        "description": "` remains readable, while supported password records and affected long-input Bun cases keep their default masking. Previously lost words in stored output are not restored. [#160888](https://github.com/openclaw/openclaw/pull/160888). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160888"
-      },
-      {
-        "title": "Built-in token masking handles affected long strings containing plus signs,...",
-        "description": "Built-in token masking handles affected long strings containing plus signs, slashes or equals signs without the previous stalls. [#161089](https://github.com/openclaw/openclaw/pull/161089). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161089"
-      },
-      {
-        "title": "Custom `logging",
-        "description": "Custom `logging.redactPatterns` use 16 KiB chunks again. Matches spanning chunks can be missed, and anchored patterns apply at each chunk's start; built-in data-URL handling remains separate. [#161514](https://github.com/openclaw/openclaw/pull/161514). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161514"
-      },
-      {
-        "title": "WebSocket log values use secret masking and length limits when JSON seriali...",
-        "description": "WebSocket log values use secret masking and length limits when JSON serialization fails. Invalid log-level warnings also mask values recognized by the existing redactors before writing to stderr. [#164177](https://github.com/openclaw/openclaw/pull/164177). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164177"
-      },
-      {
-        "title": "Secret masking reuses compiled matchers to reduce temporary regular-express...",
-        "description": "Secret masking reuses compiled matchers to reduce temporary regular-expression allocations while keeping the same masked output. [#164152](https://github.com/openclaw/openclaw/pull/164152). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164152"
-      },
-      {
-        "title": "Cleanup of old generated-HTML trust records preserves a newer record writte...",
-        "description": "Cleanup of old generated-HTML trust records preserves a newer record written for the same path while filesystem inspection waits. Existing exact-byte trust and path restrictions continue to apply. [#164424](https://github.com/openclaw/openclaw/pull/164424). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164424"
-      },
-      {
-        "title": "Reserved private runtime-context entries are excluded when compaction summa...",
-        "description": "Reserved private runtime-context entries are excluded when compaction summaries and saved CLI notes read existing transcripts, including entries lacking replay metadata or opting out of replay. Stored transcript bytes are not rewritten. In the affected legacy-context case, resumed sessions may discard newly queued text or images; resolution of that issue is unconfirmed. [#164561](https://github.com/openclaw/openclaw/pull/164561). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164561"
-      },
-      {
-        "title": "Managed Bun services and OpenClaw-owned subprocesses fail locally on missin...",
-        "description": "Managed Bun services and OpenClaw-owned subprocesses fail locally on missing imports instead of installing packages at runtime. User commands, `bunx`, arbitrary third-party launchers and worker-thread resolution remain outside this launch policy. [#163270](https://github.com/openclaw/openclaw/pull/163270). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163270"
-      },
-      {
-        "title": "The bundled macOS runtime disables implicit package installation across hel...",
-        "description": "The bundled macOS runtime disables implicit package installation across helpers and children using that executable. Explicit installation controls remain available. Its dependency update also reduces duplicate file-watch events and fixes queued WebSocket upgrades, event-listener exception propagation, process-title visibility and worker heap reporting. [#163313](https://github.com/openclaw/openclaw/pull/163313). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163313"
-      },
-      {
-        "title": "Matrix, Mattermost and Tlon use the supported nested private-network setting",
-        "description": "Matrix, Mattermost and Tlon use the supported nested private-network setting; an old flat key no longer grants access or defeats it. Matrix still permits access when either the root or account-level canonical opt-in is true, so account-level false does not override root-level true. [#163535](https://github.com/openclaw/openclaw/pull/163535). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163535"
-      },
-      {
-        "title": "Project `",
-        "description": "Project `.env` files no longer control the eight Homebrew download, source and configuration variables involved in installation. Move needed overrides to the launching shell or global environment; ordinary project preferences remain supported. [#150912](https://github.com/openclaw/openclaw/pull/150912). Thanks [@mmaps](https://github.com/mmaps).",
-        "href": "https://github.com/openclaw/openclaw/issues/150912"
-      },
-      {
-        "title": "Docker builds from a source checkout exclude root and nested `",
-        "description": "Docker builds from a source checkout exclude root and nested `.crabbox` directories, keeping their transient credentials and per-run state out of build images. [#164163](https://github.com/openclaw/openclaw/pull/164163). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164163"
-      },
-      {
-        "title": "The locked dependency graph uses patched `source-map-js` 1",
-        "description": "The locked dependency graph uses patched `source-map-js` 1.2.2 for the indexed-source-map denial-of-service advisory GHSA-68fv-2mgg-jv7q. [6d86072f8c](https://github.com/openclaw/openclaw/commit/6d86072f8c4cede7419d9b53f84dd85430c33ce4). Thanks [@steipete](https://github.com/steipete), with review by [@shakkernerd](https://github.com/shakkernerd).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Agents explain whether a protected credential has a supported consumer befo...",
-        "description": "Agents explain whether a protected credential has a supported consumer before asking you to store it. Protected credentials support authorized outbound HTTPS requests, not SSH or sudo passwords, subprocess input or shell substitution. Existing `--kind env` entries are deliberately readable and apply to Gateway execution. See [secrets guidance](https://docs.openclaw.ai/tools/secrets) and [CLI options](https://docs.openclaw.ai/cli/secrets). [#167978](https://github.com/openclaw/openclaw/pull/167978), [3d0c697e](https://github.com/openclaw/openclaw/commit/3d0c697eba0ff29875458652ebf6273f6b7cea32). Thanks [@MarkMa84](https://github.com/MarkMa84), [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/167978"
-      },
-      {
-        "title": "Child stops retain completed cancellations through overlapping updates or l...",
-        "description": "Child stops retain completed cancellations through overlapping updates or later cleanup failures. Swarm Stop waits for execution and cleanup, which can remain pending after terminal status appears. After a timeout or incomplete result, inspect remaining children with `subagents action=list` and retry; replacement work needs its own Stop. Failed registration retains the child IDs for inspection before retrying. See [child operations](https://docs.openclaw.ai/tools/subagents/operations).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Interrupted replies can still use completed tool results",
-        "description": "Interrupted replies can still use completed tool results. A silent command timeout can notify its conversation when automatic completion wake is enabled. Check external effects before repeating work. See [background-process handling](https://docs.openclaw.ai/gateway/background-process).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Conversation controls preserve other agents' replies and queued work when s...",
-        "description": "Conversation controls preserve other agents' replies and queued work when short session keys overlap. Files, images and usage reports stay with the selected conversation, and clearing export search restores the sidebar. See [session controls](https://docs.openclaw.ai/concepts/session).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Adding a clarification mid-turn preserves the first executable tool or para...",
-        "description": "Adding a clarification mid-turn preserves the first executable tool or parallel batch; unstarted sequential calls can still be skipped. Use `/stop` or `/queue interrupt` to cancel. Cloud-worker context with unsupported media asks you to stop or reclaim the session and retry locally. See [steering](https://docs.openclaw.ai/concepts/queue-steering) and [transcript handling](https://docs.openclaw.ai/reference/transcript-hygiene).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Common command errors explain how to correct or recover the request",
-        "description": "Common command errors explain how to correct or recover the request. Missing results remain unknown, so inspect current state before retrying an action with side effects. `gateway call` checks connection settings; use `config validate` for a full configuration check. See [Gateway calls](https://docs.openclaw.ai/cli/gateway/query), [command arguments](https://docs.openclaw.ai/tools/exec) and [optional tool-loop detection](https://docs.openclaw.ai/tools/loop-detection).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "A disconnected terminal send keeps your unsent draft",
-        "description": "A disconnected terminal send keeps your unsent draft. [Custom usage footers](https://docs.openclaw.ai/concepts/usage-tracking) refresh after repeated saves, and existing [blocker answers](https://docs.openclaw.ai/tools/progress-card) no longer need redundant replacement explanations. Older ACPX file-state imports and the legacy Copilot URL rewrite are removed.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Tool-heavy conversations retain fewer duplicate results and discarded strings",
-        "description": "Tool-heavy conversations retain fewer duplicate results and discarded strings; reusable readers release completed requests. **Plugin and SDK callers must treat transcript payloads as immutable as soon as they submit them, even while an asynchronous save is pending.** Create new values for later updates. Hooks receive saved rewritten activity and omit suppressed entries. See the [SDK runtime guide](https://docs.openclaw.ai/plugins/sdk-runtime).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "More history, usage and session bookkeeping runs in background database wor...",
-        "description": "More history, usage and session bookkeeping runs in background database workers, leaving less storage work on the thread handling requests. Confirmed saves publish once; uncertain outcomes stay pending or return recovery guidance. See the [worker-access reference](https://docs.openclaw.ai/reference/database-schemas/worker-access).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Workspace saves and recovery wait for durable records before changing files...",
-        "description": "Workspace saves and recovery wait for durable records before changing files or reporting success. Stock persona files stay in the [configured agent workspace](https://docs.openclaw.ai/concepts/system-prompt) when work runs in a separate project.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Resume an unfinished built-in-runtime conversation after compaction followe...",
-        "description": "Resume an unfinished built-in-runtime conversation after compaction followed by a Gateway restart, preserving the original request once and retaining distinct queued follow-ups. [#160128](https://github.com/openclaw/openclaw/pull/160128). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/160128"
-      },
-      {
-        "title": "Explain when recent messages exceed the context limit and suggest a new ses...",
-        "description": "Explain when recent messages exceed the context limit and suggest a new session with a brief summary. [#160934](https://github.com/openclaw/openclaw/pull/160934). Thanks to [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/160934"
-      },
-      {
-        "title": "Keep completed background tool results available for final answers and empt...",
-        "description": "Keep completed background tool results available for final answers and empty-answer retries, and keep internal finalization prompts out of user-message history. [#161091](https://github.com/openclaw/openclaw/pull/161091). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161091"
-      },
-      {
-        "title": "Finish stopping a child during an overlapping session metadata update, pres...",
-        "description": "Finish stopping a child during an overlapping session metadata update, preserving both the update and recorded stop across retry or restart. Cleanup still checks ownership before affecting replacement sessions. [#161461](https://github.com/openclaw/openclaw/pull/161461). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161461"
-      },
-      {
-        "title": "Let stopped collector children finish recording completion and free their s...",
-        "description": "Let stopped collector children finish recording completion and free their slot during simultaneous session metadata writes, allowing queued work to start while preserving labels and delivery identity. [#161676](https://github.com/openclaw/openclaw/pull/161676). Thanks to [@steipete](https://github.com/steipete), [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/161676"
-      },
-      {
-        "title": "Record the owning agent when cancelling a watched child with an unqualified...",
-        "description": "Record the owning agent when cancelling a watched child with an unqualified session key, preserving other agents’ running work and queued messages under the same key. Older ownerless records still use current configuration. [#162540](https://github.com/openclaw/openclaw/pull/162540). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162540"
-      },
-      {
-        "title": "Return the accepted terminal cancellation when stopping a child overlaps a...",
-        "description": "Return the accepted terminal cancellation when stopping a child overlaps a session metadata update, while refusing to publish an old run’s outcome into a replacement session. [#163096](https://github.com/openclaw/openclaw/pull/163096). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163096"
-      },
-      {
-        "title": "Avoid an unnecessary preparation write when stopping a Swarm child whose se...",
-        "description": "Avoid an unnecessary preparation write when stopping a Swarm child whose session is already ready. Pending changes for that session and final cancellation publication still finish in their normal order. [#163485](https://github.com/openclaw/openclaw/pull/163485). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163485"
-      },
-      {
-        "title": "Make Swarm Stop wait for the selected children’s execution and queued-launc...",
-        "description": "Make Swarm Stop wait for the selected children’s execution and queued-launch cleanup and report cleanup failures. Terminal task status can appear before cleanup finishes; after a timeout or incomplete cancellation, inspect remaining children with subagents action=list and retry. [#163558](https://github.com/openclaw/openclaw/pull/163558). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163558"
-      },
-      {
-        "title": "Resume the originating conversation after a silent background-command timeo...",
-        "description": "Resume the originating conversation after a silent background-command timeout when automatic completion wake is enabled. Check external effects before retrying non-idempotent work. [#164171](https://github.com/openclaw/openclaw/pull/164171). Thanks to [@etzelm](https://github.com/etzelm), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164171"
-      },
-      {
-        "title": "Save worker transcripts through symbolic links or directory junctions using...",
-        "description": "Save worker transcripts through symbolic links or directory junctions using the admitted native database location, avoiding the path-alias persistence failure after response generation. [#164289](https://github.com/openclaw/openclaw/pull/164289). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/164289"
-      },
-      {
-        "title": "Distinguish confirmed session removal from incomplete or skipped cleanup wh...",
-        "description": "Distinguish confirmed session removal from incomplete or skipped cleanup when handling Stop. [28885d3](https://github.com/openclaw/openclaw/commit/28885d3f8745f51e39ecb54389283dc391c15381). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Retain counts of child cancellations already committed when later Stop clea...",
-        "description": "Retain counts of child cancellations already committed when later Stop cleanup fails, and show the cleanup error. Inspect remaining runs with subagents; replacement work requires its own Stop request. [6123d17](https://github.com/openclaw/openclaw/commit/6123d17b9f281f07f0074c564f6ffa20deec50ae). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Let cleanup save a child cancellation it has accepted instead of competing...",
-        "description": "Let cleanup save a child cancellation it has accepted instead of competing with a sweeper save. [e9571d7](https://github.com/openclaw/openclaw/commit/e9571d77e76bd6d35996273d9e8398ad539b26e1). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keep child cancellation and its saved abort marker consistent during overla...",
-        "description": "Keep child cancellation and its saved abort marker consistent during overlapping metadata updates without stopping replacement work. [fef7992](https://github.com/openclaw/openclaw/commit/fef7992b3697b5f56a3f469ec951ec210b8918b4). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keep responsibility for cancelling the exact child after required registrat...",
-        "description": "Keep responsibility for cancelling the exact child after required registration fails. Errors retain child session/run IDs and pending-cleanup status; capacity stays reserved until cleanup settles, so inspect the retained child before retrying. Session-maintenance planning also runs separately from archive waits. [7555e3f](https://github.com/openclaw/openclaw/commit/7555e3f88132bc5915e42141d9a09aa435ed7c2a). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Avoid a false permanent cancellation error when subagent metadata is still...",
-        "description": "Avoid a false permanent cancellation error when subagent metadata is still being saved after selected children have stopped. Wait for that metadata before continuing tree discovery. [cf5b871](https://github.com/openclaw/openclaw/commit/cf5b87163b768a011611e085d2356ad32213cb07). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Keep run files and completion records attached to their original agent and...",
-        "description": "Keep run files and completion records attached to their original agent and conversation after active run context clears. [#161119](https://github.com/openclaw/openclaw/pull/161119). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161119"
-      },
-      {
-        "title": "Share a pending local identity lookup across simultaneous Codex and Session...",
-        "description": "Share a pending local identity lookup across simultaneous Codex and Session Share discovery requests, reducing duplicate startup database work without changing discovered nodes and sessions. Missing or failed identity reads remain retryable. [#161496](https://github.com/openclaw/openclaw/pull/161496). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161496"
-      },
-      {
-        "title": "Avoid duplicate validation when Gateway clients establish warm message subs...",
-        "description": "Avoid duplicate validation when Gateway clients establish warm message subscriptions, while preserving access checks and approval replay. [#161555](https://github.com/openclaw/openclaw/pull/161555). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161555"
-      },
-      {
-        "title": "Preserve another agent’s active reply, queued messages and commands when st...",
-        "description": "Preserve another agent’s active reply, queued messages and commands when stopping, deleting, resetting or archiving a conversation with a colliding session key. The selected agent’s own work is still cancelled. [#161736](https://github.com/openclaw/openclaw/pull/161736). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161736"
-      },
-      {
-        "title": "Preserve other agents’ queued replies and commands during review pauses, wo...",
-        "description": "Preserve other agents’ queued replies and commands during review pauses, workspace placement changes, rewinds, broad aborts and interrupts sharing a short session key. Broad cleanup removes only the selected agent’s own work across session incarnations. [#162179](https://github.com/openclaw/openclaw/pull/162179). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162179"
-      },
-      {
-        "title": "Prepare requested session-list rows before rebuilding unrelated rows after...",
-        "description": "Prepare requested session-list rows before rebuilding unrelated rows after metadata changes, so overlapping requests can share preparation. [#162280](https://github.com/openclaw/openclaw/pull/162280). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162280"
-      },
-      {
-        "title": "Omit nested tool-result cards from recalled history unless includeTools is...",
-        "description": "Omit nested tool-result cards from recalled history unless includeTools is explicitly true. [#162904](https://github.com/openclaw/openclaw/pull/162904). Thanks to [@steipete](https://github.com/steipete), [@RomneyDa](https://github.com/RomneyDa), [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@jalehman](https://github.com/jalehman), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162904"
-      },
-      {
-        "title": "Keep session owners and participant details visible after background update...",
-        "description": "Keep session owners and participant details visible after background updates, preserve newer overlapping changes and publish committed updates despite an observer error. [#163030](https://github.com/openclaw/openclaw/pull/163030). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163030"
-      },
-      {
-        "title": "Find a run’s files and images in its original owning conversation after ses...",
-        "description": "Find a run’s files and images in its original owning conversation after session aliases change, while explicit session selection still follows current aliases. Current visibility checks apply, and changed or replaced sessions return a retryable failure. [#163054](https://github.com/openclaw/openclaw/pull/163054). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163054"
-      },
-      {
-        "title": "Read usage summaries, charts, logs and costs from the selected transcript o...",
-        "description": "Read usage summaries, charts, logs and costs from the selected transcript or validated store, refusing stale or mixed source locations. [#163182](https://github.com/openclaw/openclaw/pull/163182). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163182"
-      },
-      {
-        "title": "Preserve valid shared-session access while restoring archived history, avoi...",
-        "description": "Preserve valid shared-session access while restoring archived history, avoiding an unnecessary retry when forking, rewinding or switching branches. [#163669](https://github.com/openclaw/openclaw/pull/163669). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163669"
-      },
-      {
-        "title": "Save accepted messages and steering input once with current approved conten...",
-        "description": "Save accepted messages and steering input once with current approved content when database paths use aliases or a session manager is reused. [#163753](https://github.com/openclaw/openclaw/pull/163753). Thanks to [@joshavant](https://github.com/joshavant).",
-        "href": "https://github.com/openclaw/openclaw/issues/163753"
-      },
-      {
-        "title": "Keep the first executable tool and parallel tool batches when a clarificati...",
-        "description": "Keep the first executable tool and parallel tool batches when a clarification arrives mid-turn, delivering real results before the new message. After a sequential tool starts, remaining unstarted calls can still be skipped; use /stop or /queue interrupt to cancel work. [#163852](https://github.com/openclaw/openclaw/pull/163852). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163852"
-      },
-      {
-        "title": "Reuse session ordering for repeated large lists as metadata and filters change",
-        "description": "Reuse session ordering for repeated large lists as metadata and filters change. [#163941](https://github.com/openclaw/openclaw/pull/163941). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163941"
-      },
-      {
-        "title": "Restore the full sidebar in HTML conversation exports when Escape clears se...",
-        "description": "Restore the full sidebar in HTML conversation exports when Escape clears search, and display malformed stored read-range values as literal text. Valid numeric ranges retain their display. [#163997](https://github.com/openclaw/openclaw/pull/163997). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163997"
-      },
-      {
-        "title": "Keep session usage and context-weight reports available when an unrelated d...",
-        "description": "Keep session usage and context-weight reports available when an unrelated database registration changes during their read, while still checking the selected store and agent attribution. [#164217](https://github.com/openclaw/openclaw/pull/164217). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**Sessions and memory",
+        "description": "** preserved usage across registry changes, delivered worker attachments from remote workspaces, prevented queued cancellations and transcript aliases from stalling active turns, kept continuation signatures aligned, and migrated embedding caches in bounded batches with oversized-row reporting. (#164217, #164219, #163708, #164230, #164251, #164289, #164287, #164303) Thanks @vincentkoc and @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/issues/164217"
       },
       {
-        "title": "Keep replacement subscribers receiving activity, context, model and reconne...",
-        "description": "Keep replacement subscribers receiving activity, context, model and reconnect updates when an old unsubscribe repeats. Remove temporary HTTP listeners after an immediate bind failure. [#164221](https://github.com/openclaw/openclaw/pull/164221). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164221"
+        "title": "**Replies and media",
+        "description": "** restored inline playback for local videos, replaced rejected media links with useful errors, kept Telegram progress updates free of preview cards, and fixed speech-only replies when reasoning is enabled. (#164137, #163727, #164285, #164256) Thanks @ivan-magda, @obviyus, and @Twilight-Networks.",
+        "href": "https://github.com/openclaw/openclaw/issues/164137"
       },
       {
-        "title": "Repair the session-tool guide’s link to Gateway timeout examples, which exp...",
-        "description": "Repair the session-tool guide’s link to Gateway timeout examples, which explain caller wait separately from the receiving agent’s execution budget. [0338bb3](https://github.com/openclaw/openclaw/commit/0338bb3adbafa24f8887e169634169ae60d690af). Thanks to [@LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**Updates and Doctor",
+        "description": "** improved serving-verdict recovery guidance, kept repairs working with read-only managed config, removed repeated config, backup, metadata, and pnpm-root probes, reported successful cleanup as progress without corrupting JSON output, and treated a still-starting Gateway as a warning. (#164193, #161924, #164235, #162259, #164182, #164186, #164183, #164184, #163477, #164261, #162236, #164312) Thanks @DonnieFi, @JD8855122, @Patrick-Erichsen, @waynegault, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164193"
       },
       {
-        "title": "Release a deleted agent’s model, authentication, memory and database resour...",
-        "description": "Release a deleted agent’s model, authentication, memory and database resources without restarting the Gateway. Recreated agents can use external session stores again, while deletion preserves the existing choice to keep files and protects surviving agents’ stores. [40d284f](https://github.com/openclaw/openclaw/commit/40d284f9a6aaa6b11f6d9d7bc1db253781d7ef76). Thanks to [@ceckert](https://github.com/ceckert), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**Windows workspaces and browser startup",
+        "description": "** fixed empty and nested Windows worktree creation, improved Linux Chromium discovery, and automatically started Playwright Chromium on ARM64. (#164202, #164249, #163510, #163281) Thanks @ly85206559, @jesse-merhi, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164202"
       },
       {
-        "title": "Keep literal internal status blocks out of streamed and final replies, and...",
-        "description": "Keep literal internal status blocks out of streamed and final replies, and keep application context attached to the correct steering message. Cloud-worker context with unsupported media now explicitly asks you to stop or reclaim the session and retry locally. [cd9913f](https://github.com/openclaw/openclaw/commit/cd9913f1b1105f9c4e7b96fde8c1431a77e5878d). Thanks to [@RomneyDa](https://github.com/RomneyDa). Thanks [@Bartok9](https://github.com/Bartok9) for the earlier empty-snapshot direction.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**Cloud workers and Crabbox",
+        "description": "** surfaced the real cloud-worker failure, enforced Linux leases, overlapped worker-bundle downloads with bootstrap, removed unrelated warm-image cleanup waits, and prevented slow reads or unsupported backends from stranding workers. (#164129, #164187, #164128, #164231)",
+        "href": "https://github.com/openclaw/openclaw/issues/164129"
       },
       {
-        "title": "Let simultaneous first-session requests for a fresh agent share database cr...",
-        "description": "Let simultaneous first-session requests for a fresh agent share database creation, avoiding false replacement errors when another request creates the same store first. [36507e7](https://github.com/openclaw/openclaw/commit/36507e78d6ef52dc58fa66cfd51494a8e5481458). Thanks to [@RomneyDa](https://github.com/RomneyDa). Thanks [@steipete](https://github.com/steipete) for the original session-creation repair.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**Plugins, Codex, and MCP",
+        "description": "** preserved Bun package-import capture, reduced prerelease metadata requests, kept expired remote-exec approvals from poisoning auth profiles, restored node policy hooks, synchronized MCP forms/files/context, and routed background skill reviews through Workshop proposals. (#164223, #164185, #164237, #164270, #164277, #164292)",
+        "href": "https://github.com/openclaw/openclaw/issues/164223"
       },
       {
-        "title": "Reject unsupported process wait arguments with instructions to use `timeout...",
-        "description": "Reject unsupported process wait arguments with instructions to use `timeout`, keeping output available for a corrected request. [#153844](https://github.com/openclaw/openclaw/pull/153844). Thanks to [@wangmiao0668000666](https://github.com/wangmiao0668000666), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/153844"
+        "title": "**Safer recovery and responsive chats",
+        "description": "** recovered interrupted database workers and Doctor migrations, kept background CLI replies from hanging, and preserved automatic chat following as new content arrives. (#163258, #165854, #167091) Thanks @goutamadwant, @hawkit, @RomneyDa, @Olli0103, @ericcurtin, @obviyus, @adele-with-a-b, @Patrick-Erichsen, and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163258"
       },
       {
-        "title": "Reject unsupported `exec` working-directory arguments before a command runs...",
-        "description": "Reject unsupported `exec` working-directory arguments before a command runs, with guidance to use `workdir`. [#154248](https://github.com/openclaw/openclaw/pull/154248). Thanks to [@wangmiao0668000666](https://github.com/wangmiao0668000666), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/154248"
+        "title": "Added Claude Haiku 5",
+        "description": "Added Claude Haiku 5.5 support. (#166706) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/166706"
       },
       {
-        "title": "Recognize repeated tool calls rejected for invalid arguments when tool-loop...",
-        "description": "Recognize repeated tool calls rejected for invalid arguments when tool-loop detection is enabled, so the agent can correct the request. [#158709](https://github.com/openclaw/openclaw/pull/158709). Thanks to [@ali-log](https://github.com/ali-log), [@51Google](https://github.com/51Google), [@obviyus](https://github.com/obviyus), [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/158709"
+        "title": "Kept Code Mode `store`/`load` values available across cells, replies, and G...",
+        "description": "Kept Code Mode `store`/`load` values available across cells, replies, and Gateway restarts. (#164086)",
+        "href": "https://github.com/openclaw/openclaw/pull/164086"
       },
       {
-        "title": "Preserve unusual keybinding names and their string or array overrides when...",
-        "description": "Preserve unusual keybinding names and their string or array overrides when loading and reloading them. [#161749](https://github.com/openclaw/openclaw/pull/161749). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161749"
+        "title": "Added Workboard sidebar navigation and personal board pinning",
+        "description": "Added Workboard sidebar navigation and personal board pinning. (#164604)",
+        "href": "https://github.com/openclaw/openclaw/pull/164604"
       },
       {
-        "title": "Move repetitive recurring-job starts from debug to trace, retaining useful...",
-        "description": "Move repetitive recurring-job starts from debug to trace, retaining useful diagnostic history. Use trace logging to see every recurring start; one-shot starts and failures keep their existing levels. [#161895](https://github.com/openclaw/openclaw/pull/161895). Thanks to [@matthematics1137](https://github.com/matthematics1137), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/161895"
+        "title": "Let MCP Apps call their tools while their views remain open, with inline me...",
+        "description": "Let MCP Apps call their tools while their views remain open, with inline message confirmations and synchronized forms, files, and context. (#164496, #164493, #164277)",
+        "href": "https://github.com/openclaw/openclaw/issues/164496"
       },
       {
-        "title": "Honor an explicit session-creation transport timeout in either fallback bra...",
-        "description": "Honor an explicit session-creation transport timeout in either fallback branch, including inherited spawn policy. Bundled callers using default or null deadlines retain their existing waits. [#161969](https://github.com/openclaw/openclaw/pull/161969). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161969"
+        "title": "Added inline YouTube playback to Control UI chats",
+        "description": "Added inline YouTube playback to Control UI chats. (#164576)",
+        "href": "https://github.com/openclaw/openclaw/pull/164576"
       },
       {
-        "title": "Guide agents to report requested undelivered results, meaningful changes an...",
-        "description": "Guide agents to report requested undelivered results, meaningful changes and unresolved problems, while staying quiet about already-handled background results. [#162302](https://github.com/openclaw/openclaw/pull/162302). Thanks to [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/162302"
+        "title": "Added native macOS sidebar identity details and plugin session catalogs, an...",
+        "description": "Added native macOS sidebar identity details and plugin session catalogs, and used bundled Bun in the Linux companion. (#164591, #164436, #164401)",
+        "href": "https://github.com/openclaw/openclaw/issues/164591"
       },
       {
-        "title": "Keep manual result-collection reminders in running process status, logs and...",
-        "description": "Keep manual result-collection reminders in running process status, logs and lists when completion notifications were disabled at command launch. Structured followUp and no-exit-wake labels remain until completion; execution and notification policy stay unchanged. [#162303](https://github.com/openclaw/openclaw/pull/162303). Thanks to [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162303"
+        "title": "Adopted sealed immutable installation generations with activation and recov...",
+        "description": "Adopted sealed immutable installation generations with activation and recovery support. (#163799, #164306)",
+        "href": "https://github.com/openclaw/openclaw/issues/163799"
       },
       {
-        "title": "Avoid command-cleanup modules for affected version queries and package-root...",
-        "description": "Avoid command-cleanup modules for affected version queries and package-root library imports. [#162311](https://github.com/openclaw/openclaw/pull/162311). Thanks to [@SunnyShu0925](https://github.com/SunnyShu0925), [@love-ai-open-source](https://github.com/love-ai-open-source).",
-        "href": "https://github.com/openclaw/openclaw/issues/162311"
+        "title": "Let the selected memory plugin own the pre-compaction memory flush",
+        "description": "Let the selected memory plugin own the pre-compaction memory flush. (#162177) Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/pull/162177"
       },
       {
-        "title": "Preserve unrelated paths when shortening home directories in tool details a...",
-        "description": "Preserve unrelated paths when shortening home directories in tool details and CLI diagnostics, including containers whose home is the filesystem root. [#162483](https://github.com/openclaw/openclaw/pull/162483). Thanks to [@boeingchoco](https://github.com/boeingchoco), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/162483"
+        "title": "Let every loaded plugin, including local paths and linked installs, use its...",
+        "description": "Let every loaded plugin, including local paths and linked installs, use its own isolated state and ingress queues without changing trust requirements for privileged capabilities. (#165063)",
+        "href": "https://github.com/openclaw/openclaw/pull/165063"
       },
       {
-        "title": "Avoid a false blocked-tool warning when steering skips a pending tool that...",
-        "description": "Avoid a false blocked-tool warning when steering skips a pending tool that never started. [#162513](https://github.com/openclaw/openclaw/pull/162513). Thanks to [@steipete](https://github.com/steipete), [@RileyJJY](https://github.com/RileyJJY), [@dori-jitter](https://github.com/dori-jitter), [@VACInc](https://github.com/VACInc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162513"
+        "title": "Added cloud-worker support for enterprise repositories",
+        "description": "Added cloud-worker support for enterprise repositories. (#160108) Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/pull/160108"
       },
       {
-        "title": "Select the intended local transcription program when a home-relative PATH e...",
-        "description": "Select the intended local transcription program when a home-relative PATH entry passes through a symbolic link and its parent, preserving configured precedence and home directories containing PATH separators. [#162680](https://github.com/openclaw/openclaw/pull/162680). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162680"
+        "title": "Added RPC response-size and main-thread heap diagnostics, with exclusive-ha...",
+        "description": "Added RPC response-size and main-thread heap diagnostics, with exclusive-handler sampling to avoid misleading measurements. (#164335, #164418)",
+        "href": "https://github.com/openclaw/openclaw/issues/164335"
       },
       {
-        "title": "Refresh file-based custom usage footers after repeated editor saves that re...",
-        "description": "Refresh file-based custom usage footers after repeated editor saves that replace the file, including deletion and recreation. Refresh still depends on filesystem notifications, which an open old-file handle can delay on Linux. [#162733](https://github.com/openclaw/openclaw/pull/162733). Thanks to [@boeingchoco](https://github.com/boeingchoco).",
-        "href": "https://github.com/openclaw/openclaw/issues/162733"
+        "title": "Migrated existing agents to local Claws",
+        "description": "Migrated existing agents to local Claws. (#162329) Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/pull/162329"
       },
       {
-        "title": "Preserve intended emoji boundaries on affected Bun runtimes when splitting...",
-        "description": "Preserve intended emoji boundaries on affected Bun runtimes when splitting messages or truncating terminal text, avoiding unnecessary cuts that waste the available space. [#162749](https://github.com/openclaw/openclaw/pull/162749). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162749"
+        "title": "Reduced Sessions-board and state-path overhead by serving prepared facts, r...",
+        "description": "Reduced Sessions-board and state-path overhead by serving prepared facts, reusing card payloads per store revision, moving lifecycle mutations off the main thread, and retaining canonical state handles. (#164218, #164301, #163815, #164110) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164218"
       },
       {
-        "title": "Keep POSIX sibling paths containing literal backslashes absolute in CLI dia...",
-        "description": "Keep POSIX sibling paths containing literal backslashes absolute in CLI diagnostics while shortening actual home-directory descendants. [#162800](https://github.com/openclaw/openclaw/pull/162800). Thanks to [@ly85206559](https://github.com/ly85206559), [@boeingchoco](https://github.com/boeingchoco).",
-        "href": "https://github.com/openclaw/openclaw/issues/162800"
+        "title": "**Agents and subagents",
+        "description": "** memory-saving turns no longer regain unrelated execution tools, finished subagent results are delivered even while a grandchild's delivery is still pending, follow-up messages no longer cut off returning subagent results, completed answers survive a reasoning-only tail, and sessions on small context windows recover after auto-compaction. (#166650; fixes #166644, #165987; fixes #138632, #168068; fixes #162761, #167567; fixes #167543, #167900) Thanks @jlapenna, @Oldrich333, @obviyus, @LifeViwer, @stackingrockss, @goutamadwant, @hannesrudolph, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166644"
       },
       {
-        "title": "Guide agents to leave a note with the unfinished task, blocker, owner and r...",
-        "description": "Guide agents to leave a note with the unfinished task, blocker, owner and resume condition when paused work has no authorized next step. [#162903](https://github.com/openclaw/openclaw/pull/162903). Thanks to [@steipete](https://github.com/steipete), [@RomneyDa](https://github.com/RomneyDa), [@fuller-stack-dev](https://github.com/fuller-stack-dev), [@jalehman](https://github.com/jalehman), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/162903"
+        "title": "**Updates and Doctor",
+        "description": "** prepared activations settle when the live package already serves the candidate, rollback skips the maintenance drain when the Gateway is already stopped, dead legacy child-lineage leases no longer block every later update, triage stops prescribing repeated refused updates while activation recovery is pending, update repair leaves live current handoff owners alone, and Doctor maintenance no longer exhausts systemd service-inspection deadlines. (#167648, #167649; fixes #165266, #168043; fixes #168000, #167782, #168197, #168069; fixes #168031) Thanks @hannnnn-l, @farisoftfry, @Tosko4, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165266"
       },
       {
-        "title": "Keep unsent slash-prefixed terminal chat after a disconnected send is rejec...",
-        "description": "Keep unsent slash-prefixed terminal chat after a disconnected send is rejected, preserve newer drafts and allow retry after reconnecting. [#163201](https://github.com/openclaw/openclaw/pull/163201). Thanks to [@ooiuuii](https://github.com/ooiuuii), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/163201"
+        "title": "**Gateway startup with installed plugins",
+        "description": "** valid startups no longer capture and discard plugin Doctor modules on every config read, Windows plugin captures use the fast pinned-descriptor copy again so Gateways with large plugins start without multi-minute stalls, catalog updates no longer recapture plugins after startup, model changes no longer freeze the Gateway with large plugins, and Windows launchers keep working after pnpm updates. (#168017, #167544, #161267, #167905; fixes #167835) Thanks @RomneyDa, @obviyus, @SMF12138, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167835"
       },
       {
-        "title": "Treat a missing tool result as an unknown outcome and guide agents to check...",
-        "description": "Treat a missing tool result as an unknown outcome and guide agents to check current state before repeating actions with side effects. Warn operators when request history changes unexpectedly. [#163379](https://github.com/openclaw/openclaw/pull/163379). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163379"
+        "title": "**Codex, ChatGPT, and local models",
+        "description": "** Codex replies no longer lose their last token when a provider stream drops the final delta, rejected cached ChatGPT tool continuations recover without rerunning completed tools, oversized proxy requests report context errors instead of one-token replies, resumed Claude sessions refresh their system context, Ollama tool calls work with Tool Search enabled, trailing Gemma 4 tool-call text is recovered, and managed llama.cpp memory indexing no longer runs out of memory on small hosts. (#168055, #167878; fixes #161254, #167817; fixes #167799, #167933, #167886; fixes #104868, #168020) Thanks @jacobtomlinson, @amittell, @yu-xin-c, @robburke, @jlapenna, @frankhli843, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/161254"
       },
       {
-        "title": "Give common chat, terminal and Control UI errors a short explanation and re...",
-        "description": "Give common chat, terminal and Control UI errors a short explanation and recovery step, with expandable details. Keep uncertain dispatched outcomes, manual database recovery and Stop-saving warnings visible. [#163381](https://github.com/openclaw/openclaw/pull/163381). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/163381"
+        "title": "**Channels, state, and memory",
+        "description": "** Telegram keeps pending questions when `/verbose`, `/think`, or other settings commands arrive, Gateways on Bun no longer report false state-ownership loss, separate Docker CLI containers and recreated Docker owners keep Gateway state ownership, and memory-wiki status no longer recompiles an unchanged externally refreshed vault. (#168004, #167669, #164236; fixes #163961, #164546; fixes #155644, #167929; fixes #167914) Thanks @obviyus, @JakeMalis, @Alex-vonAllmen, and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/163961"
       },
       {
-        "title": "Restore specific recovery guidance for disconnected Codex devices, outdated...",
-        "description": "Restore specific recovery guidance for disconnected Codex devices, outdated workers and offline runners. [#163538](https://github.com/openclaw/openclaw/pull/163538). Thanks to [@vincentkoc](https://github.com/vincentkoc), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163538"
+        "title": "**Install and terminals",
+        "description": "** global npm installs keep native packages to the current platform, and local browser terminals advertise RGB colors on headless hosts. (#165997; fixes #165602, #164325; fixes #164323) Thanks @TommyFive, @ooiuuii, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165602"
       },
       {
-        "title": "Explain that an allowed nested configuration parameter is unset and point t...",
-        "description": "Explain that an allowed nested configuration parameter is unset and point to config set instead of calling it unknown. The message does not establish provider support for that parameter. [#163682](https://github.com/openclaw/openclaw/pull/163682). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163682"
+        "title": "**Security and privacy",
+        "description": "** rejected NUL execution arguments before startup, failed closed on unresolved peer credentials, prevented stale Codex sessions and foreign live owners from mutating successor workspaces, and kept private runtime context out of replies and saved conversations. (#164770, #165021, #164197, #164203, #163471, #164561) Thanks @shakkernerd, @eleqtrizit, @galiniliev, @KirDE, @RomneyDa, @consoleaf, and @JacquesLFR8.",
+        "href": "https://github.com/openclaw/openclaw/issues/164770"
       },
       {
-        "title": "Cap oversized log-follow intervals so timer overflow cannot turn a long wai...",
-        "description": "Cap oversized log-follow intervals so timer overflow cannot turn a long wait into rapid Gateway polling. [#163791](https://github.com/openclaw/openclaw/pull/163791). Thanks to [@LinzeShi](https://github.com/LinzeShi).",
-        "href": "https://github.com/openclaw/openclaw/issues/163791"
-      },
-      {
-        "title": "Show the Gateway’s specific error when a visible child session fails startu...",
-        "description": "Show the Gateway’s specific error when a visible child session fails startup or registration, including unconfirmed cleanup. [#163798](https://github.com/openclaw/openclaw/pull/163798). Thanks to [@obviyus](https://github.com/obviyus), [@DonnieFi](https://github.com/DonnieFi).",
-        "href": "https://github.com/openclaw/openclaw/issues/163798"
-      },
-      {
-        "title": "Let Bun source installations launch from external agent workspaces, retain...",
-        "description": "Let Bun source installations launch from external agent workspaces, retain the selected agent in shared-store usage reports, and keep admitted child completion work tracked through graceful restart or suspension. [#163821](https://github.com/openclaw/openclaw/pull/163821). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163821"
-      },
-      {
-        "title": "Restore standard MIT license recognition while keeping the same terms and t...",
-        "description": "Restore standard MIT license recognition while keeping the same terms and third-party notices available through the README and package. [#163838](https://github.com/openclaw/openclaw/pull/163838). Thanks to [@Patrick-Erichsen](https://github.com/Patrick-Erichsen). Thanks [@ashleywolf](https://github.com/ashleywolf) for reporting the license-recognition problem.",
-        "href": "https://github.com/openclaw/openclaw/issues/163838"
-      },
-      {
-        "title": "Observe model-preparation failures while the terminal UI is idle, preventin...",
-        "description": "Observe model-preparation failures while the terminal UI is idle, preventing an extra unhandled-rejection report while retaining the original error. [#163842](https://github.com/openclaw/openclaw/pull/163842). Thanks to [@jalehman](https://github.com/jalehman).",
-        "href": "https://github.com/openclaw/openclaw/issues/163842"
-      },
-      {
-        "title": "Suppress late approval messages after terminal shutdown",
-        "description": "Suppress late approval messages after terminal shutdown. Older ACPX file-state imports and the legacy Copilot-host-to-Codex URL rewrite are removed. [#163854](https://github.com/openclaw/openclaw/pull/163854). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163854"
-      },
-      {
-        "title": "Send literal `constructor` and `__proto__` text to interactive processes ev...",
-        "description": "Send literal `constructor` and `__proto__` text to interactive processes even when cursor-key mode is unknown. [#163963](https://github.com/openclaw/openclaw/pull/163963). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163963"
-      },
-      {
-        "title": "Keep queued voice, Talk and upload diagnostics attached to the submitting r...",
-        "description": "Keep queued voice, Talk and upload diagnostics attached to the submitting request instead of a preceding task’s trace. [#164105](https://github.com/openclaw/openclaw/pull/164105). Thanks to [@harshitgupta31415](https://github.com/harshitgupta31415), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/issues/164105"
-      },
-      {
-        "title": "Close the temporary agent and shared databases before deleting one-shot age...",
-        "description": "Close the temporary agent and shared databases before deleting one-shot agent exec state, including when worker registration finishes late. [#164483](https://github.com/openclaw/openclaw/pull/164483). Thanks to [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/164483"
-      },
-      {
-        "title": "Preserve an answer that already reports results and explains a concrete app...",
-        "description": "Preserve an answer that already reports results and explains a concrete approval, input or dependency blocker. Its completion check can finish silently while authorized unfinished work still receives the check. [#164896](https://github.com/openclaw/openclaw/pull/164896). Thanks to [@obviyus](https://github.com/obviyus).",
+        "title": "**Reply delivery",
+        "description": "** retained completed answers instead of replacing them with blocker summaries or generic follow-up warnings, showed authoritative tool outcomes and native tool failures, and prevented silent-reply markers from leaking into previews. (#164896, #164774, #163545, #164116, #164259, #160582) Thanks @obviyus, @RomneyDa, @joshavant, @ooiuuii, @jayzhou2309, and @imabotone-ui.",
         "href": "https://github.com/openclaw/openclaw/issues/164896"
       },
       {
-        "title": "Start replies in the current session working directory, using the configure...",
-        "description": "Start replies in the current session working directory, using the configured default if its override was cleared. [863e377](https://github.com/openclaw/openclaw/commit/863e377524a970787dfb2540b32722810c512cff). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**Telegram and Discord",
+        "description": "** delivered later messages without deferred-ingress stalls, kept Telegram photo albums together and ordered under load, restored channel-routed handoff sends, and kept long Discord model IDs selectable. (#159265, #164549, #163926, #163863, #165137, #164311) Thanks @aatreya, @mbelinky, @ooiuuii, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/159265"
+      },
+      {
+        "title": "**Other channels and hooks",
+        "description": "** resolved workspace-qualified Slack users, migrated unscoped WhatsApp credentials through Doctor, stopped repeated Gmail error alerts on redelivery, and treated zero channel media limits as unlimited rather than blocking every attachment. (#160619, #163203, #164206, #163701) Thanks @LinzeShi, @obviyus, @jayzhou2309, @TrevorDGreen33, and @sxh313.",
+        "href": "https://github.com/openclaw/openclaw/issues/160619"
+      },
+      {
+        "title": "**Models and providers",
+        "description": "** fixed malformed Kimi K3 execution calls, preserved shared Codex clients after interruption, refreshed models from standalone Anthropic profiles, corrected Ollama Cloud thinking controls, restored Baseten setup defaults, and honored longer video-generation timeouts. (#165022, #165487, #156493, #162300, #155640, #162204, #164389, #164381) Thanks @serg0x, @Ram-G, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165022"
+      },
+      {
+        "title": "Preserved exact provider identity in model lookups and refreshed Vertex acc...",
+        "description": "Preserved exact provider identity in model lookups and refreshed Vertex access tokens through Google Auth instead of reusing stale non-file ADC tokens. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Make Gateway CLI option links jump to their descriptions on the running, qu...",
-        "description": "Make Gateway CLI option links jump to their descriptions on the running, query and discovery reference pages. [1edf7ea](https://github.com/openclaw/openclaw/commit/1edf7ea3ab5dd59c9ed6091c030a232504b5a58d). Thanks to [@qingminglong](https://github.com/qingminglong).",
+        "title": "Preserved admitted chat, cron, and Gateway turns during model-catalog updat...",
+        "description": "Preserved admitted chat, cron, and Gateway turns during model-catalog updates, including quota recovery before the first model response. (#167492) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/167492"
+      },
+      {
+        "title": "Clarified that protected credentials support HTTPS proxy substitution, not...",
+        "description": "Clarified that protected credentials support HTTPS proxy substitution, not SSH/sudo passwords or subprocess stdin, and explained the separate operator-controlled environment-entry path. (#167976) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/167976"
+      },
+      {
+        "title": "**Updates",
+        "description": "** recovered archives without leaving Gateways stopped, settled replaced lease-database identities and moved package receipts, kept non-root launcher ownership and relinked launchers from stranding upgrades, preserved checkout plugin skills and historical webhook migrations during plugin convergence, and completed October beta updater compatibility. (#165854, #164849, #166394, #164636, #164438, #165882, #165855, #165303) Thanks @RomneyDa, @Olli0103, @szef-svg, @izrl613, @neilofneils404, @hrp6vv9mwr-glitch, and @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165854"
+      },
+      {
+        "title": "**Update recovery",
+        "description": "** kept completed recovery history from blocking later updates, made archival failures warnings while preserving evidence, repaired verified publications and untouched preparations after missing handoff lease databases, and retained current service ownership and unfinished rollback checks. (#167302, #167330, #167358, #164997, #165238, #165607; fixes #164254, #164214) Thanks @shanselman, @RomneyDa, @Hensarj, and @NovaeonStudio.",
+        "href": "https://github.com/openclaw/openclaw/issues/164254"
+      },
+      {
+        "title": "Let published legacy updaters run Doctor subcommands without a newer update...",
+        "description": "Let published legacy updaters run Doctor subcommands without a newer update-run ID while preserving command custody and invalid-ID rejection. (#167833; fixes #167824) Thanks @GoDiao.",
+        "href": "https://github.com/openclaw/openclaw/issues/167824"
+      },
+      {
+        "title": "**Doctor and service recovery",
+        "description": "** imported retained session receipts and legacy entry state before SQLite migration, supported Linux filesystems without birthtime, quarantined unusable deletion journals, drained databases and command-owned workers before exit, kept maintenance entry points usable under lease-liveness checks, and recovered updates blocked by stale deferred session-import receipts bound to a replaced database while preserving original evidence and recoverable history. (#164867, #165866, #164363, #164509, #164503, #164853, #164915, #164697, #167538; fixes #167428) Thanks @hshs38033-cmd, @SunnyShu0925, @609NFT, @jayzhou2309, @StevenKrebs, @rosmiroslav-create, @RomneyDa, and @bipolar84.",
+        "href": "https://github.com/openclaw/openclaw/issues/167428"
+      },
+      {
+        "title": "**macOS and Windows services",
+        "description": "** restored stop, restart, and update on macOS Monterey when launchctl denies PID domains, recovered disabled Windows Gateway tasks, fenced native app service installs to their observed runtime, reconnected after trusted-certificate renewal, and stopped slow macOS Gateway startup after reboot from triggering repeated restarts while rechecking reused launchd PIDs after startup progress. (#163317, #164728, #164616, #164435, #158954; fixes #158936) Thanks @NovaUnboundAi, @xXG0DLessXx, @RomneyDa, @fuller-stack-dev, @joryirving, @MertBasar0, and @cjn119-ui.",
+        "href": "https://github.com/openclaw/openclaw/issues/158936"
+      },
+      {
+        "title": "**Gateway and sessions",
+        "description": "** bounded New Session model-catalog waits, paused recovery while the crash-loop breaker is tripped, stopped restarts from looking like plugin removal, recovered unexpectedly exited database workers, kept later CLI bridge calls usable after their creating turn ends, and preserved concurrent first requests to a new agent. (#165989, #166238, #164975, #163258, #165428, #166003) Thanks @DonnieFi, @dprev, @goutamadwant, @hawkit, @nano-richtera, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165989"
+      },
+      {
+        "title": "**Storage and memory",
+        "description": "** removed large-store SQL-variable failures and rollback-journal lock failures, protected restore capacity, retained detached-maintenance database custody, released discarded transcript/output buffers and idle runtime state, reduced transcript-worker and background model-discovery memory, kept long leases from expiring early, and retained background memory synchronization and nightly dreaming across plugin reloads. (#164336, #164624, #164492, #164361, #164441, #164467, #164386, #166069, #167467, #167679, #167724) Thanks @jayzhou2309, @obviyus, @nkarkare, @triciah73, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164336"
+      },
+      {
+        "title": "**Workers and plugins",
+        "description": "** restored external-plugin hidden-chunk import closure, avoided slow native-prebuild loading, retained cooperative checkpoints under pressure, kept worktree leases alive during slow preparation, and fixed nested Windows session/workspace result publication. (#165669, #165301, #164537, #164521, #162033, #164331) Thanks @LiuwqGit, @JakeBotFleet, @goutamadwant, @exGeni, @cestercian, @RomneyDa, and @zhyx1996.",
+        "href": "https://github.com/openclaw/openclaw/issues/165669"
+      },
+      {
+        "title": "**Worker deadlines",
+        "description": "** stopped expired worker tasks from leaving host callbacks queued across SQLite, plugin-state, cold-restoration, history, usage, and incognito operations, while preserving accepted writes and required cleanup settlement. (#167740) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/167740"
+      },
+      {
+        "title": "Preserved archived session-import bindings after source retirement so old f...",
+        "description": "Preserved archived session-import bindings after source retirement so old files cannot replay into replacement sessions. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Give `config patch` refusals usable `--replace-path` retry advice, includin...",
-        "description": "Give `config patch` refusals usable `--replace-path` retry advice, including punctuation and quotes in provider names. Show separate bash/zsh and PowerShell spellings when needed. [e6b3a11](https://github.com/openclaw/openclaw/commit/e6b3a11851de205f5139ea4ea33051409ad36ebb). Thanks to [@sxh313](https://github.com/sxh313), [@obviyus](https://github.com/obviyus).",
+        "title": "Restored file-only ChatGPT import rollback without treating the import dire...",
+        "description": "Restored file-only ChatGPT import rollback without treating the import directory as a writable page. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Avoid unused CLI startup imports and let `gateway call` validate connection...",
-        "description": "Avoid unused CLI startup imports and let `gateway call` validate connection settings without checking unrelated configuration. Use `config validate` for a full check. Preserve literal resolved credentials and report cleanup permission failures after identifying a listener. [01d59ff](https://github.com/openclaw/openclaw/commit/01d59ffc5392541eed49b5c57cad93077c93013a). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**Plugin installs and refreshes",
+        "description": "** restored Windows plugin loading from Node version-manager and Scoop paths with ancestor junctions, reused verified native-plugin captures instead of repeating capture work on each catalog refresh, and kept pinned source captures independent of later file changes and bound Doctor callbacks to their selected plugin generation during updates. (#167588, #166687; fixes #167579; related #165686) Thanks @JIRBOY, @matthematics1137, @martinderm, @swampgorilla, @obviyus, @jjjhenriksen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167579"
+      },
+      {
+        "title": "**Model-catalog recovery",
+        "description": "** made worker failures visible in logs and health/status with their reason and affected-agent count, and restored catalog recovery after non-native preparation timeouts without requiring a restart. (#161740; fixes #161738) Thanks @matthematics1137, @obviyus, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/161738"
+      },
+      {
+        "title": "**Control UI",
+        "description": "** kept the UI readable and available under arbitrary user IDs, recovered model setup after Gateway restarts, made sensitive config fields editable, respected IME confirmation keys, showed approval scopes, cleared stale saved-message banners after delivery, reduced startup downloads by loading device-only English copy with Devices views, preserved provider identity when selecting automation models, and kept progress images available after task cleanup for recovered and internally started runs. (#165880, #164602, #163487, #164560, #164534, #164486, #164735, #164574, #165275; fixes #164572) Thanks @RomneyDa, @Conan-Scott, @ericcurtin, @obviyus, @shakkernerd, and @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/164572"
+      },
+      {
+        "title": "**Portable validation repairs",
+        "description": "** kept Discord health inspection from blocking Gateway connections, restored multi-turn Copilot plugin tool calls and background Claude CLI replies, migrated retained ACP archive metadata, committed Doctor archive progress in interruptible batches, reported teardown failures, and kept passive chat viewers following new turns without disturbing scroll intent. (#167091) Thanks @RomneyDa, @ericcurtin, @obviyus, @adele-with-a-b, @Patrick-Erichsen, and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/pull/167091"
+      },
+      {
+        "title": "**CLI and MCP",
+        "description": "** preserved unsent slash-prefixed TUI drafts while disconnected, showed active fallback models and idle preparation errors, honored text web-fetch output and multiline skill indentation, avoided FIFO-config hangs, and preserved MCP pagination cursors and useful HTTP errors. (#163201, #164364, #163842, #162036, #164151, #164161, #164368, #162844) Thanks @ooiuuii, @obviyus, @jalehman, @LinzeShi, @GoldArowana, @RvsL, and @zsh20000414.",
+        "href": "https://github.com/openclaw/openclaw/issues/163201"
+      },
+      {
+        "title": "**CLI startup and authentication",
+        "description": "** kept Gateway-backed commands on lighter startup paths and reused auth readers for equivalent state-root paths. (#166657, #166722, #167024) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166657"
+      },
+      {
+        "title": "Preserved plugin lifecycle fences for cancelled queued turns and retained i...",
+        "description": "Preserved plugin lifecycle fences for cancelled queued turns and retained investigated failures in ready PR reviews. (#164247, #164253) Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164247"
+      },
+      {
+        "title": "Honored agent-local model aliases in status summaries",
+        "description": "Honored agent-local model aliases in status summaries. (#164126, #164115) Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164126"
+      },
+      {
+        "title": "Left webhook config migrations to Doctor and avoided Nextcloud Talk webhook...",
+        "description": "Left webhook config migrations to Doctor and avoided Nextcloud Talk webhook migration for unconfigured channels. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Reduce repeated copying when selecting child sessions that must be protecte...",
-        "description": "Reduce repeated copying when selecting child sessions that must be protected during maintenance. [#161526](https://github.com/openclaw/openclaw/pull/161526). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161526"
-      },
-      {
-        "title": "Copy only relevant child-run records for control and prompt context, avoidi...",
-        "description": "Copy only relevant child-run records for control and prompt context, avoiding unrelated tasks in large histories. [#161690](https://github.com/openclaw/openclaw/pull/161690). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161690"
-      },
-      {
-        "title": "Reuse database workers on macOS and Linux Bun builds that pass native SQLit...",
-        "description": "Reuse database workers on macOS and Linux Bun builds that pass native SQLite cleanup checks. Stock Bun 1.4.2, Windows and inconclusive checks retain conservative worker retirement. [#161764](https://github.com/openclaw/openclaw/pull/161764). Thanks to [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/issues/161764"
-      },
-      {
-        "title": "Load fewer unrelated modules when starting session, history and usage readers",
-        "description": "Load fewer unrelated modules when starting session, history and usage readers. [#162609](https://github.com/openclaw/openclaw/pull/162609). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162609"
-      },
-      {
-        "title": "Share preparation for session updates sent to several clients and avoid rep...",
-        "description": "Share preparation for session updates sent to several clients and avoid repeated secret-filter checks within one output pass. [#162810](https://github.com/openclaw/openclaw/pull/162810). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162810"
-      },
-      {
-        "title": "Release catalog listeners and disconnected-client caches after stalled disc...",
-        "description": "Release catalog listeners and disconnected-client caches after stalled discovery or reconnects, while continuing to track genuinely unfinished native work. [#163688](https://github.com/openclaw/openclaw/pull/163688). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163688"
-      },
-      {
-        "title": "Avoid copying the old transcript while validating and adopting concurrent h...",
-        "description": "Avoid copying the old transcript while validating and adopting concurrent history updates. [#163710](https://github.com/openclaw/openclaw/pull/163710). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163710"
-      },
-      {
-        "title": "Avoid rebuilding full session lists or copying unrelated details during lif...",
-        "description": "Avoid rebuilding full session lists or copying unrelated details during lifecycle actions in large stores. Background storage handoffs can still add to total request time. [#163815](https://github.com/openclaw/openclaw/pull/163815). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163815"
-      },
-      {
-        "title": "Share immutable published session and worker facts instead of repeatedly co...",
-        "description": "Share immutable published session and worker facts instead of repeatedly copying them for inventory and placement reads. [#164102](https://github.com/openclaw/openclaw/pull/164102). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164102"
-      },
-      {
-        "title": "Retain less unnecessary data from settled tools, private Code Mode results...",
-        "description": "Retain less unnecessary data from settled tools, private Code Mode results and published child records during long tool-heavy runs. Persist trajectory events in batches within the existing rolling retention limit. [#164199](https://github.com/openclaw/openclaw/pull/164199). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164199"
-      },
-      {
-        "title": "Share submitted transcript data to retain fewer duplicate tool results",
-        "description": "Share submitted transcript data to retain fewer duplicate tool results. Plugin and SDK callers must treat payloads as immutable immediately, including while an asynchronous save is pending, and create new values for updates. [#164251](https://github.com/openclaw/openclaw/pull/164251). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164251"
-      },
-      {
-        "title": "Release discarded large tool output when a transcript keeps only a short ex...",
-        "description": "Release discarded large tool output when a transcript keeps only a short excerpt, including excerpts carried through prepared redaction metadata. [#164361](https://github.com/openclaw/openclaw/pull/164361). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164361"
-      },
-      {
-        "title": "Release completed read requests and their prompt or transcript data from re...",
-        "description": "Release completed read requests and their prompt or transcript data from reusable SQLite read workers while keeping those workers available for later reads. [#164370](https://github.com/openclaw/openclaw/pull/164370). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164370"
-      },
-      {
-        "title": "Release duplicate completed tool data and finished-run state during long Co...",
-        "description": "Release duplicate completed tool data and finished-run state during long Code Mode sessions, retaining saved history and the five-minute warm-worker window. Lifecycle hooks receive saved rewritten activity and omit suppressed entries. [#164386](https://github.com/openclaw/openclaw/pull/164386). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164386"
-      },
-      {
-        "title": "Reuse frozen configuration captures during reply and tool preparation inste...",
-        "description": "Reuse frozen configuration captures during reply and tool preparation instead of repeatedly copying unchanged settings. Active turns retain their admitted policy and new work receives updated settings. [#164398](https://github.com/openclaw/openclaw/pull/164398). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164398"
-      },
-      {
-        "title": "Retain less nested transcript bookkeeping and share compiled validators for...",
-        "description": "Retain less nested transcript bookkeeping and share compiled validators for equivalent schemas. Schema contents determine reuse; the SDK’s `cacheKey` no longer selects it. [#164467](https://github.com/openclaw/openclaw/pull/164467). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164467"
-      },
-      {
-        "title": "Share equal immutable data between initial history and model context, inclu...",
-        "description": "Share equal immutable data between initial history and model context, including incognito sessions, while keeping private fields outside the model’s view. [#164502](https://github.com/openclaw/openclaw/pull/164502). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164502"
-      },
-      {
-        "title": "Let eligible idle history readers release their database using their record...",
-        "description": "Let eligible idle history readers release their database using their recorded capability, and defer the default heap-limit probe until memory diagnostics need it. [9137cfc](https://github.com/openclaw/openclaw/commit/9137cfcc5f4e2a3a6cac458590b491c1031b535a). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "Reduced Gateway restart delays while retaining verified Control UI assets",
+        "description": "Reduced Gateway restart delays while retaining verified Control UI assets. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Reduce transcript-worker imports to the board and progress-card schemas the...",
-        "description": "Reduce transcript-worker imports to the board and progress-card schemas they use, avoiding the broader Gateway protocol dependency. [a02d441](https://github.com/openclaw/openclaw/commit/a02d441dbf8aa40a13b6be0a18c5f2b1f15bc77e). Thanks to [@RomneyDa](https://github.com/RomneyDa). Thanks [@steipete](https://github.com/steipete) for the original transcript-worker repair.",
+        "title": "Reduced memory retained by read-only memory retrieval workers",
+        "description": "Reduced memory retained by read-only memory retrieval workers. Thanks @RomneyDa.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read shared GitHub publication status and recovery records in database work...",
-        "description": "Read shared GitHub publication status and recovery records in database workers, reducing storage work on the Gateway request thread. [#161214](https://github.com/openclaw/openclaw/pull/161214). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161214"
+        "title": "Reduced transient path allocations during installed plugin ownership checks...",
+        "description": "Reduced transient path allocations during installed plugin ownership checks for large inventories. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Reduce repeated database checks for cached state, profile access and sessio...",
-        "description": "Reduce repeated database checks for cached state, profile access and session listings while detecting schema changes and revoked ownership. [#161678](https://github.com/openclaw/openclaw/pull/161678). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161678"
+        "title": "Kept API-key lookups from loading the model runtime and bounded temporary c...",
+        "description": "Kept API-key lookups from loading the model runtime and bounded temporary catalog-worker memory without reducing catalog capacity. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Gather cloud-worker idle-suspension candidates in a database worker while r...",
-        "description": "Gather cloud-worker idle-suspension candidates in a database worker while retaining the existing suspension policy and pending-recovery exclusions. [#161849](https://github.com/openclaw/openclaw/pull/161849). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161849"
+        "title": "`sdk-untrusted-context-identifier-aliases` reached its 2026-09-08 removal t...",
+        "description": "`sdk-untrusted-context-identifier-aliases` reached its 2026-09-08 removal target; use the channel-named prompt-context fields and `buildChannelMetadata`. The deprecated aliases remain removal-pending until published plugin readers migrate and an SDK breaking release is explicitly approved. See `/plugins/compatibility`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Gather remote-worker disk-monitor candidates in a database worker while ret...",
-        "description": "Gather remote-worker disk-monitor candidates in a database worker while retaining the existing probes and disk warnings. [#161878](https://github.com/openclaw/openclaw/pull/161878). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161878"
+        "title": "`channel-webhook-listener-config-inputs` began warning on 2026-09-26",
+        "description": "`channel-webhook-listener-config-inputs` began warning on 2026-09-26; migrate to `legacyWebhook` for canonical listener config. See `/gateway/doctor/config-migrations#channel-webhook-listeners`. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Resolve requester profiles in database workers for the covered metadata, mo...",
-        "description": "Resolve requester profiles in database workers for the covered metadata, model-list, search and profile requests, checking current access before effects. [#162414](https://github.com/openclaw/openclaw/pull/162414). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162414"
+        "title": "`session-manager-sync-persistence` began warning on 2026-10-01",
+        "description": "`session-manager-sync-persistence` began warning on 2026-10-01; await the matching Async-suffixed SessionManager method and its rewrite commit. See `/plugins/sdk-migration/how-to-migrate#await-session-transcript-persistence`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Keep newer upstream-session links intact when delayed monitoring results ar...",
-        "description": "Keep newer upstream-session links intact when delayed monitoring results arrive, preserve retry progress after a failed event write, and continue processing other provider results. [#162518](https://github.com/openclaw/openclaw/pull/162518). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162518"
+        "title": "`extension-session-sync-persistence` began warning on 2026-10-01",
+        "description": "`extension-session-sync-persistence` began warning on 2026-10-01; await the Async-suffixed ExtensionAPI and AgentSession persistence methods. See `/plugins/sdk-migration/how-to-migrate#await-extension-session-changes`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Run conversation archive checks in database workers before writing durable...",
-        "description": "Run conversation archive checks in database workers before writing durable history. [#162521](https://github.com/openclaw/openclaw/pull/162521). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162521"
+        "title": "`provider-replay-sync-persistence` began warning on 2026-10-01",
+        "description": "`provider-replay-sync-persistence` began warning on 2026-10-01; use the async replay sanitizer and session-state APIs. See `/plugins/sdk-migration/how-to-migrate#await-provider-replay-metadata`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Gather health and status session summaries in database workers while preser...",
-        "description": "Gather health and status session summaries in database workers while preserving counts, recent-session order and current store ownership. [#162625](https://github.com/openclaw/openclaw/pull/162625). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162625"
+        "title": "`memory-session-sync-inventory` began warning on 2026-10-01",
+        "description": "`memory-session-sync-inventory` began warning on 2026-10-01; await `loadArchivedSessionsAsync` and `resolveMemorySessionTargetsAsync`. See `/plugins/sdk-migration/compatibility-policy#memory-session-inventory-readers`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Save remote-worker acknowledgments in database workers before continuing wo...",
-        "description": "Save remote-worker acknowledgments in database workers before continuing workspace-result recovery. [#162975](https://github.com/openclaw/openclaw/pull/162975). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162975"
+        "title": "`workspace-mutation-guard-callback` began warning on 2026-10-02",
+        "description": "`workspace-mutation-guard-callback` began warning on 2026-10-02; await database preparation and use SQL-free `guard.assertHost` for live authority. See `/plugins/sdk-migration/how-to-migrate#workspace-mutation-guards`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Let the Gateway handle other pending work between session-list preparation...",
-        "description": "Let the Gateway handle other pending work between session-list preparation batches, while concurrent callers still share preparation and receive the same ordered visible results. [#163031](https://github.com/openclaw/openclaw/pull/163031). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163031"
+        "title": "`gateway-placement-sync-results` began warning on 2026-10-02",
+        "description": "`gateway-placement-sync-results` began warning on 2026-10-02; await the Async-suffixed Gateway placement and publication readers. See `/plugins/sdk-migration/compatibility-policy#gateway-placement-and-publication-readers`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read archived-session status in database workers and send restore notificat...",
-        "description": "Read archived-session status in database workers and send restore notifications only after a successful settled restore. [#163041](https://github.com/openclaw/openclaw/pull/163041). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163041"
+        "title": "`watched-sessions-sync-harness-context` began warning on 2026-10-03",
+        "description": "`watched-sessions-sync-harness-context` began warning on 2026-10-03; await `prepareWatchedSessionsHarnessContext` with a current-host capability assertion. See `/plugins/sdk-migration/compatibility-policy#watched-session-harness-context`. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Check attachment ownership in database workers and recheck current session...",
-        "description": "Check attachment ownership in database workers and recheck current session access and download tickets before returning protected media. [#163049](https://github.com/openclaw/openclaw/pull/163049). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163049"
+        "title": "`plugin-sdk-media-understanding-public-demotion` reached its 2026-09-30 rem...",
+        "description": "`plugin-sdk-media-understanding-public-demotion` reached its 2026-09-30 removal target; migrate to `api.registerMediaUnderstandingProvider(...)` and provider-owned request helpers. It remains removal-pending until the focused public-artifact read seam is complete. See `/plugins/architecture`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read long histories for recovery, usage totals and MCP App restoration in d...",
-        "description": "Read long histories for recovery, usage totals and MCP App restoration in database workers, publishing prepared messages after commit. [#163053](https://github.com/openclaw/openclaw/pull/163053). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163053"
+        "title": "`plugin-sdk-memory-host-core-public-demotion` reached its 2026-09-30 remova...",
+        "description": "`plugin-sdk-memory-host-core-public-demotion` reached its 2026-09-30 removal target; use host-prepared memory prompts and injected memory capability registration. It remains removal-pending until the focused public-artifact read seam is complete. See `/plugins/architecture-internals#context-engine-plugins`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Prepare covered agent and recovery session reads in database workers, rejec...",
-        "description": "Prepare covered agent and recovery session reads in database workers, rejecting delayed results after cancellation or session replacement. [#163115](https://github.com/openclaw/openclaw/pull/163115). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163115"
+        "title": "`plugin-sdk-channel-setup-input-fields` reached its 2026-10-01 removal target",
+        "description": "`plugin-sdk-channel-setup-input-fields` reached its 2026-10-01 removal target; use plugin-local setup input intersections. It remains removal-pending until a published-plugin artifact sweep finds no readers. See `/plugins/sdk-migration#published-channel-setup-compatibility`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Copy and relink restart-interrupted conversations in database workers while...",
-        "description": "Copy and relink restart-interrupted conversations in database workers while keeping recovery atomic. [#163119](https://github.com/openclaw/openclaw/pull/163119). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163119"
+        "title": "`plugin-sdk-broad-runtime-barrels` reached its 2026-10-01 removal target",
+        "description": "`plugin-sdk-broad-runtime-barrels` reached its 2026-10-01 removal target; use focused plugin SDK subpaths. It remains removal-pending until bundled and published plugins stop importing the broad barrels. See `/plugins/sdk-migration#compatibility-policy`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Move completion and reply-preparation transcript reads into database worker...",
-        "description": "Move completion and reply-preparation transcript reads into database workers, adopting committed messages before notifying observers. [#163120](https://github.com/openclaw/openclaw/pull/163120). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163120"
+        "title": "`plugin-sdk-provider-owned-helper-shims` reached its 2026-10-01 removal target",
+        "description": "`plugin-sdk-provider-owned-helper-shims` reached its 2026-10-01 removal target; use provider-local auth, model, replay, OAuth, and stream helpers. It remains removal-pending until official and published-plugin readers are gone. See `/plugins/sdk-migration#compatibility-policy`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Avoid scanning every saved session key when checking an agent-specific stor...",
-        "description": "Avoid scanning every saved session key when checking an agent-specific store during session creation. [#163163](https://github.com/openclaw/openclaw/pull/163163). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163163"
+        "title": "`message-presentation-legacy-bridges` reached its 2026-10-01 removal target",
+        "description": "`message-presentation-legacy-bridges` reached its 2026-10-01 removal target; use `MessagePresentation` values and channel renderers. It remains removal-pending until official producers and channels no longer use legacy interactive replies. See `/plugins/sdk-migration#compatibility-policy`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Prepare covered conversation lists, routing addresses and manual-compaction...",
-        "description": "Prepare covered conversation lists, routing addresses and manual-compaction bindings in database workers. [#163208](https://github.com/openclaw/openclaw/pull/163208). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163208"
+        "title": "`plugin-sdk-focused-compat-aliases` reached its 2026-10-01 removal target",
+        "description": "`plugin-sdk-focused-compat-aliases` reached its 2026-10-01 removal target; use each alias's focused replacement. It remains removal-pending until all enumerated aliases have no bundled or published readers. See `/plugins/sdk-migration#compatibility-policy`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Save and prune durable usage-report cache data in database workers, keeping...",
-        "description": "Save and prune durable usage-report cache data in database workers, keeping refresh locks and known lost-reply recovery without repeating writes. [#163287](https://github.com/openclaw/openclaw/pull/163287). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163287"
+        "title": "`agent-harness-terminal-result-aliases` reached its 2026-10-01 removal target",
+        "description": "`agent-harness-terminal-result-aliases` reached its 2026-10-01 removal target; use `AgentHarnessAttemptResult.terminal` and `AgentHarnessDeliveryDefaults.visibleReplies`. It remains removal-pending until legacy readers are gone. See `/plugins/sdk-agent-harness`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Move selected routine session-metadata transactions into database workers a...",
-        "description": "Move selected routine session-metadata transactions into database workers and publish after confirmed commits. Lost worker replies do not repeat committed writes. [#163378](https://github.com/openclaw/openclaw/pull/163378). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163378"
+        "title": "`official-plugin-export-aliases` reached its 2026-10-01 removal target",
+        "description": "`official-plugin-export-aliases` reached its 2026-10-01 removal target; use `MessagePresentation` renderers and host-owned runtime behavior. It remains removal-pending until supported official plugins stop importing the aliases. See `/plugins/compatibility#current-compatibility-areas`. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read session versions, bounded history, update watches and notice acknowled...",
-        "description": "Read session versions, bounded history, update watches and notice acknowledgments in database workers without losing queued events during a handoff to the same database. [#163513](https://github.com/openclaw/openclaw/pull/163513). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163513"
+        "title": "`memory-host-compatibility-aliases` reached its 2026-10-01 removal target",
+        "description": "`memory-host-compatibility-aliases` reached its 2026-10-01 removal target; use canonical memory cache and FTS tables. It remains removal-pending until supported integrations and legacy data are verified. See `/plugins/sdk-migration#compatibility-policy`. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read shared-session suggestions in a database worker and filter them by cur...",
-        "description": "Read shared-session suggestions in a database worker and filter them by current access before returning them. [#163546](https://github.com/openclaw/openclaw/pull/163546). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163546"
+        "title": "`plugin-runtime-api-compat-aliases` reached its 2026-10-01 removal target",
+        "description": "`plugin-runtime-api-compat-aliases` reached its 2026-10-01 removal target; use the namespaced plugin API and focused runtime methods. It remains removal-pending until all flat API/runtime readers are gone. See `/plugins/sdk-migration#compatibility-policy`. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read durable pending messages for chat history and startup in database work...",
-        "description": "Read durable pending messages for chat history and startup in database workers, and retain confirmed interruption status after a lost worker reply. [#163582](https://github.com/openclaw/openclaw/pull/163582). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163582"
+        "title": "`plugin-provider-manifest-compat-aliases` reached its 2026-10-01 removal ta...",
+        "description": "`plugin-provider-manifest-compat-aliases` reached its 2026-10-01 removal target; use manifest-owned plugin metadata and model-catalog registration. It remains removal-pending until provider readers are gone. See `/plugins/sdk-migration#compatibility-policy`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Move worker-transcript replay bookkeeping into database workers while prese...",
-        "description": "Move worker-transcript replay bookkeeping into database workers while preserving sequence order and duplicate detection. Unknown writes stay pending for recovery. [#163594](https://github.com/openclaw/openclaw/pull/163594). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163594"
+        "title": "`media-legacy-projection` reached its 2026-10-01 removal target",
+        "description": "`media-legacy-projection` reached its 2026-10-01 removal target; use ordered media facts, typed hook media, attachment templates, and `media-local-roots`. It remains removal-pending until a clean published-plugin sweep finds no readers. See `/plugins/sdk-migration#media-legacy-projection`.",
+        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
       },
       {
-        "title": "Read saved history for compaction, reset hooks, side questions, exports and...",
-        "description": "Read saved history for compaction, reset hooks, side questions, exports and asynchronous SDK consumers in database workers. Worker failure does not fall back to a blocking durable read. [#163605](https://github.com/openclaw/openclaw/pull/163605). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163605"
+        "title": "**PR #164194**",
+        "description": "**PR #164194**",
+        "href": "https://github.com/openclaw/openclaw/issues/164194"
       },
       {
-        "title": "Save supported transcript, queued-input, session and Goal changes together...",
-        "description": "Save supported transcript, queued-input, session and Goal changes together in background storage work. Publish confirmed saves once; unknown outcomes stop without repeating writes. [#163889](https://github.com/openclaw/openclaw/pull/163889). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163889"
+        "title": "**PR #164137**",
+        "description": "**PR #164137**",
+        "href": "https://github.com/openclaw/openclaw/issues/164137"
       },
       {
-        "title": "Keep checking incognito workers when disk-backed session preparation fails,...",
-        "description": "Keep checking incognito workers when disk-backed session preparation fails, leaving affected disk sessions unknown rather than treating them as absent. [#163972](https://github.com/openclaw/openclaw/pull/163972). Thanks to [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/issues/163972"
+        "title": "**PR #164198**",
+        "description": "**PR #164198**",
+        "href": "https://github.com/openclaw/openclaw/issues/164198"
       },
       {
-        "title": "Batch database-schema metadata reads instead of repeating queries for every...",
-        "description": "Batch database-schema metadata reads instead of repeating queries for every table and index. [#164077](https://github.com/openclaw/openclaw/pull/164077). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164077"
+        "title": "**PR #164218**",
+        "description": "**PR #164218**",
+        "href": "https://github.com/openclaw/openclaw/issues/164218"
       },
       {
-        "title": "Avoid serializing unchanged prompt, skill and diff snapshots during routine...",
-        "description": "Avoid serializing unchanged prompt, skill and diff snapshots during routine metadata updates, while fully saving changed or cleared snapshots. [#164093](https://github.com/openclaw/openclaw/pull/164093). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164093"
-      },
-      {
-        "title": "Check board membership once per session-list batch instead of once per row,...",
-        "description": "Check board membership once per session-list batch instead of once per row, using one committed snapshot for the results. [#164094](https://github.com/openclaw/openclaw/pull/164094). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164094"
-      },
-      {
-        "title": "Track conversation-environment activity with one fewer database read per to...",
-        "description": "Track conversation-environment activity with one fewer database read per touch while retaining current attachment and ownership checks. [#164108](https://github.com/openclaw/openclaw/pull/164108). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164108"
-      },
-      {
-        "title": "Use indexed ownership checks for already-admitted state handles while retai...",
-        "description": "Use indexed ownership checks for already-admitted state handles while retaining conservative checks for other connections. [#164110](https://github.com/openclaw/openclaw/pull/164110). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #164110**",
+        "description": "**PR #164110**",
         "href": "https://github.com/openclaw/openclaw/issues/164110"
       },
       {
-        "title": "Reuse bounded prepared database statements while each query still reads cur...",
-        "description": "Reuse bounded prepared database statements while each query still reads current data. [#164117](https://github.com/openclaw/openclaw/pull/164117). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164117"
+        "title": "**PR #164205**",
+        "description": "**PR #164205** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164205"
       },
       {
-        "title": "Read needed activity and lifecycle details without loading unused saved pro...",
-        "description": "Read needed activity and lifecycle details without loading unused saved prompts, skills or diff baselines. [#164125](https://github.com/openclaw/openclaw/pull/164125). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/164125"
+        "title": "**PR #164129**",
+        "description": "**PR #164129**",
+        "href": "https://github.com/openclaw/openclaw/issues/164129"
       },
       {
-        "title": "Save pending chat and agent input in background storage work",
-        "description": "Save pending chat and agent input in background storage work. Final outcomes and cleanup wait for accepted saves; SDK callers can explicitly await completion without replaying an uncertain write. [#164284](https://github.com/openclaw/openclaw/pull/164284). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #163510**",
+        "description": "**PR #163510** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163510"
+      },
+      {
+        "title": "**PR #163281**",
+        "description": "**PR #163281** Thanks @jesse-merhi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163281"
+      },
+      {
+        "title": "**PR #164225**",
+        "description": "**PR #164225**",
+        "href": "https://github.com/openclaw/openclaw/issues/164225"
+      },
+      {
+        "title": "**PR #164217**",
+        "description": "**PR #164217**",
+        "href": "https://github.com/openclaw/openclaw/issues/164217"
+      },
+      {
+        "title": "**PR #164202**",
+        "description": "**PR #164202**",
+        "href": "https://github.com/openclaw/openclaw/issues/164202"
+      },
+      {
+        "title": "**PR #163815**",
+        "description": "**PR #163815**",
+        "href": "https://github.com/openclaw/openclaw/issues/163815"
+      },
+      {
+        "title": "**PR #164193** Related #161924",
+        "description": "**PR #164193** Related #161924. Thanks @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164193"
+      },
+      {
+        "title": "**PR #164239**",
+        "description": "**PR #164239**",
+        "href": "https://github.com/openclaw/openclaw/issues/164239"
+      },
+      {
+        "title": "**PR #164230**",
+        "description": "**PR #164230** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164230"
+      },
+      {
+        "title": "**PR #164187**",
+        "description": "**PR #164187**",
+        "href": "https://github.com/openclaw/openclaw/issues/164187"
+      },
+      {
+        "title": "**PR #164235** Related #162259",
+        "description": "**PR #164235** Related #162259. Thanks @JD8855122.",
+        "href": "https://github.com/openclaw/openclaw/issues/164235"
+      },
+      {
+        "title": "**PR #164204**",
+        "description": "**PR #164204**",
+        "href": "https://github.com/openclaw/openclaw/issues/164204"
+      },
+      {
+        "title": "**PR #164134**",
+        "description": "**PR #164134**",
+        "href": "https://github.com/openclaw/openclaw/issues/164134"
+      },
+      {
+        "title": "**PR #164238**",
+        "description": "**PR #164238**",
+        "href": "https://github.com/openclaw/openclaw/issues/164238"
+      },
+      {
+        "title": "**PR #164244**",
+        "description": "**PR #164244**",
+        "href": "https://github.com/openclaw/openclaw/issues/164244"
+      },
+      {
+        "title": "**PR #164182**",
+        "description": "**PR #164182**",
+        "href": "https://github.com/openclaw/openclaw/issues/164182"
+      },
+      {
+        "title": "**PR #164126** Related #164115",
+        "description": "**PR #164126** Related #164115. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164126"
+      },
+      {
+        "title": "**PR #164186**",
+        "description": "**PR #164186**",
+        "href": "https://github.com/openclaw/openclaw/issues/164186"
+      },
+      {
+        "title": "**PR #164219** Related #163708",
+        "description": "**PR #164219** Related #163708.",
+        "href": "https://github.com/openclaw/openclaw/issues/164219"
+      },
+      {
+        "title": "**PR #164237**",
+        "description": "**PR #164237**",
+        "href": "https://github.com/openclaw/openclaw/issues/164237"
+      },
+      {
+        "title": "**PR #164247**",
+        "description": "**PR #164247** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164247"
+      },
+      {
+        "title": "**PR #164245**",
+        "description": "**PR #164245** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164245"
+      },
+      {
+        "title": "**PR #164128**",
+        "description": "**PR #164128**",
+        "href": "https://github.com/openclaw/openclaw/issues/164128"
+      },
+      {
+        "title": "**PR #164242**",
+        "description": "**PR #164242**",
+        "href": "https://github.com/openclaw/openclaw/issues/164242"
+      },
+      {
+        "title": "**PR #164185**",
+        "description": "**PR #164185**",
+        "href": "https://github.com/openclaw/openclaw/issues/164185"
+      },
+      {
+        "title": "**PR #164183**",
+        "description": "**PR #164183**",
+        "href": "https://github.com/openclaw/openclaw/issues/164183"
+      },
+      {
+        "title": "**PR #164253**",
+        "description": "**PR #164253**",
+        "href": "https://github.com/openclaw/openclaw/issues/164253"
+      },
+      {
+        "title": "**PR #164184**",
+        "description": "**PR #164184**",
+        "href": "https://github.com/openclaw/openclaw/issues/164184"
+      },
+      {
+        "title": "**PR #164248**",
+        "description": "**PR #164248**",
+        "href": "https://github.com/openclaw/openclaw/issues/164248"
+      },
+      {
+        "title": "**PR #164159**",
+        "description": "**PR #164159**",
+        "href": "https://github.com/openclaw/openclaw/issues/164159"
+      },
+      {
+        "title": "**PR #163477**",
+        "description": "**PR #163477** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/163477"
+      },
+      {
+        "title": "**PR #164240**",
+        "description": "**PR #164240**",
+        "href": "https://github.com/openclaw/openclaw/issues/164240"
+      },
+      {
+        "title": "**PR #164260**",
+        "description": "**PR #164260**",
+        "href": "https://github.com/openclaw/openclaw/issues/164260"
+      },
+      {
+        "title": "**PR #164153**",
+        "description": "**PR #164153**",
+        "href": "https://github.com/openclaw/openclaw/issues/164153"
+      },
+      {
+        "title": "**PR #164163**",
+        "description": "**PR #164163**",
+        "href": "https://github.com/openclaw/openclaw/issues/164163"
+      },
+      {
+        "title": "**PR #163727**",
+        "description": "**PR #163727** Thanks @ivan-magda and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163727"
+      },
+      {
+        "title": "**PR #163137**",
+        "description": "**PR #163137**",
+        "href": "https://github.com/openclaw/openclaw/issues/163137"
+      },
+      {
+        "title": "**PR #163112**",
+        "description": "**PR #163112**",
+        "href": "https://github.com/openclaw/openclaw/issues/163112"
+      },
+      {
+        "title": "**PR #162329**",
+        "description": "**PR #162329** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/162329"
+      },
+      {
+        "title": "**PR #164223**",
+        "description": "**PR #164223**",
+        "href": "https://github.com/openclaw/openclaw/issues/164223"
+      },
+      {
+        "title": "**PR #164261** Related #162236",
+        "description": "**PR #164261** Related #162236. Thanks @waynegault.",
+        "href": "https://github.com/openclaw/openclaw/issues/164261"
+      },
+      {
+        "title": "**PR #164251**",
+        "description": "**PR #164251**",
+        "href": "https://github.com/openclaw/openclaw/issues/164251"
+      },
+      {
+        "title": "**PR #164165**",
+        "description": "**PR #164165**",
+        "href": "https://github.com/openclaw/openclaw/issues/164165"
+      },
+      {
+        "title": "**PR #164270**",
+        "description": "**PR #164270**",
+        "href": "https://github.com/openclaw/openclaw/issues/164270"
+      },
+      {
+        "title": "**PR #163930**",
+        "description": "**PR #163930**",
+        "href": "https://github.com/openclaw/openclaw/issues/163930"
+      },
+      {
+        "title": "**PR #163812** Related #163810",
+        "description": "**PR #163812** Related #163810. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163812"
+      },
+      {
+        "title": "**PR #164252**",
+        "description": "**PR #164252**",
+        "href": "https://github.com/openclaw/openclaw/issues/164252"
+      },
+      {
+        "title": "**PR #164268**",
+        "description": "**PR #164268**",
+        "href": "https://github.com/openclaw/openclaw/issues/164268"
+      },
+      {
+        "title": "**PR #164276**",
+        "description": "**PR #164276**",
+        "href": "https://github.com/openclaw/openclaw/issues/164276"
+      },
+      {
+        "title": "**PR #164231**",
+        "description": "**PR #164231**",
+        "href": "https://github.com/openclaw/openclaw/issues/164231"
+      },
+      {
+        "title": "**PR #164262**",
+        "description": "**PR #164262**",
+        "href": "https://github.com/openclaw/openclaw/issues/164262"
+      },
+      {
+        "title": "**PR #164277**",
+        "description": "**PR #164277**",
+        "href": "https://github.com/openclaw/openclaw/issues/164277"
+      },
+      {
+        "title": "**PR #164281**",
+        "description": "**PR #164281**",
+        "href": "https://github.com/openclaw/openclaw/issues/164281"
+      },
+      {
+        "title": "**PR #164289**",
+        "description": "**PR #164289** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164289"
+      },
+      {
+        "title": "**PR #164287**",
+        "description": "**PR #164287**",
+        "href": "https://github.com/openclaw/openclaw/issues/164287"
+      },
+      {
+        "title": "**PR #164221**",
+        "description": "**PR #164221**",
+        "href": "https://github.com/openclaw/openclaw/issues/164221"
+      },
+      {
+        "title": "**PR #164299**",
+        "description": "**PR #164299**",
+        "href": "https://github.com/openclaw/openclaw/issues/164299"
+      },
+      {
+        "title": "**PR #164271**",
+        "description": "**PR #164271**",
+        "href": "https://github.com/openclaw/openclaw/issues/164271"
+      },
+      {
+        "title": "**PR #164301**",
+        "description": "**PR #164301**",
+        "href": "https://github.com/openclaw/openclaw/issues/164301"
+      },
+      {
+        "title": "**PR #164302**",
+        "description": "**PR #164302**",
+        "href": "https://github.com/openclaw/openclaw/issues/164302"
+      },
+      {
+        "title": "**PR #164249**",
+        "description": "**PR #164249**",
+        "href": "https://github.com/openclaw/openclaw/issues/164249"
+      },
+      {
+        "title": "**PR #164243**",
+        "description": "**PR #164243**",
+        "href": "https://github.com/openclaw/openclaw/issues/164243"
+      },
+      {
+        "title": "**PR #164295**",
+        "description": "**PR #164295**",
+        "href": "https://github.com/openclaw/openclaw/issues/164295"
+      },
+      {
+        "title": "**PR #164280**",
+        "description": "**PR #164280** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164280"
+      },
+      {
+        "title": "**PR #164224**",
+        "description": "**PR #164224**",
+        "href": "https://github.com/openclaw/openclaw/issues/164224"
+      },
+      {
+        "title": "**PR #164303**",
+        "description": "**PR #164303**",
+        "href": "https://github.com/openclaw/openclaw/issues/164303"
+      },
+      {
+        "title": "**PR #163535**",
+        "description": "**PR #163535**",
+        "href": "https://github.com/openclaw/openclaw/issues/163535"
+      },
+      {
+        "title": "**PR #164292**",
+        "description": "**PR #164292**",
+        "href": "https://github.com/openclaw/openclaw/issues/164292"
+      },
+      {
+        "title": "**PR #164285** Related #164256",
+        "description": "**PR #164285** Related #164256. Thanks @obviyus and @Twilight-Networks.",
+        "href": "https://github.com/openclaw/openclaw/issues/164285"
+      },
+      {
+        "title": "**PR #164284**",
+        "description": "**PR #164284**",
         "href": "https://github.com/openclaw/openclaw/issues/164284"
       },
       {
-        "title": "Prepare watched-conversation context in background storage work with curren...",
-        "description": "Prepare watched-conversation context in background storage work with current visibility checks. Plugin authors can await the new authority-bound helper; the synchronous helper remains supported. [#164288](https://github.com/openclaw/openclaw/pull/164288). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #164222**",
+        "description": "**PR #164222**",
+        "href": "https://github.com/openclaw/openclaw/issues/164222"
+      },
+      {
+        "title": "**PR #164288**",
+        "description": "**PR #164288**",
         "href": "https://github.com/openclaw/openclaw/issues/164288"
       },
       {
-        "title": "Record session creation, compaction and child-launch signals, and prune lif...",
-        "description": "Record session creation, compaction and child-launch signals, and prune lifecycle history in database workers. [#164367](https://github.com/openclaw/openclaw/pull/164367). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #164312**",
+        "description": "**PR #164312**",
+        "href": "https://github.com/openclaw/openclaw/issues/164312"
+      },
+      {
+        "title": "**PR #163842**",
+        "description": "**PR #163842** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/163842"
+      },
+      {
+        "title": "**PR #163857**",
+        "description": "**PR #163857** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/163857"
+      },
+      {
+        "title": "**PR #164116**",
+        "description": "**PR #164116** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164116"
+      },
+      {
+        "title": "**PR #164135**",
+        "description": "**PR #164135** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164135"
+      },
+      {
+        "title": "**PR #164213**",
+        "description": "**PR #164213** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164213"
+      },
+      {
+        "title": "**PR #162177**",
+        "description": "**PR #162177** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/162177"
+      },
+      {
+        "title": "**PR #162033** Related #161953",
+        "description": "**PR #162033** Related #161953. Thanks @cestercian and @RomneyDa and @zhyx1996.",
+        "href": "https://github.com/openclaw/openclaw/issues/162033"
+      },
+      {
+        "title": "**PR #164317**",
+        "description": "**PR #164317**",
+        "href": "https://github.com/openclaw/openclaw/issues/164317"
+      },
+      {
+        "title": "**PR #164322**",
+        "description": "**PR #164322**",
+        "href": "https://github.com/openclaw/openclaw/issues/164322"
+      },
+      {
+        "title": "**PR #164331**",
+        "description": "**PR #164331**",
+        "href": "https://github.com/openclaw/openclaw/issues/164331"
+      },
+      {
+        "title": "**PR #164332**",
+        "description": "**PR #164332**",
+        "href": "https://github.com/openclaw/openclaw/issues/164332"
+      },
+      {
+        "title": "**PR #164333**",
+        "description": "**PR #164333**",
+        "href": "https://github.com/openclaw/openclaw/issues/164333"
+      },
+      {
+        "title": "**PR #164307**",
+        "description": "**PR #164307**",
+        "href": "https://github.com/openclaw/openclaw/issues/164307"
+      },
+      {
+        "title": "**PR #164313**",
+        "description": "**PR #164313**",
+        "href": "https://github.com/openclaw/openclaw/issues/164313"
+      },
+      {
+        "title": "**PR #164321**",
+        "description": "**PR #164321**",
+        "href": "https://github.com/openclaw/openclaw/issues/164321"
+      },
+      {
+        "title": "**PR #164197**",
+        "description": "**PR #164197** Thanks @galiniliev and @KirDE.",
+        "href": "https://github.com/openclaw/openclaw/issues/164197"
+      },
+      {
+        "title": "**PR #164335**",
+        "description": "**PR #164335**",
+        "href": "https://github.com/openclaw/openclaw/issues/164335"
+      },
+      {
+        "title": "**PR #164336** Related #164283",
+        "description": "**PR #164336** Related #164283. Thanks @jayzhou2309 and @obviyus and @nkarkare.",
+        "href": "https://github.com/openclaw/openclaw/issues/164336"
+      },
+      {
+        "title": "**PR #164326**",
+        "description": "**PR #164326**",
+        "href": "https://github.com/openclaw/openclaw/issues/164326"
+      },
+      {
+        "title": "**PR #162954**",
+        "description": "**PR #162954** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/162954"
+      },
+      {
+        "title": "**PR #160108**",
+        "description": "**PR #160108** Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/issues/160108"
+      },
+      {
+        "title": "**PR #164203**",
+        "description": "**PR #164203**",
+        "href": "https://github.com/openclaw/openclaw/issues/164203"
+      },
+      {
+        "title": "**PR #164348**",
+        "description": "**PR #164348**",
+        "href": "https://github.com/openclaw/openclaw/issues/164348"
+      },
+      {
+        "title": "**PR #164340**",
+        "description": "**PR #164340**",
+        "href": "https://github.com/openclaw/openclaw/issues/164340"
+      },
+      {
+        "title": "**PR #164161**",
+        "description": "**PR #164161** Thanks @GoldArowana and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164161"
+      },
+      {
+        "title": "**PR #164358**",
+        "description": "**PR #164358**",
+        "href": "https://github.com/openclaw/openclaw/issues/164358"
+      },
+      {
+        "title": "**PR #163350**",
+        "description": "**PR #163350**",
+        "href": "https://github.com/openclaw/openclaw/issues/163350"
+      },
+      {
+        "title": "**PR #164361**",
+        "description": "**PR #164361**",
+        "href": "https://github.com/openclaw/openclaw/issues/164361"
+      },
+      {
+        "title": "**PR #164353**",
+        "description": "**PR #164353**",
+        "href": "https://github.com/openclaw/openclaw/issues/164353"
+      },
+      {
+        "title": "**PR #162036**",
+        "description": "**PR #162036** Thanks @LinzeShi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162036"
+      },
+      {
+        "title": "**PR #164337**",
+        "description": "**PR #164337**",
+        "href": "https://github.com/openclaw/openclaw/issues/164337"
+      },
+      {
+        "title": "**PR #164345**",
+        "description": "**PR #164345** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164345"
+      },
+      {
+        "title": "**PR #164349**",
+        "description": "**PR #164349**",
+        "href": "https://github.com/openclaw/openclaw/issues/164349"
+      },
+      {
+        "title": "**PR #164370**",
+        "description": "**PR #164370**",
+        "href": "https://github.com/openclaw/openclaw/issues/164370"
+      },
+      {
+        "title": "**PR #164352**",
+        "description": "**PR #164352**",
+        "href": "https://github.com/openclaw/openclaw/issues/164352"
+      },
+      {
+        "title": "**PR #164374**",
+        "description": "**PR #164374**",
+        "href": "https://github.com/openclaw/openclaw/issues/164374"
+      },
+      {
+        "title": "**PR #164151** Related #164149",
+        "description": "**PR #164151** Related #164149. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164151"
+      },
+      {
+        "title": "**PR #164380**",
+        "description": "**PR #164380**",
+        "href": "https://github.com/openclaw/openclaw/issues/164380"
+      },
+      {
+        "title": "**PR #164367**",
+        "description": "**PR #164367**",
         "href": "https://github.com/openclaw/openclaw/issues/164367"
       },
       {
-        "title": "Remove or restore saved Codex and Agents API session bindings in background...",
-        "description": "Remove or restore saved Codex and Agents API session bindings in background storage work, blocking reuse after uncertain outcomes. [#164391](https://github.com/openclaw/openclaw/pull/164391). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #164359**",
+        "description": "**PR #164359**",
+        "href": "https://github.com/openclaw/openclaw/issues/164359"
+      },
+      {
+        "title": "**PR #164350**",
+        "description": "**PR #164350**",
+        "href": "https://github.com/openclaw/openclaw/issues/164350"
+      },
+      {
+        "title": "**PR #164360**",
+        "description": "**PR #164360**",
+        "href": "https://github.com/openclaw/openclaw/issues/164360"
+      },
+      {
+        "title": "**PR #164364** Related #164362",
+        "description": "**PR #164364** Related #164362. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164364"
+      },
+      {
+        "title": "**PR #164376**",
+        "description": "**PR #164376**",
+        "href": "https://github.com/openclaw/openclaw/issues/164376"
+      },
+      {
+        "title": "**PR #164386**",
+        "description": "**PR #164386**",
+        "href": "https://github.com/openclaw/openclaw/issues/164386"
+      },
+      {
+        "title": "**PR #164398**",
+        "description": "**PR #164398**",
+        "href": "https://github.com/openclaw/openclaw/issues/164398"
+      },
+      {
+        "title": "**PR #164291**",
+        "description": "**PR #164291**",
+        "href": "https://github.com/openclaw/openclaw/issues/164291"
+      },
+      {
+        "title": "**PR #164400**",
+        "description": "**PR #164400**",
+        "href": "https://github.com/openclaw/openclaw/issues/164400"
+      },
+      {
+        "title": "**PR #162938**",
+        "description": "**PR #162938** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/162938"
+      },
+      {
+        "title": "**PR #164373**",
+        "description": "**PR #164373**",
+        "href": "https://github.com/openclaw/openclaw/issues/164373"
+      },
+      {
+        "title": "**PR #164378**",
+        "description": "**PR #164378**",
+        "href": "https://github.com/openclaw/openclaw/issues/164378"
+      },
+      {
+        "title": "**PR #164389**",
+        "description": "**PR #164389**",
+        "href": "https://github.com/openclaw/openclaw/issues/164389"
+      },
+      {
+        "title": "**PR #163701** Related #163700",
+        "description": "**PR #163701** Related #163700. Thanks @sxh313 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163701"
+      },
+      {
+        "title": "**PR #164173**",
+        "description": "**PR #164173**",
+        "href": "https://github.com/openclaw/openclaw/issues/164173"
+      },
+      {
+        "title": "**PR #164387**",
+        "description": "**PR #164387**",
+        "href": "https://github.com/openclaw/openclaw/issues/164387"
+      },
+      {
+        "title": "**PR #165**",
+        "description": "**PR #165** Thanks @Nachx639.",
+        "href": "https://github.com/openclaw/openclaw/issues/165"
+      },
+      {
+        "title": "**PR #164236** Related #163961",
+        "description": "**PR #164236** Related #163961. Thanks @JakeMalis.",
+        "href": "https://github.com/openclaw/openclaw/issues/164236"
+      },
+      {
+        "title": "**PR #164410**",
+        "description": "**PR #164410**",
+        "href": "https://github.com/openclaw/openclaw/issues/164410"
+      },
+      {
+        "title": "**PR #164306**",
+        "description": "**PR #164306**",
+        "href": "https://github.com/openclaw/openclaw/issues/164306"
+      },
+      {
+        "title": "**PR #163799**",
+        "description": "**PR #163799**",
+        "href": "https://github.com/openclaw/openclaw/issues/163799"
+      },
+      {
+        "title": "**PR #164377**",
+        "description": "**PR #164377**",
+        "href": "https://github.com/openclaw/openclaw/issues/164377"
+      },
+      {
+        "title": "**PR #164296**",
+        "description": "**PR #164296**",
+        "href": "https://github.com/openclaw/openclaw/issues/164296"
+      },
+      {
+        "title": "**PR #164391**",
+        "description": "**PR #164391**",
         "href": "https://github.com/openclaw/openclaw/issues/164391"
       },
       {
-        "title": "Move selected chat writer claims, model-switch updates and final-delivery b...",
-        "description": "Move selected chat writer claims, model-switch updates and final-delivery bookkeeping into database workers. [#164514](https://github.com/openclaw/openclaw/pull/164514). Thanks to [@steipete](https://github.com/steipete).",
+        "title": "**PR #164402**",
+        "description": "**PR #164402** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164402"
+      },
+      {
+        "title": "**PR #164381**",
+        "description": "**PR #164381**",
+        "href": "https://github.com/openclaw/openclaw/issues/164381"
+      },
+      {
+        "title": "**PR #164418**",
+        "description": "**PR #164418**",
+        "href": "https://github.com/openclaw/openclaw/issues/164418"
+      },
+      {
+        "title": "**PR #164103**",
+        "description": "**PR #164103**",
+        "href": "https://github.com/openclaw/openclaw/issues/164103"
+      },
+      {
+        "title": "**PR #164413**",
+        "description": "**PR #164413**",
+        "href": "https://github.com/openclaw/openclaw/issues/164413"
+      },
+      {
+        "title": "**PR #164325** Related #164323",
+        "description": "**PR #164325** Related #164323. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164325"
+      },
+      {
+        "title": "**PR #163203**",
+        "description": "**PR #163203**",
+        "href": "https://github.com/openclaw/openclaw/issues/163203"
+      },
+      {
+        "title": "**PR #164264**",
+        "description": "**PR #164264**",
+        "href": "https://github.com/openclaw/openclaw/issues/164264"
+      },
+      {
+        "title": "**PR #164428**",
+        "description": "**PR #164428**",
+        "href": "https://github.com/openclaw/openclaw/issues/164428"
+      },
+      {
+        "title": "**PR #164342**",
+        "description": "**PR #164342** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164342"
+      },
+      {
+        "title": "**PR #164434**",
+        "description": "**PR #164434**",
+        "href": "https://github.com/openclaw/openclaw/issues/164434"
+      },
+      {
+        "title": "**PR #164421**",
+        "description": "**PR #164421**",
+        "href": "https://github.com/openclaw/openclaw/issues/164421"
+      },
+      {
+        "title": "**PR #164419**",
+        "description": "**PR #164419**",
+        "href": "https://github.com/openclaw/openclaw/issues/164419"
+      },
+      {
+        "title": "**PR #164432**",
+        "description": "**PR #164432** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164432"
+      },
+      {
+        "title": "**PR #164437**",
+        "description": "**PR #164437**",
+        "href": "https://github.com/openclaw/openclaw/issues/164437"
+      },
+      {
+        "title": "**PR #164430**",
+        "description": "**PR #164430**",
+        "href": "https://github.com/openclaw/openclaw/issues/164430"
+      },
+      {
+        "title": "**PR #164259** Related #164257",
+        "description": "**PR #164259** Related #164257. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164259"
+      },
+      {
+        "title": "**PR #160582** Related #122476",
+        "description": "**PR #160582** Related #122476. Thanks @jayzhou2309 and @obviyus and @imabotone-ui.",
+        "href": "https://github.com/openclaw/openclaw/issues/160582"
+      },
+      {
+        "title": "**PR #164403**",
+        "description": "**PR #164403**",
+        "href": "https://github.com/openclaw/openclaw/issues/164403"
+      },
+      {
+        "title": "**PR #164423**",
+        "description": "**PR #164423** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164423"
+      },
+      {
+        "title": "**PR #164438**",
+        "description": "**PR #164438**",
+        "href": "https://github.com/openclaw/openclaw/issues/164438"
+      },
+      {
+        "title": "**PR #164446**",
+        "description": "**PR #164446** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164446"
+      },
+      {
+        "title": "**PR #164436**",
+        "description": "**PR #164436**",
+        "href": "https://github.com/openclaw/openclaw/issues/164436"
+      },
+      {
+        "title": "**PR #164411**",
+        "description": "**PR #164411**",
+        "href": "https://github.com/openclaw/openclaw/issues/164411"
+      },
+      {
+        "title": "**PR #164440**",
+        "description": "**PR #164440** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164440"
+      },
+      {
+        "title": "**PR #164435** Related #150152",
+        "description": "**PR #164435** Related #150152. Thanks @fuller-stack-dev and @joryirving.",
+        "href": "https://github.com/openclaw/openclaw/issues/164435"
+      },
+      {
+        "title": "**PR #160619**",
+        "description": "**PR #160619** Thanks @LinzeShi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/160619"
+      },
+      {
+        "title": "**PR #164451**",
+        "description": "**PR #164451** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164451"
+      },
+      {
+        "title": "**PR #164457**",
+        "description": "**PR #164457** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164457"
+      },
+      {
+        "title": "**PR #163487**",
+        "description": "**PR #163487** Thanks @ericcurtin and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163487"
+      },
+      {
+        "title": "**PR #162258**",
+        "description": "**PR #162258** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/162258"
+      },
+      {
+        "title": "**PR #162612**",
+        "description": "**PR #162612**",
+        "href": "https://github.com/openclaw/openclaw/issues/162612"
+      },
+      {
+        "title": "**PR #163766**",
+        "description": "**PR #163766**",
+        "href": "https://github.com/openclaw/openclaw/issues/163766"
+      },
+      {
+        "title": "**PR #163623**",
+        "description": "**PR #163623**",
+        "href": "https://github.com/openclaw/openclaw/issues/163623"
+      },
+      {
+        "title": "**PR #164483**",
+        "description": "**PR #164483** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164483"
+      },
+      {
+        "title": "**PR #164450**",
+        "description": "**PR #164450** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164450"
+      },
+      {
+        "title": "**PR #164481**",
+        "description": "**PR #164481**",
+        "href": "https://github.com/openclaw/openclaw/issues/164481"
+      },
+      {
+        "title": "**PR #164469**",
+        "description": "**PR #164469**",
+        "href": "https://github.com/openclaw/openclaw/issues/164469"
+      },
+      {
+        "title": "**PR #164460**",
+        "description": "**PR #164460** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164460"
+      },
+      {
+        "title": "**PR #164206** Related #164148",
+        "description": "**PR #164206** Related #164148. Thanks @jayzhou2309 and @obviyus and @TrevorDGreen33.",
+        "href": "https://github.com/openclaw/openclaw/issues/164206"
+      },
+      {
+        "title": "**PR #164414**",
+        "description": "**PR #164414**",
+        "href": "https://github.com/openclaw/openclaw/issues/164414"
+      },
+      {
+        "title": "**PR #164487**",
+        "description": "**PR #164487** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164487"
+      },
+      {
+        "title": "**PR #164482**",
+        "description": "**PR #164482**",
+        "href": "https://github.com/openclaw/openclaw/issues/164482"
+      },
+      {
+        "title": "**PR #164495**",
+        "description": "**PR #164495**",
+        "href": "https://github.com/openclaw/openclaw/issues/164495"
+      },
+      {
+        "title": "**PR #164463**",
+        "description": "**PR #164463**",
+        "href": "https://github.com/openclaw/openclaw/issues/164463"
+      },
+      {
+        "title": "**PR #164467**",
+        "description": "**PR #164467**",
+        "href": "https://github.com/openclaw/openclaw/issues/164467"
+      },
+      {
+        "title": "**PR #164278**",
+        "description": "**PR #164278**",
+        "href": "https://github.com/openclaw/openclaw/issues/164278"
+      },
+      {
+        "title": "**PR #164489**",
+        "description": "**PR #164489** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164489"
+      },
+      {
+        "title": "**PR #164488**",
+        "description": "**PR #164488**",
+        "href": "https://github.com/openclaw/openclaw/issues/164488"
+      },
+      {
+        "title": "**PR #164486**",
+        "description": "**PR #164486**",
+        "href": "https://github.com/openclaw/openclaw/issues/164486"
+      },
+      {
+        "title": "**PR #164493**",
+        "description": "**PR #164493**",
+        "href": "https://github.com/openclaw/openclaw/issues/164493"
+      },
+      {
+        "title": "**PR #163471** Related #110190, #162001",
+        "description": "**PR #163471** Related #110190, #162001. Thanks @RomneyDa and @consoleaf and @JacquesLFR8.",
+        "href": "https://github.com/openclaw/openclaw/issues/163471"
+      },
+      {
+        "title": "**PR #164448**",
+        "description": "**PR #164448**",
+        "href": "https://github.com/openclaw/openclaw/issues/164448"
+      },
+      {
+        "title": "**PR #164479**",
+        "description": "**PR #164479**",
+        "href": "https://github.com/openclaw/openclaw/issues/164479"
+      },
+      {
+        "title": "**PR #162844** Related #162031",
+        "description": "**PR #162844** Related #162031. Thanks @RvsL and @zsh20000414.",
+        "href": "https://github.com/openclaw/openclaw/issues/162844"
+      },
+      {
+        "title": "**PR #164519**",
+        "description": "**PR #164519**",
+        "href": "https://github.com/openclaw/openclaw/issues/164519"
+      },
+      {
+        "title": "**PR #164524**",
+        "description": "**PR #164524**",
+        "href": "https://github.com/openclaw/openclaw/issues/164524"
+      },
+      {
+        "title": "**PR #164502**",
+        "description": "**PR #164502**",
+        "href": "https://github.com/openclaw/openclaw/issues/164502"
+      },
+      {
+        "title": "**PR #164454**",
+        "description": "**PR #164454**",
+        "href": "https://github.com/openclaw/openclaw/issues/164454"
+      },
+      {
+        "title": "**PR #164527**",
+        "description": "**PR #164527**",
+        "href": "https://github.com/openclaw/openclaw/issues/164527"
+      },
+      {
+        "title": "**PR #164513**",
+        "description": "**PR #164513**",
+        "href": "https://github.com/openclaw/openclaw/issues/164513"
+      },
+      {
+        "title": "**PR #164517**",
+        "description": "**PR #164517**",
+        "href": "https://github.com/openclaw/openclaw/issues/164517"
+      },
+      {
+        "title": "**PR #164530** Related #164499",
+        "description": "**PR #164530** Related #164499. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164530"
+      },
+      {
+        "title": "**PR #164196**",
+        "description": "**PR #164196** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164196"
+      },
+      {
+        "title": "**PR #164491**",
+        "description": "**PR #164491** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164491"
+      },
+      {
+        "title": "**PR #164399**",
+        "description": "**PR #164399**",
+        "href": "https://github.com/openclaw/openclaw/issues/164399"
+      },
+      {
+        "title": "**PR #164543**",
+        "description": "**PR #164543**",
+        "href": "https://github.com/openclaw/openclaw/issues/164543"
+      },
+      {
+        "title": "**PR #163671**",
+        "description": "**PR #163671** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163671"
+      },
+      {
+        "title": "**PR #164546** Related #155644",
+        "description": "**PR #164546** Related #155644. Thanks @Alex-vonAllmen.",
+        "href": "https://github.com/openclaw/openclaw/issues/164546"
+      },
+      {
+        "title": "**PR #164458**",
+        "description": "**PR #164458**",
+        "href": "https://github.com/openclaw/openclaw/issues/164458"
+      },
+      {
+        "title": "**PR #164555**",
+        "description": "**PR #164555**",
+        "href": "https://github.com/openclaw/openclaw/issues/164555"
+      },
+      {
+        "title": "**PR #164311** Related #164309",
+        "description": "**PR #164311** Related #164309. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164311"
+      },
+      {
+        "title": "**PR #164466**",
+        "description": "**PR #164466**",
+        "href": "https://github.com/openclaw/openclaw/issues/164466"
+      },
+      {
+        "title": "**PR #164549**",
+        "description": "**PR #164549**",
+        "href": "https://github.com/openclaw/openclaw/issues/164549"
+      },
+      {
+        "title": "**PR #163926**",
+        "description": "**PR #163926**",
+        "href": "https://github.com/openclaw/openclaw/issues/163926"
+      },
+      {
+        "title": "**PR #164542**",
+        "description": "**PR #164542**",
+        "href": "https://github.com/openclaw/openclaw/issues/164542"
+      },
+      {
+        "title": "**PR #164565**",
+        "description": "**PR #164565**",
+        "href": "https://github.com/openclaw/openclaw/issues/164565"
+      },
+      {
+        "title": "**PR #164496**",
+        "description": "**PR #164496**",
+        "href": "https://github.com/openclaw/openclaw/issues/164496"
+      },
+      {
+        "title": "**PR #164544**",
+        "description": "**PR #164544**",
+        "href": "https://github.com/openclaw/openclaw/issues/164544"
+      },
+      {
+        "title": "**PR #164401**",
+        "description": "**PR #164401**",
+        "href": "https://github.com/openclaw/openclaw/issues/164401"
+      },
+      {
+        "title": "**PR #164552**",
+        "description": "**PR #164552**",
+        "href": "https://github.com/openclaw/openclaw/issues/164552"
+      },
+      {
+        "title": "**PR #164539**",
+        "description": "**PR #164539** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164539"
+      },
+      {
+        "title": "**PR #164560**",
+        "description": "**PR #164560**",
+        "href": "https://github.com/openclaw/openclaw/issues/164560"
+      },
+      {
+        "title": "**PR #164582**",
+        "description": "**PR #164582**",
+        "href": "https://github.com/openclaw/openclaw/issues/164582"
+      },
+      {
+        "title": "**PR #164492**",
+        "description": "**PR #164492** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164492"
+      },
+      {
+        "title": "**PR #164578**",
+        "description": "**PR #164578**",
+        "href": "https://github.com/openclaw/openclaw/issues/164578"
+      },
+      {
+        "title": "**PR #164581**",
+        "description": "**PR #164581** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164581"
+      },
+      {
+        "title": "**PR #164534**",
+        "description": "**PR #164534**",
+        "href": "https://github.com/openclaw/openclaw/issues/164534"
+      },
+      {
+        "title": "**PR #156493**",
+        "description": "**PR #156493** Thanks @serg0x.",
+        "href": "https://github.com/openclaw/openclaw/issues/156493"
+      },
+      {
+        "title": "**PR #162300** Related #162205",
+        "description": "**PR #162300** Related #162205. Thanks @serg0x.",
+        "href": "https://github.com/openclaw/openclaw/issues/162300"
+      },
+      {
+        "title": "**PR #155640**",
+        "description": "**PR #155640** Thanks @Ram-G and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/155640"
+      },
+      {
+        "title": "**PR #164535**",
+        "description": "**PR #164535**",
+        "href": "https://github.com/openclaw/openclaw/issues/164535"
+      },
+      {
+        "title": "**PR #164553**",
+        "description": "**PR #164553** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164553"
+      },
+      {
+        "title": "**PR #164464**",
+        "description": "**PR #164464** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164464"
+      },
+      {
+        "title": "**PR #163545** Related #163543",
+        "description": "**PR #163545** Related #163543. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/163545"
+      },
+      {
+        "title": "**PR #164286**",
+        "description": "**PR #164286**",
+        "href": "https://github.com/openclaw/openclaw/issues/164286"
+      },
+      {
+        "title": "**PR #163201** Related #163199",
+        "description": "**PR #163201** Related #163199. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163201"
+      },
+      {
+        "title": "**PR #164595**",
+        "description": "**PR #164595**",
+        "href": "https://github.com/openclaw/openclaw/issues/164595"
+      },
+      {
+        "title": "**PR #164547**",
+        "description": "**PR #164547**",
+        "href": "https://github.com/openclaw/openclaw/issues/164547"
+      },
+      {
+        "title": "**PR #164586**",
+        "description": "**PR #164586**",
+        "href": "https://github.com/openclaw/openclaw/issues/164586"
+      },
+      {
+        "title": "**PR #164532**",
+        "description": "**PR #164532**",
+        "href": "https://github.com/openclaw/openclaw/issues/164532"
+      },
+      {
+        "title": "**PR #164086**",
+        "description": "**PR #164086**",
+        "href": "https://github.com/openclaw/openclaw/issues/164086"
+      },
+      {
+        "title": "**PR #164556**",
+        "description": "**PR #164556**",
+        "href": "https://github.com/openclaw/openclaw/issues/164556"
+      },
+      {
+        "title": "**PR #164576**",
+        "description": "**PR #164576**",
+        "href": "https://github.com/openclaw/openclaw/issues/164576"
+      },
+      {
+        "title": "**PR #164591**",
+        "description": "**PR #164591**",
+        "href": "https://github.com/openclaw/openclaw/issues/164591"
+      },
+      {
+        "title": "**PR #164522**",
+        "description": "**PR #164522**",
+        "href": "https://github.com/openclaw/openclaw/issues/164522"
+      },
+      {
+        "title": "**PR #164509** Related #164316",
+        "description": "**PR #164509** Related #164316. Thanks @rosmiroslav-create.",
+        "href": "https://github.com/openclaw/openclaw/issues/164509"
+      },
+      {
+        "title": "**PR #164594**",
+        "description": "**PR #164594**",
+        "href": "https://github.com/openclaw/openclaw/issues/164594"
+      },
+      {
+        "title": "**PR #164049**",
+        "description": "**PR #164049**",
+        "href": "https://github.com/openclaw/openclaw/issues/164049"
+      },
+      {
+        "title": "**PR #164368** Related #164365",
+        "description": "**PR #164368** Related #164365. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164368"
+      },
+      {
+        "title": "**PR #162204**",
+        "description": "**PR #162204** Thanks @serg0x and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/162204"
+      },
+      {
+        "title": "**PR #163863**",
+        "description": "**PR #163863**",
+        "href": "https://github.com/openclaw/openclaw/issues/163863"
+      },
+      {
+        "title": "**PR #164614**",
+        "description": "**PR #164614**",
+        "href": "https://github.com/openclaw/openclaw/issues/164614"
+      },
+      {
+        "title": "**PR #164619**",
+        "description": "**PR #164619**",
+        "href": "https://github.com/openclaw/openclaw/issues/164619"
+      },
+      {
+        "title": "**PR #164521**",
+        "description": "**PR #164521**",
+        "href": "https://github.com/openclaw/openclaw/issues/164521"
+      },
+      {
+        "title": "**PR #164320**",
+        "description": "**PR #164320**",
+        "href": "https://github.com/openclaw/openclaw/issues/164320"
+      },
+      {
+        "title": "**PR #164561**",
+        "description": "**PR #164561**",
+        "href": "https://github.com/openclaw/openclaw/issues/164561"
+      },
+      {
+        "title": "**PR #164537** Related #164536",
+        "description": "**PR #164537** Related #164536.",
+        "href": "https://github.com/openclaw/openclaw/issues/164537"
+      },
+      {
+        "title": "**PR #164573**",
+        "description": "**PR #164573**",
+        "href": "https://github.com/openclaw/openclaw/issues/164573"
+      },
+      {
+        "title": "**PR #149048**",
+        "description": "**PR #149048** Thanks @nancymx-dev and @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/149048"
+      },
+      {
+        "title": "**PR #163366**",
+        "description": "**PR #163366**",
+        "href": "https://github.com/openclaw/openclaw/issues/163366"
+      },
+      {
+        "title": "**PR #164623**",
+        "description": "**PR #164623**",
+        "href": "https://github.com/openclaw/openclaw/issues/164623"
+      },
+      {
+        "title": "**PR #164602**",
+        "description": "**PR #164602**",
+        "href": "https://github.com/openclaw/openclaw/issues/164602"
+      },
+      {
+        "title": "**PR #164618**",
+        "description": "**PR #164618** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164618"
+      },
+      {
+        "title": "**PR #164616**",
+        "description": "**PR #164616**",
+        "href": "https://github.com/openclaw/openclaw/issues/164616"
+      },
+      {
+        "title": "**PR #164600**",
+        "description": "**PR #164600** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164600"
+      },
+      {
+        "title": "**PR #164514**",
+        "description": "**PR #164514**",
         "href": "https://github.com/openclaw/openclaw/issues/164514"
       },
       {
-        "title": "Reread selected session-creation metadata in a database worker while checki...",
-        "description": "Reread selected session-creation metadata in a database worker while checking current routing and intervening writes. [#165360](https://github.com/openclaw/openclaw/pull/165360). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/165360"
+        "title": "**PR #164441**",
+        "description": "**PR #164441**",
+        "href": "https://github.com/openclaw/openclaw/issues/164441"
       },
       {
-        "title": "Allow concurrent first transcript writes to create a new session store with...",
-        "description": "Allow concurrent first transcript writes to create a new session store without mistaking another writer’s creation for a replacement. [922d989](https://github.com/openclaw/openclaw/commit/922d98926bb27143c812be35f9a918c1e48b045a). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #164424**",
+        "description": "**PR #164424**",
+        "href": "https://github.com/openclaw/openclaw/issues/164424"
       },
       {
-        "title": "Avoid a repeated database admission read during cold-transcript preparation",
-        "description": "Avoid a repeated database admission read during cold-transcript preparation. [0853228](https://github.com/openclaw/openclaw/commit/08532288490cc7f07543d4254d03fcd5aa1b09d3). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #164628**",
+        "description": "**PR #164628**",
+        "href": "https://github.com/openclaw/openclaw/issues/164628"
       },
       {
-        "title": "Run durable single-session reset storage in a database worker and publish a...",
-        "description": "Run durable single-session reset storage in a database worker and publish acknowledged resets after a lost reply without repeating their writes. [850c49c](https://github.com/openclaw/openclaw/commit/850c49ccec1b918e0eaa7aa6fe26f37b527d3f01). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #164613**",
+        "description": "**PR #164613**",
+        "href": "https://github.com/openclaw/openclaw/issues/164613"
       },
       {
-        "title": "Keep new stock persona templates in the configured agent workspace when dir...",
-        "description": "Keep new stock persona templates in the configured agent workspace when direct, child or session-bound scheduled work runs in a separate project. The project retains its working directory and AGENTS.md instructions; existing files remain. [#161088](https://github.com/openclaw/openclaw/pull/161088). Thanks to [@obviyus](https://github.com/obviyus), [@nikosml](https://github.com/nikosml).",
-        "href": "https://github.com/openclaw/openclaw/issues/161088"
+        "title": "**PR #164587**",
+        "description": "**PR #164587**",
+        "href": "https://github.com/openclaw/openclaw/issues/164587"
       },
       {
-        "title": "Store workspace save and recovery journals in database workers",
-        "description": "Store workspace save and recovery journals in database workers. Wait for durable records before changing files or reporting success; uncertain commits retain files and recovery records. [#161539](https://github.com/openclaw/openclaw/pull/161539). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/161539"
+        "title": "**PR #162678**",
+        "description": "**PR #162678** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/162678"
       },
       {
-        "title": "Prepare workspace snapshots, aliases, setup updates and expiry cleanup in b...",
-        "description": "Prepare workspace snapshots, aliases, setup updates and expiry cleanup in background storage work. Plugin authors can adopt a SQLite-free `guard.assertHost`; `beforePersistentApply` remains supported until the next SDK major. [#163496](https://github.com/openclaw/openclaw/pull/163496). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/163496"
+        "title": "**PR #164606**",
+        "description": "**PR #164606**",
+        "href": "https://github.com/openclaw/openclaw/issues/164606"
       },
       {
-        "title": "Share Git discovery for matching concurrent opt-in observed-project requests",
-        "description": "Share Git discovery for matching concurrent opt-in observed-project requests. Default project listing is unchanged, and a slow bulk discovery can still delay unrelated metadata reads. [#162016](https://github.com/openclaw/openclaw/pull/162016). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/162016"
+        "title": "**PR #164604**",
+        "description": "**PR #164604**",
+        "href": "https://github.com/openclaw/openclaw/issues/164604"
       },
       {
-        "title": "Completed delegated work can return to the original conversation after a bo...",
-        "description": "Completed delegated work can return to the original conversation after a bounded wait for an ended child that has not delivered its result. Active children still wait, and a late child result may arrive separately. See [subagent announcements](https://docs.openclaw.ai/tools/subagents/announce). [#165987](https://github.com/openclaw/openclaw/pull/165987). Thanks [@LifeViwer](https://github.com/LifeViwer), [@mgr-nick](https://github.com/mgr-nick), [@obviyus](https://github.com/obviyus), [@Oldrich333](https://github.com/Oldrich333), [@VACInc](https://github.com/VACInc), [@vinsew](https://github.com/vinsew).",
-        "href": "https://github.com/openclaw/openclaw/issues/165987"
+        "title": "**PR #164632**",
+        "description": "**PR #164632** Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/164632"
       },
       {
-        "title": "Sending a follow-up while native subagents work no longer prevents their co...",
-        "description": "Sending a follow-up while native subagents work no longer prevents their completed results from reaching the original conversation. Delivery retains the original caller's permissions; revoked access still stops it. See [subagent handoffs](https://docs.openclaw.ai/concepts/subagent-yield-handoff). [#168068](https://github.com/openclaw/openclaw/pull/168068). Thanks [@A1fred-AI](https://github.com/A1fred-AI), [@adamamzalag](https://github.com/adamamzalag), [@klabir](https://github.com/klabir), [@Oldrich333](https://github.com/Oldrich333), [@stackingrockss](https://github.com/stackingrockss), [@steipete](https://github.com/steipete).",
+        "title": "**PR #164330**",
+        "description": "**PR #164330**",
+        "href": "https://github.com/openclaw/openclaw/issues/164330"
+      },
+      {
+        "title": "**PR #164631**",
+        "description": "**PR #164631** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/164631"
+      },
+      {
+        "title": "**PR #164634**",
+        "description": "**PR #164634**",
+        "href": "https://github.com/openclaw/openclaw/issues/164634"
+      },
+      {
+        "title": "**PR #164503**",
+        "description": "**PR #164503** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164503"
+      },
+      {
+        "title": "**PR #164675**",
+        "description": "**PR #164675** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164675"
+      },
+      {
+        "title": "**PR #164697**",
+        "description": "**PR #164697**",
+        "href": "https://github.com/openclaw/openclaw/issues/164697"
+      },
+      {
+        "title": "**PR #164663** Related #164661",
+        "description": "**PR #164663** Related #164661. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164663"
+      },
+      {
+        "title": "**PR #164664** Related #164644",
+        "description": "**PR #164664** Related #164644. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164664"
+      },
+      {
+        "title": "**PR #164676**",
+        "description": "**PR #164676** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164676"
+      },
+      {
+        "title": "**PR #165050**",
+        "description": "**PR #165050** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165050"
+      },
+      {
+        "title": "**PR #160695**",
+        "description": "**PR #160695** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/160695"
+      },
+      {
+        "title": "**PR #165083**",
+        "description": "**PR #165083** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165083"
+      },
+      {
+        "title": "**PR #165099**",
+        "description": "**PR #165099** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165099"
+      },
+      {
+        "title": "**PR #165121**",
+        "description": "**PR #165121** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165121"
+      },
+      {
+        "title": "**PR #165143**",
+        "description": "**PR #165143** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165143"
+      },
+      {
+        "title": "**PR #164658**",
+        "description": "**PR #164658** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164658"
+      },
+      {
+        "title": "**PR #164853**",
+        "description": "**PR #164853**",
+        "href": "https://github.com/openclaw/openclaw/issues/164853"
+      },
+      {
+        "title": "**PR #164915**",
+        "description": "**PR #164915**",
+        "href": "https://github.com/openclaw/openclaw/issues/164915"
+      },
+      {
+        "title": "**PR #165263** Related #165260",
+        "description": "**PR #165263** Related #165260. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165263"
+      },
+      {
+        "title": "**PR #165423**",
+        "description": "**PR #165423** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165423"
+      },
+      {
+        "title": "**PR #165455**",
+        "description": "**PR #165455** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165455"
+      },
+      {
+        "title": "**PR #165880** Related #165846",
+        "description": "**PR #165880** Related #165846. Thanks @RomneyDa and @Conan-Scott.",
+        "href": "https://github.com/openclaw/openclaw/issues/165880"
+      },
+      {
+        "title": "**PR #163317** Related #160541",
+        "description": "**PR #163317** Related #160541. Thanks @NovaUnboundAi and @xXG0DLessXx and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/163317"
+      },
+      {
+        "title": "**PR #165882** Related #165869",
+        "description": "**PR #165882** Related #165869. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165882"
+      },
+      {
+        "title": "**PR #165902**",
+        "description": "**PR #165902**",
+        "href": "https://github.com/openclaw/openclaw/issues/165902"
+      },
+      {
+        "title": "**PR #165854** Related #161734",
+        "description": "**PR #165854** Related #161734. Thanks @RomneyDa and @Olli0103.",
+        "href": "https://github.com/openclaw/openclaw/issues/165854"
+      },
+      {
+        "title": "**PR #164636** Related #164422",
+        "description": "**PR #164636** Related #164422. Thanks @hrp6vv9mwr-glitch.",
+        "href": "https://github.com/openclaw/openclaw/issues/164636"
+      },
+      {
+        "title": "**PR #164728**",
+        "description": "**PR #164728**",
+        "href": "https://github.com/openclaw/openclaw/issues/164728"
+      },
+      {
+        "title": "**PR #164849** Related #164817, #164826",
+        "description": "**PR #164849** Related #164817, #164826. Thanks @szef-svg and @izrl613.",
+        "href": "https://github.com/openclaw/openclaw/issues/164849"
+      },
+      {
+        "title": "**PR #164867** Related #164842",
+        "description": "**PR #164867** Related #164842. Thanks @hshs38033-cmd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164867"
+      },
+      {
+        "title": "**PR #164975**",
+        "description": "**PR #164975**",
+        "href": "https://github.com/openclaw/openclaw/issues/164975"
+      },
+      {
+        "title": "**PR #165022**",
+        "description": "**PR #165022**",
+        "href": "https://github.com/openclaw/openclaw/issues/165022"
+      },
+      {
+        "title": "**PR #159265** Related #148730",
+        "description": "**PR #159265** Related #148730. Thanks @aatreya.",
+        "href": "https://github.com/openclaw/openclaw/issues/159265"
+      },
+      {
+        "title": "**PR #165137**",
+        "description": "**PR #165137** Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/165137"
+      },
+      {
+        "title": "**PR #164363** Related #164319",
+        "description": "**PR #164363** Related #164319. Thanks @jayzhou2309 and @StevenKrebs.",
+        "href": "https://github.com/openclaw/openclaw/issues/164363"
+      },
+      {
+        "title": "**PR #165209**",
+        "description": "**PR #165209**",
+        "href": "https://github.com/openclaw/openclaw/issues/165209"
+      },
+      {
+        "title": "**PR #164774**",
+        "description": "**PR #164774** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164774"
+      },
+      {
+        "title": "**PR #164896**",
+        "description": "**PR #164896** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164896"
+      },
+      {
+        "title": "**PR #164624** Related #164621",
+        "description": "**PR #164624** Related #164621. Thanks @triciah73.",
+        "href": "https://github.com/openclaw/openclaw/issues/164624"
+      },
+      {
+        "title": "**PR #163258** Related #163151",
+        "description": "**PR #163258** Related #163151. Thanks @goutamadwant and @hawkit.",
+        "href": "https://github.com/openclaw/openclaw/issues/163258"
+      },
+      {
+        "title": "**PR #165428**",
+        "description": "**PR #165428** Thanks @nano-richtera.",
+        "href": "https://github.com/openclaw/openclaw/issues/165428"
+      },
+      {
+        "title": "**PR #165301** Related #165195",
+        "description": "**PR #165301** Related #165195. Thanks @goutamadwant and @exGeni.",
+        "href": "https://github.com/openclaw/openclaw/issues/165301"
+      },
+      {
+        "title": "**PR #165487**",
+        "description": "**PR #165487**",
+        "href": "https://github.com/openclaw/openclaw/issues/165487"
+      },
+      {
+        "title": "**PR #165021**",
+        "description": "**PR #165021** Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/issues/165021"
+      },
+      {
+        "title": "**PR #165669** Related #165638",
+        "description": "**PR #165669** Related #165638. Thanks @LiuwqGit and @JakeBotFleet.",
+        "href": "https://github.com/openclaw/openclaw/issues/165669"
+      },
+      {
+        "title": "**PR #164770**",
+        "description": "**PR #164770** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164770"
+      },
+      {
+        "title": "**PR #165855** Related #165847",
+        "description": "**PR #165855** Related #165847. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165855"
+      },
+      {
+        "title": "**PR #165989** Related #161409",
+        "description": "**PR #165989** Related #161409. Thanks @DonnieFi and @dprev.",
+        "href": "https://github.com/openclaw/openclaw/issues/165989"
+      },
+      {
+        "title": "**PR #165997** Related #165602",
+        "description": "**PR #165997** Related #165602. Thanks @TommyFive.",
+        "href": "https://github.com/openclaw/openclaw/issues/165997"
+      },
+      {
+        "title": "**PR #165866** Related #165850",
+        "description": "**PR #165866** Related #165850. Thanks @SunnyShu0925 and @609NFT.",
+        "href": "https://github.com/openclaw/openclaw/issues/165866"
+      },
+      {
+        "title": "**PR #166706**",
+        "description": "**PR #166706** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166706"
+      },
+      {
+        "title": "**PR #166077**",
+        "description": "**PR #166077** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166077"
+      },
+      {
+        "title": "**PR #166394** Related #166135",
+        "description": "**PR #166394** Related #166135. Thanks @neilofneils404.",
+        "href": "https://github.com/openclaw/openclaw/issues/166394"
+      },
+      {
+        "title": "**PR #166238**",
+        "description": "**PR #166238**",
+        "href": "https://github.com/openclaw/openclaw/issues/166238"
+      },
+      {
+        "title": "**PR #166740**",
+        "description": "**PR #166740** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166740"
+      },
+      {
+        "title": "**PR #167091**",
+        "description": "**PR #167091** Thanks @RomneyDa and @ericcurtin and @obviyus and @adele-with-a-b and @Patrick-Erichsen and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167091"
+      },
+      {
+        "title": "**PR #166003**",
+        "description": "**PR #166003**",
+        "href": "https://github.com/openclaw/openclaw/issues/166003"
+      },
+      {
+        "title": "**PR #166175**",
+        "description": "**PR #166175** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166175"
+      },
+      {
+        "title": "**PR #164643**",
+        "description": "**PR #164643**",
+        "href": "https://github.com/openclaw/openclaw/issues/164643"
+      },
+      {
+        "title": "**PR #164925** Related #164924",
+        "description": "**PR #164925** Related #164924. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164925"
+      },
+      {
+        "title": "**PR #165223** Related #165222",
+        "description": "**PR #165223** Related #165222. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165223"
+      },
+      {
+        "title": "**PR #164520**",
+        "description": "**PR #164520**",
+        "href": "https://github.com/openclaw/openclaw/issues/164520"
+      },
+      {
+        "title": "**PR #166897**",
+        "description": "**PR #166897** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166897"
+      },
+      {
+        "title": "**PR #166657**",
+        "description": "**PR #166657**",
+        "href": "https://github.com/openclaw/openclaw/issues/166657"
+      },
+      {
+        "title": "**PR #166722**",
+        "description": "**PR #166722**",
+        "href": "https://github.com/openclaw/openclaw/issues/166722"
+      },
+      {
+        "title": "**PR #167024**",
+        "description": "**PR #167024**",
+        "href": "https://github.com/openclaw/openclaw/issues/167024"
+      },
+      {
+        "title": "**PR #164735**",
+        "description": "**PR #164735** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164735"
+      },
+      {
+        "title": "**PR #167467**",
+        "description": "**PR #167467**",
+        "href": "https://github.com/openclaw/openclaw/issues/167467"
+      },
+      {
+        "title": "**PR #167511**",
+        "description": "**PR #167511** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167511"
+      },
+      {
+        "title": "**PR #165063**",
+        "description": "**PR #165063**",
+        "href": "https://github.com/openclaw/openclaw/issues/165063"
+      },
+      {
+        "title": "**PR #165275**",
+        "description": "**PR #165275**",
+        "href": "https://github.com/openclaw/openclaw/issues/165275"
+      },
+      {
+        "title": "**PR #166217**",
+        "description": "**PR #166217** Thanks @Patrick-Erichsen and @vincentkoc and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166217"
+      },
+      {
+        "title": "**PR #164574** Related #164572",
+        "description": "**PR #164574** Related #164572. Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/164574"
+      },
+      {
+        "title": "**PR #167521**",
+        "description": "**PR #167521** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167521"
+      },
+      {
+        "title": "**PR #167538** Related #167428",
+        "description": "**PR #167538** Related #167428. Thanks @bipolar84.",
+        "href": "https://github.com/openclaw/openclaw/issues/167538"
+      },
+      {
+        "title": "**PR #158954** Related #158936",
+        "description": "**PR #158954** Related #158936. Thanks @MertBasar0 and @cjn119-ui.",
+        "href": "https://github.com/openclaw/openclaw/issues/158954"
+      },
+      {
+        "title": "**PR #167588** Related #167579",
+        "description": "**PR #167588** Related #167579. Thanks @JIRBOY.",
+        "href": "https://github.com/openclaw/openclaw/issues/167588"
+      },
+      {
+        "title": "**PR #161740** Related #161738",
+        "description": "**PR #161740** Related #161738. Thanks @matthematics1137 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161740"
+      },
+      {
+        "title": "**PR #166687**",
+        "description": "**PR #166687** Thanks @matthematics1137 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166687"
+      },
+      {
+        "title": "**PR #166457**",
+        "description": "**PR #166457**",
+        "href": "https://github.com/openclaw/openclaw/issues/166457"
+      },
+      {
+        "title": "**PR #167724**",
+        "description": "**PR #167724**",
+        "href": "https://github.com/openclaw/openclaw/issues/167724"
+      },
+      {
+        "title": "**PR #167679**",
+        "description": "**PR #167679**",
+        "href": "https://github.com/openclaw/openclaw/issues/167679"
+      },
+      {
+        "title": "**PR #167740**",
+        "description": "**PR #167740**",
+        "href": "https://github.com/openclaw/openclaw/issues/167740"
+      },
+      {
+        "title": "**PR #165591**",
+        "description": "**PR #165591**",
+        "href": "https://github.com/openclaw/openclaw/issues/165591"
+      },
+      {
+        "title": "**PR #167833** Related #167824",
+        "description": "**PR #167833** Related #167824. Thanks @GoDiao.",
+        "href": "https://github.com/openclaw/openclaw/issues/167833"
+      },
+      {
+        "title": "**PR #167492**",
+        "description": "**PR #167492**",
+        "href": "https://github.com/openclaw/openclaw/issues/167492"
+      },
+      {
+        "title": "**PR #167976**",
+        "description": "**PR #167976** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167976"
+      },
+      {
+        "title": "**PR #168017**",
+        "description": "**PR #168017** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168017"
+      },
+      {
+        "title": "**PR #167057** Related #167056",
+        "description": "**PR #167057** Related #167056. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167057"
+      },
+      {
+        "title": "**PR #166650** Related #166644",
+        "description": "**PR #166650** Related #166644. Thanks @jlapenna.",
+        "href": "https://github.com/openclaw/openclaw/issues/166650"
+      },
+      {
+        "title": "**PR #167648**",
+        "description": "**PR #167648**",
+        "href": "https://github.com/openclaw/openclaw/issues/167648"
+      },
+      {
+        "title": "**PR #167649** Related #165266",
+        "description": "**PR #167649** Related #165266. Thanks @hannnnn-l.",
+        "href": "https://github.com/openclaw/openclaw/issues/167649"
+      },
+      {
+        "title": "**PR #168069** Related #168031",
+        "description": "**PR #168069** Related #168031. Thanks @Tosko4.",
+        "href": "https://github.com/openclaw/openclaw/issues/168069"
+      },
+      {
+        "title": "**PR #167544**",
+        "description": "**PR #167544** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167544"
+      },
+      {
+        "title": "**PR #161267**",
+        "description": "**PR #161267** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161267"
+      },
+      {
+        "title": "**PR #168068** Related #162761",
+        "description": "**PR #168068** Related #162761. Thanks @stackingrockss.",
         "href": "https://github.com/openclaw/openclaw/issues/168068"
       },
       {
-        "title": "A Linux command that runs out of file handles fails without stopping other...",
-        "description": "A Linux command that runs out of file handles fails without stopping other streaming commands. On restrictive Linux hosts using Node and matching native host and worker builds, cleanup can release a worker for the next turn despite denied process-group signals. If cleanup cannot be confirmed, the worker remains unavailable; restarting alone does not clear that condition. Cloud-worker moves and dispatches can recover a finished result without waiting for a timeout.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167567** Related #167543",
+        "description": "**PR #167567** Related #167543. Thanks @goutamadwant and @obviyus and @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/167567"
       },
       {
-        "title": "Cancelling worker chat lets the current turn clean up without another provi...",
-        "description": "Cancelling worker chat lets the current turn clean up without another provider call. Startup cleanup remains retryable when a supervisor disappears before its broker is ready. Shutdown attempts worker-connection and transfer cleanup even when inventory is unreadable, then reports that error.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167708**",
+        "description": "**PR #167708**",
+        "href": "https://github.com/openclaw/openclaw/issues/167708"
       },
       {
-        "title": "Credential saves preserve a paired host's launch reply",
-        "description": "Credential saves preserve a paired host's launch reply. Linux cleanup no longer mistakes the covered exited tasks for running ones; permission errors remain inconclusive. Saved workspace-recovery errors retain the readable process diagnostics shown on screen.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #165987** Related #138632",
+        "description": "**PR #165987** Related #138632. Thanks @Oldrich333 and @obviyus and @LifeViwer.",
+        "href": "https://github.com/openclaw/openclaw/issues/165987"
       },
       {
-        "title": "Repository sessions retain saved workspace identity, and unrelated writes p...",
-        "description": "Repository sessions retain saved workspace identity, and unrelated writes preserve new session-state events. Lost category-edit replies no longer repeat unrelated reads. Temporary database contention before work starts gets bounded retries; workers lost before dispatch can be replaced without resending the turn. Doctor warnings show underlying failures.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167905** Related #167835",
+        "description": "**PR #167905** Related #167835. Thanks @SMF12138.",
+        "href": "https://github.com/openclaw/openclaw/issues/167905"
       },
       {
-        "title": "Snapshot cleanup preserves replacements at reused paths",
-        "description": "Snapshot cleanup preserves replacements at reused paths. The covered staging, lock and rollback failures retain their original errors while valid cleanup finishes. If the snapshot-management process is lost, unresolved files remain protected until service recovery. Restarting it alone does not make manual deletion safe; consult the [database recovery guidance](https://docs.openclaw.ai/reference/database-schemas/integrity-and-recovery).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #168043** Related #168000",
+        "description": "**PR #168043** Related #168000. Thanks @farisoftfry.",
+        "href": "https://github.com/openclaw/openclaw/issues/168043"
       },
       {
-        "title": "Native Incognito conversations delete successfully",
-        "description": "Native Incognito conversations delete successfully. Archives, pending inputs and transcript checks recognize aliases for the same database. Session discovery retains valid Incognito and placement information despite unrelated registry changes or invalid disk candidates.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167900**",
+        "description": "**PR #167900**",
+        "href": "https://github.com/openclaw/openclaw/issues/167900"
       },
       {
-        "title": "Scheduled turns and Control UI chats on native Windows avoid the affected s...",
-        "description": "Scheduled turns and Control UI chats on native Windows avoid the affected session-read errors. Commands and workers can skip an optional compile cache when its long path is unsafe. If an externally set `NODE_COMPILE_CACHE` hangs before OpenClaw starts, use `NODE_DISABLE_COMPILE_CACHE=1`. SQLite inspection subprocesses also preserve explicit recognized Node compiler settings.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #168055**",
+        "description": "**PR #168055**",
+        "href": "https://github.com/openclaw/openclaw/issues/168055"
       },
       {
-        "title": "Commands containing a literal NUL are rejected before helpers start or runn...",
-        "description": "Commands containing a literal NUL are rejected before helpers start or running work is replaced, with correction guidance. Valid multiline commands remain supported in the [exec tool](https://docs.openclaw.ai/tools/exec). On POSIX systems, `config patch --file` and `config set --batch-file` reject named pipes without a writer instead of waiting indefinitely; regular files and symlinks remain supported.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167878** Related #161254",
+        "description": "**PR #167878** Related #161254. Thanks @jacobtomlinson and @amittell.",
+        "href": "https://github.com/openclaw/openclaw/issues/167878"
       },
       {
-        "title": "Configuration errors show which file failed validation and why",
-        "description": "Configuration errors show which file failed validation and why. If an external edit invalidates or removes the file while a change is being applied, the request reports an error and keeps the last working runtime settings. Repair the file, call `config.get`, then reapply the change. Pairing lists skip malformed entries, reject invalid schema type lists, and keep existing system-agent approval details.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #168004**",
+        "description": "**PR #168004** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168004"
       },
       {
-        "title": "Network updates fix compressed responses and redirects while preserving Sla...",
-        "description": "Network updates fix compressed responses and redirects while preserving Slack proxy compatibility. Replaced skill folders can be watched again, with polling fallback available. Doctor retains loaded native plugin files after cleanup.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167817** Related #167799",
+        "description": "**PR #167817** Related #167799. Thanks @yu-xin-c and @robburke.",
+        "href": "https://github.com/openclaw/openclaw/issues/167817"
       },
       {
-        "title": "Finished chats, old display rows, disconnected tool subscriptions and short...",
-        "description": "Finished chats, old display rows, disconnected tool subscriptions and short previews release unneeded data without interrupting accepted work. Non-Windows Bash and Zsh caches retain recent shell snapshots. Abandoned HTTP responses can release buffers when garbage collection runs; SDK callers should still finish or cancel response bodies for prompt cleanup.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #168020**",
+        "description": "**PR #168020** Thanks @frankhli843.",
+        "href": "https://github.com/openclaw/openclaw/issues/168020"
       },
       {
-        "title": "[Linux streaming commands fail individually when file descriptors run out,...",
-        "description": "[Linux streaming commands fail individually when file descriptors run out, leaving unrelated commands running](https://github.com/openclaw/openclaw/pull/151672). Thanks to [@awss1i](https://github.com/awss1i), [@obviyus](https://github.com/obviyus).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Native Windows scheduled turns and Control UI chats avoid session-read Dat...",
-        "description": "[Native Windows scheduled turns and Control UI chats avoid session-read DataCloneError failures, including configured session stores](https://github.com/openclaw/openclaw/pull/160075). Thanks to [@steipete](https://github.com/steipete), [@aniketkrs](https://github.com/aniketkrs), [@yashas-13](https://github.com/yashas-13), [@WG-Mojo](https://github.com/WG-Mojo), [@hailongguo0530-alt](https://github.com/hailongguo0530-alt), [@jonathanlindsay](https://github.com/jonathanlindsay), [@chiyunshen](https://github.com/chiyunshen), [@jocojolo](https://github.com/jocojolo), [@mick-lu-lingyue](https://github.com/mick-lu-lingyue), [@zouxiao777](https://github.com/zouxiao777), [@zhangming678](https://github.com/zhangming678), [@yihan331313](https://github.com/yihan331313), [@godinpt-floada](https://github.com/godinpt-floada), [@webdood](https://github.com/webdood), [@veritasaiflows-cell](https://github.com/veritasaiflows-cell), [@aron-intframe](https://github.com/aron-intframe), [@Monkeykingll](https://github.com/Monkeykingll), [@avirtudazo-officeconnect](https://github.com/avirtudazo-officeconnect).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Restrictive Linux hosts can finish descendant-process cleanup when process...",
-        "description": "[Restrictive Linux hosts can finish descendant-process cleanup when process-group signals are denied, with matching native host and worker builds](https://github.com/openclaw/openclaw/pull/160465). Thanks to [@sallyom](https://github.com/sallyom), [@steipete](https://github.com/steipete), [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Moving or dispatching a session to a cloud worker can settle recoverable f...",
-        "description": "[Moving or dispatching a session to a cloud worker can settle recoverable finished results instead of waiting for a timeout](https://github.com/openclaw/openclaw/pull/160535). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Saving Gateway credentials preserves the paired host launch reply when rea...",
-        "description": "[Saving Gateway credentials preserves the paired host launch reply when reads of an unchanged environment are blocked. Calls that can no longer complete report failure instead of waiting for a misleading timeout.](https://github.com/openclaw/openclaw/pull/160590). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[A lost reply to a committed category edit no longer invalidates unrelated...",
-        "description": "[A lost reply to a committed category edit no longer invalidates unrelated session reads](https://github.com/openclaw/openclaw/pull/160656). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Interrupted database reads retain snapshots still in use until their origi...",
-        "description": "[Interrupted database reads retain snapshots still in use until their original owner finishes cleanup](https://github.com/openclaw/openclaw/pull/160946). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Malformed pairing-list entries no longer abort the whole read, invalid sch...",
-        "description": "[Malformed pairing-list entries no longer abort the whole read, invalid schema type lists are rejected, and SDK readers retain existing system-agent approval details.](https://github.com/openclaw/openclaw/pull/161054). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Repository sessions retain their committed workspace identity when a reply...",
-        "description": "[Repository sessions retain their committed workspace identity when a reply is lost, and cleanup preserves replacement database files](https://github.com/openclaw/openclaw/pull/161124). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Late cleanup of an old temporary database snapshot leaves a replacement at...",
-        "description": "[Late cleanup of an old temporary database snapshot leaves a replacement at the same path intact](https://github.com/openclaw/openclaw/pull/161300). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Database contention before a snapshot directory is created reports the ori...",
-        "description": "[Database contention before a snapshot directory is created reports the original retry error without a false cleanup failure](https://github.com/openclaw/openclaw/pull/161372). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Cleanup remains retryable when a supervisor disappears before its command...",
-        "description": "[Cleanup remains retryable when a supervisor disappears before its command broker is ready](https://github.com/openclaw/openclaw/pull/161374). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Unrelated database or session-metadata writes no longer discard newly reco...",
-        "description": "[Unrelated database or session-metadata writes no longer discard newly recorded session-state events](https://github.com/openclaw/openclaw/pull/161553). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Invalid or missing external configuration edits return an application erro...",
-        "description": "[Invalid or missing external configuration edits return an application error instead of leaving the request waiting](https://github.com/openclaw/openclaw/pull/161868). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Database rollback cleanup finishes even when a callback throws, while reta...",
-        "description": "[Database rollback cleanup finishes even when a callback throws, while retaining the original error](https://github.com/openclaw/openclaw/pull/162139). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Temporary database contention before agent work starts gets bounded retrie...",
-        "description": "[Temporary database contention before agent work starts gets bounded retries, and later requests can try again after failure. Doctor repair warnings also show underlying failures.](https://github.com/openclaw/openclaw/pull/162750). Thanks to [@steipete](https://github.com/steipete), [@marcoschierhorn](https://github.com/marcoschierhorn), [@waynegault](https://github.com/waynegault), [@produtoramaxvision](https://github.com/produtoramaxvision), [@hannnnn-l](https://github.com/hannnnn-l), [@islandpreneur007](https://github.com/islandpreneur007), [@yaohd100](https://github.com/yaohd100), [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[HTTP dependency updates fix compressed-response and redirect handling whil...",
-        "description": "[HTTP dependency updates fix compressed-response and redirect handling while preserving Slack proxy compatibility](https://github.com/openclaw/openclaw/pull/162774). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Windows CLI launches and child processes can skip the optional compile cac...",
-        "description": "[Windows CLI launches and child processes can skip the optional compile cache when its path is too long](https://github.com/openclaw/openclaw/pull/162841). Thanks to [@steipete](https://github.com/steipete), [@NickM83](https://github.com/NickM83).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Non-Windows Gateway Bash and Zsh shell snapshots retain only the 128 most...",
-        "description": "[Non-Windows Gateway Bash and Zsh shell snapshots retain only the 128 most recent working-directory and environment cache entries](https://github.com/openclaw/openclaw/pull/162967). Thanks to [@steipete](https://github.com/steipete), [@aniruddhaadak80](https://github.com/aniruddhaadak80).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Cancelling a worker chat lets its existing turn finish cleanup without sta...",
-        "description": "[Cancelling a worker chat lets its existing turn finish cleanup without starting another provider call](https://github.com/openclaw/openclaw/pull/163154). Thanks to [@Patrick-Erichsen](https://github.com/Patrick-Erichsen).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[An unavailable agent database worker is replaced before dispatch, so a pen...",
-        "description": "[An unavailable agent database worker is replaced before dispatch, so a pending turn need not be resent](https://github.com/openclaw/openclaw/pull/163258). Thanks to [@goutamadwant](https://github.com/goutamadwant), [@steipete](https://github.com/steipete), [@hawkit](https://github.com/hawkit).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Pending session inputs append correctly when the state directory is access...",
-        "description": "[Pending session inputs append correctly when the state directory is accessed through a filesystem alias](https://github.com/openclaw/openclaw/pull/163488). Thanks to [@RomneyDa](https://github.com/RomneyDa), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Old parent display rows release obsolete child data while preserving links...",
-        "description": "[Old parent display rows release obsolete child data while preserving links and viewer information](https://github.com/openclaw/openclaw/pull/163763). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Completed chat registrations and obsolete usage and prompt data are released",
-        "description": "[Completed chat registrations and obsolete usage and prompt data are released. Disconnected session reads stop further preparation retries after accepted work settles.](https://github.com/openclaw/openclaw/pull/163834). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Abandoned provider, MCP and plugin HTTP responses can release their retain...",
-        "description": "[Abandoned provider, MCP and plugin HTTP responses can release their retained buffers and readers when garbage collection runs](https://github.com/openclaw/openclaw/pull/164124). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[On POSIX systems, config patch --file and config set --batch-file reject n...",
-        "description": "[On POSIX systems, config patch --file and config set --batch-file reject named pipes without a writer instead of hanging](https://github.com/openclaw/openclaw/pull/164161). Thanks to [@GoldArowana](https://github.com/GoldArowana).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Disconnected clients release tool-event subscriptions, and late visibility...",
-        "description": "[Disconnected clients release tool-event subscriptions, and late visibility requests cannot recreate those subscriptions. Already accepted agent work continues.](https://github.com/openclaw/openclaw/pull/164307). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Short command tails, Memory Wiki previews and web-fetch metadata no longer...",
-        "description": "[Short command tails, Memory Wiki previews and web-fetch metadata no longer keep discarded large strings in memory](https://github.com/openclaw/openclaw/pull/164441). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Shutdown attempts worker-tunnel and shared-transfer cleanup even when work...",
-        "description": "[Shutdown attempts worker-tunnel and shared-transfer cleanup even when worker inventory cannot be read, then reports the inventory error](https://github.com/openclaw/openclaw/pull/164522). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[SQLite inspection subprocesses retain recognized explicit Node compiler en...",
-        "description": "[SQLite inspection subprocesses retain recognized explicit Node compiler enable and disable flags in their original order.](https://github.com/openclaw/openclaw/pull/164675). Thanks to [@RomneyDa](https://github.com/RomneyDa).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Commands containing a literal NUL character are rejected before helper sta...",
-        "description": "[Commands containing a literal NUL character are rejected before helper startup or replacement of running work](https://github.com/openclaw/openclaw/pull/164770). Thanks to [@shakkernerd](https://github.com/shakkernerd), [@IWhatsskill](https://github.com/IWhatsskill).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Replaced skill folders can be watched again, file watching retains its pol...",
-        "description": "[Replaced skill folders can be watched again, file watching retains its polling fallback, and Doctor keeps loaded native plugin files available after cleanup.](https://github.com/openclaw/openclaw/commit/52992fb086a7f48c863ce98b7bfbeb8c8a0950ca). Thanks to [@steipete](https://github.com/steipete), [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Native Incognito sessions delete successfully, and archives stay in the co...",
-        "description": "[Native Incognito sessions delete successfully, and archives stay in the configured store’s artifact directory when its database path is an alias](https://github.com/openclaw/openclaw/commit/3baeac6d1ffe3322b404d76cde45b25bd84563a9). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Refused snapshot-directory creation keeps its original error and lets othe...",
-        "description": "[Refused snapshot-directory creation keeps its original error and lets other valid snapshots finish cleanup](https://github.com/openclaw/openclaw/commit/477cab2d714874b0807b8ed7afab7172be8975c7). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Worker cancellation can finish when the last native operation ends between...",
-        "description": "[Worker cancellation can finish when the last native operation ends between cleanup checks](https://github.com/openclaw/openclaw/commit/646a3bdaf60ba92986935d09a36798c2d189bf58). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Linux process checks confirm an exit when a status file disappears between...",
-        "description": "[Linux process checks confirm an exit when a status file disappears between checks, without treating permission errors as proof of exit](https://github.com/openclaw/openclaw/commit/112df95f5ee65a0b17622735e2b616d2910dc79b). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Saved workspace recovery errors match displayed diagnostics when process s...",
-        "description": "[Saved workspace recovery errors match displayed diagnostics when process start dates contain padded spacing](https://github.com/openclaw/openclaw/commit/d2f875598efa320abe3302077c128ce540390b53). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Linux cleanup recognizes exited processes during kernel reaping while pres...",
-        "description": "[Linux cleanup recognizes exited processes during kernel reaping while preserving live-thread and permission safeguards](https://github.com/openclaw/openclaw/commit/b57aca41466b11c0f92c1fa3945cfb221185bde2). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Gateway requests unrelated to image routes avoid unnecessary image-handler...",
-        "description": "[Gateway requests unrelated to image routes avoid unnecessary image-handler session-context lookup](https://github.com/openclaw/openclaw/commit/658e1e292a28fc5ae5781a90e80b0ea6b9cfec6e). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Concise CLI configuration errors include the file path and validation reas...",
-        "description": "[Concise CLI configuration errors include the file path and validation reason when those details have not already been printed](https://github.com/openclaw/openclaw/commit/eb978fd65e310c4a78f4c449dea13a5156217ebe). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Session discovery retains valid Incognito and placement information despit...",
-        "description": "[Session discovery retains valid Incognito and placement information despite unrelated registry changes or invalid disk candidates](https://github.com/openclaw/openclaw/commit/9cc3eee461ed564ee008f3090702d114e533b949). Thanks to [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "[Transcript and question-answer receipt checks accept equivalent paths to t...",
-        "description": "[Transcript and question-answer receipt checks accept equivalent paths to the same database, including filesystem aliases](https://github.com/openclaw/openclaw/commit/32d49385f67f09054c8d9b03f10e0e7f3c68d33b). Thanks to [@vincentkoc](https://github.com/vincentkoc).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
-      },
-      {
-        "title": "Conversation delivery, history, Boards and related session operations avoid...",
-        "description": "Conversation delivery, history, Boards and related session operations avoid circular database waits when usage refresh overlaps other work, allowing requests to finish or return their intended errors. [#167662](https://github.com/openclaw/openclaw/pull/167662). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/issues/167662"
-      },
-      {
-        "title": "Bun Gateways and CLI commands retain access to shared state when a new rene...",
-        "description": "Bun Gateways and CLI commands retain access to shared state when a new renewal worker starts with a different elapsed-time origin. A clock change that puts a renewal in the future still interrupts ownership and can require a Gateway restart. See [Gateway locks](https://docs.openclaw.ai/gateway/gateway-lock). [#167669](https://github.com/openclaw/openclaw/pull/167669). Thanks [@steipete](https://github.com/steipete).",
+        "title": "**PR #167669**",
+        "description": "**PR #167669**",
         "href": "https://github.com/openclaw/openclaw/issues/167669"
       },
       {
-        "title": "Core and twelve extensions update their filesystem helper to the revision s...",
-        "description": "Core and twelve extensions update their filesystem helper to the revision selected to retain readable handles for cloned destinations. [a808a7e4](https://github.com/openclaw/openclaw/commit/a808a7e4f8f64ccbfc61ce916478afc892f9171e). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167933**",
+        "description": "**PR #167933**",
+        "href": "https://github.com/openclaw/openclaw/issues/167933"
       },
       {
-        "title": "Ordinary worker callbacks count against the task's original timeout",
-        "description": "Ordinary worker callbacks count against the task's original timeout. Cancelled storage requests can leave the queue before they start without disrupting other callers; cancellation does not undo work already accepted. [e15a4e97](https://github.com/openclaw/openclaw/commit/e15a4e971938774d890612a45a0386b9c6b99276). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167782**",
+        "description": "**PR #167782**",
+        "href": "https://github.com/openclaw/openclaw/issues/167782"
       },
       {
-        "title": "Expired history and usage requests stop their waiting work under database c...",
-        "description": "Expired history and usage requests stop their waiting work under database contention. Cancelled usage writes no longer run later when the queue clears. [0965e459](https://github.com/openclaw/openclaw/commit/0965e45991cbf457ef89ed44dfdf2bfdec644008). Thanks [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167886** Related #104868",
+        "description": "**PR #167886** Related #104868. Thanks @jlapenna.",
+        "href": "https://github.com/openclaw/openclaw/issues/167886"
       },
       {
-        "title": "Retiring an imported session source no longer lets its archived content be...",
-        "description": "Retiring an imported session source no longer lets its archived content be imported again into a replacement conversation. [eff7e0b4](https://github.com/openclaw/openclaw/commit/eff7e0b4a26889fe2ee42c8f62d9167220cc5079). Thanks [@RomneyDa](https://github.com/RomneyDa), [@steipete](https://github.com/steipete).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026101"
+        "title": "**PR #167929** Related #167914",
+        "description": "**PR #167929** Related #167914. Thanks @obviyus and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/167929"
+      },
+      {
+        "title": "**PR #168198**",
+        "description": "**PR #168198** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168198"
+      },
+      {
+        "title": "**PR #168197**",
+        "description": "**PR #168197**",
+        "href": "https://github.com/openclaw/openclaw/issues/168197"
+      },
+      {
+        "title": "**PR #164881**",
+        "description": "**PR #164881** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164881"
+      },
+      {
+        "title": "**PR #168100**",
+        "description": "**PR #168100** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168100"
+      },
+      {
+        "title": "**PR #167204**",
+        "description": "**PR #167204** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167204"
       }
     ],
     "fixes": []
