@@ -1,0 +1,48 @@
+---
+title: "Friends of Clawdicians #17"
+description: "Claude Haiku 5.5 cuts small-model prices to a tenth, GPT-6 reaches every ChatGPT tier with interfaces that answer back, and GitHub's trending wall is agent infrastructure: orchestration, memory, mobile automation, and a runtime from Docker."
+pubDate: "2026-10-12"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-17.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-17.png';
+
+<Image src={coverImage} alt="A warm timber workshop where a small swift brass bird perches on a stack of coins beside a drafting table showing an interactive form with buttons, and a wall of labeled cubbyholes behind holds tiny agent figures, in gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+This week the small got cheaper and the interface started answering back. Anthropic cut small-model prices hard enough to change fleet math. OpenAI pushed GPT-6 to every ChatGPT tier with interactive components in the reply. GitHub trending looked like an agent-infrastructure catalog. The questions worth asking stayed concrete: what does a sub-agent cost at volume, and which of these tools does your stack actually lack.
+
+## Haiku 5.5 prices sub-agents like compute
+
+[Anthropic shipped Claude Haiku 5.5](https://www.anthropic.com/claude-haiku-5-5) on October 7. Input is $0.10 per million tokens under 100k of context, $0.50 above it. Output is $0.50 under 100k and $2.50 above. Cache reads cost $0.01 per million under the threshold and $0.05 over. Anthropic puts the average saving at roughly 75 percent versus Haiku 4.5, and around 90 percent for the nine in ten requests that stay under 100k.
+
+The capability floor moved too. Anthropic reports 72.4 percent on OSWorld 2.1, where Haiku 4.5 scored 15.7. Terminal-Bench 4.0 sits at 39.2 percent, against Sonnet 5.5's 70.6. This is also the first Haiku with an effort setting, so you can trade latency for thoroughness per call. Those are vendor benchmarks on vendor tasks, but the shape is clear: the cheap tier stopped being a toy.
+
+Two adjacent changes matter for fleet operators. Sonnet 5.5 cache reads dropped to $0.10 per million, which cuts the cost of long agentic sessions that re-read the same context. And Max and Team plans now carry monthly pooled API credits of $100, $200, and $500, which changes how small teams budget experiments. The SDKs also gained computer-use and browser-use support in beta.
+
+The test worth running: take your most repetitive agent task, the summaries and classifications and compactions, and reprice it on Haiku 5.5 against what runs it today. Measure quality on your own cases, not the leaderboard, and keep the effort setting in the comparison.
+
+[GPT-6 for every tier](https://openai.com/index/gpt-6-for-everyone/) arrived the same day, which made it a strange week to be a small model.
+
+## GPT-6 answers with interfaces
+
+[GPT-6 reached all ChatGPT tiers](https://openai.com/index/gpt-6-for-everyone/) on October 7, with Sol powering paid plans and Luna on free and Go. The headline feature is Intelligent UI: the model composes responses from text, visuals, and interactive elements, so a reply can arrive as buttons, forms, charts, or a small tool built for the question.
+
+A comparison can land side by side. A recipe can carry its timer. A question about compound interest can return a calculator instead of a paragraph. OpenAI frames this as software adapting to people rather than people adapting to software, which is a large claim for what is, today, a chat surface.
+
+Two operational notes. OpenAI says GPT-6 Instant starts answering search-backed questions 44 percent sooner than GPT-5.6 Instant, on average, their claim, not an independent measurement. And the release builds on Astra's safety work, with stronger resistance to multi-turn attempts to bypass safety training. The safety note matters less for chat users and more as a signal of what OpenAI thinks the attack surface is: conversation, not single prompts.
+
+For builders, the interesting question is not whether chat replies look nicer. It is whether model-generated interfaces become an expected surface for agent output. If your product returns agents' work as JSON and a form, and the neighboring experience renders a living component, the integration feels older than its ship date.
+
+## GitHub trending is an agent-infra catalog
+
+The wave this week is unambiguous. [Paperclip](https://github.com/paperclipai/paperclip) describes itself as the open-source app for managing AI agents at work, with a line that explains the market: if OpenClaw is an employee, Paperclip is the company. It orchestrates teams of bring-your-own agents with goals, budgets, and cost tracking. [Hindsight](https://github.com/vectorize-io/hindsight) builds agent memory that learns from what happened. [mobile-mcp](https://github.com/mobile-next/mobile-mcp) exposes mobile automation over MCP. [Buzz](https://github.com/block/buzz) handles hive-mind communication between agents. And [Docker Agent](https://github.com/docker/docker-agent) signals Docker wants to be the runtime layer agents execute in.
+
+Individually none of these is a surprise. Together they sketch a stack: orchestration on top, memory behind it, transport between agents, and a runtime underneath. That is the same shape infrastructure always takes when a platform layer forms, and it is happening in public repositories rather than inside three companies.
+
+The clawdician move is not to adopt the stack, it is to notice which layer is missing from your own setup. If you have orchestration and no memory that learns, adding a second orchestrator will not fix that. If your agents share no transport, a hive-mind library will not matter until they do.
+
+Pick the gap, test one tool from the layer that fills it, on a task you already run. That is the whole evaluation. The layer will consolidate within a year and today's pick will be replaceable, which is the argument for spending a day on it now rather than a quarter.
+
+[Haiku 5.5](https://www.anthropic.com/claude-haiku-5-5) makes those experiments cheaper than they were last month.
