@@ -1,4 +1,4 @@
-# Ogillvy — public bundle
+# Ogillvy, public bundle
 
 Ogilvy copy discipline for short-form public posts (X/Twitter posts, replies, ad copy). An 8-rule persuasion-clarity gate with hard reject checks: hook in the first five words, facts over feelings, one idea per post, no buzzwords, 280 chars including the @mention tag.
 

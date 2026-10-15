@@ -1,4 +1,4 @@
-# No AI slop — public bundle
+# No AI slop, public bundle
 
 A sharp human editor skill: preserve the writer's point and personal voice while making writing clearer and more alive. Removes AI patterns without turning distinctive writing into generic polished prose.
 
@@ -17,8 +17,8 @@ Or copy `SKILL.md` and `eval.md` into your agent's skills directory (for OpenCla
 
 ## Files
 
-- `SKILL.md` — the editing contract, banned-word lists, and pattern catalog
-- `eval.md` — post-edit self-check; answer each check pass/fail before returning a draft
+- `SKILL.md`, the editing contract, banned-word lists, and pattern catalog
+- `eval.md`, post-edit self-check; answer each check pass/fail before returning a draft
 
 ## Source
 

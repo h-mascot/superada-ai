@@ -3,9 +3,8 @@ set -eu
 TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/ogilvy-writing-checklist"
 mkdir -p "$TARGET_DIR"
 base="https://superada.ai/skills/ogilvy-writing-checklist"
-for path in \
-  "SKILL.md"
-  "README.md"
+for path in   "SKILL.md" \
+  "README.md" \
   "scripts/ogilvy_gate.py"; do
   mkdir -p "$TARGET_DIR/$(dirname "$path")"
   curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"

@@ -3,9 +3,8 @@ set -eu
 TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/no-ai-slop"
 mkdir -p "$TARGET_DIR"
 base="https://superada.ai/skills/no-ai-slop"
-for path in \
-  "SKILL.md"
-  "eval.md"
+for path in   "SKILL.md" \
+  "eval.md" \
   "README.md"; do
   mkdir -p "$TARGET_DIR/$(dirname "$path")"
   curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"

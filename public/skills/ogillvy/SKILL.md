@@ -4,9 +4,9 @@ description: "Ogilvy copy gate for short public X posts and replies."
 version: 1.0.0
 ---
 
-# Ogillvy — Ogilvy copy discipline for short-form public posts
+# Ogillvy, Ogilvy copy discipline for short-form public posts
 
-Use when drafting or reviewing public X/Twitter posts, replies, or ad copy for a brand or personal account. Pairs with `no-ai-slop` (voice/no-slop gate) — this skill is the persuasion-clarity gate that runs BEFORE it.
+Use when drafting or reviewing public X/Twitter posts, replies, or ad copy for a brand or personal account. Pairs with `no-ai-slop` (voice/no-slop gate); this skill is the persuasion-clarity gate that runs BEFORE it.
 
 ## The rules (from Ogilvy, applied to a 280-char lane)
 
@@ -21,7 +21,7 @@ Use when drafting or reviewing public X/Twitter posts, replies, or ad copy for a
 
 ## Hard checks (reject the draft if any fail)
 
-- **GROUNDING FIRST.** The draft must contain at least one concrete, verifiable fact about the actual subject pulled from a real source (a number, name, shipped thing, or dated event) — not generic tech-twitter filler. A correct-but-generic reply is a FAIL. Verify the grounding fact at its source before approving and note where it came from.
+- **GROUNDING FIRST.** The draft must contain at least one concrete, verifiable fact about the actual subject pulled from a real source (a number, name, shipped thing, or dated event), not generic tech-twitter filler. A correct-but-generic reply is a FAIL. Verify the grounding fact at its source before approving and note where it came from.
 - First 5 words carry the point (no throat-clearing, no "So", no "Reading up on")
 - At least one concrete fact/name/number, or an explicit honest "we don't know yet"
 - No promised actions that no one will take: if the post says "I'll do X", a tracked task with an owner must already exist for X

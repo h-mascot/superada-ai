@@ -1,4 +1,4 @@
-# Ogilvy Writing Checklist — public bundle
+# Ogilvy Writing Checklist, public bundle
 
 A 10-rule pre-shipment writing gate for any prose deliverable (memos, decks, articles, emails, briefings, public posts), adapted from David Ogilvy's 1982 Ogilvy & Mather "How to Write" memo. Ships with `scripts/ogilvy_gate.py`, a read-only stdlib-only Python scorer that measures surface signals (sentence length, jargon, CTA presence) and pairs them with your yes/no answers to the judgment rules.
 
@@ -20,8 +20,8 @@ Exit codes: `0` all rules PASS, `1` CONCERN, `2` FAIL. See `SKILL.md` for the fu
 
 ## Files
 
-- `SKILL.md` — the 10 rules, procedure, pitfalls, verification
-- `scripts/ogilvy_gate.py` — read-only stdlib scorer (Python 3.9+, no pip installs)
+- `SKILL.md`, the 10 rules, procedure, pitfalls, verification
+- `scripts/ogilvy_gate.py`, read-only stdlib scorer (Python 3.9+, no pip installs)
 
 ## Source
 
