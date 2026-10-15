@@ -14,7 +14,7 @@ export type SkillRecord = {
   title: string;
   description: string;
   tagline: string;
-  category: 'Operations' | 'Security' | 'Research' | 'Publishing' | 'Meta' | 'Planning' | 'Execution';
+  category: 'Operations' | 'Security' | 'Research' | 'Publishing' | 'Meta' | 'Planning' | 'Execution' | 'Writing';
   availability: 'agent-installable' | 'manual';
   estimatedSetup: string;
   sourceLabel: string;
@@ -1048,6 +1048,111 @@ EOF`,
       'Codex CLI is forbidden as a fallback control plane. Never silently fall back to Cursor CLI, Hermes goals, OpenClaw cron, or shell supervisors.',
     ],
   },
+  {
+    slug: 'ogillvy',
+    title: 'Ogillvy',
+    description: 'Ogilvy copy discipline for short-form public posts: 8 rules plus hard reject checks that enforce a hook in the first five words, facts over feelings, one idea per post, and zero buzzwords inside 280 characters.',
+    tagline: 'The headline is 80 cents of the dollar.',
+    category: 'Writing',
+    availability: 'agent-installable',
+    estimatedSetup: '1 minute',
+    sourceLabel: 'superada.ai/skills/ogillvy',
+    sourceUrl: 'https://superada.ai/skills/ogillvy/',
+    sourceSpec: 'https://superada.ai/skills/ogillvy/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/ogillvy | sh',
+    reviewMode: 'source-review',
+    includes: ['8 Ogilvy rules adapted to a 280-character lane', 'Hard reject checks including grounding and character budget', 'Buzzword blocklist shared with no-ai-slop', 'Workflow that chains into the no-ai-slop voice gate'],
+    useCases: ['Draft public X/Twitter posts and replies that lead with the hook', 'Review ad copy for facts-versus-feelings and buzzword failures', 'Reject correct-but-generic replies before they ship'],
+    instructions: ['Install the skill from the SuperAda installer.', 'Read the mention, parent post, or research notes before drafting.', 'Draft against the 8 rules, then run every hard check.', 'Chain the passing draft into no-ai-slop for the voice gate.'],
+    limitations: ['Covers short-form public copy, not long-form prose (use ogilvy-writing-checklist for that).', 'The grounding check needs a real source in your own context; the skill does not fetch facts for you.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/ogillvy/SKILL.md', description: 'The 8 rules and hard reject checks for short public posts.' },
+      { label: 'README', path: 'https://superada.ai/skills/ogillvy/README.md', description: 'Public overview with install and pairing notes.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/ogillvy', description: 'Installs the bundle into an agent skills directory.' },
+    ],
+  },
+
+  {
+    slug: 'ogilvy-writing-checklist',
+    title: 'Ogilvy Writing Checklist',
+    description: 'A 10-rule pre-shipment gate for any prose deliverable, adapted from David Ogilvy&rsquo;s 1982 &ldquo;How to Write&rdquo; memo, with a stdlib-only Python scorer that grades sentence length, jargon, and call-to-action signals and returns a SHIP, REVISE, or HOLD decision.',
+    tagline: 'Score the prose before it ships, not after.',
+    category: 'Writing',
+    availability: 'agent-installable',
+    estimatedSetup: '1 minute',
+    sourceLabel: 'superada.ai/skills/ogilvy-writing-checklist',
+    sourceUrl: 'https://superada.ai/skills/ogilvy-writing-checklist/',
+    sourceSpec: 'https://superada.ai/skills/ogilvy-writing-checklist/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/ogilvy-writing-checklist | sh',
+    reviewMode: 'source-review',
+    includes: ['10 Ogilvy rules as pass/concern/fail signals', 'Read-only Python scorer with no dependencies', 'Mechanical scoring for 6 rules plus agent-judged prompts for 4', 'SHIP, REVISE, HOLD decision contract'],
+    useCases: ['Gate memos, briefings, and BD emails before sending', 'QA articles and public posts before publication', 'Catch long sentences, jargon, and missing calls to action mechanically'],
+    instructions: ['Install the skill from the SuperAda installer.', 'Write or locate the draft as a file (200+ words is the useful range).', 'Run scripts/ogilvy_gate.py against the draft and answer the 4 judgment questions honestly.', 'Act on the SHIP, REVISE, or HOLD decision and re-run after fixes.'],
+    limitations: ['Surface-signal scorer only: it cannot detect bad logic, weak arguments, or tone mismatch.', 'Rules 1, 7, 8, and 10 are yes/no judgments the script cannot verify.', 'Python 3.9+ required; the script is read-only and never edits the draft.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/ogilvy-writing-checklist/SKILL.md', description: 'The 10 rules, run procedure, pitfalls, and verification steps.' },
+      { label: 'Scorer', path: 'https://superada.ai/skills/ogilvy-writing-checklist/scripts/ogilvy_gate.py', description: 'Stdlib-only read-only gate script with exit codes 0, 1, 2.' },
+      { label: 'README', path: 'https://superada.ai/skills/ogilvy-writing-checklist/README.md', description: 'Public overview with attribution and install notes.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/ogilvy-writing-checklist', description: 'Installs the bundle including the scorer script.' },
+    ],
+    notes: [
+      'Adapted from David Ogilvy&rsquo;s 1982 Ogilvy &amp; Mather &ldquo;How to Write&rdquo; memo, with modern takeaway framing from Louis Lucente&rsquo;s &ldquo;How To Write: David Ogilvy&rsquo;s 10 Timeless Rules&rdquo;.',
+    ],
+  },
+
+  {
+    slug: 'no-ai-slop',
+    title: 'No AI Slop',
+    description: 'A sharp human editor in skill form. Edit a draft with the minimum effective change that removes AI patterns while preserving the writer&rsquo;s voice, or audit it without rewriting: named patterns, quoted lines, short fixes, and a post-edit eval contract.',
+    tagline: 'Remove AI patterns without sanding off the voice.',
+    category: 'Writing',
+    availability: 'agent-installable',
+    estimatedSetup: '1 minute',
+    sourceLabel: 'superada.ai/skills/no-ai-slop',
+    sourceUrl: 'https://superada.ai/skills/no-ai-slop/',
+    sourceSpec: 'https://superada.ai/skills/no-ai-slop/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/no-ai-slop | sh',
+    reviewMode: 'source-review',
+    includes: ['Edit and detect modes with separate contracts', 'Minimum-effective-edit principles that preserve real voice', 'Banned words, filler phrases, and 25+ named patterns with fixes', 'Post-edit eval.md self-check before returning any draft'],
+    useCases: ['Fix a draft so it reads human without flattening the voice', 'Audit whether a piece shows specific AI patterns, with quoted evidence', 'Attach as a silent quality gate to publishing or cron workflows'],
+    instructions: ['Install the skill from the SuperAda installer.', 'Pick the mode: edit returns the fixed draft plus a What changed note; detect only reports findings.', 'Apply the minimum effective edit and preserve the writer&rsquo;s vocabulary, cadence, and edge.', 'Run the eval.md checks before returning the draft.'],
+    limitations: ['Not an AI detector: it names patterns with evidence rather than guessing authorship.', 'Preserving voice means it will not impose a house style or maximum tidiness.', 'Needs a draft to work on; it does not generate copy.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/no-ai-slop/SKILL.md', description: 'Editing principles, word lists, and the full pattern catalog.' },
+      { label: 'Eval contract', path: 'https://superada.ai/skills/no-ai-slop/eval.md', description: 'Post-edit pass/fail self-check for editing, patterns, and final read.' },
+      { label: 'README', path: 'https://superada.ai/skills/no-ai-slop/README.md', description: 'Public overview with install and usage notes.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/no-ai-slop', description: 'Installs the bundle with the eval companion file.' },
+    ],
+  },
+
+  {
+    slug: 'unslop',
+    title: 'Unslop',
+    description: 'A compact 31-pattern anti-slop editor covering content puffery, AI vocabulary, punctuation and formatting tells, chatbot phrases, filler, and abstract jargon metaphors, plus explicit rules for adding human voice back after the cut.',
+    tagline: 'Cut the AI tells. Keep the soul.',
+    category: 'Writing',
+    availability: 'agent-installable',
+    estimatedSetup: '1 minute',
+    sourceLabel: 'superada.ai/skills/unslop',
+    sourceUrl: 'https://superada.ai/skills/unslop/',
+    sourceSpec: 'https://superada.ai/skills/unslop/SKILL.md',
+    entrypoint: 'SKILL.md',
+    installCommand: 'curl -sSf https://superada.ai/install/unslop | sh',
+    reviewMode: 'source-review',
+    includes: ['31 numbered patterns across content, language, style, filler, jargon, and plain speech', 'Adding-soul rules: opinions, varied rhythm, allowed mess, specific feelings', 'Strict punctuation stance: no em dashes, no parenthetical substitutes', 'Self-audit step for remaining tells'],
+    useCases: ['Strip AI tells from docs, posts, and replies in one pass', 'Rewrite marketing-speak into plain concrete statements', 'Use as an always-on style gate for agent-generated writing'],
+    instructions: ['Install the skill from the SuperAda installer.', 'Scan the text against the 31 patterns.', 'Rewrite with meaning and tone preserved, then add voice back per the soul rules.', 'Self-audit by asking what still reads as AI-generated and fix the remainder.'],
+    limitations: ['Opinionated defaults (for example, zero em dashes) that not every house style shares; adjust to taste.', 'Pattern list is fixed prose, not a linter: enforcement depends on the agent applying it.'],
+    artifacts: [
+      { label: 'Skill contract', path: 'https://superada.ai/skills/unslop/SKILL.md', description: 'The 31 patterns and the adding-soul rules.' },
+      { label: 'README', path: 'https://superada.ai/skills/unslop/README.md', description: 'Public overview with install notes.' },
+      { label: 'Curl installer', path: 'https://superada.ai/install/unslop', description: 'Installs the bundle into an agent skills directory.' },
+    ],
+  },
+
 ];
 
 export const skillMap = Object.fromEntries(publishedSkills.map((skill) => [skill.slug, skill]));
