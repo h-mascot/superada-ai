@@ -1,0 +1,90 @@
+---
+title: "Friends of Clawdicians #18"
+description: "Meta's Muse Spark Open puts 816 billion parameters under a license worth reading, NVIDIA's Nemotron 3.5 counts active parameters instead of total ones, and GitHub's trending wall is fleet orchestration and cross-agent memory. Plus vLLM, Ollama, pydantic-ai, and Anthropic's Scion."
+pubDate: "2026-10-19"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-18.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-18.png';
+
+<Image src={coverImage} alt="A wide bright workbench where a small brass bird agent stands beside an open toolbox of shining model weights, a desktop machine and a laptop glowing softly behind it, and a shared notebook passed between two agent figures, in gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+The week of October 13 to 19 split agent tooling in two directions. Meta and NVIDIA pushed open weights toward desks and devices. Coding agent projects tackled fleet orchestration and persistent memory. The practical questions stayed familiar: what does memory cost, and which layer is missing from your setup? Bigger models matter. So does keeping the next agent from rediscovering what the previous one already knew.
+
+## Open weights, substantial hardware
+
+Meta's newsroom entry dated October 12 announced Muse Wonder and Muse Wonder Full, describing frontier models for personal and professional agentic tasks. That announcement preceded this week's larger deployment question.
+
+On October 15, [Meta released Muse Spark Open](https://research.meta.ai/blog/muse-spark-open/), calling it the most capable US open-weights model to date. That is Meta's claim. The specifications are concrete: 816 billion total parameters, 42 billion active parameters, and a one-million-token context window.
+
+The mixture-of-experts model handles text, images, audio, and audio-video perception. Meta built it for coding and agentic work. Weights are available on Hugging Face under the Muse Model License, whose limited commercial terms allow many developers to use it free.
+
+Read those terms before treating "open weights" as a purchasing policy.
+
+The deployment work spans SGLang and vLLM, with optimizations for NVIDIA, AMD, and Intel. [PyTorch's implementation account](https://pytorch.org/blog/muse-spark-open/) gives the useful distinction between kernel benchmarks and application throughput.
+
+Helion kernels in SGLang deliver reported kernel-level speedups of 1.03 to 3.95 times against hardware-specific kernels on NVIDIA GB300. The reported end-to-end throughput improvement on AMD MI350 is 3 percent. Those measurements describe different scopes. Keep them separate.
+
+Training used NVIDIA GB300 NVL72. TorchTitan supports supervised fine-tuning and reinforcement learning through TitanRL.
+
+MLX optimization targets Mac Studio with M5 Ultra: up to 512 GB unified memory per machine and 1.2 TB/s memory throughput. Two machines can hold the entire model. Holding the weights answers a capacity question; it does not establish interactive performance.
+
+Hosted inference partners include Together AI, Fireworks, Baseten, Modal, and OpenRouter. Local capacity and hosted access give developers different ways to test the same model.
+
+## NVIDIA counts active parameters
+
+On October 15, [NVIDIA released Nemotron 3.5 Super VL](https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/), a 120-billion-parameter mixture-of-experts model activating 12 billion parameters per token. It supports up to one million context tokens and native MTP speculative decoding. NVFP4 weights are available on Hugging Face.
+
+NVIDIA calls it the fastest open agentic model in its class, about five times faster than the next best. It also claims frontier accuracy at roughly one-fifth the parameter count. Those comparisons remain NVIDIA's claims, rather than a substitute for testing your workload.
+
+The edge announcements make the memory question more immediate. Nemotron 3.5 Bolt 74B-A9B 24GB uses native 2-bit quantization to fit in 24 GB. It runs locally on RTX and DGX Spark hardware.
+
+NVIDIA ranks it first among open models in its class on PinchBench and second among open models on BrowseComp. Nemotron 3.5 Bolt E4B 4GB targets fast conversational agents and is due October 23. It belongs on the watchlist, not this week's installed inventory.
+
+The integration list supplies concrete intended jobs. Scale AI's post-training work covers Skydance's vendor credit agent and EY's M&A diligence agent. AfterQuery works with Hebbia, while Mercor focuses on coding agents.
+
+Atlassian targets agentic search across Jira and Confluence. CrowdStrike targets agentic blue teaming, and Dassault Systemes targets engineering design. Perplexity covers search and agentic tasks.
+
+These examples are useful test categories. A parameter count alone cannot tell you whether a model handles your diligence documents or engineering workflow.
+
+## Fleets need a memory
+
+Two GitHub projects expose complementary requirements: running agents concurrently and preserving useful state between them.
+
+[stablyai/orca](https://github.com/stablyai/orca) is an Electron IDE for parallel coding agents, with about 89,600 stars and an MIT license. Created in March 2026, it has shipped 973 releases.
+
+Orca runs Codex, Claude Code, OpenCode, and Pi side by side, each inside an isolated git worktree. Send one prompt to five agents, compare their diffs, and merge the winner. The review remains your job.
+
+Its mobile companion supports iOS and Android, pairing with the desktop through a relay. SSH worktrees support remote machines, and an Orca CLI supports scripting.
+
+Design Mode connects visual selection to agent context. Click an element in a real Chromium window, and Orca sends its HTML, CSS, and cropped screenshot into the prompt.
+
+[akitaonrails/ai-memory](https://github.com/akitaonrails/ai-memory) handles continuity underneath that orchestration layer. Created in May 2026, the MIT-licensed Rust project has about 10,600 stars.
+
+More than 20 harnesses feed shared memory, including Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Grok, Devin, Kimi, and Kiro. Its handoff mechanism has a specific contract: a typed handoff carries an owner and is claimed exactly once.
+
+Quit Claude Code mid-task and open Codex in the same directory. The next agent can pick up that handoff.
+
+The source of truth is a git-backed wiki containing plain Markdown files. The database is a derived index that can be rebuilt. The default path uses zero LLM calls.
+
+A shared team server adds authentication, attribution, and an audit log. That makes the project worth inspecting for teams whose agents already outnumber their reliable handoffs.
+
+## Release notes have consequences
+
+[vLLM v0.32.0](https://github.com/vllm-project/vllm/releases/tag/v0.32.0), released October 18, contains 814 commits from 363 contributors. Its new `POST /v1/systemone` endpoint serves structured decision questions and is enabled by default.
+
+Low-precision KV cache support expands, including NVFP4 across more GPU generations. GLM-5.x now defaults to FP8 KV cache on SM100.
+
+The PR benchmark reports half the KV memory per rank and 2.3 to 5.5 percent higher throughput. The cost is 7 to 11 percent longer time to first token. Choose according to the latency your application actually exposes.
+
+A new `hf` tool and reasoning parser reads the checkpoint's `response_template`, avoiding model-specific parsers for checkpoints supplying it. Model Runner V2 becomes the ROCm default. Python 3.10 support ends, default CORS origins narrow, and the release lists several security fixes.
+
+[Ollama v0.40.6](https://github.com/ollama/ollama/releases/tag/v0.40.6), released October 16, adds `q2_0` tensor and file types to GGUF. It fixes orphaned runners on Windows. The release also brings clef to Ollama's cloud and uses identifiers for question keys in `--ask` mode.
+
+[pydantic-ai v2.57.0](https://github.com/pydantic/pydantic-ai/releases/tag/v2.57.0), released October 15, adds MetaProvider for Muse models through the Responses API. Harness ApprovalReviewer lets a model approve low-risk tool calls before human review. Request pricing follows reported service tiers, and a compaction fix preserves more recent history.
+
+Finally, [Anthropic's October 13 engineering post](https://www.anthropic.com/engineering/redesigning-source-control) describes replacing Git in its monorepo with Scion. Seven engineers built it in about five months. Daily merges rose from around 2,500 in May to over 30,000 by September. Scion will not be open-sourced.
+
+Next step: pick the gap in your own stack and test one tool this week on a task you already run, then confirm whether the time saved was real.
