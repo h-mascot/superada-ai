@@ -16,6 +16,10969 @@ export const CHANGELOG_SOURCE_URL = "https://raw.githubusercontent.com/openclaw/
 
 export const CHANGELOG_VERSIONS: Version[] = [
   {
+    "version": "2026.10.5",
+    "date": "2026.10.5",
+    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026105",
+    "features": [
+      {
+        "title": "**Updates finish and recover on their own",
+        "description": "** `openclaw update` completes across devices, filesystems, pnpm 12, Windows elevation, and macOS login shells, settles stale handoff leases and package-activation journals instead of stranding the install, keeps busy or unhealthy Gateways from blocking the update, and `--no-restart` package updates now report success honestly. (#164769, #165863, #166695, #167302, #169410, #170046, #172196, #172640, #173358, #173409, #174649, #171015) Thanks @shanselman, @patrickschiller, @RomneyDa, @SergeiAug, @giulianoaccorsi, @mwbroxson, and @Bamorem.",
+        "href": "https://github.com/openclaw/openclaw/issues/164769"
+      },
+      {
+        "title": "**Restart-safe conversations",
+        "description": "** interrupted turns, first messages during worktree preparation, subagent work, and deferred tasks resume after a Gateway restart, and user input and committed session data survive restarts, concurrent writes, and failed publications. (#165333, #166042, #165184, #168650, #169144, #170161, #170223, #165502, #167570, #166010, #167662) Thanks @DonnieFi, @jjjhenriksen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165333"
+      },
+      {
+        "title": "**Faster, lighter Gateway",
+        "description": "** session, transcript, history, and metadata reads move onto worker threads with far less SQLite work per turn, startup maintenance runs after readiness, and Gateway startup and memory search workers use less memory, back in the 2026.10.4 range. (#164744, #165470, #165614, #166587, #167194, #164779, #165028, #166041, #167278, #165993, #174718, #172392) Thanks @obviyus, @RomneyDa, @DonnieFi, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/164744"
+      },
+      {
+        "title": "**Reliable turns and subagents",
+        "description": "** turns recover from stalled streams, reused tool-call IDs, expired ChatGPT websockets, and malformed OpenAI or Google streams, incomplete turns end with a visible notice, and subagent results keep returning through restarts. (#165983, #167013, #165212, #167972, #166846, #168400, #173404, #173612) Thanks @cestercian, @Irish-Joseph, @rmyers64, @sszyh2026, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165983"
+      },
+      {
+        "title": "**X channel",
+        "description": "** answer X (Twitter) mentions through a new channel plugin with streaming, guest mode for repository questions, and enforced API cost limits. (#165138, #165337, #165354, #165351)",
+        "href": "https://github.com/openclaw/openclaw/issues/165138"
+      },
+      {
+        "title": "**Voice calls",
+        "description": "** voice calls gain per-call briefs, call reports, live steering, callbacks, and voicemail detection. (#165716) Thanks @mbelinky and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/165716"
+      },
+      {
+        "title": "**Smarter model pickers and new models",
+        "description": "** pickers lead with each provider's recommended models, show newly listed Claude, ChatGPT, and Ollama models without waiting for an OpenClaw release, and Google adds Gemini 4 Argon and Gemini 3.8 Flash. (#167370, #166737, #167658, #167387, #167463, #171852, #172339) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167370"
+      },
+      {
+        "title": "**ClawHub in the Gateway",
+        "description": "** browse and search ClawHub plugins and skills from the Gateway, and plugins automatically pick the newest official release your OpenClaw supports. (#163459, #167485, #166588) Thanks @jacobtomlinson and @charlesBerg-ux.",
+        "href": "https://github.com/openclaw/openclaw/issues/163459"
+      },
+      {
+        "title": "**Tool approval hooks",
+        "description": "** ordinary hooks can no longer rewrite trusted-inline-approved tool arguments without another approval, and transforming plugins must request separate approval for their final arguments or the call is blocked; see `docs/plugins/hooks/tool-policy.md` for migration. (#142700) Thanks @giodl73-repo and @giodl73.",
+        "href": "https://github.com/openclaw/openclaw/pull/142700"
+      },
+      {
+        "title": "**Sessions",
+        "description": "** allow directed sends to a session without granting transcript access. (#164444)",
+        "href": "https://github.com/openclaw/openclaw/pull/164444"
+      },
+      {
+        "title": "**Worker-local inference",
+        "description": "** add a native worker inference runtime with Gateway dispatch, client placement, required worker policy and destination checks before local inference, and clear setup-failure explanations. (#158902, #163645, #163646, #163647, #166611, #166613, #165960) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/158902"
+      },
+      {
+        "title": "**Device joins",
+        "description": "** the CLI and Control UI join command now installs a background node service that can host agent sessions (`--service --session-host`), with a command-only service alternative, and already-paired devices get a working command to enable session hosting. (#168623) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/168623"
+      },
+      {
+        "title": "**Public threads",
+        "description": "** open public threads at their regular links. (#166049)",
+        "href": "https://github.com/openclaw/openclaw/pull/166049"
+      },
+      {
+        "title": "**Subagent progress",
+        "description": "** count running subagents on the working line, name launched subagents in the operations group, and continue a resumed answer in the block that handed off. (#165477, #165725, #165542) Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165477"
+      },
+      {
+        "title": "**X channel",
+        "description": "** add the X (Twitter) mentions channel plugin with Activity API streaming and backfill, repository-question guest mode with hidden same-agent helpers, GitHub-verified repository writers, and daily and monthly X API cost limits. (#165138, #165337, #165376, #165354, #165543, #168071, #165351) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165138"
+      },
+      {
+        "title": "**Automation repair",
+        "description": "** let a failing automation's owner conversation repair it before alerting, give a second repair turn when the error changes, and post a clear warning when a repair turn times out. (#161007, #162702, #162772) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161007"
+      },
+      {
+        "title": "**Channel progress",
+        "description": "** show useful Telegram and Discord progress by default, add per-tool glyphs to Discord progress drafts, restore per-tool emoji on Telegram tool rows, and hide routine Slack reaction rows. (#166861, #168032, #167392, #166880) Thanks @obviyus, @keshavbotagent, and @notmnp.",
+        "href": "https://github.com/openclaw/openclaw/issues/166861"
+      },
+      {
+        "title": "**Skills",
+        "description": "** keep learned skills focused on repeatable procedures rather than facts or codebase knowledge, and keep longer legacy Workshop skills manageable. (#167404, #167639) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167404"
+      },
+      {
+        "title": "**Memory",
+        "description": "** explain why trigger recall is skipped and why embedding responses are rejected, and report managed Ollama and LM Studio embedding readiness. (#164409, #168035, #156483) Thanks @Ayushdevo, @wangmiao0668000666, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164409"
+      },
+      {
+        "title": "**Models and catalogs",
+        "description": "** show each provider's recommended models first in pickers, publish curated per-provider recommendations in catalog v2, lead NVIDIA recommendations with its featured models, and apply downloaded catalogs without a Gateway restart. (#167370, #166737, #167989, #158000) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167370"
+      },
+      {
+        "title": "**Google",
+        "description": "** add Gemini 4 Argon and Gemini 3.8 Flash, and make Gemini 4 Argon the default Google model. (#171852, #172339)",
+        "href": "https://github.com/openclaw/openclaw/issues/171852"
+      },
+      {
+        "title": "**Anthropic and Claude CLI",
+        "description": "** show newly listed Claude models without waiting for an OpenClaw release, list each Claude CLI model once, and keep logged-out Claude CLI models listed with a login reason. (#167658, #166311, #166338, #167942) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167658"
+      },
+      {
+        "title": "**OpenAI",
+        "description": "** support custom realtime voice endpoints, show account chat models missing from the manifest, surface new ChatGPT-login models without a release, and stop offering ChatGPT-only or bundled-Codex-rejected models that would fail. (#165632, #162563, #167387, #167633, #167975) Thanks @jacobtomlinson, @obviyus, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165632"
+      },
+      {
+        "title": "**Codex runtime compatibility",
+        "description": "** plugin admission rejects official Codex runtimes below 2026.9.7 with update and repair guidance, and incompatible plugins stay inspectable without being imported. (#168930, #168748, #168749, #168977) Thanks @ezimerman and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168930"
+      },
+      {
+        "title": "**Context limits",
+        "description": "** status shows corrected context limits after model discovery, and llama.cpp keeps live router model limits and tools on refresh. (#165991, #168309) Thanks @snotty, @saju01, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165991"
+      },
+      {
+        "title": "**Tool rows and subagent progress",
+        "description": "** show Tool Search calls in native tool rows with shared tool icons across clients, show the subagent wait in place without handoff markers, and guide users after HTTP 400 prompt-size rejections. (#165095, #165378, #159712) Thanks @shakkernerd, @sunlit-deng, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165095"
+      },
+      {
+        "title": "**Voice calls",
+        "description": "** add per-call briefs, call reports, live steering, callbacks, and voicemail detection to voice calls. (#165716) Thanks @mbelinky and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/165716"
+      },
+      {
+        "title": "**Control UI subagents",
+        "description": "** show when a chat is waiting on subagents, open the Subagents panel from the chat's subagent count and names, and surface child failures and attention in the parent chat. (#164190, #166142, #166224, #166312, #166347) Thanks @shakkernerd and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164190"
+      },
+      {
+        "title": "**Control UI customization",
+        "description": "** let themes customize Control UI branding, use agent avatars or unlocked Lobsterdex icons for browser tabs, choose favicon shapes, and add seven Lobsterdex character variants. (#168027, #165201, #166325, #167809, #159815) Thanks @vyctorbrzezowski, @jacobtomlinson, and @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/168027"
+      },
+      {
+        "title": "**Terminal",
+        "description": "** add configurable terminal fonts with built-in Nerd Font icons. (#166180) Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/166180"
+      },
+      {
+        "title": "**Control UI navigation",
+        "description": "** copy file paths from chat tooltips, pin agents directly from the switcher, make agent menus easier to scan, let users hide a session's branch PR row, and simplify optional question cards. (#164431, #165640, #165641, #166366, #168040, #150587) Thanks @jjjhenriksen, @vyctorbrzezowski, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164431"
+      },
+      {
+        "title": "**Skill Workshop",
+        "description": "** show each skill with its changes, files, and history in one view. (#167440) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/167440"
+      },
+      {
+        "title": "**iOS",
+        "description": "** connect the Gateway through native Cloudflare Access with app-owned browser and profile admission. (#147244, #147238) Thanks @vincentkoc, @Solvely-Colin, @Patrick-Erichsen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/147244"
+      },
+      {
+        "title": "**ClawHub",
+        "description": "** browse and search ClawHub plugins and skills through the Gateway. (#163459) Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/pull/163459"
+      },
+      {
+        "title": "**Plugins",
+        "description": "** let plugin tools deliver their finished reply without a second model turn, allow every loaded plugin its own queue modes, and select plugin-owned self-hosted executors. (#164558, #165965, #161609) Thanks @mbelinky and @sjf-oa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164558"
+      },
+      {
+        "title": "**Plugins",
+        "description": "** pick the newest official plugin release the running OpenClaw supports and keep a working plugin when its matching release is unavailable. (#167485, #166588) Thanks @charlesBerg-ux.",
+        "href": "https://github.com/openclaw/openclaw/issues/167485"
+      },
+      {
+        "title": "**Workboard",
+        "description": "** pin, unpin, and delete boards from the sidebar, keep card notes selectable with a roomier notes editor, and keep column edits on rename. (#165020, #166625, #167348) Thanks @rogeriochaves, @llmsommelier, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165020"
+      },
+      {
+        "title": "**GitHub",
+        "description": "** support asynchronous PR merges and compact the Publish PR card. (#163579, #165219) Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163579"
+      },
+      {
+        "title": "**Session performance",
+        "description": "** serve per-turn session projections, entry reads, authority checks, compaction reads, and first-turn headers from worker threads to keep the Gateway main thread responsive. (#164779, #165028, #165205, #165406, #165401, #165581, #165819, #165027, #165367, #164747, #164989, #165073)",
+        "href": "https://github.com/openclaw/openclaw/issues/164779"
+      },
+      {
+        "title": "**Session list and search performance",
+        "description": "** stop Control UI list refresh bursts, bound list materialization, scope and prefilter transcript search, speed up cold suggestion lists, and retain previews across metadata edits. (#162280, #164764, #165080, #165089, #165570, #165150, #165834, #165096, #165932, #166635, #165887, #167909) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/162280"
+      },
+      {
+        "title": "**Turn database performance",
+        "description": "** reduce SQLite statements, worker requests, and redundant reads per chat turn, batch snapshot and metadata queries, and reuse admitted schema and reader facts. (#164490, #166041, #166053, #166054, #166074, #166102, #166541, #166503, #166519, #166698, #167278, #167686, #167685, #167690, #167932, #167046, #166966, #166925, #167291, #166703, #167029, #165360, #165193)",
+        "href": "https://github.com/openclaw/openclaw/issues/164490"
+      },
+      {
+        "title": "**State database performance",
+        "description": "** speed up cold agent database admission and crash recovery, reuse integrity checks on clean restarts, stop reopening executors when switching agents, and release leases promptly during shutdown. (#164846, #165070, #165186, #165293, #165680, #166112, #165993, #167001, #168008, #164788, #164962, #165085, #165910, #166822) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164846"
+      },
+      {
+        "title": "**Maintenance and history performance",
+        "description": "** lighten idle and manual maintenance, lifecycle cleanup, archive, reset, and trajectory retention work, and speed history reads with nested tool activity. (#164851, #164755, #164938, #165081, #165082, #165254, #165090, #165074, #165274, #165678, #167268, #167070, #167549, #167643, #168013, #167449, #165221, #165181, #165093, #165086, #165111, #165377, #165495, #165909, #166069, #166631, #166778, #166804, #167434, #167915, #167959) Thanks @Patrick-Erichsen, @obviyus, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164851"
+      },
+      {
+        "title": "**Agent performance",
+        "description": "** reduce retained heap, per-turn prompt allocations, transcript reads, and main-thread SQLite work during runs, preserve prompt cache across instruction refreshes and image cleanup, and reuse verified history images across turns. (#167454, #167922, #167682, #167547, #167698, #167613, #167355, #165142, #165404, #167282, #164685, #165012, #165410, #165370, #165552) Thanks @RomneyDa and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/167454"
+      },
+      {
+        "title": "**Model catalog performance",
+        "description": "** speed up multi-provider catalog refreshes, avoid discovery on cold account reads and unrequested plugin catalogs, retain account catalogs during refresh, and reduce catalog worker heap. (#167101, #167334, #167359, #167009, #167008, #166007, #166434, #165911, #165708, #165547, #165034, #165491, #166602) Thanks @vincentkoc, @obviyus, and @xialonglee.",
+        "href": "https://github.com/openclaw/openclaw/issues/167101"
+      },
+      {
+        "title": "**Subagent and ACP performance",
+        "description": "** reduce startup registry restore latency, move bulk registry work off the Gateway thread, batch registry cohorts, and avoid full-session scans when resuming ACP sessions. (#165942, #165684, #165098, #167684, #167010, #167372, #165550, #167086) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165942"
+      },
+      {
+        "title": "**Update performance",
+        "description": "** updates stop rehashing unchanged runtime files while retaining the running updater and publishing the candidate, reducing update I/O. (#168958)",
+        "href": "https://github.com/openclaw/openclaw/pull/168958"
+      },
+      {
+        "title": "**Gateway memory",
+        "description": "** Gateway startup memory is back in the 2026.10.4 range: on a cold start, memory indexes open on the first search or turn that needs them instead of all at once after readiness, catalog, SQLite broker, and transcript worker heaps are capped, and memory search workers used by `openclaw agent` and memory recall retain less memory. (#174718, #172392) Thanks @RomneyDa, @xialonglee, @DonnieFi, @jjjhenriksen, and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/174718"
+      },
+      {
+        "title": "**Session data safety",
+        "description": "** preserve user input and committed facts through restart recovery and failed publication, keep accepted locked appends settled before releasing the writer, and fence cross-store worker commits. (#165502, #167570, #165894, #168018, #168029)",
+        "href": "https://github.com/openclaw/openclaw/issues/165502"
+      },
+      {
+        "title": "**Security boundaries",
+        "description": "** fail closed when the process census cannot prove a temp root is unused, reject incompatible worker prompt contexts before launch, keep browser pairing credentials out of opener process arguments, expand `file:` SQLite targets before the exec live-state guard checks them, require approval before setup diagnostics repair state, run plugin `before_tool_call` hooks under `openclaw agent exec`, and reject oversized local workspace document saves. (#165079, #166268, #170289, #170253, #171960, #159333, #171938) Thanks @Dhotei, @vincentkoc, @obviyus, @eleqtrizit, @joseairosa, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165079"
+      },
+      {
+        "title": "**Tool Search provenance",
+        "description": "** network results reached through Tool Search and Code Mode now taint the turn the same way direct network tool calls do. (#169560) Thanks @RomneyDa and @farisoftfry.",
+        "href": "https://github.com/openclaw/openclaw/pull/169560"
+      },
+      {
+        "title": "**Command owners",
+        "description": "** Discord and Slack honor `discord:user:<id>` and `slack:user:<id>` command owners for voice access and exec approvals, so owner-derived approvers are no longer dropped. (#172385, #172424) Thanks @yetval and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172385"
+      },
+      {
+        "title": "**Session authority and privacy",
+        "description": "** check caller authority before restoring cold history for compaction, keep authority current after committed session changes, reject malformed hook session keys, and hide pre-session edits to branch-added files from uncommitted diffs. (#166506, #167875, #166406, #164671) Thanks @yetval, @obviyus, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166506"
+      },
+      {
+        "title": "**Session cleanup",
+        "description": "** remove leftover GitHub publication receipts and managed worktrees on cleanup and Incognito reset, and publish conversation, plugin-state, sandbox, worktree, and GitHub authority receipts. (#163833, #165185, #167731, #168025) Thanks @jayzhou2309 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163833"
+      },
+      {
+        "title": "**Turn reliability",
+        "description": "** stop unrelated session writes from failing Codex and chat turns, keep Knowledge calls working while a session publishes its bookkeeping, and stop group turns from failing silently when history cannot load. (#165196, #166010, #166758, #135253, #166059) Thanks @jalehman, @izshaw, @DonnieFi, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165196"
+      },
+      {
+        "title": "**Restart recovery",
+        "description": "** settle sessions left running after restart, avoid duplicate recovery after ordinary interruptions, keep recovery reconciliation on the host, and preserve database admission, custody, and hook retries for post-restart and first-session turns. (#165174, #154175, #166395, #166867, #166609, #167629, #165859, #165738, #166891) Thanks @Grynn and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165174"
+      },
+      {
+        "title": "**Restart resume",
+        "description": "** resume Control UI turns interrupted by a Gateway restart, keep a new session's first message when the Gateway restarts during worktree preparation, resume tasks after deferred startup recovery, resume turns interrupted while a session was still preparing, return interrupted subagents to their parent with their history (including quiet children of parents created by the `agent` RPC), resume automation and node-hosted turns instead of failing with an active turn claim, keep streamed text from a killed native worker in history, keep symlinked state directories working after restart, and settle restart intents and update reports in workers. (#165333, #166042, #165184, #168650, #169144, #170162, #170161, #170223, #168361, #167572, #165069, #165670, #175278) Thanks @obviyus, @RomneyDa, @DonnieFi, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165333"
+      },
+      {
+        "title": "**Main session restarts",
+        "description": "** main sessions that were mid-turn during a Gateway restart resume on the next boot, and interrupted completion replies are delivered instead of lost. (#168651, #167814, #167766) Thanks @goutamadwant, @marknilsn, @DonnieFi, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168651"
+      },
+      {
+        "title": "**Agent and session creation",
+        "description": "** fix cold shared-store and fresh-store creation failures and agent database recovery after orphan session window repair. (#167257, #167515, #167366, #166860) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167257"
+      },
+      {
+        "title": "**Windows and path aliases",
+        "description": "** canonicalize the shared state database path and compare link-stable identities so Windows and POSIX path aliases share one store and channel lifecycle. (#166755, #166062, #166787) Thanks @taihartman and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166755"
+      },
+      {
+        "title": "**SQLite deadlocks and stalls",
+        "description": "** prevent writer-reader admission and cleanup deadlocks, keep committed reads responsive during writer stalls, stop writer-held transcript reads waiting on readers, and keep foreign changes visible during refresh. (#167662, #167446, #167901, #167687, #166331, #165898, #167332) Thanks @sasan1200, @vincentkoc, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/167662"
+      },
+      {
+        "title": "**State and updates",
+        "description": "** stop leftover update-check caches and completed recovery history from blocking updates, and give one actionable answer for state written by a newer release while keeping status reads read-only. (#165461, #167358, #166963) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165461"
+      },
+      {
+        "title": "**Startup and integrity checks",
+        "description": "** return pending admission during startup index repair, retain integrity proof through startup and idle retirement, and stop healthy starts logging SQLite lock-wait warnings. (#165323, #166972, #166412, #167754, #166253, #168310) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165323"
+      },
+      {
+        "title": "**Session search and history",
+        "description": "** search transcripts for configured ACP owners, stop false indexing notices, keep search parallel with accurate indexing, preserve dot-prefixed checkpoint references and CLI history after interrupted progress replies, keep canonical transcript owners distinct, and refresh empty previews after cold history is restored. (#164897, #165879, #167174, #167163, #164920, #166658, #164512, #168397) Thanks @sunlit-deng, @obviyus, @techdou, @shakkernerd, @VACInc, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164897"
+      },
+      {
+        "title": "**Session display",
+        "description": "** stop Markdown link markup leaking into previews, show correct context windows for plugin-discovered models, log failed wakes with their target, keep owning agents in lifecycle commands and trajectory export, and decode UTF-16 BOM text files. (#166653, #159731, #166458, #166415, #165777) Thanks @jayzhou2309, @obviyus, @rudycelekli, @Yigtwxx, @yetval, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166653"
+      },
+      {
+        "title": "**Startup ordering",
+        "description": "** stop agents with small transcript rebuild backlogs from waiting behind larger agents at startup. (#165207)",
+        "href": "https://github.com/openclaw/openclaw/pull/165207"
+      },
+      {
+        "title": "**Data integrity",
+        "description": "** reject malformed UTF-8 backup manifests before verification, preserve malformed UTF-8 and trailing-space connect targets, and keep accents in named legacy text attachments. (#167389, #167399, #167116, #165405) Thanks @Alix-007, @obviyus, and @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/167389"
+      },
+      {
+        "title": "**Turn lifecycle",
+        "description": "** publish one terminal event per stopped or runtime-lost run, settle terminal runs before session mutations, keep queued message run ids and replies aligned, prevent internal recovery errors after queued turns, and keep follow-ups queued after stopping a turn during preparation. (#165483, #167383, #166784, #166981, #165996, #164656, #172685) Thanks @RomneyDa, @shakkernerd, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165483"
+      },
+      {
+        "title": "**Stop and steering",
+        "description": "** stop yielded commands with their Gateway request, retire stopped continuations, allow wakes after stopped commands, preserve running tools when steering receipts are uncertain, show accepted steering messages in order, and hold steering during worktree creation until the task finishes. (#166753, #166775, #166968, #166754, #168099, #165462, #165537) Thanks @shakkernerd, @RomneyDa, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/166753"
+      },
+      {
+        "title": "**Queue fairness",
+        "description": "** prevent background starvation under sustained traffic, avoid stalled turns when diagnostics throw, and keep permit waiters until their real deadline. (#167683, #167733, #165359) Thanks @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/167683"
+      },
+      {
+        "title": "**Chat delivery",
+        "description": "** deliver activity-summary updates after compaction, hide managed media directives in CR-only replies, keep node completion follow-ups in their originating conversation, preserve live node approval handoffs, and stop false Yield failed warnings in group chats. (#165024, #164657, #160675, #166971, #161154, #166396) Thanks @ly85206559, @obviyus, @brokemac79, @jjjhenriksen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165024"
+      },
+      {
+        "title": "**Session creation",
+        "description": "** keep new sessions working while other local turns start or finish, recognize agents immediately after agents.create, keep parent-only sessions bound to their agent, and bind required worker sessions during workspace binding. (#165984, #167894, #165929, #167162) Thanks @alkor2000, @markstones78, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165984"
+      },
+      {
+        "title": "**Chat history",
+        "description": "** stop endless retries for sessions in skipped agent stores, return anchored history for pre-reset Claude CLI-bound messages, retain tool history details and channel startup context, keep generated and truncated session titles UTF-16 safe and balanced, and keep channel messages in session history when required preflight compaction fails. (#165408, #166578, #164848, #141240, #167584, #160462) Thanks @obviyus, @VACInc, @sjf-oa, @sjf, @hugenshen, @cursoragent, @masatohoshino, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165408"
+      },
+      {
+        "title": "**Claude CLI and helper calls",
+        "description": "** route shorthand Anthropic CLI auth refs correctly, keep the session observer working on CLI-backed utility models, keep OpenClaw helper calls working across runtime changes, and avoid a Claude CLI startup event deadlock. (#84374, #162067, #166235, #173011) Thanks @joshavant, @obviyus, @rogeriochaves, @llmsommelier, @PollyBot13, @ericcaiwx-star, and @sopa-gpters.",
+        "href": "https://github.com/openclaw/openclaw/issues/84374"
+      },
+      {
+        "title": "**Models and catalog",
+        "description": "** keep Codex selectable after startup and deferred agent startup, recheck models after failed catalog recovery, keep OpenRouter and LM Studio thinking levels intact, and keep Gateway startup alive when a model refresh is replaced mid-start. (#165979, #166081, #162901, #166705, #164478, #164597, #173366) Thanks @scotthuang, @obviyus, @ooiuuii, @VACInc, @RomneyDa, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165979"
+      },
+      {
+        "title": "**Usage and metrics",
+        "description": "** report usage for silent replies, estimate context when compatible streams omit usage, include background utility completions in token and cost metrics, keep usage ranges ordered when the host skipped a date, and correct the Sonnet 5.5 cache-read cost. (#152396, #166151, #167986, #165523, #164140, #171723) Thanks @ly85206559, @obviyus, @MutenCath, @fede-kamel, @ericcurtin, @etzelm, @SashaMIT, @DasX, and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/152396"
+      },
+      {
+        "title": "**Startup and readiness",
+        "description": "** show startup failures even when cleanup fails, stop small agents waiting on larger agents, prevent public chat 503s and stalls after startup, avoid failures during temporary state contention, stop Gateway start reporting success before an existing process is ready, keep fresh macOS profiles starting the Gateway and running automatic setup, and let the Gateway start on current Kubernetes images. (#164500, #165107, #167604, #166111, #166942, #167697, #167674, #173246, #172377) Thanks @sunlit-deng, @obviyus, @waynegault, @NianJiuZst, @ericcaiwx-star, @mashaohua1999-stack, @RomneyDa, @saftall, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164500"
+      },
+      {
+        "title": "**Gateway resilience",
+        "description": "** keep WebSocket connections open after handler errors, keep startup alive under the V8 contradiction exit mode, stop config saves hanging after the watcher applies secret references, keep wizard step authority through setup-inference probes, stop replies that mention tool calls from stalling the event loop while streaming, and stop the Gateway pinning a CPU and ignoring SIGTERM after the log date rolls over on a deleted `/tmp`. (#171303, #171490, #171922, #171667, #172631, #160433) Thanks @RomneyDa, @enter501, @JasonBuildAI, @masatohoshino, @obviyus, and @WadeOwenWatts.",
+        "href": "https://github.com/openclaw/openclaw/issues/171303"
+      },
+      {
+        "title": "**Gateway lifecycle",
+        "description": "** state reads stay closed until restart after a failed state cleanup, database admission no longer blocks worker startup, lifecycle publications survive after the emitting producer drains, and Android/Termux Gateways no longer fail with \"shared-state database generation changed\". (#171709, #170348, #170231, #167719) Thanks @RomneyDa, @residentb2b, @yxshee, @grabowskidaniel359-design, @DonnieFi, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/171709"
+      },
+      {
+        "title": "**Plugins and restarts",
+        "description": "** retry stuck plugin reloads once their work settles, and keep Control UI reconnects from freezing the Gateway during plugin reloads. (#164894) Thanks @obviyus and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/pull/164894"
+      },
+      {
+        "title": "**Status and diagnostics",
+        "description": "** stop deep status blaming config for an unreadable state database, report startup migrations and channel logouts accurately, surface startup failures over unrelated log lines, use plain language for diagnostic checks, stop recommending onboarding for runtime failures, and report signal-terminated node commands. (#167352, #167723, #167478, #166946, #165742, #166234, #165116, #165358, #165426) Thanks @RomneyDa, @PollyBot13, @obviyus, @Colton-Harris, and @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167352"
+      },
+      {
+        "title": "**Daemon and platforms",
+        "description": "** avoid versioned pnpm launcher paths, keep exec and MCP servers working after a Homebrew Node upgrade, reconnect Apple clients promptly after network changes, keep node command lookup after a Finder or Dock launch on macOS, preserve multiline LaunchAgent environment values, unblock PATH discovery when login startup ignores termination, and refresh legacy group-writable systemd units during upgrades. (#166222, #166430, #168024, #171460, #171740, #169507, #172790) Thanks @jayzhou2309, @mightyx, @brianmcguire, @jamiezigelbaum, @yetval, @zhangguiping-xydt, @obviyus, @wei887-os, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166222"
+      },
+      {
+        "title": "**Networking",
+        "description": "** restore managed portals on large Tailscale tailnets, keep verified Tailscale GitHub users signed in during GitHub rate limits, and bound unattributable proxy warnings. (#165507, #166254, #134404) Thanks @obviyus, @redasadki, @LeizhenZhang, and @abacha.",
+        "href": "https://github.com/openclaw/openclaw/issues/165507"
+      },
+      {
+        "title": "**Workers and processes",
+        "description": "** stop repeated worker starts after initialization failure, keep workspace recovery running during unrelated writes, stop background execs outliving cleanup, load source workspace workers from external directories, release settled work blocking suspension, and avoid heap-check stalls in busy Bun Gateways. (#165277, #166375, #166478, #166606, #165871, #167184, #166104, #166608, #162124) Thanks @Oldrich333, @RomneyDa, @michaelswissa, @obviyus, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165277"
+      },
+      {
+        "title": "**Gateway behavior",
+        "description": "** encode Ctrl+Space and modified function keys in send-keys, collapse finished processes by default, cap oversized policy watch intervals, keep slow WebSocket response logs and stop listener buildup, keep OpenAI-compatible cancellations from blaming the provider, and keep `logs.tail` cost proportional to the requested window. (#164688, #164776, #164850, #164772, #165052, #167995, #172885) Thanks @yetval, @obviyus, @shakkernerd, @KrasimirKralev, and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/164688"
+      },
+      {
+        "title": "**Integrations",
+        "description": "** parse Firecrawl source-specific results, report ComfyUI workflows without outputs, validate meeting timeouts, stop Mattermost retrying permanent refusals, and include jobId in agent_end hook context for scheduled runs. (#155885, #166249, #158695, #167244, #167124) Thanks @qingminglong, @obviyus, @chelsealong, @catnipluss, @Alix-007, @Leon-SK668, and @xyrolle.",
+        "href": "https://github.com/openclaw/openclaw/issues/155885"
+      },
+      {
+        "title": "**Workspaces",
+        "description": "** reconcile root node workspaces and surface failures, reject timed-out workspace inventory commands, keep paired nodes' scheduled workspace retention and worker-bundle publication from aborting after each scheduler tick, and allow Claw removal with a running Gateway. (#166441, #167673, #168780, #166889) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166441"
+      },
+      {
+        "title": "**Session reads",
+        "description": "** keep chat admission responsive and bound to current authority, refresh placement reads after concurrent publication, skip agent stores no configured agent owns, isolate session-worker receipts, and avoid an unavailable flash when refreshing conversations. (#164682, #165166, #164929, #165904, #167097, #167689, #165468) Thanks @galiniliev, @jacobtomlinson, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164682"
+      },
+      {
+        "title": "**Agent CLI and recovery",
+        "description": "** keep withdrawal results when queued turns time out, report queued cancellation details, await system-agent audit and greeting persistence, and record retired state deferred to Doctor. (#167106, #166185, #165561, #165528, #165479) Thanks @A1fred-AI, @shakkernerd, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167106"
+      },
+      {
+        "title": "**Channel security",
+        "description": "** stop removed X allowlist senders from reaching dispatch mid-authorization, redact credentials in Discord PluralKit, LINE, and Tlon API error bodies, bound pending IRC inbound lines, and reject unsafe LINE question option indexes and unmatchable Matrix auto-join entries. (#165244, #141317, #167234, #165018, #158694, #161607) Thanks @hugenshen, @obviyus, @xialonglee, @eleqtrizit, @Alix-007, @xydigitLybnnnn, and @captain-marlow.",
+        "href": "https://github.com/openclaw/openclaw/issues/165244"
+      },
+      {
+        "title": "**Browser safety",
+        "description": "** isolate session tab ownership by agent, reject malformed JSON before filling forms, match URL globs without backtracking regexes, honor explicit management timeouts, and preserve network settings during allowed navigation. (#167484, #167412, #166727, #167252, #173486) Thanks @Alix-007, @obviyus, @SebTardif, @Leon-SK668, @LiuwqGit, and @ValantisV.",
+        "href": "https://github.com/openclaw/openclaw/issues/167484"
+      },
+      {
+        "title": "**Browser",
+        "description": "** follow configured node routing, reserve CDP ports before relay ports, recover from extension cleanup failures, ignore extension pages, start Chromium from relative Playwright caches, and upload files as payloads on extension profiles. (#164575, #164678, #151037, #162110, #164659, #160013) Thanks @miguelbranco80, @obviyus, @yetval, @ethangui, @openclaw-agent-man, @dlmccoy, @ly85206559, @LiuwqGit, and @elandesberg.",
+        "href": "https://github.com/openclaw/openclaw/issues/164575"
+      },
+      {
+        "title": "**Skills and MCP",
+        "description": "** recheck prerequisites in new sessions, stop calling unavailable skills uninstalled, stop rescanning unchanged roots, hide disconnected MCP catalogs during recovery, connect MCP plugins from HTTPS dashboards, and preserve tool prompts during reconnects. (#165529, #164884, #165304, #165158, #163875, #167642, #158059) Thanks @obviyus, @Patrick-Erichsen, and @NoelDavies.",
+        "href": "https://github.com/openclaw/openclaw/issues/165529"
+      },
+      {
+        "title": "**Media and web fetch",
+        "description": "** accept public IPv6 MEDIA URLs, attach multiline Markdown images, keep UTF-16 text MIME and filename apostrophes, report unrecognized video sizes, preserve code literals and list spacing in fetched text, and send an honest DuckDuckGo User-Agent. (#164689, #165439, #164687, #165754, #159037, #162650, #164936, #164692, #164726) Thanks @yetval, @Takhoffman, @Milbaxter, @obviyus, @LinzeShi, @YangManBOBO, @wangmiao0668000666, @ly85206559, @takyyon, @chief-o-brien-bot, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164689"
+      },
+      {
+        "title": "**Reply delivery",
+        "description": "** stop reporting transcript-only channel replies as sent, deliver isolated cron results to their creating conversation, and keep node completion and background command results in their own conversation. (#164860, #167363, #164719) Thanks @jayzhou2309, @obviyus, @Jackten, and @SparcleAI.",
+        "href": "https://github.com/openclaw/openclaw/issues/164860"
+      },
+      {
+        "title": "**Telegram",
+        "description": "** retry preview edits after transient errors, keep delegated progress and media-run progress cards live, honor explicit reply tags during partial streaming, restore verbose diagnostics, treat GIFs as videos, keep messages queued after handler timeouts, and never replay legacy spool updates older than 24 hours as new instructions after an update. (#165072, #166101, #167362, #167895, #168016, #168011, #103695, #169202, #170068, #169784) Thanks @obviyus, @vincentkoc, @diregoblin, and @angeliti999.",
+        "href": "https://github.com/openclaw/openclaw/issues/165072"
+      },
+      {
+        "title": "**Telegram formatting",
+        "description": "** tables next to quotes or lists keep their boundaries and values. (#168383, #168366) Thanks @dhruv1220 and @barry-ssb.",
+        "href": "https://github.com/openclaw/openclaw/issues/168383"
+      },
+      {
+        "title": "**Discord and Slack",
+        "description": "** keep source formatting in streaming previews, keep health inspection from blocking connections, keep Slack final replies below later human messages, stop misclassifying bare channel names as ids, log skipped mentions, and quiet Socket Mode ping warnings. (#165120, #166736, #163511, #155882, #157953, #164305) Thanks @RomneyDa, @Olli0103, @Patrick-Erichsen, @leovoloshin, @MertBasar0, @obviyus, @jayzhou2309, and @Johannes-Berggren.",
+        "href": "https://github.com/openclaw/openclaw/issues/165120"
+      },
+      {
+        "title": "**Other channels",
+        "description": "** recognize images sent as files on LINE and as documents on WhatsApp, preserve WhatsApp media proxy uploads on Bun, deliver WhatsApp messages that first arrive undecryptable, complete Feishu webhook upgrades before activation, resolve Feishu mentions, advertise Feishu group chats, keep Matrix attachment filenames out of agent text, reconnect IRC after a silent network drop, stop Buzz relays closing during NIP-42 authentication from exiting the Gateway, and stop pasted Microsoft Teams DM images timing out as unavailable. (#165778, #165774, #165017, #165303, #162078, #167264, #121463, #166599, #165419, #133338, #172961, #170591, #170437) Thanks @yetval, @Takhoffman, @shakkernerd, @stanleys12, @obviyus, @hundredhandsio, @Leon-SK668, @Raven-wy, @zw-xysk, @rudycelekli, @ooiuuii, @RileyJJY, @rodricksz4h5, @masatohoshino, @jarvis-modern-mail, @RomneyDa, @EbulenConsult, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165778"
+      },
+      {
+        "title": "**IRC and Tlon formatting",
+        "description": "** log in with passwords containing spaces, keep backslash sequences intact, keep graphemes intact when splitting Slack and IRC replies, preserve angle-bracket placeholders, and keep Tlon links and images formatted. (#165721, #165719, #167025, #167953, #164828, #167191, #137763, #167637) Thanks @Sedrak-Hovhannisyan, @obviyus, @jayzhou2309, @yetval, @ly85206559, and @teddytennant.",
+        "href": "https://github.com/openclaw/openclaw/issues/165721"
+      },
+      {
+        "title": "**Cron",
+        "description": "** keep migrated and Doctor-repaired automations available, report overflowing reminders instead of dropping them, preserve canceled status, hold repair while provider-outage retries are pending, stop maintenance failures during agent deletion or startup, stop holding the state writer while waiting on the host, keep HTTP hooks backing off with 503 while cron session preparation holds the shared lane, and send a failure notice when a one-shot automation fails terminally. (#165064, #165032, #165305, #167524, #167957, #167907, #165814, #166836, #161321, #167120, #166487, #165310, #175111, #168291, #169102) Thanks @obviyus, @JLahullier, @LinzeShi, @Alix-007, @AXEG0, @Linux2010, @automaton1379, @DonnieFi, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165064"
+      },
+      {
+        "title": "**Memory reliability",
+        "description": "** keep indexing and nightly dreaming working during agent startup, keep keyword fallback when embeddings fail, let slow local models finish Dream Diary entries, reject copied saved content in daily-note flushes, and refresh cached index managers when an embedding endpoint or credential is corrected. (#167722, #167756, #167970, #152210, #167984, #167891, #166419, #166422, #166417, #107921, #164633, #168123, #151263, #151055) Thanks @synthalorian, @clanksy-code, @woshicby, @fonoempresa, @jalehman, @tzy-17, @altaywtf, @ruel225, and @Mirksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167722"
+      },
+      {
+        "title": "**Memory search",
+        "description": "** keep distinct mixed-script and CJK memories, find words across Unicode normalization forms, correct EmbeddingGemma retrieval, avoid inheriting chat-only base URLs for embeddings, and bound memory-wiki searches. (#164062, #164660, #150968, #168058, #165514, #166329, #166355, #143054, #167357) Thanks @harshitgupta31415, @obviyus, @ly85206559, @Leon-SK668, @polley-mister, @dhruv1220, @vit-pavlenko, @etzelm, @RileyJJY, and @syfvb.",
+        "href": "https://github.com/openclaw/openclaw/issues/164062"
+      },
+      {
+        "title": "**Heartbeat and auto-reply",
+        "description": "** let chained command completions skip the interval wait, report file-redirected background results, deliver Android notification wakes with heartbeat.every at 0m, keep heartbeat-only options off queued messages, surface silent media staging failures, and suppress punctuated silent reasoning placeholders. (#164756, #166123, #166522, #165313, #166777, #165788, #165066, #165876, #168571) Thanks @obviyus, @gkoch02, @jayzhou2309, @BensonChen1204, @RomneyDa, @akshatshahh, and @liwenjie200543.",
+        "href": "https://github.com/openclaw/openclaw/issues/164756"
+      },
+      {
+        "title": "**Exec and tools",
+        "description": "** preserve channel context in node exec, stop stalled sandbox finalization loops, advertise only session-supported hosts, stop yielded commands from channel /stop, show tool summaries instead of internal MCP names in CLI progress, and keep host exec children from inheriting the node service identity. (#164584, #165167, #166835, #164506, #166764, #167486, #167274, #173304) Thanks @holgergruenhagen, @obviyus, @shakkernerd, @VACInc, @davidcittadini, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164584"
+      },
+      {
+        "title": "**Node commands and approvals",
+        "description": "** approved node commands replay when their prepared plan omitted session identity, safe-bin commands accept trailing whitespace, and the Linux node service keeps its PATH when the login shell resets it. (#161980, #151622, #168120, #136677, #134354) Thanks @Program-123, @gaojian125, @yetval, @harjothkhara, @abacha, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/161980"
+      },
+      {
+        "title": "**MCP and tool servers",
+        "description": "** release computer control with its run so later calls no longer fail with `COMPUTER_HOST_BUSY`, prevent lost tool calls from idle socket reuse, and keep chat usable after removing an unavailable tool server. (#151127, #147420, #172980, #171397) Thanks @ylcn91, @vovarbv, @Oldrich333, @joelagnel, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/151127"
+      },
+      {
+        "title": "**Private reasoning",
+        "description": "** unfinished model reasoning stays private when a reply hits a token limit or content filter after a tool call. (#168294) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/pull/168294"
+      },
+      {
+        "title": "**Nodes",
+        "description": "** give node sessions the same prompt and bootstrap context as local sessions, reduce Windows final-reply latency, and reject blank camera facing values. (#164647, #164523, #145538) Thanks @hugenshen and @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/164647"
+      },
+      {
+        "title": "**Team reports",
+        "description": "** keep the missed closed day when catch-up runs after midnight and defer catch-up until scheduled runs. (#165780, #165356) Thanks @yetval and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165780"
+      },
+      {
+        "title": "**Updates",
+        "description": "** fix dev-channel updates on source checkouts without dependencies. (#165347)",
+        "href": "https://github.com/openclaw/openclaw/pull/165347"
+      },
+      {
+        "title": "**Agent safety",
+        "description": "** block visible and cross-agent spawns for restricted senders, and stop forged Code Mode bridge failures from guest code. (#165418, #165071)",
+        "href": "https://github.com/openclaw/openclaw/issues/165418"
+      },
+      {
+        "title": "**Reply delivery",
+        "description": "** stop runs ending with \"couldn't generate a response\" when a model writes a tool call as text, keep answers from being dropped after yields, make incomplete turns end with a visible notice, stop messaging dedupe from dropping replies that extend a tool send, and keep trailing reply text when a tool block payload quotes its closing tag in code. (#156342, #166876, #167972, #168062, #156939, #151921, #149775) Thanks @namest504, @hogawa000, @obviyus, @QuinsZouls, @amittell, @bodapatisaikrishna, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/156342"
+      },
+      {
+        "title": "**Reply routing",
+        "description": "** WebChat task completions stay in WebChat, mirrored external sends no longer change a transcript's reply destination, and Reef carries GitHub commit links without flagging their revision IDs as credentials. (#168248)",
+        "href": "https://github.com/openclaw/openclaw/pull/168248"
+      },
+      {
+        "title": "**Subagents",
+        "description": "** keep requester turns and wakes alive through transient preparation failures, preserve complete CLI subagent answers, and keep steered messages behind subagent announcements from being dropped as interrupted. (#165610, #166990, #168077)",
+        "href": "https://github.com/openclaw/openclaw/issues/165610"
+      },
+      {
+        "title": "**Turns and replies",
+        "description": "** blocking questions from routed agent turns reach their conversation, Claude CLI sessions remember announced sub-agent results on the next turn, agent plugin reloads no longer wait on their own turn, interrupted turns are preserved when new messages arrive, ACP follow-up replies no longer disappear after the previous turn is stopped, and visible sub-agent spawns try the primary model first. (#170039, #164175, #171257, #170647, #170883, #169984) Thanks @etzelm, @jacobtomlinson, @RomneyDa, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/170039"
+      },
+      {
+        "title": "**Subagent ownership and recovery",
+        "description": "** settle raw-key children and listings through recorded owners, reconcile interrupted subagents at startup, keep restart recovery running past stale records, drain native subagent commands on parent stop, and preserve child finals and failure diagnostics. (#164674, #166550, #166845, #166846, #165335, #165499, #166832, #165634, #166454, #165496, #165469, #165612, #166294) Thanks @shakkernerd, @Oldrich333, @sunlit-deng, and @Jackten.",
+        "href": "https://github.com/openclaw/openclaw/issues/164674"
+      },
+      {
+        "title": "**Tool calls",
+        "description": "** recover when providers reuse tool-call IDs across steps or send malformed tool calls, stop Tool Search crashing on large Unicode descriptions, preserve images from deferred tool calls, and end turns after repeated identical tool errors. (#165212, #165297, #164274, #164737, #165762, #167628, #163577, #164742) Thanks @fransqaas, @obviyus, @jlapenna, @GoldArowana, @aniruddhaadak80, @ooiuuii, @RomneyDa, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165212"
+      },
+      {
+        "title": "**Code Mode",
+        "description": "** report invalid tool arguments as invalid_input, preserve core coding signatures in the bounded catalog, clarify that API.read returns a file record, limit exec discovery guidance to code-mode-only threads, and tell the model what to call when module access is rejected. (#165008, #166785, #167286, #165508, #158716) Thanks @obviyus, @rclarke0, @mbelinky, @sxh313, and @pennymolt.",
+        "href": "https://github.com/openclaw/openclaw/issues/165008"
+      },
+      {
+        "title": "**Stalled turns",
+        "description": "** retry model streams stalled behind empty keepalives or cut mid-frame, and prevent SSE idle timeouts and stalled-reconnect hangs. (#165983, #165870, #152705, #167013, #167303) Thanks @cestercian, @Irish-Joseph, @rmyers64, @ericcurtin, @obviyus, @masatohoshino, @ZengWen-DT, @alfredjbclaw, and @sszyh2026.",
+        "href": "https://github.com/openclaw/openclaw/issues/165983"
+      },
+      {
+        "title": "**Sessions and queued work",
+        "description": "** stop sessions_send into a busy session from never running, queue follow-ups behind settling image completions, keep yielded sessions admitting work, and avoid model fallback on local transcript conflicts. (#167126, #166597, #167007, #165490) Thanks @holgergruenhagen, @MoerAI, @hannesrudolph, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167126"
+      },
+      {
+        "title": "**Compaction",
+        "description": "** commit a deterministic reduction after summary timeouts instead of aborting streaming summaries, drop stale decisions after corrections, stop large sessions waiting minutes for compaction, skip a redundant host compaction after native-only compaction, keep configured AGENTS.md sections in safeguard compaction, keep next turns ready after manual compaction, summarize with the model's own window instead of the session budget, and prevent low context counts after server compaction. (#164246, #164263, #167757, #167916, #165179, #167505, #168051, #168015, #168446, #168131, #171134, #172457, #141341) Thanks @obviyus, @jacobtomlinson, @ericcurtin, @johan-eilertsen, @jaikharbanda, @ruel225, @xydigitLybnnnn, @robertoronderosjr, @jakeaadams, @ooiuuii, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164246"
+      },
+      {
+        "title": "**Prompt caching",
+        "description": "** conversations whose first message ends in whitespace keep a byte-stable prompt prefix, OpenAI-compatible and local endpoints keep runtime context in a user-role message, and cache-TTL context pruning arms for Grok and Gemini 2.5+ models on OpenRouter. (#168725, #168546, #164791, #169548, #169133) Thanks @flanker-stack, @RomneyDa, and @gregb100.",
+        "href": "https://github.com/openclaw/openclaw/issues/168725"
+      },
+      {
+        "title": "**Codex",
+        "description": "** explain rejected compaction turns, support native children on remote app-servers, keep the current task after overload retries, keep final tokens when a stream drops the last delta, keep Ultrafast on resumed ChatGPT sign-in turns, and stop failing successful one-shot commands at cleanup. (#167016, #166400, #166868, #165728, #167220, #167075, #160952, #166668, #155855, #168400, #169265, #169264, #173516) Thanks @jaikharbanda, @Kimiyu-186, @Baumus, @RomneyDa, @jacobtomlinson, @vincentkoc, @SunnyShu0925, @altaywtf, @SanderHelgesen, and @Compassboot.",
+        "href": "https://github.com/openclaw/openclaw/issues/167016"
+      },
+      {
+        "title": "**Claude CLI",
+        "description": "** preserve replies after background Bash runs, recheck login after Gateway startup, fix missing-API-key failures after Claude CLI sign-in, keep the working timer steady on reopen, keep Claude CLI models listed after another plugin's config changes, keep native and MCP tools on exec-completion turns, and apply saved session MCP server selections on the next turn. (#165596, #166305, #167963, #168074, #164873, #166009, #82546, #165769, #157697, #168315, #168670, #168342, #168393, #168207) Thanks @adele-with-a-b, @obviyus, @rogeriochaves, @llmsommelier, @Oldrich333, @amknight, @FreeWind6, @Bruce-Yii, @dprev, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165596"
+      },
+      {
+        "title": "**Model picker and discovery",
+        "description": "** stop discovery failures, restarts, config reloads, or catalog adoption from hiding models, keep cron jobs running when a catalog update lands mid-turn, show known models right after sign-in, and keep explicit model IDs ahead of aliases. (#167230, #167458, #167117, #167178, #167460, #167462, #166983, #167444, #167128) Thanks @obviyus, @tianhaotian, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167230"
+      },
+      {
+        "title": "**Model catalog data",
+        "description": "** keep the hosted catalog updating past 5 MiB of models.dev data, stop publishing models providers no longer serve, resolve models.dev aliases for Together, StepFun, and Kilo Code, retain discovered models with provider SecretRefs, and list standalone models with the owning plugin registry. (#166699, #167855, #144946, #144951, #144960, #147374, #166361, #168050, #165990, #150423) Thanks @obviyus, @ly85206559, @cursoragent, @pheidon, @xydigitLybnnnn, @marcusa617, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166699"
+      },
+      {
+        "title": "**Models and providers",
+        "description": "** API-key sign-in discovers the provider's models immediately, shared OAuth credentials refresh with historical agent stores, LM Studio waits for slow model loads instead of overflowing a fresh session, credential removal during a model reload no longer leaves a restart warning, OpenAI Responses requests clamp `max_output_tokens` to model capacity, and a valid OpenRouter API key is no longer rejected with a route mismatch during setup. (#168617, #168957, #168044, #128282, #173292) Thanks @obviyus, @Parker-Fawcett, and @chandraveshchaudhari.",
+        "href": "https://github.com/openclaw/openclaw/issues/168617"
+      },
+      {
+        "title": "**Model runtime",
+        "description": "** ChatGPT-listed models no longer fail on the default Codex runtime before sending a request, personal-account quota rechecks no longer abort replies, providers that never send response headers time out, agent runs honor the provider's live thinking levels without reloading catalogs, LM Studio refresh discovers new models, and llama.cpp setup keeps aliased models and fails when credentials cannot be saved. (#168033, #170065, #168282, #168566, #168039, #168232) Thanks @obviyus, @jb-lopez, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168033"
+      },
+      {
+        "title": "**Provider streams",
+        "description": "** recover tasks after malformed OpenAI stream events, detach OpenAI stream partial snapshots from live output, and preserve multiline Google replies while reporting malformed streams. (#173404, #172653, #173612) Thanks @Richard355168, @jjjhenriksen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/173404"
+      },
+      {
+        "title": "**Ollama and local models",
+        "description": "** keep ollama.com setup separate from local Ollama, show newly pulled models, stop retrying retired models, fix empty reasoning-off completions, and keep pre-tool narration out of channel replies. (#167433, #67005, #167463, #160047, #28827, #159380, #156389) Thanks @obviyus, @Irish-Joseph, @Kansodata, @autoeverything, @YangManBOBO, @Olli0103, @Solvely-Colin, and @noamliav.",
+        "href": "https://github.com/openclaw/openclaw/issues/167433"
+      },
+      {
+        "title": "**llama.cpp",
+        "description": "** avoid Metal-init timeouts, recover missing or orphaned managed servers, and keep selected GGUF files. (#167630, #153523, #167902, #168064) Thanks @samuelreyes982 and @dh-js.",
+        "href": "https://github.com/openclaw/openclaw/issues/167630"
+      },
+      {
+        "title": "**Provider reasoning and routing",
+        "description": "** honor thinking levels for custom reasoning models, declared vLLM reasoning efforts, and Grok subscription efforts. (#168056, #150149, #167949, #161838, #160604, #166152, #166169) Thanks @leapdragon, @krell11, @obviyus, @ericcurtin, @sxh313, and @Lian-Hu-Agent.",
+        "href": "https://github.com/openclaw/openclaw/issues/168056"
+      },
+      {
+        "title": "**Agents and ACP",
+        "description": "** fix agents delete with $include entries, align binding commands with routing, fix ACP spawns for raw harness targets, allow Gateway startup with unbound legacy ACP metadata or pending agent stores, keep native Talk consults running, hide web search when no provider is configured, and keep plugin and OpenClaw tools for ACP agents when acpx is installed separately. (#166316, #166426, #166908, #166839, #167627, #164372, #166199, #164061, #164766, #167608, #167890, #164272, #164211) Thanks @jayzhou2309, @obviyus, @jaoa12or, @saariuslystoned, @josephbergvinson, @VACInc, @SunnyShu0925, @samiralibabic, @jacobtomlinson, @shakkernerd, @ajmtrz, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166316"
+      },
+      {
+        "title": "**Agent turns",
+        "description": "** scheduled and ordinary turns reach the configured fallback after a provider timeout, queued follow-ups that switch model clear the auto-fallback probe, cancelled queued CLI work never runs, empty stream heartbeats no longer count as model progress, malformed tool calls whose argument length is 401 or 403 are not reported as auth failures, valid tool argument union values keep their type, and plugin completions keep working after another plugin reloads. (#168605, #160440, #160428, #169303, #145850, #168500, #168450, #158974, #168916, #156026) Thanks @hxy91819, @changeroa, @RileyJJY, @TYY-2005, @r3n3x, @Shenrui-Ma, @jalehman, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168605"
+      },
+      {
+        "title": "**Streaming text",
+        "description": "** keep fitting emoji and accents intact in prose replies. (#166567) Thanks @rudycelekli and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/166567"
+      },
+      {
+        "title": "**Onboarding",
+        "description": "** report provider setup failures as JSON, and preserve provider outcomes when staging cleanup is locked. (#165211, #172379) Thanks @skyzhao1223.",
+        "href": "https://github.com/openclaw/openclaw/issues/165211"
+      },
+      {
+        "title": "**Chat delivery",
+        "description": "** keep queued WebChat cancellations, run-start and tool events, steering messages, injected notes, background replies, and media completions attached to the right turn and session, stop false WebChat attachment errors and duplicate file cards, and stop Talk consultations aborting right after connecting. (#165168, #165194, #165535, #165549, #167284, #166710, #169093, #170083) Thanks @obviyus, @legarconc, @Marvinthebored, @Peetiegonzalez, @oywino, @wsk19831112-web, @ing650423, @brokemac79, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165168"
+      },
+      {
+        "title": "**Chat reliability",
+        "description": "** reconcile completed runs without navigation, keep sends working during concurrent session updates, prevent stalls during progress-card saves, honor non-streaming requests, and retry initialization after rolled-back maintenance. (#165108, #166027, #167396, #168057, #168078) Thanks @shakkernerd, @fuller-stack-dev, @jacobtomlinson, @RomneyDa, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165108"
+      },
+      {
+        "title": "**Chat history",
+        "description": "** keep active tools running after history refresh, stop duplicate commentary during long runs, keep aborted Claude CLI tool markup out of history, and stop sent drafts and typing previews from returning. (#165392, #158459, #167054, #165031, #167507, #166824, #168090) Thanks @RomneyDa, @jayzhou2309, @ndakota79, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165392"
+      },
+      {
+        "title": "**Chat scrolling and layout",
+        "description": "** keep chat following turns sent from elsewhere and measured row growth, hide conversation navigation when chat fits onscreen, keep header and composer visible during startup, and stop dashboard reloads flashing the wrong layout. (#165484, #166261, #168010, #166865, #168073, #168007) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165484"
+      },
+      {
+        "title": "**Control UI sessions",
+        "description": "** stop new session tabs showing Disconnected while loading, open new sessions on modified Enter and before draft cleanup settles, stop IME confirmation from starting sessions, and fix folder-path Enter in New Session. (#165051, #167019, #167384, #165919, #165446, #166128, #168034) Thanks @obviyus, @vyctorbrzezowski, @vincentkoc, @ly85206559, @shakkernerd, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165051"
+      },
+      {
+        "title": "**Control UI connections",
+        "description": "** chat turns from paired devices survive unrelated pairing activity, typed `/stop` also cancels queued turns, open chats keep their place during recovery reloads, pending Gateway upgrades survive a tab waking during a busy Gateway, opening timeouts are reported before reconnecting, and resumed log views read the new log after a Gateway restart instead of appending to retired rows. (#169457, #169134, #169194, #172864, #172626) Thanks @Oldrich333, @RomneyDa, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/169457"
+      },
+      {
+        "title": "**Control UI subagents",
+        "description": "** keep delegated subagents in the running panel, restore inline per-subagent activity, clear false unread and attention dots, and stop old timed-out subagents flashing red cards. (#166442, #168102, #165792, #166124, #167232, #165160) Thanks @holgergruenhagen, @obviyus, @vincentkoc, @jalehman, and @tre1d.",
+        "href": "https://github.com/openclaw/openclaw/issues/166442"
+      },
+      {
+        "title": "**Model picker",
+        "description": "** stop the picker spinning on every message, keep the effort selector after catalog failures, and hide the Anthropic group for Claude CLI-only setups. (#164963, #166821, #146155, #167438, #164357, #166819) Thanks @vyctorbrzezowski, @Patrick-Erichsen, @NGO-A, @obviyus, and @TUARAN.",
+        "href": "https://github.com/openclaw/openclaw/issues/164963"
+      },
+      {
+        "title": "**Chat titles",
+        "description": "** generate chat titles from the supplied source message and retry naming when the model serves one request at a time. (#166308, #163817) Thanks @jjjhenriksen, @obviyus, and @MertBasar0.",
+        "href": "https://github.com/openclaw/openclaw/issues/166308"
+      },
+      {
+        "title": "**Control UI",
+        "description": "** stop identity request floods during Gateway restarts, preserve operator access and chat deep links after restart, close unauthorized portal WebSocket upgrades, and render Tool Search calls instead of blank rows. (#165443, #166553, #166783, #167065, #167645, #165806, #163829) Thanks @RomneyDa, @hugenshen, @cursoragent, @obviyus, @SebTardif, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165443"
+      },
+      {
+        "title": "**Control UI polish",
+        "description": "** keep Escape scoped, fix sidebar overlap and filter controls, render emoji shortcodes and correct PR links, preserve Unicode in truncation and widget error reports, and show setup and Skill Workshop errors clearly. (#165100, #165126, #165199, #165449, #166287, #165004, #164608, #165415, #167830, #165849, #165619, #166392, #166563, #155429, #167656, #168001, #165737, #167375, #167400) Thanks @vyctorbrzezowski, @jacobtomlinson, @jjjhenriksen, @obviyus, @nocodet888-arch, @ly85206559, @RomneyDa, @jalehman, and @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165100"
+      },
+      {
+        "title": "**Control UI composer and media",
+        "description": "** keep dictation available during active turns, avoid duplicate iOS Safari attachment actions, stop image controls obscuring previews, and allow unlisted files on Android. (#166075, #167590, #166829, #166402, #168049, #166994, #167600) Thanks @jacobtomlinson, @DonnieFi, @Solvely-Colin, and @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166075"
+      },
+      {
+        "title": "**Control UI misc",
+        "description": "** confirm dirty exec approval target switches, keep focus in config collections, revert Slack and Discord session return buttons, consolidate browser connections in Activity, and remove duplicate agent update attribution. (#149181, #160131, #165334, #166814, #166006, #167759) Thanks @tommyjoseph, @obviyus, @MoerAI, @Patrick-Erichsen, @vincentkoc, @RomneyDa, and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/149181"
+      },
+      {
+        "title": "**Terminal",
+        "description": "** keep the terminal when docking right, close the dock after shell logout, preserve connection state on tab resume, size multiline table cells, and confirm selection copies. (#166213, #166087, #167031, #166549, #166669, #153580) Thanks @jacobtomlinson, @ly85206559, @obviyus, @alexsimeonoww, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166213"
+      },
+      {
+        "title": "**iOS",
+        "description": "** stop duplicate streamed replies, show tool step titles and progress bars, keep voice replies in place, give chat full width, and avoid Debug stack overflow in the composer. (#166313, #166359, #166321, #165473, #166067, #165472, #165927) Thanks @Marvinthebored, @Solvely-Colin, and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/166313"
+      },
+      {
+        "title": "**Talk and voice calls",
+        "description": "** keep restored calls and receipts honest, stop sharing answers across consults, preserve Talk completion status, settle voice work before shutdown, fix native-delegation hangups, restore config migrations, preserve updates across repeated Anthropic Talk consults, and keep spoken user turns in history for browser Talk on Gemini 3.8 Live. (#166431, #145776, #167455, #166795, #165715, #165831, #164951, #166552, #165368, #171267, #171506) Thanks @tianhaotian, @Leon-SK668, @rmyers64, @Bartok9, @samiralibabic, @obviyus, @mbelinky, @SunnyShu0925, @ly85206559, @vincentkoc, @LiuwqGit, @marleyman5000-boop, and @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/166431"
+      },
+      {
+        "title": "**Channels",
+        "description": "** channels start again after a stopped-Tailscale failure, the Matrix probe stops its client after checking identity, and `openclaw voicecall steer` keeps stdout machine-readable JSON. (#162266, #168587) Thanks @RomneyDa and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/162266"
+      },
+      {
+        "title": "**macOS and Windows",
+        "description": "** fence recovery installs with the runtime pin, size LaunchAgent exit timeouts, install unattended Windows Gateway tasks, replace running services safely, and save macOS downloads instead of displaying archive bytes. (#165044, #165320, #166510, #165163, #165261, #165538, #164680, #173654) Thanks @yuzh086-create, @desksk, and @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165044"
+      },
+      {
+        "title": "**Markdown and text",
+        "description": "** keep wrapped frontmatter values, preserve prose between operator tokens, and avoid tiny code messages from rendering overhead. (#165531, #165753, #167958) Thanks @SashaMIT, @obviyus, and @Sedrak-Hovhannisyan.",
+        "href": "https://github.com/openclaw/openclaw/issues/165531"
+      },
+      {
+        "title": "**Local models",
+        "description": "** show embedding-only setup when llama.cpp chat exceeds RAM. (#165832) Thanks @obviyus and @NovaUnboundAi.",
+        "href": "https://github.com/openclaw/openclaw/pull/165832"
+      },
+      {
+        "title": "**GitHub Copilot",
+        "description": "** fix first turns for Chat Completions-only and new Claude models. (#167941) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/167941"
+      },
+      {
+        "title": "**Logging and secrets",
+        "description": "** stop restarts from logging false secret-resolution failures. (#165485)",
+        "href": "https://github.com/openclaw/openclaw/pull/165485"
+      },
+      {
+        "title": "**Config",
+        "description": "** reject malformed UTF-8 and malformed plugin metadata JSON before rewriting files, explain blocked destructive updates, and stop recommending refused writes for managed metadata. (#167118, #167391, #155427, #166830) Thanks @Alix-007, @obviyus, @RomneyDa, and @sxh313.",
+        "href": "https://github.com/openclaw/openclaw/issues/167118"
+      },
+      {
+        "title": "**Auth",
+        "description": "** preserve selected chat accounts when credentials disappear, keep concurrent Gateway calls authenticated, fix Claude CLI plugin completions returning 401 without a selected profile, and point retired auth profile migrations at doctor --fix. (#166985, #166523, #166173, #167650) Thanks @vincentkoc, @sunlit-deng, @Fealves0, @samson1357924, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166985"
+      },
+      {
+        "title": "**Pairing",
+        "description": "** tell browsers when their access request is declined or expires. (#164793)",
+        "href": "https://github.com/openclaw/openclaw/pull/164793"
+      },
+      {
+        "title": "**Plugin SDK compatibility",
+        "description": "** published plugins that import private runtime exports from JavaScript-only `openclaw/plugin-sdk` facades load again, and plugins built against 2026.10.1 and 2026.10.2 can import `createSessionHeaderLink` from `openclaw/plugin-sdk/control-ui` again; both are deprecated compatibility exports. (#173777, #169746) Thanks @RomneyDa and @FtlC-ian.",
+        "href": "https://github.com/openclaw/openclaw/issues/173777"
+      },
+      {
+        "title": "**Skills",
+        "description": "** ready macOS skills are included in agent prompts. (#172214) Thanks @fhgffy.",
+        "href": "https://github.com/openclaw/openclaw/pull/172214"
+      },
+      {
+        "title": "**Update safety",
+        "description": "** complete package swaps across devices instead of rolling back on EXDEV, judge publication and rollback identity on the published bytes, keep foreign-owned state roots writable, and keep busy Gateway agent writes from refusing updates. (#164769, #164797, #164823, #164990, #172196) Thanks @potterdigital, @saftall, @RomneyDa, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164769"
+      },
+      {
+        "title": "**Update recovery",
+        "description": "** settle pending recoveries after a lost or replaced lease database, recover updates blocked by missing handoff leases, stop completed recovery history from blocking future updates, settle package-activation journals after filesystem remounts and device-number drift, keep the recovery deadline monotonic across wall-clock jumps, and preserve state when a legacy Doctor rehearsal fails. (#167302, #165238, #165607, #167330, #164997, #169410, #170046, #169168, #171015) Thanks @shanselman, @Hensarj, @NovaeonStudio, @RomneyDa, @patrickschiller, @SergeiAug, @SunnyShu0925, @Bamorem, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167302"
+      },
+      {
+        "title": "**Update and Gateway restarts",
+        "description": "** restart the Gateway and record the interruption when the updater is signaled mid-activation, stop managed systemd Gateways with the bounded gateway-stop sequence, refuse before mutating masked units, keep restart authority through brief post-update maintenance contention, wait for native Gateway ownership before restarting, and stop updates stalling on an unhealthy incumbent Gateway. (#165863, #167040, #165747, #167760, #171699, #173588, #173358) Thanks @jlapenna, @gregb100, @fdovarela, @obviyus, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165863"
+      },
+      {
+        "title": "**Update on Windows and macOS",
+        "description": "** refuse non-elevated Windows updates immediately with an elevation hint, keep macOS updates from timing out on aliased temporary directories, finish repairing the bundled macOS Gateway during update recovery, leave pacman-owned installations to their package manager, allow macOS updates from login shells when containment is verified, and run pnpm from its own install during macOS pnpm updates. (#166695, #169860, #171508, #169055, #172640, #171936) Thanks @RomneyDa, @Pegorim, @giulianoaccorsi, @AntaresGG, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/166695"
+      },
+      {
+        "title": "**Update compatibility",
+        "description": "** preserve startup errors and admit Doctor runs from older updaters, keep the 2026.10.1 updater's cleanup queue across replacement, and repair legacy config on identical-package updates. (#162344, #168883, #165242) Thanks @jamiezigelbaum, @RomneyDa, @shakkernerd, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/162344"
+      },
+      {
+        "title": "**No-restart updates",
+        "description": "** `openclaw update --no-restart` on npm, pnpm, and Bun installs warns before the package swap and records a successful update instead of a failure, without verifying the old build while the package is replaced, and plugin activation guidance is kept after core-changing `--no-restart` updates. (#173409, #174649, #171687) Thanks @RomneyDa and @mwbroxson.",
+        "href": "https://github.com/openclaw/openclaw/issues/173409"
+      },
+      {
+        "title": "**Update outcomes",
+        "description": "** finish verified updates despite channel probe errors, keep a settled completion refresh failure from failing a successful update, settle a verified completed publication during admission, keep database rollback available when candidate Doctor fails before writing, defer Doctor instead of rolling back when update-driver ancestry is unverified, avoid rollback when post-plugin lint cannot finish, and refresh service definitions even when the config snapshot is large. (#172494, #172502, #171993, #172151, #172247, #173341, #170373) Thanks @SBC2016, @teetee2tone, @RomneyDa, @homeworld520, @yoyo837, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/172494"
+      },
+      {
+        "title": "**Update diagnostics",
+        "description": "** name each candidate and preflight check, the resolved install, and the detected runtime when refusing, surface the child's refusal reason through the managed handoff, record why handoffs failed, show every recorded update warning, clarify report wording, and point migrated-state failures to `openclaw update repair`. (#164746, #166410, #164782, #166540, #167509, #167802, #167794, #164858, #166577, #168905) Thanks @TOM-WANG-GUANG, @coygeek, @GitHoubi, @Patrick-Erichsen, @xydigitLybnnnn, @creanet-64, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164746"
+      },
+      {
+        "title": "**Update verification",
+        "description": "** degrade candidate verification at integrity limits instead of refusing, treat channel health-collection timeouts as warnings, finish deferred model repair, honor an explicit TMPDIR, and stop triage retry loops. (#164504, #165852, #165148, #165830, #167051, #165982, #167035) Thanks @vasaeru, @DonnieFi, and @WG-Mojo.",
+        "href": "https://github.com/openclaw/openclaw/issues/164504"
+      },
+      {
+        "title": "**Update and Doctor",
+        "description": "** update repair turns no longer abort mid-update while reading config, update repair no longer fails after Doctor completes on busy macOS hosts, update repair prepares its config before inference, Doctor no longer fails after short commands complete, Doctor lint is no longer deferred with no time left after a slow state snapshot, schema inspection keeps running under progress backpressure, Docker upgrades stop retry loops on older Linux hosts, Doctor explains plugin migration backup coverage, and updates recover when another user owns shared temp storage. (#170779, #170276, #172132, #170374, #170955, #162305, #169295, #170174) Thanks @RomneyDa, @DonnieFi, @yxshee, @Ludwigtheo0815, @holgergruenhagen, and @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/170779"
+      },
+      {
+        "title": "**Update cleanup and exit",
+        "description": "** Doctor cleanup during updates no longer fails with nested-effect errors, unsafe Doctor recovery guidance is kept until settled, and a completed update whose result reporting fails exits with its warning instead of opening interactive failure triage. (#170070, #168750, #170207, #169422, #168587) Thanks @hannesrudolph, @ezimerman, @angeliti999, @jjjhenriksen, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/170070"
+      },
+      {
+        "title": "**Install",
+        "description": "** preserve npm network environment settings and fix Windows Bun packaging failing to find npm. (#165409, #165241) Thanks @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/165409"
+      },
+      {
+        "title": "**Doctor migrations",
+        "description": "** commit transcript archive migration per batch, preserve SQLite files and markerless legacy cron ownership, and settle migrations whose owner is unavailable. (#165837, #166671, #166996, #167059, #162275) Thanks @RomneyDa and @jaiden0.",
+        "href": "https://github.com/openclaw/openclaw/issues/165837"
+      },
+      {
+        "title": "**Doctor backups",
+        "description": "** keep the pre-migration backup when sqlite-vec cannot load, write captures on filesystems that reject RENAME_NOREPLACE, and retain interrupted capture evidence. (#165820, #166425, #164748, #166495) Thanks @NovaUnboundAi, @MertBasar0, @bbs2i58, @hippoley, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165820"
+      },
+      {
+        "title": "**Doctor and Gateway",
+        "description": "** verify restarted Gateways by health, avoid races with a managed Gateway, settle Doctor writers before recovery, exit 141 only when Doctor's own output closes, stop Doctor stalling on missing transcripts with a stale import receipt, and stop false transcript mismatch reports for imported legacy sessions with media. (#167713, #166948, #162614, #171780, #172890, #171388) Thanks @RomneyDa, @lshamash, @dtump, @DongwonGim, @he-yufeng, @brookpw, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167713"
+      },
+      {
+        "title": "**Doctor accuracy",
+        "description": "** keep lint and JSON Doctor read-only, run diagnostics when maintenance is declined, stop promising service defaults it cannot apply, and resolve the Claude CLI binary like the runtime. (#166857, #168065, #166950, #165273, #166384, #167699) Thanks @RomneyDa, @mightyx, @jayzhou2309, and @davidchyi-beep.",
+        "href": "https://github.com/openclaw/openclaw/issues/166857"
+      },
+      {
+        "title": "**Doctor data safety",
+        "description": "** Doctor refuses retired state before migrating the database, imports retained ACP metadata after archiving legacy session stores, restores a stopped Gateway when cleanup fails, and removes the `(multiple)` store sentinel registered as an agent database. (#170051, #169918, #169759, #169783, #170043, #169764) Thanks @bautrey, @RomneyDa, @ourcoms2018, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/170051"
+      },
+      {
+        "title": "**Skill Workshop",
+        "description": "** keep approval-first setups from writing skills unreviewed while keeping automatic learning for approval-policy configs. (#167641, #167846) Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167641"
+      },
+      {
+        "title": "**Plugins on Windows",
+        "description": "** stop Gateway startup stalls capturing installed plugin files, preserve native SDK filenames, keep Bun plugins across source edits, and reclaim Jiti generation caches. (#168313, #165282, #165533, #165169) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168313"
+      },
+      {
+        "title": "**Plugin loading",
+        "description": "** resolve mixed-case plugin IDs, load Doctor contracts after in-place replacement, preserve replacement installs across watcher echoes, reload bundled plugins with dormant records, and settle migrations whose owner is unavailable. (#164683, #165049, #166618, #167647, #165861, #163198, #164662) Thanks @mbelinky, @Franklinyung, @shakkernerd, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164683"
+      },
+      {
+        "title": "**Plugin runtime",
+        "description": "** keep plugin-started turns' completion status, fix Copilot plugin tool calls after the first turn, keep isolated completions from capturing unrelated plugins, and fix follow-up turns after native tool use. (#167621, #164598, #166310, #168067, #163636) Thanks @ericcurtin, @obviyus, @takyyon, @jjjhenriksen, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167621"
+      },
+      {
+        "title": "**Plugin diagnostics",
+        "description": "** use plain language for diagnostic and connection checks and stop repeating unchanged provenance warnings. (#165741, #165740, #167023) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165741"
+      },
+      {
+        "title": "**Message tool",
+        "description": "** keep replies when ClawHub finds no matches. (#166452) Thanks @a6xa3 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/pull/166452"
+      },
+      {
+        "title": "**CLI",
+        "description": "** prevent silent status hangs, keep Gateway readiness on a monotonic clock, and prevent rapid log polling. (#167677, #155799, #163791, #164998) Thanks @RomneyDa, @SunnyShu0925, @LinzeShi, @obviyus, and @Grynn.",
+        "href": "https://github.com/openclaw/openclaw/issues/167677"
+      },
+      {
+        "title": "**CLI output",
+        "description": "** return JSON errors for node, exec-policy, and devices refusals, explain unresolvable agent model references and reasoning-only model runs, reject ACP harness models for ACP agents, and show a UTC marker in sessions tail. (#167437, #167279, #167294, #168009, #156137, #166662, #148022, #145537, #145532, #166745, #164835) Thanks @Leon-SK668, @obviyus, @masatohoshino, @azuretek, @taekop, @jayzhou2309, @FtlC-ian, @TUARAN, @aniruddhaadak80, @hugenshen, @altaywtf, @sxh313, and @danhayman.",
+        "href": "https://github.com/openclaw/openclaw/issues/167437"
+      },
+      {
+        "title": "**Shell completion",
+        "description": "** preserve escaped profile spaces and Fish completion backslashes, and restore PowerShell completion for quoted option values. (#164785, #164455, #167421) Thanks @yetval, @obviyus, and @LinzeShi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164785"
+      },
+      {
+        "title": "**Worktrees",
+        "description": "** create parallel New Session worktrees concurrently, preserve worktrees used by live sessions, recover leaked branches, stop repeated Git maintenance failures, heal missing commit-graph tips and stale pack indexes, and use remote defaults after fetch failures. (#166060, #166443, #164615, #165204, #167473, #165995, #167426, #167691, #167367, #165969) Thanks @jjjhenriksen and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166060"
+      },
+      {
+        "title": "**Workboard",
+        "description": "** keep automation, home, and Board agent sessions off Sessions boards, show truthful run and PR facts, explain dispatch refusals, stop re-dispatch from silently using an old base, and keep fallback runs active until the overall outcome settles. (#165076, #165319, #165189, #167427, #164829, #168215, #167574) Thanks @Leon-SK668, @obviyus, @mightyx, @ArcueidMP, @skyzhao1223, and @asikorskiy.",
+        "href": "https://github.com/openclaw/openclaw/issues/165076"
+      },
+      {
+        "title": "**Agents API sessions",
+        "description": "** saved remote sessions continue with the same session ID across binding upgrades. (#168150)",
+        "href": "https://github.com/openclaw/openclaw/pull/168150"
+      },
+      {
+        "title": "**Large Gateways",
+        "description": "** large fleets reserve session stores without stack overflows, and process-owning Gateway stops no longer wait on native skills watcher cleanup. (#168354, #168160, #168273) Thanks @609NFT, @obviyus, and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/168354"
+      },
+      {
+        "title": "**Gateway performance",
+        "description": "** acknowledge chat sends before skill preparation, restore fast saved-session model picking, retain cold session list selections, reduce board and member-list read latency, prewarm sandbox templates, and avoid premature scheduler wakes and full placement projections. (#165608, #166037, #166405, #166403, #165344, #165125, #165931, #165922, #165600, #165840, #166617, #167666, #167813, #166387, #165015) Thanks @obviyus and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/165608"
+      },
+      {
+        "title": "**Gateway performance",
+        "description": "** serve chat, usage, placement, and metadata reads from workers and prepared projections, move startup maintenance and notice sweeping after readiness, and reduce SQLite, projection, and history-page work per chat turn. (#164744, #164943, #165470, #165614, #165218, #165331, #166587, #167194, #167032, #166263, #165190, #166365) Thanks @obviyus, @DonnieFi, and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164744"
+      },
+      {
+        "title": "**Gateway performance",
+        "description": "** speed up reconnects, restarts, and bootstrap by sharing update status, reusing admitted state and snapshots, warming recent database pages, and pausing reconnect bootstrap during restarts. (#164984, #165498, #165667, #165545, #165524, #165782, #165480, #167407, #164670, #165803, #166018, #166122) Thanks @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/164984"
+      },
+      {
+        "title": "**Gateway performance",
+        "description": "** share opted-in reads and broadcast encoding across clients, reuse catalogs, session rows, avatars, and artifact summaries, bound link previews and queued previews, and keep PR comparisons local. (#165203, #167961, #162326, #165941, #165464, #166591, #166429, #165759, #166195, #166474, #166461, #166264, #165030, #166447)",
+        "href": "https://github.com/openclaw/openclaw/issues/165203"
+      },
+      {
+        "title": "**Worker performance",
+        "description": "** reduce worker scheduling, transport, and reader memory overhead, centralize bounded pool sizing, expose cost attribution, and cut Gateway fork costs for Git and TLS. (#165077, #165230, #165249, #167295, #167060, #167676, #165816, #165290, #164465, #166683, #167235)",
+        "href": "https://github.com/openclaw/openclaw/issues/165077"
+      },
+      {
+        "title": "**Performance",
+        "description": "** move cron ticks, session scans, maintenance, and run transcripts off the main thread, share skill indexes, offload memory retrieval and index admission, persist sandbox state through workers, and serve channel status from recorded health. (#165332, #165511, #165629, #167248, #163885, #166507, #165106, #165173, #167644, #167254, #165075, #165568, #165611, #165558, #165534, #165295, #165436, #166538, #164694, #164648) Thanks @vincentkoc, @obviyus, @kzclaw, and @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165332"
+      },
+      {
+        "title": "**Performance",
+        "description": "** speed up chat with indexed reads, bounded history pages, reused metadata, catalogs, and versioned assets, smaller tool previews, and fewer idle reads. (#164605, #165897, #166250, #167993, #168023, #167896, #167906, #167968, #167020, #167447, #167263, #167238, #165101, #165228, #163573, #166493, #165546) Thanks @shakkernerd, @boeingchoco, and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164605"
+      },
+      {
+        "title": "**Update performance",
+        "description": "** skip unnecessary fetches for cached commits, unused state leases, duplicate snapshots, and slow prevalidation of large plugin trees, and reduce inventory latency for large runtimes. (#165060, #165326, #166126, #166317, #166741, #165316, #165013) Thanks @vincentkoc, @hannesrudolph, and @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/165060"
+      },
+      {
+        "title": "**Worktree and Git performance",
+        "description": "** run worktree GC and cleanup in the background with capacity limits, back off timed-out and corrupt-repo cleanup, consolidate shared packs, speed up partial-clone creation, and keep session diffs responsive in large repositories. (#164758, #165913, #167323, #167453, #167944, #165858, #167936, #167030, #167695, #167631, #166072, #165513, #165605, #165750, #165981, #165411, #167899, #166214, #166381) Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164758"
+      },
+      {
+        "title": "**Workboard and GitHub performance",
+        "description": "** skip unchanged card and Sessions board reloads, reuse authorized snapshots, speed up revision reads, and overlap preview and publication option reads. (#165058, #165141, #165698, #165896, #165094, #167189, #167597, #166987, #167322)",
+        "href": "https://github.com/openclaw/openclaw/issues/165058"
+      },
+      {
+        "title": "**Plugin and auth performance",
+        "description": "** bound retained plugin heap across reloads, reuse instance identity, batch plugin capture copies, move OAuth refresh and auth saves to workers, and run pairing mutations in the SQLite worker. (#166751, #165923, #167516, #166955, #166278, #165029, #159448, #165658, #165644, #166936, #166183, #164992, #166283, #167239, #167308) Thanks @jjjhenriksen, @RomneyDa, and @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166751"
+      },
+      {
+        "title": "**CLI and diagnostics performance",
+        "description": "** reuse prepared runtime inputs, calibrate memory pressure to runtime limits, and reduce Prometheus scrape allocation. (#166864, #162313, #165042, #167618, #167930, #166933, #165327) Thanks @sunlit-deng, @obviyus, and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/166864"
+      },
+      {
+        "title": "**PR #164622**",
+        "description": "**PR #164622**",
+        "href": "https://github.com/openclaw/openclaw/issues/164622"
+      },
+      {
+        "title": "**PR #164626**",
+        "description": "**PR #164626** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164626"
+      },
+      {
+        "title": "**PR #164538**",
+        "description": "**PR #164538**",
+        "href": "https://github.com/openclaw/openclaw/issues/164538"
+      },
+      {
+        "title": "**PR #164061**",
+        "description": "**PR #164061** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164061"
+      },
+      {
+        "title": "**PR #164640**",
+        "description": "**PR #164640**",
+        "href": "https://github.com/openclaw/openclaw/issues/164640"
+      },
+      {
+        "title": "**PR #164575** Related #164568",
+        "description": "**PR #164575** Related #164568. Thanks @miguelbranco80 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164575"
+      },
+      {
+        "title": "**PR #164590**",
+        "description": "**PR #164590** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164590"
+      },
+      {
+        "title": "**PR #164654**",
+        "description": "**PR #164654**",
+        "href": "https://github.com/openclaw/openclaw/issues/164654"
+      },
+      {
+        "title": "**PR #164655**",
+        "description": "**PR #164655**",
+        "href": "https://github.com/openclaw/openclaw/issues/164655"
+      },
+      {
+        "title": "**PR #164666**",
+        "description": "**PR #164666**",
+        "href": "https://github.com/openclaw/openclaw/issues/164666"
+      },
+      {
+        "title": "**PR #164633**",
+        "description": "**PR #164633**",
+        "href": "https://github.com/openclaw/openclaw/issues/164633"
+      },
+      {
+        "title": "**PR #164567**",
+        "description": "**PR #164567**",
+        "href": "https://github.com/openclaw/openclaw/issues/164567"
+      },
+      {
+        "title": "**PR #164605**",
+        "description": "**PR #164605**",
+        "href": "https://github.com/openclaw/openclaw/issues/164605"
+      },
+      {
+        "title": "**PR #164662**",
+        "description": "**PR #164662** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164662"
+      },
+      {
+        "title": "**PR #164566**",
+        "description": "**PR #164566**",
+        "href": "https://github.com/openclaw/openclaw/issues/164566"
+      },
+      {
+        "title": "**PR #164669**",
+        "description": "**PR #164669**",
+        "href": "https://github.com/openclaw/openclaw/issues/164669"
+      },
+      {
+        "title": "**PR #164679**",
+        "description": "**PR #164679**",
+        "href": "https://github.com/openclaw/openclaw/issues/164679"
+      },
+      {
+        "title": "**PR #164476**",
+        "description": "**PR #164476**",
+        "href": "https://github.com/openclaw/openclaw/issues/164476"
+      },
+      {
+        "title": "**PR #164680**",
+        "description": "**PR #164680**",
+        "href": "https://github.com/openclaw/openclaw/issues/164680"
+      },
+      {
+        "title": "**PR #164637**",
+        "description": "**PR #164637**",
+        "href": "https://github.com/openclaw/openclaw/issues/164637"
+      },
+      {
+        "title": "**PR #164686**",
+        "description": "**PR #164686**",
+        "href": "https://github.com/openclaw/openclaw/issues/164686"
+      },
+      {
+        "title": "**PR #162275**",
+        "description": "**PR #162275** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/162275"
+      },
+      {
+        "title": "**PR #164588**",
+        "description": "**PR #164588**",
+        "href": "https://github.com/openclaw/openclaw/issues/164588"
+      },
+      {
+        "title": "**PR #162920**",
+        "description": "**PR #162920**",
+        "href": "https://github.com/openclaw/openclaw/issues/162920"
+      },
+      {
+        "title": "**PR #164598** Related #164470",
+        "description": "**PR #164598** Related #164470. Thanks @ericcurtin and @obviyus and @takyyon.",
+        "href": "https://github.com/openclaw/openclaw/issues/164598"
+      },
+      {
+        "title": "**PR #164706**",
+        "description": "**PR #164706**",
+        "href": "https://github.com/openclaw/openclaw/issues/164706"
+      },
+      {
+        "title": "**PR #164674**",
+        "description": "**PR #164674**",
+        "href": "https://github.com/openclaw/openclaw/issues/164674"
+      },
+      {
+        "title": "**PR #164714** Related #164711",
+        "description": "**PR #164714** Related #164711. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164714"
+      },
+      {
+        "title": "**PR #164584**",
+        "description": "**PR #164584**",
+        "href": "https://github.com/openclaw/openclaw/issues/164584"
+      },
+      {
+        "title": "**PR #164673**",
+        "description": "**PR #164673**",
+        "href": "https://github.com/openclaw/openclaw/issues/164673"
+      },
+      {
+        "title": "**PR #164715** Related #164709",
+        "description": "**PR #164715** Related #164709. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164715"
+      },
+      {
+        "title": "**PR #164718**",
+        "description": "**PR #164718**",
+        "href": "https://github.com/openclaw/openclaw/issues/164718"
+      },
+      {
+        "title": "**PR #164717** Related #164713",
+        "description": "**PR #164717** Related #164713. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164717"
+      },
+      {
+        "title": "**PR #164627**",
+        "description": "**PR #164627**",
+        "href": "https://github.com/openclaw/openclaw/issues/164627"
+      },
+      {
+        "title": "**PR #164504**",
+        "description": "**PR #164504**",
+        "href": "https://github.com/openclaw/openclaw/issues/164504"
+      },
+      {
+        "title": "**PR #164615**",
+        "description": "**PR #164615**",
+        "href": "https://github.com/openclaw/openclaw/issues/164615"
+      },
+      {
+        "title": "**PR #164653**",
+        "description": "**PR #164653** Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/164653"
+      },
+      {
+        "title": "**PR #164707**",
+        "description": "**PR #164707**",
+        "href": "https://github.com/openclaw/openclaw/issues/164707"
+      },
+      {
+        "title": "**PR #164726** Related #164471",
+        "description": "**PR #164726** Related #164471. Thanks @takyyon and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164726"
+      },
+      {
+        "title": "**PR #164645**",
+        "description": "**PR #164645**",
+        "href": "https://github.com/openclaw/openclaw/issues/164645"
+      },
+      {
+        "title": "**PR #164269**",
+        "description": "**PR #164269**",
+        "href": "https://github.com/openclaw/openclaw/issues/164269"
+      },
+      {
+        "title": "**PR #164748** Related #164703",
+        "description": "**PR #164748** Related #164703. Thanks @bbs2i58.",
+        "href": "https://github.com/openclaw/openclaw/issues/164748"
+      },
+      {
+        "title": "**PR #164603**",
+        "description": "**PR #164603**",
+        "href": "https://github.com/openclaw/openclaw/issues/164603"
+      },
+      {
+        "title": "**PR #164751**",
+        "description": "**PR #164751**",
+        "href": "https://github.com/openclaw/openclaw/issues/164751"
+      },
+      {
+        "title": "**PR #164739**",
+        "description": "**PR #164739**",
+        "href": "https://github.com/openclaw/openclaw/issues/164739"
+      },
+      {
+        "title": "**PR #164737**",
+        "description": "**PR #164737**",
+        "href": "https://github.com/openclaw/openclaw/issues/164737"
+      },
+      {
+        "title": "**PR #164754**",
+        "description": "**PR #164754**",
+        "href": "https://github.com/openclaw/openclaw/issues/164754"
+      },
+      {
+        "title": "**PR #164708**",
+        "description": "**PR #164708**",
+        "href": "https://github.com/openclaw/openclaw/issues/164708"
+      },
+      {
+        "title": "**PR #164750**",
+        "description": "**PR #164750**",
+        "href": "https://github.com/openclaw/openclaw/issues/164750"
+      },
+      {
+        "title": "**PR #164763**",
+        "description": "**PR #164763**",
+        "href": "https://github.com/openclaw/openclaw/issues/164763"
+      },
+      {
+        "title": "**PR #164617**",
+        "description": "**PR #164617**",
+        "href": "https://github.com/openclaw/openclaw/issues/164617"
+      },
+      {
+        "title": "**PR #164746**",
+        "description": "**PR #164746**",
+        "href": "https://github.com/openclaw/openclaw/issues/164746"
+      },
+      {
+        "title": "**PR #162344** Related #162131",
+        "description": "**PR #162344** Related #162131. Thanks @jamiezigelbaum.",
+        "href": "https://github.com/openclaw/openclaw/issues/162344"
+      },
+      {
+        "title": "**PR #164577**",
+        "description": "**PR #164577**",
+        "href": "https://github.com/openclaw/openclaw/issues/164577"
+      },
+      {
+        "title": "**PR #164766** Related #164733",
+        "description": "**PR #164766** Related #164733. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164766"
+      },
+      {
+        "title": "**PR #164500** Related #164426",
+        "description": "**PR #164500** Related #164426. Thanks @sunlit-deng and @obviyus and @waynegault.",
+        "href": "https://github.com/openclaw/openclaw/issues/164500"
+      },
+      {
+        "title": "**PR #164710**",
+        "description": "**PR #164710**",
+        "href": "https://github.com/openclaw/openclaw/issues/164710"
+      },
+      {
+        "title": "**PR #164760**",
+        "description": "**PR #164760**",
+        "href": "https://github.com/openclaw/openclaw/issues/164760"
+      },
+      {
+        "title": "**PR #164665**",
+        "description": "**PR #164665**",
+        "href": "https://github.com/openclaw/openclaw/issues/164665"
+      },
+      {
+        "title": "**PR #161545**",
+        "description": "**PR #161545**",
+        "href": "https://github.com/openclaw/openclaw/issues/161545"
+      },
+      {
+        "title": "**PR #164274**",
+        "description": "**PR #164274** Thanks @fransqaas.",
+        "href": "https://github.com/openclaw/openclaw/issues/164274"
+      },
+      {
+        "title": "**PR #156342** Related #138929",
+        "description": "**PR #156342** Related #138929. Thanks @namest504 and @hogawa000.",
+        "href": "https://github.com/openclaw/openclaw/issues/156342"
+      },
+      {
+        "title": "**PR #164738**",
+        "description": "**PR #164738**",
+        "href": "https://github.com/openclaw/openclaw/issues/164738"
+      },
+      {
+        "title": "**PR #164795** Related #164790",
+        "description": "**PR #164795** Related #164790. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164795"
+      },
+      {
+        "title": "**PR #164767**",
+        "description": "**PR #164767**",
+        "href": "https://github.com/openclaw/openclaw/issues/164767"
+      },
+      {
+        "title": "**PR #164465**",
+        "description": "**PR #164465**",
+        "href": "https://github.com/openclaw/openclaw/issues/164465"
+      },
+      {
+        "title": "**PR #162280**",
+        "description": "**PR #162280**",
+        "href": "https://github.com/openclaw/openclaw/issues/162280"
+      },
+      {
+        "title": "**PR #164768**",
+        "description": "**PR #164768**",
+        "href": "https://github.com/openclaw/openclaw/issues/164768"
+      },
+      {
+        "title": "**PR #164798**",
+        "description": "**PR #164798**",
+        "href": "https://github.com/openclaw/openclaw/issues/164798"
+      },
+      {
+        "title": "**PR #164776**",
+        "description": "**PR #164776** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164776"
+      },
+      {
+        "title": "**PR #164683**",
+        "description": "**PR #164683**",
+        "href": "https://github.com/openclaw/openclaw/issues/164683"
+      },
+      {
+        "title": "**PR #164797** Related #164672",
+        "description": "**PR #164797** Related #164672. Thanks @potterdigital.",
+        "href": "https://github.com/openclaw/openclaw/issues/164797"
+      },
+      {
+        "title": "**PR #164759**",
+        "description": "**PR #164759**",
+        "href": "https://github.com/openclaw/openclaw/issues/164759"
+      },
+      {
+        "title": "**PR #164802**",
+        "description": "**PR #164802**",
+        "href": "https://github.com/openclaw/openclaw/issues/164802"
+      },
+      {
+        "title": "**PR #164523**",
+        "description": "**PR #164523**",
+        "href": "https://github.com/openclaw/openclaw/issues/164523"
+      },
+      {
+        "title": "**PR #141240**",
+        "description": "**PR #141240** Thanks @hugenshen and @cursoragent and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/141240"
+      },
+      {
+        "title": "**PR #164806**",
+        "description": "**PR #164806**",
+        "href": "https://github.com/openclaw/openclaw/issues/164806"
+      },
+      {
+        "title": "**PR #164753**",
+        "description": "**PR #164753**",
+        "href": "https://github.com/openclaw/openclaw/issues/164753"
+      },
+      {
+        "title": "**PR #164793**",
+        "description": "**PR #164793**",
+        "href": "https://github.com/openclaw/openclaw/issues/164793"
+      },
+      {
+        "title": "**PR #164727**",
+        "description": "**PR #164727**",
+        "href": "https://github.com/openclaw/openclaw/issues/164727"
+      },
+      {
+        "title": "**PR #164670**",
+        "description": "**PR #164670**",
+        "href": "https://github.com/openclaw/openclaw/issues/164670"
+      },
+      {
+        "title": "**PR #164782** Related #164693",
+        "description": "**PR #164782** Related #164693. Thanks @coygeek.",
+        "href": "https://github.com/openclaw/openclaw/issues/164782"
+      },
+      {
+        "title": "**PR #164769**",
+        "description": "**PR #164769**",
+        "href": "https://github.com/openclaw/openclaw/issues/164769"
+      },
+      {
+        "title": "**PR #164815**",
+        "description": "**PR #164815**",
+        "href": "https://github.com/openclaw/openclaw/issues/164815"
+      },
+      {
+        "title": "**PR #164813**",
+        "description": "**PR #164813**",
+        "href": "https://github.com/openclaw/openclaw/issues/164813"
+      },
+      {
+        "title": "**PR #164814**",
+        "description": "**PR #164814**",
+        "href": "https://github.com/openclaw/openclaw/issues/164814"
+      },
+      {
+        "title": "**PR #164490**",
+        "description": "**PR #164490**",
+        "href": "https://github.com/openclaw/openclaw/issues/164490"
+      },
+      {
+        "title": "**PR #164647**",
+        "description": "**PR #164647**",
+        "href": "https://github.com/openclaw/openclaw/issues/164647"
+      },
+      {
+        "title": "**PR #164764**",
+        "description": "**PR #164764**",
+        "href": "https://github.com/openclaw/openclaw/issues/164764"
+      },
+      {
+        "title": "**PR #164484**",
+        "description": "**PR #164484**",
+        "href": "https://github.com/openclaw/openclaw/issues/164484"
+      },
+      {
+        "title": "**PR #164810**",
+        "description": "**PR #164810**",
+        "href": "https://github.com/openclaw/openclaw/issues/164810"
+      },
+      {
+        "title": "**PR #164630**",
+        "description": "**PR #164630**",
+        "href": "https://github.com/openclaw/openclaw/issues/164630"
+      },
+      {
+        "title": "**PR #164258**",
+        "description": "**PR #164258**",
+        "href": "https://github.com/openclaw/openclaw/issues/164258"
+      },
+      {
+        "title": "**PR #164820**",
+        "description": "**PR #164820**",
+        "href": "https://github.com/openclaw/openclaw/issues/164820"
+      },
+      {
+        "title": "**PR #164827**",
+        "description": "**PR #164827**",
+        "href": "https://github.com/openclaw/openclaw/issues/164827"
+      },
+      {
+        "title": "**PR #164823**",
+        "description": "**PR #164823**",
+        "href": "https://github.com/openclaw/openclaw/issues/164823"
+      },
+      {
+        "title": "**PR #164816**",
+        "description": "**PR #164816**",
+        "href": "https://github.com/openclaw/openclaw/issues/164816"
+      },
+      {
+        "title": "**PR #164692**",
+        "description": "**PR #164692** Thanks @yetval and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164692"
+      },
+      {
+        "title": "**PR #164758**",
+        "description": "**PR #164758**",
+        "href": "https://github.com/openclaw/openclaw/issues/164758"
+      },
+      {
+        "title": "**PR #164788**",
+        "description": "**PR #164788**",
+        "href": "https://github.com/openclaw/openclaw/issues/164788"
+      },
+      {
+        "title": "**PR #164834**",
+        "description": "**PR #164834**",
+        "href": "https://github.com/openclaw/openclaw/issues/164834"
+      },
+      {
+        "title": "**PR #164844**",
+        "description": "**PR #164844**",
+        "href": "https://github.com/openclaw/openclaw/issues/164844"
+      },
+      {
+        "title": "**PR #164819**",
+        "description": "**PR #164819**",
+        "href": "https://github.com/openclaw/openclaw/issues/164819"
+      },
+      {
+        "title": "**PR #164558**",
+        "description": "**PR #164558** Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/164558"
+      },
+      {
+        "title": "**PR #164694**",
+        "description": "**PR #164694**",
+        "href": "https://github.com/openclaw/openclaw/issues/164694"
+      },
+      {
+        "title": "**PR #164807**",
+        "description": "**PR #164807**",
+        "href": "https://github.com/openclaw/openclaw/issues/164807"
+      },
+      {
+        "title": "**PR #164688**",
+        "description": "**PR #164688** Thanks @yetval and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164688"
+      },
+      {
+        "title": "**PR #164845**",
+        "description": "**PR #164845**",
+        "href": "https://github.com/openclaw/openclaw/issues/164845"
+      },
+      {
+        "title": "**PR #164805**",
+        "description": "**PR #164805**",
+        "href": "https://github.com/openclaw/openclaw/issues/164805"
+      },
+      {
+        "title": "**PR #164830**",
+        "description": "**PR #164830**",
+        "href": "https://github.com/openclaw/openclaw/issues/164830"
+      },
+      {
+        "title": "**PR #164648**",
+        "description": "**PR #164648**",
+        "href": "https://github.com/openclaw/openclaw/issues/164648"
+      },
+      {
+        "title": "**PR #164779**",
+        "description": "**PR #164779**",
+        "href": "https://github.com/openclaw/openclaw/issues/164779"
+      },
+      {
+        "title": "**PR #164848**",
+        "description": "**PR #164848** Thanks @sjf-oa and @sjf.",
+        "href": "https://github.com/openclaw/openclaw/issues/164848"
+      },
+      {
+        "title": "**PR #164851**",
+        "description": "**PR #164851**",
+        "href": "https://github.com/openclaw/openclaw/issues/164851"
+      },
+      {
+        "title": "**PR #164855**",
+        "description": "**PR #164855**",
+        "href": "https://github.com/openclaw/openclaw/issues/164855"
+      },
+      {
+        "title": "**PR #164678**",
+        "description": "**PR #164678** Thanks @yetval and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164678"
+      },
+      {
+        "title": "**PR #164861**",
+        "description": "**PR #164861**",
+        "href": "https://github.com/openclaw/openclaw/issues/164861"
+      },
+      {
+        "title": "**PR #164858** Related #164188",
+        "description": "**PR #164858** Related #164188. Thanks @xydigitLybnnnn and @creanet-64.",
+        "href": "https://github.com/openclaw/openclaw/issues/164858"
+      },
+      {
+        "title": "**PR #164755**",
+        "description": "**PR #164755**",
+        "href": "https://github.com/openclaw/openclaw/issues/164755"
+      },
+      {
+        "title": "**PR #164685**",
+        "description": "**PR #164685**",
+        "href": "https://github.com/openclaw/openclaw/issues/164685"
+      },
+      {
+        "title": "**PR #164671**",
+        "description": "**PR #164671** Thanks @yetval and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164671"
+      },
+      {
+        "title": "**PR #163376**",
+        "description": "**PR #163376**",
+        "href": "https://github.com/openclaw/openclaw/issues/163376"
+      },
+      {
+        "title": "**PR #164852**",
+        "description": "**PR #164852** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164852"
+      },
+      {
+        "title": "**PR #164872**",
+        "description": "**PR #164872**",
+        "href": "https://github.com/openclaw/openclaw/issues/164872"
+      },
+      {
+        "title": "**PR #164871**",
+        "description": "**PR #164871**",
+        "href": "https://github.com/openclaw/openclaw/issues/164871"
+      },
+      {
+        "title": "**PR #164868**",
+        "description": "**PR #164868**",
+        "href": "https://github.com/openclaw/openclaw/issues/164868"
+      },
+      {
+        "title": "**PR #164744**",
+        "description": "**PR #164744**",
+        "href": "https://github.com/openclaw/openclaw/issues/164744"
+      },
+      {
+        "title": "**PR #164660**",
+        "description": "**PR #164660** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164660"
+      },
+      {
+        "title": "**PR #164062** Related #164053",
+        "description": "**PR #164062** Related #164053. Thanks @harshitgupta31415 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164062"
+      },
+      {
+        "title": "**PR #164747**",
+        "description": "**PR #164747**",
+        "href": "https://github.com/openclaw/openclaw/issues/164747"
+      },
+      {
+        "title": "**PR #164892**",
+        "description": "**PR #164892**",
+        "href": "https://github.com/openclaw/openclaw/issues/164892"
+      },
+      {
+        "title": "**PR #164888**",
+        "description": "**PR #164888**",
+        "href": "https://github.com/openclaw/openclaw/issues/164888"
+      },
+      {
+        "title": "**PR #164869**",
+        "description": "**PR #164869**",
+        "href": "https://github.com/openclaw/openclaw/issues/164869"
+      },
+      {
+        "title": "**PR #164835** Related #164832",
+        "description": "**PR #164835** Related #164832. Thanks @danhayman and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164835"
+      },
+      {
+        "title": "**PR #164899**",
+        "description": "**PR #164899**",
+        "href": "https://github.com/openclaw/openclaw/issues/164899"
+      },
+      {
+        "title": "**PR #164824**",
+        "description": "**PR #164824**",
+        "href": "https://github.com/openclaw/openclaw/issues/164824"
+      },
+      {
+        "title": "**PR #164898**",
+        "description": "**PR #164898** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164898"
+      },
+      {
+        "title": "**PR #164902**",
+        "description": "**PR #164902**",
+        "href": "https://github.com/openclaw/openclaw/issues/164902"
+      },
+      {
+        "title": "**PR #164897** Related #164847",
+        "description": "**PR #164897** Related #164847. Thanks @sunlit-deng and @obviyus and @techdou.",
+        "href": "https://github.com/openclaw/openclaw/issues/164897"
+      },
+      {
+        "title": "**PR #164905**",
+        "description": "**PR #164905**",
+        "href": "https://github.com/openclaw/openclaw/issues/164905"
+      },
+      {
+        "title": "**PR #164850**",
+        "description": "**PR #164850** Thanks @KrasimirKralev and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164850"
+      },
+      {
+        "title": "**PR #163791**",
+        "description": "**PR #163791** Thanks @LinzeShi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163791"
+      },
+      {
+        "title": "**PR #164914** Related #164913",
+        "description": "**PR #164914** Related #164913. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164914"
+      },
+      {
+        "title": "**PR #164916** Related #164912",
+        "description": "**PR #164916** Related #164912. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164916"
+      },
+      {
+        "title": "**PR #164918**",
+        "description": "**PR #164918** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164918"
+      },
+      {
+        "title": "**PR #164785**",
+        "description": "**PR #164785** Thanks @yetval and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164785"
+      },
+      {
+        "title": "**PR #164920**",
+        "description": "**PR #164920**",
+        "href": "https://github.com/openclaw/openclaw/issues/164920"
+      },
+      {
+        "title": "**PR #164926** Related #164917",
+        "description": "**PR #164926** Related #164917. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/164926"
+      },
+      {
+        "title": "**PR #164246**",
+        "description": "**PR #164246** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164246"
+      },
+      {
+        "title": "**PR #164682**",
+        "description": "**PR #164682** Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/issues/164682"
+      },
+      {
+        "title": "**PR #164846**",
+        "description": "**PR #164846**",
+        "href": "https://github.com/openclaw/openclaw/issues/164846"
+      },
+      {
+        "title": "**PR #164512**",
+        "description": "**PR #164512**",
+        "href": "https://github.com/openclaw/openclaw/issues/164512"
+      },
+      {
+        "title": "**PR #164928**",
+        "description": "**PR #164928**",
+        "href": "https://github.com/openclaw/openclaw/issues/164928"
+      },
+      {
+        "title": "**PR #164906**",
+        "description": "**PR #164906**",
+        "href": "https://github.com/openclaw/openclaw/issues/164906"
+      },
+      {
+        "title": "**PR #164742** Related #164740",
+        "description": "**PR #164742** Related #164740. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164742"
+      },
+      {
+        "title": "**PR #164891**",
+        "description": "**PR #164891**",
+        "href": "https://github.com/openclaw/openclaw/issues/164891"
+      },
+      {
+        "title": "**PR #164455**",
+        "description": "**PR #164455** Thanks @LinzeShi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164455"
+      },
+      {
+        "title": "**PR #164929**",
+        "description": "**PR #164929**",
+        "href": "https://github.com/openclaw/openclaw/issues/164929"
+      },
+      {
+        "title": "**PR #164801**",
+        "description": "**PR #164801**",
+        "href": "https://github.com/openclaw/openclaw/issues/164801"
+      },
+      {
+        "title": "**PR #164940**",
+        "description": "**PR #164940**",
+        "href": "https://github.com/openclaw/openclaw/issues/164940"
+      },
+      {
+        "title": "**PR #164956**",
+        "description": "**PR #164956** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164956"
+      },
+      {
+        "title": "**PR #164938**",
+        "description": "**PR #164938**",
+        "href": "https://github.com/openclaw/openclaw/issues/164938"
+      },
+      {
+        "title": "**PR #164919**",
+        "description": "**PR #164919** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164919"
+      },
+      {
+        "title": "**PR #164943**",
+        "description": "**PR #164943**",
+        "href": "https://github.com/openclaw/openclaw/issues/164943"
+      },
+      {
+        "title": "**PR #164597**",
+        "description": "**PR #164597** Thanks @VACInc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164597"
+      },
+      {
+        "title": "**PR #164936**",
+        "description": "**PR #164936** Thanks @ly85206559.",
+        "href": "https://github.com/openclaw/openclaw/issues/164936"
+      },
+      {
+        "title": "**PR #164970**",
+        "description": "**PR #164970**",
+        "href": "https://github.com/openclaw/openclaw/issues/164970"
+      },
+      {
+        "title": "**PR #164976**",
+        "description": "**PR #164976**",
+        "href": "https://github.com/openclaw/openclaw/issues/164976"
+      },
+      {
+        "title": "**PR #164608**",
+        "description": "**PR #164608** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/164608"
+      },
+      {
+        "title": "**PR #164963**",
+        "description": "**PR #164963** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/164963"
+      },
+      {
+        "title": "**PR #164431** Related #164429",
+        "description": "**PR #164431** Related #164429. Thanks @jjjhenriksen and @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/164431"
+      },
+      {
+        "title": "**PR #164987**",
+        "description": "**PR #164987**",
+        "href": "https://github.com/openclaw/openclaw/issues/164987"
+      },
+      {
+        "title": "**PR #163198**",
+        "description": "**PR #163198**",
+        "href": "https://github.com/openclaw/openclaw/issues/163198"
+      },
+      {
+        "title": "**PR #164990** Related #164967",
+        "description": "**PR #164990** Related #164967. Thanks @saftall.",
+        "href": "https://github.com/openclaw/openclaw/issues/164990"
+      },
+      {
+        "title": "**PR #164985**",
+        "description": "**PR #164985**",
+        "href": "https://github.com/openclaw/openclaw/issues/164985"
+      },
+      {
+        "title": "**PR #164981**",
+        "description": "**PR #164981**",
+        "href": "https://github.com/openclaw/openclaw/issues/164981"
+      },
+      {
+        "title": "**PR #164772**",
+        "description": "**PR #164772** Thanks @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/164772"
+      },
+      {
+        "title": "**PR #164998** Related #164937",
+        "description": "**PR #164998** Related #164937. Thanks @Grynn.",
+        "href": "https://github.com/openclaw/openclaw/issues/164998"
+      },
+      {
+        "title": "**PR #165001**",
+        "description": "**PR #165001**",
+        "href": "https://github.com/openclaw/openclaw/issues/165001"
+      },
+      {
+        "title": "**PR #164997**",
+        "description": "**PR #164997**",
+        "href": "https://github.com/openclaw/openclaw/issues/164997"
+      },
+      {
+        "title": "**PR #164984**",
+        "description": "**PR #164984**",
+        "href": "https://github.com/openclaw/openclaw/issues/164984"
+      },
+      {
+        "title": "**PR #164883**",
+        "description": "**PR #164883**",
+        "href": "https://github.com/openclaw/openclaw/issues/164883"
+      },
+      {
+        "title": "**PR #164263**",
+        "description": "**PR #164263** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164263"
+      },
+      {
+        "title": "**PR #165007**",
+        "description": "**PR #165007** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165007"
+      },
+      {
+        "title": "**PR #165009**",
+        "description": "**PR #165009** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165009"
+      },
+      {
+        "title": "**PR #165010**",
+        "description": "**PR #165010**",
+        "href": "https://github.com/openclaw/openclaw/issues/165010"
+      },
+      {
+        "title": "**PR #165013**",
+        "description": "**PR #165013**",
+        "href": "https://github.com/openclaw/openclaw/issues/165013"
+      },
+      {
+        "title": "**PR #165015**",
+        "description": "**PR #165015**",
+        "href": "https://github.com/openclaw/openclaw/issues/165015"
+      },
+      {
+        "title": "**PR #153580**",
+        "description": "**PR #153580** Thanks @alexsimeonoww.",
+        "href": "https://github.com/openclaw/openclaw/issues/153580"
+      },
+      {
+        "title": "**PR #165017**",
+        "description": "**PR #165017**",
+        "href": "https://github.com/openclaw/openclaw/issues/165017"
+      },
+      {
+        "title": "**PR #165023**",
+        "description": "**PR #165023**",
+        "href": "https://github.com/openclaw/openclaw/issues/165023"
+      },
+      {
+        "title": "**PR #164962**",
+        "description": "**PR #164962**",
+        "href": "https://github.com/openclaw/openclaw/issues/164962"
+      },
+      {
+        "title": "**PR #165008**",
+        "description": "**PR #165008**",
+        "href": "https://github.com/openclaw/openclaw/issues/165008"
+      },
+      {
+        "title": "**PR #165014**",
+        "description": "**PR #165014**",
+        "href": "https://github.com/openclaw/openclaw/issues/165014"
+      },
+      {
+        "title": "**PR #165020**",
+        "description": "**PR #165020**",
+        "href": "https://github.com/openclaw/openclaw/issues/165020"
+      },
+      {
+        "title": "**PR #152396** Related #152185",
+        "description": "**PR #152396** Related #152185. Thanks @ly85206559 and @obviyus and @MutenCath.",
+        "href": "https://github.com/openclaw/openclaw/issues/152396"
+      },
+      {
+        "title": "**PR #165030**",
+        "description": "**PR #165030**",
+        "href": "https://github.com/openclaw/openclaw/issues/165030"
+      },
+      {
+        "title": "**PR #165024**",
+        "description": "**PR #165024**",
+        "href": "https://github.com/openclaw/openclaw/issues/165024"
+      },
+      {
+        "title": "**PR #155885**",
+        "description": "**PR #155885** Thanks @qingminglong and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/155885"
+      },
+      {
+        "title": "**PR #164989**",
+        "description": "**PR #164989**",
+        "href": "https://github.com/openclaw/openclaw/issues/164989"
+      },
+      {
+        "title": "**PR #164873**",
+        "description": "**PR #164873** Thanks @rogeriochaves and @llmsommelier and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164873"
+      },
+      {
+        "title": "**PR #164992**",
+        "description": "**PR #164992**",
+        "href": "https://github.com/openclaw/openclaw/issues/164992"
+      },
+      {
+        "title": "**PR #165049**",
+        "description": "**PR #165049**",
+        "href": "https://github.com/openclaw/openclaw/issues/165049"
+      },
+      {
+        "title": "**PR #165048**",
+        "description": "**PR #165048** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165048"
+      },
+      {
+        "title": "**PR #165042**",
+        "description": "**PR #165042**",
+        "href": "https://github.com/openclaw/openclaw/issues/165042"
+      },
+      {
+        "title": "**PR #165057**",
+        "description": "**PR #165057** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165057"
+      },
+      {
+        "title": "**PR #165034**",
+        "description": "**PR #165034**",
+        "href": "https://github.com/openclaw/openclaw/issues/165034"
+      },
+      {
+        "title": "**PR #164922**",
+        "description": "**PR #164922**",
+        "href": "https://github.com/openclaw/openclaw/issues/164922"
+      },
+      {
+        "title": "**PR #165037**",
+        "description": "**PR #165037**",
+        "href": "https://github.com/openclaw/openclaw/issues/165037"
+      },
+      {
+        "title": "**PR #164719** Related #143701",
+        "description": "**PR #164719** Related #143701. Thanks @obviyus and @SparcleAI.",
+        "href": "https://github.com/openclaw/openclaw/issues/164719"
+      },
+      {
+        "title": "**PR #165044**",
+        "description": "**PR #165044**",
+        "href": "https://github.com/openclaw/openclaw/issues/165044"
+      },
+      {
+        "title": "**PR #165052**",
+        "description": "**PR #165052**",
+        "href": "https://github.com/openclaw/openclaw/issues/165052"
+      },
+      {
+        "title": "**PR #164864**",
+        "description": "**PR #164864**",
+        "href": "https://github.com/openclaw/openclaw/issues/164864"
+      },
+      {
+        "title": "**PR #165033**",
+        "description": "**PR #165033** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165033"
+      },
+      {
+        "title": "**PR #165058**",
+        "description": "**PR #165058**",
+        "href": "https://github.com/openclaw/openclaw/issues/165058"
+      },
+      {
+        "title": "**PR #165051**",
+        "description": "**PR #165051** Thanks @obviyus and @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/165051"
+      },
+      {
+        "title": "**PR #165060**",
+        "description": "**PR #165060**",
+        "href": "https://github.com/openclaw/openclaw/issues/165060"
+      },
+      {
+        "title": "**PR #165064**",
+        "description": "**PR #165064**",
+        "href": "https://github.com/openclaw/openclaw/issues/165064"
+      },
+      {
+        "title": "**PR #165069**",
+        "description": "**PR #165069**",
+        "href": "https://github.com/openclaw/openclaw/issues/165069"
+      },
+      {
+        "title": "**PR #165073**",
+        "description": "**PR #165073**",
+        "href": "https://github.com/openclaw/openclaw/issues/165073"
+      },
+      {
+        "title": "**PR #165012**",
+        "description": "**PR #165012**",
+        "href": "https://github.com/openclaw/openclaw/issues/165012"
+      },
+      {
+        "title": "**PR #165076**",
+        "description": "**PR #165076**",
+        "href": "https://github.com/openclaw/openclaw/issues/165076"
+      },
+      {
+        "title": "**PR #165077**",
+        "description": "**PR #165077**",
+        "href": "https://github.com/openclaw/openclaw/issues/165077"
+      },
+      {
+        "title": "**PR #165072**",
+        "description": "**PR #165072**",
+        "href": "https://github.com/openclaw/openclaw/issues/165072"
+      },
+      {
+        "title": "**PR #165029**",
+        "description": "**PR #165029**",
+        "href": "https://github.com/openclaw/openclaw/issues/165029"
+      },
+      {
+        "title": "**PR #165081**",
+        "description": "**PR #165081**",
+        "href": "https://github.com/openclaw/openclaw/issues/165081"
+      },
+      {
+        "title": "**PR #165082**",
+        "description": "**PR #165082**",
+        "href": "https://github.com/openclaw/openclaw/issues/165082"
+      },
+      {
+        "title": "**PR #165093**",
+        "description": "**PR #165093**",
+        "href": "https://github.com/openclaw/openclaw/issues/165093"
+      },
+      {
+        "title": "**PR #165097**",
+        "description": "**PR #165097**",
+        "href": "https://github.com/openclaw/openclaw/issues/165097"
+      },
+      {
+        "title": "**PR #165080**",
+        "description": "**PR #165080**",
+        "href": "https://github.com/openclaw/openclaw/issues/165080"
+      },
+      {
+        "title": "**PR #165101**",
+        "description": "**PR #165101**",
+        "href": "https://github.com/openclaw/openclaw/issues/165101"
+      },
+      {
+        "title": "**PR #165086**",
+        "description": "**PR #165086**",
+        "href": "https://github.com/openclaw/openclaw/issues/165086"
+      },
+      {
+        "title": "**PR #165090**",
+        "description": "**PR #165090**",
+        "href": "https://github.com/openclaw/openclaw/issues/165090"
+      },
+      {
+        "title": "**PR #165074**",
+        "description": "**PR #165074**",
+        "href": "https://github.com/openclaw/openclaw/issues/165074"
+      },
+      {
+        "title": "**PR #165089**",
+        "description": "**PR #165089**",
+        "href": "https://github.com/openclaw/openclaw/issues/165089"
+      },
+      {
+        "title": "**PR #165096**",
+        "description": "**PR #165096**",
+        "href": "https://github.com/openclaw/openclaw/issues/165096"
+      },
+      {
+        "title": "**PR #165085**",
+        "description": "**PR #165085**",
+        "href": "https://github.com/openclaw/openclaw/issues/165085"
+      },
+      {
+        "title": "**PR #165106**",
+        "description": "**PR #165106**",
+        "href": "https://github.com/openclaw/openclaw/issues/165106"
+      },
+      {
+        "title": "**PR #165027**",
+        "description": "**PR #165027**",
+        "href": "https://github.com/openclaw/openclaw/issues/165027"
+      },
+      {
+        "title": "**PR #165100**",
+        "description": "**PR #165100**",
+        "href": "https://github.com/openclaw/openclaw/issues/165100"
+      },
+      {
+        "title": "**PR #165108** Related #165061",
+        "description": "**PR #165108** Related #165061. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165108"
+      },
+      {
+        "title": "**PR #165098**",
+        "description": "**PR #165098**",
+        "href": "https://github.com/openclaw/openclaw/issues/165098"
+      },
+      {
+        "title": "**PR #165109**",
+        "description": "**PR #165109**",
+        "href": "https://github.com/openclaw/openclaw/issues/165109"
+      },
+      {
+        "title": "**PR #165111**",
+        "description": "**PR #165111**",
+        "href": "https://github.com/openclaw/openclaw/issues/165111"
+      },
+      {
+        "title": "**PR #165075**",
+        "description": "**PR #165075**",
+        "href": "https://github.com/openclaw/openclaw/issues/165075"
+      },
+      {
+        "title": "**PR #165032**",
+        "description": "**PR #165032**",
+        "href": "https://github.com/openclaw/openclaw/issues/165032"
+      },
+      {
+        "title": "**PR #165125**",
+        "description": "**PR #165125**",
+        "href": "https://github.com/openclaw/openclaw/issues/165125"
+      },
+      {
+        "title": "**PR #165071**",
+        "description": "**PR #165071**",
+        "href": "https://github.com/openclaw/openclaw/issues/165071"
+      },
+      {
+        "title": "**PR #165079** Related #165035",
+        "description": "**PR #165079** Related #165035. Thanks @Dhotei.",
+        "href": "https://github.com/openclaw/openclaw/issues/165079"
+      },
+      {
+        "title": "**PR #165126**",
+        "description": "**PR #165126**",
+        "href": "https://github.com/openclaw/openclaw/issues/165126"
+      },
+      {
+        "title": "**PR #165133** Related #165128",
+        "description": "**PR #165133** Related #165128. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165133"
+      },
+      {
+        "title": "**PR #165127** Related #165114",
+        "description": "**PR #165127** Related #165114. Thanks @x-n2o and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165127"
+      },
+      {
+        "title": "**PR #165139**",
+        "description": "**PR #165139**",
+        "href": "https://github.com/openclaw/openclaw/issues/165139"
+      },
+      {
+        "title": "**PR #165142**",
+        "description": "**PR #165142**",
+        "href": "https://github.com/openclaw/openclaw/issues/165142"
+      },
+      {
+        "title": "**PR #165140**",
+        "description": "**PR #165140** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165140"
+      },
+      {
+        "title": "**PR #165110**",
+        "description": "**PR #165110**",
+        "href": "https://github.com/openclaw/openclaw/issues/165110"
+      },
+      {
+        "title": "**PR #164689**",
+        "description": "**PR #164689** Thanks @yetval and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/issues/164689"
+      },
+      {
+        "title": "**PR #165103**",
+        "description": "**PR #165103**",
+        "href": "https://github.com/openclaw/openclaw/issues/165103"
+      },
+      {
+        "title": "**PR #165120**",
+        "description": "**PR #165120**",
+        "href": "https://github.com/openclaw/openclaw/issues/165120"
+      },
+      {
+        "title": "**PR #165145** Related #165144",
+        "description": "**PR #165145** Related #165144. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165145"
+      },
+      {
+        "title": "**PR #165068**",
+        "description": "**PR #165068**",
+        "href": "https://github.com/openclaw/openclaw/issues/165068"
+      },
+      {
+        "title": "**PR #161609**",
+        "description": "**PR #161609** Thanks @sjf-oa.",
+        "href": "https://github.com/openclaw/openclaw/issues/161609"
+      },
+      {
+        "title": "**PR #165095**",
+        "description": "**PR #165095**",
+        "href": "https://github.com/openclaw/openclaw/issues/165095"
+      },
+      {
+        "title": "**PR #163829**",
+        "description": "**PR #163829**",
+        "href": "https://github.com/openclaw/openclaw/issues/163829"
+      },
+      {
+        "title": "**PR #165167**",
+        "description": "**PR #165167**",
+        "href": "https://github.com/openclaw/openclaw/issues/165167"
+      },
+      {
+        "title": "**PR #165107**",
+        "description": "**PR #165107**",
+        "href": "https://github.com/openclaw/openclaw/issues/165107"
+      },
+      {
+        "title": "**PR #163833**",
+        "description": "**PR #163833**",
+        "href": "https://github.com/openclaw/openclaw/issues/163833"
+      },
+      {
+        "title": "**PR #165173**",
+        "description": "**PR #165173**",
+        "href": "https://github.com/openclaw/openclaw/issues/165173"
+      },
+      {
+        "title": "**PR #165169**",
+        "description": "**PR #165169**",
+        "href": "https://github.com/openclaw/openclaw/issues/165169"
+      },
+      {
+        "title": "**PR #165148**",
+        "description": "**PR #165148**",
+        "href": "https://github.com/openclaw/openclaw/issues/165148"
+      },
+      {
+        "title": "**PR #165168**",
+        "description": "**PR #165168**",
+        "href": "https://github.com/openclaw/openclaw/issues/165168"
+      },
+      {
+        "title": "**PR #165181**",
+        "description": "**PR #165181**",
+        "href": "https://github.com/openclaw/openclaw/issues/165181"
+      },
+      {
+        "title": "**PR #165141**",
+        "description": "**PR #165141**",
+        "href": "https://github.com/openclaw/openclaw/issues/165141"
+      },
+      {
+        "title": "**PR #165160** Related #165118",
+        "description": "**PR #165160** Related #165118. Thanks @obviyus and @tre1d.",
+        "href": "https://github.com/openclaw/openclaw/issues/165160"
+      },
+      {
+        "title": "**PR #165166**",
+        "description": "**PR #165166**",
+        "href": "https://github.com/openclaw/openclaw/issues/165166"
+      },
+      {
+        "title": "**PR #159448**",
+        "description": "**PR #159448**",
+        "href": "https://github.com/openclaw/openclaw/issues/159448"
+      },
+      {
+        "title": "**PR #165184**",
+        "description": "**PR #165184**",
+        "href": "https://github.com/openclaw/openclaw/issues/165184"
+      },
+      {
+        "title": "**PR #165138**",
+        "description": "**PR #165138**",
+        "href": "https://github.com/openclaw/openclaw/issues/165138"
+      },
+      {
+        "title": "**PR #165165**",
+        "description": "**PR #165165**",
+        "href": "https://github.com/openclaw/openclaw/issues/165165"
+      },
+      {
+        "title": "**PR #165124**",
+        "description": "**PR #165124**",
+        "href": "https://github.com/openclaw/openclaw/issues/165124"
+      },
+      {
+        "title": "**PR #164444**",
+        "description": "**PR #164444**",
+        "href": "https://github.com/openclaw/openclaw/issues/164444"
+      },
+      {
+        "title": "**PR #165116**",
+        "description": "**PR #165116**",
+        "href": "https://github.com/openclaw/openclaw/issues/165116"
+      },
+      {
+        "title": "**PR #165202**",
+        "description": "**PR #165202**",
+        "href": "https://github.com/openclaw/openclaw/issues/165202"
+      },
+      {
+        "title": "**PR #165204**",
+        "description": "**PR #165204**",
+        "href": "https://github.com/openclaw/openclaw/issues/165204"
+      },
+      {
+        "title": "**PR #165200** Related #165159",
+        "description": "**PR #165200** Related #165159. Thanks @obviyus and @Grynn.",
+        "href": "https://github.com/openclaw/openclaw/issues/165200"
+      },
+      {
+        "title": "**PR #165177**",
+        "description": "**PR #165177**",
+        "href": "https://github.com/openclaw/openclaw/issues/165177"
+      },
+      {
+        "title": "**PR #165213**",
+        "description": "**PR #165213**",
+        "href": "https://github.com/openclaw/openclaw/issues/165213"
+      },
+      {
+        "title": "**PR #165196**",
+        "description": "**PR #165196**",
+        "href": "https://github.com/openclaw/openclaw/issues/165196"
+      },
+      {
+        "title": "**PR #165220** Related #165216",
+        "description": "**PR #165220** Related #165216. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165220"
+      },
+      {
+        "title": "**PR #150587** Related #150458, #150461, #150463, #150466, #150469",
+        "description": "**PR #150587** Related #150458, #150461, #150463, #150466, #150469. Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/150587"
+      },
+      {
+        "title": "**PR #165228**",
+        "description": "**PR #165228** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165228"
+      },
+      {
+        "title": "**PR #165231**",
+        "description": "**PR #165231**",
+        "href": "https://github.com/openclaw/openclaw/issues/165231"
+      },
+      {
+        "title": "**PR #165237**",
+        "description": "**PR #165237**",
+        "href": "https://github.com/openclaw/openclaw/issues/165237"
+      },
+      {
+        "title": "**PR #165219**",
+        "description": "**PR #165219**",
+        "href": "https://github.com/openclaw/openclaw/issues/165219"
+      },
+      {
+        "title": "**PR #165239**",
+        "description": "**PR #165239**",
+        "href": "https://github.com/openclaw/openclaw/issues/165239"
+      },
+      {
+        "title": "**PR #165240** Related #165232",
+        "description": "**PR #165240** Related #165232. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165240"
+      },
+      {
+        "title": "**PR #165190**",
+        "description": "**PR #165190**",
+        "href": "https://github.com/openclaw/openclaw/issues/165190"
+      },
+      {
+        "title": "**PR #165174**",
+        "description": "**PR #165174**",
+        "href": "https://github.com/openclaw/openclaw/issues/165174"
+      },
+      {
+        "title": "**PR #165066**",
+        "description": "**PR #165066** Thanks @akshatshahh and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165066"
+      },
+      {
+        "title": "**PR #165183**",
+        "description": "**PR #165183** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165183"
+      },
+      {
+        "title": "**PR #165134**",
+        "description": "**PR #165134**",
+        "href": "https://github.com/openclaw/openclaw/issues/165134"
+      },
+      {
+        "title": "**PR #165248**",
+        "description": "**PR #165248**",
+        "href": "https://github.com/openclaw/openclaw/issues/165248"
+      },
+      {
+        "title": "**PR #165241**",
+        "description": "**PR #165241**",
+        "href": "https://github.com/openclaw/openclaw/issues/165241"
+      },
+      {
+        "title": "**PR #165243**",
+        "description": "**PR #165243**",
+        "href": "https://github.com/openclaw/openclaw/issues/165243"
+      },
+      {
+        "title": "**PR #165211**",
+        "description": "**PR #165211**",
+        "href": "https://github.com/openclaw/openclaw/issues/165211"
+      },
+      {
+        "title": "**PR #165238** Related #164254",
+        "description": "**PR #165238** Related #164254. Thanks @Hensarj.",
+        "href": "https://github.com/openclaw/openclaw/issues/165238"
+      },
+      {
+        "title": "**PR #165242** Related #165229",
+        "description": "**PR #165242** Related #165229. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165242"
+      },
+      {
+        "title": "**PR #165221**",
+        "description": "**PR #165221**",
+        "href": "https://github.com/openclaw/openclaw/issues/165221"
+      },
+      {
+        "title": "**PR #165244**",
+        "description": "**PR #165244**",
+        "href": "https://github.com/openclaw/openclaw/issues/165244"
+      },
+      {
+        "title": "**PR #165254**",
+        "description": "**PR #165254**",
+        "href": "https://github.com/openclaw/openclaw/issues/165254"
+      },
+      {
+        "title": "**PR #165212**",
+        "description": "**PR #165212**",
+        "href": "https://github.com/openclaw/openclaw/issues/165212"
+      },
+      {
+        "title": "**PR #165250** Related #165246",
+        "description": "**PR #165250** Related #165246. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165250"
+      },
+      {
+        "title": "**PR #165251**",
+        "description": "**PR #165251** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165251"
+      },
+      {
+        "title": "**PR #165259** Related #165256",
+        "description": "**PR #165259** Related #165256. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165259"
+      },
+      {
+        "title": "**PR #165258** Related #165252",
+        "description": "**PR #165258** Related #165252. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165258"
+      },
+      {
+        "title": "**PR #165156**",
+        "description": "**PR #165156**",
+        "href": "https://github.com/openclaw/openclaw/issues/165156"
+      },
+      {
+        "title": "**PR #165249**",
+        "description": "**PR #165249**",
+        "href": "https://github.com/openclaw/openclaw/issues/165249"
+      },
+      {
+        "title": "**PR #165194**",
+        "description": "**PR #165194**",
+        "href": "https://github.com/openclaw/openclaw/issues/165194"
+      },
+      {
+        "title": "**PR #165189**",
+        "description": "**PR #165189**",
+        "href": "https://github.com/openclaw/openclaw/issues/165189"
+      },
+      {
+        "title": "**PR #165158**",
+        "description": "**PR #165158**",
+        "href": "https://github.com/openclaw/openclaw/issues/165158"
+      },
+      {
+        "title": "**PR #165265**",
+        "description": "**PR #165265** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165265"
+      },
+      {
+        "title": "**PR #165207**",
+        "description": "**PR #165207**",
+        "href": "https://github.com/openclaw/openclaw/issues/165207"
+      },
+      {
+        "title": "**PR #165272** Related #165268",
+        "description": "**PR #165272** Related #165268. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165272"
+      },
+      {
+        "title": "**PR #165151**",
+        "description": "**PR #165151**",
+        "href": "https://github.com/openclaw/openclaw/issues/165151"
+      },
+      {
+        "title": "**PR #165285** Related #165281",
+        "description": "**PR #165285** Related #165281. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165285"
+      },
+      {
+        "title": "**PR #165284** Related #165279",
+        "description": "**PR #165284** Related #165279. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165284"
+      },
+      {
+        "title": "**PR #165273** Related #164787",
+        "description": "**PR #165273** Related #164787. Thanks @mightyx.",
+        "href": "https://github.com/openclaw/openclaw/issues/165273"
+      },
+      {
+        "title": "**PR #165175**",
+        "description": "**PR #165175**",
+        "href": "https://github.com/openclaw/openclaw/issues/165175"
+      },
+      {
+        "title": "**PR #165193**",
+        "description": "**PR #165193**",
+        "href": "https://github.com/openclaw/openclaw/issues/165193"
+      },
+      {
+        "title": "**PR #165286**",
+        "description": "**PR #165286**",
+        "href": "https://github.com/openclaw/openclaw/issues/165286"
+      },
+      {
+        "title": "**PR #165289**",
+        "description": "**PR #165289** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165289"
+      },
+      {
+        "title": "**PR #165236**",
+        "description": "**PR #165236**",
+        "href": "https://github.com/openclaw/openclaw/issues/165236"
+      },
+      {
+        "title": "**PR #165302**",
+        "description": "**PR #165302**",
+        "href": "https://github.com/openclaw/openclaw/issues/165302"
+      },
+      {
+        "title": "**PR #151037** Related #151033",
+        "description": "**PR #151037** Related #151033. Thanks @ethangui.",
+        "href": "https://github.com/openclaw/openclaw/issues/151037"
+      },
+      {
+        "title": "**PR #165298**",
+        "description": "**PR #165298**",
+        "href": "https://github.com/openclaw/openclaw/issues/165298"
+      },
+      {
+        "title": "**PR #165290**",
+        "description": "**PR #165290**",
+        "href": "https://github.com/openclaw/openclaw/issues/165290"
+      },
+      {
+        "title": "**PR #165203**",
+        "description": "**PR #165203**",
+        "href": "https://github.com/openclaw/openclaw/issues/165203"
+      },
+      {
+        "title": "**PR #165276**",
+        "description": "**PR #165276**",
+        "href": "https://github.com/openclaw/openclaw/issues/165276"
+      },
+      {
+        "title": "**PR #165274**",
+        "description": "**PR #165274**",
+        "href": "https://github.com/openclaw/openclaw/issues/165274"
+      },
+      {
+        "title": "**PR #165277**",
+        "description": "**PR #165277**",
+        "href": "https://github.com/openclaw/openclaw/issues/165277"
+      },
+      {
+        "title": "**PR #165129**",
+        "description": "**PR #165129**",
+        "href": "https://github.com/openclaw/openclaw/issues/165129"
+      },
+      {
+        "title": "**PR #165306**",
+        "description": "**PR #165306**",
+        "href": "https://github.com/openclaw/openclaw/issues/165306"
+      },
+      {
+        "title": "**PR #165282**",
+        "description": "**PR #165282**",
+        "href": "https://github.com/openclaw/openclaw/issues/165282"
+      },
+      {
+        "title": "**PR #165311** Related #165308",
+        "description": "**PR #165311** Related #165308. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165311"
+      },
+      {
+        "title": "**PR #165186**",
+        "description": "**PR #165186**",
+        "href": "https://github.com/openclaw/openclaw/issues/165186"
+      },
+      {
+        "title": "**PR #165261**",
+        "description": "**PR #165261**",
+        "href": "https://github.com/openclaw/openclaw/issues/165261"
+      },
+      {
+        "title": "**PR #165309**",
+        "description": "**PR #165309**",
+        "href": "https://github.com/openclaw/openclaw/issues/165309"
+      },
+      {
+        "title": "**PR #165198**",
+        "description": "**PR #165198**",
+        "href": "https://github.com/openclaw/openclaw/issues/165198"
+      },
+      {
+        "title": "**PR #165317**",
+        "description": "**PR #165317**",
+        "href": "https://github.com/openclaw/openclaw/issues/165317"
+      },
+      {
+        "title": "**PR #165305**",
+        "description": "**PR #165305**",
+        "href": "https://github.com/openclaw/openclaw/issues/165305"
+      },
+      {
+        "title": "**PR #165295**",
+        "description": "**PR #165295**",
+        "href": "https://github.com/openclaw/openclaw/issues/165295"
+      },
+      {
+        "title": "**PR #165070**",
+        "description": "**PR #165070**",
+        "href": "https://github.com/openclaw/openclaw/issues/165070"
+      },
+      {
+        "title": "**PR #165293**",
+        "description": "**PR #165293**",
+        "href": "https://github.com/openclaw/openclaw/issues/165293"
+      },
+      {
+        "title": "**PR #165303** Related #165299",
+        "description": "**PR #165303** Related #165299. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165303"
+      },
+      {
+        "title": "**PR #165322**",
+        "description": "**PR #165322**",
+        "href": "https://github.com/openclaw/openclaw/issues/165322"
+      },
+      {
+        "title": "**PR #165313**",
+        "description": "**PR #165313**",
+        "href": "https://github.com/openclaw/openclaw/issues/165313"
+      },
+      {
+        "title": "**PR #165307**",
+        "description": "**PR #165307**",
+        "href": "https://github.com/openclaw/openclaw/issues/165307"
+      },
+      {
+        "title": "**PR #157953**",
+        "description": "**PR #157953** Thanks @Olli0103 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/157953"
+      },
+      {
+        "title": "**PR #165304**",
+        "description": "**PR #165304**",
+        "href": "https://github.com/openclaw/openclaw/issues/165304"
+      },
+      {
+        "title": "**PR #165333**",
+        "description": "**PR #165333**",
+        "href": "https://github.com/openclaw/openclaw/issues/165333"
+      },
+      {
+        "title": "**PR #165230**",
+        "description": "**PR #165230**",
+        "href": "https://github.com/openclaw/openclaw/issues/165230"
+      },
+      {
+        "title": "**PR #165157**",
+        "description": "**PR #165157**",
+        "href": "https://github.com/openclaw/openclaw/issues/165157"
+      },
+      {
+        "title": "**PR #165338**",
+        "description": "**PR #165338**",
+        "href": "https://github.com/openclaw/openclaw/issues/165338"
+      },
+      {
+        "title": "**PR #165218**",
+        "description": "**PR #165218**",
+        "href": "https://github.com/openclaw/openclaw/issues/165218"
+      },
+      {
+        "title": "**PR #165344**",
+        "description": "**PR #165344**",
+        "href": "https://github.com/openclaw/openclaw/issues/165344"
+      },
+      {
+        "title": "**PR #165346**",
+        "description": "**PR #165346**",
+        "href": "https://github.com/openclaw/openclaw/issues/165346"
+      },
+      {
+        "title": "**PR #165332**",
+        "description": "**PR #165332**",
+        "href": "https://github.com/openclaw/openclaw/issues/165332"
+      },
+      {
+        "title": "**PR #165297**",
+        "description": "**PR #165297**",
+        "href": "https://github.com/openclaw/openclaw/issues/165297"
+      },
+      {
+        "title": "**PR #165187**",
+        "description": "**PR #165187**",
+        "href": "https://github.com/openclaw/openclaw/issues/165187"
+      },
+      {
+        "title": "**PR #165343**",
+        "description": "**PR #165343**",
+        "href": "https://github.com/openclaw/openclaw/issues/165343"
+      },
+      {
+        "title": "**PR #165318**",
+        "description": "**PR #165318**",
+        "href": "https://github.com/openclaw/openclaw/issues/165318"
+      },
+      {
+        "title": "**PR #165341**",
+        "description": "**PR #165341**",
+        "href": "https://github.com/openclaw/openclaw/issues/165341"
+      },
+      {
+        "title": "**PR #165336**",
+        "description": "**PR #165336**",
+        "href": "https://github.com/openclaw/openclaw/issues/165336"
+      },
+      {
+        "title": "**PR #165339**",
+        "description": "**PR #165339**",
+        "href": "https://github.com/openclaw/openclaw/issues/165339"
+      },
+      {
+        "title": "**PR #165337**",
+        "description": "**PR #165337**",
+        "href": "https://github.com/openclaw/openclaw/issues/165337"
+      },
+      {
+        "title": "**PR #165330**",
+        "description": "**PR #165330**",
+        "href": "https://github.com/openclaw/openclaw/issues/165330"
+      },
+      {
+        "title": "**PR #165356**",
+        "description": "**PR #165356**",
+        "href": "https://github.com/openclaw/openclaw/issues/165356"
+      },
+      {
+        "title": "**PR #165217**",
+        "description": "**PR #165217**",
+        "href": "https://github.com/openclaw/openclaw/issues/165217"
+      },
+      {
+        "title": "**PR #165358** Related #165315",
+        "description": "**PR #165358** Related #165315. Thanks @obviyus and @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165358"
+      },
+      {
+        "title": "**PR #165320** Related #163653",
+        "description": "**PR #165320** Related #163653. Thanks @yuzh086-create.",
+        "href": "https://github.com/openclaw/openclaw/issues/165320"
+      },
+      {
+        "title": "**PR #165328**",
+        "description": "**PR #165328** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165328"
+      },
+      {
+        "title": "**PR #165365**",
+        "description": "**PR #165365**",
+        "href": "https://github.com/openclaw/openclaw/issues/165365"
+      },
+      {
+        "title": "**PR #165369**",
+        "description": "**PR #165369**",
+        "href": "https://github.com/openclaw/openclaw/issues/165369"
+      },
+      {
+        "title": "**PR #165004**",
+        "description": "**PR #165004** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/165004"
+      },
+      {
+        "title": "**PR #165348**",
+        "description": "**PR #165348**",
+        "href": "https://github.com/openclaw/openclaw/issues/165348"
+      },
+      {
+        "title": "**PR #165335**",
+        "description": "**PR #165335**",
+        "href": "https://github.com/openclaw/openclaw/issues/165335"
+      },
+      {
+        "title": "**PR #165375**",
+        "description": "**PR #165375**",
+        "href": "https://github.com/openclaw/openclaw/issues/165375"
+      },
+      {
+        "title": "**PR #165353**",
+        "description": "**PR #165353**",
+        "href": "https://github.com/openclaw/openclaw/issues/165353"
+      },
+      {
+        "title": "**PR #165367**",
+        "description": "**PR #165367**",
+        "href": "https://github.com/openclaw/openclaw/issues/165367"
+      },
+      {
+        "title": "**PR #165331**",
+        "description": "**PR #165331**",
+        "href": "https://github.com/openclaw/openclaw/issues/165331"
+      },
+      {
+        "title": "**PR #165393**",
+        "description": "**PR #165393**",
+        "href": "https://github.com/openclaw/openclaw/issues/165393"
+      },
+      {
+        "title": "**PR #165392**",
+        "description": "**PR #165392**",
+        "href": "https://github.com/openclaw/openclaw/issues/165392"
+      },
+      {
+        "title": "**PR #165354**",
+        "description": "**PR #165354**",
+        "href": "https://github.com/openclaw/openclaw/issues/165354"
+      },
+      {
+        "title": "**PR #165394**",
+        "description": "**PR #165394**",
+        "href": "https://github.com/openclaw/openclaw/issues/165394"
+      },
+      {
+        "title": "**PR #164884**",
+        "description": "**PR #164884** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164884"
+      },
+      {
+        "title": "**PR #164894**",
+        "description": "**PR #164894** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164894"
+      },
+      {
+        "title": "**PR #165403**",
+        "description": "**PR #165403**",
+        "href": "https://github.com/openclaw/openclaw/issues/165403"
+      },
+      {
+        "title": "**PR #165349**",
+        "description": "**PR #165349**",
+        "href": "https://github.com/openclaw/openclaw/issues/165349"
+      },
+      {
+        "title": "**PR #165415**",
+        "description": "**PR #165415**",
+        "href": "https://github.com/openclaw/openclaw/issues/165415"
+      },
+      {
+        "title": "**PR #165408**",
+        "description": "**PR #165408** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165408"
+      },
+      {
+        "title": "**PR #165163** Related #143757",
+        "description": "**PR #165163** Related #143757. Thanks @desksk.",
+        "href": "https://github.com/openclaw/openclaw/issues/165163"
+      },
+      {
+        "title": "**PR #165350**",
+        "description": "**PR #165350**",
+        "href": "https://github.com/openclaw/openclaw/issues/165350"
+      },
+      {
+        "title": "**PR #165413**",
+        "description": "**PR #165413**",
+        "href": "https://github.com/openclaw/openclaw/issues/165413"
+      },
+      {
+        "title": "**PR #165376**",
+        "description": "**PR #165376**",
+        "href": "https://github.com/openclaw/openclaw/issues/165376"
+      },
+      {
+        "title": "**PR #165402**",
+        "description": "**PR #165402**",
+        "href": "https://github.com/openclaw/openclaw/issues/165402"
+      },
+      {
+        "title": "**PR #165368**",
+        "description": "**PR #165368**",
+        "href": "https://github.com/openclaw/openclaw/issues/165368"
+      },
+      {
+        "title": "**PR #165424**",
+        "description": "**PR #165424**",
+        "href": "https://github.com/openclaw/openclaw/issues/165424"
+      },
+      {
+        "title": "**PR #165178**",
+        "description": "**PR #165178**",
+        "href": "https://github.com/openclaw/openclaw/issues/165178"
+      },
+      {
+        "title": "**PR #165225**",
+        "description": "**PR #165225**",
+        "href": "https://github.com/openclaw/openclaw/issues/165225"
+      },
+      {
+        "title": "**PR #165430**",
+        "description": "**PR #165430**",
+        "href": "https://github.com/openclaw/openclaw/issues/165430"
+      },
+      {
+        "title": "**PR #165170**",
+        "description": "**PR #165170**",
+        "href": "https://github.com/openclaw/openclaw/issues/165170"
+      },
+      {
+        "title": "**PR #165407**",
+        "description": "**PR #165407**",
+        "href": "https://github.com/openclaw/openclaw/issues/165407"
+      },
+      {
+        "title": "**PR #165199**",
+        "description": "**PR #165199**",
+        "href": "https://github.com/openclaw/openclaw/issues/165199"
+      },
+      {
+        "title": "**PR #165347**",
+        "description": "**PR #165347**",
+        "href": "https://github.com/openclaw/openclaw/issues/165347"
+      },
+      {
+        "title": "**PR #165324**",
+        "description": "**PR #165324**",
+        "href": "https://github.com/openclaw/openclaw/issues/165324"
+      },
+      {
+        "title": "**PR #165438**",
+        "description": "**PR #165438**",
+        "href": "https://github.com/openclaw/openclaw/issues/165438"
+      },
+      {
+        "title": "**PR #165435**",
+        "description": "**PR #165435**",
+        "href": "https://github.com/openclaw/openclaw/issues/165435"
+      },
+      {
+        "title": "**PR #165425**",
+        "description": "**PR #165425**",
+        "href": "https://github.com/openclaw/openclaw/issues/165425"
+      },
+      {
+        "title": "**PR #165325**",
+        "description": "**PR #165325**",
+        "href": "https://github.com/openclaw/openclaw/issues/165325"
+      },
+      {
+        "title": "**PR #165326**",
+        "description": "**PR #165326**",
+        "href": "https://github.com/openclaw/openclaw/issues/165326"
+      },
+      {
+        "title": "**PR #165449**",
+        "description": "**PR #165449** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/165449"
+      },
+      {
+        "title": "**PR #165443**",
+        "description": "**PR #165443**",
+        "href": "https://github.com/openclaw/openclaw/issues/165443"
+      },
+      {
+        "title": "**PR #165171**",
+        "description": "**PR #165171**",
+        "href": "https://github.com/openclaw/openclaw/issues/165171"
+      },
+      {
+        "title": "**PR #165327**",
+        "description": "**PR #165327**",
+        "href": "https://github.com/openclaw/openclaw/issues/165327"
+      },
+      {
+        "title": "**PR #165457**",
+        "description": "**PR #165457**",
+        "href": "https://github.com/openclaw/openclaw/issues/165457"
+      },
+      {
+        "title": "**PR #165359**",
+        "description": "**PR #165359** Thanks @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/165359"
+      },
+      {
+        "title": "**PR #165446**",
+        "description": "**PR #165446**",
+        "href": "https://github.com/openclaw/openclaw/issues/165446"
+      },
+      {
+        "title": "**PR #165360**",
+        "description": "**PR #165360**",
+        "href": "https://github.com/openclaw/openclaw/issues/165360"
+      },
+      {
+        "title": "**PR #165461**",
+        "description": "**PR #165461**",
+        "href": "https://github.com/openclaw/openclaw/issues/165461"
+      },
+      {
+        "title": "**PR #165340**",
+        "description": "**PR #165340**",
+        "href": "https://github.com/openclaw/openclaw/issues/165340"
+      },
+      {
+        "title": "**PR #165464**",
+        "description": "**PR #165464**",
+        "href": "https://github.com/openclaw/openclaw/issues/165464"
+      },
+      {
+        "title": "**PR #165467**",
+        "description": "**PR #165467**",
+        "href": "https://github.com/openclaw/openclaw/issues/165467"
+      },
+      {
+        "title": "**PR #165439**",
+        "description": "**PR #165439** Thanks @Milbaxter and @chief-o-brien-bot and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165439"
+      },
+      {
+        "title": "**PR #165094**",
+        "description": "**PR #165094**",
+        "href": "https://github.com/openclaw/openclaw/issues/165094"
+      },
+      {
+        "title": "**PR #165468**",
+        "description": "**PR #165468**",
+        "href": "https://github.com/openclaw/openclaw/issues/165468"
+      },
+      {
+        "title": "**PR #165462**",
+        "description": "**PR #165462**",
+        "href": "https://github.com/openclaw/openclaw/issues/165462"
+      },
+      {
+        "title": "**PR #165474**",
+        "description": "**PR #165474**",
+        "href": "https://github.com/openclaw/openclaw/issues/165474"
+      },
+      {
+        "title": "**PR #165172**",
+        "description": "**PR #165172**",
+        "href": "https://github.com/openclaw/openclaw/issues/165172"
+      },
+      {
+        "title": "**PR #165479**",
+        "description": "**PR #165479**",
+        "href": "https://github.com/openclaw/openclaw/issues/165479"
+      },
+      {
+        "title": "**PR #165357**",
+        "description": "**PR #165357** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165357"
+      },
+      {
+        "title": "**PR #165480**",
+        "description": "**PR #165480**",
+        "href": "https://github.com/openclaw/openclaw/issues/165480"
+      },
+      {
+        "title": "**PR #165419** Related #165416",
+        "description": "**PR #165419** Related #165416. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165419"
+      },
+      {
+        "title": "**PR #165418**",
+        "description": "**PR #165418**",
+        "href": "https://github.com/openclaw/openclaw/issues/165418"
+      },
+      {
+        "title": "**PR #165485**",
+        "description": "**PR #165485**",
+        "href": "https://github.com/openclaw/openclaw/issues/165485"
+      },
+      {
+        "title": "**PR #165491**",
+        "description": "**PR #165491**",
+        "href": "https://github.com/openclaw/openclaw/issues/165491"
+      },
+      {
+        "title": "**PR #165489**",
+        "description": "**PR #165489**",
+        "href": "https://github.com/openclaw/openclaw/issues/165489"
+      },
+      {
+        "title": "**PR #165351**",
+        "description": "**PR #165351**",
+        "href": "https://github.com/openclaw/openclaw/issues/165351"
+      },
+      {
+        "title": "**PR #165406**",
+        "description": "**PR #165406**",
+        "href": "https://github.com/openclaw/openclaw/issues/165406"
+      },
+      {
+        "title": "**PR #165495**",
+        "description": "**PR #165495**",
+        "href": "https://github.com/openclaw/openclaw/issues/165495"
+      },
+      {
+        "title": "**PR #165492**",
+        "description": "**PR #165492**",
+        "href": "https://github.com/openclaw/openclaw/issues/165492"
+      },
+      {
+        "title": "**PR #165498**",
+        "description": "**PR #165498**",
+        "href": "https://github.com/openclaw/openclaw/issues/165498"
+      },
+      {
+        "title": "**PR #165503**",
+        "description": "**PR #165503**",
+        "href": "https://github.com/openclaw/openclaw/issues/165503"
+      },
+      {
+        "title": "**PR #165475**",
+        "description": "**PR #165475**",
+        "href": "https://github.com/openclaw/openclaw/issues/165475"
+      },
+      {
+        "title": "**PR #165490**",
+        "description": "**PR #165490**",
+        "href": "https://github.com/openclaw/openclaw/issues/165490"
+      },
+      {
+        "title": "**PR #165436**",
+        "description": "**PR #165436**",
+        "href": "https://github.com/openclaw/openclaw/issues/165436"
+      },
+      {
+        "title": "**PR #165506**",
+        "description": "**PR #165506**",
+        "href": "https://github.com/openclaw/openclaw/issues/165506"
+      },
+      {
+        "title": "**PR #165513**",
+        "description": "**PR #165513**",
+        "href": "https://github.com/openclaw/openclaw/issues/165513"
+      },
+      {
+        "title": "**PR #165512**",
+        "description": "**PR #165512**",
+        "href": "https://github.com/openclaw/openclaw/issues/165512"
+      },
+      {
+        "title": "**PR #165505**",
+        "description": "**PR #165505**",
+        "href": "https://github.com/openclaw/openclaw/issues/165505"
+      },
+      {
+        "title": "**PR #165511**",
+        "description": "**PR #165511**",
+        "href": "https://github.com/openclaw/openclaw/issues/165511"
+      },
+      {
+        "title": "**PR #165507** Related #165494",
+        "description": "**PR #165507** Related #165494. Thanks @obviyus and @redasadki.",
+        "href": "https://github.com/openclaw/openclaw/issues/165507"
+      },
+      {
+        "title": "**PR #165502**",
+        "description": "**PR #165502**",
+        "href": "https://github.com/openclaw/openclaw/issues/165502"
+      },
+      {
+        "title": "**PR #165319**",
+        "description": "**PR #165319**",
+        "href": "https://github.com/openclaw/openclaw/issues/165319"
+      },
+      {
+        "title": "**PR #165508**",
+        "description": "**PR #165508** Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/165508"
+      },
+      {
+        "title": "**PR #165323**",
+        "description": "**PR #165323**",
+        "href": "https://github.com/openclaw/openclaw/issues/165323"
+      },
+      {
+        "title": "**PR #165536**",
+        "description": "**PR #165536**",
+        "href": "https://github.com/openclaw/openclaw/issues/165536"
+      },
+      {
+        "title": "**PR #165448**",
+        "description": "**PR #165448** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165448"
+      },
+      {
+        "title": "**PR #165401**",
+        "description": "**PR #165401**",
+        "href": "https://github.com/openclaw/openclaw/issues/165401"
+      },
+      {
+        "title": "**PR #165529**",
+        "description": "**PR #165529**",
+        "href": "https://github.com/openclaw/openclaw/issues/165529"
+      },
+      {
+        "title": "**PR #165410**",
+        "description": "**PR #165410**",
+        "href": "https://github.com/openclaw/openclaw/issues/165410"
+      },
+      {
+        "title": "**PR #165496**",
+        "description": "**PR #165496** Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/165496"
+      },
+      {
+        "title": "**PR #165533**",
+        "description": "**PR #165533**",
+        "href": "https://github.com/openclaw/openclaw/issues/165533"
+      },
+      {
+        "title": "**PR #165524**",
+        "description": "**PR #165524**",
+        "href": "https://github.com/openclaw/openclaw/issues/165524"
+      },
+      {
+        "title": "**PR #165288**",
+        "description": "**PR #165288**",
+        "href": "https://github.com/openclaw/openclaw/issues/165288"
+      },
+      {
+        "title": "**PR #165469**",
+        "description": "**PR #165469**",
+        "href": "https://github.com/openclaw/openclaw/issues/165469"
+      },
+      {
+        "title": "**PR #165537**",
+        "description": "**PR #165537**",
+        "href": "https://github.com/openclaw/openclaw/issues/165537"
+      },
+      {
+        "title": "**PR #165525**",
+        "description": "**PR #165525**",
+        "href": "https://github.com/openclaw/openclaw/issues/165525"
+      },
+      {
+        "title": "**PR #165535**",
+        "description": "**PR #165535**",
+        "href": "https://github.com/openclaw/openclaw/issues/165535"
+      },
+      {
+        "title": "**PR #165371**",
+        "description": "**PR #165371**",
+        "href": "https://github.com/openclaw/openclaw/issues/165371"
+      },
+      {
+        "title": "**PR #165538**",
+        "description": "**PR #165538**",
+        "href": "https://github.com/openclaw/openclaw/issues/165538"
+      },
+      {
+        "title": "**PR #165374**",
+        "description": "**PR #165374**",
+        "href": "https://github.com/openclaw/openclaw/issues/165374"
+      },
+      {
+        "title": "**PR #165543**",
+        "description": "**PR #165543**",
+        "href": "https://github.com/openclaw/openclaw/issues/165543"
+      },
+      {
+        "title": "**PR #165470**",
+        "description": "**PR #165470** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165470"
+      },
+      {
+        "title": "**PR #165572**",
+        "description": "**PR #165572** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165572"
+      },
+      {
+        "title": "**PR #165431**",
+        "description": "**PR #165431**",
+        "href": "https://github.com/openclaw/openclaw/issues/165431"
+      },
+      {
+        "title": "**PR #165576**",
+        "description": "**PR #165576**",
+        "href": "https://github.com/openclaw/openclaw/issues/165576"
+      },
+      {
+        "title": "**PR #165549** Related #165522",
+        "description": "**PR #165549** Related #165522. Thanks @obviyus and @legarconc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165549"
+      },
+      {
+        "title": "**PR #165499**",
+        "description": "**PR #165499**",
+        "href": "https://github.com/openclaw/openclaw/issues/165499"
+      },
+      {
+        "title": "**PR #165028**",
+        "description": "**PR #165028**",
+        "href": "https://github.com/openclaw/openclaw/issues/165028"
+      },
+      {
+        "title": "**PR #165570**",
+        "description": "**PR #165570**",
+        "href": "https://github.com/openclaw/openclaw/issues/165570"
+      },
+      {
+        "title": "**PR #165545**",
+        "description": "**PR #165545**",
+        "href": "https://github.com/openclaw/openclaw/issues/165545"
+      },
+      {
+        "title": "**PR #165528**",
+        "description": "**PR #165528**",
+        "href": "https://github.com/openclaw/openclaw/issues/165528"
+      },
+      {
+        "title": "**PR #165562**",
+        "description": "**PR #165562**",
+        "href": "https://github.com/openclaw/openclaw/issues/165562"
+      },
+      {
+        "title": "**PR #165426** Related #165315",
+        "description": "**PR #165426** Related #165315. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165426"
+      },
+      {
+        "title": "**PR #165531**",
+        "description": "**PR #165531** Thanks @SashaMIT and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165531"
+      },
+      {
+        "title": "**PR #165586**",
+        "description": "**PR #165586**",
+        "href": "https://github.com/openclaw/openclaw/issues/165586"
+      },
+      {
+        "title": "**PR #165571**",
+        "description": "**PR #165571**",
+        "href": "https://github.com/openclaw/openclaw/issues/165571"
+      },
+      {
+        "title": "**PR #165567**",
+        "description": "**PR #165567**",
+        "href": "https://github.com/openclaw/openclaw/issues/165567"
+      },
+      {
+        "title": "**PR #165578**",
+        "description": "**PR #165578** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165578"
+      },
+      {
+        "title": "**PR #165574**",
+        "description": "**PR #165574**",
+        "href": "https://github.com/openclaw/openclaw/issues/165574"
+      },
+      {
+        "title": "**PR #165548**",
+        "description": "**PR #165548**",
+        "href": "https://github.com/openclaw/openclaw/issues/165548"
+      },
+      {
+        "title": "**PR #165547**",
+        "description": "**PR #165547**",
+        "href": "https://github.com/openclaw/openclaw/issues/165547"
+      },
+      {
+        "title": "**PR #165597**",
+        "description": "**PR #165597**",
+        "href": "https://github.com/openclaw/openclaw/issues/165597"
+      },
+      {
+        "title": "**PR #165561**",
+        "description": "**PR #165561**",
+        "href": "https://github.com/openclaw/openclaw/issues/165561"
+      },
+      {
+        "title": "**PR #165581**",
+        "description": "**PR #165581**",
+        "href": "https://github.com/openclaw/openclaw/issues/165581"
+      },
+      {
+        "title": "**PR #165565**",
+        "description": "**PR #165565**",
+        "href": "https://github.com/openclaw/openclaw/issues/165565"
+      },
+      {
+        "title": "**PR #165550**",
+        "description": "**PR #165550**",
+        "href": "https://github.com/openclaw/openclaw/issues/165550"
+      },
+      {
+        "title": "**PR #165411**",
+        "description": "**PR #165411**",
+        "href": "https://github.com/openclaw/openclaw/issues/165411"
+      },
+      {
+        "title": "**PR #165609** Related #165584",
+        "description": "**PR #165609** Related #165584. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165609"
+      },
+      {
+        "title": "**PR #165451**",
+        "description": "**PR #165451**",
+        "href": "https://github.com/openclaw/openclaw/issues/165451"
+      },
+      {
+        "title": "**PR #165546**",
+        "description": "**PR #165546**",
+        "href": "https://github.com/openclaw/openclaw/issues/165546"
+      },
+      {
+        "title": "**PR #165613**",
+        "description": "**PR #165613** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165613"
+      },
+      {
+        "title": "**PR #165523**",
+        "description": "**PR #165523** Thanks @SashaMIT and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165523"
+      },
+      {
+        "title": "**PR #165623**",
+        "description": "**PR #165623**",
+        "href": "https://github.com/openclaw/openclaw/issues/165623"
+      },
+      {
+        "title": "**PR #165580**",
+        "description": "**PR #165580**",
+        "href": "https://github.com/openclaw/openclaw/issues/165580"
+      },
+      {
+        "title": "**PR #165625**",
+        "description": "**PR #165625**",
+        "href": "https://github.com/openclaw/openclaw/issues/165625"
+      },
+      {
+        "title": "**PR #165541**",
+        "description": "**PR #165541**",
+        "href": "https://github.com/openclaw/openclaw/issues/165541"
+      },
+      {
+        "title": "**PR #163045**",
+        "description": "**PR #163045**",
+        "href": "https://github.com/openclaw/openclaw/issues/163045"
+      },
+      {
+        "title": "**PR #165558**",
+        "description": "**PR #165558**",
+        "href": "https://github.com/openclaw/openclaw/issues/165558"
+      },
+      {
+        "title": "**PR #165612**",
+        "description": "**PR #165612**",
+        "href": "https://github.com/openclaw/openclaw/issues/165612"
+      },
+      {
+        "title": "**PR #163459** Related #163401",
+        "description": "**PR #163459** Related #163401. Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/163459"
+      },
+      {
+        "title": "**PR #165616**",
+        "description": "**PR #165616** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165616"
+      },
+      {
+        "title": "**PR #165630**",
+        "description": "**PR #165630**",
+        "href": "https://github.com/openclaw/openclaw/issues/165630"
+      },
+      {
+        "title": "**PR #165568**",
+        "description": "**PR #165568**",
+        "href": "https://github.com/openclaw/openclaw/issues/165568"
+      },
+      {
+        "title": "**PR #165534**",
+        "description": "**PR #165534**",
+        "href": "https://github.com/openclaw/openclaw/issues/165534"
+      },
+      {
+        "title": "**PR #165607** Related #164214",
+        "description": "**PR #165607** Related #164214. Thanks @NovaeonStudio.",
+        "href": "https://github.com/openclaw/openclaw/issues/165607"
+      },
+      {
+        "title": "**PR #165622**",
+        "description": "**PR #165622**",
+        "href": "https://github.com/openclaw/openclaw/issues/165622"
+      },
+      {
+        "title": "**PR #165600**",
+        "description": "**PR #165600**",
+        "href": "https://github.com/openclaw/openclaw/issues/165600"
+      },
+      {
+        "title": "**PR #165632**",
+        "description": "**PR #165632** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/165632"
+      },
+      {
+        "title": "**PR #165637**",
+        "description": "**PR #165637**",
+        "href": "https://github.com/openclaw/openclaw/issues/165637"
+      },
+      {
+        "title": "**PR #165634**",
+        "description": "**PR #165634**",
+        "href": "https://github.com/openclaw/openclaw/issues/165634"
+      },
+      {
+        "title": "**PR #165629**",
+        "description": "**PR #165629**",
+        "href": "https://github.com/openclaw/openclaw/issues/165629"
+      },
+      {
+        "title": "**PR #165631** Related #165590",
+        "description": "**PR #165631** Related #165590. Thanks @LiuwqGit and @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165631"
+      },
+      {
+        "title": "**PR #165611**",
+        "description": "**PR #165611**",
+        "href": "https://github.com/openclaw/openclaw/issues/165611"
+      },
+      {
+        "title": "**PR #165577**",
+        "description": "**PR #165577**",
+        "href": "https://github.com/openclaw/openclaw/issues/165577"
+      },
+      {
+        "title": "**PR #165651**",
+        "description": "**PR #165651**",
+        "href": "https://github.com/openclaw/openclaw/issues/165651"
+      },
+      {
+        "title": "**PR #165605**",
+        "description": "**PR #165605**",
+        "href": "https://github.com/openclaw/openclaw/issues/165605"
+      },
+      {
+        "title": "**PR #165316** Related #165314",
+        "description": "**PR #165316** Related #165314. Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/165316"
+      },
+      {
+        "title": "**PR #165660**",
+        "description": "**PR #165660**",
+        "href": "https://github.com/openclaw/openclaw/issues/165660"
+      },
+      {
+        "title": "**PR #165619**",
+        "description": "**PR #165619** Thanks @nocodet888-arch and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165619"
+      },
+      {
+        "title": "**PR #165641**",
+        "description": "**PR #165641** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/165641"
+      },
+      {
+        "title": "**PR #165639**",
+        "description": "**PR #165639** Thanks @IWhatsskill.",
+        "href": "https://github.com/openclaw/openclaw/issues/165639"
+      },
+      {
+        "title": "**PR #165661**",
+        "description": "**PR #165661**",
+        "href": "https://github.com/openclaw/openclaw/issues/165661"
+      },
+      {
+        "title": "**PR #165610**",
+        "description": "**PR #165610**",
+        "href": "https://github.com/openclaw/openclaw/issues/165610"
+      },
+      {
+        "title": "**PR #165671**",
+        "description": "**PR #165671**",
+        "href": "https://github.com/openclaw/openclaw/issues/165671"
+      },
+      {
+        "title": "**PR #165667**",
+        "description": "**PR #165667**",
+        "href": "https://github.com/openclaw/openclaw/issues/165667"
+      },
+      {
+        "title": "**PR #165676**",
+        "description": "**PR #165676**",
+        "href": "https://github.com/openclaw/openclaw/issues/165676"
+      },
+      {
+        "title": "**PR #165575**",
+        "description": "**PR #165575** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165575"
+      },
+      {
+        "title": "**PR #165404**",
+        "description": "**PR #165404**",
+        "href": "https://github.com/openclaw/openclaw/issues/165404"
+      },
+      {
+        "title": "**PR #165647**",
+        "description": "**PR #165647**",
+        "href": "https://github.com/openclaw/openclaw/issues/165647"
+      },
+      {
+        "title": "**PR #165672**",
+        "description": "**PR #165672**",
+        "href": "https://github.com/openclaw/openclaw/issues/165672"
+      },
+      {
+        "title": "**PR #165678**",
+        "description": "**PR #165678**",
+        "href": "https://github.com/openclaw/openclaw/issues/165678"
+      },
+      {
+        "title": "**PR #165679** Related #165643",
+        "description": "**PR #165679** Related #165643. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165679"
+      },
+      {
+        "title": "**PR #165662** Related #165653",
+        "description": "**PR #165662** Related #165653. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165662"
+      },
+      {
+        "title": "**PR #165670**",
+        "description": "**PR #165670**",
+        "href": "https://github.com/openclaw/openclaw/issues/165670"
+      },
+      {
+        "title": "**PR #165405**",
+        "description": "**PR #165405** Thanks @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/165405"
+      },
+      {
+        "title": "**PR #165640**",
+        "description": "**PR #165640** Thanks @vyctorbrzezowski.",
+        "href": "https://github.com/openclaw/openclaw/issues/165640"
+      },
+      {
+        "title": "**PR #165084**",
+        "description": "**PR #165084** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165084"
+      },
+      {
+        "title": "**PR #165693** Related #165650",
+        "description": "**PR #165693** Related #165650. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165693"
+      },
+      {
+        "title": "**PR #165697** Related #165690",
+        "description": "**PR #165697** Related #165690. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165697"
+      },
+      {
+        "title": "**PR #165703** Related #165652",
+        "description": "**PR #165703** Related #165652. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165703"
+      },
+      {
+        "title": "**PR #165695**",
+        "description": "**PR #165695** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165695"
+      },
+      {
+        "title": "**PR #165698**",
+        "description": "**PR #165698**",
+        "href": "https://github.com/openclaw/openclaw/issues/165698"
+      },
+      {
+        "title": "**PR #165707**",
+        "description": "**PR #165707**",
+        "href": "https://github.com/openclaw/openclaw/issues/165707"
+      },
+      {
+        "title": "**PR #165708**",
+        "description": "**PR #165708**",
+        "href": "https://github.com/openclaw/openclaw/issues/165708"
+      },
+      {
+        "title": "**PR #165601**",
+        "description": "**PR #165601**",
+        "href": "https://github.com/openclaw/openclaw/issues/165601"
+      },
+      {
+        "title": "**PR #165711**",
+        "description": "**PR #165711**",
+        "href": "https://github.com/openclaw/openclaw/issues/165711"
+      },
+      {
+        "title": "**PR #165454**",
+        "description": "**PR #165454**",
+        "href": "https://github.com/openclaw/openclaw/issues/165454"
+      },
+      {
+        "title": "**PR #165696**",
+        "description": "**PR #165696**",
+        "href": "https://github.com/openclaw/openclaw/issues/165696"
+      },
+      {
+        "title": "**PR #164656**",
+        "description": "**PR #164656** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/164656"
+      },
+      {
+        "title": "**PR #165150**",
+        "description": "**PR #165150**",
+        "href": "https://github.com/openclaw/openclaw/issues/165150"
+      },
+      {
+        "title": "**PR #164687**",
+        "description": "**PR #164687** Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/164687"
+      },
+      {
+        "title": "**PR #164305** Related #164266",
+        "description": "**PR #164305** Related #164266. Thanks @jayzhou2309 and @Johannes-Berggren.",
+        "href": "https://github.com/openclaw/openclaw/issues/164305"
+      },
+      {
+        "title": "**PR #165729**",
+        "description": "**PR #165729**",
+        "href": "https://github.com/openclaw/openclaw/issues/165729"
+      },
+      {
+        "title": "**PR #165743**",
+        "description": "**PR #165743**",
+        "href": "https://github.com/openclaw/openclaw/issues/165743"
+      },
+      {
+        "title": "**PR #163875** Related #163858",
+        "description": "**PR #163875** Related #163858. Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/163875"
+      },
+      {
+        "title": "**PR #165681**",
+        "description": "**PR #165681**",
+        "href": "https://github.com/openclaw/openclaw/issues/165681"
+      },
+      {
+        "title": "**PR #165018**",
+        "description": "**PR #165018** Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/issues/165018"
+      },
+      {
+        "title": "**PR #165205**",
+        "description": "**PR #165205**",
+        "href": "https://github.com/openclaw/openclaw/issues/165205"
+      },
+      {
+        "title": "**PR #165628**",
+        "description": "**PR #165628**",
+        "href": "https://github.com/openclaw/openclaw/issues/165628"
+      },
+      {
+        "title": "**PR #165757** Related #165675",
+        "description": "**PR #165757** Related #165675. Thanks @gregb100.",
+        "href": "https://github.com/openclaw/openclaw/issues/165757"
+      },
+      {
+        "title": "**PR #164951**",
+        "description": "**PR #164951** Thanks @SunnyShu0925.",
+        "href": "https://github.com/openclaw/openclaw/issues/164951"
+      },
+      {
+        "title": "**PR #161838** Related #127562",
+        "description": "**PR #161838** Related #127562. Thanks @ericcurtin.",
+        "href": "https://github.com/openclaw/openclaw/issues/161838"
+      },
+      {
+        "title": "**PR #165747** Related #165673",
+        "description": "**PR #165747** Related #165673. Thanks @gregb100.",
+        "href": "https://github.com/openclaw/openclaw/issues/165747"
+      },
+      {
+        "title": "**PR #165760**",
+        "description": "**PR #165760**",
+        "href": "https://github.com/openclaw/openclaw/issues/165760"
+      },
+      {
+        "title": "**PR #165759**",
+        "description": "**PR #165759**",
+        "href": "https://github.com/openclaw/openclaw/issues/165759"
+      },
+      {
+        "title": "**PR #165718**",
+        "description": "**PR #165718**",
+        "href": "https://github.com/openclaw/openclaw/issues/165718"
+      },
+      {
+        "title": "**PR #165782**",
+        "description": "**PR #165782**",
+        "href": "https://github.com/openclaw/openclaw/issues/165782"
+      },
+      {
+        "title": "**PR #165813**",
+        "description": "**PR #165813**",
+        "href": "https://github.com/openclaw/openclaw/issues/165813"
+      },
+      {
+        "title": "**PR #165769**",
+        "description": "**PR #165769**",
+        "href": "https://github.com/openclaw/openclaw/issues/165769"
+      },
+      {
+        "title": "**PR #165377**",
+        "description": "**PR #165377**",
+        "href": "https://github.com/openclaw/openclaw/issues/165377"
+      },
+      {
+        "title": "**PR #165814**",
+        "description": "**PR #165814**",
+        "href": "https://github.com/openclaw/openclaw/issues/165814"
+      },
+      {
+        "title": "**PR #165796**",
+        "description": "**PR #165796**",
+        "href": "https://github.com/openclaw/openclaw/issues/165796"
+      },
+      {
+        "title": "**PR #164756**",
+        "description": "**PR #164756** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164756"
+      },
+      {
+        "title": "**PR #165762** Related #165745",
+        "description": "**PR #165762** Related #165745. Thanks @obviyus and @jlapenna.",
+        "href": "https://github.com/openclaw/openclaw/issues/165762"
+      },
+      {
+        "title": "**PR #165799**",
+        "description": "**PR #165799**",
+        "href": "https://github.com/openclaw/openclaw/issues/165799"
+      },
+      {
+        "title": "**PR #165658**",
+        "description": "**PR #165658**",
+        "href": "https://github.com/openclaw/openclaw/issues/165658"
+      },
+      {
+        "title": "**PR #165764**",
+        "description": "**PR #165764**",
+        "href": "https://github.com/openclaw/openclaw/issues/165764"
+      },
+      {
+        "title": "**PR #165755**",
+        "description": "**PR #165755**",
+        "href": "https://github.com/openclaw/openclaw/issues/165755"
+      },
+      {
+        "title": "**PR #158902**",
+        "description": "**PR #158902** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/158902"
+      },
+      {
+        "title": "**PR #165795**",
+        "description": "**PR #165795**",
+        "href": "https://github.com/openclaw/openclaw/issues/165795"
+      },
+      {
+        "title": "**PR #165828** Related #165817",
+        "description": "**PR #165828** Related #165817. Thanks @obviyus and @lidbai.",
+        "href": "https://github.com/openclaw/openclaw/issues/165828"
+      },
+      {
+        "title": "**PR #165785**",
+        "description": "**PR #165785**",
+        "href": "https://github.com/openclaw/openclaw/issues/165785"
+      },
+      {
+        "title": "**PR #165831**",
+        "description": "**PR #165831**",
+        "href": "https://github.com/openclaw/openclaw/issues/165831"
+      },
+      {
+        "title": "**PR #165821**",
+        "description": "**PR #165821**",
+        "href": "https://github.com/openclaw/openclaw/issues/165821"
+      },
+      {
+        "title": "**PR #165788**",
+        "description": "**PR #165788**",
+        "href": "https://github.com/openclaw/openclaw/issues/165788"
+      },
+      {
+        "title": "**PR #165659**",
+        "description": "**PR #165659**",
+        "href": "https://github.com/openclaw/openclaw/issues/165659"
+      },
+      {
+        "title": "**PR #165832** Related #165815",
+        "description": "**PR #165832** Related #165815. Thanks @obviyus and @NovaUnboundAi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165832"
+      },
+      {
+        "title": "**PR #165472**",
+        "description": "**PR #165472** Thanks @Marvinthebored and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/165472"
+      },
+      {
+        "title": "**PR #165750**",
+        "description": "**PR #165750**",
+        "href": "https://github.com/openclaw/openclaw/issues/165750"
+      },
+      {
+        "title": "**PR #165833**",
+        "description": "**PR #165833**",
+        "href": "https://github.com/openclaw/openclaw/issues/165833"
+      },
+      {
+        "title": "**PR #165834**",
+        "description": "**PR #165834**",
+        "href": "https://github.com/openclaw/openclaw/issues/165834"
+      },
+      {
+        "title": "**PR #165840**",
+        "description": "**PR #165840**",
+        "href": "https://github.com/openclaw/openclaw/issues/165840"
+      },
+      {
+        "title": "**PR #165842**",
+        "description": "**PR #165842** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165842"
+      },
+      {
+        "title": "**PR #165614**",
+        "description": "**PR #165614**",
+        "href": "https://github.com/openclaw/openclaw/issues/165614"
+      },
+      {
+        "title": "**PR #165853**",
+        "description": "**PR #165853**",
+        "href": "https://github.com/openclaw/openclaw/issues/165853"
+      },
+      {
+        "title": "**PR #165851**",
+        "description": "**PR #165851**",
+        "href": "https://github.com/openclaw/openclaw/issues/165851"
+      },
+      {
+        "title": "**PR #163645**",
+        "description": "**PR #163645** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/163645"
+      },
+      {
+        "title": "**PR #165867**",
+        "description": "**PR #165867**",
+        "href": "https://github.com/openclaw/openclaw/issues/165867"
+      },
+      {
+        "title": "**PR #165793**",
+        "description": "**PR #165793**",
+        "href": "https://github.com/openclaw/openclaw/issues/165793"
+      },
+      {
+        "title": "**PR #165877** Related #165848",
+        "description": "**PR #165877** Related #165848. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165877"
+      },
+      {
+        "title": "**PR #165879**",
+        "description": "**PR #165879**",
+        "href": "https://github.com/openclaw/openclaw/issues/165879"
+      },
+      {
+        "title": "**PR #165858**",
+        "description": "**PR #165858**",
+        "href": "https://github.com/openclaw/openclaw/issues/165858"
+      },
+      {
+        "title": "**PR #165878**",
+        "description": "**PR #165878**",
+        "href": "https://github.com/openclaw/openclaw/issues/165878"
+      },
+      {
+        "title": "**PR #165871**",
+        "description": "**PR #165871**",
+        "href": "https://github.com/openclaw/openclaw/issues/165871"
+      },
+      {
+        "title": "**PR #165883**",
+        "description": "**PR #165883**",
+        "href": "https://github.com/openclaw/openclaw/issues/165883"
+      },
+      {
+        "title": "**PR #165887**",
+        "description": "**PR #165887**",
+        "href": "https://github.com/openclaw/openclaw/issues/165887"
+      },
+      {
+        "title": "**PR #165886**",
+        "description": "**PR #165886**",
+        "href": "https://github.com/openclaw/openclaw/issues/165886"
+      },
+      {
+        "title": "**PR #165816**",
+        "description": "**PR #165816**",
+        "href": "https://github.com/openclaw/openclaw/issues/165816"
+      },
+      {
+        "title": "**PR #165803**",
+        "description": "**PR #165803**",
+        "href": "https://github.com/openclaw/openclaw/issues/165803"
+      },
+      {
+        "title": "**PR #165876**",
+        "description": "**PR #165876**",
+        "href": "https://github.com/openclaw/openclaw/issues/165876"
+      },
+      {
+        "title": "**PR #165891**",
+        "description": "**PR #165891**",
+        "href": "https://github.com/openclaw/openclaw/issues/165891"
+      },
+      {
+        "title": "**PR #165644**",
+        "description": "**PR #165644**",
+        "href": "https://github.com/openclaw/openclaw/issues/165644"
+      },
+      {
+        "title": "**PR #165897**",
+        "description": "**PR #165897**",
+        "href": "https://github.com/openclaw/openclaw/issues/165897"
+      },
+      {
+        "title": "**PR #165896**",
+        "description": "**PR #165896**",
+        "href": "https://github.com/openclaw/openclaw/issues/165896"
+      },
+      {
+        "title": "**PR #165608**",
+        "description": "**PR #165608**",
+        "href": "https://github.com/openclaw/openclaw/issues/165608"
+      },
+      {
+        "title": "**PR #165773**",
+        "description": "**PR #165773** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165773"
+      },
+      {
+        "title": "**PR #165870** Related #145079",
+        "description": "**PR #165870** Related #145079. Thanks @ericcurtin and @obviyus and @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/165870"
+      },
+      {
+        "title": "**PR #165819**",
+        "description": "**PR #165819**",
+        "href": "https://github.com/openclaw/openclaw/issues/165819"
+      },
+      {
+        "title": "**PR #165907**",
+        "description": "**PR #165907**",
+        "href": "https://github.com/openclaw/openclaw/issues/165907"
+      },
+      {
+        "title": "**PR #165908**",
+        "description": "**PR #165908**",
+        "href": "https://github.com/openclaw/openclaw/issues/165908"
+      },
+      {
+        "title": "**PR #165898**",
+        "description": "**PR #165898**",
+        "href": "https://github.com/openclaw/openclaw/issues/165898"
+      },
+      {
+        "title": "**PR #165910**",
+        "description": "**PR #165910**",
+        "href": "https://github.com/openclaw/openclaw/issues/165910"
+      },
+      {
+        "title": "**PR #165684**",
+        "description": "**PR #165684**",
+        "href": "https://github.com/openclaw/openclaw/issues/165684"
+      },
+      {
+        "title": "**PR #165911**",
+        "description": "**PR #165911**",
+        "href": "https://github.com/openclaw/openclaw/issues/165911"
+      },
+      {
+        "title": "**PR #165900**",
+        "description": "**PR #165900**",
+        "href": "https://github.com/openclaw/openclaw/issues/165900"
+      },
+      {
+        "title": "**PR #165916**",
+        "description": "**PR #165916**",
+        "href": "https://github.com/openclaw/openclaw/issues/165916"
+      },
+      {
+        "title": "**PR #165922**",
+        "description": "**PR #165922**",
+        "href": "https://github.com/openclaw/openclaw/issues/165922"
+      },
+      {
+        "title": "**PR #165931**",
+        "description": "**PR #165931**",
+        "href": "https://github.com/openclaw/openclaw/issues/165931"
+      },
+      {
+        "title": "**PR #165179** Related #165149",
+        "description": "**PR #165179** Related #165149. Thanks @ericcurtin and @johan-eilertsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/165179"
+      },
+      {
+        "title": "**PR #165923**",
+        "description": "**PR #165923**",
+        "href": "https://github.com/openclaw/openclaw/issues/165923"
+      },
+      {
+        "title": "**PR #165928**",
+        "description": "**PR #165928**",
+        "href": "https://github.com/openclaw/openclaw/issues/165928"
+      },
+      {
+        "title": "**PR #165913**",
+        "description": "**PR #165913**",
+        "href": "https://github.com/openclaw/openclaw/issues/165913"
+      },
+      {
+        "title": "**PR #165912**",
+        "description": "**PR #165912**",
+        "href": "https://github.com/openclaw/openclaw/issues/165912"
+      },
+      {
+        "title": "**PR #165370**",
+        "description": "**PR #165370**",
+        "href": "https://github.com/openclaw/openclaw/issues/165370"
+      },
+      {
+        "title": "**PR #165925**",
+        "description": "**PR #165925**",
+        "href": "https://github.com/openclaw/openclaw/issues/165925"
+      },
+      {
+        "title": "**PR #165932**",
+        "description": "**PR #165932**",
+        "href": "https://github.com/openclaw/openclaw/issues/165932"
+      },
+      {
+        "title": "**PR #165933**",
+        "description": "**PR #165933**",
+        "href": "https://github.com/openclaw/openclaw/issues/165933"
+      },
+      {
+        "title": "**PR #165378**",
+        "description": "**PR #165378** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165378"
+      },
+      {
+        "title": "**PR #164190**",
+        "description": "**PR #164190**",
+        "href": "https://github.com/openclaw/openclaw/issues/164190"
+      },
+      {
+        "title": "**PR #165944**",
+        "description": "**PR #165944**",
+        "href": "https://github.com/openclaw/openclaw/issues/165944"
+      },
+      {
+        "title": "**PR #165945**",
+        "description": "**PR #165945**",
+        "href": "https://github.com/openclaw/openclaw/issues/165945"
+      },
+      {
+        "title": "**PR #165914**",
+        "description": "**PR #165914**",
+        "href": "https://github.com/openclaw/openclaw/issues/165914"
+      },
+      {
+        "title": "**PR #165477**",
+        "description": "**PR #165477** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165477"
+      },
+      {
+        "title": "**PR #165542**",
+        "description": "**PR #165542** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165542"
+      },
+      {
+        "title": "**PR #165725**",
+        "description": "**PR #165725** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/165725"
+      },
+      {
+        "title": "**PR #165947**",
+        "description": "**PR #165947**",
+        "href": "https://github.com/openclaw/openclaw/issues/165947"
+      },
+      {
+        "title": "**PR #165941**",
+        "description": "**PR #165941**",
+        "href": "https://github.com/openclaw/openclaw/issues/165941"
+      },
+      {
+        "title": "**PR #165942**",
+        "description": "**PR #165942**",
+        "href": "https://github.com/openclaw/openclaw/issues/165942"
+      },
+      {
+        "title": "**PR #165949**",
+        "description": "**PR #165949** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165949"
+      },
+      {
+        "title": "**PR #165952**",
+        "description": "**PR #165952**",
+        "href": "https://github.com/openclaw/openclaw/issues/165952"
+      },
+      {
+        "title": "**PR #165778**",
+        "description": "**PR #165778** Thanks @yetval and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/issues/165778"
+      },
+      {
+        "title": "**PR #163646**",
+        "description": "**PR #163646** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/163646"
+      },
+      {
+        "title": "**PR #165742**",
+        "description": "**PR #165742** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165742"
+      },
+      {
+        "title": "**PR #165740**",
+        "description": "**PR #165740** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165740"
+      },
+      {
+        "title": "**PR #165737**",
+        "description": "**PR #165737** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165737"
+      },
+      {
+        "title": "**PR #165736**",
+        "description": "**PR #165736** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165736"
+      },
+      {
+        "title": "**PR #130175**",
+        "description": "**PR #130175** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/130175"
+      },
+      {
+        "title": "**PR #155427**",
+        "description": "**PR #155427** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/155427"
+      },
+      {
+        "title": "**PR #155429**",
+        "description": "**PR #155429** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/155429"
+      },
+      {
+        "title": "**PR #165738**",
+        "description": "**PR #165738** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165738"
+      },
+      {
+        "title": "**PR #165856**",
+        "description": "**PR #165856** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165856"
+      },
+      {
+        "title": "**PR #121463** Related #114544",
+        "description": "**PR #121463** Related #114544. Thanks @zw-xysk.",
+        "href": "https://github.com/openclaw/openclaw/issues/121463"
+      },
+      {
+        "title": "**PR #165409**",
+        "description": "**PR #165409** Thanks @Chessing234.",
+        "href": "https://github.com/openclaw/openclaw/issues/165409"
+      },
+      {
+        "title": "**PR #165959**",
+        "description": "**PR #165959**",
+        "href": "https://github.com/openclaw/openclaw/issues/165959"
+      },
+      {
+        "title": "**PR #165804**",
+        "description": "**PR #165804**",
+        "href": "https://github.com/openclaw/openclaw/issues/165804"
+      },
+      {
+        "title": "**PR #165962**",
+        "description": "**PR #165962**",
+        "href": "https://github.com/openclaw/openclaw/issues/165962"
+      },
+      {
+        "title": "**PR #165960**",
+        "description": "**PR #165960** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165960"
+      },
+      {
+        "title": "**PR #165940** Related #165938",
+        "description": "**PR #165940** Related #165938.",
+        "href": "https://github.com/openclaw/openclaw/issues/165940"
+      },
+      {
+        "title": "**PR #165969**",
+        "description": "**PR #165969**",
+        "href": "https://github.com/openclaw/openclaw/issues/165969"
+      },
+      {
+        "title": "**PR #165965**",
+        "description": "**PR #165965**",
+        "href": "https://github.com/openclaw/openclaw/issues/165965"
+      },
+      {
+        "title": "**PR #165484**",
+        "description": "**PR #165484**",
+        "href": "https://github.com/openclaw/openclaw/issues/165484"
+      },
+      {
+        "title": "**PR #165977**",
+        "description": "**PR #165977** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165977"
+      },
+      {
+        "title": "**PR #165979**",
+        "description": "**PR #165979**",
+        "href": "https://github.com/openclaw/openclaw/issues/165979"
+      },
+      {
+        "title": "**PR #165975**",
+        "description": "**PR #165975** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165975"
+      },
+      {
+        "title": "**PR #165985**",
+        "description": "**PR #165985**",
+        "href": "https://github.com/openclaw/openclaw/issues/165985"
+      },
+      {
+        "title": "**PR #165715**",
+        "description": "**PR #165715** Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/165715"
+      },
+      {
+        "title": "**PR #165909**",
+        "description": "**PR #165909**",
+        "href": "https://github.com/openclaw/openclaw/issues/165909"
+      },
+      {
+        "title": "**PR #165859**",
+        "description": "**PR #165859**",
+        "href": "https://github.com/openclaw/openclaw/issues/165859"
+      },
+      {
+        "title": "**PR #165973**",
+        "description": "**PR #165973**",
+        "href": "https://github.com/openclaw/openclaw/issues/165973"
+      },
+      {
+        "title": "**PR #165983** Related #161915",
+        "description": "**PR #165983** Related #161915. Thanks @cestercian and @Irish-Joseph and @rmyers64.",
+        "href": "https://github.com/openclaw/openclaw/issues/165983"
+      },
+      {
+        "title": "**PR #165895**",
+        "description": "**PR #165895**",
+        "href": "https://github.com/openclaw/openclaw/issues/165895"
+      },
+      {
+        "title": "**PR #165990**",
+        "description": "**PR #165990**",
+        "href": "https://github.com/openclaw/openclaw/issues/165990"
+      },
+      {
+        "title": "**PR #165974**",
+        "description": "**PR #165974**",
+        "href": "https://github.com/openclaw/openclaw/issues/165974"
+      },
+      {
+        "title": "**PR #165980**",
+        "description": "**PR #165980**",
+        "href": "https://github.com/openclaw/openclaw/issues/165980"
+      },
+      {
+        "title": "**PR #165988**",
+        "description": "**PR #165988**",
+        "href": "https://github.com/openclaw/openclaw/issues/165988"
+      },
+      {
+        "title": "**PR #165995**",
+        "description": "**PR #165995**",
+        "href": "https://github.com/openclaw/openclaw/issues/165995"
+      },
+      {
+        "title": "**PR #165984**",
+        "description": "**PR #165984**",
+        "href": "https://github.com/openclaw/openclaw/issues/165984"
+      },
+      {
+        "title": "**PR #165976**",
+        "description": "**PR #165976**",
+        "href": "https://github.com/openclaw/openclaw/issues/165976"
+      },
+      {
+        "title": "**PR #165992**",
+        "description": "**PR #165992**",
+        "href": "https://github.com/openclaw/openclaw/issues/165992"
+      },
+      {
+        "title": "**PR #166008**",
+        "description": "**PR #166008**",
+        "href": "https://github.com/openclaw/openclaw/issues/166008"
+      },
+      {
+        "title": "**PR #165680**",
+        "description": "**PR #165680**",
+        "href": "https://github.com/openclaw/openclaw/issues/165680"
+      },
+      {
+        "title": "**PR #166007**",
+        "description": "**PR #166007**",
+        "href": "https://github.com/openclaw/openclaw/issues/166007"
+      },
+      {
+        "title": "**PR #165552**",
+        "description": "**PR #165552**",
+        "href": "https://github.com/openclaw/openclaw/issues/165552"
+      },
+      {
+        "title": "**PR #165998**",
+        "description": "**PR #165998**",
+        "href": "https://github.com/openclaw/openclaw/issues/165998"
+      },
+      {
+        "title": "**PR #165999**",
+        "description": "**PR #165999**",
+        "href": "https://github.com/openclaw/openclaw/issues/165999"
+      },
+      {
+        "title": "**PR #166010**",
+        "description": "**PR #166010**",
+        "href": "https://github.com/openclaw/openclaw/issues/166010"
+      },
+      {
+        "title": "**PR #160131** Related #127325",
+        "description": "**PR #160131** Related #127325. Thanks @MoerAI.",
+        "href": "https://github.com/openclaw/openclaw/issues/160131"
+      },
+      {
+        "title": "**PR #166014**",
+        "description": "**PR #166014**",
+        "href": "https://github.com/openclaw/openclaw/issues/166014"
+      },
+      {
+        "title": "**PR #165981**",
+        "description": "**PR #165981**",
+        "href": "https://github.com/openclaw/openclaw/issues/165981"
+      },
+      {
+        "title": "**PR #165982** Related #164308",
+        "description": "**PR #165982** Related #164308. Thanks @WG-Mojo.",
+        "href": "https://github.com/openclaw/openclaw/issues/165982"
+      },
+      {
+        "title": "**PR #166018**",
+        "description": "**PR #166018**",
+        "href": "https://github.com/openclaw/openclaw/issues/166018"
+      },
+      {
+        "title": "**PR #165926**",
+        "description": "**PR #165926** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/165926"
+      },
+      {
+        "title": "**PR #166021**",
+        "description": "**PR #166021**",
+        "href": "https://github.com/openclaw/openclaw/issues/166021"
+      },
+      {
+        "title": "**PR #166012**",
+        "description": "**PR #166012**",
+        "href": "https://github.com/openclaw/openclaw/issues/166012"
+      },
+      {
+        "title": "**PR #166027**",
+        "description": "**PR #166027**",
+        "href": "https://github.com/openclaw/openclaw/issues/166027"
+      },
+      {
+        "title": "**PR #166029**",
+        "description": "**PR #166029**",
+        "href": "https://github.com/openclaw/openclaw/issues/166029"
+      },
+      {
+        "title": "**PR #166019**",
+        "description": "**PR #166019**",
+        "href": "https://github.com/openclaw/openclaw/issues/166019"
+      },
+      {
+        "title": "**PR #166030**",
+        "description": "**PR #166030**",
+        "href": "https://github.com/openclaw/openclaw/issues/166030"
+      },
+      {
+        "title": "**PR #166041**",
+        "description": "**PR #166041**",
+        "href": "https://github.com/openclaw/openclaw/issues/166041"
+      },
+      {
+        "title": "**PR #166036**",
+        "description": "**PR #166036**",
+        "href": "https://github.com/openclaw/openclaw/issues/166036"
+      },
+      {
+        "title": "**PR #165894**",
+        "description": "**PR #165894**",
+        "href": "https://github.com/openclaw/openclaw/issues/165894"
+      },
+      {
+        "title": "**PR #166052**",
+        "description": "**PR #166052**",
+        "href": "https://github.com/openclaw/openclaw/issues/166052"
+      },
+      {
+        "title": "**PR #166025**",
+        "description": "**PR #166025**",
+        "href": "https://github.com/openclaw/openclaw/issues/166025"
+      },
+      {
+        "title": "**PR #165996**",
+        "description": "**PR #165996**",
+        "href": "https://github.com/openclaw/openclaw/issues/165996"
+      },
+      {
+        "title": "**PR #166059**",
+        "description": "**PR #166059**",
+        "href": "https://github.com/openclaw/openclaw/issues/166059"
+      },
+      {
+        "title": "**PR #166037**",
+        "description": "**PR #166037** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166037"
+      },
+      {
+        "title": "**PR #166032**",
+        "description": "**PR #166032**",
+        "href": "https://github.com/openclaw/openclaw/issues/166032"
+      },
+      {
+        "title": "**PR #166051**",
+        "description": "**PR #166051**",
+        "href": "https://github.com/openclaw/openclaw/issues/166051"
+      },
+      {
+        "title": "**PR #166055**",
+        "description": "**PR #166055**",
+        "href": "https://github.com/openclaw/openclaw/issues/166055"
+      },
+      {
+        "title": "**PR #165483**",
+        "description": "**PR #165483**",
+        "href": "https://github.com/openclaw/openclaw/issues/165483"
+      },
+      {
+        "title": "**PR #166046**",
+        "description": "**PR #166046**",
+        "href": "https://github.com/openclaw/openclaw/issues/166046"
+      },
+      {
+        "title": "**PR #166028**",
+        "description": "**PR #166028**",
+        "href": "https://github.com/openclaw/openclaw/issues/166028"
+      },
+      {
+        "title": "**PR #165754**",
+        "description": "**PR #165754** Thanks @LinzeShi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165754"
+      },
+      {
+        "title": "**PR #166069**",
+        "description": "**PR #166069**",
+        "href": "https://github.com/openclaw/openclaw/issues/166069"
+      },
+      {
+        "title": "**PR #166045**",
+        "description": "**PR #166045**",
+        "href": "https://github.com/openclaw/openclaw/issues/166045"
+      },
+      {
+        "title": "**PR #166070**",
+        "description": "**PR #166070**",
+        "href": "https://github.com/openclaw/openclaw/issues/166070"
+      },
+      {
+        "title": "**PR #165777**",
+        "description": "**PR #165777** Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/165777"
+      },
+      {
+        "title": "**PR #166068**",
+        "description": "**PR #166068**",
+        "href": "https://github.com/openclaw/openclaw/issues/166068"
+      },
+      {
+        "title": "**PR #166053**",
+        "description": "**PR #166053**",
+        "href": "https://github.com/openclaw/openclaw/issues/166053"
+      },
+      {
+        "title": "**PR #165919**",
+        "description": "**PR #165919** Thanks @ly85206559.",
+        "href": "https://github.com/openclaw/openclaw/issues/165919"
+      },
+      {
+        "title": "**PR #166057**",
+        "description": "**PR #166057**",
+        "href": "https://github.com/openclaw/openclaw/issues/166057"
+      },
+      {
+        "title": "**PR #166075**",
+        "description": "**PR #166075** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166075"
+      },
+      {
+        "title": "**PR #166081**",
+        "description": "**PR #166081**",
+        "href": "https://github.com/openclaw/openclaw/issues/166081"
+      },
+      {
+        "title": "**PR #165904**",
+        "description": "**PR #165904**",
+        "href": "https://github.com/openclaw/openclaw/issues/165904"
+      },
+      {
+        "title": "**PR #165890**",
+        "description": "**PR #165890**",
+        "href": "https://github.com/openclaw/openclaw/issues/165890"
+      },
+      {
+        "title": "**PR #166087**",
+        "description": "**PR #166087** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166087"
+      },
+      {
+        "title": "**PR #166043**",
+        "description": "**PR #166043**",
+        "href": "https://github.com/openclaw/openclaw/issues/166043"
+      },
+      {
+        "title": "**PR #166042**",
+        "description": "**PR #166042**",
+        "href": "https://github.com/openclaw/openclaw/issues/166042"
+      },
+      {
+        "title": "**PR #166096**",
+        "description": "**PR #166096**",
+        "href": "https://github.com/openclaw/openclaw/issues/166096"
+      },
+      {
+        "title": "**PR #166085**",
+        "description": "**PR #166085**",
+        "href": "https://github.com/openclaw/openclaw/issues/166085"
+      },
+      {
+        "title": "**PR #165716**",
+        "description": "**PR #165716** Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/165716"
+      },
+      {
+        "title": "**PR #166100**",
+        "description": "**PR #166100**",
+        "href": "https://github.com/openclaw/openclaw/issues/166100"
+      },
+      {
+        "title": "**PR #166054**",
+        "description": "**PR #166054**",
+        "href": "https://github.com/openclaw/openclaw/issues/166054"
+      },
+      {
+        "title": "**PR #166074**",
+        "description": "**PR #166074**",
+        "href": "https://github.com/openclaw/openclaw/issues/166074"
+      },
+      {
+        "title": "**PR #166050**",
+        "description": "**PR #166050**",
+        "href": "https://github.com/openclaw/openclaw/issues/166050"
+      },
+      {
+        "title": "**PR #165885**",
+        "description": "**PR #165885**",
+        "href": "https://github.com/openclaw/openclaw/issues/165885"
+      },
+      {
+        "title": "**PR #166006**",
+        "description": "**PR #166006** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166006"
+      },
+      {
+        "title": "**PR #163579**",
+        "description": "**PR #163579** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163579"
+      },
+      {
+        "title": "**PR #166109** Related #166065",
+        "description": "**PR #166109** Related #166065.",
+        "href": "https://github.com/openclaw/openclaw/issues/166109"
+      },
+      {
+        "title": "**PR #166122**",
+        "description": "**PR #166122**",
+        "href": "https://github.com/openclaw/openclaw/issues/166122"
+      },
+      {
+        "title": "**PR #166048** Related #165617",
+        "description": "**PR #166048** Related #165617. Thanks @StarGazer1995.",
+        "href": "https://github.com/openclaw/openclaw/issues/166048"
+      },
+      {
+        "title": "**PR #166119**",
+        "description": "**PR #166119** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166119"
+      },
+      {
+        "title": "**PR #166049**",
+        "description": "**PR #166049**",
+        "href": "https://github.com/openclaw/openclaw/issues/166049"
+      },
+      {
+        "title": "**PR #166123** Related #74595",
+        "description": "**PR #166123** Related #74595. Thanks @obviyus and @gkoch02.",
+        "href": "https://github.com/openclaw/openclaw/issues/166123"
+      },
+      {
+        "title": "**PR #166124**",
+        "description": "**PR #166124** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166124"
+      },
+      {
+        "title": "**PR #165792**",
+        "description": "**PR #165792** Thanks @holgergruenhagen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165792"
+      },
+      {
+        "title": "**PR #166126**",
+        "description": "**PR #166126** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166126"
+      },
+      {
+        "title": "**PR #166148** Related #166145",
+        "description": "**PR #166148** Related #166145. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166148"
+      },
+      {
+        "title": "**PR #166142**",
+        "description": "**PR #166142** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166142"
+      },
+      {
+        "title": "**PR #166147**",
+        "description": "**PR #166147** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166147"
+      },
+      {
+        "title": "**PR #166157** Related #166150",
+        "description": "**PR #166157** Related #166150. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166157"
+      },
+      {
+        "title": "**PR #166155** Related #166144",
+        "description": "**PR #166155** Related #166144. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166155"
+      },
+      {
+        "title": "**PR #166062**",
+        "description": "**PR #166062** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166062"
+      },
+      {
+        "title": "**PR #166152**",
+        "description": "**PR #166152** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166152"
+      },
+      {
+        "title": "**PR #166167** Related #166164",
+        "description": "**PR #166167** Related #166164. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166167"
+      },
+      {
+        "title": "**PR #166168** Related #166162",
+        "description": "**PR #166168** Related #166162. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166168"
+      },
+      {
+        "title": "**PR #166169**",
+        "description": "**PR #166169** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166169"
+      },
+      {
+        "title": "**PR #166172**",
+        "description": "**PR #166172** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166172"
+      },
+      {
+        "title": "**PR #166174** Related #166171",
+        "description": "**PR #166174** Related #166171. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166174"
+      },
+      {
+        "title": "**PR #165901**",
+        "description": "**PR #165901**",
+        "href": "https://github.com/openclaw/openclaw/issues/165901"
+      },
+      {
+        "title": "**PR #166179**",
+        "description": "**PR #166179** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166179"
+      },
+      {
+        "title": "**PR #166186**",
+        "description": "**PR #166186** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166186"
+      },
+      {
+        "title": "**PR #166185** Related #166177",
+        "description": "**PR #166185** Related #166177. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166185"
+      },
+      {
+        "title": "**PR #166188** Related #166187",
+        "description": "**PR #166188** Related #166187. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166188"
+      },
+      {
+        "title": "**PR #166201** Related #166191",
+        "description": "**PR #166201** Related #166191. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166201"
+      },
+      {
+        "title": "**PR #166184**",
+        "description": "**PR #166184** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166184"
+      },
+      {
+        "title": "**PR #166101**",
+        "description": "**PR #166101** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166101"
+      },
+      {
+        "title": "**PR #166112**",
+        "description": "**PR #166112**",
+        "href": "https://github.com/openclaw/openclaw/issues/166112"
+      },
+      {
+        "title": "**PR #159669**",
+        "description": "**PR #159669** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/159669"
+      },
+      {
+        "title": "**PR #165774**",
+        "description": "**PR #165774** Thanks @yetval and @Takhoffman.",
+        "href": "https://github.com/openclaw/openclaw/issues/165774"
+      },
+      {
+        "title": "**PR #166192**",
+        "description": "**PR #166192** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166192"
+      },
+      {
+        "title": "**PR #166102**",
+        "description": "**PR #166102**",
+        "href": "https://github.com/openclaw/openclaw/issues/166102"
+      },
+      {
+        "title": "**PR #145537**",
+        "description": "**PR #145537** Thanks @hugenshen and @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/145537"
+      },
+      {
+        "title": "**PR #145538**",
+        "description": "**PR #145538** Thanks @hugenshen and @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/145538"
+      },
+      {
+        "title": "**PR #107921**",
+        "description": "**PR #107921** Thanks @tzy-17 and @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/107921"
+      },
+      {
+        "title": "**PR #159712**",
+        "description": "**PR #159712** Thanks @sunlit-deng.",
+        "href": "https://github.com/openclaw/openclaw/issues/159712"
+      },
+      {
+        "title": "**PR #157697**",
+        "description": "**PR #157697** Thanks @Bruce-Yii.",
+        "href": "https://github.com/openclaw/openclaw/issues/157697"
+      },
+      {
+        "title": "**PR #163577** Related #153486",
+        "description": "**PR #163577** Related #153486. Thanks @GoldArowana and @aniruddhaadak80.",
+        "href": "https://github.com/openclaw/openclaw/issues/163577"
+      },
+      {
+        "title": "**PR #145532**",
+        "description": "**PR #145532** Thanks @hugenshen.",
+        "href": "https://github.com/openclaw/openclaw/issues/145532"
+      },
+      {
+        "title": "**PR #165780**",
+        "description": "**PR #165780** Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/165780"
+      },
+      {
+        "title": "**PR #165733**",
+        "description": "**PR #165733**",
+        "href": "https://github.com/openclaw/openclaw/issues/165733"
+      },
+      {
+        "title": "**PR #166229** Related #166220",
+        "description": "**PR #166229** Related #166220. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166229"
+      },
+      {
+        "title": "**PR #163647**",
+        "description": "**PR #163647** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/163647"
+      },
+      {
+        "title": "**PR #166189** Related #161739",
+        "description": "**PR #166189** Related #161739. Thanks @matthematics1137.",
+        "href": "https://github.com/openclaw/openclaw/issues/166189"
+      },
+      {
+        "title": "**PR #166214**",
+        "description": "**PR #166214**",
+        "href": "https://github.com/openclaw/openclaw/issues/166214"
+      },
+      {
+        "title": "**PR #166195**",
+        "description": "**PR #166195**",
+        "href": "https://github.com/openclaw/openclaw/issues/166195"
+      },
+      {
+        "title": "**PR #166232**",
+        "description": "**PR #166232** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166232"
+      },
+      {
+        "title": "**PR #166072**",
+        "description": "**PR #166072**",
+        "href": "https://github.com/openclaw/openclaw/issues/166072"
+      },
+      {
+        "title": "**PR #165334**",
+        "description": "**PR #165334** Thanks @Patrick-Erichsen and @vincentkoc and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165334"
+      },
+      {
+        "title": "**PR #165271** Related #109105, #136881",
+        "description": "**PR #165271** Related #109105, #136881. Thanks @huntharo and @anordick.",
+        "href": "https://github.com/openclaw/openclaw/issues/165271"
+      },
+      {
+        "title": "**PR #159815** Related #159814",
+        "description": "**PR #159815** Related #159814. Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/159815"
+      },
+      {
+        "title": "**PR #166224**",
+        "description": "**PR #166224** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166224"
+      },
+      {
+        "title": "**PR #166240** Related #166230",
+        "description": "**PR #166240** Related #166230. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166240"
+      },
+      {
+        "title": "**PR #166312**",
+        "description": "**PR #166312** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166312"
+      },
+      {
+        "title": "**PR #166083**",
+        "description": "**PR #166083**",
+        "href": "https://github.com/openclaw/openclaw/issues/166083"
+      },
+      {
+        "title": "**PR #166254**",
+        "description": "**PR #166254** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166254"
+      },
+      {
+        "title": "**PR #166213**",
+        "description": "**PR #166213** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166213"
+      },
+      {
+        "title": "**PR #166228**",
+        "description": "**PR #166228** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166228"
+      },
+      {
+        "title": "**PR #166261** Related #166219",
+        "description": "**PR #166261** Related #166219. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166261"
+      },
+      {
+        "title": "**PR #166319**",
+        "description": "**PR #166319** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166319"
+      },
+      {
+        "title": "**PR #166311**",
+        "description": "**PR #166311** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166311"
+      },
+      {
+        "title": "**PR #100142** Related #100141",
+        "description": "**PR #100142** Related #100141. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/100142"
+      },
+      {
+        "title": "**PR #166268**",
+        "description": "**PR #166268** Thanks @vincentkoc and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166268"
+      },
+      {
+        "title": "**PR #166257**",
+        "description": "**PR #166257** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166257"
+      },
+      {
+        "title": "**PR #166305**",
+        "description": "**PR #166305** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166305"
+      },
+      {
+        "title": "**PR #166324**",
+        "description": "**PR #166324**",
+        "href": "https://github.com/openclaw/openclaw/issues/166324"
+      },
+      {
+        "title": "**PR #166199**",
+        "description": "**PR #166199** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166199"
+      },
+      {
+        "title": "**PR #166316** Related #166295",
+        "description": "**PR #166316** Related #166295. Thanks @jayzhou2309 and @obviyus and @jaoa12or.",
+        "href": "https://github.com/openclaw/openclaw/issues/166316"
+      },
+      {
+        "title": "**PR #166095**",
+        "description": "**PR #166095**",
+        "href": "https://github.com/openclaw/openclaw/issues/166095"
+      },
+      {
+        "title": "**PR #151941** Related #151884",
+        "description": "**PR #151941** Related #151884. Thanks @fede-kamel and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/151941"
+      },
+      {
+        "title": "**PR #146155**",
+        "description": "**PR #146155** Thanks @NGO-A and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/146155"
+      },
+      {
+        "title": "**PR #151152** Related #151151",
+        "description": "**PR #151152** Related #151151. Thanks @awss1i and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/151152"
+      },
+      {
+        "title": "**PR #163004**",
+        "description": "**PR #163004**",
+        "href": "https://github.com/openclaw/openclaw/issues/163004"
+      },
+      {
+        "title": "**PR #166337**",
+        "description": "**PR #166337**",
+        "href": "https://github.com/openclaw/openclaw/issues/166337"
+      },
+      {
+        "title": "**PR #166329** Related #166303",
+        "description": "**PR #166329** Related #166303. Thanks @obviyus and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/166329"
+      },
+      {
+        "title": "**PR #149181** Related #127500",
+        "description": "**PR #149181** Related #127500. Thanks @tommyjoseph and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/149181"
+      },
+      {
+        "title": "**PR #166327**",
+        "description": "**PR #166327** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166327"
+      },
+      {
+        "title": "**PR #162124**",
+        "description": "**PR #162124** Thanks @michaelswissa and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162124"
+      },
+      {
+        "title": "**PR #166347**",
+        "description": "**PR #166347** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166347"
+      },
+      {
+        "title": "**PR #166353**",
+        "description": "**PR #166353**",
+        "href": "https://github.com/openclaw/openclaw/issues/166353"
+      },
+      {
+        "title": "**PR #166355** Related #166302",
+        "description": "**PR #166355** Related #166302. Thanks @obviyus and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/166355"
+      },
+      {
+        "title": "**PR #166343**",
+        "description": "**PR #166343**",
+        "href": "https://github.com/openclaw/openclaw/issues/166343"
+      },
+      {
+        "title": "**PR #144946**",
+        "description": "**PR #144946** Thanks @ly85206559 and @cursoragent and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144946"
+      },
+      {
+        "title": "**PR #166345**",
+        "description": "**PR #166345**",
+        "href": "https://github.com/openclaw/openclaw/issues/166345"
+      },
+      {
+        "title": "**PR #166333**",
+        "description": "**PR #166333**",
+        "href": "https://github.com/openclaw/openclaw/issues/166333"
+      },
+      {
+        "title": "**PR #166342**",
+        "description": "**PR #166342** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166342"
+      },
+      {
+        "title": "**PR #166363**",
+        "description": "**PR #166363**",
+        "href": "https://github.com/openclaw/openclaw/issues/166363"
+      },
+      {
+        "title": "**PR #166264**",
+        "description": "**PR #166264**",
+        "href": "https://github.com/openclaw/openclaw/issues/166264"
+      },
+      {
+        "title": "**PR #162067**",
+        "description": "**PR #162067** Thanks @rogeriochaves and @llmsommelier and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162067"
+      },
+      {
+        "title": "**PR #166263**",
+        "description": "**PR #166263**",
+        "href": "https://github.com/openclaw/openclaw/issues/166263"
+      },
+      {
+        "title": "**PR #144951**",
+        "description": "**PR #144951** Thanks @ly85206559 and @cursoragent and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144951"
+      },
+      {
+        "title": "**PR #165820** Related #165791",
+        "description": "**PR #165820** Related #165791. Thanks @NovaUnboundAi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165820"
+      },
+      {
+        "title": "**PR #166251**",
+        "description": "**PR #166251** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166251"
+      },
+      {
+        "title": "**PR #165863**",
+        "description": "**PR #165863**",
+        "href": "https://github.com/openclaw/openclaw/issues/165863"
+      },
+      {
+        "title": "**PR #165830** Related #165807",
+        "description": "**PR #165830** Related #165807. Thanks @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/165830"
+      },
+      {
+        "title": "**PR #166060**",
+        "description": "**PR #166060**",
+        "href": "https://github.com/openclaw/openclaw/issues/166060"
+      },
+      {
+        "title": "**PR #166106**",
+        "description": "**PR #166106**",
+        "href": "https://github.com/openclaw/openclaw/issues/166106"
+      },
+      {
+        "title": "**PR #166372**",
+        "description": "**PR #166372**",
+        "href": "https://github.com/openclaw/openclaw/issues/166372"
+      },
+      {
+        "title": "**PR #166310**",
+        "description": "**PR #166310** Thanks @jjjhenriksen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166310"
+      },
+      {
+        "title": "**PR #166331** Related #166330",
+        "description": "**PR #166331** Related #166330. Thanks @sasan1200.",
+        "href": "https://github.com/openclaw/openclaw/issues/166331"
+      },
+      {
+        "title": "**PR #166370** Related #166360",
+        "description": "**PR #166370** Related #166360. Thanks @ericcaiwx-star and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166370"
+      },
+      {
+        "title": "**PR #165596**",
+        "description": "**PR #165596** Thanks @adele-with-a-b.",
+        "href": "https://github.com/openclaw/openclaw/issues/165596"
+      },
+      {
+        "title": "**PR #166373**",
+        "description": "**PR #166373**",
+        "href": "https://github.com/openclaw/openclaw/issues/166373"
+      },
+      {
+        "title": "**PR #166294** Related #166203",
+        "description": "**PR #166294** Related #166203. Thanks @sunlit-deng and @Jackten.",
+        "href": "https://github.com/openclaw/openclaw/issues/166294"
+      },
+      {
+        "title": "**PR #166375** Related #165994",
+        "description": "**PR #166375** Related #165994. Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/166375"
+      },
+      {
+        "title": "**PR #166222** Related #166170",
+        "description": "**PR #166222** Related #166170. Thanks @jayzhou2309 and @mightyx.",
+        "href": "https://github.com/openclaw/openclaw/issues/166222"
+      },
+      {
+        "title": "**PR #165993**",
+        "description": "**PR #165993**",
+        "href": "https://github.com/openclaw/openclaw/issues/165993"
+      },
+      {
+        "title": "**PR #149719**",
+        "description": "**PR #149719** Thanks @harjothkhara and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/149719"
+      },
+      {
+        "title": "**PR #149992** Related #149979",
+        "description": "**PR #149992** Related #149979. Thanks @sunlit-deng and @obviyus and @pusherofbrooms.",
+        "href": "https://github.com/openclaw/openclaw/issues/149992"
+      },
+      {
+        "title": "**PR #166378**",
+        "description": "**PR #166378** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166378"
+      },
+      {
+        "title": "**PR #166104**",
+        "description": "**PR #166104**",
+        "href": "https://github.com/openclaw/openclaw/issues/166104"
+      },
+      {
+        "title": "**PR #166381**",
+        "description": "**PR #166381**",
+        "href": "https://github.com/openclaw/openclaw/issues/166381"
+      },
+      {
+        "title": "**PR #166338**",
+        "description": "**PR #166338** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166338"
+      },
+      {
+        "title": "**PR #82546** Related #82344",
+        "description": "**PR #82546** Related #82344. Thanks @amknight and @obviyus and @FreeWind6.",
+        "href": "https://github.com/openclaw/openclaw/issues/82546"
+      },
+      {
+        "title": "**PR #84374**",
+        "description": "**PR #84374** Thanks @joshavant and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/84374"
+      },
+      {
+        "title": "**PR #150593** Related #143764",
+        "description": "**PR #150593** Related #143764. Thanks @jayswu and @jayden and @obviyus and @gadgrandez.",
+        "href": "https://github.com/openclaw/openclaw/issues/150593"
+      },
+      {
+        "title": "**PR #162110**",
+        "description": "**PR #162110** Thanks @openclaw-agent-man and @dlmccoy and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162110"
+      },
+      {
+        "title": "**PR #161907**",
+        "description": "**PR #161907** Thanks @Yigtwxx and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161907"
+      },
+      {
+        "title": "**PR #166361**",
+        "description": "**PR #166361** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166361"
+      },
+      {
+        "title": "**PR #162326**",
+        "description": "**PR #162326**",
+        "href": "https://github.com/openclaw/openclaw/issues/162326"
+      },
+      {
+        "title": "**PR #166390**",
+        "description": "**PR #166390**",
+        "href": "https://github.com/openclaw/openclaw/issues/166390"
+      },
+      {
+        "title": "**PR #161964** Related #161963",
+        "description": "**PR #161964** Related #161963. Thanks @heranliu and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161964"
+      },
+      {
+        "title": "**PR #150423** Related #149796",
+        "description": "**PR #150423** Related #149796. Thanks @xydigitLybnnnn and @obviyus and @marcusa617.",
+        "href": "https://github.com/openclaw/openclaw/issues/150423"
+      },
+      {
+        "title": "**PR #149377** Related #149376",
+        "description": "**PR #149377** Related #149376. Thanks @arpanghoshal and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/149377"
+      },
+      {
+        "title": "**PR #166384** Related #166242",
+        "description": "**PR #166384** Related #166242. Thanks @jayzhou2309 and @davidchyi-beep.",
+        "href": "https://github.com/openclaw/openclaw/issues/166384"
+      },
+      {
+        "title": "**PR #166111** Related #166088",
+        "description": "**PR #166111** Related #166088. Thanks @NianJiuZst and @ericcaiwx-star and @mashaohua1999-stack.",
+        "href": "https://github.com/openclaw/openclaw/issues/166111"
+      },
+      {
+        "title": "**PR #161899** Related #161898",
+        "description": "**PR #161899** Related #161898. Thanks @DonnieFi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161899"
+      },
+      {
+        "title": "**PR #161909**",
+        "description": "**PR #161909** Thanks @Yigtwxx and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161909"
+      },
+      {
+        "title": "**PR #166386**",
+        "description": "**PR #166386**",
+        "href": "https://github.com/openclaw/openclaw/issues/166386"
+      },
+      {
+        "title": "**PR #164357** Related #164346",
+        "description": "**PR #164357** Related #164346. Thanks @TUARAN and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164357"
+      },
+      {
+        "title": "**PR #166396**",
+        "description": "**PR #166396**",
+        "href": "https://github.com/openclaw/openclaw/issues/166396"
+      },
+      {
+        "title": "**PR #148022** Related #146449",
+        "description": "**PR #148022** Related #146449. Thanks @TUARAN and @obviyus and @aniruddhaadak80.",
+        "href": "https://github.com/openclaw/openclaw/issues/148022"
+      },
+      {
+        "title": "**PR #166405**",
+        "description": "**PR #166405**",
+        "href": "https://github.com/openclaw/openclaw/issues/166405"
+      },
+      {
+        "title": "**PR #163695**",
+        "description": "**PR #163695**",
+        "href": "https://github.com/openclaw/openclaw/issues/163695"
+      },
+      {
+        "title": "**PR #162614** Related #162055",
+        "description": "**PR #162614** Related #162055. Thanks @lshamash.",
+        "href": "https://github.com/openclaw/openclaw/issues/162614"
+      },
+      {
+        "title": "**PR #166385**",
+        "description": "**PR #166385** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166385"
+      },
+      {
+        "title": "**PR #166406**",
+        "description": "**PR #166406**",
+        "href": "https://github.com/openclaw/openclaw/issues/166406"
+      },
+      {
+        "title": "**PR #144960**",
+        "description": "**PR #144960** Thanks @ly85206559 and @cursoragent and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/144960"
+      },
+      {
+        "title": "**PR #164659**",
+        "description": "**PR #164659** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164659"
+      },
+      {
+        "title": "**PR #163573**",
+        "description": "**PR #163573** Thanks @boeingchoco and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163573"
+      },
+      {
+        "title": "**PR #166415**",
+        "description": "**PR #166415**",
+        "href": "https://github.com/openclaw/openclaw/issues/166415"
+      },
+      {
+        "title": "**PR #165837**",
+        "description": "**PR #165837**",
+        "href": "https://github.com/openclaw/openclaw/issues/165837"
+      },
+      {
+        "title": "**PR #161607** Related #160951",
+        "description": "**PR #161607** Related #160951. Thanks @xydigitLybnnnn and @obviyus and @captain-marlow.",
+        "href": "https://github.com/openclaw/openclaw/issues/161607"
+      },
+      {
+        "title": "**PR #165852** Related #157319",
+        "description": "**PR #165852** Related #157319. Thanks @vasaeru.",
+        "href": "https://github.com/openclaw/openclaw/issues/165852"
+      },
+      {
+        "title": "**PR #166425** Related #166246",
+        "description": "**PR #166425** Related #166246. Thanks @MertBasar0.",
+        "href": "https://github.com/openclaw/openclaw/issues/166425"
+      },
+      {
+        "title": "**PR #166389**",
+        "description": "**PR #166389**",
+        "href": "https://github.com/openclaw/openclaw/issues/166389"
+      },
+      {
+        "title": "**PR #166418**",
+        "description": "**PR #166418** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166418"
+      },
+      {
+        "title": "**PR #164860** Related #164732",
+        "description": "**PR #164860** Related #164732. Thanks @jayzhou2309 and @obviyus and @Jackten.",
+        "href": "https://github.com/openclaw/openclaw/issues/164860"
+      },
+      {
+        "title": "**PR #166426**",
+        "description": "**PR #166426**",
+        "href": "https://github.com/openclaw/openclaw/issues/166426"
+      },
+      {
+        "title": "**PR #166403**",
+        "description": "**PR #166403**",
+        "href": "https://github.com/openclaw/openclaw/issues/166403"
+      },
+      {
+        "title": "**PR #166253**",
+        "description": "**PR #166253**",
+        "href": "https://github.com/openclaw/openclaw/issues/166253"
+      },
+      {
+        "title": "**PR #166434**",
+        "description": "**PR #166434**",
+        "href": "https://github.com/openclaw/openclaw/issues/166434"
+      },
+      {
+        "title": "**PR #161427** Related #161424",
+        "description": "**PR #161427** Related #161424. Thanks @charlesBerg-ux and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161427"
+      },
+      {
+        "title": "**PR #161413** Related #154799",
+        "description": "**PR #161413** Related #154799. Thanks @ericcurtin and @obviyus and @Truck0ff.",
+        "href": "https://github.com/openclaw/openclaw/issues/161413"
+      },
+      {
+        "title": "**PR #166431**",
+        "description": "**PR #166431**",
+        "href": "https://github.com/openclaw/openclaw/issues/166431"
+      },
+      {
+        "title": "**PR #164216** Related #164143",
+        "description": "**PR #164216** Related #164143. Thanks @ericcurtin and @obviyus and @cristianoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164216"
+      },
+      {
+        "title": "**PR #166435**",
+        "description": "**PR #166435**",
+        "href": "https://github.com/openclaw/openclaw/issues/166435"
+      },
+      {
+        "title": "**PR #164657**",
+        "description": "**PR #164657** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164657"
+      },
+      {
+        "title": "**PR #166280**",
+        "description": "**PR #166280** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166280"
+      },
+      {
+        "title": "**PR #166443**",
+        "description": "**PR #166443**",
+        "href": "https://github.com/openclaw/openclaw/issues/166443"
+      },
+      {
+        "title": "**PR #166398**",
+        "description": "**PR #166398**",
+        "href": "https://github.com/openclaw/openclaw/issues/166398"
+      },
+      {
+        "title": "**PR #166442**",
+        "description": "**PR #166442**",
+        "href": "https://github.com/openclaw/openclaw/issues/166442"
+      },
+      {
+        "title": "**PR #166292**",
+        "description": "**PR #166292** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166292"
+      },
+      {
+        "title": "**PR #166427**",
+        "description": "**PR #166427**",
+        "href": "https://github.com/openclaw/openclaw/issues/166427"
+      },
+      {
+        "title": "**PR #166441**",
+        "description": "**PR #166441**",
+        "href": "https://github.com/openclaw/openclaw/issues/166441"
+      },
+      {
+        "title": "**PR #164506** Related #164505",
+        "description": "**PR #164506** Related #164505. Thanks @holgergruenhagen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164506"
+      },
+      {
+        "title": "**PR #166430** Related #166170",
+        "description": "**PR #166430** Related #166170. Thanks @mightyx.",
+        "href": "https://github.com/openclaw/openclaw/issues/166430"
+      },
+      {
+        "title": "**PR #166414**",
+        "description": "**PR #166414**",
+        "href": "https://github.com/openclaw/openclaw/issues/166414"
+      },
+      {
+        "title": "**PR #166454**",
+        "description": "**PR #166454**",
+        "href": "https://github.com/openclaw/openclaw/issues/166454"
+      },
+      {
+        "title": "**PR #164275**",
+        "description": "**PR #164275** Thanks @Satoshi-Kusumoto and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164275"
+      },
+      {
+        "title": "**PR #166412**",
+        "description": "**PR #166412**",
+        "href": "https://github.com/openclaw/openclaw/issues/166412"
+      },
+      {
+        "title": "**PR #164234** Related #164144",
+        "description": "**PR #164234** Related #164144. Thanks @wakqasahmed and @obviyus and @cristianoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/164234"
+      },
+      {
+        "title": "**PR #166173** Related #166117",
+        "description": "**PR #166173** Related #166117. Thanks @sunlit-deng and @Fealves0.",
+        "href": "https://github.com/openclaw/openclaw/issues/166173"
+      },
+      {
+        "title": "**PR #166422**",
+        "description": "**PR #166422** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166422"
+      },
+      {
+        "title": "**PR #166278**",
+        "description": "**PR #166278**",
+        "href": "https://github.com/openclaw/openclaw/issues/166278"
+      },
+      {
+        "title": "**PR #166458**",
+        "description": "**PR #166458**",
+        "href": "https://github.com/openclaw/openclaw/issues/166458"
+      },
+      {
+        "title": "**PR #166461**",
+        "description": "**PR #166461**",
+        "href": "https://github.com/openclaw/openclaw/issues/166461"
+      },
+      {
+        "title": "**PR #166439**",
+        "description": "**PR #166439**",
+        "href": "https://github.com/openclaw/openclaw/issues/166439"
+      },
+      {
+        "title": "**PR #165861** Related #153566",
+        "description": "**PR #165861** Related #153566. Thanks @Franklinyung.",
+        "href": "https://github.com/openclaw/openclaw/issues/165861"
+      },
+      {
+        "title": "**PR #166484**",
+        "description": "**PR #166484**",
+        "href": "https://github.com/openclaw/openclaw/issues/166484"
+      },
+      {
+        "title": "**PR #166366**",
+        "description": "**PR #166366** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166366"
+      },
+      {
+        "title": "**PR #166474**",
+        "description": "**PR #166474**",
+        "href": "https://github.com/openclaw/openclaw/issues/166474"
+      },
+      {
+        "title": "**PR #166483**",
+        "description": "**PR #166483**",
+        "href": "https://github.com/openclaw/openclaw/issues/166483"
+      },
+      {
+        "title": "**PR #158459**",
+        "description": "**PR #158459** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/158459"
+      },
+      {
+        "title": "**PR #164140**",
+        "description": "**PR #164140** Thanks @DasX and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/164140"
+      },
+      {
+        "title": "**PR #166494**",
+        "description": "**PR #166494**",
+        "href": "https://github.com/openclaw/openclaw/issues/166494"
+      },
+      {
+        "title": "**PR #166417**",
+        "description": "**PR #166417** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166417"
+      },
+      {
+        "title": "**PR #166410** Related #166116",
+        "description": "**PR #166410** Related #166116. Thanks @TOM-WANG-GUANG.",
+        "href": "https://github.com/openclaw/openclaw/issues/166410"
+      },
+      {
+        "title": "**PR #166481**",
+        "description": "**PR #166481** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166481"
+      },
+      {
+        "title": "**PR #161321**",
+        "description": "**PR #161321** Thanks @LinzeShi and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161321"
+      },
+      {
+        "title": "**PR #166079**",
+        "description": "**PR #166079** Thanks @n0mad-ai and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166079"
+      },
+      {
+        "title": "**PR #166364**",
+        "description": "**PR #166364**",
+        "href": "https://github.com/openclaw/openclaw/issues/166364"
+      },
+      {
+        "title": "**PR #166452**",
+        "description": "**PR #166452** Thanks @a6xa3 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166452"
+      },
+      {
+        "title": "**PR #166392**",
+        "description": "**PR #166392** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166392"
+      },
+      {
+        "title": "**PR #166317**",
+        "description": "**PR #166317** Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/166317"
+      },
+      {
+        "title": "**PR #166507** Related #166500",
+        "description": "**PR #166507** Related #166500. Thanks @obviyus and @kzclaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/166507"
+      },
+      {
+        "title": "**PR #166395**",
+        "description": "**PR #166395**",
+        "href": "https://github.com/openclaw/openclaw/issues/166395"
+      },
+      {
+        "title": "**PR #165728**",
+        "description": "**PR #165728** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165728"
+      },
+      {
+        "title": "**PR #166265**",
+        "description": "**PR #166265**",
+        "href": "https://github.com/openclaw/openclaw/issues/166265"
+      },
+      {
+        "title": "**PR #166234** Related #139710",
+        "description": "**PR #166234** Related #139710. Thanks @PollyBot13 and @obviyus and @Colton-Harris.",
+        "href": "https://github.com/openclaw/openclaw/issues/166234"
+      },
+      {
+        "title": "**PR #166495** Related #166246, #166466",
+        "description": "**PR #166495** Related #166246, #166466. Thanks @MertBasar0 and @hippoley.",
+        "href": "https://github.com/openclaw/openclaw/issues/166495"
+      },
+      {
+        "title": "**PR #166510**",
+        "description": "**PR #166510**",
+        "href": "https://github.com/openclaw/openclaw/issues/166510"
+      },
+      {
+        "title": "**PR #166365**",
+        "description": "**PR #166365**",
+        "href": "https://github.com/openclaw/openclaw/issues/166365"
+      },
+      {
+        "title": "**PR #166513**",
+        "description": "**PR #166513** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166513"
+      },
+      {
+        "title": "**PR #166498**",
+        "description": "**PR #166498** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166498"
+      },
+      {
+        "title": "**PR #166520** Related #166505",
+        "description": "**PR #166520** Related #166505.",
+        "href": "https://github.com/openclaw/openclaw/issues/166520"
+      },
+      {
+        "title": "**PR #166250**",
+        "description": "**PR #166250**",
+        "href": "https://github.com/openclaw/openclaw/issues/166250"
+      },
+      {
+        "title": "**PR #166531**",
+        "description": "**PR #166531** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166531"
+      },
+      {
+        "title": "**PR #166533**",
+        "description": "**PR #166533**",
+        "href": "https://github.com/openclaw/openclaw/issues/166533"
+      },
+      {
+        "title": "**PR #166529**",
+        "description": "**PR #166529** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166529"
+      },
+      {
+        "title": "**PR #166419**",
+        "description": "**PR #166419** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166419"
+      },
+      {
+        "title": "**PR #166429**",
+        "description": "**PR #166429**",
+        "href": "https://github.com/openclaw/openclaw/issues/166429"
+      },
+      {
+        "title": "**PR #166487** Related #166136",
+        "description": "**PR #166487** Related #166136. Thanks @AXEG0.",
+        "href": "https://github.com/openclaw/openclaw/issues/166487"
+      },
+      {
+        "title": "**PR #166541**",
+        "description": "**PR #166541**",
+        "href": "https://github.com/openclaw/openclaw/issues/166541"
+      },
+      {
+        "title": "**PR #166528**",
+        "description": "**PR #166528** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166528"
+      },
+      {
+        "title": "**PR #166180**",
+        "description": "**PR #166180** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166180"
+      },
+      {
+        "title": "**PR #166287**",
+        "description": "**PR #166287** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166287"
+      },
+      {
+        "title": "**PR #166535**",
+        "description": "**PR #166535**",
+        "href": "https://github.com/openclaw/openclaw/issues/166535"
+      },
+      {
+        "title": "**PR #166556**",
+        "description": "**PR #166556**",
+        "href": "https://github.com/openclaw/openclaw/issues/166556"
+      },
+      {
+        "title": "**PR #166550**",
+        "description": "**PR #166550**",
+        "href": "https://github.com/openclaw/openclaw/issues/166550"
+      },
+      {
+        "title": "**PR #166519**",
+        "description": "**PR #166519**",
+        "href": "https://github.com/openclaw/openclaw/issues/166519"
+      },
+      {
+        "title": "**PR #166540**",
+        "description": "**PR #166540**",
+        "href": "https://github.com/openclaw/openclaw/issues/166540"
+      },
+      {
+        "title": "**PR #166559**",
+        "description": "**PR #166559**",
+        "href": "https://github.com/openclaw/openclaw/issues/166559"
+      },
+      {
+        "title": "**PR #166522** Related #166508",
+        "description": "**PR #166522** Related #166508. Thanks @jayzhou2309 and @BensonChen1204.",
+        "href": "https://github.com/openclaw/openclaw/issues/166522"
+      },
+      {
+        "title": "**PR #166538**",
+        "description": "**PR #166538**",
+        "href": "https://github.com/openclaw/openclaw/issues/166538"
+      },
+      {
+        "title": "**PR #166572**",
+        "description": "**PR #166572**",
+        "href": "https://github.com/openclaw/openclaw/issues/166572"
+      },
+      {
+        "title": "**PR #166577**",
+        "description": "**PR #166577** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166577"
+      },
+      {
+        "title": "**PR #166566**",
+        "description": "**PR #166566**",
+        "href": "https://github.com/openclaw/openclaw/issues/166566"
+      },
+      {
+        "title": "**PR #166552**",
+        "description": "**PR #166552** Thanks @ly85206559 and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166552"
+      },
+      {
+        "title": "**PR #166560**",
+        "description": "**PR #166560**",
+        "href": "https://github.com/openclaw/openclaw/issues/166560"
+      },
+      {
+        "title": "**PR #166567** Related #166562",
+        "description": "**PR #166567** Related #166562. Thanks @rudycelekli and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166567"
+      },
+      {
+        "title": "**PR #166578**",
+        "description": "**PR #166578** Thanks @VACInc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166578"
+      },
+      {
+        "title": "**PR #166447**",
+        "description": "**PR #166447**",
+        "href": "https://github.com/openclaw/openclaw/issues/166447"
+      },
+      {
+        "title": "**PR #166523**",
+        "description": "**PR #166523**",
+        "href": "https://github.com/openclaw/openclaw/issues/166523"
+      },
+      {
+        "title": "**PR #166506**",
+        "description": "**PR #166506**",
+        "href": "https://github.com/openclaw/openclaw/issues/166506"
+      },
+      {
+        "title": "**PR #166593**",
+        "description": "**PR #166593**",
+        "href": "https://github.com/openclaw/openclaw/issues/166593"
+      },
+      {
+        "title": "**PR #166236**",
+        "description": "**PR #166236**",
+        "href": "https://github.com/openclaw/openclaw/issues/166236"
+      },
+      {
+        "title": "**PR #166591**",
+        "description": "**PR #166591**",
+        "href": "https://github.com/openclaw/openclaw/issues/166591"
+      },
+      {
+        "title": "**PR #166619**",
+        "description": "**PR #166619**",
+        "href": "https://github.com/openclaw/openclaw/issues/166619"
+      },
+      {
+        "title": "**PR #166618**",
+        "description": "**PR #166618**",
+        "href": "https://github.com/openclaw/openclaw/issues/166618"
+      },
+      {
+        "title": "**PR #166558**",
+        "description": "**PR #166558**",
+        "href": "https://github.com/openclaw/openclaw/issues/166558"
+      },
+      {
+        "title": "**PR #166444**",
+        "description": "**PR #166444**",
+        "href": "https://github.com/openclaw/openclaw/issues/166444"
+      },
+      {
+        "title": "**PR #166387**",
+        "description": "**PR #166387**",
+        "href": "https://github.com/openclaw/openclaw/issues/166387"
+      },
+      {
+        "title": "**PR #166584**",
+        "description": "**PR #166584**",
+        "href": "https://github.com/openclaw/openclaw/issues/166584"
+      },
+      {
+        "title": "**PR #166597**",
+        "description": "**PR #166597**",
+        "href": "https://github.com/openclaw/openclaw/issues/166597"
+      },
+      {
+        "title": "**PR #166503**",
+        "description": "**PR #166503**",
+        "href": "https://github.com/openclaw/openclaw/issues/166503"
+      },
+      {
+        "title": "**PR #166600**",
+        "description": "**PR #166600**",
+        "href": "https://github.com/openclaw/openclaw/issues/166600"
+      },
+      {
+        "title": "**PR #166602**",
+        "description": "**PR #166602**",
+        "href": "https://github.com/openclaw/openclaw/issues/166602"
+      },
+      {
+        "title": "**PR #166615**",
+        "description": "**PR #166615**",
+        "href": "https://github.com/openclaw/openclaw/issues/166615"
+      },
+      {
+        "title": "**PR #163637**",
+        "description": "**PR #163637** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/163637"
+      },
+      {
+        "title": "**PR #166642**",
+        "description": "**PR #166642**",
+        "href": "https://github.com/openclaw/openclaw/issues/166642"
+      },
+      {
+        "title": "**PR #166631**",
+        "description": "**PR #166631**",
+        "href": "https://github.com/openclaw/openclaw/issues/166631"
+      },
+      {
+        "title": "**PR #166575**",
+        "description": "**PR #166575**",
+        "href": "https://github.com/openclaw/openclaw/issues/166575"
+      },
+      {
+        "title": "**PR #166313**",
+        "description": "**PR #166313** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/166313"
+      },
+      {
+        "title": "**PR #166621**",
+        "description": "**PR #166621**",
+        "href": "https://github.com/openclaw/openclaw/issues/166621"
+      },
+      {
+        "title": "**PR #166588**",
+        "description": "**PR #166588**",
+        "href": "https://github.com/openclaw/openclaw/issues/166588"
+      },
+      {
+        "title": "**PR #166636**",
+        "description": "**PR #166636**",
+        "href": "https://github.com/openclaw/openclaw/issues/166636"
+      },
+      {
+        "title": "**PR #166659**",
+        "description": "**PR #166659**",
+        "href": "https://github.com/openclaw/openclaw/issues/166659"
+      },
+      {
+        "title": "**PR #163511** Related #134644",
+        "description": "**PR #163511** Related #134644. Thanks @Olli0103 and @Patrick-Erichsen and @leovoloshin.",
+        "href": "https://github.com/openclaw/openclaw/issues/163511"
+      },
+      {
+        "title": "**PR #162313**",
+        "description": "**PR #162313** Thanks @sunlit-deng and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162313"
+      },
+      {
+        "title": "**PR #166668**",
+        "description": "**PR #166668**",
+        "href": "https://github.com/openclaw/openclaw/issues/166668"
+      },
+      {
+        "title": "**PR #166235**",
+        "description": "**PR #166235** Thanks @PollyBot13 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166235"
+      },
+      {
+        "title": "**PR #166671**",
+        "description": "**PR #166671**",
+        "href": "https://github.com/openclaw/openclaw/issues/166671"
+      },
+      {
+        "title": "**PR #160675** Related #160602",
+        "description": "**PR #160675** Related #160602. Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/issues/160675"
+      },
+      {
+        "title": "**PR #166658**",
+        "description": "**PR #166658** Thanks @VACInc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166658"
+      },
+      {
+        "title": "**PR #166673**",
+        "description": "**PR #166673**",
+        "href": "https://github.com/openclaw/openclaw/issues/166673"
+      },
+      {
+        "title": "**PR #166683**",
+        "description": "**PR #166683**",
+        "href": "https://github.com/openclaw/openclaw/issues/166683"
+      },
+      {
+        "title": "**PR #166689**",
+        "description": "**PR #166689**",
+        "href": "https://github.com/openclaw/openclaw/issues/166689"
+      },
+      {
+        "title": "**PR #166633**",
+        "description": "**PR #166633**",
+        "href": "https://github.com/openclaw/openclaw/issues/166633"
+      },
+      {
+        "title": "**PR #166308**",
+        "description": "**PR #166308** Thanks @jjjhenriksen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166308"
+      },
+      {
+        "title": "**PR #163817** Related #163802",
+        "description": "**PR #163817** Related #163802. Thanks @MertBasar0 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163817"
+      },
+      {
+        "title": "**PR #166635**",
+        "description": "**PR #166635**",
+        "href": "https://github.com/openclaw/openclaw/issues/166635"
+      },
+      {
+        "title": "**PR #166682**",
+        "description": "**PR #166682**",
+        "href": "https://github.com/openclaw/openclaw/issues/166682"
+      },
+      {
+        "title": "**PR #166539**",
+        "description": "**PR #166539**",
+        "href": "https://github.com/openclaw/openclaw/issues/166539"
+      },
+      {
+        "title": "**PR #166293**",
+        "description": "**PR #166293**",
+        "href": "https://github.com/openclaw/openclaw/issues/166293"
+      },
+      {
+        "title": "**PR #166680**",
+        "description": "**PR #166680**",
+        "href": "https://github.com/openclaw/openclaw/issues/166680"
+      },
+      {
+        "title": "**PR #166679**",
+        "description": "**PR #166679**",
+        "href": "https://github.com/openclaw/openclaw/issues/166679"
+      },
+      {
+        "title": "**PR #166699**",
+        "description": "**PR #166699** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166699"
+      },
+      {
+        "title": "**PR #166259**",
+        "description": "**PR #166259**",
+        "href": "https://github.com/openclaw/openclaw/issues/166259"
+      },
+      {
+        "title": "**PR #166690**",
+        "description": "**PR #166690**",
+        "href": "https://github.com/openclaw/openclaw/issues/166690"
+      },
+      {
+        "title": "**PR #166705**",
+        "description": "**PR #166705** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166705"
+      },
+      {
+        "title": "**PR #166626**",
+        "description": "**PR #166626**",
+        "href": "https://github.com/openclaw/openclaw/issues/166626"
+      },
+      {
+        "title": "**PR #166606**",
+        "description": "**PR #166606** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166606"
+      },
+      {
+        "title": "**PR #166608**",
+        "description": "**PR #166608** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166608"
+      },
+      {
+        "title": "**PR #166609**",
+        "description": "**PR #166609** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166609"
+      },
+      {
+        "title": "**PR #166698**",
+        "description": "**PR #166698**",
+        "href": "https://github.com/openclaw/openclaw/issues/166698"
+      },
+      {
+        "title": "**PR #166711**",
+        "description": "**PR #166711**",
+        "href": "https://github.com/openclaw/openclaw/issues/166711"
+      },
+      {
+        "title": "**PR #166704**",
+        "description": "**PR #166704**",
+        "href": "https://github.com/openclaw/openclaw/issues/166704"
+      },
+      {
+        "title": "**PR #166617**",
+        "description": "**PR #166617**",
+        "href": "https://github.com/openclaw/openclaw/issues/166617"
+      },
+      {
+        "title": "**PR #166695**",
+        "description": "**PR #166695**",
+        "href": "https://github.com/openclaw/openclaw/issues/166695"
+      },
+      {
+        "title": "**PR #166691**",
+        "description": "**PR #166691**",
+        "href": "https://github.com/openclaw/openclaw/issues/166691"
+      },
+      {
+        "title": "**PR #165806**",
+        "description": "**PR #165806** Thanks @SebTardif and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165806"
+      },
+      {
+        "title": "**PR #166653** Related #166643",
+        "description": "**PR #166653** Related #166643. Thanks @jayzhou2309 and @obviyus and @rudycelekli.",
+        "href": "https://github.com/openclaw/openclaw/issues/166653"
+      },
+      {
+        "title": "**PR #166611**",
+        "description": "**PR #166611** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166611"
+      },
+      {
+        "title": "**PR #166252**",
+        "description": "**PR #166252**",
+        "href": "https://github.com/openclaw/openclaw/issues/166252"
+      },
+      {
+        "title": "**PR #166685**",
+        "description": "**PR #166685**",
+        "href": "https://github.com/openclaw/openclaw/issues/166685"
+      },
+      {
+        "title": "**PR #166445**",
+        "description": "**PR #166445**",
+        "href": "https://github.com/openclaw/openclaw/issues/166445"
+      },
+      {
+        "title": "**PR #166726**",
+        "description": "**PR #166726**",
+        "href": "https://github.com/openclaw/openclaw/issues/166726"
+      },
+      {
+        "title": "**PR #166674**",
+        "description": "**PR #166674**",
+        "href": "https://github.com/openclaw/openclaw/issues/166674"
+      },
+      {
+        "title": "**PR #166662** Related #166605",
+        "description": "**PR #166662** Related #166605. Thanks @jayzhou2309 and @obviyus and @FtlC-ian.",
+        "href": "https://github.com/openclaw/openclaw/issues/166662"
+      },
+      {
+        "title": "**PR #166736**",
+        "description": "**PR #166736** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166736"
+      },
+      {
+        "title": "**PR #166553** Related #166542",
+        "description": "**PR #166553** Related #166542. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166553"
+      },
+      {
+        "title": "**PR #166745** Related #166725",
+        "description": "**PR #166745** Related #166725. Thanks @obviyus and @sxh313.",
+        "href": "https://github.com/openclaw/openclaw/issues/166745"
+      },
+      {
+        "title": "**PR #166549**",
+        "description": "**PR #166549** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166549"
+      },
+      {
+        "title": "**PR #166563**",
+        "description": "**PR #166563** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166563"
+      },
+      {
+        "title": "**PR #165753**",
+        "description": "**PR #165753** Thanks @Sedrak-Hovhannisyan and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165753"
+      },
+      {
+        "title": "**PR #166737**",
+        "description": "**PR #166737** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166737"
+      },
+      {
+        "title": "**PR #162255**",
+        "description": "**PR #162255** Thanks @sjf-oa and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162255"
+      },
+      {
+        "title": "**PR #166730**",
+        "description": "**PR #166730** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166730"
+      },
+      {
+        "title": "**PR #166400**",
+        "description": "**PR #166400** Thanks @Kimiyu-186.",
+        "href": "https://github.com/openclaw/openclaw/issues/166400"
+      },
+      {
+        "title": "**PR #166758**",
+        "description": "**PR #166758** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166758"
+      },
+      {
+        "title": "**PR #165849**",
+        "description": "**PR #165849** Thanks @jjjhenriksen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165849"
+      },
+      {
+        "title": "**PR #166283**",
+        "description": "**PR #166283**",
+        "href": "https://github.com/openclaw/openclaw/issues/166283"
+      },
+      {
+        "title": "**PR #166738**",
+        "description": "**PR #166738** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166738"
+      },
+      {
+        "title": "**PR #17**",
+        "description": "**PR #17** Thanks @omniwired and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/17"
+      },
+      {
+        "title": "**PR #31** Related #30",
+        "description": "**PR #31** Related #30. Thanks @Nachx639 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/31"
+      },
+      {
+        "title": "**PR #39**",
+        "description": "**PR #39** Thanks @joshp123 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/39"
+      },
+      {
+        "title": "**PR #40**",
+        "description": "**PR #40** Thanks @joshp123 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/40"
+      },
+      {
+        "title": "**PR #44**",
+        "description": "**PR #44** Thanks @Nachx639 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/44"
+      },
+      {
+        "title": "**PR #48**",
+        "description": "**PR #48** Thanks @meaningfool and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/48"
+      },
+      {
+        "title": "**PR #10**",
+        "description": "**PR #10** Thanks @joaohlisboa and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/10"
+      },
+      {
+        "title": "**PR #166755** Related #166656",
+        "description": "**PR #166755** Related #166656. Thanks @taihartman.",
+        "href": "https://github.com/openclaw/openclaw/issues/166755"
+      },
+      {
+        "title": "**PR #166493** Related #166492",
+        "description": "**PR #166493** Related #166492. Thanks @boeingchoco and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166493"
+      },
+      {
+        "title": "**PR #166759**",
+        "description": "**PR #166759** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166759"
+      },
+      {
+        "title": "**PR #166625**",
+        "description": "**PR #166625** Thanks @rogeriochaves and @llmsommelier and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166625"
+      },
+      {
+        "title": "**PR #165721**",
+        "description": "**PR #165721** Thanks @Sedrak-Hovhannisyan and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165721"
+      },
+      {
+        "title": "**PR #166777**",
+        "description": "**PR #166777** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166777"
+      },
+      {
+        "title": "**PR #166778**",
+        "description": "**PR #166778**",
+        "href": "https://github.com/openclaw/openclaw/issues/166778"
+      },
+      {
+        "title": "**PR #166762**",
+        "description": "**PR #166762**",
+        "href": "https://github.com/openclaw/openclaw/issues/166762"
+      },
+      {
+        "title": "**PR #166774**",
+        "description": "**PR #166774** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166774"
+      },
+      {
+        "title": "**PR #165719**",
+        "description": "**PR #165719** Thanks @Sedrak-Hovhannisyan and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165719"
+      },
+      {
+        "title": "**PR #166743**",
+        "description": "**PR #166743**",
+        "href": "https://github.com/openclaw/openclaw/issues/166743"
+      },
+      {
+        "title": "**PR #166465**",
+        "description": "**PR #166465**",
+        "href": "https://github.com/openclaw/openclaw/issues/166465"
+      },
+      {
+        "title": "**PR #165921**",
+        "description": "**PR #165921**",
+        "href": "https://github.com/openclaw/openclaw/issues/165921"
+      },
+      {
+        "title": "**PR #166785**",
+        "description": "**PR #166785**",
+        "href": "https://github.com/openclaw/openclaw/issues/166785"
+      },
+      {
+        "title": "**PR #166751**",
+        "description": "**PR #166751**",
+        "href": "https://github.com/openclaw/openclaw/issues/166751"
+      },
+      {
+        "title": "**PR #166803**",
+        "description": "**PR #166803**",
+        "href": "https://github.com/openclaw/openclaw/issues/166803"
+      },
+      {
+        "title": "**PR #166478**",
+        "description": "**PR #166478**",
+        "href": "https://github.com/openclaw/openclaw/issues/166478"
+      },
+      {
+        "title": "**PR #166807**",
+        "description": "**PR #166807** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166807"
+      },
+      {
+        "title": "**PR #166786**",
+        "description": "**PR #166786** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166786"
+      },
+      {
+        "title": "**PR #166792**",
+        "description": "**PR #166792** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166792"
+      },
+      {
+        "title": "**PR #166783**",
+        "description": "**PR #166783**",
+        "href": "https://github.com/openclaw/openclaw/issues/166783"
+      },
+      {
+        "title": "**PR #166819**",
+        "description": "**PR #166819**",
+        "href": "https://github.com/openclaw/openclaw/issues/166819"
+      },
+      {
+        "title": "**PR #166822**",
+        "description": "**PR #166822**",
+        "href": "https://github.com/openclaw/openclaw/issues/166822"
+      },
+      {
+        "title": "**PR #166613**",
+        "description": "**PR #166613** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166613"
+      },
+      {
+        "title": "**PR #166811**",
+        "description": "**PR #166811**",
+        "href": "https://github.com/openclaw/openclaw/issues/166811"
+      },
+      {
+        "title": "**PR #166830** Related #166816",
+        "description": "**PR #166830** Related #166816. Thanks @obviyus and @sxh313.",
+        "href": "https://github.com/openclaw/openclaw/issues/166830"
+      },
+      {
+        "title": "**PR #166821**",
+        "description": "**PR #166821** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166821"
+      },
+      {
+        "title": "**PR #147238**",
+        "description": "**PR #147238** Thanks @vincentkoc and @Solvely-Colin and @Patrick-Erichsen and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/147238"
+      },
+      {
+        "title": "**PR #166824**",
+        "description": "**PR #166824**",
+        "href": "https://github.com/openclaw/openclaw/issues/166824"
+      },
+      {
+        "title": "**PR #166827**",
+        "description": "**PR #166827**",
+        "href": "https://github.com/openclaw/openclaw/issues/166827"
+      },
+      {
+        "title": "**PR #166833**",
+        "description": "**PR #166833**",
+        "href": "https://github.com/openclaw/openclaw/issues/166833"
+      },
+      {
+        "title": "**PR #155882**",
+        "description": "**PR #155882** Thanks @MertBasar0 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/155882"
+      },
+      {
+        "title": "**PR #166836** Related #166805",
+        "description": "**PR #166836** Related #166805. Thanks @obviyus and @JLahullier.",
+        "href": "https://github.com/openclaw/openclaw/issues/166836"
+      },
+      {
+        "title": "**PR #166784**",
+        "description": "**PR #166784**",
+        "href": "https://github.com/openclaw/openclaw/issues/166784"
+      },
+      {
+        "title": "**PR #165825**",
+        "description": "**PR #165825** Thanks @Patrick-Erichsen and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165825"
+      },
+      {
+        "title": "**PR #166837**",
+        "description": "**PR #166837**",
+        "href": "https://github.com/openclaw/openclaw/issues/166837"
+      },
+      {
+        "title": "**PR #166094**",
+        "description": "**PR #166094**",
+        "href": "https://github.com/openclaw/openclaw/issues/166094"
+      },
+      {
+        "title": "**PR #165741**",
+        "description": "**PR #165741** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/165741"
+      },
+      {
+        "title": "**PR #166838**",
+        "description": "**PR #166838**",
+        "href": "https://github.com/openclaw/openclaw/issues/166838"
+      },
+      {
+        "title": "**PR #157739** Related #157782",
+        "description": "**PR #157739** Related #157782. Thanks @emes and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/157739"
+      },
+      {
+        "title": "**PR #166846**",
+        "description": "**PR #166846**",
+        "href": "https://github.com/openclaw/openclaw/issues/166846"
+      },
+      {
+        "title": "**PR #166835**",
+        "description": "**PR #166835**",
+        "href": "https://github.com/openclaw/openclaw/issues/166835"
+      },
+      {
+        "title": "**PR #147244**",
+        "description": "**PR #147244** Thanks @vincentkoc and @Solvely-Colin and @Patrick-Erichsen and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/147244"
+      },
+      {
+        "title": "**PR #166787**",
+        "description": "**PR #166787** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166787"
+      },
+      {
+        "title": "**PR #166128** Related #165958",
+        "description": "**PR #166128** Related #165958. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166128"
+      },
+      {
+        "title": "**PR #166839** Related #166834",
+        "description": "**PR #166839** Related #166834. Thanks @VACInc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166839"
+      },
+      {
+        "title": "**PR #166814**",
+        "description": "**PR #166814**",
+        "href": "https://github.com/openclaw/openclaw/issues/166814"
+      },
+      {
+        "title": "**PR #166829**",
+        "description": "**PR #166829**",
+        "href": "https://github.com/openclaw/openclaw/issues/166829"
+      },
+      {
+        "title": "**PR #166867**",
+        "description": "**PR #166867**",
+        "href": "https://github.com/openclaw/openclaw/issues/166867"
+      },
+      {
+        "title": "**PR #166753**",
+        "description": "**PR #166753** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166753"
+      },
+      {
+        "title": "**PR #166873**",
+        "description": "**PR #166873**",
+        "href": "https://github.com/openclaw/openclaw/issues/166873"
+      },
+      {
+        "title": "**PR #166884**",
+        "description": "**PR #166884**",
+        "href": "https://github.com/openclaw/openclaw/issues/166884"
+      },
+      {
+        "title": "**PR #166865**",
+        "description": "**PR #166865**",
+        "href": "https://github.com/openclaw/openclaw/issues/166865"
+      },
+      {
+        "title": "**PR #166860**",
+        "description": "**PR #166860**",
+        "href": "https://github.com/openclaw/openclaw/issues/166860"
+      },
+      {
+        "title": "**PR #166878**",
+        "description": "**PR #166878**",
+        "href": "https://github.com/openclaw/openclaw/issues/166878"
+      },
+      {
+        "title": "**PR #166864**",
+        "description": "**PR #166864**",
+        "href": "https://github.com/openclaw/openclaw/issues/166864"
+      },
+      {
+        "title": "**PR #166888**",
+        "description": "**PR #166888** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166888"
+      },
+      {
+        "title": "**PR #166862**",
+        "description": "**PR #166862**",
+        "href": "https://github.com/openclaw/openclaw/issues/166862"
+      },
+      {
+        "title": "**PR #166868** Related #165463",
+        "description": "**PR #166868** Related #165463. Thanks @Baumus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166868"
+      },
+      {
+        "title": "**PR #166903** Related #166896",
+        "description": "**PR #166903** Related #166896. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166903"
+      },
+      {
+        "title": "**PR #166904** Related #166898",
+        "description": "**PR #166904** Related #166898. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166904"
+      },
+      {
+        "title": "**PR #166879**",
+        "description": "**PR #166879**",
+        "href": "https://github.com/openclaw/openclaw/issues/166879"
+      },
+      {
+        "title": "**PR #166907**",
+        "description": "**PR #166907**",
+        "href": "https://github.com/openclaw/openclaw/issues/166907"
+      },
+      {
+        "title": "**PR #166790**",
+        "description": "**PR #166790** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166790"
+      },
+      {
+        "title": "**PR #166906** Related #166899",
+        "description": "**PR #166906** Related #166899. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166906"
+      },
+      {
+        "title": "**PR #166905**",
+        "description": "**PR #166905**",
+        "href": "https://github.com/openclaw/openclaw/issues/166905"
+      },
+      {
+        "title": "**PR #166901**",
+        "description": "**PR #166901**",
+        "href": "https://github.com/openclaw/openclaw/issues/166901"
+      },
+      {
+        "title": "**PR #166810**",
+        "description": "**PR #166810** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166810"
+      },
+      {
+        "title": "**PR #166902** Related #166866",
+        "description": "**PR #166902** Related #166866.",
+        "href": "https://github.com/openclaw/openclaw/issues/166902"
+      },
+      {
+        "title": "**PR #166912** Related #166911",
+        "description": "**PR #166912** Related #166911. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166912"
+      },
+      {
+        "title": "**PR #166921** Related #166918",
+        "description": "**PR #166921** Related #166918. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166921"
+      },
+      {
+        "title": "**PR #166924** Related #166920",
+        "description": "**PR #166924** Related #166920. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166924"
+      },
+      {
+        "title": "**PR #166922**",
+        "description": "**PR #166922**",
+        "href": "https://github.com/openclaw/openclaw/issues/166922"
+      },
+      {
+        "title": "**PR #166916** Related #166914",
+        "description": "**PR #166916** Related #166914. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166916"
+      },
+      {
+        "title": "**PR #166889**",
+        "description": "**PR #166889**",
+        "href": "https://github.com/openclaw/openclaw/issues/166889"
+      },
+      {
+        "title": "**PR #166926**",
+        "description": "**PR #166926** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166926"
+      },
+      {
+        "title": "**PR #166919** Related #166917",
+        "description": "**PR #166919** Related #166917. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166919"
+      },
+      {
+        "title": "**PR #166891**",
+        "description": "**PR #166891**",
+        "href": "https://github.com/openclaw/openclaw/issues/166891"
+      },
+      {
+        "title": "**PR #166937** Related #166932",
+        "description": "**PR #166937** Related #166932. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166937"
+      },
+      {
+        "title": "**PR #166941** Related #166934",
+        "description": "**PR #166941** Related #166934. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166941"
+      },
+      {
+        "title": "**PR #166943** Related #166935",
+        "description": "**PR #166943** Related #166935. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166943"
+      },
+      {
+        "title": "**PR #166876**",
+        "description": "**PR #166876** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166876"
+      },
+      {
+        "title": "**PR #166939**",
+        "description": "**PR #166939**",
+        "href": "https://github.com/openclaw/openclaw/issues/166939"
+      },
+      {
+        "title": "**PR #166944**",
+        "description": "**PR #166944**",
+        "href": "https://github.com/openclaw/openclaw/issues/166944"
+      },
+      {
+        "title": "**PR #166818**",
+        "description": "**PR #166818**",
+        "href": "https://github.com/openclaw/openclaw/issues/166818"
+      },
+      {
+        "title": "**PR #166599**",
+        "description": "**PR #166599** Thanks @rudycelekli.",
+        "href": "https://github.com/openclaw/openclaw/issues/166599"
+      },
+      {
+        "title": "**PR #166938** Related #166923",
+        "description": "**PR #166938** Related #166923. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166938"
+      },
+      {
+        "title": "**PR #166881**",
+        "description": "**PR #166881** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166881"
+      },
+      {
+        "title": "**PR #166616**",
+        "description": "**PR #166616** Thanks @RomneyDa and @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166616"
+      },
+      {
+        "title": "**PR #166954**",
+        "description": "**PR #166954**",
+        "href": "https://github.com/openclaw/openclaw/issues/166954"
+      },
+      {
+        "title": "**PR #133338**",
+        "description": "**PR #133338** Thanks @RileyJJY and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/133338"
+      },
+      {
+        "title": "**PR #166960**",
+        "description": "**PR #166960**",
+        "href": "https://github.com/openclaw/openclaw/issues/166960"
+      },
+      {
+        "title": "**PR #166764**",
+        "description": "**PR #166764** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166764"
+      },
+      {
+        "title": "**PR #134404** Related #134297",
+        "description": "**PR #134404** Related #134297. Thanks @LeizhenZhang and @obviyus and @abacha.",
+        "href": "https://github.com/openclaw/openclaw/issues/134404"
+      },
+      {
+        "title": "**PR #166963**",
+        "description": "**PR #166963**",
+        "href": "https://github.com/openclaw/openclaw/issues/166963"
+      },
+      {
+        "title": "**PR #166858**",
+        "description": "**PR #166858**",
+        "href": "https://github.com/openclaw/openclaw/issues/166858"
+      },
+      {
+        "title": "**PR #141317**",
+        "description": "**PR #141317** Thanks @hugenshen and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/141317"
+      },
+      {
+        "title": "**PR #163397**",
+        "description": "**PR #163397** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163397"
+      },
+      {
+        "title": "**PR #166727** Related #166684",
+        "description": "**PR #166727** Related #166684. Thanks @SebTardif and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166727"
+      },
+      {
+        "title": "**PR #166968** Related #166952",
+        "description": "**PR #166968** Related #166952. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166968"
+      },
+      {
+        "title": "**PR #166936**",
+        "description": "**PR #166936** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166936"
+      },
+      {
+        "title": "**PR #166974**",
+        "description": "**PR #166974**",
+        "href": "https://github.com/openclaw/openclaw/issues/166974"
+      },
+      {
+        "title": "**PR #166971**",
+        "description": "**PR #166971**",
+        "href": "https://github.com/openclaw/openclaw/issues/166971"
+      },
+      {
+        "title": "**PR #166861**",
+        "description": "**PR #166861** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166861"
+      },
+      {
+        "title": "**PR #156483** Related #156359",
+        "description": "**PR #156483** Related #156359. Thanks @wangmiao0668000666 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/156483"
+      },
+      {
+        "title": "**PR #166976**",
+        "description": "**PR #166976**",
+        "href": "https://github.com/openclaw/openclaw/issues/166976"
+      },
+      {
+        "title": "**PR #162650**",
+        "description": "**PR #162650** Thanks @wangmiao0668000666 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162650"
+      },
+      {
+        "title": "**PR #166984**",
+        "description": "**PR #166984** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166984"
+      },
+      {
+        "title": "**PR #166989**",
+        "description": "**PR #166989**",
+        "href": "https://github.com/openclaw/openclaw/issues/166989"
+      },
+      {
+        "title": "**PR #166979**",
+        "description": "**PR #166979**",
+        "href": "https://github.com/openclaw/openclaw/issues/166979"
+      },
+      {
+        "title": "**PR #166587**",
+        "description": "**PR #166587**",
+        "href": "https://github.com/openclaw/openclaw/issues/166587"
+      },
+      {
+        "title": "**PR #166983**",
+        "description": "**PR #166983**",
+        "href": "https://github.com/openclaw/openclaw/issues/166983"
+      },
+      {
+        "title": "**PR #166775**",
+        "description": "**PR #166775** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166775"
+      },
+      {
+        "title": "**PR #156137**",
+        "description": "**PR #156137** Thanks @taekop and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/156137"
+      },
+      {
+        "title": "**PR #166987**",
+        "description": "**PR #166987**",
+        "href": "https://github.com/openclaw/openclaw/issues/166987"
+      },
+      {
+        "title": "**PR #163885**",
+        "description": "**PR #163885** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/163885"
+      },
+      {
+        "title": "**PR #166845**",
+        "description": "**PR #166845**",
+        "href": "https://github.com/openclaw/openclaw/issues/166845"
+      },
+      {
+        "title": "**PR #166994**",
+        "description": "**PR #166994** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/166994"
+      },
+      {
+        "title": "**PR #166832**",
+        "description": "**PR #166832** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/166832"
+      },
+      {
+        "title": "**PR #166951**",
+        "description": "**PR #166951**",
+        "href": "https://github.com/openclaw/openclaw/issues/166951"
+      },
+      {
+        "title": "**PR #166249** Related #166210",
+        "description": "**PR #166249** Related #166210. Thanks @chelsealong and @obviyus and @catnipluss.",
+        "href": "https://github.com/openclaw/openclaw/issues/166249"
+      },
+      {
+        "title": "**PR #161057**",
+        "description": "**PR #161057** Thanks @obviyus and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/161057"
+      },
+      {
+        "title": "**PR #166996**",
+        "description": "**PR #166996**",
+        "href": "https://github.com/openclaw/openclaw/issues/166996"
+      },
+      {
+        "title": "**PR #158059**",
+        "description": "**PR #158059** Thanks @NoelDavies and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/158059"
+      },
+      {
+        "title": "**PR #167003**",
+        "description": "**PR #167003** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167003"
+      },
+      {
+        "title": "**PR #166972**",
+        "description": "**PR #166972**",
+        "href": "https://github.com/openclaw/openclaw/issues/166972"
+      },
+      {
+        "title": "**PR #167011**",
+        "description": "**PR #167011**",
+        "href": "https://github.com/openclaw/openclaw/issues/167011"
+      },
+      {
+        "title": "**PR #166998**",
+        "description": "**PR #166998** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166998"
+      },
+      {
+        "title": "**PR #167009**",
+        "description": "**PR #167009**",
+        "href": "https://github.com/openclaw/openclaw/issues/167009"
+      },
+      {
+        "title": "**PR #164828** Related #164784",
+        "description": "**PR #164828** Related #164784. Thanks @jayzhou2309 and @obviyus and @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/164828"
+      },
+      {
+        "title": "**PR #166985**",
+        "description": "**PR #166985** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166985"
+      },
+      {
+        "title": "**PR #166930**",
+        "description": "**PR #166930** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166930"
+      },
+      {
+        "title": "**PR #137763**",
+        "description": "**PR #137763** Thanks @teddytennant and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/137763"
+      },
+      {
+        "title": "**PR #167017**",
+        "description": "**PR #167017**",
+        "href": "https://github.com/openclaw/openclaw/issues/167017"
+      },
+      {
+        "title": "**PR #165185**",
+        "description": "**PR #165185** Thanks @jayzhou2309 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/165185"
+      },
+      {
+        "title": "**PR #166973**",
+        "description": "**PR #166973**",
+        "href": "https://github.com/openclaw/openclaw/issues/166973"
+      },
+      {
+        "title": "**PR #167013** Related #164939",
+        "description": "**PR #167013** Related #164939. Thanks @sszyh2026.",
+        "href": "https://github.com/openclaw/openclaw/issues/167013"
+      },
+      {
+        "title": "**PR #167012** Related #166956",
+        "description": "**PR #167012** Related #166956.",
+        "href": "https://github.com/openclaw/openclaw/issues/167012"
+      },
+      {
+        "title": "**PR #167023**",
+        "description": "**PR #167023**",
+        "href": "https://github.com/openclaw/openclaw/issues/167023"
+      },
+      {
+        "title": "**PR #167020**",
+        "description": "**PR #167020**",
+        "href": "https://github.com/openclaw/openclaw/issues/167020"
+      },
+      {
+        "title": "**PR #167016** Related #165460",
+        "description": "**PR #167016** Related #165460. Thanks @jaikharbanda.",
+        "href": "https://github.com/openclaw/openclaw/issues/167016"
+      },
+      {
+        "title": "**PR #167010**",
+        "description": "**PR #167010**",
+        "href": "https://github.com/openclaw/openclaw/issues/167010"
+      },
+      {
+        "title": "**PR #167021**",
+        "description": "**PR #167021** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167021"
+      },
+      {
+        "title": "**PR #166978**",
+        "description": "**PR #166978**",
+        "href": "https://github.com/openclaw/openclaw/issues/166978"
+      },
+      {
+        "title": "**PR #167031**",
+        "description": "**PR #167031**",
+        "href": "https://github.com/openclaw/openclaw/issues/167031"
+      },
+      {
+        "title": "**PR #167032**",
+        "description": "**PR #167032**",
+        "href": "https://github.com/openclaw/openclaw/issues/167032"
+      },
+      {
+        "title": "**PR #167030**",
+        "description": "**PR #167030**",
+        "href": "https://github.com/openclaw/openclaw/issues/167030"
+      },
+      {
+        "title": "**PR #167035**",
+        "description": "**PR #167035**",
+        "href": "https://github.com/openclaw/openclaw/issues/167035"
+      },
+      {
+        "title": "**PR #167006**",
+        "description": "**PR #167006** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167006"
+      },
+      {
+        "title": "**PR #167025**",
+        "description": "**PR #167025**",
+        "href": "https://github.com/openclaw/openclaw/issues/167025"
+      },
+      {
+        "title": "**PR #167039**",
+        "description": "**PR #167039** Thanks @galiniliev.",
+        "href": "https://github.com/openclaw/openclaw/issues/167039"
+      },
+      {
+        "title": "**PR #166961**",
+        "description": "**PR #166961**",
+        "href": "https://github.com/openclaw/openclaw/issues/166961"
+      },
+      {
+        "title": "**PR #166990**",
+        "description": "**PR #166990**",
+        "href": "https://github.com/openclaw/openclaw/issues/166990"
+      },
+      {
+        "title": "**PR #167019**",
+        "description": "**PR #167019** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167019"
+      },
+      {
+        "title": "**PR #167040** Related #166663",
+        "description": "**PR #167040** Related #166663. Thanks @jlapenna.",
+        "href": "https://github.com/openclaw/openclaw/issues/167040"
+      },
+      {
+        "title": "**PR #165514** Related #165476",
+        "description": "**PR #165514** Related #165476. Thanks @dhruv1220 and @obviyus and @vit-pavlenko.",
+        "href": "https://github.com/openclaw/openclaw/issues/165514"
+      },
+      {
+        "title": "**PR #167043**",
+        "description": "**PR #167043**",
+        "href": "https://github.com/openclaw/openclaw/issues/167043"
+      },
+      {
+        "title": "**PR #167008**",
+        "description": "**PR #167008** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167008"
+      },
+      {
+        "title": "**PR #166741**",
+        "description": "**PR #166741** Thanks @hannesrudolph and @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166741"
+      },
+      {
+        "title": "**PR #167059** Related #166724",
+        "description": "**PR #167059** Related #166724. Thanks @RomneyDa and @jaiden0.",
+        "href": "https://github.com/openclaw/openclaw/issues/167059"
+      },
+      {
+        "title": "**PR #166754** Related #166744",
+        "description": "**PR #166754** Related #166744. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166754"
+      },
+      {
+        "title": "**PR #167029**",
+        "description": "**PR #167029**",
+        "href": "https://github.com/openclaw/openclaw/issues/167029"
+      },
+      {
+        "title": "**PR #164829** Related #164786",
+        "description": "**PR #164829** Related #164786. Thanks @ArcueidMP and @obviyus and @mightyx.",
+        "href": "https://github.com/openclaw/openclaw/issues/164829"
+      },
+      {
+        "title": "**PR #167014**",
+        "description": "**PR #167014**",
+        "href": "https://github.com/openclaw/openclaw/issues/167014"
+      },
+      {
+        "title": "**PR #165929** Related #149949",
+        "description": "**PR #165929** Related #149949. Thanks @alkor2000 and @markstones78.",
+        "href": "https://github.com/openclaw/openclaw/issues/165929"
+      },
+      {
+        "title": "**PR #166009**",
+        "description": "**PR #166009** Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/166009"
+      },
+      {
+        "title": "**PR #167079**",
+        "description": "**PR #167079**",
+        "href": "https://github.com/openclaw/openclaw/issues/167079"
+      },
+      {
+        "title": "**PR #167089**",
+        "description": "**PR #167089**",
+        "href": "https://github.com/openclaw/openclaw/issues/167089"
+      },
+      {
+        "title": "**PR #167007** Related #166771",
+        "description": "**PR #167007** Related #166771. Thanks @MoerAI and @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/167007"
+      },
+      {
+        "title": "**PR #166908** Related #138580",
+        "description": "**PR #166908** Related #138580. Thanks @saariuslystoned and @josephbergvinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166908"
+      },
+      {
+        "title": "**PR #167002**",
+        "description": "**PR #167002**",
+        "href": "https://github.com/openclaw/openclaw/issues/167002"
+      },
+      {
+        "title": "**PR #166982**",
+        "description": "**PR #166982**",
+        "href": "https://github.com/openclaw/openclaw/issues/166982"
+      },
+      {
+        "title": "**PR #167092**",
+        "description": "**PR #167092**",
+        "href": "https://github.com/openclaw/openclaw/issues/167092"
+      },
+      {
+        "title": "**PR #167101**",
+        "description": "**PR #167101**",
+        "href": "https://github.com/openclaw/openclaw/issues/167101"
+      },
+      {
+        "title": "**PR #167117**",
+        "description": "**PR #167117** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167117"
+      },
+      {
+        "title": "**PR #167121**",
+        "description": "**PR #167121** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167121"
+      },
+      {
+        "title": "**PR #167049**",
+        "description": "**PR #167049**",
+        "href": "https://github.com/openclaw/openclaw/issues/167049"
+      },
+      {
+        "title": "**PR #167073**",
+        "description": "**PR #167073**",
+        "href": "https://github.com/openclaw/openclaw/issues/167073"
+      },
+      {
+        "title": "**PR #167127**",
+        "description": "**PR #167127**",
+        "href": "https://github.com/openclaw/openclaw/issues/167127"
+      },
+      {
+        "title": "**PR #167041**",
+        "description": "**PR #167041**",
+        "href": "https://github.com/openclaw/openclaw/issues/167041"
+      },
+      {
+        "title": "**PR #167084**",
+        "description": "**PR #167084**",
+        "href": "https://github.com/openclaw/openclaw/issues/167084"
+      },
+      {
+        "title": "**PR #166933**",
+        "description": "**PR #166933**",
+        "href": "https://github.com/openclaw/openclaw/issues/166933"
+      },
+      {
+        "title": "**PR #167158** Related #167129",
+        "description": "**PR #167158** Related #167129. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167158"
+      },
+      {
+        "title": "**PR #167165**",
+        "description": "**PR #167165**",
+        "href": "https://github.com/openclaw/openclaw/issues/167165"
+      },
+      {
+        "title": "**PR #167160**",
+        "description": "**PR #167160** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167160"
+      },
+      {
+        "title": "**PR #167166**",
+        "description": "**PR #167166** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167166"
+      },
+      {
+        "title": "**PR #167168**",
+        "description": "**PR #167168** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167168"
+      },
+      {
+        "title": "**PR #135253**",
+        "description": "**PR #135253** Thanks @izshaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/135253"
+      },
+      {
+        "title": "**PR #167184**",
+        "description": "**PR #167184**",
+        "href": "https://github.com/openclaw/openclaw/issues/167184"
+      },
+      {
+        "title": "**PR #167174**",
+        "description": "**PR #167174**",
+        "href": "https://github.com/openclaw/openclaw/issues/167174"
+      },
+      {
+        "title": "**PR #167178**",
+        "description": "**PR #167178** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167178"
+      },
+      {
+        "title": "**PR #158000**",
+        "description": "**PR #158000** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/158000"
+      },
+      {
+        "title": "**PR #167180** Related #167175",
+        "description": "**PR #167180** Related #167175. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167180"
+      },
+      {
+        "title": "**PR #167106** Related #166647",
+        "description": "**PR #167106** Related #166647. Thanks @A1fred-AI.",
+        "href": "https://github.com/openclaw/openclaw/issues/167106"
+      },
+      {
+        "title": "**PR #167125**",
+        "description": "**PR #167125** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167125"
+      },
+      {
+        "title": "**PR #167189**",
+        "description": "**PR #167189**",
+        "href": "https://github.com/openclaw/openclaw/issues/167189"
+      },
+      {
+        "title": "**PR #167185**",
+        "description": "**PR #167185** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167185"
+      },
+      {
+        "title": "**PR #167186**",
+        "description": "**PR #167186**",
+        "href": "https://github.com/openclaw/openclaw/issues/167186"
+      },
+      {
+        "title": "**PR #167187**",
+        "description": "**PR #167187** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167187"
+      },
+      {
+        "title": "**PR #167188** Related #167119",
+        "description": "**PR #167188** Related #167119.",
+        "href": "https://github.com/openclaw/openclaw/issues/167188"
+      },
+      {
+        "title": "**PR #167054**",
+        "description": "**PR #167054** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167054"
+      },
+      {
+        "title": "**PR #167051**",
+        "description": "**PR #167051**",
+        "href": "https://github.com/openclaw/openclaw/issues/167051"
+      },
+      {
+        "title": "**PR #167195**",
+        "description": "**PR #167195** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167195"
+      },
+      {
+        "title": "**PR #167193** Related #167192",
+        "description": "**PR #167193** Related #167192. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167193"
+      },
+      {
+        "title": "**PR #167159**",
+        "description": "**PR #167159**",
+        "href": "https://github.com/openclaw/openclaw/issues/167159"
+      },
+      {
+        "title": "**PR #167169** Related #167134",
+        "description": "**PR #167169** Related #167134. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167169"
+      },
+      {
+        "title": "**PR #167163** Related #167130",
+        "description": "**PR #167163** Related #167130. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167163"
+      },
+      {
+        "title": "**PR #167205**",
+        "description": "**PR #167205**",
+        "href": "https://github.com/openclaw/openclaw/issues/167205"
+      },
+      {
+        "title": "**PR #167218** Related #167207",
+        "description": "**PR #167218** Related #167207. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167218"
+      },
+      {
+        "title": "**PR #167190**",
+        "description": "**PR #167190** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167190"
+      },
+      {
+        "title": "**PR #167060**",
+        "description": "**PR #167060**",
+        "href": "https://github.com/openclaw/openclaw/issues/167060"
+      },
+      {
+        "title": "**PR #167227**",
+        "description": "**PR #167227**",
+        "href": "https://github.com/openclaw/openclaw/issues/167227"
+      },
+      {
+        "title": "**PR #154175**",
+        "description": "**PR #154175** Thanks @Grynn.",
+        "href": "https://github.com/openclaw/openclaw/issues/154175"
+      },
+      {
+        "title": "**PR #166988**",
+        "description": "**PR #166988**",
+        "href": "https://github.com/openclaw/openclaw/issues/166988"
+      },
+      {
+        "title": "**PR #167097**",
+        "description": "**PR #167097** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167097"
+      },
+      {
+        "title": "**PR #167196**",
+        "description": "**PR #167196**",
+        "href": "https://github.com/openclaw/openclaw/issues/167196"
+      },
+      {
+        "title": "**PR #167171**",
+        "description": "**PR #167171**",
+        "href": "https://github.com/openclaw/openclaw/issues/167171"
+      },
+      {
+        "title": "**PR #167120**",
+        "description": "**PR #167120** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167120"
+      },
+      {
+        "title": "**PR #167235**",
+        "description": "**PR #167235**",
+        "href": "https://github.com/openclaw/openclaw/issues/167235"
+      },
+      {
+        "title": "**PR #167203**",
+        "description": "**PR #167203**",
+        "href": "https://github.com/openclaw/openclaw/issues/167203"
+      },
+      {
+        "title": "**PR #167236**",
+        "description": "**PR #167236**",
+        "href": "https://github.com/openclaw/openclaw/issues/167236"
+      },
+      {
+        "title": "**PR #167220**",
+        "description": "**PR #167220** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167220"
+      },
+      {
+        "title": "**PR #167230**",
+        "description": "**PR #167230** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167230"
+      },
+      {
+        "title": "**PR #167232**",
+        "description": "**PR #167232** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/167232"
+      },
+      {
+        "title": "**PR #167116**",
+        "description": "**PR #167116** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167116"
+      },
+      {
+        "title": "**PR #158695**",
+        "description": "**PR #158695** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/158695"
+      },
+      {
+        "title": "**PR #158694**",
+        "description": "**PR #158694** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/158694"
+      },
+      {
+        "title": "**PR #167118**",
+        "description": "**PR #167118** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167118"
+      },
+      {
+        "title": "**PR #166359**",
+        "description": "**PR #166359** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/166359"
+      },
+      {
+        "title": "**PR #167255**",
+        "description": "**PR #167255**",
+        "href": "https://github.com/openclaw/openclaw/issues/167255"
+      },
+      {
+        "title": "**PR #167240**",
+        "description": "**PR #167240**",
+        "href": "https://github.com/openclaw/openclaw/issues/167240"
+      },
+      {
+        "title": "**PR #167248**",
+        "description": "**PR #167248**",
+        "href": "https://github.com/openclaw/openclaw/issues/167248"
+      },
+      {
+        "title": "**PR #167264** Related #48786",
+        "description": "**PR #167264** Related #48786. Thanks @Leon-SK668 and @Takhoffman and @Raven-wy.",
+        "href": "https://github.com/openclaw/openclaw/issues/167264"
+      },
+      {
+        "title": "**PR #165201**",
+        "description": "**PR #165201** Thanks @vyctorbrzezowski and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/165201"
+      },
+      {
+        "title": "**PR #167274**",
+        "description": "**PR #167274** Thanks @VACInc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167274"
+      },
+      {
+        "title": "**PR #167257**",
+        "description": "**PR #167257**",
+        "href": "https://github.com/openclaw/openclaw/issues/167257"
+      },
+      {
+        "title": "**PR #167128**",
+        "description": "**PR #167128** Thanks @tianhaotian.",
+        "href": "https://github.com/openclaw/openclaw/issues/167128"
+      },
+      {
+        "title": "**PR #167289**",
+        "description": "**PR #167289**",
+        "href": "https://github.com/openclaw/openclaw/issues/167289"
+      },
+      {
+        "title": "**PR #155799**",
+        "description": "**PR #155799** Thanks @SunnyShu0925.",
+        "href": "https://github.com/openclaw/openclaw/issues/155799"
+      },
+      {
+        "title": "**PR #165310** Related #165162",
+        "description": "**PR #165310** Related #165162. Thanks @Linux2010 and @automaton1379.",
+        "href": "https://github.com/openclaw/openclaw/issues/165310"
+      },
+      {
+        "title": "**PR #155855**",
+        "description": "**PR #155855** Thanks @SunnyShu0925 and @altaywtf.",
+        "href": "https://github.com/openclaw/openclaw/issues/155855"
+      },
+      {
+        "title": "**PR #162813**",
+        "description": "**PR #162813** Thanks @SunnyShu0925.",
+        "href": "https://github.com/openclaw/openclaw/issues/162813"
+      },
+      {
+        "title": "**PR #166325**",
+        "description": "**PR #166325** Thanks @vyctorbrzezowski and @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166325"
+      },
+      {
+        "title": "**PR #167295**",
+        "description": "**PR #167295**",
+        "href": "https://github.com/openclaw/openclaw/issues/167295"
+      },
+      {
+        "title": "**PR #167300**",
+        "description": "**PR #167300**",
+        "href": "https://github.com/openclaw/openclaw/issues/167300"
+      },
+      {
+        "title": "**PR #167301**",
+        "description": "**PR #167301**",
+        "href": "https://github.com/openclaw/openclaw/issues/167301"
+      },
+      {
+        "title": "**PR #167307**",
+        "description": "**PR #167307**",
+        "href": "https://github.com/openclaw/openclaw/issues/167307"
+      },
+      {
+        "title": "**PR #167286** Related #167269",
+        "description": "**PR #167286** Related #167269. Thanks @obviyus and @rclarke0.",
+        "href": "https://github.com/openclaw/openclaw/issues/167286"
+      },
+      {
+        "title": "**PR #167303**",
+        "description": "**PR #167303**",
+        "href": "https://github.com/openclaw/openclaw/issues/167303"
+      },
+      {
+        "title": "**PR #164625**",
+        "description": "**PR #164625** Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/164625"
+      },
+      {
+        "title": "**PR #166669**",
+        "description": "**PR #166669** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/166669"
+      },
+      {
+        "title": "**PR #165927**",
+        "description": "**PR #165927** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/165927"
+      },
+      {
+        "title": "**PR #167319**",
+        "description": "**PR #167319** Thanks @hannesrudolph.",
+        "href": "https://github.com/openclaw/openclaw/issues/167319"
+      },
+      {
+        "title": "**PR #167288**",
+        "description": "**PR #167288**",
+        "href": "https://github.com/openclaw/openclaw/issues/167288"
+      },
+      {
+        "title": "**PR #167324**",
+        "description": "**PR #167324**",
+        "href": "https://github.com/openclaw/openclaw/issues/167324"
+      },
+      {
+        "title": "**PR #167058** Related #165786",
+        "description": "**PR #167058** Related #165786. Thanks @obviyus and @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/167058"
+      },
+      {
+        "title": "**PR #167308**",
+        "description": "**PR #167308**",
+        "href": "https://github.com/openclaw/openclaw/issues/167308"
+      },
+      {
+        "title": "**PR #167322**",
+        "description": "**PR #167322**",
+        "href": "https://github.com/openclaw/openclaw/issues/167322"
+      },
+      {
+        "title": "**PR #167323**",
+        "description": "**PR #167323**",
+        "href": "https://github.com/openclaw/openclaw/issues/167323"
+      },
+      {
+        "title": "**PR #166298** Related #166297",
+        "description": "**PR #166298** Related #166297. Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/166298"
+      },
+      {
+        "title": "**PR #167325**",
+        "description": "**PR #167325**",
+        "href": "https://github.com/openclaw/openclaw/issues/167325"
+      },
+      {
+        "title": "**PR #167329**",
+        "description": "**PR #167329**",
+        "href": "https://github.com/openclaw/openclaw/issues/167329"
+      },
+      {
+        "title": "**PR #166710** Related #166697",
+        "description": "**PR #166710** Related #166697. Thanks @wsk19831112-web and @ing650423.",
+        "href": "https://github.com/openclaw/openclaw/issues/166710"
+      },
+      {
+        "title": "**PR #167333**",
+        "description": "**PR #167333**",
+        "href": "https://github.com/openclaw/openclaw/issues/167333"
+      },
+      {
+        "title": "**PR #166880** Related #166859",
+        "description": "**PR #166880** Related #166859. Thanks @obviyus and @notmnp.",
+        "href": "https://github.com/openclaw/openclaw/issues/166880"
+      },
+      {
+        "title": "**PR #167335**",
+        "description": "**PR #167335**",
+        "href": "https://github.com/openclaw/openclaw/issues/167335"
+      },
+      {
+        "title": "**PR #166857**",
+        "description": "**PR #166857**",
+        "href": "https://github.com/openclaw/openclaw/issues/166857"
+      },
+      {
+        "title": "**PR #167331**",
+        "description": "**PR #167331** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167331"
+      },
+      {
+        "title": "**PR #167338**",
+        "description": "**PR #167338** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167338"
+      },
+      {
+        "title": "**PR #161068**",
+        "description": "**PR #161068**",
+        "href": "https://github.com/openclaw/openclaw/issues/161068"
+      },
+      {
+        "title": "**PR #167075**",
+        "description": "**PR #167075** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167075"
+      },
+      {
+        "title": "**PR #167302**",
+        "description": "**PR #167302** Thanks @shanselman.",
+        "href": "https://github.com/openclaw/openclaw/issues/167302"
+      },
+      {
+        "title": "**PR #167334**",
+        "description": "**PR #167334**",
+        "href": "https://github.com/openclaw/openclaw/issues/167334"
+      },
+      {
+        "title": "**PR #167254**",
+        "description": "**PR #167254** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167254"
+      },
+      {
+        "title": "**PR #167348**",
+        "description": "**PR #167348**",
+        "href": "https://github.com/openclaw/openclaw/issues/167348"
+      },
+      {
+        "title": "**PR #167239**",
+        "description": "**PR #167239**",
+        "href": "https://github.com/openclaw/openclaw/issues/167239"
+      },
+      {
+        "title": "**PR #167268**",
+        "description": "**PR #167268**",
+        "href": "https://github.com/openclaw/openclaw/issues/167268"
+      },
+      {
+        "title": "**PR #167352**",
+        "description": "**PR #167352**",
+        "href": "https://github.com/openclaw/openclaw/issues/167352"
+      },
+      {
+        "title": "**PR #167355**",
+        "description": "**PR #167355**",
+        "href": "https://github.com/openclaw/openclaw/issues/167355"
+      },
+      {
+        "title": "**PR #167357**",
+        "description": "**PR #167357** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167357"
+      },
+      {
+        "title": "**PR #167332**",
+        "description": "**PR #167332** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167332"
+      },
+      {
+        "title": "**PR #167070**",
+        "description": "**PR #167070**",
+        "href": "https://github.com/openclaw/openclaw/issues/167070"
+      },
+      {
+        "title": "**PR #167359**",
+        "description": "**PR #167359** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167359"
+      },
+      {
+        "title": "**PR #167086**",
+        "description": "**PR #167086**",
+        "href": "https://github.com/openclaw/openclaw/issues/167086"
+      },
+      {
+        "title": "**PR #167162**",
+        "description": "**PR #167162** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167162"
+      },
+      {
+        "title": "**PR #152705** Related #152535",
+        "description": "**PR #152705** Related #152535. Thanks @ZengWen-DT and @alfredjbclaw.",
+        "href": "https://github.com/openclaw/openclaw/issues/152705"
+      },
+      {
+        "title": "**PR #167363**",
+        "description": "**PR #167363**",
+        "href": "https://github.com/openclaw/openclaw/issues/167363"
+      },
+      {
+        "title": "**PR #167001**",
+        "description": "**PR #167001**",
+        "href": "https://github.com/openclaw/openclaw/issues/167001"
+      },
+      {
+        "title": "**PR #164372** Related #162907",
+        "description": "**PR #164372** Related #162907. Thanks @SunnyShu0925 and @samiralibabic.",
+        "href": "https://github.com/openclaw/openclaw/issues/164372"
+      },
+      {
+        "title": "**PR #166795**",
+        "description": "**PR #166795** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/166795"
+      },
+      {
+        "title": "**PR #167036**",
+        "description": "**PR #167036**",
+        "href": "https://github.com/openclaw/openclaw/issues/167036"
+      },
+      {
+        "title": "**PR #163587**",
+        "description": "**PR #163587**",
+        "href": "https://github.com/openclaw/openclaw/issues/163587"
+      },
+      {
+        "title": "**PR #167367**",
+        "description": "**PR #167367**",
+        "href": "https://github.com/openclaw/openclaw/issues/167367"
+      },
+      {
+        "title": "**PR #167372**",
+        "description": "**PR #167372**",
+        "href": "https://github.com/openclaw/openclaw/issues/167372"
+      },
+      {
+        "title": "**PR #166183**",
+        "description": "**PR #166183**",
+        "href": "https://github.com/openclaw/openclaw/issues/166183"
+      },
+      {
+        "title": "**PR #165473**",
+        "description": "**PR #165473** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/165473"
+      },
+      {
+        "title": "**PR #167082**",
+        "description": "**PR #167082** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167082"
+      },
+      {
+        "title": "**PR #167126**",
+        "description": "**PR #167126** Thanks @holgergruenhagen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167126"
+      },
+      {
+        "title": "**PR #167380**",
+        "description": "**PR #167380**",
+        "href": "https://github.com/openclaw/openclaw/issues/167380"
+      },
+      {
+        "title": "**PR #167361**",
+        "description": "**PR #167361** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/167361"
+      },
+      {
+        "title": "**PR #167384**",
+        "description": "**PR #167384**",
+        "href": "https://github.com/openclaw/openclaw/issues/167384"
+      },
+      {
+        "title": "**PR #167115**",
+        "description": "**PR #167115**",
+        "href": "https://github.com/openclaw/openclaw/issues/167115"
+      },
+      {
+        "title": "**PR #167284** Related #147387",
+        "description": "**PR #167284** Related #147387. Thanks @Marvinthebored and @Peetiegonzalez and @oywino.",
+        "href": "https://github.com/openclaw/openclaw/issues/167284"
+      },
+      {
+        "title": "**PR #167370**",
+        "description": "**PR #167370** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167370"
+      },
+      {
+        "title": "**PR #166995**",
+        "description": "**PR #166995**",
+        "href": "https://github.com/openclaw/openclaw/issues/166995"
+      },
+      {
+        "title": "**PR #167407**",
+        "description": "**PR #167407**",
+        "href": "https://github.com/openclaw/openclaw/issues/167407"
+      },
+      {
+        "title": "**PR #167362**",
+        "description": "**PR #167362** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167362"
+      },
+      {
+        "title": "**PR #161154**",
+        "description": "**PR #161154** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161154"
+      },
+      {
+        "title": "**PR #167404**",
+        "description": "**PR #167404** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167404"
+      },
+      {
+        "title": "**PR #167408**",
+        "description": "**PR #167408**",
+        "href": "https://github.com/openclaw/openclaw/issues/167408"
+      },
+      {
+        "title": "**PR #167396**",
+        "description": "**PR #167396** Thanks @fuller-stack-dev.",
+        "href": "https://github.com/openclaw/openclaw/issues/167396"
+      },
+      {
+        "title": "**PR #167401**",
+        "description": "**PR #167401**",
+        "href": "https://github.com/openclaw/openclaw/issues/167401"
+      },
+      {
+        "title": "**PR #167373**",
+        "description": "**PR #167373**",
+        "href": "https://github.com/openclaw/openclaw/issues/167373"
+      },
+      {
+        "title": "**PR #167387**",
+        "description": "**PR #167387** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167387"
+      },
+      {
+        "title": "**PR #167420**",
+        "description": "**PR #167420**",
+        "href": "https://github.com/openclaw/openclaw/issues/167420"
+      },
+      {
+        "title": "**PR #167330**",
+        "description": "**PR #167330** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167330"
+      },
+      {
+        "title": "**PR #167377**",
+        "description": "**PR #167377** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167377"
+      },
+      {
+        "title": "**PR #166703**",
+        "description": "**PR #166703**",
+        "href": "https://github.com/openclaw/openclaw/issues/166703"
+      },
+      {
+        "title": "**PR #167358**",
+        "description": "**PR #167358** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167358"
+      },
+      {
+        "title": "**PR #167400**",
+        "description": "**PR #167400** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167400"
+      },
+      {
+        "title": "**PR #167375**",
+        "description": "**PR #167375** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/167375"
+      },
+      {
+        "title": "**PR #167434**",
+        "description": "**PR #167434**",
+        "href": "https://github.com/openclaw/openclaw/issues/167434"
+      },
+      {
+        "title": "**PR #167433**",
+        "description": "**PR #167433** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167433"
+      },
+      {
+        "title": "**PR #67005**",
+        "description": "**PR #67005** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/67005"
+      },
+      {
+        "title": "**PR #167442**",
+        "description": "**PR #167442**",
+        "href": "https://github.com/openclaw/openclaw/issues/167442"
+      },
+      {
+        "title": "**PR #167446**",
+        "description": "**PR #167446**",
+        "href": "https://github.com/openclaw/openclaw/issues/167446"
+      },
+      {
+        "title": "**PR #167438**",
+        "description": "**PR #167438** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167438"
+      },
+      {
+        "title": "**PR #167444**",
+        "description": "**PR #167444** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167444"
+      },
+      {
+        "title": "**PR #167426**",
+        "description": "**PR #167426**",
+        "href": "https://github.com/openclaw/openclaw/issues/167426"
+      },
+      {
+        "title": "**PR #167447**",
+        "description": "**PR #167447**",
+        "href": "https://github.com/openclaw/openclaw/issues/167447"
+      },
+      {
+        "title": "**PR #167453**",
+        "description": "**PR #167453**",
+        "href": "https://github.com/openclaw/openclaw/issues/167453"
+      },
+      {
+        "title": "**PR #167440**",
+        "description": "**PR #167440** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167440"
+      },
+      {
+        "title": "**PR #167454**",
+        "description": "**PR #167454**",
+        "href": "https://github.com/openclaw/openclaw/issues/167454"
+      },
+      {
+        "title": "**PR #145776** Related #145445",
+        "description": "**PR #145776** Related #145445. Thanks @tianhaotian and @Leon-SK668 and @rmyers64.",
+        "href": "https://github.com/openclaw/openclaw/issues/145776"
+      },
+      {
+        "title": "**PR #167458**",
+        "description": "**PR #167458** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167458"
+      },
+      {
+        "title": "**PR #167450**",
+        "description": "**PR #167450**",
+        "href": "https://github.com/openclaw/openclaw/issues/167450"
+      },
+      {
+        "title": "**PR #167449**",
+        "description": "**PR #167449**",
+        "href": "https://github.com/openclaw/openclaw/issues/167449"
+      },
+      {
+        "title": "**PR #166925**",
+        "description": "**PR #166925**",
+        "href": "https://github.com/openclaw/openclaw/issues/166925"
+      },
+      {
+        "title": "**PR #167291**",
+        "description": "**PR #167291**",
+        "href": "https://github.com/openclaw/openclaw/issues/167291"
+      },
+      {
+        "title": "**PR #167468**",
+        "description": "**PR #167468**",
+        "href": "https://github.com/openclaw/openclaw/issues/167468"
+      },
+      {
+        "title": "**PR #167046**",
+        "description": "**PR #167046**",
+        "href": "https://github.com/openclaw/openclaw/issues/167046"
+      },
+      {
+        "title": "**PR #167464**",
+        "description": "**PR #167464**",
+        "href": "https://github.com/openclaw/openclaw/issues/167464"
+      },
+      {
+        "title": "**PR #160013** Related #159985",
+        "description": "**PR #160013** Related #159985. Thanks @LiuwqGit and @obviyus and @elandesberg.",
+        "href": "https://github.com/openclaw/openclaw/issues/160013"
+      },
+      {
+        "title": "**PR #167427** Related #167346",
+        "description": "**PR #167427** Related #167346. Thanks @Leon-SK668 and @obviyus and @mightyx.",
+        "href": "https://github.com/openclaw/openclaw/issues/167427"
+      },
+      {
+        "title": "**PR #167478**",
+        "description": "**PR #167478**",
+        "href": "https://github.com/openclaw/openclaw/issues/167478"
+      },
+      {
+        "title": "**PR #167483**",
+        "description": "**PR #167483**",
+        "href": "https://github.com/openclaw/openclaw/issues/167483"
+      },
+      {
+        "title": "**PR #162901**",
+        "description": "**PR #162901** Thanks @scotthuang.",
+        "href": "https://github.com/openclaw/openclaw/issues/162901"
+      },
+      {
+        "title": "**PR #160604** Related #160441",
+        "description": "**PR #160604** Related #160441. Thanks @sxh313 and @obviyus and @Lian-Hu-Agent.",
+        "href": "https://github.com/openclaw/openclaw/issues/160604"
+      },
+      {
+        "title": "**PR #167486**",
+        "description": "**PR #167486**",
+        "href": "https://github.com/openclaw/openclaw/issues/167486"
+      },
+      {
+        "title": "**PR #167493**",
+        "description": "**PR #167493**",
+        "href": "https://github.com/openclaw/openclaw/issues/167493"
+      },
+      {
+        "title": "**PR #167482**",
+        "description": "**PR #167482**",
+        "href": "https://github.com/openclaw/openclaw/issues/167482"
+      },
+      {
+        "title": "**PR #167194**",
+        "description": "**PR #167194**",
+        "href": "https://github.com/openclaw/openclaw/issues/167194"
+      },
+      {
+        "title": "**PR #167460**",
+        "description": "**PR #167460** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167460"
+      },
+      {
+        "title": "**PR #167507**",
+        "description": "**PR #167507**",
+        "href": "https://github.com/openclaw/openclaw/issues/167507"
+      },
+      {
+        "title": "**PR #167509** Related #167414",
+        "description": "**PR #167509** Related #167414. Thanks @GitHoubi.",
+        "href": "https://github.com/openclaw/openclaw/issues/167509"
+      },
+      {
+        "title": "**PR #167513**",
+        "description": "**PR #167513** Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/167513"
+      },
+      {
+        "title": "**PR #166966**",
+        "description": "**PR #166966**",
+        "href": "https://github.com/openclaw/openclaw/issues/166966"
+      },
+      {
+        "title": "**PR #167473**",
+        "description": "**PR #167473**",
+        "href": "https://github.com/openclaw/openclaw/issues/167473"
+      },
+      {
+        "title": "**PR #167113**",
+        "description": "**PR #167113**",
+        "href": "https://github.com/openclaw/openclaw/issues/167113"
+      },
+      {
+        "title": "**PR #167278**",
+        "description": "**PR #167278**",
+        "href": "https://github.com/openclaw/openclaw/issues/167278"
+      },
+      {
+        "title": "**PR #167505** Related #165460",
+        "description": "**PR #167505** Related #165460. Thanks @jaikharbanda.",
+        "href": "https://github.com/openclaw/openclaw/issues/167505"
+      },
+      {
+        "title": "**PR #167485** Related #167382",
+        "description": "**PR #167485** Related #167382. Thanks @charlesBerg-ux.",
+        "href": "https://github.com/openclaw/openclaw/issues/167485"
+      },
+      {
+        "title": "**PR #167443**",
+        "description": "**PR #167443**",
+        "href": "https://github.com/openclaw/openclaw/issues/167443"
+      },
+      {
+        "title": "**PR #167479**",
+        "description": "**PR #167479**",
+        "href": "https://github.com/openclaw/openclaw/issues/167479"
+      },
+      {
+        "title": "**PR #167263**",
+        "description": "**PR #167263** Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/167263"
+      },
+      {
+        "title": "**PR #167523**",
+        "description": "**PR #167523**",
+        "href": "https://github.com/openclaw/openclaw/issues/167523"
+      },
+      {
+        "title": "**PR #160047**",
+        "description": "**PR #160047** Thanks @Irish-Joseph and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/160047"
+      },
+      {
+        "title": "**PR #167504**",
+        "description": "**PR #167504**",
+        "href": "https://github.com/openclaw/openclaw/issues/167504"
+      },
+      {
+        "title": "**PR #163356**",
+        "description": "**PR #163356** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/163356"
+      },
+      {
+        "title": "**PR #163357**",
+        "description": "**PR #163357** Thanks @joshavant.",
+        "href": "https://github.com/openclaw/openclaw/issues/163357"
+      },
+      {
+        "title": "**PR #165031** Related #164977",
+        "description": "**PR #165031** Related #164977. Thanks @jayzhou2309 and @ndakota79.",
+        "href": "https://github.com/openclaw/openclaw/issues/165031"
+      },
+      {
+        "title": "**PR #167463**",
+        "description": "**PR #167463** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167463"
+      },
+      {
+        "title": "**PR #28827** Related #28762",
+        "description": "**PR #28827** Related #28762. Thanks @Kansodata and @obviyus and @autoeverything.",
+        "href": "https://github.com/openclaw/openclaw/issues/28827"
+      },
+      {
+        "title": "**PR #167462**",
+        "description": "**PR #167462** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167462"
+      },
+      {
+        "title": "**PR #162563**",
+        "description": "**PR #162563** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162563"
+      },
+      {
+        "title": "**PR #159037**",
+        "description": "**PR #159037** Thanks @YangManBOBO and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/159037"
+      },
+      {
+        "title": "**PR #167526**",
+        "description": "**PR #167526**",
+        "href": "https://github.com/openclaw/openclaw/issues/167526"
+      },
+      {
+        "title": "**PR #166804**",
+        "description": "**PR #166804**",
+        "href": "https://github.com/openclaw/openclaw/issues/166804"
+      },
+      {
+        "title": "**PR #167532**",
+        "description": "**PR #167532**",
+        "href": "https://github.com/openclaw/openclaw/issues/167532"
+      },
+      {
+        "title": "**PR #167191**",
+        "description": "**PR #167191** Thanks @ly85206559 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167191"
+      },
+      {
+        "title": "**PR #167484**",
+        "description": "**PR #167484**",
+        "href": "https://github.com/openclaw/openclaw/issues/167484"
+      },
+      {
+        "title": "**PR #166067**",
+        "description": "**PR #166067** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/166067"
+      },
+      {
+        "title": "**PR #167124** Related #167123",
+        "description": "**PR #167124** Related #167123. Thanks @xyrolle and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167124"
+      },
+      {
+        "title": "**PR #167412**",
+        "description": "**PR #167412** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167412"
+      },
+      {
+        "title": "**PR #167520**",
+        "description": "**PR #167520**",
+        "href": "https://github.com/openclaw/openclaw/issues/167520"
+      },
+      {
+        "title": "**PR #167065**",
+        "description": "**PR #167065** Thanks @hugenshen and @cursoragent and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167065"
+      },
+      {
+        "title": "**PR #167542**",
+        "description": "**PR #167542**",
+        "href": "https://github.com/openclaw/openclaw/issues/167542"
+      },
+      {
+        "title": "**PR #167244**",
+        "description": "**PR #167244** Thanks @Leon-SK668 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167244"
+      },
+      {
+        "title": "**PR #167564**",
+        "description": "**PR #167564**",
+        "href": "https://github.com/openclaw/openclaw/issues/167564"
+      },
+      {
+        "title": "**PR #167552**",
+        "description": "**PR #167552**",
+        "href": "https://github.com/openclaw/openclaw/issues/167552"
+      },
+      {
+        "title": "**PR #167515**",
+        "description": "**PR #167515**",
+        "href": "https://github.com/openclaw/openclaw/issues/167515"
+      },
+      {
+        "title": "**PR #167238**",
+        "description": "**PR #167238**",
+        "href": "https://github.com/openclaw/openclaw/issues/167238"
+      },
+      {
+        "title": "**PR #167554**",
+        "description": "**PR #167554**",
+        "href": "https://github.com/openclaw/openclaw/issues/167554"
+      },
+      {
+        "title": "**PR #167563**",
+        "description": "**PR #167563**",
+        "href": "https://github.com/openclaw/openclaw/issues/167563"
+      },
+      {
+        "title": "**PR #167476** Related #167231",
+        "description": "**PR #167476** Related #167231. Thanks @valkyriweb.",
+        "href": "https://github.com/openclaw/openclaw/issues/167476"
+      },
+      {
+        "title": "**PR #167576**",
+        "description": "**PR #167576**",
+        "href": "https://github.com/openclaw/openclaw/issues/167576"
+      },
+      {
+        "title": "**PR #167548**",
+        "description": "**PR #167548**",
+        "href": "https://github.com/openclaw/openclaw/issues/167548"
+      },
+      {
+        "title": "**PR #167437**",
+        "description": "**PR #167437** Thanks @Leon-SK668 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167437"
+      },
+      {
+        "title": "**PR #167279** Related #159470",
+        "description": "**PR #167279** Related #159470. Thanks @Leon-SK668 and @obviyus and @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/167279"
+      },
+      {
+        "title": "**PR #167294** Related #159488",
+        "description": "**PR #167294** Related #159488. Thanks @Leon-SK668 and @obviyus and @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/167294"
+      },
+      {
+        "title": "**PR #167533**",
+        "description": "**PR #167533**",
+        "href": "https://github.com/openclaw/openclaw/issues/167533"
+      },
+      {
+        "title": "**PR #167586**",
+        "description": "**PR #167586**",
+        "href": "https://github.com/openclaw/openclaw/issues/167586"
+      },
+      {
+        "title": "**PR #167568**",
+        "description": "**PR #167568**",
+        "href": "https://github.com/openclaw/openclaw/issues/167568"
+      },
+      {
+        "title": "**PR #167234**",
+        "description": "**PR #167234** Thanks @xialonglee and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167234"
+      },
+      {
+        "title": "**PR #167399**",
+        "description": "**PR #167399** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167399"
+      },
+      {
+        "title": "**PR #167558**",
+        "description": "**PR #167558**",
+        "href": "https://github.com/openclaw/openclaw/issues/167558"
+      },
+      {
+        "title": "**PR #167389**",
+        "description": "**PR #167389** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167389"
+      },
+      {
+        "title": "**PR #167391**",
+        "description": "**PR #167391** Thanks @Alix-007 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167391"
+      },
+      {
+        "title": "**PR #167549**",
+        "description": "**PR #167549** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167549"
+      },
+      {
+        "title": "**PR #167590**",
+        "description": "**PR #167590**",
+        "href": "https://github.com/openclaw/openclaw/issues/167590"
+      },
+      {
+        "title": "**PR #167600**",
+        "description": "**PR #167600**",
+        "href": "https://github.com/openclaw/openclaw/issues/167600"
+      },
+      {
+        "title": "**PR #167604**",
+        "description": "**PR #167604**",
+        "href": "https://github.com/openclaw/openclaw/issues/167604"
+      },
+      {
+        "title": "**PR #167599**",
+        "description": "**PR #167599**",
+        "href": "https://github.com/openclaw/openclaw/issues/167599"
+      },
+      {
+        "title": "**PR #167455** Related #162908",
+        "description": "**PR #167455** Related #162908. Thanks @Bartok9 and @samiralibabic.",
+        "href": "https://github.com/openclaw/openclaw/issues/167455"
+      },
+      {
+        "title": "**PR #167252**",
+        "description": "**PR #167252** Thanks @Leon-SK668 and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167252"
+      },
+      {
+        "title": "**PR #167613**",
+        "description": "**PR #167613**",
+        "href": "https://github.com/openclaw/openclaw/issues/167613"
+      },
+      {
+        "title": "**PR #167597**",
+        "description": "**PR #167597**",
+        "href": "https://github.com/openclaw/openclaw/issues/167597"
+      },
+      {
+        "title": "**PR #167535**",
+        "description": "**PR #167535**",
+        "href": "https://github.com/openclaw/openclaw/issues/167535"
+      },
+      {
+        "title": "**PR #167570**",
+        "description": "**PR #167570**",
+        "href": "https://github.com/openclaw/openclaw/issues/167570"
+      },
+      {
+        "title": "**PR #167584**",
+        "description": "**PR #167584**",
+        "href": "https://github.com/openclaw/openclaw/issues/167584"
+      },
+      {
+        "title": "**PR #164478** Related #164475",
+        "description": "**PR #164478** Related #164475. Thanks @ooiuuii.",
+        "href": "https://github.com/openclaw/openclaw/issues/164478"
+      },
+      {
+        "title": "**PR #167618**",
+        "description": "**PR #167618**",
+        "href": "https://github.com/openclaw/openclaw/issues/167618"
+      },
+      {
+        "title": "**PR #167624**",
+        "description": "**PR #167624**",
+        "href": "https://github.com/openclaw/openclaw/issues/167624"
+      },
+      {
+        "title": "**PR #167541**",
+        "description": "**PR #167541**",
+        "href": "https://github.com/openclaw/openclaw/issues/167541"
+      },
+      {
+        "title": "**PR #167608**",
+        "description": "**PR #167608**",
+        "href": "https://github.com/openclaw/openclaw/issues/167608"
+      },
+      {
+        "title": "**PR #167627**",
+        "description": "**PR #167627**",
+        "href": "https://github.com/openclaw/openclaw/issues/167627"
+      },
+      {
+        "title": "**PR #167572**",
+        "description": "**PR #167572**",
+        "href": "https://github.com/openclaw/openclaw/issues/167572"
+      },
+      {
+        "title": "**PR #167631**",
+        "description": "**PR #167631**",
+        "href": "https://github.com/openclaw/openclaw/issues/167631"
+      },
+      {
+        "title": "**PR #167606**",
+        "description": "**PR #167606**",
+        "href": "https://github.com/openclaw/openclaw/issues/167606"
+      },
+      {
+        "title": "**PR #167633**",
+        "description": "**PR #167633** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167633"
+      },
+      {
+        "title": "**PR #166981**",
+        "description": "**PR #166981**",
+        "href": "https://github.com/openclaw/openclaw/issues/166981"
+      },
+      {
+        "title": "**PR #167639**",
+        "description": "**PR #167639** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167639"
+      },
+      {
+        "title": "**PR #167640**",
+        "description": "**PR #167640** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167640"
+      },
+      {
+        "title": "**PR #167601**",
+        "description": "**PR #167601**",
+        "href": "https://github.com/openclaw/openclaw/issues/167601"
+      },
+      {
+        "title": "**PR #167644**",
+        "description": "**PR #167644**",
+        "href": "https://github.com/openclaw/openclaw/issues/167644"
+      },
+      {
+        "title": "**PR #167647** Related #161193",
+        "description": "**PR #167647** Related #161193. Thanks @mbelinky.",
+        "href": "https://github.com/openclaw/openclaw/issues/167647"
+      },
+      {
+        "title": "**PR #167650** Related #134342",
+        "description": "**PR #167650** Related #134342. Thanks @samson1357924.",
+        "href": "https://github.com/openclaw/openclaw/issues/167650"
+      },
+      {
+        "title": "**PR #166151**",
+        "description": "**PR #166151** Thanks @fede-kamel.",
+        "href": "https://github.com/openclaw/openclaw/issues/166151"
+      },
+      {
+        "title": "**PR #167643**",
+        "description": "**PR #167643**",
+        "href": "https://github.com/openclaw/openclaw/issues/167643"
+      },
+      {
+        "title": "**PR #156389** Related #133922",
+        "description": "**PR #156389** Related #133922. Thanks @Olli0103 and @Solvely-Colin and @noamliav.",
+        "href": "https://github.com/openclaw/openclaw/issues/156389"
+      },
+      {
+        "title": "**PR #167641**",
+        "description": "**PR #167641** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167641"
+      },
+      {
+        "title": "**PR #167630**",
+        "description": "**PR #167630**",
+        "href": "https://github.com/openclaw/openclaw/issues/167630"
+      },
+      {
+        "title": "**PR #167366**",
+        "description": "**PR #167366**",
+        "href": "https://github.com/openclaw/openclaw/issues/167366"
+      },
+      {
+        "title": "**PR #167646**",
+        "description": "**PR #167646**",
+        "href": "https://github.com/openclaw/openclaw/issues/167646"
+      },
+      {
+        "title": "**PR #167628**",
+        "description": "**PR #167628**",
+        "href": "https://github.com/openclaw/openclaw/issues/167628"
+      },
+      {
+        "title": "**PR #167411**",
+        "description": "**PR #167411**",
+        "href": "https://github.com/openclaw/openclaw/issues/167411"
+      },
+      {
+        "title": "**PR #167642**",
+        "description": "**PR #167642**",
+        "href": "https://github.com/openclaw/openclaw/issues/167642"
+      },
+      {
+        "title": "**PR #153523** Related #152453",
+        "description": "**PR #153523** Related #152453. Thanks @samuelreyes982 and @dh-js.",
+        "href": "https://github.com/openclaw/openclaw/issues/153523"
+      },
+      {
+        "title": "**PR #167612**",
+        "description": "**PR #167612**",
+        "href": "https://github.com/openclaw/openclaw/issues/167612"
+      },
+      {
+        "title": "**PR #167598**",
+        "description": "**PR #167598**",
+        "href": "https://github.com/openclaw/openclaw/issues/167598"
+      },
+      {
+        "title": "**PR #167677** Related #167675",
+        "description": "**PR #167677** Related #167675. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167677"
+      },
+      {
+        "title": "**PR #167605**",
+        "description": "**PR #167605**",
+        "href": "https://github.com/openclaw/openclaw/issues/167605"
+      },
+      {
+        "title": "**PR #167516**",
+        "description": "**PR #167516**",
+        "href": "https://github.com/openclaw/openclaw/issues/167516"
+      },
+      {
+        "title": "**PR #167674**",
+        "description": "**PR #167674**",
+        "href": "https://github.com/openclaw/openclaw/issues/167674"
+      },
+      {
+        "title": "**PR #167383**",
+        "description": "**PR #167383**",
+        "href": "https://github.com/openclaw/openclaw/issues/167383"
+      },
+      {
+        "title": "**PR #167571**",
+        "description": "**PR #167571**",
+        "href": "https://github.com/openclaw/openclaw/issues/167571"
+      },
+      {
+        "title": "**PR #167666**",
+        "description": "**PR #167666**",
+        "href": "https://github.com/openclaw/openclaw/issues/167666"
+      },
+      {
+        "title": "**PR #167676**",
+        "description": "**PR #167676**",
+        "href": "https://github.com/openclaw/openclaw/issues/167676"
+      },
+      {
+        "title": "**PR #167673**",
+        "description": "**PR #167673**",
+        "href": "https://github.com/openclaw/openclaw/issues/167673"
+      },
+      {
+        "title": "**PR #167547**",
+        "description": "**PR #167547**",
+        "href": "https://github.com/openclaw/openclaw/issues/167547"
+      },
+      {
+        "title": "**PR #167692**",
+        "description": "**PR #167692**",
+        "href": "https://github.com/openclaw/openclaw/issues/167692"
+      },
+      {
+        "title": "**PR #167695**",
+        "description": "**PR #167695**",
+        "href": "https://github.com/openclaw/openclaw/issues/167695"
+      },
+      {
+        "title": "**PR #167683**",
+        "description": "**PR #167683**",
+        "href": "https://github.com/openclaw/openclaw/issues/167683"
+      },
+      {
+        "title": "**PR #167698**",
+        "description": "**PR #167698**",
+        "href": "https://github.com/openclaw/openclaw/issues/167698"
+      },
+      {
+        "title": "**PR #160952**",
+        "description": "**PR #160952**",
+        "href": "https://github.com/openclaw/openclaw/issues/160952"
+      },
+      {
+        "title": "**PR #167682**",
+        "description": "**PR #167682**",
+        "href": "https://github.com/openclaw/openclaw/issues/167682"
+      },
+      {
+        "title": "**PR #167684**",
+        "description": "**PR #167684**",
+        "href": "https://github.com/openclaw/openclaw/issues/167684"
+      },
+      {
+        "title": "**PR #167699**",
+        "description": "**PR #167699**",
+        "href": "https://github.com/openclaw/openclaw/issues/167699"
+      },
+      {
+        "title": "**PR #167524**",
+        "description": "**PR #167524**",
+        "href": "https://github.com/openclaw/openclaw/issues/167524"
+      },
+      {
+        "title": "**PR #167686**",
+        "description": "**PR #167686**",
+        "href": "https://github.com/openclaw/openclaw/issues/167686"
+      },
+      {
+        "title": "**PR #167691**",
+        "description": "**PR #167691**",
+        "href": "https://github.com/openclaw/openclaw/issues/167691"
+      },
+      {
+        "title": "**PR #167711**",
+        "description": "**PR #167711**",
+        "href": "https://github.com/openclaw/openclaw/issues/167711"
+      },
+      {
+        "title": "**PR #167687**",
+        "description": "**PR #167687**",
+        "href": "https://github.com/openclaw/openclaw/issues/167687"
+      },
+      {
+        "title": "**PR #167645**",
+        "description": "**PR #167645**",
+        "href": "https://github.com/openclaw/openclaw/issues/167645"
+      },
+      {
+        "title": "**PR #167629**",
+        "description": "**PR #167629**",
+        "href": "https://github.com/openclaw/openclaw/issues/167629"
+      },
+      {
+        "title": "**PR #167713**",
+        "description": "**PR #167713**",
+        "href": "https://github.com/openclaw/openclaw/issues/167713"
+      },
+      {
+        "title": "**PR #167685**",
+        "description": "**PR #167685**",
+        "href": "https://github.com/openclaw/openclaw/issues/167685"
+      },
+      {
+        "title": "**PR #163372**",
+        "description": "**PR #163372**",
+        "href": "https://github.com/openclaw/openclaw/issues/163372"
+      },
+      {
+        "title": "**PR #160710**",
+        "description": "**PR #160710**",
+        "href": "https://github.com/openclaw/openclaw/issues/160710"
+      },
+      {
+        "title": "**PR #167660**",
+        "description": "**PR #167660**",
+        "href": "https://github.com/openclaw/openclaw/issues/167660"
+      },
+      {
+        "title": "**PR #167635**",
+        "description": "**PR #167635**",
+        "href": "https://github.com/openclaw/openclaw/issues/167635"
+      },
+      {
+        "title": "**PR #167656**",
+        "description": "**PR #167656**",
+        "href": "https://github.com/openclaw/openclaw/issues/167656"
+      },
+      {
+        "title": "**PR #167723**",
+        "description": "**PR #167723**",
+        "href": "https://github.com/openclaw/openclaw/issues/167723"
+      },
+      {
+        "title": "**PR #167689**",
+        "description": "**PR #167689**",
+        "href": "https://github.com/openclaw/openclaw/issues/167689"
+      },
+      {
+        "title": "**PR #167722**",
+        "description": "**PR #167722**",
+        "href": "https://github.com/openclaw/openclaw/issues/167722"
+      },
+      {
+        "title": "**PR #167690**",
+        "description": "**PR #167690**",
+        "href": "https://github.com/openclaw/openclaw/issues/167690"
+      },
+      {
+        "title": "**PR #167680**",
+        "description": "**PR #167680**",
+        "href": "https://github.com/openclaw/openclaw/issues/167680"
+      },
+      {
+        "title": "**PR #167733**",
+        "description": "**PR #167733**",
+        "href": "https://github.com/openclaw/openclaw/issues/167733"
+      },
+      {
+        "title": "**PR #167734**",
+        "description": "**PR #167734**",
+        "href": "https://github.com/openclaw/openclaw/issues/167734"
+      },
+      {
+        "title": "**PR #167637**",
+        "description": "**PR #167637**",
+        "href": "https://github.com/openclaw/openclaw/issues/167637"
+      },
+      {
+        "title": "**PR #167697**",
+        "description": "**PR #167697**",
+        "href": "https://github.com/openclaw/openclaw/issues/167697"
+      },
+      {
+        "title": "**PR #167750**",
+        "description": "**PR #167750**",
+        "href": "https://github.com/openclaw/openclaw/issues/167750"
+      },
+      {
+        "title": "**PR #167756**",
+        "description": "**PR #167756**",
+        "href": "https://github.com/openclaw/openclaw/issues/167756"
+      },
+      {
+        "title": "**PR #167754**",
+        "description": "**PR #167754**",
+        "href": "https://github.com/openclaw/openclaw/issues/167754"
+      },
+      {
+        "title": "**PR #167759**",
+        "description": "**PR #167759** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167759"
+      },
+      {
+        "title": "**PR #167744**",
+        "description": "**PR #167744**",
+        "href": "https://github.com/openclaw/openclaw/issues/167744"
+      },
+      {
+        "title": "**PR #167757**",
+        "description": "**PR #167757** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167757"
+      },
+      {
+        "title": "**PR #167760**",
+        "description": "**PR #167760**",
+        "href": "https://github.com/openclaw/openclaw/issues/167760"
+      },
+      {
+        "title": "**PR #167578**",
+        "description": "**PR #167578**",
+        "href": "https://github.com/openclaw/openclaw/issues/167578"
+      },
+      {
+        "title": "**PR #167728**",
+        "description": "**PR #167728**",
+        "href": "https://github.com/openclaw/openclaw/issues/167728"
+      },
+      {
+        "title": "**PR #167779**",
+        "description": "**PR #167779**",
+        "href": "https://github.com/openclaw/openclaw/issues/167779"
+      },
+      {
+        "title": "**PR #167775**",
+        "description": "**PR #167775**",
+        "href": "https://github.com/openclaw/openclaw/issues/167775"
+      },
+      {
+        "title": "**PR #167783**",
+        "description": "**PR #167783**",
+        "href": "https://github.com/openclaw/openclaw/issues/167783"
+      },
+      {
+        "title": "**PR #167780**",
+        "description": "**PR #167780**",
+        "href": "https://github.com/openclaw/openclaw/issues/167780"
+      },
+      {
+        "title": "**PR #167794**",
+        "description": "**PR #167794**",
+        "href": "https://github.com/openclaw/openclaw/issues/167794"
+      },
+      {
+        "title": "**PR #167755**",
+        "description": "**PR #167755**",
+        "href": "https://github.com/openclaw/openclaw/issues/167755"
+      },
+      {
+        "title": "**PR #166402** Related #166318",
+        "description": "**PR #166402** Related #166318. Thanks @DonnieFi and @Solvely-Colin.",
+        "href": "https://github.com/openclaw/openclaw/issues/166402"
+      },
+      {
+        "title": "**PR #167802**",
+        "description": "**PR #167802** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/167802"
+      },
+      {
+        "title": "**PR #167662**",
+        "description": "**PR #167662**",
+        "href": "https://github.com/openclaw/openclaw/issues/167662"
+      },
+      {
+        "title": "**PR #167808**",
+        "description": "**PR #167808**",
+        "href": "https://github.com/openclaw/openclaw/issues/167808"
+      },
+      {
+        "title": "**PR #167788**",
+        "description": "**PR #167788**",
+        "href": "https://github.com/openclaw/openclaw/issues/167788"
+      },
+      {
+        "title": "**PR #167813**",
+        "description": "**PR #167813**",
+        "href": "https://github.com/openclaw/openclaw/issues/167813"
+      },
+      {
+        "title": "**PR #167809** Related #167807",
+        "description": "**PR #167809** Related #167807. Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167809"
+      },
+      {
+        "title": "**PR #167819**",
+        "description": "**PR #167819**",
+        "href": "https://github.com/openclaw/openclaw/issues/167819"
+      },
+      {
+        "title": "**PR #167830**",
+        "description": "**PR #167830** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/167830"
+      },
+      {
+        "title": "**PR #167839**",
+        "description": "**PR #167839**",
+        "href": "https://github.com/openclaw/openclaw/issues/167839"
+      },
+      {
+        "title": "**PR #167850**",
+        "description": "**PR #167850** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167850"
+      },
+      {
+        "title": "**PR #167846**",
+        "description": "**PR #167846** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167846"
+      },
+      {
+        "title": "**PR #167853**",
+        "description": "**PR #167853**",
+        "href": "https://github.com/openclaw/openclaw/issues/167853"
+      },
+      {
+        "title": "**PR #167855**",
+        "description": "**PR #167855** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167855"
+      },
+      {
+        "title": "**PR #167621**",
+        "description": "**PR #167621**",
+        "href": "https://github.com/openclaw/openclaw/issues/167621"
+      },
+      {
+        "title": "**PR #167863**",
+        "description": "**PR #167863**",
+        "href": "https://github.com/openclaw/openclaw/issues/167863"
+      },
+      {
+        "title": "**PR #167816**",
+        "description": "**PR #167816** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167816"
+      },
+      {
+        "title": "**PR #166321**",
+        "description": "**PR #166321** Thanks @Marvinthebored and @Solvely-Colin and @Peetiegonzalez.",
+        "href": "https://github.com/openclaw/openclaw/issues/166321"
+      },
+      {
+        "title": "**PR #167681**",
+        "description": "**PR #167681**",
+        "href": "https://github.com/openclaw/openclaw/issues/167681"
+      },
+      {
+        "title": "**PR #167870**",
+        "description": "**PR #167870**",
+        "href": "https://github.com/openclaw/openclaw/issues/167870"
+      },
+      {
+        "title": "**PR #167731**",
+        "description": "**PR #167731**",
+        "href": "https://github.com/openclaw/openclaw/issues/167731"
+      },
+      {
+        "title": "**PR #167705**",
+        "description": "**PR #167705**",
+        "href": "https://github.com/openclaw/openclaw/issues/167705"
+      },
+      {
+        "title": "**PR #167890**",
+        "description": "**PR #167890**",
+        "href": "https://github.com/openclaw/openclaw/issues/167890"
+      },
+      {
+        "title": "**PR #167895**",
+        "description": "**PR #167895** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167895"
+      },
+      {
+        "title": "**PR #167702**",
+        "description": "**PR #167702**",
+        "href": "https://github.com/openclaw/openclaw/issues/167702"
+      },
+      {
+        "title": "**PR #167903**",
+        "description": "**PR #167903**",
+        "href": "https://github.com/openclaw/openclaw/issues/167903"
+      },
+      {
+        "title": "**PR #167901**",
+        "description": "**PR #167901**",
+        "href": "https://github.com/openclaw/openclaw/issues/167901"
+      },
+      {
+        "title": "**PR #167658**",
+        "description": "**PR #167658** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167658"
+      },
+      {
+        "title": "**PR #167906**",
+        "description": "**PR #167906**",
+        "href": "https://github.com/openclaw/openclaw/issues/167906"
+      },
+      {
+        "title": "**PR #166950**",
+        "description": "**PR #166950** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166950"
+      },
+      {
+        "title": "**PR #166942**",
+        "description": "**PR #166942** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166942"
+      },
+      {
+        "title": "**PR #166946**",
+        "description": "**PR #166946** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166946"
+      },
+      {
+        "title": "**PR #167530** Related #167403",
+        "description": "**PR #167530** Related #167403. Thanks @RomneyDa and @guarismo.",
+        "href": "https://github.com/openclaw/openclaw/issues/167530"
+      },
+      {
+        "title": "**PR #167907**",
+        "description": "**PR #167907**",
+        "href": "https://github.com/openclaw/openclaw/issues/167907"
+      },
+      {
+        "title": "**PR #167715**",
+        "description": "**PR #167715**",
+        "href": "https://github.com/openclaw/openclaw/issues/167715"
+      },
+      {
+        "title": "**PR #167721**",
+        "description": "**PR #167721**",
+        "href": "https://github.com/openclaw/openclaw/issues/167721"
+      },
+      {
+        "title": "**PR #167915**",
+        "description": "**PR #167915**",
+        "href": "https://github.com/openclaw/openclaw/issues/167915"
+      },
+      {
+        "title": "**PR #167899**",
+        "description": "**PR #167899**",
+        "href": "https://github.com/openclaw/openclaw/issues/167899"
+      },
+      {
+        "title": "**PR #167918**",
+        "description": "**PR #167918**",
+        "href": "https://github.com/openclaw/openclaw/issues/167918"
+      },
+      {
+        "title": "**PR #167922**",
+        "description": "**PR #167922**",
+        "href": "https://github.com/openclaw/openclaw/issues/167922"
+      },
+      {
+        "title": "**PR #167909**",
+        "description": "**PR #167909**",
+        "href": "https://github.com/openclaw/openclaw/issues/167909"
+      },
+      {
+        "title": "**PR #167821**",
+        "description": "**PR #167821**",
+        "href": "https://github.com/openclaw/openclaw/issues/167821"
+      },
+      {
+        "title": "**PR #167930** Related #167912",
+        "description": "**PR #167930** Related #167912. Thanks @obviyus and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/167930"
+      },
+      {
+        "title": "**PR #167917**",
+        "description": "**PR #167917**",
+        "href": "https://github.com/openclaw/openclaw/issues/167917"
+      },
+      {
+        "title": "**PR #167925**",
+        "description": "**PR #167925**",
+        "href": "https://github.com/openclaw/openclaw/issues/167925"
+      },
+      {
+        "title": "**PR #167936**",
+        "description": "**PR #167936**",
+        "href": "https://github.com/openclaw/openclaw/issues/167936"
+      },
+      {
+        "title": "**PR #167896**",
+        "description": "**PR #167896**",
+        "href": "https://github.com/openclaw/openclaw/issues/167896"
+      },
+      {
+        "title": "**PR #167940**",
+        "description": "**PR #167940** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167940"
+      },
+      {
+        "title": "**PR #103695**",
+        "description": "**PR #103695** Thanks @vincentkoc and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/103695"
+      },
+      {
+        "title": "**PR #167941**",
+        "description": "**PR #167941** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167941"
+      },
+      {
+        "title": "**PR #167875**",
+        "description": "**PR #167875**",
+        "href": "https://github.com/openclaw/openclaw/issues/167875"
+      },
+      {
+        "title": "**PR #167942**",
+        "description": "**PR #167942** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167942"
+      },
+      {
+        "title": "**PR #167949**",
+        "description": "**PR #167949** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167949"
+      },
+      {
+        "title": "**PR #167944**",
+        "description": "**PR #167944**",
+        "href": "https://github.com/openclaw/openclaw/issues/167944"
+      },
+      {
+        "title": "**PR #167926**",
+        "description": "**PR #167926**",
+        "href": "https://github.com/openclaw/openclaw/issues/167926"
+      },
+      {
+        "title": "**PR #167953**",
+        "description": "**PR #167953** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167953"
+      },
+      {
+        "title": "**PR #167958**",
+        "description": "**PR #167958** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167958"
+      },
+      {
+        "title": "**PR #167961**",
+        "description": "**PR #167961**",
+        "href": "https://github.com/openclaw/openclaw/issues/167961"
+      },
+      {
+        "title": "**PR #167932**",
+        "description": "**PR #167932**",
+        "href": "https://github.com/openclaw/openclaw/issues/167932"
+      },
+      {
+        "title": "**PR #167720**",
+        "description": "**PR #167720**",
+        "href": "https://github.com/openclaw/openclaw/issues/167720"
+      },
+      {
+        "title": "**PR #167947**",
+        "description": "**PR #167947**",
+        "href": "https://github.com/openclaw/openclaw/issues/167947"
+      },
+      {
+        "title": "**PR #167954** Related #167923",
+        "description": "**PR #167954** Related #167923. Thanks @obviyus and @NoahDelophont.",
+        "href": "https://github.com/openclaw/openclaw/issues/167954"
+      },
+      {
+        "title": "**PR #167959**",
+        "description": "**PR #167959**",
+        "href": "https://github.com/openclaw/openclaw/issues/167959"
+      },
+      {
+        "title": "**PR #167894**",
+        "description": "**PR #167894**",
+        "href": "https://github.com/openclaw/openclaw/issues/167894"
+      },
+      {
+        "title": "**PR #167971**",
+        "description": "**PR #167971**",
+        "href": "https://github.com/openclaw/openclaw/issues/167971"
+      },
+      {
+        "title": "**PR #159380**",
+        "description": "**PR #159380** Thanks @YangManBOBO.",
+        "href": "https://github.com/openclaw/openclaw/issues/159380"
+      },
+      {
+        "title": "**PR #167556**",
+        "description": "**PR #167556** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167556"
+      },
+      {
+        "title": "**PR #167916**",
+        "description": "**PR #167916** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167916"
+      },
+      {
+        "title": "**PR #163636**",
+        "description": "**PR #163636** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/163636"
+      },
+      {
+        "title": "**PR #152210** Related #152182",
+        "description": "**PR #152210** Related #152182. Thanks @synthalorian and @clanksy-code.",
+        "href": "https://github.com/openclaw/openclaw/issues/152210"
+      },
+      {
+        "title": "**PR #167957**",
+        "description": "**PR #167957** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167957"
+      },
+      {
+        "title": "**PR #161007**",
+        "description": "**PR #161007** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/161007"
+      },
+      {
+        "title": "**PR #162702**",
+        "description": "**PR #162702** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162702"
+      },
+      {
+        "title": "**PR #162772**",
+        "description": "**PR #162772** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/162772"
+      },
+      {
+        "title": "**PR #167987**",
+        "description": "**PR #167987**",
+        "href": "https://github.com/openclaw/openclaw/issues/167987"
+      },
+      {
+        "title": "**PR #167989**",
+        "description": "**PR #167989** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167989"
+      },
+      {
+        "title": "**PR #167968**",
+        "description": "**PR #167968**",
+        "href": "https://github.com/openclaw/openclaw/issues/167968"
+      },
+      {
+        "title": "**PR #167992**",
+        "description": "**PR #167992**",
+        "href": "https://github.com/openclaw/openclaw/issues/167992"
+      },
+      {
+        "title": "**PR #167972**",
+        "description": "**PR #167972**",
+        "href": "https://github.com/openclaw/openclaw/issues/167972"
+      },
+      {
+        "title": "**PR #167502** Related #167500",
+        "description": "**PR #167502** Related #167500. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167502"
+      },
+      {
+        "title": "**PR #167518** Related #167517",
+        "description": "**PR #167518** Related #167517. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167518"
+      },
+      {
+        "title": "**PR #167503** Related #167494",
+        "description": "**PR #167503** Related #167494. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167503"
+      },
+      {
+        "title": "**PR #167977**",
+        "description": "**PR #167977**",
+        "href": "https://github.com/openclaw/openclaw/issues/167977"
+      },
+      {
+        "title": "**PR #167510** Related #167499",
+        "description": "**PR #167510** Related #167499. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167510"
+      },
+      {
+        "title": "**PR #166955**",
+        "description": "**PR #166955** Thanks @jjjhenriksen and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166955"
+      },
+      {
+        "title": "**PR #167993**",
+        "description": "**PR #167993**",
+        "href": "https://github.com/openclaw/openclaw/issues/167993"
+      },
+      {
+        "title": "**PR #159731**",
+        "description": "**PR #159731** Thanks @Yigtwxx.",
+        "href": "https://github.com/openclaw/openclaw/issues/159731"
+      },
+      {
+        "title": "**PR #167975**",
+        "description": "**PR #167975** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167975"
+      },
+      {
+        "title": "**PR #168003**",
+        "description": "**PR #168003**",
+        "href": "https://github.com/openclaw/openclaw/issues/168003"
+      },
+      {
+        "title": "**PR #167970**",
+        "description": "**PR #167970**",
+        "href": "https://github.com/openclaw/openclaw/issues/167970"
+      },
+      {
+        "title": "**PR #167997**",
+        "description": "**PR #167997**",
+        "href": "https://github.com/openclaw/openclaw/issues/167997"
+      },
+      {
+        "title": "**PR #168012**",
+        "description": "**PR #168012** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168012"
+      },
+      {
+        "title": "**PR #168016**",
+        "description": "**PR #168016** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168016"
+      },
+      {
+        "title": "**PR #167995**",
+        "description": "**PR #167995**",
+        "href": "https://github.com/openclaw/openclaw/issues/167995"
+      },
+      {
+        "title": "**PR #167891** Related #144263",
+        "description": "**PR #167891** Related #144263. Thanks @fonoempresa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167891"
+      },
+      {
+        "title": "**PR #168011**",
+        "description": "**PR #168011** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168011"
+      },
+      {
+        "title": "**PR #168001**",
+        "description": "**PR #168001**",
+        "href": "https://github.com/openclaw/openclaw/issues/168001"
+      },
+      {
+        "title": "**PR #167392**",
+        "description": "**PR #167392** Thanks @keshavbotagent.",
+        "href": "https://github.com/openclaw/openclaw/issues/167392"
+      },
+      {
+        "title": "**PR #167998**",
+        "description": "**PR #167998**",
+        "href": "https://github.com/openclaw/openclaw/issues/167998"
+      },
+      {
+        "title": "**PR #168023**",
+        "description": "**PR #168023**",
+        "href": "https://github.com/openclaw/openclaw/issues/168023"
+      },
+      {
+        "title": "**PR #168013**",
+        "description": "**PR #168013**",
+        "href": "https://github.com/openclaw/openclaw/issues/168013"
+      },
+      {
+        "title": "**PR #168024**",
+        "description": "**PR #168024**",
+        "href": "https://github.com/openclaw/openclaw/issues/168024"
+      },
+      {
+        "title": "**PR #166948**",
+        "description": "**PR #166948** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166948"
+      },
+      {
+        "title": "**PR #167963**",
+        "description": "**PR #167963** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/167963"
+      },
+      {
+        "title": "**PR #167282**",
+        "description": "**PR #167282** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167282"
+      },
+      {
+        "title": "**PR #168028**",
+        "description": "**PR #168028**",
+        "href": "https://github.com/openclaw/openclaw/issues/168028"
+      },
+      {
+        "title": "**PR #168032**",
+        "description": "**PR #168032** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168032"
+      },
+      {
+        "title": "**PR #168038**",
+        "description": "**PR #168038**",
+        "href": "https://github.com/openclaw/openclaw/issues/168038"
+      },
+      {
+        "title": "**PR #167952**",
+        "description": "**PR #167952**",
+        "href": "https://github.com/openclaw/openclaw/issues/167952"
+      },
+      {
+        "title": "**PR #168009**",
+        "description": "**PR #168009** Thanks @azuretek.",
+        "href": "https://github.com/openclaw/openclaw/issues/168009"
+      },
+      {
+        "title": "**PR #168027**",
+        "description": "**PR #168027**",
+        "href": "https://github.com/openclaw/openclaw/issues/168027"
+      },
+      {
+        "title": "**PR #168018**",
+        "description": "**PR #168018**",
+        "href": "https://github.com/openclaw/openclaw/issues/168018"
+      },
+      {
+        "title": "**PR #156939**",
+        "description": "**PR #156939** Thanks @QuinsZouls.",
+        "href": "https://github.com/openclaw/openclaw/issues/156939"
+      },
+      {
+        "title": "**PR #168050**",
+        "description": "**PR #168050**",
+        "href": "https://github.com/openclaw/openclaw/issues/168050"
+      },
+      {
+        "title": "**PR #167984** Related #138403",
+        "description": "**PR #167984** Related #138403. Thanks @woshicby.",
+        "href": "https://github.com/openclaw/openclaw/issues/167984"
+      },
+      {
+        "title": "**PR #168060**",
+        "description": "**PR #168060**",
+        "href": "https://github.com/openclaw/openclaw/issues/168060"
+      },
+      {
+        "title": "**PR #168010**",
+        "description": "**PR #168010**",
+        "href": "https://github.com/openclaw/openclaw/issues/168010"
+      },
+      {
+        "title": "**PR #168049**",
+        "description": "**PR #168049**",
+        "href": "https://github.com/openclaw/openclaw/issues/168049"
+      },
+      {
+        "title": "**PR #147374**",
+        "description": "**PR #147374** Thanks @pheidon.",
+        "href": "https://github.com/openclaw/openclaw/issues/147374"
+      },
+      {
+        "title": "**PR #168040**",
+        "description": "**PR #168040**",
+        "href": "https://github.com/openclaw/openclaw/issues/168040"
+      },
+      {
+        "title": "**PR #168035**",
+        "description": "**PR #168035**",
+        "href": "https://github.com/openclaw/openclaw/issues/168035"
+      },
+      {
+        "title": "**PR #168048**",
+        "description": "**PR #168048**",
+        "href": "https://github.com/openclaw/openclaw/issues/168048"
+      },
+      {
+        "title": "**PR #143054** Related #143018",
+        "description": "**PR #143054** Related #143018. Thanks @RileyJJY and @syfvb.",
+        "href": "https://github.com/openclaw/openclaw/issues/143054"
+      },
+      {
+        "title": "**PR #168008**",
+        "description": "**PR #168008**",
+        "href": "https://github.com/openclaw/openclaw/issues/168008"
+      },
+      {
+        "title": "**PR #164409**",
+        "description": "**PR #164409** Thanks @Ayushdevo.",
+        "href": "https://github.com/openclaw/openclaw/issues/164409"
+      },
+      {
+        "title": "**PR #150968**",
+        "description": "**PR #150968** Thanks @Leon-SK668.",
+        "href": "https://github.com/openclaw/openclaw/issues/150968"
+      },
+      {
+        "title": "**PR #168074**",
+        "description": "**PR #168074** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168074"
+      },
+      {
+        "title": "**PR #168025**",
+        "description": "**PR #168025**",
+        "href": "https://github.com/openclaw/openclaw/issues/168025"
+      },
+      {
+        "title": "**PR #167986** Related #167913",
+        "description": "**PR #167986** Related #167913. Thanks @ericcurtin and @obviyus and @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/167986"
+      },
+      {
+        "title": "**PR #168071**",
+        "description": "**PR #168071**",
+        "href": "https://github.com/openclaw/openclaw/issues/168071"
+      },
+      {
+        "title": "**PR #168079**",
+        "description": "**PR #168079**",
+        "href": "https://github.com/openclaw/openclaw/issues/168079"
+      },
+      {
+        "title": "**PR #168067**",
+        "description": "**PR #168067**",
+        "href": "https://github.com/openclaw/openclaw/issues/168067"
+      },
+      {
+        "title": "**PR #167902**",
+        "description": "**PR #167902**",
+        "href": "https://github.com/openclaw/openclaw/issues/167902"
+      },
+      {
+        "title": "**PR #168062**",
+        "description": "**PR #168062** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168062"
+      },
+      {
+        "title": "**PR #168084**",
+        "description": "**PR #168084**",
+        "href": "https://github.com/openclaw/openclaw/issues/168084"
+      },
+      {
+        "title": "**PR #168057**",
+        "description": "**PR #168057**",
+        "href": "https://github.com/openclaw/openclaw/issues/168057"
+      },
+      {
+        "title": "**PR #168073**",
+        "description": "**PR #168073**",
+        "href": "https://github.com/openclaw/openclaw/issues/168073"
+      },
+      {
+        "title": "**PR #168029**",
+        "description": "**PR #168029**",
+        "href": "https://github.com/openclaw/openclaw/issues/168029"
+      },
+      {
+        "title": "**PR #166284**",
+        "description": "**PR #166284** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/166284"
+      },
+      {
+        "title": "**PR #168090**",
+        "description": "**PR #168090**",
+        "href": "https://github.com/openclaw/openclaw/issues/168090"
+      },
+      {
+        "title": "**PR #168006**",
+        "description": "**PR #168006**",
+        "href": "https://github.com/openclaw/openclaw/issues/168006"
+      },
+      {
+        "title": "**PR #168064**",
+        "description": "**PR #168064**",
+        "href": "https://github.com/openclaw/openclaw/issues/168064"
+      },
+      {
+        "title": "**PR #167528** Related #167501",
+        "description": "**PR #167528** Related #167501. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/167528"
+      },
+      {
+        "title": "**PR #168083**",
+        "description": "**PR #168083** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168083"
+      },
+      {
+        "title": "**PR #168102**",
+        "description": "**PR #168102**",
+        "href": "https://github.com/openclaw/openclaw/issues/168102"
+      },
+      {
+        "title": "**PR #168034**",
+        "description": "**PR #168034** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168034"
+      },
+      {
+        "title": "**PR #168106**",
+        "description": "**PR #168106** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168106"
+      },
+      {
+        "title": "**PR #168033**",
+        "description": "**PR #168033** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168033"
+      },
+      {
+        "title": "**PR #168099**",
+        "description": "**PR #168099**",
+        "href": "https://github.com/openclaw/openclaw/issues/168099"
+      },
+      {
+        "title": "**PR #168007**",
+        "description": "**PR #168007**",
+        "href": "https://github.com/openclaw/openclaw/issues/168007"
+      },
+      {
+        "title": "**PR #168058** Related #140932",
+        "description": "**PR #168058** Related #140932. Thanks @polley-mister.",
+        "href": "https://github.com/openclaw/openclaw/issues/168058"
+      },
+      {
+        "title": "**PR #168129**",
+        "description": "**PR #168129**",
+        "href": "https://github.com/openclaw/openclaw/issues/168129"
+      },
+      {
+        "title": "**PR #168078**",
+        "description": "**PR #168078** Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/168078"
+      },
+      {
+        "title": "**PR #150149**",
+        "description": "**PR #150149** Thanks @leapdragon and @krell11.",
+        "href": "https://github.com/openclaw/openclaw/issues/150149"
+      },
+      {
+        "title": "**PR #168065**",
+        "description": "**PR #168065** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168065"
+      },
+      {
+        "title": "**PR #158495**",
+        "description": "**PR #158495** Thanks @giodl73-repo and @giodl73.",
+        "href": "https://github.com/openclaw/openclaw/issues/158495"
+      },
+      {
+        "title": "**PR #168056**",
+        "description": "**PR #168056**",
+        "href": "https://github.com/openclaw/openclaw/issues/168056"
+      },
+      {
+        "title": "**PR #168165**",
+        "description": "**PR #168165** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168165"
+      },
+      {
+        "title": "**PR #168172**",
+        "description": "**PR #168172** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168172"
+      },
+      {
+        "title": "**PR #168182**",
+        "description": "**PR #168182**",
+        "href": "https://github.com/openclaw/openclaw/issues/168182"
+      },
+      {
+        "title": "**PR #168195**",
+        "description": "**PR #168195** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168195"
+      },
+      {
+        "title": "**PR #168103**",
+        "description": "**PR #168103**",
+        "href": "https://github.com/openclaw/openclaw/issues/168103"
+      },
+      {
+        "title": "**PR #168217**",
+        "description": "**PR #168217** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168217"
+      },
+      {
+        "title": "**PR #168230**",
+        "description": "**PR #168230** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168230"
+      },
+      {
+        "title": "**PR #168235**",
+        "description": "**PR #168235** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168235"
+      },
+      {
+        "title": "**PR #168242**",
+        "description": "**PR #168242** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168242"
+      },
+      {
+        "title": "**PR #168234**",
+        "description": "**PR #168234** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168234"
+      },
+      {
+        "title": "**PR #168241**",
+        "description": "**PR #168241** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168241"
+      },
+      {
+        "title": "**PR #168314**",
+        "description": "**PR #168314** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168314"
+      },
+      {
+        "title": "**PR #168313**",
+        "description": "**PR #168313** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168313"
+      },
+      {
+        "title": "**PR #168310**",
+        "description": "**PR #168310** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168310"
+      },
+      {
+        "title": "**PR #168327**",
+        "description": "**PR #168327** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168327"
+      },
+      {
+        "title": "**PR #168594**",
+        "description": "**PR #168594** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168594"
+      },
+      {
+        "title": "**PR #168608**",
+        "description": "**PR #168608** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168608"
+      },
+      {
+        "title": "**PR #168622**",
+        "description": "**PR #168622** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168622"
+      },
+      {
+        "title": "**PR #168740**",
+        "description": "**PR #168740** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168740"
+      },
+      {
+        "title": "**PR #168883**",
+        "description": "**PR #168883** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168883"
+      },
+      {
+        "title": "**PR #169281**",
+        "description": "**PR #169281** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169281"
+      },
+      {
+        "title": "**PR #168605**",
+        "description": "**PR #168605**",
+        "href": "https://github.com/openclaw/openclaw/issues/168605"
+      },
+      {
+        "title": "**PR #168958**",
+        "description": "**PR #168958**",
+        "href": "https://github.com/openclaw/openclaw/issues/168958"
+      },
+      {
+        "title": "**PR #169257**",
+        "description": "**PR #169257** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169257"
+      },
+      {
+        "title": "**PR #169295**",
+        "description": "**PR #169295** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169295"
+      },
+      {
+        "title": "**PR #169457** Related #169134",
+        "description": "**PR #169457** Related #169134. Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/169457"
+      },
+      {
+        "title": "**PR #168150**",
+        "description": "**PR #168150**",
+        "href": "https://github.com/openclaw/openclaw/issues/168150"
+      },
+      {
+        "title": "**PR #168128**",
+        "description": "**PR #168128**",
+        "href": "https://github.com/openclaw/openclaw/issues/168128"
+      },
+      {
+        "title": "**PR #168123**",
+        "description": "**PR #168123**",
+        "href": "https://github.com/openclaw/openclaw/issues/168123"
+      },
+      {
+        "title": "**PR #168248**",
+        "description": "**PR #168248**",
+        "href": "https://github.com/openclaw/openclaw/issues/168248"
+      },
+      {
+        "title": "**PR #168215** Related #167574",
+        "description": "**PR #168215** Related #167574. Thanks @obviyus and @skyzhao1223 and @asikorskiy.",
+        "href": "https://github.com/openclaw/openclaw/issues/168215"
+      },
+      {
+        "title": "**PR #167814** Related #167766",
+        "description": "**PR #167814** Related #167766. Thanks @goutamadwant and @marknilsn.",
+        "href": "https://github.com/openclaw/openclaw/issues/167814"
+      },
+      {
+        "title": "**PR #168273**",
+        "description": "**PR #168273** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168273"
+      },
+      {
+        "title": "**PR #151263** Related #151055",
+        "description": "**PR #151263** Related #151055. Thanks @ruel225 and @Mirksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/151263"
+      },
+      {
+        "title": "**PR #168294**",
+        "description": "**PR #168294**",
+        "href": "https://github.com/openclaw/openclaw/issues/168294"
+      },
+      {
+        "title": "**PR #168354** Related #168160",
+        "description": "**PR #168354** Related #168160. Thanks @609NFT.",
+        "href": "https://github.com/openclaw/openclaw/issues/168354"
+      },
+      {
+        "title": "**PR #168315**",
+        "description": "**PR #168315** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168315"
+      },
+      {
+        "title": "**PR #168051** Related #168015",
+        "description": "**PR #168051** Related #168015. Thanks @ruel225 and @xydigitLybnnnn and @robertoronderosjr.",
+        "href": "https://github.com/openclaw/openclaw/issues/168051"
+      },
+      {
+        "title": "**PR #168330**",
+        "description": "**PR #168330** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168330"
+      },
+      {
+        "title": "**PR #168546** Related #164791",
+        "description": "**PR #168546** Related #164791. Thanks @flanker-stack.",
+        "href": "https://github.com/openclaw/openclaw/issues/168546"
+      },
+      {
+        "title": "**PR #168500** Related #168450",
+        "description": "**PR #168500** Related #168450. Thanks @TYY-2005 and @r3n3x.",
+        "href": "https://github.com/openclaw/openclaw/issues/168500"
+      },
+      {
+        "title": "**PR #158974**",
+        "description": "**PR #158974** Thanks @Shenrui-Ma.",
+        "href": "https://github.com/openclaw/openclaw/issues/158974"
+      },
+      {
+        "title": "**PR #168617**",
+        "description": "**PR #168617** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168617"
+      },
+      {
+        "title": "**PR #168383** Related #168366",
+        "description": "**PR #168383** Related #168366. Thanks @dhruv1220 and @barry-ssb.",
+        "href": "https://github.com/openclaw/openclaw/issues/168383"
+      },
+      {
+        "title": "**PR #168120**",
+        "description": "**PR #168120** Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/168120"
+      },
+      {
+        "title": "**PR #168670** Related #168342",
+        "description": "**PR #168670** Related #168342. Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/168670"
+      },
+      {
+        "title": "**PR #168725**",
+        "description": "**PR #168725**",
+        "href": "https://github.com/openclaw/openclaw/issues/168725"
+      },
+      {
+        "title": "**PR #151127** Related #147420",
+        "description": "**PR #151127** Related #147420. Thanks @ylcn91 and @vovarbv.",
+        "href": "https://github.com/openclaw/openclaw/issues/151127"
+      },
+      {
+        "title": "**PR #142700**",
+        "description": "**PR #142700** Thanks @giodl73-repo and @giodl73.",
+        "href": "https://github.com/openclaw/openclaw/issues/142700"
+      },
+      {
+        "title": "**PR #161980** Related #151622",
+        "description": "**PR #161980** Related #151622. Thanks @Program-123 and @gaojian125.",
+        "href": "https://github.com/openclaw/openclaw/issues/161980"
+      },
+      {
+        "title": "**PR #168930** Related #168748, #168749",
+        "description": "**PR #168930** Related #168748, #168749. Thanks @ezimerman.",
+        "href": "https://github.com/openclaw/openclaw/issues/168930"
+      },
+      {
+        "title": "**PR #168957**",
+        "description": "**PR #168957** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168957"
+      },
+      {
+        "title": "**PR #136677** Related #134354",
+        "description": "**PR #136677** Related #134354. Thanks @harjothkhara and @abacha.",
+        "href": "https://github.com/openclaw/openclaw/issues/136677"
+      },
+      {
+        "title": "**PR #168916** Related #156026",
+        "description": "**PR #168916** Related #156026. Thanks @jalehman.",
+        "href": "https://github.com/openclaw/openclaw/issues/168916"
+      },
+      {
+        "title": "**PR #168977**",
+        "description": "**PR #168977**",
+        "href": "https://github.com/openclaw/openclaw/issues/168977"
+      },
+      {
+        "title": "**PR #169194**",
+        "description": "**PR #169194**",
+        "href": "https://github.com/openclaw/openclaw/issues/169194"
+      },
+      {
+        "title": "**PR #145850**",
+        "description": "**PR #145850** Thanks @RileyJJY.",
+        "href": "https://github.com/openclaw/openclaw/issues/145850"
+      },
+      {
+        "title": "**PR #169303**",
+        "description": "**PR #169303** Thanks @changeroa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169303"
+      },
+      {
+        "title": "**PR #169479**",
+        "description": "**PR #169479** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169479"
+      },
+      {
+        "title": "**PR #168651**",
+        "description": "**PR #168651**",
+        "href": "https://github.com/openclaw/openclaw/issues/168651"
+      },
+      {
+        "title": "**PR #168650**",
+        "description": "**PR #168650**",
+        "href": "https://github.com/openclaw/openclaw/issues/168650"
+      },
+      {
+        "title": "**PR #168044**",
+        "description": "**PR #168044**",
+        "href": "https://github.com/openclaw/openclaw/issues/168044"
+      },
+      {
+        "title": "**PR #168446** Related #168131",
+        "description": "**PR #168446** Related #168131. Thanks @jakeaadams.",
+        "href": "https://github.com/openclaw/openclaw/issues/168446"
+      },
+      {
+        "title": "**PR #168393** Related #168207",
+        "description": "**PR #168393** Related #168207. Thanks @dprev.",
+        "href": "https://github.com/openclaw/openclaw/issues/168393"
+      },
+      {
+        "title": "**PR #160440** Related #160428",
+        "description": "**PR #160440** Related #160428. Thanks @hxy91819.",
+        "href": "https://github.com/openclaw/openclaw/issues/160440"
+      },
+      {
+        "title": "**PR #169102**",
+        "description": "**PR #169102**",
+        "href": "https://github.com/openclaw/openclaw/issues/169102"
+      },
+      {
+        "title": "**PR #169430**",
+        "description": "**PR #169430**",
+        "href": "https://github.com/openclaw/openclaw/issues/169430"
+      },
+      {
+        "title": "**PR #162266**",
+        "description": "**PR #162266** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/162266"
+      },
+      {
+        "title": "**PR #168905**",
+        "description": "**PR #168905**",
+        "href": "https://github.com/openclaw/openclaw/issues/168905"
+      },
+      {
+        "title": "**PR #168587**",
+        "description": "**PR #168587** Thanks @jjjhenriksen.",
+        "href": "https://github.com/openclaw/openclaw/issues/168587"
+      },
+      {
+        "title": "**PR #169265** Related #169264",
+        "description": "**PR #169265** Related #169264. Thanks @SanderHelgesen.",
+        "href": "https://github.com/openclaw/openclaw/issues/169265"
+      },
+      {
+        "title": "**PR #169548** Related #169133",
+        "description": "**PR #169548** Related #169133. Thanks @RomneyDa and @gregb100.",
+        "href": "https://github.com/openclaw/openclaw/issues/169548"
+      },
+      {
+        "title": "**PR #169560** Related #169332",
+        "description": "**PR #169560** Related #169332. Thanks @RomneyDa and @farisoftfry.",
+        "href": "https://github.com/openclaw/openclaw/issues/169560"
+      },
+      {
+        "title": "**PR #169410**",
+        "description": "**PR #169410** Thanks @patrickschiller and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169410"
+      },
+      {
+        "title": "**PR #170046** Related #169050, #169352",
+        "description": "**PR #170046** Related #169050, #169352. Thanks @patrickschiller and @SergeiAug.",
+        "href": "https://github.com/openclaw/openclaw/issues/170046"
+      },
+      {
+        "title": "**PR #170065**",
+        "description": "**PR #170065**",
+        "href": "https://github.com/openclaw/openclaw/issues/170065"
+      },
+      {
+        "title": "**PR #170068** Related #169784",
+        "description": "**PR #170068** Related #169784. Thanks @angeliti999.",
+        "href": "https://github.com/openclaw/openclaw/issues/170068"
+      },
+      {
+        "title": "**PR #164272** Related #164211",
+        "description": "**PR #164272** Related #164211. Thanks @jayzhou2309 and @obviyus and @ajmtrz.",
+        "href": "https://github.com/openclaw/openclaw/issues/164272"
+      },
+      {
+        "title": "**PR #170083**",
+        "description": "**PR #170083** Thanks @brokemac79.",
+        "href": "https://github.com/openclaw/openclaw/issues/170083"
+      },
+      {
+        "title": "**PR #168400**",
+        "description": "**PR #168400** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/168400"
+      },
+      {
+        "title": "**PR #168077**",
+        "description": "**PR #168077**",
+        "href": "https://github.com/openclaw/openclaw/issues/168077"
+      },
+      {
+        "title": "**PR #170043** Related #169764",
+        "description": "**PR #170043** Related #169764. Thanks @ourcoms2018.",
+        "href": "https://github.com/openclaw/openclaw/issues/170043"
+      },
+      {
+        "title": "**PR #169783**",
+        "description": "**PR #169783** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169783"
+      },
+      {
+        "title": "**PR #169759**",
+        "description": "**PR #169759** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169759"
+      },
+      {
+        "title": "**PR #170070** Related #168750",
+        "description": "**PR #170070** Related #168750. Thanks @hannesrudolph and @ezimerman.",
+        "href": "https://github.com/openclaw/openclaw/issues/170070"
+      },
+      {
+        "title": "**PR #170051** Related #169918",
+        "description": "**PR #170051** Related #169918. Thanks @bautrey.",
+        "href": "https://github.com/openclaw/openclaw/issues/170051"
+      },
+      {
+        "title": "**PR #170207**",
+        "description": "**PR #170207**",
+        "href": "https://github.com/openclaw/openclaw/issues/170207"
+      },
+      {
+        "title": "**PR #168361**",
+        "description": "**PR #168361** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168361"
+      },
+      {
+        "title": "**PR #168282**",
+        "description": "**PR #168282**",
+        "href": "https://github.com/openclaw/openclaw/issues/168282"
+      },
+      {
+        "title": "**PR #168232**",
+        "description": "**PR #168232**",
+        "href": "https://github.com/openclaw/openclaw/issues/168232"
+      },
+      {
+        "title": "**PR #168039** Related #150262",
+        "description": "**PR #168039** Related #150262. Thanks @jb-lopez.",
+        "href": "https://github.com/openclaw/openclaw/issues/168039"
+      },
+      {
+        "title": "**PR #168566**",
+        "description": "**PR #168566** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168566"
+      },
+      {
+        "title": "**PR #168291**",
+        "description": "**PR #168291**",
+        "href": "https://github.com/openclaw/openclaw/issues/168291"
+      },
+      {
+        "title": "**PR #169093**",
+        "description": "**PR #169093**",
+        "href": "https://github.com/openclaw/openclaw/issues/169093"
+      },
+      {
+        "title": "**PR #169144**",
+        "description": "**PR #169144**",
+        "href": "https://github.com/openclaw/openclaw/issues/169144"
+      },
+      {
+        "title": "**PR #170162**",
+        "description": "**PR #170162**",
+        "href": "https://github.com/openclaw/openclaw/issues/170162"
+      },
+      {
+        "title": "**PR #170039**",
+        "description": "**PR #170039**",
+        "href": "https://github.com/openclaw/openclaw/issues/170039"
+      },
+      {
+        "title": "**PR #170223**",
+        "description": "**PR #170223**",
+        "href": "https://github.com/openclaw/openclaw/issues/170223"
+      },
+      {
+        "title": "**PR #170161**",
+        "description": "**PR #170161**",
+        "href": "https://github.com/openclaw/openclaw/issues/170161"
+      },
+      {
+        "title": "**PR #169746**",
+        "description": "**PR #169746** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169746"
+      },
+      {
+        "title": "**PR #170181** Related #169737",
+        "description": "**PR #170181** Related #169737. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/170181"
+      },
+      {
+        "title": "**PR #170113**",
+        "description": "**PR #170113**",
+        "href": "https://github.com/openclaw/openclaw/issues/170113"
+      },
+      {
+        "title": "**PR #168623**",
+        "description": "**PR #168623** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168623"
+      },
+      {
+        "title": "**PR #170178** Related #169669",
+        "description": "**PR #170178** Related #169669. Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/170178"
+      },
+      {
+        "title": "**PR #171504**",
+        "description": "**PR #171504** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/171504"
+      },
+      {
+        "title": "**PR #169055** Related #157338",
+        "description": "**PR #169055** Related #157338. Thanks @Pegorim.",
+        "href": "https://github.com/openclaw/openclaw/issues/169055"
+      },
+      {
+        "title": "**PR #168309**",
+        "description": "**PR #168309**",
+        "href": "https://github.com/openclaw/openclaw/issues/168309"
+      },
+      {
+        "title": "**PR #165991**",
+        "description": "**PR #165991** Thanks @snotty and @saju01.",
+        "href": "https://github.com/openclaw/openclaw/issues/165991"
+      },
+      {
+        "title": "**PR #168816**",
+        "description": "**PR #168816**",
+        "href": "https://github.com/openclaw/openclaw/issues/168816"
+      },
+      {
+        "title": "**PR #169860**",
+        "description": "**PR #169860**",
+        "href": "https://github.com/openclaw/openclaw/issues/169860"
+      },
+      {
+        "title": "**PR #169984**",
+        "description": "**PR #169984**",
+        "href": "https://github.com/openclaw/openclaw/issues/169984"
+      },
+      {
+        "title": "**PR #170276**",
+        "description": "**PR #170276**",
+        "href": "https://github.com/openclaw/openclaw/issues/170276"
+      },
+      {
+        "title": "**PR #170348**",
+        "description": "**PR #170348**",
+        "href": "https://github.com/openclaw/openclaw/issues/170348"
+      },
+      {
+        "title": "**PR #170647**",
+        "description": "**PR #170647**",
+        "href": "https://github.com/openclaw/openclaw/issues/170647"
+      },
+      {
+        "title": "**PR #170883**",
+        "description": "**PR #170883**",
+        "href": "https://github.com/openclaw/openclaw/issues/170883"
+      },
+      {
+        "title": "**PR #167719** Related #167623",
+        "description": "**PR #167719** Related #167623. Thanks @yxshee and @grabowskidaniel359-design.",
+        "href": "https://github.com/openclaw/openclaw/issues/167719"
+      },
+      {
+        "title": "**PR #162305** Related #161746",
+        "description": "**PR #162305** Related #161746. Thanks @yxshee and @Ludwigtheo0815.",
+        "href": "https://github.com/openclaw/openclaw/issues/162305"
+      },
+      {
+        "title": "**PR #170231**",
+        "description": "**PR #170231**",
+        "href": "https://github.com/openclaw/openclaw/issues/170231"
+      },
+      {
+        "title": "**PR #171709** Related #162085",
+        "description": "**PR #171709** Related #162085. Thanks @RomneyDa and @residentb2b.",
+        "href": "https://github.com/openclaw/openclaw/issues/171709"
+      },
+      {
+        "title": "**PR #172321**",
+        "description": "**PR #172321** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172321"
+      },
+      {
+        "title": "**PR #171543**",
+        "description": "**PR #171543** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/171543"
+      },
+      {
+        "title": "**PR #170779**",
+        "description": "**PR #170779**",
+        "href": "https://github.com/openclaw/openclaw/issues/170779"
+      },
+      {
+        "title": "**PR #170804**",
+        "description": "**PR #170804**",
+        "href": "https://github.com/openclaw/openclaw/issues/170804"
+      },
+      {
+        "title": "**PR #171508**",
+        "description": "**PR #171508** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/171508"
+      },
+      {
+        "title": "**PR #171257** Related #170881",
+        "description": "**PR #171257** Related #170881. Thanks @jacobtomlinson.",
+        "href": "https://github.com/openclaw/openclaw/issues/171257"
+      },
+      {
+        "title": "**PR #164175** Related #171195",
+        "description": "**PR #164175** Related #171195. Thanks @etzelm.",
+        "href": "https://github.com/openclaw/openclaw/issues/164175"
+      },
+      {
+        "title": "**PR #172864**",
+        "description": "**PR #172864**",
+        "href": "https://github.com/openclaw/openclaw/issues/172864"
+      },
+      {
+        "title": "**PR #171397**",
+        "description": "**PR #171397** Thanks @joelagnel.",
+        "href": "https://github.com/openclaw/openclaw/issues/171397"
+      },
+      {
+        "title": "**PR #172626**",
+        "description": "**PR #172626** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172626"
+      },
+      {
+        "title": "**PR #172885**",
+        "description": "**PR #172885**",
+        "href": "https://github.com/openclaw/openclaw/issues/172885"
+      },
+      {
+        "title": "**PR #173516** Related #161576",
+        "description": "**PR #173516** Related #161576. Thanks @RomneyDa and @Compassboot.",
+        "href": "https://github.com/openclaw/openclaw/issues/173516"
+      },
+      {
+        "title": "**PR #172751**",
+        "description": "**PR #172751** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172751"
+      },
+      {
+        "title": "**PR #173259**",
+        "description": "**PR #173259** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/173259"
+      },
+      {
+        "title": "**PR #173319**",
+        "description": "**PR #173319** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/173319"
+      },
+      {
+        "title": "**PR #173511**",
+        "description": "**PR #173511** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/173511"
+      },
+      {
+        "title": "**PR #171303**",
+        "description": "**PR #171303**",
+        "href": "https://github.com/openclaw/openclaw/issues/171303"
+      },
+      {
+        "title": "**PR #171490**",
+        "description": "**PR #171490** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/171490"
+      },
+      {
+        "title": "**PR #169507**",
+        "description": "**PR #169507** Thanks @zhangguiping-xydt and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/169507"
+      },
+      {
+        "title": "**PR #171667** Related #168553",
+        "description": "**PR #171667** Related #168553. Thanks @enter501.",
+        "href": "https://github.com/openclaw/openclaw/issues/171667"
+      },
+      {
+        "title": "**PR #171460** Related #169882",
+        "description": "**PR #171460** Related #169882. Thanks @brianmcguire and @jamiezigelbaum.",
+        "href": "https://github.com/openclaw/openclaw/issues/171460"
+      },
+      {
+        "title": "**PR #171960**",
+        "description": "**PR #171960** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/171960"
+      },
+      {
+        "title": "**PR #171922**",
+        "description": "**PR #171922**",
+        "href": "https://github.com/openclaw/openclaw/issues/171922"
+      },
+      {
+        "title": "**PR #171938**",
+        "description": "**PR #171938**",
+        "href": "https://github.com/openclaw/openclaw/issues/171938"
+      },
+      {
+        "title": "**PR #160462**",
+        "description": "**PR #160462** Thanks @masatohoshino and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/160462"
+      },
+      {
+        "title": "**PR #172377** Related #172355",
+        "description": "**PR #172377** Related #172355. Thanks @saftall.",
+        "href": "https://github.com/openclaw/openclaw/issues/172377"
+      },
+      {
+        "title": "**PR #172631**",
+        "description": "**PR #172631** Thanks @JasonBuildAI.",
+        "href": "https://github.com/openclaw/openclaw/issues/172631"
+      },
+      {
+        "title": "**PR #172980** Related #172871",
+        "description": "**PR #172980** Related #172871. Thanks @Oldrich333.",
+        "href": "https://github.com/openclaw/openclaw/issues/172980"
+      },
+      {
+        "title": "**PR #170289**",
+        "description": "**PR #170289** Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/issues/170289"
+      },
+      {
+        "title": "**PR #173246**",
+        "description": "**PR #173246**",
+        "href": "https://github.com/openclaw/openclaw/issues/173246"
+      },
+      {
+        "title": "**PR #160433** Related #130807",
+        "description": "**PR #160433** Related #130807. Thanks @masatohoshino and @obviyus and @WadeOwenWatts.",
+        "href": "https://github.com/openclaw/openclaw/issues/160433"
+      },
+      {
+        "title": "**PR #170253**",
+        "description": "**PR #170253** Thanks @eleqtrizit.",
+        "href": "https://github.com/openclaw/openclaw/issues/170253"
+      },
+      {
+        "title": "**PR #173292**",
+        "description": "**PR #173292** Thanks @chandraveshchaudhari and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/173292"
+      },
+      {
+        "title": "**PR #159333** Related #158824",
+        "description": "**PR #159333** Related #158824. Thanks @joseairosa and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/159333"
+      },
+      {
+        "title": "**PR #170591** Related #147269",
+        "description": "**PR #170591** Related #147269. Thanks @masatohoshino and @obviyus and @jarvis-modern-mail.",
+        "href": "https://github.com/openclaw/openclaw/issues/170591"
+      },
+      {
+        "title": "**PR #171388** Related #171312",
+        "description": "**PR #171388** Related #171312. Thanks @he-yufeng and @brookpw.",
+        "href": "https://github.com/openclaw/openclaw/issues/171388"
+      },
+      {
+        "title": "**PR #172685** Related #172658",
+        "description": "**PR #172685** Related #172658. Thanks @shakkernerd.",
+        "href": "https://github.com/openclaw/openclaw/issues/172685"
+      },
+      {
+        "title": "**PR #171134**",
+        "description": "**PR #171134**",
+        "href": "https://github.com/openclaw/openclaw/issues/171134"
+      },
+      {
+        "title": "**PR #172890** Related #172809",
+        "description": "**PR #172890** Related #172809. Thanks @DongwonGim.",
+        "href": "https://github.com/openclaw/openclaw/issues/172890"
+      },
+      {
+        "title": "**PR #171267** Related #171227",
+        "description": "**PR #171267** Related #171227. Thanks @LiuwqGit and @marleyman5000-boop.",
+        "href": "https://github.com/openclaw/openclaw/issues/171267"
+      },
+      {
+        "title": "**PR #128282** Related #127560",
+        "description": "**PR #128282** Related #127560. Thanks @Parker-Fawcett and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/128282"
+      },
+      {
+        "title": "**PR #151921**",
+        "description": "**PR #151921** Thanks @amittell and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/151921"
+      },
+      {
+        "title": "**PR #171506** Related #171505",
+        "description": "**PR #171506** Related #171505. Thanks @masatohoshino.",
+        "href": "https://github.com/openclaw/openclaw/issues/171506"
+      },
+      {
+        "title": "**PR #171723**",
+        "description": "**PR #171723** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/171723"
+      },
+      {
+        "title": "**PR #149775**",
+        "description": "**PR #149775** Thanks @bodapatisaikrishna.",
+        "href": "https://github.com/openclaw/openclaw/issues/149775"
+      },
+      {
+        "title": "**PR #141341** Related #141340",
+        "description": "**PR #141341** Related #141340. Thanks @ooiuuii and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/141341"
+      },
+      {
+        "title": "**PR #168571**",
+        "description": "**PR #168571** Thanks @liwenjie200543.",
+        "href": "https://github.com/openclaw/openclaw/issues/168571"
+      },
+      {
+        "title": "**PR #171852**",
+        "description": "**PR #171852**",
+        "href": "https://github.com/openclaw/openclaw/issues/171852"
+      },
+      {
+        "title": "**PR #170437** Related #169917",
+        "description": "**PR #170437** Related #169917. Thanks @RomneyDa and @EbulenConsult.",
+        "href": "https://github.com/openclaw/openclaw/issues/170437"
+      },
+      {
+        "title": "**PR #172339**",
+        "description": "**PR #172339**",
+        "href": "https://github.com/openclaw/openclaw/issues/172339"
+      },
+      {
+        "title": "**PR #172457**",
+        "description": "**PR #172457**",
+        "href": "https://github.com/openclaw/openclaw/issues/172457"
+      },
+      {
+        "title": "**PR #169202**",
+        "description": "**PR #169202** Thanks @diregoblin and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/169202"
+      },
+      {
+        "title": "**PR #172379**",
+        "description": "**PR #172379** Thanks @skyzhao1223.",
+        "href": "https://github.com/openclaw/openclaw/issues/172379"
+      },
+      {
+        "title": "**PR #172214** Related #172211",
+        "description": "**PR #172214** Related #172211. Thanks @fhgffy.",
+        "href": "https://github.com/openclaw/openclaw/issues/172214"
+      },
+      {
+        "title": "**PR #172961** Related #172952",
+        "description": "**PR #172961** Related #172952. Thanks @rodricksz4h5.",
+        "href": "https://github.com/openclaw/openclaw/issues/172961"
+      },
+      {
+        "title": "**PR #167421**",
+        "description": "**PR #167421** Thanks @LinzeShi.",
+        "href": "https://github.com/openclaw/openclaw/issues/167421"
+      },
+      {
+        "title": "**PR #173011** Related #173002",
+        "description": "**PR #173011** Related #173002. Thanks @ericcaiwx-star and @sopa-gpters.",
+        "href": "https://github.com/openclaw/openclaw/issues/173011"
+      },
+      {
+        "title": "**PR #172653**",
+        "description": "**PR #172653** Thanks @Richard355168.",
+        "href": "https://github.com/openclaw/openclaw/issues/172653"
+      },
+      {
+        "title": "**PR #162078** Related #161829",
+        "description": "**PR #162078** Related #161829. Thanks @stanleys12 and @obviyus and @hundredhandsio.",
+        "href": "https://github.com/openclaw/openclaw/issues/162078"
+      },
+      {
+        "title": "**PR #173404**",
+        "description": "**PR #173404**",
+        "href": "https://github.com/openclaw/openclaw/issues/173404"
+      },
+      {
+        "title": "**PR #173486** Related #173453",
+        "description": "**PR #173486** Related #173453. Thanks @LiuwqGit and @ValantisV.",
+        "href": "https://github.com/openclaw/openclaw/issues/173486"
+      },
+      {
+        "title": "**PR #173612**",
+        "description": "**PR #173612**",
+        "href": "https://github.com/openclaw/openclaw/issues/173612"
+      },
+      {
+        "title": "**PR #173654**",
+        "description": "**PR #173654** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/173654"
+      },
+      {
+        "title": "**PR #171687**",
+        "description": "**PR #171687**",
+        "href": "https://github.com/openclaw/openclaw/issues/171687"
+      },
+      {
+        "title": "**PR #171699** Related #171376",
+        "description": "**PR #171699** Related #171376. Thanks @fdovarela.",
+        "href": "https://github.com/openclaw/openclaw/issues/171699"
+      },
+      {
+        "title": "**PR #171740** Related #171670",
+        "description": "**PR #171740** Related #171670. Thanks @yetval.",
+        "href": "https://github.com/openclaw/openclaw/issues/171740"
+      },
+      {
+        "title": "**PR #171780** Related #171169",
+        "description": "**PR #171780** Related #171169. Thanks @dtump.",
+        "href": "https://github.com/openclaw/openclaw/issues/171780"
+      },
+      {
+        "title": "**PR #171936** Related #171797",
+        "description": "**PR #171936** Related #171797. Thanks @AntaresGG.",
+        "href": "https://github.com/openclaw/openclaw/issues/171936"
+      },
+      {
+        "title": "**PR #171993** Related #171955",
+        "description": "**PR #171993** Related #171955. Thanks @teetee2tone.",
+        "href": "https://github.com/openclaw/openclaw/issues/171993"
+      },
+      {
+        "title": "**PR #170374** Related #170333",
+        "description": "**PR #170374** Related #170333. Thanks @RomneyDa and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/170374"
+      },
+      {
+        "title": "**PR #170373** Related #170331",
+        "description": "**PR #170373** Related #170331. Thanks @RomneyDa and @DonnieFi.",
+        "href": "https://github.com/openclaw/openclaw/issues/170373"
+      },
+      {
+        "title": "**PR #172132**",
+        "description": "**PR #172132**",
+        "href": "https://github.com/openclaw/openclaw/issues/172132"
+      },
+      {
+        "title": "**PR #172247** Related #172213",
+        "description": "**PR #172247** Related #172213. Thanks @homeworld520.",
+        "href": "https://github.com/openclaw/openclaw/issues/172247"
+      },
+      {
+        "title": "**PR #172494** Related #172391",
+        "description": "**PR #172494** Related #172391. Thanks @SBC2016.",
+        "href": "https://github.com/openclaw/openclaw/issues/172494"
+      },
+      {
+        "title": "**PR #172502**",
+        "description": "**PR #172502**",
+        "href": "https://github.com/openclaw/openclaw/issues/172502"
+      },
+      {
+        "title": "**PR #172196**",
+        "description": "**PR #172196** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172196"
+      },
+      {
+        "title": "**PR #172151**",
+        "description": "**PR #172151** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172151"
+      },
+      {
+        "title": "**PR #172640** Related #172591",
+        "description": "**PR #172640** Related #172591. Thanks @giulianoaccorsi.",
+        "href": "https://github.com/openclaw/openclaw/issues/172640"
+      },
+      {
+        "title": "**PR #172790** Related #152533",
+        "description": "**PR #172790** Related #152533. Thanks @obviyus and @wei887-os.",
+        "href": "https://github.com/openclaw/openclaw/issues/172790"
+      },
+      {
+        "title": "**PR #173304** Related #171542",
+        "description": "**PR #173304** Related #171542. Thanks @davidcittadini.",
+        "href": "https://github.com/openclaw/openclaw/issues/173304"
+      },
+      {
+        "title": "**PR #173341** Related #171096",
+        "description": "**PR #173341** Related #171096. Thanks @yoyo837.",
+        "href": "https://github.com/openclaw/openclaw/issues/173341"
+      },
+      {
+        "title": "**PR #169168**",
+        "description": "**PR #169168** Thanks @SunnyShu0925.",
+        "href": "https://github.com/openclaw/openclaw/issues/169168"
+      },
+      {
+        "title": "**PR #173358**",
+        "description": "**PR #173358**",
+        "href": "https://github.com/openclaw/openclaw/issues/173358"
+      },
+      {
+        "title": "**PR #173588** Related #173570",
+        "description": "**PR #173588** Related #173570. Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/173588"
+      },
+      {
+        "title": "**PR #170174** Related #169382",
+        "description": "**PR #170174** Related #169382. Thanks @holgergruenhagen.",
+        "href": "https://github.com/openclaw/openclaw/issues/170174"
+      },
+      {
+        "title": "**PR #170955**",
+        "description": "**PR #170955**",
+        "href": "https://github.com/openclaw/openclaw/issues/170955"
+      },
+      {
+        "title": "**PR #172424**",
+        "description": "**PR #172424** Thanks @yetval and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172424"
+      },
+      {
+        "title": "**PR #172385**",
+        "description": "**PR #172385** Thanks @yetval and @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172385"
+      },
+      {
+        "title": "**PR #171015** Related #170939",
+        "description": "**PR #171015** Related #170939. Thanks @Bamorem.",
+        "href": "https://github.com/openclaw/openclaw/issues/171015"
+      },
+      {
+        "title": "**PR #173366**",
+        "description": "**PR #173366**",
+        "href": "https://github.com/openclaw/openclaw/issues/173366"
+      },
+      {
+        "title": "**PR #173781**",
+        "description": "**PR #173781** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/173781"
+      },
+      {
+        "title": "**PR #173376**",
+        "description": "**PR #173376** Thanks @Patrick-Erichsen.",
+        "href": "https://github.com/openclaw/openclaw/issues/173376"
+      },
+      {
+        "title": "**PR #173777** Related #173386",
+        "description": "**PR #173777** Related #173386. Thanks @RomneyDa and @FtlC-ian.",
+        "href": "https://github.com/openclaw/openclaw/issues/173777"
+      },
+      {
+        "title": "**PR #168402**",
+        "description": "**PR #168402**",
+        "href": "https://github.com/openclaw/openclaw/issues/168402"
+      },
+      {
+        "title": "**PR #158716** Related #158675",
+        "description": "**PR #158716** Related #158675. Thanks @sxh313 and @pennymolt.",
+        "href": "https://github.com/openclaw/openclaw/issues/158716"
+      },
+      {
+        "title": "**PR #168397**",
+        "description": "**PR #168397**",
+        "href": "https://github.com/openclaw/openclaw/issues/168397"
+      },
+      {
+        "title": "**PR #168654**",
+        "description": "**PR #168654** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168654"
+      },
+      {
+        "title": "**PR #169480**",
+        "description": "**PR #169480**",
+        "href": "https://github.com/openclaw/openclaw/issues/169480"
+      },
+      {
+        "title": "**PR #169451**",
+        "description": "**PR #169451** Thanks @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/169451"
+      },
+      {
+        "title": "**PR #168961** Related #168843",
+        "description": "**PR #168961** Related #168843. Thanks @sunlit-deng and @obviyus.",
+        "href": "https://github.com/openclaw/openclaw/issues/168961"
+      },
+      {
+        "title": "**PR #172724**",
+        "description": "**PR #172724** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172724"
+      },
+      {
+        "title": "**PR #169602**",
+        "description": "**PR #169602** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/169602"
+      },
+      {
+        "title": "**PR #174718**",
+        "description": "**PR #174718** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/174718"
+      },
+      {
+        "title": "**PR #173409** Related #171311",
+        "description": "**PR #173409** Related #171311. Thanks @RomneyDa and @mwbroxson.",
+        "href": "https://github.com/openclaw/openclaw/issues/173409"
+      },
+      {
+        "title": "**PR #174649**",
+        "description": "**PR #174649** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/174649"
+      },
+      {
+        "title": "**PR #172392**",
+        "description": "**PR #172392** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/172392"
+      },
+      {
+        "title": "**PR #175114**",
+        "description": "**PR #175114** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/175114"
+      },
+      {
+        "title": "**PR #175111**",
+        "description": "**PR #175111** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/175111"
+      },
+      {
+        "title": "**PR #175278**",
+        "description": "**PR #175278** Thanks @RomneyDa.",
+        "href": "https://github.com/openclaw/openclaw/issues/175278"
+      },
+      {
+        "title": "**PR #169743**",
+        "description": "**PR #169743** Thanks @vincentkoc.",
+        "href": "https://github.com/openclaw/openclaw/issues/169743"
+      },
+      {
+        "title": "**PR #168780**",
+        "description": "**PR #168780**",
+        "href": "https://github.com/openclaw/openclaw/issues/168780"
+      }
+    ],
+    "fixes": []
+  },
+  {
     "version": "2026.10.4",
     "date": "2026.10.4",
     "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026104",
@@ -163858,164 +174821,6 @@ export const CHANGELOG_VERSIONS: Version[] = [
         "title": "Fixes native Windows crabbox hydration getting stuck or missing handoffs wh...",
         "description": "Fixes native Windows crabbox hydration getting stuck or missing handoffs when the runner and daemon use different home directories, so both can find the same job state and stop files. [f354889](https://github.com/openclaw/openclaw/commit/f354889efa1c8bafca9304767afba2c270add549) Thanks @vincentkoc.",
         "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026611"
-      }
-    ],
-    "fixes": []
-  },
-  {
-    "version": "2026.6.10",
-    "date": "2026.6.10",
-    "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610",
-    "features": [
-      {
-        "title": "Adds [`/fast auto`](https",
-        "description": "//docs.openclaw.ai/tools/thinking) so short conversational calls can start quickly, while longer or fallback work returns to normal mode with the effective state still visible. [PR #85104](https://github.com/openclaw/openclaw/pull/85104), [Issue #85087](https://github.com/openclaw/openclaw/issues/85087). Thanks @alexph-dev and @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/85104"
-      },
-      {
-        "title": "Shows the effective automatic fast-mode state in status instead of reducing...",
-        "description": "Shows the effective automatic fast-mode state in status instead of reducing it to on/off, and avoids carrying a cleared Codex service-tier choice into later runs. [8845f2f](https://github.com/openclaw/openclaw/commit/8845f2fd6143becc37110ab5021dd5e1517f0cdc). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps automatic fast-mode timing consistent when a turn switches to a fallb...",
-        "description": "Keeps automatic fast-mode timing consistent when a turn switches to a fallback model. [075091d](https://github.com/openclaw/openclaw/commit/075091d0cab94053ff094268efc0acb225d514f4). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps the original fast-mode timing and progress behavior when a live model...",
-        "description": "Keeps the original fast-mode timing and progress behavior when a live model switch retries a turn. [d1e190f](https://github.com/openclaw/openclaw/commit/d1e190fbe822ad6ae4e660ce376b60ec9fdb0fba). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps automatic fast-mode progress and reset behavior distinct from explici...",
-        "description": "Keeps automatic fast-mode progress and reset behavior distinct from explicit fast mode after a run switches modes. [20aec98](https://github.com/openclaw/openclaw/commit/20aec985545db7a24ea066e5bff1c47b789cbded). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Shows the effective fast-mode value in connected-agent sessions instead of...",
-        "description": "Shows the effective fast-mode value in connected-agent sessions instead of the configured value, so status reflects what the session is actually using. [9509aa0](https://github.com/openclaw/openclaw/commit/9509aa063c0ef3e32be1516fcb0c23606b6d5c7b). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps the effective automatic fast-mode setting visible through fallback tr...",
-        "description": "Keeps the effective automatic fast-mode setting visible through fallback transitions in connected-agent sessions. [7f5423c](https://github.com/openclaw/openclaw/commit/7f5423ca97174a3f16c211db54a6c96e5b3a6089). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps automatic fast-mode timing and progress consistent when reply and [sc...",
-        "description": "Keeps automatic fast-mode timing and progress consistent when reply and [scheduled-agent runs](https://docs.openclaw.ai/automation/cron-jobs) retry or switch models. [6c29f88](https://github.com/openclaw/openclaw/commit/6c29f88913796bfe05696556cd82246670b126f0). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps fast-mode cleanup and status consistent when a run switches between f...",
-        "description": "Keeps fast-mode cleanup and status consistent when a run switches between fallback models. [c4694f8](https://github.com/openclaw/openclaw/commit/c4694f84ffd52064f89609098cc4f8570fb72e1b). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Shows the automatic fast-mode reset only when fallback work is finished, so...",
-        "description": "Shows the automatic fast-mode reset only when fallback work is finished, so status messages match the end of the transition. [f4d93c8](https://github.com/openclaw/openclaw/commit/f4d93c855bff6930f5e5d739b95e0c2612ec4899). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Shows reset and delivery progress at the right time when auto-reply or othe...",
-        "description": "Shows reset and delivery progress at the right time when auto-reply or other follow-up runs retry or leave automatic fast mode. [684e440](https://github.com/openclaw/openclaw/commit/684e44013778bd47d159e64b2595e4d09a92ebea). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Prevents the next turn after a [scheduled message](https",
-        "description": "//docs.openclaw.ai/automation/cron-jobs) from losing what was delivered or whether delivery failed, so replies can use that context without exposing cron details in the channel. [PR #93580](https://github.com/openclaw/openclaw/pull/93580). Thanks @jalehman and @scotthuang.",
-        "href": "https://github.com/openclaw/openclaw/issues/93580"
-      },
-      {
-        "title": "Prevents streamed channel progress from dropping a repeated status that rep...",
-        "description": "Prevents streamed channel progress from dropping a repeated status that represents a separate step, so each meaningful step remains visible in the draft. [2d42e52](https://github.com/openclaw/openclaw/commit/2d42e52ac5513e0bd824b8a0e069db83e04bc056). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Prevents keyed streamed progress from staying on an older status, so viewer...",
-        "description": "Prevents keyed streamed progress from staying on an older status, so viewers see the latest state instead of stale text. [8bb6472](https://github.com/openclaw/openclaw/commit/8bb6472c4de2eea06f1ba31d6ed679e2ac4581b0). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Treats Zhipu/GLM overload responses as overloads, so a configured fallback...",
-        "description": "Treats Zhipu/GLM overload responses as overloads, so a configured fallback is selected for the right reason instead of following the wrong failover path. [PR #93241](https://github.com/openclaw/openclaw/pull/93241), [Issue #93211](https://github.com/openclaw/openclaw/issues/93211). Thanks @0xghost42 and @zhengli0922.",
-        "href": "https://github.com/openclaw/openclaw/issues/93241"
-      },
-      {
-        "title": "Prevents Telegram, Slack, and Discord `/think` menus for live Ollama models...",
-        "description": "Prevents Telegram, Slack, and Discord `/think` menus for live Ollama models from hiding supported levels, so users can choose valid reasoning settings without guessing. [PR #94067](https://github.com/openclaw/openclaw/pull/94067), [Issue #93835](https://github.com/openclaw/openclaw/issues/93835). Thanks @civiltox and @openperf.",
-        "href": "https://github.com/openclaw/openclaw/issues/94067"
-      },
-      {
-        "title": "Expands [`zai/glm-5.2` thinking choices](https",
-        "description": "//docs.openclaw.ai/tools/thinking) beyond binary on/off and sends high or max requests as the intended Z.AI reasoning effort. [PR #94136](https://github.com/openclaw/openclaw/pull/94136). Thanks @borclaw.",
-        "href": "https://github.com/openclaw/openclaw/issues/94136"
-      },
-      {
-        "title": "Prevents bundled [Z.ai GLM-5 models](https",
-        "description": "//docs.openclaw.ai/providers/zai) from falling through to OpenAI and producing misleading API-key errors, so they use Z.AI by default. [PR #94461](https://github.com/openclaw/openclaw/pull/94461), [Issue #94269](https://github.com/openclaw/openclaw/issues/94269). Thanks @chrysb and @pandah97.",
-        "href": "https://github.com/openclaw/openclaw/issues/94461"
-      },
-      {
-        "title": "Adds GLM-5.2 and Kimi K2.7 Code to the [OpenCode Go catalog](https",
-        "description": "//docs.openclaw.ai/providers/opencode-go) with current limits, so users can select the models from OpenClaw. [66f84a9](https://github.com/openclaw/openclaw/commit/66f84a9bf1082de26f92b2b3741cc2f34aba34fa). Thanks @samson1357924.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Corrects `kimi-k2",
-        "description": "Corrects `kimi-k2.7-code` capability listings so OpenCode Go users are not offered unsupported video prompts when the model accepts text and images. [715dc71](https://github.com/openclaw/openclaw/commit/715dc718fc5a2a5d6f7e9ec16e0269382b726e83).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Prevents first-run setup from skipping the selected provider's credential p...",
-        "description": "Prevents first-run setup from skipping the selected provider's credential prompt after plugin installation, so onboarding continues with that provider instead of falling back to OpenAI. [PR #95792](https://github.com/openclaw/openclaw/pull/95792), [Issue #95765](https://github.com/openclaw/openclaw/issues/95765). Thanks @snowzlmbot.",
-        "href": "https://github.com/openclaw/openclaw/issues/95792"
-      },
-      {
-        "title": "Adds a durable [session-transcript SDK contract](https",
-        "description": "//docs.openclaw.ai/plugins/sdk-runtime) so plugins can read, append, publish, and lock the intended transcript without treating [legacy file paths](https://docs.openclaw.ai/plugins/sdk-subpaths) as identity. [PR #95030](https://github.com/openclaw/openclaw/pull/95030). Thanks @jalehman.",
-        "href": "https://github.com/openclaw/openclaw/issues/95030"
-      },
-      {
-        "title": "Prevents a shared direct-message [session](https",
-        "description": "//docs.openclaw.ai/concepts/session) from carrying the previous [channel's identity](https://docs.openclaw.ai/channels/channel-routing) after a switch, so status, reactions, threads, and message references target the current channel. [PR #95328](https://github.com/openclaw/openclaw/pull/95328), [Issue #95325](https://github.com/openclaw/openclaw/issues/95325). Thanks @gorkem2020, @jalehman, and @zengwen-dt.",
-        "href": "https://github.com/openclaw/openclaw/issues/95328"
-      },
-      {
-        "title": "Keeps empty prompts separate from hook-added context during compaction or s...",
-        "description": "Keeps empty prompts separate from hook-added context during compaction or session reuse in [Copilot and Codex sessions](https://docs.openclaw.ai/plugins/copilot), so prompt boundaries remain consistent. [PR #94838](https://github.com/openclaw/openclaw/pull/94838). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/issues/94838"
-      },
-      {
-        "title": "Keeps [approval-sensitive Gateway and plugin tools](https",
-        "description": "//docs.openclaw.ai/plugins/hooks) protected when connected extensions change, so configured safeguards continue to apply. [PR #94545](https://github.com/openclaw/openclaw/pull/94545). Thanks @jesse-merhi.",
-        "href": "https://github.com/openclaw/openclaw/issues/94545"
-      },
-      {
-        "title": "Prevents authenticated package-source tokens from being sent to an allowed...",
-        "description": "Prevents authenticated package-source tokens from being sent to an allowed redirect on another origin, while the valid redirected download still completes. [b0df6dc](https://github.com/openclaw/openclaw/commit/b0df6dc10eb5b9e9fdca93063a16316f8589954e).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Prevents [Docker](https",
-        "description": "//docs.openclaw.ai/install/docker) and [Podman](https://docs.openclaw.ai/install/podman) setup from running unbounded on hosts where GNU timeout is installed as `gtimeout`, so image pulls, builds, and detached startup receive the intended guard. [62b2e9e](https://github.com/openclaw/openclaw/commit/62b2e9ef14b4be6fd396621c8e5e248331f08695).",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Prevents cleared [Codex service tiers](https",
-        "description": "//docs.openclaw.ai/tools/thinking) from being persisted as explicit stale state, so resumed or switched conversations use the normal default instead. [cd32d9f](https://github.com/openclaw/openclaw/commit/cd32d9ff91caf84c0ead38796ef096cdc5bea06e). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Restores [ClawHub discovery](https",
-        "description": "//docs.openclaw.ai/plugins/reference/stepfun) for the [StepFun provider](https://docs.openclaw.ai/providers/stepfun) plugin, so operators can install it through either ClawHub or npm. [ecb82f1](https://github.com/openclaw/openclaw/commit/ecb82f1be93024be23c1b191ebea92c63230b6c0). Thanks @vincentkoc.",
-        "href": "https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md#2026610"
-      },
-      {
-        "title": "Keeps core [`openclaw doctor`](https",
-        "description": "//docs.openclaw.ai/gateway/doctor) diagnostics in their normal order before extension checks, making lint and repair output easier to follow. [PR #86627](https://github.com/openclaw/openclaw/pull/86627). Thanks @giodl73-repo.",
-        "href": "https://github.com/openclaw/openclaw/issues/86627"
       }
     ],
     "fixes": []
