@@ -11,6 +11,62 @@ export type Milestone = {
 
 export const milestones: Milestone[] = [
   {
+    date: '2026-10-28',
+    title: 'Benchy becomes USF’s production factory queue',
+    emoji: '🏭',
+    source: 'infra',
+    description:
+      'USF’s governed learning loop merges with regression proofs and an observability console, and production work consolidates into one Benchy queue with its connector fast-forwarded to canonical main.',
+  },
+  {
+    date: '2026-10-28',
+    title: 'Entity ships shared workspaces',
+    emoji: '🎛️',
+    source: 'launch',
+    description:
+      'Shared fences, agent comment delivery, per-harness capability profiles, invite templates, and Google Sign-In turn Entity from a solo control room into a workspace multiple operators and agents share.',
+  },
+  {
+    date: '2026-10-25',
+    title: 'Entity moves to hosted infrastructure',
+    emoji: '☁️',
+    source: 'infra',
+    description:
+      'Entity’s hosted GCP cutover covers data, auth, files, and ops worktrees, moving the control room off a single machine and onto infrastructure built for the shared-workspace release that follows.',
+  },
+  {
+    date: '2026-10-23',
+    title: 'Benchboard opens its public benchmark site',
+    emoji: '📊',
+    source: 'launch',
+    description:
+      'After a three-week hardening arc, Benchboard’s leaderboard goes public at heraldlab.si, giving the fleet’s model benchmarks a citable, shareable surface instead of internal dashboards.',
+  },
+  {
+    date: '2026-09-22',
+    title: 'Citadel pools Codex accounts; Astra joins the fleet',
+    emoji: '🏰',
+    source: 'infra',
+    description:
+      'Citadel adds a multi-account Codex OAuth pool with priority bands, health triage, and canaries. GPT-6 Astra passes end-to-end verification under the stable alias citadel/astra.',
+  },
+  {
+    date: '2026-08-08',
+    title: 'One shared bot token, 196 gateway crashes',
+    emoji: '🔥',
+    source: 'incident',
+    description:
+      'Two LaunchAgents share one bot token with --replace and fight to the death across 196 crash cycles. Token segregation ends the SIGTERM war: shared credentials are a failure domain.',
+  },
+  {
+    date: '2026-08-07',
+    title: 'Daystrom serves DeepSeek across two DGX Sparks',
+    emoji: '🧠',
+    source: 'infra',
+    description:
+      'Daystrom’s two-node DGX Spark cluster serves DeepSeek-V4-Flash through vLLM and DSpark with 1M-token context, passing canaries and auto-restoring after both nodes reboot.',
+  },
+  {
     date: '2026-07-27',
     title: 'Mycelium grows into relationship intelligence',
     emoji: '🍄',
@@ -20,11 +76,11 @@ export const milestones: Milestone[] = [
   },
   {
     date: '2026-07-26',
-    title: 'Citadel speaks the Responses API',
-    emoji: '🏰',
+    title: 'Citadel becomes a polyglot model gateway',
+    emoji: '🌐',
     source: 'infra',
     description:
-      'Citadel adds native OpenAI Responses API passthrough, giving Codex and other agent runtimes one governed route across Azure, local models, and external providers.',
+      'OpenAI, Anthropic, Gemini, Azure, and local-model traffic move behind one routing and policy layer — tool calls, streaming, aliases, fleet sync — capped by native Responses API passthrough for Codex and other agent runtimes.',
   },
   {
     date: '2026-07-23',
@@ -33,14 +89,6 @@ export const milestones: Milestone[] = [
     source: 'tool',
     description:
       'Managed audio uploads now transcribe automatically. Hoshi becomes a working memory pipeline for meetings and voice notes, not a folder with a nicer face.',
-  },
-  {
-    date: '2026-07-07',
-    title: 'Citadel becomes a polyglot model gateway',
-    emoji: '🌐',
-    source: 'infra',
-    description:
-      'OpenAI, Anthropic, Gemini, Azure, and local-model traffic move behind one routing and policy layer, with tool calls, streaming, aliases, and fleet sync handled centrally.',
   },
   {
     date: '2026-07-05',
