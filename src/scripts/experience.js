@@ -2,7 +2,7 @@
 // deferring it to DOMContentLoaded, makes Chrome intermittently skip cross-document view
 // transitions because the DOM is still being mutated after the incoming page first renders.
 (() => {
-	/** @typedef {{ t: string, u: string, k: string, d?: string, m?: string, g?: string }} SearchItem */
+	/** @typedef {{ t: string, u: string, k: string, d?: string, m?: string, g?: string, b?: string }} SearchItem */
 
 	const root = document.documentElement;
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -264,19 +264,31 @@
 			const scored = [];
 			items.forEach((item, i) => {
 				const title = item.t.toLowerCase();
-				const rest = `${item.d ?? ''} ${item.g ?? ''} ${item.k}`.toLowerCase();
+				const meta = `${item.d ?? ''} ${item.g ?? ''} ${item.k}`.toLowerCase();
+				const body = (item.b ?? '').toLowerCase();
 				let score = 0;
+				let bodyHit = -1;
 				for (const token of tokens) {
 					const at = title.indexOf(token);
 					if (at === 0) score += 40;
 					else if (at > 0) score += title[at - 1] === ' ' ? 28 : 16;
-					else if (rest.includes(token)) score += 6;
-					else return;
+					else if (meta.includes(token)) score += 6;
+					else {
+						const b = body.indexOf(token);
+						if (b < 0) return;
+						score += 2;
+						if (bodyHit < 0) bodyHit = b;
+					}
 				}
 				if (title.includes(query.toLowerCase())) score += 30;
-				scored.push({ item, score: score - (kindRank[item.k] ?? 3), i });
+				scored.push({ item, score: score - (kindRank[item.k] ?? 3), i, bodyHit });
 			});
-			return scored.sort((a, b) => b.score - a.score || a.i - b.i).slice(0, 40).map((s) => s.item);
+			return scored.sort((a, b) => b.score - a.score || a.i - b.i).slice(0, 40).map((s) => (s.bodyHit >= 0 ? { ...s.item, s: snippet(s.item.b, s.bodyHit) } : s.item));
+		};
+		const snippet = (body, at) => {
+			const start = Math.max(0, at - 60);
+			const end = Math.min(body.length, at + 100);
+			return `${start > 0 ? '…' : ''}${body.slice(start, end).trim()}${end < body.length ? '…' : ''}`;
 		};
 
 		const render = (query) => {
@@ -294,11 +306,11 @@
 			results = sections.flatMap((s) => s.items);
 			selected = 0;
 			if (!index) { list.innerHTML = '<li class="cmdk-empty">Loading the index…</li>'; return; }
-			if (!results.length) { list.innerHTML = `<li class="cmdk-empty">Nothing matches “${esc(query)}”. Try a crew name, a tool, or a topic.</li>`; return; }
+			if (!results.length) { list.innerHTML = `<li class="cmdk-empty">No articles match “${esc(query)}”. Try different words.</li>`; return; }
 			let n = 0;
 			list.innerHTML = sections.filter((s) => s.items.length).map((s) => `<li class="cmdk-group" role="presentation">${esc(s.label)}</li>${s.items.map((item) => {
 				const i = n++;
-				return `<li role="option" id="cmdk-opt-${i}" data-i="${i}" aria-selected="${i === 0}"><a href="${esc(item.u)}" tabindex="-1"><span class="cmdk-kind">${esc(item.k)}</span><span class="cmdk-text"><b>${highlight(item.t, tokens)}</b>${item.d ? `<small>${esc(item.d)}</small>` : ''}</span>${item.m ? `<time>${esc(item.m)}</time>` : ''}<span class="cmdk-go" aria-hidden="true">↵</span></a></li>`;
+				return `<li role="option" id="cmdk-opt-${i}" data-i="${i}" aria-selected="${i === 0}"><a href="${esc(item.u)}" tabindex="-1"><span class="cmdk-kind">${esc(item.k)}</span><span class="cmdk-text"><b>${highlight(item.t, tokens)}</b>${item.s ? `<small>${highlight(item.s, tokens)}</small>` : item.d ? `<small>${esc(item.d)}</small>` : ''}</span>${item.m ? `<time>${esc(item.m)}</time>` : ''}<span class="cmdk-go" aria-hidden="true">↵</span></a></li>`;
 			}).join('')}`).join('');
 			input.setAttribute('aria-activedescendant', 'cmdk-opt-0');
 		};
