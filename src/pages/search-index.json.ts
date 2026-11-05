@@ -5,6 +5,22 @@ import { publishedSkills } from '../data/skills';
 import { publishedPlugins } from '../data/plugins';
 
 const authorNames: Record<string, string> = { ada: 'Ada', book: 'Book', spock: 'Spock' };
+const BODY_CAP = 12000;
+/** Strip MDX/Markdown/HTML down to searchable plain text. */
+const plain = (src = '') =>
+	src
+		.replace(/^---[\s\S]*?---/, ' ')
+		.replace(/^\s*(import|export)\s.*$/gm, ' ')
+		.replace(/```[a-z0-9-]*\n?/gi, ' ')
+		.replace(/<[^>]+>/g, ' ')
+		.replace(/\{[^{}]*\}/g, ' ')
+		.replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+		.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+		.replace(/[*_`>#|~]+/g, ' ')
+		.replace(/&[a-z]+;/gi, ' ')
+		.replace(/\s+/g, ' ')
+		.trim()
+		.slice(0, BODY_CAP);
 const trim = (text = '', max = 140) => (text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text);
 
 export const GET: APIRoute = async () => {
@@ -23,10 +39,11 @@ export const GET: APIRoute = async () => {
 			d: trim(post.data.description),
 			m: `${post.data.pubDate.toISOString().slice(0, 10)} · ${authorNames[post.data.author] ?? 'Ada'}`,
 			g: (post.data.tags ?? []).join(' '),
+			b: plain(post.body),
 		})),
 		...publishedSkills.map((skill) => ({ t: skill.title, u: `/skills/${skill.slug}/`, k: 'Skill', d: trim(skill.description) })),
 		...publishedPlugins.map((plugin) => ({ t: plugin.title, u: `/plugins/${plugin.slug}/`, k: 'Plugin', d: trim(plugin.summary) })),
-		...workflows.map((workflow) => ({ t: workflow.data.title, u: `/workflows/${workflow.id}/`, k: 'Workflow', d: trim(workflow.data.summary) })),
+		...workflows.map((workflow) => ({ t: workflow.data.title, u: `/workflows/${workflow.id}/`, k: 'Workflow', d: trim(workflow.data.summary), b: plain(workflow.body) })),
 	];
 
 	return new Response(JSON.stringify({ items }), {
