@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [agents, coding-runtimes, a2a, onboarding, personas]
-    related_skills: [midas-uma-a2a-bridge]
+    related_skills: []
 ---
 
 # Turning a Coding Runtime Into a Named Agent
@@ -77,4 +77,4 @@ The four layers are constant; these five things change per runtime — resolve e
 
 - Every item in Layer 4 checked with captured evidence (reply text, status codes, timestamps).
 - Claim semantics honestly: "persistent consultation within a context" vs "one-shot dispatch" — whichever the recall test proved.
-- For the live worked example (Codex-based Uma bridged to a Hermes agent over A2A v1.0), follow `midas-uma-a2a-bridge`.
+- For a live worked example of a Codex-based agent bridged to a Hermes agent over A2A v1.0, see the SuperAda skills catalog.
