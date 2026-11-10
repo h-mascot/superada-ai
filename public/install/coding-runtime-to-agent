@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -eu
+TARGET_DIR="${1:-${AGENT_SKILLS_DIR:-./skills}}/coding-runtime-to-agent"
+mkdir -p "$TARGET_DIR"
+base="https://superada.ai/skills/coding-runtime-to-agent"
+for path in   "SKILL.md" \
+  "README.md"; do
+  mkdir -p "$TARGET_DIR/$(dirname "$path")"
+  curl -fsSL "$base/$path" -o "$TARGET_DIR/$path"
+done
+printf 'Installed coding-runtime-to-agent to %s\n' "$TARGET_DIR"
