@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { publishedSkills } from '../../data/skills';
 import { publishedPlugins } from '../../data/plugins';
+import { BENCHY_URL } from '../../data/siteNav';
 import PageHero from '../PageHero.astro';
 
 interface ResourceItem {
@@ -14,7 +15,7 @@ interface ResourceItem {
 	type?: string;
 }
 
-interface Props { active?: string; mode?: 'overview' | 'mascots' | 'tools' | 'workflow-packs' | 'plugins' | 'skills' | 'crons' | 'guides' | 'benchmarks' | 'interesting' | 'ship-notes'; }
+interface Props { active?: string; mode?: 'overview' | 'mascots' | 'tools' | 'workflow-packs' | 'plugins' | 'skills' | 'crons' | 'guides' | 'benchmarks' | 'interesting' | 'ship-notes' | 'archive'; }
 const { active = 'overview', mode = 'overview' } = Astro.props;
 
 const workflowEntries = (await getCollection('workflows'))
@@ -109,8 +110,15 @@ const shipNoteItems: ResourceItem[] = [
 	{ title: 'Magnifica Humanitas Audio Slide Deck', icon: 'note', meta: 'HTML deck + audio', status: 'NEW', href: '/resources/interesting/magnifica-humanitas/', copy: 'Andy’s original audio slide deck explaining the Pope’s letter, published without changing the source content.' },
 	{ title: 'SpaceX S-1 Visual Briefing', icon: 'note', meta: 'HTML deck', status: 'NEW', href: '/resources/interesting/spacex-s1/', copy: 'Interactive slide summary of Space Exploration Technologies Corp. S-1 filing, with the source notes and original S-1 doc linked from the deck.' },
 	{ title: 'Ship Log', icon: 'note', meta: 'Notes', status: 'UPDATED', href: '/blog', copy: 'Mission updates, decisions, lessons, and important notes from the bridge.' },
-	{ title: 'OpenClaw Changelog', icon: 'note', meta: 'Changelog', status: 'UPDATED', href: '/openclaw-changelog', copy: 'Implementation-level changes, releases, and crew infrastructure updates.' },
 	{ title: 'Weekly Claw', icon: 'claw', meta: 'Roundup', status: 'WEEKLY', href: 'https://weeklyclaw.ai', copy: 'Weekly dispatches and OpenClaw roundups from the Enterprise Crew.' },
+];
+
+const archiveItems: ResourceItem[] = [
+	{ title: 'OpenClaw Changelog', icon: 'note', meta: 'Release tracker', href: '/openclaw-changelog', copy: 'Browse OpenClaw releases, shipped changes, and upstream release notes.' },
+	{ title: 'Software Factory', icon: 'workflow', meta: 'Interactive walkthrough', href: '/resources/software-factory', copy: 'Follow a brief through planning, build stations, testing, and deployment.' },
+	{ title: 'Legacy Benchmarks', icon: 'bars', meta: 'Benchmark reports', href: '/resources/benchmarks', copy: 'Explore the original SuperAda model evaluations, benchmark reports, and Operator Index.' },
+	{ title: 'Agent Mascots (Pets)', icon: 'pet', meta: 'Codex pets', href: '/resources/agent-mascots', copy: 'Meet the crew mascots and download the available Codex pets.' },
+	{ title: 'Plugins', icon: 'plugin', meta: 'Plugin catalogue', href: '/resources/plugins', copy: 'Browse the crew’s OpenClaw and Hermes plugins, source links, and install instructions.' },
 ];
 
 const toolItems: ResourceItem[] = [
@@ -132,6 +140,7 @@ const resourceSections = {
 	benchmarks: { label: 'Benchmarks', items: benchmarkItems, unit: 'items' },
 	interesting: { label: 'Interesting', items: interestingItems, unit: 'items' },
 	'ship-notes': { label: 'Ship Notes', items: shipNoteItems, unit: 'items' },
+	archive: { label: 'Archive', items: archiveItems, unit: 'resources' },
 } satisfies Record<string, { label: string; items: ResourceItem[]; unit: string }>;
 
 type ResourceSectionKey = keyof typeof resourceSections;
@@ -139,48 +148,41 @@ type ResourceSectionKey = keyof typeof resourceSections;
 const resourceCount = (key: ResourceSectionKey) => resourceSections[key].items.length;
 const resourceCountText = (key: ResourceSectionKey) => String(resourceCount(key));
 const resourceMeta = (key: ResourceSectionKey) => `${resourceCount(key)} ${resourceSections[key].unit}`;
-const operationalCount = resourceCount('plugins') + resourceCount('skills') + resourceCount('crons') + resourceCount('guides') + resourceCount('benchmarks') + resourceCount('interesting') + resourceCount('ship-notes');
+const operationalCount = resourceCount('skills') + resourceCount('crons') + resourceCount('guides') + resourceCount('interesting') + resourceCount('ship-notes');
 
 const nav = [
 	{ icon: 'overview', label: 'Overview', href: '/resources', count: '', key: 'overview' },
-	{ icon: 'workflow', label: 'Software Factory', href: '/resources/software-factory', count: '', key: 'software-factory' },
-	{ icon: 'pet', label: resourceSections.mascots.label, href: '/resources/agent-mascots', count: resourceCountText('mascots'), key: 'mascots' },
 	{ icon: 'grid', label: resourceSections.tools.label, href: '/resources/tools', count: resourceCountText('tools'), key: 'tools' },
 	{ icon: 'stack', label: resourceSections['workflow-packs'].label, href: '/resources/workflow-packs', count: resourceCountText('workflow-packs'), key: 'workflow-packs' },
-	{ icon: 'plugin', label: resourceSections.plugins.label, href: '/resources/plugins', count: resourceCountText('plugins'), key: 'plugins' },
 	{ icon: 'spark', label: resourceSections.skills.label, href: '/resources/skills', count: resourceCountText('skills'), key: 'skills' },
 	{ icon: 'cron', label: resourceSections.crons.label, href: '/resources/crons', count: resourceCountText('crons'), key: 'crons' },
 	{ icon: 'book', label: resourceSections.guides.label, href: '/resources/guides', count: resourceCountText('guides'), key: 'guides' },
-	{ icon: 'bars', label: resourceSections.benchmarks.label, href: 'https://benchy.superada.ai', count: '', key: 'benchy' },
+	{ icon: 'bars', label: resourceSections.benchmarks.label, href: BENCHY_URL, count: '', key: 'benchy' },
 	{ icon: 'note', label: resourceSections.interesting.label, href: '/resources/interesting', count: resourceCountText('interesting'), key: 'interesting' },
 	{ icon: 'claw', label: 'Weekly Claw', href: 'https://weeklyclaw.ai', count: '', key: 'weekly-claw' },
-	{ icon: 'note', label: 'Changelog', href: '/openclaw-changelog', count: '', key: 'changelog' },
+	{ icon: 'note', label: resourceSections.archive.label, href: '/resources/archive/', count: resourceCountText('archive'), key: 'archive' },
 ];
 
 const stats = [
 	{ label: 'Tools', value: resourceCountText('tools'), icon: 'grid', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.', href: '/resources/tools', cta: 'Browse tools' },
 	{ label: 'Workflow packs', value: resourceCountText('workflow-packs'), icon: 'workflow', copy: 'Reusable bundles for operator work, publishing, research, and security.', href: '/resources/workflow-packs', cta: 'Open packs' },
-	{ label: 'Plugins', value: resourceCountText('plugins'), icon: 'plugin', copy: 'Runtime plugins that hook live OpenClaw and Hermes paths, with public source and live verification receipts.', href: '/resources/plugins', cta: 'Browse plugins' },
-	{ label: 'Operational content', value: String(operationalCount), icon: 'star', copy: 'Plugins, skills, crons, guides, ship notes, benchmarks, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
+	{ label: 'Guides', value: resourceCountText('guides'), icon: 'book', copy: 'Practical guides for building and operating agents.', href: '/resources/guides', cta: 'Browse guides' },
+	{ label: 'Operational content', value: String(operationalCount), icon: 'star', copy: 'Skills, crons, guides, ship notes, and weekly updates.', href: '/resources/skills', cta: 'Explore library' },
 ];
 
 const overviewCards: ResourceItem[] = [
-	{ title: 'Software Factory', icon: 'workflow', meta: 'Interactive scroll world', status: 'LIVE', href: '/resources/software-factory', copy: 'Follow a brief through planning, specialist build stations, test loops, security gates, deployment, and production proof.' },
+	{ title: 'How to Agent', icon: 'book', meta: 'Research libraries', status: 'NEW', href: '/resources/how-to-agent/', copy: 'Explore AI operators, growth and go-to-market research, and fundraising playbooks.' },
 	{ title: 'Agent Workflow Atlas', icon: 'workflow', meta: '100 public-safe workflows', status: 'NEW', href: '/resources/agent-workflow-atlas/', copy: 'The long-form workflow catalog behind the use-cases page, with filters, proof states, approval gates, and reusable operating loops.' },
 	{ title: 'Playground', icon: 'grid', meta: 'Model artifact gallery', status: 'NEW', href: '/resources/playground/', copy: 'Artifacts built by different AI models. Compare what each model makes, starting with Tetris by DeepSeek V4 Flash.' },
 	{ title: resourceSections.tools.label, icon: 'grid', meta: resourceMeta('tools'), status: 'GITHUB', href: '/resources/tools', copy: 'Published software we built: Entity, Helm, Shuttle, CTRL, and Heimdall.' },
 	{ title: resourceSections['workflow-packs'].label, icon: 'workflow', meta: resourceMeta('workflow-packs'), status: 'NEW', href: '/resources/workflow-packs', copy: 'Reusable workflow bundles for real operator work. Deploy, adapt, ship.' },
-	{ title: resourceSections.plugins.label, icon: 'plugin', meta: resourceMeta('plugins'), status: 'NEW', href: '/resources/plugins', copy: 'Runtime plugins for OpenClaw and Hermes: enforcement, hooks, and live receipts.' },
-	{ title: resourceSections.mascots.label, icon: 'pet', meta: resourceMeta('mascots'), status: 'UPDATED', href: '/resources/agent-mascots', copy: 'Spock, Picard, Zora, Burnham, Tilly, and Saru mascot concepts for crew surfaces.' },
 	{ title: resourceSections.skills.label, icon: 'spark', meta: resourceMeta('skills'), status: 'UPDATED', href: '/resources/skills', copy: 'Installable and manual skill pages with source links and usage contracts.' },
 	{ title: resourceSections.crons.label, icon: 'cron', meta: resourceMeta('crons'), status: 'LIVE', href: '/resources/crons', copy: 'Scheduled jobs, heartbeat checks, triage routines, and publishing automation.' },
 	{ title: resourceSections.guides.label, icon: 'book', meta: resourceMeta('guides'), status: 'UPDATED', href: '/resources/guides', copy: 'How-tos and reference material for building useful agent systems.' },
-	{ title: resourceSections.benchmarks.label, icon: 'bars', meta: resourceMeta('benchmarks'), status: 'UPDATED', href: '/resources/benchmarks', copy: 'Evaluation suites and results across reasoning, memory, tooling, and cost.' },
 	{ title: resourceSections.interesting.label, icon: 'note', meta: resourceMeta('interesting'), status: 'NEW', href: '/resources/interesting', copy: 'Odd, useful, or high-signal decks and artifacts worth keeping close.' },
 	{ title: resourceSections['ship-notes'].label, icon: 'note', meta: resourceMeta('ship-notes'), status: 'UPDATED', href: '/resources/ship-notes', copy: 'Mission updates, decisions, and important notes from the bridge.' },
+	{ title: resourceSections.archive.label, icon: 'note', meta: resourceMeta('archive'), href: '/resources/archive/', copy: 'Find the OpenClaw changelog, Software Factory, legacy benchmarks, pets, and plugins.' },
 ];
-
-const tabs = ['All', 'Tools', 'Workflow Packs', 'Plugins', 'Agent Mascots (Pets)', 'Skills', 'Crons', 'Guides', 'Benchmarks', 'Interesting', 'Ship Notes'];
 
 const pageCopy: Record<string, { kicker: string; title: string; copy: string; items: ResourceItem[] }> = {
 	tools: { kicker: 'Tools', title: 'Tools', copy: 'Published software from the crew: GitHub-backed projects we built and ship.', items: resourceSections.tools.items },
@@ -191,7 +193,8 @@ const pageCopy: Record<string, { kicker: string; title: string; copy: string; it
 	guides: { kicker: 'Guides', title: 'Guides', copy: 'Practical setup and operating guides for building useful agent systems.', items: resourceSections.guides.items },
 	benchmarks: { kicker: 'Benchmarks', title: 'Benchmarks', copy: 'Benchmark reports, model pages, and operator-grade evaluation notes.', items: resourceSections.benchmarks.items },
 	interesting: { kicker: 'Interesting', title: 'Interesting', copy: 'Odd, useful, or high-signal decks and artifacts worth keeping close.', items: resourceSections.interesting.items },
-	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, changelogs, weekly roundups, and decisions from the bridge.', items: resourceSections['ship-notes'].items },
+	'ship-notes': { kicker: 'Ship Notes', title: 'Ship notes', copy: 'Mission updates, weekly roundups, and decisions from the bridge.', items: resourceSections['ship-notes'].items },
+	archive: { kicker: 'Archive', title: 'Archive', copy: 'Find earlier SuperAda resources, tools, and reference material.', items: resourceSections.archive.items },
 };
 
 function icon(name: string) {
@@ -201,7 +204,7 @@ function icon(name: string) {
 const category = pageCopy[mode];
 const featured = overviewCards.slice(0, 3);
 const hubs = overviewCards.slice(3);
-const sectionKeys = Object.keys(resourceSections) as ResourceSectionKey[];
+const sectionKeys = ['tools', 'workflow-packs', 'skills', 'crons', 'guides', 'interesting', 'ship-notes'] as const satisfies readonly ResourceSectionKey[];
 const allItems = sectionKeys.flatMap((key) => resourceSections[key].items.map((item) => ({ ...item, section: key })));
 const totalItems = allItems.length;
 const isExternal = (href: string) => /^https?:/.test(href);
@@ -213,7 +216,7 @@ const tone = (status = '') => {
 	return 'muted';
 };
 const hero = mode === 'overview'
-	? { eyebrow: 'Resources · Discovery', title: 'Resource Atlas', lede: 'Everything the Enterprise Crew has built, tested, and learned. Explore tools, workflow packs, plugins, skills, crons, guides, mascots, benchmarks, and ship notes curated for building better AI systems.', id: 'resource-atlas-title' }
+	? { eyebrow: 'Resources · Discovery', title: 'Resource Atlas', lede: 'Everything the Enterprise Crew has built, tested, and learned. Explore tools, workflow packs, skills, crons, guides, and research for building better AI systems.', id: 'resource-atlas-title' }
 	: mode === 'mascots'
 		? { eyebrow: 'Resources · Codex pets', title: 'Agent Mascots (Pets)', lede: 'Spock, Picard, Zora, Burnham, Tilly, and Saru mascot concepts for crew surfaces. The live ones install with one command.', id: undefined }
 		: { eyebrow: `Resources · ${category?.kicker ?? ''}`, title: category?.title ?? '', lede: category?.copy, id: undefined };
@@ -268,7 +271,7 @@ const heroCount = mode === 'overview' ? totalItems : mode === 'mascots' ? mascot
 						<label class="ra-search">
 							<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
 							<span class="sr-only">Search resources</span>
-							<input data-resource-search type="search" placeholder="Search tools, workflow packs, plugins, skills, crons, guides, mascots..." autocomplete="off" />
+							<input data-resource-search type="search" placeholder="Search tools, workflow packs, skills, crons, guides..." autocomplete="off" />
 							<kbd data-resource-count>{totalItems}</kbd>
 						</label>
 						<div class="ra-chips" role="toolbar" aria-label="Resource categories">
@@ -279,7 +282,7 @@ const heroCount = mode === 'overview' ? totalItems : mode === 'mascots' ? mascot
 						<div class="ra-grid" id="resource-cards" data-resource-hubs>
 							{hubs.map((card) => (
 								<a class="ds-card resource-card" href={card.href}>
-									<span class="ra-card-top"><Fragment set:html={icon(card.icon)} /><span class={`ds-badge ds-badge--${tone(card.status)}`}>{card.status}</span></span>
+									<span class="ra-card-top"><Fragment set:html={icon(card.icon)} />{card.status && <span class={`ds-badge ds-badge--${tone(card.status)}`}>{card.status}</span>}</span>
 									<h3>{card.title}</h3>
 									<p>{card.copy}</p>
 									<span class="ds-card-foot">{card.meta}</span>
