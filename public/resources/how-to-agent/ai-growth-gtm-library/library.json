@@ -1,0 +1,1973 @@
+{
+  "as_of": "2026-10-29",
+  "people": [
+    {
+      "name": "Elena Verna",
+      "role": "Head of Growth, Lovable (role stated in sources)",
+      "fit": "Strong first-person operator",
+      "why": "Owns pricing and directly reports Lovable growth methods.",
+      "start_id": "pg-02",
+      "methods": [
+        "Live checkout cohort tests",
+        "Free credits as distribution investment",
+        "Staffed user community",
+        "Building in public"
+      ],
+      "limitations": "Exceptional product/category context; some essays gated.",
+      "source_ids": [
+        "pg-01",
+        "pg-02",
+        "pg-03",
+        "pg-04",
+        "pg-13",
+        "pg-14",
+        "pg-15"
+      ]
+    },
+    {
+      "name": "Anton Osika",
+      "role": "Co-founder and CEO, Lovable",
+      "fit": "Strong first-person operator",
+      "why": "Founder personally drives launch voice, product iteration and community demand.",
+      "start_id": "pg-05",
+      "methods": [
+        "Open-source community before paid launch",
+        "Founder-owned social voice",
+        "Hackathons to discover enterprise pull"
+      ],
+      "limitations": "Available selected sources emphasize launch and strategy over detailed retention analysis.",
+      "source_ids": [
+        "pg-05",
+        "pg-06"
+      ]
+    },
+    {
+      "name": "Grant Lee",
+      "role": "Co-founder and CEO, Gamma",
+      "fit": "Strong first-person operator",
+      "why": "Personally learned and operated creator distribution; detailed failed-launch and activation account.",
+      "start_id": "pg-09",
+      "methods": [
+        "Rebuild first30seconds before buying traffic",
+        "Onboard niche creators personally",
+        "Willingness-to-pay research from real use"
+      ],
+      "limitations": "Historic growth and profitability claims not audited; current channel economics not verified.",
+      "source_ids": [
+        "pg-07",
+        "pg-08",
+        "pg-09",
+        "pg-16"
+      ]
+    },
+    {
+      "name": "Karri Saarinen",
+      "role": "Co-founder and CEO, Linear",
+      "fit": "Specialist: AI-product positioning",
+      "why": "Directly explains adapting existing SaaS workflows and interfaces for agents.",
+      "start_id": "pg-11",
+      "methods": [
+        "Preserve customer mission while changing interface",
+        "Agent users as product expansion"
+      ],
+      "limitations": "Evidence primarily product strategy, not measured acquisition experiments.",
+      "source_ids": [
+        "pg-10",
+        "pg-11"
+      ]
+    },
+    {
+      "name": "Cat Wu",
+      "role": "Claude Code product leader, Anthropic (source role)",
+      "fit": "Specialist: launch and retention",
+      "why": "First-person account of retention-based public launch gates.",
+      "start_id": "pg-12",
+      "methods": [
+        "Internal retention and active-use thresholds",
+        "Candid early-customer feedback",
+        "Investigate unexpected retained use cases"
+      ],
+      "limitations": "Shares one interview with Thariq; internal users may differ from market.",
+      "source_ids": [
+        "pg-12"
+      ]
+    },
+    {
+      "name": "Thariq Shihipar",
+      "role": "Claude Code team, Anthropic; engineer/product builder (not verified as growth lead)",
+      "fit": "Specialist: product adoption",
+      "why": "Directly discusses collaborative usage teaching users how to work with agents.",
+      "start_id": "pg-12",
+      "methods": [
+        "Shared prompting as onboarding and education",
+        "Context-aware product interfaces"
+      ],
+      "limitations": "Do not call him Anthropic growth lead; retention bar in shared source belongs to Cat.",
+      "source_ids": [
+        "pg-12"
+      ]
+    },
+    {
+      "name": "Amelia Lerutte",
+      "role": "SaaStr Chief AI Officer at source time",
+      "fit": "Strong first-person operator",
+      "why": "Builds and operates 10 K, segmentedSDRs and the Prospector queue in a revenue-producing business.",
+      "start_id": "revenue-saastr-017",
+      "methods": [
+        "Centralize replies",
+        "First-party history before enrichment",
+        "Approve consequential sends",
+        "Retrain from conversions and failures"
+      ],
+      "limitations": "First-party outcomes; shared interviews counted once.",
+      "source_ids": [
+        "revenue-saastr-017",
+        "revenue-saastr-teardown",
+        "revenue-saastr-006",
+        "revenue-saastr-six-months",
+        "revenue-saastr-007"
+      ]
+    },
+    {
+      "name": "Jason Lemkin",
+      "role": "SaaStr founder/CEO; investor",
+      "fit": "Strong first-person operator and investor",
+      "why": "Personally trains and monitors agents with Amelia; details workload, data preparation and failures.",
+      "start_id": "revenue-saastr-six-months",
+      "methods": [
+        "Scale working human messaging",
+        "Segment motions",
+        "Monitor overlap and deliverability",
+        "Match autonomy to deal type"
+      ],
+      "limitations": "Separate SaaStr practice from portfolio/vendor promotion; business has a large existing audience.",
+      "source_ids": [
+        "revenue-saastr-017",
+        "revenue-saastr-teardown",
+        "revenue-saastr-006",
+        "revenue-saastr-six-months",
+        "revenue-saastr-007"
+      ]
+    },
+    {
+      "name": "Jordan Crawford",
+      "role": "Blueprint GTM founder; Clay adviser",
+      "fit": "Strong first-person specialist",
+      "why": "Publishes client pipelines, verification failures and usable targeting/qualification methods.",
+      "start_id": "revenue-jordan-starter",
+      "methods": [
+        "Customer won/lost evidence",
+        "Permissionless value",
+        "Public-source TAM",
+        "Evidence receipts and held uncertainty"
+      ],
+      "limitations": "Author-run client/evaluation claims; some implementation paid.",
+      "source_ids": [
+        "revenue-jordan-starter",
+        "revenue-jordan-tam",
+        "revenue-jordan-research",
+        "revenue-jordan-followup",
+        "revenue-jordan-find"
+      ]
+    },
+    {
+      "name": "Austin Hughes",
+      "role": "Unify co-founder/CEO; former Ramp growth lead",
+      "fit": "Operator leader / vendor specialist",
+      "why": "Interviews and own-team reports evidence internal GTM use plus experiment-driven leadership.",
+      "start_id": "revenue-austin-gtm-153",
+      "methods": [
+        "Signals before outreach",
+        "CRM suppressions",
+        "Qualification before enrichment",
+        "Pipeline per hour"
+      ],
+      "limitations": "Garrett/team built the cited program; not all implementation personally Austin.",
+      "source_ids": [
+        "revenue-austin-signals",
+        "revenue-austin-gtm-153",
+        "revenue-austin-sacra"
+      ]
+    },
+    {
+      "name": "Kyle Coleman",
+      "role": "ClickUp Global VP Marketing at April 2026 source; previously Copy.ai CMO",
+      "fit": "First-person demonstrator / operator leader",
+      "why": "Demonstrates account research and manages a documented live AI workflow inventory.",
+      "start_id": "revenue-kyle-adoption",
+      "methods": [
+        "Research before outreach",
+        "Named owners",
+        "Visible peer experiments",
+        "Retire weaker automations"
+      ],
+      "limitations": "Product-vendor account; not personal author of every team agent.",
+      "source_ids": [
+        "revenue-kyle-account",
+        "revenue-kyle-adoption"
+      ]
+    },
+    {
+      "name": "Guillaume Cabane",
+      "role": "HyperGrowth Partners founder/GP; former Ramp interimCMO",
+      "fit": "Operator adviser; narrower verification",
+      "why": "Useful countercase: personally attempted to beat hybrid outbound with full AI and reports failure.",
+      "start_id": "revenue-cabane-hybrid",
+      "methods": [
+        "Hybrid baseline",
+        "Failed-experiment learning",
+        "Domain judgment"
+      ],
+      "limitations": "Primary recording not deeply inspected; additional episode remains discovery.",
+      "source_ids": [
+        "revenue-cabane-hybrid",
+        "revenue-cabane-growth"
+      ]
+    },
+    {
+      "name": "Kieran Flanagan",
+      "role": "HubSpot GTM/AI leader and Marketing Against the Grain co-host",
+      "fit": "Strong first-person operator",
+      "why": "Public transcript demonstrates his own assistants; original build notes expose an ongoing reusable marketing-system effort.",
+      "start_id": "marketing-kieran-01",
+      "methods": [
+        "Project context separated into transcripts and strategic documents",
+        "Reusable skills with selective context routing",
+        "Feedback and challenge skills around marketing decisions"
+      ],
+      "limitations": "Detailed newsletters frequently gated; claims about productivity and organization outcomes are self-reported.",
+      "source_ids": [
+        "marketing-kieran-01",
+        "marketing-kieran-02",
+        "marketing-kieran-03",
+        "marketing-kieran-04"
+      ]
+    },
+    {
+      "name": "Wil Reynolds",
+      "role": "Founder and CEO, Seer Interactive",
+      "fit": "Strong first-person operator and measurement specialist",
+      "why": "Shares company performance, original buyer studies, hypotheses and a public tool instead of only visibility advice.",
+      "start_id": "marketing-wil-01",
+      "methods": [
+        "Before/after buyer consideration research",
+        "Prompt sets drawn from real customer behavior",
+        "Multi-model brand comparisons",
+        "Business-outcome measurement beyond AI mentions"
+      ],
+      "limitations": "Agency-specific self-reports and small samples; tool was not run; AI-search environment changes.",
+      "source_ids": [
+        "marketing-wil-01",
+        "marketing-wil-02",
+        "marketing-wil-03",
+        "marketing-wil-04",
+        "marketing-wil-05"
+      ]
+    },
+    {
+      "name": "Ross Simmonds",
+      "role": "Founder, Foundation and Distribution.ai",
+      "fit": "Distribution specialist with first-person product/workflow evidence",
+      "why": "Combines content-to-channel judgment with concrete AI repurposing and distribution workflows.",
+      "start_id": "marketing-ross-03",
+      "methods": [
+        "Create an original pillar asset then adapt to channel users",
+        "Retain human selection and voice review",
+        "Feed clip performance back into future production"
+      ],
+      "limitations": "Many sources promote his own product; citation guidance is advice rather than controlled outcome evidence.",
+      "source_ids": [
+        "marketing-ross-01",
+        "marketing-ross-02",
+        "marketing-ross-03",
+        "marketing-ross-04",
+        "marketing-ross-05"
+      ]
+    },
+    {
+      "name": "Cody Schneider",
+      "role": "Graphed co-founder and marketing systems builder",
+      "fit": "Demo specialist; method details secondary-transcript-supported",
+      "why": "Specific account-management, creative-approval and analytics loops are more concrete than generic agent claims.",
+      "start_id": "marketing-cody-01",
+      "methods": [
+        "Use code for repeated actions and AI for interpretation",
+        "Test creative in successive batches",
+        "Store brand context and reviewer feedback",
+        "Close optimization loop with live Ads/GA4 data"
+      ],
+      "limitations": "One high-value interview in this sweep; detailed transcript is a secondary mirror; no independent account verification. Primary episode listing verified; detailed process and outcome claims require original-media confirmation.",
+      "source_ids": [
+        "marketing-cody-01"
+      ]
+    },
+    {
+      "name": "Chris Walker",
+      "role": "Passetto CEO at the time of the included interview; B2B GTM adviser/operator",
+      "fit": "Adjacent GTM operator/adviser; hands-on AI depth unverified",
+      "why": "Useful customer-feedback and economics counterweight, but does not meet the same demonstrated AI-build bar in the inspected material.",
+      "start_id": "marketing-chris-01",
+      "methods": [
+        "Refine narrative using real-time audience feedback",
+        "Evaluate marketing through business economics",
+        "Keep customer insight ahead of production velocity"
+      ],
+      "limitations": "Do not recommend as equal AI implementation exemplar on this evidence; current role not independently refreshed.",
+      "source_ids": [
+        "marketing-chris-01"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "pg-01",
+      "person": "Elena Verna",
+      "title": "Growth lessons behind Lovable’s $6.6B valuation (shared on Lenny’s podcast!)",
+      "date": "2025-12-19",
+      "url": "https://www.elenaverna.com/p/growth-lessons-behind-lovables-66b",
+      "publisher": "Elena’s Growth Scoop",
+      "format": "operator essay",
+      "topic": "AI-product acquisition and distribution loops",
+      "summary": "Lovable links shipping, public building, staffed community, social proof and free credits into one reinforcing system.",
+      "method": "Make each release teachable; let users show builds, reward helpers and distribute credits so new users experience product value.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary author article substantive sections read; free public.",
+      "status": "Catalogued source",
+      "claims": [
+        "Lovable treats free inference credits as a marketing investment; effectiveness self-reported."
+      ],
+      "limitations": "Company-specific exceptional growth; author explicitly warns that the model will not fit every business. Distinct written synthesis of interview, not an extra transcript.",
+      "tags": [
+        "growth-of-AI-products",
+        "PLG",
+        "community",
+        "free-credits",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-02",
+      "person": "Elena Verna",
+      "title": "Q&A with Lovable’s Head of Growth on Pricing, Experimentation, and Monetizing AI",
+      "date": "2026-02-03",
+      "url": "https://metronome.com/blog/q-a-with-lovables-head-of-growth-on-pricing-experimentation-and-monetizing-ai",
+      "publisher": "Metronome",
+      "format": "original webinar Q&A",
+      "topic": "AI-product pricing and retention experiments",
+      "summary": "Elena explains pricing ownership, live checkout experiments, new-user cohorts and value-oriented retention.",
+      "method": "Assign one accountable pricing owner with cross-functional input. Test real checkout on new users, predefine sample/error, then evaluate retention, engagement and expansion alongside conversion.",
+      "evidence": "Primary firsthand",
+      "verification": "Original interviewer/publisher edited Q&A and date read; free public.",
+      "status": "Catalogued source",
+      "claims": [
+        "Monthly is described as default to lower entry friction at time of interview."
+      ],
+      "limitations": "Billing vendor publishes the interview. Pricing choices are historical, not a current Lovable pricing audit.",
+      "tags": [
+        "growth-of-AI-products",
+        "pricing",
+        "experimentation",
+        "retention"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-03",
+      "person": "Elena Verna",
+      "title": "The new AI growth playbook for 2026: How Lovable hit $200M ARR in one year | Elena Verna (Head of Growth)",
+      "date": "2025-12-18",
+      "url": "https://www.lennysnewsletter.com/p/the-new-ai-growth-playbook-for-2026-elena-verna",
+      "publisher": "Lenny’s Podcast",
+      "format": "interview",
+      "topic": "AI-product growth operating model",
+      "summary": "Innovation versus optimization, free product distribution, evolving activation ownership and continual product-market-fit search.",
+      "method": "Recheck whether core new capabilities create more value than marginal funnel optimization; use product access to make an unfamiliar category tangible.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary publisher original introduction, detailed agenda and date accessed through search index; full paid transcript not read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Revenue and proportion of obsolete growth tactics are guest/publisher assertions, not independently verified."
+      ],
+      "limitations": "Not full playback. More limited content verification than pg-01/02; use those free texts first. Same interview’s mirror/clips excluded.",
+      "tags": [
+        "growth-of-AI-products",
+        "activation",
+        "freemium",
+        "PMF"
+      ],
+      "related_links": [
+        {
+          "label": "Author’s written synthesis",
+          "url": "https://www.elenaverna.com/p/growth-lessons-behind-lovables-66b"
+        }
+      ],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-04",
+      "person": "Elena Verna",
+      "title": "Elena Verna on AI growth: Automate the basics, elevate the creative",
+      "date": "2026-04-17",
+      "url": "https://www.atlassian.com/blog/artificial-intelligence/elena-verna-on-ai-growth-automate-the-basics-elevate-the-creative",
+      "publisher": "Atlassian / Product in Practice",
+      "format": "original interview recap",
+      "topic": "Using AI in product-growth work",
+      "summary": "Describes Lovable workflows beginning with AI drafts of specs, prototypes and GTM plans, leaving judgment and customer conversations with humans.",
+      "method": "Automate repeatable baseline work, then spend time on original differentiation and customer learning; use drafts to provoke iteration.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary interview publisher text and date read; free public; full linked episode not played.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "HYBRID: principally marketing/product work using AI, not evidence of a measured acquisition lift. Source advice on loosening controls is not endorsed as a blanket policy.",
+      "tags": [
+        "marketing-using-AI",
+        "hybrid",
+        "growth-operations",
+        "customer-research"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-05",
+      "person": "Anton Osika",
+      "title": "Building Lovable: $10M ARR in 60 days with 15 people | Anton Osika (co-founder and CEO)",
+      "date": "2025-03-09",
+      "url": "https://www.lennysnewsletter.com/p/building-lovable-anton-osika",
+      "publisher": "Lenny’s Podcast",
+      "format": "interview/demo",
+      "topic": "Community-led launch of an AI product",
+      "summary": "Open-source GPT-Engineer community preceded the paid product; iteration through waitlist feedback and a concrete product demonstration supported launch.",
+      "method": "Use a tangible demo and early community to validate demand; distinguish waitlist interest from people building useful products.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher detailed show notes, date and growth takeaways read; free text; full media not played.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Publisher description supports methods; detailed third-party transcript found but not used as primary proof. Headline revenue unverified.",
+      "tags": [
+        "growth-of-AI-products",
+        "launch",
+        "open-source",
+        "community",
+        "positioning"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "pg-06",
+      "person": "Anton Osika",
+      "title": "Scaling AI Rocketships: ElevenLabs’ Mati Staniszewski & Lovable’s Anton Osika",
+      "date": null,
+      "url": "https://sequoiacap.com/podcast/scaling-ai-rocketships-elevenlabs-mati-staniszewski-lovables-anton-osika",
+      "publisher": "Sequoia Capital / Long Strange Trip",
+      "format": "original interview and transcript",
+      "topic": "Founder-led positioning and enterprise discovery",
+      "summary": "Osika describes personally scheduling founder posts, hackathons generating enterprise use and staying flexible about segmentation while learning from use.",
+      "method": "Founder owns final voice; pair demonstrations/community with observed segment pull before freezing an enterprise ICP or sales process.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary investor/interviewer transcript substantive sections read; free public.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Original page did not expose date. Secondary feeds disagree December11 versus12,2025; date null. Leadership-heavy supplementary source.",
+      "tags": [
+        "growth-of-AI-products",
+        "founder-led-marketing",
+        "positioning",
+        "enterprise",
+        "hackathons"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "pg-07",
+      "person": "Grant Lee",
+      "title": "“Dumbest idea I’ve heard” to $100M ARR: Inside the rise of Gamma | Grant Lee (CEO)",
+      "date": "2025-11-13",
+      "url": "https://www.lennysnewsletter.com/p/how-50-people-built-a-profitable-ai-unicorn",
+      "publisher": "Lenny’s Podcast",
+      "format": "interview",
+      "topic": "AI-product activation and creator distribution",
+      "summary": "Interview covers first30seconds, word-of-mouth, micro-influencers and pricing.",
+      "method": "Study activation at09:52/17:17, creator distribution at41:19, pricing at1:29:06; pair with pg-09 for public detailed text.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary publisher dated page, agenda and timestamped original video links read; paid full transcript not accessed.",
+      "status": "Catalogued source",
+      "claims": [
+        "Publisher reports more than1000 micro-influencers; not independently audited."
+      ],
+      "limitations": "No full playback. Source-level topic verification, not complete implementation walkthrough read.",
+      "tags": [
+        "growth-of-AI-products",
+        "activation",
+        "creators",
+        "pricing",
+        "word-of-mouth"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Grant Lee"
+      ]
+    },
+    {
+      "id": "pg-08",
+      "person": "Grant Lee",
+      "title": "Grant Lee: Building Gamma’s AI Presentation Company to 100 Million Users",
+      "date": "2025-11-11",
+      "url": "https://a16z.com/podcast/grant-lee-building-gammas-ai-presentation-company-to-100-million-users/",
+      "publisher": "Andreessen Horowitz",
+      "format": "original interview",
+      "topic": "Founder-led influencer onboarding",
+      "summary": "Original show description identifies founder-led creator onboarding and design investment during Gamma’s expansion.",
+      "method": "Personally onboard early creators so they understand product value; teach use before handing over distribution.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary interview publisher page and dated description read; embedded recording not played; no primary full transcript available on retrieved page.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Supplementary, less deeply verified than pg-09. “No advertising” applies to source’s historical claim and must not be read as absence of paid creator work.",
+      "tags": [
+        "growth-of-AI-products",
+        "creators",
+        "founder-led-marketing"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Grant Lee"
+      ]
+    },
+    {
+      "id": "pg-09",
+      "person": "Grant Lee",
+      "title": "The Worst Pitch That Built a $2 Billion Company",
+      "date": null,
+      "url": "https://startups.hubspot.com/magazine/issue06/gamma",
+      "publisher": "HubSpot for Startups / Taylor Cromwell",
+      "format": "original founder interview/profile",
+      "topic": "Activation, monetization and micro-influencer loops",
+      "summary": "Gamma paused expansion after a flat launch, rebuilt AI onboarding, observed user requests to pay and used trusted small creators.",
+      "method": "Earn the next30seconds with a useful first draft; test willingness to pay after actual use; spread budget across niche trusted creators and personally onboard them.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary interviewer article with direct founder quotes read in detail; free public.",
+      "status": "Catalogued source",
+      "claims": [
+        "Initial credit allowance became a monetization constraint when users asked to purchase more.",
+        "Founder describes ProductHunt spike flattening before AI onboarding rebuild."
+      ],
+      "limitations": "Publication day absent; do not substitute crawl date. Historical numbers are interview claims. Correlated launch and growth do not isolate causality.",
+      "tags": [
+        "growth-of-AI-products",
+        "activation",
+        "pricing",
+        "creators",
+        "PLG"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Grant Lee"
+      ]
+    },
+    {
+      "id": "pg-10",
+      "person": "Karri Saarinen",
+      "title": "How Linear became the new Jira",
+      "date": "2025-05-15",
+      "url": "https://www.runtime.news/how-linear-became-the-new-jira/",
+      "publisher": "Runtime / Tom Krazit",
+      "format": "original interview",
+      "topic": "Positioning an existing SaaS product for agent users",
+      "summary": "Linear adapts product and API to agent users while keeping its workflow focus.",
+      "method": "Map the job customers actually perform before adding AI; build agent participation into existing workflow context rather than a disconnected generic chatbot.",
+      "evidence": "Primary firsthand",
+      "verification": "Original interviewer text, direct responses and date read; free public.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "AI-relevant product/positioning specialist, not a measured launch-growth case study.",
+      "tags": [
+        "growth-of-AI-products",
+        "AI-product-positioning",
+        "agent-distribution",
+        "existing-SaaS-transition"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Karri Saarinen"
+      ]
+    },
+    {
+      "id": "pg-11",
+      "person": "Karri Saarinen",
+      "title": "Transcript: 'If SaaS Is Dead, Linear Didn't Get the Memo'",
+      "date": "2026-04-01",
+      "url": "https://every.to/podcast/transcript-if-saas-is-dead-linear-didn-t-get-the-memo",
+      "publisher": "Every / Dan Shipper",
+      "format": "original interview transcript",
+      "topic": "Agent-native positioning and expansion",
+      "summary": "Saarinen explains preserving Linear’s customer mission while changing the product to accommodate human-agent development.",
+      "method": "Study how customer work changes, then adapt product around that job; avoid equating a new chatbot surface with an AI strategy.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher transcript, date and substantive dialogue read; free public.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Strategy and workflow demo rather than quantified acquisition experiment. Summary article/recording are same canonical interview.",
+      "tags": [
+        "growth-of-AI-products",
+        "AI-product-positioning",
+        "agent-distribution"
+      ],
+      "related_links": [
+        {
+          "label": "Same interview overview",
+          "url": "https://every.to/context-window/if-saas-is-dead-linear-didn-t-get-the-memo"
+        }
+      ],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Karri Saarinen"
+      ]
+    },
+    {
+      "id": "pg-12",
+      "person": "Cat Wu; Thariq Shihipar",
+      "title": "A Fireside Chat with Cat and Thariq from the Claude Code team",
+      "date": "2026-07-21",
+      "url": "https://simonwillison.net/2026/Jul/21/cat-and-thariq/",
+      "publisher": "Simon Willison / AI Engineer World’s Fair",
+      "format": "original host edited transcript",
+      "topic": "AI-product launch gates and collaborative adoption",
+      "summary": "Cat explains internal active-use and retention thresholds before public release. Thariq describes shared agent use as user education and reduced friction.",
+      "method": "Ship internally and to candid early customers; measure repeat use before launch; watch unexpected retained workflows and let shared use teach peers.",
+      "evidence": "Primary firsthand",
+      "verification": "Original interviewer edited transcript and article date read; free public.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Article publication date, not conference recording date. Cat supplies retention criterion; do not attribute it to Thariq. Internal Anthropic users are not an unbiased target-market cohort.",
+      "tags": [
+        "growth-of-AI-products",
+        "retention",
+        "launch-gates",
+        "dogfooding",
+        "collaborative-adoption"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Cat Wu",
+        "Thariq Shihipar"
+      ]
+    },
+    {
+      "id": "pg-13",
+      "person": "Elena Verna",
+      "title": "The Minimum Lovable Product Era",
+      "date": "2026-02-27",
+      "url": "https://www.elenaverna.com/p/the-minimum-lovable-product-era",
+      "publisher": "Elena’s Growth Scoop",
+      "format": "operator essay",
+      "topic": "AI-product growth framework",
+      "summary": "Relevant author essay located; only opening argument inspected.",
+      "method": "Read full original before adopting its framework; pg-01/02 provide accessible operational detail.",
+      "evidence": "Primary advice/research",
+      "verification": "Primary dated page and public opening read; full body gated in retrieved page.",
+      "status": "Discovery lead",
+      "claims": [],
+      "limitations": "Not promoted to fully catalogued content because substantive full argument unavailable.",
+      "tags": [
+        "growth-of-AI-products",
+        "paywalled"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-14",
+      "person": "Elena Verna",
+      "title": "Why AI doesn’t mean the end of Freemium",
+      "date": "2025-12-12",
+      "url": "https://www.elenaverna.com/p/why-ai-doesnt-mean-the-end-of-freemium",
+      "publisher": "Elena’s Growth Scoop",
+      "format": "operator essay",
+      "topic": "AI-product growth framework",
+      "summary": "Relevant author essay located; only opening argument inspected.",
+      "method": "Read full original before adopting its framework; pg-01/02 provide accessible operational detail.",
+      "evidence": "Primary advice/research",
+      "verification": "Primary dated page and public opening read; full body gated in retrieved page.",
+      "status": "Discovery lead",
+      "claims": [],
+      "limitations": "Not promoted to fully catalogued content because substantive full argument unavailable.",
+      "tags": [
+        "growth-of-AI-products",
+        "paywalled"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-15",
+      "person": "Elena Verna",
+      "title": "The Product-Market Fit Treadmill: Why every AI company is sprinting just to stay in place",
+      "date": "2025-11-18",
+      "url": "https://www.elenaverna.com/p/the-product-market-fit-treadmill",
+      "publisher": "Elena’s Growth Scoop",
+      "format": "operator essay",
+      "topic": "AI-product growth framework",
+      "summary": "Relevant author essay located; only opening argument inspected.",
+      "method": "Read full original before adopting its framework; pg-01/02 provide accessible operational detail.",
+      "evidence": "Primary advice/research",
+      "verification": "Primary dated page and public opening read; full body gated in retrieved page.",
+      "status": "Discovery lead",
+      "claims": [],
+      "limitations": "Not promoted to fully catalogued content because substantive full argument unavailable.",
+      "tags": [
+        "growth-of-AI-products",
+        "paywalled"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Elena Verna"
+      ]
+    },
+    {
+      "id": "pg-16",
+      "person": "Grant Lee",
+      "title": "Grant Lee (Gamma) – Finding Early-Stage Energy [Entire Talk]",
+      "date": "2025-10-21",
+      "url": "https://stvp.stanford.edu/av/grant-lee-gamma-finding-early-stage-energy-entire-talk",
+      "publisher": "Stanford Technology Ventures Program",
+      "format": "founder talk",
+      "topic": "Early user acquisition and false product-market fit",
+      "summary": "Primary indexed transcript describes recruiting friends then seeking stranger feedback through ProductHunt.",
+      "method": "Distinguish polite friend feedback from repeated use by independent users.",
+      "evidence": "Primary firsthand",
+      "verification": "Official talk page date read and original transcript search excerpt inspected; full PDF retrieval returned404.",
+      "status": "Discovery lead",
+      "claims": [],
+      "limitations": "47:29 talk not played; transcript unavailable on direct fetch.",
+      "tags": [
+        "growth-of-AI-products",
+        "early-users"
+      ],
+      "related_links": [],
+      "research_lane": "AI-product launch, PLG and positioning",
+      "participants": [
+        "Grant Lee"
+      ]
+    },
+    {
+      "id": "revenue-saastr-017",
+      "person": "Jason Lemkin; Amelia Lerutte",
+      "title": "The Agent-Led Growth Playbook | The Agents #017",
+      "date": "2026-10-24",
+      "url": "https://www.saastr.com/the-agent-led-growth-playbook-a-10-minute-inbound-booking-a-46-of-50-aeo-score-and-why-first-party-data-beats-every-signal-tool-the-agents-017/",
+      "publisher": "SaaStr",
+      "format": "live-session companion",
+      "topic": "Reply handling and follow-up",
+      "summary": "Amelia’s Prospector consolidates inbound, outbound replies, renewals and support. First-party account history precedes enrichment; an agent drafts the prospectus and email, tracks response timers and routes exceptions.",
+      "method": "Start with inbound; add replies rather than every sent email. Give each record an owner, next action, approval boundary and closure state.",
+      "evidence": "Primary firsthand",
+      "verification": "Original article inspected; October 24 date from publisher category. Underlying live session October 22; counted once.",
+      "status": "Catalogued source",
+      "claims": [
+        "A real inbound example booked within ten minutes."
+      ],
+      "limitations": "First-party example, not a conversion benchmark. AEO portion outside this lane.",
+      "tags": [
+        "Reply handling and follow-up"
+      ],
+      "related_links": [
+        {
+          "label": "Same live session, transcript",
+          "url": "https://content.delphi.co/saastr/the-agents-live-the-agent-led-45ac3497d8c4"
+        }
+      ],
+      "research_lane": "revenue",
+      "participants": [
+        "Amelia Lerutte",
+        "Jason Lemkin"
+      ]
+    },
+    {
+      "id": "revenue-saastr-teardown",
+      "person": "Jason Lemkin; Amelia Lerutte",
+      "title": "A Full Teardown of How SaaStr AI Actually Runs Inbound, Renewals, and Outbound",
+      "date": "2026-09-19",
+      "url": "https://www.saastr.com/a-full-teardown-of-how-saastr-ai-actually-runs-inbound-renewals-and-outbound-on-the-latest-the-agents/",
+      "publisher": "SaaStr",
+      "format": "episode companion / workflow teardown",
+      "topic": "Personalization and enrichment",
+      "summary": "Shows tokenized prospectuses, CRM writeback and job-change verification. An enrichment waterfall precedes outbound. Excessive context degraded 10 K until the team modularized it.",
+      "method": "Reuse proprietary renewal context for inbound and outbound; enrich missing facts, observe session behavior and have a human edit the pitch.",
+      "evidence": "Primary firsthand",
+      "verification": "Original article read; date from publisher category. Video not watched.",
+      "status": "Catalogued source",
+      "claims": [
+        "Claims inbound new business rose 60% and outbound revenue 124%."
+      ],
+      "limitations": "Self-reported attribution, not independent causal proof.",
+      "tags": [
+        "Personalization and enrichment"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Amelia Lerutte",
+        "Jason Lemkin"
+      ]
+    },
+    {
+      "id": "revenue-saastr-006",
+      "person": "Jason Lemkin; Amelia Lerutte",
+      "title": "SaaStr 857: The Agents #006 Inside SaaStr’s 20+ AI Agent Stack: 2.25M Sessions, 614 Meetings, $2M in Revenue",
+      "date": "2026-06-02",
+      "url": "https://podcasts.apple.com/us/podcast/saastr-857-the-agents-006-inside-saastrs-20-ai-agent/id1089973241?i=1000770740306",
+      "publisher": "The Official SaaStr Podcast",
+      "format": "live backend demos / video podcast",
+      "topic": "Segmented agent portfolio",
+      "summary": "Walks through 10 K, customer-success agents, Qualified inbound, Agentforce recovery, Artisan warm outbound and Monaco cold outbound; includes a prohibited-sender incident.",
+      "method": "Allocate agents to distinct lead classes; train with business context and begin with leads humans neglect.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher-distributed description and June 2 metadata inspected. June 3 blog is the same session and not counted.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 614 meetings for an inbound agent."
+      ],
+      "limitations": "Recording not watched; cumulative seller metrics differ in scope across episodes.",
+      "tags": [
+        "Segmented agent portfolio"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Amelia Lerutte",
+        "Jason Lemkin"
+      ]
+    },
+    {
+      "id": "revenue-saastr-six-months",
+      "person": "Jason Lemkin; Amelia Lerutte",
+      "title": "6 Months of AI SDRs: What’s Worked, How They Brought In$1 M+ in 90 Days, and the Real Data Everyone’s Asking For",
+      "date": "2025-11-20",
+      "url": "https://cloud.substack.com/p/6-months-of-ai-sdrs-whats-worked",
+      "publisher": "SaaStr AI newsletter",
+      "format": "first-person implementation report",
+      "topic": "SDR training and operations",
+      "summary": "Separate cold, lapsed-customer, nurture, inbound and ghosted-lead agents. Humans maintain segments, review conversations and resolve overlap across platforms.",
+      "method": "Fix messaging and RevOps first; refresh contacts, remove poorly received language and retrain from successful human conversations.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article read, including work allocation and overlap problem.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 15–20 hours weekly managing five agents.",
+        "Reports 19,847 outbound messages and 6.7% response."
+      ],
+      "limitations": "First-party metrics. Historical pricing not current guidance; some prose contains stale year references.",
+      "tags": [
+        "SDR training and operations"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Amelia Lerutte",
+        "Jason Lemkin"
+      ]
+    },
+    {
+      "id": "revenue-saastr-007",
+      "person": "Jason Lemkin; Amelia Lerutte",
+      "title": "We Added Too Many Guardrails and Broke Our Own Agent… The Agents #007",
+      "date": "2026-06-23",
+      "url": "https://www.saastr.com/we-added-too-many-guardrails-and-broke-our-own-agent-our-ai-vp-of-finance-found-a-setting-wed-missed-for-8-years-and-an-agent-is-now-the-one-renewing-your-software-the-agents-007/",
+      "publisher": "SaaStr",
+      "format": "failure review / episode companion",
+      "topic": "Agent drift and acceptance checks",
+      "summary": "Exception rules broke the pitch-grading funnel: ambiguity became missing data, then zeros and failing scores. Identical 10 K specs on two platforms gave different marketing advice.",
+      "method": "Test business output after rule changes; inspect missing-data handling and compare implementations on representative cases.",
+      "evidence": "Primary firsthand",
+      "verification": "Original article inspected; June 23 date from publisher category. No full video claim.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 88 failures among 305 submissions."
+      ],
+      "limitations": "First-party failure counts; adjacent funnel/product reliability rather than exclusively outbound.",
+      "tags": [
+        "Agent drift and acceptance checks"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Amelia Lerutte",
+        "Jason Lemkin"
+      ]
+    },
+    {
+      "id": "revenue-jordan-starter",
+      "person": "Jordan Crawford",
+      "title": "Get Started Here: How I Run Go-To-Market Engineering",
+      "date": "2026-10-08",
+      "url": "https://edge.blueprintgtm.com/p/get-started-here-how-i-run-go-to",
+      "publisher": "On the Edge by Blueprint",
+      "format": "original talk and code companion",
+      "topic": "Customer evidence into valuable outreach",
+      "summary": "Shares engagement method: customer foundation, account dossiers, won/lost analysis, evidence packets and scoring. Explains why signals without buyer pain create useless outreach.",
+      "method": "Reverse-engineer why customers chose you; derive a narrow segment and a message useful before the recipient buys.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article, chapter links and starter-repository link read. Core method free despite paid label; recording not watched.",
+      "status": "Catalogued source",
+      "claims": [
+        "Says six skills are used on every engagement."
+      ],
+      "limitations": "Some examples explicitly modified templates rather than independent case studies.",
+      "tags": [
+        "Customer evidence into valuable outreach"
+      ],
+      "related_links": [
+        {
+          "label": "Author starter repository",
+          "url": "https://github.com/SantaJordan/gtm-engineer-starter"
+        }
+      ],
+      "research_lane": "revenue",
+      "participants": [
+        "Jordan Crawford"
+      ]
+    },
+    {
+      "id": "revenue-jordan-tam",
+      "person": "Jordan Crawford",
+      "title": "Stop Buying Lists. Build Them.",
+      "date": "2026-05-06",
+      "url": "https://edge.blueprintgtm.com/p/stop-buying-lists-build-them",
+      "publisher": "On the Edge by Blueprint",
+      "format": "client build report",
+      "topic": "TAM discovery",
+      "summary": "Client landscaper research combines licensing registries, associations, maps and open data. A late API-token failure led to startup preflight.",
+      "method": "Narrow to one company type; discover sources, score coverage/websites/quality/cost, combine complementary datasets and deduplicate.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated substantive body read despite paid label.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 38 sources and around 85% coverage from three sources."
+      ],
+      "limitations": "Author-run client case, unaudited coverage; historical API costs.",
+      "tags": [
+        "TAM discovery"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Jordan Crawford"
+      ]
+    },
+    {
+      "id": "revenue-jordan-research",
+      "person": "Jordan Crawford",
+      "title": "Introducing Crawford—A Claude Code AI Agent for Cheap Right Answers",
+      "date": "2026-07-06",
+      "url": "https://edge.blueprintgtm.com/p/introducing-crawford-a-claude-code",
+      "publisher": "On the Edge by Blueprint",
+      "format": "agent build and evaluation report",
+      "topic": "Prospect data verification",
+      "summary": "Builds enrichment ladder after multiple tools returned parked domains as official sites. Free lookups precede paid search and expensive agent investigation.",
+      "method": "Resolve identity, fetch claimed source, retain receipts per row, hold uncertainty, blind-check samples and fix shared error causes.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article read, including small-test and held-out-evaluation limits.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 34 of 39 hand-verified rows correct."
+      ],
+      "limitations": "Author-run evaluation; fixes rescored on the same answer key, not independent held-out proof. Some tooling paid.",
+      "tags": [
+        "Prospect data verification"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Jordan Crawford"
+      ]
+    },
+    {
+      "id": "revenue-jordan-followup",
+      "person": "Jordan Crawford",
+      "title": "Matt asked to see Claude Code, I Showed Him How to Get Outcomes Instead",
+      "date": "2026-05-10",
+      "url": "https://edge.blueprintgtm.com/p/matt-asked-to-see-claude-code-i-showed",
+      "publisher": "On the Edge by Blueprint",
+      "format": "worked build account",
+      "topic": "Conference follow-up prioritization",
+      "summary": "Builds a scored attendee queue and adjacent prospect list for a CRO; grades all results against a shared profile.",
+      "method": "Write one fit rubric first; enrich candidates, checkpoint stages and rank next actions with reasons.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article read, including stage-level pipeline.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 138 attendees scored and enriched."
+      ],
+      "limitations": "Research-list production, not proof that follow-ups converted; no outreach performed by this research.",
+      "tags": [
+        "Conference follow-up prioritization"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Jordan Crawford"
+      ]
+    },
+    {
+      "id": "revenue-jordan-find",
+      "person": "Jordan Crawford",
+      "title": "GTM 133: Build your AI Outbound Machine with ChatGPT",
+      "date": "2025-02-11",
+      "url": "https://gtmnow.com/gtm-133-build-your-ai-outbound-machine-with-chatgpt-jordan-crawford/",
+      "publisher": "GTMnow",
+      "format": "interview and primary transcript",
+      "topic": "Pain-based outbound design",
+      "summary": "Demonstrates FIND: focus, investigate, narrate, deploy. Starts from valuable messages and public evidence of a real buying situation.",
+      "method": "Work backward from the customer’s reason to buy to analogous accounts, evidence and channel-specific messaging.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated publisher transcript inspected, including live-demo caveat.",
+      "status": "Catalogued source",
+      "claims": [
+        "Speaker says he sent permissionless-value messages illustrated."
+      ],
+      "limitations": "Live Gaiia draft explicitly not ready to send; older tools and pricing historical.",
+      "tags": [
+        "Pain-based outbound design"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Jordan Crawford"
+      ]
+    },
+    {
+      "id": "revenue-austin-signals",
+      "person": "Austin Hughes / Unify growth team",
+      "title": "How Unify booked 188 meetings and$3.3 M in January with outbound strategy",
+      "date": null,
+      "url": "https://www.linkedin.com/posts/austin-t-hughes_signal-based-outbound-is-the-future-at-activity-7307768241030905857-mWLD",
+      "publisher": "Austin Hughes / LinkedIn",
+      "format": "company workflow account",
+      "topic": "Signal-triggered qualification",
+      "summary": "Austin describes Garrett’s production program with 20+ plays and gives the website-retargeting flow.",
+      "method": "Identify visiting companies, suppress customers/open opportunities, qualify B 2 B fit, enrich ICP contacts and route persona-specific sequences.",
+      "evidence": "Primary firsthand",
+      "verification": "Original author-post text retrieved through search index; exact publication date absent. No gated masterclass requested.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 188 meetings and$3.3 M pipeline in a January period."
+      ],
+      "limitations": "Team-built program, not solely Austin’s implementation. Exact date/year unconfirmed; pipeline is not revenue.",
+      "tags": [
+        "Signal-triggered qualification"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Austin Hughes"
+      ]
+    },
+    {
+      "id": "revenue-austin-gtm-153",
+      "person": "Austin Hughes",
+      "title": "GTM 153: Building Technical Growth Machines & Signal-Based Selling with Austin Hughes",
+      "date": "2025-07-01",
+      "url": "https://gtmnow.com/gtm-153-building-technical-growth-machines-signal-based-selling-with-austin-hughes/",
+      "publisher": "GTMnow",
+      "format": "interview and primary transcript",
+      "topic": "Experiment-driven signal selling",
+      "summary": "Explains growth as product discipline and mixing first/third-party intent; separates internal AI use from his human-written LinkedIn process.",
+      "method": "Optimize pipeline per hour; run sprints and experiments, ingest relevant signals and retain human judgment in execution.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated publisher transcript read; signal pipeline 17:00, review 20:30 and internal AI 39:00 are listed chapters.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 100+ quarterly GTM experiments at Ramp."
+      ],
+      "limitations": "Seller testimony; not every described function personally built by Austin. His July 2025 writing workflow explicitly did not useAI.",
+      "tags": [
+        "Experiment-driven signal selling"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Austin Hughes"
+      ]
+    },
+    {
+      "id": "revenue-austin-sacra",
+      "person": "Austin Hughes",
+      "title": "Austin Hughes, CEO and co-founder of Unify, on the death of the SDR",
+      "date": "2024-07-25",
+      "url": "https://sacra.com/research/austin-hughes-unify-warm-outbound-gtm/",
+      "publisher": "Sacra",
+      "format": "original interview transcript",
+      "topic": "Intent and CRM suppression",
+      "summary": "Details trigger-to-action playbooks combining intent, CRM state and contact enrichment with current-customer suppression.",
+      "method": "Decide whether to contact an account before enriching contacts; apply exclusions and connect a specific signal to an action.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated interview page and substantive answers inspected. PDF mirror not counted.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Historical product-builder interview, weaker personal daily-selling evidence. SDR-replacement predictions are opinions later qualified.",
+      "tags": [
+        "Intent and CRM suppression"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Austin Hughes"
+      ]
+    },
+    {
+      "id": "revenue-kyle-account",
+      "person": "Kyle Coleman",
+      "title": "Account-plan company research workflow demo",
+      "date": null,
+      "url": "https://www.linkedin.com/posts/kyletcoleman_ai-gtm-activity-7150921249894932482-YsXb",
+      "publisher": "Kyle Coleman / LinkedIn",
+      "format": "short first-person demo",
+      "topic": "Account preparation",
+      "summary": "Demonstrates an Intuitive Surgical account plan: news research, positive/negative signals and vertical vocabulary.",
+      "method": "Turn a company into a research packet shared across SDR/AE; human chooses the strategic outreach angle.",
+      "evidence": "Primary firsthand",
+      "verification": "Original author-post transcript visible in search retrieval; direct open robots-denied. Full video not played.",
+      "status": "Catalogued source",
+      "claims": [
+        "Estimates manual research previously took 30–60 minutes."
+      ],
+      "limitations": "Exact date unverified; historical Copy.ai-era demo, not measured pipeline outcome.",
+      "tags": [
+        "Account preparation"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Kyle Coleman"
+      ]
+    },
+    {
+      "id": "revenue-kyle-adoption",
+      "person": "Kyle Coleman",
+      "title": "From Mandate to Machine: How We Built 230 AI Workflows and Transformed a Marketing Org in 8 Months",
+      "date": "2026-04-15",
+      "url": "https://clickup.com/blog/ai-transformation-playbook-marketing-team/",
+      "publisher": "ClickUp",
+      "format": "organizational implementation report",
+      "topic": "Workflow ownership and adoption",
+      "summary": "Visible weekly experiments and leadership feedback grow into owned, documented workflows with live/roadmap status. Includes cold-email and lead-routing examples.",
+      "method": "Make wins inspectable; share useful workflows, retire inferior versions and track processes rather than access to tools.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article and author identity read; linked inventory walkthrough corroborates. Same video not counted separately.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reports 230 workflows after eight months."
+      ],
+      "limitations": "Company promotional account; not all workflows outbound; counts/time saved unaudited.",
+      "tags": [
+        "Workflow ownership and adoption"
+      ],
+      "related_links": [
+        {
+          "label": "Author inventory walkthrough",
+          "url": "https://www.linkedin.com/posts/kyletcoleman_i-felt-like-my-team-was-doing-a-nice-job-activity-7452767305308008449-Bbze"
+        }
+      ],
+      "research_lane": "revenue",
+      "participants": [
+        "Kyle Coleman"
+      ]
+    },
+    {
+      "id": "revenue-cabane-hybrid",
+      "person": "Guillaume Cabane",
+      "title": "S 2 E 7: Be the Olympist of Your Field",
+      "date": "2026-06-03",
+      "url": "https://open.spotify.com/episode/0G3Mh7hWUzcspWaz2yMY4e",
+      "publisher": "GTM Engineer School Podcast",
+      "format": "original interview",
+      "topic": "Hybrid versus full automation",
+      "summary": "Cabane describes personally trying full-AI outbound at Ramp and failing to beat a human/AI baseline.",
+      "method": "Compare qualified business outcomes with the hybrid baseline; retain humans where automation loses instead of measuring message volume.",
+      "evidence": "Primary firsthand",
+      "verification": "Indexed original distributed description identified; direct Spotify text empty. Detailed testimony cross-checked in third-party transcript. No full recording playback.",
+      "status": "Catalogued source",
+      "claims": [
+        "Speaker says full AI failed to outperform hybrid."
+      ],
+      "limitations": "Original recording/transcript inspection remains limited; no controlled dataset disclosed.",
+      "tags": [
+        "Hybrid versus full automation"
+      ],
+      "related_links": [
+        {
+          "label": "Secondary transcript cross-check",
+          "url": "https://podscan.fm/podcasts/gtm-engineer-school-podcast-1/episodes/s2e7-be-the-olympist-of-your-field-guillaume-cabane"
+        }
+      ],
+      "research_lane": "revenue",
+      "participants": [
+        "Guillaume Cabane"
+      ]
+    },
+    {
+      "id": "revenue-cabane-growth",
+      "person": "Guillaume Cabane",
+      "title": "#114 Why Most Growth Teams Fail Before They Start",
+      "date": "2026-02-03",
+      "url": "https://podcasts.apple.com/us/podcast/114-why-most-growth-teams-fail-before-they-start-guillaume/id1700913215?i=1000747882317",
+      "publisher": "Always Be Testing",
+      "format": "original interview",
+      "topic": "Growth experiment cadence",
+      "summary": "Growth culture, failure tolerance, sales alignment and areas whereAI helps without fully replacing SDRs.",
+      "method": "Review cadence and incentives before adding AI tools.",
+      "evidence": "Primary firsthand",
+      "verification": "Original distributed description/date read; detailed workflow transcript not inspected in this lane.",
+      "status": "Discovery lead",
+      "claims": [],
+      "limitations": "Discovery lead: too little original implementation detail reviewed for a verified workflow.",
+      "tags": [
+        "Growth experiment cadence"
+      ],
+      "related_links": [],
+      "research_lane": "revenue",
+      "participants": [
+        "Guillaume Cabane"
+      ]
+    },
+    {
+      "id": "marketing-kieran-01",
+      "person": "Kieran Flanagan",
+      "title": "The 2 AI agents that transformed my workday (live demo inside)",
+      "date": null,
+      "url": "https://www.linkedin.com/posts/kieranjflanagan_the-2-ai-agents-that-transformed-my-workday-activity-7287469845430874112-Xx4J",
+      "publisher": "Kieran Flanagan / LinkedIn",
+      "format": "original short demo with public transcript",
+      "topic": "Marketing project context and decisions",
+      "summary": "Shows the folder/context structure and assistants he uses across HubSpot GTM work.",
+      "method": "Separate meeting transcripts from strategic documents per project; assign an executive assistant to decisions/actions and a project assistant to strategy context.",
+      "evidence": "Primary firsthand",
+      "verification": "Original LinkedIn post and substantial video transcript read; video not played.",
+      "status": "Catalogued source",
+      "claims": [
+        "Personally uses two agents per project."
+      ],
+      "limitations": "Only relative publication age exposed; exact publication date not verified. Leadership operating workflow, not direct acquisition proof.",
+      "tags": [
+        "context",
+        "project assistants",
+        "personal practice"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Kieran Flanagan"
+      ]
+    },
+    {
+      "id": "marketing-kieran-02",
+      "person": "Kieran Flanagan",
+      "title": "How to Build Your Starter AI Marketing System",
+      "date": "2026-08-21",
+      "url": "https://www.kieranflanagan.io/p/how-to-build-your-starter-ai-marketing",
+      "publisher": "Marketing AI Action / Kieran Flanagan",
+      "format": "original build guide",
+      "topic": "Reusable marketing skills and intelligence",
+      "summary": "Author presents a starter system distilled from his own setup.",
+      "method": "Organize intelligence, personal voice, challenge frameworks, customer/product story and daily priorities; route only relevant context to each reusable skill.",
+      "evidence": "Primary firsthand",
+      "verification": "Original title/date/preview verified. Detailed indexed primary-source text read; direct page currently truncates behind subscription.",
+      "status": "Catalogued source",
+      "claims": [
+        "Variants of these components are in his own system."
+      ],
+      "limitations": "Copyable build prompt and linked intelligence layer not accessed; no implementation reproduction.",
+      "tags": [
+        "skills",
+        "context routing",
+        "competitive intelligence",
+        "feedback"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Kieran Flanagan"
+      ]
+    },
+    {
+      "id": "marketing-kieran-03",
+      "person": "Kieran Flanagan",
+      "title": "How to build marketing systems in Claude Code",
+      "date": "2026-03-27",
+      "url": "https://www.kieranflanagan.io/p/how-to-build-marketing-systems-in",
+      "publisher": "Marketing AI Action / Kieran Flanagan",
+      "format": "original essay / gated build notes",
+      "topic": "Marketing systems architecture",
+      "summary": "Preview describes months building specialized skills, shared memory, orchestration and feedback loops.",
+      "method": "Study how outputs from one skill become inputs to another and how shared feedback improves later work; complete instructions remain gated.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated preview read; full article not accessible in this retrieval.",
+      "status": "Discovery lead",
+      "claims": [
+        "Author says his system includes specialized skills, shared memory and feedback loops."
+      ],
+      "limitations": "Do not treat title/preview as verification of full implementation or reusable code.",
+      "tags": [
+        "Claude Code",
+        "orchestration",
+        "memory"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Kieran Flanagan"
+      ]
+    },
+    {
+      "id": "marketing-kieran-04",
+      "person": "Kieran Flanagan",
+      "title": "I built an AI Second Brain. It's made me a 10x better GTM leader",
+      "date": "2026-05-08",
+      "url": "https://www.kieranflanagan.io/p/i-built-an-ai-second-brain-its-made",
+      "publisher": "Marketing AI Action / Kieran Flanagan",
+      "format": "original gated operating essay",
+      "topic": "Executive marketing context",
+      "summary": "First-person account of a second brain built over three months while overseeing a large group.",
+      "method": "Potential study target for decision context and organizational intelligence; preview does not expose the full method.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated preview read; complete article gated.",
+      "status": "Discovery lead",
+      "claims": [
+        "10x better GTM leader is the author's qualitative claim."
+      ],
+      "limitations": "No quantified controlled productivity evidence or implementation detail reviewed.",
+      "tags": [
+        "second brain",
+        "GTM leadership"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Kieran Flanagan"
+      ]
+    },
+    {
+      "id": "marketing-wil-01",
+      "person": "Wil Reynolds",
+      "title": "Can a prompt undo years brand building? Our AI interview tests say yes",
+      "date": "2026-07-01",
+      "url": "https://www.seerinteractive.com/insights/ai-doesnt-just-answer-questions-it-rewrites-which-brands-you-even-consider",
+      "publisher": "Seer Interactive / Wil Reynolds and Andrea Haley",
+      "format": "original empirical article",
+      "topic": "Buyer consideration before and after AI",
+      "summary": "Reports 28 participants completing 84 AI-assisted product research sessions.",
+      "method": "Ask which brands buyers would consider before research; let them use AI for real product tasks; ask intended purchase and reasons afterward; compare consideration shifts.",
+      "evidence": "Primary company/investor",
+      "verification": "Original full public article, authors, date and study design read.",
+      "status": "Catalogued source",
+      "claims": [
+        "GE consideration reportedly shifted from 18 participants to 8."
+      ],
+      "limitations": "Small nonrandom study; self-reported intent, not observed purchases; no causal generalization across markets.",
+      "tags": [
+        "AI search",
+        "buyer research",
+        "brand consideration",
+        "measurement"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Wil Reynolds"
+      ]
+    },
+    {
+      "id": "marketing-wil-02",
+      "person": "Wil Reynolds",
+      "title": "Selecting the right prompts for AIO / GEO tracking could use a human touch",
+      "date": "2026-06-16",
+      "url": "https://www.seerinteractive.com/insights/are-you-picking-the-prompts-for-ai-tracking-without-observing-real-customers",
+      "publisher": "Seer Interactive / Wil Reynolds and Denise Baginski",
+      "format": "original empirical/process article",
+      "topic": "Selecting realistic AI-search prompts",
+      "summary": "Explains how observed customer prompting differs from fixed keyword-style tracking.",
+      "method": "Observe real customer tasks and follow-ups; periodically revise the prompt set rather than inventing it from keywords; document who selects prompts and their customer exposure.",
+      "evidence": "Primary company/investor",
+      "verification": "Original dated article and seven-study comparison read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Reported shift from keyword-style queries toward delegation and personal context."
+      ],
+      "limitations": "Seven studies with messy changing cohorts; not a representative population trend.",
+      "tags": [
+        "GEO",
+        "user research",
+        "prompt sampling"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Wil Reynolds"
+      ]
+    },
+    {
+      "id": "marketing-wil-03",
+      "person": "Wil Reynolds",
+      "title": "Do your AI Search & SEO KPIs need a 2026 upgrade? Yup.",
+      "date": "2026-01-30",
+      "url": "https://www.seerinteractive.com/insights/do-your-ai-search-seo-kpis-need-a-2026-upgrade-yup",
+      "publisher": "Wil Reynolds / Seer Interactive",
+      "format": "first-person metrics essay",
+      "topic": "Search metrics and business outcomes",
+      "summary": "Shares Seer's declining organic traffic alongside revenue growth and much smaller AI-referral gains.",
+      "method": "Track organic loss, AI referrals, conversion and business results separately; test whether content builds human trust rather than merely producing more indexed pages.",
+      "evidence": "Primary firsthand",
+      "verification": "Original full public article and publication date read; draft date January 27 distinguished.",
+      "status": "Catalogued source",
+      "claims": [
+        "169,244 fewer organic visits; 15,036 AI-generated visits; revenue up single digits are company self-reports."
+      ],
+      "limitations": "Not audited; other revenue drivers may explain divergence.",
+      "tags": [
+        "analytics",
+        "revenue",
+        "trust",
+        "failure evidence"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Wil Reynolds"
+      ]
+    },
+    {
+      "id": "marketing-wil-04",
+      "person": "Wil Reynolds",
+      "title": "Buying ads on ChatGPT? Why you should check organic reputation first!",
+      "date": "2026-04-30",
+      "url": "https://www.seerinteractive.com/insights/buying-ads-on-chatgpt-why-you-should-check-organic-reputation-first",
+      "publisher": "Seer Interactive / Wil Reynolds and Brittany Sager",
+      "format": "first-person experiment/hypothesis essay",
+      "topic": "Paid media and AI brand reputation",
+      "summary": "Uses paid/organic client observations to frame reputational risk beside AI ads.",
+      "method": "Before a paid test, inspect generated brand narratives, competitor comparisons and negative sources; measure paid and organic together instead of treating the placement in isolation.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated article and distinction between observation and ChatGPT hypothesis read.",
+      "status": "Catalogued source",
+      "claims": [
+        "156% organic CTR increase alongside paid placement is an existing client example."
+      ],
+      "limitations": "Existing example is traditional search; transfer to ChatGPT is explicitly a hypothesis, not a proven result.",
+      "tags": [
+        "paid media",
+        "reputation",
+        "hypothesis testing"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Wil Reynolds"
+      ]
+    },
+    {
+      "id": "marketing-wil-05",
+      "person": "Wil Reynolds",
+      "title": "Brand Prompt Compare",
+      "date": null,
+      "url": "https://github.com/wilreynolds/brand-prompt-compare",
+      "publisher": "Wil Reynolds / GitHub",
+      "format": "public source repository",
+      "topic": "Multi-model brand perception analysis",
+      "summary": "Reusable app compares brands across AI models and displays structured results and cited sources.",
+      "method": "Run the same natural-language brand comparison across models; inspect pros/cons, comparison concepts, raw responses and source validity; contrast web-search and training-data modes.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary repository README and setup instructions read; linked from Wil's own SEO Week resources. Code not executed.",
+      "status": "Catalogued source",
+      "claims": [
+        "README describes source checks and trend tracking."
+      ],
+      "limitations": "Publication date not established; API access required to run; generated scores are not validated measures of buyer preference.",
+      "tags": [
+        "reproducible artifact",
+        "AI visibility",
+        "model comparison"
+      ],
+      "related_links": [
+        {
+          "label": "SEO Week resources and transcript",
+          "url": "https://info.seerinteractive.com/wil-reynolds-seo-week-2026"
+        }
+      ],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Wil Reynolds"
+      ]
+    },
+    {
+      "id": "marketing-ross-01",
+      "person": "Ross Simmonds",
+      "title": "How to Repurpose Video Content With AI For Social Media (in Minutes)",
+      "date": "2026-10-08",
+      "url": "https://www.distribution.ai/blog/how-to-repurpose-video-content",
+      "publisher": "Ross Simmonds / Distribution.ai",
+      "format": "original practical guide",
+      "topic": "Video-to-multichannel distribution",
+      "summary": "Practical pipeline for turning long-form footage into clips and written channel assets.",
+      "method": "Select source with useful audience-specific insights; extract standalone moments; adapt into channel-native clips/posts/newsletters; review context and brand voice before scheduling and measuring.",
+      "evidence": "Primary advice/research",
+      "verification": "Original article, author and date retrieved and read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Under-15-minute turnaround is the vendor's guide claim."
+      ],
+      "limitations": "Vendor-promotional advice; no independently observed campaign conversion results.",
+      "tags": [
+        "repurposing",
+        "video",
+        "distribution",
+        "review"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Ross Simmonds"
+      ]
+    },
+    {
+      "id": "marketing-ross-02",
+      "person": "Ross Simmonds",
+      "title": "How to Get Your Podcast Cited in AI Answers: 7 Strategies With Real Examples",
+      "date": "2026-08-13",
+      "url": "https://www.distribution.ai/blog/how-to-get-podcasts-cited-in-ai-answers",
+      "publisher": "Ross Simmonds / Distribution.ai",
+      "format": "original practical guide",
+      "topic": "Making expert content accessible to AI search",
+      "summary": "Guidance on turning audio expertise into readable and discoverable episode assets.",
+      "method": "Publish crawlable transcripts and episode pages; structure questions and entities; add appropriate metadata/schema; distribute beyond the original hosting platform and monitor citations.",
+      "evidence": "Primary advice/research",
+      "verification": "Original full article, author and publication date read.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Advice includes broad claims about crawler behavior and schema; not a controlled causal test that these actions increase citations.",
+      "tags": [
+        "AEO",
+        "transcripts",
+        "structured content",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Ross Simmonds"
+      ]
+    },
+    {
+      "id": "marketing-ross-03",
+      "person": "Ross Simmonds",
+      "title": "What We Shipped in July: Video, Shorts, and an AI That Thinks With You",
+      "date": "2026-07-16",
+      "url": "https://www.distribution.ai/blog/ai-video-repurposing-july-update",
+      "publisher": "Ross Simmonds / Distribution.ai",
+      "format": "Company product announcement and workflow walkthrough",
+      "topic": "Repurposing with a performance feedback loop",
+      "summary": "Describes the product his team shipped for one-video-to-many-assets work.",
+      "method": "Submit long-form source; generate Shorts and native social versions; describe brand voice; schedule via calendar; use integrated YouTube analytics to decide what to make more of.",
+      "evidence": "Primary company/investor",
+      "verification": "Original first-person dated article and illustrated workflow retrieved.",
+      "status": "Catalogued source",
+      "claims": [
+        "Team reports shipping Shorts generation/publishing and analytics integration."
+      ],
+      "limitations": "Product announcement, not independent feature execution or measured customer ROI. This demonstrates shipped product capabilities, not Ross personally operating the feedback loop.",
+      "tags": [
+        "workflow",
+        "analytics",
+        "brand voice",
+        "product demo"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Ross Simmonds"
+      ]
+    },
+    {
+      "id": "marketing-ross-04",
+      "person": "Ross Simmonds",
+      "title": "Repurposing Content and Distribution with Ross Simmonds",
+      "date": "2025-02-05",
+      "url": "https://podcasts.apple.com/us/podcast/repurposing-content-and-distribution-with-ross-simmonds/id1790102195?i=1000689021965",
+      "publisher": "What's Your Process? / Dmitry Shamis",
+      "format": "original podcast interview",
+      "topic": "Content-to-channel fit",
+      "summary": "Ross explains deciding what deserves repurposing before creating channel variants.",
+      "method": "Evaluate the message; research communities and platform behavior; match format and design to channel users; then create and distribute assets.",
+      "evidence": "Primary firsthand",
+      "verification": "Official episode description, publication date and chapter list read; no playback.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Process interview supports distribution judgment; AI-specific implementation detail is limited in accessible notes.",
+      "tags": [
+        "distribution",
+        "community research",
+        "content selection"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Ross Simmonds"
+      ]
+    },
+    {
+      "id": "marketing-ross-05",
+      "person": "Ross Simmonds",
+      "title": "How to distribute content across 20 channels in 20 minutes using AI",
+      "date": null,
+      "url": "https://catalog.bensbites.com/event/how-to-distribute-content-across-20-channels-in-20-minutes-using-ai",
+      "publisher": "Ben's Bites / Ross Simmonds",
+      "format": "original workshop / transcript lead",
+      "topic": "Multichannel workflow demonstration",
+      "summary": "Workshop listing describes demonstrations using clipping, podcast promotion, community research and synthetic video tools.",
+      "method": "Study the source-to-format mapping and human review choices rather than copying old tool names; indexed transcript favors original human video as source material.",
+      "evidence": "Primary firsthand",
+      "verification": "Primary workshop URL inspected via search-indexed description and transcript excerpt only; direct open returned 403.",
+      "status": "Discovery lead",
+      "claims": [
+        "20 channels in 20 minutes is the workshop title claim."
+      ],
+      "limitations": "Publication date unresolved; complete original demonstration not accessible; no media playback.",
+      "tags": [
+        "workshop",
+        "AI repurposing",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Ross Simmonds"
+      ]
+    },
+    {
+      "id": "marketing-cody-01",
+      "person": "Cody Schneider",
+      "title": "How to Build an AI Marketing Team That Runs Itself (Live Demo)",
+      "date": "2026-09-24",
+      "url": "https://podcasts.apple.com/us/podcast/how-to-build-an-ai-marketing-team-that-runs-itself-live-demo/id1616700934?i=1000791405316&l=es-MX",
+      "publisher": "Marketing Against the Grain / Kipp Bodnar and Kieran Flanagan",
+      "format": "original guest workflow demo",
+      "topic": "Paid-media and content optimization loops",
+      "summary": "Cody describes systems combining live campaign data, deterministic software and scoped AI judgment.",
+      "method": "Classify search-term relevance; feed ad/analytics results into the next creative batch; preserve brand examples and human approval feedback; update landing pages/content from measured results.",
+      "evidence": "Secondary / lead",
+      "verification": "Official dated episode listing read. Detailed process cross-checked against public secondary transcript; original media not played.",
+      "status": "Catalogued source",
+      "claims": [
+        "Guest reports an example cost-per-lead decline from $1,100 to $250."
+      ],
+      "limitations": "Result is self-reported in mirrored transcript; no account data or causal test reviewed. Broad automation requires live controls and auditing. The original episode is verified; detailed methods and the CPL claim rely on a secondary transcript.",
+      "tags": [
+        "paid ads",
+        "creative testing",
+        "data feedback",
+        "human approval"
+      ],
+      "related_links": [
+        {
+          "label": "Public transcript mirror for method detail",
+          "url": "https://pod.wave.co/podcast/marketing-against-the-grain/how-to-build-an-ai-marketing-team-that-runs-itself-live-demo"
+        }
+      ],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Cody Schneider"
+      ]
+    },
+    {
+      "id": "marketing-chris-01",
+      "person": "Chris Walker",
+      "title": "The Future of GTM and Sustainable Growth with Chris Walker, CEO at Passetto",
+      "date": "2025-01-16",
+      "url": "https://exitfive.com/podcast/the-future-of-gtm-and-sustainable-growth-with-chris-walker-ceo-at-passetto/",
+      "publisher": "Exit Five / Dave Gerhardt",
+      "format": "original podcast interview and transcript",
+      "topic": "Demand-generation economics and feedback",
+      "summary": "Useful strategy counterpart to AI automation: audience feedback, financial measurement and keeping customer insight ahead of production speed.",
+      "method": "Use small live audience interactions to refine messaging; connect marketing decisions to economics; separate strategic customer understanding from scalable execution.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher date, show notes and substantial transcript read; no playback.",
+      "status": "Catalogued source",
+      "claims": [],
+      "limitations": "Adjacent GTM operator evidence; this episode does not demonstrate a personally built AI marketing system. Avoid elevating general AI discussion into that claim.",
+      "tags": [
+        "positioning",
+        "feedback",
+        "unit economics",
+        "adjacent"
+      ],
+      "related_links": [],
+      "research_lane": "marketing and demand generation",
+      "participants": [
+        "Chris Walker"
+      ]
+    }
+  ],
+  "rounds": [],
+  "coverage_limits": [
+    "Research cutoff: October 29, 2026. This is bounded discovery of relevant public content, not every interview or a complete social timeline. Dates refer to publication unless a record explicitly explains otherwise.",
+    "No full recording playback or independent company financial audit was performed. Each record states whether evidence came from original text, show notes, indexed content, a recap or a secondary transcript.",
+    "Catalogued means the source is identified and useful, not that every claim is verified. Evidence labels and access limits must be read together. Discovery leads remain separate.",
+    "Shared interviews count once even when multiple people use them as a starting source. Individual source totals can overlap. Mirrored links are retained as related material.",
+    "Bounded public discovery, not all public content or a current-company metric audit.12catalogued sources and4explicit leads; several catalogued interviews have only detailed original publisher descriptions read.",
+    "No full audio/video playback. Source-specific verification distinguishes substantive text, original show notes, primary snippets and gated bodies.",
+    "All records discovered2026-10-29; none should be called newly published October content without checking item date. Null dates remain unresolved.",
+    "Scope distinguishes growth-of-AI-products from marketing-using-AI;pg-04 is explicitlyhybrid.",
+    "Revenue, user counts, channel contribution and profitability are company/publisher claims. Attribution versus causal lift is not established.",
+    "Same interview feeds, clips and summaries deduplicated. Elena’s separate author synthesis kept as independently useful writing; its Lenny origin is explicit.",
+    "Thariq is not verified as growth lead. CatWu’s contribution retained under her own name.",
+    "Stanford PDF retrieval404; paidElena essay bodies not read; no access restrictions bypassed.",
+    "Bounded sweep: six people,16 catalogued sources and one discovery lead; not exhaustive archive coverage.",
+    "Original publisher text/transcripts prioritized; no full audio/video playback claimed. Indexed-only or blocked reads identified.",
+    "Null author-post dates intentional; crawl dates not substituted.",
+    "Shared Jason/Amelia sessions and distribution mirrors or companions counted once.",
+    "Revenue/pipeline/accuracy metrics self-reported; pipeline is not closed revenue, attribution not causal proof.",
+    "Historical sources teach methods, not current pricing.",
+    "Cabane details cross-checked against secondary transcript; primary playback remains a gap.",
+    "Unrelated KyleColeman.ai harness projects excluded because identity match unverified.",
+    "Bounded sweep as of 2026-10-29, not a complete lifetime archive. Broad search preceded targeted original reads across five substantive people.",
+    "16 distinct records; clips/mirrors of the same episode are related links rather than extra records.",
+    "No full audio/video playback or live campaign execution. Read text, public transcripts, repository README and original show notes; verification field distinguishes each.",
+    "Kieran starter guide has extensive indexed original text but direct page is now truncated; full copy/build prompts not accessed. Two other gated essays are Discovery leads.",
+    "Ben's Bites workshop direct retrieval returned 403; indexed excerpt only and date unknown, so Discovery lead.",
+    "Exact publication date unavailable for Kieran LinkedIn demo, Wil repository and Ross workshop; date null rather than invented.",
+    "Vendor claims, reported client performance and small user studies are not independently audited causal evidence.",
+    "Ross author/category indexes have changing cached versions; current October how-to was located and opened separately. Generic AI tool roundups were excluded.",
+    "Chris Walker was investigated but qualified only as adjacent for AI; current implementation evidence was insufficient. Cody added as a stronger hands-on alternative.",
+    "No purchase, registration, outreach, posting, account changes or repository execution performed."
+  ],
+  "excluded": [
+    {
+      "name": "Gaurav Vohra / Superhuman",
+      "reason": "Useful original onboarding and multiplayer growth interviews found, but inspected methods mostly predate AI product. Do not relabel generalSaaS lessons as AI-specific evidence.",
+      "urls": [
+        "https://www.thegrowthcmo.co/p/singleplayer-multiplayer-superhuman-gaurav-vohra",
+        "https://www.linkedin.com/posts/gvohra_build-your-growth-engine-from-the-ground-activity-7298772266970976257-mWos"
+      ]
+    },
+    {
+      "name": "Rahul Vohra / Superhuman",
+      "reason": "Classic2018PMF essay is strong transfer material, but not an AI-product growth case.",
+      "urls": [
+        "https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit/"
+      ]
+    },
+    {
+      "source": "kylecoleman.ai SandCastles/PhantomDepth",
+      "reason": "Identity match not established and weak revenue relevance."
+    },
+    {
+      "source": "Generic Unify SEO explainers",
+      "reason": "Prefer own-team accounts and original interviews; no padding."
+    },
+    {
+      "source": "October 22 Delphi live-session transcript",
+      "reason": "Related link on October 24 companion; same underlying session."
+    },
+    {
+      "person": "Chris Walker",
+      "reason": "Additional general GTM and founder-brand interviews found, but not padded into AI demonstration evidence."
+    },
+    {
+      "source": "Generic AI/tool comparison SEO articles on Graphed and Distribution.ai",
+      "reason": "Search visibility pages are weak evidence of personal operating practice; selected only substantive process/product sources."
+    },
+    {
+      "source": "Secondary influencer teardowns",
+      "reason": "Useful discovery aids, not counted as independent primary evidence."
+    }
+  ],
+  "counts": {
+    "Catalogued source": 41,
+    "Discovery lead": 8
+  },
+  "title": "AI growth & GTM",
+  "domain": "Growth / go to market",
+  "subtitle": "People, working methods and source material for finding customers, earning adoption and learning faster.",
+  "scope": "Two complementary tracks: using AI to do growth work, and growing an AI product. First-person systems, operator interviews, original research and reusable artifacts are separated from advice and unverified leads. Study the method, its evidence and where it may fail.",
+  "start_here": [
+    "revenue-jordan-starter",
+    "pg-02",
+    "revenue-saastr-017",
+    "marketing-wil-01",
+    "pg-09",
+    "marketing-kieran-01"
+  ],
+  "playbooks": [
+    {
+      "title": "1. Find the narrow customer problem",
+      "why": "Build the GTM context from customer evidence, then let agents reuse and challenge it.",
+      "steps": [
+        "Pick one proposed buyer and one painful recurring job. Write the current workaround, cost of delay and why a buyer would switch.",
+        "For an initial learning batch, observe 5–10 target buyers doing the job. Keep verbatim problems, objections, triggers and alternatives with source links.",
+        "Create versioned files for the customer profile, evidence, positioning, alternatives and unresolved questions. Separate observed facts from hypotheses.",
+        "Have an agent propose three narrower segments and the evidence against each. The project owner chooses the first wedge; revise after the next customer conversations."
+      ],
+      "metrics": [
+        "Repeated problem evidence",
+        "Qualified conversations",
+        "Willingness to try/pay",
+        "Objections resolved"
+      ],
+      "source_ids": [
+        "revenue-jordan-starter",
+        "marketing-kieran-01",
+        "marketing-wil-01"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    },
+    {
+      "title": "2. Build an evidence-led account-development desk",
+      "why": "Use AI to improve relevance and research quality before increasing outbound volume.",
+      "steps": [
+        "Create a small initial set of accounts matching the wedge. For each, retain the buying trigger, relevant person, source date and evidence of the problem.",
+        "Resolve identity and verify every material enrichment claim against its source. Hold uncertain accounts instead of inventing facts.",
+        "Draft a useful diagnosis, example or mini-audit specific to the account; have a human review claims and the proposed next step.",
+        "When outreach is separately authorized, test messages in small comparable batches. Feed qualified replies, objections, meetings and wins/losses back into targeting and copy."
+      ],
+      "metrics": [
+        "Verified account precision",
+        "Positive qualified replies",
+        "Qualified meetings",
+        "Pipeline per hour and dollar",
+        "Research error rate"
+      ],
+      "source_ids": [
+        "revenue-jordan-research",
+        "revenue-jordan-starter",
+        "revenue-austin-gtm-153"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    },
+    {
+      "title": "3. Run a follow-up and customer-learning loop",
+      "why": "Put inbound, trials, renewals and objections into a maintained queue with owners and next actions.",
+      "steps": [
+        "Define lifecycle stages and the evidence required to move an account between them. Keep one source of truth for conversations and commitments.",
+        "Have agents summarize context, propose the next action and flag missing information. Use explicit approval rules and escalation for consequential replies.",
+        "Set follow-up timers and inspect stalled conversations. Record why messages or actions were edited, accepted or rejected.",
+        "Review outcomes weekly, adjust one failure pattern, then measure whether the changed playbook helped."
+      ],
+      "metrics": [
+        "Time to relevant response",
+        "Next-action coverage",
+        "Trial-to-value conversion",
+        "Stalled-account recovery",
+        "Human review time"
+      ],
+      "source_ids": [
+        "revenue-saastr-017",
+        "revenue-saastr-teardown",
+        "revenue-saastr-007"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    },
+    {
+      "title": "4. Make product value visible quickly",
+      "why": "Treat activation, willingness to pay and repeat use as separate questions.",
+      "steps": [
+        "Choose a first-session action that produces a useful outcome for the chosen buyer. Instrument completion and time to value.",
+        "Watch real new users reach or miss that outcome. Fix the largest friction before adding acquisition spend.",
+        "Test pricing or packaging on comparable new-user cohorts with a named owner and a defined decision rule; preserve existing commitments.",
+        "Track retained use, expansion and cost to serve alongside checkout conversion. Use internal dogfooding for diagnosis, then validate with external target users."
+      ],
+      "metrics": [
+        "Time to first value",
+        "Activation by segment",
+        "Retained activated accounts",
+        "Paid conversion",
+        "Gross profit per retained account"
+      ],
+      "source_ids": [
+        "pg-02",
+        "pg-09",
+        "pg-12"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    },
+    {
+      "title": "5. Turn one useful demonstration into distribution",
+      "why": "Create assets from real work and learn which channels produce qualified demand.",
+      "steps": [
+        "Record one concrete customer problem and product demonstration with checkable claims.",
+        "Use AI to propose channel-specific clips, posts, articles and follow-up material. Review factual claims and preserve the speaker’s intended meaning.",
+        "Test a small set of relevant communities or niche creators; personally help early partners experience the product.",
+        "Connect each asset to relevant visits, qualified signups and retained use. Repeat the message/channel combinations that work; stop scaling weak ones."
+      ],
+      "metrics": [
+        "Qualified visits",
+        "Activated signups by source",
+        "Creator/cohort retention",
+        "Cost per retained account"
+      ],
+      "source_ids": [
+        "marketing-ross-01",
+        "marketing-ross-03",
+        "pg-09"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    },
+    {
+      "title": "6. Make experimentation a weekly operating rhythm",
+      "why": "Use compute to investigate and improve decisions, not merely generate more content.",
+      "steps": [
+        "Keep an experiment ledger: hypothesis, segment, intervention, cost, primary metric, quality checks, decision date and owner.",
+        "Ask agents to analyze customer language, raw campaign results and realistic buyer search prompts. Preserve receipts and contrary evidence.",
+        "Ship one or two bounded changes at a time. Distinguish observed correlation from a controlled comparison.",
+        "Every week, retain, revise or stop each experiment. Update the operating documents with findings and exact conditions, not universal slogans."
+      ],
+      "metrics": [
+        "Experiment cycle time",
+        "Qualified pipeline",
+        "Retention",
+        "Gross profit",
+        "False or unsupported claims"
+      ],
+      "source_ids": [
+        "marketing-wil-02",
+        "marketing-wil-03",
+        "marketing-kieran-02"
+      ],
+      "limits": "Proposed adaptation for the product; not an implemented workflow or a promised result. Suggested sample sizes are starting experiments, not industry benchmarks."
+    }
+  ]
+}

@@ -1,0 +1,2462 @@
+{
+  "as_of": "2026-10-29",
+  "people": [
+    {
+      "name": "Anton Osika",
+      "role": "Lovable co-founder and CEO",
+      "fit": "Strong first-person operator; capital allocation and traction positioning",
+      "why": "Founder discussion makes dilution, focus and seed choices concrete; paired investor testimony explains underwriting.",
+      "start_id": "fund-app-osika-20vc-2025-03-05",
+      "methods": [
+        "Weigh financing against dilution and execution focus.",
+        "Use activation and retention evidence rather than headline user counts.",
+        "Explain an expanded market with concrete customer-built outcomes."
+      ],
+      "limitations": "Edited publisher takeaways for interview; no private financing documents or negotiation reconstruction.",
+      "source_ids": [
+        "fund-app-osika-20vc-2025-03-05",
+        "fund-app-lovable-series-a-2025-07-17",
+        "fund-app-accel-lovable-2025-07-17",
+        "fund-app-lovable-series-b-2025-12-18",
+        "fund-app-lovable-series-c-2026-08-12"
+      ]
+    },
+    {
+      "name": "Michael Truell",
+      "role": "Cursor/Anysphere co-founder and CEO",
+      "fit": "Strong product operator; fundraising process less directly evidenced",
+      "why": "Useful for technical moat, professional-user positioning and capital tied to research capacity.",
+      "start_id": "fund-app-truell-a16z-2025-11-10",
+      "methods": [
+        "Choose a narrow initial customer and own a critical workflow surface.",
+        "Pair technical differentiation with dated adoption evidence.",
+        "Separate revenue definitions and research uses of funding."
+      ],
+      "limitations": "Interviews inspected chiefly through publisher descriptions; not a full account of investor selection or negotiation.",
+      "source_ids": [
+        "fund-app-cursor-series-a-2024-08-22",
+        "fund-app-cursor-series-c-2025-06-06",
+        "fund-app-cursor-series-d-2025-11-13",
+        "fund-app-truell-lenny-2025-05-01",
+        "fund-app-truell-a16z-2025-11-10"
+      ]
+    },
+    {
+      "name": "Aravind Srinivas",
+      "role": "Perplexity co-founder and CEO",
+      "fit": "Strong first-person fundraising-process operator",
+      "why": "Primary Haas transcript describes how he handles actual investor questions and follow-up diligence.",
+      "start_id": "fund-app-srinivas-haas-2025-10-21",
+      "methods": [
+        "Use memo and live Q&A to interrogate the investment case.",
+        "Make metrics retrievable during diligence.",
+        "Ground category story in a distinct customer experience and shipping evidence."
+      ],
+      "limitations": "His financing anecdotes are self-report; celebrity investors and prior research network limit direct comparability.",
+      "source_ids": [
+        "fund-app-srinivas-haas-2025-10-21",
+        "fund-app-perplexity-series-a-2023-03-28",
+        "fund-app-nea-perplexity-2023-03-28",
+        "fund-app-perplexity-series-b-2024-01-04"
+      ]
+    },
+    {
+      "name": "May Habib",
+      "role": "Co-founder and CEO, WRITER",
+      "fit": "Strong first-person operator",
+      "why": "Most directly applicable fundraising process, board selection and enterprise retention lessons in this lane.",
+      "start_id": "ent-writer-masterclass",
+      "methods": [
+        "Use a raise to align the team on a three-to-six-year strategy.",
+        "Select board capabilities backwards from the desired company.",
+        "Prove renewal expansion through customer business outcomes."
+      ],
+      "limitations": "Experienced repeat founder with established enterprise relationships; historical retention and ROI are self-reported, not current guarantees.",
+      "source_ids": [
+        "ent-writer-masterclass",
+        "ent-writer-board",
+        "ent-writer-series-c",
+        "ent-writer-madrona"
+      ]
+    },
+    {
+      "name": "Bret Taylor",
+      "role": "Co-founder, Sierra; former Salesforce co-CEO",
+      "fit": "Strong first-person operator",
+      "why": "Detailed enterprise pricing and selling guidance plus founder-authored capital-allocation announcements.",
+      "start_id": "ent-sierra-pricing",
+      "methods": [
+        "Sell measurable completed jobs.",
+        "Study the customer's business before pitching.",
+        "Use design partners and production deployments to support platform expansion."
+      ],
+      "limitations": "Celebrity founder with Salesforce, Facebook, Google and OpenAI ties; capital access and enterprise introductions are not replicable assumptions. Round figures are company disclosures.",
+      "source_ids": [
+        "ent-sierra-pricing",
+        "ent-sierra-2025",
+        "ent-sierra-2026"
+      ]
+    },
+    {
+      "name": "Clay Bavor",
+      "role": "Co-founder, Sierra; former Google Labs leader",
+      "fit": "Strong first-person operator; jointly authored sources",
+      "why": "Co-authors Sierra's deployment and financing narrative with Taylor.",
+      "start_id": "ent-sierra-2026",
+      "methods": [
+        "Expand from support to customer-lifecycle outcomes.",
+        "Substantiate a platform claim with named deployments and implementation speed."
+      ],
+      "limitations": "This lane has joint essays, not an individual Bavor fundraising-process interview; exceptional prior executive network.",
+      "source_ids": [
+        "ent-sierra-2025",
+        "ent-sierra-2026"
+      ]
+    },
+    {
+      "name": "Aidan Gomez",
+      "role": "Co-founder and CEO, Cohere",
+      "fit": "Strong first-person operator; frontier-lab context",
+      "why": "Explains private enterprise deployment, strategic distribution and sovereign infrastructure positioning.",
+      "start_id": "ent-cohere-mad",
+      "methods": [
+        "Find security constraints that block production.",
+        "Start with a few high-value workflows.",
+        "Choose partners for compute and distribution.",
+        "Make national/strategic investor interests explicit."
+      ],
+      "limitations": "Transformer-paper co-author, elite research network, strategic/government capital and frontier-model economics differ greatly from application startups.",
+      "source_ids": [
+        "ent-cohere-2025",
+        "ent-cohere-oracle",
+        "ent-cohere-mad",
+        "ent-cohere-frontier",
+        "ent-cohere-series-e-release"
+      ]
+    },
+    {
+      "name": "Scott Wu",
+      "role": "Co-founder and CEO, Cognition",
+      "fit": "Strong first-person operator; exceptional technical founder",
+      "why": "Combines dated growth/burn disclosures, acquired distribution and concrete enterprise value measurement.",
+      "start_id": "ent-cognition-2025",
+      "methods": [
+        "Separate organic growth from acquired ARR.",
+        "Explain product complementarity and cross-sell.",
+        "Measure useful completed work and commercial payback."
+      ],
+      "limitations": "Elite programming reputation and investor access; software-agent demand is adjacent to the product, not proof of its market. Megaraises are not a reproducible process.",
+      "source_ids": [
+        "ent-cognition-2025",
+        "ent-cognition-series-e",
+        "ent-cognition-wu",
+        "ent-cognition-guarantee"
+      ]
+    },
+    {
+      "name": "Michael Seibel",
+      "role": "Former YC accelerator leader; co-founder/former CEO of Justin.tv/Twitch and Socialcam; personal site says retired from YC in 2026",
+      "fit": "Investor/adviser with first-person founder experience",
+      "why": "Best starting point for clear pitch language, specific evidence and separating fundraising from progress.",
+      "start_id": "ip-ms-pitch",
+      "methods": [
+        "Seven-question pitch and email comprehension test",
+        "Progress per elapsed time",
+        "Value-creation milestones",
+        "Concise investor-email preparation"
+      ],
+      "limitations": "Core material dates from 2016–2019; not an active-investor directory. Current role checked on personal homepage.",
+      "source_ids": [
+        "ip-ms-pitch",
+        "ip-ms-milestones",
+        "ip-ms-cold-email"
+      ]
+    },
+    {
+      "name": "Geoff Ralston",
+      "role": "Seed investor/adviser; former YC president; authored YC seed guide in 2016",
+      "fit": "Investor/adviser",
+      "why": "A compact end-to-end mechanics reference with a useful milestone-and-budget approach.",
+      "start_id": "ip-gr-seed-guide",
+      "methods": [
+        "Raise-to-milestone planning",
+        "Alternative round-size operating plans",
+        "Explicit meeting next steps and closing discipline"
+      ],
+      "limitations": "Historical US seed overview; sample monetary and dilution numbers are dated and instrument terms need current review.",
+      "source_ids": [
+        "ip-gr-seed-guide"
+      ]
+    },
+    {
+      "name": "Elad Gil",
+      "role": "Entrepreneur, investor and author; co-founder of MixerLabs and Color Health; current site describes Gil&Co as a multi-stage investment firm",
+      "fit": "Investor/adviser with first-person operating experience",
+      "why": "Strongest integrated sequence for capital need, process, partner selection, downside structure and AI defensibility.",
+      "start_id": "ip-eg-capital-plan",
+      "methods": [
+        "Scenario-based capital and ownership planning",
+        "Synchronized investor process",
+        "Partner-level diligence and references",
+        "Honest milestone and cash updates",
+        "Build moats through customer workflow and execution"
+      ],
+      "limitations": "Most financing craft dates from 2010–2015. Treat prescriptions about market structure and instruments as historical; AI moat essay is an argument, not a validated prediction.",
+      "source_ids": [
+        "ip-eg-capital-plan",
+        "ip-eg-round-process",
+        "ip-eg-choose-partner",
+        "ip-eg-financing-risk",
+        "ip-eg-updates",
+        "ip-eg-defensibility",
+        "ip-sg-gil-ai-investing"
+      ]
+    },
+    {
+      "name": "Sarah Guo",
+      "role": "Founder of AI-focused venture firm Conviction; former Greylock investor",
+      "fit": "AI-specialist investor/adviser",
+      "why": "Useful for how an AI investor separates novelty from usage, understands product reliability and evaluates technical/commercial ambition.",
+      "start_id": "ip-sg-gil-ai-investing",
+      "methods": [
+        "Probe conversion from waitlist to real usage",
+        "Separate model capability from a reliable product",
+        "Connect technical thesis to buyer and packaging",
+        "Understand investor objections without inventing certainty"
+      ],
+      "limitations": "Investor thesis and personal judgment, not founder fundraising success proof. Full September 2026 Colossus transcript was gated; only public material accepted.",
+      "source_ids": [
+        "ip-sg-launch",
+        "ip-sg-gil-ai-investing",
+        "ip-sg-conviction-2026"
+      ]
+    },
+    {
+      "name": "David Cahn",
+      "role": "Growth investor at Sequoia; previously Coatue investor and venture leader, per official profile",
+      "fit": "AI-specialist investor/adviser",
+      "why": "Explains what must connect infrastructure capital, economic value and a domain-specific application opportunity.",
+      "start_id": "ip-dc-600b",
+      "methods": [
+        "Make compute/revenue assumptions explicit",
+        "Differentiate by domain intent, data and workflow",
+        "Separate demand evidence from supply dependency"
+      ],
+      "limitations": "Mostly macro investor analysis and dated forecasts. Not a seed process handbook or evidence that the product fits Sequoia.",
+      "source_ids": [
+        "ip-dc-600b",
+        "ip-dc-2025",
+        "ip-dc-2026"
+      ]
+    },
+    {
+      "name": "Tomasz Tunguz",
+      "role": "Founder/general partner of Theory Ventures; previously Redpoint investor and Google product manager, per current personal biography",
+      "fit": "Specialist investor/adviser and quantitative analyst",
+      "why": "Best complement for defending AI revenue quality, serving economics, retention and comparable-company limitations.",
+      "start_id": "ip-tt-harness-margin",
+      "methods": [
+        "Measure cost per successful outcome and gross-profit payback",
+        "Distinguish model switching from application retention",
+        "Normalize revenue definitions and valuation dates",
+        "Understand fund economics before sizing a round"
+      ],
+      "limitations": "Analyses use external datasets and explicit illustrations; none should substitute for the company’s own cohorts and accounting.",
+      "source_ids": [
+        "ip-tt-seed-size",
+        "ip-tt-retention",
+        "ip-tt-harness-margin",
+        "ip-tt-valuation"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "fund-app-osika-20vc-2025-03-05",
+      "person": "Anton Osika",
+      "title": "Anton Osika, Co-Founder and CEO @ Lovable: Hitting 85% Day 30 Retention - Better than ChatGPT",
+      "date": "2025-03-05",
+      "url": "https://www.thetwentyminutevc.com/anton-osika",
+      "publisher": "20VC / Harry Stebbings",
+      "format": "Founder interview and publisher takeaways",
+      "topic": "Capital versus focus and dilution",
+      "summary": "Discusses seed size, taking Series A money, retention and launches. Publisher takeaways explain why Lovable declined YC.",
+      "method": "Evaluate acceleration against dilution and distraction; competitor fundraising does not automatically require matching it. Track completed publishing as activation evidence.",
+      "evidence": "Primary firsthand",
+      "verification": "Original episode page and March 9 publisher takeaways read; transcript PDF retrieval failed; no full playback.",
+      "status": "Catalogued source",
+      "claims": [
+        "Publisher attributes to Osika a preference for focusing on execution over copying competitors financing.",
+        "Publisher reports 85% month-one paying-customer retention; this is a cohort-specific founder claim."
+      ],
+      "limitations": "Takeaways are edited by the host; original full transcript not retrieved. Retention is not independently audited and cannot be compared across differing cohorts.",
+      "tags": [
+        "dilution",
+        "capital-efficiency",
+        "activation",
+        "retention"
+      ],
+      "related_links": [
+        {
+          "label": "Publisher takeaways and transcript link",
+          "url": "https://20vc.substack.com/p/20vc-newsletter-9th-march-2025"
+        },
+        {
+          "label": "Original video",
+          "url": "https://www.youtube.com/watch?v=DHLczPQj9rA"
+        }
+      ],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "fund-app-lovable-series-a-2025-07-17",
+      "person": "Anton Osika",
+      "title": "Lovable Raises $200M, Valued at $1.8B, Just Eight Months After Launch",
+      "date": "2025-07-17",
+      "url": "https://lovable.dev/blog/200m-series-a-fundraise",
+      "publisher": "Lovable",
+      "format": "Company financing announcement",
+      "topic": "Explain the market unlocked by the product",
+      "summary": "Announces a $200 million Series A at a $1.8 billion valuation.",
+      "method": "Connect capital use to the nontechnical-builder market and a specific product ambition, rather than citing valuation as the thesis.",
+      "evidence": "Primary company/investor",
+      "verification": "Original publisher indexed article text inspected; exact date and financing terms visible.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company says it raised $200 million from Accel and other named investors.",
+        "Company positions the product for people who cannot code."
+      ],
+      "limitations": "Valuation pre/post-money basis and separate legal close date not stated.",
+      "tags": [
+        "round",
+        "market-positioning",
+        "use-of-funds"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "fund-app-accel-lovable-2025-07-17",
+      "person": "Anton Osika",
+      "title": "Accel’s $200M Series A in Lovable: Enabling the Last 99%",
+      "date": "2025-07-17",
+      "url": "https://www.accel.com/news/accels-200m-series-a-in-lovable---enabling-the-last-99",
+      "publisher": "Accel",
+      "format": "Investor investment rationale",
+      "topic": "Understand why an investor underwrites a company",
+      "summary": "Accel explains market expansion, product use, founder judgment and the relationship preceding its investment.",
+      "method": "Show the investor actual product use and execution; develop conviction over repeated working interactions.",
+      "evidence": "Primary company/investor",
+      "verification": "Original investor article read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Accel says it led the Series A and used Lovable internally.",
+        "Accel describes more than ten trips between the teams countries over six months, and cites talent, execution and community."
+      ],
+      "limitations": "Investor advocacy, not an independent evaluation or evidence that meetings caused a financing.",
+      "tags": [
+        "investor-logic",
+        "relationship-building",
+        "founder-market-fit"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "fund-app-lovable-series-b-2025-12-18",
+      "person": "Anton Osika",
+      "title": "Lovable raises $330M to power the age of the builder",
+      "date": "2025-12-18",
+      "url": "https://lovable.dev/blog/series-b",
+      "publisher": "Lovable",
+      "format": "Company financing announcement",
+      "topic": "Combine adoption evidence with a broader category",
+      "summary": "Announces $330 million at a $6.6 billion valuation, led by CapitalG and Menlo Ventures Anthology fund.",
+      "method": "Use customer-built outcomes and adoption evidence to explain the category and deployment of capital.",
+      "evidence": "Primary company/investor",
+      "verification": "Original dated article and financing/adoption sections read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports more than 25 million projects in its first year.",
+        "Company reports 100,000-plus new projects daily."
+      ],
+      "limitations": "Projects and app visits are usage measures, not retained paid seats or realized revenue; valuation basis undisclosed.",
+      "tags": [
+        "round",
+        "traction-quality",
+        "category"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "fund-app-lovable-series-c-2026-08-12",
+      "person": "Anton Osika",
+      "title": "We just raised $400M in Series C funding to help people run their businesses",
+      "date": "2026-08-12",
+      "url": "https://lovable.dev/blog/series-c",
+      "publisher": "Lovable",
+      "format": "Company financing announcement",
+      "topic": "Tie new capital to the next operating stage",
+      "summary": "Announces $400 million at a $13.3 billion valuation, led by Menlo Ventures and co-led by the EQT-managed Scaleup Europe Fund.",
+      "method": "State what the next financing funds: business workflows, reliability, integrations, learning from customer outcomes and hiring.",
+      "evidence": "Primary company/investor",
+      "verification": "Original date, financing terms, product priorities and investor statements read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports more than 60 million projects and 900 million monthly visits to built apps.",
+        "Company plans roughly 450 team members that year."
+      ],
+      "limitations": "Forward plans are not completed results; valuation basis and closing date not disclosed. Company usage claims are unaudited.",
+      "tags": [
+        "round",
+        "use-of-funds",
+        "expansion"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Anton Osika"
+      ]
+    },
+    {
+      "id": "fund-app-cursor-series-a-2024-08-22",
+      "person": "Michael Truell",
+      "title": "Series A and Magic",
+      "date": "2024-08-22",
+      "url": "https://cursor.com/blog/series-a",
+      "publisher": "Cursor / Anysphere Team",
+      "format": "Company financing announcement",
+      "topic": "Make technical differentiation legible",
+      "summary": "Announces a $60 million Series A with product, customer and research milestones.",
+      "method": "Pair the product vision with concrete technical capabilities and actual adoption.",
+      "evidence": "Primary company/investor",
+      "verification": "Original article read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports more than 40,000 customers.",
+        "Company describes next-edit prediction, retrieval and speculative inference work."
+      ],
+      "limitations": "No valuation or named lead disclosed in this announcement; customer definition unspecified.",
+      "tags": [
+        "round",
+        "technical-differentiation",
+        "adoption"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Michael Truell"
+      ]
+    },
+    {
+      "id": "fund-app-cursor-series-c-2025-06-06",
+      "person": "Michael Truell",
+      "title": "Series C and Scale",
+      "date": "2025-06-06",
+      "url": "https://cursor.com/blog/series-c",
+      "publisher": "Cursor / Anysphere Team",
+      "format": "Company financing announcement",
+      "topic": "Connect scale to research investment",
+      "summary": "Announces $900 million at a $9.9 billion valuation to advance AI coding research.",
+      "method": "Explain research capital needs using dated revenue and customer adoption evidence.",
+      "evidence": "Primary company/investor",
+      "verification": "Original date and article body read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports over $500 million ARR and use at more than half of the Fortune 500."
+      ],
+      "limitations": "Use inside a Fortune 500 company does not establish an enterprise contract; ARR is company-reported. Valuation basis and lead not stated.",
+      "tags": [
+        "round",
+        "research-investment",
+        "traction-quality"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Michael Truell"
+      ]
+    },
+    {
+      "id": "fund-app-cursor-series-d-2025-11-13",
+      "person": "Michael Truell",
+      "title": "Past, Present, and Future",
+      "date": "2025-11-13",
+      "url": "https://cursor.com/blog/series-d",
+      "publisher": "Cursor Team",
+      "format": "Company financing announcement",
+      "topic": "Fund proprietary capability alongside distribution",
+      "summary": "Announces $2.3 billion at a $29.3 billion post-money valuation.",
+      "method": "Show how adoption, research capacity and a durable product vision fit the next capital requirement.",
+      "evidence": "Primary company/investor",
+      "verification": "Original dated financing, revenue and use-of-funds text read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company says annualized revenue crossed $1 billion.",
+        "Company says it has more than 300 staff and will invest deeply in research."
+      ],
+      "limitations": "Annualized revenue is not necessarily ARR; no separately verified accounting or legal close date. Investors named without lead designation.",
+      "tags": [
+        "round",
+        "post-money",
+        "revenue-quality"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Michael Truell"
+      ]
+    },
+    {
+      "id": "fund-app-truell-lenny-2025-05-01",
+      "person": "Michael Truell",
+      "title": "The rise of Cursor: The $300M ARR AI tool that engineers can’t stop using | Michael Truell (co-founder and CEO)",
+      "date": "2025-05-01",
+      "url": "https://podcasts.apple.com/gb/podcast/the-rise-of-cursor-the-%24300m-arr-ai-tool-that/id1627920305?i=1000705681302",
+      "publisher": "Lenny’s Podcast",
+      "format": "Founder interview",
+      "topic": "Explain defensibility and the chosen customer",
+      "summary": "Publisher chapters cover the IDE choice, product stack and defensibility.",
+      "method": "Prepare a clear account of which user you serve, which interface you own and why model-level capability supports the experience.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher-distributed Apple description and chapters inspected through indexed results; selected third-party transcript excerpts read; no playback.",
+      "status": "Catalogued source",
+      "claims": [
+        "Publisher locates defensibility at 38:42 and the IDE decision at 18:31."
+      ],
+      "limitations": "Methods are study prompts derived from the topics, not proof of fundraising causation; transcript not read end to end.",
+      "tags": [
+        "positioning",
+        "defensibility",
+        "product-strategy"
+      ],
+      "related_links": [
+        {
+          "label": "Supplementary transcript",
+          "url": "https://spoken.md/episode/the-rise-of-cursor-the-%24300m-arr-ai-tool-that-1000705681302"
+        }
+      ],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Michael Truell"
+      ]
+    },
+    {
+      "id": "fund-app-truell-a16z-2025-11-10",
+      "person": "Michael Truell",
+      "title": "Michael Truell: How Cursor Builds at the Speed of AI",
+      "date": "2025-11-10",
+      "url": "https://a16z.com/podcast/michael-truell-how-cursor-builds-at-the-speed-of-ai/",
+      "publisher": "a16z / Martin Casado",
+      "format": "Founder and investor conversation",
+      "topic": "Choose a specific wedge instead of a generic AI story",
+      "summary": "Publisher introduction emphasizes power users, owning the editor and work trials.",
+      "method": "Articulate deliberate constraints and the customer wedge; defend why owning a workflow surface is necessary.",
+      "evidence": "Primary firsthand",
+      "verification": "Original dated publisher introduction read; audio not played and no full transcript obtained.",
+      "status": "Catalogued source",
+      "claims": [
+        "Publisher says Truell explains choosing professional power users over a broad democratization narrative."
+      ],
+      "limitations": "Available evidence is publisher synopsis; specific fundraising mechanics not established. Host is an investor in the category.",
+      "tags": [
+        "wedge",
+        "positioning",
+        "founder-investor-dialogue"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Michael Truell"
+      ]
+    },
+    {
+      "id": "fund-app-srinivas-haas-2025-10-21",
+      "person": "Aravind Srinivas",
+      "title": "Perplexity AI CEO Aravind Srinivas, PhD 21, on why he ditched pitch decks",
+      "date": "2025-10-21",
+      "url": "https://newsroom.haas.berkeley.edu/deans-speaker-series-perplexity-ai-ceo-aravind-srinivas-phd-21-on-why-he-ditched-pitch-decks/",
+      "publisher": "UC Berkeley Haas",
+      "format": "Founder talk with primary transcript",
+      "topic": "Run investor diligence through questions and evidence",
+      "summary": "Srinivas explains memo-led investor diligence and follow-up questions.",
+      "method": "Prepare a memo, retrieve metrics live and answer the investor’s actual questions.",
+      "evidence": "Primary firsthand",
+      "verification": "Original date and relevant primary transcript sections read; no playback.",
+      "status": "Catalogued source",
+      "claims": [
+        "He describes replacing later pitch decks with memos and live Q&A.",
+        "He recounts an AI-assisted follow-up preceding an investor transfer."
+      ],
+      "limitations": "Founder self-report; neither financing causality nor the private diligence exchange independently verified.",
+      "tags": [
+        "fundraising-process",
+        "memo",
+        "diligence",
+        "AI-assisted-workflow"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Aravind Srinivas"
+      ]
+    },
+    {
+      "id": "fund-app-perplexity-series-a-2023-03-28",
+      "person": "Aravind Srinivas",
+      "title": "Perplexity AI Launches iOS Version of Conversational Answer Engine, Announces $25.6M Series A Round Led by NEA",
+      "date": "2023-03-28",
+      "url": "https://www.prnewswire.com/news-releases/perplexity-ai-launches-ios-version-of-conversational-answer-engine-announces-25-6m-series-a-round-led-by-nea-301782754.html",
+      "publisher": "Perplexity AI via PR Newswire",
+      "format": "Company press release",
+      "topic": "Pair financing with product and distribution milestones",
+      "summary": "Company release explicitly says $25.6 million Series A closed, while introducing its iOS app.",
+      "method": "Show a live product, a distribution expansion and dated usage evidence alongside the funding story.",
+      "evidence": "Primary company/investor",
+      "verification": "Original release, issuer identity, date and closing wording read.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports 10 million monthly visits and two million unique visitors in February.",
+        "Funds support product and expansion work."
+      ],
+      "limitations": "Visits are not users; round amount is $25.6 million, not the approximately $28.8 million total/filing number shown in some databases. No valuation stated.",
+      "tags": [
+        "round",
+        "closed",
+        "distribution",
+        "metrics"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Aravind Srinivas"
+      ]
+    },
+    {
+      "id": "fund-app-nea-perplexity-2023-03-28",
+      "person": "Aravind Srinivas",
+      "title": "Our Investment in Perplexity AI: Answer Engines and the End of Traditional Search",
+      "date": "2023-03-28",
+      "url": "https://www.nea.com/blog/our-investment-in-perplexity-ai-answer-engines-and-the-end-of-traditional-search",
+      "publisher": "NEA",
+      "format": "Investor rationale",
+      "topic": "Explain why the team can disrupt a difficult category",
+      "summary": "NEA states why the team, shipping pace, transparent answers and user experience attracted its investment.",
+      "method": "Link founder-market fit to demonstrated shipping and a distinct user experience; show why this team can exploit a change in technology.",
+      "evidence": "Primary company/investor",
+      "verification": "Original dated investor article read.",
+      "status": "Catalogued source",
+      "claims": [
+        "NEA explicitly cites founder-market fit and fast execution.",
+        "NEA confirms leading the Series A."
+      ],
+      "limitations": "Promotional investor testimony; not proof that pedigree or speed alone wins a term sheet.",
+      "tags": [
+        "investor-logic",
+        "founder-market-fit",
+        "traction"
+      ],
+      "related_links": [],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Aravind Srinivas"
+      ]
+    },
+    {
+      "id": "fund-app-perplexity-series-b-2024-01-04",
+      "person": "Aravind Srinivas",
+      "title": "We are happy to announce that we’ve raised $73.6 million in Series B funding led by IVP",
+      "date": "2024-01-04",
+      "url": "https://www.linkedin.com/posts/perplexity-ai_we-are-happy-to-announce-that-weve-raised-activity-7148682884902510593-Dhtv",
+      "publisher": "Perplexity",
+      "format": "Official company financing announcement",
+      "topic": "Support a financing claim with adoption evidence",
+      "summary": "Company announces $73.6 million Series B led by IVP and names participants.",
+      "method": "Keep the financing amount, investor roles and dated usage claims in separate evidence fields.",
+      "evidence": "Primary company/investor",
+      "verification": "Original company post body read; exact January 4 publication independently matched to the primary Perplexity blog index. Blog article direct retrieval failed.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company reports 10 million monthly users and more than half a billion queries in 2023."
+      ],
+      "limitations": "Valuation and cumulative total not established by the retrieved primary post; separate close date unavailable.",
+      "tags": [
+        "round",
+        "metrics",
+        "source-hygiene"
+      ],
+      "related_links": [
+        {
+          "label": "Primary blog index confirms date",
+          "url": "https://hub-prod.perplexity.ai/"
+        },
+        {
+          "label": "Original blog article, fetch unavailable",
+          "url": "https://www.perplexity.ai/hub/blog/perplexity-raises-series-b-funding-round"
+        }
+      ],
+      "research_lane": "AI fundraising — application founders",
+      "participants": [
+        "Aravind Srinivas"
+      ]
+    },
+    {
+      "id": "ent-sierra-pricing",
+      "person": "Bret Taylor",
+      "title": "LIVE: How AI is Reinventing Software Business Models ft. Bret Taylor of Sierra",
+      "date": null,
+      "url": "https://sequoiacap.com/podcast/training-data-bret-taylor",
+      "publisher": "Sequoia Capital",
+      "format": "Interview with transcript",
+      "topic": "Value-based pricing and enterprise selling",
+      "summary": "Taylor explains Sierra's resolution-based pricing and the opportunity in domain-specific agents.",
+      "method": "Research the customer's business before meetings; sell a valuable completed job; align charging with procurement and accountability.",
+      "evidence": "Primary firsthand",
+      "verification": "Original publisher's transcript inspected; no media playback. Publication date not displayed.",
+      "status": "Catalogued source",
+      "claims": [
+        "Taylor says median customers pay an agreed rate for autonomous resolution; human escalations are free."
+      ],
+      "limitations": "Sequoia is an investor. Advice does not establish customer-level margins or make outcome pricing suitable for every contract.",
+      "tags": [
+        "pricing",
+        "distribution",
+        "enterprise",
+        "investor-thesis"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Bret Taylor"
+      ]
+    },
+    {
+      "id": "ent-sierra-2025",
+      "person": "Bret Taylor; Clay Bavor",
+      "title": "There's an agent for that, and it runs on Sierra",
+      "date": "2025-09-04",
+      "url": "https://sierra.ai/uk/blog/theres-an-agent-for-that-and-it-runs-on-sierra",
+      "publisher": "Sierra",
+      "format": "Founder-authored announcement",
+      "topic": "Capital tied to platform and geographic expansion",
+      "summary": "Founders link a new round to platform development, US growth and international expansion.",
+      "method": "Connect new capital to specific distribution and product investments, supported by customer composition.",
+      "evidence": "Primary firsthand",
+      "verification": "Original company article inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Company announced $350M additional capital at a $10B valuation, led by Greenoaks.",
+        "Self-reported: hundreds of customers; over half had revenue above $1B."
+      ],
+      "limitations": "Company claims; no audited revenue, margins or fundraising process. Exceptional founders and existing investor network.",
+      "tags": [
+        "round",
+        "why-capital",
+        "enterprise-proof",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Bret Taylor",
+        "Clay Bavor"
+      ]
+    },
+    {
+      "id": "ent-sierra-2026",
+      "person": "Bret Taylor; Clay Bavor",
+      "title": "Better customer experiences. Built on Sierra",
+      "date": "2026-05-04",
+      "url": "https://sierra.ai/uk/blog/better-customer-experiences-built-on-sierra",
+      "publisher": "Sierra",
+      "format": "Founder-authored announcement",
+      "topic": "Expansion from support into customer lifetime value",
+      "summary": "Sierra presents enterprise deployments and expansion across the customer lifecycle alongside a much larger financing.",
+      "method": "Support a platform expansion story with named deployments and production timing, rather than market size alone.",
+      "evidence": "Primary firsthand",
+      "verification": "Original article inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Announced raising $950M led by Tiger Global and GV at a valuation over $15B.",
+        "Self-reported: serving over 40% of Fortune 50; Singtel resolution over 70%; Cigna authentication time down 80%."
+      ],
+      "limitations": "Uses 'raising', not an independently verified closing. Valuation is a lower-bound disclosure. Deployment metrics are self-reported.",
+      "tags": [
+        "round",
+        "enterprise-proof",
+        "why-capital",
+        "expansion"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Bret Taylor",
+        "Clay Bavor"
+      ]
+    },
+    {
+      "id": "ent-writer-masterclass",
+      "person": "May Habib",
+      "title": "WRITER CEO May Habib on Full-Stack Enterprise AI",
+      "date": "2025-11-06",
+      "url": "https://radical.vc/articles/masterclass-edition-writer-ceo-may-habib-on-full-stack-enterprise-ai/",
+      "publisher": "Radical Ventures",
+      "format": "Founder masterclass recap",
+      "topic": "Fundraising as strategic alignment",
+      "summary": "Habib uses fundraising to align the team on a multi-year story and stress-test convictions through repeated investor questioning.",
+      "method": "Move beyond quarterly plans; reconcile research, product and GTM into one long-term narrative, then test why each strategic choice exists.",
+      "evidence": "Primary firsthand",
+      "verification": "Investor-hosted session recap with direct founder statements inspected; no playback.",
+      "status": "Catalogued source",
+      "claims": [
+        "Habib says continued payment does not itself prove continuing product-market fit."
+      ],
+      "limitations": "Investor-authored framing. No deck, terms negotiation, conversion funnel or complete process transcript.",
+      "tags": [
+        "fundraising-process",
+        "story",
+        "strategy",
+        "limitations"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "May Habib"
+      ]
+    },
+    {
+      "id": "ent-writer-board",
+      "person": "May Habib",
+      "title": "4 things May Habib has learned as a founder, raising $100M, and building a board",
+      "date": "2024-05-28",
+      "url": "https://www.insightpartners.com/ideas/4-things-may-habib-has-learned-as-a-founder-raising-100m-and-building-a-board/",
+      "publisher": "Insight Partners",
+      "format": "Interview recap",
+      "topic": "Board composition and business-value positioning",
+      "summary": "Habib describes choosing directors backwards from the company she wanted to build and leading enterprise conversations with business impact.",
+      "method": "Choose board capabilities deliberately; map use cases by industry and learn from implementation.",
+      "evidence": "Primary firsthand",
+      "verification": "Publisher recap inspected; identifies Startup Grind original; video not played.",
+      "status": "Catalogued source",
+      "claims": [
+        "Habib says board members were selected for varied perspectives and the company's future needs."
+      ],
+      "limitations": "Historical advice from an investor-hosted recap; a large board is not a universal recommendation.",
+      "tags": [
+        "board",
+        "investor-selection",
+        "positioning"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "May Habib"
+      ]
+    },
+    {
+      "id": "ent-writer-series-c",
+      "person": "May Habib",
+      "title": "WRITER raises $200M Series C at $1.9B valuation to fuel leadership in agentic enterprise AI",
+      "date": "2024-11-12",
+      "url": "https://writer.com/blog/series-c-funding-writer-press-release/",
+      "publisher": "WRITER",
+      "format": "Official funding announcement",
+      "topic": "Investor thesis and capital use",
+      "summary": "Investors back a full-stack enterprise platform, blue-chip adoption and time to value; funding supports agentic workflows and vertical applications.",
+      "method": "Present differentiated capability, production customer evidence and the product investments the money enables.",
+      "evidence": "Primary company/investor",
+      "verification": "Original announcement and investor quotations inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "$200M Series C at $1.9B valuation, co-led by Premji Invest, Radical Ventures and ICONIQ Growth.",
+        "Self-reported average customer ROI of 9x."
+      ],
+      "limitations": "No valuation basis or audited ROI methodology disclosed. Do not generalize ROI across customers.",
+      "tags": [
+        "round",
+        "investor-thesis",
+        "why-capital",
+        "enterprise-proof"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "May Habib"
+      ]
+    },
+    {
+      "id": "ent-writer-madrona",
+      "person": "May Habib",
+      "title": "How Writer CEO May Habib Is Making GenAI Work For the Enterprise",
+      "date": "2024-03-05",
+      "url": "https://www.madrona.com/writer-ceo-may-habib-generative-ai-platform/",
+      "publisher": "Madrona",
+      "format": "Interview with edited transcript",
+      "topic": "Retention, customer success and enterprise defensibility",
+      "summary": "Habib explains a customer-outcome culture, regulated deployments and positioning beyond consumer productivity tools.",
+      "method": "Make customer success an end-to-end business outcome role; document why the product remains useful when generic tools improve.",
+      "evidence": "Primary firsthand",
+      "verification": "Original transcript inspected; automatically generated and edited. Page says March 5; audio feed surfaced March 6; page date used.",
+      "status": "Catalogued source",
+      "claims": [
+        "Self-reported historical NRR of 209%.",
+        "Habib describes six-figure mid-market deals and customer-managed cloud options."
+      ],
+      "limitations": "Historical metrics, not current performance. Product and model claims are not independent benchmarks; full-stack investment is capital-intensive.",
+      "tags": [
+        "economics",
+        "retention",
+        "moat",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "May Habib"
+      ]
+    },
+    {
+      "id": "ent-cohere-2025",
+      "person": "Aidan Gomez",
+      "title": "Cohere raises $500M at $6.8B valuation to accelerate enterprise efficiency with agentic AI",
+      "date": "2025-08-14",
+      "url": "https://cohere.com/blog/august-2025-funding-round",
+      "publisher": "Cohere",
+      "format": "Official funding announcement",
+      "topic": "Enterprise focus and global expansion",
+      "summary": "Company ties funding to secure enterprise and sovereign AI and international growth.",
+      "method": "Explain the buyer constraint and expansion plan that distinguish the company from general-purpose competitors.",
+      "evidence": "Primary company/investor",
+      "verification": "Original page opened but body was not exposed; title/date and indexed primary-page extract inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Announced $500M at $6.8B valuation in an oversubscribed round led by Radical Ventures and Inovia Capital."
+      ],
+      "limitations": "Limited body access; no independent financial verification or disclosed valuation basis.",
+      "tags": [
+        "round",
+        "why-capital",
+        "positioning"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Aidan Gomez"
+      ]
+    },
+    {
+      "id": "ent-cohere-oracle",
+      "person": "Aidan Gomez",
+      "title": "The business case for generative AI: A conversation with Cohere's CEO",
+      "date": "2024-02-23",
+      "url": "https://www.oracle.com/artificial-intelligence/cohere-aidan-gomez-interview/",
+      "publisher": "Oracle",
+      "format": "Partner interview",
+      "topic": "Distribution through a strategic platform partner",
+      "summary": "Oracle describes providing Cohere compute access and a global enterprise distribution platform, including Fusion applications and OCI services.",
+      "method": "Evaluate strategic capital and partnerships for buyer access, deployment infrastructure and integration—not only cash.",
+      "evidence": "Primary firsthand",
+      "verification": "Original partner-hosted article and founder statements inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Oracle states it integrated Cohere capabilities into Fusion applications and OCI's generative AI service."
+      ],
+      "limitations": "Oracle is a commercial partner and investor, not independent validation; compute economics and channel terms are undisclosed.",
+      "tags": [
+        "distribution",
+        "strategic-investor",
+        "enterprise"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Aidan Gomez"
+      ]
+    },
+    {
+      "id": "ent-cohere-mad",
+      "person": "Aidan Gomez",
+      "title": "Inside the Paper That Changed AI Forever - Cohere CEO Aidan Gomez on 2025 Agents",
+      "date": null,
+      "url": "https://www.mattturck.com/podcast/inside-the-paper-that-changed-ai-forever-cohere-ceo-aidan-gomez-on-2025-agents",
+      "publisher": "The MAD Podcast / Matt Turck",
+      "format": "Interview with transcript",
+      "topic": "Private deployment as an adoption unlock",
+      "summary": "Gomez explains that access to sensitive business context makes deployment control central to enterprise adoption; he recommends starting with the most important use cases.",
+      "method": "Identify the trust constraint preventing production; prioritize a few high-value workflows before broad rollout.",
+      "evidence": "Primary firsthand",
+      "verification": "Original transcript inspected; no playback. Page date is 06/05/2025 with ambiguous numeric ordering, so ISO date left null.",
+      "status": "Catalogued source",
+      "claims": [
+        "Gomez says VPC/on-prem deployment unlocks access to critical data.",
+        "He describes narrowing customer lists of hundreds of use cases to the top five."
+      ],
+      "limitations": "Founder perspective, not measured market-wide adoption. Research prestige and Google Brain network are unusual starting advantages.",
+      "tags": [
+        "enterprise-proof",
+        "positioning",
+        "customer-discovery"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Aidan Gomez"
+      ]
+    },
+    {
+      "id": "ent-cohere-frontier",
+      "person": "Aidan Gomez",
+      "title": "Who Gets to Build the Frontier for AI",
+      "date": "2026-10-29",
+      "url": "https://cohere.com/blog/who-gets-to-build-the-frontier-for-ai",
+      "publisher": "Cohere",
+      "format": "Founder-authored strategy essay",
+      "topic": "Sovereign AI as a capital and partnership thesis",
+      "summary": "Cohere's founders frame financing around institutional control, trusted jurisdictions and a frontier alternative outside the US and China.",
+      "method": "Connect product control and deployment requirements to the strategic interests of partners and buyers.",
+      "evidence": "Primary firsthand",
+      "verification": "Original founder byline, date and relevant article passages inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Announces initial close of Series E targeting up to CAD $7B, led by Schwarz Group with Government of Canada participation."
+      ],
+      "limitations": "Target is not closed proceeds; CAD is not USD. Government backing, frontier research credentials and national infrastructure aims are not a typical startup playbook.",
+      "tags": [
+        "round",
+        "investor-thesis",
+        "why-capital",
+        "sovereignty"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Aidan Gomez"
+      ]
+    },
+    {
+      "id": "ent-cohere-series-e-release",
+      "person": "Aidan Gomez",
+      "title": "Cohere Announces Series E Fundraise Targeting CAD $7 Billion to Meet Surging Global Demand for Secure, Sovereign AI",
+      "date": "2026-10-29",
+      "url": "https://www.prnewswire.com/news-releases/cohere-announces-series-e-fundraise-targeting-cad-7-billion-to-meet-surging-global-demand-for-secure-sovereign-ai-302923951.html",
+      "publisher": "Cohere via PRNewswire",
+      "format": "Company-issued release",
+      "topic": "Round status and infrastructure use of capital",
+      "summary": "Release details strategic investors, regulated-sector adoption and investment in compute, vertical products and global delivery.",
+      "method": "Separate signed/closed capital from target round size; show why capital requirements follow the operating plan.",
+      "evidence": "Primary company/investor",
+      "verification": "Company-issued release visible in detailed search extract; direct open returned inaccessible. Founder blog independently confirms target and initial-close status.",
+      "status": "Catalogued source",
+      "claims": [
+        "Target CAD $7B; stated implied valuation CAD $35.7B.",
+        "Self-reported Q3 2026 ARR growth of 165% year over year and 300 customers."
+      ],
+      "limitations": "Release-only claims, not audited. No exact initial-close proceeds; no currency conversion applied.",
+      "tags": [
+        "round",
+        "enterprise-proof",
+        "why-capital"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Aidan Gomez"
+      ]
+    },
+    {
+      "id": "ent-cognition-2025",
+      "person": "Scott Wu",
+      "title": "Funding, growth, and the next frontier of AI coding agents",
+      "date": "2025-09-08",
+      "url": "https://cognition.com/blog/funding-growth-and-the-next-frontier-of-ai-coding-agents",
+      "publisher": "Cognition",
+      "format": "Founder-authored funding announcement",
+      "topic": "Organic growth versus acquired distribution",
+      "summary": "Wu separates Devin's pre-acquisition growth from Windsurf's added ARR and describes complementary products and a larger GTM channel.",
+      "method": "Show organic cohorts, burn and acquisition effects separately; explain how product adjacency creates cross-sell.",
+      "evidence": "Primary firsthand",
+      "verification": "Original company article inspected; proxy mirror excluded.",
+      "status": "Catalogued source",
+      "claims": [
+        "Announced over $400M at $10.2B post-money, led by Founders Fund.",
+        "Self-reported: Devin ARR $1M to $73M by June 2025, historical net burn under $20M, under 5% enterprise customer overlap before Windsurf."
+      ],
+      "limitations": "All financial claims self-reported and historical; ARR is not recognized revenue. Acquisition creates comparability issues.",
+      "tags": [
+        "round",
+        "economics",
+        "distribution",
+        "enterprise-proof"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Scott Wu"
+      ]
+    },
+    {
+      "id": "ent-cognition-series-e",
+      "person": "Scott Wu",
+      "title": "Do it all with Devin: Announcing our Series E",
+      "date": "2026-09-08",
+      "url": "https://cognition.com/blog/series-e",
+      "publisher": "Cognition",
+      "format": "Official funding announcement",
+      "topic": "Capital for an independent agent lab and global delivery",
+      "summary": "Company pairs large financing with customer expansion, global offices and model-provider independence.",
+      "method": "Tie funds to customer implementation capacity and technical independence; support the narrative with dated operating evidence.",
+      "evidence": "Primary company/investor",
+      "verification": "Original article inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Announced over $2B at $48B valuation, led by Andreessen Horowitz and Accel.",
+        "Self-reported run-rate revenue rose from $492M in May to almost $900M."
+      ],
+      "limitations": "Run-rate revenue is not annual recognized revenue. Exact proceeds and valuation basis unstated; no current margin or burn disclosure.",
+      "tags": [
+        "round",
+        "why-capital",
+        "enterprise-proof",
+        "distribution"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Scott Wu"
+      ]
+    },
+    {
+      "id": "ent-cognition-wu",
+      "person": "Scott Wu",
+      "title": "The Wu Tapes: Q&A with Cognition's Scott Wu",
+      "date": null,
+      "url": "https://colossus.com/article/scott-wu-tapes-cognition/",
+      "publisher": "Colossus",
+      "format": "Original founder Q&A",
+      "topic": "Founder conviction and early product limitations",
+      "summary": "Long-form Q&A provides founder history and technical/product conviction beyond a funding headline.",
+      "method": "Use as a study of technical founder-market fit and willingness to ship and learn; do not treat exceptional talent mythology as a fundraising method.",
+      "evidence": "Primary firsthand",
+      "verification": "Original Q&A inspected; page gives May 2026 but no precise day, so date null.",
+      "status": "Catalogued source",
+      "claims": [
+        "Publisher discloses Cognition is a sponsor and a Positive Sum portfolio company."
+      ],
+      "limitations": "Sponsor/investor conflict; profile mixes editorial claims and founder testimony. Technical celebrity and elite network limit transferability.",
+      "tags": [
+        "founder-market-fit",
+        "limitations",
+        "company-building"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Scott Wu"
+      ]
+    },
+    {
+      "id": "ent-cognition-guarantee",
+      "person": "Scott Wu",
+      "title": "AI should earn its keep: Introducing the AI Productivity Guarantee",
+      "date": "2026-06-04",
+      "url": "https://cognition.com/blog/ai-guarantee",
+      "publisher": "Cognition",
+      "format": "Company operating-method article",
+      "topic": "Auditable productivity and commercial accountability",
+      "summary": "Cognition estimates useful engineering output, excludes unmerged/unproductive work and supports an enterprise credit guarantee.",
+      "method": "Prepare evidence of completed valuable work and specify measurement limits; distinguish productivity estimates from full business ROI.",
+      "evidence": "Primary company/investor",
+      "verification": "Original article's methodology and limitations inspected.",
+      "status": "Catalogued source",
+      "claims": [
+        "Guarantee offers credits up to $10M if estimated engineering value falls below spend.",
+        "Company explicitly says its estimator does not replace ROI measurement."
+      ],
+      "limitations": "Credits are not a cash refund; human-equivalent effort is estimated. Commercial terms and measurement can affect applicability.",
+      "tags": [
+        "economics",
+        "enterprise-proof",
+        "measurement",
+        "limitations"
+      ],
+      "related_links": [],
+      "research_lane": "enterprise-founders",
+      "participants": [
+        "Scott Wu"
+      ]
+    },
+    {
+      "id": "ip-ms-pitch",
+      "person": "Michael Seibel",
+      "title": "How to Pitch Your Company",
+      "date": "2016-07-19",
+      "url": "https://www.ycombinator.com/blog/how-to-pitch-your-company/",
+      "publisher": "Y Combinator",
+      "format": "Article",
+      "topic": "Explain the company and make a specific ask",
+      "summary": "A seven-question pitch: product, market, progress, insight, business model, team and ask.",
+      "method": "Write a plain-language description; calculate a customer-specific bottom-up market; show progress relative to elapsed time; explain customer-derived insight. Have an uninformed friend restate the description without live clarification.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Seibel prioritizes demonstrated progress and understanding over impressive language."
+      ],
+      "limitations": "Durable communication craft, not AI-specific underwriting or a guarantee of investment. Historical YC title in article is stale; his current personal homepage says he retired from YC in 2026.",
+      "tags": [
+        "timeless",
+        "seed",
+        "pitch",
+        "market-sizing",
+        "founder-market-fit",
+        "ask"
+      ],
+      "related_links": [
+        {
+          "label": "Current personal biography inspected",
+          "url": "https://www.michaelseibel.com/"
+        }
+      ],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Michael Seibel"
+      ]
+    },
+    {
+      "id": "ip-ms-milestones",
+      "person": "Michael Seibel",
+      "title": "Fundraising Rounds Are Not Milestones",
+      "date": "2017-02-06",
+      "url": "https://www.michaelseibel.com/blog/fundraising-rounds-are-not-milestones",
+      "publisher": "Michael Seibel",
+      "format": "Essay",
+      "topic": "Separate financing from business progress",
+      "summary": "A financing round is cash, not evidence of customer value or durable economics.",
+      "method": "Define operating milestones around customer need, product-market fit, margins and sustainable value; assess the round as financing for that work.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "The essay rejects top-line growth with severely negative unit economics as a proxy for success."
+      ],
+      "limitations": "A principle rather than a numerical readiness rubric. Does not establish which milestones the product has reached.",
+      "tags": [
+        "timeless",
+        "seed",
+        "series-a",
+        "milestones",
+        "unit-economics"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Michael Seibel"
+      ]
+    },
+    {
+      "id": "ip-ms-cold-email",
+      "person": "Michael Seibel",
+      "title": "How To Cold Email Investors - Michael Seibel",
+      "date": "2019-09-24",
+      "url": "https://www.ycombinator.com/blog/how-to-cold-email-investors-michael-seibel",
+      "publisher": "Y Combinator",
+      "format": "Video with official chapter notes",
+      "topic": "Prepare concise investor outreach",
+      "summary": "The official notes identify the information Seibel wants in a short investor email.",
+      "method": "Include problem, solution, launch status, growth, market, team and non-obvious insight in a message readable within a minute. Avoid origin-story padding, jargon, immediate in-person demands and rapid repeated follow-ups.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened official YC page; inspected publication date and timestamped chapter descriptions. Did not play full video.",
+      "status": "Catalogued source",
+      "claims": [
+        "A deck is optional; if included, Seibel recommends a common format."
+      ],
+      "limitations": "Historical communication advice; not current permission to contact anyone. Email tracking is mentioned in the source but is not recommended here as a default.",
+      "tags": [
+        "timeless",
+        "seed",
+        "investor-targeting",
+        "outreach-preparation"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Michael Seibel"
+      ]
+    },
+    {
+      "id": "ip-gr-seed-guide",
+      "person": "Geoff Ralston",
+      "title": "A Guide to Seed Fundraising",
+      "date": "2016-01-07",
+      "url": "https://www.ycombinator.com/blog/how-to-raise-a-seed-round/",
+      "publisher": "Y Combinator",
+      "format": "Guide",
+      "topic": "Size and execute a seed round",
+      "summary": "A practical introduction covering readiness, amount, dilution, financing forms, meetings, negotiations and closing.",
+      "method": "Connect the ask to profitability or the next fundable milestone; compare operating plans for different amounts. Practice the pitch, establish explicit next steps, and distinguish verbal interest from signed documents and received funds.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date. Inspected amount, negotiation, closing and document sections.",
+      "status": "Catalogued source",
+      "claims": [
+        "The guide frames capital as purchasing credible progress, with dilution as a tradeoff."
+      ],
+      "limitations": "Its 12–18 month horizon, round sizes, salaries and dilution ranges are 2016 heuristics, not October 2026 market benchmarks. US-oriented financing overview, not jurisdiction-specific legal guidance. Current SAFE forms were separately inspected at the official URL below.",
+      "tags": [
+        "timeless-framework",
+        "dated-numbers",
+        "seed",
+        "raise-size",
+        "runway",
+        "dilution",
+        "process",
+        "terms"
+      ],
+      "related_links": [
+        {
+          "label": "Current official SAFE resource, inspected; forms not executed",
+          "url": "https://www.ycombinator.com/safe"
+        }
+      ],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Geoff Ralston"
+      ]
+    },
+    {
+      "id": "ip-eg-capital-plan",
+      "person": "Elad Gil",
+      "title": "20 Questions To Ask Yourself Before Raising Money",
+      "date": "2010-08-20",
+      "url": "https://blog.eladgil.com/p/20-questions-to-ask-yourself-before",
+      "publisher": "Elad Blog",
+      "format": "Checklist essay",
+      "topic": "Build a milestone-based capital plan",
+      "summary": "A pre-raise decision checklist addressing purpose, ownership, financing alternatives and next milestones.",
+      "method": "Model cash costs and revenue under several scenarios; compare smaller and larger raises; specify the milestone each buys. Test founder ownership across future rounds, financing constraints and walk-away alternatives.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Gil asks whether the next milestone enables breakeven or a stronger subsequent financing."
+      ],
+      "limitations": "The sample dollar amounts, 2–3x next-round valuation target and 50% padding are 2010 advice, not mandatory thresholds. Scenario modeling transfers; legal and instrument outcomes depend on actual documents.",
+      "tags": [
+        "timeless-framework",
+        "dated-numbers",
+        "seed",
+        "growth",
+        "raise-size",
+        "milestones",
+        "dilution",
+        "alternatives"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-eg-round-process",
+      "person": "Elad Gil",
+      "title": "How to Raise a Successful VC Round or Series A",
+      "date": "2011-03-17",
+      "url": "https://blog.eladgil.com/p/tactics-for-how-to-raise-vc-round-or",
+      "publisher": "Elad Blog",
+      "format": "Tactical article",
+      "topic": "Run a synchronized financing process",
+      "summary": "A tactical Series A process emphasizing timing, partner selection, iteration and negotiation alternatives.",
+      "method": "Prepare and improve the pitch before priority meetings; compress first meetings into a bounded window, keep comparable options alive and know whether control, expertise or price matters most. Research the relevant individual partner.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Gil argues that staggered meetings can leave founders comparing a live term sheet with investors who have barely started diligence."
+      ],
+      "limitations": "Written for 2011 VC structure. Claims about collusion, a small fixed number of firms and automatic doubled dilution in syndicates are not adopted as universal facts. Timing must allow real diligence; do not fabricate competing offers.",
+      "tags": [
+        "timeless-framework",
+        "dated-market",
+        "series-a",
+        "growth",
+        "sequencing",
+        "negotiation",
+        "investor-targeting"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-eg-choose-partner",
+      "person": "Elad Gil",
+      "title": "How To Choose The Right VC Partner For You",
+      "date": "2012-11-09",
+      "url": "https://blog.eladgil.com/p/how-to-choose-right-vc-partner-for-you",
+      "publisher": "Elad Blog",
+      "format": "Article and reference checklist",
+      "topic": "Choose an investor and board partner",
+      "summary": "Evaluate the person joining the board as well as the fund brand.",
+      "method": "Assess relevant experience, chemistry, actual help, firm influence and board load. In references, ask for specific examples of useful contributions, bad-news reactions, weaknesses and behavior with other directors.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date. Inspected reference-check questions.",
+      "status": "Catalogued source",
+      "claims": [
+        "The source distinguishes a partner’s practical ability and availability from firm reputation."
+      ],
+      "limitations": "Seniority generalizations reflect Gil’s 2012 experience; verify present partner capacity, mandate and conflicts individually. No current the product–investor fit established.",
+      "tags": [
+        "timeless",
+        "seed",
+        "series-a",
+        "growth",
+        "investor-targeting",
+        "governance",
+        "references"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-eg-financing-risk",
+      "person": "Elad Gil",
+      "title": "Financing approaches most likely to kill your company (if it is already on the edge)",
+      "date": "2010-12-10",
+      "url": "https://blog.eladgil.com/p/financing-approaches-most-likely-to",
+      "publisher": "Elad Blog",
+      "format": "Essay",
+      "topic": "Stress-test financing structure and the next round",
+      "summary": "An older warning about cap-table structure, follow-on signaling and a valuation the business cannot grow into.",
+      "method": "Run downside ownership scenarios before agreeing terms; examine how existing investors’ participation or absence may be interpreted in a later round. Read the actual down-round provisions.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Gil argues that financing structure matters most when operating performance is mediocre rather than exceptional."
+      ],
+      "limitations": "Pre-SAFE 2010 context. Its categorical preference for notes without institutional VCs is not a current universal recommendation. Dilution, anti-dilution, governance and signaling depend on documents and circumstances; obtain qualified transaction advice.",
+      "tags": [
+        "dated-instruments",
+        "seed",
+        "series-a",
+        "terms",
+        "dilution",
+        "downside",
+        "signaling"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-eg-updates",
+      "person": "Elad Gil",
+      "title": "Investor Update Emails",
+      "date": "2015-05-13",
+      "url": "https://blog.eladgil.com/p/investor-update-emails",
+      "publisher": "Elad Blog",
+      "format": "Templates",
+      "topic": "Maintain a financing and assistance feedback loop",
+      "summary": "Short seed and longer growth-stage investor-update formats.",
+      "method": "Put specific asks first. Report highlights, lowlights and upcoming milestones; where appropriate add consistent metrics, cash and burn. Reuse a template and calendar the work.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Gil recommends retaining investors’ practical involvement after the financing closes."
+      ],
+      "limitations": "Distribution is a founder decision: the source explicitly warns of later-stage leaks. This library authorizes no updates or outreach to investors.",
+      "tags": [
+        "timeless",
+        "seed",
+        "growth",
+        "updates",
+        "runway",
+        "feedback-loops"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-eg-defensibility",
+      "person": "Elad Gil",
+      "title": "Defensibility & Competition",
+      "date": "2023-02-16",
+      "url": "https://blog.eladgil.com/p/defensibility-and-competition",
+      "publisher": "Elad Blog",
+      "format": "Essay",
+      "topic": "Explain how an AI wedge becomes defensible",
+      "summary": "Gil challenges the idea that all useful young AI businesses must already possess a moat.",
+      "method": "Separate current customer value from the mechanism that compounds defensibility: integrations, workflow breadth, distribution, contracts, platforms or truly differentiated data. Describe the path and evidence rather than claiming model access alone is unique.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Many early SaaS and AI products are copyable; some build defensibility through subsequent execution."
+      ],
+      "limitations": "A taxonomy and investor opinion, not proof that every wrapper becomes durable. The source warns that data effects are often overstated. Specific 2023 platform-access examples are historical.",
+      "tags": [
+        "ai-specific",
+        "seed",
+        "series-a",
+        "moat",
+        "wedge",
+        "competition",
+        "market"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil"
+      ]
+    },
+    {
+      "id": "ip-sg-launch",
+      "person": "Sarah Guo",
+      "title": "Launching With Conviction",
+      "date": null,
+      "url": "https://www.conviction.com/launching-with-conviction.html",
+      "publisher": "Conviction",
+      "format": "Founder/investor thesis",
+      "topic": "Understand an AI-native investor’s underwriting logic",
+      "summary": "Guo sets out the rationale for an AI-native investment firm and the distinctive problems of its portfolio.",
+      "method": "Make the technical and commercial thesis concrete: model failure handling, hallucinations, per-customer customization, and packaging work that previously required labor. Evaluate investor help through outcomes such as customers, talent, data and compute.",
+      "evidence": "Primary company/investor",
+      "verification": "2026-10-29: opened original Conviction article and inspected full extracted text. No publication date displayed; date is null rather than inferred from crawl time.",
+      "status": "Catalogued source",
+      "claims": [
+        "The launch thesis combines traditional software-business discipline with new AI product and commercialization problems."
+      ],
+      "limitations": "Fund-launch intentions are not evidence that all promised services or thesis outcomes occurred. The historical first-fund amount is not a startup round-size comparison. No current investment availability inferred.",
+      "tags": [
+        "ai-specific",
+        "seed",
+        "investor-thesis",
+        "packaging",
+        "reliability",
+        "investor-targeting"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Sarah Guo"
+      ]
+    },
+    {
+      "id": "ip-sg-gil-ai-investing",
+      "person": "Sarah Guo; Elad Gil",
+      "title": "VC Insights on Investing in Artificial Intelligence with Sarah Guo and Elad Gil of No Priors",
+      "date": "2023-05-02",
+      "url": "https://www.cognitiverevolution.ai/vc-insights-on-investing-in-artificial-intelligence-with-sarah-guo-and-elad-gil-of-no-priors/",
+      "publisher": "The Cognitive Revolution",
+      "format": "Original interview with transcript",
+      "topic": "Distinguish AI excitement from usage and venture fit",
+      "summary": "A first-person conversation about investor conviction, waitlists, product-market fit and whether a company needs VC.",
+      "method": "Test what happens when waitlisted users actually receive access. Show repeated usage rather than projecting signups. Compare venture financing with a cash-generating business, and model whether proprietary training is necessary for the specific product.",
+      "evidence": "Primary firsthand",
+      "verification": "2026-10-29: opened host’s original page and read timestamped transcript around 34:32–47:50, including waitlist, bootstrap and model-spending discussion. Full media not played; date displayed May 2, 2023.",
+      "status": "Catalogued source",
+      "claims": [
+        "Guo questions waitlists that do not convert to real usage; Gil argues some companies should bootstrap and avoid unnecessary model-training spending."
+      ],
+      "limitations": "2023 market and cost examples are historical. Speaker opinions and anecdotes, not audited performance or present training-versus-API economics.",
+      "tags": [
+        "ai-specific",
+        "seed",
+        "revenue-quality",
+        "usage",
+        "retention",
+        "venture-fit",
+        "capital-efficiency"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Elad Gil",
+        "Sarah Guo"
+      ]
+    },
+    {
+      "id": "ip-sg-conviction-2026",
+      "person": "Sarah Guo",
+      "title": "No Priors, Just Conviction — Invest Like the Best, Episode 489",
+      "date": "2026-09-01",
+      "url": "https://colossus.com/episode/no-priors-just-conviction/",
+      "publisher": "Colossus / Invest Like the Best",
+      "format": "Original interview; public excerpt and chapter guide",
+      "topic": "Study investor judgment and honest fundraising narrative",
+      "summary": "Guo discusses investing without historical backtests, investment decisions and raising her own fund.",
+      "method": "Study the investment-decision section at 22:15 and fundraise section at 28:15. Use objections to improve the case while distinguishing what is known, believed and still being tested.",
+      "evidence": "Primary firsthand",
+      "verification": "2026-10-29: inspected original host page, episode number, date, public introduction, transcript excerpt and timestamp list. Full transcript requires login; no login or full playback performed. The detailed fundraise story was only discovered in secondary transcripts and is not treated as verified in this record.",
+      "status": "Catalogued source",
+      "claims": [
+        "The host describes her fundraise as grounded in execution rather than a polished story."
+      ],
+      "limitations": "Partial access. This is primarily an LP/fund-manager raise, so startup founders should not copy the process or assume equivalent reputation and access. September 1 date is supported by host and distributor, not crawl date.",
+      "tags": [
+        "current-2026",
+        "ai-specific",
+        "investor-judgment",
+        "narrative",
+        "partial-access"
+      ],
+      "related_links": [
+        {
+          "label": "Founder biography and firm thesis inspected",
+          "url": "https://www.conviction.com/"
+        }
+      ],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Sarah Guo"
+      ]
+    },
+    {
+      "id": "ip-dc-600b",
+      "person": "David Cahn",
+      "title": "AI’s $600B Question",
+      "date": "2024-06-20",
+      "url": "https://sequoiacap.com/article/ais-600b-question",
+      "publisher": "Sequoia Capital",
+      "format": "Investor analysis",
+      "topic": "Connect compute spending to paid end-user value",
+      "summary": "A dated model contrasting infrastructure investment with the revenue required to justify it.",
+      "method": "Expose assumptions linking compute purchase, total ownership cost and gross margin. In a founder pitch, explain who pays and why the application creates enough durable value to support its serving costs.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Cahn distinguishes a transformative technology from the returns earned by investors financing infrastructure."
+      ],
+      "limitations": "The headline is a June 2024 scenario based on assumptions, not a measured present revenue shortfall, startup TAM or fundraising target. Infrastructure economics do not transfer directly to AI application margins.",
+      "tags": [
+        "dated-2024",
+        "ai-specific",
+        "unit-economics",
+        "growth",
+        "capital-intensity",
+        "value-capture"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "David Cahn"
+      ]
+    },
+    {
+      "id": "ip-dc-2025",
+      "person": "David Cahn",
+      "title": "AI in 2025: Building Blocks Firmly in Place",
+      "date": "2024-12-09",
+      "url": "https://sequoiacap.com/article/ai-in-2025",
+      "publisher": "Sequoia Capital",
+      "format": "Outlook essay",
+      "topic": "Make a domain-specific AI differentiation case",
+      "summary": "Cahn describes professional AI search differentiation through intent, proprietary data, presentation and workflow placement.",
+      "method": "Specify the buyer’s domain, required data, answer format and interface. Use those differences to explain why a specialized product earns adoption alongside general models.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "The essay argues that distinct professional workflows can support differentiated AI products."
+      ],
+      "limitations": "Predictions for 2025, including capex stabilization, are historical hypotheses rather than October 2026 facts. No independent forecast scorecard completed. Fundraising application is our synthesis.",
+      "tags": [
+        "dated-forecast",
+        "ai-specific",
+        "wedge",
+        "market",
+        "positioning",
+        "competition"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "David Cahn"
+      ]
+    },
+    {
+      "id": "ip-dc-2026",
+      "person": "David Cahn",
+      "title": "AI in 2026: A Tale of Two AIs",
+      "date": "2025-12-03",
+      "url": "https://sequoiacap.com/article/ai-in-2026-the-tale-of-two-ais",
+      "publisher": "Sequoia Capital",
+      "format": "Outlook essay",
+      "topic": "Separate application adoption from infrastructure dependency",
+      "summary": "Cahn forecasts continuing application adoption alongside possible compute, construction and AGI-timeline delays.",
+      "method": "Prepare separate evidence for customer demand and for the dependencies required to serve it. Stress-test runway and margins under delayed capacity or changing compute cost; do not let a macro AI story replace customer evidence.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "The essay treats application market pull and infrastructure supply constraints as different economic questions."
+      ],
+      "limitations": "A December 2025 outlook, not confirmed October 2026 outcomes. Revenue-per-employee examples and the predicted billion-dollar club are not readiness requirements. The practical stress test is our application of the thesis.",
+      "tags": [
+        "dated-forecast",
+        "ai-specific",
+        "growth",
+        "runway",
+        "dependencies",
+        "market-pull"
+      ],
+      "related_links": [
+        {
+          "label": "Current Sequoia role profile inspected",
+          "url": "https://sequoiacap.com/people/david-cahn"
+        }
+      ],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "David Cahn"
+      ]
+    },
+    {
+      "id": "ip-tt-seed-size",
+      "person": "Tomasz Tunguz",
+      "title": "Why Seed Rounds Are Growing as Startups Shrink",
+      "date": "2025-07-28",
+      "url": "https://tomtunguz.com/death-of-small-seed-round/",
+      "publisher": "Tomasz Tunguz",
+      "format": "Investor analysis",
+      "topic": "Understand fund economics without copying round size",
+      "summary": "An analysis of larger seed rounds despite smaller company teams.",
+      "method": "Ask how an investor’s fund size and ownership model fit the round actually needed. Compare capital required for the operating plan with the investor’s incentives before accepting a larger raise.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "Tunguz attributes much of seed-round expansion to investment-market structure rather than simply higher employee costs."
+      ],
+      "limitations": "The statistical decomposition is author analysis using outside datasets, not causal proof. 2025 market data is dated. Larger observed rounds are not a prescription for the product.",
+      "tags": [
+        "dated-2025",
+        "seed",
+        "fund-economics",
+        "raise-size",
+        "investor-targeting"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Tomasz Tunguz"
+      ]
+    },
+    {
+      "id": "ip-tt-retention",
+      "person": "Tomasz Tunguz",
+      "title": "The AI Colander",
+      "date": "2026-07-13",
+      "url": "https://tomtunguz.com/the-ai-colander",
+      "publisher": "Tomasz Tunguz",
+      "format": "Investor analysis",
+      "topic": "Interrogate AI retention and switching",
+      "summary": "Tunguz contrasts model usage retention with other software and observes rapidly shifting cost/performance leadership.",
+      "method": "For fundraising, separate new-user acquisition from cohort persistence. Measure the actual application’s account and revenue retention, and explain why customer workflow remains valuable when underlying models change.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date.",
+      "status": "Catalogued source",
+      "claims": [
+        "The source argues that low model loyalty and changing price/performance increase buyer leverage."
+      ],
+      "limitations": "The cited retention relates to models and provider cohorts, not enterprise application logo retention or NRR. External studies were linked but not independently replicated. Do not transplant its percentages into an the product forecast.",
+      "tags": [
+        "current-2026",
+        "ai-specific",
+        "retention",
+        "revenue-quality",
+        "switching",
+        "cohorts"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Tomasz Tunguz"
+      ]
+    },
+    {
+      "id": "ip-tt-harness-margin",
+      "person": "Tomasz Tunguz",
+      "title": "The Harness Margin Opportunity",
+      "date": "2026-09-17",
+      "url": "https://tomtunguz.com/the-harness-margin-opportunity/",
+      "publisher": "Tomasz Tunguz",
+      "format": "Investor analysis with illustrative economics",
+      "topic": "Show unit economics per completed AI outcome",
+      "summary": "A model of how different orchestration costs can produce very different gross profit at the same contract price.",
+      "method": "Build an observed cost-per-successful-task ledger, including inference, hosting, evaluations and human checking; examine cost changes under heavier usage. Connect gross profit to customer acquisition payback rather than presenting revenue alone.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date. Inspected methodological footnotes distinguishing measured benchmark costs from hypothetical business assumptions.",
+      "status": "Catalogued source",
+      "claims": [
+        "Tunguz uses an illustrative contract to show that serving cost changes margins and CAC recovery time."
+      ],
+      "limitations": "The companies, contract economics and margins are hypothetical. The cited coding-harness study is not proof of equal quality in other workflows; its sample cannot establish absence of quality differences. Reproduce cost/quality tests on the actual product.",
+      "tags": [
+        "current-2026",
+        "ai-specific",
+        "inference-cost",
+        "gross-margin",
+        "cac-payback",
+        "unit-economics"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Tomasz Tunguz"
+      ]
+    },
+    {
+      "id": "ip-tt-valuation",
+      "person": "Tomasz Tunguz",
+      "title": "AI Harness’ ARR Multiples",
+      "date": "2026-08-09",
+      "url": "https://tomtunguz.com/ai-harness-arr-multiples/",
+      "publisher": "Tomasz Tunguz",
+      "format": "Investor valuation analysis",
+      "topic": "Normalize revenue and valuation comparisons",
+      "summary": "An analysis of AI-company valuation dispersion that discloses substantial data limitations.",
+      "method": "Label annualized revenue versus contracted recurring revenue; align valuation and revenue dates; separate transaction-linked income from subscription economics. Explain category position and business quality instead of applying a famous company’s multiple.",
+      "evidence": "Primary advice/research",
+      "verification": "2026-10-29: opened original URL with web tool and inspected extracted article text and displayed publication date. Inspected footnotes on unaudited private data, estimated revenue and date mismatches.",
+      "status": "Catalogued source",
+      "claims": [
+        "The source warns that some observations are estimates and that Ramp interchange revenue is not pure contracted subscription."
+      ],
+      "limitations": "Not a live comps service or a valuation formula. Private company data is unaudited; mismatched measurement dates can inflate multiples. None of the cited companies establishes a reproducible financing path for the product.",
+      "tags": [
+        "current-2026",
+        "ai-specific",
+        "growth",
+        "revenue-quality",
+        "valuation",
+        "comparables"
+      ],
+      "related_links": [],
+      "research_lane": "Investor playbooks and founder fundraising craft for AI products",
+      "participants": [
+        "Tomasz Tunguz"
+      ]
+    }
+  ],
+  "rounds": [
+    {
+      "company": "Lovable",
+      "founders": [
+        "Anton Osika",
+        "Fabian Hedin"
+      ],
+      "announced_date": "2025-07-17",
+      "round": "Series A",
+      "amount_usd": 200000000,
+      "valuation_usd": 1800000000,
+      "valuation_basis": "Unspecified pre/post-money",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Accel"
+      ],
+      "source_ids": [
+        "fund-app-lovable-series-a-2025-07-17",
+        "fund-app-accel-lovable-2025-07-17"
+      ],
+      "business_evidence": "Investor cites 2.3 million active users and internal product use.",
+      "limitations": "Exact closing date not disclosed; company and investor assertions not audited.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Lovable",
+      "founders": [
+        "Anton Osika",
+        "Fabian Hedin"
+      ],
+      "announced_date": "2025-12-18",
+      "round": "Series B",
+      "amount_usd": 330000000,
+      "valuation_usd": 6600000000,
+      "valuation_basis": "Unspecified pre/post-money",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "CapitalG",
+        "Menlo Ventures Anthology fund"
+      ],
+      "source_ids": [
+        "fund-app-lovable-series-b-2025-12-18"
+      ],
+      "business_evidence": "Company cites project creation and traffic to customer-built apps.",
+      "limitations": "Do not substitute traffic for revenue or project count for retention; no closing date disclosed.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Lovable",
+      "founders": [
+        "Anton Osika",
+        "Fabian Hedin"
+      ],
+      "announced_date": "2026-08-12",
+      "round": "Series C",
+      "amount_usd": 400000000,
+      "valuation_usd": 13300000000,
+      "valuation_basis": "Unspecified pre/post-money",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Menlo Ventures",
+        "Scaleup Europe Fund (managed by EQT; co-lead)"
+      ],
+      "source_ids": [
+        "fund-app-lovable-series-c-2026-08-12"
+      ],
+      "business_evidence": "Company cites more than 60 million projects and expanded business-workflow capabilities.",
+      "limitations": "Round amount and valuation separately stated; cumulative funding not calculated; legal closing date unknown.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Anysphere / Cursor",
+      "founders": [
+        "Michael Truell"
+      ],
+      "announced_date": "2024-08-22",
+      "round": "Series A",
+      "amount_usd": 60000000,
+      "valuation_usd": null,
+      "valuation_basis": "Not disclosed",
+      "cumulative_funding_usd": null,
+      "lead_investors": [],
+      "source_ids": [
+        "fund-app-cursor-series-a-2024-08-22"
+      ],
+      "business_evidence": "Company reports more than 40,000 customers and specialized model/retrieval work.",
+      "limitations": "Source names participating investors without explicit lead status. Founder list here names the profiled CEO, not every co-founder.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Anysphere / Cursor",
+      "founders": [
+        "Michael Truell"
+      ],
+      "announced_date": "2025-06-06",
+      "round": "Series C",
+      "amount_usd": 900000000,
+      "valuation_usd": 9900000000,
+      "valuation_basis": "Unspecified pre/post-money",
+      "cumulative_funding_usd": null,
+      "lead_investors": [],
+      "source_ids": [
+        "fund-app-cursor-series-c-2025-06-06"
+      ],
+      "business_evidence": "Company reports over $500 million ARR.",
+      "limitations": "Primary says $9.9 billion, not $9 billion seen in some databases. Lead and close date not stated; founder array not exhaustive.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Anysphere / Cursor",
+      "founders": [
+        "Michael Truell"
+      ],
+      "announced_date": "2025-11-13",
+      "round": "Series D",
+      "amount_usd": 2300000000,
+      "valuation_usd": 29300000000,
+      "valuation_basis": "Post-money explicitly stated",
+      "cumulative_funding_usd": null,
+      "lead_investors": [],
+      "source_ids": [
+        "fund-app-cursor-series-d-2025-11-13"
+      ],
+      "business_evidence": "Company reports over $1 billion annualized revenue, not explicitly ARR.",
+      "limitations": "Primary names investors but does not label lead roles; founder array not exhaustive; not asserted to be latest corporate event as of research date.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "Perplexity",
+      "founders": [
+        "Aravind Srinivas",
+        "Denis Yarats",
+        "Johnny Ho",
+        "Andy Konwinski"
+      ],
+      "announced_date": "2023-03-28",
+      "round": "Series A",
+      "amount_usd": 25600000,
+      "valuation_usd": null,
+      "valuation_basis": "Not disclosed",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "NEA"
+      ],
+      "source_ids": [
+        "fund-app-perplexity-series-a-2023-03-28",
+        "fund-app-nea-perplexity-2023-03-28"
+      ],
+      "business_evidence": "Release reports 10 million monthly visits and two million unique visitors in February.",
+      "limitations": "Closed by announcement; actual earlier closing day not given. Avoid conflating $25.6 million round with approximately $28.8 million offering or cumulative figures.",
+      "financing_status": "announced as closed",
+      "closed_date": null
+    },
+    {
+      "company": "Perplexity",
+      "founders": [
+        "Aravind Srinivas",
+        "Denis Yarats",
+        "Johnny Ho",
+        "Andy Konwinski"
+      ],
+      "announced_date": "2024-01-04",
+      "round": "Series B",
+      "amount_usd": 73600000,
+      "valuation_usd": null,
+      "valuation_basis": "Not established by retrieved primary sources",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "IVP"
+      ],
+      "source_ids": [
+        "fund-app-perplexity-series-b-2024-01-04"
+      ],
+      "business_evidence": "Company reports ten million monthly users and over half a billion 2023 queries.",
+      "limitations": "No primary-supported valuation, cumulative total or exact closing day entered.",
+      "financing_status": "announced as raised",
+      "closed_date": null
+    },
+    {
+      "company": "WRITER",
+      "founders": [
+        "May Habib",
+        "Waseem AlShikh"
+      ],
+      "announced_date": "2024-11-12",
+      "round": "Series C",
+      "amount_usd": 200000000,
+      "valuation_usd": 1900000000,
+      "valuation_basis": "Company states valuation; pre/post-money not specified.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Premji Invest",
+        "Radical Ventures",
+        "ICONIQ Growth"
+      ],
+      "source_ids": [
+        "ent-writer-series-c"
+      ],
+      "business_evidence": "Company cites named enterprise customers and average 9x ROI; investors cite full-stack differentiation and speed to value.",
+      "limitations": "Company announcement, not audited traction; cumulative total not derived from incomplete history."
+    },
+    {
+      "company": "Sierra",
+      "founders": [
+        "Bret Taylor",
+        "Clay Bavor"
+      ],
+      "announced_date": "2025-09-04",
+      "round": "Additional financing; series label not specified",
+      "amount_usd": 350000000,
+      "valuation_usd": 10000000000,
+      "valuation_basis": "Company states valuation; pre/post-money not specified.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Greenoaks"
+      ],
+      "source_ids": [
+        "ent-sierra-2025"
+      ],
+      "business_evidence": "Hundreds of customers and large-enterprise customer mix claimed; use of funds platform, US growth, Europe/Asia.",
+      "limitations": "Founder/company claims and exceptional prior network; no audited revenue or margins."
+    },
+    {
+      "company": "Sierra",
+      "founders": [
+        "Bret Taylor",
+        "Clay Bavor"
+      ],
+      "announced_date": "2026-05-04",
+      "round": "Financing; company says 'raising', series label not specified",
+      "amount_usd": 950000000,
+      "valuation_usd": null,
+      "valuation_basis": "Company says over $15B; exact valuation and pre/post basis undisclosed.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Tiger Global",
+        "GV"
+      ],
+      "source_ids": [
+        "ent-sierra-2026"
+      ],
+      "business_evidence": "Over 40% of Fortune 50 served and named deployment timing and resolution outcomes, all self-reported.",
+      "limitations": "Do not substitute secondary $15.8B precision for primary lower bound; announcement wording does not independently prove close.",
+      "valuation_display": "More than US$15B",
+      "financing_status": "Announced as raising; close not independently verified"
+    },
+    {
+      "company": "Cohere",
+      "founders": [
+        "Aidan Gomez",
+        "Nicholas Frosst",
+        "Ivan Zhang"
+      ],
+      "announced_date": "2025-08-14",
+      "round": "Funding round; series label not verified",
+      "amount_usd": 500000000,
+      "valuation_usd": 6800000000,
+      "valuation_basis": "Company states valuation; pre/post-money not specified.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Radical Ventures",
+        "Inovia Capital"
+      ],
+      "source_ids": [
+        "ent-cohere-2025"
+      ],
+      "business_evidence": "Enterprise and sovereign AI expansion rationale; investor participation disclosed in primary indexed extract.",
+      "limitations": "Full page body unavailable; round financials from indexed primary content."
+    },
+    {
+      "company": "Cohere",
+      "founders": [
+        "Aidan Gomez",
+        "Nicholas Frosst",
+        "Ivan Zhang"
+      ],
+      "announced_date": "2026-10-29",
+      "round": "Series E initial close; targeting up to CAD $7B",
+      "amount_usd": null,
+      "valuation_usd": null,
+      "valuation_basis": "Release states target would represent CAD $35.7B valuation; pre/post not stated; no FX conversion.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Companies of Schwarz Group"
+      ],
+      "source_ids": [
+        "ent-cohere-frontier",
+        "ent-cohere-series-e-release"
+      ],
+      "business_evidence": "Company reports 165% year-over-year ARR growth and 300 customers; strategic compute, sovereign deployment and vertical-product investment.",
+      "limitations": "Target is not closed proceeds. Exact initial-close amount undisclosed. USD fields intentionally null.",
+      "amount_display": "Target: up to CAD $7B; initial-close proceeds undisclosed",
+      "valuation_display": "CAD $35.7B if target achieved",
+      "financing_status": "Initial close announced; total target is not closed proceeds"
+    },
+    {
+      "company": "Cognition",
+      "founders": [
+        "Scott Wu",
+        "Steven Hao",
+        "Walden Yan"
+      ],
+      "announced_date": "2025-09-08",
+      "round": "Funding round; series label not specified",
+      "amount_usd": null,
+      "valuation_usd": 10200000000,
+      "valuation_basis": "Explicit post-money.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Founders Fund"
+      ],
+      "source_ids": [
+        "ent-cognition-2025"
+      ],
+      "business_evidence": "Historical self-reported organic Devin ARR, net burn and low overlap with acquired Windsurf customers.",
+      "limitations": "Primary says over $400M, so exact amount_usd null. Acquisition more than doubled ARR; do not represent all growth as organic.",
+      "amount_display": "More than US$400M"
+    },
+    {
+      "company": "Cognition",
+      "founders": [
+        "Scott Wu",
+        "Steven Hao",
+        "Walden Yan"
+      ],
+      "announced_date": "2026-09-08",
+      "round": "Series E",
+      "amount_usd": null,
+      "valuation_usd": 48000000000,
+      "valuation_basis": "Company states valuation; pre/post-money not specified.",
+      "cumulative_funding_usd": null,
+      "lead_investors": [
+        "Andreessen Horowitz",
+        "Accel"
+      ],
+      "source_ids": [
+        "ent-cognition-series-e"
+      ],
+      "business_evidence": "Company reports almost $900M revenue run rate and global enterprise deployments.",
+      "limitations": "Primary says over $2B; exact amount_usd null. Run rate is not recognized annual revenue; no audited current burn.",
+      "amount_display": "More than US$2B"
+    }
+  ],
+  "coverage_limits": [
+    "Research cutoff: October 29, 2026. This is bounded discovery of relevant public content, not every interview or a complete social timeline. Dates refer to publication unless a record explicitly explains otherwise.",
+    "No full recording playback or independent company financial audit was performed. Each record states whether evidence came from original text, show notes, indexed content, a recap or a secondary transcript.",
+    "Catalogued means the source is identified and useful, not that every claim is verified. Evidence labels and access limits must be read together. Discovery leads remain separate.",
+    "Shared interviews count once even when multiple people use them as a starting source. Individual source totals can overlap. Mirrored links are retained as related material.",
+    "Bounded current web verification, not exhaustive lifetime interview or financing history. Historical source dates preserved.",
+    "No full episode playback. Sources inspected only as described in each verification field.",
+    "Some original Perplexity blog and Lenny newsletter routes failed retrieval; official releases, company posts and publisher-distributed metadata were used where available.",
+    "Later Perplexity financing reports and secondary Cursor 2026 financing/acquisition tables were not promoted to confirmed rounds without inspected primary announcement evidence.",
+    "Company metrics and investor testimonials are attributed claims, not independent financial diligence. ARR, annualized revenue, visits, users and projects are distinct.",
+    "Round list is selected evidence, not a complete cap-table history; cumulative totals intentionally null.",
+    "Bounded primary-source scan, not a complete public corpus or a financing-history database.",
+    "16 distinct records across five people and four companies; joint Sierra authors share two sources.",
+    "Text/transcripts and relevant passages inspected; no claim of full audio/video playback.",
+    "Sequoia and Colossus lack verified exact publication days; MAD's numeric date is ambiguous. These dates remain null.",
+    "Cohere August 2025 body not exposed; today's PRNewswire direct open failed. Access limits are recorded on each item.",
+    "Company performance, ROI, ARR and run-rate figures are self-reported unless explicitly described otherwise; no financial statements audited.",
+    "No current investor fit, availability, probability of funding or guaranteed replicability is inferred.",
+    "Survivorship, celebrity-founder, frontier-lab and strategic-government capital biases are substantial.",
+    "No outreach, account access, external mutation or recursive delegation performed.",
+    "Bounded web research, not a complete corpus of every relevant public appearance. Twenty distinct original sources across six practitioners; mirrors, excerpts and reposts deduplicated.",
+    "Source access and displayed publication dates were checked on 2026-10-29. One undated original has date null. Full audio/video playback was not performed; video notes and transcript access limits are recorded per item.",
+    "Primary advice is evidence of the practitioner’s method or thesis, not independent proof that it causes successful fundraising. Company/investor financial anecdotes and outside datasets were not audited or replicated.",
+    "Historical monetary amounts, runway horizons, dilution heuristics, investor-market assumptions and forecasts are explicitly separated from durable principles. Current access does not make an old recommendation current.",
+    "The three Cahn essays are separate dated perspectives, not a set of verified forecasts. No forecast-performance scorecard was conducted.",
+    "US/venture-oriented sources dominate. Grants, crowdfunding, bank debt, jurisdiction-specific securities law and tax treatment are not comprehensively covered.",
+    "Official SAFE page was inspected as a supplementary current reference; no CLI, signing tool, account connection, transaction or investor outreach was used.",
+    "No full legal/tax interpretation, investor outreach, publication, purchase or external mutation performed. Only the assigned JSON file was written."
+  ],
+  "excluded": [
+    {
+      "topic": "Unverified 2026 financing and acquisition aggregator entries",
+      "reason": "Secondary tables contained inconsistent amounts, stages and dates; primary financing excerpts take precedence."
+    },
+    {
+      "topic": "Reported Perplexity late rounds",
+      "reason": "No retrieved primary amount/valuation announcement sufficient for this round table."
+    },
+    {
+      "topic": "Anton Lenny mirrors and publisher transcript PDF",
+      "reason": "Mirrors deduplicated; PDF link failed. Original 20VC page plus edited publisher takeaways retained with access limitations."
+    },
+    {
+      "url": "https://www.balderton.com/founder/may-habib/",
+      "reason": "Indexed founder page says $150M Series C, conflicting with WRITER's official $200M announcement. Not used for financing figures."
+    },
+    {
+      "url": "https://2.zoppoz.workers.dev/https/cognition.com/blog/funding-growth-and-the-next-frontier-of-ai-coding-agents",
+      "reason": "Proxy mirror deduplicated in favor of accessible original."
+    },
+    {
+      "url": "https://sacra.com/c/sierra/",
+      "reason": "Secondary estimates and exact valuation precision not substituted for primary disclosure."
+    },
+    {
+      "url": "https://radical.vc/articles/founder-stories__writer-building-the-enterprise-ai-platform-for-agentic-work/",
+      "reason": "Related recap of substantially overlapping May Habib material; not added to inflate coverage."
+    },
+    {
+      "title": "High Growth Handbook",
+      "url": "https://growth.eladgil.com/",
+      "reason": "Official landing page inspected, but substantive financing chapters were not accessible there during this pass. Useful book lead; not counted as a read source."
+    },
+    {
+      "title": "Writing a Business Plan",
+      "url": "https://articles.sequoiacap.com/writing-a-business-plan",
+      "reason": "Primary Team Sequoia template discovered; overlaps Seibel’s pitch craft and is not attributed to Alfred Lin without evidence. Not added to inflate source or practitioner counts."
+    },
+    {
+      "title": "Sarah Guo third-party transcripts and episode summaries",
+      "url": "https://bidclub.ai/e/sarah-guo-what-250-people-building-ai-believe",
+      "reason": "Used to locate the original Colossus episode. Detailed claims behind the host transcript gate are not accepted as primary verification."
+    },
+    {
+      "title": "A CEO’s Cost of Capital Advantage",
+      "url": "https://tomtunguz.com/personal-cost-of-capital/",
+      "reason": "Primary article inspected, but exceptional-founder financing is less actionable than retained-customer economics and milestone-based planning. Excluded from main curriculum."
+    },
+    {
+      "title": "AI is Now Shovel Ready",
+      "url": "https://sequoiacap.com/article/ai-data-center-buildout",
+      "reason": "Primary article inspected; construction and energy forecasts add less founder fundraising craft than the selected Cahn sources."
+    },
+    {
+      "title": "Generic fundraising directories, megaraise news, clips and mirrors",
+      "url": null,
+      "reason": "Not substantive primary practitioner instruction. No current investor suitability or reproducible fundraising strategy inferred from portfolio logos or funding amounts."
+    }
+  ],
+  "counts": {
+    "Catalogued source": 50
+  },
+  "title": "Fundraising for AI products",
+  "domain": "Capital / fundraising",
+  "subtitle": "Study exceptional raises, learn the process, and build an investment case grounded in customer value.",
+  "scope": "Founder testimony, investor reasoning, practical fundraising craft and selected primary financing disclosures. The round table is a set of case studies, not a complete funding history or a ranking of current companies. Large raises do not by themselves reveal the process that caused them.",
+  "start_here": [
+    "fund-app-srinivas-haas-2025-10-21",
+    "ent-writer-masterclass",
+    "ip-ms-pitch",
+    "ip-gr-seed-guide",
+    "ip-tt-harness-margin",
+    "fund-app-osika-20vc-2025-03-05"
+  ],
+  "playbooks": [
+    {
+      "title": "1. Build a case an investor can verify",
+      "why": "A large ambition is more credible when the customer wedge, product evidence and expansion path fit together.",
+      "steps": [
+        "Write a plain-language memo: customer, painful job, product, why now, differentiated insight, evidence, business model, team and capital needed.",
+        "Show a live customer workflow and the underlying evidence. Separate actual usage/revenue from pipeline, waitlists, forecasts and reported run rate.",
+        "Build a bottom-up market view from reachable buyers and plausible spending; label assumptions and show the initial wedge and expansion route.",
+        "Use repeated questioning to expose weak assumptions. Update the memo and evidence, rather than adding unsupported claims to the pitch."
+      ],
+      "metrics": [
+        "Clarity without narration",
+        "Evidence coverage",
+        "Unresolved objections",
+        "Customer references"
+      ],
+      "source_ids": [
+        "ip-ms-pitch",
+        "ent-writer-masterclass",
+        "fund-app-srinivas-haas-2025-10-21"
+      ],
+      "limits": "Proposed preparation process. A concise memo complements the format investors request; a no-deck approach is not universally suitable."
+    },
+    {
+      "title": "2. Prove demand, retention and AI economics",
+      "why": "Show that customers keep getting value after the initial novelty and that delivering it can support a durable business.",
+      "steps": [
+        "Define activation and retain cohort tables for actual target users. Keep paid accounts, active users, contracted ARR and annualized revenue distinct.",
+        "Measure successful customer outcomes with the required quality level; include failed attempts, retries and human review.",
+        "Record model/inference, infrastructure, support and human-service costs per workflow and account. Test the effect of heavier usage and changing model prices.",
+        "Explain the source of durable differentiation: workflow integration, distribution, trust, proprietary access or feedback effects, with evidence for each."
+      ],
+      "metrics": [
+        "Account and revenue retention",
+        "Cost per successful outcome",
+        "Gross margin by cohort",
+        "Expansion",
+        "Acquisition payback"
+      ],
+      "source_ids": [
+        "ip-sg-gil-ai-investing",
+        "ip-tt-harness-margin",
+        "ip-tt-valuation",
+        "ip-eg-defensibility"
+      ],
+      "limits": "Use your product’s observed data. Model-provider retention, hypothetical margin examples and famous-company multiples are not the product benchmarks."
+    },
+    {
+      "title": "3. Size the raise around the next valuable milestone",
+      "why": "Compare what different financing amounts allow you to prove, and what each costs in dilution and obligations.",
+      "steps": [
+        "Define the next milestone that reduces a major business risk: retained paying demand, repeatable acquisition, enterprise deployment or another stage-appropriate proof.",
+        "Model monthly operating cash with base and downside revenue, hiring, inference and infrastructure. Keep one-off financing and transaction costs in a separate schedule. Separate bookings from cash collection.",
+        "A planning identity is: funding gap = expected net operating cash use through the milestone + contingency + one-off financing and transaction costs − deployable cash. Net operating cash use excludes the one-off costs added separately. Reconcile timing and committed funding before choosing an ask.",
+        "Compare smaller, base and larger raises against speed, hiring execution, runway, ownership and future financing risk. Choose based on the operating plan, not peers’ headline rounds."
+      ],
+      "metrics": [
+        "Months to milestone",
+        "Base/downside cash runway",
+        "Capital per proof point",
+        "Ownership scenarios",
+        "Financing dependency"
+      ],
+      "source_ids": [
+        "ip-gr-seed-guide",
+        "ip-eg-capital-plan",
+        "ip-eg-financing-risk",
+        "ip-tt-seed-size"
+      ],
+      "limits": "The formula is a planning identity, not a valuation or financing recommendation. Historical numerical heuristics are dated; actual terms and instruments require qualified transaction advice."
+    },
+    {
+      "title": "4. Select investors and manage a real process",
+      "why": "Match the actual partner, stage, check size, ownership expectations and company needs.",
+      "steps": [
+        "Build a research table of relevant partners using current public investment evidence. Record thesis, stage, geography, check/ownership assumptions, conflicts and why the partnership fits.",
+        "Reference-check concrete help and behavior when a company struggles. Separate a fund’s marketing promise from founders’ experience.",
+        "Prepare the core materials and practice before priority meetings. Run a bounded sequence with explicit owners, next steps and deadlines that allow real diligence.",
+        "Track interest, diligence, written terms, executed documents and funds received as different states. Maintain honest alternatives; never invent competing offers."
+      ],
+      "metrics": [
+        "Qualified partner fit",
+        "Meeting-to-next-step conversion",
+        "Time in diligence",
+        "Unanswered diligence items",
+        "Cash received"
+      ],
+      "source_ids": [
+        "ip-eg-choose-partner",
+        "ip-eg-round-process",
+        "ip-ms-cold-email",
+        "ip-gr-seed-guide"
+      ],
+      "limits": "Preparation only; no investors were contacted. Public portfolio evidence does not establish current mandate, willingness to invest or permission to share confidential data."
+    },
+    {
+      "title": "5. Use AI as a fundraising analyst and preparation partner",
+      "why": "Reduce preparation work while keeping factual claims and confidential disclosure under founder control.",
+      "steps": [
+        "Organize an evidence room: company narrative, cap table, financial model, cohorts, customer references, product/security material and an assumption register.",
+        "Have AI draft a claim-to-source map and challenging investor questions. Verify every answer against the actual source; keep missing evidence visible.",
+        "Draft individualized meeting briefs and follow-up answers from an approved evidence set. Check numbers, confidentiality and attachments before any authorized sharing.",
+        "Use objections and diligence questions to improve the product case, model and memo. Track repeated concerns and whether the underlying evidence resolves them."
+      ],
+      "metrics": [
+        "Preparation time",
+        "Claim traceability",
+        "Answer turnaround",
+        "Correction rate",
+        "Repeated objections resolved"
+      ],
+      "source_ids": [
+        "fund-app-srinivas-haas-2025-10-21",
+        "ent-writer-masterclass",
+        "ip-eg-updates"
+      ],
+      "limits": "Our proposed AI-assisted workflow. Srinivas’s AI-assisted preparation and live-Q&A account is self-reported; the complete workflow here was not tested on the product."
+    },
+    {
+      "title": "6. Study large rounds without copying their advantages",
+      "why": "Extract the investor logic and operating proof, then judge which parts transfer to your stage.",
+      "steps": [
+        "For each selected case, read the founder explanation and the company/investor announcement together. Record the customer wedge, distribution, evidence and use of capital.",
+        "Separate company traction from acquired revenue and annualized run rate; keep announcement dates aligned with the metrics they cite.",
+        "Record founder reputation, prior exits, investor access, compute requirements and strategic partnerships that may not transfer.",
+        "Write the smallest analogous proof your own product can produce. A large financing event is a case study, not proof that its publicly described tactic caused the round."
+      ],
+      "metrics": [
+        "Transferable mechanisms",
+        "Proof gaps",
+        "Stage-adjusted operating milestones",
+        "Capital efficiency"
+      ],
+      "source_ids": [
+        "fund-app-accel-lovable-2025-07-17",
+        "fund-app-truell-a16z-2025-11-10",
+        "ent-sierra-2026",
+        "ent-cognition-2025"
+      ],
+      "limits": "Selected success cases have survivor bias and unequal access. Announced terms and traction are primary-source claims, not independently audited financials."
+    }
+  ]
+}

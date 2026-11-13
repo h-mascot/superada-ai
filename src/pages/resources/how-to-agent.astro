@@ -1,0 +1,50 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const description = 'Search public research and practical playbooks on using AI for growth, go-to-market, and fundraising.';
+const libraries = [
+	{
+		title: 'AI Growth and GTM',
+		href: '/resources/how-to-agent/ai-growth-gtm-library/library.html',
+		meta: '41 catalogued sources · 8 discovery leads · 6 playbooks',
+		copy: 'Use agents to research customers, develop accounts, improve onboarding, and run weekly growth experiments.',
+	},
+	{
+		title: 'Fundraising for AI Products',
+		href: '/resources/how-to-agent/ai-fundraising-library/library.html',
+		meta: '50 catalogued sources · 15 financing disclosures · 6 playbooks',
+		copy: 'Study how AI founders raised capital, then use the playbooks to test your evidence, size a round, and prepare for diligence.',
+	},
+];
+---
+
+<SiteLayout title="How to Agent - SuperAda Resources" description={description}>
+	<PageHero eyebrow="Resources · Guides" title="How to Agent" lede={description} size="md">
+		<a class="ds-btn ds-btn--ghost" href="/resources/guides">All guides</a>
+	</PageHero>
+
+	<section class="ds-shell agent-research" aria-labelledby="agent-research-title">
+		<h2 id="agent-research-title">Growth and fundraising libraries</h2>
+		<p>Filter by person, topic, or evidence type, and follow links to the original sources. Both libraries offer JSON and CSV downloads. Research cutoff: 29 October 2026.</p>
+		<div class="agent-research-grid">
+			{libraries.map((library) => (
+				<a class="ds-card agent-research-card" href={library.href}>
+					<span class="ds-eyebrow">{library.meta}</span>
+					<h3>{library.title}</h3>
+					<p>{library.copy}</p>
+					<span class="agent-research-link">Open library <span aria-hidden="true">↗</span></span>
+				</a>
+			))}
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.agent-research { padding-block: 1rem 4rem; }
+	.agent-research > p { max-width: 66ch; }
+	.agent-research-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+	.agent-research-card { display: flex; flex-direction: column; gap: .65rem; padding: 1.5rem; color: inherit; text-decoration: none; }
+	.agent-research-card :is(h3, p) { margin: 0; }
+	.agent-research-link { margin-top: auto; text-decoration: underline; text-underline-offset: .2em; }
+</style>
