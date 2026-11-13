@@ -2,8 +2,14 @@
 import PageHero from '../../components/PageHero.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 
-const description = 'Search public research and practical playbooks on using AI for growth, go-to-market, and fundraising.';
+const description = 'Explore how founders and operators use AI, with research libraries and playbooks for growth, go-to-market, and fundraising.';
 const libraries = [
+	{
+		title: 'AI Operator Library',
+		href: '/resources/how-to-agent/ai-operator-library/library.html',
+		meta: '196 catalogued sources · 23 discovery leads · 18 operator profiles',
+		copy: 'Explore Pedro Franceschi and his peers through interviews, talks, and firsthand accounts of putting AI to work.',
+	},
 	{
 		title: 'AI Growth and GTM',
 		href: '/resources/how-to-agent/ai-growth-gtm-library/library.html',
@@ -25,8 +31,8 @@ const libraries = [
 	</PageHero>
 
 	<section class="ds-shell agent-research" aria-labelledby="agent-research-title">
-		<h2 id="agent-research-title">Growth and fundraising libraries</h2>
-		<p>Filter by person, topic, or evidence type, and follow links to the original sources. Both libraries offer JSON and CSV downloads. Research cutoff: 29 October 2026.</p>
+		<h2 id="agent-research-title">Research libraries</h2>
+		<p>Search and filter the libraries, follow links to original sources, or download the data as JSON or CSV. Research cutoff: 29 October 2026.</p>
 		<div class="agent-research-grid">
 			{libraries.map((library) => (
 				<a class="ds-card agent-research-card" href={library.href}>
