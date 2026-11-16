@@ -33,6 +33,8 @@ export type SkillRecord = {
   artifacts: SkillArtifact[];
   notes?: string[];
   configExamples?: SkillConfigExample[];
+  version?: string;
+  versions?: { v: string; date: string; note: string }[];
 };
 
 export const publishedSkills: SkillRecord[] = [
@@ -535,7 +537,7 @@ EOF`,
     clawhubSlug: 'superada-skill-geordi',
     clawhubOwner: 'h-mascot',
     entrypoint: 'SKILL.md',
-    installCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/Enterprise-Crew-skills/v1.2.0/geordi/install.sh)',
+    installCommand: 'GEORDI_TARBALL_URL=https://codeload.github.com/h-mascot/enterprise-crew-skills/tar.gz/refs/tags/v1.2.0 bash <(curl -fsSL https://raw.githubusercontent.com/h-mascot/enterprise-crew-skills/v1.2.0/geordi/install.sh)',
     reviewMode: 'source-review',
     includes: ['Skill contract', 'Installer', 'CLI wrapper', 'Mission templates', 'Verification receipts', 'Cursor and Claude mode examples'],
     useCases: [
@@ -1077,6 +1079,8 @@ EOF`,
     title: 'Ogillvy',
     description: 'Ogilvy copy discipline for short-form public posts: 8 rules plus hard reject checks that enforce a hook in the first five words, facts over feelings, one idea per post, and zero buzzwords inside 280 characters.',
     tagline: 'The headline is 80 cents of the dollar.',
+    version: '1.0.0',
+    versions: [{ v: '1.0.0', date: '2026-11-16', note: 'Initial versioned release' }],
     category: 'Writing',
     availability: 'agent-installable',
     estimatedSetup: '1 minute',

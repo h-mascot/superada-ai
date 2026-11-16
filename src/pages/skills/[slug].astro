@@ -65,6 +65,7 @@ const moreSkills = neighbours(sorted, sorted.findIndex((entry) => entry.href ===
         { label: availabilityLabel[skill.availability], tone: availabilityTone[skill.availability] },
         { label: skill.category, tone: 'plain' },
         { label: reviewLabel[skill.reviewMode], tone: 'plain' },
+        ...(skill.version ? [{ label: `v${skill.version}`, tone: 'plain' as const }] : []),
         { label: skill.estimatedSetup, tone: 'plain' },
       ]}
     >
@@ -108,6 +109,23 @@ const moreSkills = neighbours(sorted, sorted.findIndex((entry) => entry.href ===
       <CatalogCode label="Prompt to hand another agent" code={agentPrompt} copy="Copy" />
     </CatalogPanel>
 
+    {skill.versions && skill.versions.length > 0 && (
+      <CatalogPanel id="versions" eyebrow="Versioning" title="Version history">
+        <CatalogRows
+          label="Version history"
+          rows={[...skill.versions]
+            .sort((a, b) => b.date.localeCompare(a.date))
+            .map((entry) => ({
+              title: `v${entry.v}`,
+              ...(skill.version === entry.v ? { tag: 'current' } : {}),
+              mono: `https://superada.ai/skills/${skill.slug}/versions/${entry.v}/SKILL.md`,
+              detail: `${entry.date} — ${entry.note}`,
+            }))}
+        />
+        <p class="cat-muted">Every release is kept as an immutable copy. The current bundle always lives at <code>/skills/{skill.slug}/SKILL.md</code>.</p>
+      </CatalogPanel>
+    )}
+
     <CatalogPanel id="install-steps" eyebrow="Setup" title="Install steps">
       <CatalogSteps steps={skill.instructions.map((detail) => ({ detail }))} label="Install steps" prefix="Step" />
     </CatalogPanel>
@@ -143,6 +161,7 @@ const moreSkills = neighbours(sorted, sorted.findIndex((entry) => entry.href ===
         items={[
           { label: 'Installability', value: availabilityLabel[skill.availability] },
           { label: 'Review before use', value: reviewLabel[skill.reviewMode] },
+          ...(skill.version ? [{ label: 'Version', value: `v${skill.version}` }] : []),
           { label: 'Category', value: skill.category },
           { label: 'Setup time', value: skill.estimatedSetup },
           { label: 'Source', value: 'Open GitHub', href: skill.sourceUrl },
