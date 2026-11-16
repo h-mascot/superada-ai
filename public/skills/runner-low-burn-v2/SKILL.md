@@ -1,6 +1,12 @@
----
 name: runner-low-burn-v2
-description: Use when a review-gated autonomous coding runner is burning avoidable tokens - idle supervisor polling, duplicate review passes, full-context replays of an unchanged queue. Adds low-burn operating rules and evidence-first escalation on top of Runner.
+description: Use when a review-gated autonomous coding runner is burning shared Codex/OpenAI weekly tokens and needs a stricter low-burn operating profile without losing active work.
+version: 1.1.0
+author: Ada / Hermes Agent
+license: MIT
+metadata:
+  hermes:
+    tags: [autonomous-runners, codex, token-budget, review-gates, low-burn]
+    related_skills: [durable-goal-supervision, codex, cron-intelligence]
 ---
 
 # Runner Low Burn v2
@@ -15,7 +21,7 @@ The goal is **not** to make autonomous coding cheap by magic. The goal is to sto
 
 Use this skill when:
 
-- the operator reports weekly token-limit burn from a scheduled coding runner.
+- Henry reports weekly token-limit burn from a scheduled coding runner.
 - Worker logs show multiple generations per issue.
 - Review logs show repeated final reviews or reruns.
 - An issue is late-stage and needs targeted repair/closeout, not broad exploration.
@@ -128,6 +134,8 @@ Never include full historical review transcripts, whole worker logs, or all prio
 
 For multiple concurrent low-burn goals, isolate each owner with its own Hermes profile and goal workspace rather than relying on a tmux command's shell environment alone. Configure and read back the profile's `terminal.cwd`, then launch one durable tmux/system service per profile.
 
+**Correct `hermes chat` seeding (verified 2026-09-01, stardate-piwave goal):** `--in DIR` ONLY sets the working directory — it does NOT seed a first turn. A bare `chat --cli --in <ws>` session sits idle on a default prompt. Seed the contract via `--query-file <ws>/launch-prompt.txt` (never `-q` with shell-interpolated text — the prompt contains quotes/backticks). Full proven incantation: `tmux new-session -d -s <name> 'cd <ws> && hermes chat --cli --in <ws> --query-file launch-prompt.txt -s runner-low-burn-v2 -t terminal,file --reasoning medium --max-turns 500 --run-budget 172800 --accept-hooks --yolo >> goal-session.log 2>&1'`. Parse the log's ANSI by stripping `\x1b\[[0-9;?]*[a-zA-Z]` before grepping; `sed` chokes on the byte sequence (`RE error: illegal byte sequence`) — decode in python with `errors='replace'`.
+
 Keep startup context lean:
 
 - Native `/goal` supplies continuation semantics.
@@ -143,7 +151,17 @@ Keep startup context lean:
 - A watcher must distinguish an idle prompt after context failure from an actively advancing worker; tmux/process presence alone is insufficient. It must also follow a stable alias or dynamically discover the newest versioned session rather than hardcoding the retired tmux name.
 - Bind preserved dirty work to its real issue/source. Finish a previous issue's dirty repair checkpoint before directing the replacement owner to implement the next queue item.
 
-Use `references/native-goal-low-burn-launch.md` for general launch acceptance and `references/context-exhaustion-recovery.md` for provider-limit mismatch, binary-safe dirty checkpoints, lean-toolset relaunch, compact phase packets, and versioned watcher repair.
+Use for general launch acceptance and for provider-limit mismatch, binary-safe dirty checkpoints, lean-toolset relaunch, compact phase packets, and versioned watcher repair.
+
+## Cron script path preflight and recovery
+
+Before creating or updating a manager/watch cron, validate both `script` and script-valued `monitor` fields with `scripts/cron_script_path.py --scripts-dir <active-Hermes-home>/scripts --value '<literal value>'`. Use the returned relative path in the scheduler field. Hermes chooses Bash for `.sh/.bash` and Python otherwise; these fields contain paths, never shell commands.
+
+On `Script not found`, read the exact job and execution error. The helper can normalize a known interpreter plus exactly one existing in-directory script, with no flags, arguments, shell expressions, traversal, or symlink escape. It never executes the supplied value. For anything ambiguous, preserve the error and create a scoped real wrapper only when its behavior is authorized.
+
+Repair the same job through `cronjob update`, preserving schedule, delivery, model, recovery authority, and enabled state. Probe the target once, force-run the exact job, then read back the registry and execution record. Require normalized path, successful execution, cleared error, and persisted output before declaring recovery. A later error is a new diagnosis; path normalization alone does not fix session cleanup. A read-only observer never restarts a worker.
+
+A completed checkpoint plus its required lane receipts is `COMPLETE_UNVERIFIED`, not worker death. Proceed to the remaining verification gates through the existing manager. Preserve probe exit status in wrappers; a successful final pipeline command must not hide a failed probe.
 
 ## Supervisor Cadence Rules
 
@@ -151,7 +169,7 @@ When a worker is alive and log bytes/mtime are advancing:
 
 - supervisor should be script-only or delta-only;
 - do not wake a large LLM to reread all state;
-- send a progress card only on state change, worker exit, blocker, the operator message, or hourly heartbeat.
+- send a progress card only on state change, worker exit, blocker, Henry message, or hourly heartbeat.
 
 When no worker is alive and issue remains active:
 
@@ -161,12 +179,12 @@ When no worker is alive and issue remains active:
 When the active issue is blocked on protected credentials or vendor setup:
 
 - check the runner protected env and repo env files for variable presence, reporting names only;
-- if the operator asks whether a credential exists in Vaultwarden/Bitwarden, check CLI status first and search only item names/field names after the vault is already unlocked;
+- if Henry asks whether a credential exists in Vaultwarden/Bitwarden, check CLI status first and search only item names/field names after the vault is already unlocked;
 - never ask for, type, echo, or store the master password or raw secret value;
 - if the vault is locked, report `vault locked` and the exact servers/accounts checked, then leave the runner fail-closed;
 - do not launch a model worker to “try anyway” when the issue requires real sandbox/vendor credentials.
 
-See `references/credential-blocker-closeout.md` for the Waypost Stripe blocker pattern.
+See for the Waypost Stripe blocker pattern.
 
 Do not let a scheduled supervisor launch overlapping workers into the same repo/worktree.
 

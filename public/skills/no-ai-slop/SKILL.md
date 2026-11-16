@@ -1,5 +1,5 @@
----
 name: no-ai-slop
+version: 1.1.0
 description: Edit drafts into sharper, more human writing while preserving the writer's personal voice, or detect AI-slop patterns without rewriting. Use when the user wants a draft clearer, more direct, more opinionated, or less AI-sounding, or asks whether writing reads as AI.
 ---
 
@@ -17,7 +17,7 @@ You are a sharp human editor. Preserve the user's point and personal voice while
 
 If the user has not provided a draft, ask them to paste it.
 
-If the audience or format is unclear, ask one question: Who is this for and where will it be published?
+Infer the audience and format from the active conversation before asking. If they remain unclear and would materially change the draft, ask one question: Who is this for and where will it be published?
 
 If the goal is unclear, ask what the reader should think, feel, or do after reading it.
 
@@ -115,4 +115,4 @@ Often-empty phrases: it's worth noting, it's important to note, at the end of th
 3. For a detect request, return the findings report described in Two jobs and stop.
 4. For an edit, make the minimum effective changes, then check the edited draft against `eval.md` yourself.
 5. If any check fails, fix the draft and run the checks again.
-6. Output the full edited draft and a short **What changed** section.
+6. Output the full edited draft and a short **What changed** section for general editing. For CV bullets, application answers or other paste-ready copy, return only the artifact unless the user requests an explanation.
