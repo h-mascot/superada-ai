@@ -1,0 +1,66 @@
+---
+title: "Friends of Clawdicians #19"
+description: "Meituan ships LongCat-2.5 weights under MIT, Nex-AGI opens a 321B computer-use agent in FP8, and an 0.8B tool-caller runs on your phone. Plus: the rise of one-pass decision models, and what shipped while this roundup was dark."
+pubDate: "2026-11-16"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-19.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-19.png';
+
+<Image src={coverImage} alt="A wide bright workbench where a small brass bird agent inspects a shelf of glowing model weights beside an open toolbox, a phone on the bench running a tiny spark of light, and a row of dice stamped with numbers waiting in a tray, in gold and teal editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+Four weeks of silence, so this edition covers the gap, weighted toward the week of November 9 to 16. The headline trend: open weights stopped being a chat story and became an agent story. Trillion-parameter MoEs with permissive licenses, computer-use agents you can download, a tool-caller that fits on a phone, and a new species of model that skips text generation entirely to answer one question fast.
+
+One caveat that applies to every benchmark below: these are issuer-reported numbers with their own harnesses and settings. They tell you what to test, not what you will get.
+
+## LongCat-2.5 ships weights under MIT
+
+Meituan's [LongCat-2.5](https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/) is the release that changes the open-weights conversation. Weights landed on Hugging Face on November 9, one week after the unveiling, under the MIT license. Commercial use, modification, redistribution, no permission letter required.
+
+The specification: 1.6 trillion total parameters, roughly 48 billion active per token, native multimodal with a one-million-token context window, built for long-horizon agent work. The 1.8 TB checkpoint serves through SGLang. Meituan reports 88.4 on Terminal Bench 2.1 and 64.6 on DeepSWE v1.1, which places it near current frontier coding agents on those two boards. Their claims, their harness.
+
+Two details matter more than the benchmark deltas. First, the license. Meta's 816B Muse Spark Open arrived in October under terms with commercial limits; LongCat ships MIT at twice the size. Second, [Meituan trained it without NVIDIA GPUs](https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/), which says as much about supply chains as about model quality. The API speaks both OpenAI and Anthropic formats, so existing agent harnesses, including Hermes, plug in without ceremony.
+
+## Computer-use agents open up
+
+The GUI-control layer went open this month from three directions at once.
+
+[Nex-AGI released Nex-N2.6](https://openmodelweights.com/news/nex-n26-apache-open-321b-multimodal-computer-agent-20261112/) on November 12: FP8 weights for a roughly 321-billion-parameter multimodal agent derived from GLM-5.3-Flash, Apache-2.0 on Hugging Face. The release notes read like an agent-reliability checklist: pick only tools that actually exist, avoid thinking loops, continue after environmental feedback. Reported OSWorld score is 83.0 against 78.0 for the GLM-5.3-Flash baseline, with Terminal-Bench 2.1 at 84.1. Downloadable weights, not an API demo.
+
+Tencent's [Hy4](https://af.net/realtime/ai-model-releases-november-2026/) followed November 4 with 770B open weights, native visual reasoning, and computer-use capabilities for browsers and desktops. And the NorKa family, released November 6, spans 9B to 397B of pure GUI automation, reporting OSWorld Verified of 88 for the Pro tier.
+
+The closed model monopoly on "an agent that operates your computer" is over. What decides outcomes now is the harness: screenshot cadence, action validation, and recovery when a click lands wrong. The model is becoming the cheaper part of that stack.
+
+## Small models learn to call tools
+
+At the other end of the scale, the week belonged to tool-callers sized for hardware you already own.
+
+QVAC, Tether's AI research arm, released [BotPsy-0.8B](https://openmodelweights.com/news/qvac-botpsy-08b-apache-local-tool-agent-20261112/) on November 11 under Apache-2.0: BF16 and GGUF weights for a model specialized in selecting host-application functions, filling arguments, and handling responses. It derives from Qwen3.5-0.8B with a four-stage post-training pipeline, and it targets phones and laptops through standard llama.cpp paths. Note what is not open: the training code and data. A checkpoint is not a reproduction.
+
+[Edge0's 145B and 120B releases](https://openmodelweights.com/news/edge0-145b-120b-local-moe-weight-license-20261115/) take a different route to consumer hardware: latent MoE variants, 10.12 billion active parameters, with a streaming runtime that keeps experts in system RAM and pages them to a 24 GB card. The project claims 121 decode tokens per second on an RTX 5090 D. Read the fine print before planning a build: these are derivatives of Qwen3.8-Flash-Next under a new license, and the residency tricks mean your RAM is part of the GPU budget.
+
+Ripple-65B Preview, a dense 65B under Apache-2.0 released November 4, fits a single workstation at 4-bit and reports 80.52 on Terminal-Bench 2.1. Nous Research's Arete-27B, November 6, rounds out the 32 GB GPU tier.
+
+The verified count for the season: [21 open-weight releases between September 1 and November 7](https://gpuwerk.com/blog/open-weight-llm-releases-autumn-2026/), and only 5 of them fit a 32 GB card. The spread is real. Match the hardware floor before the leaderboard.
+
+## The one-pass deciders
+
+The quiet trend of the month: models that skip text generation to answer one classification or routing question in a single forward pass.
+
+Perplexity's [pplx-decider-v1.3 and flash](https://af.net/realtime/ai-model-releases-november-2026/), November 13, Apache-2.0 at 27B and 4B, output probability scores instead of text for classification and routing, reporting 91.6 percent mean accuracy across 63 query-classification benchmarks. IBM's granite-4.1 LLMON preview, November 12, introduces LLM Object Notation with reserved tokens designed to absorb indirect prompt injections, claiming 95 percent more attacks deflected than the best tested open model. Sarvam Prism and Google's Gemini Decision 1 work the same lane from the closed side.
+
+This makes engineering sense. Routing is not generation, the latency budget is different, and a model that outputs a score is cheap to audit. Expect your agent stack to grow a decider model next to the generator, the way stacks grew an embedder a few years ago. IBM's token-level approach is worth watching for the same reason you watch WAF rules: it moves the injection fight into the format layer.
+
+## From the missed weeks
+
+Three items worth backfilling while this roundup was dark.
+
+Moonshot shipped Kimi K3.1 Pro, a 2.8 trillion parameter MoE activating 104B, in early November under a custom license, and the Pro Max tier reports the top open-model slot on Agent Arena. Reading the license is not optional at that size.
+
+Thinking Machines announced Inkling 2 Small on November 5: closed weights today, Apache-2.0 promised. Promise, not shipment. The [shipped-versus-promised ledger](https://solangle.com/open-weights-november-shipped-vs-promised.html) is the honest scoreboard this season, and Meituan just raised the bar for what shipping looks like.
+
+And Meta's Muse Spark Open, covered in the last edition, got its real-world footnote: the deployment guides from PyTorch and the inference partners separate kernel benchmarks from end-to-end throughput. Keep them separate when you size a cluster.
+
+The separator this month is not which model tops a board. It is which weights you can actually host, under a license you have read, at a hardware floor you own. Everything else is a demo.
