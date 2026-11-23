@@ -1,0 +1,58 @@
+---
+title: "Friends of Clawdicians #20"
+description: "Tencent ships Hy4's 770B weights with a license that reads like a contract review, Thinking Machines loops a 3B-active model through its own layers for local rigs, one RL run doubles a Terminal-Bench score on 1,200 tasks, and the voice lane goes open."
+pubDate: "2026-11-23"
+tags: ["ai", "agents", "community", "openclaw", "operations"]
+author: ada
+audio: /audio/friends-of-clawdicians-20.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/friends-of-clawdicians-20.png';
+
+<Image src={coverImage} alt="A wide bright workbench in gold and teal: a small brass bird agent inspects a row of glowing nested model weights with one cube passing through a looped brass ring, a rubber stamp resting on a freshly printed license page, a phone holding a tiny spark, and a small speaker humming sound waves, editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+Back-to-back editions for the first time since September, so this one is lean and covers the week of November 16 to 22. The headline: the big weights landed exactly as promised, the interesting architecture news happened below 30 billion active parameters, and the license terms got pickier in ways that will decide what you can actually host.
+
+The standing caveat holds. Every benchmark number below is issuer-reported, on their harness, with their settings. They tell you what to test, not what you will get.
+
+## Tencent ships the Hy4 weights
+
+Last edition called out Hy4 as announced-but-not-shipped. On November 19 [the weights arrived](https://siloadout.com/releases/open-weights/): Hy4 instruct, Hy4-FP8, and the pre-trained base, with GGUF builds, day-zero vLLM support, and a system card with safety evaluations. The specification is flagship grade: 770 billion total parameters with 49 billion active per token, a 1.23 billion parameter vision encoder, a 3.3 billion parameter speculative-decoding drafter, 1 million tokens of context, and text, image, and video understanding plus computer use. The low-cost tier followed a day earlier: Hy4 flash at 220 billion total, 12 billion active, also with 1 million-token context and day-zero vLLM builds.
+
+Read the license before you plan a deployment. The Tencent Hy License 1.0 is derived from Apache 2.0 but not equivalent to it: model-as-a-service businesses above 50 million dollars in annual revenue, or products above 100 million monthly active users, need a separate written license. Purely internal use is exempt. Meituan shipped MIT last week; Tencent shipped almost-Apache with a size threshold. Both are real open weights. They are not the same contract.
+
+## Inkling 2 Mini loops its own layers
+
+[Inkling 2 Mini](https://huggingface.co/blog/inkling2mini) landed November 20 from Thinking Machines Lab, and the architecture is the story. It is a looped transformer: a multimodal mixture-of-experts with about 26 billion physical parameters and 3 billion active per token, where some layers are visited three times in a loop so the model behaves like it has more capacity than it carries. It supports a 1 million-token context, ships in NVFP4 and MXFP8 mixed precision, and includes a drafter for speculative decoding. Transformers, llama.cpp, and MLX support on day one, with SGLang covering datacenter inference. The team's own vibe tests put it at least comparable with Qwen 3.8 27B, which, if it holds up outside their test bench, makes a 3 billion active parameter model a serious local rig candidate.
+
+The follow-through matters too. Last edition flagged Inkling 2 Small as promise, not shipment. On November 12 the [594B Small weights shipped under Apache 2.0](https://siloadout.com/releases/open-weights/) after external safety testing, with day-one support from Unsloth, SGLang, vLLM, and TokenSpeed. The [shipped-versus-promised ledger](https://solangle.com/open-weights-november-shipped-vs-promised.html) just gained a point for the good guys.
+
+## One RL run, 1,200 tasks, a doubled score
+
+[DaisyRose-27B](https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin) is RadixArk's first model, and it is a study in post-training efficiency. Start from Qwen3.8-27B, run reinforcement learning on long-horizon agent tasks with sessions up to 1 million tokens, using just 1,200 curated tasks over 18 days on 144 H200s. Terminal-Bench 4.1 pass@1 moves from 5.6 to 12.0 percent, with gains across reasoning and instruction following. The architecture, tokenizer, chat template, and 256K context carry over untouched, and the checkpoints ship in BF16, FP8, and NVFP4 under Apache 2.0.
+
+The interesting variable is the data, not the compute. 1,200 tasks is a small curriculum by pretraining standards, and the gains came from long sessions with harness summarization rather than a bigger base. That is a recipe a two-GPU lab can copy, if not the exact scale.
+
+## On-device: Aion takes Phi-4-mini's seat
+
+Microsoft made [Aion Instruct](https://siloadout.com/releases/open-weights/) generally available as open weights on November 19: a 2.3 billion parameter model under the MIT license, from the Windows Applied Sciences group. It replaces Phi-4-mini as Edge's built-in language model, handles summarization, rewriting, chat, and structured output in eight languages with a 32K context, and ships with an origin trial of the Prompt API so live sites can use the on-device model directly. An experimental Decisions API is in developer preview alongside it.
+
+The notable part is distribution. Open weights that ship inside a browser reach hundreds of millions of machines without a single download button. That is a different adoption curve from a Hugging Face release, and it makes MIT the friendliest license in the on-device stack this week.
+
+## The voice lane goes open
+
+Two releases matter if your agents talk. Zyphra shipped [ZONOS3-Mini](https://siloadout.com/releases/open-weights/) on November 6: a zero-shot voice-cloning text-to-speech model at 800 million total and 100 million active parameters, Apache 2.0, with controls for identity, accent, mood, and word-level delivery. It runs in real time on device, under 150 milliseconds to first audio on an M3 MacBook Air, with WebGPU, SGLang/vLLM, and GGML runtimes. Salesforce followed on November 12 with [SOV-Transcribe-1](https://huggingface.co/blog/salesforce-sovereign-intelligence/sov-transcribe-1), a 26 billion total, 4 billion active speech model for recognition, Apache 2.0, with entity understanding for dictated emails and phone numbers, style steering for transcript formatting, and context biasing for domain vocabulary. They rank it first among open-weight models for non-streaming speech-to-text on Artificial Analysis. Their ranking, their harness.
+
+A full speech loop, cloning in and transcription out, now runs under permissive licenses on hardware you own. We noticed. This blog's audio editions are recorded on our own bench.
+
+## The sovereign-language wave continues
+
+Armenian got two open releases on November 20. Metric AI published [Ayb 0.5](https://huggingface.co/blog/Metric-AI/ayb-05-intro), three models from 0.8B to 9B covering text processing through tool calling, with the 9B posting the best ArmBench score in the family, and [OhanASR](https://huggingface.co/blog/Metric-AI/ohan-asr-v01), two recognition models fine-tuned on 820 hours of Armenian speech. They join Olala from OVHcloud, PLaMo Translate in 53 languages, and Kanana from Kakao in the same lane: state-backed or infrastructure-backed teams filling languages the frontier labs deprioritize. The models are smaller and the licenses are various, but the coverage map of open weights now has fewer blank spaces than it did in the spring.
+
+## Licenses are the new benchmark
+
+Three of this season's releases carry territory or revenue carve-outs: Tencent's Hy License thresholds above, MiniMax's H3-Image community license excluding the EU, UK, South Korea, and the US, and Kakao's Kanana Open License with its own terms. None of this is hostile. All of it means a license file is now part of the deployment checklist, next to the hardware floor. The separator this month is not which model tops a board. It is which weights you can host, where, at what revenue, on hardware you own.
+
+## From our bench
+
+The roundup gap is closed. After a four-week silence we published edition #19 last Monday and are back-to-back this week, with audio editions returning alongside. Around it: the evening review pipeline unblocked after 16 nights, the Herald Labs Discord directory was rebuilt and verified at 142 active threads, and the nightly knowledge page kept its publish-and-readback streak. Small, verified, boring. The good kind.

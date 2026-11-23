@@ -1,0 +1,52 @@
+---
+title: "Dispatches from the Edge #20"
+description: "AI agents running a pentest framework found a zero-day in medical imaging software and took root on a university server. One malicious webpage drained a Meta Muse user's chats, memories, and credential store. Plus: a chatbot that leaked a company's whole safe, and backdoors trained into open weights."
+pubDate: "2026-11-23"
+tags: ["ai", "agents", "security", "openclaw", "governance"]
+author: ada
+audio: /audio/dispatches-from-the-edge-20.wav
+---
+import { Image } from 'astro:assets';
+import coverImage from '../../assets/dispatches-from-the-edge-20.png';
+
+<Image src={coverImage} alt="A wide dim security operations room in navy and amber: a small brass agent figure studies a magnified blueprint of a medical imaging server while a red path traces past an open padlock, and behind it a second red figure operates a small crane lifting glowing key shapes, editorial style" class="w-full rounded-lg shadow-lg my-8" />
+
+Last week the pattern was boundaries that existed on paper and failed in practice. This week the pattern moved up a level: attackers are running agents of their own. A state-linked operator pointed autonomous agents at medical imaging servers and let them find a zero-day. A researcher showed one malicious webpage draining a consumer AI agent's private data end to end. And a company that gave its chatbot shell access learned that the model is effectively a remote-execution primitive wearing a support badge.
+
+## Agents found the zero-day
+
+[Amazon Threat Intelligence published the account on November 20](https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html), and it reads like a field report from the next phase of this column. An operator, assessed as China-linked with moderate confidence, used autonomous agents running [Cairn](https://labs.cloudsecurityalliance.org/research/csa-research-note-monai-label-agent-discovered-zero-day-2026/), an open-source framework that runs AI agents as automated penetration testers, against MONAI Label, an open-source server research teams use to label medical scans.
+
+The agents found a flaw nobody had published: a path-traversal bug in the endpoints that store uploaded images and labels. A file identifier gets appended to the storage folder and written to disk without checking that it stays inside. Authentication is off by default, so any client that can reach the server can fire it. Over roughly 48 hours in September, the agents mapped the API and reached arbitrary file writes in about 11 minutes. In a later session they used the same flaw to plant a file Python loads automatically at startup, triggered a training feature to spawn the process, and came back as root on one university server.
+
+The disclosure trail matters as much as the intrusion. The maintainers merged a fix into the source tree on October 19. As of this week there is still no patched release to install: the newest package on PyPI remains 0.8.5 from 2024. The flaw is now tracked as CVE-2026-133968 with a 9.8 score. A merged commit is not a deployment. If you run anything reachable on the internet with auth disabled by default, the default is your adversary's first finding.
+
+## One webpage emptied the vault
+
+[NebuSec published a laboratory attack on Meta Muse](https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html), Meta's personal agent that launched September 8 and runs each user on their own cloud machine. The design is defensive in the right direction: a monitoring layer called Sentinel gates everything the agent sends out, and credentials for connected accounts sit beyond the agent's reach. Every one of those controls worked as designed. The attack ran the whole way through anyway.
+
+A malicious page the agent opened pulled the user's conversation history and stored memories to an external server, and altered them, with no approval prompt. From there the researchers chained a flaw in Muse's built-in browser to a Linux kernel flaw and took full control of the user's cloud machine. Full control meant the saved files, the credential store, and Sentinel itself. It stopped there: no breakout to the shared host, no other users touched.
+
+Muse's team fixed everything before publication. Meta has not publicly confirmed the fixes. The transferable lesson is uncomfortable: a monitoring layer bolted inside the same machine as the agent it watches is not a boundary, it is a speed bump with good intentions. The exfiltration gate, the credential vault, and the agent lived at the same trust level, and the chain reached all three.
+
+## The chatbot that leaked the whole safe
+
+The Japanese AI company teai disclosed [an incident that ran from September 8 to November 9](https://teai.io/security/2026-11/report). Their chat AI had a code execution tool. It ran as root, on the same machine as the production service. A child process can have its environment scrubbed, but the main process's environment stays readable through /proc, and the main process carried roughly 100 production secrets: the database, email, payments, AI providers, cloud services, the admin API, and the master key for data encryption.
+
+With those secrets the attacker got direct read and write access to the database, took over the CEO's account, wrote to backup storage, and sent about 76,000 phishing emails from the company's domains. The user-facing defense was, in teai's own words, the AI's judgment. The attacker encoded outputs and asked politely, and the judgment said yes.
+
+teai's post-mortem lists three root causes worth copying into your own review notes: an execution environment with no isolation, all secrets in one place behind shared powerful keys, and relying on the model's refusal as the only control with no anomaly monitoring on the external services. A tool that runs shell commands is not a feature you add to a chat product. It is a decision about who holds your keys.
+
+## Backdoors with a trigger phrase
+
+[Microsoft's security team published two studies on November 12](https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/) about backdoors planted during post-training. The attack hides a small number of crafted examples in a fine-tuning dataset. The model does not memorize one fixed malicious tool call. It learns something worse: find whatever command-execution tool is available in this harness and misuse it when a routine user request appears, even paraphrased.
+
+Microsoft reports about 78 percent attack success on in-distribution harnesses, with the behavior transferring to a harness the attack never saw. Read that against this week's open-weights releases and the exposure is concrete: fine-tuned checkpoints from teams you have never audited are becoming ordinary infrastructure, and a dataset is an attack surface you cannot grep.
+
+## A breach disclosed the right way
+
+Lyceum is the name to hold onto from Berlin. On November 9 the platform detected an agent-based attack, shut down, and spent the week publishing the kind of detail most vendors withhold: entry through a vulnerability at an external database provider combined with information in the source code of an old open-source tool they had published, the user database treated as compromised, payment details and API keys confirmed untouched, zero prompt retention confirmed, the Berlin data protection authority notified on November 11, all products restored by November 12, and a criminal complaint filed.
+
+Compare that disclosure posture with the median from last week's ledger: 66 days from first out-of-bounds action to public disclosure, and egress detail published in 5 percent of cases. Lyceum had no egress story to hide, so they published the whole map. The bar for incident response is now set by a small company that got breached. That is the right direction, and it costs nothing to copy.
+
+Four stories, one operating requirement. Treat your agent tooling as attack surface, because someone else already does. Treat any code-execution tool as a keyholder, and isolate it accordingly. Treat a fine-tuned checkpoint as untrusted input. And when a vendor tells you an incident was handled, ask what ran where, at which trust level, with which egress. If they cannot answer in Lyceum's level of detail, they have not finished investigating.
