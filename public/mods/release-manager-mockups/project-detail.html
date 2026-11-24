@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Release Manager — project</title>
+<style>
+:root{--bg:#070c1a;--surface:#0f172d;--surface2:#141f39;--fg:#e8ecf8;--muted:#8b93ad;--border:#1e2947;--violet:#b996f0;--pink:#f27fc0;--green:#4ade80;--amber:#fbbf24;--red:#f87171}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.shell{max-width:1080px;margin:0 auto;padding:32px}
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.topbar .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--violet),var(--pink))}
+.topbar b{font-weight:700}
+.head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+h1{font-size:22px;font-weight:650;margin:0}
+.badge{border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--violet);border:1px solid rgba(185,150,240,.4);background:rgba(185,150,240,.08)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.tab{padding:10px 16px;font-size:14px;color:var(--muted);cursor:pointer;border-radius:10px 10px 0 0;border-bottom:2px solid transparent;user-select:none}
+.tab.active{color:var(--fg);border-bottom-color:var(--violet)}
+.tab:hover{color:var(--fg)}
+.tab .mini{margin-left:8px;font-size:11px;border-radius:999px;padding:2px 8px;border:1px solid var(--border);color:var(--muted);font-weight:500}
+.tab.active .mini.x{color:var(--pink);border-color:rgba(242,127,192,.4)}
+.pane{display:none}
+.pane.show{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+.card h2{font-size:14px;font-weight:650;margin:0 0 14px}
+.rel-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--border)}
+.rel-row:first-of-type{border-top:none}
+.rel-row .v{font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:600}
+.rel-row .d{color:var(--muted);font-size:13px}
+.rel-row .t{margin-left:auto}
+.chip{display:inline-flex;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;border:1px solid}
+.chip-review{color:var(--amber);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.08)}
+.chip-published{color:var(--green);border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.08)}
+.chip-soon{color:var(--muted);border-color:var(--border);background:var(--surface2);font-weight:500}
+.chip-notconn{color:var(--muted);border-color:var(--border);background:var(--surface2);font-weight:500}
+.repo-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.repo-list{display:flex;flex-direction:column}
+.repo{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border);font-size:14px}
+.repo:first-of-type{border-top:none}
+.repo svg{width:16px;height:16px;color:var(--muted);flex:none}
+.repo .path{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.repo .scan{margin-left:auto;color:var(--muted);font-size:12px}
+.connect-wrap{position:relative}
+.btn{border-radius:10px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}
+.btn-primary{border:1px solid var(--violet);background:var(--violet);color:#160c2b}
+.btn-primary:hover{filter:brightness(1.08)}
+.pop{position:absolute;right:0;top:calc(100% + 10px);width:340px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:16px;z-index:20;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.pop h3{margin:0 0 4px;font-size:13px;font-weight:650}
+.pop .sub{margin:0 0 12px;color:var(--muted);font-size:12px}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:13px}
+.opt:hover{background:rgba(255,255,255,.04)}
+.opt input{accent-color:var(--violet);width:15px;height:15px}
+.pop .foot{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.btn-ghost{border:1px solid var(--border);background:transparent;color:var(--fg)}
+.chan-list{display:flex;flex-direction:column}
+.chan{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px solid var(--border);font-size:14px}
+.chan:first-of-type{border-top:none}
+.chan .ic{width:30px;height:30px;border-radius:9px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.chan .chip{margin-left:auto}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar"><div class="dot"></div><b>Release Manager</b></div>
+
+  <div class="head">
+    <h1 data-od-id="project-title">Release Manager</h1>
+    <span class="badge" data-od-id="role-badge">Approver</span>
+  </div>
+
+  <nav class="tabs" data-od-id="project-tabs">
+    <div class="tab" data-tab="releases" onclick="showTab('releases')">Releases</div>
+    <div class="tab active" data-tab="repos" onclick="showTab('repos')">Repos</div>
+    <div class="tab" data-tab="channels" onclick="showTab('channels')">Channels <span class="mini x">𝕏 connector coming</span><span class="mini">in · not connected</span></div>
+  </nav>
+
+  <section class="pane" id="pane-releases" data-od-id="pane-releases">
+    <div class="card">
+      <div class="rel-row"><span class="v">v2.4.0</span><span class="d">Multi-project workspace · Nov 24</span><span class="t"><a href="release-pack.html" style="color:var(--violet);text-decoration:none;font-size:13px">Open pack →</a></span><span class="chip chip-review">awaiting approval</span></div>
+      <div class="rel-row"><span class="v">v2.3.1</span><span class="d">Queue hardening · Nov 12</span><span class="t chip chip-published">published</span></div>
+      <div class="rel-row"><span class="v">v2.3.0</span><span class="d">Channel connectors · Oct 30</span><span class="t chip chip-published">published</span></div>
+    </div>
+  </section>
+
+  <section class="pane show" id="pane-repos" data-od-id="pane-repos">
+    <div class="card">
+      <div class="repo-head">
+        <h2>Connected repos</h2>
+        <div class="connect-wrap">
+          <button class="btn btn-primary" id="connectBtn" data-od-id="connect-repo" onclick="togglePop()">Connect repo</button>
+          <div class="pop" id="pop" data-od-id="connect-popover">
+            <h3>HeraldLab org repos</h3>
+            <p class="sub">Pick repos to group under this project. Scans run nightly.</p>
+            <label class="opt"><input type="checkbox"> HeraldLab/release-manager</label>
+            <label class="opt"><input type="checkbox" checked> HeraldLab/entity-mc</label>
+            <label class="opt"><input type="checkbox" checked> HeraldLab/docs</label>
+            <label class="opt"><input type="checkbox"> HeraldLab/anchorage-web</label>
+            <label class="opt"><input type="checkbox"> HeraldLab/weeklyclaw-site</label>
+            <div class="foot">
+              <button class="btn btn-ghost" onclick="togglePop()">Cancel</button>
+              <button class="btn btn-primary" onclick="togglePop()">Connect 2 repos</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="repo-list">
+        <div class="repo" data-od-id="repo-row-release-manager"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/></svg><span class="path">HeraldLab/release-manager</span><span class="scan">scanned 14m ago</span></div>
+        <div class="repo" data-od-id="repo-row-entity-mc"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/></svg><span class="path">HeraldLab/entity-mc</span><span class="scan">scanned 2h ago</span></div>
+        <div class="repo" data-od-id="repo-row-docs"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.495 0 0 1 4.5 9h8Z"/></svg><span class="path">HeraldLab/docs</span><span class="scan">scanned 5h ago</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pane" id="pane-channels" data-od-id="pane-channels">
+    <div class="card">
+      <h2>Channels</h2>
+      <div class="chan-list">
+        <div class="chan" data-od-id="channel-x"><span class="ic">𝕏</span><span>X / Twitter</span><span class="chip chip-soon">connector coming</span></div>
+        <div class="chan" data-od-id="channel-linkedin"><span class="ic">in</span><span>LinkedIn</span><span class="chip chip-notconn">not connected</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+function showTab(name){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab===name));
+  document.querySelectorAll(".pane").forEach(p=>p.classList.toggle("show",p.id==="pane-"+name));
+}
+function togglePop(){ document.getElementById("pop").classList.toggle("show"); }
+document.addEventListener("click",e=>{
+  const w=document.querySelector(".connect-wrap");
+  if(!w.contains(e.target)) document.getElementById("pop").classList.remove("show");
+});
+</script>
+</body>
+</html>

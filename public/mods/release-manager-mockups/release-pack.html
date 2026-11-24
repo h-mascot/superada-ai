@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>v2.4.0 — Release Manager</title>
+<style>
+:root{--bg:#070c1a;--surface:#0f172d;--surface2:#141f39;--fg:#e8ecf8;--muted:#8b93ad;--border:#1e2947;--violet:#b996f0;--pink:#f27fc0;--green:#4ade80;--amber:#fbbf24;--red:#f87171}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.shell{max-width:1240px;margin:0 auto;padding:32px}
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.topbar .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--violet),var(--pink))}
+.topbar b{font-weight:700}
+.topbar .crumb{color:var(--muted);font-size:13px}
+.head{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+h1{font-size:22px;font-weight:650;margin:0}
+h1 small{color:var(--muted);font-weight:400;font-size:15px}
+.chip{display:inline-flex;align-items:center;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:600;border:1px solid}
+.chip-await{color:var(--amber);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.08)}
+.chip-ready{color:var(--green);border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.06)}
+.chip-draft{color:var(--muted);border-color:var(--border);background:var(--surface2);font-weight:500}
+.chip-green-solid{color:#0b1a0f;background:var(--green);border-color:var(--green)}
+.layout{display:grid;grid-template-columns:1.35fr .9fr;gap:20px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between}
+.card h2 .edit{font-size:11px;text-transform:none;letter-spacing:0;color:var(--violet);font-weight:500}
+.sec{border-left:2px solid var(--border);padding:2px 0 2px 16px;margin:0 0 18px}
+.sec h3{margin:0 0 6px;font-size:13px;font-weight:650}
+.sec p{margin:0;font-size:14px;color:#c9cfe2}
+.sec[contenteditable]:focus{outline:none;border-left-color:var(--violet)}
+.sec .mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--violet)}
+.sec .pass{color:var(--green);font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+.approve-bar{display:flex;gap:10px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+.note{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:9px 12px;color:var(--fg);font:inherit;font-size:13px;outline:none}
+.note:focus{border-color:var(--violet)}
+.note::placeholder{color:var(--muted)}
+.btn{border-radius:10px;padding:10px 16px;font:inherit;font-weight:650;cursor:pointer;font-size:14px}
+.btn-approve{border:1px solid var(--green);background:var(--green);color:#0b1a0f}
+.btn-reject{border:1px solid rgba(248,113,113,.5);background:transparent;color:var(--red)}
+.btn-violet{border:1px solid var(--violet);background:var(--violet);color:#160c2b}
+.btn-ghost{border:1px solid var(--border);background:transparent;color:var(--fg)}
+.btn:hover{filter:brightness(1.07)}
+.soc{border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;background:var(--surface2)}
+.soc.soc-ready{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.04)}
+.soc-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.soc-ic{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px}
+.soc-top .chip{margin-left:auto}
+.caption{width:100%;min-height:64px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:var(--fg);font:inherit;font-size:13.5px;outline:none;resize:vertical}
+.caption:focus{border-color:var(--violet)}
+.soc-actions{display:flex;align-items:center;gap:8px;margin-top:10px}
+.soc-actions .grow{flex:1}
+.linkish{color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;font-family:inherit}
+.sched{display:none;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+.sched.show{display:flex}
+.sched input[type=datetime-local],.sched select{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 9px;color:var(--fg);font:inherit;font-size:12.5px;outline:none}
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:10px;background:#04070f;border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.video-frame .glow{position:absolute;inset:0;background:radial-gradient(420px 200px at 30% 20%,rgba(185,150,240,.18),transparent 60%),radial-gradient(300px 160px at 80% 90%,rgba(242,127,192,.12),transparent 60%)}
+.play{position:relative;width:52px;height:52px;border-radius:999px;background:rgba(232,236,248,.94);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.play::after{content:"";border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #0b1020;margin-left:4px}
+.vbar{display:flex;align-items:center;gap:10px;position:absolute;left:12px;right:12px;bottom:10px;font-size:11px;color:#c9cfe2}
+.vbar .track{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.vbar .fill{height:100%;background:var(--violet)}
+.gen{display:flex;flex-direction:column;gap:12px}
+.gen .row{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted)}
+.gen .pct{font-family:ui-monospace,Menlo,monospace;color:var(--fg);font-weight:600}
+.track-big{height:8px;border-radius:8px;background:var(--bg);border:1px solid var(--border);overflow:hidden}
+.track-big .fill{height:100%;width:62%;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width .4s}
+.gen-label{font-size:13px;color:#c9cfe2}
+.verdict{display:none;border-radius:12px;padding:14px 16px;font-size:14px;margin-bottom:20px}
+.verdict.show{display:block}
+.verdict-ok{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.4);color:var(--green)}
+.verdict-no{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.4);color:var(--red)}
+.mono{font-family:ui-monospace,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar"><div class="dot"></div><b>Release Manager</b><span class="crumb">Release Manager › v2.4.0</span></div>
+
+  <div class="head">
+    <h1 data-od-id="release-title">v2.4.0 <small>— Multi-project workspace</small></h1>
+    <span class="chip chip-await" id="statusChip" data-od-id="release-status">awaiting approval</span>
+  </div>
+
+  <div class="verdict verdict-ok" id="okPanel">Approved by ada@heraldlabs.co — pack moved to publish queue.</div>
+  <div class="verdict verdict-no" id="noPanel">Rejected by ada@heraldlabs.co — returned to draft with your note below.</div>
+
+  <div class="layout">
+    <main>
+      <section class="card" data-od-id="changelog-card">
+        <h2>Changelog <span>draft · <span class="edit">sections are editable</span></span></h2>
+
+        <div class="sec" contenteditable="true" spellcheck="false" data-od-id="changelog-before">
+          <h3>Before</h3>
+          <p>Every Herald project shipped releases on its own. Members juggled separate changelogs, repo lists lived in bookmarks, and social posts were pasted by hand after each publish.</p>
+        </div>
+
+        <div class="sec" contenteditable="true" spellcheck="false" data-od-id="changelog-changed">
+          <h3>What changed</h3>
+          <p>Projects now group repos, channels, and releases in one workspace. Members see a shared release pack with a drafted changelog, an approval step, and a social queue attached to each release.</p>
+        </div>
+
+        <div class="sec" contenteditable="true" spellcheck="false" data-od-id="changelog-evidence">
+          <h3>Evidence</h3>
+          <p><span class="mono">9f3c1ab</span> workspace grouping model · <span class="mono">c47de02</span> invite-only auth · <span class="mono">e12ff90</span> social queue worker<br>Checks passed <span class="pass">62/62</span> · CI run <span class="mono">#1842</span></p>
+        </div>
+
+        <div class="sec" contenteditable="true" spellcheck="false" data-od-id="changelog-open" style="margin-bottom:0">
+          <h3>Still open</h3>
+          <p>X connector is next; the queue stages posts now and hands off to the connector when it lands.</p>
+        </div>
+
+        <div class="approve-bar" data-od-id="approval-actions">
+          <input class="note" id="actorNote" placeholder="Actor note — why you're approving or rejecting…" aria-label="Actor note">
+          <button class="btn btn-approve" data-od-id="approve-btn" onclick="decide(true)">Approve</button>
+          <button class="btn btn-reject" data-od-id="reject-btn" onclick="decide(false)">Reject</button>
+        </div>
+      </section>
+    </main>
+
+    <aside>
+      <section class="card" data-od-id="social-queue">
+        <h2>Social queue</h2>
+
+        <div class="soc" id="xCard" data-od-id="social-x">
+          <div class="soc-top"><span class="soc-ic">𝕏</span><b style="font-size:13px">X post</b><span class="chip chip-draft" id="xChip">draft</span></div>
+          <textarea class="caption" id="xCaption" data-od-id="social-x-caption">v2.4.0 turns Herald into a team release workspace — projects group repos + channels, every release ships with an evidence-backed changelog and a staged social queue. Approvals built in.</textarea>
+          <div class="soc-actions">
+            <span class="grow" style="color:var(--muted);font-size:12px" id="xCount">0/280</span>
+            <button class="btn btn-violet" style="padding:7px 12px;font-size:13px" id="xReadyBtn" data-od-id="social-x-ready" onclick="markReady()">Mark ready</button>
+          </div>
+          <div class="sched" id="xSched">
+            <label for="xWhen">Schedule</label>
+            <input type="datetime-local" id="xWhen" value="2026-11-25T10:00">
+            <select><option>Tue 10:00</option><option>Wed 09:00</option><option>Custom…</option></select>
+          </div>
+        </div>
+
+        <div class="soc" data-od-id="social-linkedin">
+          <div class="soc-top"><span class="soc-ic">in</span><b style="font-size:13px">LinkedIn post</b><span class="chip chip-draft">draft</span></div>
+          <textarea class="caption" data-od-id="social-li-caption">Herald 2.4: release management for small teams — invite-only workspaces, evidence-backed changelogs, one approval step between draft and publish.</textarea>
+          <div class="soc-actions"><span class="grow" style="color:var(--muted);font-size:12px">0/3,000</span></div>
+        </div>
+      </section>
+
+      <section class="card" data-od-id="video-panel">
+        <h2>Feature video</h2>
+
+        <div class="gen" id="genState" data-od-id="video-generating">
+          <div class="video-frame">
+            <div class="glow"></div>
+            <div class="play" style="opacity:.35;cursor:default" onclick="void 0"></div>
+          </div>
+          <div class="row"><span class="gen-label">Feature video from release notes — rendering scenes 4/6</span><span class="pct" id="pct">62%</span></div>
+          <div class="track-big"><div class="fill" id="genFill"></div></div>
+          <div class="row"><span class="linkish" data-od-id="video-cancel" onclick="cancelGen()">Cancel generation</span><span class="mono" style="font-size:11px;color:var(--muted)" id="eta">~40s left</span></div>
+        </div>
+
+        <div id="readyState" style="display:none" data-od-id="video-ready">
+          <div class="video-frame">
+            <div class="glow"></div>
+            <div class="play" onclick="playStub()" data-od-id="video-play"></div>
+            <div class="vbar"><span>0:42</span><span class="track"><span class="fill" id="vfill" style="width:0%"></span></span><span>1:1</span></div>
+          </div>
+          <div class="soc-actions" style="margin-top:12px">
+            <span class="grow mono" style="font-size:12px;color:var(--muted)">feature-v2.4.0.mp4 · 0:42 · 16:9</span>
+            <button class="btn btn-violet" style="padding:8px 14px;font-size:13px" data-od-id="video-attach" onclick="attachVideo()">Attach to social queue</button>
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>
+<script>
+// caption counters
+function count(id,out){ const el=document.getElementById(id),o=document.getElementById(out);
+  const upd=()=>o.textContent=el.value.length+"/"+(id==="xCaption"?280:3000); el.addEventListener("input",upd); upd(); }
+count("xCaption","xCount");
+
+// approval
+function decide(ok){
+  const note=document.getElementById("actorNote").value.trim();
+  document.getElementById(ok?"okPanel":"noPanel").classList.add("show");
+  const chip=document.getElementById("statusChip");
+  if(ok){chip.className="chip chip-green-solid";chip.textContent="approved";}
+  else{chip.className="chip chip-await";chip.textContent="returned to draft";}
+  if(note&&!ok){document.getElementById("noPanel").append(" Note: "+note);}
+  if(note&&ok){document.getElementById("okPanel").append(" Note: "+note);}
+}
+
+// social queue
+function markReady(){
+  const c=document.getElementById("xCard"),chip=document.getElementById("xChip");
+  c.classList.add("soc-ready");
+  chip.className="chip chip-ready";chip.textContent="ready to publish";
+  document.getElementById("xSched").classList.add("show");
+  const b=document.getElementById("xReadyBtn");b.textContent="Ready";b.disabled=true;b.style.opacity=.5;b.style.cursor="default";
+}
+function attachVideo(){
+  const t=document.querySelector("#xCard .soc-actions .grow");
+  t.innerHTML='<span style="color:var(--green)">feature-v2.4.0.mp4 attached</span>';
+}
+
+// video generation -> ready
+let pct=62,timer=null,cancelled=false;
+function tick(){
+  timer=setInterval(()=>{
+    pct=Math.min(100,pct+Math.ceil(Math.random()*5));
+    document.getElementById("pct").textContent=pct+"%";
+    document.getElementById("genFill").style.width=pct+"%";
+    document.getElementById("eta").textContent="~"+Math.max(2,Math.round((100-pct)*1.1))+"s left";
+    if(pct>=100){clearInterval(timer);finish();}
+  },600);
+}
+function finish(){
+  document.getElementById("genState").style.display="none";
+  document.getElementById("readyState").style.display="block";
+}
+function cancelGen(){
+  if(cancelled||pct>=100)return;
+  cancelled=true;clearInterval(timer);
+  document.getElementById("genState").querySelector(".gen-label").textContent="Generation cancelled — video discarded.";
+  document.getElementById("genFill").style.width="0%";document.getElementById("pct").textContent="—";document.getElementById("eta").textContent="";
+}
+function playStub(){
+  const f=document.getElementById("vfill");let w=0;
+  const iv=setInterval(()=>{w+=4;f.style.width=Math.min(w,100)+"%";if(w>=100)clearInterval(iv);},120);
+}
+tick();
+</script>
+</body>
+</html>

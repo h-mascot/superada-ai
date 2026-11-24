@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sign in — Release Manager</title>
+<style>
+:root{--bg:#070c1a;--surface:#0f172d;--surface2:#141f39;--fg:#e8ecf8;--muted:#8b93ad;--border:#1e2947;--violet:#b996f0;--pink:#f27fc0;--green:#4ade80;--amber:#fbbf24;--red:#f87171}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(900px 480px at 50% -10%,rgba(185,150,240,.14),transparent 60%),radial-gradient(700px 400px at 85% 110%,rgba(242,127,192,.08),transparent 60%);pointer-events:none}
+.card{position:relative;width:400px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:36px 32px}
+.brand{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:22px;font-weight:700}
+.brand .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--pink))}
+h1{font-size:20px;font-weight:650;text-align:center;margin:0 0 4px}
+.tagline{text-align:center;color:var(--muted);font-size:13px;margin:0 0 26px}
+label{display:block;font-size:12px;color:var(--muted);margin:0 0 6px}
+input[type=email]{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 13px;color:var(--fg);font:inherit;outline:none}
+input[type=email]:focus{border-color:var(--violet)}
+.btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:10px;padding:11px 14px;font:inherit;font-weight:600;cursor:pointer;margin-top:10px}
+.btn-google{background:#fff;color:#1b1f2e;border:1px solid #fff}
+.btn-github{background:var(--surface2);color:var(--fg);border:1px solid var(--border)}
+.btn-github:hover{border-color:var(--muted)}
+.or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin:20px 0 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--border)}
+.status{border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:16px;display:none}
+.status.show{display:block}
+.status-ok{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.35);color:var(--green)}
+.status-reject{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.4);color:var(--red)}
+.status-reject strong{display:block;margin-bottom:2px}
+.hint{color:var(--muted);font-size:12px;text-align:center;margin-top:20px}
+.hint code{color:var(--violet);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+svg{width:17px;height:17px;flex:none}
+</style>
+</head>
+<body>
+<main class="card" data-od-id="login-card">
+  <div class="brand"><div class="dot"></div>Herald</div>
+  <h1>Sign in to Release Manager</h1>
+  <p class="tagline">Herald release workspace</p>
+
+  <div id="statusOk" class="status status-ok">Invite found — you're on the workspace list. Continue below.</div>
+  <div id="statusReject" class="status status-reject"><strong>No invite found for this email</strong>ask a workspace admin to invite you, then try again.</div>
+
+  <label for="email">Work email</label>
+  <input id="email" type="email" placeholder="you@heraldlabs.co" autocomplete="email">
+
+  <button class="btn btn-google" data-od-id="login-google" onclick="checkInvite()">
+    <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.3-2.2H12v4.1h6.5c-.1 1.1-.8 2.7-2.4 3.8l3.7 2.9c2.3-2.1 3.7-5.1 3.7-8.6z"/><path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.7-2.9c-1 .7-2.4 1.2-4.2 1.2-3.2 0-5.9-2.1-6.8-5l-3.9 3C3.3 21.3 7.3 24 12 24z"/><path fill="#FBBC05" d="M5.2 14.4c-.2-.7-.4-1.5-.4-2.4s.2-1.7.4-2.4l-3.9-3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l3.9-3z"/><path fill="#EA4335" d="M12 4.7c2.3 0 3.8 1 4.7 1.8l3.3-3.2C18 1.6 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l3.9 3c.9-2.9 3.6-4.9 6.8-4.9z"/></svg>
+    Continue with Google
+  </button>
+  <div class="or">or</div>
+  <button class="btn btn-github" data-od-id="login-github" onclick="checkInvite()">
+    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    Sign in with GitHub
+  </button>
+
+  <p class="hint">Invited emails: <code>ada@heraldlabs.co</code> · <code>book@heraldlabs.co</code> — any other address shows the rejected panel.</p>
+</main>
+<script>
+const INVITED = ["fikayo@heraldlabs.co","ada@heraldlabs.co","book@heraldlabs.co","scotty@heraldlabs.co"];
+function checkInvite(){
+  const v = document.getElementById("email").value.trim().toLowerCase();
+  const ok = document.getElementById("statusOk"), no = document.getElementById("statusReject");
+  ok.classList.remove("show"); no.classList.remove("show");
+  if(!v){ no.classList.add("show"); return; }
+  (INVITED.includes(v) ? ok : no).classList.add("show");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Release Manager Updates</title>
+<style>
+:root{--bg:#070c1a;--surface:#0f172d;--surface2:#141f39;--fg:#e8ecf8;--muted:#8b93ad;--border:#1e2947;--violet:#b996f0;--pink:#f27fc0;--green:#4ade80;--amber:#fbbf24;--red:#f87171}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:48px 32px 80px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:40px;font-weight:700}
+.brand .dot{width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,var(--violet),var(--pink))}
+.brand a{color:var(--muted);font-size:13px;text-decoration:none;margin-left:8px}
+.hero h1{font-size:30px;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+.hero p{color:var(--muted);margin:0 0 24px;max-width:560px}
+.controls{display:flex;align-items:center;gap:10px;margin-bottom:32px;flex-wrap:wrap}
+.controls label{font-size:12px;color:var(--muted)}
+select{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;color:var(--fg);font:inherit;font-size:13px;outline:none;cursor:pointer}
+select:focus{border-color:var(--violet)}
+.cats{display:flex;gap:8px;margin-left:auto}
+.cat{border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600;border:1px solid;cursor:pointer;background:transparent}
+.cat-new{color:var(--green);border-color:rgba(74,222,128,.4)}
+.cat-new.on{background:rgba(74,222,128,.1)}
+.cat-improved{color:var(--violet);border-color:rgba(185,150,240,.4)}
+.cat-improved.on{background:rgba(185,150,240,.1)}
+.cat-fixed{color:var(--pink);border-color:rgba(242,127,192,.4)}
+.cat-fixed.on{background:rgba(242,127,192,.1)}
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.entry{position:relative;margin-bottom:36px}
+.entry::before{content:"";position:absolute;left:-24px;top:7px;width:9px;height:9px;border-radius:99px;background:var(--surface2);border:2px solid var(--muted)}
+.entry.e-new::before{border-color:var(--green)}
+.entry.e-improved::before{border-color:var(--violet)}
+.entry.e-fixed::before{border-color:var(--pink)}
+.entry .date{color:var(--muted);font-size:12.5px;margin-bottom:6px}
+.entry h2{font-size:17px;font-weight:650;margin:0 0 6px}
+.entry p{margin:0;color:#c9cfe2;font-size:14px;max-width:640px}
+.chips{display:flex;gap:6px;margin-top:8px}
+.chip{border-radius:999px;padding:2px 10px;font-size:11.5px;font-weight:600;border:1px solid}
+.c-new{color:var(--green);border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.07)}
+.c-improved{color:var(--violet);border-color:rgba(185,150,240,.4);background:rgba(185,150,240,.07)}
+.c-fixed{color:var(--pink);border-color:rgba(242,127,192,.4);background:rgba(242,127,192,.07)}
+.player{margin-top:14px;max-width:560px;position:relative;aspect-ratio:16/9;border-radius:12px;background:#04070f;border:1px solid var(--border);overflow:hidden}
+.player .glow{position:absolute;inset:0;background:radial-gradient(380px 180px at 30% 25%,rgba(185,150,240,.16),transparent 60%),radial-gradient(280px 150px at 80% 85%,rgba(242,127,192,.1),transparent 60%)}
+.player .label{position:absolute;top:12px;left:14px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted)}
+.play{position:absolute;inset:0;margin:auto;width:52px;height:52px;border-radius:999px;background:rgba(232,236,248,.94);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.play::after{content:"";border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #0b1020;margin-left:4px}
+.vbar{display:flex;align-items:center;gap:10px;position:absolute;left:12px;right:12px;bottom:10px;font-size:11px;color:#c9cfe2}
+.vbar .track{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.vbar .fill{height:100%;width:0%;background:var(--violet)}
+footer{margin-top:56px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);padding-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="dot"></div>Herald <a href="index.html">All project updates</a></div>
+
+  <header class="hero" data-od-id="updates-hero">
+    <h1>Release Manager Updates</h1>
+    <p>New releases, improvements, and fixes for Release Manager — Herald's team release workspace. Every entry links back to an evidence-backed changelog.</p>
+  </header>
+
+  <div class="controls" data-od-id="updates-filters">
+    <label for="range">Showing</label>
+    <select id="range">
+      <option>All time</option><option>Last 30 days</option><option>Last 90 days</option><option>2026 only</option>
+    </select>
+    <div class="cats">
+      <button class="cat cat-new on" data-od-id="filter-new" onclick="tog(this)">New</button>
+      <button class="cat cat-improved on" data-od-id="filter-improved" onclick="tog(this)">Improved</button>
+      <button class="cat cat-fixed on" data-od-id="filter-fixed" onclick="tog(this)">Fixed</button>
+    </div>
+  </div>
+
+  <main class="timeline" id="timeline">
+    <article class="entry e-new" data-cat="new" data-od-id="entry-v240">
+      <div class="date">November 24, 2026 · v2.4.0</div>
+      <h2>Multi-project workspace</h2>
+      <p>Projects now group repos, channels, and releases together. Each release ships as a pack: drafted changelog, approval step, and a social queue attached before anything goes public.</p>
+      <div class="chips"><span class="chip c-new">New</span><span class="chip c-improved">Improved</span></div>
+      <div class="player" data-od-id="weekly-video">
+        <div class="glow"></div>
+        <span class="label">weekly-2026-W48.mp4</span>
+        <div class="play" onclick="playStub()"></div>
+        <div class="vbar"><span>0:00</span><span class="track"><span class="fill" id="vfill"></span></span><span>1:12</span></div>
+      </div>
+    </article>
+
+    <article class="entry e-fixed" data-cat="fixed" data-od-id="entry-v231">
+      <div class="date">November 12, 2026 · v2.3.1</div>
+      <h2>Queue hardening</h2>
+      <p>Scheduled posts no longer double-fire when the worker retries after a network blip. Queue items are now idempotent per release and channel.</p>
+      <div class="chips"><span class="chip c-fixed">Fixed</span></div>
+    </article>
+
+    <article class="entry e-improved" data-cat="improved" data-od-id="entry-v230">
+      <div class="date">October 30, 2026 · v2.3.0</div>
+      <h2>Channel connectors</h2>
+      <p>Channel settings moved into projects. LinkedIn drafts preview exactly as they'll post, and the X connector entered internal testing.</p>
+      <div class="chips"><span class="chip c-improved">Improved</span></div>
+    </article>
+  </main>
+
+  <footer>Release Manager Updates is generated from published changelogs. <a href="#" style="color:var(--violet);text-decoration:none">Subscribe by RSS</a></footer>
+</div>
+<script>
+function tog(b){ b.classList.toggle("on"); apply(); }
+function apply(){
+  const on={new:qs("cat-new"),improved:qs("cat-improved"),fixed:qs("cat-fixed")};
+  function qs(c){return document.querySelector("."+c).classList.contains("on");}
+  document.querySelectorAll(".entry").forEach(e=>{
+    e.style.display = on[e.dataset.cat] ? "" : "none";
+  });
+}
+function playStub(){
+  const f=document.getElementById("vfill");let w=0;
+  const iv=setInterval(()=>{w+=3;f.style.width=Math.min(w,100)+"%";if(w>=100)clearInterval(iv);},100);
+}
+</script>
+</body>
+</html>

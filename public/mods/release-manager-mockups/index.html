@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Release Manager — Herald release workspace</title>
+<style>
+:root{--bg:#070c1a;--surface:#0f172d;--surface2:#141f39;--fg:#e8ecf8;--muted:#8b93ad;--border:#1e2947;--violet:#b996f0;--pink:#f27fc0;--green:#4ade80;--amber:#fbbf24;--red:#f87171}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:48px 32px}
+h1{font-size:20px;font-weight:650;margin:0 0 4px}
+p.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+a.card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;color:var(--fg);text-decoration:none;transition:border-color .15s}
+a.card:hover{border-color:var(--violet)}
+.card h2{margin:0 0 6px;font-size:15px}
+.card p{margin:0;color:var(--muted);font-size:13px}
+.card .num{font-size:11px;color:var(--violet);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:32px;font-weight:700}
+.brand .dot{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--violet),var(--pink))}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="dot"></div>Release Manager</div>
+  <h1>Herald release workspace — console redesign</h1>
+  <p class="sub">Six screens. Open any screen full-size; states are wired as real interactions.</p>
+  <div class="grid">
+    <a class="card" href="login.html" data-od-id="screen-login"><div class="num">01</div><h2>Login</h2><p>Invited-email landing, Google + GitHub sign-in, rejected state</p></a>
+    <a class="card" href="members.html" data-od-id="screen-members"><div class="num">02</div><h2>Admin › Members</h2><p>Role table, pending invite, invite rail</p></a>
+    <a class="card" href="projects.html" data-od-id="screen-projects"><div class="num">03</div><h2>Projects</h2><p>Card grid with repo counts, channels, latest release</p></a>
+    <a class="card" href="project-detail.html" data-od-id="screen-project-detail"><div class="num">04</div><h2>Project detail</h2><p>Releases / Repos / Channels tabs, connect-repo popover</p></a>
+    <a class="card" href="release-pack.html" data-od-id="screen-release-pack"><div class="num">05</div><h2>Release pack</h2><p>Changelog draft, approval, social queue, feature video</p></a>
+    <a class="card" href="updates.html" data-od-id="screen-updates"><div class="num">06</div><h2>Public updates</h2><p>Marketing-facing timeline with chips and weekly video</p></a>
+  </div>
+</div>
+</body>
+</html>
