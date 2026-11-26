@@ -21,7 +21,13 @@
 <body>
 <div class="wrap">
   <h1>Surak — badge spacing preview</h1>
-  <p class="note">Three states of the Check/Ask pills and verdict badge on a real x.com post. Nothing here is implemented yet — this page exists so the change can be reviewed before shipping.</p>
+  <p class="note">Three states of the Check/Ask pills and verdict badge on a real x.com post.</p>
+
+  <div class="panel">
+    <p class="note" style="color:#9fe6a9"><b>SHIPPED — Surak 0.1.19 (commit 6d07ccc):</b> 8px lift, 14px badge gap. This is the live build, measured on the real page. Verify your installed version reads 0.1.19 in chrome://extensions.</p>
+    <img src="final.png" alt="Shipped 0.1.19: Check and Ask pills with a verdict badge below, 14px gap, measured on the real x.com page">
+    <div class="legend">Measured on the real page with the shipped artifact: badge gap <b>14px</b> · space above pills <b>12px</b>. Update drill: <b>git pull → pnpm build → chrome://extensions → reload Surak → hard-refresh the X tab (Cmd+Shift+R)</b>.</div>
+  </div>
 
   <div class="panel">
     <img src="stacked.png" alt="Three stacked panels: current spacing, proposed 8px lift and 18px badge gap, and a tighter 16px option, with measured gap boxes">
