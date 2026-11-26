@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Surak spacing preview — unlisted</title>
+<style>
+  body { margin:0; background:#161616; color:#e8e8e8; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+  .wrap { max-width:1160px; margin:0 auto; padding:28px 16px 60px; }
+  h1 { font-size:20px; margin:0 0 6px; font-weight:700; }
+  p.note { color:#aaa; font-size:14px; margin:0 0 22px; }
+  .panel { margin:0 0 26px; }
+  .panel img { width:100%; height:auto; display:block; border:1px solid #333; border-radius:8px; }
+  .legend { font-size:13px; color:#bbb; margin-top:8px; }
+  .legend b { color:#fff; }
+  .red { color:#ff8d8d; } .blue { color:#8db4ff; }
+  .unlisted { margin-top:34px; color:#777; font-size:12px; border-top:1px solid #2a2a2a; padding-top:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Surak — badge spacing preview</h1>
+  <p class="note">Three states of the Check/Ask pills and verdict badge on a real x.com post. Nothing here is implemented yet — this page exists so the change can be reviewed before shipping.</p>
+
+  <div class="panel">
+    <img src="stacked.png" alt="Three stacked panels: current spacing, proposed 8px lift and 18px badge gap, and a tighter 16px option, with measured gap boxes">
+    <div class="legend">
+      <span class="red">&#9632; red box</span> = gap between the Check/Ask pills and the verdict badge ·
+      <span class="blue">&#9632; blue box</span> = space between the Relevant row and the pills.
+      Panels top to bottom: <b>current 0.1.18</b> (20px gap) · <b>proposed</b> (18px) · <b>option</b> (16px).
+      On-screen values include 4px that x.com adds itself.
+    </div>
+  </div>
+
+  <div class="panel">
+    <p class="note">Same three states, side by side:</p>
+    <img src="wide.png" alt="Side-by-side comparison of current, proposed and option spacing">
+  </div>
+
+  <div class="unlisted">Unlisted review page · noindex,nofollow · remove after review.</div>
+</div>
+</body>
+</html>
