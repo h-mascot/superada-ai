@@ -299,6 +299,21 @@
       "permanent": false
     },
     {
+      "source": "/benchmarks",
+      "destination": "https://benchy.superada.ai",
+      "permanent": true
+    },
+    {
+      "source": "/benchmarks/",
+      "destination": "https://benchy.superada.ai",
+      "permanent": true
+    },
+    {
+      "source": "/benchmarks/index.html",
+      "destination": "https://benchy.superada.ai",
+      "permanent": true
+    },
+    {
       "source": "/3026",
       "destination": "/resources/humanity-3026/",
       "permanent": false
